@@ -1,7 +1,9 @@
-FROM node:9.5
+FROM node:9.5 as nodebuilder
 ADD / /source
 WORKDIR /source
-RUN yarn build
-RUN yarn global add serve
+RUN npm install
+RUN npm run build
 
-CMD serve -s build/
+FROM nginx
+COPY --from=nodebuilder /source/build /usr/share/nginx/html
+
