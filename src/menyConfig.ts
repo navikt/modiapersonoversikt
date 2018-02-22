@@ -27,5 +27,7 @@ const config: MenyConfig = {
 };
 
 export default function () {
-    window.renderDecoratorHead(config);
+    if (window.renderDecoratorHead) {
+        window.renderDecoratorHead(config);
+    }
 }
