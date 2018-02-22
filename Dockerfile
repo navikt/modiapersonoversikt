@@ -4,5 +4,6 @@ WORKDIR /source
 RUN npm install
 RUN npm run build
 
-FROM docker.adeo.no:5000/pus/nginx
+FROM nginx
 COPY --from=nodebuilder /source/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
