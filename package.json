@@ -4,17 +4,24 @@
   "private": true,
   "dependencies": {
     "@types/storybook__react": "^3.0.7",
+    "classnames": "^2.2.5",
+    "nav-frontend-core": "^4.0.5",
+    "nav-frontend-typografi": "^2.0.2",
+    "nav-frontend-typografi-style": "^1.0.7",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts-ts": "2.13.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build && npm run build-storybook",
+    "build": "npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o build/storybook"
+    "build-storybook": "build-storybook -c .storybook -o build/storybook",
+    "start:less": "autoless --source-map --intervall 100 ./src ./public",
+    "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./public/index.css"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",
@@ -27,6 +34,8 @@
     "@types/react-dom": "^16.0.4",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
+    "less": "^3.0.1",
+    "less-loader": "^4.0.5",
     "typescript": "^2.7.2"
   }
 }
