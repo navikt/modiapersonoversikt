@@ -3,6 +3,7 @@ ADD / /source
 WORKDIR /source
 RUN npm install
 RUN npm run build
+RUN npm run build-storybook
 
 FROM nginx
 COPY --from=nodebuilder /source/build /usr/share/nginx/html
