@@ -1,0 +1,19 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - export TZ="Europe/Oslo"
+  - export RELEASE_VERSION="$(git rev-list --count HEAD)"
+  - export DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
+  - docker build -t "$DOCKER_IMAGE_FULL_NAME" .
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" &&
+      docker push "$DOCKER_IMAGE_FULL_NAME" &&
+      git remote add auth-origin "https://${GITHUB_ACCESS_TOKEN}@github.com/${TRAVIS_REPO_SLUG}" &&
+      git tag "$RELEASE_VERSION" &&
+      git push auth-origin --tags;
+    fi
