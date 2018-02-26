@@ -5,6 +5,10 @@ sudo: required
 services:
   - docker
 
+branches:
+  except:
+    - /^[0-9]/
+
 script:
   - export BRUKERHISTORIE_REGEX='[A-Z][A-Z0-9]{1,6}-\d+\s?'
   - export TZ='Europe/Oslo'
