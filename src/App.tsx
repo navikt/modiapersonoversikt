@@ -7,7 +7,7 @@ class App extends React.Component {
             <div>
                 <div id="header"/>
                 <p className="App-intro">
-                    Velkommen til nye personoversikten!
+                    Velkommen til nye, flotte personoversikten!
                 </p>
             </div>
         );
