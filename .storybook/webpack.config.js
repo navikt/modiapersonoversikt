@@ -11,9 +11,10 @@ module.exports = (baseConfig, env) => {
 
     config.module.rules.push({
         test: /\.less$/,
-        loaders: ['style-loader', 'css-loader', 'less-loader'],
+        loaders: ['style-loader', 'css-loader', 'less-loader?{"globalVars":{' +
+            '"nodeModulesPath":"\'~\'", ' +
+            '"coreModulePath":"\'~\'"}}']
     });
-
 
     config.resolve.extensions.push('.ts', '.tsx', '.less');
     return config;
