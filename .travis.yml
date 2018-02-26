@@ -5,11 +5,9 @@ sudo: required
 services:
   - docker
 
-env:
-  - BRUKERHISTORIE_REGEX='[A-Z][A-Z0-9]{1,6}-\d+\s?'
-
 script:
-  - export TZ="Europe/Oslo"
+  - export BRUKERHISTORIE_REGEX='[A-Z][A-Z0-9]{1,6}-\d+\s?'
+  - export TZ='Europe/Oslo'
   - export RELEASE_VERSION="$(git rev-list --count HEAD)"
   - export DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
   - [ $TRAVIS_BRANCH = master ] || [ `git rev-list --grep=$BRUKERHISTORIE_REGEX --count --perl-regexp --first-parent master..` = `git rev-list --count --first-parent master..` ]
