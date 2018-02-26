@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Person} from "../../models/person";
+import { Person } from "../../models/person";
 
 interface VisittkortProps {
     person: Person
