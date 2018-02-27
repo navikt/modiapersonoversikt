@@ -1,15 +1,9 @@
 language: generic
 
-install: true
-
-sudo: required
-
-services:
-  - docker
+services: docker
 
 branches:
-  except:
-    - /^[0-9]/
+  except: /^[0-9]/
 
 env:
   global:
@@ -17,8 +11,7 @@ env:
     - RELEASE_VERSION="$(git rev-list --count HEAD)"
     - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
 
-script:
-  - docker build -t "$DOCKER_IMAGE_FULL_NAME" .
+script: docker build -t "$DOCKER_IMAGE_FULL_NAME" .
 
 deploy:
   provider: script
