@@ -1,4 +1,5 @@
 import * as React from 'react';
+import UnderArbeid from './components/underarbeid/UnderArbeid';
 
 class App extends React.Component {
     render() {
@@ -8,6 +9,7 @@ class App extends React.Component {
                 <p className="App-intro">
                     Velkommen til nye, flotte personoversikten!
                 </p>
+                <UnderArbeid />
             </div>
         );
     }
