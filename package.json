@@ -21,7 +21,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "start:less": "autoless --source-map --interval 100 ./src ./public",
-    "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./build/index.css"
+    "build:less": "node ./node_modules/less/bin/lessc/ src/index.less build/static/styles/index.css"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",
