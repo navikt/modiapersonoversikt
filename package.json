@@ -20,8 +20,8 @@
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "start:less": "autoless --source-map --intervall 100 ./src ./public",
-    "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./public/index.css"
+    "start:less": "autoless --source-map --interval 100 ./src ./public",
+    "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./build/index.css"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",
