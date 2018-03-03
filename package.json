@@ -14,14 +14,16 @@
     "react-scripts-ts": "2.13.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "npm run build:less && react-scripts-ts build",
+    "start": "npm-run-all -p start:*",
+    "start:js": "react-scripts-ts start",
+    "start:less": "autoless src",
+    "build": "npm run build:less && npm run build:js",
+    "build:js": "react-scripts-ts build",
+    "build:less": "autoless --no-watch src",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "start:less": "autoless --source-map --interval 100 ./src ./public",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
+    "build-storybook": "build-storybook -c .storybook -o build/storybook"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",
@@ -32,10 +34,10 @@
     "@types/node": "^9.4.6",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
+    "autoless": "^0.1.7",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
-    "less": "^3.0.1",
-    "less-loader": "^4.0.5",
+    "npm-run-all": "^4.1.2",
     "typescript": "^2.7.2"
   }
 }
