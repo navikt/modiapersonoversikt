@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
+
 import PersonPage from './components/person/PersonPage';
+import getStore from './store';
+import UnderArbeid from './components/underarbeid/UnderArbeid';
+import Startbilde from './components/startbilde/Startbilde';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
-import UnderArbeid from './components/underarbeid/UnderArbeid';
 
 interface AppState {
     fodselsnummer: string;
@@ -11,6 +15,8 @@ interface AppState {
 interface AppProps {
 
 }
+
+const store = getStore();
 
 class App extends React.Component<AppProps, AppState> {
 
@@ -36,15 +42,21 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
+        const pageContent = this.state.fodselsnummer
+            ? <PersonPage fodselsnummer={this.state.fodselsnummer}/>
+            : <Startbilde/>;
+
         return (
-            <div>
-                <div id="header"/>
-                <p className="App-intro">
-                    Velkommen til nye, flotte personoversikten!
-                </p>
-                <UnderArbeid />
-                <PersonPage fodselsnummer={this.state.fodselsnummer}/>
-            </div>
+            <Provider store={store}>
+                <div>
+                    <div id="header"/>
+                    <p className="App-intro">
+                        Velkommen til nye, flotte personoversikten!
+                    </p>
+                    <UnderArbeid />
+                    {pageContent}
+                </div>
+            </Provider>
         );
     }
 }

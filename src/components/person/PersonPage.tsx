@@ -1,4 +1,5 @@
 import * as React from 'react';
+import VisittkortContainer from '../visittkort/visittkort-container';
 
 interface PersonPage {
     fodselsnummer: string;
@@ -7,7 +8,7 @@ interface PersonPage {
 function PersonPage({fodselsnummer}: PersonPage) {
     return (
         <div>
-            <p>{fodselsnummer}</p>
+            <VisittkortContainer/>
         </div>
     );
 }
