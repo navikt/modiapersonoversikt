@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/storybook__react": "^3.0.7",
     "classnames": "^2.2.5",
+    "copyfiles": "^1.2.0",
     "nav-frontend-core": "^4.0.5",
     "nav-frontend-typografi": "^2.0.2",
     "nav-frontend-typografi-style": "^1.0.7",
@@ -14,8 +15,8 @@
     "react-scripts-ts": "2.13.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "npm run build:less && react-scripts-ts build",
+    "start": "copyfiles -u 3 src/index/dev/index.html public/ && react-scripts-ts start",
+    "build": "copyfiles -u 3 src/index/prod/index.html public/ && npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
