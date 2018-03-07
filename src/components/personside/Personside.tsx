@@ -4,22 +4,22 @@ import { connect, Dispatch } from 'react-redux';
 
 import VisittkortContainer from '../visittkort/visittkort-container';
 
-interface PersonPageRouteProps {
+interface PersonsideRouteProps {
     fodselsnummer: string;
 }
 
-interface PersonPageStateProps {
+interface PersonsideStateProps {
     fodselsnummer: string;
 }
 
 interface DispatchProps {
 }
 
-type PersonPageProps = RouteComponentProps<PersonPageRouteProps> & PersonPageStateProps;
+type PersonsideProps = RouteComponentProps<PersonsideRouteProps> & PersonsideStateProps;
 
-class PersonPage extends React.PureComponent<PersonPageProps> {
+class Personside extends React.PureComponent<PersonsideProps> {
 
-    constructor(props: PersonPageProps) {
+    constructor(props: PersonsideProps) {
         super(props);
     }
 
@@ -32,7 +32,7 @@ class PersonPage extends React.PureComponent<PersonPageProps> {
     }
 }
 
-function mapStateToProps(state: object, ownProps: RouteComponentProps<PersonPageRouteProps>): PersonPageStateProps {
+function mapStateToProps(state: object, ownProps: RouteComponentProps<PersonsideRouteProps>): PersonsideStateProps {
     const routeParams = ownProps.match.params;
     const fodselsnummer = routeParams.fodselsnummer;
 
@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (PersonPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Personside));
