@@ -2,12 +2,14 @@ interface Toggles {
     visEnhet: boolean;
     visSokefelt: boolean;
     visVeileder: boolean;
+    visSokeIkon: boolean;
 }
 
 interface MenyConfig {
     config: {
         toggles: Toggles;
         applicationName: string;
+        fnr: string;
     };
 }
 
@@ -20,13 +22,16 @@ const config: MenyConfig = {
         toggles: {
             visEnhet: true,
             visSokefelt: true,
-            visVeileder: true
+            visVeileder: true,
+            visSokeIkon: false
         },
-        applicationName: 'Modia personoversikt'
+        applicationName: 'Modia personoversikt',
+        fnr: ''
     }
 };
 
-export default function () {
+export default function (fodselsnummer: string) {
+    config.config.fnr = fodselsnummer;
     if (window.renderDecoratorHead) {
         window.renderDecoratorHead(config);
     }
