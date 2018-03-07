@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import getStore from './store';
-import Routing from './routing';
+import Routing, { paths } from './routes/routing';
 import UnderArbeid from './components/underarbeid/UnderArbeid';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
@@ -23,15 +23,21 @@ class App extends React.Component<AppProps> {
 
     componentDidMount() {
         document.addEventListener('dekorator-hode-personsok', this.handlePersonsok);
+        document.addEventListener('dekorator-hode-fjernperson', this.handleFjernPerson);
     }
 
     componentWillUnmount() {
         document.removeEventListener('dekorator-hode-personsok', this.handlePersonsok);
+        document.removeEventListener('dekorator-hode-fjernperson', this.handleFjernPerson);
     }
 
     handlePersonsok(event: object) {
         const personsokEvent = event as DecoratorPersonsokEvent;
-        window.location.href = `/person/${personsokEvent.fodselsnummer}`;
+        window.location.href = `${paths.personUri}/${personsokEvent.fodselsnummer}`;
+    }
+
+    handleFjernPerson() {
+        window.location.href = `/`;
     }
 
     render() {
