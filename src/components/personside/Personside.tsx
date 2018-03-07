@@ -1,11 +1,11 @@
 import * as React from 'react';
 import VisittkortContainer from '../visittkort/visittkort-container';
 
-interface PersonPage {
+interface Personside {
     fodselsnummer: string;
 }
 
-function PersonPage({fodselsnummer}: PersonPage) {
+function Personside({fodselsnummer}: Personside) {
     return (
         <div>
             <VisittkortContainer/>
@@ -13,4 +13,4 @@ function PersonPage({fodselsnummer}: PersonPage) {
     );
 }
 
-export default PersonPage;
+export default Personside;

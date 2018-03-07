@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import PersonPage from './components/person/PersonPage';
+import Personside from './components/personside/Personside';
 import getStore from './store';
 import UnderArbeid from './components/underarbeid/UnderArbeid';
 import Startbilde from './components/startbilde/Startbilde';
@@ -43,7 +43,7 @@ class App extends React.Component<AppProps, AppState> {
 
     render() {
         const pageContent = this.state.fodselsnummer
-            ? <PersonPage fodselsnummer={this.state.fodselsnummer}/>
+            ? <Personside fodselsnummer={this.state.fodselsnummer}/>
             : <Startbilde/>;
 
         return (
