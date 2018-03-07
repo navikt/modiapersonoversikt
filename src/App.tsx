@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import Personside from './components/personside/Personside';
 import getStore from './store';
+import Routing from './routing';
 import UnderArbeid from './components/underarbeid/UnderArbeid';
-import Startbilde from './components/startbilde/Startbilde';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
-
-interface AppState {
-    fodselsnummer: string;
-}
 
 interface AppProps {
 
@@ -18,11 +14,10 @@ interface AppProps {
 
 const store = getStore();
 
-class App extends React.Component<AppProps, AppState> {
+class App extends React.Component<AppProps> {
 
     constructor(props: AppProps) {
         super(props);
-        this.state = { fodselsnummer: '' };
         this.handlePersonsok = this.handlePersonsok.bind(this);
     }
 
@@ -36,25 +31,18 @@ class App extends React.Component<AppProps, AppState> {
 
     handlePersonsok(event: object) {
         const personsokEvent = event as DecoratorPersonsokEvent;
-        this.setState(() => {
-            return { fodselsnummer: personsokEvent.fodselsnummer};
-        });
+        window.location.href = `/person/${personsokEvent.fodselsnummer}`;
     }
 
     render() {
-        const pageContent = this.state.fodselsnummer
-            ? <Personside fodselsnummer={this.state.fodselsnummer}/>
-            : <Startbilde/>;
-
         return (
             <Provider store={store}>
                 <div>
-                    <div id="header"/>
-                    <p className="App-intro">
-                        Velkommen til nye, flotte personoversikten!
-                    </p>
+                    <header id="header"/>
                     <UnderArbeid />
-                    {pageContent}
+                    <BrowserRouter>
+                        <Routing />
+                    </BrowserRouter>
                 </div>
             </Provider>
         );
