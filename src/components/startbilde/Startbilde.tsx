@@ -1,9 +1,12 @@
 import * as React from 'react';
+import KnappBase from 'nav-frontend-knapper';
 
 function Startbilde() {
     return (
         <div className="startbilde">
-            <button>Hent oppgave</button>
+            <KnappBase type="hoved">
+                Plukk en oppgave!
+            </KnappBase>
         </div>
     );
 }
