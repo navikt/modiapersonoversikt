@@ -18,7 +18,8 @@
     "noUnusedLocals": true
   },
   "include" : [
-    "src/@types/*"
+    "src/@types/*",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
