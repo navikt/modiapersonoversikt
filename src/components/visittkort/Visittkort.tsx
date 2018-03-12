@@ -11,7 +11,7 @@ interface VisittkortProps {
 function Tittel({person}: VisittkortProps) {
     return (
         <div>
-            <Innholdstittel type={"innholdstittel"}>{person.fornavn} {person.etternavn}</Innholdstittel>
+            <Innholdstittel type={'innholdstittel'}>{person.fornavn} {person.etternavn}</Innholdstittel>
             <p>{person.fodselsnummer}</p>
         </div>
     );
