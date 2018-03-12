@@ -1,14 +1,22 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Visittkort from './Visittkort';
+import { AppState } from '../../redux/reducer';
+import { Person } from '../../models/person';
 
-function VisittkortContainer () {
-    const person = {
-        fornavn: 'Test',
-        etternavn: 'Testesen',
-        fodselsnummer: '10108000498'
-    };
-    return <Visittkort person={person}/>;
+interface VisittkortContainerProps {
+    person: Person;
 }
 
-export default connect(null, null)(VisittkortContainer);
+class VisittkortContainer extends React.Component<VisittkortContainerProps> {
+    render() {
+        return <Visittkort person={this.props.person}/>;
+    }
+}
+const mapStateToProps = (state: AppState) => {
+    return ({
+        person: state.person.data
+    });
+};
+
+export default connect(mapStateToProps, null)(VisittkortContainer);
