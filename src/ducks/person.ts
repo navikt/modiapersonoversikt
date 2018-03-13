@@ -1,18 +1,14 @@
 import { Person } from '../models/person';
 import { Action, Dispatch } from 'redux';
 import { FetchError, FetchSuccess, RestActions, STATUS } from './utils';
+import { getPerson } from '../api/person-api';
+import { aremark } from '../mock/person-mock';
 
 export interface PersonState {
     data: Person;
     status: STATUS;
     error: string | null;
 }
-
-const mockPerson = {
-    fornavn: 'Aremark',
-    etternavn: 'Testfamilien',
-    fodselsnummer: '10108000398'
-};
 
 const reducerName = 'person/';
 
@@ -23,21 +19,15 @@ const actionNames = {
 };
 
 const initialState: PersonState = {
-    data: mockPerson,
+    data: aremark,
     status: STATUS.NOT_STARTED,
     error: null
 };
 
-function mockFetch(fodselsnummer: string) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => { resolve(mockPerson); }, 2500);
-    });
-}
-
 export function hentPerson(fodselsnummer: string) {
     return (dispatch: Dispatch<Action>) => {
         dispatch({ type: actionNames.PENDING});
-        return mockFetch(fodselsnummer)
+        return getPerson(fodselsnummer)
             .then((person) => {
                 dispatch({type: actionNames.OK, data: person});
                 return person;

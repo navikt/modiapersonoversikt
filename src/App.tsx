@@ -5,11 +5,16 @@ import { BrowserRouter } from 'react-router-dom';
 import getStore from './store';
 import Routing, { paths } from './routes/routing';
 import UnderArbeid from './components/underarbeid/UnderArbeid';
+import { setupMock } from './mock/setup-mock';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
 
 interface AppProps {
 
+}
+
+if (process.env.REACT_APP_MOCK === 'true') {
+    setupMock();
 }
 
 const store = getStore();
