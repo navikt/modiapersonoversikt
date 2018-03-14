@@ -6,6 +6,7 @@
     "@types/storybook__react": "^3.0.7",
     "classnames": "^2.2.5",
     "copyfiles": "^1.2.0",
+    "core-js": "^2.5.3",
     "cross-env": "^5.1.4",
     "lodash.throttle": "^4.1.1",
     "nav-frontend-chevron-style": "^0.3.4",
