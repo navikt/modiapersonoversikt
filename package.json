@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "copyfiles": "^1.2.0",
+    "core-js": "^2.5.3",
     "cross-env": "^5.1.4",
     "lodash.throttle": "^4.1.1",
     "nav-frontend-alertstriper": "^1.0.7",
@@ -44,7 +45,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "start:less": "autoless --source-map --interval 100 ./src ./public",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
+    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",
