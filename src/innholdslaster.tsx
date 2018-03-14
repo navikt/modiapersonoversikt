@@ -1,4 +1,7 @@
 import * as React from 'react';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import AlertStripe from 'nav-frontend-alertstriper';
+
 import { STATUS } from './ducks/utils';
 import { Reducer } from './redux/reducer';
 
@@ -18,9 +21,13 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
         if (alleLastet(this.props.avhengigheter)) {
             return this.props.children;
         } else if (noenHarFeil(this.props.avhengigheter)) {
-            return <p>Det skjedde en feil ved lasting av data</p>;
+            return (
+                <AlertStripe type="advarsel">
+                    Feil ved lasting av data
+                </AlertStripe>
+            );
         } else {
-            return <p>Spinner</p>;
+            return <NavFrontendSpinner type="XXL" />;
         }
     }
 }
