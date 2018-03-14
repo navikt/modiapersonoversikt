@@ -8,7 +8,6 @@
 @import '../node_modules/nav-frontend-spinner-style/src/spinner-style';
 @import '../node_modules/nav-frontend-alertstriper-style/src/index';
 
-@import './components/underarbeid/UnderArbeid.less';
 @import './components/startbilde/startbilde.less';
 @import './components/visittkort/Visittkort';
 
@@ -23,14 +22,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  > *:last-child{
+  .main-layout{
     flex-grow: 1;
   }
-}
-
-.content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 900px;
-  padding-top: 50px;
 }

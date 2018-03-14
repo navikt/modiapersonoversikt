@@ -49,7 +49,7 @@ class App extends React.Component<AppProps> {
         return (
             <Provider store={store}>
                 <div className={'personoversikt'}>
-                    <header id="header" className="dekorator-container" />
+                    <nav id="header" />
                     <UnderArbeid />
                     <BrowserRouter>
                         <Routing />
