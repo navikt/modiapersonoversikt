@@ -8,8 +8,6 @@
 @import '../node_modules/nav-frontend-spinner-style/src/spinner-style';
 @import '../node_modules/nav-frontend-alertstriper-style/src/index';
 
-@import './App.less';
-@import './components/underarbeid/UnderArbeid.less';
 @import './components/startbilde/startbilde.less';
 @import './components/visittkort/Visittkort';
 
@@ -20,9 +18,11 @@ body {
   font-family: sans-serif;
 }
 
-.content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 900px;
-  padding-top: 50px;
+.personoversikt {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .main-layout{
+    flex-grow: 1;
+  }
 }

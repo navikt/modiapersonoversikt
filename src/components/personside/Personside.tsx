@@ -7,6 +7,8 @@ import Innholdslaster from '../../innholdslaster';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
 import { hentPerson } from '../../ducks/person';
+import ComponentPlaceholder from '../component-placeholder/component-placeholder';
+import MainLayout from '../layout/main-layout';
 
 interface PersonsideRouteProps {
     fodselsnummer: string;
@@ -34,9 +36,20 @@ class Personside extends React.PureComponent<PersonsideProps> {
     }
 
     render() {
+
+        const oversikt = (
+            <VisittkortContainer/>
+        );
+
+        const dialogpanel = (
+            <ComponentPlaceholder name={'Dialog Panel'} />
+        );
+
         return (
-            <div className="content">
-                <Innholdslaster avhengigheter={[this.props.personReducer]}><VisittkortContainer/></Innholdslaster>
+            <div className="personoversikt">
+                <Innholdslaster avhengigheter={[this.props.personReducer]}>
+                    <MainLayout oversikt={oversikt} dialogpanel={dialogpanel}/>
+                </Innholdslaster>
             </div>
         );
     }
