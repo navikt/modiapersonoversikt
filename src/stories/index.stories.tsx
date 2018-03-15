@@ -5,6 +5,7 @@ import Visittkort from '../components/visittkort/Visittkort';
 import { Person } from '../models/person';
 import MainLayout from '../components/layout/main-layout';
 import ComponentPlaceholder from '../components/component-placeholder/component-placeholder';
+import Lameller from '../components/lameller/lameller';
 
 const mockPerson: Person = {
     fornavn: 'Aremark',
@@ -43,3 +44,10 @@ storiesOf('Component Placeholder', module)
             </div>
         )
     );
+
+storiesOf('Lameller', module).add('Tab Panel med lameller', () => (
+        <div style={{'height': '100vh', 'display': 'flex'}}>
+            <Lameller/>
+        </div>
+    )
+);
