@@ -11,18 +11,28 @@
 @import './components/startbilde/startbilde.less';
 @import './components/visittkort/Visittkort';
 
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-.personoversikt {
+#header {
+  flex-grow: 0;
+}
+
+.app {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  .main-layout{
-    flex-grow: 1;
+  justify-content: center;
+}
+
+.person-side {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  > .spinner-wrapper, .alertstripe {
+    margin: auto;
   }
 }

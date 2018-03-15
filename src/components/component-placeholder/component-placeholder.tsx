@@ -55,6 +55,7 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
             height: ${this.props.height === undefined ? '100%' : this.props.height};
             width: ${this.props.width === undefined ? '100%' : this.props.width};
             display: flex;
+            flex-grow: 1;
             align-items: center;
             justify-content: center;
         `;

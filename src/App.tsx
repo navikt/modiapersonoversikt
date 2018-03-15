@@ -48,7 +48,7 @@ class App extends React.Component<AppProps> {
     render() {
         return (
             <Provider store={store}>
-                <div className={'personoversikt'}>
+                <div className={'app'}>
                     <nav id="header" />
                     <UnderArbeid />
                     <BrowserRouter>

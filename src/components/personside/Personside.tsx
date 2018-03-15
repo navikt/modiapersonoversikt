@@ -2,12 +2,10 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
 
-import VisittkortContainer from '../visittkort/visittkort-container';
 import Innholdslaster from '../../innholdslaster';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
 import { hentPerson } from '../../ducks/person';
-import ComponentPlaceholder from '../component-placeholder/component-placeholder';
 import MainLayout from '../layout/main-layout';
 
 interface PersonsideRouteProps {
@@ -36,19 +34,10 @@ class Personside extends React.PureComponent<PersonsideProps> {
     }
 
     render() {
-
-        const oversikt = (
-            <VisittkortContainer/>
-        );
-
-        const dialogpanel = (
-            <ComponentPlaceholder name={'Dialog Panel'} />
-        );
-
         return (
-            <div className="personoversikt">
+            <div className="person-side">
                 <Innholdslaster avhengigheter={[this.props.personReducer]}>
-                    <MainLayout oversikt={oversikt} dialogpanel={dialogpanel}/>
+                    <MainLayout />
                 </Innholdslaster>
             </div>
         );

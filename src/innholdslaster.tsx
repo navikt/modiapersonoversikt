@@ -27,7 +27,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
                 </AlertStripe>
             );
         } else {
-            return <NavFrontendSpinner type="XXL" />;
+            return <div className="spinner-wrapper"><NavFrontendSpinner type="XXL" /></div>;
         }
     }
 }
