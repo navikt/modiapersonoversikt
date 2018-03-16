@@ -8,5 +8,5 @@ export function setupMock() {
     /* tslint:disable-next-line */
     (fetchMock as any)._mock();
 
-    fetchMock.get('begin:' + apiBaseUri + '/person/', respondWith(delayed(2500, aremark)));
+    fetchMock.get('begin:' + apiBaseUri + '/person/', respondWith(delayed(800, aremark)));
 }

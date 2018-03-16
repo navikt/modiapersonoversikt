@@ -1,4 +1,16 @@
 .startbilde {
   text-align: center;
   padding-top: 7em;
+  .VisElementerUnderHverandre;
+}
+
+.VisElementerUnderHverandre () {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: column wrap;
+  align-items: center;
+  > * {
+    margin: 1em;
+    width: 20em;
+  }
 }
