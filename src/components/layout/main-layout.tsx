@@ -1,71 +1,68 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ComponentPlaceholder from '../component-placeholder/component-placeholder';
 import VisittkortContainer from '../visittkort/visittkort-container';
 import Lameller from '../lameller/lameller';
-import { globalStyles } from '../styles/global-styles';
+import { personOversiktTheme } from '../themes/personOversiktTheme';
 
-function MainLayout() {
-
-    const Wrapper = styled.div`
+const Wrapper = styled.div`
         width: 100%;
         flex-grow: 1;
-        padding: ${globalStyles.margin.layoutMargin};
-        @media (${globalStyles.media.wideScreen}) {
+        @media (${props => props.theme.media.wideScreen}) {
           display: flex;
           flex-flow: row nowrap;
         }
-        @media (${globalStyles.media.smallScreen}) {
-          flex-flow: column nowrap;
-        }
+        padding: ${props => props.theme.margin.layout};
     `;
 
-    const OversiktsPanel = styled.div`
+const PersonOversiktsPanel = styled.section`
         display: flex;
         flex-direction: column;
+        @media (${props => props.theme.media.smallScreen}) {
+          margin-bottom: ${props => props.theme.margin.layout};
+        }
+        @media (${props => props.theme.media.wideScreen}) {
+          flex: 1 0.1 60%;
+          margin-right: ${props => props.theme.margin.layout};
+        }
+        > * {
+          box-shadow: ${props => props.theme.boxShadow.layout};
+        }
+        > *:not(:last-child){
+          margin-bottom: ${props => props.theme.margin.layout};
+        }
         &> *:not(:first-child){
           flex-grow: 1;
         }
-        @media (${globalStyles.media.smallScreen}) {
-          margin-bottom: ${globalStyles.margin.layoutMargin};
-        }
-        @media (${globalStyles.media.wideScreen}) {
-          flex: 1 0.1 60%;
-          margin-right: ${globalStyles.margin.layoutMargin};
-        }
-        > * {
-          box-shadow: ${globalStyles.boxShadow.layoutShadow};
-        }
-        > *:not(:last-child){
-          margin-bottom: ${globalStyles.margin.layoutMargin};
-        }
     `;
 
-    const DialogPanel = styled.div`
-        @media (${globalStyles.media.smallScreen}) {
-          min-height: 300px;
+const DialogPanel = styled.section`
+        @media (${props => props.theme.media.smallScreen}) {
+          min-height: 500px;
           display: flex;
           flex-direction: column;
         }
-        @media(${globalStyles.media.wideScreen}) {
+        @media(${props => props.theme.media.wideScreen}) {
           flex: 1 0.1 20%;
         }        
-        padding: 1%;
         box-sizing: border-box;
         background-color: white;
-        box-shadow: ${globalStyles.boxShadow.layoutShadow};
+        box-shadow: ${props => props.theme.boxShadow.layout};
     `;
 
+function MainLayout() {
     return (
-        <Wrapper>
-            <OversiktsPanel>
-                <VisittkortContainer />
-                <Lameller />
-            </OversiktsPanel>
-            <DialogPanel>
-                <ComponentPlaceholder name={'Dialog Panel'} />
-            </DialogPanel>
-        </Wrapper>
+        <ThemeProvider theme={personOversiktTheme}>
+            <Wrapper>
+                <PersonOversiktsPanel>
+                    <VisittkortContainer/>
+                    <Lameller />
+                </PersonOversiktsPanel>
+                <DialogPanel>
+                    <ComponentPlaceholder name={'Dialog Panel'}/>
+                </DialogPanel>
+            </Wrapper>
+        </ThemeProvider>
     );
 }
 

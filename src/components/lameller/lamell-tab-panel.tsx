@@ -8,24 +8,22 @@ interface TabPanelProps {
     openTab: LAMELLER;
 }
 
-function LamellTabPanel(props: TabPanelProps) {
-
-    const TabPanelDiv = styled.div`
+const TabPanelDiv = styled.div`
       display: table;
       width: 100%;
       table-layout: fixed;
       border-spacing: 1em 0;
     `;
 
-    const KnappWrapper = styled.div`
+const KnappWrapper = styled.div`
       display: table-cell;
       box-sizing: border-box;
     `;
 
+function LamellTabPanel(props: TabPanelProps) {
+
     const tabLenker = Object.keys(LAMELLER).map((panel) => {
-
         const erValgt = LAMELLER[panel] === props.openTab;
-
         return (
             <KnappWrapper key={panel}>
                 <TabKnapp valgt={erValgt} onClick={() => props.onTabChange(panel)}>
