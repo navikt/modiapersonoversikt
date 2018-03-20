@@ -9,5 +9,8 @@ export const globalStyles = {
     },
     margin: {
         layoutMargin: '0.5rem'
+    },
+    boxShadow: {
+        layoutShadow: '0 0.2em 1.5em rgba(150, 150, 150, 0.7);'
     }
 };
