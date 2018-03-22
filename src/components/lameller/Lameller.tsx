@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { LAMELLER } from './lamell-enum';
-import LamellTabPanel from './lamell-tab-panel';
+import { LAMELLER } from './LamellEnum';
+import LamellTabPanel from './TabPanel';
 import ComponentPlaceholder from '../component-placeholder/component-placeholder';
 import styled from 'styled-components';
-import Lamell from './lamell';
+import Lamell from './Lamell';
 
 interface LamellerProps {
 }

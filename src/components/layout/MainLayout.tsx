@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import ComponentPlaceholder from '../component-placeholder/component-placeholder';
 import VisittkortContainer from '../visittkort/visittkort-container';
-import Lameller from '../lameller/lameller';
+import Lameller from '../lameller/Lameller';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
 
 const Wrapper = styled.div`

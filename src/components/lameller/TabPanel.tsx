@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { LAMELLER } from './lamell-enum';
+import { LAMELLER } from './LamellEnum';
 import styled from 'styled-components';
-import TabKnapp from './tab-knapp';
+import TabKnapp from './TabKnapp';
 
 interface TabPanelProps {
     onTabChange: Function;
