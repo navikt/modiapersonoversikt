@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Visittkort from './Visittkort';
-import { AppState } from '../../redux/reducer';
-import { Person } from '../../models/person';
+import { AppState } from '../../../redux/reducer';
+import { Person } from '../../../models/person';
 
 interface VisittkortContainerProps {
     person: Person;

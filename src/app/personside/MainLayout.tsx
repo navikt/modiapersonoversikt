@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ComponentPlaceholder from '../component-placeholder/component-placeholder';
-import VisittkortContainer from '../visittkort/visittkort-container';
-import Lameller from '../lameller/Lameller';
-import { personOversiktTheme } from '../themes/personOversiktTheme';
+import ComponentPlaceholder from '../../components/component-placeholder/ComponentPlaceHolder';
+import VisittkortContainer from './visittkort/VisittkortContainer';
+import Lameller from './lameller/Lameller';
+import { personOversiktTheme } from '../../themes/personOversiktTheme';
 
 const Wrapper = styled.div`
         width: 100%;
