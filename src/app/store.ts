@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import reducer from './redux/reducer';
-import { AppState } from './redux/reducer';
+import reducer from '../redux/reducer';
+import { AppState } from '../redux/reducer';
 
 function create() {
     /* tslint:disable-next-line */

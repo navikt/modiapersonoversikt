@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import Visittkort from '../components/visittkort/Visittkort';
+import Visittkort from '../app/personside/visittkort/Visittkort';
 import { Person } from '../models/person';
-import MainLayout from '../components/layout/MainLayout';
-import ComponentPlaceholder from '../components/component-placeholder/component-placeholder';
-import Lameller from '../components/lameller/Lameller';
+import MainLayout from '../app/personside/MainLayout';
+import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
+import Lameller from '../app/personside/lameller/Lameller';
 
 const mockPerson: Person = {
     fornavn: 'Aremark',

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
 
-import Innholdslaster from '../../innholdslaster';
+import Innholdslaster from '../../components/Innholdslaster';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
-import { hentPerson } from '../../ducks/person';
-import MainLayout from '../layout/MainLayout';
+import { hentPerson } from '../../redux/person';
+import MainLayout from './MainLayout';
 
 interface PersonsideRouteProps {
     fodselsnummer: string;

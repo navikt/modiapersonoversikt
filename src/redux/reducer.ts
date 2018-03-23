@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import personReducer from '../ducks/person';
-import { STATUS } from '../ducks/utils';
+import personReducer from './person';
+import { STATUS } from './utils';
 import { Person } from '../models/person';
 
 export interface AppState {

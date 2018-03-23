@@ -2,8 +2,8 @@ import * as React from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { STATUS } from './ducks/utils';
-import { Reducer } from './redux/reducer';
+import { STATUS } from '../redux/utils';
+import { Reducer } from '../redux/reducer';
 import FillAndCenterDiv from './FillAndCenterDiv';
 
 interface InnholdslasterProps {

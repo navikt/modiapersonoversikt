@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LAMELLER } from './LamellEnum';
 import LamellTabPanel from './TabPanel';
-import ComponentPlaceholder from '../component-placeholder/component-placeholder';
+import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 import Lamell from './Lamell';
 

@@ -3,12 +3,12 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import getStore from './store';
-import Routing, { paths } from './routes/routing';
-import UnderArbeid from './components/underarbeid/UnderArbeid';
-import { setupMock } from './mock/setup-mock';
-import { personOversiktTheme } from './components/themes/personOversiktTheme';
+import Routing, { paths } from '../routes/routing';
+import UnderArbeid from '../components/underarbeid/UnderArbeid';
+import { setupMock } from '../mock/setup-mock';
+import { personOversiktTheme } from '../themes/personOversiktTheme';
 import { ThemeProvider } from 'styled-components';
-import AppWrapper from './app-wrapper';
+import AppWrapper from './AppWrapper';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
 
