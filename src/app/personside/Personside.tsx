@@ -18,11 +18,9 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 
     render() {
         return (
-            <div className="personoversikt">
-                <Innholdslaster avhengigheter={[this.props.personReducer]}>
-                    <MainLayout />
-                </Innholdslaster>
-            </div>
+            <Innholdslaster avhengigheter={[this.props.personReducer]}>
+                <MainLayout />
+            </Innholdslaster>
         );
     }
 }

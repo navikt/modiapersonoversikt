@@ -39,10 +39,10 @@ class App extends React.Component<AppProps> {
             <Provider store={store}>
                 <ThemeProvider theme={personOversiktTheme}>
                     <AppWrapper>
-                    <nav id="header" />
-                    <ConnectedRouter history={history}>
-                        <Routing />
-                    </ConnectedRouter>
+                        <nav id="header" />
+                        <ConnectedRouter history={history}>
+                            <Routing />
+                        </ConnectedRouter>
                         <UnderArbeid />
                     </AppWrapper>
                 </ThemeProvider>
