@@ -1,12 +1,23 @@
-import * as fetchMock from 'fetch-mock';
-import { respondWith, delayed } from './utils';
 import { apiBaseUri } from '../api/config';
-import { aremark } from './person-mock';
+import { getPerson } from './person-mock';
+import { getTilfeldigeOppgaver } from './oppgave-mock';
+import FetchMock, { HandlerArgument, ResponseUtils } from 'yet-another-fetch-mock';
 
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
-    (fetchMock as any)._mock();
 
-    fetchMock.get('begin:' + apiBaseUri + '/person/', respondWith(delayed(2500, aremark)));
+    const mock = FetchMock.configure({
+        enableFallback: true,
+        middleware: (requestArgs, response) => {
+            console.log('response', response);
+            return response;
+        }
+    });
+
+    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(2500, (args: HandlerArgument) => {
+        return ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer));
+    }));
+
+    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(2500, getTilfeldigeOppgaver()));
 }

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Route, RouteComponentProps, Switch } from 'react-router';
-import Personside from '../components/personside/Personside';
-import Startbilde from '../components/startbilde/Startbilde';
+import Personside from '../components/personside/PersonsideContainer';
+import Startbilde from '../components/startbilde/startbilde';
 
 export const paths = {
     personUri : '/person'

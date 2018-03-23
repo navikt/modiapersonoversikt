@@ -1,15 +1,21 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 
-import personReducer from '../ducks/person';
+import personinformasjonReducer from '../ducks/personinformasjon';
+import oppgaverReducer from '../ducks/oppgaver';
 import { STATUS } from '../ducks/utils';
 import { Person } from '../models/person';
+import { Oppgave } from '../models/oppgave';
 
 export interface AppState {
-    person: Reducer<Person>;
+    personinformasjon: Reducer<Person>;
+    oppgaver: Reducer<Oppgave[]>;
 }
 
 export default combineReducers<AppState>({
-    person: personReducer
+    personinformasjon: personinformasjonReducer,
+    oppgaver: oppgaverReducer,
+    router: routerReducer
 });
 
 export interface Reducer<T> {

@@ -4,13 +4,13 @@ import { FetchError, FetchSuccess, RestActions, STATUS } from './utils';
 import { getPerson } from '../api/person-api';
 import { aremark } from '../mock/person-mock';
 
-export interface PersonState {
+export interface PersoninformasjonState {
     data: Person;
     status: STATUS;
     error: string | null;
 }
 
-const reducerName = 'person/';
+const reducerName = 'personinformasjon/';
 
 const actionNames = {
     PENDING: reducerName + STATUS.PENDING,
@@ -18,7 +18,7 @@ const actionNames = {
     ERROR: reducerName + STATUS.ERROR
 };
 
-const initialState: PersonState = {
+const initialState: PersoninformasjonState = {
     data: aremark,
     status: STATUS.NOT_STARTED,
     error: null
@@ -38,7 +38,8 @@ export function hentPerson(fodselsnummer: string) {
     };
 }
 
-export default function reducer(state: PersonState = initialState, action: RestActions<Person>): PersonState {
+export default function reducer(state: PersoninformasjonState = initialState, action: RestActions<Person>)
+    : PersoninformasjonState {
     switch (action.type) {
         case actionNames.PENDING:
             return {...state, status: STATUS.PENDING };
