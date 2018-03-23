@@ -15,7 +15,7 @@ export function setupMock() {
         }
     });
 
-    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(2500, (args: HandlerArgument) => {
+    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(1200, (args: HandlerArgument) => {
         return ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer));
     }));
 

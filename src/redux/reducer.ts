@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import personinformasjonReducer from '../ducks/personinformasjon';
-import oppgaverReducer from '../ducks/oppgaver';
-import { STATUS } from '../ducks/utils';
+import personinformasjonReducer from './personinformasjon';
+import oppgaverReducer from './oppgaver';
+import { STATUS } from '../redux/utils';
 import { Person } from '../models/person';
 import { Oppgave } from '../models/oppgave';
 

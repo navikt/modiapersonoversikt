@@ -1,4 +1,4 @@
-import { paths } from '../routes/routing';
+import { paths } from '../app/routes/routing';
 
 interface Location {
     pathname: string;

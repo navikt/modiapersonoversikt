@@ -1,5 +1,5 @@
 import { parseUrlForPersonIKontekst } from './urlUtils';
-import { paths } from '../routes/routing';
+import { paths } from '../app/routes/routing';
 
 it('returnerer fødselsnummeret når en person er i kontekst i URL', () => {
     const location = {

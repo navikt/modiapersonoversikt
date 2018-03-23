@@ -4,9 +4,9 @@ import { connect, Dispatch } from 'react-redux';
 import { push } from 'react-router-redux';
 
 import { AppState } from '../../redux/reducer';
-import { hentPerson } from '../../ducks/personinformasjon';
+import { hentPerson } from '../../redux/personinformasjon';
 import renderDecoratorHead from '../../menyConfig';
-import { paths } from '../../routes/routing';
+import { paths } from '../routes/routing';
 import Personside from './Personside';
 
 interface RouteProps {

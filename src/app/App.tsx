@@ -3,12 +3,15 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createBrowserHistory } from 'history';
 import thunkMiddleware from 'redux-thunk';
-
-import UnderArbeid from './components/underarbeid/UnderArbeid';
-import { setupMock } from './mock/setup-mock';
+import { ThemeProvider } from 'styled-components';
+import AppWrapper from './AppWrapper';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
-import reducers from './redux/reducer';
+
 import Routing from './routes/routing';
+import UnderArbeid from '../components/underarbeid/UnderArbeid';
+import { setupMock } from '../mock/setup-mock';
+import { personOversiktTheme } from '../themes/personOversiktTheme';
+import reducers from '../redux/reducer';
 
 interface AppProps {
 
@@ -34,13 +37,15 @@ class App extends React.Component<AppProps> {
     render() {
         return (
             <Provider store={store}>
-                <div className={'personoversikt'}>
+                <ThemeProvider theme={personOversiktTheme}>
+                    <AppWrapper>
                     <nav id="header" />
-                    <UnderArbeid />
                     <ConnectedRouter history={history}>
                         <Routing />
                     </ConnectedRouter>
-                </div>
+                        <UnderArbeid />
+                    </AppWrapper>
+                </ThemeProvider>
             </Provider>
         );
     }

@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 
 import { FetchError, FetchSuccess, RestActions, STATUS } from './utils';
 import { plukkOppgaveFraServer } from '../api/oppgave-api';
-import { paths } from '../routes/routing';
+import { paths } from '../app/routes/routing';
 import { Oppgave } from '../models/oppgave';
 
 const reducerName = 'person/';

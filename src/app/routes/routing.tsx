@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Route, RouteComponentProps, Switch } from 'react-router';
-import Personside from '../components/personside/PersonsideContainer';
-import Startbilde from '../components/startbilde/startbilde';
+import PersonsideContainer from '../personside/PersonsideContainer';
+import Startbilde from '../startbilde/Startbilde';
 
 export const paths = {
     personUri : '/person'
@@ -11,7 +11,7 @@ export const paths = {
 function Routing(props: RouteComponentProps<{}> ) {
     return (
         <Switch location={props.location}>
-            <Route path={`${paths.personUri}/:fodselsnummer/`} component={Personside}/>
+            <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
             <Route component={Startbilde}/>
         </Switch>
     );

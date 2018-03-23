@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Person } from '../../models/person';
+import { Person } from '../../../models/person';
 import Innholdstittel from 'nav-frontend-typografi';
 
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';

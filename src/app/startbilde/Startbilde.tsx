@@ -3,11 +3,11 @@ import { connect, Dispatch } from 'react-redux';
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState } from '../../redux/reducer';
-import { plukkOppgave } from '../../ducks/oppgaver';
-import { paths } from '../../routes/routing';
+import { plukkOppgave } from '../../redux/oppgaver';
+import { paths } from '../routes/routing';
 import { push } from 'react-router-redux';
 import renderDecoratorHead from '../../menyConfig';
-import { STATUS } from '../../ducks/utils';
+import { STATUS } from '../../redux/utils';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -21,6 +21,10 @@ interface DispatchProps {
 }
 
 type StartbildeProps = StartbildeStateProps & DispatchProps;
+
+function snarveiTilAremark() {
+    location.href = location.href + 'person/10108000398';
+}
 
 class Startbilde extends React.Component<StartbildeProps> {
 
@@ -51,6 +55,9 @@ class Startbilde extends React.Component<StartbildeProps> {
     render() {
         return (
             <div className="startbilde">
+                <KnappBase onClick={() => snarveiTilAremark()} type="hoved">
+                    Snarvei til Aremark!
+                </KnappBase>
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
