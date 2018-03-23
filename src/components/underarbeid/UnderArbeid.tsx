@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const UnderArbeidDiv = styled.div`
       position: fixed;
       width: 300px;
-      top: 41px;
+      top: 21px;
       left: -71px;
-      transform: rotate(-45deg);
+      transform: rotate(-20deg);
       opacity: 0.7;
       padding: 0.5em;
       background-color: red;
