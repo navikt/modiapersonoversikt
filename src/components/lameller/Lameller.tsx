@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { LAMELLER } from './lamell-enum';
-import TabPanelView from './lamell-tab-panel';
+import { LAMELLER } from './LamellEnum';
+import LamellTabPanel from './TabPanel';
 import ComponentPlaceholder from '../component-placeholder/component-placeholder';
 import styled from 'styled-components';
+import Lamell from './Lamell';
 
-interface PropsInterface {
+interface LamellerProps {
 }
 
-interface StateInterface {
+interface LamellerState {
     openTab: LAMELLER;
 }
 
@@ -19,9 +20,14 @@ const dummypaneler = {
     Pleiepenger: <ComponentPlaceholder name={'Pleiepenger'} hue={300} />
 };
 
-class Lameller extends React.PureComponent<PropsInterface, StateInterface> {
+const LamellPanel = styled.article`
+          display: flex;
+          flex-direction: column;
+        `;
 
-    constructor(props: PropsInterface) {
+class Lameller extends React.PureComponent<LamellerProps, LamellerState> {
+
+    constructor(props: LamellerProps) {
         super(props);
         this.state = {openTab: LAMELLER.OVERSIKT};
         this.onTabChange = this.onTabChange.bind(this);
@@ -34,30 +40,13 @@ class Lameller extends React.PureComponent<PropsInterface, StateInterface> {
     }
 
     render() {
-
-        const TabPanel = styled.div`
-          display: flex;
-          flex-direction: column;
-        `;
-
-        const Lamell = styled.div`
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1%;
-            min-height: 400px;
-            > * {
-              flex-grow: 1;
-            }
-        `;
-
         return (
-            <TabPanel>
-                <TabPanelView onTabChange={this.onTabChange} openTab={this.state.openTab} />
+            <LamellPanel>
+                <LamellTabPanel onTabChange={this.onTabChange} openTab={this.state.openTab} />
                 <Lamell>
                     {dummypaneler[this.state.openTab]}
                 </Lamell>
-            </TabPanel>
+            </LamellPanel>
         );
     }
 }

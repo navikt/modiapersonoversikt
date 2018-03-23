@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-function UnderArbeid() {
-
-    const UnderArbeidDiv = styled.div`
+const UnderArbeidDiv = styled.div`
       position: fixed;
       width: 300px;
       top: 41px;
@@ -20,6 +18,7 @@ function UnderArbeid() {
       z-index: 1000;
     `;
 
+function UnderArbeid() {
     return (
         <UnderArbeidDiv>
             Under Arbeid

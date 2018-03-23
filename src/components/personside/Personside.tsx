@@ -6,7 +6,7 @@ import Innholdslaster from '../../innholdslaster';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
 import { hentPerson } from '../../ducks/person';
-import MainLayout from '../layout/main-layout';
+import MainLayout from '../layout/MainLayout';
 
 interface PersonsideRouteProps {
     fodselsnummer: string;
@@ -35,11 +35,9 @@ class Personside extends React.PureComponent<PersonsideProps> {
 
     render() {
         return (
-            <div className="person-side">
-                <Innholdslaster avhengigheter={[this.props.personReducer]}>
-                    <MainLayout />
-                </Innholdslaster>
-            </div>
+            <Innholdslaster avhengigheter={[this.props.personReducer]}>
+                <MainLayout />
+            </Innholdslaster>
         );
     }
 }

@@ -3,9 +3,9 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Visittkort from '../components/visittkort/Visittkort';
 import { Person } from '../models/person';
-import MainLayout from '../components/layout/main-layout';
+import MainLayout from '../components/layout/MainLayout';
 import ComponentPlaceholder from '../components/component-placeholder/component-placeholder';
-import Lameller from '../components/lameller/lameller';
+import Lameller from '../components/lameller/Lameller';
 
 const mockPerson: Person = {
     fornavn: 'Aremark',

@@ -6,6 +6,9 @@ import getStore from './store';
 import Routing, { paths } from './routes/routing';
 import UnderArbeid from './components/underarbeid/UnderArbeid';
 import { setupMock } from './mock/setup-mock';
+import { personOversiktTheme } from './components/themes/personOversiktTheme';
+import { ThemeProvider } from 'styled-components';
+import AppWrapper from './app-wrapper';
 
 type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
 
@@ -48,13 +51,15 @@ class App extends React.Component<AppProps> {
     render() {
         return (
             <Provider store={store}>
-                <div className={'app'}>
-                    <nav id="header" />
-                    <UnderArbeid />
-                    <BrowserRouter>
-                        <Routing />
-                    </BrowserRouter>
-                </div>
+                <ThemeProvider theme={personOversiktTheme}>
+                    <AppWrapper>
+                        <nav id="header"/>
+                        <BrowserRouter>
+                            <Routing />
+                        </BrowserRouter>
+                        <UnderArbeid />
+                    </AppWrapper>
+                </ThemeProvider>
             </Provider>
         );
     }
