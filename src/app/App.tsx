@@ -22,10 +22,9 @@ if (process.env.REACT_APP_MOCK === 'true') {
 }
 
 const history = createBrowserHistory();
-const middleware = routerMiddleware(history);
 const store = createStore(
     reducers,
-    applyMiddleware(thunkMiddleware, middleware)
+    applyMiddleware(thunkMiddleware, routerMiddleware(history))
 );
 
 class App extends React.Component<AppProps> {

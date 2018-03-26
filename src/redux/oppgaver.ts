@@ -7,7 +7,7 @@ import { plukkOppgaveFraServer } from '../api/oppgave-api';
 import { paths } from '../app/routes/routing';
 import { Oppgave } from '../models/oppgave';
 
-const reducerName = 'person/';
+const reducerName = 'oppgaver/';
 
 export interface OppgaverState {
     data: Oppgave[];
