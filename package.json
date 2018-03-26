@@ -38,15 +38,15 @@
   },
   "scripts": {
     "start": "copyfiles -u 3 src/index/dev/index.html public/ && react-scripts-ts start",
-    "start-mock": "cross-env REACT_APP_MOCK=true npm run start",
-    "build": "copyfiles -u 3 src/index/prod/index.html public/ && npm run build:less && react-scripts-ts build",
+    "start-mock": "cross-env REACT_APP_MOCK=true yarn start",
+    "build": "copyfiles -u 3 src/index/prod/index.html public/ && yarn build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "start:less": "autoless --source-map --interval 100 ./src ./public",
     "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
-    "postinstall": "npm run build"
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",

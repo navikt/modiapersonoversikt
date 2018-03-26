@@ -1,1 +1,1 @@
-web: npm run start-mock
+web: yarn start-mock

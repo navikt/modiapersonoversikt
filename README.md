@@ -8,13 +8,13 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 
 ## Kjøre appen
 ```console
-$ npm install
-$ npm run start
+$ yarn install
+$ yarn start
 ```
 
 ## Storybook
 ```console
-$ npm run storybook
+$ yarn storybook
 ```
 
 ---
