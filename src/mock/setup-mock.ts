@@ -17,6 +17,6 @@ export function setupMock() {
     mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(1200, (args: HandlerArgument) =>
         ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer))));
 
-    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(2500, () =>
+    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(1200, () =>
         ResponseUtils.jsonPromise(getTilfeldigeOppgaver())));
 }
