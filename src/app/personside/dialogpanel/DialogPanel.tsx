@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
 
-interface StartbildeStateProps {
+interface StateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
     oppgaveReducer: Reducer<Oppgave[]>;
@@ -19,7 +19,7 @@ interface DispatchProps {
     plukkOppgave: (enhet: string, temagruppe: string) => void;
 }
 
-type StartbildeProps = StartbildeStateProps & DispatchProps;
+type DialogPanelProps = StateProps & DispatchProps;
 
 const DialogPanelWrapper = styled.div`
   display: flex;
@@ -34,9 +34,9 @@ const KnappWrapper = styled.div`
 
 `;
 
-class DialogPanel extends React.Component<StartbildeProps> {
+class DialogPanel extends React.Component<DialogPanelProps> {
 
-    constructor(props: StartbildeProps) {
+    constructor(props: DialogPanelProps) {
         super(props);
         this.onPlukkOppgaveKlikk = this.onPlukkOppgaveKlikk.bind(this);
     }
