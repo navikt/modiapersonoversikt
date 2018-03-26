@@ -16,6 +16,8 @@
     "nav-frontend-core": "^4.0.5",
     "nav-frontend-ekspanderbartpanel": "0.2.21",
     "nav-frontend-ekspanderbartpanel-style": "0.3.8",
+    "nav-frontend-etiketter": "^1.0.3",
+    "nav-frontend-etiketter-style": "^0.3.4",
     "nav-frontend-ikoner-assets": "^0.2.27",
     "nav-frontend-js-utils": "^1.0.3",
     "nav-frontend-knapper": "^1.0.4",
