@@ -3,7 +3,7 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["es7", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -17,6 +17,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
+  "include" : [
+    "src/@types/*",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",
