@@ -4,6 +4,7 @@ import ComponentPlaceholder from '../../components/component-placeholder/Compone
 import VisittkortContainer from './visittkort/VisittkortContainer';
 import Lameller from './lameller/Lameller';
 import { personOversiktTheme } from '../../themes/personOversiktTheme';
+import DialogPanel from './dialogpanel/DialogPanel';
 
 const Wrapper = styled.div`
         width: 100%;
@@ -36,7 +37,7 @@ const PersonOversiktsPanel = styled.section`
         }
     `;
 
-const DialogPanel = styled.section`
+const DialogPanelWrapper = styled.section`
         @media (${props => props.theme.media.smallScreen}) {
           min-height: 500px;
           display: flex;
@@ -58,9 +59,10 @@ function MainLayout() {
                     <VisittkortContainer/>
                     <Lameller />
                 </PersonOversiktsPanel>
-                <DialogPanel>
+                <DialogPanelWrapper>
+                    <DialogPanel/>
                     <ComponentPlaceholder name={'Dialog Panel'}/>
-                </DialogPanel>
+                </DialogPanelWrapper>
             </Wrapper>
         </ThemeProvider>
     );

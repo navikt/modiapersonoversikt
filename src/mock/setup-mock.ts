@@ -10,14 +10,13 @@ export function setupMock() {
     const mock = FetchMock.configure({
         enableFallback: true,
         middleware: (requestArgs, response) => {
-            console.log('response', response);
             return response;
         }
     });
 
-    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(1200, (args: HandlerArgument) => {
-        return ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer));
-    }));
+    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(1200, (args: HandlerArgument) =>
+        ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer))));
 
-    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(2500, getTilfeldigeOppgaver()));
+    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(2500, () =>
+        ResponseUtils.jsonPromise(getTilfeldigeOppgaver())));
 }
