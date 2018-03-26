@@ -1,36 +1,19 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
-import Innholdslaster from '../../components/Innholdslaster';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
-import { hentPerson } from '../../redux/person';
 import MainLayout from './MainLayout';
-
-interface PersonsideRouteProps {
-    fodselsnummer: string;
-}
+import Innholdslaster from '../../components/Innholdslaster';
 
 interface PersonsideStateProps {
-    fodselsnummer: string;
     personReducer: Reducer<Person>;
 }
 
-interface DispatchProps {
-    hentPerson: (fodselsnummer: string) => void;
-}
+class Personside extends React.PureComponent<PersonsideStateProps> {
 
-type PersonsideProps = RouteComponentProps<PersonsideRouteProps> & PersonsideStateProps & DispatchProps;
-
-class Personside extends React.PureComponent<PersonsideProps> {
-
-    constructor(props: PersonsideProps) {
+    constructor(props: PersonsideStateProps) {
         super(props);
-    }
-
-    componentDidMount() {
-        this.props.hentPerson(this.props.fodselsnummer);
     }
 
     render() {
@@ -42,20 +25,11 @@ class Personside extends React.PureComponent<PersonsideProps> {
     }
 }
 
-function mapStateToProps(state: AppState, ownProps: RouteComponentProps<PersonsideRouteProps>): PersonsideStateProps {
-    const routeParams = ownProps.match.params;
-    const fodselsnummer = routeParams.fodselsnummer;
+function mapStateToProps(state: AppState): PersonsideStateProps {
 
     return {
-        fodselsnummer,
-        personReducer: state.person
+        personReducer: state.personinformasjon
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
-    return {
-        hentPerson: (fodselsnummer: string) => dispatch(hentPerson(fodselsnummer))
-    };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Personside));
+export default connect(mapStateToProps, null) (Personside);

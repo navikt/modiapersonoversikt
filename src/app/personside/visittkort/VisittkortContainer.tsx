@@ -9,13 +9,14 @@ interface VisittkortContainerProps {
 }
 
 class VisittkortContainer extends React.Component<VisittkortContainerProps> {
+
     render() {
         return <Visittkort person={this.props.person}/>;
     }
 }
 const mapStateToProps = (state: AppState) => {
     return ({
-        person: state.person.data
+        person: state.personinformasjon.data
     });
 };
 
