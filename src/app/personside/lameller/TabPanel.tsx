@@ -8,7 +8,7 @@ interface TabPanelProps {
     openTab: LAMELLER;
 }
 
-const TabPanelDiv = styled.div`
+const TabPanelDiv = styled.nav`
       display: table;
       width: 100%;
       table-layout: fixed;

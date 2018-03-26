@@ -28,7 +28,7 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
     }
 
     setDynamicFontSize () {
-        const componentHeight: number = this.node.clientHeight === null ? 0 : this.node.clientHeight;
+        const componentHeight: number = this.node === null ? 0 : this.node.clientHeight;
         const fontSize: number = componentHeight / 15;
         this.setState({
             fontSize: fontSize
@@ -37,11 +37,11 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
 
     componentDidMount() {
         this.setDynamicFontSize();
-        window.addEventListener('resize', () => this.setDynamicFontSize());
+        this.node.addEventListener('resize', () => this.setDynamicFontSize());
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.setDynamicFontSize);
+        this.node.removeEventListener('resize', this.setDynamicFontSize);
     }
 
     public render() {
