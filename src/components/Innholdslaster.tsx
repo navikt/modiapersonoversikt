@@ -4,7 +4,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/utils';
 import { Reducer } from '../redux/reducer';
-import FillAndCenterDiv from './FillAndCenterDiv';
+import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 
 interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild;
@@ -23,17 +23,17 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
             return this.props.children;
         } else if (noenHarFeil(this.props.avhengigheter)) {
             return (
-                <FillAndCenterDiv>
+                <FillCenterAndFadeIn>
                     <AlertStripe type="advarsel">
                         Feil ved lasting av data
                     </AlertStripe>
-                </FillAndCenterDiv>
+                </FillCenterAndFadeIn>
             );
         } else {
             return (
-                <FillAndCenterDiv>
+                <FillCenterAndFadeIn>
                     <NavFrontendSpinner type="XXL"/>
-                </FillAndCenterDiv>
+                </FillCenterAndFadeIn>
             );
         }
     }
