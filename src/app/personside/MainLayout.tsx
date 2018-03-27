@@ -37,18 +37,61 @@ const DialogPanel = styled.section`
         }
     `;
 
-function MainLayout() {
-    return (
-        <Wrapper>
-            <PersonOversiktsPanel>
-                <VisittkortContainer/>
-                <Lameller/>
-            </PersonOversiktsPanel>
-            <DialogPanel>
-                <ComponentPlaceholder height={'100%'} name={'Dialog Panel'}/>
-            </DialogPanel>
-        </Wrapper>
-    );
+const DialogPanelFixer = styled<{scrollTop: number}, 'div'>('div')`
+          height: 500px;
+          @media(${props => props.theme.media.wideScreen}){
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            transform: translateY(${props => props.scrollTop}px);
+          }
+        `;
+
+interface MainLayoutState {
+    scrollTop: number;
+}
+
+interface MainLayoutProps {
+}
+
+class MainLayout extends React.Component<MainLayoutProps, MainLayoutState> {
+    private wrapperRef: HTMLDivElement;
+
+    constructor(props: MainLayoutProps) {
+        super(props);
+        this.state = { scrollTop: 0 };
+    }
+
+    componentDidMount() {
+        this.wrapperRef.addEventListener('scroll', () => this.handleScroll());
+    }
+
+    componentWillUnmount() {
+        this.wrapperRef.removeEventListener('scroll', () => this.handleScroll());
+    }
+
+    handleScroll() { // TODO bør ha en debouncer hvis denne skal brukes
+        const scrollTop = this.wrapperRef !== undefined ? this.wrapperRef.scrollTop : 0;
+        this.setState({
+            scrollTop: scrollTop
+        });
+    }
+
+    render() {
+        return (
+            <Wrapper innerRef={(ref) => this.wrapperRef = ref}>
+                <PersonOversiktsPanel>
+                    <VisittkortContainer/>
+                    <Lameller/>
+                </PersonOversiktsPanel>
+                <DialogPanel>
+                    <DialogPanelFixer scrollTop={this.state.scrollTop}>
+                        <ComponentPlaceholder height={'100%'} name={'Dialog Panel'}/>
+                    </DialogPanelFixer>
+                </DialogPanel>
+            </Wrapper>
+        );
+    }
 }
 
 export default MainLayout;
