@@ -34,11 +34,11 @@ function VisittkortElement(props: ElementProps) {
     const tittel = props.beskrivelse && !props.utenTittel ? <Normaltekst>{props.beskrivelse}</Normaltekst> : '';
 
     return (
-        <Element className={'element'}>
-            <IkonDiv className={'ikon'}>
+        <Element>
+            <IkonDiv>
                 {img}
             </IkonDiv>
-            <InfoDiv className={'info'}>
+            <InfoDiv>
                 {tittel}
                 {props.children}
             </InfoDiv>

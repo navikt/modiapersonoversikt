@@ -28,6 +28,9 @@ const PersonOversiktsPanel = styled.section`
     `;
 
 const DialogPanel = styled.section`
+        min-height: 700px;
+        display: flex;
+        flex-flow: column nowrap;
         @media(${props => props.theme.media.wideScreen}) {
           flex: 1 0.1 20%;
         }        
