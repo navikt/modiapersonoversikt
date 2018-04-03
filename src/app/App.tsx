@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createBrowserHistory } from 'history';
 import thunkMiddleware from 'redux-thunk';
-import { ThemeProvider } from 'styled-components';
+import { default as styled, ThemeProvider } from 'styled-components';
 import AppWrapper from './AppWrapper';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
@@ -27,6 +27,10 @@ const store = createStore(
     applyMiddleware(thunkMiddleware, routerMiddleware(history))
 );
 
+const DekoratorContainer = styled.nav`
+  z-index: 10;
+`;
+
 class App extends React.Component<AppProps> {
 
     constructor(props: AppProps) {
@@ -38,7 +42,7 @@ class App extends React.Component<AppProps> {
             <Provider store={store}>
                 <ThemeProvider theme={personOversiktTheme}>
                     <AppWrapper>
-                        <nav id="header" />
+                        <DekoratorContainer id="header" />
                         <ConnectedRouter history={history}>
                             <Routing />
                         </ConnectedRouter>
