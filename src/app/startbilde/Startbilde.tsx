@@ -22,10 +22,6 @@ interface DispatchProps {
 
 type StartbildeProps = StartbildeStateProps & DispatchProps;
 
-function snarveiTilAremark() {
-    location.href = location.href + 'person/10108000398';
-}
-
 class Startbilde extends React.Component<StartbildeProps> {
 
     constructor(props: StartbildeProps) {
@@ -52,10 +48,14 @@ class Startbilde extends React.Component<StartbildeProps> {
         renderDecoratorHead(personsokEvent.fodselsnummer);
     }
 
+    snarveiTilAremark() {
+        this.props.personOppsokt('10108000398');
+    }
+
     render() {
         return (
             <div className="startbilde">
-                <KnappBase onClick={() => snarveiTilAremark()} type="hoved">
+                <KnappBase onClick={() => this.snarveiTilAremark()} type="hoved">
                     Snarvei til Aremark!
                 </KnappBase>
                 <KnappBase

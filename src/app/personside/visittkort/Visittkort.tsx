@@ -1,29 +1,24 @@
 import * as React from 'react';
 import { Person } from '../../../models/person';
-import Innholdstittel from 'nav-frontend-typografi';
 
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import VisittkortHeader from './header/VisittkortHeader';
+import VisittkortBody from './body/VisittkortBody';
 
 interface VisittkortProps {
     person: Person;
 }
 
-function Tittel({person}: VisittkortProps) {
-    return (
-        <div>
-            <Innholdstittel type={'innholdstittel'}>{person.fornavn} {person.etternavn}</Innholdstittel>
-            <p>{person.fodselsnummer}</p>
-        </div>
-    );
-}
+function Visittkort({ person }: VisittkortProps) {
 
-function Visittkort({person}: VisittkortProps) {
+    const visittkortheader = <VisittkortHeader person={person}/>;
+
     return (
-        <div className="visittkort">
-            <EkspanderbartpanelBase apen={true} heading={<Tittel person={person}/>} ariaTittel="Visittkort">
-                <p>Mer personinformasjon her..</p>
+        <article>
+            <EkspanderbartpanelBase apen={false} heading={visittkortheader} ariaTittel="Visittkort">
+                <VisittkortBody person={person}/>
             </EkspanderbartpanelBase>
-        </div>
+        </article>
     );
 }
 
