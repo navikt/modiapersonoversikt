@@ -2,7 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 
 import { Person } from '../models/person';
 
-function erMann (fødselsnummer: string) {
+function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
 }
 
