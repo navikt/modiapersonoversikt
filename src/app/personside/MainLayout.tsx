@@ -13,12 +13,11 @@ const Wrapper = styled.div`
         }
         padding: ${props => props.theme.margin.layout};
         overflow-y: scroll;
+        animation: ${props => props.theme.animation.fadeIn};
     `;
 
 const PersonOversiktsPanel = styled.section`
         margin-bottom: ${props => props.theme.margin.layout};
-        @keyframes fadeIn{ 0% { opacity: 0 } }
-        animation: fadeIn .5s ease-out;
         @media (${props => props.theme.media.wideScreen}) {
           flex: 1 0.1 60%;
           margin-right: ${props => props.theme.margin.layout};
@@ -33,8 +32,6 @@ const DialogPanel = styled.section`
         min-height: 700px;
         display: flex;
         flex-flow: column nowrap;
-        @keyframes fadeIn{ 0% { opacity: 0 } }
-        animation: fadeIn .5s ease-out;
         @media(${props => props.theme.media.wideScreen}) {
           flex: 1 0.1 20%;
         }        

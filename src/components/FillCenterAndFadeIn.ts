@@ -5,8 +5,7 @@ const FillCenterAndFadeIn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    @keyframes fadeIn{ 0% { opacity: 0 } }
-    animation: fadeIn .5s ease-out;
+    animation: ${props => props.theme.animation.fadeIn};
 `;
 
 export default FillCenterAndFadeIn;
