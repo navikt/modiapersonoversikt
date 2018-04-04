@@ -3,30 +3,23 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Visittkort from '../app/personside/visittkort/Visittkort';
 import { Person } from '../models/person';
-import MainLayout from '../app/personside/MainLayout';
 import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
-import Lameller from '../app/personside/lameller/Lameller';
+import { aremark } from '../mock/person-mock';
+import styled from 'styled-components';
 
-const mockPerson: Person = {
-    fornavn: 'Aremark',
-    etternavn: 'Testfamilen',
-    fodselsnummer: '10108000398'
-};
+const mockPerson: Person = aremark;
 
-storiesOf('Visittkort', module).add('Aremark', () => <Visittkort person={mockPerson}/>);
+const NiceContainer = styled.div`
+  margin: 1em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+`;
 
-storiesOf('Layout', module)
-    .add('HovedLayout', () => (
-            <div style={{'height': '100vh', 'display': 'flex'}}>
-                <MainLayout/>
-            </div>
-        )
-    );
+storiesOf('Visittkort', module).add('Aremark', () => <NiceContainer><Visittkort person={mockPerson}/></NiceContainer>);
 
 storiesOf('Component Placeholder', module)
     .add('Placeholder', () => <ComponentPlaceholder height={'100vh'} name={'DialogPanel'} hue={70}/>)
     .add('Mange Placeholdere', () => (
-            <div
+            <NiceContainer
                 style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 2fr',
@@ -41,13 +34,6 @@ storiesOf('Component Placeholder', module)
                 <ComponentPlaceholder name={'Komponent 4'}/>
                 <ComponentPlaceholder name={'Komponent 5'}/>
                 <ComponentPlaceholder name={'Komponent 6'}/>
-            </div>
+            </NiceContainer>
         )
     );
-
-storiesOf('Lameller', module).add('Tab Panel med lameller', () => (
-        <div style={{'height': '100vh', 'display': 'flex'}}>
-            <Lameller/>
-        </div>
-    )
-);

@@ -5,8 +5,8 @@ export const personOversiktTheme = {
         hoverLink: '#C6C2BF'
     },
     media: {
-        smallScreen: 'max-width: 700px',
-        wideScreen: 'min-width: 700px'
+        smallScreen: 'max-width: 750px',
+        wideScreen: 'min-width: 750px'
     },
     margin: {
         layout: '15px'

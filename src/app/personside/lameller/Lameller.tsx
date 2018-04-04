@@ -3,7 +3,6 @@ import { LAMELLER } from './LamellEnum';
 import LamellTabPanel from './TabPanel';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
-import Lamell from './Lamell';
 
 interface LamellerProps {
 }
@@ -13,16 +12,17 @@ interface LamellerState {
 }
 
 const dummypaneler = {
-    Oversikt: <ComponentPlaceholder name={'Oversikt'} hue={0} />,
-    Innboks: <ComponentPlaceholder name={'Innboks'} hue={30} />,
-    Saksoversikt: <ComponentPlaceholder name={'Saksoversikt'} hue={150} />,
-    Utbetalinger: <ComponentPlaceholder name={'Utbetalinger'} hue={210} />,
-    Pleiepenger: <ComponentPlaceholder name={'Pleiepenger'} hue={300} />
+    Oversikt: <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />,
+    Innboks: <ComponentPlaceholder height={'600px'} name={'Innboks'} hue={30} />,
+    Saksoversikt: <ComponentPlaceholder height={'700px'} name={'Saksoversikt'} hue={150} />,
+    Utbetalinger: <ComponentPlaceholder height={'550px'} name={'Utbetalinger'} hue={210} />,
+    Pleiepenger: <ComponentPlaceholder height={'800px'} name={'Pleiepenger'} hue={300} />
 };
 
 const LamellPanel = styled.article`
-          display: flex;
-          flex-direction: column;
+        `;
+
+const Lamell = styled.div`
         `;
 
 class Lameller extends React.PureComponent<LamellerProps, LamellerState> {

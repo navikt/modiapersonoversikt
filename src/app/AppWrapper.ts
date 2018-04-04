@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 const AppWrapper = styled.div`
   position: relative;
-  height: 100vh;
+  height: 0; // IE11-hack for at flexbox skal virke
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-flow: column nowrap;
+  > #header {
+    flex-grow: 0;
+  }
 `;
 
 export default AppWrapper;
