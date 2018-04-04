@@ -4,7 +4,7 @@ import { STATUS } from '../../redux/utils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Reducer } from '../../redux/reducer';
 
-const FeilmeldingWrapper = styled.div`
+const MarginWrapper = styled.div`
   margin: 15px;
 `;
 
@@ -15,9 +15,9 @@ interface FeilmeldingProps {
 function Feilmelding({reducer}: FeilmeldingProps) {
     if (reducer.status === STATUS.ERROR) {
         return (
-            <FeilmeldingWrapper>
+            <MarginWrapper>
                 <AlertStripeAdvarsel>Det skjedde en feil: {reducer.error}</AlertStripeAdvarsel>
-            </FeilmeldingWrapper>
+            </MarginWrapper>
         );
     } else {
         return null;
