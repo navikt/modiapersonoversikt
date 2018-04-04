@@ -38,10 +38,10 @@ class DialogPanel extends React.Component<DialogPanelProps> {
 
     constructor(props: DialogPanelProps) {
         super(props);
-        this.onPlukkOppgaveKlikk = this.onPlukkOppgaveKlikk.bind(this);
+        this.onPlukkOppgaver = this.onPlukkOppgaver.bind(this);
     }
 
-    onPlukkOppgaveKlikk() {
+    onPlukkOppgaver() {
         this.props.plukkOppgave(this.props.valgtEnhet, this.props.valgtTemagruppe);
     }
 
@@ -51,7 +51,7 @@ class DialogPanel extends React.Component<DialogPanelProps> {
                 <KnappWrapper>
                     <KnappBase
                         type="hoved"
-                        onClick={this.onPlukkOppgaveKlikk}
+                        onClick={this.onPlukkOppgaver}
                         spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
                     >
                         Plukk oppgaver
