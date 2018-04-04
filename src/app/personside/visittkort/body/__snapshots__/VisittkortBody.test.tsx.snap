@@ -1,0 +1,273 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser info om bruker i visittkortbody 1`] = `
+<div
+  className="sc-bxivhb cDFCAd"
+>
+  <div
+    className="sc-ifAKCX dWpirk"
+  >
+    <div
+      className="sc-EHOje kyTBh"
+    >
+      <h2
+        className="typo-undertittel"
+      >
+        <span
+          className="sc-bZQynM dfteVo"
+        >
+          Kontakt
+        </span>
+      </h2>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Postadresse Folkeregistrert"
+            src="location-pin.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          <p
+            className="typo-normal"
+          >
+            Postadresse Folkeregistrert
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Postadresse Midlertidig Norge"
+            src="location-pin.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          <p
+            className="typo-normal"
+          >
+            Postadresse Midlertidig Norge
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, ipsum.
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Epost"
+            src="email.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          <p
+            className="typo-normal"
+          >
+            Epost
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facere facilis perspiciatis.
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Telefon"
+            src="phone.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          <p
+            className="typo-normal"
+          >
+            Telefon
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis illo in laboriosam magni mollitia quae?
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Kontonummer"
+            src="coins.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          <p
+            className="typo-normal"
+          >
+            Kontonummer
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-ifAKCX dWpirk"
+  >
+    <div
+      className="sc-EHOje kyTBh"
+    >
+      <h2
+        className="typo-undertittel"
+      >
+        <span
+          className="sc-bZQynM dfteVo"
+        >
+          Familie
+        </span>
+      </h2>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Sivilstatus"
+            src="heart.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dignissimos eius modi natus praesentium unde velit.
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Barn"
+            src="jentebarn.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Barn"
+            src="guttebarn.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-EHOje kyTBh"
+    >
+      <h2
+        className="typo-undertittel"
+      >
+        <span
+          className="sc-bZQynM dfteVo"
+        >
+          Brukers NavKontor
+        </span>
+      </h2>
+      <div
+        className="sc-bdVaJa bhDzem"
+      >
+        <div
+          className="sc-bwzfXH cATLyo"
+        >
+          <img
+            alt="Brukers NavKontor"
+            src="nav-logo.svg"
+          />
+        </div>
+        <div
+          className="sc-htpNat bIdxdO"
+        >
+          
+          <p
+            className="typo-undertekst"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolorum ea expedita fugiat itaque libero, modi nihil optio repellat, soluta suscipit tempora tempore veniam? Dignissimos id obcaecati sint tempore unde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
