@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ComponentPlaceholder from '../../components/component-placeholder/ComponentPlaceHolder';
 import VisittkortContainer from './visittkort/VisittkortContainer';
 import Lameller from './lameller/Lameller';
+import DialogPanel from './dialogpanel/DialogPanel';
 
 const Wrapper = styled.div`
         width: 100%;
@@ -27,7 +28,7 @@ const PersonOversiktsPanel = styled.section`
         }
     `;
 
-const DialogPanel = styled.section`
+const DialogPanelWrapper = styled.section`
         min-height: 700px;
         display: flex;
         flex-flow: column nowrap;
@@ -47,9 +48,10 @@ function MainLayout() {
                 <VisittkortContainer/>
                 <Lameller/>
             </PersonOversiktsPanel>
-            <DialogPanel>
+            <DialogPanelWrapper>
+                <DialogPanel/>
                 <ComponentPlaceholder height={'100%'} name={'Dialog Panel'}/>
-            </DialogPanel>
+            </DialogPanelWrapper>
         </Wrapper>
     );
 }

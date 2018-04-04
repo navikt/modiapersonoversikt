@@ -2,17 +2,19 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import KnappBase from 'nav-frontend-knapper';
 
-import { AppState } from '../../redux/reducer';
+import { AppState, Reducer } from '../../redux/reducer';
 import { plukkOppgave } from '../../redux/oppgaver';
 import { paths } from '../routes/routing';
 import { push } from 'react-router-redux';
 import renderDecoratorHead from '../../menyConfig';
 import { STATUS } from '../../redux/utils';
+import Feilmelding from '../../components/feilmelding/Feilmelding';
+import { Oppgave } from '../../models/oppgave';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgavelastingState: STATUS;
+    oppgaveReducer: Reducer<Oppgave[]>;
 }
 
 interface DispatchProps {
@@ -61,10 +63,11 @@ class Startbilde extends React.Component<StartbildeProps> {
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
-                    spinner={this.props.oppgavelastingState === STATUS.PENDING}
+                    spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
                 >
                     Plukk en oppgave!
                 </KnappBase>
+                <Feilmelding reducer={this.props.oppgaveReducer}/>
             </div>
         );
 
@@ -75,7 +78,7 @@ function mapStateToProps(state: AppState) {
     return {
         valgtEnhet: '4100',
         valgtTemagruppe: 'ARBD',
-        oppgavelastingState: state.oppgaver.status
+        oppgaveReducer: state.oppgaver
     };
 }
 
