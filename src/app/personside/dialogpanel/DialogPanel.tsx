@@ -30,7 +30,7 @@ const DialogPanelWrapper = styled.div`
 const KnappWrapper = styled.div`
     justify-content: center;
     display: flex;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
 
 `;
 
