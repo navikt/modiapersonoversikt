@@ -8,7 +8,7 @@ branches:
 env:
   global:
     - TZ='Europe/Oslo'
-    - RELEASE_VERSION="$(git rev-list --count HEAD)"
+    - RELEASE_VERSION="$(git fetch --unshallow && git rev-list --count $TRAVIS_COMMIT)"
     - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
 
 script: docker build -t "$DOCKER_IMAGE_FULL_NAME" .
