@@ -22,7 +22,9 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         className="typo-undertittel"
       >
         AREMARK TESTFAMILIEN
-         (alder)
+         (
+        42
+        )
       </h2>
       <p
         className="typo-undertekst"

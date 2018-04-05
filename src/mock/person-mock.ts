@@ -1,4 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
+const rand = require('random-seed');
 
 import { Person } from '../models/person';
 
@@ -10,6 +11,7 @@ export const aremark: Person = {
     fødselsnummer: '10108000398',
     kjønn: 'M',
     geografiskTilknytning: '0118',
+    alder: 42,
     navn: {
         sammensatt: 'AREMARK TESTFAMILIEN',
         fornavn: 'AREMARK',
@@ -35,6 +37,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
         geografiskTilknytning: '0118',
+        alder: rand.create(fødselsnummer)(100),
         navn: {
             fornavn: fornavn,
             etternavn: etternavn,

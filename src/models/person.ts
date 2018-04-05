@@ -3,6 +3,7 @@ export interface Person {
     kjønn: string;
     geografiskTilknytning: string;
     fødselsnummer: string;
+    alder: number;
 }
 
 export interface Navn {
