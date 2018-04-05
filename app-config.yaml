@@ -1,2 +1,8 @@
 image: navikt/modiapersonoversikt
 port: 80
+fasitResources:
+  used:
+    - alias: iadecorator-js
+      resourceType: restservice
+    - alias: personoversiktAPI
+      resourceType: restservice
