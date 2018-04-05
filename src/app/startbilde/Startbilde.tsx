@@ -8,6 +8,7 @@ import { paths } from '../routes/routing';
 import { push } from 'react-router-redux';
 import renderDecoratorHead from '../../menyConfig';
 import { STATUS } from '../../redux/utils';
+import StartBildeLayout from './StartBildeLayout';
 import Feilmelding from '../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../models/oppgave';
 
@@ -56,7 +57,7 @@ class Startbilde extends React.Component<StartbildeProps> {
 
     render() {
         return (
-            <div className="startbilde">
+            <StartBildeLayout>
                 <KnappBase onClick={() => this.snarveiTilAremark()} type="hoved">
                     Snarvei til Aremark!
                 </KnappBase>
@@ -68,9 +69,8 @@ class Startbilde extends React.Component<StartbildeProps> {
                     Plukk en oppgave!
                 </KnappBase>
                 <Feilmelding reducer={this.props.oppgaveReducer}/>
-            </div>
+            </StartBildeLayout>
         );
-
     }
 }
 
