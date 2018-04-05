@@ -71,7 +71,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
                 </IkonDiv>
                 <InfoDiv>
                     <Undertittel>
-                        {person.navn.sammensatt} (alder)
+                        {person.navn.sammensatt} ({person.alder})
                     </Undertittel>
                     <Undertekst>
                         <NoWrap>
