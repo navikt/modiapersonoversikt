@@ -4,4 +4,6 @@ import 'jest-enzyme';
 import 'babel-polyfill';
 
 configure({ adapter: new Adapter() });
-global._apiBaseUri = '';
+// tslint:disable-next-line
+const globalAny: any = global;
+globalAny._apiBaseUri = '';
