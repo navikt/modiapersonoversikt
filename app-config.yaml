@@ -4,3 +4,5 @@ fasitResources:
   used:
     - alias: iadecorator-js
       resourceType: restservice
+    - alias: personoversiktAPI
+      resourceType: restservice
