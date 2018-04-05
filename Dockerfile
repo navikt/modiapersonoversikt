@@ -6,7 +6,7 @@ RUN npm run build
 RUN npm run build-storybook
 RUN CI=true npm run test
 
-FROM nginx-alpine
+FROM nginx:alpine
 COPY --from=nodebuilder /source/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY entrypoint.sh /entrypoint
