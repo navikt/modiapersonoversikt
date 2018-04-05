@@ -1,0 +1,24 @@
+#application {
+    display: -ms-grid;
+    display: grid;
+    grid-template: "head head" "left right";
+    -ms-grid-rows: min-content auto;
+    grid-template-rows: -webkit-min-content auto;
+    grid-template-rows: min-content auto;
+    -ms-grid-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+}
+.left-column {
+    grid-area: left;
+    overflow-y: auto;
+    background-color: aliceblue;
+}
+.right-column {
+    grid-area: right;
+    background-color: papayawhip;
+}
+.header{
+    grid-area: head;
+    background-color: lightgoldenrodyellow;
+}
