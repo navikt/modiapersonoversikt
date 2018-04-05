@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser info om bruker i visittkort-header 1`] = `
+<div
+  className="sc-bdVaJa kTaULn"
+>
+  <div
+    className="sc-bwzfXH ikNVvA"
+  >
+    <div
+      className="sc-htpNat ckMlgi"
+    >
+      <img
+        alt="Mann"
+        src="mann.svg"
+      />
+    </div>
+    <div
+      className="sc-bxivhb kGmHrR"
+    >
+      <h2
+        className="typo-undertittel"
+      >
+        AREMARK TESTFAMILIEN
+         (alder)
+      </h2>
+      <p
+        className="typo-undertekst"
+      >
+        <span
+          className="sc-gzVnrw djKZhV"
+        >
+          10108000398
+           
+          <span
+            className="sc-bZQynM vIiKU"
+          >
+            Alle er Norsk / Gift / 2 barn (under 21)
+          </span>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    className="sc-ifAKCX jnlQBT"
+  >
+    <div
+      className="sc-EHOje jocACB"
+    >
+      <div
+        className="etikett etikett--info"
+      >
+        <span
+          className="typo-normal"
+        >
+          Dette er en etikett
+        </span>
+      </div>
+      <div
+        className="etikett etikett--fokus"
+      >
+        <span
+          className="typo-normal"
+        >
+          Dette er en til
+        </span>
+      </div>
+      <div
+        className="etikett etikett--advarsel"
+      >
+        <span
+          className="typo-normal"
+        >
+          Enda en
+        </span>
+      </div>
+    </div>
+    <p
+      className="typo-undertekst"
+    >
+      Nav-enhet / 
+      0118
+       Alle bor i Aremark
+    </p>
+  </div>
+</div>
+`;

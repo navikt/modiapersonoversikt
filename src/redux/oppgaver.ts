@@ -51,7 +51,8 @@ export function plukkOppgave(enhet: string, temagruppe: string) {
                 return oppgaver;
             })
             .catch((err) => {
-                dispatch({type: actionNames.ERROR, error: err});
+                console.error(err);
+                dispatch({type: actionNames.ERROR, error: err.toString()});
             });
     };
 }

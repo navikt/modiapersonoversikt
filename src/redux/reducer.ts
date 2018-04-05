@@ -21,4 +21,5 @@ export default combineReducers<AppState>({
 export interface Reducer<T> {
     status: STATUS;
     data: T;
+    error?: String;
 }
