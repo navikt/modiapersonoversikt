@@ -8,16 +8,18 @@ branches:
 env:
   global:
     - TZ='Europe/Oslo'
+    - RELEASE_VERSION="$(git fetch --unshallow && git rev-list --count $TRAVIS_COMMIT)"
+    - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
 
-script: docker build -t "$TRAVIS_REPO_SLUG:$(git rev-list --count HEAD)" .
+script: docker build -t "$DOCKER_IMAGE_FULL_NAME" .
 
 deploy:
   provider: script
-  script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push "$TRAVIS_REPO_SLUG:$(git rev-list --count HEAD)"
+  script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push "$DOCKER_IMAGE_FULL_NAME"
   on:
     branch: master
 
 after_deploy:
   - git remote add auth-origin "https://${GITHUB_ACCESS_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
-  - git tag "$(git rev-list --count HEAD)"
+  - git tag $RELEASE_VERSION
   - git push auth-origin --tags
