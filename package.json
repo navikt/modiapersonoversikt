@@ -49,7 +49,7 @@
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "start:less": "autoless --source-map --interval 100 ./src ./public",
     "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
-    "postinstall": "npm run build && CI=true npm run test"
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.15",
