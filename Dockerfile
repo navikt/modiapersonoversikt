@@ -1,4 +1,4 @@
-FROM node:9.5 as nodebuilder
+FROM node:9.10.1 as nodebuilder
 ADD / /source
 WORKDIR /source
 RUN npm install
