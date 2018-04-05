@@ -4,3 +4,4 @@ import 'jest-enzyme';
 import 'babel-polyfill';
 
 configure({ adapter: new Adapter() });
+global._apiBaseUri = '';

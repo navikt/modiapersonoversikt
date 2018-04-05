@@ -37,7 +37,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts-ts": "2.13.0",
+    "react-scripts-ts": "^2.14.0",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
@@ -78,6 +78,7 @@
     "faker": "^4.1.0",
     "fetch-mock": "^6.3.0",
     "fnr-generator": "^2.1.4",
+    "jest-cli": "^22.4.3",
     "jest-enzyme": "^6.0.0",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
