@@ -8,3 +8,6 @@ RUN npm run build-storybook
 FROM nginx
 COPY --from=nodebuilder /source/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY entrypoint.sh /entrypoint
+ENTRYPOINT ["/entrypoint"]
+CMD ["nginx", "-g", "daemon off;"]
