@@ -8,6 +8,7 @@ import { STATUS } from '../../../redux/utils';
 import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
+import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 
 interface StateProps {
     valgtEnhet: string;
@@ -24,14 +25,12 @@ type DialogPanelProps = StateProps & DispatchProps;
 const DialogPanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
-    `;
-
-const KnappWrapper = styled.div`
-    justify-content: center;
-    display: flex;
-    margin-bottom: 15px;
-
+  justify-content: center;
+  align-items: center;
+  padding: ${props => props.theme.margin.layout};
+  > *:not(:last-child) {
+    margin-bottom: ${props => props.theme.margin.layout};
+  }
 `;
 
 class DialogPanel extends React.Component<DialogPanelProps> {
@@ -48,15 +47,14 @@ class DialogPanel extends React.Component<DialogPanelProps> {
     render() {
         return (
             <DialogPanelWrapper>
-                <KnappWrapper>
-                    <KnappBase
-                        type="hoved"
-                        onClick={this.onPlukkOppgaver}
-                        spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
-                    >
-                        Plukk oppgaver
-                    </KnappBase>
-                </KnappWrapper>
+                <KnappBase
+                    type="hoved"
+                    onClick={this.onPlukkOppgaver}
+                    spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
+                >
+                    Plukk oppgaver
+                </KnappBase>
+                <ComponentPlaceholder height={'800px'} name={'Dialog Panel'}/>
                 <Feilmelding reducer={this.props.oppgaveReducer}/>
             </DialogPanelWrapper>
         );
