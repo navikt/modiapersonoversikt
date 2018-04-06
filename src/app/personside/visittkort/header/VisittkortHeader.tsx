@@ -4,6 +4,7 @@ import { Person } from '../../../../models/person';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EtikettBase from 'nav-frontend-etiketter';
+import NavKontorContainer from './NavKontorContainer';
 
 const mannPath = require('../../../../resources/svg/mann.svg');
 const kvinnePath = require('../../../../resources/svg/kvinne.svg');
@@ -93,9 +94,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
                         Enda en
                     </EtikettBase>
                 </EtikettContainer>
-                <Undertekst>
-                    Nav-enhet / {person.geografiskTilknytning} Alle bor i Aremark
-                </Undertekst>
+                <NavKontorContainer />
             </HøyreFelt>
 
         </VisittkortHeaderDiv>

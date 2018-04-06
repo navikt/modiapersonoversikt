@@ -3,6 +3,7 @@ import { Action, Dispatch } from 'redux';
 import { FetchError, FetchSuccess, RestActions, STATUS } from './utils';
 import { getPerson } from '../api/person-api';
 import { aremark } from '../mock/person-mock';
+import { hentNavKontor } from './navkontor';
 
 export interface PersonState {
     data: Person;
@@ -26,10 +27,12 @@ const initialState: PersonState = {
 
 export function hentPerson(fodselsnummer: string) {
     return (dispatch: Dispatch<Action>) => {
+        console.log('hentperson');
         dispatch({ type: actionNames.PENDING});
         return getPerson(fodselsnummer)
             .then((person) => {
                 dispatch({type: actionNames.OK, data: person});
+                dispatch(hentNavKontor(person.geografiskTilknytning));
                 return person;
             })
             .catch((err) => {

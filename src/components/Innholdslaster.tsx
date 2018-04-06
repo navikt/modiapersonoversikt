@@ -9,6 +9,7 @@ import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild;
     avhengigheter: Reducer<object>[];
+    spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 }
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
@@ -32,7 +33,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
         } else {
             return (
                 <FillCenterAndFadeIn>
-                    <NavFrontendSpinner type="XXL"/>
+                    <NavFrontendSpinner type={this.props.spinnerSize || 'XXL'} />
                 </FillCenterAndFadeIn>
             );
         }
