@@ -7,14 +7,29 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 # Komme i gang
 
 ## Kjøre appen
+
+Opprett filen `.env` med følgende innhold:
+```shell
+REACT_APP_MODIA_URL=https://example.com # URL til backend for kjøring med npm
+PERSONOVERSIKTAPI_URL=https://example.com # URL til backend for kjøring i docker
+REACT_APP_HODE_URL=https://example.com/head.min.js # URL til navigasjonsmenyen for kjøring med npm
+IADECORATOR_JS_URL=https://example.com/head.min.js # URL til navigasjonsmenyen for kjøring i docker
+```
+
+### For utvikling
 ```console
 $ npm install
 $ npm run start
 ```
-
-## Storybook
+### Storybook
 ```console
 $ npm run storybook
+```
+
+### Med docker
+```console
+$ docker build -t personoversikt .
+$ docker run --env-file .env --name personoversikt -d -p 8080:80 personoversikt
 ```
 
 ---
