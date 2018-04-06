@@ -1,5 +1,8 @@
 export interface Kontaktinformasjon {
-    epost?: string;
+    epost?: {
+        endret: string;
+        value: string;
+    };
 }
 
 export interface Person {
