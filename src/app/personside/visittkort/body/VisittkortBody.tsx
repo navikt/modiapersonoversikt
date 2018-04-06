@@ -69,8 +69,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                     </VisittkortElement>
                     <VisittkortElement beskrivelse="Epost" ikonPath={emailPath}>
                         <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Exercitationem facere facilis perspiciatis.
+                            {person.kontaktinformasjon.epost || 'Ingen epost registrert'}
                         </Undertekst>
                     </VisittkortElement>
                     <VisittkortElement beskrivelse="Telefon" ikonPath={phonePath}>

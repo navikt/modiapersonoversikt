@@ -19,7 +19,10 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
+    kontaktinformasjon: {
+        epost: 'aremark@hotmail.com'
+    }
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -46,19 +49,28 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
-        diskresjonskode: getMuligDiskresjonskode(fødselsnummer)
+        diskresjonskode: getDiskresjonskode(fødselsnummer),
+        kontaktinformasjon: {
+            epost: getEpost(fødselsnummer, fornavn, etternavn)
+        }
     };
 }
 
-function getMuligDiskresjonskode(fødselsnummer: string) {
-    const randomNumber = rand.create(fødselsnummer)(100);
-    if (randomNumber < 80) {
-        return undefined;
-    } else if (randomNumber > 95) {
+function getDiskresjonskode(fødselsnummer: string) {
+    if (tilfeldigSjanse(fødselsnummer, 10)) {
+        return Diskresjonskoder.FORTROLIG_ADRESSE;
+    } else if (tilfeldigSjanse(fødselsnummer, 10)) {
         return Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
     } else {
-        return Diskresjonskoder.FORTROLIG_ADRESSE;
+        return undefined;
     }
+}
+
+function getEpost(fødselsnummer: string, fornavn: string, etternavn: string) {
+    if (tilfeldigSjanse(fødselsnummer, 80)) {
+        return faker.internet.email(fornavn, etternavn);
+    }
+    return undefined;
 }
 
 function getFornavn(fødselsnummer: string): string {
@@ -67,4 +79,9 @@ function getFornavn(fødselsnummer: string): string {
     } else {
         return faker.name.firstName(0);
     }
+}
+
+function tilfeldigSjanse(fødselsnummer: string, sjanseFor: Number) {
+    const randomNumber = rand.create(fødselsnummer)(100);
+    return randomNumber <= sjanseFor;
 }

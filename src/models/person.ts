@@ -1,3 +1,7 @@
+export interface Kontaktinformasjon {
+    epost?: string;
+}
+
 export interface Person {
     navn: Navn;
     kjønn: string;
@@ -5,6 +9,7 @@ export interface Person {
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: string;
+    kontaktinformasjon: Kontaktinformasjon;
 }
 
 export interface Navn {
