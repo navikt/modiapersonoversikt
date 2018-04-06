@@ -2,13 +2,13 @@
 
 exports[`viser info om bruker i visittkort-header 1`] = `
 <div
-  className="sc-bdVaJa kTaULn"
+  className="sc-bwzfXH frczeM"
 >
   <div
-    className="sc-bwzfXH ikNVvA"
+    className="sc-htpNat hlgWSp"
   >
     <div
-      className="sc-htpNat ckMlgi"
+      className="sc-bxivhb bWjVKh"
     >
       <img
         alt="Mann"
@@ -16,7 +16,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       />
     </div>
     <div
-      className="sc-bxivhb kGmHrR"
+      className="sc-ifAKCX hocsAo"
     >
       <h2
         className="typo-undertittel"
@@ -44,36 +44,18 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </div>
   </div>
   <div
-    className="sc-ifAKCX jnlQBT"
+    className="sc-EHOje csVoal"
   >
     <div
-      className="sc-EHOje jocACB"
+      className="sc-bdVaJa hCAoFa"
     >
-      <div
-        className="etikett etikett--info"
-      >
-        <span
-          className="typo-normal"
-        >
-          Dette er en etikett
-        </span>
-      </div>
-      <div
-        className="etikett etikett--fokus"
-      >
-        <span
-          className="typo-normal"
-        >
-          Dette er en til
-        </span>
-      </div>
       <div
         className="etikett etikett--advarsel"
       >
         <span
           className="typo-normal"
         >
-          Enda en
+          Fortrolig adresse
         </span>
       </div>
     </div>

@@ -4,6 +4,7 @@ export interface Person {
     geografiskTilknytning: string;
     fødselsnummer: string;
     alder: number;
+    diskresjonskode?: string;
 }
 
 export interface Navn {
