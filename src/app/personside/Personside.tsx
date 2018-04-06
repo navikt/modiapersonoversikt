@@ -5,10 +5,27 @@ import { AppState, Reducer } from '../../redux/reducer';
 import { Person } from '../../models/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
+import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface PersonsideStateProps {
     personReducer: Reducer<Person>;
 }
+
+const onPending = (
+    <FillCenterAndFadeIn>
+        <NavFrontendSpinner type={'XXL'} />
+    </FillCenterAndFadeIn>
+);
+
+const onError = (
+    <FillCenterAndFadeIn>
+        <AlertStripe type="advarsel">
+            Feil ved lasting av data
+        </AlertStripe>
+    </FillCenterAndFadeIn>
+);
 
 class Personside extends React.PureComponent<PersonsideStateProps> {
 
@@ -18,7 +35,11 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.personReducer]}>
+            <Innholdslaster
+                avhengigheter={[this.props.personReducer]}
+                returnOnPending={onPending}
+                returnOnError={onError}
+            >
                 <MainLayout />
             </Innholdslaster>
         );
