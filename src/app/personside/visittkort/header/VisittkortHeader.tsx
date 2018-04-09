@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Person } from '../../../../models/person';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import EtikettBase from 'nav-frontend-etiketter';
 
+import { Person } from '../../../../models/person';
+import Etiketter from './Etiketter';
 const mannPath = require('../../../../resources/svg/mann.svg');
 const kvinnePath = require('../../../../resources/svg/kvinne.svg');
 
@@ -43,12 +43,6 @@ const HøyreFelt = styled.div`
   box-sizing: border-box;
 `;
 
-const EtikettContainer = styled.div`
-  > * {
-    margin: 3px;
-  }
-`;
-
 const PadLeft = styled.span`
   margin-left: 2em;
 `;
@@ -82,17 +76,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
             </VenstreFelt>
 
             <HøyreFelt>
-                <EtikettContainer>
-                    <EtikettBase type={'info'}>
-                        Dette er en etikett
-                    </EtikettBase>
-                    <EtikettBase type={'fokus'}>
-                        Dette er en til
-                    </EtikettBase>
-                    <EtikettBase type={'advarsel'}>
-                        Enda en
-                    </EtikettBase>
-                </EtikettContainer>
+                <Etiketter person={person}/>
                 <Undertekst>
                     Nav-enhet / {person.geografiskTilknytning} Alle bor i Aremark
                 </Undertekst>

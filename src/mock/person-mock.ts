@@ -2,6 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 const rand = require('random-seed');
 
 import { Person } from '../models/person';
+import { Diskresjonskoder } from '../constants';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -17,7 +18,8 @@ export const aremark: Person = {
         fornavn: 'AREMARK',
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
-    }
+    },
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -43,8 +45,20 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             etternavn: etternavn,
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
-        }
+        },
+        diskresjonskode: getMuligDiskresjonskode(fødselsnummer)
     };
+}
+
+function getMuligDiskresjonskode(fødselsnummer: string) {
+    const randomNumber = rand.create(fødselsnummer)(100);
+    if (randomNumber < 80) {
+        return undefined;
+    } else if (randomNumber > 95) {
+        return Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+    } else {
+        return Diskresjonskoder.FORTROLIG_ADRESSE;
+    }
 }
 
 function getFornavn(fødselsnummer: string): string {
