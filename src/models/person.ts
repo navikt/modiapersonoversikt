@@ -1,3 +1,10 @@
+export interface Kontaktinformasjon {
+    epost?: {
+        sistOppdatert: string;
+        value: string;
+    };
+}
+
 export interface Person {
     navn: Navn;
     kjønn: string;

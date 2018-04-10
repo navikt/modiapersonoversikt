@@ -4,8 +4,8 @@ import VisittkortElement from './VisittkortElement';
 import { Person } from '../../../../models/person';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import Epost from './Epost';
 
-const emailPath = require('../../../../resources/svg/email.svg');
 const heartPath = require('../../../../resources/svg/heart.svg');
 const coinsPath = require('../../../../resources/svg/coins.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
@@ -67,12 +67,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                             Et, ipsum.
                         </Undertekst>
                     </VisittkortElement>
-                    <VisittkortElement beskrivelse="Epost" ikonPath={emailPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Exercitationem facere facilis perspiciatis.
-                        </Undertekst>
-                    </VisittkortElement>
+                    <Epost />
                     <VisittkortElement beskrivelse="Telefon" ikonPath={phonePath}>
                         <Undertekst>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
