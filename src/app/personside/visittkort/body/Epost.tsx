@@ -1,6 +1,9 @@
 import * as React from 'react';
-
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+
+import VisittkortElement from './VisittkortElement';
+
+const emailPath = require('../../../../resources/svg/email.svg');
 
 function Epost () {
     const mockKontaktinformasjon = {
@@ -13,10 +16,10 @@ function Epost () {
 
     if (kontaktinformasjon.epost) {
         return (
-            <div>
+            <VisittkortElement beskrivelse="Epost" ikonPath={emailPath}>
                 <Undertekst>{kontaktinformasjon.epost.value}</Undertekst>
                 <Undertekst>Endret {kontaktinformasjon.epost.endret}</Undertekst>
-            </div>
+            </VisittkortElement>
         );
     } else {
         return <Undertekst>Ingen epost registrert</Undertekst>;

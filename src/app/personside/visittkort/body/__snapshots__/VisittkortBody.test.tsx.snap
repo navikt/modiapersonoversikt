@@ -90,19 +90,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Epost
           </p>
-          <div>
-            <p
-              className="typo-undertekst"
-            >
-              test@testesen.com
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Endret 
-              27.12.12
-            </p>
-          </div>
+          <p
+            className="typo-undertekst"
+          >
+            test@testesen.com
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            27.12.12
+          </p>
         </div>
       </div>
       <div
