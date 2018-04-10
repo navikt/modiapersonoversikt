@@ -12,7 +12,6 @@ export interface Person {
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: string;
-    kontaktinformasjon: Kontaktinformasjon;
 }
 
 export interface Navn {

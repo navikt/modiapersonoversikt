@@ -1,13 +1,16 @@
 import * as React from 'react';
 
-import { Kontaktinformasjon } from '../../../models/person';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-interface EpostProps {
-    kontaktinformasjon: Kontaktinformasjon;
-}
+function Epost () {
+    const mockKontaktinformasjon = {
+        epost: {
+            value: 'test@testesen.com',
+            endret: '27.12.12'
+        }
+    };
+    const kontaktinformasjon = mockKontaktinformasjon;
 
-function Epost ( {kontaktinformasjon}: EpostProps) {
     if (kontaktinformasjon.epost) {
         return (
             <div>

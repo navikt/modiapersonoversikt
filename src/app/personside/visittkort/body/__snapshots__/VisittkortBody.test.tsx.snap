@@ -94,13 +94,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-undertekst"
             >
-              aremark@hotmail.com
+              test@testesen.com
             </p>
             <p
               className="typo-undertekst"
             >
               Endret 
-              24.12.2016
+              27.12.12
             </p>
           </div>
         </div>

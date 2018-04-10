@@ -69,7 +69,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                         </Undertekst>
                     </VisittkortElement>
                     <VisittkortElement beskrivelse="Epost" ikonPath={emailPath}>
-                        <Epost kontaktinformasjon={person.kontaktinformasjon}/>
+                        <Epost />
                     </VisittkortElement>
                     <VisittkortElement beskrivelse="Telefon" ikonPath={phonePath}>
                         <Undertekst>

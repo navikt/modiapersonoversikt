@@ -1,6 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
 const rand = require('random-seed');
-import * as moment from 'moment';
 
 import { Person } from '../models/person';
 import { Diskresjonskoder } from '../constants';
@@ -20,13 +19,7 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
-    kontaktinformasjon: {
-        epost: {
-            endret: '24.12.2016',
-            value: 'aremark@hotmail.com'
-        }
-    }
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -53,10 +46,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
-        diskresjonskode: getDiskresjonskode(fødselsnummer),
-        kontaktinformasjon: {
-            epost: getEpost(fødselsnummer, fornavn, etternavn)
-        }
+        diskresjonskode: getDiskresjonskode(fødselsnummer)
     };
 }
 
@@ -70,16 +60,6 @@ function getDiskresjonskode(fødselsnummer: string) {
     }
 }
 
-function getEpost(fødselsnummer: string, fornavn: string, etternavn: string) {
-    if (tilfeldigSjanse(fødselsnummer, 80)) {
-        return {
-            endret: lagEndretDatoStreng(faker.date.past()),
-            value: faker.internet.email(fornavn, etternavn)
-        };
-    }
-    return undefined;
-}
-
 function getFornavn(fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0 ) {
         return faker.name.firstName(1);
@@ -91,8 +71,4 @@ function getFornavn(fødselsnummer: string): string {
 function tilfeldigSjanse(fødselsnummer: string, sjanseFor: Number) {
     const randomNumber = rand.create(fødselsnummer)(100);
     return randomNumber <= sjanseFor;
-}
-
-function lagEndretDatoStreng(date: Date) {
-    return moment(date).format('DD.MM.YY');
 }
