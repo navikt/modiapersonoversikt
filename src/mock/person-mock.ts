@@ -71,7 +71,7 @@ function vektetSjanse(vekt: Number) {
     const tilfeldigTall = faker.random.number({
         max: 1,
         min: 0,
-        precision: 0.00000001
+        precision: 1E-8
     });
     return tilfeldigTall <= vekt;
 }
