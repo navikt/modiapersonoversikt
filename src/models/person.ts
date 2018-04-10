@@ -1,6 +1,6 @@
 export interface Kontaktinformasjon {
     epost?: {
-        endret: string;
+        sistOppdatert: string;
         value: string;
     };
 }
