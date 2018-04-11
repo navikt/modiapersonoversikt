@@ -3,12 +3,13 @@ import { connect, Dispatch } from 'react-redux';
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState, Reducer } from '../../../redux/reducer';
-import { plukkOppgave } from '../../../redux/oppgaver';
+import { plukkOppgave, selectFodselsnummerfraOppgaver } from '../../../redux/oppgaver';
 import { STATUS } from '../../../redux/utils';
 import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
+import { hentPerson } from '../../../redux/personinformasjon';
 
 interface StateProps {
     valgtEnhet: string;
@@ -71,8 +72,18 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
     return {
-        plukkOppgave: (enhet: string, temagruppe: string) => dispatch(plukkOppgave(enhet, temagruppe))
+        plukkOppgave: (enhet: string, temagruppe: string) => {
+            dispatch(plukkOppgave(enhet, temagruppe))
+                .then(hentPersonBasertPåPlukketOppgaver);
+        }
     };
+
+    function hentPersonBasertPåPlukketOppgaver(oppgaver: Oppgave[]) {
+        const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
+        if (fødselsnummer) {
+            dispatch(hentPerson(fødselsnummer));
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogPanel);
