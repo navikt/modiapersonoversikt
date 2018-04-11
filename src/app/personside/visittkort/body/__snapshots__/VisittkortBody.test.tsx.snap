@@ -93,7 +93,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-undertekst"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facere facilis perspiciatis.
+            test@testesen.com
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            27.12.12
           </p>
         </div>
       </div>

@@ -1,1 +1,1 @@
-web: npm run start-mock
+web: npm run heroku

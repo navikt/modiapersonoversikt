@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
-const rand = require('random-seed');
 
 import { Person } from '../models/person';
+import { Diskresjonskoder } from '../constants';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -17,7 +17,8 @@ export const aremark: Person = {
         fornavn: 'AREMARK',
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
-    }
+    },
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -37,14 +38,25 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
         geografiskTilknytning: '0118',
-        alder: rand.create(fødselsnummer)(100),
+        alder: faker.random.number(100),
         navn: {
             fornavn: fornavn,
             etternavn: etternavn,
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
-        }
+        },
+        diskresjonskode: getDiskresjonskode()
     };
+}
+
+function getDiskresjonskode() {
+    if (vektetSjanse(0.1)) {
+        return Diskresjonskoder.FORTROLIG_ADRESSE;
+    } else if (vektetSjanse(0.1)) {
+        return Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+    } else {
+        return undefined;
+    }
 }
 
 function getFornavn(fødselsnummer: string): string {
@@ -53,4 +65,13 @@ function getFornavn(fødselsnummer: string): string {
     } else {
         return faker.name.firstName(0);
     }
+}
+
+function vektetSjanse(vekt: Number) {
+    const tilfeldigTall = faker.random.number({
+        max: 1,
+        min: 0,
+        precision: 1E-8
+    });
+    return tilfeldigTall <= vekt;
 }

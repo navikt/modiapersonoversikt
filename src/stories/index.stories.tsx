@@ -6,11 +6,11 @@ import { Person } from '../models/person';
 import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
 import { aremark } from '../mock/person-mock';
 import styled from 'styled-components';
+import GridLayout from './grid-layout/GridLayout';
 
 const mockPerson: Person = aremark;
 
 const NiceContainer = styled.div`
-  margin: 1em;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 `;
 
@@ -37,3 +37,9 @@ storiesOf('Component Placeholder', module)
             </NiceContainer>
         )
     );
+
+storiesOf('Layout', module).add('GridTest, virker ikke i ie11', () => (
+        <NiceContainer>
+            <GridLayout />
+        </NiceContainer>
+));

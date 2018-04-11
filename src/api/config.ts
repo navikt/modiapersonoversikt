@@ -1,1 +1,3 @@
-export const apiBaseUri = 'https://modia.no/modiabrukerdialog/api';
+declare var _apiBaseUri: string;
+
+export const apiBaseUri = _apiBaseUri;
