@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
-import { hentPerson } from '../../../redux/personinformasjon';
+import { settNyPersonIKontekst } from '../../routes/routing';
 
 interface StateProps {
     valgtEnhet: string;
@@ -81,7 +81,7 @@ function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
     function hentPersonBasertPåPlukketOppgaver(oppgaver: Oppgave[]) {
         const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
         if (fødselsnummer) {
-            dispatch(hentPerson(fødselsnummer));
+            settNyPersonIKontekst(dispatch, fødselsnummer);
         }
     }
 }

@@ -13,7 +13,11 @@ interface EpostProps {
 }
 
 function Epost({kontaktinformasjon }: EpostProps) {
-    if (kontaktinformasjon.epost) {
+    if (kontaktinformasjon.reservert) {
+        return (
+            <Undertekst>Reservert</Undertekst>
+        );
+    } else if (kontaktinformasjon.epost) {
         return (
             <>
                 <Undertekst>{kontaktinformasjon.epost.value}</Undertekst>
