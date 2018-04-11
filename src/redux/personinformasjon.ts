@@ -1,5 +1,5 @@
 import { Person } from '../models/person';
-import { Action, Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { FetchError, FetchSuccess, RestActions, STATUS } from './utils';
 import { getPerson } from '../api/person-api';
 import { aremark } from '../mock/person-mock';
