@@ -5,11 +5,11 @@ import { Person } from '../../../../models/person';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
+import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 
 const heartPath = require('../../../../resources/svg/heart.svg');
 const coinsPath = require('../../../../resources/svg/coins.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
-const phonePath = require('../../../../resources/svg/phone.svg');
 const navLogoPath = require('../../../../resources/svg/nav-logo.svg');
 const jentePath = require('../../../../resources/svg/jentebarn.svg');
 const guttPath = require('../../../../resources/svg/guttebarn.svg');
@@ -68,12 +68,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                         </Undertekst>
                     </VisittkortElement>
                     <EpostContainer />
-                    <VisittkortElement beskrivelse="Telefon" ikonPath={phonePath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Blanditiis illo in laboriosam magni mollitia quae?
-                        </Undertekst>
-                    </VisittkortElement>
+                    <MobiltelefonContainer />
                     <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
                         <Undertekst>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
