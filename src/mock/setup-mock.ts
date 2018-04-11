@@ -1,8 +1,9 @@
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person-mock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock, { HandlerArgument, ResponseUtils } from 'yet-another-fetch-mock';
+import FetchMock from 'yet-another-fetch-mock';
 import { getKontaktinformasjon } from './kontaktinformasjon-mock';
+import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils';
 
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
@@ -15,14 +16,18 @@ export function setupMock() {
         }
     });
 
-    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(800, (args: HandlerArgument) =>
-        ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer))));
+    mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
+        800,
+        true,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
-    mock.get(
-        apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon',
-        ResponseUtils.delayed(2000, (args: HandlerArgument) =>
-            ResponseUtils.jsonPromise(getKontaktinformasjon(args.pathParams.fodselsnummer))));
+    mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
+        4000,
+        true,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
 
-    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(1200, () =>
-        ResponseUtils.jsonPromise(getTilfeldigeOppgaver())));
+    mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
+        1200,
+        true,
+        () => getTilfeldigeOppgaver()));
 }
