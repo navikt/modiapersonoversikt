@@ -3,9 +3,8 @@ import { connect, Dispatch } from 'react-redux';
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState, Reducer } from '../../redux/reducer';
-import { plukkOppgave } from '../../redux/oppgaver';
-import { paths } from '../routes/routing';
-import { push } from 'react-router-redux';
+import { plukkOppgaver } from '../../redux/oppgaver';
+import { settNyPersonIKontekst } from '../routes/routing';
 import renderDecoratorHead from '../../menyConfig';
 import { STATUS } from '../../redux/utils';
 import StartBildeLayout from './StartBildeLayout';
@@ -19,7 +18,7 @@ interface StartbildeStateProps {
 }
 
 interface DispatchProps {
-    plukkOppgave: (enhet: string, temagruppe: string) => void;
+    plukkOppgaver: (enhet: string, temagruppe: string) => void;
     personOppsokt: (fodselsnummer: string) => void;
 }
 
@@ -42,7 +41,7 @@ class Startbilde extends React.Component<StartbildeProps> {
     }
 
     onPlukkOppgaveKlikk() {
-        this.props.plukkOppgave(this.props.valgtEnhet, this.props.valgtTemagruppe);
+        this.props.plukkOppgaver(this.props.valgtEnhet, this.props.valgtTemagruppe);
     }
 
     handlePersonsok(event: object) {
@@ -84,8 +83,8 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
     return {
-        plukkOppgave: (enhet: string, temagruppe: string) => dispatch(plukkOppgave(enhet, temagruppe)),
-        personOppsokt: (fodselsnummer: string) => dispatch(push(`${paths.personUri}/${fodselsnummer}`))
+        plukkOppgaver: () => plukkOppgaver(dispatch, '1337', 'ARB'),
+        personOppsokt: (fodselsnummer: string) => settNyPersonIKontekst(dispatch, fodselsnummer)
     };
 }
 
