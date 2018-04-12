@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
 import { Action } from 'redux';
+
 import { AppState } from '../../redux/reducer';
 import { hentAllPersonData } from '../../redux/personinformasjon';
 import renderDecoratorHead from '../../menyConfig';
