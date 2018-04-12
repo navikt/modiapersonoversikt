@@ -4,7 +4,8 @@ import * as renderer from 'react-test-renderer';
 import { aremark } from '../../../../mock/person-mock';
 import VisittkortBody from './VisittkortBody';
 
-test('viser info om bruker i visittkortbody', () => {
+
+test.skip('viser info om bruker i visittkortbody', () => {
     const visittkortbody = renderer.create(
         <VisittkortBody person={aremark} />
     );
