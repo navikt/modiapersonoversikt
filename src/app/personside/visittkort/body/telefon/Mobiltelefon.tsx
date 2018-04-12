@@ -5,6 +5,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
+import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 
 const phonePath = require('../../../../../resources/svg/phone.svg');
 
@@ -21,7 +22,7 @@ function Mobiltelefon({kontaktinformasjon }: MobiltelefonProps) {
         return (
             <>
                 <Undertekst>{kontaktinformasjon.mobiltelefon.value}</Undertekst>
-                <Undertekst>Endret {kontaktinformasjon.mobiltelefon.sistOppdatert}</Undertekst>
+                <EtikettLiten>Endret {kontaktinformasjon.mobiltelefon.sistOppdatert}</EtikettLiten>
             </>
         );
     } else {
@@ -35,7 +36,7 @@ interface MobiltelefonWrapperProps {
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Mobiltelefon" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Telefon (KR)" ikonPath={phonePath}>
             <Innholdslaster avhengigheter={[kontaktinformasjonReducer]}>
                 <Mobiltelefon kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>

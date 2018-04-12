@@ -5,6 +5,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
+import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 
 const emailPath = require('../../../../../resources/svg/email.svg');
 
@@ -21,7 +22,7 @@ function Epost({kontaktinformasjon }: EpostProps) {
         return (
             <>
                 <Undertekst>{kontaktinformasjon.epost.value}</Undertekst>
-                <Undertekst>Endret {kontaktinformasjon.epost.sistOppdatert}</Undertekst>
+                <EtikettLiten>Endret {kontaktinformasjon.epost.sistOppdatert}</EtikettLiten>
             </>
         );
     } else {
@@ -35,7 +36,7 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Epost" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="Epost (KR)" ikonPath={emailPath}>
             <Innholdslaster avhengigheter={[kontaktinformasjonReducer]}>
                 <Epost kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
