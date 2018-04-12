@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState, Reducer } from '../../../../../redux/reducer';
-import Epost from './Mobiltelefon';
+import Mobiltelefon from './Mobiltelefon';
 import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
 
 interface Props {
@@ -12,7 +12,7 @@ class MobiltelefonContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Epost kontaktinformasjonReducer={this.props.kontaktinformasjon} />
+            <Mobiltelefon kontaktinformasjonReducer={this.props.kontaktinformasjon} />
         );
     }
 }
