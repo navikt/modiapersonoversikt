@@ -1,3 +1,7 @@
+import { Action } from 'redux';
+import { Dispatch } from 'react-redux';
+import { ActionTypes } from './restReducer';
+
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',
     PENDING = 'PENDING',
@@ -25,3 +29,28 @@ export type RestActions<T> =
     | FetchSuccess<T>
     | FetchError
     ;
+
+function sendResultatTilDispatch(dispatch: Dispatch<Action>, action: string) {
+    return (data: object) => {
+        return dispatch({type: action, data});
+    };
+}
+
+function handterFeil(dispatch: Dispatch<Action>, action: string) {
+    return (error: Error) => {
+        console.error(error);
+        dispatch({type: action, error: error.message});
+        return Promise.reject(error);
+    };
+}
+
+export function doThenDispatch(fn: () => Promise<object>, { PENDING, OK, ERROR}: ActionTypes) {
+    return (dispacth: Dispatch<Action>) => {
+        if (PENDING) {
+            dispacth({type: PENDING});
+        }
+        return fn()
+            .then(sendResultatTilDispatch(dispacth, OK))
+            .catch(handterFeil(dispacth, ERROR));
+    };
+}
