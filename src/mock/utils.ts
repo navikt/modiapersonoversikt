@@ -1,4 +1,5 @@
 import { HandlerArgument, ResponseUtils } from 'yet-another-fetch-mock';
+import FakerStatic = Faker.FakerStatic;
 
 export function withDelayedResponse(
     delay: number,
@@ -21,4 +22,13 @@ function lagPromise(skalGjøresUtenFeil: boolean, data: object) {
 
 export function mockGeneratorMedFødselsnummer(fn: (fødselsnummer: string) => object) {
     return (args: HandlerArgument) => fn(args.pathParams.fodselsnummer);
+}
+
+export function vektetSjanse(faker: FakerStatic, vekt: Number) {
+    const tilfeldigTall = faker.random.number({
+        max: 1,
+        min: 0,
+        precision: 1E-8
+    });
+    return tilfeldigTall <= vekt;
 }

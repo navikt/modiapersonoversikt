@@ -22,7 +22,7 @@ export function setupMock() {
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        4000,
+        2000,
         true,
         mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
 

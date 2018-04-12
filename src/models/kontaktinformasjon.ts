@@ -3,4 +3,9 @@ export interface Kontaktinformasjon {
         sistOppdatert: string;
         value: string;
     };
+    mobiltelefon?: {
+        sistOppdatert: string;
+        value: string;
+    };
+    reservert?: string;
 }

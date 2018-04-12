@@ -32,7 +32,8 @@ export type RestActions<T> =
 
 function sendResultatTilDispatch(dispatch: Dispatch<Action>, action: string) {
     return (data: object) => {
-        return dispatch({type: action, data});
+         dispatch({type: action, data});
+         return Promise.resolve(data);
     };
 }
 
