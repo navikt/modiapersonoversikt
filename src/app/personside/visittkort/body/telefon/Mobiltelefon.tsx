@@ -7,41 +7,41 @@ import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 
-const emailPath = require('../../../../../resources/svg/email.svg');
+const phonePath = require('../../../../../resources/svg/phone.svg');
 
-interface EpostProps {
+interface MobiltelefonProps {
     kontaktinformasjon: Kontaktinformasjon;
 }
 
-function Epost({kontaktinformasjon }: EpostProps) {
+function Mobiltelefon({kontaktinformasjon }: MobiltelefonProps) {
     if (kontaktinformasjon.reservert) {
         return (
             <Undertekst>Reservert</Undertekst>
         );
-    } else if (kontaktinformasjon.epost) {
+    } else if (kontaktinformasjon.mobiltelefon) {
         return (
             <>
-                <Undertekst>{kontaktinformasjon.epost.value}</Undertekst>
-                <EtikettLiten>Endret {kontaktinformasjon.epost.sistOppdatert}</EtikettLiten>
+                <Undertekst>{kontaktinformasjon.mobiltelefon.value}</Undertekst>
+                <EtikettLiten>Endret {kontaktinformasjon.mobiltelefon.sistOppdatert}</EtikettLiten>
             </>
         );
     } else {
-        return <Undertekst>Ingen epost registrert</Undertekst>;
+        return <Undertekst>Ingen mobiltelefon registrert</Undertekst>;
     }
 }
 
-interface EpostWrapperProps {
+interface MobiltelefonWrapperProps {
     kontaktinformasjonReducer: Reducer<Kontaktinformasjon>;
 }
 
-function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
+function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Epost (KR)" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="Telefon (KR)" ikonPath={phonePath}>
             <Innholdslaster avhengigheter={[kontaktinformasjonReducer]}>
-                <Epost kontaktinformasjon={kontaktinformasjonReducer.data}/>
+                <Mobiltelefon kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
         </VisittkortElement>
     );
 }
 
-export default EpostWrapper;
+export default MobiltelefonWrapper;

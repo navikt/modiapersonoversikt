@@ -23,6 +23,7 @@ export function getKontaktinformasjon(fødselsnummer: string): Kontaktinformasjo
         faker.seed(Number(fødselsnummer));
         return {
             epost: vektetSjanse(faker, 0.7) ? getEpost(personData) : undefined,
+            mobiltelefon: vektetSjanse(faker, 0.7) ? getMobiltelefon() : undefined,
             reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
         };
     }
@@ -31,6 +32,13 @@ export function getKontaktinformasjon(fødselsnummer: string): Kontaktinformasjo
 function getEpost(personData: Person) {
     return {
         value: faker.internet.email(personData.navn.fornavn, personData.navn.etternavn),
+        sistOppdatert: getSistOppdatert()
+    };
+}
+
+function getMobiltelefon() {
+    return {
+        value: faker.phone.phoneNumber('9#######'),
         sistOppdatert: getSistOppdatert()
     };
 }
