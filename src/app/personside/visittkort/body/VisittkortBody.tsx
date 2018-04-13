@@ -6,11 +6,11 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
+import NavKontorContainer from './navkontor/NavKontorContainer';
 
 const heartPath = require('../../../../resources/svg/heart.svg');
 const coinsPath = require('../../../../resources/svg/coins.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
-const navLogoPath = require('../../../../resources/svg/nav-logo.svg');
 const jentePath = require('../../../../resources/svg/jentebarn.svg');
 const guttPath = require('../../../../resources/svg/guttebarn.svg');
 
@@ -96,13 +96,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                     </VisittkortElement>
                 </InfoGruppe>
                 <InfoGruppe tittel={'Brukers NavKontor'}>
-                    <VisittkortElement utenTittel={true} beskrivelse="Brukers NavKontor" ikonPath={navLogoPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Adipisci dolorum ea expedita fugiat itaque libero, modi nihil optio repellat,
-                            soluta suscipit tempora tempore veniam? Dignissimos id obcaecati sint tempore unde.
-                        </Undertekst>
-                    </VisittkortElement>
+                    <NavKontorContainer />
                 </InfoGruppe>
             </Kolonne>
         </VisittkortBodyDiv>

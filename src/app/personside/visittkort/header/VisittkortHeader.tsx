@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import NavKontorContainer from './NavKontorContainer';
 
 import { Person } from '../../../../models/person';
 import Etiketter from './Etiketter';
@@ -77,9 +78,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
 
             <HøyreFelt>
                 <Etiketter person={person}/>
-                <Undertekst>
-                    Nav-enhet / {person.geografiskTilknytning} Alle bor i Aremark
-                </Undertekst>
+                <NavKontorContainer />
             </HøyreFelt>
 
         </VisittkortHeaderDiv>

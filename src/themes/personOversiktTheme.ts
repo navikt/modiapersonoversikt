@@ -8,7 +8,8 @@ const fadeIn = keyframes`
 export const personOversiktTheme = {
     color: {
         selectedLink: '#66CBEC',
-        hoverLink: '#C6C2BF'
+        hoverLink: '#C6C2BF',
+        lenke: 'rgb(0, 103, 197)'
     },
     media: {
         smallScreen: 'max-width: 750px',

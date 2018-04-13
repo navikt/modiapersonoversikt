@@ -2,13 +2,13 @@
 
 exports[`viser info om bruker i visittkort-header 1`] = `
 <div
-  className="sc-bwzfXH frczeM"
+  className="sc-htpNat gVFRWW"
 >
   <div
-    className="sc-htpNat hlgWSp"
+    className="sc-bxivhb eXkuME"
   >
     <div
-      className="sc-bxivhb bWjVKh"
+      className="sc-ifAKCX jEQMDy"
     >
       <img
         alt="Mann"
@@ -16,7 +16,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       />
     </div>
     <div
-      className="sc-ifAKCX hocsAo"
+      className="sc-EHOje fZKPZb"
     >
       <h2
         className="typo-undertittel"
@@ -30,12 +30,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         className="typo-undertekst"
       >
         <span
-          className="sc-gzVnrw djKZhV"
+          className="sc-htoDjs kQKncc"
         >
           10108000398
            
           <span
-            className="sc-bZQynM vIiKU"
+            className="sc-gzVnrw llufHZ"
           >
             Alle er Norsk / Gift / 2 barn (under 21)
           </span>
@@ -44,10 +44,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </div>
   </div>
   <div
-    className="sc-EHOje csVoal"
+    className="sc-bZQynM ODYDS"
   >
     <div
-      className="sc-bdVaJa hCAoFa"
+      className="sc-bwzfXH eCbFXJ"
     >
       <div
         className="etikett etikett--advarsel"
@@ -62,9 +62,14 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     <p
       className="typo-undertekst"
     >
-      Nav-enhet / 
-      0118
-       Alle bor i Aremark
+      <span
+        className="sc-bdVaJa ktDPVU"
+      >
+        Nav-enhet / 
+        0118
+         
+        Nav Aremark
+      </span>
     </p>
   </div>
 </div>

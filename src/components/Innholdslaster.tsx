@@ -4,11 +4,13 @@ import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/utils';
 import { Reducer } from '../redux/reducer';
-import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 
 interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild;
     avhengigheter: Reducer<object>[];
+    spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
+    returnOnPending?: React.ReactChildren | React.ReactChild;
+    returnOnError?: React.ReactChildren | React.ReactChild;
 }
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
@@ -22,18 +24,14 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
         if (alleLastet(this.props.avhengigheter)) {
             return this.props.children;
         } else if (noenHarFeil(this.props.avhengigheter)) {
-            return (
-                <FillCenterAndFadeIn>
-                    <AlertStripe type="advarsel">
-                        Feil ved lasting av data
-                    </AlertStripe>
-                </FillCenterAndFadeIn>
+            return this.props.returnOnError || (
+                <AlertStripe type="advarsel">
+                    Feil ved lasting av data
+                </AlertStripe>
             );
         } else {
-            return (
-                <FillCenterAndFadeIn>
-                    <NavFrontendSpinner type="XXL"/>
-                </FillCenterAndFadeIn>
+            return this.props.returnOnPending || (
+                <NavFrontendSpinner type={this.props.spinnerSize || 'XXL'}/>
             );
         }
     }

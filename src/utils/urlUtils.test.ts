@@ -1,4 +1,3 @@
-import '../testSetup';
 import { parseUrlForPersonIKontekst } from './urlUtils';
 import { paths } from '../app/routes/routing';
 
