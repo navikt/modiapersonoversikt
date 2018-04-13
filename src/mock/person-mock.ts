@@ -19,7 +19,8 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
+    statsborgerskap: 'NORSK'
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -46,7 +47,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
-        diskresjonskode: getDiskresjonskode()
+        diskresjonskode: getDiskresjonskode(),
+        statsborgerskap: getStatsborgerskap()
     };
 }
 
@@ -66,4 +68,8 @@ function getFornavn(fødselsnummer: string): string {
     } else {
         return faker.name.firstName(0);
     }
+}
+
+function getStatsborgerskap() {
+    return faker.address.country();
 }
