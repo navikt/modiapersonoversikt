@@ -92,7 +92,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
           <svg
             aria-label="Laster innhold"
-            className="spinner spinner--xxl"
+            className="spinner spinner--l"
             focusable="false"
             height={32}
             kind="spinner"
@@ -148,7 +148,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
           <svg
             aria-label="Laster innhold"
-            className="spinner spinner--xxl"
+            className="spinner spinner--l"
             focusable="false"
             height={32}
             kind="spinner"
