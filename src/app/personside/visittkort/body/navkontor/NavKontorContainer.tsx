@@ -15,7 +15,7 @@ const navLogo = require('./nav-logo.svg');
 class NavKontorContainer extends React.Component<Props> {
     render() {
         return (
-            <VisittkortElement utenTittel={true} beskrivelse="Brukers NavKontor" ikonPath={navLogo}>
+            <VisittkortElement beskrivelse="Brukers NavKontor" ikonPath={navLogo}>
                 <Innholdslaster avhengigheter={[this.props.navKontorReducer]} spinnerSize={'L'}>
                     <NavKontor navKontor={this.props.navKontorReducer.data}/>
                 </Innholdslaster>
