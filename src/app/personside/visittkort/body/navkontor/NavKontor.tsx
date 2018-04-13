@@ -5,6 +5,7 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import { Undertekst } from 'nav-frontend-typografi';
 import Lenke from '../../../../../components/Lenke';
+import { Fragment } from 'react';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -35,7 +36,7 @@ function klokkeslettToString(klokkeslett: Klokkeslett) {
 
 function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     const apningstider = publikumsMottak.apningstider.map((apningstid) => (
-        <>
+        <Fragment key={apningstid.ukedag}>
             <dt>
                 <Undertekst>
                     <NameCase>
@@ -48,7 +49,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
                     {klokkeslettToString(apningstid.apentFra)} - {klokkeslettToString(apningstid.apentTil)}
                 </Undertekst>
             </dd>
-        </>
+        </Fragment>
     ));
 
     const besoksadresse = publikumsMottak.besoksadresse;
@@ -59,7 +60,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     const postSted = besoksadresse ? `${besoksadresse.postnummer} ${besoksadresse.poststed}` : '';
 
     return (
-        <>
+        <div key={adresse}>
             <Undertekst>{adresse}</Undertekst>
             <Undertekst>{postSted}</Undertekst>
             <br/>
@@ -68,7 +69,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
                 {apningstider}
             </ApningsTiderListe>
             <br/>
-        </>
+        </div>
     );
 }
 

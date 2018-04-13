@@ -78,7 +78,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI eTDnOK"
         >
           <img
-            alt="Epost"
+            alt="Epost (KR)"
             src="email.svg"
           />
         </div>
@@ -88,19 +88,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-normal"
           >
-            Epost
+            Epost (KR)
           </p>
-          <p
-            className="typo-undertekst"
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--xxl"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            onClick={undefined}
+            preserveAspectRatio="xMidYMid"
+            style={undefined}
+            viewBox="0 0 100 100"
+            width={32}
           >
-            test@testesen.com
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Endret 
-            27.12.12
-          </p>
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#bdbab7"
+              strokeWidth="10"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="10"
+            />
+          </svg>
         </div>
       </div>
       <div
@@ -110,7 +134,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI eTDnOK"
         >
           <img
-            alt="Telefon"
+            alt="Telefon (KR)"
             src="phone.svg"
           />
         </div>
@@ -120,13 +144,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-normal"
           >
-            Telefon
+            Telefon (KR)
           </p>
-          <p
-            className="typo-undertekst"
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--xxl"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            onClick={undefined}
+            preserveAspectRatio="xMidYMid"
+            style={undefined}
+            viewBox="0 0 100 100"
+            width={32}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis illo in laboriosam magni mollitia quae?
-          </p>
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#bdbab7"
+              strokeWidth="10"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="10"
+            />
+          </svg>
         </div>
       </div>
       <div
@@ -266,41 +320,145 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           
-          <svg
-            aria-label="Laster innhold"
-            className="spinner spinner--l"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            onClick={undefined}
-            preserveAspectRatio="xMidYMid"
-            style={undefined}
-            viewBox="0 0 100 100"
-            width={32}
+          <div>
+            <p
+              className="typo-undertekst"
+            >
+              
+            Rådhuset 6A
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              1798 Aremark
+            </p>
+            <br />
+            <p
+              className="typo-etikett-liten"
+            >
+              Åpningstider
+            </p>
+            <dl
+              className="sc-jTzLTM casfRl"
+            >
+              <div>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-VigVT gXyyAd"
+                    >
+                      mandag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-VigVT gXyyAd"
+                    >
+                      tirsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-VigVT gXyyAd"
+                    >
+                      onsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-VigVT gXyyAd"
+                    >
+                      torsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-VigVT gXyyAd"
+                    >
+                      fredag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </div>
+            </dl>
+            <br />
+          </div>
+          <span
+            className="sc-gqjmRU hNqbpy"
           >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#bdbab7"
-              strokeWidth="10"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="10"
-            />
-          </svg>
+            Dette er en lenke
+          </span>
         </div>
       </div>
     </div>

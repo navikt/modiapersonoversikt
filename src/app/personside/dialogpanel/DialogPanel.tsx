@@ -3,7 +3,7 @@ import { connect, Dispatch } from 'react-redux';
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState, Reducer } from '../../../redux/reducer';
-import { plukkOppgave } from '../../../redux/oppgaver';
+import { plukkOppgaver } from '../../../redux/oppgaver';
 import { STATUS } from '../../../redux/utils';
 import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
@@ -17,7 +17,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    plukkOppgave: (enhet: string, temagruppe: string) => void;
+    plukkOppgaver: (enhet: string, temagruppe: string) => void;
 }
 
 type DialogPanelProps = StateProps & DispatchProps;
@@ -41,7 +41,7 @@ class DialogPanel extends React.Component<DialogPanelProps> {
     }
 
     onPlukkOppgaver() {
-        this.props.plukkOppgave(this.props.valgtEnhet, this.props.valgtTemagruppe);
+        this.props.plukkOppgaver(this.props.valgtEnhet, this.props.valgtTemagruppe);
     }
 
     render() {
@@ -71,8 +71,9 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
     return {
-        plukkOppgave: (enhet: string, temagruppe: string) => dispatch(plukkOppgave(enhet, temagruppe))
+        plukkOppgaver: (enhet, temagruppe) => plukkOppgaver(dispatch, enhet, temagruppe)
     };
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogPanel);

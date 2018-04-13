@@ -1,7 +1,9 @@
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person-mock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock, { HandlerArgument, ResponseUtils } from 'yet-another-fetch-mock';
+import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
+import { getKontaktinformasjon } from './kontaktinformasjon-mock';
+import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils';
 import { getMockNavKontor } from './navkontor-mock';
 
 export function setupMock() {
@@ -15,12 +17,23 @@ export function setupMock() {
         }
     });
 
-    mock.get(apiBaseUri + '/person/:fodselsnummer', ResponseUtils.delayed(700, (args: HandlerArgument) =>
-        ResponseUtils.jsonPromise(getPerson(args.pathParams.fodselsnummer))));
+    mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
+        800,
+        true,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
-    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', ResponseUtils.delayed(2500, (args: HandlerArgument) =>
-        ResponseUtils.jsonPromise(getMockNavKontor(args.pathParams.geografiskTilknytning))));
+    mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
+        2500,
+        true,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
 
-    mock.post(apiBaseUri + '/oppgave/plukk', ResponseUtils.delayed(800, () =>
-        ResponseUtils.jsonPromise(getTilfeldigeOppgaver())));
+    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
+        2000,
+        true,
+        (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
+
+    mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
+        1200,
+        true,
+        () => getTilfeldigeOppgaver()));
 }

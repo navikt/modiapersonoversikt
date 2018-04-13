@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
-import { push } from 'react-router-redux';
+import { Action } from 'redux';
 
 import { AppState } from '../../redux/reducer';
-import { hentPerson } from '../../redux/personinformasjon';
+import { hentAllPersonData } from '../../redux/personinformasjon';
 import renderDecoratorHead from '../../menyConfig';
-import { paths } from '../routes/routing';
 import Personside from './Personside';
+import { fjernPersonFraKontekst, settNyPersonIKontekst } from '../routes/routing';
 
 interface RouteProps {
     fodselsnummer: string;
@@ -18,7 +18,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    hentPerson: (fodselsnummer: string) => void;
+    hentPerson: (fødselsnummer: string) => void;
     fjernPersonFraContext: () => void;
     personOppsokt: (fodselsnummer: string) => void;
 }
@@ -33,7 +33,7 @@ class PersonsideContainer extends React.PureComponent<PersonsideProps> {
     }
 
     componentDidMount() {
-        this.props.hentPerson(this.props.fodselsnummer);
+        this.hentPersonData(this.props.fodselsnummer);
         renderDecoratorHead(this.props.fodselsnummer);
 
         document.addEventListener('dekorator-hode-fjernperson', this.props.fjernPersonFraContext);
@@ -47,8 +47,12 @@ class PersonsideContainer extends React.PureComponent<PersonsideProps> {
 
     componentDidUpdate(prevProps: PersonsideProps, prevState: PersonsideProps) {
         if (prevProps.fodselsnummer !== this.props.fodselsnummer) {
-            this.props.hentPerson(this.props.fodselsnummer);
+            this.hentPersonData(this.props.fodselsnummer);
         }
+    }
+
+    hentPersonData(fødselsnummer: string) {
+        this.props.hentPerson(fødselsnummer);
     }
 
     handlePersonsok(event: object) {
@@ -72,12 +76,12 @@ function mapStateToProps(state: AppState, ownProps: RouteComponentProps<RoutePro
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPerson: (fodselsnummer: string) => dispatch(hentPerson(fodselsnummer)),
-        fjernPersonFraContext: () => dispatch(push('/')),
-        personOppsokt: (fodselsnummer: string) => {
-            dispatch(push(`${paths.personUri}/${fodselsnummer}`));
+        hentPerson: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
+        fjernPersonFraContext: () => fjernPersonFraKontekst(dispatch),
+        personOppsokt: (fødselsnummer: string) => {
+            settNyPersonIKontekst(dispatch, fødselsnummer);
         }
     };
 }
