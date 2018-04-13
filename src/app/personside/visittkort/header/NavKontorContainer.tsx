@@ -10,9 +10,10 @@ interface Props {
     navKontorReducer: Reducer<NavKontorInterface>;
 }
 
-const CenterVertically = styled.div`
+const CenterVerticallyAndNoWrap = styled.span`
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
 `;
 
 const onError = (
@@ -20,14 +21,18 @@ const onError = (
 );
 
 function NavKontor(props: { navKontor: NavKontorInterface }) {
-    return <>{props.navKontor.nummer} {props.navKontor.navn}</>;
+    return (
+        <>
+            {props.navKontor.enhetId} {props.navKontor.enhetNavn}
+        </>
+    );
 }
 
 class NavKontorContainer extends React.Component<Props> {
     render() {
         return (
             <Undertekst>
-                <CenterVertically>
+                <CenterVerticallyAndNoWrap>
                     Nav-enhet /&nbsp;
                     <Innholdslaster
                         avhengigheter={[this.props.navKontorReducer]}
@@ -36,7 +41,7 @@ class NavKontorContainer extends React.Component<Props> {
                     >
                         <NavKontor navKontor={this.props.navKontorReducer.data}/>
                     </Innholdslaster>
-                </CenterVertically>
+                </CenterVerticallyAndNoWrap>
             </Undertekst>
         );
     }

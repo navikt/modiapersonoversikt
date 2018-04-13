@@ -1,20 +1,19 @@
 import { GateAdresse } from './gateadresse';
 import { Klokkeslett } from './klokkeslett';
-import { UkeDag } from './ukedager';
 
 export interface ApningsTid {
-    ukedag: UkeDag;
+    ukedag: string;
     apentFra: Klokkeslett;
     apentTil: Klokkeslett;
 }
 
-export interface KontaktInformasjon {
-    gateAdresse: GateAdresse;
-    apningsTider: Array<ApningsTid>;
+export interface PublikumsMottak {
+    besoksadresse?: GateAdresse;
+    apningstider: ApningsTid[];
 }
 
 export interface NavKontorInterface {
     enhetNavn: string;
     enhetId: string;
-    kontaktInformasjon: Array<KontaktInformasjon>;
+    publikumsmottak: PublikumsMottak[];
 }

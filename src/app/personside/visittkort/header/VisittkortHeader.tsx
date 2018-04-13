@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import EtikettBase from 'nav-frontend-etiketter';
 import NavKontorContainer from './NavKontorContainer';
 
 import { Person } from '../../../../models/person';

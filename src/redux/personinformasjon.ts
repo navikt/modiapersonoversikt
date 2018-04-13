@@ -13,7 +13,7 @@ export interface PersoninformasjonState {
 
 const reducerName = 'personinformasjon/';
 
-const actionNames = {
+export const actionNames = {
     PENDING: reducerName + STATUS.PENDING,
     OK: reducerName + STATUS.OK,
     ERROR: reducerName + STATUS.ERROR
@@ -31,7 +31,7 @@ export function hentPerson(fodselsnummer: string) {
         return getPerson(fodselsnummer)
             .then((person) => {
                 dispatch({type: actionNames.OK, data: person});
-                dispatch(hentNavKontor(person.geografiskTilknytning));
+                dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode));
                 return person;
             })
             .catch((err) => {

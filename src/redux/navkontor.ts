@@ -12,22 +12,22 @@ export interface NavkontorState {
     error: string | null;
 }
 
-const initialState: NavkontorState = {
+export const initialState: NavkontorState = {
     data: null,
     status: STATUS.NOT_STARTED,
     error: null
 };
 
-const actionNames = {
+export const actionNames = {
     PENDING: reducerName + STATUS.PENDING,
     OK: reducerName + STATUS.OK,
     ERROR: reducerName + STATUS.ERROR
 };
 
-export function hentNavKontor(geografiskTilknytning: string) {
+export function hentNavKontor(geografiskTilknytning: string, diskresjonsKode?: string) {
     return (dispatch: Dispatch<Action>) => {
         dispatch({ type: actionNames.PENDING});
-        return getNavkontor(geografiskTilknytning)
+        return getNavkontor(geografiskTilknytning, diskresjonsKode)
             .then((navKontor) => {
                 dispatch({type: actionNames.OK, data: navKontor});
                 return navKontor;

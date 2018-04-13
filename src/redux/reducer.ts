@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import oppgaverReducer from './oppgaver';
-import { STATUS } from '../redux/utils';
+import { STATUS } from './utils';
 import { Person } from '../models/person';
 import { Oppgave } from '../models/oppgave';
 import { NavKontorInterface } from '../models/navkontor';
