@@ -1,9 +1,10 @@
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person-mock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock from 'yet-another-fetch-mock';
+import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
 import { getKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils';
+import { getMockNavKontor } from './navkontor-mock';
 
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
@@ -22,9 +23,14 @@ export function setupMock() {
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        2000,
+        2500,
         true,
         mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
+
+    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
+        2000,
+        true,
+        (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
 
     mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
         1200,

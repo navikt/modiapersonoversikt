@@ -47,6 +47,7 @@ export function createActionsAndReducer(reducerNavn: string) {
                 default:
                     return state;
             }
-        }
+        },
+        actionNames: actionTypes
     };
 }

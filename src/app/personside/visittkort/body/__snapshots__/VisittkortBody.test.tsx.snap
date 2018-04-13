@@ -2,28 +2,28 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-bxivhb cDFCAd"
+  className="sc-jzJRlG dPOBZH"
 >
   <div
-    className="sc-ifAKCX dWpirk"
+    className="sc-cSHVUG WpEDm"
   >
     <div
-      className="sc-EHOje kyTBh"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-bZQynM dfteVo"
+          className="sc-chPdSV gIgkCB"
         >
           Kontakt
         </span>
-      </h2>
+      </p>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Postadresse Folkeregistrert"
@@ -31,12 +31,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Postadresse Folkeregistrert
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Postadresse Folkeregistrert
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -46,10 +50,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Postadresse Midlertidig Norge"
@@ -57,12 +61,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Postadresse Midlertidig Norge
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Postadresse Midlertidig Norge
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -72,68 +80,130 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Epost"
+            alt="Epost (KR)"
             src="email.svg"
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Epost
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Epost (KR)
+            </span>
           </p>
-          <p
-            className="typo-undertekst"
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--xxl"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            onClick={undefined}
+            preserveAspectRatio="xMidYMid"
+            style={undefined}
+            viewBox="0 0 100 100"
+            width={32}
           >
-            test@testesen.com
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Endret 
-            27.12.12
-          </p>
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#bdbab7"
+              strokeWidth="10"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="10"
+            />
+          </svg>
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Telefon"
+            alt="Telefon (KR)"
             src="phone.svg"
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Telefon
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Telefon (KR)
+            </span>
           </p>
-          <p
-            className="typo-undertekst"
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--xxl"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            onClick={undefined}
+            preserveAspectRatio="xMidYMid"
+            style={undefined}
+            viewBox="0 0 100 100"
+            width={32}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis illo in laboriosam magni mollitia quae?
-          </p>
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#bdbab7"
+              strokeWidth="10"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              fill="none"
+              r="40"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="10"
+            />
+          </svg>
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Kontonummer"
@@ -141,12 +211,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Kontonummer
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Kontonummer
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -158,35 +232,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
   </div>
   <div
-    className="sc-ifAKCX dWpirk"
+    className="sc-cSHVUG WpEDm"
   >
     <div
-      className="sc-EHOje kyTBh"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-bZQynM dfteVo"
+          className="sc-chPdSV gIgkCB"
         >
           Familie
         </span>
-      </h2>
+      </p>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Sivilstatus"
+            alt="Sivilstand"
             src="heart.svg"
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Sivilstand
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -195,20 +277,28 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Barn"
+            alt="Jente"
             src="jentebarn.svg"
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Jente
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -217,20 +307,28 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Barn"
+            alt="Gutt"
             src="guttebarn.svg"
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Gutt
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -240,22 +338,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-EHOje kyTBh"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-bZQynM dfteVo"
+          className="sc-chPdSV gIgkCB"
         >
-          Brukers NavKontor
+          Navkontor
         </span>
-      </h2>
+      </p>
       <div
-        className="sc-bdVaJa bhDzem"
+        className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-bwzfXH cATLyo"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Brukers NavKontor"
@@ -263,14 +361,146 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-htpNat bIdxdO"
+          className="sc-gZMcBi ikPRxU"
         >
-          
           <p
-            className="typo-undertekst"
+            className="typo-etikett-liten"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolorum ea expedita fugiat itaque libero, modi nihil optio repellat, soluta suscipit tempora tempore veniam? Dignissimos id obcaecati sint tempore unde.
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Brukers NavKontor
+            </span>
           </p>
+          <div>
+            <p
+              className="typo-undertekst"
+            >
+              
+            Rådhuset 6A
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              1798 Aremark
+            </p>
+            <br />
+            <p
+              className="typo-etikett-liten"
+            >
+              Åpningstider
+            </p>
+            <dl
+              className="sc-fjdhpX cQYCFl"
+            >
+              <dt>
+                <p
+                  className="typo-undertekst"
+                >
+                  <span
+                    className="sc-jTzLTM cnnHRR"
+                  >
+                    mandag
+                  </span>
+                </p>
+              </dt>
+              <dd>
+                <p
+                  className="typo-undertekst"
+                >
+                  09.00
+                   - 
+                  14.30
+                </p>
+              </dd>
+              <dt>
+                <p
+                  className="typo-undertekst"
+                >
+                  <span
+                    className="sc-jTzLTM cnnHRR"
+                  >
+                    tirsdag
+                  </span>
+                </p>
+              </dt>
+              <dd>
+                <p
+                  className="typo-undertekst"
+                >
+                  09.00
+                   - 
+                  14.30
+                </p>
+              </dd>
+              <dt>
+                <p
+                  className="typo-undertekst"
+                >
+                  <span
+                    className="sc-jTzLTM cnnHRR"
+                  >
+                    onsdag
+                  </span>
+                </p>
+              </dt>
+              <dd>
+                <p
+                  className="typo-undertekst"
+                >
+                  09.00
+                   - 
+                  14.30
+                </p>
+              </dd>
+              <dt>
+                <p
+                  className="typo-undertekst"
+                >
+                  <span
+                    className="sc-jTzLTM cnnHRR"
+                  >
+                    torsdag
+                  </span>
+                </p>
+              </dt>
+              <dd>
+                <p
+                  className="typo-undertekst"
+                >
+                  09.00
+                   - 
+                  14.30
+                </p>
+              </dd>
+              <dt>
+                <p
+                  className="typo-undertekst"
+                >
+                  <span
+                    className="sc-jTzLTM cnnHRR"
+                  >
+                    fredag
+                  </span>
+                </p>
+              </dt>
+              <dd>
+                <p
+                  className="typo-undertekst"
+                >
+                  09.00
+                   - 
+                  14.30
+                </p>
+              </dd>
+            </dl>
+            <br />
+          </div>
+          <span
+            className="sc-VigVT ldMVRF"
+          >
+            Dette er en lenke
+          </span>
         </div>
       </div>
     </div>

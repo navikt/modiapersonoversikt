@@ -2,15 +2,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 import VisittkortElement from './VisittkortElement';
 import { Person } from '../../../../models/person';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
+import NavKontorContainer from './navkontor/NavKontorContainer';
+import { Element } from 'nav-frontend-typografi';
 
 const heartPath = require('../../../../resources/svg/heart.svg');
 const coinsPath = require('../../../../resources/svg/coins.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
-const navLogoPath = require('../../../../resources/svg/nav-logo.svg');
 const jentePath = require('../../../../resources/svg/jentebarn.svg');
 const guttPath = require('../../../../resources/svg/guttebarn.svg');
 
@@ -33,6 +33,9 @@ const GruppeDiv = styled.div`
   > *:not(:last-child):not(:first-child) {
     margin-bottom: 30px;
   }
+  > *:first-child{
+    margin-bottom: 10px;
+  }
 `;
 
 const PadLeft = styled.span`
@@ -42,9 +45,9 @@ const PadLeft = styled.span`
 function InfoGruppe(props: { children: string | JSX.Element | JSX.Element[]; tittel: string; }) {
     return (
         <GruppeDiv>
-            <Undertittel>
+            <Element>
                 <PadLeft>{props.tittel}</PadLeft>
-            </Undertittel>
+            </Element>
             {props.children}
         </GruppeDiv>
     );
@@ -78,31 +81,25 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
             </Kolonne>
             <Kolonne>
                 <InfoGruppe tittel={'Familie'}>
-                    <VisittkortElement utenTittel={true} beskrivelse="Sivilstatus" ikonPath={heartPath}>
+                    <VisittkortElement beskrivelse="Sivilstand" ikonPath={heartPath}>
                         <Undertekst>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Adipisci dignissimos eius modi natus praesentium unde velit.
                         </Undertekst>
                     </VisittkortElement>
-                    <VisittkortElement utenTittel={true} beskrivelse="Barn" ikonPath={jentePath}>
+                    <VisittkortElement beskrivelse="Jente" ikonPath={jentePath}>
                         <Undertekst>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </Undertekst>
                     </VisittkortElement>
-                    <VisittkortElement utenTittel={true} beskrivelse="Barn" ikonPath={guttPath}>
+                    <VisittkortElement beskrivelse="Gutt" ikonPath={guttPath}>
                         <Undertekst>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </Undertekst>
                     </VisittkortElement>
                 </InfoGruppe>
-                <InfoGruppe tittel={'Brukers NavKontor'}>
-                    <VisittkortElement utenTittel={true} beskrivelse="Brukers NavKontor" ikonPath={navLogoPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Adipisci dolorum ea expedita fugiat itaque libero, modi nihil optio repellat,
-                            soluta suscipit tempora tempore veniam? Dignissimos id obcaecati sint tempore unde.
-                        </Undertekst>
-                    </VisittkortElement>
+                <InfoGruppe tittel={'Navkontor'}>
+                    <NavKontorContainer />
                 </InfoGruppe>
             </Kolonne>
         </VisittkortBodyDiv>
