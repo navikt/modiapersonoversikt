@@ -2,28 +2,28 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-fjdhpX fdxDzp"
+  className="sc-jzJRlG dPOBZH"
 >
   <div
-    className="sc-jzJRlG dCqLaV"
+    className="sc-cSHVUG WpEDm"
   >
     <div
-      className="sc-cSHVUG jFYtRT"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-kAzzGY dDUllS"
+          className="sc-chPdSV gIgkCB"
         >
           Kontakt
         </span>
-      </h2>
+      </p>
       <div
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Postadresse Folkeregistrert"
@@ -34,9 +34,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Postadresse Folkeregistrert
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Postadresse Folkeregistrert
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -49,7 +53,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Postadresse Midlertidig Norge"
@@ -60,9 +64,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Postadresse Midlertidig Norge
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Postadresse Midlertidig Norge
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -75,7 +83,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Epost (KR)"
@@ -86,9 +94,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Epost (KR)
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Epost (KR)
+            </span>
           </p>
           <svg
             aria-label="Laster innhold"
@@ -131,7 +143,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Telefon (KR)"
@@ -142,9 +154,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Telefon (KR)
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Telefon (KR)
+            </span>
           </p>
           <svg
             aria-label="Laster innhold"
@@ -187,7 +203,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Kontonummer"
@@ -198,9 +214,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ikPRxU"
         >
           <p
-            className="typo-normal"
+            className="typo-etikett-liten"
           >
-            Kontonummer
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Kontonummer
+            </span>
           </p>
           <p
             className="typo-undertekst"
@@ -212,35 +232,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
   </div>
   <div
-    className="sc-jzJRlG dCqLaV"
+    className="sc-cSHVUG WpEDm"
   >
     <div
-      className="sc-cSHVUG jFYtRT"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-kAzzGY dDUllS"
+          className="sc-chPdSV gIgkCB"
         >
           Familie
         </span>
-      </h2>
+      </p>
       <div
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Sivilstatus"
+            alt="Sivilstand"
             src="heart.svg"
           />
         </div>
         <div
           className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Sivilstand
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -252,17 +280,25 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Barn"
+            alt="Jente"
             src="jentebarn.svg"
           />
         </div>
         <div
           className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Jente
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -274,17 +310,25 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Barn"
+            alt="Gutt"
             src="guttebarn.svg"
           />
         </div>
         <div
           className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Gutt
+            </span>
+          </p>
           <p
             className="typo-undertekst"
           >
@@ -294,22 +338,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-cSHVUG jFYtRT"
+      className="sc-kAzzGY fOIkqr"
     >
-      <h2
-        className="typo-undertittel"
+      <p
+        className="typo-element"
       >
         <span
-          className="sc-kAzzGY dDUllS"
+          className="sc-chPdSV gIgkCB"
         >
-          Brukers NavKontor
+          Navkontor
         </span>
-      </h2>
+      </p>
       <div
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI eTDnOK"
+          className="sc-iwsKbI jYIAlx"
         >
           <img
             alt="Brukers NavKontor"
@@ -319,7 +363,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="sc-gZMcBi ikPRxU"
         >
-          
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gqjmRU dugoZX"
+            >
+              Brukers NavKontor
+            </span>
+          </p>
           <div>
             <p
               className="typo-undertekst"
@@ -339,14 +391,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               Åpningstider
             </p>
             <dl
-              className="sc-jTzLTM casfRl"
+              className="sc-fjdhpX cQYCFl"
             >
               <dt>
                 <p
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-VigVT gXyyAd"
+                    className="sc-jTzLTM cnnHRR"
                   >
                     mandag
                   </span>
@@ -366,7 +418,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-VigVT gXyyAd"
+                    className="sc-jTzLTM cnnHRR"
                   >
                     tirsdag
                   </span>
@@ -386,7 +438,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-VigVT gXyyAd"
+                    className="sc-jTzLTM cnnHRR"
                   >
                     onsdag
                   </span>
@@ -406,7 +458,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-VigVT gXyyAd"
+                    className="sc-jTzLTM cnnHRR"
                   >
                     torsdag
                   </span>
@@ -426,7 +478,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-VigVT gXyyAd"
+                    className="sc-jTzLTM cnnHRR"
                   >
                     fredag
                   </span>
@@ -445,7 +497,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <br />
           </div>
           <span
-            className="sc-gqjmRU hNqbpy"
+            className="sc-VigVT ldMVRF"
           >
             Dette er en lenke
           </span>
