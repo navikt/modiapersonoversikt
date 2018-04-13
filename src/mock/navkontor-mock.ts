@@ -1,5 +1,9 @@
+import * as faker from 'faker/locale/nb_NO';
+
 import { ApningsTid, PublikumsMottak, NavKontorInterface } from '../models/navkontor';
 import { GateAdresse } from '../models/gateadresse';
+
+export const geografiskTilknytningAremark = '0118';
 
 const mockApningsTider: Array<ApningsTid> = [{
     ukedag: 'MANDAG',
@@ -23,7 +27,7 @@ const mockApningsTider: Array<ApningsTid> = [{
     apentTil: { time: '14', minutt: '30', sekund: '0' }
 }];
 
-const mockGateAdresse: GateAdresse = {
+const aremarkGateadresse: GateAdresse = {
     gatenavn: 'Rådhuset',
     husnummer: '6',
     husbokstav: 'A',
@@ -32,14 +36,41 @@ const mockGateAdresse: GateAdresse = {
 };
 
 const mockKontaktInfo: PublikumsMottak = {
-    besoksadresse: mockGateAdresse,
+    besoksadresse: aremarkGateadresse,
     apningstider: mockApningsTider
 };
 
 export function getMockNavKontor(geografiskTilknytning: string): NavKontorInterface {
+    faker.seed(Number(geografiskTilknytning));
+    if (geografiskTilknytning === geografiskTilknytningAremark) {
+        return {
+            enhetNavn: 'Nav Aremark',
+            enhetId: geografiskTilknytning,
+            publikumsmottak: [ mockKontaktInfo ]
+        };
+    } else {
+        const city = faker.address.city();
+        return {
+            enhetNavn: 'NAV ' + city,
+            enhetId: geografiskTilknytning,
+            publikumsmottak: [getPublikumsmottak(city)]
+        };
+    }
+}
+
+function getPublikumsmottak(city: string) {
     return {
-        enhetNavn: 'Nav Aremark',
-        enhetId: geografiskTilknytning,
-        publikumsmottak: [ mockKontaktInfo ]
+        besoksadresse: getGateadresse(city),
+        apningstider: mockApningsTider
+    };
+}
+
+function getGateadresse(city: string): GateAdresse {
+    return {
+        gatenavn: faker.address.streetName(),
+        husnummer: String(faker.random.number(130)),
+        husbokstav: faker.random.alphaNumeric(1),
+        postnummer: faker.address.zipCode('####'),
+        poststed: city
     };
 }
