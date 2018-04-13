@@ -10,6 +10,7 @@
     "cross-env": "^5.1.4",
     "history": "^4.7.2",
     "lodash.throttle": "^4.1.1",
+    "moment": "^2.22.0",
     "nav-frontend-alertstriper": "^1.0.8",
     "nav-frontend-alertstriper-style": "^0.2.33",
     "nav-frontend-chevron-style": "^0.3.4",

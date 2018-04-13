@@ -6,6 +6,7 @@ export interface Person {
     alder: number;
     diskresjonskode?: string;
     statsborgerskap: string;
+    status: Bostatus;
 }
 
 export interface Navn {
@@ -13,4 +14,18 @@ export interface Navn {
     fornavn: string;
     mellomnavn: string;
     etternavn: string;
+}
+
+export interface Bostatus {
+    dødsdato?: string;
+    bostatus?: string;
+}
+
+export enum BostatusTyper {
+    Død = 'DØD',
+    Utvandret = 'UTVANDRET'
+}
+
+export function erDød(person: Person) {
+    return person.status.dødsdato || person.status.bostatus === BostatusTyper.Død;
 }
