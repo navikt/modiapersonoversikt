@@ -36,7 +36,7 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Epost (KR)" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="Epost Kontakt og reservasjonsregisteret" ikonPath={emailPath}>
             <Innholdslaster avhengigheter={[kontaktinformasjonReducer]}>
                 <Epost kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
