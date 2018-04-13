@@ -43,7 +43,8 @@ function PersonStatus({person}: PersonProps) {
     return (
         <Undertekst>
             <NoWrap>
-                <FødselsnummerLinje person={person}/> <PadLeft>Norsk / Gift / 2 barn (under 21)</PadLeft>
+                <FødselsnummerLinje person={person}/>
+                <PadLeft>{person.statsborgerskap} / Gift / 2 barn (under 21)</PadLeft>
             </NoWrap>
         </Undertekst>
     );

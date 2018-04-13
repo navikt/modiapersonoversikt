@@ -5,6 +5,7 @@ export interface Person {
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: string;
+    statsborgerskap: string;
     status: Bostatus;
 }
 
