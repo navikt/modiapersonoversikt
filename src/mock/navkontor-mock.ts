@@ -2,6 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 
 import { ApningsTid, PublikumsMottak, NavKontorInterface } from '../models/navkontor';
 import { GateAdresse } from '../models/gateadresse';
+import { vektetSjanse } from './utils';
 
 export const geografiskTilknytningAremark = '0118';
 
@@ -67,9 +68,9 @@ function getPublikumsmottak(city: string) {
 
 function getGateadresse(city: string): GateAdresse {
     return {
-        gatenavn: faker.address.streetName(),
+        gatenavn: faker.address.streetName().replace(' ', ''),
         husnummer: String(faker.random.number(130)),
-        husbokstav: faker.random.alphaNumeric(1),
+        husbokstav: vektetSjanse(faker, 0.7) ? undefined : faker.random.alphaNumeric(1),
         postnummer: faker.address.zipCode('####'),
         poststed: city
     };
