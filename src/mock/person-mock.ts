@@ -1,6 +1,6 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { Bankkonto, Person } from '../models/person';
+import { Bankkonto, BostatusTyper, Bostatus, Person } from '../models/person';
 import { Diskresjonskoder } from '../constants';
 import { vektetSjanse } from './utils';
 import * as moment from 'moment';
@@ -20,7 +20,12 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
+    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
+    statsborgerskap: 'NORSK',
+    status: {
+        dødsdato: undefined,
+        bostatus: undefined
+    }
 };
 
 export const bankkontoNorsk: Bankkonto = {
@@ -52,11 +57,12 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const fornavn = getFornavn(fødselsnummer);
     const etternavn = faker.name.lastName();
     const mellomnavn = '';
+    const alder = faker.random.number(100);
     return {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
         geografiskTilknytning: String(faker.random.number(9999)),
-        alder: faker.random.number(100),
+        alder: alder,
         navn: {
             fornavn: fornavn,
             etternavn: etternavn,
@@ -64,8 +70,29 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
         diskresjonskode: getDiskresjonskode(),
+        statsborgerskap: getStatsborgerskap(),
+        status: getStatus(alder),
         bankkonto: getBankKonto()
     };
+}
+
+function getStatus(alder: number): Bostatus {
+    const bostatus = getBostatus();
+    const dødsdato = bostatus === BostatusTyper.Død ? faker.date.past(alder).toString() : undefined;
+    return {
+        bostatus,
+        dødsdato
+    };
+}
+
+function getBostatus() {
+    if (vektetSjanse(faker, 0.1)) {
+        return BostatusTyper.Død;
+    } else if (vektetSjanse(faker, 0.1)) {
+        return BostatusTyper.Utvandret;
+    } else {
+        return undefined;
+    }
 }
 
 function getBankKonto(): Bankkonto | undefined {
@@ -94,6 +121,13 @@ function getFornavn(fødselsnummer: string): string {
     } else {
         return faker.name.firstName(0);
     }
+}
+
+function getStatsborgerskap() {
+    if (vektetSjanse(faker, 0.7)) {
+        return 'NORGE';
+    }
+    return faker.address.country().toUpperCase();
 }
 
 function getSistOppdatert() {

@@ -86,7 +86,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Epost (KR)"
+            alt="Epost Kontakt og reservasjonsregisteret"
             src="email.svg"
           />
         </div>
@@ -99,7 +99,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-gqjmRU dugoZX"
             >
-              Epost (KR)
+              Epost Kontakt og reservasjonsregisteret
             </span>
           </p>
           <svg
@@ -146,7 +146,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Telefon (KR)"
+            alt="Telefon Kontakt og reservasjonsregisteret"
             src="phone.svg"
           />
         </div>
@@ -159,7 +159,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-gqjmRU dugoZX"
             >
-              Telefon (KR)
+              Telefon Kontakt og reservasjonsregisteret
             </span>
           </p>
           <svg

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import NavKontorContainer from './NavKontorContainer';
 
-import { Person } from '../../../../models/person';
+import { erDød, Person } from '../../../../models/person';
 import Etiketter from './Etiketter';
+import PersonStatus from './status/PersonStatus';
 const mannPath = require('../../../../resources/svg/mann.svg');
 const kvinnePath = require('../../../../resources/svg/kvinne.svg');
 
@@ -44,13 +44,18 @@ const HøyreFelt = styled.div`
   box-sizing: border-box;
 `;
 
-const PadLeft = styled.span`
-  margin-left: 2em;
-`;
+interface PersonProps {
+    person: Person;
+}
 
-const NoWrap = styled.span`
-  white-space: nowrap;
-`;
+function Navnelinje({person}: PersonProps) {
+    const alder = erDød(person) ? 'Død' : person.alder;
+    return (
+        <Undertittel>
+            {person.navn.sammensatt} ({alder})
+        </Undertittel>
+    );
+}
 
 function VisittkortHeader({ person }: VisittkortHeaderProps) {
     const ikon = {
@@ -65,14 +70,8 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
                     <img src={ikon.path} alt={ikon.alt}/>
                 </IkonDiv>
                 <InfoDiv>
-                    <Undertittel>
-                        {person.navn.sammensatt} ({person.alder})
-                    </Undertittel>
-                    <Undertekst>
-                        <NoWrap>
-                            {person.fødselsnummer} <PadLeft>Alle er Norsk / Gift / 2 barn (under 21)</PadLeft>
-                        </NoWrap>
-                    </Undertekst>
+                    <Navnelinje person={person}/>
+                    <PersonStatus person={person}/>
                 </InfoDiv>
             </VenstreFelt>
 
