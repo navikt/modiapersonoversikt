@@ -4,13 +4,12 @@ import VisittkortElement from './VisittkortElement';
 import { Person } from '../../../../models/person';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
-import BankKonto from './bankkonto/BankKonto';
+import Bankkonto from './bankkonto/Bankkonto';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { Element } from 'nav-frontend-typografi';
 
 const heartPath = require('../../../../resources/svg/heart.svg');
-const coinsPath = require('../../../../resources/svg/coins.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
 const jentePath = require('../../../../resources/svg/jentebarn.svg');
 const guttPath = require('../../../../resources/svg/guttebarn.svg');
@@ -74,9 +73,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                     </VisittkortElement>
                     <EpostContainer />
                     <MobiltelefonContainer />
-                    <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
-                        <BankKonto person={person}/>
-                    </VisittkortElement>
+                    <Bankkonto person={person}/>
                 </InfoGruppe>
             </Kolonne>
             <Kolonne>
