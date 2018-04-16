@@ -5,6 +5,7 @@ export interface Person {
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: string;
+    bankkonto?: Bankkonto;
 }
 
 export interface Navn {
@@ -12,4 +13,12 @@ export interface Navn {
     fornavn: string;
     mellomnavn: string;
     etternavn: string;
+}
+
+export interface Bankkonto {
+    erNorskKonto: boolean;
+    kontonummer: number;
+    bank: string;
+    sistEndret: string;
+    sistEndretAv: string;
 }
