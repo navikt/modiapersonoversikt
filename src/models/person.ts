@@ -1,7 +1,7 @@
 export interface Person {
     navn: Navn;
     kjønn: string;
-    geografiskTilknytning: string;
+    geografiskTilknytning?: string;
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavKontorInterface, PublikumsMottak } from '../../../../../models/navkontor';
+import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import styled from 'styled-components';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
@@ -73,7 +73,11 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     );
 }
 
-function NavKontorer(props: { navKontor: NavKontorInterface }) {
+function NavKontorVisning(props: { navKontor?: NavKontor }) {
+    if (!props.navKontor) {
+        return <Undertekst>Ingen NAV-Enhet</Undertekst>;
+    }
+
     const listeMedPublikumsMottak =
         props.navKontor.publikumsmottak.map((publikumsMottak) => publikumsMottakKontaktInfo(publikumsMottak));
     return (
@@ -84,4 +88,4 @@ function NavKontorer(props: { navKontor: NavKontorInterface }) {
     );
 }
 
-export default NavKontorer;
+export default NavKontorVisning;

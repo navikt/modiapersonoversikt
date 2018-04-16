@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { NavKontorInterface } from '../../../../models/navkontor';
+import { NavKontor } from '../../../../models/navkontor';
 import { AppState, Reducer } from '../../../../redux/reducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import styled from 'styled-components';
 
 interface Props {
-    navKontorReducer: Reducer<NavKontorInterface>;
+    navKontorReducer: Reducer<NavKontor>;
 }
 
 const CenterVerticallyAndNoWrap = styled.span`
@@ -20,10 +20,14 @@ const onError = (
     <em>Problemer med å hente nav-enhet</em>
 );
 
-function NavKontor(props: { navKontor: NavKontorInterface }) {
+function NavKontorVisning(props: { navKontor?: NavKontor }) {
+    if (!props.navKontor) {
+        return <>Ingen NAV-Enhet</>;
+    }
+
     return (
         <>
-            {props.navKontor.enhetId} {props.navKontor.enhetNavn}
+            Nav-enhet / {props.navKontor.enhetId} {props.navKontor.enhetNavn}
         </>
     );
 }
@@ -33,13 +37,12 @@ class NavKontorContainer extends React.Component<Props> {
         return (
             <Undertekst>
                 <CenterVerticallyAndNoWrap>
-                    Nav-enhet /&nbsp;
                     <Innholdslaster
                         avhengigheter={[this.props.navKontorReducer]}
                         spinnerSize={'XXS'}
                         returnOnError={onError}
                     >
-                        <NavKontor navKontor={this.props.navKontorReducer.data}/>
+                        <NavKontorVisning navKontor={this.props.navKontorReducer.data}/>
                     </Innholdslaster>
                 </CenterVerticallyAndNoWrap>
             </Undertekst>

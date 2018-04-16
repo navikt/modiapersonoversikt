@@ -12,7 +12,7 @@ test('viser info om bruker i visittkort-header', () => {
         <Provider store={testStore}><VisittkortHeader person={aremark} /></Provider>
     );
 
-    testStore.dispatch({type: actionNames.OK, data: getMockNavKontor(aremark.geografiskTilknytning)});
+    testStore.dispatch({type: actionNames.OK, data: getMockNavKontor('0118')});
 
     const json = visittkortheader.toJSON();
     expect(json).toMatchSnapshot();

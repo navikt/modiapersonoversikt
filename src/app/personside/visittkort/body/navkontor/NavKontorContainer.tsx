@@ -2,12 +2,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState, Reducer } from '../../../../../redux/reducer';
 import Innholdslaster from '../../../../../components/Innholdslaster';
-import { NavKontorInterface } from '../../../../../models/navkontor';
+import { NavKontor } from '../../../../../models/navkontor';
 import VisittkortElement from '../VisittkortElement';
-import NavKontor from './NavKontor';
+import NavKontorVisning from './NavKontor';
 
 interface Props {
-    navKontorReducer: Reducer<NavKontorInterface>;
+    navKontorReducer: Reducer<NavKontor>;
 }
 
 const navLogo = require('./nav-logo.svg');
@@ -17,7 +17,7 @@ class NavKontorContainer extends React.Component<Props> {
         return (
             <VisittkortElement beskrivelse="Brukers NavKontor" ikonPath={navLogo}>
                 <Innholdslaster avhengigheter={[this.props.navKontorReducer]} spinnerSize={'L'}>
-                    <NavKontor navKontor={this.props.navKontorReducer.data}/>
+                    <NavKontorVisning navKontor={this.props.navKontorReducer.data}/>
                 </Innholdslaster>
             </VisittkortElement>
         );
