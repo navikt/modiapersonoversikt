@@ -28,6 +28,13 @@ it('Formaterer endretAv ident + PP01 (modiabrukerdialog-app - NAV) tekst til øn
     expect(formatertTekst).toEqual('av NAV');
 });
 
+it('Formaterer endretAv ident + FS21 (Gosys-app - NAV) tekst til ønsket visningsformat', () => {
+    const rawString = 'X108001 FS21';
+    const formatertTekst =  endretAvTekst(rawString);
+
+    expect(formatertTekst).toEqual('av NAV');
+});
+
 it('Formaterer endretAv tekst + SKD (Skatt/Folkeregisteret) tekst til ønsket visningsformat', () => {
     const rawString = 'AJOURHD, SKD';
     const formatertTekst =  endretAvTekst(rawString);
