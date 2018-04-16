@@ -4,6 +4,7 @@ import VisittkortElement from './VisittkortElement';
 import { Person } from '../../../../models/person';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
+import BankKonto from './bankkonto/BankKonto';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { Element } from 'nav-frontend-typografi';
@@ -54,6 +55,7 @@ function InfoGruppe(props: { children: string | JSX.Element | JSX.Element[]; tit
 }
 
 function VisittkortBody({ person }: VisittkortBodyProps) {
+
     return (
         <VisittkortBodyDiv>
             <Kolonne>
@@ -73,9 +75,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
                     <EpostContainer />
                     <MobiltelefonContainer />
                     <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </Undertekst>
+                        <BankKonto person={person}/>
                     </VisittkortElement>
                 </InfoGruppe>
             </Kolonne>

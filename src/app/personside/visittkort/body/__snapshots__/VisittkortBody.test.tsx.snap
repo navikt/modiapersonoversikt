@@ -225,7 +225,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-undertekst"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ingen kontonummer registrert
           </p>
         </div>
       </div>

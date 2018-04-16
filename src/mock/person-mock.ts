@@ -1,8 +1,9 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { Person } from '../models/person';
+import { Bankkonto, Person } from '../models/person';
 import { Diskresjonskoder } from '../constants';
 import { vektetSjanse } from './utils';
+import * as moment from 'moment';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -20,6 +21,22 @@ export const aremark: Person = {
         etternavn: 'TESTFAMILIEN',
     },
     diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE
+};
+
+export const bankkontoNorsk: Bankkonto = {
+    erNorskKonto: true,
+    bank: 'Nordea ASA',
+    kontonummer: 12345678900,
+    sistEndretAv: '1010800 BD03',
+    sistEndret: getSistOppdatert(),
+};
+
+export const bankkontoUtland: Bankkonto = {
+    erNorskKonto: false,
+    bank: 'BBVA',
+    kontonummer: 999988999,
+    sistEndretAv: '1010800 BD03',
+    sistEndret: getSistOppdatert(),
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -46,8 +63,19 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
-        diskresjonskode: getDiskresjonskode()
+        diskresjonskode: getDiskresjonskode(),
+        bankkonto: getBankKonto()
     };
+}
+
+function getBankKonto(): Bankkonto | undefined {
+    if (vektetSjanse(faker, 0.7)) {
+        return bankkontoNorsk;
+    } else if (vektetSjanse(faker, 0.2)) {
+        return bankkontoUtland;
+    } else {
+        return undefined;
+    }
 }
 
 function getDiskresjonskode() {
@@ -66,4 +94,8 @@ function getFornavn(fødselsnummer: string): string {
     } else {
         return faker.name.firstName(0);
     }
+}
+
+function getSistOppdatert() {
+    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
