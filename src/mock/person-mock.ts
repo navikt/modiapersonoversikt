@@ -1,8 +1,9 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { Bostatus, BostatusTyper, Person } from '../models/person';
+import { Bankkonto, BostatusTyper, Bostatus, Person } from '../models/person';
 import { Diskresjonskoder } from '../constants';
 import { vektetSjanse } from './utils';
+import * as moment from 'moment';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -25,6 +26,22 @@ export const aremark: Person = {
         dødsdato: undefined,
         bostatus: undefined
     }
+};
+
+export const bankkontoNorsk: Bankkonto = {
+    erNorskKonto: true,
+    bank: 'Nordea ASA',
+    kontonummer: 12345678900,
+    sistEndretAv: '1010800 BD03',
+    sistEndret: getSistOppdatert(),
+};
+
+export const bankkontoUtland: Bankkonto = {
+    erNorskKonto: false,
+    bank: 'BBVA',
+    kontonummer: 999988999,
+    sistEndretAv: '1010800 BD03',
+    sistEndret: getSistOppdatert(),
 };
 
 export function getPerson(fødselsnummer: string): Person {
@@ -55,6 +72,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
         status: getStatus(alder),
+        bankkonto: getBankKonto()
     };
 }
 
@@ -72,6 +90,16 @@ function getBostatus() {
         return BostatusTyper.Død;
     } else if (vektetSjanse(faker, 0.1)) {
         return BostatusTyper.Utvandret;
+    } else {
+        return undefined;
+    }
+}
+
+function getBankKonto(): Bankkonto | undefined {
+    if (vektetSjanse(faker, 0.7)) {
+        return bankkontoNorsk;
+    } else if (vektetSjanse(faker, 0.2)) {
+        return bankkontoUtland;
     } else {
         return undefined;
     }
@@ -100,4 +128,8 @@ function getStatsborgerskap() {
         return 'NORGE';
     }
     return faker.address.country().toUpperCase();
+}
+
+function getSistOppdatert() {
+    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
