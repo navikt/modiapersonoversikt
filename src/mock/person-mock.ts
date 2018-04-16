@@ -97,7 +97,7 @@ function getFornavn(fødselsnummer: string): string {
 
 function getStatsborgerskap() {
     if (vektetSjanse(faker, 0.7)) {
-        return 'Norsk';
+        return 'NORGE';
     }
-    return faker.address.country();
+    return faker.address.country().toUpperCase();
 }

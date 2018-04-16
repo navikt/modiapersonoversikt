@@ -39,12 +39,23 @@ function FødselsnummerLinje({person}: PersonProps) {
     return <>{person.fødselsnummer} <Dødsdato person={person}/><Utvandret person={person}/></>;
 }
 
+function Statsborgerskap({person}: PersonProps) {
+    if (!person.statsborgerskap) {
+        return (
+            <>Ingen statsborgerskap registrert</>
+        );
+    }
+    return (
+        <>{person.statsborgerskap}</>
+    );
+}
+
 function PersonStatus({person}: PersonProps) {
     return (
         <Undertekst>
             <NoWrap>
                 <FødselsnummerLinje person={person}/>
-                <PadLeft>{person.statsborgerskap} / Gift / 2 barn (under 21)</PadLeft>
+                <PadLeft><Statsborgerskap person={person}/> / Gift / 2 barn (under 21)</PadLeft>
             </NoWrap>
         </Undertekst>
     );
