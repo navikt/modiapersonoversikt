@@ -6,6 +6,7 @@ import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import { formaterDato } from '../../../../../utils/dateUtils';
 
 const phonePath = require('../../../../../resources/svg/phone.svg');
 
@@ -19,10 +20,11 @@ function Mobiltelefon({kontaktinformasjon }: MobiltelefonProps) {
             <Undertekst>Reservert</Undertekst>
         );
     } else if (kontaktinformasjon.mobiltelefon) {
+        const formatertDato = formaterDato(kontaktinformasjon.mobiltelefon.sistOppdatert);
         return (
             <>
                 <Undertekst>{kontaktinformasjon.mobiltelefon.value}</Undertekst>
-                <EtikettLiten>Endret {kontaktinformasjon.mobiltelefon.sistOppdatert}</EtikettLiten>
+                <EtikettLiten>Endret {formatertDato}</EtikettLiten>
             </>
         );
     } else {
