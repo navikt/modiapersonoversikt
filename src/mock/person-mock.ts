@@ -38,7 +38,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     return {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
-        geografiskTilknytning: '0118',
+        geografiskTilknytning: String(faker.random.number(9999)),
         alder: faker.random.number(100),
         navn: {
             fornavn: fornavn,
