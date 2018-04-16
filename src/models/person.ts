@@ -23,7 +23,7 @@ export interface Bostatus {
 
 export enum BostatusTyper {
     Død = 'DØD',
-    Utvandret = 'UTVANDRET'
+    Utvandret = 'UTVA'
 }
 
 export function erDød(person: Person) {
