@@ -13,21 +13,26 @@ interface BankkontoProps {
 }
 
 function Bankkonto({person}: BankkontoProps) {
+    return (
+        <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
+            {kontoinfo(person)}
+        </VisittkortElement>
+    );
+}
+
+function kontoinfo(person: Person) {
     if (person.bankkonto) {
         const formatertDato = formaterDato(person.bankkonto.sistEndret);
         const endretAv = endretAvTekst(person.bankkonto.sistEndretAv);
         return (
-            <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
+            <>
                 <Undertekst>{person.bankkonto.kontonummer}</Undertekst>
                 <EtikettLiten>Endret {formatertDato} {endretAv}</EtikettLiten>
-            </VisittkortElement>
+            </>
         );
     }
-    return (
-        <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
-            <Undertekst>Ingen kontonummer registrert</Undertekst>
-        </VisittkortElement>
-    );
+
+    return <Undertekst>Ingen kontonummer registrert</Undertekst>;
 }
 
 export default Bankkonto;
