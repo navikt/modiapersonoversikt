@@ -1,4 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
+import * as moment from 'moment';
 
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 import { aremark, getPerson } from './person-mock';
@@ -44,5 +45,5 @@ function getMobiltelefon() {
 }
 
 function getSistOppdatert() {
-    return '27.12.12';
+    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }

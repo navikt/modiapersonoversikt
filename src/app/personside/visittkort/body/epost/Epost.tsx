@@ -6,6 +6,7 @@ import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import { formaterDato } from '../../../../../utils/dateUtils';
 
 const emailPath = require('../../../../../resources/svg/email.svg');
 
@@ -19,10 +20,11 @@ function Epost({kontaktinformasjon }: EpostProps) {
             <Undertekst>Reservert</Undertekst>
         );
     } else if (kontaktinformasjon.epost) {
+        const formatertDato = formaterDato(kontaktinformasjon.epost.sistOppdatert);
         return (
             <>
                 <Undertekst>{kontaktinformasjon.epost.value}</Undertekst>
-                <EtikettLiten>Endret {kontaktinformasjon.epost.sistOppdatert}</EtikettLiten>
+                <EtikettLiten>Endret {formatertDato}</EtikettLiten>
             </>
         );
     } else {
@@ -37,7 +39,7 @@ interface EpostWrapperProps {
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
         <VisittkortElement beskrivelse="Epost Kontakt og reservasjonsregisteret" ikonPath={emailPath}>
-            <Innholdslaster avhengigheter={[kontaktinformasjonReducer]}>
+            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <Epost kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
         </VisittkortElement>
