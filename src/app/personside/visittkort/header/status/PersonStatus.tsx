@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as moment from 'moment';
 import styled from 'styled-components';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { BostatusTyper, Person } from '../../../../../models/person';
+import { formaterDato } from '../../../../../utils/dateUtils';
 
 const emdash = '\u2014';
 const PadLeft = styled.span`
@@ -20,7 +20,7 @@ interface PersonProps {
 
 function Dødsdato({person}: PersonProps) {
     if (person.status.dødsdato) {
-        const formatertDødsdato = moment(person.status.dødsdato).format('DD.MM.YYYY');
+        const formatertDødsdato = formaterDato(person.status.dødsdato);
         return <>{emdash} Død {formatertDødsdato}</>;
     } else {
         return null;
