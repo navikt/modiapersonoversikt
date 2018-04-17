@@ -39,7 +39,7 @@ function getEpost(personData: Person) {
 
 function getMobiltelefon() {
     return {
-        value: faker.phone.phoneNumber('9#######'),
+        value: faker.phone.phoneNumber('+479#######'),
         sistOppdatert: getSistOppdatert()
     };
 }
