@@ -1,6 +1,6 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { ApningsTid, PublikumsMottak, NavKontorInterface } from '../models/navkontor';
+import { ApningsTid, PublikumsMottak, NavKontor } from '../models/navkontor';
 import { GateAdresse } from '../models/gateadresse';
 import { vektetSjanse } from './utils';
 
@@ -41,7 +41,7 @@ const mockKontaktInfo: PublikumsMottak = {
     apningstider: mockApningsTider
 };
 
-export function getMockNavKontor(geografiskTilknytning: string): NavKontorInterface {
+export function getMockNavKontor(geografiskTilknytning: string): NavKontor {
     faker.seed(Number(geografiskTilknytning));
     if (geografiskTilknytning === geografiskTilknytningAremark) {
         return {

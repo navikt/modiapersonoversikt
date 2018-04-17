@@ -8,12 +8,12 @@ import kontaktinformasjonReducer from './kontaktinformasjon';
 import { STATUS } from './utils';
 import { Person } from '../models/person';
 import { Oppgave } from '../models/oppgave';
-import { NavKontorInterface } from '../models/navkontor';
+import { NavKontor } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 
 export interface AppState {
     personinformasjon: Reducer<Person>;
-    brukersNavKontor: Reducer<NavKontorInterface>;
+    brukersNavKontor: Reducer<NavKontor>;
     oppgaver: Reducer<Oppgave[]>;
     kontaktinformasjon: Reducer<Kontaktinformasjon>;
 }
@@ -28,6 +28,6 @@ export default combineReducers<AppState>({
 
 export interface Reducer<T> {
     status: STATUS;
-    data: T;
+    data?: T;
     error?: String;
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../VisittkortElement';
-import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
+import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
@@ -11,22 +11,30 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 const phonePath = require('../../../../../resources/svg/phone.svg');
 
 interface MobiltelefonProps {
-    kontaktinformasjon: Kontaktinformasjon;
+    mobiltelefon: KontaktinformasjonVerdi;
 }
 
-function Mobiltelefon({kontaktinformasjon }: MobiltelefonProps) {
-    if (kontaktinformasjon.reservert) {
-        return (
-            <Undertekst>Reservert</Undertekst>
-        );
+function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
+    const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
+    return (
+        <>
+            <Undertekst>{mobiltelefon.value}</Undertekst>
+            <EtikettLiten>Endret {formatertDato}</EtikettLiten>
+        </>
+    );
+}
+
+interface MobiltelefonVisningProps {
+    kontaktinformasjon?: Kontaktinformasjon;
+}
+
+function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
+    if (!kontaktinformasjon) {
+        return <>Ingen kontaktinformasjon </>;
+    } else if (kontaktinformasjon.reservert) {
+        return <Undertekst>Reservert</Undertekst>;
     } else if (kontaktinformasjon.mobiltelefon) {
-        const formatertDato = formaterDato(kontaktinformasjon.mobiltelefon.sistOppdatert);
-        return (
-            <>
-                <Undertekst>{kontaktinformasjon.mobiltelefon.value}</Undertekst>
-                <EtikettLiten>Endret {formatertDato}</EtikettLiten>
-            </>
-        );
+        return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
         return <Undertekst>Ingen mobiltelefon registrert</Undertekst>;
     }
@@ -40,7 +48,7 @@ function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperPr
     return (
         <VisittkortElement beskrivelse="Telefon Kontakt og reservasjonsregisteret" ikonPath={phonePath}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
-                <Mobiltelefon kontaktinformasjon={kontaktinformasjonReducer.data}/>
+                <MobiltelefonVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
         </VisittkortElement>
     );

@@ -61,7 +61,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     return {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
-        geografiskTilknytning: String(faker.random.number(9999)),
+        geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: {
             fornavn: fornavn,
@@ -120,6 +120,14 @@ function getFornavn(fødselsnummer: string): string {
         return faker.name.firstName(1);
     } else {
         return faker.name.firstName(0);
+    }
+}
+
+function getGeografiskTilknytning() {
+    if (vektetSjanse(faker, 0.8)) {
+        return String(faker.random.number(9999));
+    } else {
+        return undefined;
     }
 }
 

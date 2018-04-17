@@ -12,7 +12,7 @@ export interface PublikumsMottak {
     apningstider: ApningsTid[];
 }
 
-export interface NavKontorInterface {
+export interface NavKontor {
     enhetNavn: string;
     enhetId: string;
     publikumsmottak: PublikumsMottak[];
