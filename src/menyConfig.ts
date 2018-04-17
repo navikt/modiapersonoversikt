@@ -37,7 +37,6 @@ const config: MenyConfig = {
 export default function (fodselsnummer: string) {
     config.config.fnr = fodselsnummer;
     if (window.renderDecoratorHead) {
-        console.log('Rendrer hode med config: ', config);
         window.renderDecoratorHead(config);
     }
 }

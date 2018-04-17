@@ -6,6 +6,7 @@ import { BostatusTyper, Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Statsborgerskap } from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
+import { AntallBarn } from './Antallbarn';
 
 const emdash = '\u2014';
 const PadLeft = styled.span`
@@ -42,12 +43,17 @@ function FødselsnummerLinje({person}: PersonProps) {
 }
 
 function PersonStatus({person}: PersonProps) {
+    const Separator = () => (<> / </>);
     return (
         <Undertekst>
             <NoWrap>
                 <FødselsnummerLinje person={person}/>
                 <PadLeft>
-                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/> / <Sivilstand person={person}/>
+                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
+                    <Separator/>
+                    <Sivilstand sivilstand={person.sivilstand}/>
+                    <Separator/>
+                    <AntallBarn familierelasjoner={person.familierelasjoner}/>
                 </PadLeft>
             </NoWrap>
         </Undertekst>

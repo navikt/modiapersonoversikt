@@ -1,6 +1,6 @@
 import { Kodeverk } from '../../models/kodeverk';
-import { vektetSjanse } from '../utils';
 import FakerStatic = Faker.FakerStatic;
+import { vektetSjanse } from '../utils/mock-utils';
 
 const ugift = {
     value: 'UGIF',

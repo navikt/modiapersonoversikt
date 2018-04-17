@@ -11,6 +11,7 @@ export interface Person {
     statsborgerskap: string;
     status: Bostatus;
     sivilstand: Kodeverk;
+    familierelasjoner: Familierelasjon[];
 }
 
 export interface Navn {
@@ -27,6 +28,17 @@ export interface Bankkonto {
     sistEndret: string;
     sistEndretAv: string;
 }
+
+export interface Familierelasjon {
+    harSammeBosted: boolean;
+    rolle: string;
+    tilPerson: {
+        navn: Navn;
+        alder: number;
+        fødselsnummer: string;
+    };
+}
+
 export interface Bostatus {
     dødsdato?: string;
     bostatus?: string;
@@ -37,6 +49,14 @@ export enum BostatusTyper {
     Utvandret = 'UTVA'
 }
 
+export enum Relasjonstype {
+    Barn = 'BARN'
+}
+
 export function erDød(person: Person) {
     return person.status.dødsdato || person.status.bostatus === BostatusTyper.Død;
+}
+
+export function selectBarn(familierelasjoner: Familierelasjon[]) {
+    return familierelasjoner.filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
 }

@@ -1,9 +1,9 @@
 import { apiBaseUri } from '../api/config';
-import { getPerson } from './person/person-mock';
+import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
 import { getKontaktinformasjon } from './kontaktinformasjon-mock';
-import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils';
+import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 
 export function setupMock() {

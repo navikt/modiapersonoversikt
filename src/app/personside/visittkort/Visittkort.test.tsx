@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Visittkort from './Visittkort';
-import { aremark } from '../../../mock/person/person-mock';
 import { mount } from 'enzyme';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import { Provider } from 'react-redux';
 import { testStore } from '../../../setupTests';
 import { personinformasjonActionNames } from '../../../redux/personinformasjon';
+import { aremark } from '../../../mock/person/aremark';
 
 test('viser visittkortheader når visittkort først rendres', () => {
     const visittkort = mount(<Provider store={testStore}><Visittkort person={aremark} /></Provider>);
