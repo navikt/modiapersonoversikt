@@ -46,7 +46,7 @@ interface MobiltelefonWrapperProps {
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Telefon (KR)" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Telefon Kontakt og reservasjonsregisteret" ikonPath={phonePath}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <MobiltelefonVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
