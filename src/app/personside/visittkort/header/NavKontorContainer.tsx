@@ -27,7 +27,7 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
 
     return (
         <>
-            Nav-enhet / {props.navKontor.enhetId} {props.navKontor.enhetNavn}
+            {props.navKontor.enhetId} {props.navKontor.enhetNavn}
         </>
     );
 }
@@ -37,6 +37,7 @@ class NavKontorContainer extends React.Component<Props> {
         return (
             <Undertekst>
                 <CenterVerticallyAndNoWrap>
+                    Nav-enhet /&nbsp;
                     <Innholdslaster
                         avhengigheter={[this.props.navKontorReducer]}
                         spinnerSize={'XXS'}

@@ -6,8 +6,9 @@ import NavKontorContainer from './NavKontorContainer';
 import { erDød, Person } from '../../../../models/person';
 import Etiketter from './Etiketter';
 import PersonStatus from './status/PersonStatus';
-const mannPath = require('../../../../resources/svg/mann.svg');
-const kvinnePath = require('../../../../resources/svg/kvinne.svg');
+
+const mannPath = require('./mann.svg');
+const kvinnePath = require('./kvinne.svg');
 
 interface VisittkortHeaderProps {
     person: Person;
@@ -39,6 +40,9 @@ const InfoDiv = styled.div`
 
 const HøyreFelt = styled.div`
   flex: 0 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
   text-align: right;
   padding-right: 1em;
   box-sizing: border-box;
@@ -48,7 +52,7 @@ interface PersonProps {
     person: Person;
 }
 
-function Navnelinje({person}: PersonProps) {
+function Navnelinje({ person }: PersonProps) {
     const alder = erDød(person) ? 'Død' : person.alder;
     return (
         <Undertittel>
@@ -77,7 +81,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
 
             <HøyreFelt>
                 <Etiketter person={person}/>
-                <NavKontorContainer />
+                <NavKontorContainer/>
             </HøyreFelt>
 
         </VisittkortHeaderDiv>
