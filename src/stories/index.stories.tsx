@@ -7,6 +7,9 @@ import ComponentPlaceholder from '../components/component-placeholder/ComponentP
 import { aremark } from '../mock/person-mock';
 import styled from 'styled-components';
 import GridLayout from './grid-layout/GridLayout';
+import ResponsiveFlexColumns from './responsive-columns/ResponsiveFlexColumns';
+import FloatingChildren from './responsive-columns/FloatingChildren';
+import JSResponsive from './responsive-columns/EventListener';
 
 const mockPerson: Person = aremark;
 
@@ -38,8 +41,13 @@ storiesOf('Component Placeholder', module)
         )
     );
 
-storiesOf('Layout', module).add('GridTest, virker ikke i ie11', () => (
-        <NiceContainer>
-            <GridLayout />
-        </NiceContainer>
+storiesOf('Layout', module)
+    .add('GridTest, virker ikke i ie11', () => (
+        <GridLayout/>
+    )).add('Responsive flex-container for visittkortbody (må vite høyden)', () => (
+        <ResponsiveFlexColumns/>
+    )).add('Responsive floatchildren visittkortbody', () => (
+        <FloatingChildren/>
+    )).add('Responsive columns with JS eventlistener', () => (
+        <JSResponsive/>
 ));
