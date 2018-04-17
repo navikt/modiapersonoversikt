@@ -7,7 +7,7 @@ const ugift = {
     beskrivelse: 'Ugift'
 };
 
-export function getSiviltilstand(alder: number, faker: FakerStatic): Kodeverk {
+export function getSivilstand(alder: number, faker: FakerStatic): Kodeverk {
     if (alder < 18) {
         return ugift;
     }

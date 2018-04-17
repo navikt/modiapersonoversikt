@@ -4,7 +4,7 @@ import { Bankkonto, BostatusTyper, Bostatus, Person } from '../../models/person'
 import { Diskresjonskoder } from '../../constants';
 import { vektetSjanse } from '../utils';
 import * as moment from 'moment';
-import { getSiviltilstand } from './siviltilstandMock';
+import { getSivilstand } from './siviltilstandMock';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -78,7 +78,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         statsborgerskap: getStatsborgerskap(),
         status: getStatus(alder),
         bankkonto: getBankKonto(),
-        sivilstand: getSiviltilstand(alder, faker)
+        sivilstand: getSivilstand(alder, faker)
     };
 }
 
