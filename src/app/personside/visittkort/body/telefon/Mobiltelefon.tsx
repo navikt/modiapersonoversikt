@@ -7,6 +7,7 @@ import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { formatNumber } from '../../../../../utils/helpers';
 
 const phonePath = require('../../../../../resources/svg/phone.svg');
 
@@ -16,9 +17,10 @@ interface MobiltelefonProps {
 
 function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
+    const formatertTelefonnummer = formatNumber('### ## ###', mobiltelefon.value);
     return (
         <>
-            <Undertekst>{mobiltelefon.value}</Undertekst>
+            <Undertekst>{formatertTelefonnummer}</Undertekst>
             <EtikettLiten>Endret {formatertDato}</EtikettLiten>
         </>
     );
