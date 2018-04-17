@@ -26,7 +26,7 @@ export const aremark: Person = {
 export const bankkontoNorsk: Bankkonto = {
     erNorskKonto: true,
     bank: 'Nordea ASA',
-    kontonummer: 12345678900,
+    kontonummer: Number(faker.finance.account(11)),
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };
@@ -34,7 +34,7 @@ export const bankkontoNorsk: Bankkonto = {
 export const bankkontoUtland: Bankkonto = {
     erNorskKonto: false,
     bank: 'BBVA',
-    kontonummer: 999988999,
+    kontonummer: Number(faker.finance.account(9)),
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };
