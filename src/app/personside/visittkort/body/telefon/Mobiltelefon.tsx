@@ -15,9 +15,17 @@ interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
 }
 
+function formaterTelefonnummer(telefonnummer: string) {
+    if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {
+        return formatNumber('### ### ## ###', telefonnummer);
+    } else {
+        return telefonnummer;
+    }
+}
+
 function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
-    const formatertTelefonnummer = formatNumber('### ## ###', mobiltelefon.value);
+    const formatertTelefonnummer = formaterTelefonnummer(mobiltelefon.value);
     return (
         <>
             <Undertekst>{formatertTelefonnummer}</Undertekst>
