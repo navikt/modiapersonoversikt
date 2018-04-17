@@ -13,7 +13,7 @@ const Wrapper = styled<{ numberOfColumns: number; }, 'div'>('div')`
   display: flex;
   flex-flow: row nowrap;
   > * {
-    flex: 1 1 ${props => 99 / props.numberOfColumns}%;
+    flex: 1 1 ${props => 100 / props.numberOfColumns}%;
   }
   > *:not(:last-child) {
     margin-right: 0.5em;
