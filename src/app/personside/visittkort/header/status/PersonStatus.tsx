@@ -4,6 +4,8 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { BostatusTyper, Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { Statsborgerskap } from './Statsborgerskap';
+import { Sivilstand } from './Sivilstand';
 
 const emdash = '\u2014';
 const PadLeft = styled.span`
@@ -39,23 +41,14 @@ function FødselsnummerLinje({person}: PersonProps) {
     return <>{person.fødselsnummer} <Dødsdato person={person}/><Utvandret person={person}/></>;
 }
 
-function Statsborgerskap({person}: PersonProps) {
-    if (!person.statsborgerskap) {
-        return (
-            <>Ingen statsborgerskap registrert</>
-        );
-    }
-    return (
-        <>{person.statsborgerskap}</>
-    );
-}
-
 function PersonStatus({person}: PersonProps) {
     return (
         <Undertekst>
             <NoWrap>
                 <FødselsnummerLinje person={person}/>
-                <PadLeft><Statsborgerskap person={person}/> / Gift / 2 barn (under 21)</PadLeft>
+                <PadLeft>
+                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/> / <Sivilstand person={person}/>
+                </PadLeft>
             </NoWrap>
         </Undertekst>
     );

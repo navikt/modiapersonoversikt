@@ -1,3 +1,5 @@
+import { Kodeverk } from './kodeverk';
+
 export interface Person {
     navn: Navn;
     kjønn: string;
@@ -8,6 +10,7 @@ export interface Person {
     bankkonto?: Bankkonto;
     statsborgerskap: string;
     status: Bostatus;
+    sivilstand: Kodeverk;
 }
 
 export interface Navn {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Visittkort from './Visittkort';
-import { aremark } from '../../../mock/person-mock';
+import { aremark } from '../../../mock/person/person-mock';
 import { mount } from 'enzyme';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';

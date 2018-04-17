@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { aremark } from '../../../../mock/person-mock';
+import { aremark } from '../../../../mock/person/person-mock';
 import VisittkortBody from './VisittkortBody';
 import { testStore } from '../../../../setupTests';
 import { Provider } from 'react-redux';
