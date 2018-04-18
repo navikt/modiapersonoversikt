@@ -1,14 +1,19 @@
 import FakerStatic = Faker.FakerStatic;
 import { getPerson } from './personMock';
-import { Familierelasjon, Relasjonstype } from '../../models/person';
+import { Familierelasjon, Relasjonstype, Sivilstand } from '../../models/person';
 import { vektetSjanse } from '../utils/mock-utils';
 import { seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 
-export function getFamilierelasjoner(faker: FakerStatic, foreldresAlder: number) {
+export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: string) {
     let relasjoner: Familierelasjon[] = [];
-    if (foreldresAlder >= 18) {
-        relasjoner = relasjoner.concat(getMockBarn(faker, foreldresAlder));
+    if (alder >= 18) {
+        relasjoner = relasjoner.concat(getMockBarn(faker, alder));
     }
+
+    if (sivilstand === Sivilstand.Gift) {
+        relasjoner.push(lagEktefelle(faker));
+    }
+
     return relasjoner;
 }
 
@@ -33,14 +38,30 @@ function kalkulerAntallBarn(faker: FakerStatic, foreldresAlder: number) {
 
 function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
     const maxAlder = foreldresAlder - 18;
-    const barnet = getPerson(seededTilfeldigFodselsnummer(faker, maxAlder));
+    const minAlder = Math.max(foreldresAlder - 50, 0);
+    const barnet = getPerson(seededTilfeldigFodselsnummer(faker, minAlder, maxAlder));
     return {
         harSammeBosted: vektetSjanse(faker, 0.7),
         rolle: Relasjonstype.Barn,
         tilPerson: {
             navn: barnet.navn,
             alder: barnet.alder,
-            fødselsnummer: barnet.fødselsnummer
+            fødselsnummer: barnet.fødselsnummer,
+            personstatus: barnet.personstatus
+        },
+    };
+}
+
+function lagEktefelle(faker: FakerStatic): Familierelasjon {
+    const ektefelle = getPerson(seededTilfeldigFodselsnummer(faker, 18, 100));
+    return {
+        harSammeBosted: vektetSjanse(faker, 0.9),
+        rolle: Relasjonstype.Ektefelle,
+        tilPerson: {
+            navn: ektefelle.navn,
+            alder: ektefelle.alder,
+            fødselsnummer: ektefelle.fødselsnummer,
+            personstatus: ektefelle.personstatus
         }
     };
 }

@@ -9,7 +9,7 @@ export interface Person {
     diskresjonskode?: string;
     bankkonto?: Bankkonto;
     statsborgerskap: string;
-    status: Bostatus;
+    personstatus: Bostatus;
     sivilstand: Kodeverk;
     familierelasjoner: Familierelasjon[];
 }
@@ -31,11 +31,12 @@ export interface Bankkonto {
 
 export interface Familierelasjon {
     harSammeBosted: boolean;
-    rolle: string;
+    rolle: Relasjonstype;
     tilPerson: {
         navn: Navn;
         alder: number;
         fødselsnummer: string;
+        personstatus: Bostatus;
     };
 }
 
@@ -50,13 +51,32 @@ export enum BostatusTyper {
 }
 
 export enum Relasjonstype {
-    Barn = 'BARN'
+    Barn = 'BARN',
+    Samboer = 'SAMBOER',
+    Partner = 'PARTNER',
+    Ektefelle = 'EKTE',
+    Gift = 'GIFT'
 }
 
-export function erDød(person: Person) {
-    return person.status.dødsdato || person.status.bostatus === BostatusTyper.Død;
+export enum Sivilstand {
+    Gift = 'GIFT',
+    Ugift = 'Ugift'
 }
 
-export function selectBarn(familierelasjoner: Familierelasjon[]) {
+export function erDød(personstatus: Bostatus) {
+    return personstatus.dødsdato || personstatus.bostatus === BostatusTyper.Død;
+}
+
+export function getBarn(familierelasjoner: Familierelasjon[]) {
     return familierelasjoner.filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
+}
+
+export function getPartner(person: Person) {
+    const aktuelleRelasjoner = [
+        Relasjonstype.Ektefelle,
+        Relasjonstype.Gift,
+        Relasjonstype.Partner,
+        Relasjonstype.Samboer
+    ];
+    return person.familierelasjoner.find(relasjon => aktuelleRelasjoner.includes(relasjon.rolle));
 }

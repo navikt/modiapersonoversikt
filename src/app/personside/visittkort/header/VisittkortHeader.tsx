@@ -49,7 +49,7 @@ interface PersonProps {
 }
 
 function Navnelinje({person}: PersonProps) {
-    const alder = erDød(person) ? 'Død' : person.alder;
+    const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
             {person.navn.sammensatt} ({alder})

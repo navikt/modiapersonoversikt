@@ -8,11 +8,9 @@ import Bankkonto from './bankkonto/Bankkonto';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { Element } from 'nav-frontend-typografi';
+import Familie from './familie/Familie';
 
-const heartPath = require('../../../../resources/svg/heart.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
-const jentePath = require('../../../../resources/svg/jentebarn.svg');
-const guttPath = require('../../../../resources/svg/guttebarn.svg');
 
 interface VisittkortBodyProps {
     person: Person;
@@ -78,22 +76,7 @@ function VisittkortBody({ person }: VisittkortBodyProps) {
             </Kolonne>
             <Kolonne>
                 <InfoGruppe tittel={'Familie'}>
-                    <VisittkortElement beskrivelse="Sivilstand" ikonPath={heartPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Adipisci dignissimos eius modi natus praesentium unde velit.
-                        </Undertekst>
-                    </VisittkortElement>
-                    <VisittkortElement beskrivelse="Jente" ikonPath={jentePath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </Undertekst>
-                    </VisittkortElement>
-                    <VisittkortElement beskrivelse="Gutt" ikonPath={guttPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </Undertekst>
-                    </VisittkortElement>
+                    <Familie person={person}/>
                 </InfoGruppe>
                 <InfoGruppe tittel={'Navkontor'}>
                     <NavKontorContainer />

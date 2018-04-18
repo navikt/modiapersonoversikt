@@ -22,8 +22,8 @@ interface PersonProps {
 }
 
 function Dødsdato({person}: PersonProps) {
-    if (person.status.dødsdato) {
-        const formatertDødsdato = formaterDato(person.status.dødsdato);
+    if (person.personstatus.dødsdato) {
+        const formatertDødsdato = formaterDato(person.personstatus.dødsdato);
         return <>{emdash} Død {formatertDødsdato}</>;
     } else {
         return null;
@@ -31,7 +31,7 @@ function Dødsdato({person}: PersonProps) {
 }
 
 function Utvandret({person}: PersonProps) {
-    if (person.status.bostatus === BostatusTyper.Utvandret) {
+    if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
         return <>{emdash} Utvandret</>;
     } else {
         return null;

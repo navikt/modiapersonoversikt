@@ -14,7 +14,7 @@ export const aremark: Person = {
     },
     diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
     statsborgerskap: 'NORSK',
-    status: {
+    personstatus: {
         dødsdato: undefined,
         bostatus: undefined
     },

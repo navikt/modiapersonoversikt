@@ -9,10 +9,11 @@ export function randomFodselsnummer(): string {
     return fnrGenerator(tilfeldigDato).next().value;
 }
 
-/* Tilbyr deterministisk generering basert på innsendt faker */
-export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic, maxAlder: number) {
-    const tilfeldigDato = seededFaker.date.past(maxAlder);
-    return fnrGenerator(tilfeldigDato).next().value;
+export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic, minAlder: number, maxAlder: number) {
+    const fromDate = moment().subtract(maxAlder, 'years').toDate();
+    const toDate = moment().subtract(minAlder, 'years').toDate();
+    const tilfeldigFødselsdato = seededFaker.date.between(fromDate, toDate);
+    return fnrGenerator(tilfeldigFødselsdato).next().value;
 }
 
 export function getFodselsdato(fødselsnummer: string): Moment {

@@ -28,6 +28,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const etternavn = faker.name.lastName();
     const mellomnavn = '';
     const alder = moment().diff(getFodselsdato(fødselsnummer), 'years');
+    const sivilstand = getSivilstand(alder, faker);
     return {
         fødselsnummer: fødselsnummer,
         kjønn: erMann(fødselsnummer) ? 'M' : 'K',
@@ -41,10 +42,10 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         },
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
-        status: getStatus(alder),
+        personstatus: getStatus(alder),
         bankkonto: getBankKonto(),
-        sivilstand: getSivilstand(alder, faker),
-        familierelasjoner: getFamilierelasjoner(faker, alder)
+        sivilstand: sivilstand,
+        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand.value)
     };
 }
 
