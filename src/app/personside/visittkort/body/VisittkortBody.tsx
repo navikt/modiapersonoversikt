@@ -1,106 +1,131 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import VisittkortElement from './VisittkortElement';
 import { Person } from '../../../../models/person';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EpostContainer from './epost/EpostContainer';
 import Bankkonto from './bankkonto/Bankkonto';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { Element } from 'nav-frontend-typografi';
-
-const heartPath = require('../../../../resources/svg/heart.svg');
-const locationPath = require('../../../../resources/svg/location-pin.svg');
-const jentePath = require('../../../../resources/svg/jentebarn.svg');
-const guttPath = require('../../../../resources/svg/guttebarn.svg');
+import { Component } from 'react';
+import { AdressePlaceholder, FamiliePlaceholder, SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
+import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 
 interface VisittkortBodyProps {
     person: Person;
 }
 
-const VisittkortBodyDiv = styled.div`
-  display: flex;
-`;
-
-const Kolonne = styled.div`
-  flex: 0 0 50%;
-  > *:not(:last-child) {
-    margin-bottom: 60px;
-  }
-`;
-
-const GruppeDiv = styled.div`
-  > *:not(:last-child):not(:first-child) {
-    margin-bottom: 30px;
-  }
-  > *:first-child{
-    margin-bottom: 10px;
-  }
-`;
-
-const PadLeft = styled.span`
-  margin-left: 50px;
-`;
-
-function InfoGruppe(props: { children: string | JSX.Element | JSX.Element[]; tittel: string; }) {
+function Kontakt(person: Person) {
     return (
-        <GruppeDiv>
-            <Element>
-                <PadLeft>{props.tittel}</PadLeft>
-            </Element>
-            {props.children}
-        </GruppeDiv>
+        <InfoGruppe tittel={'Kontakt'}>
+            <AdressePlaceholder/>
+            <EpostContainer/>
+            <MobiltelefonContainer/>
+            <Bankkonto person={person}/>
+        </InfoGruppe>
     );
 }
 
-function VisittkortBody({ person }: VisittkortBodyProps) {
+const Familie = (
+    <InfoGruppe tittel={'Familie'}>
+        <FamiliePlaceholder/>
+    </InfoGruppe>
+);
 
+const NavKontor = (
+    <InfoGruppe tittel={'Navkontor'}>
+        <NavKontorContainer/>
+    </InfoGruppe>
+);
+
+function OneColumnLayout(person: Person) {
     return (
-        <VisittkortBodyDiv>
+        <>
             <Kolonne>
-                <InfoGruppe tittel={'Kontakt'}>
-                    <VisittkortElement beskrivelse="Postadresse Folkeregistrert" ikonPath={locationPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Facilis neque nobis sint tempora. Quos, tenetur!
-                        </Undertekst>
-                    </VisittkortElement>
-                    <VisittkortElement beskrivelse="Postadresse Midlertidig Norge" ikonPath={locationPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Et, ipsum.
-                        </Undertekst>
-                    </VisittkortElement>
-                    <EpostContainer />
-                    <MobiltelefonContainer />
-                    <Bankkonto person={person}/>
-                </InfoGruppe>
+                {Kontakt(person)}
+                {Familie}
+                {NavKontor}
+                {VergeMålPlaceholder}
+                {SikkerhetstiltakPlaceholder}
             </Kolonne>
-            <Kolonne>
-                <InfoGruppe tittel={'Familie'}>
-                    <VisittkortElement beskrivelse="Sivilstand" ikonPath={heartPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Adipisci dignissimos eius modi natus praesentium unde velit.
-                        </Undertekst>
-                    </VisittkortElement>
-                    <VisittkortElement beskrivelse="Jente" ikonPath={jentePath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </Undertekst>
-                    </VisittkortElement>
-                    <VisittkortElement beskrivelse="Gutt" ikonPath={guttPath}>
-                        <Undertekst>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </Undertekst>
-                    </VisittkortElement>
-                </InfoGruppe>
-                <InfoGruppe tittel={'Navkontor'}>
-                    <NavKontorContainer />
-                </InfoGruppe>
-            </Kolonne>
-        </VisittkortBodyDiv>
+        </>
     );
+}
+
+function TwoColumnLayout(person: Person) {
+    return (
+        <>
+            <Kolonne>
+                {Kontakt(person)}
+                {Familie}
+            </Kolonne>
+            <Kolonne>
+                {NavKontor}
+                {VergeMålPlaceholder}
+                {SikkerhetstiltakPlaceholder}
+            </Kolonne>
+        </>
+    );
+}
+
+function ThreeColumnLayout(person: Person) {
+    return (
+        <>
+            <Kolonne>
+                {Kontakt(person)}
+            </Kolonne>
+            <Kolonne>
+                {Familie}
+                {VergeMålPlaceholder}
+            </Kolonne>
+            <Kolonne>
+                {NavKontor}
+                {SikkerhetstiltakPlaceholder}
+            </Kolonne>
+        </>
+    );
+}
+
+class VisittkortBody extends Component<VisittkortBodyProps> {
+
+    private visittKortBodyRef: HTMLDivElement;
+
+    constructor(props: VisittkortBodyProps) {
+        super(props);
+    }
+    componentDidMount() {
+        this.handleResize();
+        window.addEventListener('resize', () => this.handleResize());
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', () => this.handleResize());
+    }
+    handleResize() {
+        this.forceUpdate();
+    }
+    getComponentWidth() {
+        return this.visittKortBodyRef ? this.visittKortBodyRef.clientWidth : 0;
+    }
+    getColumnLayout(numberOfColumns: number) {
+        switch (numberOfColumns) {
+            case 0:
+            case 1:
+                return OneColumnLayout(this.props.person);
+            case 2:
+                return TwoColumnLayout(this.props.person);
+            default:
+                return ThreeColumnLayout(this.props.person);
+        }
+    }
+    render() {
+        const componentWidth = this.getComponentWidth();
+        const maxColumnWidth = 250;
+        const numberOfColumns = Math.floor(componentWidth / maxColumnWidth);
+        const columnLayOut = this.getColumnLayout(numberOfColumns);
+
+        return (
+            <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
+                {columnLayOut}
+            </VisittkortBodyDiv>
+        );
+    }
 }
 
 export default VisittkortBody;
