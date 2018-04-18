@@ -2,7 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
-import { aremark, getPerson } from './person-mock';
+import { aremark, getPerson } from './person/person-mock';
 import { vektetSjanse } from './utils';
 import { Person } from '../models/person';
 

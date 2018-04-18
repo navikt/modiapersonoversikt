@@ -1,5 +1,5 @@
 import { apiBaseUri } from '../api/config';
-import { getPerson } from './person-mock';
+import { getPerson } from './person/person-mock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
 import { getKontaktinformasjon } from './kontaktinformasjon-mock';

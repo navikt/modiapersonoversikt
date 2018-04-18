@@ -1,9 +1,10 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { Bankkonto, BostatusTyper, Bostatus, Person } from '../models/person';
-import { Diskresjonskoder } from '../constants';
-import { vektetSjanse } from './utils';
+import { Bankkonto, BostatusTyper, Bostatus, Person } from '../../models/person';
+import { Diskresjonskoder } from '../../constants';
+import { vektetSjanse } from '../utils';
 import * as moment from 'moment';
+import { getSivilstand } from './siviltilstandMock';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -25,6 +26,10 @@ export const aremark: Person = {
     status: {
         dødsdato: undefined,
         bostatus: undefined
+    },
+    sivilstand: {
+        value: 'GIFT',
+        beskrivelse: 'Gift'
     }
 };
 
@@ -72,7 +77,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
         status: getStatus(alder),
-        bankkonto: getBankKonto()
+        bankkonto: getBankKonto(),
+        sivilstand: getSivilstand(alder, faker)
     };
 }
 
