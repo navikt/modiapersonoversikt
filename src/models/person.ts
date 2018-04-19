@@ -1,5 +1,3 @@
-import { Kodeverk } from './kodeverk';
-
 export interface Person {
     navn: Navn;
     kjønn: Kjønn;
@@ -10,7 +8,7 @@ export interface Person {
     bankkonto?: Bankkonto;
     statsborgerskap?: string;
     personstatus: Bostatus;
-    sivilstand: Kodeverk;
+    sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
 }
 
@@ -58,9 +56,18 @@ export enum Relasjonstype {
     Gift = 'GIFT'
 }
 
-export enum Sivilstand {
+export interface Sivilstand {
+    value: SivilstandTyper;
+    beskrivelse: string;
+    fraOgMed: string;
+}
+
+export enum SivilstandTyper {
     Gift = 'GIFT',
-    Ugift = 'UGIFT'
+    Ugift = 'UGIFT',
+    Skilt = 'SKIL',
+    Samboer  = 'SAMB',
+    Enke = 'ENKE'
 }
 
 export enum Kjønn {

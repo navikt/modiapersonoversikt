@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Kodeverk } from '../../../../../models/kodeverk';
+import { Sivilstand } from '../../../../../models/person';
 
 interface Props {
-    sivilstand: Kodeverk;
+    sivilstand: Sivilstand;
 }
 
 export function Sivilstand({sivilstand}: Props) {
