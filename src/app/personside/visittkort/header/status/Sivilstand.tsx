@@ -5,8 +5,10 @@ interface Props {
     sivilstand: Kodeverk;
 }
 
-export function Sivilstand({sivilstand}: Props) {
+export function Sivilstand({ sivilstand }: Props) {
     return (
-        <li title="Sivilstand">{sivilstand.beskrivelse}</li>
+        <li title="Sivilstand">
+            {sivilstand.beskrivelse}
+        </li>
     );
 }

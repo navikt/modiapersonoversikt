@@ -47,7 +47,7 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
 class NavKontorContainer extends React.Component<Props> {
     render() {
         return (
-            <Undertekst>
+            <Undertekst tag="span">
                 <NavKontorDescriptionList>
                     <dt>Nav-enhet</dt>
                     <dd>

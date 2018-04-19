@@ -15,7 +15,10 @@ const PersonStatusListe = styled.ul`
   padding: 0;
   list-style: none;
   display: inline-flex;
-  > li:not(:last-child):after {
+  li {
+    white-space: nowrap;
+  }
+  li:not(:last-child):after {
     content: '/';
     margin: 0 0.5em;
   }
@@ -56,7 +59,7 @@ function FødselsnummerLinje({ person }: PersonProps) {
 
 function PersonStatus({ person }: PersonProps) {
     return (
-        <Undertekst>
+        <Undertekst tag="span">
             <FødselsnummerLinje person={person}/>
             <Luft/>
             <PersonStatusListe>

@@ -22,11 +22,10 @@ const VisittkortHeaderDiv = styled.div`
 
 const VenstreFelt = styled.div`
   display: flex;
-  flex: 1 0 auto;
+  flex-grow: 1;
 `;
 
 const HøyreFelt = styled.div`
-  flex: 0 1 auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;

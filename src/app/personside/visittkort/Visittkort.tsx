@@ -11,8 +11,9 @@ interface VisittkortProps {
 }
 
 const VisittKortDiv = styled.article`
+  // For å lage en "strek" mellom visittkorthode og visittkortkropp:
   .ekspanderbartPanel__hode {
-    border-bottom: ${props => props.theme.color.bakgrunn} 2px solid;
+      border-bottom: ${props => props.theme.color.bakgrunn} 2px solid;
   }
 `;
 

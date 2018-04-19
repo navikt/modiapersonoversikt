@@ -5,13 +5,19 @@ interface Props {
     familierelasjoner: Familierelasjon[];
 }
 
-export function AntallBarn({familierelasjoner}: Props) {
+export function AntallBarn({ familierelasjoner }: Props) {
     const barn = getBarn(familierelasjoner);
-    if (barn.length === 0 ) {
-        return <li title="Barn under 21 år">Ingen barn under 21 år </li>;
+    if (barn.length === 0) {
+        return (
+            <li title="Barn under 21 år">
+                Ingen barn under 21 år
+            </li>
+        );
     }
 
     return (
-        <li title="Barn under 21 år"> {barn.length} barn (under 21)</li>
+        <li title="Barn under 21 år">
+            {barn.length} barn (under 21)
+        </li>
     );
 }
