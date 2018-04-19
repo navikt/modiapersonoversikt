@@ -60,7 +60,7 @@ export enum Relasjonstype {
 
 export enum Sivilstand {
     Gift = 'GIFT',
-    Ugift = 'Ugift'
+    Ugift = 'UGIFT'
 }
 
 export function erDød(personstatus: Bostatus) {
