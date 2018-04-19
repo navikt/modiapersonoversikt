@@ -2,7 +2,7 @@ import { Kodeverk } from './kodeverk';
 
 export interface Person {
     navn: Navn;
-    kjønn: string;
+    kjønn: Kjønn;
     geografiskTilknytning?: string;
     fødselsnummer: string;
     alder: number;
@@ -63,12 +63,19 @@ export enum Sivilstand {
     Ugift = 'UGIFT'
 }
 
+export enum Kjønn {
+    Mann = 'M',
+    Kvinne = 'K'
+}
+
 export function erDød(personstatus: Bostatus) {
     return personstatus.dødsdato || personstatus.bostatus === BostatusTyper.Død;
 }
 
-export function getBarn(familierelasjoner: Familierelasjon[]) {
-    return familierelasjoner.filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
+export function getBarnUnder21(familierelasjoner: Familierelasjon[]) {
+    return familierelasjoner
+        .filter(relasjon => relasjon.rolle === Relasjonstype.Barn)
+        .filter(relasjon => relasjon.tilPerson.alder <= 21);
 }
 
 export function getPartner(person: Person) {

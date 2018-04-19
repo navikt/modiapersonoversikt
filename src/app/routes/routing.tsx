@@ -8,7 +8,7 @@ import { push } from 'react-router-redux';
 import { Action } from 'history';
 
 export const paths = {
-    personUri : '/person'
+    personUri : '/modiapersonoversikt/person'
 };
 
 function Routing(props: RouteComponentProps<{}> ) {
@@ -25,7 +25,7 @@ export function settNyPersonIKontekst(dispatch: Dispatch<Action>, fødselsnummer
 }
 
 export function fjernPersonFraKontekst(dispatch: Dispatch<Action>) {
-    dispatch(push('/'));
+    dispatch(push('/modiapersonoversikt/'));
 }
 
 export default withRouter(Routing);

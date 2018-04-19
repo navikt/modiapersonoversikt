@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Familierelasjon, getBarn } from '../../../../../models/person';
+import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person';
 
 interface Props {
     familierelasjoner: Familierelasjon[];
 }
 
 export function AntallBarn({ familierelasjoner }: Props) {
-    const barn = getBarn(familierelasjoner);
+    const barn = getBarnUnder21(familierelasjoner);
     if (barn.length === 0) {
         return (
             <li title="Barn under 21 år">
