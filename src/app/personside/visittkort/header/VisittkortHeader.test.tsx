@@ -1,11 +1,11 @@
 import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { aremark } from '../../../../mock/person/person-mock';
 import VisittkortHeader from './VisittkortHeader';
 import { actionNames } from '../../../../redux/navkontor';
 import { getMockNavKontor } from '../../../../mock/navkontor-mock';
 import { testStore } from '../../../../setupTests';
+import { aremark } from '../../../../mock/person/aremark';
 
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(

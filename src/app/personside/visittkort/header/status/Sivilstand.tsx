@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Person } from '../../../../../models/person';
+import { Kodeverk } from '../../../../../models/kodeverk';
 
 interface Props {
-    person: Person;
+    sivilstand: Kodeverk;
 }
 
-export function Sivilstand({person}: Props) {
+export function Sivilstand({sivilstand}: Props) {
     return (
-        <>{person.sivilstand.beskrivelse} / 2 barn (under 21)</>
+        <>{sivilstand.beskrivelse}</>
     );
 }

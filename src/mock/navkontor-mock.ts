@@ -1,8 +1,8 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { ApningsTid, PublikumsMottak, NavKontor } from '../models/navkontor';
+import { ApningsTid, NavKontor, PublikumsMottak } from '../models/navkontor';
 import { GateAdresse } from '../models/gateadresse';
-import { vektetSjanse } from './utils';
+import { vektetSjanse } from './utils/mock-utils';
 
 export const geografiskTilknytningAremark = '0118';
 

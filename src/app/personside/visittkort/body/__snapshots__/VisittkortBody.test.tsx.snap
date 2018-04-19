@@ -266,9 +266,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </span>
           </p>
           <p
-            className="typo-undertekst"
+            className="typo-undertekst-bold"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dignissimos eius modi natus praesentium unde velit.
+            Gift
           </p>
         </div>
       </div>

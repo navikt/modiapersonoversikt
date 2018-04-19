@@ -1,9 +1,10 @@
 import { Kodeverk } from '../../models/kodeverk';
-import { vektetSjanse } from '../utils';
 import FakerStatic = Faker.FakerStatic;
+import { vektetSjanse } from '../utils/mock-utils';
+import { Sivilstand } from '../../models/person';
 
 const ugift = {
-    value: 'UGIF',
+    value: Sivilstand.Ugift,
     beskrivelse: 'Ugift'
 };
 

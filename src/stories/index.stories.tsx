@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/react';
 import Visittkort from '../app/personside/visittkort/Visittkort';
 import { Person } from '../models/person';
 import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
-import { aremark } from '../mock/person/person-mock';
 import styled from 'styled-components';
 import GridLayout from './grid-layout/GridLayout';
 import ResponsiveFlexColumns from './responsive-columns/ResponsiveFlexColumns';
 import FloatingChildren from './responsive-columns/FloatingChildren';
 import JSResponsive from './responsive-columns/EventListener';
+import { aremark } from '../mock/person/aremark';
 
 const mockPerson: Person = aremark;
 

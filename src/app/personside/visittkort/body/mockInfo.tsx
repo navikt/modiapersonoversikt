@@ -2,10 +2,7 @@ import * as React from 'react';
 import VisittkortElement from './VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const heartPath = require('../../../../resources/svg/heart.svg');
 const locationPath = require('../../../../resources/svg/location-pin.svg');
-const jentePath = require('../../../../resources/svg/jentebarn.svg');
-const guttPath = require('../../../../resources/svg/guttebarn.svg');
 
 export function AdressePlaceholder() {
     return (
@@ -47,26 +44,3 @@ export const SikkerhetstiltakPlaceholder = (
         </VisittkortElement>
     </>
 );
-
-export function FamiliePlaceholder() {
-    return (
-        <>
-            <VisittkortElement beskrivelse="Sivilstand" ikonPath={heartPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Adipisci dignissimos eius modi natus praesentium unde velit.
-                </Undertekst>
-            </VisittkortElement>
-            <VisittkortElement beskrivelse="Jente" ikonPath={jentePath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </Undertekst>
-            </VisittkortElement>
-            <VisittkortElement beskrivelse="Gutt" ikonPath={guttPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </Undertekst>
-            </VisittkortElement>
-        </>
-    );
-}

@@ -6,6 +6,7 @@ import { BostatusTyper, Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Statsborgerskap } from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
+import { AntallBarn } from './Antallbarn';
 
 const emdash = '\u2014';
 const PadLeft = styled.span`
@@ -21,8 +22,8 @@ interface PersonProps {
 }
 
 function Dødsdato({person}: PersonProps) {
-    if (person.status.dødsdato) {
-        const formatertDødsdato = formaterDato(person.status.dødsdato);
+    if (person.personstatus.dødsdato) {
+        const formatertDødsdato = formaterDato(person.personstatus.dødsdato);
         return <>{emdash} Død {formatertDødsdato}</>;
     } else {
         return null;
@@ -30,7 +31,7 @@ function Dødsdato({person}: PersonProps) {
 }
 
 function Utvandret({person}: PersonProps) {
-    if (person.status.bostatus === BostatusTyper.Utvandret) {
+    if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
         return <>{emdash} Utvandret</>;
     } else {
         return null;
@@ -42,12 +43,17 @@ function FødselsnummerLinje({person}: PersonProps) {
 }
 
 function PersonStatus({person}: PersonProps) {
+    const Separator = () => (<> / </>);
     return (
         <Undertekst>
             <NoWrap>
                 <FødselsnummerLinje person={person}/>
                 <PadLeft>
-                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/> / <Sivilstand person={person}/>
+                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
+                    <Separator/>
+                    <Sivilstand sivilstand={person.sivilstand}/>
+                    <Separator/>
+                    <AntallBarn familierelasjoner={person.familierelasjoner}/>
                 </PadLeft>
             </NoWrap>
         </Undertekst>
