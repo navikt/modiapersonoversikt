@@ -10,10 +10,22 @@ interface Props {
     navKontorReducer: Reducer<NavKontor>;
 }
 
-const CenterVerticallyAndNoWrap = styled.span`
-  display: inline-flex;
-  align-items: center;
+const NavKontorDescriptionList = styled.dl`
+  margin: initial;
+  margin-left: 1em;
+  display: flex;
+  > * {
   white-space: nowrap;
+  }
+  dt:after {
+    content: '/';
+    margin: 0 0.5em;
+  }
+  dd {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
 `;
 
 const onError = (
@@ -36,16 +48,18 @@ class NavKontorContainer extends React.Component<Props> {
     render() {
         return (
             <Undertekst>
-                <CenterVerticallyAndNoWrap>
-                    Nav-enhet /&nbsp;
-                    <Innholdslaster
-                        avhengigheter={[this.props.navKontorReducer]}
-                        spinnerSize={'XXS'}
-                        returnOnError={onError}
-                    >
-                        <NavKontorVisning navKontor={this.props.navKontorReducer.data}/>
-                    </Innholdslaster>
-                </CenterVerticallyAndNoWrap>
+                <NavKontorDescriptionList>
+                    <dt>Nav-enhet</dt>
+                    <dd>
+                        <Innholdslaster
+                            avhengigheter={[this.props.navKontorReducer]}
+                            spinnerSize={'XXS'}
+                            returnOnError={onError}
+                        >
+                            <NavKontorVisning navKontor={this.props.navKontorReducer.data}/>
+                        </Innholdslaster>
+                    </dd>
+                </NavKontorDescriptionList>
             </Undertekst>
         );
     }
