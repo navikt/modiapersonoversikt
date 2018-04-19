@@ -1,9 +1,9 @@
 import { Diskresjonskoder } from '../../constants';
-import { Person } from '../../models/person';
+import { Kjønn, Person } from '../../models/person';
 
 export const aremark: Person = {
     fødselsnummer: '10108000398',
-    kjønn: 'M',
+    kjønn: Kjønn.Mann,
     geografiskTilknytning: '0118',
     alder: 42,
     navn: {
