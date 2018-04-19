@@ -52,8 +52,8 @@ interface PersonProps {
     person: Person;
 }
 
-function Navnelinje({ person }: PersonProps) {
-    const alder = erDød(person) ? 'Død' : person.alder;
+function Navnelinje({person}: PersonProps) {
+    const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
             {person.navn.sammensatt} ({alder})
@@ -81,7 +81,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
 
             <HøyreFelt>
                 <Etiketter person={person}/>
-                <NavKontorContainer/>
+                <NavKontorContainer />
             </HøyreFelt>
 
         </VisittkortHeaderDiv>

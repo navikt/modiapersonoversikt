@@ -38,7 +38,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             className="sc-htpNat gVwGYF"
           >
             NORSK
-             / Gift / 2 barn (under 21)
+             / 
+            Gift
+             / 
+            Ingen barn under 21 år 
           </span>
         </span>
       </p>

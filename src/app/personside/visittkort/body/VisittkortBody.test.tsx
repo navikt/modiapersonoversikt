@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { aremark } from '../../../../mock/person-mock';
 import VisittkortBody from './VisittkortBody';
 import { testStore } from '../../../../setupTests';
 import { Provider } from 'react-redux';
 import { getMockNavKontor } from '../../../../mock/navkontor-mock';
 import { actionNames } from '../../../../redux/navkontor';
+import { aremark } from '../../../../mock/person/aremark';
 
 test('viser info om bruker i visittkortbody', () => {
     const visittkortbody = renderer.create(

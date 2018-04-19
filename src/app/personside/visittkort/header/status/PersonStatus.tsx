@@ -4,6 +4,9 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { BostatusTyper, Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { Statsborgerskap } from './Statsborgerskap';
+import { Sivilstand } from './Sivilstand';
+import { AntallBarn } from './Antallbarn';
 
 const emdash = '\u2014';
 const PadLeft = styled.span`
@@ -19,8 +22,8 @@ interface PersonProps {
 }
 
 function Dødsdato({person}: PersonProps) {
-    if (person.status.dødsdato) {
-        const formatertDødsdato = formaterDato(person.status.dødsdato);
+    if (person.personstatus.dødsdato) {
+        const formatertDødsdato = formaterDato(person.personstatus.dødsdato);
         return <>{emdash} Død {formatertDødsdato}</>;
     } else {
         return null;
@@ -28,7 +31,7 @@ function Dødsdato({person}: PersonProps) {
 }
 
 function Utvandret({person}: PersonProps) {
-    if (person.status.bostatus === BostatusTyper.Utvandret) {
+    if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
         return <>{emdash} Utvandret</>;
     } else {
         return null;
@@ -39,23 +42,19 @@ function FødselsnummerLinje({person}: PersonProps) {
     return <>{person.fødselsnummer} <Dødsdato person={person}/><Utvandret person={person}/></>;
 }
 
-function Statsborgerskap({person}: PersonProps) {
-    if (!person.statsborgerskap) {
-        return (
-            <>Ingen statsborgerskap registrert</>
-        );
-    }
-    return (
-        <>{person.statsborgerskap}</>
-    );
-}
-
 function PersonStatus({person}: PersonProps) {
+    const Separator = () => (<> / </>);
     return (
         <Undertekst>
             <NoWrap>
                 <FødselsnummerLinje person={person}/>
-                <PadLeft><Statsborgerskap person={person}/> / Gift / 2 barn (under 21)</PadLeft>
+                <PadLeft>
+                    <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
+                    <Separator/>
+                    <Sivilstand sivilstand={person.sivilstand}/>
+                    <Separator/>
+                    <AntallBarn familierelasjoner={person.familierelasjoner}/>
+                </PadLeft>
             </NoWrap>
         </Undertekst>
     );

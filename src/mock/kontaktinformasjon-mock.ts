@@ -2,9 +2,10 @@ import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
-import { aremark, getPerson } from './person-mock';
-import { vektetSjanse } from './utils';
+import { getPerson } from './person/personMock';
 import { Person } from '../models/person';
+import { aremark } from './person/aremark';
+import { vektetSjanse } from './utils/mock-utils';
 
 export function getKontaktinformasjon(fødselsnummer: string): Kontaktinformasjon {
     if (fødselsnummer === aremark.fødselsnummer) {
