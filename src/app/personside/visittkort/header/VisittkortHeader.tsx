@@ -25,6 +25,16 @@ const VenstreFelt = styled.div`
   flex: 1 0 auto;
 `;
 
+const HøyreFelt = styled.div`
+  flex: 0 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 1em;
+  box-sizing: border-box;
+`;
+
 const IkonDiv = styled.div`
   flex: 0 0 50px;
   text-align: center;
@@ -36,16 +46,6 @@ const IkonDiv = styled.div`
 const InfoDiv = styled.div`
   flex: 1 1;
   text-align: left;
-`;
-
-const HøyreFelt = styled.div`
-  flex: 0 1 auto;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-end;
-  text-align: right;
-  padding-right: 1em;
-  box-sizing: border-box;
 `;
 
 interface PersonProps {

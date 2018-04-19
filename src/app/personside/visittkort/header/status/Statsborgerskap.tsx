@@ -7,10 +7,10 @@ interface Props {
 export function Statsborgerskap({statsborgerskap}: Props) {
     if (!statsborgerskap) {
         return (
-            <>Ingen statsborgerskap registrert i NAV</>
+            <li title="Statsborgerskap">Ingen statsborgerskap registrert i NAV</li>
         );
     }
     return (
-        <>{statsborgerskap}</>
+        <li title="Statsborgerskap">{statsborgerskap}</li>
     );
 }

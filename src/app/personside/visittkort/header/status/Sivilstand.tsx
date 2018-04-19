@@ -7,6 +7,6 @@ interface Props {
 
 export function Sivilstand({sivilstand}: Props) {
     return (
-        <>{sivilstand.beskrivelse}</>
+        <li title="Sivilstand">{sivilstand.beskrivelse}</li>
     );
 }
