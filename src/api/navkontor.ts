@@ -5,5 +5,15 @@ export function getNavkontor(geografiskTilknytning: string, diskresjonsKode?: st
     const uri =
         `${apiBaseUri}/enheter/geo/${geografiskTilknytning}${diskresjonsKode ? '?dkode=' + diskresjonsKode : ''}`;
     return fetch(uri, {credentials: 'include'})
-        .then((response) => response.json());
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else if (response.status === 404) {
+                return new Promise((resolve) => {
+                    resolve(undefined);
+                });
+            } else {
+                throw response.statusText;
+            }
+        });
 }

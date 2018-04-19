@@ -17,23 +17,31 @@ export function setupMock() {
         }
     });
 
+    const STATUS_OK = () => 200;
+
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
         800,
-        true,
+        STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
         5000,
-        true,
+        STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
 
     mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
         2000,
-        true,
+        (args: HandlerArgument) => {
+            if (isNaN(args.pathParams.geografiskTilknytning)) {
+                return 404;
+            } else {
+                return 200;
+            }
+        },
         (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
 
     mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
         1200,
-        true,
+        STATUS_OK,
         () => getTilfeldigeOppgaver()));
 }
