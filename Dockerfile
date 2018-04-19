@@ -1,4 +1,4 @@
-FROM node:9.10.1-alpine as nodebuilder
+FROM node:9.11.1-alpine as nodebuilder
 ADD / /source
 WORKDIR /source
 RUN npm install
