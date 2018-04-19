@@ -9,7 +9,7 @@ import { getFodselsdato } from '../utils/fnr-utils';
 import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
-import { utledbarnFraFødselsnummer } from '../../utils/fnr-utils';
+import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 
 export function getPerson(fødselsnummer: string): Person {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -28,7 +28,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const sivilstand = getSivilstand(alder, faker);
     return {
         fødselsnummer: fødselsnummer,
-        kjønn: utledbarnFraFødselsnummer(fødselsnummer),
+        kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: {
