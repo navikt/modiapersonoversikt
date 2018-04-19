@@ -4,21 +4,28 @@ import { Person } from '../../../models/person';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
+import styled from 'styled-components';
 
 interface VisittkortProps {
     person: Person;
 }
+
+const VisittKortDiv = styled.article`
+  .ekspanderbartPanel__hode {
+    border-bottom: ${props => props.theme.color.bakgrunn} 2px solid;
+  }
+`;
 
 function Visittkort({ person }: VisittkortProps) {
 
     const visittkortheader = <VisittkortHeader person={person}/>;
 
     return (
-        <article>
+        <VisittKortDiv>
             <EkspanderbartpanelBase apen={false} heading={visittkortheader} ariaTittel="Visittkort">
                 <VisittkortBody person={person}/>
             </EkspanderbartpanelBase>
-        </article>
+        </VisittKortDiv>
     );
 }
 
