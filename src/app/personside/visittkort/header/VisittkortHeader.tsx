@@ -71,7 +71,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
 
             <VenstreFelt>
                 <IkonDiv>
-                    <img src={ikon.path} alt={ikon.alt}/>
+                    <img src={ikon.path} alt={ikon.alt} title={ikon.alt}/>
                 </IkonDiv>
                 <InfoDiv>
                     <Navnelinje person={person}/>
