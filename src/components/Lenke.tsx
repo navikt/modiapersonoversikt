@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Lenke = styled.span`
+const Lenke = styled.a`
     font-family: "Source Sans Pro", sans-serif;
     line-height: 1.1;
     background-color: transparent;
