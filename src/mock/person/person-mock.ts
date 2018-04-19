@@ -130,8 +130,10 @@ function getFornavn(fødselsnummer: string): string {
 }
 
 function getGeografiskTilknytning() {
-    if (vektetSjanse(faker, 0.8)) {
-        return String(faker.random.number(9999));
+    if (vektetSjanse(faker, 0.7)) {
+        return String(faker.random.number({min: 1000, max: 9999}));
+    } else if (vektetSjanse(faker, 0.15)) {
+        return faker.address.countryCode();
     } else {
         return undefined;
     }
