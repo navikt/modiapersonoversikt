@@ -9,6 +9,7 @@ const LayoutWrapper = styled.div`
     overflow-y: scroll;
     padding: ${props => props.theme.margin.layout};
     animation: ${props => props.theme.animation.fadeIn};
+    background-color: ${props => props.theme.color.bakgrunn};
     @media (${props => props.theme.media.wideScreen}) {
       display: flex;
       flex-flow: row nowrap;
@@ -17,9 +18,10 @@ const LayoutWrapper = styled.div`
 
 const Kolonne = styled.section`
     > * {
-      box-shadow: ${props => props.theme.boxShadow.layout};
       margin-bottom: ${props => props.theme.margin.layout};
       background-color: white;
+      border-radius: ${props => props.theme.borderRadius.layout};
+      overflow: hidden;
     }
 `;
 

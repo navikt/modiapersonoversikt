@@ -8,7 +8,7 @@ export interface Person {
     alder: number;
     diskresjonskode?: string;
     bankkonto?: Bankkonto;
-    statsborgerskap: string;
+    statsborgerskap?: string;
     personstatus: Bostatus;
     sivilstand: Kodeverk;
     familierelasjoner: Familierelasjon[];

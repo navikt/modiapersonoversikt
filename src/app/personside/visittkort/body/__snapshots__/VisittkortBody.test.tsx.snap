@@ -2,10 +2,10 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-jzJRlG dPOBZH"
+  className="sc-jzJRlG duwhyO"
 >
   <div
-    className="sc-cSHVUG WpEDm"
+    className="sc-cSHVUG bfOjtf"
   >
     <div
       className="sc-kAzzGY fOIkqr"
@@ -86,7 +86,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Epost Kontakt og reservasjonsregisteret"
+            alt="Epost Kontakt- og reservasjonsregisteret"
             src="email.svg"
           />
         </div>
@@ -99,7 +99,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-gqjmRU dugoZX"
             >
-              Epost Kontakt og reservasjonsregisteret
+              Epost Kontakt- og reservasjonsregisteret
             </span>
           </p>
           <svg
@@ -146,7 +146,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Telefon Kontakt og reservasjonsregisteret"
+            alt="Telefon Kontakt- og reservasjonsregisteret"
             src="phone.svg"
           />
         </div>
@@ -159,7 +159,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-gqjmRU dugoZX"
             >
-              Telefon Kontakt og reservasjonsregisteret
+              Telefon Kontakt- og reservasjonsregisteret
             </span>
           </p>
           <svg
@@ -230,10 +230,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="sc-cSHVUG WpEDm"
-  >
     <div
       className="sc-kAzzGY fOIkqr"
     >
@@ -502,6 +498,66 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Dette er en lenke
           </span>
         </div>
+      </div>
+    </div>
+    <div
+      className="sc-dnqmqq lhVNBn"
+    >
+      <div
+        className="sc-iwsKbI jYIAlx"
+      >
+        <img
+          alt="Bruker er under vergemål"
+          src="location-pin.svg"
+        />
+      </div>
+      <div
+        className="sc-gZMcBi ikPRxU"
+      >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="sc-gqjmRU dugoZX"
+          >
+            Bruker er under vergemål
+          </span>
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-dnqmqq lhVNBn"
+    >
+      <div
+        className="sc-iwsKbI jYIAlx"
+      >
+        <img
+          alt="Sikkerhetstiltak"
+          src="location-pin.svg"
+        />
+      </div>
+      <div
+        className="sc-gZMcBi ikPRxU"
+      >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="sc-gqjmRU dugoZX"
+          >
+            Sikkerhetstiltak
+          </span>
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
+        </p>
       </div>
     </div>
   </div>

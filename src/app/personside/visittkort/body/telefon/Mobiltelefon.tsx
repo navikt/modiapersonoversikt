@@ -15,9 +15,17 @@ interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
 }
 
+function formaterTelefonnummer(telefonnummer: string) {
+    if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {
+        return formatNumber('### ### ## ###', telefonnummer);
+    } else {
+        return telefonnummer;
+    }
+}
+
 function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
-    const formatertTelefonnummer = formatNumber('### ## ###', mobiltelefon.value);
+    const formatertTelefonnummer = formaterTelefonnummer(mobiltelefon.value);
     return (
         <>
             <Undertekst>{formatertTelefonnummer}</Undertekst>
@@ -48,7 +56,7 @@ interface MobiltelefonWrapperProps {
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Telefon Kontakt og reservasjonsregisteret" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikonPath={phonePath}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <MobiltelefonVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
