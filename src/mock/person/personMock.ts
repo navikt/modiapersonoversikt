@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Bostatus, BostatusTyper, Person } from '../../models/person';
+import { Bostatus, BostatusTyper, Kjønn, Person } from '../../models/person';
 import { Diskresjonskoder } from '../../constants';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
@@ -31,7 +31,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const sivilstand = getSivilstand(alder, faker);
     return {
         fødselsnummer: fødselsnummer,
-        kjønn: erMann(fødselsnummer) ? 'M' : 'K',
+        kjønn: erMann(fødselsnummer) ? Kjønn.Mann : Kjønn.Kvinne,
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: {

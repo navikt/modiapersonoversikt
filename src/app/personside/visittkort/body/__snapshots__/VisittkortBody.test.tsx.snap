@@ -272,66 +272,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
       </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
-            alt="Jente"
-            src="jentebarn.svg"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Jente
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
-            alt="Gutt"
-            src="guttebarn.svg"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Gutt
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </div>
-      </div>
     </div>
     <div
       className="sc-kAzzGY fOIkqr"
