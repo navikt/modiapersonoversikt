@@ -47,8 +47,7 @@ function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
             navn: barnet.navn,
             alder: barnet.alder,
             fødselsnummer: barnet.fødselsnummer,
-            personstatus: barnet.personstatus,
-            kjonn: barnet.kjønn
+            personstatus: barnet.personstatus
         },
     };
 }
@@ -62,8 +61,7 @@ function lagEktefelle(faker: FakerStatic): Familierelasjon {
             navn: ektefelle.navn,
             alder: ektefelle.alder,
             fødselsnummer: ektefelle.fødselsnummer,
-            personstatus: ektefelle.personstatus,
-            kjonn: ektefelle.kjønn
+            personstatus: ektefelle.personstatus
         }
     };
 }

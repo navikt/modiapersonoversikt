@@ -37,7 +37,6 @@ export interface Familierelasjon {
         alder: number;
         fødselsnummer: string;
         personstatus: Bostatus;
-        kjonn: Kjønn
     };
 }
 

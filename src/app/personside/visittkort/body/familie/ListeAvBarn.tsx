@@ -5,6 +5,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import { Familierelasjon, getBarnUnder21, Kjønn } from '../../../../../models/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
+import { utledbarnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 
 const jentePath = require('./jentebarn.svg');
 const guttePath = require('./guttebarn.svg');
@@ -18,8 +19,9 @@ interface BarnProps {
 }
 
 function Barn({barn}: BarnProps) {
-    const beskrivelse = barn.tilPerson.kjonn === Kjønn.Kvinne ? 'Jente' : 'Gutt';
-    const ikonPath = barn.tilPerson.kjonn === Kjønn.Kvinne ? jentePath : guttePath;
+    const kjønn = utledbarnFraFødselsnummer(barn.tilPerson.fødselsnummer);
+    const beskrivelse = kjønn === Kjønn.Kvinne ? 'Jente' : 'Gutt';
+    const ikonPath = kjønn === Kjønn.Kvinne ? jentePath : guttePath;
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikonPath={ikonPath}>
             <Undertekst><NavnOgAlder relasjon={barn}/></Undertekst>

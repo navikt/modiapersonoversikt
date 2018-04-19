@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Bostatus, BostatusTyper, Kjønn, Person } from '../../models/person';
+import { Bostatus, BostatusTyper, Person } from '../../models/person';
 import { Diskresjonskoder } from '../../constants';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
@@ -9,10 +9,7 @@ import { getFodselsdato } from '../utils/fnr-utils';
 import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
-
-function erMann(fødselsnummer: string) {
-    return Number(fødselsnummer.charAt(8)) % 2 === 1;
-}
+import { utledbarnFraFødselsnummer } from '../../utils/fnr-utils';
 
 export function getPerson(fødselsnummer: string): Person {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -31,7 +28,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const sivilstand = getSivilstand(alder, faker);
     return {
         fødselsnummer: fødselsnummer,
-        kjønn: erMann(fødselsnummer) ? Kjønn.Mann : Kjønn.Kvinne,
+        kjønn: utledbarnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: {
