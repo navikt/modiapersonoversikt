@@ -49,8 +49,8 @@ function Utvandret({ person }: PersonProps) {
 function FødselsnummerLinje({ person }: PersonProps) {
     return (
         <span title="Fødselsnummer">
-        {person.fødselsnummer} <Dødsdato person={person}/>
-        <Utvandret person={person}/></span>
+            {person.fødselsnummer} <Dødsdato person={person}/><Utvandret person={person}/>
+        </span>
     );
 }
 
