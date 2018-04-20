@@ -14,17 +14,21 @@ function formaterMedRiktigCasing(statsborgerskap: string): string {
         .split('-').map(uppercaseFørsteBokstav).join('-');
 }
 
-function Statsborgerskap({statsborgerskap}: Props) {
+export function Statsborgerskap({ statsborgerskap }: Props) {
     if (!statsborgerskap) {
         return (
-            <>Ingen statsborgerskap registrert i NAV</>
+            <li title="Statsborgerskap">
+                Ingen statsborgerskap registrert i NAV
+            </li>
         );
     }
 
     const formatertStatsborgerskap = formaterMedRiktigCasing(statsborgerskap);
 
     return (
-        <>{formatertStatsborgerskap}</>
+        <li title="Statsborgerskap">
+            {formatertStatsborgerskap}
+        </li>
     );
 }
 

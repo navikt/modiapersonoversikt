@@ -33,7 +33,7 @@ const Tittel = styled.span`
 `;
 
 function VisittkortElement(props: ElementProps) {
-    const img = props.ikonPath ? <img src={props.ikonPath} alt={props.beskrivelse} /> : '';
+    const img = props.ikonPath ? <img src={props.ikonPath} alt={props.beskrivelse} title={props.beskrivelse} /> : '';
     const tittel = props.beskrivelse
         ? <EtikettLiten><Tittel>{props.beskrivelse}</Tittel></EtikettLiten>
         : '';

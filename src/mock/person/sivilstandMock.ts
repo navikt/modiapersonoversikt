@@ -1,38 +1,54 @@
-import { Kodeverk } from '../../models/kodeverk';
+import * as moment from 'moment';
 import FakerStatic = Faker.FakerStatic;
-import { vektetSjanse } from '../utils/mock-utils';
-import { Sivilstand } from '../../models/person';
+import { Moment } from 'moment';
 
-const ugift = {
-    value: Sivilstand.Ugift,
-    beskrivelse: 'Ugift'
+import { vektetSjanse } from '../utils/mock-utils';
+import { Sivilstand, SivilstandTyper } from '../../models/person';
+
+const ugift = (fødselsdato: Moment) => {
+    return {
+        value: SivilstandTyper.Ugift,
+        beskrivelse: 'Ugift',
+        fraOgMed: fødselsdato.toDate().toDateString()
+    };
 };
 
-export function getSivilstand(alder: number, faker: FakerStatic): Kodeverk {
+export function getSivilstand(fødselsdato: Moment, faker: FakerStatic): Sivilstand {
+    const alder = moment().diff(fødselsdato, 'years');
+
     if (alder < 18) {
-        return ugift;
+        return ugift(fødselsdato);
     }
     if (vektetSjanse(faker, 0.2)) {
         return {
-            value: 'GIFT',
-            beskrivelse: 'Gift'
+            value: SivilstandTyper.Gift,
+            beskrivelse: 'Gift',
+            fraOgMed: getSistOppdatert(alder, faker)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
-            value: 'SKIL',
-            beskrivelse: 'Skilt'
+            value: SivilstandTyper.Skilt,
+            beskrivelse: 'Skilt',
+            fraOgMed: getSistOppdatert(alder, faker)
         };
     } else if (vektetSjanse(faker, 0.2)) {
-        return ugift;
+        return ugift(fødselsdato);
     } else if (vektetSjanse(faker, 0.2)) {
         return {
-            value: 'SAMB',
-            beskrivelse: 'Samboer'
+            value: SivilstandTyper.Samboer,
+            beskrivelse: 'Samboer',
+            fraOgMed: getSistOppdatert(alder, faker)
         };
     } else {
         return {
-            value: 'ENKE',
-            beskrivelse: 'Enke/-mann'
+            value: SivilstandTyper.Enke,
+            beskrivelse: 'Enke/-mann',
+            fraOgMed: getSistOppdatert(alder, faker)
         };
     }
+}
+
+function getSistOppdatert(alder: number, faker: FakerStatic) {
+    const maxYearsAgo = alder - 18;
+    return moment(faker.date.past(maxYearsAgo)).format('YYYY-MM-DD');
 }

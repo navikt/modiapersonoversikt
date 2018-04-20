@@ -1,5 +1,5 @@
 import { Diskresjonskoder } from '../../constants';
-import { Kjønn, Person } from '../../models/person';
+import { Kjønn, Person, SivilstandTyper } from '../../models/person';
 
 export const aremark: Person = {
     fødselsnummer: '10108000398',
@@ -19,8 +19,9 @@ export const aremark: Person = {
         bostatus: undefined
     },
     sivilstand: {
-        value: 'GIFT',
-        beskrivelse: 'Gift'
+        value: SivilstandTyper.Gift,
+        beskrivelse: 'Gift',
+        fraOgMed: '2005-12-12'
     },
     familierelasjoner: []
 };
