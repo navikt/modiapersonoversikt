@@ -5,6 +5,14 @@ import { Diskresjonskoder } from '../../constants';
 import { vektetSjanse } from '../utils';
 import * as moment from 'moment';
 import { getSivilstand } from './siviltilstandMock';
+import {
+    Endringsinfo,
+    Gateadresse,
+    Matrikkeladresse,
+    Personadresse,
+    UstrukturertAdresse,
+    Utlandsadresse
+} from '../../models/personadresse';
 
 function erMann(fødselsnummer: string) {
     return Number(fødselsnummer.charAt(8)) % 2 === 1;
@@ -49,6 +57,29 @@ export const bankkontoUtland: Bankkonto = {
     sistEndret: getSistOppdatert(),
 };
 
+export const gateadresse: Gateadresse = {
+    tilleggsadresse: 'Tillegsgaten 1',
+    gatenavn: 'Tilfeldighetsgaten',
+    husnummer: '3',
+    postnummer: '0666',
+    poststed: 'HELL'
+};
+
+export const matrikkeladresse: Matrikkeladresse = {
+   eiendomsnavn: 'Bogstad Gård',
+   postnummer: '1234',
+   poststed: 'OSLO'
+};
+
+export const utlandsadresse: Utlandsadresse = {
+    landkode: 'BM',
+    adresselinje: 'Hytte 2, Stranda, Bahamas'
+};
+
+export const ustrukturertAdresse: UstrukturertAdresse = {
+    adresselinje: 'Storgata 1, 9876 NARVIK'
+};
+
 export function getPerson(fødselsnummer: string): Person {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
@@ -78,7 +109,10 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         statsborgerskap: getStatsborgerskap(),
         status: getStatus(alder),
         bankkonto: getBankKonto(),
-        sivilstand: getSivilstand(alder, faker)
+        sivilstand: getSivilstand(alder, faker),
+        folkeregistrertAdresse: getTilfeldigAdresse(),
+        alternativAdresse: getTilfeldigAdresse(),
+        postadresse: getTilfeldigAdresse()
     };
 }
 
@@ -146,4 +180,36 @@ function getStatsborgerskap() {
 
 function getSistOppdatert() {
     return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
+}
+
+function getTilfeldigAdresse(): Personadresse {
+    if (vektetSjanse(faker, 0.2)) {
+        return {
+            endringsinfo: getEndringsinfo(),
+            matrikkeladresse: matrikkeladresse
+        };
+    } else if (vektetSjanse(faker, 0.2)) {
+        return {
+            endringsinfo: getEndringsinfo(),
+            utlandsadresse: utlandsadresse
+        };
+    } else if (vektetSjanse(faker, 0.2)) {
+        return {
+            endringsinfo: getEndringsinfo(),
+            ustrukturert: ustrukturertAdresse
+        };
+    } else {
+        return {
+            endringsinfo: getEndringsinfo(),
+            gateadresse: gateadresse
+        };
+    }
+
+}
+
+function getEndringsinfo(): Endringsinfo {
+    return {
+        sistEndret: getSistOppdatert(),
+        sistEndretAv: 'AA001'
+    };
 }

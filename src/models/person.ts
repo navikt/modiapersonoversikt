@@ -1,4 +1,5 @@
 import { Kodeverk } from './kodeverk';
+import { Personadresse } from './personadresse';
 
 export interface Person {
     navn: Navn;
@@ -11,6 +12,9 @@ export interface Person {
     statsborgerskap?: string;
     status: Bostatus;
     sivilstand: Kodeverk;
+    folkeregistrertAdresse?: Personadresse;
+    alternativAdresse?: Personadresse;
+    postadresse?: Personadresse;
 }
 
 export interface Navn {
