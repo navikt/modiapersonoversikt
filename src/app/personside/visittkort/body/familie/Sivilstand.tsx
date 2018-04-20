@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as moment from 'moment';
+
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 
@@ -15,12 +17,15 @@ interface Props {
 
 interface PartnerProps {
     relasjon: Familierelasjon;
+    fraOgMed: string;
 }
 
-function Partner({relasjon}: PartnerProps) {
+function Partner({relasjon, fraOgMed}: PartnerProps) {
+
+    const relasjonFraOgMed = moment(fraOgMed).format('DD.MM.YYYY');
     return (
         <>
-            <UndertekstBold>Gift (xx.xx.xx)</UndertekstBold>
+            <UndertekstBold>Gift ({relasjonFraOgMed})</UndertekstBold>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
             <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
@@ -35,7 +40,7 @@ function SivilstandVisning({person}: Props) {
     }
 
     return (
-        <Partner relasjon={partner}/>
+        <Partner relasjon={partner} fraOgMed={person.sivilstand.fraOgMed}/>
     );
 }
 

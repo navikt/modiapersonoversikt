@@ -1,16 +1,16 @@
 import FakerStatic = Faker.FakerStatic;
 import { getPerson } from './personMock';
-import { Familierelasjon, Relasjonstype, Sivilstand } from '../../models/person';
+import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
 import { vektetSjanse } from '../utils/mock-utils';
 import { seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 
-export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: string) {
+export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: Sivilstand) {
     let relasjoner: Familierelasjon[] = [];
     if (alder >= 18) {
         relasjoner = relasjoner.concat(getMockBarn(faker, alder));
     }
 
-    if (sivilstand === Sivilstand.Gift) {
+    if (sivilstand.value === SivilstandTyper.Gift) {
         relasjoner.push(lagEktefelle(faker));
     }
 
