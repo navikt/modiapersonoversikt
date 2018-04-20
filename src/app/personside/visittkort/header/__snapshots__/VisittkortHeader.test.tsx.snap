@@ -5,18 +5,19 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   className="sc-ifAKCX hMtwKY"
 >
   <div
-    className="sc-EHOje UXQEB"
+    className="sc-EHOje hyALOH"
   >
     <div
-      className="sc-bZQynM gSaPyk"
+      className="sc-gzVnrw ctgjcR"
     >
       <img
         alt="Mann"
         src="mann.svg"
+        title="Mann"
       />
     </div>
     <div
-      className="sc-gzVnrw cfMaXP"
+      className="sc-htoDjs jiCiGn"
     >
       <h2
         className="typo-undertittel"
@@ -26,29 +27,42 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         42
         )
       </h2>
-      <p
+      <span
         className="typo-undertekst"
       >
         <span
-          className="sc-bxivhb jNgUAM"
+          title="Fødselsnummer"
         >
           10108000398
            
-          <span
-            className="sc-htpNat gVwGYF"
-          >
-            NORSK
-             / 
-            Gift
-             / 
-            Ingen barn under 21 år 
-          </span>
         </span>
-      </p>
+        <span
+          className="sc-bxivhb eOtet"
+        />
+        <ul
+          className="sc-htpNat fjsglQ"
+        >
+          <li
+            title="Statsborgerskap"
+          >
+            Norsk
+          </li>
+          <li
+            title="Sivilstand"
+          >
+            Gift
+          </li>
+          <li
+            title="Barn under 21 år"
+          >
+            Ingen barn under 21 år
+          </li>
+        </ul>
+      </span>
     </div>
   </div>
   <div
-    className="sc-htoDjs cTcjGg"
+    className="sc-bZQynM iwaBxj"
   >
     <div
       className="sc-bwzfXH eCbFXJ"
@@ -63,18 +77,22 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </span>
       </div>
     </div>
-    <p
+    <span
       className="typo-undertekst"
     >
-      <span
-        className="sc-bdVaJa ktDPVU"
+      <dl
+        className="sc-bdVaJa YjxoX"
       >
-        Nav-enhet / 
-        0118
-         
-        Nav Aremark
-      </span>
-    </p>
+        <dt>
+          Nav-enhet
+        </dt>
+        <dd>
+          0118
+           
+          Nav Aremark
+        </dd>
+      </dl>
+    </span>
   </div>
 </div>
 `;

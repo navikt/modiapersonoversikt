@@ -28,6 +28,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Postadresse Folkeregistrert"
             src="location-pin.svg"
+            title="Postadresse Folkeregistrert"
           />
         </div>
         <div
@@ -58,6 +59,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Postadresse Midlertidig Norge"
             src="location-pin.svg"
+            title="Postadresse Midlertidig Norge"
           />
         </div>
         <div
@@ -88,6 +90,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Epost Kontakt- og reservasjonsregisteret"
             src="email.svg"
+            title="Epost Kontakt- og reservasjonsregisteret"
           />
         </div>
         <div
@@ -148,6 +151,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Telefon Kontakt- og reservasjonsregisteret"
             src="phone.svg"
+            title="Telefon Kontakt- og reservasjonsregisteret"
           />
         </div>
         <div
@@ -208,6 +212,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Kontonummer"
             src="coins.svg"
+            title="Kontonummer"
           />
         </div>
         <div
@@ -251,6 +256,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Sivilstand"
             src="heart.svg"
+            title="Sivilstand"
           />
         </div>
         <div
@@ -294,6 +300,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <img
             alt="Brukers NavKontor"
             src="nav-logo.svg"
+            title="Brukers NavKontor"
           />
         </div>
         <div
@@ -307,6 +314,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Brukers NavKontor
             </span>
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Nav Aremark
+             
+            0118
           </p>
           <div>
             <p
@@ -432,11 +446,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </dl>
             <br />
           </div>
-          <span
+          <a
             className="sc-VigVT ldMVRF"
+            href="/norg2-frontend/#/startsok?enhetNr=0118"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Dette er en lenke
-          </span>
+            Mer informasjon om 
+            Nav Aremark
+          </a>
         </div>
       </div>
     </div>
@@ -449,6 +467,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <img
           alt="Bruker er under vergemål"
           src="location-pin.svg"
+          title="Bruker er under vergemål"
         />
       </div>
       <div
@@ -479,6 +498,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <img
           alt="Sikkerhetstiltak"
           src="location-pin.svg"
+          title="Sikkerhetstiltak"
         />
       </div>
       <div
