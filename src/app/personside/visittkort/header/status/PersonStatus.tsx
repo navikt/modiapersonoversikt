@@ -4,7 +4,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { BostatusTyper, Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
-import { Statsborgerskap } from './Statsborgerskap';
+import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
 import { AntallBarn } from './Antallbarn';
 
