@@ -5,8 +5,10 @@ interface Props {
     sivilstand: Sivilstand;
 }
 
-export function Sivilstand({sivilstand}: Props) {
+export function Sivilstand({ sivilstand }: Props) {
     return (
-        <>{sivilstand.beskrivelse}</>
+        <li title="Sivilstand">
+            {sivilstand.beskrivelse}
+        </li>
     );
 }
