@@ -1,8 +1,10 @@
 import FakerStatic = Faker.FakerStatic;
-import { getPerson } from './personMock';
+import * as moment from 'moment';
+
+import { getPersonstatus } from './personMock';
 import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
 import { vektetSjanse } from '../utils/mock-utils';
-import { seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
+import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 
 export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: Sivilstand) {
     let relasjoner: Familierelasjon[] = [];
@@ -11,7 +13,9 @@ export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilsta
     }
 
     if (sivilstand.value === SivilstandTyper.Gift) {
-        relasjoner.push(lagEktefelle(faker));
+        relasjoner.push(lagPartner(faker, Relasjonstype.Ektefelle));
+    } else if (sivilstand.value === SivilstandTyper.Samboer) {
+        relasjoner.push(lagPartner(faker, Relasjonstype.Samboer));
     }
 
     return relasjoner;
@@ -39,29 +43,45 @@ function kalkulerAntallBarn(faker: FakerStatic, foreldresAlder: number) {
 function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
     const maxAlder = foreldresAlder - 18;
     const minAlder = Math.max(foreldresAlder - 50, 0);
-    const barnet = getPerson(seededTilfeldigFodselsnummer(faker, minAlder, maxAlder));
+    const barnetsFødselsnummer = seededTilfeldigFodselsnummer(faker, minAlder, maxAlder);
+    const alder = moment().diff(getFodselsdato(barnetsFødselsnummer), 'years');
+
     return {
         harSammeBosted: vektetSjanse(faker, 0.7),
         rolle: Relasjonstype.Barn,
         tilPerson: {
-            navn: barnet.navn,
-            alder: barnet.alder,
-            fødselsnummer: barnet.fødselsnummer,
-            personstatus: barnet.personstatus
+            navn: lagNavn(faker),
+            alder: alder,
+            fødselsnummer: barnetsFødselsnummer,
+            personstatus: getPersonstatus(alder)
         },
     };
 }
 
-function lagEktefelle(faker: FakerStatic): Familierelasjon {
-    const ektefelle = getPerson(seededTilfeldigFodselsnummer(faker, 18, 100));
+function lagPartner(faker: FakerStatic, relasjonstype: Relasjonstype): Familierelasjon {
+    const partnersFødslesnummer = seededTilfeldigFodselsnummer(faker, 18, 100);
+    const alder = moment().diff(getFodselsdato(partnersFødslesnummer), 'years');
     return {
         harSammeBosted: vektetSjanse(faker, 0.9),
-        rolle: Relasjonstype.Ektefelle,
+        rolle: relasjonstype,
         tilPerson: {
-            navn: ektefelle.navn,
-            alder: ektefelle.alder,
-            fødselsnummer: ektefelle.fødselsnummer,
-            personstatus: ektefelle.personstatus
+            navn: lagNavn(faker),
+            alder: alder,
+            fødselsnummer: partnersFødslesnummer,
+            personstatus: getPersonstatus(alder)
         }
+    };
+}
+
+function lagNavn(faker: FakerStatic) {
+    const fornavn = faker.name.firstName();
+    const etternavn = faker.name.lastName();
+    const mellomnavn = '';
+
+    return {
+        fornavn: fornavn,
+        etternavn: etternavn,
+        mellomnavn: mellomnavn,
+        sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
     };
 }
