@@ -39,14 +39,14 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         },
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
-        personstatus: getStatus(alder),
+        personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand)
     };
 }
 
-function getStatus(alder: number): Bostatus {
+export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
     const dødsdato = bostatus === BostatusTyper.Død ? moment(faker.date.past(alder))
         .format(moment.ISO_8601.__momentBuiltinFormatBrand) : undefined;

@@ -3,9 +3,9 @@ import * as moment from 'moment';
 
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
-
 import VisittkortElement from '../VisittkortElement';
-import { Familierelasjon, getPartner, Person } from '../../../../../models/person';
+
+import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../models/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 
@@ -17,15 +17,15 @@ interface Props {
 
 interface PartnerProps {
     relasjon: Familierelasjon;
-    fraOgMed: string;
+    sivilstand: Sivilstand;
 }
 
-function Partner({relasjon, fraOgMed}: PartnerProps) {
+function Partner({relasjon, sivilstand}: PartnerProps) {
 
-    const relasjonFraOgMed = moment(fraOgMed).format('DD.MM.YYYY');
+    const relasjonFraOgMed = moment(sivilstand.fraOgMed).format('DD.MM.YYYY');
     return (
         <>
-            <UndertekstBold>Gift ({relasjonFraOgMed})</UndertekstBold>
+            <UndertekstBold>{sivilstand.beskrivelse} ({relasjonFraOgMed})</UndertekstBold>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
             <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
@@ -40,7 +40,7 @@ function SivilstandVisning({person}: Props) {
     }
 
     return (
-        <Partner relasjon={partner} fraOgMed={person.sivilstand.fraOgMed}/>
+        <Partner relasjon={partner} sivilstand={person.sivilstand}/>
     );
 }
 
