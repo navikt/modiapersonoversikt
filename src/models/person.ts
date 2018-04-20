@@ -96,3 +96,25 @@ export function getPartner(person: Person) {
     ];
     return person.familierelasjoner.find(relasjon => aktuelleRelasjoner.includes(relasjon.rolle));
 }
+
+export function getMorOgFar(familierelasjoner: Familierelasjon[]) {
+    let foreldre: Familierelasjon[] = [];
+    const mor = getMor(familierelasjoner);
+    const far = getFar(familierelasjoner);
+
+    if (mor) {
+        foreldre.push(mor);
+    }
+    if (far) {
+        foreldre.push(far);
+    }
+    return foreldre;
+}
+
+export function getMor(familierelasjoner: Familierelasjon[]) {
+    return familierelasjoner.find(relasjon => relasjon.rolle === Relasjonstype.Mor);
+}
+
+export function getFar(familierelasjoner: Familierelasjon[]) {
+    return familierelasjoner.find(relasjon => relasjon.rolle === Relasjonstype.Far);
+}
