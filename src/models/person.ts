@@ -53,7 +53,9 @@ export enum Relasjonstype {
     Samboer = 'SAMBOER',
     Partner = 'PARTNER',
     Ektefelle = 'EKTE',
-    Gift = 'GIFT'
+    Gift = 'GIFT',
+    Mor = 'MORA',
+    Far = 'FARA'
 }
 
 export interface Sivilstand {
