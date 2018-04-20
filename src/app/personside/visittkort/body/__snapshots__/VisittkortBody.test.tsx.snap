@@ -45,7 +45,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-undertekst"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
+            Ingen registrert adresse
           </p>
         </div>
       </div>
@@ -56,7 +56,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Postadresse Midlertidig Norge"
+            alt="Postadresse Alternativ"
             src="location-pin.svg"
           />
         </div>
@@ -69,13 +69,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-gqjmRU dugoZX"
             >
-              Postadresse Midlertidig Norge
+              Postadresse Alternativ
             </span>
           </p>
           <p
             className="typo-undertekst"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, ipsum.
+            Ingen registrert adresse
           </p>
         </div>
       </div>
