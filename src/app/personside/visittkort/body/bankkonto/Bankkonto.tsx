@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { Person } from '../../../../../models/person';
+import styled from 'styled-components';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import VisittkortElement from '../VisittkortElement';
+import { Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
-import VisittkortElement from '../VisittkortElement';
-import { formatNumber } from '../../../../../utils/helpers';
 
 const coinsPath = require('../../../../../resources/svg/coins.svg');
+
+const Kontonummer = styled.span`
+  span:not(:last-child):after {
+    content: '.';
+  }
+`;
 
 interface BankkontoProps {
     person: Person;
@@ -15,9 +21,13 @@ interface BankkontoProps {
 
 function formaterKontonummer(kontonummer: string) {
     if (kontonummer.length === 11) {
-        return formatNumber('#### ## #####', kontonummer);
+        return [
+            kontonummer.substr(0, 4),
+            kontonummer.substr(4, 2),
+            kontonummer.substr(6, 5)
+        ];
     } else {
-        return kontonummer;
+        return [kontonummer];
     }
 }
 
@@ -36,7 +46,13 @@ function kontoinfo(person: Person) {
         const formatertKontonummer = formaterKontonummer(String(person.bankkonto.kontonummer));
         return (
             <>
-                <Undertekst>{formatertKontonummer}</Undertekst>
+                <Undertekst>
+                    <Kontonummer>
+                        {formatertKontonummer.map(
+                            (delString, index) => <span key={index}>{delString}</span>
+                        )}
+                    </Kontonummer>
+                </Undertekst>
                 <EtikettLiten>Endret {formatertDato} {endretAv}</EtikettLiten>
             </>
         );
