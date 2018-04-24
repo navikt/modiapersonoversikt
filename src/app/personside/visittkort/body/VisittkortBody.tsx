@@ -6,8 +6,9 @@ import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 
 import { Component } from 'react';
-import { AdressePlaceholder, SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
+import { SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
+import Adresse from './adresse/Adresse';
 import Familie from './familie/Familie';
 
 interface VisittkortBodyProps {
@@ -17,7 +18,7 @@ interface VisittkortBodyProps {
 function Kontakt(person: Person) {
     return (
         <InfoGruppe tittel={'Kontakt'}>
-            <AdressePlaceholder/>
+            <Adresse  person={person}/>
             <EpostContainer/>
             <MobiltelefonContainer/>
             <Bankkonto person={person}/>
