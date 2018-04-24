@@ -2,30 +2,12 @@ import * as React from 'react';
 import VisittkortElement from './VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const locationPath = require('../../../../resources/svg/location-pin.svg');
-
-export function AdressePlaceholder() {
-    return (
-        <>
-            <VisittkortElement beskrivelse="Postadresse Folkeregistrert" ikonPath={locationPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Facilis neque nobis sint tempora. Quos, tenetur!
-                </Undertekst>
-            </VisittkortElement>
-            <VisittkortElement beskrivelse="Postadresse Midlertidig Norge" ikonPath={locationPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Et, ipsum.
-                </Undertekst>
-            </VisittkortElement>
-        </>
-    );
-}
+const vergemålIkon = require('./vergemål.svg');
+const sikkerhetsTiltakIkon = require('./sikkerhetstiltak.svg');
 
 export const VergeMålPlaceholder = (
     <>
-        <VisittkortElement beskrivelse="Bruker er under vergemål" ikonPath={locationPath}>
+        <VisittkortElement beskrivelse="Bruker er under vergemål" ikonPath={vergemålIkon}>
             <Undertekst>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Facilis neque nobis sint tempora. Quos, tenetur!
@@ -36,7 +18,7 @@ export const VergeMålPlaceholder = (
 
 export const SikkerhetstiltakPlaceholder = (
     <>
-        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikonPath={locationPath}>
+        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikonPath={sikkerhetsTiltakIkon}>
             <Undertekst>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Facilis neque nobis sint tempora. Quos, tenetur!

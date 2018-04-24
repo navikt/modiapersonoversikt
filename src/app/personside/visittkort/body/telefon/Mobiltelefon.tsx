@@ -9,7 +9,7 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { formatNumber } from '../../../../../utils/helpers';
 
-const phonePath = require('../../../../../resources/svg/phone.svg');
+const phonePath = require('./phone.svg');
 
 interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;

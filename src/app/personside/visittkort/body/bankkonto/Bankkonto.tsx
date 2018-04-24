@@ -7,7 +7,7 @@ import { Person } from '../../../../../models/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 
-const coinsPath = require('../../../../../resources/svg/coins.svg');
+const coinsPath = require('./coins.svg');
 
 const Kontonummer = styled.span`
   span:not(:last-child):after {

@@ -9,7 +9,7 @@ import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 
-const heartPath = require('../../../../../resources/svg/heart.svg');
+const heartPath = require('./heart.svg');
 
 interface Props {
     person: Person;

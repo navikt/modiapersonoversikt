@@ -8,7 +8,7 @@ import { Periode, Personadresse } from '../../../../../models/personadresse';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 
-const locationPath = require('../../../../../resources/svg/location-pin.svg');
+const locationPath = require('./location-pin.svg');
 
 interface AdresseProps {
     person: Person;

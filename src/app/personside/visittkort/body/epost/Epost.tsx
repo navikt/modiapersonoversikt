@@ -8,7 +8,7 @@ import { Reducer } from '../../../../../redux/reducer';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { formaterDato } from '../../../../../utils/dateUtils';
 
-const emailPath = require('../../../../../resources/svg/email.svg');
+const emailPath = require('./email.svg');
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;
