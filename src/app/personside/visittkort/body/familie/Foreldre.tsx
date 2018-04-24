@@ -8,8 +8,8 @@ import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 
-const mannPath = require('../../../../../resources/svg/mann.svg');
-const kvinnePath = require('../../../../../resources/svg/kvinne.svg');
+const mannPath = require('./mann.svg');
+const kvinnePath = require('./kvinne.svg');
 
 interface Props {
     familierelasjoner: Familierelasjon[];
