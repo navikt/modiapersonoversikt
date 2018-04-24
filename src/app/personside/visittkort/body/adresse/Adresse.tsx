@@ -4,7 +4,7 @@ import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as personadresse from '../../../../../models/personadresse';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
-import {Periode, Personadresse} from '../../../../../models/personadresse';
+import { Periode, Personadresse } from '../../../../../models/personadresse';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 
@@ -36,7 +36,7 @@ function hentFolkeregistrertAdresse(person: Person) {
 }
 
 function hentMidlertidigAdresse(person: Person) {
-    if (person.alternativAdresse != null){
+    if (person.alternativAdresse != null) {
         return (
             <VisittkortElement beskrivelse={adressebeskrivelse(person.alternativAdresse)} ikonPath={locationPath}>
                 {formatterRiktigAdresse(person.alternativAdresse)}
