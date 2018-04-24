@@ -4,6 +4,7 @@ import { Dispatch } from 'react-redux';
 import { Action } from 'redux';
 import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { hentNavKontor, settBrukerUtenNavKontor } from './navkontor';
+import {erEgenAnsatt} from "./egenansatt";
 
 const { reducer, action, actionNames} = createActionsAndReducer('personinformasjon');
 
@@ -15,6 +16,7 @@ export function hentPerson(fødselsnummer: string, dispatch: Function) {
             } else {
                 dispatch(settBrukerUtenNavKontor());
             }
+            dispatch(erEgenAnsatt(fødselsnummer));
             return person;
         })
     );

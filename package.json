@@ -10,6 +10,7 @@
     "core-js": "^2.5.5",
     "cross-env": "^5.1.4",
     "history": "^4.7.2",
+    "jest": "^22.4.3",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.1",
     "nav-frontend-alertstriper": "^1.0.8",
