@@ -17,7 +17,7 @@ const onError = (
 
 function EtikkerWrapper(props: { person?: Person, egenAnsatt?: Egenansatt }) {
     if ( !props.person) {
-        return <p>Kunne ikke vise etikker</p>;
+        return <p>Kunne ikke vise etiketter</p>;
     }
     return <Etiketter person={props.person} egenAnsatt={props.egenAnsatt}/>;
 }
@@ -28,8 +28,8 @@ class EtiketterContainer extends React.Component<Props> {
         return (
             <Innholdslaster
                 avhengigheter={[this.props.egenAnsattReducer, this.props.personReducer]}
-                spinnerSize={'XXS'}
                 returnOnError={onError}
+                returnOnPending={null}
             >
             <EtikkerWrapper person={this.props.personReducer.data} egenAnsatt={this.props.egenAnsattReducer.data}/>
             </Innholdslaster>

@@ -7,7 +7,7 @@ export function erEgenAnsatt(fødselsnummer: String): Egenansatt {
 }
 
 function getEgenAnsattMarkering(): boolean {
-    if (vektetSjanse(faker, 0.9)) {
+    if (vektetSjanse(faker, 0.1)) {
         return true;
     } else {
         return false;
