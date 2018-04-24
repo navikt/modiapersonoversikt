@@ -1,3 +1,5 @@
+import { Personadresse } from './personadresse';
+
 export interface Person {
     navn: Navn;
     kjønn: Kjønn;
@@ -7,6 +9,9 @@ export interface Person {
     diskresjonskode?: string;
     bankkonto?: Bankkonto;
     statsborgerskap?: string;
+    folkeregistrertAdresse?: Personadresse;
+    alternativAdresse?: Personadresse;
+    postadresse?: Personadresse;
     personstatus: Bostatus;
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];

@@ -2,28 +2,8 @@ import * as React from 'react';
 import VisittkortElement from './VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const locationPath = require('./location-pin.svg');
 const vergemålIkon = require('./vergemål.svg');
 const sikkerhetsTiltakIkon = require('./sikkerhetstiltak.svg');
-
-export function AdressePlaceholder() {
-    return (
-        <>
-            <VisittkortElement beskrivelse="Postadresse Folkeregistrert" ikonPath={locationPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Facilis neque nobis sint tempora. Quos, tenetur!
-                </Undertekst>
-            </VisittkortElement>
-            <VisittkortElement beskrivelse="Postadresse Midlertidig Norge" ikonPath={locationPath}>
-                <Undertekst>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Et, ipsum.
-                </Undertekst>
-            </VisittkortElement>
-        </>
-    );
-}
 
 export const VergeMålPlaceholder = (
     <>

@@ -26,68 +26,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jiEKsw"
         >
           <img
-            alt="Postadresse Folkeregistrert"
-            src="location-pin.svg"
-            title="Postadresse Folkeregistrert"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Folkeregistrert
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jiEKsw"
-        >
-          <img
-            alt="Postadresse Midlertidig Norge"
-            src="location-pin.svg"
-            title="Postadresse Midlertidig Norge"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Midlertidig Norge
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, ipsum.
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jiEKsw"
-        >
-          <img
             alt="Epost Kontakt- og reservasjonsregisteret"
             src="email.svg"
             title="Epost Kontakt- og reservasjonsregisteret"
