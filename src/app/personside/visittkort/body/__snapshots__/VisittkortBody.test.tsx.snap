@@ -2,7 +2,7 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-cSHVUG dLfBzr"
+  className="sc-cSHVUG fZjYDH"
 >
   <div
     className="sc-kAzzGY hIoXoN"
@@ -23,7 +23,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Postadresse Folkeregistrert"
@@ -54,7 +54,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Postadresse Midlertidig Norge"
@@ -85,7 +85,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Epost Kontakt- og reservasjonsregisteret"
@@ -146,7 +146,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Telefon Kontakt- og reservasjonsregisteret"
@@ -207,7 +207,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Kontonummer"
@@ -251,7 +251,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Sivilstand"
@@ -295,7 +295,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-dnqmqq lhVNBn"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-iwsKbI jiEKsw"
         >
           <img
             alt="Brukers NavKontor"
@@ -462,11 +462,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       className="sc-dnqmqq lhVNBn"
     >
       <div
-        className="sc-iwsKbI jYIAlx"
+        className="sc-iwsKbI jiEKsw"
       >
         <img
           alt="Bruker er under vergemål"
-          src="location-pin.svg"
+          src="vergemål.svg"
           title="Bruker er under vergemål"
         />
       </div>
@@ -493,11 +493,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       className="sc-dnqmqq lhVNBn"
     >
       <div
-        className="sc-iwsKbI jYIAlx"
+        className="sc-iwsKbI jiEKsw"
       >
         <img
           alt="Sikkerhetstiltak"
-          src="location-pin.svg"
+          src="sikkerhetstiltak.svg"
           title="Sikkerhetstiltak"
         />
       </div>
