@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Visittkort from './Visittkort';
 import { AppState } from '../../../redux/reducer';
 import { Person } from '../../../models/person';
-import {Egenansatt} from "../../../models/egenansatt";
+import { Egenansatt } from '../../../models/egenansatt';
 
 interface VisittkortContainerProps {
     person: Person | undefined;

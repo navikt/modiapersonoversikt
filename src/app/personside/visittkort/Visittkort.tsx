@@ -5,11 +5,9 @@ import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import styled from 'styled-components';
-import {Egenansatt} from "../../../models/egenansatt";
 
 interface VisittkortProps {
     person: Person;
-    egenAnsatt: Egenansatt;
 }
 
 const VisittKortDiv = styled.article`

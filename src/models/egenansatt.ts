@@ -1,3 +1,3 @@
 export interface Egenansatt {
-    erEgenAnsatt : boolean;
+    erEgenAnsatt: boolean;
 }

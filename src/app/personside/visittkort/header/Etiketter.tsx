@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Person } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../constants';
-import {Egenansatt} from "../../../../models/egenansatt";
+import { Egenansatt } from '../../../../models/egenansatt';
 
 interface Props {
     person: Person;
@@ -29,7 +29,7 @@ function lagDiskresjonskodeEtikett(diskresjonskode: string) {
 }
 
 function lagEgenAnsattEtikett() {
-    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>
+    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
 }
 
 function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {

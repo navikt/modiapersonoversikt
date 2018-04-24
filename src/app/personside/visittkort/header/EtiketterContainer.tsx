@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Egenansatt } from '../../../../models/egenansatt';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { AppState, Reducer } from '../../../../redux/reducer';
-import { Person } from "../../../../models/person";
-import Etiketter from "./Etiketter";
+import { Person } from '../../../../models/person';
+import Etiketter from './Etiketter';
 
 interface Props {
     egenAnsattReducer: Reducer<Egenansatt>;

@@ -5,15 +5,13 @@ import NavKontorContainer from './NavKontorContainer';
 
 import { erDød, Person } from '../../../../models/person';
 import PersonStatus from './status/PersonStatus';
-import {Egenansatt} from "../../../../models/egenansatt";
-import EtiketterContainer from "./EtiketterContainer";
+import EtiketterContainer from './EtiketterContainer';
 
 const mannPath = require('../../../../resources/svg/mann.svg');
 const kvinnePath = require('../../../../resources/svg/kvinne.svg');
 
 interface VisittkortHeaderProps {
     person: Person;
-    egenAnsatt: Egenansatt;
 }
 
 const VisittkortHeaderDiv = styled.div`

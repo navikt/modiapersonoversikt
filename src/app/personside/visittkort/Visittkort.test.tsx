@@ -9,12 +9,11 @@ import { personinformasjonActionNames } from '../../../redux/personinformasjon';
 import { ThemeProvider } from 'styled-components';
 import { personOversiktTheme } from '../../../themes/personOversiktTheme';
 import { aremark } from '../../../mock/person/aremark';
-import { erEgenAnsatt } from '../../../mock/egenansatt-mock';
 
 const visittkort = mount((
     <ThemeProvider theme={personOversiktTheme}>
         <Provider store={testStore}>
-            <Visittkort person={aremark} egenAnsatt={erEgenAnsatt(aremark.fødselsnummer)}/>
+            <Visittkort person={aremark}/>
         </Provider>
     </ThemeProvider>
 ));
@@ -22,13 +21,13 @@ const visittkort = mount((
 testStore.dispatch({ type: personinformasjonActionNames.OK, data: aremark });
 
 test('viser visittkortheader når visittkort først rendres', () => {
-    expect(visittkort).toContainReact(<VisittkortHeader person={aremark} egenAnsatt={erEgenAnsatt(aremark.fødselsnummer)}/>);
+    expect(visittkort).toContainReact(<VisittkortHeader person={aremark}/>);
     expect(visittkort).not.toContainReact(<VisittkortBody person={aremark}/>);
 });
 
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
     visittkort.find('button.ekspanderbartPanel__hode').simulate('click');
 
-    expect(visittkort).toContainReact(<VisittkortHeader person={aremark} egenAnsatt={erEgenAnsatt(aremark.fødselsnummer)}/>);
+    expect(visittkort).toContainReact(<VisittkortHeader person={aremark}/>);
     expect(visittkort).toContainReact(<VisittkortBody person={aremark}/>);
 });

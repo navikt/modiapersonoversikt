@@ -5,13 +5,13 @@ import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import oppgaverReducer from './oppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
-import egenAnsattReducer from './egenansatt'
+import egenAnsattReducer from './egenansatt';
 import { STATUS } from './utils';
 import { Person } from '../models/person';
 import { Oppgave } from '../models/oppgave';
 import { NavKontor } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
-import { Egenansatt } from "../models/egenansatt";
+import { Egenansatt } from '../models/egenansatt';
 
 export interface AppState {
     personinformasjon: Reducer<Person>;
