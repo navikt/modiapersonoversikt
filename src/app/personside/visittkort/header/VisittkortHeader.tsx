@@ -6,6 +6,7 @@ import NavKontorContainer from './NavKontorContainer';
 import { erDød, Person } from '../../../../models/person';
 import Etiketter from './Etiketter';
 import PersonStatus from './status/PersonStatus';
+
 const mannPath = require('../../../../resources/svg/mann.svg');
 const kvinnePath = require('../../../../resources/svg/kvinne.svg');
 
@@ -21,7 +22,16 @@ const VisittkortHeaderDiv = styled.div`
 
 const VenstreFelt = styled.div`
   display: flex;
-  flex: 1 0 auto;
+  flex-grow: 1;
+`;
+
+const HøyreFelt = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 1em;
+  box-sizing: border-box;
 `;
 
 const IkonDiv = styled.div`
@@ -37,19 +47,12 @@ const InfoDiv = styled.div`
   text-align: left;
 `;
 
-const HøyreFelt = styled.div`
-  flex: 0 1 auto;
-  text-align: right;
-  padding-right: 1em;
-  box-sizing: border-box;
-`;
-
 interface PersonProps {
     person: Person;
 }
 
 function Navnelinje({person}: PersonProps) {
-    const alder = erDød(person) ? 'Død' : person.alder;
+    const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
             {person.navn.sammensatt} ({alder})
@@ -67,7 +70,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
 
             <VenstreFelt>
                 <IkonDiv>
-                    <img src={ikon.path} alt={ikon.alt}/>
+                    <img src={ikon.path} alt={ikon.alt} title={ikon.alt}/>
                 </IkonDiv>
                 <InfoDiv>
                     <Navnelinje person={person}/>

@@ -4,10 +4,12 @@ import EpostContainer from './epost/EpostContainer';
 import Bankkonto from './bankkonto/Bankkonto';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
+
 import { Component } from 'react';
-import { FamiliePlaceholder, SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
+import { SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Adresse from './adresse/Adresse';
+import Familie from './familie/Familie';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -24,12 +26,6 @@ function Kontakt(person: Person) {
     );
 }
 
-const Familie = (
-    <InfoGruppe tittel={'Familie'}>
-        <FamiliePlaceholder/>
-    </InfoGruppe>
-);
-
 const NavKontor = (
     <InfoGruppe tittel={'Navkontor'}>
         <NavKontorContainer/>
@@ -41,7 +37,7 @@ function OneColumnLayout(person: Person) {
         <>
             <Kolonne>
                 {Kontakt(person)}
-                {Familie}
+                <Familie person={person}/>
                 {NavKontor}
                 {VergeMålPlaceholder}
                 {SikkerhetstiltakPlaceholder}
@@ -55,7 +51,7 @@ function TwoColumnLayout(person: Person) {
         <>
             <Kolonne>
                 {Kontakt(person)}
-                {Familie}
+                <Familie person={person}/>
             </Kolonne>
             <Kolonne>
                 {NavKontor}
@@ -73,7 +69,7 @@ function ThreeColumnLayout(person: Person) {
                 {Kontakt(person)}
             </Kolonne>
             <Kolonne>
-                {Familie}
+                <Familie person={person}/>
                 {VergeMålPlaceholder}
             </Kolonne>
             <Kolonne>

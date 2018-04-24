@@ -82,8 +82,17 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
         props.navKontor.publikumsmottak.map((publikumsMottak) => publikumsMottakKontaktInfo(publikumsMottak));
     return (
         <>
+            <Undertekst>
+                {props.navKontor.enhetNavn} {props.navKontor.enhetId}
+            </Undertekst>
             {listeMedPublikumsMottak}
-            <Lenke>Dette er en lenke</Lenke>
+            <Lenke
+                href={`/norg2-frontend/#/startsok?enhetNr=${props.navKontor.enhetId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Mer informasjon om {props.navKontor.enhetNavn}
+            </Lenke>
         </>
     );
 }

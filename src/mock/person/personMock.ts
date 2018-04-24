@@ -1,10 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
-
-import { Bankkonto, BostatusTyper, Bostatus, Person } from '../../models/person';
-import { Diskresjonskoder } from '../../constants';
-import { vektetSjanse } from '../utils';
 import * as moment from 'moment';
-import { getSivilstand } from './siviltilstandMock';
 import {
     Endringsinfo,
     Gateadresse,
@@ -14,48 +9,15 @@ import {
     Utlandsadresse
 } from '../../models/personadresse';
 
-function erMann(fødselsnummer: string) {
-    return Number(fødselsnummer.charAt(8)) % 2 === 1;
-}
-
-export const aremark: Person = {
-    fødselsnummer: '10108000398',
-    kjønn: 'M',
-    geografiskTilknytning: '0118',
-    alder: 42,
-    navn: {
-        sammensatt: 'AREMARK TESTFAMILIEN',
-        fornavn: 'AREMARK',
-        mellomnavn: '',
-        etternavn: 'TESTFAMILIEN',
-    },
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
-    statsborgerskap: 'NORSK',
-    status: {
-        dødsdato: undefined,
-        bostatus: undefined
-    },
-    sivilstand: {
-        value: 'GIFT',
-        beskrivelse: 'Gift'
-    }
-};
-
-export const bankkontoNorsk: Bankkonto = {
-    erNorskKonto: true,
-    bank: 'Nordea ASA',
-    kontonummer: Number(faker.finance.account(11)),
-    sistEndretAv: '1010800 BD03',
-    sistEndret: getSistOppdatert(),
-};
-
-export const bankkontoUtland: Bankkonto = {
-    erNorskKonto: false,
-    bank: 'BBVA',
-    kontonummer: Number(faker.finance.account(9)),
-    sistEndretAv: '1010800 BD03',
-    sistEndret: getSistOppdatert(),
-};
+import { Bostatus, BostatusTyper, Person } from '../../models/person';
+import { Diskresjonskoder } from '../../constants';
+import { getSivilstand } from './sivilstandMock';
+import { getFamilierelasjoner } from './familerelasjonerMock';
+import { getFodselsdato } from '../utils/fnr-utils';
+import { aremark } from './aremark';
+import { vektetSjanse } from '../utils/mock-utils';
+import { getBankKonto } from './bankkontoMock';
+import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 
 export const gateadresse: Gateadresse = {
     tilleggsadresse: 'Tillegsgaten 1',
@@ -96,10 +58,11 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
     const fornavn = getFornavn(fødselsnummer);
     const etternavn = faker.name.lastName();
     const mellomnavn = '';
-    const alder = faker.random.number(100);
+    const alder = moment().diff(getFodselsdato(fødselsnummer), 'years');
+    const sivilstand = getSivilstand(getFodselsdato(fødselsnummer), faker);
     return {
         fødselsnummer: fødselsnummer,
-        kjønn: erMann(fødselsnummer) ? 'M' : 'K',
+        kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: {
@@ -110,18 +73,20 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         },
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
-        status: getStatus(alder),
+        personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
-        sivilstand: getSivilstand(alder, faker),
         folkeregistrertAdresse: getTilfeldigAdresse(),
         alternativAdresse: getTilfeldigAdresse(),
-        postadresse: getTilfeldigAdresse()
+        postadresse: getTilfeldigAdresse(),
+        sivilstand: sivilstand,
+        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand)
     };
 }
 
-function getStatus(alder: number): Bostatus {
+export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
-    const dødsdato = bostatus === BostatusTyper.Død ? faker.date.past(alder).toString() : undefined;
+    const dødsdato = bostatus === BostatusTyper.Død ? moment(faker.date.past(alder))
+        .format(moment.ISO_8601.__momentBuiltinFormatBrand) : undefined;
     return {
         bostatus,
         dødsdato
@@ -133,16 +98,6 @@ function getBostatus() {
         return BostatusTyper.Død;
     } else if (vektetSjanse(faker, 0.1)) {
         return BostatusTyper.Utvandret;
-    } else {
-        return undefined;
-    }
-}
-
-function getBankKonto(): Bankkonto | undefined {
-    if (vektetSjanse(faker, 0.7)) {
-        return bankkontoNorsk;
-    } else if (vektetSjanse(faker, 0.2)) {
-        return bankkontoUtland;
     } else {
         return undefined;
     }
@@ -167,8 +122,10 @@ function getFornavn(fødselsnummer: string): string {
 }
 
 function getGeografiskTilknytning() {
-    if (vektetSjanse(faker, 0.8)) {
-        return String(faker.random.number(9999));
+    if (vektetSjanse(faker, 0.7)) {
+        return String(faker.random.number({min: 1000, max: 9999}));
+    } else if (vektetSjanse(faker, 0.15)) {
+        return faker.address.countryCode();
     } else {
         return undefined;
     }

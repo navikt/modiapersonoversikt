@@ -2,6 +2,8 @@ image: navikt/modiapersonoversikt
 port: 80
 fasitResources:
   used:
+    - alias: loadbalancer:modiapersonoversikt
+      resourceType: loadbalancerconfig
     - alias: iadecorator-js
       resourceType: restservice
     - alias: personoversiktAPI
