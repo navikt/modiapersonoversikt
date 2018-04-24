@@ -8,7 +8,7 @@ import { getSivilstand } from './siviltilstandMock';
 import {
     Endringsinfo,
     Gateadresse,
-    Matrikkeladresse,
+    Matrikkeladresse, Periode,
     Personadresse,
     UstrukturertAdresse,
     Utlandsadresse
@@ -62,18 +62,21 @@ export const gateadresse: Gateadresse = {
     gatenavn: 'Tilfeldighetsgaten',
     husnummer: '3',
     postnummer: '0666',
-    poststed: 'HELL'
+    poststed: 'HELL',
+    periode: getPeriode()
 };
 
 export const matrikkeladresse: Matrikkeladresse = {
    eiendomsnavn: 'Bogstad Gård',
    postnummer: '1234',
-   poststed: 'OSLO'
+   poststed: 'OSLO',
+   periode: getPeriode()
 };
 
 export const utlandsadresse: Utlandsadresse = {
     landkode: 'BM',
-    adresselinje: 'Hytte 2, Stranda, Bahamas'
+    adresselinje: 'Hytte 2, Stranda, Bahamas',
+    periode: getPeriode()
 };
 
 export const ustrukturertAdresse: UstrukturertAdresse = {
@@ -211,5 +214,12 @@ function getEndringsinfo(): Endringsinfo {
     return {
         sistEndret: getSistOppdatert(),
         sistEndretAv: 'AA001'
+    };
+}
+
+function getPeriode(): Periode {
+    return {
+        fra: getSistOppdatert(),
+        til: getSistOppdatert()
     };
 }

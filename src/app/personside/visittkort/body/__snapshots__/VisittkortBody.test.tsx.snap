@@ -26,66 +26,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-iwsKbI jYIAlx"
         >
           <img
-            alt="Postadresse Folkeregistrert"
-            src="location-pin.svg"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Folkeregistrert
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Ingen registrert adresse
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
-            alt="Postadresse Alternativ"
-            src="location-pin.svg"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Alternativ
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Ingen registrert adresse
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
             alt="Epost Kontakt og reservasjonsregisteret"
             src="email.svg"
           />

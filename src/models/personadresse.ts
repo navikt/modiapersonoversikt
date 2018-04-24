@@ -4,6 +4,11 @@ export interface Endringsinfo {
     sistEndret: string;
 }
 
+export interface Periode {
+    fra: string;
+    til: string;
+}
+
 export interface Personadresse {
     endringsinfo?: Endringsinfo;
     gateadresse?: Gateadresse;
@@ -12,27 +17,30 @@ export interface Personadresse {
     ustrukturert?: UstrukturertAdresse;
 }
 
-export interface Gateadresse extends Personadresse {
+export interface Gateadresse {
     tilleggsadresse?: string;
     gatenavn: string;
     husnummer?: string;
     husbokstav?: string;
     postnummer: string;
     poststed: string;
+    periode?: Periode;
 }
 
-export interface Matrikkeladresse extends Personadresse {
+export interface Matrikkeladresse {
     tillegsadresse?: string;
     eiendomsnavn?: string;
     postnummer: string;
     poststed: string;
+    periode?: Periode;
 }
 
-export interface Utlandsadresse extends Personadresse {
+export interface Utlandsadresse {
     landkode?: string;
     adresselinje: string;
+    periode?: Periode;
 }
 
-export interface UstrukturertAdresse extends Personadresse {
+export interface UstrukturertAdresse {
     adresselinje: string;
 }
