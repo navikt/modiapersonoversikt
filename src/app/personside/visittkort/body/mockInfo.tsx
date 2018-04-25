@@ -2,7 +2,7 @@ import * as React from 'react';
 import VisittkortElement from './VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const vergemålIkon = require('./vergemål.svg');
+const vergemålIkon = require('./vergemaal.svg');
 const sikkerhetsTiltakIkon = require('./sikkerhetstiltak.svg');
 
 export const VergeMålPlaceholder = (
