@@ -21,12 +21,12 @@ export function setupMock() {
     const STATUS_OK = () => 200;
 
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
-        50,
+        800,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 
     mock.get(apiBaseUri + '/egenansatt/:fodselsnummer', withDelayedResponse(
-        800,
+        50,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))));
 

@@ -64,6 +64,9 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   <div
     className="sc-bZQynM iwaBxj"
   >
+    <div
+      className="sc-bxivhb ezGmfP"
+    />
     <span
       className="typo-undertekst"
     >
