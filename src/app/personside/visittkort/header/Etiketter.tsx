@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { Person } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../konstanter';
+import { Egenansatt } from '../../../../models/egenansatt';
 
 interface Props {
     person: Person;
     egenAnsatt?: Egenansatt;
 }
 
-const EtikettContainer = styled.div`
+const StyledEtikketter = styled.div`
   > * {
     margin: 3px;
   }
@@ -45,9 +46,9 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
 function Etiketter( {person, egenAnsatt}: Props) {
     const etiketter = lagEtiketter(person, egenAnsatt);
     return (
-        <EtikettContainer>
+        <StyledEtikketter>
             {etiketter}
-        </EtikettContainer>
+        </StyledEtikketter>
     );
 }
 

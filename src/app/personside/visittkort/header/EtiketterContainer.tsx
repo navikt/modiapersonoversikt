@@ -12,7 +12,7 @@ interface Props {
 }
 
 const onError = (
-    <em>Problemer med å hente eventuell egenAnsatt-markering</em>
+    <em>Problemer med å hente etiketter</em>
 );
 
 function EtikkerWrapper(props: { person?: Person, egenAnsatt?: Egenansatt }) {
@@ -31,7 +31,7 @@ class EtiketterContainer extends React.Component<Props> {
                 returnOnError={onError}
                 returnOnPending={null}
             >
-            <EtikkerWrapper person={this.props.personReducer.data} egenAnsatt={this.props.egenAnsattReducer.data}/>
+                <EtikkerWrapper person={this.props.personReducer.data} egenAnsatt={this.props.egenAnsattReducer.data}/>
             </Innholdslaster>
         );
     }
