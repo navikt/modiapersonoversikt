@@ -2,19 +2,19 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-cSHVUG fZjYDH"
+  className="sc-kAzzGY blJalX"
 >
   <div
-    className="sc-kAzzGY hIoXoN"
+    className="sc-chPdSV iVsIdv"
   >
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kgoBCf jnYcFc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kGXeez gjUZxU"
         >
           Kontakt
         </span>
@@ -174,13 +174,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kgoBCf jnYcFc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kGXeez gjUZxU"
         >
           Familie
         </span>
@@ -218,13 +218,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kgoBCf jnYcFc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kGXeez gjUZxU"
         >
           Navkontor
         </span>
@@ -276,17 +276,21 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-etikett-liten"
             >
-              Åpningstider
+              <span
+                className="sc-VigVT jpNKGc"
+              >
+                Åpningstider
+              </span>
             </p>
             <dl
-              className="sc-jzJRlG jDxxvr"
+              className="sc-cSHVUG fFOBYt"
             >
               <dt>
                 <p
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     mandag
                   </span>
@@ -306,7 +310,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     tirsdag
                   </span>
@@ -326,7 +330,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     onsdag
                   </span>
@@ -346,7 +350,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     torsdag
                   </span>
@@ -366,7 +370,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     fredag
                   </span>
@@ -385,7 +389,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <br />
           </div>
           <a
-            className="sc-jTzLTM gGmsqn"
+            className="sc-fjdhpX dFFxLR"
             href="/norg2-frontend/#/startsok?enhetNr=0118"
             rel="noopener noreferrer"
             target="_blank"

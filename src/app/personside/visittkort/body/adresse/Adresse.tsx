@@ -3,10 +3,10 @@ import { Person } from '../../../../../models/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as personadresse from '../../../../../models/personadresse';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Periode, Personadresse } from '../../../../../models/personadresse';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
+import EtikettMini from '../../../../../components/EtikettMini';
 
 const locationPath = require('./location-pin.svg');
 
@@ -85,8 +85,8 @@ function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
     const endringstekst = hentEndringstekst(adresse);
     return (
         <>
-            {endringstekst}
             {adressetekst}
+            {endringstekst}
         </>
     );
 }
@@ -96,9 +96,9 @@ function hentEndringstekst(adresse: Personadresse) {
         const formattertdato = formaterDato(adresse.endringsinfo.sistEndret);
         const endretAv = endretAvTekst(adresse.endringsinfo.sistEndretAv);
         return (
-            <Undertekst>
+            <EtikettMini>
                 Endret {formattertdato} {endretAv}
-            </Undertekst>
+            </EtikettMini>
         );
     } else {
         return null;
@@ -112,8 +112,8 @@ function formatterGateadresse(adresse: personadresse.Gateadresse) {
     return (
         <div key={gateadresse}>
             {hentPeriode(adresse.periode)}
-            <EtikettLiten>{gateadresse}</EtikettLiten>
-            <EtikettLiten>{poststed}</EtikettLiten>
+            <Undertekst>{gateadresse}</Undertekst>
+            <Undertekst>{poststed}</Undertekst>
         </div>
     );
 }
@@ -125,8 +125,8 @@ function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
     return (
         <div key={eiendom}>
             {hentPeriode(adresse.periode)}
-            <EtikettLiten>{eiendom}</EtikettLiten>
-            <EtikettLiten>{poststed}</EtikettLiten>
+            <Undertekst>{eiendom}</Undertekst>
+            <Undertekst>{poststed}</Undertekst>
         </div>
     );
 }
@@ -137,14 +137,14 @@ function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse) {
     return (
         <div key={landkode}>
             {hentPeriode(adresse.periode)}
-            <EtikettLiten>{adresse.adresselinje}, {landkode}</EtikettLiten>
+            <Undertekst>{adresse.adresselinje}, {landkode}</Undertekst>
         </div>
     );
 }
 
 function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {
     return (
-        <EtikettLiten>{adresse.adresselinje}</EtikettLiten>
+        <Undertekst>{adresse.adresselinje}</Undertekst>
     );
 }
 
@@ -153,7 +153,7 @@ function hentPeriode(periode?: Periode) {
         const fra = formaterDato(periode.fra);
         const til = formaterDato(periode.til);
         return (
-            <EtikettLiten>{fra} - {til}</EtikettLiten>
+            <Undertekst>{fra} - {til}</Undertekst>
         );
     }
     return null;
