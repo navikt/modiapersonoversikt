@@ -11,7 +11,7 @@ test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
         <Provider store={testStore}><VisittkortHeader person={aremark} /></Provider>
     );
-
+    
     testStore.dispatch({type: actionNames.OK, data: getMockNavKontor('0118')});
 
     const json = visittkortheader.toJSON();
