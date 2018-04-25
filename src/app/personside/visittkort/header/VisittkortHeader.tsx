@@ -4,8 +4,8 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './NavKontorContainer';
 
 import { erDød, Person } from '../../../../models/person';
-import Etiketter from './Etiketter';
 import PersonStatus from './status/PersonStatus';
+import EtiketterContainer from './EtiketterContainer';
 
 const mannPath = require('../body/familie/mann.svg');
 const kvinnePath = require('../body/familie/kvinne.svg');
@@ -79,7 +79,7 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
             </VenstreFelt>
 
             <HøyreFelt>
-                <Etiketter person={person}/>
+                <EtiketterContainer />
                 <NavKontorContainer />
             </HøyreFelt>
 

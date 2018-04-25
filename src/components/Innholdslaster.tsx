@@ -9,7 +9,7 @@ interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild;
     avhengigheter: Reducer<object>[];
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
-    returnOnPending?: React.ReactChildren | React.ReactChild;
+    returnOnPending?: React.ReactChildren | React.ReactChild | null;
     returnOnError?: React.ReactChildren | React.ReactChild;
 }
 
@@ -29,6 +29,8 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
                     Feil ved lasting av data
                 </AlertStripe>
             );
+        } else if (this.props.returnOnPending === null) {
+            return null;
         } else {
             return this.props.returnOnPending || (
                 <NavFrontendSpinner type={this.props.spinnerSize || 'XXL'}/>

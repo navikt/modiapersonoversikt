@@ -404,7 +404,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <img
           alt="Bruker er under vergemål"
-          src="vergemål.svg"
+          src="vergemaal.svg"
           title="Bruker er under vergemål"
         />
       </div>

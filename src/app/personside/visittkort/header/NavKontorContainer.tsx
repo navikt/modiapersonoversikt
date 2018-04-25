@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { NavKontor } from '../../../../models/navkontor';
 import { AppState, Reducer } from '../../../../redux/reducer';
-import Innholdslaster from '../../../../components/Innholdslaster';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import Innholdslaster from '../../../../components/Innholdslaster';
 import styled from 'styled-components';
 
 interface Props {

@@ -21,7 +21,7 @@ class VisittkortContainer extends React.Component<VisittkortContainerProps> {
 }
 const mapStateToProps = (state: AppState) => {
     return ({
-        person: state.personinformasjon.data
+        person: state.personinformasjon.data,
     });
 };
 
