@@ -16,7 +16,6 @@ export function hentPerson(fødselsnummer: string, dispatch: Function) {
             } else {
                 dispatch(settBrukerUtenNavKontor());
             }
-            dispatch(erEgenAnsatt(fødselsnummer));
             return person;
         })
     );
@@ -25,6 +24,7 @@ export function hentPerson(fødselsnummer: string, dispatch: Function) {
 export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: string) {
     dispatch(hentPerson(fødselsnummer, dispatch));
     dispatch(hentKontaktinformasjon(fødselsnummer));
+    dispatch(erEgenAnsatt(fødselsnummer));
 }
 export const personinformasjonActionNames = actionNames;
 

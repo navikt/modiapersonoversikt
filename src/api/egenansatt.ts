@@ -8,10 +8,6 @@ export function getEgenAnsatt(fødeselsnummer: string): Promise<Egenansatt> {
         .then((response) => {
             if (response.ok) {
                 return response.json();
-            } else if (response.status === 404) {
-                return new Promise((resolve) => {
-                    resolve(undefined);
-                });
             } else {
                 throw response.statusText;
             }
