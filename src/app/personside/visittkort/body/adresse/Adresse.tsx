@@ -112,6 +112,7 @@ function formatterGateadresse(adresse: personadresse.Gateadresse) {
     return (
         <div key={gateadresse}>
             {hentPeriode(adresse.periode)}
+            {hentTilleggsadresse(adresse.tilleggsadresse)}
             <EtikettLiten>{gateadresse}</EtikettLiten>
             <EtikettLiten>{poststed}</EtikettLiten>
         </div>
@@ -125,6 +126,7 @@ function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
     return (
         <div key={eiendom}>
             {hentPeriode(adresse.periode)}
+            {hentTilleggsadresse(adresse.tilleggsadresse)}
             <EtikettLiten>{eiendom}</EtikettLiten>
             <EtikettLiten>{poststed}</EtikettLiten>
         </div>
@@ -154,6 +156,15 @@ function hentPeriode(periode?: Periode) {
         const til = formaterDato(periode.til);
         return (
             <EtikettLiten>{fra} - {til}</EtikettLiten>
+        );
+    }
+    return null;
+}
+
+function hentTilleggsadresse(tilleggsadresse?: string) {
+    if (tilleggsadresse != null) {
+        return (
+            <EtikettLiten>{tilleggsadresse}</EtikettLiten>
         );
     }
     return null;
