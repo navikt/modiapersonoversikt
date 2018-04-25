@@ -155,7 +155,7 @@ function hentPeriode(periode?: Periode) {
         const fra = formaterDato(periode.fra);
         const til = formaterDato(periode.til);
         return (
-            <EtikettMini>{fra} - {til}</EtikettMini>
+            <EtikettMini>Gyldig: {fra} - {til}</EtikettMini>
         );
     }
     return null;
