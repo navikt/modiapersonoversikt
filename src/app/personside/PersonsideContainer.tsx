@@ -5,7 +5,7 @@ import { Action } from 'redux';
 
 import { AppState } from '../../redux/reducer';
 import { hentAllPersonData } from '../../redux/personinformasjon';
-import renderDecoratorHead from '../../menyConfig';
+import renderDecoratorHead from '../../decorator';
 import Personside from './Personside';
 import { fjernPersonFraKontekst, settNyPersonIKontekst } from '../routes/routing';
 

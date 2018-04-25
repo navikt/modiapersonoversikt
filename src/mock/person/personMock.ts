@@ -10,7 +10,7 @@ import {
 } from '../../models/personadresse';
 
 import { Bostatus, BostatusTyper, Person } from '../../models/person';
-import { Diskresjonskoder } from '../../constants';
+import { Diskresjonskoder } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
 import { getFodselsdato } from '../utils/fnr-utils';
