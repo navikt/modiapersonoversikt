@@ -5,9 +5,9 @@ import VisittkortElement from '../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { formatNumber } from '../../../../../utils/helpers';
+import EtikettMini from '../../../../../components/EtikettMini';
 
 const phonePath = require('./phone.svg');
 
@@ -29,7 +29,7 @@ function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     return (
         <>
             <Undertekst>{formatertTelefonnummer}</Undertekst>
-            <EtikettLiten>Endret {formatertDato}</EtikettLiten>
+            <EtikettMini>Endret {formatertDato}</EtikettMini>
         </>
     );
 }
