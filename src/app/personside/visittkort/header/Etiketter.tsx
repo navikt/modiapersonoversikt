@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 import { Person } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
-import { Diskresjonskoder } from '../../../../constants';
-import { Egenansatt } from '../../../../models/egenansatt';
+import { Diskresjonskoder } from '../../../../konstanter';
 
 interface Props {
     person: Person;

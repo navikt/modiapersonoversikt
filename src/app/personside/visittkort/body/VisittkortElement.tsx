@@ -19,7 +19,6 @@ const IkonDiv = styled.div`
   text-align: center;
   > img {
     height: 25px;
-    opacity: 0.5;
   }
 `;
 

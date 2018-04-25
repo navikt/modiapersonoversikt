@@ -7,8 +7,8 @@ import { erDød, Person } from '../../../../models/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './EtiketterContainer';
 
-const mannPath = require('../../../../resources/svg/mann.svg');
-const kvinnePath = require('../../../../resources/svg/kvinne.svg');
+const mannPath = require('../body/familie/mann.svg');
+const kvinnePath = require('../body/familie/kvinne.svg');
 
 interface VisittkortHeaderProps {
     person: Person;
