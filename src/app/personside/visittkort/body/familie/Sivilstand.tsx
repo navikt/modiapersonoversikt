@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as moment from 'moment';
 
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import VisittkortElement from '../VisittkortElement';
 
 import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../models/person';
@@ -25,7 +24,7 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
     const relasjonFraOgMed = moment(sivilstand.fraOgMed).format('DD.MM.YYYY');
     return (
         <>
-            <UndertekstBold>{sivilstand.beskrivelse} ({relasjonFraOgMed})</UndertekstBold>
+            <Undertekst>{sivilstand.beskrivelse} ({relasjonFraOgMed})</Undertekst>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
             <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
@@ -36,7 +35,7 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
 function SivilstandVisning({person}: Props) {
     const partner = getPartner(person);
     if (!partner) {
-        return <UndertekstBold>{person.sivilstand.beskrivelse}</UndertekstBold>;
+        return <Undertekst>{person.sivilstand.beskrivelse}</Undertekst>;
     }
 
     return (

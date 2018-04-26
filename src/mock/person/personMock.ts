@@ -76,8 +76,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
         folkeregistrertAdresse: getTilfeldigAdresse(),
-        alternativAdresse: getTilfeldigAdresse(),
-        postadresse: getTilfeldigAdresse(),
+        alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
+        postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand)
     };
