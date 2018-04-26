@@ -28,7 +28,7 @@ export interface Gateadresse {
 }
 
 export interface Matrikkeladresse {
-    tillegsadresse?: string;
+    tilleggsadresse?: string;
     eiendomsnavn?: string;
     postnummer: string;
     poststed: string;
