@@ -3,17 +3,26 @@ import { Moment } from 'moment';
 import fnrGenerator from 'fnr-generator';
 import * as faker from 'faker/locale/nb_NO';
 import FakerStatic = Faker.FakerStatic;
+import { Kjønn } from '../../models/person';
 
 export function randomFodselsnummer(): string {
     const tilfeldigDato = faker.date.past(120);
     return fnrGenerator(tilfeldigDato).next().value;
 }
 
-export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic, minAlder: number, maxAlder: number) {
+export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic,
+                                             minAlder: number,
+                                             maxAlder: number,
+                                             kjønn?: Kjønn) {
     const fromDate = moment().subtract(maxAlder, 'years').toDate();
     const toDate = moment().subtract(minAlder, 'years').toDate();
     const tilfeldigFødselsdato = seededFaker.date.between(fromDate, toDate);
-    return fnrGenerator(tilfeldigFødselsdato).next().value;
+
+    var fnr = fnrGenerator(tilfeldigFødselsdato).next().value;
+    if (kjønn != null) {
+        return getRiktigKjønnPåFødslesnummer(fnr, kjønn);
+    }
+    return fnr;
 }
 
 export function getFodselsdato(fødselsnummer: string): Moment {
@@ -51,4 +60,9 @@ function getFiresifretÅr(fødselsnummer: string) {
         return year + 1900;
     }
 
+}
+
+function getRiktigKjønnPåFødslesnummer(fødselsnummer: string, kjønn: Kjønn) {
+    const kjønnsiffer = kjønn === Kjønn.Kvinne ? '4' : '5';
+    return fødselsnummer.substr(0, 8) + kjønnsiffer + fødselsnummer.substr(9, fødselsnummer.length);
 }
