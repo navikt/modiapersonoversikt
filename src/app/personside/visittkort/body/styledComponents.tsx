@@ -12,7 +12,7 @@ export const VisittkortBodyDiv = styled.div`
 
 export const Kolonne = styled.div`
   > *:not(:last-child) {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 `;
 
