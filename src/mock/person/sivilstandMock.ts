@@ -42,7 +42,7 @@ export function getSivilstand(fødselsdato: Moment, faker: FakerStatic): Sivilst
     } else {
         return {
             value: SivilstandTyper.Enke,
-            beskrivelse: 'Enke/-mann',
+            beskrivelse: 'Enke',
             fraOgMed: getSistOppdatert(alder, faker)
         };
     }

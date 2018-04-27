@@ -8,7 +8,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     className="sc-EHOje hyALOH"
   >
     <div
-      className="sc-gzVnrw ctgjcR"
+      className="sc-gzVnrw kLcAtr"
     >
       <img
         alt="Mann"
@@ -17,15 +17,19 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       />
     </div>
     <div
-      className="sc-htoDjs jiCiGn"
+      className="sc-htoDjs bQxDUW"
     >
       <h2
         className="typo-undertittel"
       >
-        AREMARK TESTFAMILIEN
-         (
-        42
-        )
+        <span
+          className="sc-dnqmqq jzvNCD"
+        >
+          AREMARK TESTFAMILIEN
+           (
+          42
+          )
+        </span>
       </h2>
       <span
         className="typo-undertekst"

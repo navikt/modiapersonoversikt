@@ -9,6 +9,7 @@ const Lenke = styled.a`
     text-decoration: none;
     border-bottom: 1px solid rgb(183, 177, 169);
     cursor: pointer;
+    font-size: 0.9em;
     &:hover{
       border-bottom: 1px solid rgb(0, 103, 197);
     }
