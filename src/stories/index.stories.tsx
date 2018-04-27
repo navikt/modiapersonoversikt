@@ -4,12 +4,14 @@ import { storiesOf } from '@storybook/react';
 import Visittkort from '../app/personside/visittkort/Visittkort';
 import { Person } from '../models/person';
 import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GridLayout from './grid-layout/GridLayout';
 import ResponsiveFlexColumns from './responsive-columns/ResponsiveFlexColumns';
 import FloatingChildren from './responsive-columns/FloatingChildren';
 import JSResponsive from './responsive-columns/EventListener';
 import { aremark } from '../mock/person/aremark';
+import PilKnapp from '../components/pilknapp';
+import { personOversiktTheme } from '../themes/personOversiktTheme';
 
 const mockPerson: Person = aremark;
 
@@ -45,9 +47,27 @@ storiesOf('Layout', module)
     .add('GridTest, virker ikke i ie11', () => (
         <GridLayout/>
     )).add('Responsive flex-container for visittkortbody (må vite høyden)', () => (
-        <ResponsiveFlexColumns/>
-    )).add('Responsive floatchildren visittkortbody', () => (
-        <FloatingChildren/>
-    )).add('Responsive columns with JS eventlistener', () => (
-        <JSResponsive/>
+    <ResponsiveFlexColumns/>
+)).add('Responsive floatchildren visittkortbody', () => (
+    <FloatingChildren/>
+)).add('Responsive columns with JS eventlistener', () => (
+    <JSResponsive/>
 ));
+
+storiesOf('Knapp', module)
+    .add('PilKnapp', () => (
+        <ThemeProvider theme={personOversiktTheme}>
+            <PilKnapp
+                width={'80px'}
+                onClick={() => { alert('Du trykka på knappen du'); }}
+            />
+        </ThemeProvider>))
+    .add('PilKnapp, peker opp', () => (
+        <ThemeProvider theme={personOversiktTheme}>
+            <PilKnapp
+                direction={'up'}
+                width={'80px'}
+                onClick={() => { alert('Du trykka på knappen du'); }}
+            />
+        </ThemeProvider>
+    ));

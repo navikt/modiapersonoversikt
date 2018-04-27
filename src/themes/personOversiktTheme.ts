@@ -27,5 +27,6 @@ export const personOversiktTheme = {
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
-    }
+    },
+    focus: 'outline: none; box-shadow: 0 0 0px 3px #FFBD66;'
 };

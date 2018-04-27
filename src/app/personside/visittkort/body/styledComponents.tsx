@@ -6,7 +6,7 @@ export const VisittkortBodyDiv = styled.div`
   display: flex;
   margin-bottom: 10px;
   > * {
-    flex-grow: 1;
+    flex: 1 1 50%;
   }
 `;
 
