@@ -32,6 +32,14 @@ function lagEgenAnsattEtikett() {
     return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
 }
 
+function lagSikkerhetstiltakEtikett(sikkerhetstiltakkode: string) {
+    return(
+        <EtikettBase key={sikkerhetstiltakkode} type={'advarsel'}>
+            Sikkerhetstiltak: {sikkerhetstiltakkode}
+        </EtikettBase>
+    );
+}
+
 function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
     const etiketter = [];
     if (person.diskresjonskode) {
@@ -39,6 +47,9 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
     }
     if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
+    }
+    if (person.sikkerhetstiltak) {
+        etiketter.push(lagSikkerhetstiltakEtikett(person.sikkerhetstiltak.sikkerhetstiltakskode));
     }
     return etiketter;
 }
