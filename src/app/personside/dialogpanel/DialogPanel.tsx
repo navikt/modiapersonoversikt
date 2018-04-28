@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
+import PilKnapp from '../../../components/pilknapp';
+import { DialogPanelSize } from '../MainLayout';
 
 interface StateProps {
     valgtEnhet: string;
@@ -16,11 +18,16 @@ interface StateProps {
     oppgaveReducer: Reducer<Oppgave[]>;
 }
 
+interface OwnProps {
+    onToggleDialogpanel: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    dialogPanelSize: DialogPanelSize;
+}
+
 interface DispatchProps {
     plukkOppgaver: (enhet: string, temagruppe: string) => void;
 }
 
-type DialogPanelProps = StateProps & DispatchProps;
+type DialogPanelProps = StateProps & DispatchProps & OwnProps;
 
 const DialogPanelWrapper = styled.div`
   display: flex;
@@ -30,6 +37,16 @@ const DialogPanelWrapper = styled.div`
   padding: ${props => props.theme.margin.layout};
   > *:not(:last-child) {
     margin-bottom: ${props => props.theme.margin.layout};
+  }
+`;
+
+const Knapperad = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  > *:last-child {
+    flex-grow: 1;
+    margin-left: 2em;
   }
 `;
 
@@ -47,13 +64,20 @@ class DialogPanel extends React.Component<DialogPanelProps> {
     render() {
         return (
             <DialogPanelWrapper>
-                <KnappBase
-                    type="hoved"
-                    onClick={this.onPlukkOppgaver}
-                    spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
-                >
-                    Plukk oppgaver
-                </KnappBase>
+                <Knapperad>
+                    <PilKnapp
+                        width="30px"
+                        direction={this.props.dialogPanelSize === DialogPanelSize.Normal ? 'left' : 'right'}
+                        onClick={this.props.onToggleDialogpanel}
+                    />
+                    <KnappBase
+                        type="hoved"
+                        onClick={this.onPlukkOppgaver}
+                        spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
+                    >
+                        Plukk oppgaver
+                    </KnappBase>
+                </Knapperad>
                 <ComponentPlaceholder height={'800px'} name={'Dialog Panel'}/>
                 <Feilmelding reducer={this.props.oppgaveReducer}/>
             </DialogPanelWrapper>
