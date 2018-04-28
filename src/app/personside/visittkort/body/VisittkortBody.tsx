@@ -6,10 +6,11 @@ import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 
 import { Component } from 'react';
-import { SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
+import { VergeMålPlaceholder } from './mockInfo';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Adresse from './adresse/Adresse';
 import Familie from './familie/Familie';
+import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -40,7 +41,7 @@ function OneColumnLayout(person: Person) {
                 <Familie person={person}/>
                 {NavKontor}
                 {VergeMålPlaceholder}
-                {SikkerhetstiltakPlaceholder}
+                <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>
     );
@@ -56,7 +57,7 @@ function TwoColumnLayout(person: Person) {
             <Kolonne>
                 {NavKontor}
                 {VergeMålPlaceholder}
-                {SikkerhetstiltakPlaceholder}
+                <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>
     );
@@ -74,7 +75,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 {NavKontor}
-                {SikkerhetstiltakPlaceholder}
+                <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>
     );
