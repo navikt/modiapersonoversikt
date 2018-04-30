@@ -32,10 +32,10 @@ function lagEgenAnsattEtikett() {
     return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
 }
 
-function lagSikkerhetstiltakEtikett(sikkerhetstiltakkode: string) {
+function lagSikkerhetstiltakEtikett() {
     return(
-        <EtikettBase key={sikkerhetstiltakkode} type={'advarsel'}>
-            Sikkerhetstiltak: {sikkerhetstiltakkode}
+        <EtikettBase key={'sikkerhetstiltak'} type={'advarsel'}>
+            Sikkerhetstiltak
         </EtikettBase>
     );
 }
@@ -49,7 +49,7 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {
-        etiketter.push(lagSikkerhetstiltakEtikett(person.sikkerhetstiltak.sikkerhetstiltakskode));
+        etiketter.push(lagSikkerhetstiltakEtikett());
     }
     return etiketter;
 }
