@@ -7,28 +7,29 @@ import { Person } from '../models/person';
 import { aremark } from './person/aremark';
 import { vektetSjanse } from './utils/mock-utils';
 
-export function getKontaktinformasjon(fødselsnummer: string): Kontaktinformasjon {
-    if (fødselsnummer === aremark.fødselsnummer) {
-        return {
-            reservert: undefined,
-            epost: {
-                value: 'aremark@testfamilien.no',
-                sistOppdatert: getSistOppdatert()
-            },
-            mobiltelefon: {
-                value: '11223344',
-                sistOppdatert: getSistOppdatert()
-            }
-        };
-    } else {
-        const personData = getPerson(fødselsnummer);
-        faker.seed(Number(fødselsnummer));
-        return {
-            epost: vektetSjanse(faker, 0.7) ? getEpost(personData) : undefined,
-            mobiltelefon: vektetSjanse(faker, 0.7) ? getMobiltelefon() : undefined,
-            reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
-        };
+const aremarkKontaktinformasjon = {
+    reservert: undefined,
+    epost: {
+        value: 'aremark@testfamilien.no',
+        sistOppdatert: getSistOppdatert()
+    },
+    mobiltelefon: {
+        value: '11223344',
+        sistOppdatert: getSistOppdatert()
     }
+};
+
+export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinformasjon {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return aremarkKontaktinformasjon;
+    }
+    const personData = getPerson(fødselsnummer);
+    faker.seed(Number(fødselsnummer));
+    return {
+        epost: vektetSjanse(faker, 0.7) ? getEpost(personData) : undefined,
+        mobiltelefon: vektetSjanse(faker, 0.7) ? getMobiltelefon() : undefined,
+        reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
+    };
 }
 
 function getEpost(personData: Person) {

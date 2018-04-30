@@ -2,7 +2,7 @@ import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
-import { getKontaktinformasjon } from './kontaktinformasjon-mock';
+import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
@@ -27,7 +27,7 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
         5000,
         STATUS_OK,
-        mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
+        mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
