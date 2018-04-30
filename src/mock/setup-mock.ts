@@ -7,6 +7,49 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 
+const STATUS_OK = () => 200;
+
+function setupPersonMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
+        800,
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
+}
+
+function setupEgenAnsattMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/egenansatt/:fodselsnummer', withDelayedResponse(
+        50,
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))));
+}
+
+function setupKontaktinformasjonMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
+        5000,
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
+}
+
+function setupGeografiskTilknytningMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
+        2000,
+        (args: HandlerArgument) => {
+            if (isNaN(args.pathParams.geografiskTilknytning)) {
+                return 404;
+            } else {
+                return 200;
+            }
+        },
+        (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
+}
+
+function setupOppgaveMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
+        1200,
+        STATUS_OK,
+        () => getTilfeldigeOppgaver()));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -18,36 +61,9 @@ export function setupMock() {
         }
     });
 
-    const STATUS_OK = () => 200;
-
-    mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
-        800,
-        STATUS_OK,
-        mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
-
-    mock.get(apiBaseUri + '/egenansatt/:fodselsnummer', withDelayedResponse(
-        50,
-        STATUS_OK,
-        mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))));
-
-    mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        5000,
-        STATUS_OK,
-        mockGeneratorMedFødselsnummer(fødselsnummer => getKontaktinformasjon(fødselsnummer))));
-
-    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
-        2000,
-        (args: HandlerArgument) => {
-            if (isNaN(args.pathParams.geografiskTilknytning)) {
-                return 404;
-            } else {
-                return 200;
-            }
-        },
-        (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
-
-    mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
-        1200,
-        STATUS_OK,
-        () => getTilfeldigeOppgaver()));
+    setupPersonMock(mock);
+    setupEgenAnsattMock(mock);
+    setupKontaktinformasjonMock(mock);
+    setupGeografiskTilknytningMock(mock);
+    setupOppgaveMock(mock);
 }
