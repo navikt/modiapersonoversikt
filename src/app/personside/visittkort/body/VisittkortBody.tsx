@@ -10,6 +10,7 @@ import { SikkerhetstiltakPlaceholder, VergeMålPlaceholder } from './mockInfo';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Adresse from './adresse/Adresse';
 import Familie from './familie/Familie';
+import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -39,6 +40,7 @@ function OneColumnLayout(person: Person) {
                 {Kontakt(person)}
                 <Familie person={person}/>
                 {NavKontor}
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
                 {VergeMålPlaceholder}
                 {SikkerhetstiltakPlaceholder}
             </Kolonne>
@@ -55,6 +57,7 @@ function TwoColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 {NavKontor}
+                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
                 {VergeMålPlaceholder}
                 {SikkerhetstiltakPlaceholder}
             </Kolonne>
@@ -70,6 +73,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person}/>
+                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
                 {VergeMålPlaceholder}
             </Kolonne>
             <Kolonne>

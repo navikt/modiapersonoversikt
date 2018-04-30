@@ -81,7 +81,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </span>
       </div>
       <div
-        className="etikett etikett--info"
+        className="etikett etikett--fokus"
       >
         <span
           className="typo-normal"

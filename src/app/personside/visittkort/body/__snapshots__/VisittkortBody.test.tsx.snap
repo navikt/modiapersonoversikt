@@ -407,6 +407,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         className="sc-gZMcBi ihiCNk"
       >
         <img
+          alt="Tilrettelagt Kommunikasjon"
+          src="phone.svg"
+          title="Tilrettelagt Kommunikasjon"
+        />
+      </div>
+      <div
+        className="sc-gqjmRU laWHsE"
+      >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="sc-VigVT fsRKfG"
+          >
+            Tilrettelagt Kommunikasjon
+          </span>
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          <span
+            className="sc-dxgOiQ iUdSfi"
+          >
+            <span>
+              Tolkehjelp
+            </span>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-iwsKbI cPaMTU"
+    >
+      <div
+        className="sc-gZMcBi ihiCNk"
+      >
+        <img
           alt="Bruker er under vergemål"
           src="vergemaal.svg"
           title="Bruker er under vergemål"

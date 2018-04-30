@@ -108,35 +108,35 @@ function getTilrettelagtKommunikasjonsListe() {
     if (vektetSjanse(faker, 0.1)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             }
         ];
     } else if (vektetSjanse(faker, 0.1)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.KOSK.toString(),
+                behovKode: 'KOSK',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
             }
         ];
     } else if (vektetSjanse(faker, 0.1)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         ];
     } else if (vektetSjanse(faker, 0.1)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+                behovKode: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
             }
         ];
     } else if (vektetSjanse(faker, 0.1)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             },
 
@@ -144,22 +144,22 @@ function getTilrettelagtKommunikasjonsListe() {
     } else if (vektetSjanse(faker, 0.05)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             },
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         ];
     } else if (vektetSjanse(faker, 0.05)) {
         return [
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+                behovKode: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
             },
             {
-                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         ];

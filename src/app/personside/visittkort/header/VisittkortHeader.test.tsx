@@ -7,7 +7,7 @@ import { personinformasjonActionNames } from '../../../../redux/personinformasjo
 import { getMockNavKontor } from '../../../../mock/navkontor-mock';
 import { testStore } from '../../../../setupTests';
 import { aremark } from '../../../../mock/person/aremark';
-import {getPerson} from '../../../../mock/person/personMock';
+import { getPerson } from '../../../../mock/person/personMock';
 
 test('viser info om bruker i visittkort-header', () => {
     testStore.dispatch({type: personinformasjonActionNames.OK, data: getPerson('10108000398')});

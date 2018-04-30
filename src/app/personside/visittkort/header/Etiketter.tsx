@@ -34,7 +34,7 @@ function lagEgenAnsattEtikett() {
 
 function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
     return (
-        <EtikettBase key={'tilrettelagtKommunikasjon'} type={'advarsel'}>
+        <EtikettBase key={tilrettelagtKommunikasjon.behovKode} type={'fokus'}>
             {tilrettelagtKommunikasjon.beskrivelse}
         </EtikettBase>);
 }
