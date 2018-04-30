@@ -66,13 +66,8 @@ function getFiresifretÅr(fødselsnummer: string) {
 
 function getRiktigKjønnPåFødslesnummer(fødselsnummer: string, kjønn: Kjønn) {
     if (utledKjønnFraFødselsnummer(fødselsnummer) !== kjønn) {
-        const tilfeldigPartall = getTilfeldigPartall().toString();
-        const tilfeldigOddetall = (getTilfeldigPartall() + 1).toString();
-        const kjønnsiffer = kjønn === Kjønn.Kvinne ? tilfeldigPartall : tilfeldigOddetall;
-
-        var nyttfnr = fødselsnummer.substr(0, 8) + kjønnsiffer + fødselsnummer.substr(9, 11);
-        nyttfnr = nyttfnr.substr(0, 9) + getKontrollsiffer1(nyttfnr) + nyttfnr.substr(10, 11);
-        nyttfnr = nyttfnr.substr(0, 10) + getKontrollsiffer2(nyttfnr);
+        const kjønnsiffer = getTilfeldigKjønnsiffer(kjønn);
+        const nyttfnr = getNyttFødselsnummer(fødselsnummer, kjønnsiffer);
 
         return nyttfnr.length > 11 ? aremark.fødselsnummer : nyttfnr;
     } else {
@@ -80,8 +75,20 @@ function getRiktigKjønnPåFødslesnummer(fødselsnummer: string, kjønn: Kjønn
     }
 }
 
+function getTilfeldigKjønnsiffer(kjønn: Kjønn) {
+    const tilfeldigPartall = getTilfeldigPartall().toString();
+    const tilfeldigOddetall = (getTilfeldigPartall() + 1).toString();
+    return kjønn === Kjønn.Kvinne ? tilfeldigPartall : tilfeldigOddetall;
+}
+
 function getTilfeldigPartall() {
     return (Math.floor(Math.random() * 4) + 1) * 2;
+}
+
+function getNyttFødselsnummer(fødselsnummer: String, kjønnsiffer: String) {
+    var nyttfnr = fødselsnummer.substr(0, 8) + kjønnsiffer + fødselsnummer.substr(9, 11);
+    nyttfnr = nyttfnr.substr(0, 9) + getKontrollsiffer1(nyttfnr) + nyttfnr.substr(10, 11);
+    return  nyttfnr.substr(0, 10) + getKontrollsiffer2(nyttfnr);
 }
 
 function getKontrollsiffer1(fnr: string) {
