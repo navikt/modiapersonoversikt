@@ -55,7 +55,7 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
     if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
-    person.tilrettelagtKommunikasjonListe.map( tilrettelagtKommunikasjon  =>
+    person.tilrettelagtKomunikasjonsListe.map(tilrettelagtKommunikasjon  =>
         etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon))
     );
 
