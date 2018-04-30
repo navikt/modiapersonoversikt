@@ -431,37 +431,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
     </div>
-    <div
-      className="sc-iwsKbI cPaMTU"
-    >
-      <div
-        className="sc-gZMcBi ihiCNk"
-      >
-        <img
-          alt="Sikkerhetstiltak"
-          src="sikkerhetstiltak.svg"
-          title="Sikkerhetstiltak"
-        />
-      </div>
-      <div
-        className="sc-gqjmRU laWHsE"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="sc-VigVT fsRKfG"
-          >
-            Sikkerhetstiltak
-          </span>
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
-        </p>
-      </div>
-    </div>
   </div>
 </div>
 `;

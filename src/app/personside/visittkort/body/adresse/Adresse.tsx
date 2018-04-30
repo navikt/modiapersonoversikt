@@ -3,10 +3,12 @@ import { Person } from '../../../../../models/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as personadresse from '../../../../../models/personadresse';
-import { Periode, Personadresse } from '../../../../../models/personadresse';
+import { Personadresse } from '../../../../../models/personadresse';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 import EtikettMini from '../../../../../components/EtikettMini';
+import { Periode } from '../../../../../models/periode';
+import VisPeriode from '../../../../../components/person/VisPeriode';
 
 const locationPath = require('./location-pin.svg');
 
@@ -152,10 +154,8 @@ function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse
 
 function hentPeriode(periode?: Periode) {
     if (periode != null) {
-        const fra = formaterDato(periode.fra);
-        const til = formaterDato(periode.til);
         return (
-            <EtikettMini>Gyldig: {fra} - {til}</EtikettMini>
+            <VisPeriode periode={periode}/>
         );
     }
     return null;
