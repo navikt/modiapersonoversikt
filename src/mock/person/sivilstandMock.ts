@@ -5,66 +5,66 @@ import { vektetSjanse } from '../utils/mock-utils';
 import { Sivilstand, SivilstandTyper } from '../../models/person';
 import FakerStatic = Faker.FakerStatic;
 
-const ugift = (alder: number, faker: FakerStatic) => {
+const ugift = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Ugift,
         beskrivelse: 'Ugift',
-        fraOgMed: getSistOppdatert(alder, faker)
+        fraOgMed
     };
 };
 
-const gift = (alder: number, faker: FakerStatic) => {
+const gift = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Gift,
         beskrivelse: 'Gift',
-        fraOgMed: getSistOppdatert(alder, faker)
+        fraOgMed
     };
 };
 
-const skilt = (alder: number, faker: FakerStatic) => {
+const skilt = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Skilt,
         beskrivelse: 'Skilt',
-        fraOgMed: getSistOppdatert(alder, faker)
+        fraOgMed
     };
 };
 
-const samboer = (alder: number, faker: FakerStatic) => {
+const samboer = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Samboer,
         beskrivelse: 'Samboer',
-        fraOgMed: getSistOppdatert(alder, faker)
+        fraOgMed
     };
 };
 
-const enke = (alder: number, faker: FakerStatic) => {
+const enke = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Enke,
         beskrivelse: 'Enke',
-        fraOgMed: getSistOppdatert(alder, faker)
+        fraOgMed
     };
 };
 
 export function getSivilstand(fødselsdato: Moment, faker: FakerStatic): Sivilstand {
     const alder = moment().diff(fødselsdato, 'years');
-
+    const fraOgMed = getSistOppdatert(alder, faker);
     if (alder < 18) {
-        return ugift(alder, faker);
+        return ugift(fraOgMed);
     }
-    return getTilfeldigSilvstand(faker, alder);
+    return getTilfeldigSilvstand(fraOgMed, faker);
 }
 
-function getTilfeldigSilvstand(faker: FakerStatic, alder: number) {
+function getTilfeldigSilvstand(fraOgMed: string, faker: FakerStatic) {
     if (vektetSjanse(faker, 0.2)) {
-        return gift(alder, faker);
+        return gift(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return skilt(alder, faker);
+        return skilt(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return ugift(alder, faker);
+        return ugift(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return samboer(alder, faker);
+        return samboer(fraOgMed);
     } else {
-        return enke(alder, faker);
+        return enke(fraOgMed);
     }
 }
 
