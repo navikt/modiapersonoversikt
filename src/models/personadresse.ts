@@ -1,12 +1,8 @@
+import { Periode } from './periode';
 
 export interface Endringsinfo {
     sistEndretAv: string;
     sistEndret: string;
-}
-
-export interface Periode {
-    fra: string;
-    til: string;
 }
 
 export interface Personadresse {

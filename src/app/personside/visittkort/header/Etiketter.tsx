@@ -32,6 +32,14 @@ function lagEgenAnsattEtikett() {
     return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
 }
 
+function lagSikkerhetstiltakEtikett() {
+    return(
+        <EtikettBase key={'sikkerhetstiltak'} type={'advarsel'}>
+            Sikkerhetstiltak
+        </EtikettBase>
+    );
+}
+
 function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
     return (
         <EtikettBase key={tilrettelagtKommunikasjon.behovKode} type={'fokus'}>
@@ -51,6 +59,9 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
         etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon))
     );
 
+    if (person.sikkerhetstiltak) {
+        etiketter.push(lagSikkerhetstiltakEtikett());
+    }
     return etiketter;
 }
 

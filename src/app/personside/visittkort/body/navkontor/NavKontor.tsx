@@ -3,12 +3,15 @@ import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import styled from 'styled-components';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import { Undertekst } from 'nav-frontend-typografi';
-import Lenke from '../../../../../components/Lenke';
 import { Fragment } from 'react';
 import EtikettMini from '../../../../../components/EtikettMini';
 
 const NameCase = styled.span`
   text-transform: capitalize;
+`;
+
+const StyledLenke = styled.a`
+  font-size: 0.9em;
 `;
 
 const ApningsTiderListe = styled.dl`
@@ -87,13 +90,14 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
                 {props.navKontor.enhetNavn} {props.navKontor.enhetId}
             </Undertekst>
             {listeMedPublikumsMottak}
-            <Lenke
+            <StyledLenke
                 href={`/norg2-frontend/#/startsok?enhetNr=${props.navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={'lenke'}
             >
                 Mer informasjon om {props.navKontor.enhetNavn}
-            </Lenke>
+            </StyledLenke>
         </>
     );
 }

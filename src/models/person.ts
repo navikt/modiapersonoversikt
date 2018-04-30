@@ -1,4 +1,5 @@
 import { Personadresse } from './personadresse';
+import { Sikkerhetstiltak } from './sikkerhetstiltak';
 
 export interface Person {
     navn: Navn;
@@ -16,6 +17,7 @@ export interface Person {
     personstatus: Bostatus;
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
+    sikkerhetstiltak?: Sikkerhetstiltak;
 }
 
 export interface Navn {

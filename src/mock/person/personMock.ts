@@ -1,13 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
-import {
-    Endringsinfo,
-    Gateadresse,
-    Matrikkeladresse, Periode,
-    Personadresse,
-    UstrukturertAdresse,
-    Utlandsadresse
-} from '../../models/personadresse';
 
 import { Bostatus, BostatusTyper, Person } from '../../models/person';
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
@@ -18,32 +10,8 @@ import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
-
-export const gateadresse: Gateadresse = {
-    tilleggsadresse: 'Tillegsgaten 1',
-    gatenavn: 'Tilfeldighetsgaten',
-    husnummer: '3',
-    postnummer: '0666',
-    poststed: 'HELL',
-    periode: getPeriode()
-};
-
-export const matrikkeladresse: Matrikkeladresse = {
-   eiendomsnavn: 'Bogstad Gård',
-   postnummer: '1234',
-   poststed: 'OSLO',
-   periode: getPeriode()
-};
-
-export const utlandsadresse: Utlandsadresse = {
-    landkode: 'BM',
-    adresselinje: 'Hytte 2, Stranda, Bahamas',
-    periode: getPeriode()
-};
-
-export const ustrukturertAdresse: UstrukturertAdresse = {
-    adresselinje: 'Storgata 1, 9876 NARVIK'
-};
+import { getTilfeldigAdresse } from './adresseMock';
+import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 
 export function getPerson(fødselsnummer: string): Person {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -80,7 +48,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         sivilstand: sivilstand,
-        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand)
+        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
+        sikkerhetstiltak: getSikkerhetstiltak()
     };
 }
 
@@ -201,47 +170,4 @@ function getStatsborgerskap() {
         return 'NORGE';
     }
     return faker.address.country().toUpperCase();
-}
-
-function getSistOppdatert() {
-    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
-}
-
-function getTilfeldigAdresse(): Personadresse {
-    if (vektetSjanse(faker, 0.2)) {
-        return {
-            endringsinfo: getEndringsinfo(),
-            matrikkeladresse: matrikkeladresse
-        };
-    } else if (vektetSjanse(faker, 0.2)) {
-        return {
-            endringsinfo: getEndringsinfo(),
-            utlandsadresse: utlandsadresse
-        };
-    } else if (vektetSjanse(faker, 0.2)) {
-        return {
-            endringsinfo: getEndringsinfo(),
-            ustrukturert: ustrukturertAdresse
-        };
-    } else {
-        return {
-            endringsinfo: getEndringsinfo(),
-            gateadresse: gateadresse
-        };
-    }
-
-}
-
-function getEndringsinfo(): Endringsinfo {
-    return {
-        sistEndret: getSistOppdatert(),
-        sistEndretAv: 'AA001'
-    };
-}
-
-function getPeriode(): Periode {
-    return {
-        fra: getSistOppdatert(),
-        til: getSistOppdatert()
-    };
 }
