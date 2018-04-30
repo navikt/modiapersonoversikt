@@ -10,7 +10,7 @@ import {
 } from '../../models/personadresse';
 
 import { Bostatus, BostatusTyper, Person } from '../../models/person';
-import { Diskresjonskoder } from '../../konstanter';
+import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
 import { getFodselsdato } from '../utils/fnr-utils';
@@ -71,6 +71,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
+        tilrettelagtKommunikasjonListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),
@@ -100,6 +101,70 @@ function getBostatus() {
         return BostatusTyper.Utvandret;
     } else {
         return undefined;
+    }
+}
+
+function getTilrettelagtKommunikasjonsListe() {
+    if (vektetSjanse(faker, 0.1)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            }
+        ];
+    } else if (vektetSjanse(faker, 0.1)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.KOSK.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
+            }
+        ];
+    } else if (vektetSjanse(faker, 0.1)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        ];
+    } else if (vektetSjanse(faker, 0.1)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+            }
+        ];
+    } else if (vektetSjanse(faker, 0.1)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            },
+
+        ];
+    } else if (vektetSjanse(faker, 0.05)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.LESA.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            },
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        ];
+    } else if (vektetSjanse(faker, 0.05)) {
+        return [
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+            },
+            {
+                behovKode: TilrettelagtKommunikasjonsTyper.KOMU.toString(),
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        ];
+    } else {
+        return [];
     }
 }
 

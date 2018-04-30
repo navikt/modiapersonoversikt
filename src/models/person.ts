@@ -8,6 +8,7 @@ export interface Person {
     alder: number;
     diskresjonskode?: string;
     bankkonto?: Bankkonto;
+    tilrettelagtKommunikasjonListe: TilrettelagtKommunikasjon[];
     statsborgerskap?: string;
     folkeregistrertAdresse?: Personadresse;
     alternativAdresse?: Personadresse;
@@ -30,6 +31,11 @@ export interface Bankkonto {
     bank: string;
     sistEndret: string;
     sistEndretAv: string;
+}
+
+export interface TilrettelagtKommunikasjon {
+    behovKode: string;
+    beskrivelse: string;
 }
 
 export interface Familierelasjon {

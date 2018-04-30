@@ -70,7 +70,26 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   >
     <div
       className="sc-bxivhb ezGmfP"
-    />
+    >
+      <div
+        className="etikett etikett--advarsel"
+      >
+        <span
+          className="typo-normal"
+        >
+          Fortrolig adresse
+        </span>
+      </div>
+      <div
+        className="etikett etikett--info"
+      >
+        <span
+          className="typo-normal"
+        >
+          Tolkehjelp
+        </span>
+      </div>
+    </div>
     <span
       className="typo-undertekst"
     >
