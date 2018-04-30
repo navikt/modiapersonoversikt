@@ -12,7 +12,7 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
-    tilrettelagtKommunikasjonListe: [
+    tilrettelagtKomunikasjonsListe: [
         {
             behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
             beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ

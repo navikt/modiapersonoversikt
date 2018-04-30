@@ -9,7 +9,7 @@ export interface Person {
     alder: number;
     diskresjonskode?: string;
     bankkonto?: Bankkonto;
-    tilrettelagtKommunikasjonListe: TilrettelagtKommunikasjon[];
+    tilrettelagtKomunikasjonsListe: TilrettelagtKommunikasjon[];
     statsborgerskap?: string;
     folkeregistrertAdresse?: Personadresse;
     alternativAdresse?: Personadresse;

@@ -39,7 +39,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
             mellomnavn: mellomnavn,
             sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
         },
-        tilrettelagtKommunikasjonListe: getTilrettelagtKommunikasjonsListe(),
+        tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),

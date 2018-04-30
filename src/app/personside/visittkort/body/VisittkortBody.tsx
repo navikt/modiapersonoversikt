@@ -41,7 +41,7 @@ function OneColumnLayout(person: Person) {
                 {Kontakt(person)}
                 <Familie person={person}/>
                 {NavKontor}
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 {VergeMålPlaceholder}
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
@@ -58,7 +58,7 @@ function TwoColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 {NavKontor}
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
+                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 {VergeMålPlaceholder}
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
@@ -74,7 +74,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person}/>
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKommunikasjonListe}/>
+                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 {VergeMålPlaceholder}
             </Kolonne>
             <Kolonne>
