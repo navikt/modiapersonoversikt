@@ -5,6 +5,7 @@ import * as faker from 'faker/locale/nb_NO';
 import FakerStatic = Faker.FakerStatic;
 import { Kjønn } from '../../models/person';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
+import { aremark } from '../person/aremark';
 
 export function randomFodselsnummer(): string {
     const tilfeldigDato = faker.date.past(120);
@@ -73,7 +74,7 @@ function getRiktigKjønnPåFødslesnummer(fødselsnummer: string, kjønn: Kjønn
         nyttfnr = nyttfnr.substr(0, 9) + getKontrollsiffer1(nyttfnr) + nyttfnr.substr(10, 11);
         nyttfnr = nyttfnr.substr(0, 10) + getKontrollsiffer2(nyttfnr);
 
-        return nyttfnr;
+        return nyttfnr.length > 11 ? aremark.fødselsnummer : nyttfnr;
     } else {
         return fødselsnummer;
     }
