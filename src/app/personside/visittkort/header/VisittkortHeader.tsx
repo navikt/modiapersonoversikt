@@ -70,7 +70,6 @@ function Navnelinje({person}: PersonProps) {
 }
 
 function VisittkortHeader({person}: VisittkortHeaderProps) {
-    console.log(person);
     const ikon = {
         path: person.kjønn === 'M' ? mannPath : kvinnePath,
         alt: person.kjønn === 'M' ? 'Mann' : 'Kvinne'

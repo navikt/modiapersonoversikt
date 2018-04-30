@@ -20,7 +20,6 @@ function EtikkerWrapper(props: { person?: Person, egenAnsatt?: Egenansatt }) {
 class EtiketterContainer extends React.Component<Props> {
 
     render() {
-        console.log(this.props.personReducer);
         return (
             <EtikkerWrapper person={this.props.personReducer.data} egenAnsatt={this.props.egenAnsattReducer.data}/>
         );
