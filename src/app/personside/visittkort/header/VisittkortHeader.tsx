@@ -4,11 +4,11 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './NavKontorContainer';
 
 import { erDød, Person } from '../../../../models/person';
-import Etiketter from './Etiketter';
 import PersonStatus from './status/PersonStatus';
+import EtiketterContainer from './EtiketterContainer';
 
-const mannPath = require('../../../../resources/svg/mann.svg');
-const kvinnePath = require('../../../../resources/svg/kvinne.svg');
+const mannPath = require('../body/familie/mann.svg');
+const kvinnePath = require('../body/familie/kvinne.svg');
 
 interface VisittkortHeaderProps {
     person: Person;
@@ -36,7 +36,7 @@ const HøyreFelt = styled.div`
 
 const IkonDiv = styled.div`
   flex: 0 0 50px;
-  text-align: center;
+  text-align: left;
   > img {
     width: 40px;
   }
@@ -45,6 +45,13 @@ const IkonDiv = styled.div`
 const InfoDiv = styled.div`
   flex: 1 1;
   text-align: left;
+  > *:first-child {
+    margin-bottom: 0.2em !important;
+  };
+`;
+
+const UpperCaseForMock = styled.span`
+  text-transform: uppercase;
 `;
 
 interface PersonProps {
@@ -55,12 +62,14 @@ function Navnelinje({person}: PersonProps) {
     const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
-            {person.navn.sammensatt} ({alder})
+            <UpperCaseForMock>
+                {person.navn.sammensatt} ({alder})
+            </UpperCaseForMock>
         </Undertittel>
     );
 }
 
-function VisittkortHeader({ person }: VisittkortHeaderProps) {
+function VisittkortHeader({person}: VisittkortHeaderProps) {
     const ikon = {
         path: person.kjønn === 'M' ? mannPath : kvinnePath,
         alt: person.kjønn === 'M' ? 'Mann' : 'Kvinne'
@@ -79,8 +88,8 @@ function VisittkortHeader({ person }: VisittkortHeaderProps) {
             </VenstreFelt>
 
             <HøyreFelt>
-                <Etiketter person={person}/>
-                <NavKontorContainer />
+                <EtiketterContainer/>
+                <NavKontorContainer/>
             </HøyreFelt>
 
         </VisittkortHeaderDiv>

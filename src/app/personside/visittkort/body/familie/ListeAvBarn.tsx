@@ -32,7 +32,10 @@ function Barn({barn}: BarnProps) {
 }
 
 function ListeAvBarn({relasjoner}: Props) {
-    const barn = getBarnUnder21(relasjoner).map(barnet => <Barn key={barnet.tilPerson.fødselsnummer} barn={barnet}/>);
+    const barnUnder21 = getBarnUnder21(relasjoner);
+    barnUnder21.sort((a, b) => a.tilPerson.alder - b.tilPerson.alder);
+
+    const barn = barnUnder21.map(barnet => <Barn key={barnet.tilPerson.fødselsnummer} barn={barnet}/>);
     return <>{barn}</>;
 }
 

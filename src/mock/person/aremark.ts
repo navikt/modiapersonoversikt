@@ -1,4 +1,4 @@
-import { Diskresjonskoder } from '../../constants';
+import { Diskresjonskoder } from '../../konstanter';
 import { Kjønn, Person, SivilstandTyper } from '../../models/person';
 
 export const aremark: Person = {

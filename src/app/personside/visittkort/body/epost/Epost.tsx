@@ -5,10 +5,10 @@ import VisittkortElement from '../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../redux/reducer';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import EtikettMini from '../../../../../components/EtikettMini';
 
-const emailPath = require('../../../../../resources/svg/email.svg');
+const emailPath = require('./email.svg');
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;
@@ -19,7 +19,7 @@ function Epost({epost}: EpostProps) {
     return (
         <>
             <Undertekst>{epost.value}</Undertekst>
-            <EtikettLiten>Endret {formatertDato}</EtikettLiten>
+            <EtikettMini>Endret {formatertDato}</EtikettMini>
         </>
     );
 }

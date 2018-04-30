@@ -2,7 +2,7 @@ import FakerStatic = Faker.FakerStatic;
 import * as moment from 'moment';
 
 import { getPersonstatus } from './personMock';
-import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
+import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 
@@ -87,7 +87,8 @@ function lagForeldre(faker: FakerStatic, barnetsAlder: number): Familierelasjon[
 
 function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Relasjonstype) {
     const minAlder = barnetsAlder + 18;
-    const foreldersFødselsnummer = seededTilfeldigFodselsnummer(faker, minAlder, Math.max(minAlder, 100));
+    const kjønn = relasjonstype === Relasjonstype.Mor ? Kjønn.Kvinne : Kjønn.Mann;
+    const foreldersFødselsnummer = seededTilfeldigFodselsnummer(faker, minAlder, Math.max(minAlder, 100), kjønn);
     const alder = getAlderFromFødselsnummer(foreldersFødselsnummer);
     return {
         harSammeBosted: vektetSjanse(faker, 0.9),

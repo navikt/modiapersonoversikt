@@ -64,7 +64,7 @@ function PersonStatus({ person }: PersonProps) {
             <Luft/>
             <PersonStatusListe>
                 <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
-                <Sivilstand sivilstand={person.sivilstand}/>
+                <Sivilstand sivilstand={person.sivilstand} kjønn={person.kjønn}/>
                 <AntallBarn familierelasjoner={person.familierelasjoner}/>
             </PersonStatusListe>
         </Undertekst>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import styled from 'styled-components';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
+import EtikettMini from '../../../../../components/EtikettMini';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -67,7 +67,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
             <Undertekst>{adresse}</Undertekst>
             <Undertekst>{postSted}</Undertekst>
             <br/>
-            <EtikettLiten>Åpningstider</EtikettLiten>
+            <EtikettMini>Åpningstider</EtikettMini>
             <ApningsTiderListe>
                 {apningstider}
             </ApningsTiderListe>
@@ -83,6 +83,7 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
 
     const listeMedPublikumsMottak =
         props.navKontor.publikumsmottak.map((publikumsMottak) => publikumsMottakKontaktInfo(publikumsMottak));
+
     return (
         <>
             <Undertekst>

@@ -2,90 +2,28 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <div
-  className="sc-cSHVUG dLfBzr"
+  className="sc-chPdSV gagluy"
 >
   <div
-    className="sc-kAzzGY hIoXoN"
+    className="sc-kgoBCf fUCCGE"
   >
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kGXeez bBrmxc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kpOJdX iwyBG"
         >
           Kontakt
         </span>
       </p>
       <div
-        className="sc-dnqmqq lhVNBn"
+        className="sc-iwsKbI cPaMTU"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
-            alt="Postadresse Folkeregistrert"
-            src="location-pin.svg"
-            title="Postadresse Folkeregistrert"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Folkeregistrert
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
-        >
-          <img
-            alt="Postadresse Midlertidig Norge"
-            src="location-pin.svg"
-            title="Postadresse Midlertidig Norge"
-          />
-        </div>
-        <div
-          className="sc-gZMcBi ikPRxU"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-gqjmRU dugoZX"
-            >
-              Postadresse Midlertidig Norge
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, ipsum.
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-dnqmqq lhVNBn"
-      >
-        <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-gZMcBi ihiCNk"
         >
           <img
             alt="Epost Kontakt- og reservasjonsregisteret"
@@ -94,13 +32,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-gZMcBi ikPRxU"
+          className="sc-gqjmRU laWHsE"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gqjmRU dugoZX"
+              className="sc-VigVT fsRKfG"
             >
               Epost Kontakt- og reservasjonsregisteret
             </span>
@@ -143,10 +81,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-dnqmqq lhVNBn"
+        className="sc-iwsKbI cPaMTU"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-gZMcBi ihiCNk"
         >
           <img
             alt="Telefon Kontakt- og reservasjonsregisteret"
@@ -155,13 +93,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-gZMcBi ikPRxU"
+          className="sc-gqjmRU laWHsE"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gqjmRU dugoZX"
+              className="sc-VigVT fsRKfG"
             >
               Telefon Kontakt- og reservasjonsregisteret
             </span>
@@ -204,10 +142,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-dnqmqq lhVNBn"
+        className="sc-iwsKbI cPaMTU"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-gZMcBi ihiCNk"
         >
           <img
             alt="Kontonummer"
@@ -216,13 +154,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-gZMcBi ikPRxU"
+          className="sc-gqjmRU laWHsE"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gqjmRU dugoZX"
+              className="sc-VigVT fsRKfG"
             >
               Kontonummer
             </span>
@@ -236,22 +174,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kGXeez bBrmxc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kpOJdX iwyBG"
         >
           Familie
         </span>
       </p>
       <div
-        className="sc-dnqmqq lhVNBn"
+        className="sc-iwsKbI cPaMTU"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-gZMcBi ihiCNk"
         >
           <img
             alt="Sivilstand"
@@ -260,19 +198,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-gZMcBi ikPRxU"
+          className="sc-gqjmRU laWHsE"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gqjmRU dugoZX"
+              className="sc-VigVT fsRKfG"
             >
               Sivilstand
             </span>
           </p>
           <p
-            className="typo-undertekst-bold"
+            className="typo-undertekst"
           >
             Gift
           </p>
@@ -280,22 +218,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-chPdSV lAsEh"
+      className="sc-kGXeez bBrmxc"
     >
       <p
         className="typo-element"
       >
         <span
-          className="sc-kgoBCf gvexpI"
+          className="sc-kpOJdX iwyBG"
         >
           Navkontor
         </span>
       </p>
       <div
-        className="sc-dnqmqq lhVNBn"
+        className="sc-iwsKbI cPaMTU"
       >
         <div
-          className="sc-iwsKbI jYIAlx"
+          className="sc-gZMcBi ihiCNk"
         >
           <img
             alt="Brukers NavKontor"
@@ -304,13 +242,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           />
         </div>
         <div
-          className="sc-gZMcBi ikPRxU"
+          className="sc-gqjmRU laWHsE"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gqjmRU dugoZX"
+              className="sc-VigVT fsRKfG"
             >
               Brukers NavKontor
             </span>
@@ -338,17 +276,21 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-etikett-liten"
             >
-              Åpningstider
+              <span
+                className="sc-jTzLTM kGwTKg"
+              >
+                Åpningstider
+              </span>
             </p>
             <dl
-              className="sc-jzJRlG jDxxvr"
+              className="sc-kAzzGY EPjJE"
             >
               <dt>
                 <p
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     mandag
                   </span>
@@ -368,7 +310,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     tirsdag
                   </span>
@@ -388,7 +330,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     onsdag
                   </span>
@@ -408,7 +350,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     torsdag
                   </span>
@@ -428,7 +370,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-fjdhpX chqHmI"
+                    className="sc-jzJRlG gLGMez"
                   >
                     fredag
                   </span>
@@ -447,7 +389,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <br />
           </div>
           <a
-            className="sc-jTzLTM gGmsqn"
+            className="lenke sc-cSHVUG bBBzRL"
             href="/norg2-frontend/#/startsok?enhetNr=0118"
             rel="noopener noreferrer"
             target="_blank"
@@ -459,58 +401,27 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq lhVNBn"
+      className="sc-iwsKbI cPaMTU"
     >
       <div
-        className="sc-iwsKbI jYIAlx"
+        className="sc-gZMcBi ihiCNk"
       >
         <img
           alt="Bruker er under vergemål"
-          src="location-pin.svg"
+          src="vergemaal.svg"
           title="Bruker er under vergemål"
         />
       </div>
       <div
-        className="sc-gZMcBi ikPRxU"
+        className="sc-gqjmRU laWHsE"
       >
         <p
           className="typo-etikett-liten"
         >
           <span
-            className="sc-gqjmRU dugoZX"
+            className="sc-VigVT fsRKfG"
           >
             Bruker er under vergemål
-          </span>
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
-        </p>
-      </div>
-    </div>
-    <div
-      className="sc-dnqmqq lhVNBn"
-    >
-      <div
-        className="sc-iwsKbI jYIAlx"
-      >
-        <img
-          alt="Sikkerhetstiltak"
-          src="location-pin.svg"
-          title="Sikkerhetstiltak"
-        />
-      </div>
-      <div
-        className="sc-gZMcBi ikPRxU"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="sc-gqjmRU dugoZX"
-          >
-            Sikkerhetstiltak
           </span>
         </p>
         <p

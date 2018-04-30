@@ -3,13 +3,15 @@ import styled from 'styled-components';
 
 import { Person } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
-import { Diskresjonskoder } from '../../../../constants';
+import { Diskresjonskoder } from '../../../../konstanter';
+import { Egenansatt } from '../../../../models/egenansatt';
 
 interface Props {
     person: Person;
+    egenAnsatt?: Egenansatt;
 }
 
-const EtikettContainer = styled.div`
+const StyledEtikketter = styled.div`
   > * {
     margin: 3px;
   }
@@ -26,20 +28,38 @@ function lagDiskresjonskodeEtikett(diskresjonskode: string) {
     }
 }
 
-function lagEtiketter(person: Person) {
+function lagEgenAnsattEtikett() {
+    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
+}
+
+function lagSikkerhetstiltakEtikett(sikkerhetstiltakkode: string) {
+    return(
+        <EtikettBase key={sikkerhetstiltakkode} type={'advarsel'}>
+            Sikkerhetstiltak: {sikkerhetstiltakkode}
+        </EtikettBase>
+    );
+}
+
+function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
     const etiketter = [];
     if (person.diskresjonskode) {
         etiketter.push(lagDiskresjonskodeEtikett(person.diskresjonskode));
     }
+    if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
+        etiketter.push(lagEgenAnsattEtikett());
+    }
+    if (person.sikkerhetstiltak) {
+        etiketter.push(lagSikkerhetstiltakEtikett(person.sikkerhetstiltak.sikkerhetstiltakskode));
+    }
     return etiketter;
 }
 
-function Etiketter( {person}: Props) {
-    const etiketter = lagEtiketter(person);
+function Etiketter( {person, egenAnsatt}: Props) {
+    const etiketter = lagEtiketter(person, egenAnsatt);
     return (
-        <EtikettContainer>
+        <StyledEtikketter>
             {etiketter}
-        </EtikettContainer>
+        </StyledEtikketter>
     );
 }
 

@@ -4,14 +4,15 @@ import Element from 'nav-frontend-typografi/lib/element';
 
 export const VisittkortBodyDiv = styled.div`
   display: flex;
+  margin-bottom: 10px;
   > * {
-    flex-grow: 1;
+    flex: 1 1 50%;
   }
 `;
 
 export const Kolonne = styled.div`
   > *:not(:last-child) {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 `;
 

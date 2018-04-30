@@ -2,7 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
 import { Bostatus, BostatusTyper, Person } from '../../models/person';
-import { Diskresjonskoder } from '../../constants';
+import { Diskresjonskoder } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
 import { getFodselsdato } from '../utils/fnr-utils';
@@ -10,6 +10,8 @@ import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
+import { getTilfeldigAdresse } from './adresseMock';
+import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 
 export function getPerson(fødselsnummer: string): Person {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -41,8 +43,12 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
+        folkeregistrertAdresse: getTilfeldigAdresse(),
+        alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
+        postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         sivilstand: sivilstand,
-        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand)
+        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
+        sikkerhetstiltak: getSikkerhetstiltak()
     };
 }
 

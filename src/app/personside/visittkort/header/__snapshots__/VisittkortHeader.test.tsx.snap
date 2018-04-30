@@ -8,7 +8,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     className="sc-EHOje hyALOH"
   >
     <div
-      className="sc-gzVnrw ctgjcR"
+      className="sc-gzVnrw kLcAtr"
     >
       <img
         alt="Mann"
@@ -17,15 +17,19 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       />
     </div>
     <div
-      className="sc-htoDjs jiCiGn"
+      className="sc-htoDjs bQxDUW"
     >
       <h2
         className="typo-undertittel"
       >
-        AREMARK TESTFAMILIEN
-         (
-        42
-        )
+        <span
+          className="sc-dnqmqq jzvNCD"
+        >
+          AREMARK TESTFAMILIEN
+           (
+          42
+          )
+        </span>
       </h2>
       <span
         className="typo-undertekst"
@@ -37,10 +41,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
            
         </span>
         <span
-          className="sc-bxivhb eOtet"
+          className="sc-htpNat coTjJA"
         />
         <ul
-          className="sc-htpNat fjsglQ"
+          className="sc-bwzfXH cwYuaP"
         >
           <li
             title="Statsborgerskap"
@@ -65,18 +69,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     className="sc-bZQynM iwaBxj"
   >
     <div
-      className="sc-bwzfXH eCbFXJ"
-    >
-      <div
-        className="etikett etikett--advarsel"
-      >
-        <span
-          className="typo-normal"
-        >
-          Fortrolig adresse
-        </span>
-      </div>
-    </div>
+      className="sc-bxivhb ezGmfP"
+    />
     <span
       className="typo-undertekst"
     >
