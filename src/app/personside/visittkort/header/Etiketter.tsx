@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Person } from '../../../../models/person';
+import { Person, TilrettelagtKommunikasjon } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../konstanter';
 import { Egenansatt } from '../../../../models/egenansatt';
@@ -40,14 +40,25 @@ function lagSikkerhetstiltakEtikett() {
     );
 }
 
+function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
+    return (
+        <EtikettBase key={tilrettelagtKommunikasjon.behovKode} type={'fokus'}>
+            {tilrettelagtKommunikasjon.beskrivelse}
+        </EtikettBase>);
+}
+
 function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
-    const etiketter = [];
+    const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
         etiketter.push(lagDiskresjonskodeEtikett(person.diskresjonskode));
     }
     if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
+    person.tilrettelagtKommunikasjonListe.map( tilrettelagtKommunikasjon  =>
+        etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon))
+    );
+
     if (person.sikkerhetstiltak) {
         etiketter.push(lagSikkerhetstiltakEtikett());
     }
