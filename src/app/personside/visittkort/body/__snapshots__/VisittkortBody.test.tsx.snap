@@ -290,7 +290,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-cSHVUG egzYjt"
+                    className="sc-jzJRlG gLGMez"
                   >
                     mandag
                   </span>
@@ -310,7 +310,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-cSHVUG egzYjt"
+                    className="sc-jzJRlG gLGMez"
                   >
                     tirsdag
                   </span>
@@ -330,7 +330,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-cSHVUG egzYjt"
+                    className="sc-jzJRlG gLGMez"
                   >
                     onsdag
                   </span>
@@ -350,7 +350,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-cSHVUG egzYjt"
+                    className="sc-jzJRlG gLGMez"
                   >
                     torsdag
                   </span>
@@ -370,7 +370,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   className="typo-undertekst"
                 >
                   <span
-                    className="sc-cSHVUG egzYjt"
+                    className="sc-jzJRlG gLGMez"
                   >
                     fredag
                   </span>
@@ -389,7 +389,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <br />
           </div>
           <a
-            className="sc-jzJRlG ftPBtD"
+            className="lenke sc-cSHVUG bBBzRL"
             href="/norg2-frontend/#/startsok?enhetNr=0118"
             rel="noopener noreferrer"
             target="_blank"
