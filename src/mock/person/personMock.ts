@@ -74,44 +74,45 @@ function getBostatus() {
 }
 
 function getTilrettelagtKommunikasjonsListe() {
+    var liste = [];
     if (vektetSjanse(faker, 0.1)) {
-        return [
+        liste.push(
             {
                 behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             }
-        ];
+        );
     } else if (vektetSjanse(faker, 0.1)) {
-        return [
+        liste.push(
             {
                 behovKode: 'KOSK',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
             }
-        ];
+        );
     } else if (vektetSjanse(faker, 0.1)) {
-        return [
+        liste.push(
             {
                 behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
-        ];
+        );
     } else if (vektetSjanse(faker, 0.1)) {
-        return [
+        liste.push(
             {
                 behovKode: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
             }
-        ];
+        );
     } else if (vektetSjanse(faker, 0.1)) {
-        return [
+        liste.push(
             {
                 behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             },
 
-        ];
+        );
     } else if (vektetSjanse(faker, 0.05)) {
-        return [
+        liste.push(
             {
                 behovKode: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
@@ -120,9 +121,9 @@ function getTilrettelagtKommunikasjonsListe() {
                 behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
-        ];
+        );
     } else if (vektetSjanse(faker, 0.05)) {
-        return [
+        liste.push(
             {
                 behovKode: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
@@ -131,10 +132,10 @@ function getTilrettelagtKommunikasjonsListe() {
                 behovKode: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
-        ];
-    } else {
-        return [];
+        );
     }
+
+    return liste;
 }
 
 function getDiskresjonskode() {
