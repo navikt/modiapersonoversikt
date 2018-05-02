@@ -1,16 +1,9 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { TilrettelagtKommunikasjon } from '../../../../../models/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 const phonePath = require('../telefon/phone.svg');
-
-const StyledTilrettelagtKommunikasjon = styled.span`
-  span:not(:last-child):after {
-    content: ' og ';
-  }
-`;
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
@@ -25,20 +18,17 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
     }
     return (
         <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={phonePath}>
-            <Undertekst>
-                <StyledTilrettelagtKommunikasjon>
-                    {tilrettelagtKommunikasjonsTekst}
-                </StyledTilrettelagtKommunikasjon>
-            </Undertekst>
+            {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
+
     );
 }
 
 function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
     return (
-        <span key={tilrettelagtKommunikasjon.behovKode}>
+        <Undertekst key={tilrettelagtKommunikasjon.behovKode}>
                  {tilrettelagtKommunikasjon.beskrivelse}
-            </span>
+            </Undertekst>
     );
 }
 

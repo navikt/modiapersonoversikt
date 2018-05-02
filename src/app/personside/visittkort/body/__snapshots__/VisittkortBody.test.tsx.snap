@@ -427,13 +427,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-undertekst"
         >
-          <span
-            className="sc-dxgOiQ iUdSfi"
-          >
-            <span>
-              Tolkehjelp
-            </span>
-          </span>
+          Tolkehjelp
         </p>
       </div>
     </div>
