@@ -1,6 +1,7 @@
 import * as React from 'react';
-import Statsborgerskap from './Statsborgerskap';
 import { shallow } from 'enzyme';
+
+import Statsborgerskap from './Statsborgerskap';
 
 test('Formaterer statsborgerskap', () => {
     const statsborgerskap = shallow(<Statsborgerskap statsborgerskap={'NORGE'}/>);

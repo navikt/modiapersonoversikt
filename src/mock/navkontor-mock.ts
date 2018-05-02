@@ -5,27 +5,29 @@ import { GateAdresse } from '../models/gateadresse';
 import { vektetSjanse } from './utils/mock-utils';
 
 export const geografiskTilknytningAremark = '0118';
+const apentFra = { time: '9', minutt: '0', sekund: '0' };
+const apentTil = { time: '14', minutt: '30', sekund: '0' };
 
 const mockApningsTider: Array<ApningsTid> = [{
     ukedag: 'MANDAG',
-    apentFra: { time: '9', minutt: '0', sekund: '0' },
-    apentTil: { time: '14', minutt: '30', sekund: '0' }
+    apentFra,
+    apentTil
 }, {
     ukedag: 'TIRSDAG',
-    apentFra: { time: '9', minutt: '0', sekund: '0' },
-    apentTil: { time: '14', minutt: '30', sekund: '0' }
+    apentFra,
+    apentTil
 }, {
     ukedag: 'ONSDAG',
-    apentFra: { time: '9', minutt: '0', sekund: '0' },
-    apentTil: { time: '14', minutt: '30', sekund: '0' }
+    apentFra,
+    apentTil
 }, {
     ukedag: 'TORSDAG',
-    apentFra: { time: '9', minutt: '0', sekund: '0' },
-    apentTil: { time: '14', minutt: '30', sekund: '0' }
+    apentFra,
+    apentTil
 }, {
     ukedag: 'FREDAG',
-    apentFra: { time: '9', minutt: '0', sekund: '0' },
-    apentTil: { time: '14', minutt: '30', sekund: '0' }
+    apentFra,
+    apentTil
 }];
 
 const aremarkGateadresse: GateAdresse = {

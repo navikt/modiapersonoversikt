@@ -1,50 +1,70 @@
 import * as moment from 'moment';
-import FakerStatic = Faker.FakerStatic;
 import { Moment } from 'moment';
 
 import { vektetSjanse } from '../utils/mock-utils';
 import { Sivilstand, SivilstandTyper } from '../../models/person';
+import FakerStatic = Faker.FakerStatic;
 
-const ugift = (fødselsdato: Moment) => {
+const ugift = (fraOgMed: string) => {
     return {
         value: SivilstandTyper.Ugift,
         beskrivelse: 'Ugift',
-        fraOgMed: fødselsdato.toDate().toDateString()
+        fraOgMed
+    };
+};
+
+const gift = (fraOgMed: string) => {
+    return {
+        value: SivilstandTyper.Gift,
+        beskrivelse: 'Gift',
+        fraOgMed
+    };
+};
+
+const skilt = (fraOgMed: string) => {
+    return {
+        value: SivilstandTyper.Skilt,
+        beskrivelse: 'Skilt',
+        fraOgMed
+    };
+};
+
+const samboer = (fraOgMed: string) => {
+    return {
+        value: SivilstandTyper.Samboer,
+        beskrivelse: 'Samboer',
+        fraOgMed
+    };
+};
+
+const enke = (fraOgMed: string) => {
+    return {
+        value: SivilstandTyper.Enke,
+        beskrivelse: 'Enke',
+        fraOgMed
     };
 };
 
 export function getSivilstand(fødselsdato: Moment, faker: FakerStatic): Sivilstand {
     const alder = moment().diff(fødselsdato, 'years');
-
+    const fraOgMed = getSistOppdatert(alder, faker);
     if (alder < 18) {
-        return ugift(fødselsdato);
+        return ugift(fraOgMed);
     }
+    return getTilfeldigSilvstand(fraOgMed, faker);
+}
+
+function getTilfeldigSilvstand(fraOgMed: string, faker: FakerStatic) {
     if (vektetSjanse(faker, 0.2)) {
-        return {
-            value: SivilstandTyper.Gift,
-            beskrivelse: 'Gift',
-            fraOgMed: getSistOppdatert(alder, faker)
-        };
+        return gift(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return {
-            value: SivilstandTyper.Skilt,
-            beskrivelse: 'Skilt',
-            fraOgMed: getSistOppdatert(alder, faker)
-        };
+        return skilt(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return ugift(fødselsdato);
+        return ugift(fraOgMed);
     } else if (vektetSjanse(faker, 0.2)) {
-        return {
-            value: SivilstandTyper.Samboer,
-            beskrivelse: 'Samboer',
-            fraOgMed: getSistOppdatert(alder, faker)
-        };
+        return samboer(fraOgMed);
     } else {
-        return {
-            value: SivilstandTyper.Enke,
-            beskrivelse: 'Enke',
-            fraOgMed: getSistOppdatert(alder, faker)
-        };
+        return enke(fraOgMed);
     }
 }
 

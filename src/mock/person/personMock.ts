@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Bostatus, BostatusTyper, Person } from '../../models/person';
+import { Bostatus, BostatusTyper, Navn, Person } from '../../models/person';
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
@@ -23,9 +23,6 @@ export function getPerson(fødselsnummer: string): Person {
 }
 
 function getTilfeldigPerson(fødselsnummer: string): Person {
-    const fornavn = getFornavn(fødselsnummer);
-    const etternavn = faker.name.lastName();
-    const mellomnavn = '';
     const alder = moment().diff(getFodselsdato(fødselsnummer), 'years');
     const sivilstand = getSivilstand(getFodselsdato(fødselsnummer), faker);
     return {
@@ -33,12 +30,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
-        navn: {
-            fornavn: fornavn,
-            etternavn: etternavn,
-            mellomnavn: mellomnavn,
-            sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
-        },
+        navn: getNavn(fødselsnummer),
         tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
@@ -50,6 +42,18 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak()
+    };
+}
+
+function getNavn(fødselsnummer: string): Navn {
+    const fornavn = getFornavn(fødselsnummer);
+    const etternavn = faker.name.lastName();
+    const mellomnavn = '';
+    return {
+        fornavn: fornavn,
+        etternavn: etternavn,
+        mellomnavn: mellomnavn,
+        sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
     };
 }
 

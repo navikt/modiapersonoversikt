@@ -125,9 +125,13 @@ export function getMorOgFar(familierelasjoner: Familierelasjon[]) {
 }
 
 export function getMor(familierelasjoner: Familierelasjon[]) {
-    return familierelasjoner.find(relasjon => relasjon.rolle === Relasjonstype.Mor);
+    return finnRelasjon(familierelasjoner, Relasjonstype.Mor);
 }
 
 export function getFar(familierelasjoner: Familierelasjon[]) {
-    return familierelasjoner.find(relasjon => relasjon.rolle === Relasjonstype.Far);
+    return finnRelasjon(familierelasjoner, Relasjonstype.Far);
+}
+
+function finnRelasjon(familierelasjoner: Familierelasjon[], relasjonstype: Relasjonstype) {
+    return familierelasjoner.find(relasjon => relasjon.rolle === relasjonstype);
 }
