@@ -2,7 +2,7 @@ import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
 import { Bostatus, BostatusTyper, Navn, Person } from '../../models/person';
-import { Diskresjonskoder } from '../../konstanter';
+import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
 import { getFodselsdato } from '../utils/fnr-utils';
@@ -31,6 +31,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: getNavn(fødselsnummer),
+        tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: getDiskresjonskode(),
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),
@@ -74,6 +75,71 @@ function getBostatus() {
     } else {
         return undefined;
     }
+}
+
+function getTilrettelagtKommunikasjonsListe() {
+    var liste = [];
+    if (vektetSjanse(faker, 0.1)) {
+        liste.push(
+            {
+                behovKode: 'LESA',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            }
+        );
+    } else if (vektetSjanse(faker, 0.1)) {
+        liste.push(
+            {
+                behovKode: 'KOSK',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
+            }
+        );
+    } else if (vektetSjanse(faker, 0.1)) {
+        liste.push(
+            {
+                behovKode: 'KOMU',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        );
+    } else if (vektetSjanse(faker, 0.1)) {
+        liste.push(
+            {
+                behovKode: 'TOHJ',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+            }
+        );
+    } else if (vektetSjanse(faker, 0.1)) {
+        liste.push(
+            {
+                behovKode: 'LESA',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            },
+
+        );
+    } else if (vektetSjanse(faker, 0.05)) {
+        liste.push(
+            {
+                behovKode: 'LESA',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            },
+            {
+                behovKode: 'KOMU',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        );
+    } else if (vektetSjanse(faker, 0.05)) {
+        liste.push(
+            {
+                behovKode: 'TOHJ',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+            },
+            {
+                behovKode: 'KOMU',
+                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+            }
+        );
+    }
+
+    return liste;
 }
 
 function getDiskresjonskode() {

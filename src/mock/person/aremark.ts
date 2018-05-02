@@ -1,4 +1,4 @@
-import { Diskresjonskoder } from '../../konstanter';
+import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { Kjønn, Person, SivilstandTyper } from '../../models/person';
 
 export const aremark: Person = {
@@ -12,6 +12,12 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
+    tilrettelagtKomunikasjonsListe: [
+        {
+            behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+            beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+        }
+    ],
     diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
     statsborgerskap: 'NORSK',
     personstatus: {

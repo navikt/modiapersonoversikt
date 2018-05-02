@@ -10,6 +10,8 @@ import { ThemeProvider } from 'styled-components';
 import { personOversiktTheme } from '../../../themes/personOversiktTheme';
 import { aremark } from '../../../mock/person/aremark';
 
+testStore.dispatch({ type: personinformasjonActionNames.OK, data: aremark });
+
 const visittkort = mount((
     <ThemeProvider theme={personOversiktTheme}>
         <Provider store={testStore}>
@@ -17,8 +19,6 @@ const visittkort = mount((
         </Provider>
     </ThemeProvider>
 ));
-
-testStore.dispatch({ type: personinformasjonActionNames.OK, data: aremark });
 
 test('viser visittkortheader når visittkort først rendres', () => {
     expect(visittkort).toContainReact(<VisittkortHeader person={aremark}/>);
