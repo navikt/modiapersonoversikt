@@ -5,10 +5,12 @@ import { Person, TilrettelagtKommunikasjon } from '../../../../models/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../konstanter';
 import { Egenansatt } from '../../../../models/egenansatt';
+import { Vergemal } from '../../../../models/vergemal/vergemal';
 
 interface Props {
     person: Person;
     egenAnsatt?: Egenansatt;
+    vergemal?: Vergemal;
 }
 
 const StyledEtikketter = styled.div`
@@ -47,7 +49,7 @@ function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Tilrette
         </EtikettBase>);
 }
 
-function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
+function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal) {
     const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
         etiketter.push(lagDiskresjonskodeEtikett(person.diskresjonskode));
@@ -62,11 +64,14 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt) {
     if (person.sikkerhetstiltak) {
         etiketter.push(lagSikkerhetstiltakEtikett());
     }
+    if (vergemal && vergemal.verger && vergemal.verger.length > 0) {
+        etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);
+    }
     return etiketter;
 }
 
-function Etiketter( {person, egenAnsatt}: Props) {
-    const etiketter = lagEtiketter(person, egenAnsatt);
+function Etiketter( {person, egenAnsatt, vergemal}: Props) {
+    const etiketter = lagEtiketter(person, egenAnsatt, vergemal);
     return (
         <StyledEtikketter>
             {etiketter}

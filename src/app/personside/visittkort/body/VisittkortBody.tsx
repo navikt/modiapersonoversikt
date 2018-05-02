@@ -6,12 +6,12 @@ import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 
 import { Component } from 'react';
-import { VergeMålPlaceholder } from './mockInfo';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Adresse from './adresse/Adresse';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
+import VergemalContainer from './vergemal/VergemalContainer';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -42,7 +42,7 @@ function OneColumnLayout(person: Person) {
                 <Familie person={person}/>
                 {NavKontor}
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                {VergeMålPlaceholder}
+                <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>
@@ -59,7 +59,7 @@ function TwoColumnLayout(person: Person) {
             <Kolonne>
                 {NavKontor}
                  <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                {VergeMålPlaceholder}
+                <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>
@@ -75,7 +75,7 @@ function ThreeColumnLayout(person: Person) {
             <Kolonne>
                 <Familie person={person}/>
                  <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                {VergeMålPlaceholder}
+                <VergemalContainer/>
             </Kolonne>
             <Kolonne>
                 {NavKontor}

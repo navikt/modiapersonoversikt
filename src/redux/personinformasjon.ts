@@ -5,6 +5,7 @@ import { Action } from 'redux';
 import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { hentNavKontor, settBrukerUtenNavKontor } from './navkontor';
 import { erEgenAnsatt } from './egenansatt';
+import { hentVergemal } from './vergemal';
 
 const { reducer, action, actionNames} = createActionsAndReducer('personinformasjon');
 
@@ -25,6 +26,7 @@ export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: st
     dispatch(hentPerson(fødselsnummer, dispatch));
     dispatch(hentKontaktinformasjon(fødselsnummer));
     dispatch(erEgenAnsatt(fødselsnummer));
+    dispatch(hentVergemal(fødselsnummer));
 }
 export const personinformasjonActionNames = actionNames;
 
