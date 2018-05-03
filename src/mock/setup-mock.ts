@@ -1,7 +1,7 @@
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock, { HandlerArgument } from 'yet-another-fetch-mock';
+import FetchMock, { HandlerArgument, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
@@ -56,9 +56,11 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: (requestArgs, response) => {
-            return response;
-        }
+        middleware:  MiddlewareUtils.combine(
+            (requestArgs, response) => {
+                return response;
+            },
+            MiddlewareUtils.failurerateMiddleware(0.1))
     });
 
     setupPersonMock(mock);
