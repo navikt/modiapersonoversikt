@@ -28,7 +28,7 @@ it('Formaterer endretAv ident + BD06 (modiabrukerdialog-app - NAV) tekst til øn
     expect(formatertTekst).toEqual('av NAV');
 });
 
-it('Formaterer endretAv ident (med liten bokstav) + BD06 (modiabrukerdialog-app - NAV) tekst til ønsket visningsformat', () => {
+it('Formaterer endretAv ident (med liten bokstav) + BD06 tekst til ønsket visningsformat', () => {
     const rawString = 'x108000, BD06';
     const formatertTekst =  endretAvTekst(rawString);
 
