@@ -20,6 +20,7 @@ export interface Gateadresse {
     husbokstav?: string;
     postnummer: string;
     poststed: string;
+    bolignummer?: string;
     periode?: Periode;
 }
 

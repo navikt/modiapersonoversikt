@@ -32,8 +32,13 @@ function formaterKontonummer(kontonummer: string) {
 }
 
 function Bankkonto({person}: BankkontoProps) {
+    var beskrivelse = 'Kontonummer';
+    if (person.bankkonto) {
+        beskrivelse += person.bankkonto.erNorskKonto ? '' : ' utland';
+    }
+
     return (
-        <VisittkortElement beskrivelse="Kontonummer" ikonPath={coinsPath}>
+        <VisittkortElement beskrivelse={beskrivelse} ikonPath={coinsPath}>
             {kontoinfo(person)}
         </VisittkortElement>
     );

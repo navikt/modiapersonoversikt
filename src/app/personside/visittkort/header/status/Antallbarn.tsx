@@ -17,7 +17,7 @@ export function AntallBarn({ familierelasjoner }: Props) {
 
     return (
         <li title="Barn under 21 år">
-            {barn.length} barn (under 21)
+            {barn.length} barn under 21 år
         </li>
     );
 }

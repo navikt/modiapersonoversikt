@@ -19,7 +19,7 @@ interface VisittkortBodyProps {
 
 function Kontakt(person: Person) {
     return (
-        <InfoGruppe tittel={'Kontakt'}>
+        <InfoGruppe tittel={'Kontaktinformasjon'}>
             <Adresse  person={person}/>
             <EpostContainer/>
             <MobiltelefonContainer/>
