@@ -75,7 +75,7 @@ class DialogPanel extends React.Component<DialogPanelProps> {
                         onClick={this.onPlukkOppgaver}
                         spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
                     >
-                        Plukk oppgaver
+                        Hent oppgave
                     </KnappBase>
                 </Knapperad>
                 <ComponentPlaceholder height={'800px'} name={'Dialog Panel'}/>
