@@ -33,7 +33,7 @@ function getVerge(): Verge {
         vergesakstype: getTilfeldigVergesakstype(),
         mandattype: getTilfeldigMandattype(),
         mandattekst: 'Her kommen en fritekst som er sånn passelig lang',
-        periode: getTilfeldigPeriode(),
+        virkningsperiode: getTilfeldigPeriode(),
         navn: lagNavn(faker),
         vergetype: getTilfeldigVergetype(),
         embete: 'Fylkesmannen i ' + faker.address.city()

@@ -20,7 +20,7 @@ function Periode(props: {periode: Periode}) {
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
     return(
-        <EtikettLiten>{tom} {emdash} {fom}</EtikettLiten>
+        <EtikettLiten>{fom} {emdash} {tom}</EtikettLiten>
     );
 }
 
@@ -46,7 +46,7 @@ function Verge(props: {verge: Verge}) {
                 <Undertekst>{verge.mandattype || ''}</Undertekst>
                 <Undertekst>{verge.mandattekst || ''}</Undertekst>
                 <Undertekst>{verge.embete || ''}</Undertekst>
-                <Periode periode={verge.periode}/>
+                <Periode periode={verge.virkningsperiode}/>
             </VergeDiv>
         </VisittkortElement>
 

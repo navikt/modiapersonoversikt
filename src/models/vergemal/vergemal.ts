@@ -11,7 +11,7 @@ export interface Verge {
     mandattype?: string;
     mandattekst?: string;
     embete?: string;
-    periode: Periode;
+    virkningsperiode: Periode;
     navn: Navn;
 }
 

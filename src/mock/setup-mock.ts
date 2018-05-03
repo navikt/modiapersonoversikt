@@ -52,7 +52,7 @@ function setupOppgaveMock(mock: FetchMock) {
 }
 
 function setupVergemalMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/vergemal/:fodselsnummer', withDelayedResponse(
+    mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
         2500,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));

@@ -3,7 +3,7 @@ import { Vergemal } from '../models/vergemal/vergemal';
 
 export function getVergemal(fødeselsnummer: string): Promise<Vergemal> {
     const uri =
-        `${apiBaseUri}/vergemal/${fødeselsnummer}`;
+        `${apiBaseUri}/person/${fødeselsnummer}/vergemal`;
     return fetch(uri, {credentials: 'include'})
         .then((response) => {
             if (response.ok) {
