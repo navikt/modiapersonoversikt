@@ -226,7 +226,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <span
           className="sc-kpOJdX iwyBG"
         >
-          Navkontor
+          NAV-kontor
         </span>
       </p>
       <div
@@ -236,9 +236,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gZMcBi ihiCNk"
         >
           <img
-            alt="Brukers NavKontor"
+            alt="0118 Nav Aremark"
             src="nav-logo.svg"
-            title="Brukers NavKontor"
+            title="0118 Nav Aremark"
           />
         </div>
         <div
@@ -250,17 +250,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-VigVT fsRKfG"
             >
-              Brukers NavKontor
+              0118 Nav Aremark
             </span>
           </p>
-          <p
-            className="typo-undertekst"
-          >
-            Nav Aremark
-             
-            0118
-          </p>
           <div>
+            <br />
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM kGwTKg"
+              >
+                Besøksadresse
+              </span>
+            </p>
             <p
               className="typo-undertekst"
             >
@@ -394,8 +397,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             rel="noopener noreferrer"
             target="_blank"
           >
-            Mer informasjon om 
-            Nav Aremark
+            Mer informasjon om kontoret
           </a>
         </div>
       </div>

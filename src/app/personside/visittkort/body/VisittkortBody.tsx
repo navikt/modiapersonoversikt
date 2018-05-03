@@ -29,7 +29,7 @@ function Kontakt(person: Person) {
 }
 
 const NavKontor = (
-    <InfoGruppe tittel={'Navkontor'}>
+    <InfoGruppe tittel={'NAV-kontor'}>
         <NavKontorContainer/>
     </InfoGruppe>
 );
