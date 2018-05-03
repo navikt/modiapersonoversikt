@@ -49,6 +49,10 @@ function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Tilrette
         </EtikettBase>);
 }
 
+function harVergemål(vergemal?: Vergemal) {
+    return vergemal && vergemal.verger && vergemal.verger.length > 0;
+}
+
 function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal) {
     const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
@@ -57,16 +61,18 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergem
     if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
-    person.tilrettelagtKomunikasjonsListe.map(tilrettelagtKommunikasjon  =>
-        etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon))
-    );
-
     if (person.sikkerhetstiltak) {
         etiketter.push(lagSikkerhetstiltakEtikett());
     }
-    if (vergemal && vergemal.verger && vergemal.verger.length > 0) {
+    if (harVergemål(vergemal)) {
         etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);
     }
+
+    person.tilrettelagtKomunikasjonsListe.forEach(tilrettelagtKommunikasjon  => {
+            etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon));
+        }
+    );
+
     return etiketter;
 }
 
