@@ -11,7 +11,7 @@ export function endretAvTekst(rawString: string): string {
 }
 
 function endretIFagsystem(rawString: string) {
-    return rawString.match('[A-Z][0-9]{6}');
+    return rawString && rawString.toUpperCase().match('[A-Z][0-9]{6}');
 }
 
 function endretIPSelv(rawString: string) {

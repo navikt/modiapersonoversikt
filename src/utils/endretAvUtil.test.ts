@@ -1,5 +1,12 @@
 import { endretAvTekst } from './endretAvUtil';
 
+it('Formaterer tom endretAv til ønsket visningsformat', () => {
+    const rawString = '';
+    const formatertTekst =  endretAvTekst(rawString);
+
+    expect(formatertTekst).toEqual('');
+});
+
 it('Formaterer endretAv tall + BD03 (brukerprofil-app = bruker) tekst til ønsket visningsformat', () => {
     const rawString = '1010800, BD03';
     const formatertTekst =  endretAvTekst(rawString);
@@ -16,6 +23,13 @@ it('Formaterer endretAv tall + PP01 (PSelv-app - bruker) tekst til ønsket visni
 
 it('Formaterer endretAv ident + BD06 (modiabrukerdialog-app - NAV) tekst til ønsket visningsformat', () => {
     const rawString = 'X108000, BD06';
+    const formatertTekst =  endretAvTekst(rawString);
+
+    expect(formatertTekst).toEqual('av NAV');
+});
+
+it('Formaterer endretAv ident (med liten bokstav) + BD06 tekst til ønsket visningsformat', () => {
+    const rawString = 'x108000, BD06';
     const formatertTekst =  endretAvTekst(rawString);
 
     expect(formatertTekst).toEqual('av NAV');
