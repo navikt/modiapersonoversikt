@@ -22,7 +22,7 @@ const onPending = (
 const onError = (
     <FillCenterAndFadeIn>
         <AlertStripe type="advarsel">
-            Feil ved lasting av data
+            Beklager. Det skjedde en feil ved lasting av persondata.
         </AlertStripe>
     </FillCenterAndFadeIn>
 );
