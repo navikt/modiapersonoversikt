@@ -65,7 +65,7 @@ class Startbilde extends React.Component<StartbildeProps> {
                     onClick={this.onPlukkOppgaveKlikk}
                     spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
                 >
-                    Plukk en oppgave!
+                    Hent oppgave
                 </KnappBase>
                 <Feilmelding reducer={this.props.oppgaveReducer}/>
             </StartBildeLayout>
