@@ -16,9 +16,36 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <span
           className="sc-kpOJdX iwyBG"
         >
-          Kontakt
+          Kontaktinformasjon
         </span>
       </p>
+      <div
+        className="sc-iwsKbI cPaMTU"
+      >
+        <div
+          className="sc-gZMcBi ihiCNk"
+        >
+          <img
+            alt="Bostedsadresse fra Folkeregisteret"
+            src="location-pin.svg"
+            title="Bostedsadresse fra Folkeregisteret"
+          />
+        </div>
+        <div
+          className="sc-gqjmRU laWHsE"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-VigVT fsRKfG"
+            >
+              Bostedsadresse fra Folkeregisteret
+            </span>
+          </p>
+          Ikke registrert
+        </div>
+      </div>
       <div
         className="sc-iwsKbI cPaMTU"
       >

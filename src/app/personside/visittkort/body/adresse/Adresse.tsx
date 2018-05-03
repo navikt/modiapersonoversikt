@@ -27,14 +27,15 @@ function Adresse({person}: AdresseProps) {
 }
 
 function hentFolkeregistrertAdresse(person: Person) {
-    if (person.folkeregistrertAdresse != null) {
-        return (
-            <VisittkortElement beskrivelse="Folkeregistrert adresse" ikonPath={locationPath}>
-                {formatterRiktigAdresse(person.folkeregistrertAdresse)}
-            </VisittkortElement>
-        );
-    }
-    return null;
+    const adresse = person.folkeregistrertAdresse != null ?
+        formatterRiktigAdresse(person.folkeregistrertAdresse) : 'Ikke registrert';
+
+    return (
+        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikonPath={locationPath}>
+            {adresse}
+        </VisittkortElement>
+    );
+
 }
 
 function hentMidlertidigAdresse(person: Person) {
@@ -51,7 +52,7 @@ function hentMidlertidigAdresse(person: Person) {
 function hentPostadresse(person: Person) {
     if (person.postadresse != null) {
         return (
-            <VisittkortElement beskrivelse="Postadresse" ikonPath={locationPath}>
+            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikonPath={locationPath}>
                 {formatterRiktigAdresse(person.postadresse)}
             </VisittkortElement>
         );
@@ -116,6 +117,7 @@ function formatterGateadresse(adresse: personadresse.Gateadresse) {
             {hentPeriode(adresse.periode)}
             {hentTilleggsadresse(adresse.tilleggsadresse)}
             <Undertekst>{gateadresse}</Undertekst>
+            {hentBolignummer(adresse)}
             <Undertekst>{poststed}</Undertekst>
         </div>
     );
@@ -169,4 +171,14 @@ function hentTilleggsadresse(tilleggsadresse?: string) {
     }
     return null;
 }
+
+function hentBolignummer(adresse: personadresse.Gateadresse) {
+    if (adresse.bolignummer) {
+        return (
+            <Undertekst>{adresse.bolignummer}</Undertekst>
+        );
+    }
+    return null;
+}
+
 export default Adresse;
