@@ -124,7 +124,10 @@ function navkontorInfo(navKontor: NavKontor) {
 function flerePublikumsmottak(antallMottak: number) {
     if (antallMottak > 1) {
         return (
-            <EtikettMini>Det finnes flere publikumsmottak!</EtikettMini>
+            <>
+                <Undertekst>Det finnes flere publikumsmottak!</Undertekst>
+                <br/>
+            </>
         );
     }
     return null;
