@@ -5,6 +5,9 @@ import { Klokkeslett } from '../../../../../models/klokkeslett';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import EtikettMini from '../../../../../components/EtikettMini';
+import VisittkortElement from '../VisittkortElement';
+
+const navLogo = require('./nav-logo.svg');
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -64,6 +67,8 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
 
     return (
         <div key={adresse}>
+            <br/>
+            <EtikettMini>Besøksadresse</EtikettMini>
             <Undertekst>{adresse}</Undertekst>
             <Undertekst>{postSted}</Undertekst>
             <br/>
@@ -78,28 +83,51 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
 
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
-        return <Undertekst>Ingen NAV-Enhet</Undertekst>;
+        return (
+            <VisittkortElement beskrivelse="Ingen NAV-kontor funnet." ikonPath={navLogo}>
+                <br/>
+            </VisittkortElement>
+        );
     }
 
-    const listeMedPublikumsMottak =
-        props.navKontor.publikumsmottak.map((publikumsMottak) => publikumsMottakKontaktInfo(publikumsMottak));
+    const beskrivelse = `${props.navKontor.enhetId} ${props.navKontor.enhetNavn}`;
+
+    return (
+        <VisittkortElement beskrivelse={beskrivelse} ikonPath={navLogo}>
+            {navkontorInfo(props.navKontor)}
+        </VisittkortElement>
+    );
+}
+
+function navkontorInfo(navKontor: NavKontor) {
+    const antallPublikumsmottak = navKontor.publikumsmottak.length;
+
+    const førstePublikumsmottak = navKontor.publikumsmottak[0];
 
     return (
         <>
-            <Undertekst>
-                {props.navKontor.enhetNavn} {props.navKontor.enhetId}
-            </Undertekst>
-            {listeMedPublikumsMottak}
+            {publikumsMottakKontaktInfo(førstePublikumsmottak)}
+            {flerePublikumsmottak(antallPublikumsmottak)}
             <StyledLenke
-                href={`/norg2-frontend/#/startsok?enhetNr=${props.navKontor.enhetId}`}
+                href={`/norg2-frontend/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={'lenke'}
             >
-                Mer informasjon om {props.navKontor.enhetNavn}
+                Mer informasjon om kontoret
             </StyledLenke>
         </>
     );
+
+}
+
+function flerePublikumsmottak(antallMottak: number) {
+    if (antallMottak > 1) {
+        return (
+            <EtikettMini>Det finnes flere publikumsmottak!</EtikettMini>
+        );
+    }
+    return null;
 }
 
 export default NavKontorVisning;

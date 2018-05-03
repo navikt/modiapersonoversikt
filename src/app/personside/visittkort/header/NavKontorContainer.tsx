@@ -34,7 +34,7 @@ const onError = (
 
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
-        return <>Ingen NAV-Enhet</>;
+        return <>Ingen NAV-kontor</>;
     }
 
     return (
@@ -49,7 +49,7 @@ class NavKontorContainer extends React.Component<Props> {
         return (
             <Undertekst tag="span">
                 <NavKontorDescriptionList>
-                    <dt>Nav-enhet</dt>
+                    <dt>NAV-kontor</dt>
                     <dd>
                         <Innholdslaster
                             avhengigheter={[this.props.navKontorReducer]}

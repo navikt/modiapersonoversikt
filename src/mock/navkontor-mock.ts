@@ -56,7 +56,7 @@ export function getMockNavKontor(geografiskTilknytning: string): NavKontor {
         return {
             enhetNavn: 'NAV ' + city,
             enhetId: geografiskTilknytning,
-            publikumsmottak: [getPublikumsmottak(city)]
+            publikumsmottak: [getPublikumsmottak(city), getPublikumsmottak(city)]
         };
     }
 }
