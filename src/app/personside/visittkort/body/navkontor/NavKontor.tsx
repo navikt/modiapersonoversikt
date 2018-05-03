@@ -59,6 +59,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     ));
 
     const besoksadresse = publikumsMottak.besoksadresse;
+    
     const adresse = besoksadresse
         ? `
             ${besoksadresse.gatenavn} ${besoksadresse.husnummer || '' }${besoksadresse.husbokstav || ''}`
