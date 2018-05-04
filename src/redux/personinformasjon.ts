@@ -11,8 +11,8 @@ const { reducer, action, actionNames} = createActionsAndReducer('personinformasj
 export function hentPerson(fødselsnummer: string, dispatch: Function) {
     return action(() => getPerson(fødselsnummer)
         .then(person => {
-            if (person.geografiskTilknytning) {
-                dispatch(hentNavKontor(person.geografiskTilknytning));
+            if (person.geografiskTilknytning || person.diskresjonskode) {
+                dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode));
             } else {
                 dispatch(settBrukerUtenNavKontor());
             }

@@ -1,9 +1,9 @@
 import { apiBaseUri } from './config';
 import { NavKontor } from '../models/navkontor';
 
-export function getNavkontor(geografiskTilknytning: string, diskresjonsKode?: string): Promise<NavKontor> {
+export function getNavkontor(geografiskTilknytning?: string, diskresjonsKode?: string): Promise<NavKontor> {
     const uri =
-        `${apiBaseUri}/enheter/geo/${geografiskTilknytning}${diskresjonsKode ? '?dkode=' + diskresjonsKode : ''}`;
+        `${apiBaseUri}/enheter/geo/?gt=${geografiskTilknytning}${diskresjonsKode ? '&dkode=' + diskresjonsKode : ''}`;
     return fetch(uri, {credentials: 'include'})
         .then((response) => {
             if (response.ok) {
