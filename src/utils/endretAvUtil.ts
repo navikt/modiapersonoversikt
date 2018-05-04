@@ -3,6 +3,8 @@ export function endretAvTekst(rawString: string): string {
         return 'av bruker';
     } else if (endretIFagsystem(rawString) || endretIPesys(rawString) ) {
         return 'av NAV';
+    } else if (rawString.match('AAA2101, SKD')) {
+        return 'av Skatteetaten';
     } else if (rawString.match('SKD')) {
         return 'i Folkeregisteret';
     } else {
@@ -11,7 +13,15 @@ export function endretAvTekst(rawString: string): string {
 }
 
 function endretIFagsystem(rawString: string) {
-    return rawString && rawString.toUpperCase().match('[A-Z][0-9]{6}');
+    return rawString && (endretAvNyTypeIdent(rawString) || endretAvGammelTypeIdent(rawString));
+}
+
+function endretAvNyTypeIdent(rawString: string) {
+    return rawString.toUpperCase().match('[A-Z][0-9]{6}');
+}
+
+function endretAvGammelTypeIdent(rawString: string) {
+    return rawString.toUpperCase().match('[A-Z]{3}[0-9]{4}, [A-Z]{2}[0-9]{2}');
 }
 
 function endretIPSelv(rawString: string) {
