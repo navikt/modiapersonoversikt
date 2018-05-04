@@ -34,7 +34,7 @@ const onError = (
 
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
-        return <>Ingen NAV-kontor</>;
+        return <>Ingen enhet</>;
     }
 
     return (

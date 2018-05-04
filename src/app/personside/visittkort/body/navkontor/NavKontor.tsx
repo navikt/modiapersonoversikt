@@ -85,7 +85,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
         return (
-            <VisittkortElement beskrivelse="Ingen NAV-kontor funnet." ikonPath={navLogo}>
+            <VisittkortElement beskrivelse="Ingen enhet" ikonPath={navLogo}>
                 <br/>
             </VisittkortElement>
         );
