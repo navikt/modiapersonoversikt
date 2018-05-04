@@ -6,6 +6,7 @@ import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
+import { mockVergemal } from './vergemal-mock';
 
 const STATUS_OK = () => 200;
 
@@ -50,6 +51,13 @@ function setupOppgaveMock(mock: FetchMock) {
         () => getTilfeldigeOppgaver()));
 }
 
+function setupVergemalMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
+        2500,
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -68,4 +76,5 @@ export function setupMock() {
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);
     setupOppgaveMock(mock);
+    setupVergemalMock(mock);
 }

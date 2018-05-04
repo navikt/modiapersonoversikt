@@ -5,6 +5,7 @@ import { getPersonstatus } from './personMock';
 import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
+import { lagNavn } from '../utils/person-utils';
 
 export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: Sivilstand) {
     let relasjoner: Familierelasjon[] = [];
@@ -104,17 +105,4 @@ function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Re
 
 function getAlderFromFødselsnummer(fødselsnummer: string) {
     return moment().diff(getFodselsdato(fødselsnummer), 'years');
-}
-
-function lagNavn(faker: FakerStatic) {
-    const fornavn = faker.name.firstName();
-    const etternavn = faker.name.lastName();
-    const mellomnavn = '';
-
-    return {
-        fornavn: fornavn,
-        etternavn: etternavn,
-        mellomnavn: mellomnavn,
-        sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
-    };
 }

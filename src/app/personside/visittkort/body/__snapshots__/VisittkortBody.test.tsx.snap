@@ -460,37 +460,41 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
     </div>
-    <div
-      className="sc-iwsKbI cPaMTU"
+    <svg
+      aria-label="Laster innhold"
+      className="spinner spinner--l"
+      focusable="false"
+      height={32}
+      kind="spinner"
+      onClick={undefined}
+      preserveAspectRatio="xMidYMid"
+      style={undefined}
+      viewBox="0 0 100 100"
+      width={32}
     >
-      <div
-        className="sc-gZMcBi ihiCNk"
-      >
-        <img
-          alt="Bruker er under vergemål"
-          src="vergemaal.svg"
-          title="Bruker er under vergemål"
-        />
-      </div>
-      <div
-        className="sc-gqjmRU laWHsE"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="sc-VigVT fsRKfG"
-          >
-            Bruker er under vergemål
-          </span>
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis neque nobis sint tempora. Quos, tenetur!
-        </p>
-      </div>
-    </div>
+      <title>
+        Venter...
+      </title>
+      <circle
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="#bdbab7"
+        strokeWidth="10"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="#7f756c"
+        strokeDasharray="50 155"
+        strokeLinecap="round"
+        strokeWidth="10"
+      />
+    </svg>
   </div>
 </div>
 `;
