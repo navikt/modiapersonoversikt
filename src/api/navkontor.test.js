@@ -9,7 +9,7 @@ test('Kalles uten diskresjonskode hvis diskresjonskode er undefined', () => {
         .catch((data)=>{});
 
     const expectedArgs = [
-        apiBaseUri + '/enheter/geo/?gt=1234',
+        apiBaseUri + '/enheter?gt=1234',
         { credentials: 'include' }
     ];
     expect(fetch).toBeCalledWith(...expectedArgs);
@@ -21,7 +21,7 @@ test('Kalles med diskresjonskode hvis diskresjonskode er gitt', () => {
         .catch((data)=>{});
 
     const expectedArgs = [
-        apiBaseUri + '/enheter/geo/?gt=&dkode=kodeRØD',
+        apiBaseUri + '/enheter?gt=&dkode=kodeRØD',
         { credentials: 'include' }
     ];
     expect(fetch).toBeCalledWith(...expectedArgs);
@@ -34,7 +34,7 @@ test('Kalles med diskresjonskode og gt hvis diskresjonskode og gt er gitt', () =
         .catch((data)=>{});
 
     const expectedArgs = [
-        apiBaseUri + '/enheter/geo/?gt=1234&dkode=kodeRØD',
+        apiBaseUri + '/enheter?gt=1234&dkode=kodeRØD',
         { credentials: 'include' }
     ];
     expect(fetch).toBeCalledWith(...expectedArgs);
