@@ -3,7 +3,7 @@ import { TilrettelagtKommunikasjon } from '../../../../../models/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const phonePath = require('../telefon/phone.svg');
+const ikonPath = require('../vergemaal.svg');
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
@@ -17,7 +17,7 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={ikonPath}>
             {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
 
