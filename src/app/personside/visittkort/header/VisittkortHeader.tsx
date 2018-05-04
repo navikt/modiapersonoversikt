@@ -6,6 +6,7 @@ import NavKontorContainer from './NavKontorContainer';
 import { erDød, Person } from '../../../../models/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './EtiketterContainer';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 const mannPath = require('../body/familie/mann.svg');
 const kvinnePath = require('../body/familie/kvinne.svg');
@@ -88,7 +89,9 @@ function VisittkortHeader({person}: VisittkortHeaderProps) {
             </VenstreFelt>
 
             <HøyreFelt>
-                <EtiketterContainer/>
+                <ErrorBoundary>
+                    <EtiketterContainer/>
+                </ErrorBoundary>
                 <NavKontorContainer/>
             </HøyreFelt>
 
