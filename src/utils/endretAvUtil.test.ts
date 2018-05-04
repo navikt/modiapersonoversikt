@@ -35,6 +35,13 @@ it('Formaterer endretAv ident (med liten bokstav) + BD06 tekst til ønsket visni
     expect(formatertTekst).toEqual('av NAV');
 });
 
+it('Formaterer endretAv gammel type ident + IT00 (Infotrygd-app - NAV) tekst til ønsket visningsformat', () => {
+    const rawString = 'AAH1234, IT00';
+    const formatertTekst =  endretAvTekst(rawString);
+
+    expect(formatertTekst).toEqual('av NAV');
+});
+
 it('Formaterer endretAv ident + PP01 (modiabrukerdialog-app - NAV) tekst til ønsket visningsformat', () => {
     const rawString = 'srvPensjon, PP01';
     const formatertTekst =  endretAvTekst(rawString);
@@ -54,4 +61,11 @@ it('Formaterer endretAv tekst + SKD (Skatt/Folkeregisteret) tekst til ønsket vi
     const formatertTekst =  endretAvTekst(rawString);
 
     expect(formatertTekst).toEqual('i Folkeregisteret');
+});
+
+it('Formaterer endretAv tekst + SKD (Skatt/Folkeregisteret) tekst til ønsket visningsformat', () => {
+    const rawString = 'AAA2101, SKD';
+    const formatertTekst =  endretAvTekst(rawString);
+
+    expect(formatertTekst).toEqual('av Skatteetaten');
 });
