@@ -6,7 +6,6 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
-    "copyfiles": "^1.2.0",
     "core-js": "^2.5.5",
     "cross-env": "^5.1.4",
     "history": "^4.7.2",
@@ -43,9 +42,9 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "copyfiles -u 3 src/index/dev/index.html public/ && react-scripts-ts start",
+    "start": "react-scripts-ts start",
     "start-mock": "cross-env REACT_APP_MOCK=true npm run start",
-    "build": "copyfiles -u 3 src/index/prod/index.html public/ && npm run build:less && react-scripts-ts build",
+    "build": "npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
