@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import VisittkortElement from '../VisittkortElement';
-import { Person } from '../../../../../models/person';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { endretAvTekst } from '../../../../../utils/endretAvUtil';
-import EtikettMini from '../../../../../components/EtikettMini';
+import VisittkortElement from '../../VisittkortElement';
+import { Person } from '../../../../../../models/person/person';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
+import EtikettMini from '../../../../../../components/EtikettMini';
 
 const coinsPath = require('./coins.svg');
 

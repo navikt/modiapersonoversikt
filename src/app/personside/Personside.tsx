@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { AppState, Reducer } from '../../redux/reducer';
-import { Person } from '../../models/person';
+import { Person } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';

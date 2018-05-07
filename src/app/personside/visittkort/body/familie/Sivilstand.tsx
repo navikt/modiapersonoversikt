@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../VisittkortElement';
 
-import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../models/person';
+import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 

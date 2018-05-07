@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import VisittkortElement from '../VisittkortElement';
-import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../redux/reducer';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import EtikettMini from '../../../../../components/EtikettMini';
+import VisittkortElement from '../../VisittkortElement';
+import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import Innholdslaster from '../../../../../../components/Innholdslaster';
+import { Reducer } from '../../../../../../redux/reducer';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import EtikettMini from '../../../../../../components/EtikettMini';
 
 const emailPath = require('./email.svg');
 

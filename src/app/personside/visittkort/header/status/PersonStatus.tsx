@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import { BostatusTyper, Person } from '../../../../../models/person';
+import { BostatusTyper, Person } from '../../../../../models/person/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';

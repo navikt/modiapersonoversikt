@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Bostatus, BostatusTyper, Navn, Person } from '../../models/person';
+import { Bostatus, BostatusTyper, Navn, Person } from '../../models/person/person';
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';

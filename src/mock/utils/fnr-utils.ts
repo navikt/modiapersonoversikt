@@ -3,7 +3,7 @@ import { Moment } from 'moment';
 import fnrGenerator from 'fnr-generator';
 import * as faker from 'faker/locale/nb_NO';
 import FakerStatic = Faker.FakerStatic;
-import { Kjønn } from '../../models/person';
+import { Kjønn } from '../../models/person/person';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { aremark } from '../person/aremark';
 
