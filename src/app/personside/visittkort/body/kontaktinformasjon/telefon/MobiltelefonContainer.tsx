@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState, Reducer } from '../../../../../redux/reducer';
+import { AppState, Reducer } from '../../../../../../redux/reducer';
 import Mobiltelefon from './Mobiltelefon';
-import { Kontaktinformasjon } from '../../../../../models/kontaktinformasjon';
+import { Kontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 
 interface Props {
     kontaktinformasjon: Reducer<Kontaktinformasjon>;
