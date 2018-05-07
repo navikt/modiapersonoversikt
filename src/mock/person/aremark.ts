@@ -1,5 +1,5 @@
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
-import { Kjønn, Person, SivilstandTyper } from '../../models/person';
+import { Kjønn, Person, SivilstandTyper } from '../../models/person/person';
 
 export const aremark: Person = {
     fødselsnummer: '10108000398',

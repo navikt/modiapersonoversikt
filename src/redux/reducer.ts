@@ -8,7 +8,7 @@ import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import { STATUS } from './utils';
-import { Person } from '../models/person';
+import { Person } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
 import { NavKontor } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';

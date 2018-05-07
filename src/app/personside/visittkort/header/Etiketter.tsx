@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Person, TilrettelagtKommunikasjon } from '../../../../models/person';
+import { Person, TilrettelagtKommunikasjon } from '../../../../models/person/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../konstanter';
 import { Egenansatt } from '../../../../models/egenansatt';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Kjønn, Sivilstand, SivilstandTyper } from '../../../../../models/person';
+import { Kjønn, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
 
 interface Props {
     sivilstand: Sivilstand;

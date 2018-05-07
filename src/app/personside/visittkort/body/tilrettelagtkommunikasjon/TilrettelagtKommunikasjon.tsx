@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TilrettelagtKommunikasjon } from '../../../../../models/person';
+import { TilrettelagtKommunikasjon } from '../../../../../models/person/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 

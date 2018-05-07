@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import Visittkort from '../app/personside/visittkort/Visittkort';
-import { Person } from '../models/person';
+import { Person } from '../models/person/person';
 import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
 import styled, { ThemeProvider } from 'styled-components';
 import GridLayout from './grid-layout/GridLayout';

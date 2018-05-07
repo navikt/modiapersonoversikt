@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import { Familierelasjon, getBarnUnder21, Kjønn } from '../../../../../models/person';
+import { Familierelasjon, getBarnUnder21, Kjønn } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';

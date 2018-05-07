@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { erDød, Familierelasjon } from '../../models/person';
+import { erDød, Familierelasjon } from '../../models/person/person';
 
 interface Props {
     relasjon: Familierelasjon;

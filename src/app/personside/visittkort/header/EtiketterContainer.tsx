@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Egenansatt } from '../../../../models/egenansatt';
 import { AppState, Reducer } from '../../../../redux/reducer';
-import { Person } from '../../../../models/person';
+import { Person } from '../../../../models/person/person';
 import Etiketter from './Etiketter';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
 

@@ -1,6 +1,6 @@
 import * as faker from 'faker/locale/nb_NO';
 
-import { Bankkonto } from '../../models/person';
+import { Bankkonto } from '../../models/person/person';
 import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 
 export const bankkontoNorsk: Bankkonto = {

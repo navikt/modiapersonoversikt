@@ -3,7 +3,7 @@ import * as moment from 'moment';
 
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 import { getPerson } from './person/personMock';
-import { Person } from '../models/person';
+import { Person } from '../models/person/person';
 import { aremark } from './person/aremark';
 import { vektetSjanse } from './utils/mock-utils';
 

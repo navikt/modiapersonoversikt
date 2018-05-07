@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Sivilstand from './Sivilstand';
-import { Person } from '../../../../../models/person';
+import { Person } from '../../../../../models/person/person';
 import { InfoGruppe } from '../styledComponents';
 import ListeAvBarn from './ListeAvBarn';
 import Foreldre from './Foreldre';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Person } from '../../../../../models/person';
+import { Person } from '../../../../../models/person/person';
 import { InfoGruppe } from '../styledComponents';
 import Adresse from './adresse/Adresse';
 import EpostContainer from './epost/EpostContainer';

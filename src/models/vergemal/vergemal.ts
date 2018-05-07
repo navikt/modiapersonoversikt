@@ -1,4 +1,4 @@
-import { Navn } from '../person';
+import { Navn } from '../person/person';
 
 export interface Vergemal {
     verger: Verge[];

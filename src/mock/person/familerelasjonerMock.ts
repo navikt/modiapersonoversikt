@@ -2,7 +2,7 @@ import FakerStatic = Faker.FakerStatic;
 import * as moment from 'moment';
 
 import { getPersonstatus } from './personMock';
-import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person';
+import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person/person';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 import { lagNavn } from '../utils/person-utils';

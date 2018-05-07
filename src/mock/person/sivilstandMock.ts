@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 
 import { vektetSjanse } from '../utils/mock-utils';
-import { Sivilstand, SivilstandTyper } from '../../models/person';
+import { Sivilstand, SivilstandTyper } from '../../models/person/person';
 import FakerStatic = Faker.FakerStatic;
 
 const ugift = (fraOgMed: string) => {

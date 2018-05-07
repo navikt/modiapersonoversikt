@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Visittkort from './Visittkort';
 import { AppState } from '../../../redux/reducer';
-import { Person } from '../../../models/person';
+import { Person } from '../../../models/person/person';
 
 interface VisittkortContainerProps {
     person: Person | undefined;

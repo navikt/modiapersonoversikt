@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Person } from '../../../../models/person';
+import { Person } from '../../../../models/person/person';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Familie from './familie/Familie';

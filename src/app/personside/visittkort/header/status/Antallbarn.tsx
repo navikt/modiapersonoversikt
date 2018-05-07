@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person';
+import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
 
 interface Props {
     familierelasjoner: Familierelasjon[];

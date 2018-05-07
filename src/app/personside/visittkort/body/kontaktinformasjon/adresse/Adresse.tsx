@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Person } from '../../../../../../models/person';
+import { Person } from '../../../../../../models/person/person';
 import VisittkortElement from '../../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as personadresse from '../../../../../../models/personadresse';
