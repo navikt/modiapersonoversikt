@@ -16,5 +16,6 @@
   ],
   "buildpacks": [
 
-  ]
+  ],
+  "stack": "container"
 }
