@@ -3,7 +3,7 @@ import { TilrettelagtKommunikasjon } from '../../../../../models/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const vergmaalPath = require('../vergemaal.svg');
+const vergmaalPath = require('../vergemal/vergemaal.svg');
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
