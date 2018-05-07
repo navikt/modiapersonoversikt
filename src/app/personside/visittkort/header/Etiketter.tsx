@@ -66,7 +66,6 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergem
     }
     if (harVergemål(vergemal)) {
         etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);
-        throw new Error('Ouch');
     }
 
     person.tilrettelagtKomunikasjonsListe.forEach(tilrettelagtKommunikasjon  => {
