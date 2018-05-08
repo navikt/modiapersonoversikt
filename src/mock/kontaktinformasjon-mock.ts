@@ -6,6 +6,7 @@ import { getPerson } from './person/personMock';
 import { Person } from '../models/person/person';
 import { aremark } from './person/aremark';
 import { vektetSjanse } from './utils/mock-utils';
+import { instanceofPerson } from '../redux/personinformasjon';
 
 const aremarkKontaktinformasjon = {
     reservert: undefined,
@@ -26,8 +27,9 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
     const personData = getPerson(fødselsnummer);
     faker.seed(Number(fødselsnummer));
     return {
-        epost: vektetSjanse(faker, 0.7) ? getEpost(personData) : undefined,
-        mobiltelefon: vektetSjanse(faker, 0.7) ? getMobiltelefon() : undefined,
+        epost: vektetSjanse(faker, 0.7) && instanceofPerson(personData) ?
+            getEpost(personData as Person) : undefined,
+        mobiltelefon: vektetSjanse(faker, 0.7)  && instanceofPerson(personData) ? getMobiltelefon() : undefined,
         reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
     };
 }

@@ -1,7 +1,15 @@
 import { Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 
-export interface Person {
+export interface PersonRespons {
+    sikkerhetstiltak?: Sikkerhetstiltak;
+}
+
+export interface BegrensetInnsyn extends PersonRespons {
+    begrunnelse: string;
+}
+
+export interface Person extends PersonRespons {
     navn: Navn;
     kjønn: Kjønn;
     geografiskTilknytning?: string;
@@ -17,7 +25,6 @@ export interface Person {
     personstatus: Bostatus;
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
-    sikkerhetstiltak?: Sikkerhetstiltak;
 }
 
 export interface Navn {
