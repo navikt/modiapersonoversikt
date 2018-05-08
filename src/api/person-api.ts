@@ -1,4 +1,4 @@
-import { Person } from '../models/person';
+import { Person } from '../models/person/person';
 import { apiBaseUri } from './config';
 
 export function getPerson(fodselsnummer: string): Promise<Person> {

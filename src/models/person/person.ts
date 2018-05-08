@@ -1,5 +1,5 @@
-import { Personadresse } from './personadresse';
-import { Sikkerhetstiltak } from './sikkerhetstiltak';
+import { Personadresse } from '../personadresse';
+import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 
 export interface Person {
     navn: Navn;

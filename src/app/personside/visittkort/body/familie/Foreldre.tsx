@@ -3,7 +3,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../VisittkortElement';
 
-import { Familierelasjon, getMorOgFar, Kjønn, Relasjonstype } from '../../../../../models/person';
+import { Familierelasjon, getMorOgFar, Kjønn, Relasjonstype } from '../../../../../models/person/person';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';

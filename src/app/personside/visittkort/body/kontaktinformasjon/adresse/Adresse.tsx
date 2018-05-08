@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Person } from '../../../../../models/person';
-import VisittkortElement from '../VisittkortElement';
+import { Person } from '../../../../../../models/person/person';
+import VisittkortElement from '../../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import * as personadresse from '../../../../../models/personadresse';
-import { Personadresse } from '../../../../../models/personadresse';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { endretAvTekst } from '../../../../../utils/endretAvUtil';
-import EtikettMini from '../../../../../components/EtikettMini';
-import { Periode } from '../../../../../models/periode';
-import VisPeriode from '../../../../../components/person/VisPeriode';
+import * as personadresse from '../../../../../../models/personadresse';
+import { Personadresse } from '../../../../../../models/personadresse';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
+import EtikettMini from '../../../../../../components/EtikettMini';
+import { Periode } from '../../../../../../models/periode';
+import VisPeriode from '../../../../../../components/person/VisPeriode';
 
 const locationPath = require('./location-pin.svg');
 

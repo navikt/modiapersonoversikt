@@ -3,7 +3,7 @@ import { createActionsAndReducer } from './restReducer';
 
 const { reducer, action, actionNames } = createActionsAndReducer('navkontor');
 
-export function hentNavKontor(geografiskTilknytning: string, diskresjonsKode?: string) {
+export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: string) {
     return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode));
 }
 

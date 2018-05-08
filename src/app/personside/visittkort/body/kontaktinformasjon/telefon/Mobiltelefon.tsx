@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import VisittkortElement from '../VisittkortElement';
-import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../redux/reducer';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { formatNumber } from '../../../../../utils/helpers';
-import EtikettMini from '../../../../../components/EtikettMini';
+import VisittkortElement from '../../VisittkortElement';
+import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import Innholdslaster from '../../../../../../components/Innholdslaster';
+import { Reducer } from '../../../../../../redux/reducer';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formatNumber } from '../../../../../../utils/helpers';
+import EtikettMini from '../../../../../../components/EtikettMini';
 
 const phonePath = require('./phone.svg');
 
@@ -46,7 +46,7 @@ function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
-        return <Undertekst>Ingen mobiltelefon registrert</Undertekst>;
+        return <Undertekst>Ikke registrert</Undertekst>;
     }
 }
 

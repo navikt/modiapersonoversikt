@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { TilrettelagtKommunikasjon } from '../../../../../models/person';
+import { TilrettelagtKommunikasjon } from '../../../../../models/person/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-const phonePath = require('../telefon/phone.svg');
+const vergmaalPath = require('../vergemal/vergemaal.svg');
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
@@ -17,7 +17,7 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={vergmaalPath}>
             {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
 

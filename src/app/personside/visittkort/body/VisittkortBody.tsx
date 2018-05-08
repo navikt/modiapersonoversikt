@@ -1,31 +1,16 @@
 import * as React from 'react';
-import { Person } from '../../../../models/person';
-import EpostContainer from './epost/EpostContainer';
-import Bankkonto from './bankkonto/Bankkonto';
-import MobiltelefonContainer from './telefon/MobiltelefonContainer';
-import NavKontorContainer from './navkontor/NavKontorContainer';
-
 import { Component } from 'react';
+import { Person } from '../../../../models/person/person';
+import NavKontorContainer from './navkontor/NavKontorContainer';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
-import Adresse from './adresse/Adresse';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
+import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 
 interface VisittkortBodyProps {
     person: Person;
-}
-
-function Kontakt(person: Person) {
-    return (
-        <InfoGruppe tittel={'Kontaktinformasjon'}>
-            <Adresse  person={person}/>
-            <EpostContainer/>
-            <MobiltelefonContainer/>
-            <Bankkonto person={person}/>
-        </InfoGruppe>
-    );
 }
 
 const NavKontor = (
@@ -38,7 +23,7 @@ function OneColumnLayout(person: Person) {
     return (
         <>
             <Kolonne>
-                {Kontakt(person)}
+                <Kontaktinformasjon person={person}/>
                 <Familie person={person}/>
                 {NavKontor}
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
@@ -53,7 +38,7 @@ function TwoColumnLayout(person: Person) {
     return (
         <>
             <Kolonne>
-                {Kontakt(person)}
+                <Kontaktinformasjon person={person}/>
                 <Familie person={person}/>
             </Kolonne>
             <Kolonne>
@@ -70,7 +55,7 @@ function ThreeColumnLayout(person: Person) {
     return (
         <>
             <Kolonne>
-                {Kontakt(person)}
+                <Kontaktinformasjon person={person}/>
             </Kolonne>
             <Kolonne>
                 <Familie person={person}/>

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import VisittkortElement from '../VisittkortElement';
-import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../models/kontaktinformasjon';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../redux/reducer';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import EtikettMini from '../../../../../components/EtikettMini';
+import VisittkortElement from '../../VisittkortElement';
+import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import Innholdslaster from '../../../../../../components/Innholdslaster';
+import { Reducer } from '../../../../../../redux/reducer';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import EtikettMini from '../../../../../../components/EtikettMini';
 
 const emailPath = require('./email.svg');
 
@@ -36,7 +36,7 @@ function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
     } else {
-        return <Undertekst>Ingen epost registrert</Undertekst>;
+        return <Undertekst>Ikke registrert</Undertekst>;
     }
 }
 
@@ -46,7 +46,7 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Epost Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <EpostVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
