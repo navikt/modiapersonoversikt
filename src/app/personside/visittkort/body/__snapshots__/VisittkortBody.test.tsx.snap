@@ -53,9 +53,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="sc-gqjmRU edlVLi"
         >
           <img
-            alt="Epost Kontakt- og reservasjonsregisteret"
+            alt="E-post Kontakt- og reservasjonsregisteret"
             src="email.svg"
-            title="Epost Kontakt- og reservasjonsregisteret"
+            title="E-post Kontakt- og reservasjonsregisteret"
           />
         </div>
         <div
@@ -67,7 +67,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <span
               className="sc-jTzLTM eiuGtv"
             >
-              Epost Kontakt- og reservasjonsregisteret
+              E-post Kontakt- og reservasjonsregisteret
             </span>
           </p>
           <svg
@@ -195,7 +195,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-undertekst"
           >
-            Ingen kontonummer registrert
+            Ikke registrert
           </p>
         </div>
       </div>

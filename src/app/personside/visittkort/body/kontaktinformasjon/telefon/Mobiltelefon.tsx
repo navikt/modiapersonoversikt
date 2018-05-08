@@ -46,7 +46,7 @@ function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
-        return <Undertekst>Ingen mobiltelefon registrert</Undertekst>;
+        return <Undertekst>Ikke registrert</Undertekst>;
     }
 }
 
