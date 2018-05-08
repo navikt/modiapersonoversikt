@@ -8,7 +8,7 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
     if (vektetSjanse(faker, 0.7)) {
         kontaktinformasjon.mobil = {
             sistEndret: getSistOppdatert(),
-            sistEndretAv: 'BRUKER',
+            sistEndretAv: '1010800 BD03',
             nummer: faker.phone.phoneNumber('+479#######')
         };
     }
@@ -16,16 +16,16 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
     if (vektetSjanse(faker, 0.3)) {
         kontaktinformasjon.jobbTelefon = {
             sistEndret: getSistOppdatert(),
-            sistEndretAv: 'BRUKER',
-            nummer: faker.phone.phoneNumber('########')
+            sistEndretAv: '1010800 BD03',
+            nummer: faker.phone.phoneNumber('+44########')
         };
     }
 
     if (vektetSjanse(faker, 0.3)) {
         kontaktinformasjon.hjemTelefon = {
             sistEndret: getSistOppdatert(),
-            sistEndretAv: 'BRUKER',
-            nummer: faker.phone.phoneNumber('########')
+            sistEndretAv: '1010800 BD03',
+            nummer: faker.phone.phoneNumber('+47########')
         };
     }
 
