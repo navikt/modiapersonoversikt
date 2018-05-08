@@ -41,7 +41,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
-        sikkerhetstiltak: getSikkerhetstiltak()
+        sikkerhetstiltak: getSikkerhetstiltak(),
+        begrensetInnsynBegrunnelse: vektetSjanse(faker, 0.0) ? 'Begrenset' : undefined
     };
 }
 

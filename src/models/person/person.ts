@@ -18,6 +18,7 @@ export interface Person {
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
     sikkerhetstiltak?: Sikkerhetstiltak;
+    begrensetInnsynBegrunnelse?: string;
 }
 
 export interface Navn {
