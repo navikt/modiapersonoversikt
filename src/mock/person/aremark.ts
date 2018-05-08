@@ -29,5 +29,12 @@ export const aremark: Person = {
         beskrivelse: 'Gift',
         fraOgMed: '2005-12-12'
     },
-    familierelasjoner: []
+    familierelasjoner: [],
+    kontaktinformasjon: {
+        mobil: {
+            sistEndret: '2014-06-21T18:44:39+02:00',
+            nummer: '+4799887766',
+            sistEndretAv: 'BRUKER'
+        }
+    }
 };

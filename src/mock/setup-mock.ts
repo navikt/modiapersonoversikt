@@ -26,7 +26,7 @@ function setupEgenAnsattMock(mock: FetchMock) {
 
 function setupKontaktinformasjonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        5000,
+        700,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
 }
