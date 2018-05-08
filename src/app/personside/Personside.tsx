@@ -33,6 +33,22 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
         super(props);
     }
 
+    visInnhold() {
+        if (harBegrensetInnsyn(this.props.personReducer.data as Person)) {
+            return (
+                <FillCenterAndFadeIn>
+                    <AlertStripe type="advarsel">
+                        Begrensa innsyn
+                    </AlertStripe>
+                </FillCenterAndFadeIn>
+            );
+        } else {
+            return (
+                <MainLayout />
+            );
+        }
+    }
+
     render() {
         return (
             <Innholdslaster
@@ -40,10 +56,14 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                <MainLayout />
+                {this.visInnhold()}
             </Innholdslaster>
         );
     }
+}
+
+function harBegrensetInnsyn(person: Person) {
+    return person.begrensetInnsynBegrunnelse;
 }
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
