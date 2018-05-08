@@ -34,12 +34,14 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
 
 function SivilstandVisning({person}: Props) {
     const partner = getPartner(person);
+    const {sivilstand} = person;
     if (!partner) {
-        return <Undertekst>{person.sivilstand.beskrivelse}</Undertekst>;
+        const relasjonFraOgMed = moment(sivilstand.fraOgMed).format('DD.MM.YYYY');
+        return <Undertekst>{sivilstand.beskrivelse} ({relasjonFraOgMed})</Undertekst>;
     }
 
     return (
-        <Partner relasjon={partner} sivilstand={person.sivilstand}/>
+        <Partner relasjon={partner} sivilstand={sivilstand}/>
     );
 }
 
