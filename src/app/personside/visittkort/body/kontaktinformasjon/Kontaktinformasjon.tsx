@@ -6,6 +6,7 @@ import Adresse from './adresse/Adresse';
 import EpostContainer from './epost/EpostContainer';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
 import Bankkonto from './bankkonto/Bankkonto';
+import NavKontaktinformasjon from './NavKontaktinformasjon';
 
 interface Props {
     person: Person;
@@ -17,6 +18,7 @@ export default function Kontaktinformasjon({person}: Props) {
             <Adresse  person={person}/>
             <EpostContainer/>
             <MobiltelefonContainer/>
+            <NavKontaktinformasjon navKontaktinformasjon={person.navKontaktinformasjon}/>
             <Bankkonto person={person}/>
         </InfoGruppe>
     );

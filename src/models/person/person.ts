@@ -1,5 +1,6 @@
 import { Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
+import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 
 export interface Person {
     navn: Navn;
@@ -18,6 +19,7 @@ export interface Person {
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
     sikkerhetstiltak?: Sikkerhetstiltak;
+    navKontaktinformasjon: NavKontaktinformasjon;
 }
 
 export interface Navn {
