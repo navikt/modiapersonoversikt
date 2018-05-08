@@ -43,7 +43,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak(),
-        navKontaktinformasjon: getNavKontaktinformasjon(faker)
+        kontaktinformasjon: getNavKontaktinformasjon(faker)
     };
 }
 

@@ -19,7 +19,7 @@ export interface Person {
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
     sikkerhetstiltak?: Sikkerhetstiltak;
-    navKontaktinformasjon: NavKontaktinformasjon;
+    kontaktinformasjon: NavKontaktinformasjon;
 }
 
 export interface Navn {

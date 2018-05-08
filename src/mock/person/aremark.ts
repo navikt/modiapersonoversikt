@@ -30,11 +30,11 @@ export const aremark: Person = {
         fraOgMed: '2005-12-12'
     },
     familierelasjoner: [],
-    navKontaktinformasjon: {
+    kontaktinformasjon: {
         mobil: {
             sistEndret: '2014-06-21T18:44:39+02:00',
             nummer: '+4799887766',
-            endretAv: 'BRUKER'
+            sistEndretAv: 'BRUKER'
         }
     }
 };

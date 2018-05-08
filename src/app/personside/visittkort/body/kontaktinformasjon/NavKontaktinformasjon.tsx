@@ -1,63 +1,58 @@
 import * as React from 'react';
-import VisittkortElement from '../VisittkortElement';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { NavKontaktinformasjon, Telefon } from '../../../../../models/person/NAVKontaktinformasjon';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import EtikettMini from '../../../../../components/EtikettMini';
-import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 
-interface Props {
-    navKontaktinformasjon: NavKontaktinformasjon;
+import VisittkortElement from '../VisittkortElement';
+import EtikettMini from '../../../../../components/EtikettMini';
+
+import { NavKontaktinformasjon, Telefon } from '../../../../../models/person/NAVKontaktinformasjon';
+import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
+import { formaterDato } from '../../../../../utils/dateUtils';
+import { endretAvTekst } from '../../../../../utils/endretAvUtil';
+
+interface TelefonProps {
+    nummerFormaterer: (nummer: string) => string;
+    telefon?: Telefon;
+    beskrivelse: string;
 }
 
-function Telefon(props: {formatertNummer: string, formatertDato: string, beskrivelse: string}) {
+function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
+    if (!telefon) {
+        return null;
+    }
+    const formatertDato = formaterDato(telefon.sistEndret);
+    const endretAv = endretAvTekst(telefon.sistEndretAv);
+    const formatertNummer = nummerFormaterer(telefon.nummer);
     return (
         <>
-            <Undertekst>{props.formatertNummer} ({props.beskrivelse})</Undertekst>
-            <EtikettMini>Endret {props.formatertDato}</EtikettMini>
+            <Undertekst>{formatertNummer} ({beskrivelse})</Undertekst>
+            <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
         </>
     );
 }
 
-function Mobiltelefon(props: {mobil?: Telefon}) {
-    if (!props.mobil) {
-        return null;
-    }
-    const formatertDato = formaterDato(props.mobil.sistEndret);
-    const formatertTelefonnummer = formaterMobiltelefonnummer(props.mobil.nummer);
-    return <Telefon formatertNummer={formatertTelefonnummer} formatertDato={formatertDato} beskrivelse={'Mobil'}/>;
-}
-
-function JobbTelefon(props: {jobbTelefon?: Telefon}) {
-    if (!props.jobbTelefon) {
-        return null;
-    }
-    const formatertDato = formaterDato(props.jobbTelefon.sistEndret);
-    const formatertTelefonnummer = formaterHustelefonnummer(props.jobbTelefon.nummer);
-    return <Telefon formatertNummer={formatertTelefonnummer} formatertDato={formatertDato} beskrivelse={'Jobb'}/>;
-
-}
-
-function HjemTelefon(props: {hjemTelefon?: Telefon}) {
-    if (!props.hjemTelefon) {
-        return null;
-    }
-    const formatertDato = formaterDato(props.hjemTelefon.sistEndret);
-    const formatertTelefonnummer = formaterHustelefonnummer(props.hjemTelefon.nummer);
-    return <Telefon formatertNummer={formatertTelefonnummer} formatertDato={formatertDato} beskrivelse={'Hjem'}/>;
-
-}
-
-export default function NavKontaktinformasjon({navKontaktinformasjon}: Props) {
+export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjon}) {
+    const {navKontaktinformasjon} = props;
     if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
         return null;
     }
 
     return (
         <VisittkortElement beskrivelse="Telefon til bruk for NAV">
-                <Mobiltelefon mobil={navKontaktinformasjon.mobil}/>
-                <JobbTelefon jobbTelefon={navKontaktinformasjon.jobbTelefon}/>
-                <HjemTelefon hjemTelefon={navKontaktinformasjon.hjemTelefon}/>
+            <Telefon
+                nummerFormaterer={formaterMobiltelefonnummer}
+                telefon={navKontaktinformasjon.mobil}
+                beskrivelse={'Mobil'}
+            />
+            <Telefon
+                nummerFormaterer={formaterHustelefonnummer}
+                telefon={navKontaktinformasjon.hjemTelefon}
+                beskrivelse={'Hjem'}
+            />
+            <Telefon
+                nummerFormaterer={formaterHustelefonnummer}
+                telefon={navKontaktinformasjon.jobbTelefon}
+                beskrivelse={'Jobb'}
+            />
         </VisittkortElement>
     );
 }

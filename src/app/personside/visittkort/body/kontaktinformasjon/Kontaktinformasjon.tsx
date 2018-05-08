@@ -18,7 +18,7 @@ export default function Kontaktinformasjon({person}: Props) {
             <Adresse  person={person}/>
             <EpostContainer/>
             <MobiltelefonContainer/>
-            <NavKontaktinformasjon navKontaktinformasjon={person.navKontaktinformasjon}/>
+            <NavKontaktinformasjon navKontaktinformasjon={person.kontaktinformasjon}/>
             <Bankkonto person={person}/>
         </InfoGruppe>
     );
