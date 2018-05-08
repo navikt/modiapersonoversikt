@@ -32,10 +32,10 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
+    mock.get(apiBaseUri + '/enheter', withDelayedResponse(
         2000,
         (args: HandlerArgument) => {
-            if (isNaN(args.pathParams.geografiskTilknytning)) {
+            if (isNaN(args.queryParams.gt)) {
                 return 404;
             } else {
                 return 200;
