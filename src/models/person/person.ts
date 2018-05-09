@@ -6,7 +6,7 @@ export interface PersonRespons {
 }
 
 export interface BegrensetInnsyn extends PersonRespons {
-    begrunnelse: string;
+    begrunnelse: BegrensetInnsynTyper;
 }
 
 export interface Person extends PersonRespons {
@@ -95,6 +95,12 @@ export enum SivilstandTyper {
 export enum Kjønn {
     Mann = 'M',
     Kvinne = 'K'
+}
+
+export enum BegrensetInnsynTyper {
+    Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
+    Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
+    EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt'
 }
 
 export function erDød(personstatus: Bostatus) {

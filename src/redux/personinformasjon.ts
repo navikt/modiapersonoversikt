@@ -13,9 +13,7 @@ const { reducer, action, actionNames} = createActionsAndReducer('personinformasj
 export function hentPerson(fødselsnummer: string, dispatch: Function) {
     return action(() => getPerson(fødselsnummer)
         .then(person => {
-            console.log('HMMM: ' + instanceofPerson(person));
             if (instanceofPerson(person)) {
-                console.log('Vel? ' + person.geografiskTilknytning);
                 if (person.geografiskTilknytning || person.diskresjonskode) {
                     dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode));
                 } else {

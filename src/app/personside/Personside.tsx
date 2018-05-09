@@ -2,13 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { AppState, Reducer } from '../../redux/reducer';
-import { PersonRespons } from '../../models/person/person';
+import { BegrensetInnsyn, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { instanceofBegrensetInnsyn } from '../../redux/personinformasjon';
+import BegrensetInnsynSide from './BegrensetInnsynSide';
 
 interface PersonsideStateProps {
     personReducer: Reducer<PersonRespons>;
@@ -37,11 +38,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     visInnhold() {
         if (instanceofBegrensetInnsyn(this.props.personReducer.data as PersonRespons)) {
             return (
-                <FillCenterAndFadeIn>
-                    <AlertStripe type="advarsel">
-                        Begrensa innsyn
-                    </AlertStripe>
-                </FillCenterAndFadeIn>
+                <BegrensetInnsynSide person={this.props.personReducer.data as BegrensetInnsyn}/>
             );
         } else {
             return (
