@@ -100,7 +100,8 @@ export enum Kjønn {
 export enum BegrensetInnsynTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
-    EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt'
+    EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
+    DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 
 export function erDød(personstatus: Bostatus) {

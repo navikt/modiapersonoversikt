@@ -13,8 +13,10 @@ function BegrensetInnsynBegrunnelse({begrunnelseType}: Props) {
             return <>Bruker har kode 7 adresse</>;
         case BegrensetInnsynTyper.EgenAnsatt:
             return <>Bruker faller inn under begrensning for egen ansatt</>;
-        default:
+        case BegrensetInnsynTyper.DefaultFraBackEnd:
             return <>Ukjent sikkerhetsbegrensing</>;
+        default:
+            return <>Feil sikkerhetsbegrensing</>;
     }
 }
 
