@@ -63,7 +63,7 @@ function kontoinfo(person: Person) {
         );
     }
 
-    return <Undertekst>Ingen kontonummer registrert</Undertekst>;
+    return <Undertekst>Ikke registrert</Undertekst>;
 }
 
 export default Bankkonto;

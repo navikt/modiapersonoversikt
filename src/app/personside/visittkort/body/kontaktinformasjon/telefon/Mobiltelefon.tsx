@@ -6,8 +6,8 @@ import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../m
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
-import { formatNumber } from '../../../../../../utils/helpers';
 import EtikettMini from '../../../../../../components/EtikettMini';
+import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 
 const phonePath = require('./phone.svg');
 
@@ -15,17 +15,9 @@ interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
 }
 
-function formaterTelefonnummer(telefonnummer: string) {
-    if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {
-        return formatNumber('### ### ## ###', telefonnummer);
-    } else {
-        return telefonnummer;
-    }
-}
-
 function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
-    const formatertTelefonnummer = formaterTelefonnummer(mobiltelefon.value);
+    const formatertTelefonnummer = formaterMobiltelefonnummer(mobiltelefon.value);
     return (
         <>
             <Undertekst>{formatertTelefonnummer}</Undertekst>
@@ -46,7 +38,7 @@ function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
-        return <Undertekst>Ingen mobiltelefon registrert</Undertekst>;
+        return <Undertekst>Ikke registrert</Undertekst>;
     }
 }
 

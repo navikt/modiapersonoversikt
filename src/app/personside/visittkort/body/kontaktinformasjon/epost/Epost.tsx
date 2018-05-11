@@ -36,7 +36,7 @@ function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
     } else {
-        return <Undertekst>Ingen epost registrert</Undertekst>;
+        return <Undertekst>Ikke registrert</Undertekst>;
     }
 }
 
@@ -46,7 +46,7 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Epost Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <EpostVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>

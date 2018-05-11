@@ -20,6 +20,7 @@ import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { getTilfeldigAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
+import { getNavKontaktinformasjon } from './navKontaktinformasjon';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -60,7 +61,8 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
-        sikkerhetstiltak: getSikkerhetstiltak()
+        sikkerhetstiltak: getSikkerhetstiltak(),
+        kontaktinformasjon: getNavKontaktinformasjon(faker)
     };
 }
 

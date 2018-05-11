@@ -1,5 +1,6 @@
 import { Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
+import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -25,6 +26,7 @@ export interface Person extends PersonRespons {
     personstatus: Bostatus;
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
+    kontaktinformasjon: NavKontaktinformasjon;
 }
 
 export interface Navn {

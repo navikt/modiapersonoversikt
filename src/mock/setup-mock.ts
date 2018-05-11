@@ -26,16 +26,16 @@ function setupEgenAnsattMock(mock: FetchMock) {
 
 function setupKontaktinformasjonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        5000,
+        700,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/enheter/geo/:geografiskTilknytning', withDelayedResponse(
+    mock.get(apiBaseUri + '/enheter', withDelayedResponse(
         2000,
         (args: HandlerArgument) => {
-            if (isNaN(args.pathParams.geografiskTilknytning)) {
+            if (isNaN(args.queryParams.gt)) {
                 return 404;
             } else {
                 return 200;
