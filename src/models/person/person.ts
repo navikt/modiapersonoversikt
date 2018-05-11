@@ -2,7 +2,15 @@ import { Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 
-export interface Person {
+export interface PersonRespons {
+    sikkerhetstiltak?: Sikkerhetstiltak;
+}
+
+export interface BegrensetTilgang extends PersonRespons {
+    begrunnelse: BegrensetTilgangTyper;
+}
+
+export interface Person extends PersonRespons {
     navn: Navn;
     kjønn: Kjønn;
     geografiskTilknytning?: string;
@@ -18,7 +26,6 @@ export interface Person {
     personstatus: Bostatus;
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
-    sikkerhetstiltak?: Sikkerhetstiltak;
     kontaktinformasjon: NavKontaktinformasjon;
 }
 
@@ -92,6 +99,13 @@ export enum Kjønn {
     Kvinne = 'K'
 }
 
+export enum BegrensetTilgangTyper {
+    Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
+    Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
+    EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
+    DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
+}
+
 export function erDød(personstatus: Bostatus) {
     return personstatus.dødsdato || personstatus.bostatus === BostatusTyper.Død;
 }
@@ -136,4 +150,12 @@ export function getFar(familierelasjoner: Familierelasjon[]) {
 
 function finnRelasjon(familierelasjoner: Familierelasjon[], relasjonstype: Relasjonstype) {
     return familierelasjoner.find(relasjon => relasjon.rolle === relasjonstype);
+}
+
+export function erPersonResponsAvTypePerson(person: PersonRespons): person is Person {
+    return 'navn' in person;
+}
+
+export function erPersonResponsAvTypeBegrensetTilgang(person: PersonRespons): person is BegrensetTilgang {
+    return 'begrunnelse' in person;
 }

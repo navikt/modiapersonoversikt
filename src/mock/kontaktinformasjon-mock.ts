@@ -3,9 +3,10 @@ import * as moment from 'moment';
 
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 import { getPerson } from './person/personMock';
-import { Person } from '../models/person/person';
+import { Person, PersonRespons } from '../models/person/person';
 import { aremark } from './person/aremark';
 import { vektetSjanse } from './utils/mock-utils';
+import { erPersonResponsAvTypePerson } from '../models/person/person';
 
 const aremarkKontaktinformasjon = {
     reservert: undefined,
@@ -26,10 +27,14 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
     const personData = getPerson(fødselsnummer);
     faker.seed(Number(fødselsnummer));
     return {
-        epost: vektetSjanse(faker, 0.7) ? getEpost(personData) : undefined,
-        mobiltelefon: vektetSjanse(faker, 0.7) ? getMobiltelefon() : undefined,
+        epost: vektetSjansePerson(0.7, personData) ? getEpost(personData as Person) : undefined,
+        mobiltelefon: vektetSjansePerson(0.7, personData) ? getMobiltelefon() : undefined,
         reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
     };
+}
+
+function vektetSjansePerson(vekt: number, person: PersonRespons) {
+    return vektetSjanse(faker, vekt) && erPersonResponsAvTypePerson(person);
 }
 
 function getEpost(personData: Person) {

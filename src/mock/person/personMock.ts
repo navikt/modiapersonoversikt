@@ -1,7 +1,15 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Bostatus, BostatusTyper, Navn, Person } from '../../models/person/person';
+import {
+    BegrensetTilgang,
+    BegrensetTilgangTyper,
+    Bostatus,
+    BostatusTyper,
+    Navn,
+    Person,
+    PersonRespons
+} from '../../models/person/person';
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
@@ -14,13 +22,24 @@ import { getTilfeldigAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjon';
 
-export function getPerson(fødselsnummer: string): Person {
+export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
     } else {
         faker.seed(Number(fødselsnummer));
-        return getTilfeldigPerson(fødselsnummer);
+        if (vektetSjanse(faker, 0.1)) {
+            return getBegrensetInnsyn();
+        } else {
+            return getTilfeldigPerson(fødselsnummer);
+        }
     }
+}
+
+function getBegrensetInnsyn(): BegrensetTilgang {
+    return {
+        begrunnelse: BegrensetTilgangTyper.Kode6,
+        sikkerhetstiltak: getSikkerhetstiltak()
+    };
 }
 
 function getTilfeldigPerson(fødselsnummer: string): Person {
