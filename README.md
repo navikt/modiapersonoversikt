@@ -19,6 +19,7 @@ IADECORATOR_JS_URL=https://example.com/head.min.js # URL til navigasjonsmenyen f
 ### For utvikling
 ```console
 $ npm install
+$ npm run build
 $ npm run start
 ```
 ### Storybook
