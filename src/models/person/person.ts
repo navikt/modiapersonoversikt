@@ -24,9 +24,9 @@ export interface Person {
 
 export interface Navn {
     sammensatt: string;
-    fornavn: string;
-    mellomnavn: string;
-    etternavn: string;
+    fornavn: string | null;
+    mellomnavn: string | null;
+    etternavn: string | null;
 }
 
 export interface Bankkonto {
