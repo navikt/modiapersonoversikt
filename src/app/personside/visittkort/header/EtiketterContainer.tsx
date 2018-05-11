@@ -2,13 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Egenansatt } from '../../../../models/egenansatt';
 import { AppState, Reducer } from '../../../../redux/reducer';
-import { Person } from '../../../../models/person/person';
+import { Person, PersonRespons } from '../../../../models/person/person';
 import Etiketter from './Etiketter';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
 
 interface Props {
     egenAnsattReducer: Reducer<Egenansatt>;
-    personReducer: Reducer<Person>;
+    personReducer: Reducer<PersonRespons>;
     vergemalReducer: Reducer<Vergemal>;
 }
 
@@ -30,7 +30,7 @@ class EtiketterContainer extends React.Component<Props> {
     render() {
         return (
             <EtikkerWrapper
-                person={this.props.personReducer.data}
+                person={this.props.personReducer.data as Person}
                 egenAnsatt={this.props.egenAnsattReducer.data}
                 vergemal={this.props.vergemalReducer.data}
             />

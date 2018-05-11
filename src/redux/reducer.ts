@@ -8,7 +8,7 @@ import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import { STATUS } from './utils';
-import { Person } from '../models/person/person';
+import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
 import { NavKontor } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
@@ -16,7 +16,7 @@ import { Egenansatt } from '../models/egenansatt';
 import { Vergemal } from '../models/vergemal/vergemal';
 
 export interface AppState {
-    personinformasjon: Reducer<Person>;
+    personinformasjon: Reducer<PersonRespons>;
     brukersNavKontor: Reducer<NavKontor>;
     oppgaver: Reducer<Oppgave[]>;
     kontaktinformasjon: Reducer<Kontaktinformasjon>;
