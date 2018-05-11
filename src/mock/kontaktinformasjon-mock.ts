@@ -6,7 +6,7 @@ import { getPerson } from './person/personMock';
 import { Person, PersonRespons } from '../models/person/person';
 import { aremark } from './person/aremark';
 import { vektetSjanse } from './utils/mock-utils';
-import { instanceofPerson } from '../redux/personinformasjon';
+import { erPersonResponsAvTypePerson } from '../models/person/person';
 
 const aremarkKontaktinformasjon = {
     reservert: undefined,
@@ -34,7 +34,7 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
 }
 
 function vektetSjansePerson(vekt: number, person: PersonRespons) {
-    return vektetSjanse(faker, vekt) && instanceofPerson(person);
+    return vektetSjanse(faker, vekt) && erPersonResponsAvTypePerson(person);
 }
 
 function getEpost(personData: Person) {

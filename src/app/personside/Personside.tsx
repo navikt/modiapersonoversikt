@@ -2,14 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { AppState, Reducer } from '../../redux/reducer';
-import { BegrensetInnsyn, PersonRespons } from '../../models/person/person';
+import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { instanceofBegrensetInnsyn } from '../../redux/personinformasjon';
-import BegrensetInnsynSide from './BegrensetInnsynSide';
+import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
+import BegrensetTilgangSide from './BegrensetTilgangSide';
 
 interface PersonsideStateProps {
     personReducer: Reducer<PersonRespons>;
@@ -35,10 +35,12 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
         super(props);
     }
 
-    visInnhold() {
-        if (instanceofBegrensetInnsyn(this.props.personReducer.data as PersonRespons)) {
+    getSideinnhold() {
+        var data = this.props.personReducer.data;
+
+        if (data !== undefined && erPersonResponsAvTypeBegrensetTilgang(data)) {
             return (
-                <BegrensetInnsynSide person={this.props.personReducer.data as BegrensetInnsyn}/>
+                <BegrensetTilgangSide person={data as BegrensetTilgang}/>
             );
         } else {
             return (
@@ -54,7 +56,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                {this.visInnhold()}
+                {this.getSideinnhold()}
             </Innholdslaster>
         );
     }

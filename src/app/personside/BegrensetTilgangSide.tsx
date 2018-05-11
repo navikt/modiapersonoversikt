@@ -1,24 +1,26 @@
 import * as React from 'react';
-import { BegrensetInnsyn } from '../../models/person/person';
+import { BegrensetTilgang } from '../../models/person/person';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import { Periode } from '../../models/periode';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import VisPeriode from '../../components/person/VisPeriode';
 import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
-import BegrensetInnsynBegrunnelse from '../../components/person/BegrensetInnsynBegrunnelse';
+import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
+import Systemtittel from 'nav-frontend-typografi/lib/systemtittel';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
-interface BegrensetInnsynProps {
-    person: BegrensetInnsyn;
+interface BegrensetTilgangProps {
+    person: BegrensetTilgang;
 }
 
-function BegrensetInnsynSide({person}: BegrensetInnsynProps) {
+function BegrensetTilgangSide({person}: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>
             <AlertStripe type="advarsel">
-                <h3>Begrenset innsyn</h3>
-                <BegrensetInnsynBegrunnelse begrunnelseType={person.begrunnelse}/>
-                <h4>Sikkerhetstiltak</h4>
+                <Systemtittel>Begrenset tilgang til bruker</Systemtittel>
+                <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse}/>
+                <Undertittel>Sikkerhetstiltak</Undertittel>
                 {visSikkerhetstiltak(person.sikkerhetstiltak)}
             </AlertStripe>
         </FillCenterAndFadeIn>
@@ -46,4 +48,4 @@ function hentPeriode(periode?: Periode) {
     return null;
 }
 
-export default BegrensetInnsynSide;
+export default BegrensetTilgangSide;

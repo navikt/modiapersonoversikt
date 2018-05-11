@@ -2,8 +2,8 @@ import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
 import {
-    BegrensetInnsyn,
-    BegrensetInnsynTyper,
+    BegrensetTilgang,
+    BegrensetTilgangTyper,
     Bostatus,
     BostatusTyper,
     Navn,
@@ -35,9 +35,9 @@ export function getPerson(fødselsnummer: string): PersonRespons {
     }
 }
 
-function getBegrensetInnsyn(): BegrensetInnsyn {
+function getBegrensetInnsyn(): BegrensetTilgang {
     return {
-        begrunnelse: BegrensetInnsynTyper.Kode6,
+        begrunnelse: BegrensetTilgangTyper.Kode6,
         sikkerhetstiltak: getSikkerhetstiltak()
     };
 }

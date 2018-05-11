@@ -6,8 +6,8 @@ export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
 }
 
-export interface BegrensetInnsyn extends PersonRespons {
-    begrunnelse: BegrensetInnsynTyper;
+export interface BegrensetTilgang extends PersonRespons {
+    begrunnelse: BegrensetTilgangTyper;
 }
 
 export interface Person extends PersonRespons {
@@ -99,7 +99,7 @@ export enum Kjønn {
     Kvinne = 'K'
 }
 
-export enum BegrensetInnsynTyper {
+export enum BegrensetTilgangTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
     EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
@@ -150,4 +150,12 @@ export function getFar(familierelasjoner: Familierelasjon[]) {
 
 function finnRelasjon(familierelasjoner: Familierelasjon[], relasjonstype: Relasjonstype) {
     return familierelasjoner.find(relasjon => relasjon.rolle === relasjonstype);
+}
+
+export function erPersonResponsAvTypePerson(person: PersonRespons): person is Person {
+    return 'navn' in person;
+}
+
+export function erPersonResponsAvTypeBegrensetTilgang(person: PersonRespons): person is BegrensetTilgang {
+    return 'begrunnelse' in person;
 }
