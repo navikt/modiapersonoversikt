@@ -31,7 +31,7 @@ function lagDiskresjonskodeEtikett(diskresjonskode: string) {
 }
 
 function lagEgenAnsattEtikett() {
-    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen Ansatt</EtikettBase>;
+    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen ansatt</EtikettBase>;
 }
 
 function lagSikkerhetstiltakEtikett() {
