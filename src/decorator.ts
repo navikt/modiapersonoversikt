@@ -31,7 +31,7 @@ declare global {
 const config: MenyConfig = {
     config: {
         toggles: {
-            visEnhet: true,
+            visEnhet: false,
             visEnhetVelger: true,
             visSokefelt: true,
             visVeileder: true,
