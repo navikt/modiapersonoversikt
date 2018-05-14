@@ -1,8 +1,11 @@
+import { apiBaseUri } from './api/config';
+
 interface Toggles {
     visEnhet: boolean;
     visSokefelt: boolean;
     visVeileder: boolean;
     visSokeIkon: boolean;
+    visEnhetVelger: boolean;
 }
 
 interface MenyConfig {
@@ -10,6 +13,10 @@ interface MenyConfig {
         toggles: Toggles;
         applicationName: string;
         fnr: string;
+        dataSources: {
+            veileder: string;
+            enheter: string
+        }
     };
 }
 
@@ -25,12 +32,18 @@ const config: MenyConfig = {
     config: {
         toggles: {
             visEnhet: true,
+            visEnhetVelger: true,
             visSokefelt: true,
             visVeileder: true,
             visSokeIkon: false
         },
         applicationName: 'Modia personoversikt',
-        fnr: ''
+        fnr: '',
+        dataSources: {
+            veileder: `${apiBaseUri}/hode/me`,
+            enheter: `${apiBaseUri}/hode/enheter`
+        }
+
     }
 };
 
