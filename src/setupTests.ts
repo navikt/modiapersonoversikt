@@ -8,6 +8,7 @@ configure({ adapter: new EnzymeReactAdapter() });
 // tslint:disable-next-line
 const globalAny: any = global;
 globalAny._apiBaseUri = '';
+globalAny._mockEnabled = 'true';
 
 import reducers from './redux/reducer';
 import { createStore } from 'redux';

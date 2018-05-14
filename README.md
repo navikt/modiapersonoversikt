@@ -10,10 +10,10 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 
 Opprett filen `.env` med følgende innhold:
 ```shell
-REACT_APP_MODIA_URL=https://example.com # URL til backend for kjøring med npm
-PERSONOVERSIKTAPI_URL=https://example.com # URL til backend for kjøring i docker
-REACT_APP_HODE_URL=https://example.com/head.min.js # URL til navigasjonsmenyen for kjøring med npm
-IADECORATOR_JS_URL=https://example.com/head.min.js # URL til navigasjonsmenyen for kjøring i docker
+REACT_APP_MODIA_URL=https://example.com # URL til backend
+REACT_APP_MOCK_ENABLED=true # For å styre om applikasjonen skal bruke mock
+REACT_APP_HODE_URL=https://example.com/head.min.js # URL til navigasjonsmenyen
+PORT=80 #Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
 ```
 
 ### For utvikling

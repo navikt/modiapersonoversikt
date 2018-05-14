@@ -49,8 +49,7 @@
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
-    "heroku": "npm run build && npm run start-mock"
+    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { createBrowserHistory } from 'history';
 import thunkMiddleware from 'redux-thunk';
 import { ThemeProvider } from 'styled-components';
-import AppWrapper from './AppWrapper';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import Routing from './routes/routing';
@@ -12,12 +11,14 @@ import UnderArbeid from '../components/underarbeid/UnderArbeid';
 import { setupMock } from '../mock/setup-mock';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
 import reducers from '../redux/reducer';
+import { mockEnabled } from '../api/config';
+import AppWrapper from './AppWrapper';
 
 interface AppProps {
 
 }
 
-if (process.env.REACT_APP_MOCK === 'true') {
+if (mockEnabled === 'true') {
     setupMock();
 }
 
