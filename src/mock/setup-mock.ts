@@ -41,7 +41,7 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
                 return 200;
             }
         },
-        (args: HandlerArgument) => getMockNavKontor(args.pathParams.geografiskTilknytning)));
+        (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt)));
 }
 
 function setupOppgaveMock(mock: FetchMock) {
