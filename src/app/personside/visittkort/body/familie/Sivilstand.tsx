@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../VisittkortElement';
 
-import { Familierelasjon, getPartner, Person, Sivilstand } from '../../../../../models/person/person';
+import { Familierelasjon, getPartner, Person, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 
@@ -19,12 +19,20 @@ interface PartnerProps {
     sivilstand: Sivilstand;
 }
 
-function Partner({relasjon, sivilstand}: PartnerProps) {
+function Sivilstand(props: {sivilstand: Sivilstand}) {
+    if (props.sivilstand.value === SivilstandTyper.Ugift) {
+        return <>{props.sivilstand.beskrivelse}</>;
+    }
+    const relasjonFraOgMed = moment(props.sivilstand.fraOgMed).format('DD.MM.YYYY');
+    return (
+        <>{props.sivilstand.beskrivelse} ({relasjonFraOgMed})</>
+    );
+}
 
-    const relasjonFraOgMed = moment(sivilstand.fraOgMed).format('DD.MM.YYYY');
+function Partner({relasjon, sivilstand}: PartnerProps) {
     return (
         <>
-            <Undertekst>{sivilstand.beskrivelse} ({relasjonFraOgMed})</Undertekst>
+            <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
             <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
@@ -35,9 +43,9 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
 function SivilstandVisning({person}: Props) {
     const partner = getPartner(person);
     const {sivilstand} = person;
+
     if (!partner) {
-        const relasjonFraOgMed = moment(sivilstand.fraOgMed).format('DD.MM.YYYY');
-        return <Undertekst>{sivilstand.beskrivelse} ({relasjonFraOgMed})</Undertekst>;
+        return <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>;
     }
 
     return (
