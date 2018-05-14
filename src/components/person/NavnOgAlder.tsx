@@ -5,8 +5,23 @@ interface Props {
     relasjon: Familierelasjon;
 }
 
-function getNavn(navn: Navn) {
-    return navn.fornavn + ' ' + (navn.mellomnavn ? navn.mellomnavn + ' ' : '') + navn.etternavn;
+function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
+    if (!fornavn && !etternavn) {
+        return sammensatt || 'Ukjent navn';
+    }
+
+    let navn = [];
+    if (fornavn) {
+        navn.push(fornavn);
+    }
+    if (mellomnavn) {
+        navn.push(mellomnavn);
+    }
+    if (etternavn) {
+        navn.push(etternavn);
+    }
+
+    return navn.join(' ');
 }
 
 function NavnOgAlder({relasjon}: Props) {

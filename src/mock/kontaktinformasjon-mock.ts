@@ -38,8 +38,10 @@ function vektetSjansePerson(vekt: number, person: PersonRespons) {
 }
 
 function getEpost(personData: Person) {
+    const fornavn = personData.navn.fornavn || '';
+    const etternavn = personData.navn.etternavn || '';
     return {
-        value: faker.internet.email(personData.navn.fornavn, personData.navn.etternavn),
+        value: faker.internet.email(fornavn, etternavn),
         sistOppdatert: getSistOppdatert()
     };
 }

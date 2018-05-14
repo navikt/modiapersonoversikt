@@ -288,6 +288,50 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
       </div>
+      <div
+        className="sc-gZMcBi YBfVu"
+      >
+        <div
+          className="sc-gqjmRU edlVLi"
+        >
+          <img
+            alt="Jente"
+            src="jentebarn.svg"
+            title="Jente"
+          />
+        </div>
+        <div
+          className="sc-VigVT gWFDUD"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-jTzLTM eiuGtv"
+            >
+              Jente
+            </span>
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Siri Aremark
+             (
+            17
+            ) 
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            10117100000
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Bor ikke med bruker
+          </p>
+        </div>
+      </div>
     </div>
     <div
       className="sc-kgoBCf jnYcFc"

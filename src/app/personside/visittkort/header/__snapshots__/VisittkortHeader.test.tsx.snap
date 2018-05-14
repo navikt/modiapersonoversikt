@@ -59,7 +59,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           <li
             title="Barn under 21 år"
           >
-            Ingen barn under 21 år
+            1
+             barn under 21 år
           </li>
         </ul>
       </span>
