@@ -88,7 +88,7 @@ export interface Sivilstand {
 
 export enum SivilstandTyper {
     Gift = 'GIFT',
-    Ugift = 'UGIFT',
+    Ugift = 'UGIF',
     Skilt = 'SKIL',
     Samboer  = 'SAMB',
     Enke = 'ENKE'
