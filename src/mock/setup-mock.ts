@@ -68,7 +68,7 @@ export function setupMock() {
             (requestArgs, response) => {
                 return response;
             },
-            MiddlewareUtils.failurerateMiddleware(0.1))
+            MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
     setupPersonMock(mock);

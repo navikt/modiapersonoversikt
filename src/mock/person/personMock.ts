@@ -27,7 +27,7 @@ export function getPerson(fødselsnummer: string): PersonRespons {
         return aremark;
     } else {
         faker.seed(Number(fødselsnummer));
-        if (vektetSjanse(faker, 0.1)) {
+        if (vektetSjanse(faker, 0.02)) {
             return getBegrensetInnsyn();
         } else {
             return getTilfeldigPerson(fødselsnummer);
