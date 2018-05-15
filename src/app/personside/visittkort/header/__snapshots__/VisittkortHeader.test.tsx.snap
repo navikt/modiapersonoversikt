@@ -5,7 +5,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   className="sc-ifAKCX hMtwKY"
 >
   <div
-    className="sc-EHOje hyALOH"
+    className="sc-EHOje ZXjoY"
   >
     <div
       className="sc-gzVnrw kLcAtr"
@@ -35,16 +35,17 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         className="typo-undertekst"
       >
         <span
-          title="Fødselsnummer"
+          className="sc-htpNat eiDUlg"
         >
-          10108000398
-           
+          <span
+            title="Fødselsnummer"
+          >
+            10108000398
+             
+          </span>
         </span>
-        <span
-          className="sc-htpNat coTjJA"
-        />
         <ul
-          className="sc-bwzfXH cwYuaP"
+          className="sc-bwzfXH bdrGTU"
         >
           <li
             title="Statsborgerskap"
@@ -95,7 +96,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       className="typo-undertekst"
     >
       <dl
-        className="sc-bdVaJa YjxoX"
+        className="sc-bdVaJa hdCgJK"
       >
         <dt>
           NAV-kontor
