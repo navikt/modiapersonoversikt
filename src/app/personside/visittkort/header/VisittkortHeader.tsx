@@ -23,6 +23,7 @@ const VisittkortHeaderDiv = styled.div`
 const VenstreFelt = styled.div`
   display: flex;
   flex-grow: 1;
+  margin-right: 1em;
 `;
 
 const HøyreFelt = styled.div`

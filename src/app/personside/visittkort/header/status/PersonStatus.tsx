@@ -20,12 +20,12 @@ const PersonStatusListe = styled.ul`
   }
   li:not(:last-child):after {
     content: '/';
-    margin: 0 0.5em;
+    margin: 0 0.2em;
   }
 `;
 
 const Luft = styled.span`
-  margin: 0 1em;
+  margin-right: 1em;
 `;
 
 interface PersonProps {
@@ -60,8 +60,9 @@ function FødselsnummerLinje({ person }: PersonProps) {
 function PersonStatus({ person }: PersonProps) {
     return (
         <Undertekst tag="span">
-            <FødselsnummerLinje person={person}/>
-            <Luft/>
+            <Luft>
+                <FødselsnummerLinje person={person}/>
+            </Luft>
             <PersonStatusListe>
                 <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
                 <Sivilstand sivilstand={person.sivilstand} kjønn={person.kjønn}/>

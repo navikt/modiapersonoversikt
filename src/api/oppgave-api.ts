@@ -17,5 +17,11 @@ export function plukkOppgaveFraServer(enhet: string, temagruppe: string): Promis
 
     const uri = `${apiBaseUri}/oppgave/plukk`;
     return fetch(uri, postConfig)
-        .then((response) => response.json());
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw response.statusText;
+            }
+        });
 }

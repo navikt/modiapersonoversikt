@@ -14,6 +14,7 @@ const NavKontorDescriptionList = styled.dl`
   margin: initial;
   margin-left: 1em;
   display: flex;
+  justify-content: flex-end;
   > * {
   white-space: nowrap;
   }

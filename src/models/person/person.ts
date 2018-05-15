@@ -110,10 +110,13 @@ export function erDød(personstatus: Bostatus) {
     return personstatus.dødsdato || personstatus.bostatus === BostatusTyper.Død;
 }
 
-export function getBarnUnder21(familierelasjoner: Familierelasjon[]) {
+export function getBarn(familierelasjoner: Familierelasjon[]) {
     return familierelasjoner
-        .filter(relasjon => relasjon.rolle === Relasjonstype.Barn)
-        .filter(relasjon => relasjon.tilPerson.alder <= 21);
+        .filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
+}
+
+export function getBarnUnder21(familierelasjoner: Familierelasjon[]) {
+    return getBarn(familierelasjoner).filter(barn => barn.tilPerson.alder <= 21);
 }
 
 export function getPartner(person: Person) {
