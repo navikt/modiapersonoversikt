@@ -150,7 +150,7 @@ function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse) {
 
 function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {
     return (
-        <Undertekst>{adresse.adresselinje}</Undertekst>
+        <Undertekst>{adresse}</Undertekst>
     );
 }
 
