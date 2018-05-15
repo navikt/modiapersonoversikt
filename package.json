@@ -7,7 +7,6 @@
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.5",
-    "cross-env": "^5.1.4",
     "history": "^4.7.2",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.1",
@@ -43,14 +42,12 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "start-mock": "cross-env REACT_APP_MOCK=true npm run start",
     "build": "npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
-    "heroku": "npm run build && npm run start-mock"
+    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",
