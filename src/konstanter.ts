@@ -4,8 +4,8 @@ export const Diskresjonskoder = {
 };
 
 export const TilrettelagtKommunikasjonsTyper = {
-    KOMU: 'Kommunikasjon bør skje muntlig',
-    KOSK: 'Kommunikasjon bør skje skriftlig',
+    KOMU: 'Muntlig kommunikasjon',
+    KOSK: 'Skriftlig kommunikasjon',
     LESA: 'Ledsager',
     TOHJ: 'Tolkehjelp'
 };
