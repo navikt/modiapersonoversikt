@@ -5,7 +5,6 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState, Reducer } from '../../redux/reducer';
 import { plukkOppgaver } from '../../redux/oppgaver';
 import { settNyPersonIKontekst } from '../routes/routing';
-import renderDecoratorHead from '../../decorator';
 import { STATUS } from '../../redux/utils';
 import StartBildeLayout from './StartBildeLayout';
 import Feilmelding from '../../components/feilmelding/Feilmelding';
@@ -47,7 +46,6 @@ class Startbilde extends React.Component<StartbildeProps> {
     handlePersonsok(event: object) {
         const personsokEvent = event as DecoratorPersonsokEvent;
         this.props.personOppsokt(personsokEvent.fodselsnummer);
-        renderDecoratorHead(personsokEvent.fodselsnummer);
     }
 
     snarveiTilAremark() {

@@ -48,6 +48,7 @@ class PersonsideContainer extends React.PureComponent<PersonsideProps> {
     componentDidUpdate(prevProps: PersonsideProps, prevState: PersonsideProps) {
         if (prevProps.fodselsnummer !== this.props.fodselsnummer) {
             this.hentPersonData(this.props.fodselsnummer);
+            renderDecoratorHead(this.props.fodselsnummer);
         }
     }
 
