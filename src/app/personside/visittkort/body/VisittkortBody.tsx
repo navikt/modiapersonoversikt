@@ -8,6 +8,7 @@ import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtK
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
+import RedigerBrukerprofilLenke from './brukerprofil/BrukerprofilModal';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -43,7 +44,7 @@ function TwoColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 {NavKontor}
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
@@ -59,7 +60,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person}/>
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
             </Kolonne>
             <Kolonne>
@@ -108,9 +109,12 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
         const columnLayOut = this.getColumnLayout(numberOfColumns);
 
         return (
-            <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
-                {columnLayOut}
-            </VisittkortBodyDiv>
+            <>
+                <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
+                    {columnLayOut}
+                </VisittkortBodyDiv>
+                <RedigerBrukerprofilLenke/>
+            </>
         );
     }
 }

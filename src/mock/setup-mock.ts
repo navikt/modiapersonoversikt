@@ -51,6 +51,13 @@ function setupOppgaveMock(mock: FetchMock) {
         () => getTilfeldigeOppgaver()));
 }
 
+function endreNavnMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/person/:fodselsnummer/brukerprofil/navn', withDelayedResponse(
+        1200,
+        STATUS_OK,
+        () => {return {}; }));
+}
+
 function setupVergemalMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
         2500,
@@ -77,4 +84,5 @@ export function setupMock() {
     setupGeografiskTilknytningMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
+    endreNavnMock(mock);
 }
