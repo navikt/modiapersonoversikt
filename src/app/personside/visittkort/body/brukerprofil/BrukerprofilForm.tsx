@@ -108,7 +108,11 @@ class Brukerprofil extends React.Component<BrukerprofilProps, BrukerprofilState>
 function Tilbakemelding(props: {status: STATUS}) {
     if (props.status === STATUS.OK) {
         return (
-            <AlertStripe type={'suksess'}>Navnet ble endret.</AlertStripe>
+            <AlertStripe
+                type={'suksess'}
+            >
+                Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.
+            </AlertStripe>
         );
     } else if (props.status === STATUS.ERROR) {
         return (
