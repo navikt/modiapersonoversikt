@@ -1,8 +1,19 @@
 {
   "name": "modiapersonoversikt",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
   "homepage": "/modiapersonoversikt",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "publishConfig": {
+    "registry": "https://repo.adeo.no/repository/npm-internal/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navikt/modiapersonoversikt"
+  },
   "dependencies": {
     "@types/react-modal": "^3.1.2",
     "babel-polyfill": "^6.26.0",
@@ -53,9 +64,10 @@
     "build": "npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 3000",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
+    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
+    "compile": "tsc"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",
