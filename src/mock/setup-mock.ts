@@ -35,13 +35,13 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/enheter', withDelayedResponse(
         2000,
         (args: HandlerArgument) => {
-            if (isNaN(args.queryParams.gt)) {
+            if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
                 return 404;
             } else {
                 return 200;
             }
         },
-        (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt)));
+        (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)));
 }
 
 function setupOppgaveMock(mock: FetchMock) {
