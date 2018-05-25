@@ -52,7 +52,7 @@ function setupOppgaveMock(mock: FetchMock) {
 }
 
 function endreNavnMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/person/:fodselsnummer/brukerprofil/navn', withDelayedResponse(
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
         1200,
         STATUS_OK,
         () => {return {}; }));
