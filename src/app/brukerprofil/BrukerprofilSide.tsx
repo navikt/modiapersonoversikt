@@ -11,6 +11,8 @@ import { AppState, Reducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
 import { hentPerson, personinformasjonActionNames } from '../../redux/personinformasjon';
+import { VeilederRoller } from '../../models/veilederRoller';
+import { getVeilederRoller, veilederRollerReducerActionNames } from '../../redux/veilederRoller';
 
 const BrukerprofilWrapper = styled.div`
   margin-top: 2em;
@@ -34,11 +36,13 @@ interface RoutingProps {
 
 interface DispatchProps {
     hentPersonData: (fødselsnummer: string) => void;
+    hentVeilederRoller: () => void;
 }
 
 interface Props {
     fødselsnummer: string;
     personReducer: Reducer<PersonRespons>;
+    veilederRollerReducer: Reducer<VeilederRoller>;
 }
 
 type props = RouteComponentProps<RoutingProps> & Props & DispatchProps ;
@@ -49,12 +53,17 @@ class BrukerprofilSide extends React.Component<props> {
         if (this.props.personReducer.status === personinformasjonActionNames.INITIALIZED) {
             this.props.hentPersonData(this.props.fødselsnummer);
         }
+
+        if (this.props.veilederRollerReducer.status === veilederRollerReducerActionNames.INITIALIZED) {
+            this.props.hentVeilederRoller();
+        }
     }
 
     render() {
+        console.log(this.props);
         return (
             <BrukerprofilWrapper>
-                <Innholdslaster avhengigheter={[this.props.personReducer]}>
+                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
                     <>
                         <LinkWrapper>
                             <Filler/>
@@ -65,7 +74,10 @@ class BrukerprofilSide extends React.Component<props> {
                                 Tilbake
                             </Link>
                         </LinkWrapper>
-                        <BrukerprofilForm person={this.props.personReducer.data as Person}/>
+                        <BrukerprofilForm
+                            person={this.props.personReducer.data as Person}
+                            veilderRoller={this.props.veilederRollerReducer.data}
+                        />
                     </>
                 </Innholdslaster>
             </BrukerprofilWrapper>
@@ -77,13 +89,15 @@ class BrukerprofilSide extends React.Component<props> {
 const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingProps>): Props => {
     return ({
         fødselsnummer: ownProps.match.params.fodselsnummer,
-        personReducer: state.personinformasjon
+        personReducer: state.personinformasjon,
+        veilederRollerReducer: state.veilederRoller
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch))
+        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch)),
+        hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }
 
