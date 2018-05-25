@@ -22,11 +22,14 @@ const toAnsatte: Sikkerhetstiltak = {
 };
 
 export function getSikkerhetstiltak() {
-    if (vektetSjanse(faker, 0.5)) {
+    if (vektetSjanse(faker, 0.05)) {
         return fysiskUtestenkt;
     }
-    if (vektetSjanse(faker, 0.5)) {
+    if (vektetSjanse(faker, 0.05)) {
         return fysiskOgTelefonUtestenkt;
     }
-    return toAnsatte;
+    if (vektetSjanse(faker, 0.05)) {
+        return toAnsatte;
+    }
+    return undefined;
 }
