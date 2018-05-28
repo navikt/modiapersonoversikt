@@ -1,25 +1,23 @@
 import { apiBaseUri } from './config';
-import { Oppgave } from '../models/oppgave';
+import { EndreNavnRequest } from '../redux/brukerprofil/endreNavnRequest';
 
-export function plukkOppgaveFraServer(enhet: string, temagruppe: string): Promise<Oppgave[]> {
+export function postEndreNavn(request: EndreNavnRequest): Promise<{}> {
     const postConfig = {
-        body: JSON.stringify({enhet: enhet, temagruppe: temagruppe}),
+        body: JSON.stringify(request),
         cache: 'no-cache' as RequestCache ,
-        credentials: 'same-origin' as RequestCredentials,
+        credentials: 'include' as RequestCredentials,
         headers: {
             'content-type': 'application/json'
         },
         method: 'POST',
         mode: 'cors' as RequestMode,
         redirect: 'follow' as RequestRedirect,
-        referrer: 'no-referrer'
     };
-
-    const uri = `${apiBaseUri}/oppgave/plukk`;
+    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/navn/`;
     return fetch(uri, postConfig)
         .then((response) => {
             if (response.ok) {
-                return response.json();
+                return {};
             } else {
                 throw response.statusText;
             }

@@ -8,6 +8,9 @@ import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtK
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
+import { paths } from '../../../routes/routing';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -43,7 +46,7 @@ function TwoColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 {NavKontor}
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
@@ -59,7 +62,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person}/>
-                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
             </Kolonne>
             <Kolonne>
@@ -69,6 +72,14 @@ function ThreeColumnLayout(person: Person) {
         </>
     );
 }
+
+const RedigerBrukerprofilWrapper = styled.div`
+  display: flex;
+`;
+
+const Filler = styled.div`
+  flex-grow: 1;
+`;
 
 class VisittkortBody extends Component<VisittkortBodyProps> {
 
@@ -108,9 +119,20 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
         const columnLayOut = this.getColumnLayout(numberOfColumns);
 
         return (
-            <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
-                {columnLayOut}
-            </VisittkortBodyDiv>
+            <>
+                <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
+                    {columnLayOut}
+                </VisittkortBodyDiv>
+                <RedigerBrukerprofilWrapper>
+                    <Filler/>
+                    <Link
+                        className={'lenke'}
+                        to={`${paths.brukerprofil}/${this.props.person.fødselsnummer}`}
+                    >
+                        Administrer brukerprofil
+                    </Link>
+                </RedigerBrukerprofilWrapper>
+            </>
         );
     }
 }

@@ -7,6 +7,8 @@ import oppgaverReducer from './oppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
+import endreNavnReducer from './brukerprofil/endreNavn';
+import veilederRollerReducer from './veilederRoller';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
@@ -14,6 +16,7 @@ import { NavKontor } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 import { Egenansatt } from '../models/egenansatt';
 import { Vergemal } from '../models/vergemal/vergemal';
+import { VeilederRoller } from '../models/veilederRoller';
 
 export interface AppState {
     personinformasjon: Reducer<PersonRespons>;
@@ -22,6 +25,8 @@ export interface AppState {
     kontaktinformasjon: Reducer<Kontaktinformasjon>;
     egenAnsatt: Reducer<Egenansatt>;
     vergemal: Reducer<Vergemal>;
+    endreNavn: Reducer<{}>;
+    veilederRoller: Reducer<VeilederRoller>;
 }
 
 export default combineReducers<AppState>({
@@ -31,6 +36,8 @@ export default combineReducers<AppState>({
     kontaktinformasjon: kontaktinformasjonReducer,
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
+    endreNavn: endreNavnReducer,
+    veilederRoller: veilederRollerReducer,
     router: routerReducer
 });
 

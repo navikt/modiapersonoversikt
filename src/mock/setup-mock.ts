@@ -7,6 +7,7 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mock';
+import { getMockVeilederRoller } from './veilderRoller-mock';
 
 const STATUS_OK = () => 200;
 
@@ -51,11 +52,25 @@ function setupOppgaveMock(mock: FetchMock) {
         () => getTilfeldigeOppgaver()));
 }
 
+function endreNavnMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
+        1200,
+        STATUS_OK,
+        () => {return {}; }));
+}
+
 function setupVergemalMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
         2500,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
+}
+
+function setupVeilederRollerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
+        700,
+        STATUS_OK,
+        () => getMockVeilederRoller()));
 }
 
 export function setupMock() {
@@ -68,7 +83,7 @@ export function setupMock() {
             (requestArgs, response) => {
                 return response;
             },
-            MiddlewareUtils.failurerateMiddleware(0.1))
+            MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
     setupPersonMock(mock);
@@ -77,4 +92,6 @@ export function setupMock() {
     setupGeografiskTilknytningMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
+    endreNavnMock(mock);
+    setupVeilederRollerMock(mock);
 }

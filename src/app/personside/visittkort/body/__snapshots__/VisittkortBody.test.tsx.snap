@@ -1,589 +1,605 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkortbody 1`] = `
-<div
-  className="sc-kAzzGY fkQhJY"
->
+Array [
   <div
-    className="sc-chPdSV bnVhEB"
+    className="sc-kAzzGY fkQhJY"
   >
     <div
-      className="sc-kgoBCf jnYcFc"
-    >
-      <p
-        className="typo-element"
-      >
-        <span
-          className="sc-kGXeez gjUZxU"
-        >
-          Kontaktinformasjon
-        </span>
-      </p>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="Bostedsadresse fra Folkeregisteret"
-            src="location-pin.svg"
-            title="Bostedsadresse fra Folkeregisteret"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Bostedsadresse fra Folkeregisteret
-            </span>
-          </p>
-          Ikke registrert
-        </div>
-      </div>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="E-post Kontakt- og reservasjonsregisteret"
-            src="email.svg"
-            title="E-post Kontakt- og reservasjonsregisteret"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              E-post Kontakt- og reservasjonsregisteret
-            </span>
-          </p>
-          <svg
-            aria-label="Laster innhold"
-            className="spinner spinner--l"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            onClick={undefined}
-            preserveAspectRatio="xMidYMid"
-            style={undefined}
-            viewBox="0 0 100 100"
-            width={32}
-          >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#bdbab7"
-              strokeWidth="10"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="10"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="Telefon Kontakt- og reservasjonsregisteret"
-            src="phone.svg"
-            title="Telefon Kontakt- og reservasjonsregisteret"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Telefon Kontakt- og reservasjonsregisteret
-            </span>
-          </p>
-          <svg
-            aria-label="Laster innhold"
-            className="spinner spinner--l"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            onClick={undefined}
-            preserveAspectRatio="xMidYMid"
-            style={undefined}
-            viewBox="0 0 100 100"
-            width={32}
-          >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#bdbab7"
-              strokeWidth="10"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              fill="none"
-              r="40"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="10"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Telefon til bruk for NAV
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            +47 998 87 766
-             (
-            Mobil
-            )
-          </p>
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-iwsKbI dRsOru"
-            >
-              Endret 
-              21.06.2014
-               
-              BRUKER
-            </span>
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="Kontonummer"
-            src="coins.svg"
-            title="Kontonummer"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Kontonummer
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Ikke registrert
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      className="sc-kgoBCf jnYcFc"
-    >
-      <p
-        className="typo-element"
-      >
-        <span
-          className="sc-kGXeez gjUZxU"
-        >
-          Familie
-        </span>
-      </p>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="Sivilstand"
-            src="heart.svg"
-            title="Sivilstand"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Sivilstand
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Gift
-             (
-            12.12.2005
-            )
-          </p>
-        </div>
-      </div>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="Jente"
-            src="jentebarn.svg"
-            title="Jente"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              Jente
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Siri Aremark
-             (
-            17
-            ) 
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            10117100000
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Bor ikke med bruker
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      className="sc-kgoBCf jnYcFc"
-    >
-      <p
-        className="typo-element"
-      >
-        <span
-          className="sc-kGXeez gjUZxU"
-        >
-          NAV-kontor
-        </span>
-      </p>
-      <div
-        className="sc-gZMcBi YBfVu"
-      >
-        <div
-          className="sc-gqjmRU edlVLi"
-        >
-          <img
-            alt="0118 NAV Aremark"
-            src="nav-logo.svg"
-            title="0118 NAV Aremark"
-          />
-        </div>
-        <div
-          className="sc-VigVT gWFDUD"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="sc-jTzLTM eiuGtv"
-            >
-              0118 NAV Aremark
-            </span>
-          </p>
-          <div>
-            <br />
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-iwsKbI dRsOru"
-              >
-                Besøksadresse
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              
-            Rådhuset 6A
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              1798 Aremark
-            </p>
-            <br />
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-iwsKbI dRsOru"
-              >
-                Åpningstider
-              </span>
-            </p>
-            <dl
-              className="sc-cSHVUG fFOBYt"
-            >
-              <dt>
-                <p
-                  className="typo-undertekst"
-                >
-                  <span
-                    className="sc-fjdhpX chqHmI"
-                  >
-                    mandag
-                  </span>
-                </p>
-              </dt>
-              <dd>
-                <p
-                  className="typo-undertekst"
-                >
-                  09.00
-                   - 
-                  14.30
-                </p>
-              </dd>
-              <dt>
-                <p
-                  className="typo-undertekst"
-                >
-                  <span
-                    className="sc-fjdhpX chqHmI"
-                  >
-                    tirsdag
-                  </span>
-                </p>
-              </dt>
-              <dd>
-                <p
-                  className="typo-undertekst"
-                >
-                  09.00
-                   - 
-                  14.30
-                </p>
-              </dd>
-              <dt>
-                <p
-                  className="typo-undertekst"
-                >
-                  <span
-                    className="sc-fjdhpX chqHmI"
-                  >
-                    onsdag
-                  </span>
-                </p>
-              </dt>
-              <dd>
-                <p
-                  className="typo-undertekst"
-                >
-                  09.00
-                   - 
-                  14.30
-                </p>
-              </dd>
-              <dt>
-                <p
-                  className="typo-undertekst"
-                >
-                  <span
-                    className="sc-fjdhpX chqHmI"
-                  >
-                    torsdag
-                  </span>
-                </p>
-              </dt>
-              <dd>
-                <p
-                  className="typo-undertekst"
-                >
-                  09.00
-                   - 
-                  14.30
-                </p>
-              </dd>
-              <dt>
-                <p
-                  className="typo-undertekst"
-                >
-                  <span
-                    className="sc-fjdhpX chqHmI"
-                  >
-                    fredag
-                  </span>
-                </p>
-              </dt>
-              <dd>
-                <p
-                  className="typo-undertekst"
-                >
-                  09.00
-                   - 
-                  14.30
-                </p>
-              </dd>
-            </dl>
-            <br />
-          </div>
-          <a
-            className="lenke sc-jzJRlG gloTQk"
-            href="/norg2-frontend/#/startsok?enhetNr=0118"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Mer informasjon om kontoret
-          </a>
-        </div>
-      </div>
-    </div>
-    <div
-      className="sc-gZMcBi YBfVu"
+      className="sc-chPdSV bnVhEB"
     >
       <div
-        className="sc-gqjmRU edlVLi"
-      >
-        <img
-          alt="Tilrettelagt Kommunikasjon"
-          src="vergemaal.svg"
-          title="Tilrettelagt Kommunikasjon"
-        />
-      </div>
-      <div
-        className="sc-VigVT gWFDUD"
+        className="sc-kgoBCf jnYcFc"
       >
         <p
-          className="typo-etikett-liten"
+          className="typo-element"
         >
           <span
-            className="sc-jTzLTM eiuGtv"
+            className="sc-kGXeez gjUZxU"
           >
-            Tilrettelagt Kommunikasjon
+            Kontaktinformasjon
           </span>
         </p>
-        <p
-          className="typo-undertekst"
+        <div
+          className="sc-gZMcBi YBfVu"
         >
-          Tolkehjelp
-        </p>
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="Bostedsadresse fra Folkeregisteret"
+              src="location-pin.svg"
+              title="Bostedsadresse fra Folkeregisteret"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Bostedsadresse fra Folkeregisteret
+              </span>
+            </p>
+            Ikke registrert
+          </div>
+        </div>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="E-post Kontakt- og reservasjonsregisteret"
+              src="email.svg"
+              title="E-post Kontakt- og reservasjonsregisteret"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                E-post Kontakt- og reservasjonsregisteret
+              </span>
+            </p>
+            <svg
+              aria-label="Laster innhold"
+              className="spinner spinner--l"
+              focusable="false"
+              height={32}
+              kind="spinner"
+              onClick={undefined}
+              preserveAspectRatio="xMidYMid"
+              style={undefined}
+              viewBox="0 0 100 100"
+              width={32}
+            >
+              <title>
+                Venter...
+              </title>
+              <circle
+                cx="50"
+                cy="50"
+                fill="none"
+                r="40"
+                stroke="#bdbab7"
+                strokeWidth="10"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                fill="none"
+                r="40"
+                stroke="#7f756c"
+                strokeDasharray="50 155"
+                strokeLinecap="round"
+                strokeWidth="10"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="Telefon Kontakt- og reservasjonsregisteret"
+              src="phone.svg"
+              title="Telefon Kontakt- og reservasjonsregisteret"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Telefon Kontakt- og reservasjonsregisteret
+              </span>
+            </p>
+            <svg
+              aria-label="Laster innhold"
+              className="spinner spinner--l"
+              focusable="false"
+              height={32}
+              kind="spinner"
+              onClick={undefined}
+              preserveAspectRatio="xMidYMid"
+              style={undefined}
+              viewBox="0 0 100 100"
+              width={32}
+            >
+              <title>
+                Venter...
+              </title>
+              <circle
+                cx="50"
+                cy="50"
+                fill="none"
+                r="40"
+                stroke="#bdbab7"
+                strokeWidth="10"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                fill="none"
+                r="40"
+                stroke="#7f756c"
+                strokeDasharray="50 155"
+                strokeLinecap="round"
+                strokeWidth="10"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Telefon til bruk for NAV
+              </span>
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              +47 998 87 766
+               (
+              Mobil
+              )
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-iwsKbI dRsOru"
+              >
+                Endret 
+                21.06.2014
+                 
+                BRUKER
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="Kontonummer"
+              src="coins.svg"
+              title="Kontonummer"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Kontonummer
+              </span>
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Ikke registrert
+            </p>
+          </div>
+        </div>
       </div>
+      <div
+        className="sc-kgoBCf jnYcFc"
+      >
+        <p
+          className="typo-element"
+        >
+          <span
+            className="sc-kGXeez gjUZxU"
+          >
+            Familie
+          </span>
+        </p>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="Sivilstand"
+              src="heart.svg"
+              title="Sivilstand"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Sivilstand
+              </span>
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Gift
+               (
+              12.12.2005
+              )
+            </p>
+          </div>
+        </div>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="Jente"
+              src="jentebarn.svg"
+              title="Jente"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                Jente
+              </span>
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Siri Aremark
+               (
+              17
+              ) 
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              10117100000
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Bor ikke med bruker
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-kgoBCf jnYcFc"
+      >
+        <p
+          className="typo-element"
+        >
+          <span
+            className="sc-kGXeez gjUZxU"
+          >
+            NAV-kontor
+          </span>
+        </p>
+        <div
+          className="sc-gZMcBi YBfVu"
+        >
+          <div
+            className="sc-gqjmRU edlVLi"
+          >
+            <img
+              alt="0118 NAV Aremark"
+              src="nav-logo.svg"
+              title="0118 NAV Aremark"
+            />
+          </div>
+          <div
+            className="sc-VigVT gWFDUD"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-jTzLTM eiuGtv"
+              >
+                0118 NAV Aremark
+              </span>
+            </p>
+            <div>
+              <br />
+              <p
+                className="typo-etikett-liten"
+              >
+                <span
+                  className="sc-iwsKbI dRsOru"
+                >
+                  Besøksadresse
+                </span>
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                
+            Rådhuset 6A
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                1798 Aremark
+              </p>
+              <br />
+              <p
+                className="typo-etikett-liten"
+              >
+                <span
+                  className="sc-iwsKbI dRsOru"
+                >
+                  Åpningstider
+                </span>
+              </p>
+              <dl
+                className="sc-cSHVUG fFOBYt"
+              >
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-fjdhpX chqHmI"
+                    >
+                      mandag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-fjdhpX chqHmI"
+                    >
+                      tirsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-fjdhpX chqHmI"
+                    >
+                      onsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-fjdhpX chqHmI"
+                    >
+                      torsdag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+                <dt>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    <span
+                      className="sc-fjdhpX chqHmI"
+                    >
+                      fredag
+                    </span>
+                  </p>
+                </dt>
+                <dd>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    09.00
+                     - 
+                    14.30
+                  </p>
+                </dd>
+              </dl>
+              <br />
+            </div>
+            <a
+              className="lenke sc-jzJRlG gloTQk"
+              href="/norg2-frontend/#/startsok?enhetNr=0118"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Mer informasjon om kontoret
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-gZMcBi YBfVu"
+      >
+        <div
+          className="sc-gqjmRU edlVLi"
+        >
+          <img
+            alt="Tilrettelagt Kommunikasjon"
+            src="vergemaal.svg"
+            title="Tilrettelagt Kommunikasjon"
+          />
+        </div>
+        <div
+          className="sc-VigVT gWFDUD"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-jTzLTM eiuGtv"
+            >
+              Tilrettelagt Kommunikasjon
+            </span>
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Tolkehjelp
+          </p>
+        </div>
+      </div>
+      <svg
+        aria-label="Laster innhold"
+        className="spinner spinner--l"
+        focusable="false"
+        height={32}
+        kind="spinner"
+        onClick={undefined}
+        preserveAspectRatio="xMidYMid"
+        style={undefined}
+        viewBox="0 0 100 100"
+        width={32}
+      >
+        <title>
+          Venter...
+        </title>
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          r="40"
+          stroke="#bdbab7"
+          strokeWidth="10"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          r="40"
+          stroke="#7f756c"
+          strokeDasharray="50 155"
+          strokeLinecap="round"
+          strokeWidth="10"
+        />
+      </svg>
     </div>
-    <svg
-      aria-label="Laster innhold"
-      className="spinner spinner--l"
-      focusable="false"
-      height={32}
-      kind="spinner"
-      onClick={undefined}
-      preserveAspectRatio="xMidYMid"
-      style={undefined}
-      viewBox="0 0 100 100"
-      width={32}
+  </div>,
+  <div
+    className="sc-jKJlTe kwMdnr"
+  >
+    <div
+      className="sc-eNQAEJ gVMpNs"
+    />
+    <a
+      className="lenke"
+      href="/modiapersonoversikt/brukerprofil/10108000398"
+      onClick={[Function]}
     >
-      <title>
-        Venter...
-      </title>
-      <circle
-        cx="50"
-        cy="50"
-        fill="none"
-        r="40"
-        stroke="#bdbab7"
-        strokeWidth="10"
-        xmlns="http://www.w3.org/2000/svg"
-      />
-      <circle
-        cx="50"
-        cy="50"
-        fill="none"
-        r="40"
-        stroke="#7f756c"
-        strokeDasharray="50 155"
-        strokeLinecap="round"
-        strokeWidth="10"
-      />
-    </svg>
-  </div>
-</div>
+      Administrer brukerprofil
+    </a>
+  </div>,
+]
 `;
