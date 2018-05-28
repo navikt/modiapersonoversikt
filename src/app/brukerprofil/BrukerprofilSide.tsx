@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Action } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { connect, Dispatch } from 'react-redux';
 
 import { paths } from '../routes/routing';
 import BrukerprofilForm from './BrukerprofilForm';
-import { connect, Dispatch } from 'react-redux';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
@@ -60,7 +60,6 @@ class BrukerprofilSide extends React.Component<props> {
     }
 
     render() {
-        console.log(this.props);
         return (
             <BrukerprofilWrapper>
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
