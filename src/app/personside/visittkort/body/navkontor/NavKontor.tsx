@@ -88,7 +88,7 @@ function flerePublikumsmottak(antallMottak: number) {
     if (antallMottak > 1) {
         return (
             <>
-                <Undertekst>Det finnes flere publikumsmottak!</Undertekst>
+                <Undertekst>Det finnes flere publikumsmottak</Undertekst>
                 <br/>
             </>
         );
