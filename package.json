@@ -67,7 +67,8 @@
     "storybook": "start-storybook -p 3000",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
-    "compile": "tsc"
+    "compile": "tsc",
+    "build:svg": "cd src/svg/ && svgtoreact dir --force"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",
