@@ -129,7 +129,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                         className={'lenke'}
                         to={`${paths.brukerprofil}/${this.props.person.fødselsnummer}`}
                     >
-                        Rediger Brukerprofil
+                        Administrer brukerprofil
                     </Link>
                 </RedigerBrukerprofilWrapper>
             </>

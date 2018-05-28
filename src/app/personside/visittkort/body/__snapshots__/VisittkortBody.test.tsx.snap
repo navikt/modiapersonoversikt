@@ -598,7 +598,7 @@ Array [
       href="/modiapersonoversikt/brukerprofil/10108000398"
       onClick={[Function]}
     >
-      Rediger Brukerprofil
+      Administrer brukerprofil
     </a>
   </div>,
 ]
