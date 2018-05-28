@@ -8,13 +8,17 @@ import { Kontaktinformasjon as KontaktinformasjonModel } from '../../../models/k
 import Innholdslaster from '../../../components/Innholdslaster';
 import Kontaktinformasjon from './Kontaktinformasjon';
 import { Person } from '../../../models/person/person';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import { hentRetningsnummere, retningsnummerActionNames } from '../../../redux/kodeverk/retningsnummereReducer';
 
 interface DispatchProps {
     hentKontaktinformasjon: (fødselsnummer: string) => void;
+    hentRetningsnummer: () => void;
 }
 
 interface StateProps {
     kontaktinformasjonReducer: Reducer<KontaktinformasjonModel>;
+    retningsnummerReducer: Reducer<KodeverkResponse>;
 }
 
 interface OwnProps {
@@ -26,14 +30,22 @@ type Props = OwnProps & DispatchProps & StateProps;
 
 interface KontaktinformasjonWrapperProps {
     kontaktinformasjon: KontaktinformasjonModel | undefined;
+    retningsnummerKodeverk: KodeverkResponse | undefined;
     person: Person;
 }
 
-function KontaktinformasjonWrapper({kontaktinformasjon, person}: KontaktinformasjonWrapperProps) {
-    if (!kontaktinformasjon) {
+function KontaktinformasjonWrapper({kontaktinformasjon, person, retningsnummerKodeverk}:
+                                       KontaktinformasjonWrapperProps) {
+    if (!kontaktinformasjon || !retningsnummerKodeverk) {
         return <p>Kunne ikke hente kontaktinformasjon</p>;
     } else {
-        return <Kontaktinformasjon kontaktinformasjon={kontaktinformasjon} person={person}/>;
+        return (
+            <Kontaktinformasjon
+                kontaktinformasjon={kontaktinformasjon}
+                person={person}
+                retningsnummerKodeverk={retningsnummerKodeverk}
+            />
+        );
     }
 }
 
@@ -47,13 +59,17 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
         if (this.props.kontaktinformasjonReducer.status ===  kontaktinformasjonActionNames.INITIALIZED) {
             this.props.hentKontaktinformasjon(this.props.fødselsnummer);
         }
+        if (this.props.retningsnummerReducer.status ===  retningsnummerActionNames.INITIALIZED) {
+            this.props.hentRetningsnummer();
+        }
     }
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.kontaktinformasjonReducer]}>
+            <Innholdslaster avhengigheter={[this.props.kontaktinformasjonReducer, this.props.retningsnummerReducer]}>
                 <KontaktinformasjonWrapper
                     kontaktinformasjon={this.props.kontaktinformasjonReducer.data}
+                    retningsnummerKodeverk={this.props.retningsnummerReducer.data}
                     person={this.props.person}
                 />
             </Innholdslaster>
@@ -64,6 +80,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
     return ({
         kontaktinformasjonReducer: state.kontaktinformasjon,
+        retningsnummerReducer: state.retningsnummerReducer,
         fødselsnummer: ownProps.fødselsnummer,
         person: ownProps.person
     });
@@ -71,7 +88,8 @@ const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnP
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentKontaktinformasjon: (fødselsnummer: string) => dispatch(hentKontaktinformasjon(fødselsnummer))
+        hentKontaktinformasjon: (fødselsnummer: string) => dispatch(hentKontaktinformasjon(fødselsnummer)),
+        hentRetningsnummer: () => dispatch(hentRetningsnummere())
     };
 }
 

@@ -22,12 +22,9 @@ const BrukerprofilWrapper = styled.div`
   margin-right: auto;
 `;
 
-const Filler = styled.div`
-  flex-grow: 1;
-`;
-
 const LinkWrapper = styled.div`
   display: flex;
+  margin-bottom: 1em;
 `;
 
 interface RoutingProps {
@@ -65,7 +62,6 @@ class BrukerprofilSide extends React.Component<props> {
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
                     <>
                         <LinkWrapper>
-                            <Filler/>
                             <Link
                                 className={'lenke'}
                                 to={`${paths.personUri}/${this.props.fødselsnummer}`}

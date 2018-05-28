@@ -1,51 +1,74 @@
 import * as React from 'react';
-import { Kontaktinformasjon } from '../../../models/kontaktinformasjon';
-import { EpostVisning } from '../../personside/visittkort/body/kontaktinformasjon/epost/Epost';
-import { MobiltelefonVisning } from '../../personside/visittkort/body/kontaktinformasjon/telefon/Mobiltelefon';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import VisittkortElement from '../../personside/visittkort/body/VisittkortElement';
 import styled from 'styled-components';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
-import Input from 'nav-frontend-skjema/lib/input';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import { Person } from '../../../models/person/person';
 
-const emailPath = require('./email.svg');
-const phonePath = require('./phone.svg');
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import Input from 'nav-frontend-skjema/lib/input';
+import Select from 'nav-frontend-skjema/lib/select';
+import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
+import Ingress from 'nav-frontend-typografi/lib/ingress';
+
+import { Kontaktinformasjon } from '../../../models/kontaktinformasjon';
+import { Person } from '../../../models/person/person';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import DigitalKontaktinformasjon from './DigitalKontaktinformasjon';
 
 interface Props {
     kontaktinformasjon: Kontaktinformasjon;
     person: Person;
+    retningsnummerKodeverk: KodeverkResponse;
 }
 
-const Wrapper = styled.div`
+const NavKontaktinformasjonWrapper = styled.div`
+  margin-top: 2em;
+`;
+
+const TelefonWrapper = styled.div`
   margin-top: 1em;
 `;
 
-function Kontaktinformasjon({kontaktinformasjon, person}: Props) {
-    const mobiltelefon = person.kontaktinformasjon.mobil ? person.kontaktinformasjon.mobil.nummer : '';
+const RetningsnummerWrapper = styled.div`
+  margin-right: 2em;
+`;
+
+const TelefonnummerWrapper = styled.div`
+  flex: auto;
+`;
+
+function Kontaktinformasjon({kontaktinformasjon, person, retningsnummerKodeverk}: Props) {
+    const retningsnummerOptions = retningsnummerKodeverk.kodeverk.map(kodeverk =>
+        (
+            <option
+                value={kodeverk.value}
+                key={kodeverk.kodeRef}
+            >
+                {kodeverk.beskrivelse} (+{kodeverk.kodeRef})
+            </option>
+        )
+    );
+
     return (
         <>
             <Undertittel>Kontaktinformasjon</Undertittel>
-            <Wrapper>
-                <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
-                    <EpostVisning kontaktinformasjon={kontaktinformasjon}/>
-                </VisittkortElement>
-                <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikonPath={phonePath}>
-                    <MobiltelefonVisning kontaktinformasjon={kontaktinformasjon}/>
-                </VisittkortElement>
-            </Wrapper>
-            <Wrapper>
+            <DigitalKontaktinformasjon kontaktinformasjon={kontaktinformasjon}/>
+            <NavKontaktinformasjonWrapper>
                 <UndertekstBold>Telefonnummer bruker ønsker å bli oppringt på</UndertekstBold>
-                <Undertekst>Mobiltelefon</Undertekst>
-                <Input
-                    label="Landkode"
-                    value={mobiltelefon}
-                />
-                <Input
-                    label="Telefonnummer"
-                />
-            </Wrapper>
+                <TelefonWrapper>
+                    <Ingress>Mobiltelefon</Ingress>
+                    <div style={{display: 'flex'}}>
+                        <RetningsnummerWrapper>
+                            <Select label="Landkode" bredde={'m'}>
+                                {retningsnummerOptions}
+                            </Select>
+                        </RetningsnummerWrapper>
+                        <TelefonnummerWrapper>
+                            <Input
+                                bredde={'XXL'}
+                                label="Telefonnummer"
+                            />
+                        </TelefonnummerWrapper>
+                    </div>
+                </TelefonWrapper>
+            </NavKontaktinformasjonWrapper>
         </>);
 }
 
