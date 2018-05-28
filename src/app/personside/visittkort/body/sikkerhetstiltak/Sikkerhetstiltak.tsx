@@ -5,8 +5,7 @@ import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import { Periode } from '../../../../../models/periode';
 import VisPeriode from '../../../../../components/person/VisPeriode';
-
-const sikkerhetsTiltakIkon = require('./sikkerhetstiltak.svg');
+import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
 
 interface SikkerhetstiltakProps {
     person: Person;
@@ -17,7 +16,7 @@ function Sikkerhetstiltak({person}: SikkerhetstiltakProps) {
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikonPath={sikkerhetsTiltakIkon}>
+        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikon={<SikkerhetsTiltakIkon />}>
             {tiltaksinfo(person.sikkerhetstiltak)}
         </VisittkortElement>
     );

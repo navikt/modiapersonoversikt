@@ -8,8 +8,7 @@ import { Reducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
-
-const phonePath = require('./phone.svg');
+import PhoneIkon from '../../../../../../svg/Phone';
 
 interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
@@ -48,7 +47,7 @@ interface MobiltelefonWrapperProps {
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikonPath={phonePath}>
+        <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikon={<PhoneIkon />}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <MobiltelefonVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>

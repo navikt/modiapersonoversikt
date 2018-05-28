@@ -2,8 +2,7 @@ import * as React from 'react';
 import { TilrettelagtKommunikasjon } from '../../../../../models/person/person';
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-
-const vergmaalPath = require('../vergemal/vergemaal.svg');
+import UtropstegnIkon from '../../../../../svg/Utropstegn';
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
@@ -17,7 +16,7 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikonPath={vergmaalPath}>
+        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikon={<UtropstegnIkon />}>
             {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
 
