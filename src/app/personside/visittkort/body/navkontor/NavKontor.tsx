@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import styled from 'styled-components';
-import { Klokkeslett } from '../../../../../models/klokkeslett';
-import { Undertekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
+
+import { Undertekst } from 'nav-frontend-typografi';
+
+import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
+import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettMini from '../../../../../components/EtikettMini';
 import VisittkortElement from '../VisittkortElement';
 
@@ -59,7 +61,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     ));
 
     const besoksadresse = publikumsMottak.besoksadresse;
-    
+
     const adresse = besoksadresse
         ? `
             ${besoksadresse.gatenavn} ${besoksadresse.husnummer || '' }${besoksadresse.husbokstav || ''}`
@@ -82,6 +84,49 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     );
 }
 
+function flerePublikumsmottak(antallMottak: number) {
+    if (antallMottak > 1) {
+        return (
+            <>
+                <Undertekst>Det finnes flere publikumsmottak</Undertekst>
+                <br/>
+            </>
+        );
+    }
+    return null;
+}
+
+function Publikumsmottak(props: {publikumsmottak: PublikumsMottak[]}) {
+    const antallPublikumsmottak = props.publikumsmottak.length;
+    if (antallPublikumsmottak === 0) {
+        return <Undertekst>Ingen publikumsmottak</Undertekst>;
+    }
+
+    const førstePublikumsmottak = props.publikumsmottak[0];
+    return (
+        <>
+            {publikumsMottakKontaktInfo(førstePublikumsmottak)}
+            {flerePublikumsmottak(antallPublikumsmottak)}
+        </>
+    );
+}
+
+function navkontorInfo(navKontor: NavKontor) {
+    return (
+        <>
+            <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
+            <StyledLenke
+                href={`/norg2-frontend/#/startsok?enhetNr=${navKontor.enhetId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={'lenke'}
+            >
+                Mer informasjon om kontoret
+            </StyledLenke>
+        </>
+    );
+}
+
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
         return (
@@ -98,40 +143,6 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
             {navkontorInfo(props.navKontor)}
         </VisittkortElement>
     );
-}
-
-function navkontorInfo(navKontor: NavKontor) {
-    const antallPublikumsmottak = navKontor.publikumsmottak.length;
-
-    const førstePublikumsmottak = navKontor.publikumsmottak[0];
-
-    return (
-        <>
-            {publikumsMottakKontaktInfo(førstePublikumsmottak)}
-            {flerePublikumsmottak(antallPublikumsmottak)}
-            <StyledLenke
-                href={`/norg2-frontend/#/startsok?enhetNr=${navKontor.enhetId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={'lenke'}
-            >
-                Mer informasjon om kontoret
-            </StyledLenke>
-        </>
-    );
-
-}
-
-function flerePublikumsmottak(antallMottak: number) {
-    if (antallMottak > 1) {
-        return (
-            <>
-                <Undertekst>Det finnes flere publikumsmottak!</Undertekst>
-                <br/>
-            </>
-        );
-    }
-    return null;
 }
 
 export default NavKontorVisning;
