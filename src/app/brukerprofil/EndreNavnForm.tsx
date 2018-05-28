@@ -11,9 +11,10 @@ import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../redux/utils';
 import { EndreNavnRequest } from '../../redux/brukerprofil/endreNavnRequest';
-import { Person, PersonRespons } from '../../models/person/person';
-import { AppState, Reducer } from '../../redux/reducer';
+import { Person } from '../../models/person/person';
+import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
+import { VeilederRoller } from '../../models/veilederRoller';
 
 const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;
@@ -31,12 +32,12 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    personReducer: Reducer<PersonRespons>;
     status: STATUS;
 }
 
 interface OwnProps {
     person: Person;
+    veilederRoller?: VeilederRoller;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
@@ -101,17 +102,40 @@ class EndreNavnForm extends React.Component<Props, State> {
         event.preventDefault();
     }
 
+    harVeilderPåkrevdRolle() {
+        if (!this.props.veilederRoller) {
+            return false;
+        }
+        return this.props.veilederRoller.roller.includes('0000-GA-BD06_EndreNavn');
+    }
+
     render() {
+        const harIkkeTilgang = !this.harVeilderPåkrevdRolle();
         return (
                 <form onSubmit={this.handleSubmit}>
                     <Undertittel>Navn</Undertittel>
-                    <Input label="Fornavn" value={this.state.fornavnInput} onChange={this.fornavnInputChange}/>
-                    <Input label="Mellomnavn" value={this.state.mellomnavnInput} onChange={this.mellomnavnInputChange}/>
-                    <Input label="Etternavn" value={this.state.etternavnInput} onChange={this.etternavnInputChange}/>
+                    <Input
+                        label="Fornavn"
+                        value={this.state.fornavnInput}
+                        onChange={this.fornavnInputChange}
+                        disabled={harIkkeTilgang}
+                    />
+                    <Input
+                        label="Mellomnavn"
+                        value={this.state.mellomnavnInput}
+                        onChange={this.mellomnavnInputChange}
+                        disabled={harIkkeTilgang}
+                    />
+                    <Input
+                        label="Etternavn"
+                        value={this.state.etternavnInput}
+                        onChange={this.etternavnInputChange}
+                        disabled={harIkkeTilgang}
+                    />
                     <KnappBase
                         type="standard"
                         spinner={this.props.status === STATUS.PENDING}
-                        disabled={!this.navnErEndret()}
+                        disabled={harIkkeTilgang || !this.navnErEndret()}
                         autoDisableVedSpinner={true}
                     >
                         Endre navn
@@ -143,7 +167,6 @@ function Tilbakemelding(props: {status: STATUS}) {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        personReducer: state.personinformasjon,
         status: state.endreNavn.status,
     });
 };

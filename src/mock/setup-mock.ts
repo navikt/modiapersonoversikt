@@ -7,6 +7,7 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mock';
+import { getMockVeilederRoller } from './veilderRoller-mock';
 
 const STATUS_OK = () => 200;
 
@@ -65,6 +66,13 @@ function setupVergemalMock(mock: FetchMock) {
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
 }
 
+function setupVeilederRollerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
+        700,
+        STATUS_OK,
+        () => getMockVeilederRoller()));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -85,4 +93,5 @@ export function setupMock() {
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
     endreNavnMock(mock);
+    setupVeilederRollerMock(mock);
 }
