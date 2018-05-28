@@ -1,6 +1,3 @@
-declare var _apiBaseUri: string;
-declare var _mockEnabled: string;
+export const apiBaseUri: string = 'http://localhost:8083/modiabrukerdialog/rest';
 
-export const apiBaseUri = _apiBaseUri;
-
-export const mockEnabled = _mockEnabled;
+export const mockEnabled: string = 'false';
