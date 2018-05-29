@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
+import styled from 'styled-components';
+
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { AppState, Reducer } from '../../../redux/reducer';
 import { hentKontaktinformasjon, kontaktinformasjonActionNames } from '../../../redux/kontaktinformasjon';
 import { Kontaktinformasjon as KontaktinformasjonModel } from '../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../components/Innholdslaster';
-import Kontaktinformasjon from './Kontaktinformasjon';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere, retningsnummerActionNames } from '../../../redux/kodeverk/retningsnummereReducer';
+import DigitalKontaktinformasjon from './DigitalKontaktinformasjon';
+import KontaktinformasjonForm from './KontaktinformasjonForm';
 
 interface DispatchProps {
     hentKontaktinformasjon: (fødselsnummer: string) => void;
@@ -34,17 +39,22 @@ interface KontaktinformasjonWrapperProps {
     person: Person;
 }
 
+const NavKontaktinformasjonWrapper = styled.div`
+  margin-top: 2em;
+`;
+
 function KontaktinformasjonWrapper({kontaktinformasjon, person, retningsnummerKodeverk}:
                                        KontaktinformasjonWrapperProps) {
     if (!kontaktinformasjon || !retningsnummerKodeverk) {
-        return <p>Kunne ikke hente kontaktinformasjon</p>;
+        return <Undertekst>Kunne ikke hente kontaktinformasjon</Undertekst>;
     } else {
         return (
-            <Kontaktinformasjon
-                kontaktinformasjon={kontaktinformasjon}
-                person={person}
-                retningsnummerKodeverk={retningsnummerKodeverk}
-            />
+            <>
+                <DigitalKontaktinformasjon kontaktinformasjon={kontaktinformasjon}/>
+                <NavKontaktinformasjonWrapper>
+                    <KontaktinformasjonForm person={person} retningsnummerKodeverk={retningsnummerKodeverk} />
+                </NavKontaktinformasjonWrapper>
+            </>
         );
     }
 }
@@ -66,13 +76,18 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.kontaktinformasjonReducer, this.props.retningsnummerReducer]}>
-                <KontaktinformasjonWrapper
-                    kontaktinformasjon={this.props.kontaktinformasjonReducer.data}
-                    retningsnummerKodeverk={this.props.retningsnummerReducer.data}
-                    person={this.props.person}
-                />
-            </Innholdslaster>
+            <>
+                <Undertittel>Kontaktinformasjon</Undertittel>
+                <Innholdslaster
+                    avhengigheter={[this.props.kontaktinformasjonReducer, this.props.retningsnummerReducer]}
+                >
+                    <KontaktinformasjonWrapper
+                        kontaktinformasjon={this.props.kontaktinformasjonReducer.data}
+                        retningsnummerKodeverk={this.props.retningsnummerReducer.data}
+                        person={this.props.person}
+                    />
+                </Innholdslaster>
+            </>
         );
     }
 }
