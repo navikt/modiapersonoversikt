@@ -4,21 +4,14 @@ import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import KnappBase from 'nav-frontend-knapper';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
-
-import { STATUS } from '../../../redux/utils';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
-
-const TilbakemeldingWrapper = styled.div`
-  margin-top: 1em;
-`;
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -35,7 +28,6 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    status: STATUS;
 }
 
 interface OwnProps {
@@ -135,6 +127,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
+        console.log('Not implemented');
         event.preventDefault();
     }
 
@@ -179,40 +172,19 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
                 <KnappBase
                     type="standard"
-                    spinner={this.props.status === STATUS.PENDING}
                     disabled={false}
                     autoDisableVedSpinner={true}
                 >
                     Endre telefonnummer
                 </KnappBase>
-                <TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>
             </form>
 
         );
     }
 }
 
-function Tilbakemelding(props: {status: STATUS}) {
-    if (props.status === STATUS.OK) {
-        return (
-            <AlertStripe
-                type={'suksess'}
-            >
-                Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.
-            </AlertStripe>
-        );
-    } else if (props.status === STATUS.ERROR) {
-        return (
-            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av navn.</AlertStripe>
-        );
-    } else {
-        return null;
-    }
-}
-
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreNavn.status,
     });
 };
 
