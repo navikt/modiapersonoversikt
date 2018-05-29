@@ -1,3 +1,22 @@
-export const apiBaseUri: string = 'http://localhost:8083/modiabrukerdialog/rest';
+declare var _apiBaseUri: string;
+declare var _mockEnabled: string;
 
-export const mockEnabled: string = 'false';
+function getApiBaseUri() {
+    if (typeof _apiBaseUri === 'undefined') {
+        return '/modiabrukerdialog/rest';
+    } else {
+        return _apiBaseUri;
+    }
+}
+
+function getMockEnabled() {
+    if (typeof _mockEnabled === 'undefined') {
+        return 'false';
+    } else {
+        return _mockEnabled;
+    }
+}
+
+export const apiBaseUri = getApiBaseUri();
+
+export const mockEnabled = getMockEnabled();
