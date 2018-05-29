@@ -14,7 +14,7 @@ import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../utils/telefon-utils';
-import { TelefonInput } from './TelefonInput';
+import { TelefonInput, TelefonMetadata } from './TelefonInput';
 
 const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;
@@ -47,6 +47,10 @@ type Props = DispatchProps & StateProps & OwnProps;
 
 const InputWrapper = styled.div`
   margin-top: 1em;
+`;
+
+const TelefonWrapper = styled.div`
+  margin-bottom: 1em;
 `;
 
 function getInitialTelefonState(telefon: Telefon | undefined) {
@@ -140,30 +144,37 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             <form onSubmit={this.handleSubmit}>
                 <UndertekstBold>Telefonnummer bruker ønsker å bli oppringt på</UndertekstBold>
                 <InputWrapper>
-                    <TelefonInput
-                        retningsnummerKodeverk={this.props.retningsnummerKodeverk}
-                        inputValue={this.state.mobilInput}
-                        retningsnummerInputChange={this.mobilRetningsnummerInputChange}
-                        telfonnummerInputChange={this.mobilTelefonnummerInputChange}
-                    >
-                        Mobiltelefon
-                    </TelefonInput>
+                    <TelefonWrapper>
+                        <TelefonInput
+                            retningsnummerKodeverk={this.props.retningsnummerKodeverk}
+                            inputValue={this.state.mobilInput}
+                            retningsnummerInputChange={this.mobilRetningsnummerInputChange}
+                            telfonnummerInputChange={this.mobilTelefonnummerInputChange}
+                        >
+                            Mobiltelefon
+                        </TelefonInput>
+                        <TelefonMetadata telefon={this.props.person.kontaktinformasjon.mobil}/>
+                    </TelefonWrapper>
+                    <TelefonWrapper>
+                        <TelefonInput
+                            retningsnummerKodeverk={this.props.retningsnummerKodeverk}
+                            inputValue={this.state.hjemTelefonInput}
+                            retningsnummerInputChange={this.hjemRetningsnummerInputChange}
+                            telfonnummerInputChange={this.hjemTelefonnummerInputChange}
+                        >
+                            Hjemmenummer
+                        </TelefonInput>
+                    </TelefonWrapper>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.jobbTelefonInput}
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
                     >
-                        Jobb telefon
+                        Jobbnummer
                     </TelefonInput>
-                    <TelefonInput
-                        retningsnummerKodeverk={this.props.retningsnummerKodeverk}
-                        inputValue={this.state.hjemTelefonInput}
-                        retningsnummerInputChange={this.hjemRetningsnummerInputChange}
-                        telfonnummerInputChange={this.hjemTelefonnummerInputChange}
-                    >
-                        Hjem telefon
-                    </TelefonInput>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
                 </InputWrapper>
 
                 <KnappBase
