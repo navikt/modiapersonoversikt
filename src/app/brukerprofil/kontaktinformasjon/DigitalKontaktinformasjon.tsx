@@ -5,15 +5,14 @@ import { MobiltelefonVisning } from '../../personside/visittkort/body/kontaktinf
 import VisittkortElement from '../../personside/visittkort/body/VisittkortElement';
 import { EpostVisning } from '../../personside/visittkort/body/kontaktinformasjon/epost/Epost';
 import { Kontaktinformasjon } from '../../../models/kontaktinformasjon';
+import Email from '../../../svg/Email';
+import Phone from '../../../svg/Phone';
 
 const Border = styled.div`
   border-radius: 5px;
   border-style: groove;
   padding: 15px;
 `;
-
-const emailPath = require('./email.svg');
-const phonePath = require('./phone.svg');
 
 const DigitalKontaktinformasjonWrapper = styled.div`
   margin-top: 1em;
@@ -27,10 +26,10 @@ function DigitalKontaktinformasjon ({kontaktinformasjon}: Props) {
     return (
         <DigitalKontaktinformasjonWrapper>
             <Border>
-                <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
+                <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikon={<Email />}>
                     <EpostVisning kontaktinformasjon={kontaktinformasjon}/>
                 </VisittkortElement>
-                <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikonPath={phonePath}>
+                <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikon={<Phone />}>
                     <MobiltelefonVisning kontaktinformasjon={kontaktinformasjon}/>
                 </VisittkortElement>
             </Border>
