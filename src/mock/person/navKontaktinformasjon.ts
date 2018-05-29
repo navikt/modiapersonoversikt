@@ -9,7 +9,8 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
         kontaktinformasjon.mobil = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            nummer: faker.phone.phoneNumber('+479#######')
+            telefonnummer: faker.phone.phoneNumber('9#######'),
+            retningsnummer: '47'
         };
     }
 
@@ -17,7 +18,8 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
         kontaktinformasjon.jobbTelefon = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            nummer: faker.phone.phoneNumber('+44########')
+            telefonnummer: faker.phone.phoneNumber('########'),
+            retningsnummer: '47'
         };
     }
 
@@ -25,7 +27,8 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
         kontaktinformasjon.hjemTelefon = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            nummer: faker.phone.phoneNumber('+47########')
+            telefonnummer: faker.phone.phoneNumber('########'),
+            retningsnummer: '47'
         };
     }
 

@@ -48,7 +48,8 @@ export const aremark: Person = {
     kontaktinformasjon: {
         mobil: {
             sistEndret: '2014-06-21T18:44:39+02:00',
-            nummer: '+4799887766',
+            telefonnummer: '99887766',
+            retningsnummer: '47',
             sistEndretAv: 'BRUKER'
         }
     }
