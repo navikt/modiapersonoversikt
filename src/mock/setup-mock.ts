@@ -8,6 +8,7 @@ import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
+import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
 
 const STATUS_OK = () => 200;
 
@@ -73,6 +74,13 @@ function setupVeilederRollerMock(mock: FetchMock) {
         () => getMockVeilederRoller()));
 }
 
+function setupRetningsnummerKodeverkMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
+        700,
+        STATUS_OK,
+        () => mockRetningsnummer()));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -94,4 +102,5 @@ export function setupMock() {
     setupVergemalMock(mock);
     endreNavnMock(mock);
     setupVeilederRollerMock(mock);
+    setupRetningsnummerKodeverkMock(mock);
 }

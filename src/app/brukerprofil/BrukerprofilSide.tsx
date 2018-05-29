@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Action } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { connect, Dispatch } from 'react-redux';
 
 import { paths } from '../routes/routing';
 import BrukerprofilForm from './BrukerprofilForm';
-import { connect, Dispatch } from 'react-redux';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
@@ -22,12 +22,9 @@ const BrukerprofilWrapper = styled.div`
   margin-right: auto;
 `;
 
-const Filler = styled.div`
-  flex-grow: 1;
-`;
-
 const LinkWrapper = styled.div`
   display: flex;
+  margin-bottom: 1em;
 `;
 
 interface RoutingProps {
@@ -60,13 +57,11 @@ class BrukerprofilSide extends React.Component<props> {
     }
 
     render() {
-        console.log(this.props);
         return (
             <BrukerprofilWrapper>
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
                     <>
                         <LinkWrapper>
-                            <Filler/>
                             <Link
                                 className={'lenke'}
                                 to={`${paths.personUri}/${this.props.fødselsnummer}`}

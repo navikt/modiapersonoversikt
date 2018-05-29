@@ -30,7 +30,7 @@ interface MobiltelefonVisningProps {
     kontaktinformasjon?: Kontaktinformasjon;
 }
 
-function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
+export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     if (!kontaktinformasjon) {
         return <>Ingen kontaktinformasjon </>;
     } else if (kontaktinformasjon.reservert) {
