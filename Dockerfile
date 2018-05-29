@@ -1,4 +1,8 @@
 FROM node:9.11.1-alpine as nodebuilder
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
+
 ADD / /source
 WORKDIR /source
 RUN npm install
