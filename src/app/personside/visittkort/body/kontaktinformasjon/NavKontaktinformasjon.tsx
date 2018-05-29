@@ -21,10 +21,10 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     }
     const formatertDato = formaterDato(telefon.sistEndret);
     const endretAv = endretAvTekst(telefon.sistEndretAv);
-    const formatertNummer = nummerFormaterer(telefon.nummer);
+    const formatertNummer = nummerFormaterer(telefon.telefonnummer);
     return (
         <>
-            <Undertekst>{formatertNummer} ({beskrivelse})</Undertekst>
+            <Undertekst>{`+${telefon.retningsnummer} ${formatertNummer}`} ({beskrivelse})</Undertekst>
             <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
         </>
     );

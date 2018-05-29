@@ -7,7 +7,7 @@ import { Action } from 'history';
 
 import PersonsideContainer from '../personside/PersonsideContainer';
 import Startbilde from '../startbilde/Startbilde';
-import BrukerprofilContainer from '../personside/visittkort/body/brukerprofil/BrukerprofilContainer';
+import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
 
 export const paths = {
     personUri : '/modiapersonoversikt/person',
@@ -18,7 +18,7 @@ function Routing(props: RouteComponentProps<{}> ) {
     return (
         <Switch location={props.location}>
             <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
-            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={BrukerprofilContainer}/>
+            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
             <Route component={Startbilde}/>
         </Switch>
     );

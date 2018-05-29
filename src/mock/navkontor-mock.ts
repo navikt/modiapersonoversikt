@@ -43,11 +43,19 @@ const mockKontaktInfo: PublikumsMottak = {
     apningstider: mockApningsTider
 };
 
-export function getMockNavKontor(geografiskTilknytning: string): NavKontor {
+export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?: string): NavKontor {
     faker.seed(Number(geografiskTilknytning));
+    if (diskresjonskode) {
+        return {
+            enhetNavn: 'NAV Norge',
+            enhetId: '9999',
+            publikumsmottak: []
+        };
+    }
+
     if (geografiskTilknytning === geografiskTilknytningAremark) {
         return {
-            enhetNavn: 'Nav Aremark',
+            enhetNavn: 'NAV Aremark',
             enhetId: geografiskTilknytning,
             publikumsmottak: [ mockKontaktInfo ]
         };

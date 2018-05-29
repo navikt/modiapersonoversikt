@@ -8,6 +8,9 @@ import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtK
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
+import styled from 'styled-components';
+import {Link} from "react-router-dom";
+import {paths} from "../../../routes/routing";
 
 interface VisittkortBodyProps {
     person: Person;
@@ -70,6 +73,14 @@ function ThreeColumnLayout(person: Person) {
     );
 }
 
+const RedigerBrukerprofilWrapper = styled.div`
+ display: flex;
+`;
+
+const Filler = styled.div`
+ flex-grow: 1;
+`;
+
 class VisittkortBody extends Component<VisittkortBodyProps> {
 
     private visittKortBodyRef: HTMLDivElement;
@@ -112,6 +123,15 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
                     {columnLayOut}
                 </VisittkortBodyDiv>
+                <RedigerBrukerprofilWrapper>
+                    <Filler/>
+                    <Link
+                        className={'lenke'}
+                        to={`${paths.brukerprofil}/${this.props.person.fødselsnummer}`}
+                    >
+                        Administrer brukerprofil
+                    </Link>
+                </RedigerBrukerprofilWrapper>
             </>
         );
     }

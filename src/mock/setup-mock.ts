@@ -7,6 +7,8 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mock';
+import { getMockVeilederRoller } from './veilderRoller-mock';
+import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
 
 const STATUS_OK = () => 200;
 
@@ -35,13 +37,13 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/enheter', withDelayedResponse(
         2000,
         (args: HandlerArgument) => {
-            if (isNaN(args.queryParams.gt)) {
+            if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
                 return 404;
             } else {
                 return 200;
             }
         },
-        (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt)));
+        (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)));
 }
 
 function setupOppgaveMock(mock: FetchMock) {
@@ -52,7 +54,7 @@ function setupOppgaveMock(mock: FetchMock) {
 }
 
 function endreNavnMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/person/:fodselsnummer/brukerprofil/navn', withDelayedResponse(
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
         1200,
         STATUS_OK,
         () => {return {}; }));
@@ -63,6 +65,20 @@ function setupVergemalMock(mock: FetchMock) {
         2500,
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
+}
+
+function setupVeilederRollerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
+        700,
+        STATUS_OK,
+        () => getMockVeilederRoller()));
+}
+
+function setupRetningsnummerKodeverkMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
+        700,
+        STATUS_OK,
+        () => mockRetningsnummer()));
 }
 
 export function setupMock() {
@@ -85,4 +101,6 @@ export function setupMock() {
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
     endreNavnMock(mock);
+    setupVeilederRollerMock(mock);
+    setupRetningsnummerKodeverkMock(mock);
 }

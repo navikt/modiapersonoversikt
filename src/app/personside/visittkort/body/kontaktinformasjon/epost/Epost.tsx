@@ -27,7 +27,7 @@ interface EpostVisningProps {
     kontaktinformasjon: Kontaktinformasjon | undefined;
 }
 
-function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
+export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
     if (!kontaktinformasjon) {
         return <Undertekst>Ingen kontaktinformasjon registrert</Undertekst>;
     } else if (kontaktinformasjon.reservert) {

@@ -17,7 +17,7 @@ test('viser info om bruker i visittkortbody', () => {
         </Provider>
     );
 
-    testStore.dispatch({type: actionNames.OK, data: getMockNavKontor( '0118')});
+    testStore.dispatch({type: actionNames.OK, data: getMockNavKontor( '0118', undefined)});
 
     const json = visittkortbody.toJSON();
     expect(json).toMatchSnapshot();
