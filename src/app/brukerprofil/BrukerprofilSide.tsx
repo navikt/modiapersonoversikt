@@ -66,7 +66,7 @@ class BrukerprofilSide extends React.Component<props> {
                                 className={'lenke'}
                                 to={`${paths.personUri}/${this.props.fødselsnummer}`}
                             >
-                                Tilbake
+                                {'<'} Tilbake
                             </Link>
                         </LinkWrapper>
                         <BrukerprofilForm
