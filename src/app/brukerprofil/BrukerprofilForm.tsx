@@ -5,6 +5,7 @@ import EndreNavnForm from './EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import KontaktinformasjonFormContainer from './kontaktinformasjon/KontaktinformasjonContainer';
+import TilrettelagtKommunikasjonForm from './TilrettelagtKommunikasjonForm';
 
 interface Props {
     person: Person;
@@ -22,9 +23,7 @@ function BrukerprofilForm({person, veilderRoller}: Props) {
                 <Undertittel>Kontonummer</Undertittel>
             </form>
             <KontaktinformasjonFormContainer person={person} fødselsnummer={person.fødselsnummer}/>
-            <form>
-                <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
-            </form>
+            <TilrettelagtKommunikasjonForm person={person} />
         </>
     );
 }
