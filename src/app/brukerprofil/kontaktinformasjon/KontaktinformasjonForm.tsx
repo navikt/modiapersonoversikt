@@ -127,7 +127,6 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
-        console.log('Not implemented');
         event.preventDefault();
     }
 
