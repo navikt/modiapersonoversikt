@@ -82,7 +82,6 @@ const Filler = styled.div`
   flex-grow: 1;
 `;
 
-
 class VisittkortBody extends Component<VisittkortBodyProps> {
 
     private visittKortBodyRef: HTMLDivElement;
