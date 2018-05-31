@@ -75,8 +75,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     mobilTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
             mobilInput: {
+                ...this.state.mobilInput,
                 telefonnummer: formaterMobiltelefonnummer(event.target.value),
-                retningsnummer: this.state.mobilInput.retningsnummer
             }
         });
     }
@@ -84,7 +84,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     mobilRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
         this.setState({
             mobilInput: {
-                telefonnummer: this.state.mobilInput.telefonnummer,
+                ...this.state.mobilInput,
                 retningsnummer: event.target.value
             }
         });
@@ -93,8 +93,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     jobbTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
             jobbTelefonInput: {
-                telefonnummer: formaterHustelefonnummer(event.target.value),
-                retningsnummer: this.state.jobbTelefonInput.retningsnummer
+                ...this.state.jobbTelefonInput,
+                telefonnummer: formaterHustelefonnummer(event.target.value)
             }
         });
     }
@@ -102,7 +102,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     jobbRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
         this.setState({
             jobbTelefonInput: {
-                telefonnummer: this.state.jobbTelefonInput.telefonnummer,
+                ...this.state.jobbTelefonInput,
                 retningsnummer: event.target.value
             }
         });
@@ -111,8 +111,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     hjemTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
             hjemTelefonInput: {
-                telefonnummer: formaterHustelefonnummer(event.target.value),
-                retningsnummer: this.state.hjemTelefonInput.retningsnummer
+                ...this.state.hjemTelefonInput,
+                telefonnummer: formaterHustelefonnummer(event.target.value)
             }
         });
     }
@@ -120,7 +120,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     hjemRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
         this.setState({
             hjemTelefonInput: {
-                telefonnummer: this.state.hjemTelefonInput.telefonnummer,
+                ...this.state.hjemTelefonInput,
                 retningsnummer: event.target.value
             }
         });
