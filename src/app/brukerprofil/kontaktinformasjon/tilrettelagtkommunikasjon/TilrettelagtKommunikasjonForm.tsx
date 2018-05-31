@@ -8,16 +8,22 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
-import { STATUS } from '../../redux/utils';
-import { AppState } from '../../redux/reducer';
-import { VeilederRoller } from '../../models/veilederRoller';
-import { EndreTilrettelagtKommunikasjonrequest } from '../../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import { endreTilrettelagtKommunikasjon, reset } from '../../redux/brukerprofil/endreTilrettelagtKommunikasjon';
-import { Person } from '../../models/person/person';
+import { STATUS } from '../../../../redux/utils';
+import { AppState } from '../../../../redux/reducer';
+import { VeilederRoller } from '../../../../models/veilederRoller';
+import { EndreTilrettelagtKommunikasjonrequest } from
+        '../../../../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { endreTilrettelagtKommunikasjon, reset } from '../../../../redux/brukerprofil/endreTilrettelagtKommunikasjon';
+import { Person } from '../../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
+import { KodeverkResponse } from '../../../../models/kodeverk';
 
 const TilbakemeldingWrapper = styled.div`
+  margin-top: 1em;
+`;
+
+const SubmitknappWrapper = styled.div`
   margin-top: 1em;
 `;
 
@@ -37,31 +43,50 @@ interface StateProps {
 interface OwnProps {
     person: Person;
     veilederRoller?: VeilederRoller;
+    tilrettelagtKommunikasjonKodeverk: KodeverkResponse;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
 
-const tilretteLagtKommunikasjonAlternativer = () => [ // TODO gjeldende valg må hentes fra backend
-    { label: 'Tolkehjelp', value: 'tolk', id: 'tolk', checked: false },
-    { label: 'Ledsager', value: 'ledsager', id: 'ledsager', checked: false },
-    { label: 'Muntlig kommunikasjon', value: 'muntlig', id: 'muntlig', checked: false },
-    { label: 'Skriflig kommunikasjon', value: 'skriftlig', id: 'skriftlig', checked: false }
-];
+function Tilbakemelding(props: { status: STATUS }) {
+    if (props.status === STATUS.OK) {
+        return (
+            <AlertStripe type={'suksess'}>
+                Tilrettelagt kommunikasjon ble endret. Det kan ta noen minutter før endringene blir synlig.
+            </AlertStripe>
+        );
+    } else if (props.status === STATUS.ERROR) {
+        return (
+            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av tilrettelagt kommunikasjon.</AlertStripe>
+        );
+    } else {
+        return null;
+    }
+}
 
 class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-
-        const checkbokser = tilretteLagtKommunikasjonAlternativer().map((checkboks) => {
-                return { ...checkboks, disabled: !this.harVeilderPåkrevdRolle()};
-            }
-        );
         this.state = {
-            checkbokser: checkbokser
+            checkbokser: this.lagKnapper()
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    lagKnapper() {
+        const tilrettelagtKommunikasjonKodeverk = this.props.tilrettelagtKommunikasjonKodeverk.kodeverk;
+        return tilrettelagtKommunikasjonKodeverk.map((kommunikasjonsmetode) => {
+            return {
+                label: kommunikasjonsmetode.beskrivelse,
+                value: kommunikasjonsmetode.value,
+                id: kommunikasjonsmetode.kodeRef,
+                checked: this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
+                    tk.behovKode === kommunikasjonsmetode.kodeRef),
+                disabled: !this.harVeilderPåkrevdRolle()
+            };
+        });
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -92,12 +117,14 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     erEndret() {
-        return tilretteLagtKommunikasjonAlternativer().some((tilrettelagtKommunikasjonsform) =>
-            this.state.checkbokser.some((checkboks) =>
-                checkboks.value === tilrettelagtKommunikasjonsform.value
-                && checkboks.checked !== tilrettelagtKommunikasjonsform.checked
-            )
-        );
+        return this.state.checkbokser.some((checkboks) => {
+            const erTilrettelagt = this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
+                checkboks.id === tk.behovKode
+            );
+            const fjernet = !checkboks.checked && erTilrettelagt;
+            const lagtTil = checkboks.checked && !erTilrettelagt;
+            return fjernet || lagtTil;
+        });
     }
 
     render() {
@@ -112,36 +139,21 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     legend={''}
                     onChange={this.handleOnChange}
                 />
-                <KnappBase
-                    type="standard"
-                    spinner={this.props.status === STATUS.PENDING}
-                    disabled={!this.erEndret()}
-                    autoDisableVedSpinner={true}
-                >
-                    Endre tilrettelagt kommunikasjon
-                </KnappBase>
+                <SubmitknappWrapper>
+                    <KnappBase
+                        type="standard"
+                        spinner={this.props.status === STATUS.PENDING}
+                        disabled={!this.erEndret()}
+                        title={!this.erEndret() ? 'Ingen endringer' : ''}
+                        autoDisableVedSpinner={true}
+                    >
+                        Endre tilrettelagt kommunikasjon
+                    </KnappBase>
+                </SubmitknappWrapper>
                 <TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>
             </form>
 
         );
-    }
-}
-
-function Tilbakemelding(props: { status: STATUS }) {
-    if (props.status === STATUS.OK) {
-        return (
-            <AlertStripe
-                type={'suksess'}
-            >
-                Tilrettelagt kommunikasjon ble endret. Det kan ta noen minutter før endringene blir synlig.
-            </AlertStripe>
-        );
-    } else if (props.status === STATUS.ERROR) {
-        return (
-            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av tilrettelagt kommunikasjon.</AlertStripe>
-        );
-    } else {
-        return null;
     }
 }
 

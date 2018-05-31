@@ -13,13 +13,14 @@ import Innholdslaster from '../../components/Innholdslaster';
 import { hentPerson, personinformasjonActionNames } from '../../redux/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { getVeilederRoller, veilederRollerReducerActionNames } from '../../redux/veilederRoller';
+import * as tilrettelagtKommunikasjonReducer from '../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
+import { KodeverkResponse } from '../../models/kodeverk';
+import { tilrettelagtKommunikasjonActionNames } from '../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
 
 const BrukerprofilWrapper = styled.div`
-  margin-top: 2em;
+  margin: 2em auto 5em;
   max-width: 640px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const LinkWrapper = styled.div`
@@ -34,12 +35,14 @@ interface RoutingProps {
 interface DispatchProps {
     hentPersonData: (fødselsnummer: string) => void;
     hentVeilederRoller: () => void;
+    hentTilrettelagtKommunikasjon: () => void;
 }
 
 interface Props {
     fødselsnummer: string;
     personReducer: Reducer<PersonRespons>;
     veilederRollerReducer: Reducer<VeilederRoller>;
+    tilrettelagtKommunikasjonReducer: Reducer<KodeverkResponse>;
 }
 
 type props = RouteComponentProps<RoutingProps> & Props & DispatchProps ;
@@ -54,26 +57,29 @@ class BrukerprofilSide extends React.Component<props> {
         if (this.props.veilederRollerReducer.status === veilederRollerReducerActionNames.INITIALIZED) {
             this.props.hentVeilederRoller();
         }
+
+        if (this.props.tilrettelagtKommunikasjonReducer.status === tilrettelagtKommunikasjonActionNames.INITIALIZED) {
+            this.props.hentTilrettelagtKommunikasjon();
+        }
     }
 
     render() {
         return (
             <BrukerprofilWrapper>
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
-                    <>
-                        <LinkWrapper>
-                            <Link
-                                className={'lenke'}
-                                to={`${paths.personUri}/${this.props.fødselsnummer}`}
-                            >
-                                Tilbake
-                            </Link>
-                        </LinkWrapper>
-                        <BrukerprofilForm
-                            person={this.props.personReducer.data as Person}
-                            veilderRoller={this.props.veilederRollerReducer.data}
-                        />
-                    </>
+                    <LinkWrapper>
+                        <Link
+                            className={'lenke'}
+                            to={`${paths.personUri}/${this.props.fødselsnummer}`}
+                        >
+                            Tilbake
+                        </Link>
+                    </LinkWrapper>
+                    <BrukerprofilForm
+                        person={this.props.personReducer.data as Person}
+                        veilderRoller={this.props.veilederRollerReducer.data}
+                        tilrettelagtKommunikasjonReducer={this.props.tilrettelagtKommunikasjonReducer}
+                    />
                 </Innholdslaster>
             </BrukerprofilWrapper>
         );
@@ -85,15 +91,17 @@ const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingP
     return ({
         fødselsnummer: ownProps.match.params.fodselsnummer,
         personReducer: state.personinformasjon,
-        veilederRollerReducer: state.veilederRoller
+        veilederRollerReducer: state.veilederRoller,
+        tilrettelagtKommunikasjonReducer: state.tilrettelagtKommunikasjonKodeverk
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch)),
-        hentVeilederRoller: () => dispatch(getVeilederRoller())
+        hentVeilederRoller: () => dispatch(getVeilederRoller()),
+        hentTilrettelagtKommunikasjon: () => dispatch(tilrettelagtKommunikasjonReducer.hentTilrettelagtKommunikasjon())
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (BrukerprofilSide));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrukerprofilSide));
