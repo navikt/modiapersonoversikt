@@ -15,14 +15,10 @@ import { Person } from '../../models/person/person';
 import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../models/veilederRoller';
+import { FormKnapperWrapper } from './BrukerprofilForm';
 
 const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;
-`;
-
-const KnapperWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 interface State {
@@ -153,7 +149,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     onChange={this.etternavnInputChange}
                     disabled={harIkkeTilgang}
                 />
-                <KnapperWrapper>
+                <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
@@ -169,7 +165,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     >
                         Endre navn
                     </KnappBase>
-                </KnapperWrapper>
+                </FormKnapperWrapper>
                 {!this.state.formErEndret
                     ? (<TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>)
                     : null

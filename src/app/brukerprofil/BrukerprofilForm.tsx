@@ -5,6 +5,12 @@ import EndreNavnForm from './EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import KontaktinformasjonSection from './kontaktinformasjon/KontaktinformasjonContainer';
+import styled from 'styled-components';
+
+export const FormKnapperWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 interface Props {
     person: Person;
