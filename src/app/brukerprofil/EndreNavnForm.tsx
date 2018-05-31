@@ -24,6 +24,7 @@ interface State {
     fornavnInput: string;
     mellomnavnInput: string;
     etternavnInput: string;
+    formErEndret: boolean;
 }
 
 interface DispatchProps {
@@ -51,6 +52,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             fornavnInput: props.person.navn.fornavn || '',
             mellomnavnInput: props.person.navn.mellomnavn || '',
             etternavnInput: props.person.navn.etternavn || '',
+            formErEndret: true
         };
 
         this.fornavnInputChange = this.fornavnInputChange.bind(this);
@@ -65,24 +67,23 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            fornavnInput: event.target.value
+            fornavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
     }
 
     mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            mellomnavnInput: event.target.value
+            mellomnavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
-
     }
 
     etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            etternavnInput: event.target.value
+            etternavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
     }
 
     navnErEndret() {
@@ -93,6 +94,10 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
+        this.setState({
+            formErEndret: false
+        });
+
         this.props.endreNavn({
             fødselsnummer: this.props.person.fødselsnummer,
             fornavn: this.state.fornavnInput,
@@ -140,7 +145,10 @@ class EndreNavnForm extends React.Component<Props, State> {
                     >
                         Endre navn
                     </KnappBase>
-                    <TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>
+                    {!this.state.formErEndret
+                        ? (<TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>)
+                        : null
+                    }
                 </form>
 
         );
