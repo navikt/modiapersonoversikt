@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { personOversiktTheme } from '../../themes/personOversiktTheme';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import thunkMiddleware from 'redux-thunk';
-import reducers from './StandAloneVisittkortReducer';
 import { applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+
+import { personOversiktTheme } from '../../themes/personOversiktTheme';
+import reducers from '../../../src/redux/reducer';
 import { hentAllPersonData } from '../../redux/personinformasjon';
 import StandAloneVisittKortContainer from './VisittKortLaster';
+import { mockEnabled } from '../../api/config';
+import { setupMock } from '../../mock/setup-mock';
 
 interface Props {
     fødselsnummer: string;
@@ -17,7 +20,12 @@ const store = createStore(
     applyMiddleware(thunkMiddleware)
 );
 
+if (mockEnabled === 'true') {
+    setupMock();
+}
+
 class VisittkortStandAlone extends React.Component<Props> {
+
     componentWillMount() {
         hentAllPersonData(store.dispatch, this.props.fødselsnummer);
     }
