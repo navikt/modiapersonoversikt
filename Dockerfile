@@ -1,7 +1,7 @@
-FROM node:9.11.1-alpine as nodebuilder
+FROM node:10.3.0-alpine as nodebuilder
 ADD / /source
 WORKDIR /source
-RUN npm install
+RUN npm ci
 RUN npm run build
 RUN npm run build-storybook
 RUN CI=true npm run test
