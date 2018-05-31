@@ -4,24 +4,22 @@ import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
-import { STATUS } from '../../../../redux/utils';
-import { AppState } from '../../../../redux/reducer';
-import { VeilederRoller } from '../../../../models/veilederRoller';
-import { EndreTilrettelagtKommunikasjonrequest } from
-        '../../../../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import { endreTilrettelagtKommunikasjon, reset } from '../../../../redux/brukerprofil/endreTilrettelagtKommunikasjon';
-import { Person } from '../../../../models/person/person';
+import { STATUS } from '../../../redux/utils';
+import { AppState } from '../../../redux/reducer';
+import { VeilederRoller } from '../../../models/veilederRoller';
+import {
+    EndreTilrettelagtKommunikasjonrequest
+} from
+        '../../../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { endreTilrettelagtKommunikasjon, reset } from '../../../redux/brukerprofil/endreTilrettelagtKommunikasjon';
+import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
-import { KodeverkResponse } from '../../../../models/kodeverk';
-
-const TilbakemeldingWrapper = styled.div`
-  margin-top: 1em;
-`;
+import { KodeverkResponse } from '../../../models/kodeverk';
+import RequestTilbakemelding from './RequestTilbakemelding';
 
 const SubmitknappWrapper = styled.div`
   margin-top: 1em;
@@ -47,22 +45,6 @@ interface OwnProps {
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
-
-function Tilbakemelding(props: { status: STATUS }) {
-    if (props.status === STATUS.OK) {
-        return (
-            <AlertStripe type={'suksess'}>
-                Tilrettelagt kommunikasjon ble endret. Det kan ta noen minutter før endringene blir synlig.
-            </AlertStripe>
-        );
-    } else if (props.status === STATUS.ERROR) {
-        return (
-            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av tilrettelagt kommunikasjon.</AlertStripe>
-        );
-    } else {
-        return null;
-    }
-}
 
 class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
@@ -150,7 +132,12 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                         Endre tilrettelagt kommunikasjon
                     </KnappBase>
                 </SubmitknappWrapper>
-                <TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>
+                <RequestTilbakemelding
+                    status={this.props.status}
+                    onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
+                    onSuccess={`Tilrettelagt kommunikasjon ble endret.
+                         Det kan ta noen minutter før endringene blir synlig.`}
+                />
             </form>
 
         );

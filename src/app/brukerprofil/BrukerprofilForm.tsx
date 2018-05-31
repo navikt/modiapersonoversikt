@@ -9,7 +9,7 @@ import Innholdslaster from '../../components/Innholdslaster';
 import { Reducer } from '../../redux/reducer';
 import { KodeverkResponse } from '../../models/kodeverk';
 import TilrettelagtKommunikasjonContainer from
-        './kontaktinformasjon/tilrettelagtkommunikasjon/TilrettelagtKommunikasjonContainer';
+        './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
 
 interface Props {
     person: Person;

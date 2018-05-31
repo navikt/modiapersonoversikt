@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState, Reducer } from '../../../../redux/reducer';
-import { VeilederRoller } from '../../../../models/veilederRoller';
-import { Person } from '../../../../models/person/person';
+import { AppState, Reducer } from '../../../redux/reducer';
+import { VeilederRoller } from '../../../models/veilederRoller';
+import { Person } from '../../../models/person/person';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
-import { KodeverkResponse } from '../../../../models/kodeverk';
-import Innholdslaster from '../../../../components/Innholdslaster';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import AlertStripe from 'nav-frontend-alertstriper';
