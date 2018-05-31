@@ -2,9 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import styled from 'styled-components';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
@@ -15,10 +13,7 @@ import { Person } from '../../models/person/person';
 import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../models/veilederRoller';
-
-const TilbakemeldingWrapper = styled.div`
-  margin-top: 1em;
-`;
+import RequestTilbakemelding from './kontaktinformasjon/RequestTilbakemelding';
 
 interface State {
     fornavnInput: string;
@@ -50,7 +45,7 @@ class EndreNavnForm extends React.Component<Props, State> {
         this.state = {
             fornavnInput: props.person.navn.fornavn || '',
             mellomnavnInput: props.person.navn.mellomnavn || '',
-            etternavnInput: props.person.navn.etternavn || '',
+            etternavnInput: props.person.navn.etternavn || ''
         };
 
         this.fornavnInputChange = this.fornavnInputChange.bind(this);
@@ -112,70 +107,56 @@ class EndreNavnForm extends React.Component<Props, State> {
     render() {
         const harIkkeTilgang = !this.harVeilderPåkrevdRolle();
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <Undertittel>Navn</Undertittel>
-                    <Input
-                        label="Fornavn"
-                        value={this.state.fornavnInput}
-                        onChange={this.fornavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
-                    <Input
-                        label="Mellomnavn"
-                        value={this.state.mellomnavnInput}
-                        onChange={this.mellomnavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
-                    <Input
-                        label="Etternavn"
-                        value={this.state.etternavnInput}
-                        onChange={this.etternavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
-                    <KnappBase
-                        type="standard"
-                        spinner={this.props.status === STATUS.PENDING}
-                        disabled={harIkkeTilgang || !this.navnErEndret()}
-                        autoDisableVedSpinner={true}
-                    >
-                        Endre navn
-                    </KnappBase>
-                    <TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>
-                </form>
+            <form onSubmit={this.handleSubmit}>
+                <Undertittel>Navn</Undertittel>
+                <Input
+                    label="Fornavn"
+                    value={this.state.fornavnInput}
+                    onChange={this.fornavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <Input
+                    label="Mellomnavn"
+                    value={this.state.mellomnavnInput}
+                    onChange={this.mellomnavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <Input
+                    label="Etternavn"
+                    value={this.state.etternavnInput}
+                    onChange={this.etternavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <KnappBase
+                    type="standard"
+                    spinner={this.props.status === STATUS.PENDING}
+                    disabled={harIkkeTilgang || !this.navnErEndret()}
+                    autoDisableVedSpinner={true}
+                >
+                    Endre navn
+                </KnappBase>
+                <RequestTilbakemelding
+                    status={this.props.status}
+                    onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                    onError={'Det skjedde en feil ved endring av navn.'}
+                />
+            </form>
 
         );
-    }
-}
-
-function Tilbakemelding(props: {status: STATUS}) {
-    if (props.status === STATUS.OK) {
-        return (
-            <AlertStripe
-                type={'suksess'}
-            >
-                Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.
-            </AlertStripe>
-        );
-    } else if (props.status === STATUS.ERROR) {
-        return (
-            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av navn.</AlertStripe>
-        );
-    } else {
-        return null;
     }
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreNavn.status,
+        status: state.endreNavn.status
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         endreNavn: (request: EndreNavnRequest) => dispatch(endreNavn(request)),
-        resetEndreNavnReducer: () => dispatch(reset()),
+        resetEndreNavnReducer: () => dispatch(reset())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (EndreNavnForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EndreNavnForm);
