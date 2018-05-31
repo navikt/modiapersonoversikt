@@ -20,6 +20,11 @@ const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;
 `;
 
+const KnapperWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 interface State {
     fornavnInput: string;
     mellomnavnInput: string;
@@ -48,17 +53,22 @@ class EndreNavnForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.state = {
-            fornavnInput: props.person.navn.fornavn || '',
-            mellomnavnInput: props.person.navn.mellomnavn || '',
-            etternavnInput: props.person.navn.etternavn || '',
-            formErEndret: true
-        };
+        this.state = this.initialState(props);
 
         this.fornavnInputChange = this.fornavnInputChange.bind(this);
         this.mellomnavnInputChange = this.mellomnavnInputChange.bind(this);
         this.etternavnInputChange = this.etternavnInputChange.bind(this);
+        this.tilbakestillForm = this.tilbakestillForm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    initialState(props: Props) {
+        return {
+            fornavnInput: props.person.navn.fornavn || '',
+            mellomnavnInput: props.person.navn.mellomnavn || '',
+            etternavnInput: props.person.navn.etternavn || '',
+            formErEndret: false
+        };
     }
 
     componentWillUnmount() {
@@ -93,6 +103,12 @@ class EndreNavnForm extends React.Component<Props, State> {
         return fornavnErEndret || mellomnavnErEndret || etternavnErEndret;
     }
 
+    tilbakestillForm(event: React.MouseEvent<HTMLButtonElement>) {
+        this.setState(this.initialState(this.props));
+        this.props.resetEndreNavnReducer();
+        event.preventDefault();
+    }
+
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         this.setState({
             formErEndret: false
@@ -117,39 +133,48 @@ class EndreNavnForm extends React.Component<Props, State> {
     render() {
         const harIkkeTilgang = !this.harVeilderPåkrevdRolle();
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <Undertittel>Navn</Undertittel>
-                    <Input
-                        label="Fornavn"
-                        value={this.state.fornavnInput}
-                        onChange={this.fornavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
-                    <Input
-                        label="Mellomnavn"
-                        value={this.state.mellomnavnInput}
-                        onChange={this.mellomnavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
-                    <Input
-                        label="Etternavn"
-                        value={this.state.etternavnInput}
-                        onChange={this.etternavnInputChange}
-                        disabled={harIkkeTilgang}
-                    />
+            <form onSubmit={this.handleSubmit}>
+                <Undertittel>Navn</Undertittel>
+                <Input
+                    label="Fornavn"
+                    value={this.state.fornavnInput}
+                    onChange={this.fornavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <Input
+                    label="Mellomnavn"
+                    value={this.state.mellomnavnInput}
+                    onChange={this.mellomnavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <Input
+                    label="Etternavn"
+                    value={this.state.etternavnInput}
+                    onChange={this.etternavnInputChange}
+                    disabled={harIkkeTilgang}
+                />
+                <KnapperWrapper>
                     <KnappBase
                         type="standard"
+                        onClick={this.tilbakestillForm}
+                        disabled={harIkkeTilgang || !this.state.formErEndret}
+                    >
+                        Avbryt
+                    </KnappBase>
+                    <KnappBase
+                        type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
-                        disabled={harIkkeTilgang || !this.navnErEndret()}
+                        disabled={harIkkeTilgang || !this.state.formErEndret}
                         autoDisableVedSpinner={true}
                     >
                         Endre navn
                     </KnappBase>
-                    {!this.state.formErEndret
-                        ? (<TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>)
-                        : null
-                    }
-                </form>
+                </KnapperWrapper>
+                {!this.state.formErEndret
+                    ? (<TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>)
+                    : null
+                }
+            </form>
 
         );
     }
