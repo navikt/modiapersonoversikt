@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import EndreNavnForm from './EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import KontaktinformasjonFormContainer from './kontaktinformasjon/KontaktinformasjonContainer';
+import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
 
 interface Props {
     person: Person;
@@ -21,7 +21,7 @@ function BrukerprofilForm({person, veilderRoller}: Props) {
             <form>
                 <Undertittel>Kontonummer</Undertittel>
             </form>
-            <KontaktinformasjonFormContainer person={person} fødselsnummer={person.fødselsnummer}/>
+            <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
             <form>
                 <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
             </form>
