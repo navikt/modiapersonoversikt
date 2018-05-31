@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import EndreNavnForm from './EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import KontaktinformasjonFormContainer from './kontaktinformasjon/KontaktinformasjonContainer';
+import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
 import Innholdslaster from '../../components/Innholdslaster';
 import { Reducer } from '../../redux/reducer';
 import { KodeverkResponse } from '../../models/kodeverk';
@@ -27,7 +27,7 @@ function BrukerprofilForm({ person, veilderRoller, tilrettelagtKommunikasjonRedu
             <form>
                 <Undertittel>Kontonummer</Undertittel>
             </form>
-            <KontaktinformasjonFormContainer person={person} fødselsnummer={person.fødselsnummer}/>
+            <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
             <Innholdslaster avhengigheter={[tilrettelagtKommunikasjonReducer]}>
                 <TilrettelagtKommunikasjonContainer person={person} veilederRoller={veilderRoller}/>
             </Innholdslaster>
