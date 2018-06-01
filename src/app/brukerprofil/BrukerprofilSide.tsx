@@ -10,9 +10,10 @@ import BrukerprofilForm from './BrukerprofilForm';
 import { AppState, Reducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
-import { hentPerson, personinformasjonActionNames } from '../../redux/personinformasjon';
+import { hentPerson } from '../../redux/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { getVeilederRoller, veilederRollerReducerActionNames } from '../../redux/veilederRoller';
+import { getVeilederRoller } from '../../redux/veilederRoller';
+import { STATUS } from '../../redux/utils';
 
 const BrukerprofilWrapper = styled.div`
   margin-top: 2em;
@@ -47,11 +48,11 @@ type props = RouteComponentProps<RoutingProps> & Props & DispatchProps ;
 class BrukerprofilSide extends React.Component<props> {
 
     componentDidMount() {
-        if (this.props.personReducer.status === personinformasjonActionNames.INITIALIZED) {
+        if (this.props.personReducer.status === STATUS.NOT_STARTED) {
             this.props.hentPersonData(this.props.fødselsnummer);
         }
 
-        if (this.props.veilederRollerReducer.status === veilederRollerReducerActionNames.INITIALIZED) {
+        if (this.props.veilederRollerReducer.status === STATUS.NOT_STARTED) {
             this.props.hentVeilederRoller();
         }
     }

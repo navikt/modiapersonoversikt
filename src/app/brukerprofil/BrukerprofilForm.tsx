@@ -1,10 +1,16 @@
 import * as React from 'react';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import styled from 'styled-components';
 
 import EndreNavnForm from './EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
+
+export const FormKnapperWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 interface Props {
     person: Person;

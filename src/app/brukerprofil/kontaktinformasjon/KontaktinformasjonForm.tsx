@@ -6,12 +6,14 @@ import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
+
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
+import { FormKnapperWrapper } from '../BrukerprofilForm';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -168,14 +170,21 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     </TelefonInput>
                     <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
                 </InputWrapper>
-
-                <KnappBase
-                    type="standard"
-                    disabled={false}
-                    autoDisableVedSpinner={true}
-                >
-                    Endre telefonnummer
-                </KnappBase>
+                <FormKnapperWrapper>
+                    <KnappBase
+                        type="standard"
+                        disabled={false}
+                    >
+                        Avbryt
+                    </KnappBase>
+                    <KnappBase
+                        type="hoved"
+                        disabled={false}
+                        autoDisableVedSpinner={true}
+                    >
+                        Endre telefonnummer
+                    </KnappBase>
+                </FormKnapperWrapper>
             </form>
 
         );
