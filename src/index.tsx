@@ -12,5 +12,3 @@ ReactDOM.render(
 
 const fodselsnummer = parseUrlForPersonIKontekst(window.location);
 renderDecoratorHead(fodselsnummer);
-
-export { default as Visittkort } from './components/StandAloneVisittkort/VisittKortStandAlone';
