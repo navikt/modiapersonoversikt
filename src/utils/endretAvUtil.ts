@@ -1,3 +1,5 @@
+export const FOLKEREGISTERET = 'SKD';
+
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
@@ -5,10 +7,12 @@ export function endretAvTekst(rawString: string): string {
         return 'av NAV';
     } else if (rawString.match('AAA2101, SKD')) {
         return 'av Skatteetaten';
-    } else if (rawString.match('SKD')) {
-        return 'i Folkeregisteret';
     } else {
-        return rawString;
+        if (rawString.match(FOLKEREGISTERET)) {
+                return 'i Folkeregisteret';
+            } else {
+                return rawString;
+            }
     }
 }
 

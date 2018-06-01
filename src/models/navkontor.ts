@@ -1,5 +1,5 @@
-import { GateAdresse } from './gateadresse';
 import { Klokkeslett } from './klokkeslett';
+import { Gateadresse } from './personadresse';
 
 export interface ApningsTid {
     ukedag: string;
@@ -8,7 +8,7 @@ export interface ApningsTid {
 }
 
 export interface PublikumsMottak {
-    besoksadresse?: GateAdresse;
+    besoksadresse?: Gateadresse;
     apningstider: ApningsTid[];
 }
 
