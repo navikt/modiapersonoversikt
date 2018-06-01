@@ -16,11 +16,9 @@ import { getVeilederRoller } from '../../redux/veilederRoller';
 import { STATUS } from '../../redux/utils';
 
 const BrukerprofilWrapper = styled.div`
-  margin-top: 2em;
+  margin: 2em auto 5em;
   max-width: 640px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const LinkWrapper = styled.div`
@@ -61,20 +59,18 @@ class BrukerprofilSide extends React.Component<props> {
         return (
             <BrukerprofilWrapper>
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
-                    <>
-                        <LinkWrapper>
-                            <Link
-                                className={'lenke'}
-                                to={`${paths.personUri}/${this.props.fødselsnummer}`}
-                            >
-                                {'<'} Tilbake
-                            </Link>
-                        </LinkWrapper>
-                        <BrukerprofilForm
-                            person={this.props.personReducer.data as Person}
-                            veilderRoller={this.props.veilederRollerReducer.data}
-                        />
-                    </>
+                    <LinkWrapper>
+                        <Link
+                            className={'lenke'}
+                            to={`${paths.personUri}/${this.props.fødselsnummer}`}
+                        >
+                            {'<'} Tilbake
+                        </Link>
+                    </LinkWrapper>
+                    <BrukerprofilForm
+                        person={this.props.personReducer.data as Person}
+                        veilderRoller={this.props.veilederRollerReducer.data}
+                    />
                 </Innholdslaster>
             </BrukerprofilWrapper>
         );
@@ -97,4 +93,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (BrukerprofilSide));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrukerprofilSide));

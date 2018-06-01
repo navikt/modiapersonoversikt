@@ -14,7 +14,7 @@ export const aremark: Person = {
     },
     tilrettelagtKomunikasjonsListe: [
         {
-            behovKode: TilrettelagtKommunikasjonsTyper.TOHJ.toString(),
+            behovKode: 'TOHJ',
             beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
         }
     ],

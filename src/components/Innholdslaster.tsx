@@ -6,7 +6,7 @@ import { STATUS } from '../redux/utils';
 import { Reducer } from '../redux/reducer';
 
 interface InnholdslasterProps {
-    children: React.ReactChildren | React.ReactChild;
+    children: React.ReactChildren | React.ReactChild | JSX.Element[];
     avhengigheter: Reducer<object>[];
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
     returnOnPending?: React.ReactChildren | React.ReactChild | null;

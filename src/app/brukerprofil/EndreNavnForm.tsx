@@ -2,9 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import styled from 'styled-components';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
@@ -16,10 +14,7 @@ import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { FormKnapperWrapper } from './BrukerprofilForm';
-
-const TilbakemeldingWrapper = styled.div`
-  margin-top: 1em;
-`;
+import RequestTilbakemelding from './kontaktinformasjon/RequestTilbakemelding';
 
 interface State {
     fornavnInput: string;
@@ -167,7 +162,11 @@ class EndreNavnForm extends React.Component<Props, State> {
                     </KnappBase>
                 </FormKnapperWrapper>
                 {!this.state.formErEndret
-                    ? (<TilbakemeldingWrapper><Tilbakemelding status={this.props.status}/></TilbakemeldingWrapper>)
+                    ? (<RequestTilbakemelding
+                        status={this.props.status}
+                        onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                        onError={'Det skjedde en feil ved endring av navn.'}
+                    />)
                     : null
                 }
             </form>
@@ -176,35 +175,17 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 }
 
-function Tilbakemelding(props: {status: STATUS}) {
-    if (props.status === STATUS.OK) {
-        return (
-            <AlertStripe
-                type={'suksess'}
-            >
-                Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.
-            </AlertStripe>
-        );
-    } else if (props.status === STATUS.ERROR) {
-        return (
-            <AlertStripe type={'advarsel'}>Det skjedde en feil ved endring av navn.</AlertStripe>
-        );
-    } else {
-        return null;
-    }
-}
-
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreNavn.status,
+        status: state.endreNavn.status
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         endreNavn: (request: EndreNavnRequest) => dispatch(endreNavn(request)),
-        resetEndreNavnReducer: () => dispatch(reset()),
+        resetEndreNavnReducer: () => dispatch(reset())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (EndreNavnForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EndreNavnForm);

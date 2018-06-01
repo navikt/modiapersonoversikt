@@ -27,8 +27,8 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
 function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
     return (
         <Undertekst key={tilrettelagtKommunikasjon.behovKode}>
-                 {tilrettelagtKommunikasjon.beskrivelse}
-            </Undertekst>
+            {tilrettelagtKommunikasjon.beskrivelse}
+        </Undertekst>
     );
 }
 
