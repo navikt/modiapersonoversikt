@@ -13,12 +13,14 @@ import { Person } from '../../models/person/person';
 import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../models/veilederRoller';
+import { FormKnapperWrapper } from './BrukerprofilForm';
 import RequestTilbakemelding from './kontaktinformasjon/RequestTilbakemelding';
 
 interface State {
     fornavnInput: string;
     mellomnavnInput: string;
     etternavnInput: string;
+    formErEndret: boolean;
 }
 
 interface DispatchProps {
@@ -42,16 +44,22 @@ class EndreNavnForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.state = {
-            fornavnInput: props.person.navn.fornavn || '',
-            mellomnavnInput: props.person.navn.mellomnavn || '',
-            etternavnInput: props.person.navn.etternavn || ''
-        };
+        this.state = this.initialState(props);
 
         this.fornavnInputChange = this.fornavnInputChange.bind(this);
         this.mellomnavnInputChange = this.mellomnavnInputChange.bind(this);
         this.etternavnInputChange = this.etternavnInputChange.bind(this);
+        this.tilbakestillForm = this.tilbakestillForm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    initialState(props: Props) {
+        return {
+            fornavnInput: props.person.navn.fornavn || '',
+            mellomnavnInput: props.person.navn.mellomnavn || '',
+            etternavnInput: props.person.navn.etternavn || '',
+            formErEndret: false
+        };
     }
 
     componentWillUnmount() {
@@ -60,24 +68,23 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            fornavnInput: event.target.value
+            fornavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
     }
 
     mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            mellomnavnInput: event.target.value
+            mellomnavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
-
     }
 
     etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            etternavnInput: event.target.value
+            etternavnInput: event.target.value,
+            formErEndret: true
         });
-        this.props.resetEndreNavnReducer();
     }
 
     navnErEndret() {
@@ -87,7 +94,17 @@ class EndreNavnForm extends React.Component<Props, State> {
         return fornavnErEndret || mellomnavnErEndret || etternavnErEndret;
     }
 
+    tilbakestillForm(event: React.MouseEvent<HTMLButtonElement>) {
+        this.setState(this.initialState(this.props));
+        this.props.resetEndreNavnReducer();
+        event.preventDefault();
+    }
+
     handleSubmit(event: FormEvent<HTMLFormElement>) {
+        this.setState({
+            formErEndret: false
+        });
+
         this.props.endreNavn({
             fødselsnummer: this.props.person.fødselsnummer,
             fornavn: this.state.fornavnInput,
@@ -127,19 +144,31 @@ class EndreNavnForm extends React.Component<Props, State> {
                     onChange={this.etternavnInputChange}
                     disabled={harIkkeTilgang}
                 />
-                <KnappBase
-                    type="standard"
-                    spinner={this.props.status === STATUS.PENDING}
-                    disabled={harIkkeTilgang || !this.navnErEndret()}
-                    autoDisableVedSpinner={true}
-                >
-                    Endre navn
-                </KnappBase>
-                <RequestTilbakemelding
-                    status={this.props.status}
-                    onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
-                    onError={'Det skjedde en feil ved endring av navn.'}
-                />
+                <FormKnapperWrapper>
+                    <KnappBase
+                        type="standard"
+                        onClick={this.tilbakestillForm}
+                        disabled={harIkkeTilgang || !this.state.formErEndret}
+                    >
+                        Avbryt
+                    </KnappBase>
+                    <KnappBase
+                        type="hoved"
+                        spinner={this.props.status === STATUS.PENDING}
+                        disabled={harIkkeTilgang || !this.state.formErEndret}
+                        autoDisableVedSpinner={true}
+                    >
+                        Endre navn
+                    </KnappBase>
+                </FormKnapperWrapper>
+                {!this.state.formErEndret
+                    ? (<RequestTilbakemelding
+                        status={this.props.status}
+                        onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                        onError={'Det skjedde en feil ved endring av navn.'}
+                    />)
+                    : null
+                }
             </form>
 
         );

@@ -10,8 +10,9 @@ import { AppState, Reducer } from '../../../redux/reducer';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { hentRetningsnummere, retningsnummerActionNames } from '../../../redux/kodeverk/retningsnummereReducer';
+import { hentRetningsnummere } from '../../../redux/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
+import { STATUS } from '../../../redux/utils';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;
@@ -57,7 +58,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.retningsnummerReducer.status ===  retningsnummerActionNames.INITIALIZED) {
+        if (this.props.retningsnummerReducer.status ===  STATUS.NOT_STARTED) {
             this.props.hentRetningsnummer();
         }
     }
