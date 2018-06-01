@@ -15,10 +15,15 @@
     "url": "git+https://github.com/navikt/modiapersonoversikt"
   },
   "dependencies": {
+    "@types/faker": "^4.1.2",
+    "@types/fetch-mock": "^6.0.1",
     "@types/react-modal": "^3.1.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.5",
+    "faker": "^4.1.0",
+    "fetch-mock": "^6.3.0",
+    "fnr-generator": "^2.1.4",
     "history": "^4.7.2",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.1",
@@ -57,7 +62,9 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts-ts": "^2.15.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.6",
+    "yet-another-fetch-mock": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -77,8 +84,6 @@
     "@storybook/react": "^3.4.2",
     "@types/enzyme": "^3.1.10",
     "@types/enzyme-adapter-react-16": "^1.0.2",
-    "@types/faker": "^4.1.2",
-    "@types/fetch-mock": "^6.0.1",
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.6",
     "@types/query-string": "^5.1.0",
@@ -93,9 +98,6 @@
     "babel-core": "^6.26.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "faker": "^4.1.0",
-    "fetch-mock": "^6.3.0",
-    "fnr-generator": "^2.1.4",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "jest-enzyme": "^6.0.0",
@@ -104,9 +106,7 @@
     "less-loader": "^4.1.0",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.3.2",
-    "styled-components": "^3.2.6",
     "svg-to-react-cli": "^1.5.0",
-    "typescript": "^2.8.3",
-    "yet-another-fetch-mock": "^2.3.2"
+    "typescript": "^2.8.3"
   }
 }
