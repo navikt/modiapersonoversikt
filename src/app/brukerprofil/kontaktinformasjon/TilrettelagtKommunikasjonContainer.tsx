@@ -75,16 +75,19 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
 
     render() {
         return (
-            <Innholdslaster
-                avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
-                returnOnError={onError}
-            >
-                <TilrettelagtKommunikasjonWrapper
-                    tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
-                    person={this.props.person}
-                    veilederRoller={this.props.veilederRoller}
-                />
-            </Innholdslaster>
+            <div>
+                <Undertittel>Tilrettelagt Kommunikasjon</Undertittel>
+                <Innholdslaster
+                    avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
+                    returnOnError={onError}
+                >
+                    <TilrettelagtKommunikasjonWrapper
+                        tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
+                        person={this.props.person}
+                        veilederRoller={this.props.veilederRoller}
+                    />
+                </Innholdslaster>
+            </div>
         );
     }
 }

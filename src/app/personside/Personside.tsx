@@ -6,7 +6,6 @@ import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
@@ -14,12 +13,6 @@ import BegrensetTilgangSide from './BegrensetTilgangSide';
 interface PersonsideStateProps {
     personReducer: Reducer<PersonRespons>;
 }
-
-const onPending = (
-    <FillCenterAndFadeIn>
-        <NavFrontendSpinner type={'XXL'} />
-    </FillCenterAndFadeIn>
-);
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -53,7 +46,6 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
         return (
             <Innholdslaster
                 avhengigheter={[this.props.personReducer]}
-                returnOnPending={onPending}
                 returnOnError={onError}
             >
                 {this.getSideinnhold()}

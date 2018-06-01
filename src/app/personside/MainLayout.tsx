@@ -14,7 +14,6 @@ const LayoutWrapper = styled.div`
     overflow-y: scroll;
     padding: ${props => props.theme.margin.layout};
     animation: ${props => props.theme.animation.fadeIn};
-    background-color: ${props => props.theme.color.bakgrunn};
     @media (${props => props.theme.media.wideScreen}) {
       display: flex;
       flex-flow: row nowrap;
