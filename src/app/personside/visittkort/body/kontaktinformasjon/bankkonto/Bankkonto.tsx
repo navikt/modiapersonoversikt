@@ -6,8 +6,7 @@ import { Person } from '../../../../../../models/person/person';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettMini from '../../../../../../components/EtikettMini';
-
-const coinsPath = require('./coins.svg');
+import CoinsIkon from '../../../../../../svg/Coins';
 
 const Kontonummer = styled.span`
   span:not(:last-child):after {
@@ -32,13 +31,13 @@ function formaterKontonummer(kontonummer: string) {
 }
 
 function Bankkonto({person}: BankkontoProps) {
-    var beskrivelse = 'Kontonummer';
+    let beskrivelse = 'Kontonummer';
     if (person.bankkonto) {
         beskrivelse += person.bankkonto.erNorskKonto ? '' : ' utland';
     }
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikonPath={coinsPath}>
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
             {kontoinfo(person)}
         </VisittkortElement>
     );

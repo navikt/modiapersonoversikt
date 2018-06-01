@@ -7,8 +7,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Familierelasjon, getPartner, Person, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
-
-const heartPath = require('./heart.svg');
+import HeartIkon from '../../../../../svg/Heart';
 
 interface Props {
     person: Person;
@@ -55,7 +54,7 @@ function SivilstandVisning({person}: Props) {
 
 function SivilstandWrapper({person}: Props) {
     return (
-        <VisittkortElement beskrivelse="Sivilstand" ikonPath={heartPath}>
+        <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
             <SivilstandVisning person={person}/>
         </VisittkortElement>
     );

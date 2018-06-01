@@ -7,8 +7,7 @@ import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { Reducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
-
-const emailPath = require('./email.svg');
+import EmailIkon from '../../../../../../svg/Email';
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;
@@ -46,7 +45,7 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikonPath={emailPath}>
+        <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikon={<EmailIkon />}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <EpostVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>
