@@ -15,7 +15,9 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "baseUrl": "./src",
+    "noUnusedLocals": true,
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
   "include" : [
     "src/@types/*",
