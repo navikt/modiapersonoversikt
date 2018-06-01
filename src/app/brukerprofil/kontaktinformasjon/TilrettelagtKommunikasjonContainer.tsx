@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import { AppState, Reducer } from '../../../redux/reducer';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Person } from '../../../models/person/person';
@@ -10,13 +10,20 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { tilrettelagtKommunikasjonActionNames } from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
+import * as tilrettelagtKommunikasjonKodeverkReducer from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
+import { Action } from 'history';
 
 interface State {
     checkbokser: CheckboksProps[];
 }
 
 interface StateProps {
-    tilrettelagtKommunikasjonReducer: Reducer<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverkReducer: Reducer<KodeverkResponse>;
+}
+
+interface DispatchProps {
+    hentTilrettelagtKommunikasjonKodeverk: () => void;
 }
 
 interface OwnProps {
@@ -24,7 +31,7 @@ interface OwnProps {
     veilederRoller?: VeilederRoller;
 }
 
-type Props = StateProps & OwnProps;
+type Props = StateProps & OwnProps & DispatchProps;
 
 const onError = (
     <>
@@ -60,17 +67,22 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
 
     constructor(props: Props) {
         super(props);
+
+        if (this.props.tilrettelagtKommunikasjonKodeverkReducer.status
+            === tilrettelagtKommunikasjonActionNames.INITIALIZED) {
+            this.props.hentTilrettelagtKommunikasjonKodeverk();
+        }
     }
 
     render() {
         return (
             <Innholdslaster
-                avhengigheter={[this.props.tilrettelagtKommunikasjonReducer]}
+                avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
                 returnOnError={onError}
             >
 
                 <TilrettelagtKommunikasjonWrapper
-                    tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonReducer.data}
+                    tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
                     person={this.props.person}
                     veilederRoller={this.props.veilederRoller}
                 />
@@ -79,10 +91,17 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => {
+const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
     return ({
-        tilrettelagtKommunikasjonReducer: state.tilrettelagtKommunikasjonKodeverk
+        hentTilrettelagtKommunikasjonKodeverk:
+            () => dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())
     });
 };
 
-export default connect(mapStateToProps)(TilrettelagtKommunikasjonsContainer);
+const mapStateToProps = (state: AppState): StateProps => {
+    return ({
+        tilrettelagtKommunikasjonKodeverkReducer: state.tilrettelagtKommunikasjonKodeverk
+    });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TilrettelagtKommunikasjonsContainer);

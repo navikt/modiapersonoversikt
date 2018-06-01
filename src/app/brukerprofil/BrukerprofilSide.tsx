@@ -13,9 +13,6 @@ import Innholdslaster from '../../components/Innholdslaster';
 import { hentPerson, personinformasjonActionNames } from '../../redux/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { getVeilederRoller, veilederRollerReducerActionNames } from '../../redux/veilederRoller';
-import * as tilrettelagtKommunikasjonReducer from '../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
-import { KodeverkResponse } from '../../models/kodeverk';
-import { tilrettelagtKommunikasjonActionNames } from '../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
 
 const BrukerprofilWrapper = styled.div`
   margin: 2em auto 5em;
@@ -35,14 +32,12 @@ interface RoutingProps {
 interface DispatchProps {
     hentPersonData: (fødselsnummer: string) => void;
     hentVeilederRoller: () => void;
-    hentTilrettelagtKommunikasjon: () => void;
 }
 
 interface Props {
     fødselsnummer: string;
     personReducer: Reducer<PersonRespons>;
     veilederRollerReducer: Reducer<VeilederRoller>;
-    tilrettelagtKommunikasjonReducer: Reducer<KodeverkResponse>;
 }
 
 type props = RouteComponentProps<RoutingProps> & Props & DispatchProps ;
@@ -56,10 +51,6 @@ class BrukerprofilSide extends React.Component<props> {
 
         if (this.props.veilederRollerReducer.status === veilederRollerReducerActionNames.INITIALIZED) {
             this.props.hentVeilederRoller();
-        }
-
-        if (this.props.tilrettelagtKommunikasjonReducer.status === tilrettelagtKommunikasjonActionNames.INITIALIZED) {
-            this.props.hentTilrettelagtKommunikasjon();
         }
     }
 
@@ -78,7 +69,6 @@ class BrukerprofilSide extends React.Component<props> {
                     <BrukerprofilForm
                         person={this.props.personReducer.data as Person}
                         veilderRoller={this.props.veilederRollerReducer.data}
-                        tilrettelagtKommunikasjonReducer={this.props.tilrettelagtKommunikasjonReducer}
                     />
                 </Innholdslaster>
             </BrukerprofilWrapper>
@@ -91,16 +81,14 @@ const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingP
     return ({
         fødselsnummer: ownProps.match.params.fodselsnummer,
         personReducer: state.personinformasjon,
-        veilederRollerReducer: state.veilederRoller,
-        tilrettelagtKommunikasjonReducer: state.tilrettelagtKommunikasjonKodeverk
+        veilederRollerReducer: state.veilederRoller
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch)),
-        hentVeilederRoller: () => dispatch(getVeilederRoller()),
-        hentTilrettelagtKommunikasjon: () => dispatch(tilrettelagtKommunikasjonReducer.hentTilrettelagtKommunikasjon())
+        hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }
 

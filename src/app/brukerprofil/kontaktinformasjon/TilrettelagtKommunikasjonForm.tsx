@@ -25,6 +25,8 @@ const SubmitknappWrapper = styled.div`
   margin-top: 1em;
 `;
 
+const påkrevdRolle = '0000-GA-BD06_EndreKontaktAdresse';
+
 interface State {
     checkbokser: CheckboksProps[];
 }
@@ -95,7 +97,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         if (!this.props.veilederRoller) {
             return false;
         }
-        return this.props.veilederRoller.roller.includes('0000-GA-BD06_EndreKontaktAdresse');
+        return this.props.veilederRoller.roller.includes(påkrevdRolle);
     }
 
     erEndret() {
@@ -112,7 +114,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     render() {
         const title = this.harVeilderPåkrevdRolle()
             ? ''
-            : 'Du trenger AD-rolle 0000-GA-BD06_EndreKontaktAdresse for å endre dette';
+            : `Du trenger AD-rolle ${påkrevdRolle} for å endre dette`;
         return (
             <form onSubmit={this.handleSubmit} title={title}>
                 <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
