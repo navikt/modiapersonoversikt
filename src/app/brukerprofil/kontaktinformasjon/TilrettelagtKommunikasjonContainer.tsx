@@ -10,9 +10,9 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import { tilrettelagtKommunikasjonActionNames } from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
 import * as tilrettelagtKommunikasjonKodeverkReducer from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
 import { Action } from 'history';
+import { STATUS } from '../../../redux/utils';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -68,8 +68,7 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     constructor(props: Props) {
         super(props);
 
-        if (this.props.tilrettelagtKommunikasjonKodeverkReducer.status
-            === tilrettelagtKommunikasjonActionNames.INITIALIZED) {
+        if (this.props.tilrettelagtKommunikasjonKodeverkReducer.status === STATUS.NOT_STARTED) {
             this.props.hentTilrettelagtKommunikasjonKodeverk();
         }
     }
@@ -80,7 +79,6 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
                 avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
                 returnOnError={onError}
             >
-
                 <TilrettelagtKommunikasjonWrapper
                     tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
                     person={this.props.person}
