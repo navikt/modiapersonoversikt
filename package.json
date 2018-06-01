@@ -108,7 +108,6 @@
     "less-loader": "^4.1.0",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.3.2",
-    "svg-to-react-cli": "^1.5.0",
     "typescript": "^2.8.3"
   }
 }
