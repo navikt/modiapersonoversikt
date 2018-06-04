@@ -101,45 +101,21 @@ Array [
                 E-post Kontakt- og reservasjonsregisteret
               </span>
             </p>
-            <div
-              className="sc-bdVaJa kzwKAF"
+            <p
+              className="typo-undertekst"
             >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--l"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                onClick={undefined}
-                preserveAspectRatio="xMidYMid"
-                style={undefined}
-                viewBox="0 0 100 100"
-                width={32}
+              aremark@testfamilien.no
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-gZMcBi dJPmao"
               >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="40"
-                  stroke="#bdbab7"
-                  strokeWidth="10"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="40"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="10"
-                />
-              </svg>
-            </div>
+                Endret 
+                15.05.2014
+              </span>
+            </p>
           </div>
         </div>
         <div
@@ -177,45 +153,21 @@ Array [
                 Telefon Kontakt- og reservasjonsregisteret
               </span>
             </p>
-            <div
-              className="sc-bdVaJa kzwKAF"
+            <p
+              className="typo-undertekst"
             >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--l"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                onClick={undefined}
-                preserveAspectRatio="xMidYMid"
-                style={undefined}
-                viewBox="0 0 100 100"
-                width={32}
+              112 23 344
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-gZMcBi dJPmao"
               >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="40"
-                  stroke="#bdbab7"
-                  strokeWidth="10"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="40"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="10"
-                />
-              </svg>
-            </div>
+                Endret 
+                15.05.2014
+              </span>
+            </p>
           </div>
         </div>
         <div
@@ -851,43 +803,530 @@ Array [
         </div>
       </div>
       <div
-        className="sc-bdVaJa kzwKAF"
+        className="sc-kGXeez bBrmxc"
       >
-        <svg
-          aria-label="Laster innhold"
-          className="spinner spinner--l"
-          focusable="false"
-          height={32}
-          kind="spinner"
-          onClick={undefined}
-          preserveAspectRatio="xMidYMid"
-          style={undefined}
-          viewBox="0 0 100 100"
-          width={32}
+        <p
+          className="typo-element"
         >
-          <title>
-            Venter...
-          </title>
-          <circle
-            cx="50"
-            cy="50"
-            fill="none"
-            r="40"
-            stroke="#bdbab7"
-            strokeWidth="10"
+          <span
+            className="sc-kpOJdX iwyBG"
+          >
+            Bruker er under vergemål
+          </span>
+        </p>
+        <div
+          className="sc-gqjmRU hiYJPE"
+        >
+          <div
+            className="sc-VigVT iQUHP"
+          >
+            <svg
+              height={25}
+              viewBox="0 0 24.9 25"
+              width="24.9"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  d="M40.2.9H40c-3.2.1-6.2 1.4-8.5 3.7a12.1 12.1 0 0 0-3.5 8.6c.1 6.6 5.3 11.8 11.8 11.8h.2c6.7-.1 12.1-5.6 12-12.2A11.8 11.8 0 0 0 40.2.9z"
+                  id="a"
+                />
+              </defs>
+              <clipPath
+                id="b"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#a"
+                />
+              </clipPath>
+              <defs>
+                <path
+                  d="M39.5 7.2c0-.3.2-.5.5-.5s.5.2.5.5v7.3c0 .3-.2.5-.5.5s-.5-.2-.5-.5V7.2z"
+                  id="c"
+                />
+              </defs>
+              <clipPath
+                id="d"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#c"
+                />
+              </clipPath>
+              <defs>
+                <path
+                  d="M40 19.2c-.6 0-1.1-.5-1.1-1 0-.6.4-1.1 1-1.1s1 .5 1 1c.2.6-.3 1.1-.9 1.1z"
+                  id="e"
+                />
+              </defs>
+              <clipPath
+                id="f"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#e"
+                />
+              </clipPath>
+              <defs>
+                <path
+                  d="M13.2.9H13C9.8 1 6.7 2.3 4.5 4.6A11.7 11.7 0 0 0 1 13.2C1.1 19.8 6.3 25 12.8 25h.2c6.7-.1 12.1-5.6 12-12.2A11.8 11.8 0 0 0 13.2.9z"
+                  id="g"
+                />
+              </defs>
+              <clipPath
+                id="h"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#g"
+                />
+              </clipPath>
+              <g
+                clipPath="url(#h)"
+              >
+                <defs>
+                  <path
+                    d="M1 .9h24v24H1z"
+                    id="i"
+                  />
+                </defs>
+                <clipPath
+                  id="j"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#i"
+                  />
+                </clipPath>
+                <path
+                  clipPath="url(#j)"
+                  d="M-4-4.1h34v34H-4z"
+                  fill="#ffb249"
+                />
+              </g>
+              <defs>
+                <path
+                  d="M12.5 7.2c0-.3.2-.5.5-.5s.5.2.5.5v7.3c0 .3-.2.5-.5.5s-.5-.2-.5-.5V7.2z"
+                  id="k"
+                />
+              </defs>
+              <clipPath
+                id="l"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#k"
+                />
+              </clipPath>
+              <g
+                clipPath="url(#l)"
+              >
+                <defs>
+                  <path
+                    d="M1 .9h24v24H1z"
+                    id="m"
+                  />
+                </defs>
+                <clipPath
+                  id="n"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#m"
+                  />
+                </clipPath>
+                <path
+                  clipPath="url(#n)"
+                  d="M7.5 1.7h11V20h-11z"
+                  fill="#3e3832"
+                />
+              </g>
+              <g>
+                <defs>
+                  <path
+                    d="M13 19.2c-.6 0-1.1-.5-1.1-1 0-.6.4-1.1 1-1.1s1 .5 1 1c.2.6-.3 1.1-.9 1.1z"
+                    id="o"
+                  />
+                </defs>
+                <clipPath
+                  id="p"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#o"
+                  />
+                </clipPath>
+                <g
+                  clipPath="url(#p)"
+                >
+                  <defs>
+                    <path
+                      d="M1 .9h24v24H1z"
+                      id="q"
+                    />
+                  </defs>
+                  <clipPath
+                    id="r"
+                  >
+                    <use
+                      overflow="visible"
+                      xlinkHref="#q"
+                    />
+                  </clipPath>
+                  <path
+                    clipPath="url(#r)"
+                    d="M7 12.1h12.1v12.1H7z"
+                    fill="#3e3832"
+                  />
+                </g>
+              </g>
+              <g>
+                <defs>
+                  <path
+                    d="M39.5 21.1a1 1 0 0 1 0-2c.5 0 1 .4 1 1 0 .5-.5 1-1 1zm-.5-12c0-.3.2-.5.5-.5s.5.2.5.5v7.7c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.1zm11.9 14l-11-21.9c-.2-.3-.7-.3-.9 0l-11 22v.5l.4.2h22c.3 0 .5-.2.5-.5v-.3z"
+                    id="s"
+                  />
+                </defs>
+                <clipPath
+                  id="t"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#s"
+                  />
+                </clipPath>
+                <g
+                  clipPath="url(#t)"
+                >
+                  <defs>
+                    <path
+                      d="M28 .9h24v23H28z"
+                      id="u"
+                    />
+                  </defs>
+                  <clipPath
+                    id="v"
+                  >
+                    <use
+                      overflow="visible"
+                      xlinkHref="#u"
+                    />
+                  </clipPath>
+                  <path
+                    clipPath="url(#v)"
+                    d="M23-4h33v33H23z"
+                    fill="#ba3a26"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div
+            className="sc-jTzLTM cTuoOv"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-fjdhpX dvrXKZ"
+              >
+                Verge
+              </span>
+            </p>
+            <div
+              className="sc-ckVGcZ frAFhH"
+            >
+              <div
+                className="sc-dxgOiQ fAVTIV"
+              >
+                <p
+                  className="typo-undertekst"
+                >
+                   Solli Simen
+                </p>
+                <p
+                  className="typo-undertekst"
+                >
+                  21042900076
+                </p>
+                <p
+                  className="typo-undertekst"
+                >
+                  Fullmektig
+                </p>
+              </div>
+              <p
+                className="typo-undertekst-bold"
+              >
+                Voksen
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                Ivareta personens interesser innenfor det personlige området
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                Her kommen en fritekst som er sånn passelig lang
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                Fylkesmannen i Leahby
+              </p>
+              <p
+                className="typo-etikett-liten"
+              >
+                27.03.2016
+                 
+                —
+                 
+                30.06.2013
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-gqjmRU hiYJPE"
+      >
+        <div
+          className="sc-VigVT iQUHP"
+        >
+          <svg
+            viewBox="0 0 25 25"
             xmlns="http://www.w3.org/2000/svg"
-          />
-          <circle
-            cx="50"
-            cy="50"
-            fill="none"
-            r="40"
-            stroke="#7f756c"
-            strokeDasharray="50 155"
-            strokeLinecap="round"
-            strokeWidth="10"
-          />
-        </svg>
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <path
+                d="M13.2.9H13C9.8 1 6.7 2.3 4.5 4.6A11.7 11.7 0 0 0 1 13.2C1.1 19.8 6.3 25 12.8 25h.2c6.7-.1 12.1-5.6 12-12.2A11.8 11.8 0 0 0 13.2.9z"
+                id="a"
+              />
+            </defs>
+            <clipPath
+              id="b"
+            >
+              <use
+                overflow="visible"
+                xlinkHref="#a"
+              />
+            </clipPath>
+            <defs>
+              <path
+                d="M12.5 7.2c0-.3.2-.5.5-.5s.5.2.5.5v7.3c0 .3-.2.5-.5.5s-.5-.2-.5-.5V7.2z"
+                id="c"
+              />
+            </defs>
+            <clipPath
+              id="d"
+            >
+              <use
+                overflow="visible"
+                xlinkHref="#c"
+              />
+            </clipPath>
+            <defs>
+              <path
+                d="M13 19.2c-.6 0-1.1-.5-1.1-1 0-.6.4-1.1 1-1.1s1 .5 1 1c.2.6-.3 1.1-.9 1.1z"
+                id="e"
+              />
+            </defs>
+            <clipPath
+              id="f"
+            >
+              <use
+                overflow="visible"
+                xlinkHref="#e"
+              />
+            </clipPath>
+            <defs>
+              <path
+                d="M-13.8.9h-.2c-3.2.1-6.2 1.4-8.5 3.7a12.1 12.1 0 0 0-3.5 8.6c.1 6.6 5.3 11.8 11.8 11.8h.2c6.7-.1 12.1-5.6 12-12.2A11.8 11.8 0 0 0-13.8.9z"
+                id="g"
+              />
+            </defs>
+            <clipPath
+              id="h"
+            >
+              <use
+                overflow="visible"
+                xlinkHref="#g"
+              />
+            </clipPath>
+            <g
+              clipPath="url(#h)"
+            >
+              <defs>
+                <path
+                  d="M-26 .9h24v24h-24z"
+                  id="i"
+                />
+              </defs>
+              <clipPath
+                id="j"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#i"
+                />
+              </clipPath>
+              <path
+                clipPath="url(#j)"
+                d="M-31-4.1H3v34h-34z"
+                fill="#ffb249"
+              />
+            </g>
+            <defs>
+              <path
+                d="M-14.5 7.2c0-.3.2-.5.5-.5s.5.2.5.5v7.3c0 .3-.2.5-.5.5s-.5-.2-.5-.5V7.2z"
+                id="k"
+              />
+            </defs>
+            <clipPath
+              id="l"
+            >
+              <use
+                overflow="visible"
+                xlinkHref="#k"
+              />
+            </clipPath>
+            <g
+              clipPath="url(#l)"
+            >
+              <defs>
+                <path
+                  d="M-26 .9h24v24h-24z"
+                  id="m"
+                />
+              </defs>
+              <clipPath
+                id="n"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#m"
+                />
+              </clipPath>
+              <path
+                clipPath="url(#n)"
+                d="M-19.5 1.7h11V20h-11z"
+                fill="#3e3832"
+              />
+            </g>
+            <g>
+              <defs>
+                <path
+                  d="M-14 19.2c-.6 0-1.1-.5-1.1-1 0-.6.4-1.1 1-1.1s1 .5 1 1c.2.6-.3 1.1-.9 1.1z"
+                  id="o"
+                />
+              </defs>
+              <clipPath
+                id="p"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#o"
+                />
+              </clipPath>
+              <g
+                clipPath="url(#p)"
+              >
+                <defs>
+                  <path
+                    d="M-26 .9h24v24h-24z"
+                    id="q"
+                  />
+                </defs>
+                <clipPath
+                  id="r"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#q"
+                  />
+                </clipPath>
+                <path
+                  clipPath="url(#r)"
+                  d="M-20 12.1h12.1v12.1H-20z"
+                  fill="#3e3832"
+                />
+              </g>
+            </g>
+            <g>
+              <defs>
+                <path
+                  d="M12.5 21.1a1 1 0 0 1 0-2c.5 0 1 .4 1 1 0 .5-.5 1-1 1zm-.5-12c0-.3.2-.5.5-.5s.5.2.5.5v7.7c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9.1zm11.9 14l-11-21.9c-.2-.3-.7-.3-.9 0l-11 22v.5l.4.2h22c.3 0 .5-.2.5-.5v-.3z"
+                  id="s"
+                />
+              </defs>
+              <clipPath
+                id="t"
+              >
+                <use
+                  overflow="visible"
+                  xlinkHref="#s"
+                />
+              </clipPath>
+              <g
+                clipPath="url(#t)"
+              >
+                <defs>
+                  <path
+                    d="M1 .9h24v23H1z"
+                    id="u"
+                  />
+                </defs>
+                <clipPath
+                  id="v"
+                >
+                  <use
+                    overflow="visible"
+                    xlinkHref="#u"
+                  />
+                </clipPath>
+                <path
+                  clipPath="url(#v)"
+                  d="M-4-4h33v33H-4z"
+                  fill="#ba3a26"
+                />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div
+          className="sc-jTzLTM cTuoOv"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-fjdhpX dvrXKZ"
+            >
+              Sikkerhetstiltak
+            </span>
+          </p>
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-gZMcBi dJPmao"
+            >
+              Gyldig: 
+              12.12.2005
+               - 
+              12.12.2025
+            </span>
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.
+          </p>
+        </div>
       </div>
     </div>
   </div>,

@@ -3,8 +3,12 @@ import { getSistOppdatert, vektetSjanse } from './utils/mock-utils';
 import { Verge, Vergemal } from '../models/vergemal/vergemal';
 import { seededTilfeldigFodselsnummer } from './utils/fnr-utils';
 import { lagNavn } from './utils/person-utils';
+import { aremark } from './person/aremark';
 
 export function mockVergemal(fødselsnummer: String): Vergemal {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return getAremarkVerge();
+    }
     faker.seed(Number(fødselsnummer));
     if (vektetSjanse(faker, 0.7)) {
         return {
@@ -91,5 +95,30 @@ function getTilfeldigPeriode() {
     return {
         fom: fraOgMed,
         tom: tilOgMed
+    };
+}
+
+function getAremarkVerge() {
+    return {
+        verger: [
+            {
+                ident: '21042900076',
+                vergesakstype: 'Voksen',
+                mandattype: 'Ivareta personens interesser innenfor det personlige området',
+                mandattekst: 'Her kommen en fritekst som er sånn passelig lang',
+                vergetype: 'Fullmektig',
+                virkningsperiode: {
+                    fom: '2016-03-27T18:16:49+02:00',
+                    tom: '2013-06-30T11:50:13+02:00'
+                },
+                navn: {
+                    fornavn: 'Simen',
+                    etternavn: 'Solli',
+                    mellomnavn: '',
+                    sammensatt: ' Solli Simen'
+                },
+                embete: 'Fylkesmannen i Leahby'
+            }
+        ]
     };
 }
