@@ -9,8 +9,8 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Periode } from '../../../../../models/vergemal/vergemal';
 import { InfoGruppe } from '../styledComponents';
+import VergemålLogo from '../../../../../svg/Utropstegn';
 
-const vergemålLogo = require('./vergemaal.svg');
 const emdash = '\u2014';
 
 function Periode(props: {periode: Periode}) {
@@ -35,7 +35,7 @@ const VergeDiv = styled.div`
 function Verge(props: {verge: Verge}) {
     const {verge} = props;
     return (
-        <VisittkortElement beskrivelse="Verge" ikonPath={vergemålLogo}>
+        <VisittkortElement beskrivelse="Verge" ikon={<VergemålLogo />}>
             <VergeDiv>
                 <BasicVergeinformasjon>
                     <Undertekst>{verge.navn.sammensatt}</Undertekst>

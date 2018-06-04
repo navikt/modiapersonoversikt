@@ -8,8 +8,10 @@ import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import endreNavnReducer from './brukerprofil/endreNavn';
+import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettelagtKommunikasjon';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
+import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
@@ -28,8 +30,10 @@ export interface AppState {
     egenAnsatt: Reducer<Egenansatt>;
     vergemal: Reducer<Vergemal>;
     endreNavn: Reducer<{}>;
+    endreTilrettelagtKommunikasjon: Reducer<{}>;
     veilederRoller: Reducer<VeilederRoller>;
     retningsnummerReducer: Reducer<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverk: Reducer<KodeverkResponse>;
 }
 
 export default combineReducers<AppState>({
@@ -40,8 +44,10 @@ export default combineReducers<AppState>({
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
     endreNavn: endreNavnReducer,
+    endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
     veilederRoller: veilederRollerReducer,
     retningsnummerReducer: retningsnummereReducer,
+    tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
     router: routerReducer
 });
 

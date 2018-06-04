@@ -25,7 +25,7 @@ export function createActionsAndReducer(reducerNavn: string) {
     const actionFunction = (fn: () => Promise<object>) => doThenDispatch(fn, actionTypes);
     const initialState = {
         data: {},
-        status: actionTypes.INITIALIZED
+        status: STATUS.NOT_STARTED
     };
     const reset = (dispacth: Dispatch<Action>) => { dispacth({type: actionTypes.INITIALIZED}); };
     return {

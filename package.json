@@ -1,13 +1,30 @@
 {
   "name": "modiapersonoversikt",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.4.2",
+  "private": false,
   "homepage": "/modiapersonoversikt",
+  "main": "build/dist/index.js",
+  "files": [
+    "build/dist/"
+  ],
+  "publishConfig": {
+    "registry": "https://repo.adeo.no/repository/npm-internal/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navikt/modiapersonoversikt"
+  },
   "dependencies": {
+    "@types/prop-types": "^15.5.3",
+    "@types/faker": "^4.1.2",
+    "@types/fetch-mock": "^6.0.1",
     "@types/react-modal": "^3.1.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.5",
+    "faker": "^4.1.0",
+    "fetch-mock": "^6.3.0",
+    "fnr-generator": "^2.1.4",
     "history": "^4.7.2",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.1",
@@ -20,7 +37,7 @@
     "nav-frontend-etiketter": "^1.0.3",
     "nav-frontend-etiketter-style": "^0.3.4",
     "nav-frontend-ikoner-assets": "^0.2.27",
-    "nav-frontend-js-utils": "^1.0.4",
+    "nav-frontend-js-utils": "^1.0.6",
     "nav-frontend-knapper": "^1.0.5",
     "nav-frontend-knapper-style": "^0.3.8",
     "nav-frontend-lenker-style": "^0.2.5",
@@ -29,15 +46,15 @@
     "nav-frontend-modal": "^1.0.1",
     "nav-frontend-modal-style": "^0.3.8",
     "nav-frontend-paneler-style": "^0.3.7",
-    "nav-frontend-skjema": "^1.0.8",
-    "nav-frontend-skjema-style": "^0.3.19",
+    "nav-frontend-skjema": "^1.0.15",
+    "nav-frontend-skjema-style": "^0.3.20",
     "nav-frontend-spinner": "^1.0.8",
     "nav-frontend-spinner-style": "^0.2.4",
     "nav-frontend-typografi": "^2.0.3",
     "nav-frontend-typografi-style": "^1.0.8",
     "prop-types": "^15.6.1",
     "query-string": "^5.1.1",
-    "react": "^16.3.2",
+    "react": "^16.4.0",
     "react-collapse": "^4.0.3",
     "react-dom": "^16.3.2",
     "react-modal": "^3.4.4",
@@ -46,26 +63,29 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts-ts": "^2.15.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.6",
+    "yet-another-fetch-mock": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "npm run build:less && react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 3000",
     "build-storybook": "build-storybook -c .storybook -o build/storybook",
-    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css"
+    "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
+    "compile": "tsc",
+    "build:svg": "cd src/svg/ && svgtoreact dir --force"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.2",
     "@storybook/addon-links": "^3.4.2",
     "@storybook/addons": "^3.4.2",
     "@storybook/react": "^3.4.2",
+    "@types/classnames": "^2.2.3",
     "@types/enzyme": "^3.1.10",
     "@types/enzyme-adapter-react-16": "^1.0.2",
-    "@types/faker": "^4.1.2",
-    "@types/fetch-mock": "^6.0.1",
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.6",
     "@types/query-string": "^5.1.0",
@@ -80,9 +100,6 @@
     "babel-core": "^6.26.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "faker": "^4.1.0",
-    "fetch-mock": "^6.3.0",
-    "fnr-generator": "^2.1.4",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "jest-enzyme": "^6.0.0",
@@ -91,8 +108,6 @@
     "less-loader": "^4.1.0",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.3.2",
-    "styled-components": "^3.2.6",
-    "typescript": "^2.8.3",
-    "yet-another-fetch-mock": "^2.3.2"
+    "typescript": "^2.8.3"
   }
 }
