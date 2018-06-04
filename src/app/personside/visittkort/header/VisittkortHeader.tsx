@@ -51,10 +51,6 @@ const InfoDiv = styled.div`
   };
 `;
 
-const UpperCaseForMock = styled.span`
-  text-transform: uppercase;
-`;
-
 interface PersonProps {
     person: Person;
 }
@@ -63,9 +59,7 @@ function Navnelinje({person}: PersonProps) {
     const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
-            <UpperCaseForMock>
-                {person.navn.sammensatt} ({alder})
-            </UpperCaseForMock>
+            {person.navn.sammensatt} ({alder})
         </Undertittel>
     );
 }
