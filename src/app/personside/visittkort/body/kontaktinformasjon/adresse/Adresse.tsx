@@ -67,7 +67,7 @@ function adressebeskrivelse(adresse: personadresse.Personadresse) {
     }
 }
 
-function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
+export function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
     let adressetekst = (
         <Undertekst>
             Ingen registrert adresse

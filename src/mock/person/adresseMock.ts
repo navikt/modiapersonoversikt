@@ -1,4 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
+
 import {
     Endringsinfo,
     Gateadresse,
@@ -9,43 +10,54 @@ import {
 } from '../../models/personadresse';
 import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 import { getPeriode } from './periodeMock';
+import { FOLKEREGISTERET } from '../../utils/endretAvUtil';
 
-const gateadresse: Gateadresse = {
-    tilleggsadresse: 'Tillegsgaten 1',
-    gatenavn: 'Tilfeldighetsgaten',
-    husnummer: '3',
-    postnummer: '0666',
-    poststed: 'HELL',
-    periode: getPeriode()
+export const tilfeldigGateadresse = (adresseSkalHaPeriode: boolean): Gateadresse => {
+    return {
+        tilleggsadresse: vektetSjanse(faker, 0.1) ? faker.address.secondaryAddress().toUpperCase() : undefined,
+        gatenavn: tilfeldigGatenavn(),
+        husnummer: String(faker.random.number(120)),
+        postnummer: faker.address.zipCode('####'),
+        poststed: faker.address.city().toUpperCase(),
+        periode: adresseSkalHaPeriode ? getPeriode() : undefined
+    };
 };
 
-const matrikkeladresse: Matrikkeladresse = {
-    eiendomsnavn: 'Bogstad Gård',
-    postnummer: '1234',
-    poststed: 'OSLO',
-    periode: getPeriode()
+function tilfeldigGatenavn() {
+    return faker.address.streetName().replace(' ', '').toUpperCase();
+}
+
+const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkeladresse => {
+    return {
+        eiendomsnavn: tilfeldigGatenavn() + ' GÅRD',
+        postnummer: faker.address.zipCode('####'),
+        poststed: faker.address.city().toUpperCase(),
+        periode: folkeregistrertAdresse ? getPeriode() : undefined
+    };
 };
 
-const utlandsadresse: Utlandsadresse = {
-    landkode: 'BM',
-    adresselinje: 'Hytte 2, Stranda, Bahamas',
-    periode: getPeriode()
+const tilfeldigUtlandsadresse = (folkeregistrertAdresse: boolean): Utlandsadresse => {
+    return {
+        landkode: faker.address.countryCode(),
+        adresselinje: faker.address.streetAddress(true).toUpperCase(),
+        periode: folkeregistrertAdresse ? getPeriode() : undefined
+    };
 };
 
 const ustrukturertAdresse: UstrukturertAdresse = {
-    adresselinje: 'Storgata 1, 9876 NARVIK'
+    adresselinje: 'STORGATA 1, 9876 NARVIK'
 };
 
-export function getTilfeldigAdresse(): Personadresse {
+function getTilfeldigAdresse(adresseSkalHaPeriode: boolean): Personadresse {
     if (vektetSjanse(faker, 0.2)) {
         return {
             endringsinfo: getEndringsinfo(),
-            matrikkeladresse: matrikkeladresse
+            matrikkeladresse: tilfeldigMatrikkeladresse(adresseSkalHaPeriode)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
             endringsinfo: getEndringsinfo(),
-            utlandsadresse: utlandsadresse
+            utlandsadresse: tilfeldigUtlandsadresse(adresseSkalHaPeriode)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
@@ -55,15 +67,24 @@ export function getTilfeldigAdresse(): Personadresse {
     } else {
         return {
             endringsinfo: getEndringsinfo(),
-            gateadresse: gateadresse
+            gateadresse: tilfeldigGateadresse(adresseSkalHaPeriode)
         };
     }
+}
 
+export function getTilfeldigFolkeregistrertAdresse() {
+    const adresseSkalHaPeriode = false;
+    return getTilfeldigAdresse(adresseSkalHaPeriode);
+}
+
+export function getTilfeldigAdresseMedPeriode() {
+    const adresseSkalHaPeriode = true;
+    return getTilfeldigAdresse(adresseSkalHaPeriode);
 }
 
 function getEndringsinfo(): Endringsinfo {
     return {
         sistEndret: getSistOppdatert(),
-        sistEndretAv: 'AA001'
+        sistEndretAv: FOLKEREGISTERET
     };
 }

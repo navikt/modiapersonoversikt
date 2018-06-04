@@ -1,8 +1,8 @@
 import * as faker from 'faker/locale/nb_NO';
 
 import { ApningsTid, NavKontor, PublikumsMottak } from '../models/navkontor';
-import { GateAdresse } from '../models/gateadresse';
-import { vektetSjanse } from './utils/mock-utils';
+import { tilfeldigGateadresse } from './person/adresseMock';
+import { Gateadresse } from '../models/personadresse';
 
 export const geografiskTilknytningAremark = '0118';
 const apentFra = { time: '9', minutt: '0', sekund: '0' };
@@ -30,7 +30,7 @@ const mockApningsTider: Array<ApningsTid> = [{
     apentTil
 }];
 
-const aremarkGateadresse: GateAdresse = {
+const aremarkGateadresse: Gateadresse = {
     gatenavn: 'Rådhuset',
     husnummer: '6',
     husbokstav: 'A',
@@ -70,18 +70,11 @@ export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?
 }
 
 function getPublikumsmottak(city: string) {
+    const adresseSkalHaPeriode = false;
+    const adresse = tilfeldigGateadresse(adresseSkalHaPeriode);
+    adresse.poststed = city.toUpperCase();
     return {
-        besoksadresse: getGateadresse(city),
+        besoksadresse: adresse,
         apningstider: mockApningsTider
-    };
-}
-
-function getGateadresse(city: string): GateAdresse {
-    return {
-        gatenavn: faker.address.streetName().replace(' ', ''),
-        husnummer: String(faker.random.number(130)),
-        husbokstav: vektetSjanse(faker, 0.7) ? undefined : faker.random.alphaNumeric(1),
-        postnummer: faker.address.zipCode('####'),
-        poststed: city
     };
 }

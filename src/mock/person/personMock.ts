@@ -18,7 +18,7 @@ import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
-import { getTilfeldigAdresse } from './adresseMock';
+import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjon';
 
@@ -56,9 +56,9 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
-        folkeregistrertAdresse: getTilfeldigAdresse(),
-        alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
-        postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresse() : undefined,
+        folkeregistrertAdresse: getTilfeldigFolkeregistrertAdresse(),
+        alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
+        postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
         sivilstand: sivilstand,
         familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak(),
