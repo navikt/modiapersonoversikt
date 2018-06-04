@@ -12,3 +12,12 @@ export function formatNumber(format: string, streng: string) {
 
     return result;
 }
+
+export function padLeft(streng: string, width: number, symbol: string) {
+    if (streng.length >= width) {
+        return streng;
+    }
+    const leadingSymbol = symbol.length > 0 ? symbol.charAt(0) : ' ';
+
+    return leadingSymbol.repeat(width - streng.length) + streng;
+}
