@@ -65,7 +65,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 
     render() {
         return (
-            <>
+            <div>
                 <Undertittel>Kontaktinformasjon</Undertittel>
                 <Innholdslaster
                     avhengigheter={[this.props.retningsnummerReducer]}
@@ -75,7 +75,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
                         person={this.props.person}
                     />
                 </Innholdslaster>
-            </>
+            </div>
         );
     }
 }

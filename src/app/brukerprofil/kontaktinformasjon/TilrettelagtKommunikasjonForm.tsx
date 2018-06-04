@@ -4,7 +4,6 @@ import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/utils';
@@ -117,7 +116,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
             : `Du trenger AD-rolle ${påkrevdRolle} for å endre dette`;
         return (
             <form onSubmit={this.handleSubmit} title={title}>
-                <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
                 <CheckboksPanelGruppe
                     checkboxes={this.state.checkbokser}
                     legend={''}

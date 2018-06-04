@@ -16,9 +16,19 @@ import { getVeilederRoller } from '../../redux/veilederRoller';
 import { STATUS } from '../../redux/utils';
 
 const BrukerprofilWrapper = styled.div`
-  margin: 2em auto 5em;
-  max-width: 640px;
+  flex-grow: 1;
+  margin: 2em auto 3em;
+  max-width: 720px;
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  animation: ${props => props.theme.animation.fadeIn};
+  > *:not(:first-child) {
+    background-color: white;
+    border-radius: ${props => props.theme.borderRadius.layout};
+    margin: 1em 0;
+    padding: 2em;
+  }
 `;
 
 const LinkWrapper = styled.div`
@@ -35,15 +45,15 @@ interface DispatchProps {
     hentVeilederRoller: () => void;
 }
 
-interface Props {
+interface OwnProps {
     fødselsnummer: string;
     personReducer: Reducer<PersonRespons>;
     veilederRollerReducer: Reducer<VeilederRoller>;
 }
 
-type props = RouteComponentProps<RoutingProps> & Props & DispatchProps ;
+type Props = RouteComponentProps<RoutingProps> & OwnProps & DispatchProps ;
 
-class BrukerprofilSide extends React.Component<props> {
+class BrukerprofilSide extends React.Component<Props> {
 
     componentDidMount() {
         if (this.props.personReducer.status === STATUS.NOT_STARTED) {
@@ -58,7 +68,9 @@ class BrukerprofilSide extends React.Component<props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
+                <Innholdslaster
+                    avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
+                >
                     <LinkWrapper>
                         <Link
                             className={'lenke'}
@@ -78,7 +90,7 @@ class BrukerprofilSide extends React.Component<props> {
 
 }
 
-const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingProps>): Props => {
+const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingProps>): OwnProps => {
     return ({
         fødselsnummer: ownProps.match.params.fodselsnummer,
         personReducer: state.personinformasjon,
