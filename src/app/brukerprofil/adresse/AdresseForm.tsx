@@ -46,8 +46,13 @@ interface OwnProps {
     postnummer: KodeverkResponse;
 }
 
+enum Valg {
+    FOLKEREGISTRERT, MIDLERTIDIG_NORGE, MIDLERTIDIG_UTLAND
+}
+
 interface State {
     midlertidigAdresseNorge: Personadresse;
+    selectedRadio: Valg;
 }
 
 type Props = OwnProps;
@@ -57,12 +62,25 @@ class AdresseForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse)
+            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse),
+            selectedRadio: this.initialRadioValg()
         };
 
         this.onGateadresseInput = this.onGateadresseInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.erEndret = this.erEndret.bind(this);
+    }
+
+    initialRadioValg() {
+        const {alternativAdresse} = this.props.person;
+
+        if (alternativAdresse && alternativAdresse.utlandsadresse) {
+            return Valg.MIDLERTIDIG_UTLAND;
+        } else if (alternativAdresse) {
+            return Valg.MIDLERTIDIG_NORGE;
+        } else {
+            return Valg.FOLKEREGISTRERT;
+        }
     }
 
     intialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
@@ -102,14 +120,11 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     erEndret() {
-
         if (this.props.person.alternativAdresse && this.props.person.alternativAdresse.gateadresse) {
-            console.log(this.props.person.alternativAdresse.gateadresse);
-            console.log(this.state.midlertidigAdresseNorge.gateadresse);
             return JSON.stringify(this.state.midlertidigAdresseNorge.gateadresse) ===
                 JSON.stringify(this.props.person.alternativAdresse.gateadresse);
         }
-        return true;
+        return false;
     }
 
     render() {
@@ -121,15 +136,32 @@ class AdresseForm extends React.Component<Props, State> {
         return (
             <form onSubmit={this.onSubmit}>
                 <Undertittel>Adresse</Undertittel>
-                <Radio label="Bostedsadresse fra folkeregisteret" name="someRadioBtn" />
+                <Radio
+                    label="Bostedsadresse fra folkeregisteret"
+                    name="folkeregistrertRadio"
+                    onChange={() => this.setState({selectedRadio: Valg.FOLKEREGISTRERT})}
+                    checked={this.state.selectedRadio === Valg.FOLKEREGISTRERT}
+                />
                 {adresse}
-                <Radio label="Midlertidig adresse i Norge" name="someRadioBtn" />
+                <Radio
+                    label="Midlertidig adresse i Norge"
+                    name="midlertidigAdresseRadio"
+                    onChange={() => this.setState({selectedRadio: Valg.MIDLERTIDIG_NORGE})}
+                    checked={this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE}
+                />
+                {this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE &&
                 <MidlertidigAdresseNorge
                     midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
                     onChange={this.onGateadresseInput}
                     postnummerKodeverk={this.props.postnummer.kodeverk}
                 />
-                <Radio label="Midlertidig adresse i utlandet" name="someRadioBtn" />
+                }
+                <Radio
+                    label="Midlertidig adresse i utlandet"
+                    name="midlertidigAdresseUtlandRadio"
+                    onChange={() => this.setState({selectedRadio: Valg.MIDLERTIDIG_UTLAND})}
+                    checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
+                />
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
