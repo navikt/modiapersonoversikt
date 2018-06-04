@@ -70,7 +70,8 @@ export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?
 }
 
 function getPublikumsmottak(city: string) {
-    const adresse = tilfeldigGateadresse(false);
+    const adresseSkalHaPeriode = false;
+    const adresse = tilfeldigGateadresse(adresseSkalHaPeriode);
     adresse.poststed = city.toUpperCase();
     return {
         besoksadresse: adresse,

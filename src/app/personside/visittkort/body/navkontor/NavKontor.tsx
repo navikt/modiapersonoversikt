@@ -8,8 +8,7 @@ import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettMini from '../../../../../components/EtikettMini';
 import VisittkortElement from '../VisittkortElement';
-
-const navLogo = require('./nav-logo.svg');
+import NavLogo from '../../../../../svg/NavLogo';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -130,7 +129,7 @@ function navkontorInfo(navKontor: NavKontor) {
 function NavKontorVisning(props: { navKontor?: NavKontor }) {
     if (!props.navKontor) {
         return (
-            <VisittkortElement beskrivelse="Ingen enhet" ikonPath={navLogo}>
+            <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
                 <br/>
             </VisittkortElement>
         );
@@ -139,7 +138,7 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
     const beskrivelse = `${props.navKontor.enhetId} ${props.navKontor.enhetNavn}`;
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikonPath={navLogo}>
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
             {navkontorInfo(props.navKontor)}
         </VisittkortElement>
     );

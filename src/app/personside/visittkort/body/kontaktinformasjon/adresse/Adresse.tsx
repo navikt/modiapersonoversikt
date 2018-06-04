@@ -9,8 +9,7 @@ import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import { Periode } from '../../../../../../models/periode';
 import VisPeriode from '../../../../../../components/person/VisPeriode';
-
-const locationPath = require('./location-pin.svg');
+import LocationPin from '../../../../../../svg/LocationPin';
 
 interface AdresseProps {
     person: Person;
@@ -31,7 +30,7 @@ function hentFolkeregistrertAdresse(person: Person) {
         formatterRiktigAdresse(person.folkeregistrertAdresse) : 'Ikke registrert';
 
     return (
-        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikonPath={locationPath}>
+        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin />}>
             {adresse}
         </VisittkortElement>
     );
@@ -41,7 +40,7 @@ function hentFolkeregistrertAdresse(person: Person) {
 function hentMidlertidigAdresse(person: Person) {
     if (person.alternativAdresse != null) {
         return (
-            <VisittkortElement beskrivelse={adressebeskrivelse(person.alternativAdresse)} ikonPath={locationPath}>
+            <VisittkortElement beskrivelse={adressebeskrivelse(person.alternativAdresse)} ikon={<LocationPin />}>
                 {formatterRiktigAdresse(person.alternativAdresse)}
             </VisittkortElement>
         );
@@ -52,7 +51,7 @@ function hentMidlertidigAdresse(person: Person) {
 function hentPostadresse(person: Person) {
     if (person.postadresse != null) {
         return (
-            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikonPath={locationPath}>
+            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikon={<LocationPin />}>
                 {formatterRiktigAdresse(person.postadresse)}
             </VisittkortElement>
         );

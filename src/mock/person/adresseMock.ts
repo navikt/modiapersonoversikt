@@ -1,4 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
+
 import {
     Endringsinfo,
     Gateadresse,
@@ -11,14 +12,14 @@ import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 import { getPeriode } from './periodeMock';
 import { FOLKEREGISTERET } from '../../utils/endretAvUtil';
 
-export const tilfeldigGateadresse = (periode: boolean): Gateadresse => {
+export const tilfeldigGateadresse = (adresseSkalHaPeriode: boolean): Gateadresse => {
     return {
         tilleggsadresse: vektetSjanse(faker, 0.1) ? faker.address.secondaryAddress().toUpperCase() : undefined,
         gatenavn: tilfeldigGatenavn(),
         husnummer: String(faker.random.number(120)),
         postnummer: faker.address.zipCode('####'),
         poststed: faker.address.city().toUpperCase(),
-        periode: periode ? getPeriode() : undefined
+        periode: adresseSkalHaPeriode ? getPeriode() : undefined
     };
 };
 
@@ -26,20 +27,20 @@ function tilfeldigGatenavn() {
     return faker.address.streetName().replace(' ', '').toUpperCase();
 }
 
-const tilfeldigMatrikkeladresse = (periode: boolean): Matrikkeladresse => {
+const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkeladresse => {
     return {
         eiendomsnavn: tilfeldigGatenavn() + ' GÅRD',
         postnummer: faker.address.zipCode('####'),
         poststed: faker.address.city().toUpperCase(),
-        periode: periode ? getPeriode() : undefined
+        periode: folkeregistrertAdresse ? getPeriode() : undefined
     };
 };
 
-const tilfeldigUtlandsadresse = (periode: boolean): Utlandsadresse => {
+const tilfeldigUtlandsadresse = (folkeregistrertAdresse: boolean): Utlandsadresse => {
     return {
         landkode: faker.address.countryCode(),
         adresselinje: faker.address.streetAddress(true).toUpperCase(),
-        periode: periode ? getPeriode() : undefined
+        periode: folkeregistrertAdresse ? getPeriode() : undefined
     };
 };
 
@@ -47,16 +48,16 @@ const ustrukturertAdresse: UstrukturertAdresse = {
     adresselinje: 'STORGATA 1, 9876 NARVIK'
 };
 
-export function getTilfeldigAdresse(periode: boolean): Personadresse {
+function getTilfeldigAdresse(adresseSkalHaPeriode: boolean): Personadresse {
     if (vektetSjanse(faker, 0.2)) {
         return {
             endringsinfo: getEndringsinfo(),
-            matrikkeladresse: tilfeldigMatrikkeladresse(periode)
+            matrikkeladresse: tilfeldigMatrikkeladresse(adresseSkalHaPeriode)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
             endringsinfo: getEndringsinfo(),
-            utlandsadresse: tilfeldigUtlandsadresse(periode)
+            utlandsadresse: tilfeldigUtlandsadresse(adresseSkalHaPeriode)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
@@ -66,10 +67,19 @@ export function getTilfeldigAdresse(periode: boolean): Personadresse {
     } else {
         return {
             endringsinfo: getEndringsinfo(),
-            gateadresse: tilfeldigGateadresse(periode)
+            gateadresse: tilfeldigGateadresse(adresseSkalHaPeriode)
         };
     }
+}
 
+export function getTilfeldigFolkeregistrertAdresse() {
+    const adresseSkalHaPeriode = false;
+    return getTilfeldigAdresse(adresseSkalHaPeriode);
+}
+
+export function getTilfeldigAdresseMedPeriode() {
+    const adresseSkalHaPeriode = true;
+    return getTilfeldigAdresse(adresseSkalHaPeriode);
 }
 
 function getEndringsinfo(): Endringsinfo {

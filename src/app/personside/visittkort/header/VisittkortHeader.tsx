@@ -6,9 +6,8 @@ import NavKontorContainer from './NavKontorContainer';
 import { erDød, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './EtiketterContainer';
-
-const mannPath = require('../body/familie/mann.svg');
-const kvinnePath = require('../body/familie/kvinne.svg');
+import Mann from '../../../../svg/Mann.js';
+import Kvinne from '../../../../svg/Kvinne.js';
 
 interface VisittkortHeaderProps {
     person: Person;
@@ -38,8 +37,9 @@ const HøyreFelt = styled.div`
 const IkonDiv = styled.div`
   flex: 0 0 50px;
   text-align: left;
-  > img {
-    width: 40px;
+  svg {
+    height: 40px;
+    width: auto;
   }
 `;
 
@@ -72,15 +72,15 @@ function Navnelinje({person}: PersonProps) {
 
 function VisittkortHeader({person}: VisittkortHeaderProps) {
     const ikon = {
-        path: person.kjønn === 'M' ? mannPath : kvinnePath,
+        ikon: person.kjønn === 'M' ? <Mann /> : <Kvinne />,
         alt: person.kjønn === 'M' ? 'Mann' : 'Kvinne'
     };
     return (
         <VisittkortHeaderDiv>
 
             <VenstreFelt>
-                <IkonDiv>
-                    <img src={ikon.path} alt={ikon.alt} title={ikon.alt}/>
+                <IkonDiv title={ikon.alt}>
+                    {ikon.ikon}
                 </IkonDiv>
                 <InfoDiv>
                     <Navnelinje person={person}/>

@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { Person } from '../../../../models/person/person';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
@@ -9,8 +12,6 @@ import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import { paths } from '../../../routes/routing';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 interface VisittkortBodyProps {
     person: Person;

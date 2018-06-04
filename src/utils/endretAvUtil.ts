@@ -7,12 +7,10 @@ export function endretAvTekst(rawString: string): string {
         return 'av NAV';
     } else if (rawString.match('AAA2101, SKD')) {
         return 'av Skatteetaten';
+    } else if (rawString.match(FOLKEREGISTERET)) {
+        return 'i Folkeregisteret';
     } else {
-        if (rawString.match(FOLKEREGISTERET)) {
-                return 'i Folkeregisteret';
-            } else {
-                return rawString;
-            }
+        return rawString;
     }
 }
 

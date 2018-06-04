@@ -5,7 +5,7 @@ import { EtikettLiten } from 'nav-frontend-typografi';
 interface ElementProps {
     children: string | JSX.Element | JSX.Element[];
     beskrivelse?: string;
-    ikonPath?: string;
+    ikon?: JSX.Element;
 }
 
 const Element = styled.div`
@@ -17,8 +17,9 @@ const Element = styled.div`
 const IkonDiv = styled.div`
   flex: 0 0 50px;
   text-align: center;
-  > img {
+  > svg {
     height: 25px;
+    width: auto;
   }
 `;
 
@@ -32,7 +33,7 @@ const Tittel = styled.span`
 `;
 
 function VisittkortElement(props: ElementProps) {
-    const img = props.ikonPath ? <img src={props.ikonPath} alt={props.beskrivelse} title={props.beskrivelse} /> : '';
+    const ikon = props.ikon || '';
     const tittel = props.beskrivelse
         ? <EtikettLiten><Tittel>{props.beskrivelse}</Tittel></EtikettLiten>
         : '';
@@ -40,7 +41,7 @@ function VisittkortElement(props: ElementProps) {
     return (
         <Element>
             <IkonDiv>
-                {img}
+                {ikon}
             </IkonDiv>
             <InfoDiv>
                 {tittel}
