@@ -17,88 +17,81 @@ export const InputLinje = styled.div`
   display: flex;
 `;
 
-class GateadresseForm extends React.Component<GateadresseFormProps> {
+function GateadresseForm(props: GateadresseFormProps) {
 
-    constructor(props: GateadresseFormProps) {
-        super(props);
-        this.onPostnummerInput = this.onPostnummerInput.bind(this);
-    }
-
-    onPostnummerInput(input: string) {
+    function onPostnummerInput(input: string) {
         let postnummer = input.trim();
         if (postnummer.length === 4) {
-            const poststed = this.props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
+            const poststed = props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
             if (poststed) {
-                this.props.onChange({...this.props.gateadresse, poststed: poststed.value});
+                props.onChange({...props.gateadresse, poststed: poststed.value});
             }
         }
     }
 
-    render () {
-        return (
-            <>
+    return (
+        <>
+            <Input
+                bredde={'XXL'}
+                label="Merkes med C/O"
+                defaultValue={props.gateadresse.tilleggsadresse}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    props.onChange({...props.gateadresse, tilleggsadresse: event.target.value})}
+            />
+            <InputLinje>
+                <div style={{flex: 4, marginRight: 15}} >
+                    <Input
+                        bredde={'XXL'}
+                        label="Gateadresse"
+                        defaultValue={props.gateadresse.gatenavn}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            props.onChange({...props.gateadresse, gatenavn: event.target.value})}
+                    />
+                </div>
                 <Input
-                    bredde={'XXL'}
-                    label="Merkes med C/O"
-                    defaultValue={this.props.gateadresse.tilleggsadresse}
+                    bredde={'S'}
+                    label="Husnummer"
+                    defaultValue={props.gateadresse.husnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        this.props.onChange({...this.props.gateadresse, tilleggsadresse: event.target.value})}
+                        props.onChange({...props.gateadresse, husnummer: event.target.value})}
                 />
-                <InputLinje>
-                    <div style={{flex: 4, marginRight: 15}} >
-                        <Input
-                            bredde={'XXL'}
-                            label="Gateadresse"
-                            defaultValue={this.props.gateadresse.gatenavn}
-                            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                this.props.onChange({...this.props.gateadresse, gatenavn: event.target.value})}
-                        />
-                    </div>
+                <Input
+                    bredde={'S'}
+                    label="Husbokstav"
+                    defaultValue={props.gateadresse.husbokstav}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        props.onChange({...props.gateadresse, husbokstav: event.target.value})}
+                />
+                <Input
+                    bredde={'S'}
+                    label="Bolignummer"
+                    defaultValue={props.gateadresse.bolignummer}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        props.onChange({...props.gateadresse, bolignummer: event.target.value})}
+                />
+            </InputLinje>
+            <InputLinje>
+                <Input
+                    bredde={'S'}
+                    label="Postnummer"
+                    defaultValue={props.gateadresse.postnummer}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                        props.onChange({...props.gateadresse, postnummer: event.target.value});
+                        onPostnummerInput(event.target.value);
+                    }
+                    }
+                />
+                <div style={{flex: 4, marginLeft: 15}} >
                     <Input
-                        bredde={'S'}
-                        label="Husnummer"
-                        defaultValue={this.props.gateadresse.husnummer}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            this.props.onChange({...this.props.gateadresse, husnummer: event.target.value})}
+                        bredde={'XXL'}
+                        label="Poststed"
+                        disabled={true}
+                        value={props.gateadresse.poststed}
                     />
-                    <Input
-                        bredde={'S'}
-                        label="Husbokstav"
-                        defaultValue={this.props.gateadresse.husbokstav}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            this.props.onChange({...this.props.gateadresse, husbokstav: event.target.value})}
-                    />
-                    <Input
-                        bredde={'S'}
-                        label="Bolignummer"
-                        defaultValue={this.props.gateadresse.bolignummer}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            this.props.onChange({...this.props.gateadresse, bolignummer: event.target.value})}
-                    />
-                </InputLinje>
-                <InputLinje>
-                    <Input
-                        bredde={'S'}
-                        label="Postnummer"
-                        defaultValue={this.props.gateadresse.postnummer}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                            this.props.onChange({...this.props.gateadresse, postnummer: event.target.value});
-                            this.onPostnummerInput(event.target.value);
-                        }
-                        }
-                    />
-                    <div style={{flex: 4, marginLeft: 15}} >
-                        <Input
-                            bredde={'XXL'}
-                            label="Poststed"
-                            disabled={true}
-                            value={this.props.gateadresse.poststed}
-                        />
-                    </div>
-                </InputLinje>
-            </>
-        );
-    }
+                </div>
+            </InputLinje>
+        </>
+    );
 }
 
 export default GateadresseForm;

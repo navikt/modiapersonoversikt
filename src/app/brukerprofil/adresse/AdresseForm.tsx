@@ -19,33 +19,26 @@ interface MidlertidigAdresseNorgeProps {
     postnummerKodeverk: Kodeverk[];
 }
 
-class MidlertidigAdresseNorge extends React.Component<MidlertidigAdresseNorgeProps> {
+function MidlertidigAdresseNorge(props: MidlertidigAdresseNorgeProps) {
 
-    constructor(props: MidlertidigAdresseNorgeProps) {
-        super(props);
-    }
-
-    render() {
-        const options = [<option key={'Gateadresse'}>Gateadresse</option>,
-            <option key={'Matrikkeladresse'}>Matrikkeladresse</option>];
-        return (
-            <>
-                <Select
-                    label="Landkode"
-                    bredde={'m'}
-                    defaultValue={'Gateadresse'}
-                >
-                    {options}
-                </Select>
-                <GateadresseForm
-                    onChange={this.props.onChange}
-                    gateadresse={this.props.midlertidigAdresseNorge.gateadresse as Gateadresse}
-                    postnummerKodeverk={this.props.postnummerKodeverk}
-                />
-            </>
-        );
-    }
-
+    const options = [<option key={'Gateadresse'}>Gateadresse</option>,
+        <option key={'Matrikkeladresse'}>Matrikkeladresse</option>];
+    return (
+        <>
+            <Select
+                label="Landkode"
+                bredde={'m'}
+                defaultValue={'Gateadresse'}
+            >
+                {options}
+            </Select>
+            <GateadresseForm
+                onChange={props.onChange}
+                gateadresse={props.midlertidigAdresseNorge.gateadresse as Gateadresse}
+                postnummerKodeverk={props.postnummerKodeverk}
+            />
+        </>
+    );
 }
 
 interface OwnProps {
