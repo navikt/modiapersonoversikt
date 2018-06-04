@@ -4,20 +4,24 @@ import VisittkortBody from './VisittkortBody';
 import { testStore } from '../../../../setupTests';
 import { Provider } from 'react-redux';
 import { getMockNavKontor } from '../../../../mock/navkontor-mock';
-import { actionNames } from '../../../../redux/navkontor';
+import { actionNames as navKontorActionNames } from '../../../../redux/navkontor';
 import { aremark } from '../../../../mock/person/aremark';
 import { StaticRouter } from 'react-router';
+import { ThemeProvider } from 'styled-components';
+import { personOversiktTheme } from '../../../../themes/personOversiktTheme';
 
 test('viser info om bruker i visittkortbody', () => {
     const visittkortbody = renderer.create(
         <Provider store={testStore}>
-            <StaticRouter context={{}}>
-                <VisittkortBody person={aremark} />
-            </StaticRouter>
+            <ThemeProvider theme={personOversiktTheme}>
+                <StaticRouter context={{}}>
+                    <VisittkortBody person={aremark}/>
+                </StaticRouter>
+            </ThemeProvider>
         </Provider>
     );
 
-    testStore.dispatch({type: actionNames.OK, data: getMockNavKontor( '0118', undefined)});
+    testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118', undefined) });
 
     const json = visittkortbody.toJSON();
     expect(json).toMatchSnapshot();

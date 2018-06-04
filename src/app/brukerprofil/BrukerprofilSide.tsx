@@ -68,7 +68,9 @@ class BrukerprofilSide extends React.Component<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
+                <Innholdslaster
+                    avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
+                >
                     <LinkWrapper>
                         <Link
                             className={'lenke'}

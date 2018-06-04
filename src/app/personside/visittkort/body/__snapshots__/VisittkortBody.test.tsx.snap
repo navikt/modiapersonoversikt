@@ -3,28 +3,28 @@
 exports[`viser info om bruker i visittkortbody 1`] = `
 Array [
   <div
-    className="sc-kAzzGY fkQhJY"
+    className="sc-chPdSV gagluy"
   >
     <div
-      className="sc-chPdSV bnVhEB"
+      className="sc-kgoBCf fUCCGE"
     >
       <div
-        className="sc-kgoBCf jnYcFc"
+        className="sc-kGXeez bBrmxc"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-kGXeez gjUZxU"
+            className="sc-kpOJdX iwyBG"
           >
             Kontaktinformasjon
           </span>
         </p>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -52,13 +52,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Bostedsadresse fra Folkeregisteret
               </span>
@@ -67,10 +67,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -90,59 +90,63 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 E-post Kontakt- og reservasjonsregisteret
               </span>
             </p>
-            <svg
-              aria-label="Laster innhold"
-              className="spinner spinner--l"
-              focusable="false"
-              height={32}
-              kind="spinner"
-              onClick={undefined}
-              preserveAspectRatio="xMidYMid"
-              style={undefined}
-              viewBox="0 0 100 100"
-              width={32}
+            <div
+              className="sc-bdVaJa kzwKAF"
             >
-              <title>
-                Venter...
-              </title>
-              <circle
-                cx="50"
-                cy="50"
-                fill="none"
-                r="40"
-                stroke="#bdbab7"
-                strokeWidth="10"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                fill="none"
-                r="40"
-                stroke="#7f756c"
-                strokeDasharray="50 155"
-                strokeLinecap="round"
-                strokeWidth="10"
-              />
-            </svg>
+              <svg
+                aria-label="Laster innhold"
+                className="spinner spinner--l"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                onClick={undefined}
+                preserveAspectRatio="xMidYMid"
+                style={undefined}
+                viewBox="0 0 100 100"
+                width={32}
+              >
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="40"
+                  stroke="#bdbab7"
+                  strokeWidth="10"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="40"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="10"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -162,70 +166,74 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Telefon Kontakt- og reservasjonsregisteret
               </span>
             </p>
-            <svg
-              aria-label="Laster innhold"
-              className="spinner spinner--l"
-              focusable="false"
-              height={32}
-              kind="spinner"
-              onClick={undefined}
-              preserveAspectRatio="xMidYMid"
-              style={undefined}
-              viewBox="0 0 100 100"
-              width={32}
+            <div
+              className="sc-bdVaJa kzwKAF"
             >
-              <title>
-                Venter...
-              </title>
-              <circle
-                cx="50"
-                cy="50"
-                fill="none"
-                r="40"
-                stroke="#bdbab7"
-                strokeWidth="10"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                fill="none"
-                r="40"
-                stroke="#7f756c"
-                strokeDasharray="50 155"
-                strokeLinecap="round"
-                strokeWidth="10"
-              />
-            </svg>
+              <svg
+                aria-label="Laster innhold"
+                className="spinner spinner--l"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                onClick={undefined}
+                preserveAspectRatio="xMidYMid"
+                style={undefined}
+                viewBox="0 0 100 100"
+                width={32}
+              >
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="40"
+                  stroke="#bdbab7"
+                  strokeWidth="10"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="40"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="10"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Telefon til bruk for NAV
               </span>
@@ -242,7 +250,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-iwsKbI dRsOru"
+                className="sc-gZMcBi dJPmao"
               >
                 Endret 
                 21.06.2014
@@ -253,10 +261,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -294,13 +302,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Kontonummer
               </span>
@@ -314,22 +322,22 @@ Array [
         </div>
       </div>
       <div
-        className="sc-kgoBCf jnYcFc"
+        className="sc-kGXeez bBrmxc"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-kGXeez gjUZxU"
+            className="sc-kpOJdX iwyBG"
           >
             Familie
           </span>
         </p>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -348,13 +356,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Sivilstand
               </span>
@@ -370,10 +378,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height={24}
@@ -391,13 +399,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 Jente
               </span>
@@ -424,22 +432,22 @@ Array [
         </div>
       </div>
       <div
-        className="sc-kgoBCf jnYcFc"
+        className="sc-kGXeez bBrmxc"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-kGXeez gjUZxU"
+            className="sc-kpOJdX iwyBG"
           >
             NAV-kontor
           </span>
         </p>
         <div
-          className="sc-gZMcBi YBfVu"
+          className="sc-gqjmRU hiYJPE"
         >
           <div
-            className="sc-gqjmRU bwmqJa"
+            className="sc-VigVT iQUHP"
           >
             <svg
               height="62.9"
@@ -454,13 +462,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-VigVT gWFDUD"
+            className="sc-jTzLTM cTuoOv"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-jTzLTM eiuGtv"
+                className="sc-fjdhpX dvrXKZ"
               >
                 0118 NAV Aremark
               </span>
@@ -471,7 +479,7 @@ Array [
                 className="typo-etikett-liten"
               >
                 <span
-                  className="sc-iwsKbI dRsOru"
+                  className="sc-gZMcBi dJPmao"
                 >
                   Besøksadresse
                 </span>
@@ -492,20 +500,20 @@ Array [
                 className="typo-etikett-liten"
               >
                 <span
-                  className="sc-iwsKbI dRsOru"
+                  className="sc-gZMcBi dJPmao"
                 >
                   Åpningstider
                 </span>
               </p>
               <dl
-                className="sc-cSHVUG fFOBYt"
+                className="sc-kAzzGY EPjJE"
               >
                 <dt>
                   <p
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fjdhpX chqHmI"
+                      className="sc-jzJRlG gLGMez"
                     >
                       mandag
                     </span>
@@ -525,7 +533,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fjdhpX chqHmI"
+                      className="sc-jzJRlG gLGMez"
                     >
                       tirsdag
                     </span>
@@ -545,7 +553,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fjdhpX chqHmI"
+                      className="sc-jzJRlG gLGMez"
                     >
                       onsdag
                     </span>
@@ -565,7 +573,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fjdhpX chqHmI"
+                      className="sc-jzJRlG gLGMez"
                     >
                       torsdag
                     </span>
@@ -585,7 +593,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fjdhpX chqHmI"
+                      className="sc-jzJRlG gLGMez"
                     >
                       fredag
                     </span>
@@ -604,7 +612,7 @@ Array [
               <br />
             </div>
             <a
-              className="lenke sc-jzJRlG gloTQk"
+              className="lenke sc-cSHVUG bBBzRL"
               href="/norg2-frontend/#/startsok?enhetNr=0118"
               rel="noopener noreferrer"
               target="_blank"
@@ -615,10 +623,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-gZMcBi YBfVu"
+        className="sc-gqjmRU hiYJPE"
       >
         <div
-          className="sc-gqjmRU bwmqJa"
+          className="sc-VigVT iQUHP"
         >
           <svg
             height={25}
@@ -824,13 +832,13 @@ Array [
           </svg>
         </div>
         <div
-          className="sc-VigVT gWFDUD"
+          className="sc-jTzLTM cTuoOv"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-jTzLTM eiuGtv"
+              className="sc-fjdhpX dvrXKZ"
             >
               Tilrettelagt Kommunikasjon
             </span>
@@ -842,48 +850,52 @@ Array [
           </p>
         </div>
       </div>
-      <svg
-        aria-label="Laster innhold"
-        className="spinner spinner--l"
-        focusable="false"
-        height={32}
-        kind="spinner"
-        onClick={undefined}
-        preserveAspectRatio="xMidYMid"
-        style={undefined}
-        viewBox="0 0 100 100"
-        width={32}
+      <div
+        className="sc-bdVaJa kzwKAF"
       >
-        <title>
-          Venter...
-        </title>
-        <circle
-          cx="50"
-          cy="50"
-          fill="none"
-          r="40"
-          stroke="#bdbab7"
-          strokeWidth="10"
-          xmlns="http://www.w3.org/2000/svg"
-        />
-        <circle
-          cx="50"
-          cy="50"
-          fill="none"
-          r="40"
-          stroke="#7f756c"
-          strokeDasharray="50 155"
-          strokeLinecap="round"
-          strokeWidth="10"
-        />
-      </svg>
+        <svg
+          aria-label="Laster innhold"
+          className="spinner spinner--l"
+          focusable="false"
+          height={32}
+          kind="spinner"
+          onClick={undefined}
+          preserveAspectRatio="xMidYMid"
+          style={undefined}
+          viewBox="0 0 100 100"
+          width={32}
+        >
+          <title>
+            Venter...
+          </title>
+          <circle
+            cx="50"
+            cy="50"
+            fill="none"
+            r="40"
+            stroke="#bdbab7"
+            strokeWidth="10"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            fill="none"
+            r="40"
+            stroke="#7f756c"
+            strokeDasharray="50 155"
+            strokeLinecap="round"
+            strokeWidth="10"
+          />
+        </svg>
+      </div>
     </div>
   </div>,
   <div
-    className="sc-jKJlTe kwMdnr"
+    className="sc-eNQAEJ jZNGcd"
   >
     <div
-      className="sc-eNQAEJ gVMpNs"
+      className="sc-hMqMXs htfuFK"
     />
     <a
       className="lenke"
