@@ -2,12 +2,10 @@ import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
-import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../../../redux/utils';
 import { EndreNavnRequest } from '../../../redux/brukerprofil/endreNavnRequest';
@@ -17,12 +15,8 @@ import { endreNavn, reset } from '../../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
-import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
-
-const InfomeldingWrapper = styled.div`
-  margin-top: 1em;
-  margin-bottom: 1em;
-`;
+import { brukersNavnKanEndres, validerNavn, veilederHarPåkrevdRolle } from './endrenavn-utils';
+import Infomelding from './Infomelding';
 
 const ENTER_KEY_PRESS = 13;
 
@@ -209,48 +203,13 @@ class EndreNavnForm extends React.Component<Props, State> {
         });
     }
 
-    harVeilderPåkrevdRolle() {
-        if (!this.props.veilederRoller) {
-            return false;
-        }
-        return this.props.veilederRoller.roller.includes('0000-GA-BD06_EndreNavn');
-    }
-
-    potensiellInfomelding() {
-        if (!this.harVeilderPåkrevdRolle()) {
-            return (
-                <InfomeldingWrapper>
-                    <AlertStripe
-                        type={'info'}
-                    >
-                        Du har ikke nødvendig rolle for å endre navn.
-                    </AlertStripe>
-                </InfomeldingWrapper>
-            );
-        }
-
-        if (brukersNavnKanEndres(this.props.person)) {
-            return (
-                <InfomeldingWrapper>
-                    <AlertStripe
-                        type={'info'}
-                    >
-                        Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
-                    </AlertStripe>
-                </InfomeldingWrapper>
-            );
-        }
-
-        return null;
-    }
-
     render() {
-        const kanEndreNavn = this.harVeilderPåkrevdRolle() && brukersNavnKanEndres(this.props.person);
-        const infomelding = this.potensiellInfomelding();
+        const kanEndreNavn = veilederHarPåkrevdRolle(this.props.veilederRoller) &&
+            brukersNavnKanEndres(this.props.person);
         return (
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Navn</Undertittel>
-                {infomelding}
+                <Infomelding person={this.props.person} veilderRoller={this.props.veilederRoller}/>
                 <Input
                     label="Fornavn"
                     value={this.state.fornavn.input}
