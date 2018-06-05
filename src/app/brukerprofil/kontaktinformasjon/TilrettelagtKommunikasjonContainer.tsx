@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { AppState, Reducer } from '../../../redux/reducer';
-import { VeilederRoller } from '../../../models/veilederRoller';
 import { Person } from '../../../models/person/person';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
@@ -28,7 +27,6 @@ interface DispatchProps {
 
 interface OwnProps {
     person: Person;
-    veilederRoller?: VeilederRoller;
 }
 
 type Props = StateProps & OwnProps & DispatchProps;
@@ -43,17 +41,15 @@ const onError = (
 );
 
 interface TilrettelagtKommunikasjonWrapperProps {
-    veilederRoller?: VeilederRoller;
     person: Person;
     tilrettelagtKommunikasjonKodeverk: KodeverkResponse | undefined;
 }
 
-function TilrettelagtKommunikasjonWrapper({ veilederRoller, person, tilrettelagtKommunikasjonKodeverk }:
+function TilrettelagtKommunikasjonWrapper({ person, tilrettelagtKommunikasjonKodeverk }:
                                               TilrettelagtKommunikasjonWrapperProps) {
     if (tilrettelagtKommunikasjonKodeverk) {
         return (
             <TilrettelagtKommunikasjonsForm
-                veilederRoller={veilederRoller}
                 person={person}
                 tilrettelagtKommunikasjonKodeverk={tilrettelagtKommunikasjonKodeverk}
             />
@@ -84,7 +80,6 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
                     <TilrettelagtKommunikasjonWrapper
                         tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
                         person={this.props.person}
-                        veilederRoller={this.props.veilederRoller}
                     />
                 </Innholdslaster>
             </div>
