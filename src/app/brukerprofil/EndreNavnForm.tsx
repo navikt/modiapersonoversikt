@@ -76,21 +76,21 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            fornavnInput: event.target.value,
+            fornavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
     }
 
     mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            mellomnavnInput: event.target.value,
+            mellomnavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
     }
 
     etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            etternavnInput: event.target.value,
+            etternavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
     }
