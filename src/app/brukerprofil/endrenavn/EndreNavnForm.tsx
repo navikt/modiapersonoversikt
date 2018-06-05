@@ -9,15 +9,15 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { STATUS } from '../../redux/utils';
-import { EndreNavnRequest } from '../../redux/brukerprofil/endreNavnRequest';
-import { BostatusTyper, Person } from '../../models/person/person';
-import { AppState } from '../../redux/reducer';
-import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
-import { VeilederRoller } from '../../models/veilederRoller';
-import { FormKnapperWrapper } from './BrukerprofilForm';
-import RequestTilbakemelding from './kontaktinformasjon/RequestTilbakemelding';
-import { erDnummer } from '../../utils/fnr-utils';
+import { STATUS } from '../../../redux/utils';
+import { EndreNavnRequest } from '../../../redux/brukerprofil/endreNavnRequest';
+import { Person } from '../../../models/person/person';
+import { AppState } from '../../../redux/reducer';
+import { endreNavn, reset } from '../../../redux/brukerprofil/endreNavn';
+import { VeilederRoller } from '../../../models/veilederRoller';
+import { FormKnapperWrapper } from '../BrukerprofilForm';
+import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
+import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
 
 const InfomeldingWrapper = styled.div`
   margin-top: 1em;
@@ -131,16 +131,6 @@ class EndreNavnForm extends React.Component<Props, State> {
         event.preventDefault();
     }
 
-    brukersNavnKanEndres() {
-        if (erDnummer(this.props.person.fødselsnummer)) {
-            return true;
-        } else if (this.props.person.personstatus === BostatusTyper.Utvandret) {
-            return true;
-        }
-
-        return false;
-    }
-
     navnErEndret() {
         const fornavnErEndret = this.state.fornavn.input !== this.props.person.navn.fornavn;
         const mellomnavnErEndret = this.state.mellomnavn.input !== this.props.person.navn.mellomnavn;
@@ -155,35 +145,55 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     validerFornavn() {
-        if (this.state.fornavn.input.trim().length === 0) {
+        try {
+            validerNavn(this.state.fornavn.input);
+        } catch (error) {
             this.setState({
                 fornavn: {
                     ...this.state.fornavn,
-                    feilmelding: 'Fornavn kan ikke være tomt'
+                    feilmelding: error.toString()
                 }
             });
-            return false;
+            throw error;
         }
-        return true;
     }
 
     validerEtternavn() {
-        if (this.state.etternavn.input.trim().length === 0) {
+        try {
+            validerNavn(this.state.etternavn.input);
+        } catch (error) {
             this.setState({
                 etternavn: {
                     ...this.state.etternavn,
-                    feilmelding: 'Etternavn kan ikke være tomt'
+                    feilmelding: error.toString()
                 }
             });
-            return false;
+            throw error;
         }
-        return true;
+    }
+
+    validerInput() {
+        let validInput = true;
+
+        try {
+            this.validerFornavn();
+        } catch {
+            validInput = false;
+        }
+
+        try {
+            this.validerEtternavn();
+        } catch {
+            validInput = false;
+        }
+
+        return validInput;
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (!this.validerFornavn() || !this.validerEtternavn()) {
+        if (!this.validerInput()) {
             return;
         }
 
@@ -219,7 +229,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             );
         }
 
-        if (!this.brukersNavnKanEndres()) {
+        if (brukersNavnKanEndres(this.props.person)) {
             return (
                 <InfomeldingWrapper>
                     <AlertStripe
@@ -235,7 +245,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     render() {
-        const kanEndreNavn = this.harVeilderPåkrevdRolle() && this.brukersNavnKanEndres();
+        const kanEndreNavn = this.harVeilderPåkrevdRolle() && brukersNavnKanEndres(this.props.person);
         const infomelding = this.potensiellInfomelding();
         return (
             <form onSubmit={this.handleSubmit}>
