@@ -166,7 +166,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             this.setState({
                 etternavn: {
                     ...this.state.etternavn,
-                    feilmelding: 'Fornavn kan ikke være tomt'
+                    feilmelding: 'Etternavn kan ikke være tomt'
                 }
             });
             return false;
