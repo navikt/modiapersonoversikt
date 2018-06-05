@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 
@@ -24,6 +24,30 @@ function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.which === ENTER_KEY_PRESS) {
         event.preventDefault();
     }
+}
+
+interface NavnInputProps {
+    label: string;
+    state: {
+        input: string;
+        feilmelding: string | undefined;
+    };
+    disabled: boolean;
+    onChange: (input: string) => void;
+}
+
+function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
+    let feilmelding = state.feilmelding ? {feilmelding: state.feilmelding} : undefined;
+    return (
+        <Input
+            label={label}
+            value={state.input}
+            onChange={(event) => onChange(event.target.value.toUpperCase())}
+            disabled={disabled}
+            onKeyPress={ignoreEnter}
+            feil={feilmelding}
+        />
+    );
 }
 
 interface State {
@@ -94,35 +118,34 @@ class EndreNavnForm extends React.Component<Props, State> {
         this.props.resetEndreNavnReducer();
     }
 
-    fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
+    fornavnInputChange(input: string) {
         this.setState({
             fornavn: {
-                input: event.target.value.toUpperCase(),
+                input,
                 feilmelding: undefined
             },
             formErEndret: true
         });
     }
 
-    mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
+    mellomnavnInputChange(input: string) {
         this.setState({
             mellomnavn: {
                 feilmelding: undefined,
-                input: event.target.value.toUpperCase()
+                input
             },
             formErEndret: true
         });
     }
 
-    etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
+    etternavnInputChange(input: string) {
         this.setState({
             etternavn: {
                 feilmelding: undefined,
-                input: event.target.value.toUpperCase()
+                input
             },
             formErEndret: true
         });
-        event.preventDefault();
     }
 
     navnErEndret() {
@@ -145,7 +168,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             this.setState({
                 fornavn: {
                     ...this.state.fornavn,
-                    feilmelding: error.toString()
+                    feilmelding: error.message
                 }
             });
             throw error;
@@ -159,7 +182,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             this.setState({
                 etternavn: {
                     ...this.state.etternavn,
-                    feilmelding: error.toString()
+                    feilmelding: error.message
                 }
             });
             throw error;
@@ -210,33 +233,23 @@ class EndreNavnForm extends React.Component<Props, State> {
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Navn</Undertittel>
                 <Infomelding person={this.props.person} veilderRoller={this.props.veilederRoller}/>
-                <Input
+                <NavnInput
                     label="Fornavn"
-                    value={this.state.fornavn.input}
+                    state={this.state.fornavn}
                     onChange={this.fornavnInputChange}
                     disabled={!kanEndreNavn}
-                    onKeyPress={ignoreEnter}
-                    feil={this.state.fornavn.feilmelding ? {feilmelding: this.state.fornavn.feilmelding} : undefined}
                 />
-                <Input
+                <NavnInput
                     label="Mellomnavn"
-                    value={this.state.mellomnavn.input}
+                    state={this.state.mellomnavn}
                     onChange={this.mellomnavnInputChange}
                     disabled={!kanEndreNavn}
-                    onKeyPress={ignoreEnter}
-                    feil={this.state.mellomnavn.feilmelding ?
-                        {feilmelding: this.state.mellomnavn.feilmelding} :
-                        undefined}
                 />
-                <Input
+                <NavnInput
                     label="Etternavn"
-                    value={this.state.etternavn.input}
+                    state={this.state.etternavn}
                     onChange={this.etternavnInputChange}
                     disabled={!kanEndreNavn}
-                    onKeyPress={ignoreEnter}
-                    feil={this.state.etternavn.feilmelding ?
-                        {feilmelding: this.state.etternavn.feilmelding} :
-                        undefined}
                 />
                 <FormKnapperWrapper>
                     <KnappBase
