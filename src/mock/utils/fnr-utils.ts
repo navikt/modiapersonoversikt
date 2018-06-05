@@ -4,8 +4,9 @@ import fnrGenerator from 'fnr-generator';
 import * as faker from 'faker/locale/nb_NO';
 import FakerStatic = Faker.FakerStatic;
 import { Kjønn } from '../../models/person/person';
-import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
+import { erDnummer, utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { aremark } from '../person/aremark';
+import { padLeft } from '../../utils/string-utils';
 
 export function randomFodselsnummer(): string {
     const tilfeldigDato = faker.date.past(120);
@@ -33,17 +34,21 @@ export function getFodselsdato(fødselsnummer: string): Moment {
     }
 
     const dag = getDag(fødselsnummer);
-    if (Number(dag) > 40) {
-        throw Error('D-nummer er ikke støttet');
-    }
 
     const fireSifretÅr = getFiresifretÅr(fødselsnummer);
     const måned = fødselsnummer.substring(2, 4);
     return moment(`${fireSifretÅr}-${måned}-${dag}`);
 }
 
-function getDag(fødselsnummer: string) {
-    return fødselsnummer.substring(0, 2);
+function getDag(fødselsnummer: string): string {
+    let dag = Number(fødselsnummer.substring(0, 2));
+    if (erDnummer(fødselsnummer)) {
+        dag = dag - 40;
+    } else if (dag >= 72) {
+        throw Error('Fødselsnummer er av ukjent format: ' + fødselsnummer);
+    }
+
+    return padLeft(String(dag), 2, '0');
 }
 
 function getFiresifretÅr(fødselsnummer: string) {

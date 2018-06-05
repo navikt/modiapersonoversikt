@@ -11,7 +11,10 @@ import TilrettelagtKommunikasjonContainer from
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  > * {
+    margin-left: 1em;
+  }
 `;
 
 interface Props {
@@ -30,7 +33,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
                 <Undertittel>Kontonummer</Undertittel>
             </form>
             <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
-            <TilrettelagtKommunikasjonContainer person={person} veilederRoller={veilderRoller}/>
+            <TilrettelagtKommunikasjonContainer person={person} />
         </>
     );
 }

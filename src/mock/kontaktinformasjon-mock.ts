@@ -12,11 +12,11 @@ const aremarkKontaktinformasjon = {
     reservert: undefined,
     epost: {
         value: 'aremark@testfamilien.no',
-        sistOppdatert: getSistOppdatert()
+        sistOppdatert: '2014-05-15T11:32:43+02:00'
     },
     mobiltelefon: {
         value: '11223344',
-        sistOppdatert: getSistOppdatert()
+        sistOppdatert: '2014-05-15T11:32:43+02:00'
     }
 };
 

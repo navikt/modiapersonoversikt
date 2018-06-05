@@ -2,19 +2,27 @@ import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
+import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../../redux/utils';
 import { EndreNavnRequest } from '../../redux/brukerprofil/endreNavnRequest';
-import { Person } from '../../models/person/person';
+import { BostatusTyper, Person } from '../../models/person/person';
 import { AppState } from '../../redux/reducer';
 import { endreNavn, reset } from '../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { FormKnapperWrapper } from './BrukerprofilForm';
 import RequestTilbakemelding from './kontaktinformasjon/RequestTilbakemelding';
+import { erDnummer } from '../../utils/fnr-utils';
+
+const InfomeldingWrapper = styled.div`
+  margin-top: 1em;
+  margin-bottom: 1em;
+`;
 
 interface State {
     fornavnInput: string;
@@ -68,23 +76,33 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            fornavnInput: event.target.value,
+            fornavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
     }
 
     mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            mellomnavnInput: event.target.value,
+            mellomnavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
     }
 
     etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            etternavnInput: event.target.value,
+            etternavnInput: event.target.value.toUpperCase(),
             formErEndret: true
         });
+    }
+
+    brukersNavnKanEndres() {
+        if (erDnummer(this.props.person.fødselsnummer)) {
+            return true;
+        } else if (this.props.person.personstatus === BostatusTyper.Utvandret) {
+            return true;
+        }
+
+        return false;
     }
 
     navnErEndret() {
@@ -121,41 +139,71 @@ class EndreNavnForm extends React.Component<Props, State> {
         return this.props.veilederRoller.roller.includes('0000-GA-BD06_EndreNavn');
     }
 
+    potensiellInfomelding() {
+        if (!this.harVeilderPåkrevdRolle()) {
+            return (
+                <InfomeldingWrapper>
+                    <AlertStripe
+                        type={'info'}
+                    >
+                        Du har ikke nødvendig rolle for å endre navn.
+                    </AlertStripe>
+                </InfomeldingWrapper>
+            );
+        }
+
+        if (!this.brukersNavnKanEndres()) {
+            return (
+                <InfomeldingWrapper>
+                    <AlertStripe
+                        type={'info'}
+                    >
+                        Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
+                    </AlertStripe>
+                </InfomeldingWrapper>
+            );
+        }
+
+        return null;
+    }
+
     render() {
-        const harIkkeTilgang = !this.harVeilderPåkrevdRolle();
+        const kanEndreNavn = this.harVeilderPåkrevdRolle() && this.brukersNavnKanEndres();
+        const infomelding = this.potensiellInfomelding();
         return (
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Navn</Undertittel>
+                {infomelding}
                 <Input
                     label="Fornavn"
                     value={this.state.fornavnInput}
                     onChange={this.fornavnInputChange}
-                    disabled={harIkkeTilgang}
+                    disabled={!kanEndreNavn}
                 />
                 <Input
                     label="Mellomnavn"
                     value={this.state.mellomnavnInput}
                     onChange={this.mellomnavnInputChange}
-                    disabled={harIkkeTilgang}
+                    disabled={!kanEndreNavn}
                 />
                 <Input
                     label="Etternavn"
                     value={this.state.etternavnInput}
                     onChange={this.etternavnInputChange}
-                    disabled={harIkkeTilgang}
+                    disabled={!kanEndreNavn}
                 />
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={harIkkeTilgang || !this.state.formErEndret}
+                        disabled={!kanEndreNavn || !this.state.formErEndret}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
-                        disabled={harIkkeTilgang || !this.state.formErEndret}
+                        disabled={!kanEndreNavn || !this.state.formErEndret}
                         autoDisableVedSpinner={true}
                     >
                         Endre navn

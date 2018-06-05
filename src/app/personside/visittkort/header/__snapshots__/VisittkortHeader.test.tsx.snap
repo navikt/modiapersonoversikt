@@ -29,14 +29,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       <h2
         className="typo-undertittel"
       >
-        <span
-          className="sc-iwsKbI dkUFrT"
-        >
-          AREMARK TESTFAMILIEN
-           (
-          42
-          )
-        </span>
+        AREMARK TESTFAMILIEN
+         (
+        42
+        )
       </h2>
       <span
         className="typo-undertekst"
@@ -87,6 +83,24 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           className="typo-normal"
         >
           Fortrolig adresse
+        </span>
+      </div>
+      <div
+        className="etikett etikett--advarsel"
+      >
+        <span
+          className="typo-normal"
+        >
+          Sikkerhetstiltak
+        </span>
+      </div>
+      <div
+        className="etikett etikett--fokus"
+      >
+        <span
+          className="typo-normal"
+        >
+          Vergemål
         </span>
       </div>
       <div
