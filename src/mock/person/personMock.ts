@@ -67,9 +67,9 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
 }
 
 function getNavn(fødselsnummer: string): Navn {
-    const fornavn = getFornavn(fødselsnummer);
-    const etternavn = faker.name.lastName();
-    const mellomnavn = '';
+    const fornavn = getFornavn(fødselsnummer).toUpperCase();
+    const etternavn = faker.name.lastName().toUpperCase();
+    const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName().toUpperCase() : '';
     return {
         fornavn: fornavn,
         etternavn: etternavn,

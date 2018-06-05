@@ -1,4 +1,4 @@
-import { formatNumber } from './helpers';
+import { formatNumber } from './string-utils';
 
 it('Formaterer telefonnummer', () => {
     const format  = '### ## ###';
