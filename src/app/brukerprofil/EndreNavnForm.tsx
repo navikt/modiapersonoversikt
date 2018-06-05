@@ -26,6 +26,12 @@ const InfomeldingWrapper = styled.div`
 
 const ENTER_KEY_PRESS = 13;
 
+function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.which === ENTER_KEY_PRESS) {
+        event.preventDefault();
+    }
+}
+
 interface State {
     fornavn: {
         input: string;
@@ -232,14 +238,7 @@ class EndreNavnForm extends React.Component<Props, State> {
         const kanEndreNavn = this.harVeilderPåkrevdRolle() && this.brukersNavnKanEndres();
         const infomelding = this.potensiellInfomelding();
         return (
-            <form
-                onSubmit={this.handleSubmit}
-                onKeyPress={(event) => {
-                    if (event.which === ENTER_KEY_PRESS) {
-                        this.handleSubmit(event);
-                    }
-                }}
-            >
+            <form onSubmit={this.handleSubmit}>
                 <Undertittel>Navn</Undertittel>
                 {infomelding}
                 <Input
@@ -247,6 +246,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     value={this.state.fornavn.input}
                     onChange={this.fornavnInputChange}
                     disabled={!kanEndreNavn}
+                    onKeyPress={ignoreEnter}
                     feil={this.state.fornavn.feilmelding ? {feilmelding: this.state.fornavn.feilmelding} : undefined}
                 />
                 <Input
@@ -254,6 +254,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     value={this.state.mellomnavn.input}
                     onChange={this.mellomnavnInputChange}
                     disabled={!kanEndreNavn}
+                    onKeyPress={ignoreEnter}
                     feil={this.state.mellomnavn.feilmelding ?
                         {feilmelding: this.state.mellomnavn.feilmelding} :
                         undefined}
@@ -263,6 +264,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     value={this.state.etternavn.input}
                     onChange={this.etternavnInputChange}
                     disabled={!kanEndreNavn}
+                    onKeyPress={ignoreEnter}
                     feil={this.state.etternavn.feilmelding ?
                         {feilmelding: this.state.etternavn.feilmelding} :
                         undefined}
