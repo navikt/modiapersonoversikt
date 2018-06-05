@@ -24,10 +24,21 @@ const InfomeldingWrapper = styled.div`
   margin-bottom: 1em;
 `;
 
+const ENTER_KEY_PRESS = 13;
+
 interface State {
-    fornavnInput: string;
-    mellomnavnInput: string;
-    etternavnInput: string;
+    fornavn: {
+        input: string;
+        feilmelding: string | undefined;
+    };
+    mellomnavn: {
+        input: string;
+        feilmelding: string | undefined;
+    };
+    etternavn: {
+        input: string;
+        feilmelding: string | undefined;
+    };
     formErEndret: boolean;
 }
 
@@ -63,9 +74,18 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     initialState(props: Props) {
         return {
-            fornavnInput: props.person.navn.fornavn || '',
-            mellomnavnInput: props.person.navn.mellomnavn || '',
-            etternavnInput: props.person.navn.etternavn || '',
+            fornavn: {
+                input: props.person.navn.fornavn || '',
+                feilmelding: undefined
+            },
+            mellomnavn: {
+                input: props.person.navn.mellomnavn || '',
+                feilmelding: undefined
+            },
+            etternavn: {
+                input: props.person.navn.etternavn || '',
+                feilmelding: undefined
+            },
             formErEndret: false
         };
     }
@@ -76,23 +96,33 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     fornavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            fornavnInput: event.target.value.toUpperCase(),
+            fornavn: {
+                input: event.target.value.toUpperCase(),
+                feilmelding: undefined
+            },
             formErEndret: true
         });
     }
 
     mellomnavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            mellomnavnInput: event.target.value.toUpperCase(),
+            mellomnavn: {
+                feilmelding: undefined,
+                input: event.target.value.toUpperCase()
+            },
             formErEndret: true
         });
     }
 
     etternavnInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.setState({
-            etternavnInput: event.target.value.toUpperCase(),
+            etternavn: {
+                feilmelding: undefined,
+                input: event.target.value.toUpperCase()
+            },
             formErEndret: true
         });
+        event.preventDefault();
     }
 
     brukersNavnKanEndres() {
@@ -106,9 +136,9 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     navnErEndret() {
-        const fornavnErEndret = this.state.fornavnInput !== this.props.person.navn.fornavn;
-        const mellomnavnErEndret = this.state.mellomnavnInput !== this.props.person.navn.mellomnavn;
-        const etternavnErEndret = this.state.etternavnInput !== this.props.person.navn.etternavn;
+        const fornavnErEndret = this.state.fornavn.input !== this.props.person.navn.fornavn;
+        const mellomnavnErEndret = this.state.mellomnavn.input !== this.props.person.navn.mellomnavn;
+        const etternavnErEndret = this.state.etternavn.input !== this.props.person.navn.etternavn;
         return fornavnErEndret || mellomnavnErEndret || etternavnErEndret;
     }
 
@@ -118,18 +148,49 @@ class EndreNavnForm extends React.Component<Props, State> {
         event.preventDefault();
     }
 
+    validerFornavn() {
+        if (this.state.fornavn.input.trim().length === 0) {
+            this.setState({
+                fornavn: {
+                    ...this.state.fornavn,
+                    feilmelding: 'Fornavn kan ikke være tomt'
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+
+    validerEtternavn() {
+        if (this.state.etternavn.input.trim().length === 0) {
+            this.setState({
+                etternavn: {
+                    ...this.state.etternavn,
+                    feilmelding: 'Fornavn kan ikke være tomt'
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+
     handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        if (!this.validerFornavn() || !this.validerEtternavn()) {
+            return;
+        }
+
         this.setState({
             formErEndret: false
         });
 
         this.props.endreNavn({
             fødselsnummer: this.props.person.fødselsnummer,
-            fornavn: this.state.fornavnInput,
-            mellomnavn: this.state.mellomnavnInput,
-            etternavn: this.state.etternavnInput
+            fornavn: this.state.fornavn.input,
+            mellomnavn: this.state.mellomnavn.input,
+            etternavn: this.state.etternavn.input
         });
-        event.preventDefault();
     }
 
     harVeilderPåkrevdRolle() {
@@ -171,26 +232,40 @@ class EndreNavnForm extends React.Component<Props, State> {
         const kanEndreNavn = this.harVeilderPåkrevdRolle() && this.brukersNavnKanEndres();
         const infomelding = this.potensiellInfomelding();
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form
+                onSubmit={this.handleSubmit}
+                onKeyPress={(event) => {
+                    if (event.which === ENTER_KEY_PRESS) {
+                        this.handleSubmit(event);
+                    }
+                }}
+            >
                 <Undertittel>Navn</Undertittel>
                 {infomelding}
                 <Input
                     label="Fornavn"
-                    value={this.state.fornavnInput}
+                    value={this.state.fornavn.input}
                     onChange={this.fornavnInputChange}
                     disabled={!kanEndreNavn}
+                    feil={this.state.fornavn.feilmelding ? {feilmelding: this.state.fornavn.feilmelding} : undefined}
                 />
                 <Input
                     label="Mellomnavn"
-                    value={this.state.mellomnavnInput}
+                    value={this.state.mellomnavn.input}
                     onChange={this.mellomnavnInputChange}
                     disabled={!kanEndreNavn}
+                    feil={this.state.mellomnavn.feilmelding ?
+                        {feilmelding: this.state.mellomnavn.feilmelding} :
+                        undefined}
                 />
                 <Input
                     label="Etternavn"
-                    value={this.state.etternavnInput}
+                    value={this.state.etternavn.input}
                     onChange={this.etternavnInputChange}
                     disabled={!kanEndreNavn}
+                    feil={this.state.etternavn.feilmelding ?
+                        {feilmelding: this.state.etternavn.feilmelding} :
+                        undefined}
                 />
                 <FormKnapperWrapper>
                     <KnappBase
