@@ -110,7 +110,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-gZMcBi dJPmao"
+                className="sc-iwsKbI dRsOru"
               >
                 Endret 
                 15.05.2014
@@ -162,7 +162,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-gZMcBi dJPmao"
+                className="sc-iwsKbI dRsOru"
               >
                 Endret 
                 15.05.2014
@@ -803,22 +803,22 @@ Array [
         </div>
       </div>
       <div
-        className="sc-kGXeez bBrmxc"
+        className="sc-kgoBCf jnYcFc"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-kpOJdX iwyBG"
+            className="sc-kGXeez gjUZxU"
           >
             Bruker er under vergemål
           </span>
         </p>
         <div
-          className="sc-gqjmRU hiYJPE"
+          className="sc-gZMcBi YBfVu"
         >
           <div
-            className="sc-VigVT iQUHP"
+            className="sc-gqjmRU bwmqJa"
           >
             <svg
               height={25}
@@ -1024,22 +1024,22 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-jTzLTM cTuoOv"
+            className="sc-VigVT gWFDUD"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-fjdhpX dvrXKZ"
+                className="sc-jTzLTM eiuGtv"
               >
                 Verge
               </span>
             </p>
             <div
-              className="sc-ckVGcZ frAFhH"
+              className="sc-dxgOiQ kNSFrU"
             >
               <div
-                className="sc-dxgOiQ fAVTIV"
+                className="sc-kpOJdX gmbbRI"
               >
                 <p
                   className="typo-undertekst"
@@ -1091,10 +1091,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-gqjmRU hiYJPE"
+        className="sc-gZMcBi YBfVu"
       >
         <div
-          className="sc-VigVT iQUHP"
+          className="sc-gqjmRU bwmqJa"
         >
           <svg
             viewBox="0 0 25 25"
@@ -1298,13 +1298,13 @@ Array [
           </svg>
         </div>
         <div
-          className="sc-jTzLTM cTuoOv"
+          className="sc-VigVT gWFDUD"
         >
           <p
             className="typo-etikett-liten"
           >
             <span
-              className="sc-fjdhpX dvrXKZ"
+              className="sc-jTzLTM eiuGtv"
             >
               Sikkerhetstiltak
             </span>
@@ -1313,7 +1313,7 @@ Array [
             className="typo-etikett-liten"
           >
             <span
-              className="sc-gZMcBi dJPmao"
+              className="sc-iwsKbI dRsOru"
             >
               Gyldig: 
               12.12.2005

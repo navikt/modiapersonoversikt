@@ -1,7 +1,18 @@
-import { apiBaseUri } from './config';
-import { EndreNavnRequest } from '../redux/brukerprofil/endreNavnRequest';
+import { apiBaseUri } from '../config';
 
-export function postEndreNavn(request: EndreNavnRequest): Promise<{}> {
+export interface Request {
+    mobil?: Telefon;
+    jobb?: Telefon;
+    hjem?: Telefon;
+    fødselsnummer: string;
+}
+
+interface Telefon {
+    retningsnummer: string;
+    identifikator: string;
+}
+
+export function fetchEndreNavKontaktinformasjon(request: Request): Promise<{}> {
     const postConfig = {
         body: JSON.stringify(request),
         cache: 'no-cache' as RequestCache ,
@@ -13,7 +24,7 @@ export function postEndreNavn(request: EndreNavnRequest): Promise<{}> {
         mode: 'cors' as RequestMode,
         redirect: 'follow' as RequestRedirect,
     };
-    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/navn/`;
+    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/telefon/`;
     return fetch(uri, postConfig)
         .then((response) => {
             if (response.ok) {

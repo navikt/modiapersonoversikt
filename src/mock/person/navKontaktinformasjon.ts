@@ -9,25 +9,25 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
         kontaktinformasjon.mobil = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('9#######'),
+            identifikator: faker.phone.phoneNumber('9#######'),
             retningsnummer: '47'
         };
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.jobbTelefon = {
+        kontaktinformasjon.jobb = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('########'),
+            identifikator: faker.phone.phoneNumber('########'),
             retningsnummer: '47'
         };
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.hjemTelefon = {
+        kontaktinformasjon.hjem = {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('########'),
+            identifikator: faker.phone.phoneNumber('########'),
             retningsnummer: '47'
         };
     }

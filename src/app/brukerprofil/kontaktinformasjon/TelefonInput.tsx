@@ -86,7 +86,7 @@ export function TelefonInput(props: TelefonInputProps) {
                     <Input
                         bredde={'XXL'}
                         label="Telefonnummer"
-                        value={props.inputValue.telefonnummer}
+                        value={props.inputValue.identifikator}
                         onChange={props.telfonnummerInputChange}
                     />
                 </TelefonnummerWrapper>

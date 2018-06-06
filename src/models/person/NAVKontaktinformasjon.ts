@@ -1,12 +1,12 @@
 export interface NavKontaktinformasjon {
     mobil?: Telefon;
-    jobbTelefon?: Telefon;
-    hjemTelefon?: Telefon;
+    jobb?: Telefon;
+    hjem?: Telefon;
 }
 
 export interface Telefon {
     sistEndret: string;
     retningsnummer: string;
-    telefonnummer: string;
+    identifikator: string;
     sistEndretAv: string;
 }

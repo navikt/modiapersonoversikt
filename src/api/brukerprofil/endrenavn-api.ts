@@ -1,7 +1,7 @@
-import { apiBaseUri } from './config';
-import { EndreTilrettelagtKommunikasjonrequest } from '../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { apiBaseUri } from '../config';
+import { EndreNavnRequest } from '../../redux/brukerprofil/endreNavnRequest';
 
-export function postEndreTilrettelagtKommunikasjon(request: EndreTilrettelagtKommunikasjonrequest): Promise<{}> {
+export function postEndreNavn(request: EndreNavnRequest): Promise<{}> {
     const postConfig = {
         body: JSON.stringify(request),
         cache: 'no-cache' as RequestCache ,
@@ -13,7 +13,7 @@ export function postEndreTilrettelagtKommunikasjon(request: EndreTilrettelagtKom
         mode: 'cors' as RequestMode,
         redirect: 'follow' as RequestRedirect,
     };
-    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/tilrettelagtkommunikasjon/`; // TODO
+    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/navn/`;
     return fetch(uri, postConfig)
         .then((response) => {
             if (response.ok) {

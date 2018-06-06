@@ -7,7 +7,7 @@ import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
 import TilrettelagtKommunikasjonContainer from
-        './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
+        './tilrettelagtkommunikasjon/TilrettelagtKommunikasjonContainer';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
             <form>
                 <Undertittel>Kontonummer</Undertittel>
             </form>
-            <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
+            <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
         </>
     );
