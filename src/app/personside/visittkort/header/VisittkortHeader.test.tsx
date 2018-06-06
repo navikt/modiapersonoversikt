@@ -9,7 +9,7 @@ import { testStore } from '../../../../setupTests';
 import { aremark } from '../../../../mock/person/aremark';
 import { getPerson } from '../../../../mock/person/personMock';
 import { actionNames as vergeMålActionNames } from '../../../../redux/vergemal';
-import { mockVergemal } from '../../../../mock/vergemal-mock';
+import { mockVergemal } from '../../../../mock/vergemal-mocks';
 import { getEgenAnsatt } from '../../../../api/egenansatt';
 import { actionNames as egenAnsattActionNames } from '../../../../redux/egenansatt';
 

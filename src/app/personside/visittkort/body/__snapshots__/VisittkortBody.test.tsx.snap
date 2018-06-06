@@ -1054,18 +1054,18 @@ Array [
                 <p
                   className="typo-undertekst"
                 >
-                  Fullmektig
+                  Advokat
                 </p>
               </div>
               <p
                 className="typo-undertekst-bold"
               >
-                Voksen
+                Enslig mindreårig asylsøker
               </p>
               <p
                 className="typo-undertekst"
               >
-                Ivareta personens interesser innenfor det personlige området
+                Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
               </p>
               <p
                 className="typo-undertekst"
@@ -1075,7 +1075,7 @@ Array [
               <p
                 className="typo-undertekst"
               >
-                Fylkesmannen i Leahby
+                Fylkesmannen i Østfold
               </p>
               <p
                 className="typo-etikett-liten"
