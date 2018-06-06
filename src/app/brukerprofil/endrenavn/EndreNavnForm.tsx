@@ -37,7 +37,7 @@ interface NavnInputProps {
 }
 
 function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
-    let feilmelding = state.feilmelding ? {feilmelding: state.feilmelding} : undefined;
+    const feilmelding = state.feilmelding ? {feilmelding: state.feilmelding} : undefined;
     return (
         <Input
             label={label}
