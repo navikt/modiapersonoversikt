@@ -255,14 +255,14 @@ class EndreNavnForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={!kanEndreNavn || !this.state.formErEndret}
+                        disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
-                        disabled={!kanEndreNavn || !this.state.formErEndret}
+                        disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
                         autoDisableVedSpinner={true}
                     >
                         Endre navn
