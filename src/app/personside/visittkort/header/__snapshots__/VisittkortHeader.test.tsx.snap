@@ -82,7 +82,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         <span
           className="typo-normal"
         >
-          Fortrolig adresse
+          Kode 7
         </span>
       </div>
       <div
