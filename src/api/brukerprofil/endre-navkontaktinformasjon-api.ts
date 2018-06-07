@@ -1,4 +1,5 @@
-import { apiBaseUri, postConfig } from '../config';
+import { apiBaseUri } from '../config';
+import { post } from '../api';
 
 export interface Request {
     mobil?: Telefon;
@@ -14,13 +15,5 @@ interface Telefon {
 
 export function fetchEndreNavKontaktinformasjon(request: Request): Promise<{}> {
     const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/telefon/`;
-
-    return fetch(uri, postConfig(request))
-        .then((response) => {
-            if (response.ok) {
-                return {};
-            } else {
-                throw response.statusText;
-            }
-        });
+    return post(uri, request);
 }

@@ -58,7 +58,7 @@ function endreNavnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
         1200,
         STATUS_OK,
-        () => {return {}; }));
+        () => {return undefined; }));
 }
 
 function endreNavKontaktinformasjonMock(mock: FetchMock) {

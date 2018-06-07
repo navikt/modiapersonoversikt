@@ -1,15 +1,8 @@
-import { apiBaseUri, postConfig } from '../config';
+import { apiBaseUri } from '../config';
 import { EndreNavnRequest } from '../../redux/brukerprofil/endreNavnRequest';
+import { post } from '../api';
 
 export function postEndreNavn(request: EndreNavnRequest): Promise<{}> {
     const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/navn/`;
-
-    return fetch(uri, postConfig(request))
-        .then((response) => {
-            if (response.ok) {
-                return {};
-            } else {
-                throw response.statusText;
-            }
-        });
+    return post(uri, request);
 }
