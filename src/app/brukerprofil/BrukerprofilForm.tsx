@@ -8,6 +8,7 @@ import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
 import TilrettelagtKommunikasjonContainer from
         './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
+import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
@@ -29,9 +30,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
             <form>
                 <Undertittel>Adresse</Undertittel>
             </form>
-            <form>
-                <Undertittel>Kontonummer</Undertittel>
-            </form>
+            <EndreKontonummerForm person={person} />
             <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
             <TilrettelagtKommunikasjonContainer person={person} />
         </>
