@@ -50,6 +50,7 @@ export const aremark: Person = {
                 etternavn: 'Aremark'
             },
             alder: 17,
+            alderMåneder: 184,
             fødselsnummer: '10117100000',
             personstatus: {}
         }
