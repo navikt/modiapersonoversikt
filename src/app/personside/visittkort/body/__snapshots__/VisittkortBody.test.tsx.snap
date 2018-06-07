@@ -63,7 +63,11 @@ Array [
                 Bostedsadresse fra Folkeregisteret
               </span>
             </p>
-            Ikke registrert
+            <p
+              className="typo-undertekst"
+            >
+              Ikke registrert
+            </p>
           </div>
         </div>
         <div
