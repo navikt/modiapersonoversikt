@@ -82,7 +82,6 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        console.log('Unmouting..');
         this.props.tilbakestillReducer();
     }
 
