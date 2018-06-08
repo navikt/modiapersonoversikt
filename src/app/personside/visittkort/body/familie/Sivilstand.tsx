@@ -23,9 +23,17 @@ function Sivilstand(props: {sivilstand: Sivilstand}) {
         return <>{props.sivilstand.beskrivelse}</>;
     }
     const relasjonFraOgMed = moment(props.sivilstand.fraOgMed).format('DD.MM.YYYY');
-    return (
-        <>{props.sivilstand.beskrivelse} ({relasjonFraOgMed})</>
-    );
+    const nullDatoFraTPS = '01.01.9999';
+
+    if (relasjonFraOgMed !== nullDatoFraTPS) {
+        return (
+            <>{props.sivilstand.beskrivelse} ({relasjonFraOgMed})</>
+        );
+    } else {
+        return (
+            <>{props.sivilstand.beskrivelse}</>
+        );
+    }
 }
 
 function Partner({relasjon, sivilstand}: PartnerProps) {
