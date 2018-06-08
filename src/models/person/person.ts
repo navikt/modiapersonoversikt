@@ -104,6 +104,7 @@ export enum BegrensetTilgangTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
     EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
+    Geografi = 'sikkerhetsbegrensing.geografisk',
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 
