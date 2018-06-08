@@ -8,11 +8,13 @@ interface Props {
 function BegrensetTilgangBegrunnelse({begrunnelseType}: Props) {
     switch (begrunnelseType) {
         case BegrensetTilgangTyper.Kode6:
-            return <>Bruker har strengt fortrolig adresse</>;
+            return <>Bruker har diskresjonskode 6, du har ikke tilgang til å se informasjon om bruker.</>;
         case BegrensetTilgangTyper.Kode7:
-            return <>Bruker har fortrolig adresse</>;
+            return <>Bruker har diskresjonskode 7, du har ikke tilgang til å se informasjon om bruker.</>;
         case BegrensetTilgangTyper.EgenAnsatt:
-            return <>Bruker faller inn under begrensning for egen ansatt</>;
+            return <>Bruker er egen ansatt, du har ikke tilgang til å se informasjon om bruker.</>;
+        case BegrensetTilgangTyper.Geografi:
+            return <>Ikke geografisk tilgang til bruker, du har ikke tilgang til å se informasjon om bruker.</>;
         case BegrensetTilgangTyper.DefaultFraBackEnd:
             return <>Ukjent sikkerhetsbegrensing</>;
         default:

@@ -22,9 +22,9 @@ const StyledEtikketter = styled.div`
 function lagDiskresjonskodeEtikett(diskresjonskode: string) {
     switch (diskresjonskode) {
         case Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Strengt fortrolig adresse</EtikettBase>;
+            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 6</EtikettBase>;
         case Diskresjonskoder.FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Fortrolig adresse</EtikettBase>;
+            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 7</EtikettBase>;
         default:
             return <EtikettBase key={diskresjonskode} type={'info'}>{diskresjonskode}</EtikettBase>;
     }

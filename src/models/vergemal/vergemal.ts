@@ -1,4 +1,5 @@
 import { Navn } from '../person/person';
+import { Kodeverk } from '../kodeverk';
 
 export interface Vergemal {
     verger: Verge[];
@@ -6,11 +7,11 @@ export interface Vergemal {
 
 export interface Verge {
     ident: string;
-    vergetype?: string;
-    vergesakstype?: string;
-    mandattype?: string;
+    vergetype?: Kodeverk;
+    vergesakstype?: Kodeverk;
+    mandattype?: Kodeverk;
     mandattekst?: string;
-    embete?: string;
+    embete?: Kodeverk;
     virkningsperiode: Periode;
     navn: Navn;
 }

@@ -24,7 +24,7 @@ function Periode(props: {periode: Periode}) {
     );
 }
 
-const BasicVergeinformasjon = styled.div`
+const Vergeinformasjon = styled.div`
   padding-bottom: .5em;
 `;
 
@@ -37,15 +37,15 @@ function Verge(props: {verge: Verge}) {
     return (
         <VisittkortElement beskrivelse="Verge" ikon={<VergemålLogo />}>
             <VergeDiv>
-                <BasicVergeinformasjon>
+                <Vergeinformasjon>
                     <Undertekst>{verge.navn.sammensatt}</Undertekst>
                     <Undertekst>{verge.ident}</Undertekst>
-                    <Undertekst>{verge.vergetype || ''}</Undertekst>
-                </BasicVergeinformasjon>
-                <UndertekstBold>{verge.vergesakstype || ''}</UndertekstBold>
-                <Undertekst>{verge.mandattype || ''}</Undertekst>
+                    <Undertekst>{verge.vergetype ? verge.vergetype.value : ''}</Undertekst>
+                </Vergeinformasjon>
+                <UndertekstBold>{verge.vergesakstype ? verge.vergesakstype.value : ''}</UndertekstBold>
+                <Undertekst>{verge.mandattype ? verge.mandattype.value : ''}</Undertekst>
                 <Undertekst>{verge.mandattekst || ''}</Undertekst>
-                <Undertekst>{verge.embete || ''}</Undertekst>
+                <Undertekst>{verge.embete ? verge.embete.value : ''}</Undertekst>
                 <Periode periode={verge.virkningsperiode}/>
             </VergeDiv>
         </VisittkortElement>

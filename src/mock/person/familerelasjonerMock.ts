@@ -54,6 +54,7 @@ function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
         tilPerson: {
             navn: lagNavn(faker),
             alder: alder,
+            alderMåneder: alder > 0 ? alder * 12 + 1 : 3,
             fødselsnummer: barnetsFødselsnummer,
             personstatus: getPersonstatus(alder)
         },
@@ -69,6 +70,7 @@ function lagPartner(faker: FakerStatic, relasjonstype: Relasjonstype): Familiere
         tilPerson: {
             navn: lagNavn(faker),
             alder: alder,
+            alderMåneder: alder * 12 + 2,
             fødselsnummer: partnersFødslesnummer,
             personstatus: getPersonstatus(alder)
         }
@@ -97,6 +99,7 @@ function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Re
         tilPerson: {
             navn: lagNavn(faker),
             alder: alder,
+            alderMåneder: alder * 12 + 3,
             fødselsnummer: foreldersFødselsnummer,
             personstatus: getPersonstatus(alder)
         }

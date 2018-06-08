@@ -6,7 +6,7 @@ import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
-import { mockVergemal } from './vergemal-mock';
+import { mockVergemal } from './vergemal-mocks';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
