@@ -19,7 +19,7 @@ const BrukerprofilWrapper = styled.div`
   flex-grow: 1;
   margin: 2em auto 3em;
   max-width: 720px;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-flow: column nowrap;
   animation: ${props => props.theme.animation.fadeIn};
