@@ -1,6 +1,7 @@
-import { Personadresse } from '../personadresse';
+import { Personadresse, UstrukturertAdresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
+import { Kodeverk } from '../kodeverk';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -42,6 +43,14 @@ export interface Bankkonto {
     bank: string;
     sistEndret: string;
     sistEndretAv: string;
+}
+
+export interface BankkontoUtland extends  Bankkonto {
+    swift: string;
+    landkode: Kodeverk;
+    bankkode: string;
+    bankAdresse: UstrukturertAdresse;
+    valuta: Kodeverk;
 }
 
 export interface TilrettelagtKommunikasjon {
