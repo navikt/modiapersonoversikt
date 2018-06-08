@@ -29,7 +29,7 @@ interface TelefonInputProps {
     children: string;
     retningsnummerKodeverk: KodeverkResponse;
     inputValue: TelefonInput;
-    retningsnummerInputChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+    retningsnummerInputChange: (input: string) => void;
     telfonnummerInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -45,29 +45,44 @@ export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
     );
 }
 
+function DefaultRetningsnummer() {
+    return (
+        <option
+            disabled={true}
+            value={''}
+            key={''}
+        >
+            Velg retningsnummer
+        </option>
+    );
+}
+
 export function TelefonInput(props: TelefonInputProps) {
 
-    function getSelectedRetningsnummerValue(retningsnummer: string) {
-        const retningsnummerValue = props.retningsnummerKodeverk.kodeverk
-            .find(retningsnummerKodeverk => retningsnummerKodeverk.value === retningsnummer);
-        return retningsnummerValue ? retningsnummerValue.value : '';
+    function getValgtRetningsnummer(retningsnummerInput: string) {
+        const retningsnummer = props.retningsnummerKodeverk.kodeverk
+            .find(retningsnummerKodeverk => retningsnummerKodeverk.kodeRef === retningsnummerInput);
+
+        if (!retningsnummer) {
+            return '';
+        }
+        return retningsnummer.kodeRef;
     }
 
-    function getRetningsnummerSelectOptions() {
-        return props.retningsnummerKodeverk.kodeverk.map(kodeverk =>
+    function getRetningsnummerSelectValg() {
+        let retningsnummere = props.retningsnummerKodeverk.kodeverk.map(kodeverk =>
             (
-                <option
-                    value={kodeverk.value}
-                    key={kodeverk.kodeRef}
-                >
+                <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
                     {kodeverk.beskrivelse} (+{kodeverk.kodeRef})
                 </option>
             )
         );
+        return [DefaultRetningsnummer()].concat(retningsnummere);
+
     }
 
-    const retningsnummerSelectOptions = getRetningsnummerSelectOptions();
-
+    const retningsnummerSelectValg = getRetningsnummerSelectValg();
+    const valgtRetningsnummer = getValgtRetningsnummer(props.inputValue.retningsnummer);
     return (
         <>
             <Ingress>{props.children}</Ingress>
@@ -76,10 +91,11 @@ export function TelefonInput(props: TelefonInputProps) {
                     <Select
                         label="Landkode"
                         bredde={'m'}
-                        value={getSelectedRetningsnummerValue(props.inputValue.retningsnummer)}
-                        onChange={props.retningsnummerInputChange}
+                        value={valgtRetningsnummer}
+                        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+                            props.retningsnummerInputChange(event.target.value)}
                     >
-                        {retningsnummerSelectOptions}
+                        {retningsnummerSelectValg}
                     </Select>
                 </RetningsnummerWrapper>
                 <TelefonnummerWrapper>
