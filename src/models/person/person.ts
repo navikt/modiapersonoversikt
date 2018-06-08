@@ -55,6 +55,7 @@ export interface Familierelasjon {
     tilPerson: {
         navn: Navn;
         alder: number;
+        alderMåneder: number;
         fødselsnummer: string;
         personstatus: Bostatus;
     };

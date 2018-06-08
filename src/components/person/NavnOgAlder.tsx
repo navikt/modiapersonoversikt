@@ -24,8 +24,16 @@ function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
     return navn.join(' ');
 }
 
+function getAlder(relasjon: Familierelasjon) {
+    if (relasjon.tilPerson.alder > 0) {
+        return relasjon.tilPerson.alder;
+    } else {
+        return relasjon.tilPerson.alderMåneder + ' mnd';
+    }
+}
+
 function NavnOgAlder({relasjon}: Props) {
-    const alder = erDød(relasjon.tilPerson.personstatus) ? 'Død' : relasjon.tilPerson.alder;
+    const alder = erDød(relasjon.tilPerson.personstatus) ? 'Død' : getAlder(relasjon);
     const navn = getNavn(relasjon.tilPerson.navn);
     return <>{navn} ({alder}) </>;
 }

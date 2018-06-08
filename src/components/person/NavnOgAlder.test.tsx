@@ -14,6 +14,7 @@ const relasjon: Familierelasjon = {
             mellomnavn: ''
         },
         alder: 15,
+        alderMåneder: 182,
         fødselsnummer: '123',
         personstatus: {}
     }
@@ -60,4 +61,12 @@ test('Uten fornavn, men med etternavn', () => {
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Sokrates (15) ');
+});
+
+test('barn under 1 år', () => {
+    relasjon.tilPerson.alder = 0;
+    relasjon.tilPerson.alderMåneder = 3;
+
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    expect(NavnOgAlderWrapper.text()).toEqual('Sokrates (3 mnd) ');
 });
