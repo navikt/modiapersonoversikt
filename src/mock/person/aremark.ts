@@ -7,6 +7,13 @@ export const aremark: Person = {
     kjønn: Kjønn.Mann,
     geografiskTilknytning: '0118',
     alder: 42,
+    bankkonto: {
+        erNorskKonto: true,
+        bank: 'Bien sparebank',
+        kontonummer: '12345678910',
+        sistEndret: '2005-12-12',
+        sistEndretAv: 'Daniel'
+    },
     sikkerhetstiltak: {
         sikkerhetstiltaksbeskrivelse: 'Får verken møte opp på NAV-kontor eller ringe på telefon ' +
         'grunnet truende oppførsel og språk.',

@@ -272,7 +272,31 @@ Array [
             <p
               className="typo-undertekst"
             >
-              Ikke registrert
+              <span
+                className="sc-ckVGcZ jnKvGd"
+              >
+                <span>
+                  1234
+                </span>
+                <span>
+                  56
+                </span>
+                <span>
+                  78910
+                </span>
+              </span>
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-iwsKbI dRsOru"
+              >
+                Endret 
+                12.12.2005
+                 
+                Daniel
+              </span>
             </p>
           </div>
         </div>
