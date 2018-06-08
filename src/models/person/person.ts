@@ -38,7 +38,7 @@ export interface Navn {
 
 export interface Bankkonto {
     erNorskKonto: boolean;
-    kontonummer: number | string;
+    kontonummer: string;
     bank: string;
     sistEndret: string;
     sistEndretAv: string;
