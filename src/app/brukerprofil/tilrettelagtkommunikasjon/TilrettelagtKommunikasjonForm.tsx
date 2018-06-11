@@ -16,7 +16,7 @@ import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import RequestTilbakemelding from './RequestTilbakemelding';
+import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 
 interface State {

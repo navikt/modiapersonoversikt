@@ -1,12 +1,13 @@
 import * as React from 'react';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import styled from 'styled-components';
+
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 import EndreNavnForm from './endrenavn/EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
-import TilrettelagtKommunikasjonContainer from './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
+import TilrettelagtKommunikasjonContainer from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjonContainer';
 import ErrorBoundary from '../../components/ErrorBoundary';
 
 export const FormKnapperWrapper = styled.div`
@@ -32,7 +33,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
             <form>
                 <Undertittel>Kontonummer</Undertittel>
             </form>
-            <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
+            <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
         </ErrorBoundary>
     );

@@ -21,3 +21,7 @@ export function padLeft(streng: string, width: number, symbol: string) {
 
     return leadingSymbol.repeat(width - streng.length) + streng;
 }
+
+export function removeWhitespace(input: string) {
+    return input.replace(/ /g, '');
+}
