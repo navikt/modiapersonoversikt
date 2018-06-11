@@ -14,7 +14,7 @@ import { ThemeProvider } from 'styled-components';
 import { personOversiktTheme } from '../../../../themes/personOversiktTheme';
 import { getMockKontaktinformasjon } from '../../../../mock/kontaktinformasjon-mock';
 import { getEgenAnsatt } from '../../../../api/egenansatt';
-import { mockVergemal } from '../../../../mock/vergemal-mock';
+import { mockVergemal } from '../../../../mock/vergemal-mocks';
 
 test('viser info om bruker i visittkortbody', () => {
     testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118', undefined) });
