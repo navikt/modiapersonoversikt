@@ -24,7 +24,7 @@ export const aremark: Person = {
         }
     },
     navn: {
-        sammensatt: 'AREMARK TESTFAMILIEN',
+        sammensatt: 'TESTFAMILIEN AREMARK',
         fornavn: 'AREMARK',
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
