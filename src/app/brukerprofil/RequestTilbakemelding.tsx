@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { STATUS } from '../../../redux/utils';
+import { STATUS } from '../../redux/utils';
 import AlertStripe from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 

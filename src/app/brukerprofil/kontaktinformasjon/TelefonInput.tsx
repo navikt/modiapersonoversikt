@@ -3,7 +3,6 @@ import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import Ingress from 'nav-frontend-typografi/lib/ingress';
-import Select from 'nav-frontend-skjema/lib/select';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
@@ -12,10 +11,7 @@ import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import EtikettMini from '../../../components/EtikettMini';
 import { formaterDato } from '../../../utils/dateUtils';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
-
-const RetningsnummerWrapper = styled.div`
-  margin-right: 2em;
-`;
+import { Retningsnummer } from './RetningsnummerInput';
 
 const TelefonnummerWrapper = styled.div`
   flex: auto;
@@ -45,64 +41,22 @@ export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
     );
 }
 
-function DefaultRetningsnummer() {
-    return (
-        <option
-            disabled={true}
-            value={''}
-            key={''}
-        >
-            Velg retningsnummer
-        </option>
-    );
-}
-
 export function TelefonInput(props: TelefonInputProps) {
 
-    function getValgtRetningsnummer(retningsnummerInput: string) {
-        const retningsnummer = props.retningsnummerKodeverk.kodeverk
-            .find(retningsnummerKodeverk => retningsnummerKodeverk.kodeRef === retningsnummerInput);
-
-        if (!retningsnummer) {
-            return '';
-        }
-        return retningsnummer.kodeRef;
-    }
-
-    function getRetningsnummerSelectValg() {
-        let retningsnummere = props.retningsnummerKodeverk.kodeverk.map(kodeverk =>
-            (
-                <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                    {kodeverk.beskrivelse} (+{kodeverk.kodeRef})
-                </option>
-            )
-        );
-        return [DefaultRetningsnummer()].concat(retningsnummere);
-
-    }
-
-    const retningsnummerSelectValg = getRetningsnummerSelectValg();
-    const valgtRetningsnummer = getValgtRetningsnummer(props.inputValue.retningsnummer);
     return (
         <>
             <Ingress>{props.children}</Ingress>
             <TelefonInputWrapper>
-                <RetningsnummerWrapper>
-                    <Select
-                        label="Landkode"
-                        bredde={'m'}
-                        value={valgtRetningsnummer}
-                        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                            props.retningsnummerInputChange(event.target.value)}
-                    >
-                        {retningsnummerSelectValg}
-                    </Select>
-                </RetningsnummerWrapper>
+                <Retningsnummer
+                    retningsnummerKodeverk={props.retningsnummerKodeverk}
+                    state={props.inputValue.retningsnummer}
+                    onChange={props.retningsnummerInputChange}
+                />
                 <TelefonnummerWrapper>
                     <Input
                         bredde={'XXL'}
                         label="Telefonnummer"
-                        value={props.inputValue.identifikator}
+                        value={props.inputValue.identifikator.input}
                         onChange={props.telfonnummerInputChange}
                     />
                 </TelefonnummerWrapper>

@@ -16,13 +16,14 @@ import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/brukerprofil/kontaktinformasjon';
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
-import RequestTilbakemelding from './RequestTilbakemelding';
+import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/utils';
 import { removeWhitespace } from '../../../utils/string-utils';
+import { InputState } from '../formUtils';
 
 export interface TelefonInput {
-    retningsnummer: string;
-    identifikator: string;
+    retningsnummer: InputState;
+    identifikator: InputState;
 }
 
 interface State {
@@ -58,8 +59,12 @@ const TelefonWrapper = styled.div`
 
 function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
     return {
-        retningsnummer: telefon ? telefon.retningsnummer : '',
-        identifikator: telefon ? formaterMobiltelefonnummer(telefon.identifikator) : ''
+        retningsnummer: {
+            input: telefon ? telefon.retningsnummer : ''
+        },
+        identifikator: {
+            input: telefon ? formaterMobiltelefonnummer(telefon.identifikator) : ''
+        }
     };
 }
 
@@ -102,7 +107,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             mobilInput: {
                 ...this.state.mobilInput,
-                identifikator: formaterMobiltelefonnummer(event.target.value),
+                identifikator: {
+                    input: formaterMobiltelefonnummer(event.target.value),
+                    feil: undefined
+                },
             },
             formErEndret: true
         });
@@ -112,7 +120,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             mobilInput: {
                 ...this.state.mobilInput,
-                retningsnummer: input
+                retningsnummer: {
+                    input,
+                    feil: undefined
+                }
             },
             formErEndret: true
         });
@@ -122,7 +133,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
-                identifikator: formaterHustelefonnummer(event.target.value)
+                identifikator: {
+                    input: formaterHustelefonnummer(event.target.value),
+                    feil: undefined
+                }
             },
             formErEndret: true
         });
@@ -132,7 +146,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
-                retningsnummer: input
+                retningsnummer: {
+                    input,
+                    feil: undefined
+                }
             },
             formErEndret: true
         });
@@ -142,7 +159,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
-                identifikator: formaterHustelefonnummer(event.target.value)
+                identifikator: {
+                    input: formaterHustelefonnummer(event.target.value),
+                    feil: undefined
+                }
             },
             formErEndret: true
         });
@@ -152,7 +172,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState({
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
-                retningsnummer: input
+                retningsnummer: {
+                    input,
+                    feil: undefined
+                }
             },
             formErEndret: true
         });
@@ -163,20 +186,30 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState(initialState(this.props.person.kontaktinformasjon));
     }
 
+    valider() {
+        console.log('hei');
+    }
+
     handleSubmit(event: FormEvent<HTMLFormElement>) {
-        let request = {
+        try {
+            this.valider();
+        } catch (err) {
+            return;
+        }
+
+        const request = {
             fødselsnummer: this.props.person.fødselsnummer,
             mobil: {
-                identifikator: removeWhitespace(this.state.mobilInput.identifikator),
-                retningsnummer: this.state.mobilInput.retningsnummer
+                identifikator: removeWhitespace(this.state.mobilInput.identifikator.input),
+                retningsnummer: this.state.mobilInput.retningsnummer.input
             },
             jobb: {
-                identifikator: removeWhitespace(this.state.jobbTelefonInput.identifikator),
-                retningsnummer: this.state.jobbTelefonInput.retningsnummer
+                identifikator: removeWhitespace(this.state.jobbTelefonInput.identifikator.input),
+                retningsnummer: this.state.jobbTelefonInput.retningsnummer.input
             },
             hjem: {
-                identifikator: removeWhitespace(this.state.hjemTelefonInput.identifikator),
-                retningsnummer: this.state.hjemTelefonInput.retningsnummer
+                identifikator: removeWhitespace(this.state.hjemTelefonInput.identifikator.input),
+                retningsnummer: this.state.hjemTelefonInput.retningsnummer.input
             },
         };
         this.props.endreNavKontaktinformasjon(request);
