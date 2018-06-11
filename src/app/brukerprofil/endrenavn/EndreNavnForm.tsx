@@ -89,15 +89,15 @@ class EndreNavnForm extends React.Component<Props, State> {
         return {
             fornavn: {
                 input: props.person.navn.fornavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             mellomnavn: {
                 input: props.person.navn.mellomnavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             etternavn: {
                 input: props.person.navn.etternavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             formErEndret: false
         };
@@ -111,7 +111,7 @@ class EndreNavnForm extends React.Component<Props, State> {
         this.setState({
             fornavn: {
                 input,
-                feilmelding: undefined
+                feilmelding: null
             },
             formErEndret: true
         });
@@ -120,7 +120,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     mellomnavnInputChange(input: string) {
         this.setState({
             mellomnavn: {
-                feilmelding: undefined,
+                feilmelding: null,
                 input
             },
             formErEndret: true
@@ -130,7 +130,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     etternavnInputChange(input: string) {
         this.setState({
             etternavn: {
-                feilmelding: undefined,
+                feilmelding: null,
                 input
             },
             formErEndret: true

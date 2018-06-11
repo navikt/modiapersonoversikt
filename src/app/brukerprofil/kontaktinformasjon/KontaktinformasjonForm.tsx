@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -31,6 +31,7 @@ interface State {
     jobbTelefonInput: TelefonInput;
     hjemTelefonInput: TelefonInput;
     formErEndret: boolean;
+    visFeilmeldinger: boolean;
 }
 
 interface DispatchProps {
@@ -58,12 +59,26 @@ const TelefonWrapper = styled.div`
 `;
 
 function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
+    if (!telefon) {
+        return {
+            retningsnummer: {
+                input: '',
+                feilmelding: 'Velg retningsnummer'
+            }, identifikator: {
+                input: '',
+                feilmelding: 'Fyll ut telefonnummer'
+            }
+        };
+    }
+
     return {
         retningsnummer: {
-            input: telefon ? telefon.retningsnummer : ''
+            input: telefon.retningsnummer,
+            feilmelding: null
         },
         identifikator: {
-            input: telefon ? formaterMobiltelefonnummer(telefon.identifikator) : ''
+            input: formaterMobiltelefonnummer(telefon.identifikator),
+            feilmelding: null
         }
     };
 }
@@ -73,13 +88,14 @@ function initialState(kontaktinformasjon: NavKontaktinformasjon) {
         mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
         jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobb),
         hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjem),
-        formErEndret: false
+        formErEndret: false,
+        visFeilmeldinger: false
     };
 }
 
 function erEndret(telefon1: TelefonInput, telefon2: TelefonInput) {
-    const retningsnummerEndret = telefon1.retningsnummer !== telefon2.retningsnummer;
-    const identifikatorEndret = telefon1.identifikator !== telefon2.identifikator;
+    const retningsnummerEndret = telefon1.retningsnummer.input !== telefon2.retningsnummer.input;
+    const identifikatorEndret = telefon1.identifikator.input !== telefon2.identifikator.input;
     return retningsnummerEndret || identifikatorEndret;
 }
 
@@ -103,13 +119,13 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.props.tilbakestillReducer();
     }
 
-    mobilTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    mobilTelefonnummerInputChange(input: string) {
         this.setState({
             mobilInput: {
                 ...this.state.mobilInput,
                 identifikator: {
-                    input: formaterMobiltelefonnummer(event.target.value),
-                    feil: undefined
+                    input: formaterMobiltelefonnummer(input),
+                    feilmelding: null
                 },
             },
             formErEndret: true
@@ -122,20 +138,20 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 ...this.state.mobilInput,
                 retningsnummer: {
                     input,
-                    feil: undefined
+                    feilmelding: null
                 }
             },
             formErEndret: true
         });
     }
 
-    jobbTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    jobbTelefonnummerInputChange(input: string) {
         this.setState({
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
                 identifikator: {
-                    input: formaterHustelefonnummer(event.target.value),
-                    feil: undefined
+                    input: formaterHustelefonnummer(input),
+                    feilmelding: null
                 }
             },
             formErEndret: true
@@ -148,20 +164,20 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 ...this.state.jobbTelefonInput,
                 retningsnummer: {
                     input,
-                    feil: undefined
+                    feilmelding: null
                 }
             },
             formErEndret: true
         });
     }
 
-    hjemTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    hjemTelefonnummerInputChange(input: string) {
         this.setState({
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
                 identifikator: {
-                    input: formaterHustelefonnummer(event.target.value),
-                    feil: undefined
+                    input: formaterHustelefonnummer(input),
+                    feilmelding: null
                 }
             },
             formErEndret: true
@@ -174,7 +190,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 ...this.state.hjemTelefonInput,
                 retningsnummer: {
                     input,
-                    feil: undefined
+                    feilmelding: null
                 }
             },
             formErEndret: true
@@ -186,14 +202,27 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState(initialState(this.props.person.kontaktinformasjon));
     }
 
-    valider() {
-        console.log('hei');
+    validInput() {
+        const {hjemTelefonInput, jobbTelefonInput, mobilInput} = this.state;
+
+        if (hjemTelefonInput.identifikator.input.length > 0 && hjemTelefonInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        if (jobbTelefonInput.identifikator.input.length > 0 && jobbTelefonInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        if (mobilInput.identifikator.input.length > 0 && mobilInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        return true;
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
-        try {
-            this.valider();
-        } catch (err) {
+        event.preventDefault();
+        this.setState({formErEndret: false});
+
+        if (!this.validInput()) {
+            this.setState({visFeilmeldinger: true});
             return;
         }
 
@@ -213,8 +242,6 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             },
         };
         this.props.endreNavKontaktinformasjon(request);
-        this.setState({formErEndret: false});
-        event.preventDefault();
     }
 
     requestIsPending() {
@@ -248,7 +275,6 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     render() {
-
         return (
             <form onSubmit={this.handleSubmit}>
                 <UndertekstBold>Telefonnummer bruker ønsker å bli oppringt på</UndertekstBold>
@@ -259,6 +285,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             inputValue={this.state.mobilInput}
                             retningsnummerInputChange={this.mobilRetningsnummerInputChange}
                             telfonnummerInputChange={this.mobilTelefonnummerInputChange}
+                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Mobiltelefon
                         </TelefonInput>
@@ -270,6 +297,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             inputValue={this.state.hjemTelefonInput}
                             retningsnummerInputChange={this.hjemRetningsnummerInputChange}
                             telfonnummerInputChange={this.hjemTelefonnummerInputChange}
+                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Hjemmenummer
                         </TelefonInput>
@@ -280,6 +308,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                         inputValue={this.state.jobbTelefonInput}
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
+                        visFeilmeldinger={this.state.visFeilmeldinger}
                     >
                         Jobbnummer
                     </TelefonInput>

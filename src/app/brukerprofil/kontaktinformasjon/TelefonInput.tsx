@@ -26,7 +26,8 @@ interface TelefonInputProps {
     retningsnummerKodeverk: KodeverkResponse;
     inputValue: TelefonInput;
     retningsnummerInputChange: (input: string) => void;
-    telfonnummerInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    telfonnummerInputChange: (input: string) => void;
+    visFeilmeldinger: boolean;
 }
 
 export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
@@ -51,13 +52,15 @@ export function TelefonInput(props: TelefonInputProps) {
                     retningsnummerKodeverk={props.retningsnummerKodeverk}
                     state={props.inputValue.retningsnummer}
                     onChange={props.retningsnummerInputChange}
+                    visFeilmeldinger={props.visFeilmeldinger}
                 />
                 <TelefonnummerWrapper>
                     <Input
                         bredde={'XXL'}
                         label="Telefonnummer"
                         value={props.inputValue.identifikator.input}
-                        onChange={props.telfonnummerInputChange}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            props.telfonnummerInputChange(event.target.value)}
                     />
                 </TelefonnummerWrapper>
             </TelefonInputWrapper>

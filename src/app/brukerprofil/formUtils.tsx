@@ -1,6 +1,6 @@
 export interface InputState {
     input: string;
-    feilmelding?: string;
+    feilmelding: string | null;
 }
 
 export function getSkjemafeil(state: InputState) {

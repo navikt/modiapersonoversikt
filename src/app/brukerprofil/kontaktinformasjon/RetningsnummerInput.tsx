@@ -11,6 +11,13 @@ const RetningsnummerWrapper = styled.div`
   margin-right: 2em;
 `;
 
+interface RetningsnummerInputProps {
+    retningsnummerKodeverk: KodeverkResponse;
+    state: InputState;
+    onChange: (input: string) => void;
+    visFeilmeldinger: boolean;
+}
+
 function DefaultRetningsnummer() {
     return (
         <option
@@ -44,17 +51,11 @@ function getValgtRetningsnummer(retningsnummerKodeverk: KodeverkResponse, retnin
     return retningsnummer.kodeRef;
 }
 
-interface RetningsnummerInputProps {
-    retningsnummerKodeverk: KodeverkResponse;
-    state: InputState;
-    onChange: (input: string) => void;
-}
+export function Retningsnummer(props: RetningsnummerInputProps) {
+    const retningsnummerValg = getRetningsnummerSelectValg(props.retningsnummerKodeverk);
+    const valgtRetningsnummer = getValgtRetningsnummer(props.retningsnummerKodeverk, props.state.input);
 
-export function Retningsnummer({retningsnummerKodeverk, state, onChange}: RetningsnummerInputProps) {
-    const retningsnummerValg = getRetningsnummerSelectValg(retningsnummerKodeverk);
-    const valgtRetningsnummer = getValgtRetningsnummer(retningsnummerKodeverk, state.input);
-
-    const skjemafeil = getSkjemafeil(state);
+    const skjemafeil = props.visFeilmeldinger ? getSkjemafeil(props.state) : undefined;
 
     return (
         <RetningsnummerWrapper>
@@ -64,7 +65,7 @@ export function Retningsnummer({retningsnummerKodeverk, state, onChange}: Retnin
                 value={valgtRetningsnummer}
                 feil={skjemafeil}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                    onChange(event.target.value)}
+                    props.onChange(event.target.value)}
             >
                 {retningsnummerValg}
             </Select>
