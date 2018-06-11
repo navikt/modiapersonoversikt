@@ -51,6 +51,10 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         this.tilbakestillForm = this.tilbakestillForm.bind(this);
     }
 
+    componentWillUnmount() {
+        this.props.resetEndreTilrettelagtKommunikasjonReducer();
+    }
+
     lagKnapper() {
         const tilrettelagtKommunikasjonKodeverk = this.props.tilrettelagtKommunikasjonKodeverk.kodeverk;
         return tilrettelagtKommunikasjonKodeverk.map((kommunikasjonsmetode) => {
@@ -114,7 +118,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
-                        disabled={!this.erEndret()}
                         onClick={this.tilbakestillForm}
                     >
                         Avbryt

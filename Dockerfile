@@ -1,8 +1,5 @@
 FROM node:10.3.0-alpine as nodebuilder
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
-
 ADD / /source
 WORKDIR /source
 RUN npm ci

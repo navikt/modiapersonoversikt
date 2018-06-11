@@ -6,7 +6,7 @@ import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 export const bankkontoNorsk: Bankkonto = {
     erNorskKonto: true,
     bank: 'Nordea ASA',
-    kontonummer: Number(faker.finance.account(11)),
+    kontonummer: Number(faker.finance.account(11)).toString(),
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };
@@ -14,7 +14,7 @@ export const bankkontoNorsk: Bankkonto = {
 export const bankkontoUtland: Bankkonto = {
     erNorskKonto: false,
     bank: 'BBVA',
-    kontonummer: Number(faker.finance.account(9)),
+    kontonummer: Number(faker.finance.account(9)).toString(),
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };

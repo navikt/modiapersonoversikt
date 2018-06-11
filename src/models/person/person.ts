@@ -38,7 +38,7 @@ export interface Navn {
 
 export interface Bankkonto {
     erNorskKonto: boolean;
-    kontonummer: number;
+    kontonummer: string;
     bank: string;
     sistEndret: string;
     sistEndretAv: string;
@@ -55,6 +55,7 @@ export interface Familierelasjon {
     tilPerson: {
         navn: Navn;
         alder: number;
+        alderMåneder: number;
         fødselsnummer: string;
         personstatus: Bostatus;
     };
@@ -103,6 +104,7 @@ export enum BegrensetTilgangTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
     EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
+    Geografi = 'sikkerhetsbegrensing.geografisk',
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 

@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Person } from '../../../models/person/person';
+import styled from 'styled-components';
 
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+
+import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
-import styled from 'styled-components';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 
 interface VisittkortProps {
     person: Person;
@@ -22,11 +24,13 @@ function Visittkort({ person }: VisittkortProps) {
     const visittkortheader = <VisittkortHeader person={person}/>;
 
     return (
-        <VisittKortDiv>
-            <EkspanderbartpanelBase apen={false} heading={visittkortheader} ariaTittel="Visittkort">
-                <VisittkortBody person={person}/>
-            </EkspanderbartpanelBase>
-        </VisittKortDiv>
+        <ErrorBoundary>
+            <VisittKortDiv>
+                <EkspanderbartpanelBase apen={false} heading={visittkortheader} ariaTittel="Visittkort">
+                    <VisittkortBody person={person}/>
+                </EkspanderbartpanelBase>
+            </VisittKortDiv>
+        </ErrorBoundary>
     );
 }
 
