@@ -6,8 +6,8 @@ import EndreNavnForm from './endrenavn/EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
-import TilrettelagtKommunikasjonContainer from
-        './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
+import TilrettelagtKommunikasjonContainer from './kontaktinformasjon/TilrettelagtKommunikasjonContainer';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ interface Props {
 
 function BrukerprofilForm({ person, veilderRoller }: Props) {
     return (
-        <>
+        <ErrorBoundary>
             <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
             <form>
                 <Undertittel>Adresse</Undertittel>
@@ -34,7 +34,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
             </form>
             <Kontaktinformasjon person={person} fødselsnummer={person.fødselsnummer}/>
             <TilrettelagtKommunikasjonContainer person={person} />
-        </>
+        </ErrorBoundary>
     );
 }
 
