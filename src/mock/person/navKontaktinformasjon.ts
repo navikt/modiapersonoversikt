@@ -10,7 +10,7 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
             identifikator: faker.phone.phoneNumber('9#######'),
-            retningsnummer: '47'
+            retningsnummer: vektetSjanse(faker, 0.3) ? '' : '+47'
         };
     }
 
@@ -19,7 +19,7 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
             identifikator: faker.phone.phoneNumber('########'),
-            retningsnummer: '47'
+            retningsnummer: vektetSjanse(faker, 0.3) ? '' : '+47'
         };
     }
 
@@ -28,7 +28,7 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
             sistEndret: getSistOppdatert(),
             sistEndretAv: '1010800 BD03',
             identifikator: faker.phone.phoneNumber('########'),
-            retningsnummer: '47'
+            retningsnummer: vektetSjanse(faker, 0.3) ? '' : '+47'
         };
     }
 

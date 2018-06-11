@@ -5,20 +5,26 @@ export function mockRetningsnummer(): KodeverkResponse {
         kodeverk: [
             {
                 value: 'Norge',
-                kodeRef: '47',
+                kodeRef: '+47',
                 beskrivelse: 'Norge',
                 gyldig: true
             },
             {
                 value: 'Sverige',
-                kodeRef: '46',
+                kodeRef: '+46',
                 beskrivelse: 'Sverige',
                 gyldig: true
             },
             {
                 value: 'Storbritannia (UK)',
-                kodeRef: '44',
+                kodeRef: '+44',
                 beskrivelse: 'Storbritannia (UK)',
+                gyldig: true
+            },
+            {
+                value: 'Argentina',
+                kodeRef: '+54',
+                beskrivelse: 'Argentina',
                 gyldig: true
             }
         ]
