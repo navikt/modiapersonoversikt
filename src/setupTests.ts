@@ -24,9 +24,10 @@ import { getPerson } from './mock/person/personMock';
 import { erEgenAnsatt } from './mock/egenansatt-mock';
 
 export const testStore = createStore(reducers);
+const aremarkFnr = '10108000398';
 
-testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson('10108000398')});
+testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
 testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118', undefined) });
-testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon('10108000398') });
-testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt('10108000398') });
-testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal('10108000398') });
+testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon(aremarkFnr) });
+testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
+testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
