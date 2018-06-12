@@ -27,7 +27,7 @@ function Adresse({person}: AdresseProps) {
 
 function hentFolkeregistrertAdresse(person: Person) {
     const adresse = person.folkeregistrertAdresse != null ?
-        formatterRiktigAdresse(person.folkeregistrertAdresse) : 'Ikke registrert';
+        formatterRiktigAdresse(person.folkeregistrertAdresse) : <Undertekst>Ikke registrert</Undertekst>;
 
     return (
         <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin />}>

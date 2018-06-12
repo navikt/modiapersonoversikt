@@ -45,13 +45,13 @@ function handterFeil(dispatch: Dispatch<Action>, action: string) {
     };
 }
 
-export function doThenDispatch(fn: () => Promise<object>, { PENDING, OK, ERROR}: ActionTypes) {
-    return (dispacth: Dispatch<Action>) => {
+export function doThenDispatch(fn: () => Promise<object>, { PENDING, OK, ERROR }: ActionTypes) {
+    return (dispatch: Dispatch<Action>) => {
         if (PENDING) {
-            dispacth({type: PENDING});
+            dispatch({type: PENDING});
         }
         return fn()
-            .then(sendResultatTilDispatch(dispacth, OK))
-            .catch(handterFeil(dispacth, ERROR));
+            .then(sendResultatTilDispatch(dispatch, OK))
+            .catch(handterFeil(dispatch, ERROR));
     };
 }

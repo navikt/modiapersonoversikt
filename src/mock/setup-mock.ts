@@ -8,7 +8,7 @@ import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mocks';
 import { getMockVeilederRoller } from './veilderRoller-mock';
-import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
+import { mockRetningsnummere } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 
 const STATUS_OK = () => 200;
@@ -58,6 +58,13 @@ function endreNavnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
         1200,
         STATUS_OK,
+        () => {return undefined; }));
+}
+
+function endreNavKontaktinformasjonMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefon', withDelayedResponse(
+        1200,
+        STATUS_OK,
         () => {return {}; }));
 }
 
@@ -79,7 +86,7 @@ function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
         700,
         STATUS_OK,
-        () => mockRetningsnummer()));
+        () => mockRetningsnummere()));
 }
 
 function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
@@ -112,4 +119,5 @@ export function setupMock() {
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
+    endreNavKontaktinformasjonMock(mock);
 }

@@ -1,15 +1,15 @@
 import { createActionsAndReducer } from '../restReducer';
 import { EndreTilrettelagtKommunikasjonrequest } from './endreTilrettelagtKommunikasjonrequest';
-import { postEndreTilrettelagtKommunikasjon } from '../../api/endretilrettelagtkommunikasjon-api';
+import { postEndreTilrettelagtKommunikasjon } from '../../api/brukerprofil/endretilrettelagtkommunikasjon-api';
 
-const { reducer, action, resetReducer, actionNames } = createActionsAndReducer('endretilrettelagtkommunikasjon');
+const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endretilrettelagtkommunikasjon');
 
 export function endreTilrettelagtKommunikasjon(request: EndreTilrettelagtKommunikasjonrequest) {
     return action(() => postEndreTilrettelagtKommunikasjon(request));
 }
 
 export function reset() {
-    return resetReducer;
+    return tilbakestillReducer;
 }
 
 export { actionNames };

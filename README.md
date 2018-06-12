@@ -1,4 +1,5 @@
 Modiapersonoversikt [![Build Status](https://travis-ci.org/navikt/modiapersonoversikt.svg?branch=master)](https://travis-ci.org/navikt/modiapersonoversikt) [![Maintainability](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/maintainability)](https://codeclimate.com/github/navikt/modiapersonoversikt/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/test_coverage)](https://codeclimate.com/github/navikt/modiapersonoversikt/test_coverage)
 ===================
 
 Modiapersonoversikt er en intern arbeidsflate som gir veiledere og 
@@ -13,7 +14,7 @@ Opprett filen `.env` med følgende innhold:
 REACT_APP_MODIA_URL=https://example.com # URL til backend
 REACT_APP_MOCK_ENABLED=true # For å styre om applikasjonen skal bruke mock
 REACT_APP_HODE_URL=https://example.com/head.min.js # URL til navigasjonsmenyen
-PORT=80 #Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
+PORT=80 # Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
 ```
 
 ### For utvikling

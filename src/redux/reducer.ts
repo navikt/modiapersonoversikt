@@ -12,6 +12,7 @@ import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettel
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
+import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
@@ -34,6 +35,7 @@ export interface AppState {
     veilederRoller: Reducer<VeilederRoller>;
     retningsnummerReducer: Reducer<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: Reducer<KodeverkResponse>;
+    endreKontaktinformasjonReducer: Reducer<{}>;
 }
 
 export default combineReducers<AppState>({
@@ -48,6 +50,7 @@ export default combineReducers<AppState>({
     veilederRoller: veilederRollerReducer,
     retningsnummerReducer: retningsnummereReducer,
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
+    endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
     router: routerReducer
 });
 

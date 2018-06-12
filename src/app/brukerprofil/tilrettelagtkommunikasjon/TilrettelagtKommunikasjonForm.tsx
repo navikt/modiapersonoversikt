@@ -16,7 +16,7 @@ import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import RequestTilbakemelding from './RequestTilbakemelding';
+import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 
 interface State {
@@ -49,6 +49,10 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.tilbakestillForm = this.tilbakestillForm.bind(this);
+    }
+
+    componentWillUnmount() {
+        this.props.resetEndreTilrettelagtKommunikasjonReducer();
     }
 
     lagKnapper() {
@@ -114,7 +118,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
-                        disabled={!this.erEndret()}
                         onClick={this.tilbakestillForm}
                     >
                         Avbryt

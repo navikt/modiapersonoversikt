@@ -5,7 +5,7 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 export function brukersNavnKanEndres(person: Person): boolean {
     if (erDnummer(person.fødselsnummer)) {
         return true;
-    } else if (person.personstatus === BostatusTyper.Utvandret) {
+    } else if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
         return true;
     }
 

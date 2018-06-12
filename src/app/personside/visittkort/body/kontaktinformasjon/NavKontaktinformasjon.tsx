@@ -21,10 +21,10 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     }
     const formatertDato = formaterDato(telefon.sistEndret);
     const endretAv = endretAvTekst(telefon.sistEndretAv);
-    const formatertNummer = nummerFormaterer(telefon.telefonnummer);
+    const formatertNummer = nummerFormaterer(telefon.identifikator);
     return (
         <>
-            <Undertekst>{`+${telefon.retningsnummer} ${formatertNummer}`} ({beskrivelse})</Undertekst>
+            <Undertekst>{`${telefon.retningsnummer} ${formatertNummer}`} ({beskrivelse})</Undertekst>
             <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
         </>
     );
@@ -32,7 +32,7 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
 
 export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjon}) {
     const {navKontaktinformasjon} = props;
-    if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
+    if (!navKontaktinformasjon.hjem && !navKontaktinformasjon.jobb && !navKontaktinformasjon.mobil) {
         return null;
     }
 
@@ -45,12 +45,12 @@ export default function NavKontaktinformasjon(props: {navKontaktinformasjon: Nav
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
-                telefon={navKontaktinformasjon.hjemTelefon}
+                telefon={navKontaktinformasjon.hjem}
                 beskrivelse={'Hjem'}
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
-                telefon={navKontaktinformasjon.jobbTelefon}
+                telefon={navKontaktinformasjon.jobb}
                 beskrivelse={'Jobb'}
             />
         </VisittkortElement>

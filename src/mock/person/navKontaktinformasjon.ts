@@ -6,32 +6,25 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
     let kontaktinformasjon: NavKontaktinformasjon = {};
 
     if (vektetSjanse(faker, 0.7)) {
-        kontaktinformasjon.mobil = {
-            sistEndret: getSistOppdatert(),
-            sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('9#######'),
-            retningsnummer: '47'
-        };
+        kontaktinformasjon.mobil = getMockTelefon(faker, faker.phone.phoneNumber('9#######'));
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.jobbTelefon = {
-            sistEndret: getSistOppdatert(),
-            sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('########'),
-            retningsnummer: '47'
-        };
+        kontaktinformasjon.jobb = getMockTelefon(faker, faker.phone.phoneNumber('########'));
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.hjemTelefon = {
-            sistEndret: getSistOppdatert(),
-            sistEndretAv: '1010800 BD03',
-            telefonnummer: faker.phone.phoneNumber('########'),
-            retningsnummer: '47'
-        };
+        kontaktinformasjon.hjem = getMockTelefon(faker, faker.phone.phoneNumber('########'));
     }
 
     return kontaktinformasjon;
+}
 
+function getMockTelefon(faker: FakerStatic, identifikator: string) {
+    return {
+        sistEndret: getSistOppdatert(),
+        sistEndretAv: '1010800 BD03',
+        identifikator: identifikator,
+        retningsnummer: vektetSjanse(faker, 0.3) ? '' : '+47'
+    };
 }

@@ -23,7 +23,6 @@ interface StateProps {
 }
 
 interface OwnProps {
-    fødselsnummer: string;
     person: Person;
 }
 
@@ -83,7 +82,6 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
     return ({
         retningsnummerReducer: state.retningsnummerReducer,
-        fødselsnummer: ownProps.fødselsnummer,
         person: ownProps.person
     });
 };

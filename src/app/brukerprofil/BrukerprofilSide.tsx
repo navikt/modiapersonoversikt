@@ -14,8 +14,9 @@ import { hentPerson } from '../../redux/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { getVeilederRoller } from '../../redux/veilederRoller';
 import { STATUS } from '../../redux/utils';
+import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
 
-const BrukerprofilWrapper = styled.div`
+const BrukerprofilWrapper = styled.section`
   flex-grow: 1;
   margin: 2em auto 3em;
   max-width: 720px;
@@ -23,7 +24,7 @@ const BrukerprofilWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   animation: ${props => props.theme.animation.fadeIn};
-  > *:not(:first-child) {
+  > *:not(:first-child):not(:nth-child(2)) {
     background-color: white;
     border-radius: ${props => props.theme.borderRadius.layout};
     margin: 1em 0;
@@ -32,7 +33,6 @@ const BrukerprofilWrapper = styled.div`
 `;
 
 const LinkWrapper = styled.div`
-  display: flex;
   margin-bottom: 1em;
 `;
 
@@ -79,6 +79,7 @@ class BrukerprofilSide extends React.Component<Props> {
                             {'<'} Tilbake
                         </Link>
                     </LinkWrapper>
+                    <Sidetittel>Endre brukerprofil</Sidetittel>
                     <BrukerprofilForm
                         person={this.props.personReducer.data as Person}
                         veilderRoller={this.props.veilederRollerReducer.data}
