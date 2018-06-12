@@ -73,12 +73,11 @@
     "react-motion": "^0.5.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts-ts": "^2.16.0",
     "redux": "^3.7.2",
     "redux-thunk": "2.2.0",
     "styled-components": "^3.3.2",
-    "yet-another-fetch-mock": "^2.3.2"
+    "yet-another-fetch-mock": "^2.3.3"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
@@ -95,7 +94,6 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^5.0.20",
     "@types/react-router-dom": "^4.2.7",
-    "@types/react-router-redux": "^5.0.13",
     "@types/react-test-renderer": "^16.0.1",
     "@types/storybook__react": "^3.0.7",
     "awesome-typescript-loader": "^3.4.1",

@@ -34,7 +34,7 @@ function getRetningsnummerSelectValg(retningsnummerKodeverk: KodeverkResponse) {
     const retningsnummere = retningsnummerKodeverk.kodeverk.map(kodeverk =>
         (
             <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                {kodeverk.beskrivelse} (+{kodeverk.kodeRef})
+                {kodeverk.beskrivelse} ({kodeverk.kodeRef})
             </option>
         )
     );

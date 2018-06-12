@@ -83,7 +83,7 @@ function setupVeilederRollerMock(mock: FetchMock) {
 }
 
 function setupRetningsnummerKodeverkMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
+    mock.get(apiBaseUri + '/kodeverk/Retningsnumre', withDelayedResponse(
         700,
         STATUS_OK,
         () => mockRetningsnummere()));

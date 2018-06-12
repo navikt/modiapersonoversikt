@@ -19,10 +19,11 @@ function getActionTypes(reducerNavn: string): ActionTypes {
     };
 }
 
-export function createActionsAndReducer(reducerNavn: string) {
+export function createActionsAndReducer<T>(reducerNavn: string) {
     const actionTypes = getActionTypes(reducerNavn);
 
-    const actionFunction = (fn: () => Promise<object>) => doThenDispatch(fn, actionTypes);
+    const actionFunction = (fn: () => Promise<T>) => doThenDispatch(fn, actionTypes);
+
     const initialState = {
         data: {},
         status: STATUS.NOT_STARTED
