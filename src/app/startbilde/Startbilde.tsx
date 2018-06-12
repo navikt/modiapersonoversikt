@@ -1,55 +1,50 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+import { History } from 'history';
+import { RouteComponentProps, withRouter } from 'react-router';
+
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState, Reducer } from '../../redux/reducer';
-import { plukkOppgaver } from '../../redux/oppgaver';
-import { settNyPersonIKontekst } from '../routes/routing';
+import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/oppgaver';
 import { STATUS } from '../../redux/utils';
 import StartBildeLayout from './StartBildeLayout';
 import Feilmelding from '../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../models/oppgave';
+import { settPersonIKontekst } from '../routes/routing';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
     oppgaveReducer: Reducer<Oppgave[]>;
+    routeHistory: History;
 }
 
 interface DispatchProps {
-    plukkOppgaver: (enhet: string, temagruppe: string) => void;
-    personOppsokt: (fodselsnummer: string) => void;
+    plukkOppgaver: (enhet: string, temagruppe: string) => Promise<Oppgave[]>;
 }
 
-type StartbildeProps = StartbildeStateProps & DispatchProps;
+type StartbildeProps = StartbildeStateProps & DispatchProps & RouteComponentProps<{}>;
 
 class Startbilde extends React.Component<StartbildeProps> {
 
     constructor(props: StartbildeProps) {
         super(props);
         this.onPlukkOppgaveKlikk = this.onPlukkOppgaveKlikk.bind(this);
-        this.handlePersonsok = this.handlePersonsok.bind(this);
-    }
-
-    componentDidMount() {
-        document.addEventListener('dekorator-hode-personsok', this.handlePersonsok);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('dekorator-hode-personsok', this.handlePersonsok);
     }
 
     onPlukkOppgaveKlikk() {
-        this.props.plukkOppgaver(this.props.valgtEnhet, this.props.valgtTemagruppe);
-    }
-
-    handlePersonsok(event: object) {
-        const personsokEvent = event as DecoratorPersonsokEvent;
-        this.props.personOppsokt(personsokEvent.fodselsnummer);
+        this.props.plukkOppgaver(this.props.valgtEnhet, this.props.valgtTemagruppe).then((oppgaver: Oppgave[]) => {
+            const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
+            if (!fødselsnummer) {
+                throw new Error('Ingen oppgave ble returnert når oppgaver ble plukket');
+            }
+            settPersonIKontekst(this.props.history, fødselsnummer);
+        });
     }
 
     snarveiTilAremark() {
-        this.props.personOppsokt('10108000398');
+        settPersonIKontekst(this.props.history, '10108000398');
     }
 
     render() {
@@ -71,19 +66,19 @@ class Startbilde extends React.Component<StartbildeProps> {
     }
 }
 
-function mapStateToProps(state: AppState) {
+function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StartbildeStateProps {
     return {
         valgtEnhet: '4100',
         valgtTemagruppe: 'ARBD',
-        oppgaveReducer: state.oppgaver
+        oppgaveReducer: state.oppgaver,
+        routeHistory: routeProps.history
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<object>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Oppgave[]>): DispatchProps {
     return {
-        plukkOppgaver: () => plukkOppgaver(dispatch, '1337', 'ARB'),
-        personOppsokt: (fodselsnummer: string) => settNyPersonIKontekst(dispatch, fodselsnummer)
+        plukkOppgaver: () => dispatch(plukkOppgaver('', '')),
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Startbilde);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Startbilde));

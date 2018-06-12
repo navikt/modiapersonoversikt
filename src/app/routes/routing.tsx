@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Route, RouteComponentProps, Switch } from 'react-router';
-import { Dispatch } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Action } from 'history';
+import { History } from 'history';
 
 import PersonsideContainer from '../personside/PersonsideContainer';
 import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
 
 export const paths = {
-    personUri : '/modiapersonoversikt/person',
-    brukerprofil: '/modiapersonoversikt/brukerprofil'
+    personUri: '/modiapersonoversikt/person',
+    brukerprofil: '/modiapersonoversikt/brukerprofil',
+    basePath: '/modiapersonoversikt'
 };
 
 function Routing(props: RouteComponentProps<{}> ) {
@@ -24,12 +23,8 @@ function Routing(props: RouteComponentProps<{}> ) {
     );
 }
 
-export function settNyPersonIKontekst(dispatch: Dispatch<Action>, fødselsnummer: string) {
-    dispatch(push(`${paths.personUri}/${fødselsnummer}`));
-}
-
-export function fjernPersonFraKontekst(dispatch: Dispatch<Action>) {
-    dispatch(push('/modiapersonoversikt/'));
+export function settPersonIKontekst(history: History, fødselsnummer: string) {
+    history.push(`${paths.personUri}/${fødselsnummer}`);
 }
 
 export default withRouter(Routing);

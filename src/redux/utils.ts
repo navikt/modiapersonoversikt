@@ -10,10 +10,6 @@ export enum STATUS {
     ERROR = 'ERROR'
 }
 
-export interface Loading {
-    type: STATUS.PENDING;
-}
-
 export interface FetchSuccess<T> {
     type: string;
     data: T;
@@ -24,14 +20,8 @@ export interface FetchError {
     error: string;
 }
 
-export type RestActions<T> =
-    | Loading
-    | FetchSuccess<T>
-    | FetchError
-    ;
-
-function sendResultatTilDispatch(dispatch: Dispatch<Action>, action: string) {
-    return (data: object) => {
+function sendResultatTilDispatch<T>(dispatch: Dispatch<Action>, action: string) {
+    return (data: T) => {
          dispatch({type: action, data});
          return Promise.resolve(data);
     };
@@ -45,7 +35,7 @@ function handterFeil(dispatch: Dispatch<Action>, action: string) {
     };
 }
 
-export function doThenDispatch(fn: () => Promise<object>, { PENDING, OK, ERROR }: ActionTypes) {
+export function doThenDispatch<T>(fn: () => Promise<T>, { PENDING, OK, ERROR }: ActionTypes) {
     return (dispatch: Dispatch<Action>) => {
         if (PENDING) {
             dispatch({type: PENDING});
