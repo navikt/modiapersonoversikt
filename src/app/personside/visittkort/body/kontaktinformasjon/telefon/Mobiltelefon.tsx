@@ -32,7 +32,7 @@ interface MobiltelefonVisningProps {
 export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     if (!kontaktinformasjon) {
         return <>Ingen kontaktinformasjon </>;
-    } else if (kontaktinformasjon.reservasjon) {
+    } else if ('true' === kontaktinformasjon.reservasjon) {
         return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;

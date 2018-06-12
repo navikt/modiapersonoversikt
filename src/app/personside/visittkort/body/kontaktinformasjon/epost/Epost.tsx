@@ -30,7 +30,7 @@ interface EpostVisningProps {
 export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
     if (!kontaktinformasjon) {
         return <Undertekst>Ingen kontaktinformasjon registrert</Undertekst>;
-    } else if (kontaktinformasjon.reservasjon) {
+    } else if ('true' === kontaktinformasjon.reservasjon) {
         return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
