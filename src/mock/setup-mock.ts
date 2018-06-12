@@ -8,7 +8,7 @@ import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mocks';
 import { getMockVeilederRoller } from './veilderRoller-mock';
-import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
+import { mockRetningsnummere } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 
 const STATUS_OK = () => 200;
@@ -86,7 +86,7 @@ function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
         700,
         STATUS_OK,
-        () => mockRetningsnummer()));
+        () => mockRetningsnummere()));
 }
 
 function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
