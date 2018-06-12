@@ -27,7 +27,7 @@ export function createActionsAndReducer(reducerNavn: string) {
         data: {},
         status: STATUS.NOT_STARTED
     };
-    const tilbakestillReducer = (dispacth: Dispatch<Action>) => { dispacth({type: actionTypes.INITIALIZED}); };
+    const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZED}); };
     return {
         action: actionFunction,
         tilbakestillReducer: tilbakestillReducer,
