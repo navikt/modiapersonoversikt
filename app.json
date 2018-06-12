@@ -7,6 +7,9 @@
     "NPM_CONFIG_PRODUCTION": "false",
     "REACT_APP_HODE_URL": {
       "required": true
+    },
+    "REACT_APP_MOCK_ENABLED": {
+      "required": true
     }
   },
   "formation": {
