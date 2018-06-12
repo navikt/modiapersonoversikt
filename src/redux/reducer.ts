@@ -7,6 +7,7 @@ import oppgaverReducer from './oppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
+import baseUrlReducer from './baseurls';
 import endreNavnReducer from './brukerprofil/endreNavn';
 import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettelagtKommunikasjon';
 import veilederRollerReducer from './veilederRoller';
@@ -22,6 +23,7 @@ import { Egenansatt } from '../models/egenansatt';
 import { Vergemal } from '../models/vergemal/vergemal';
 import { VeilederRoller } from '../models/veilederRoller';
 import { KodeverkResponse } from '../models/kodeverk';
+import { BaseUrlsResponse } from '../models/baseurls';
 
 export interface AppState {
     personinformasjon: Reducer<PersonRespons>;
@@ -30,6 +32,7 @@ export interface AppState {
     kontaktinformasjon: Reducer<Kontaktinformasjon>;
     egenAnsatt: Reducer<Egenansatt>;
     vergemal: Reducer<Vergemal>;
+    baseUrlReducer: Reducer<BaseUrlsResponse>;
     endreNavn: Reducer<{}>;
     endreTilrettelagtKommunikasjon: Reducer<{}>;
     veilederRoller: Reducer<VeilederRoller>;
@@ -45,6 +48,7 @@ export default combineReducers<AppState>({
     kontaktinformasjon: kontaktinformasjonReducer,
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
+    baseUrlReducer: baseUrlReducer,
     endreNavn: endreNavnReducer,
     endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
     veilederRoller: veilederRollerReducer,

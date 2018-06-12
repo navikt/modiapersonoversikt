@@ -7,6 +7,7 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mocks';
+import { getBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
@@ -75,6 +76,13 @@ function setupVergemalMock(mock: FetchMock) {
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
 }
 
+function setupBaseUrlsMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/baseurls', withDelayedResponse(
+        2500,
+        STATUS_OK,
+        () => {return getBaseUrls(); }));
+}
+
 function setupVeilederRollerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
         700,
@@ -115,6 +123,7 @@ export function setupMock() {
     setupGeografiskTilknytningMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
+    setupBaseUrlsMock(mock);
     endreNavnMock(mock);
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
