@@ -24,7 +24,7 @@ export const aremark: Person = {
         }
     },
     navn: {
-        sammensatt: 'AREMARK TESTFAMILIEN',
+        sammensatt: 'TESTFAMILIEN AREMARK',
         fornavn: 'AREMARK',
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
@@ -67,7 +67,7 @@ export const aremark: Person = {
         mobil: {
             sistEndret: '2014-06-21T18:44:39+02:00',
             identifikator: '99887766',
-            retningsnummer: '47',
+            retningsnummer: '+47',
             sistEndretAv: 'BRUKER'
         }
     }
