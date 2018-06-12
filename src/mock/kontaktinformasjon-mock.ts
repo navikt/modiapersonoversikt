@@ -29,7 +29,7 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
     return {
         epost: vektetSjansePerson(0.7, personData) ? getEpost(personData as Person) : undefined,
         mobiltelefon: vektetSjansePerson(0.7, personData) ? getMobiltelefon() : undefined,
-        reservasjon: vektetSjanse(faker, 0.7) ? undefined : 'true'
+        reservasjon: vektetSjanse(faker, 0.7) ? undefined : true
     };
 }
 
