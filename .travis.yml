@@ -10,8 +10,19 @@ env:
     - TZ='Europe/Oslo'
     - RELEASE_VERSION="$(git fetch --unshallow || true && git rev-list --count $TRAVIS_COMMIT)"
     - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
+    - CC_TEST_REPORTER_ID=c0aef07fc3e6e2daee28f0fbf3fdd1a56f6462e2edc3b655a184cf270e212efc
 
-script: docker build -t "$DOCKER_IMAGE_FULL_NAME" .
+before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+
+script:
+    - npm run test-coverage
+    - docker build -t "$DOCKER_IMAGE_FULL_NAME" .
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 deploy:
   provider: script
