@@ -3,7 +3,7 @@ import { hentBaseUrl } from './baseurls';
 const url = 'https://lenke.com';
 const url2 = 'https://lenke2.com';
 const key1 = 'lenkeSomFinnes';
-const key2 = 'endaEnlenkeSomFinnes'
+const key2 = 'endaEnlenkeSomFinnes';
 const baseUrlResponse = {
     baseUrls: [
         {
