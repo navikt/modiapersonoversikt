@@ -3,9 +3,8 @@ import { fetchEndreNavKontaktinformasjon, Request } from '../../api/brukerprofil
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endre-kontaktinformasjon');
 
-export function endreNavKontaktinformasjon(request: Request) {
-    console.log(request);
-    return action(() => fetchEndreNavKontaktinformasjon(request));
+export function endreNavKontaktinformasjon(request: Request, fødselsnummer: string) {
+    return action(() => fetchEndreNavKontaktinformasjon(request, fødselsnummer));
 }
 
 function dispatchTilbakestillReducer() { return tilbakestillReducer; }

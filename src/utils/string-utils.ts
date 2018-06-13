@@ -25,3 +25,7 @@ export function padLeft(streng: string, width: number, symbol: string) {
 export function removeWhitespace(input: string) {
     return input.replace(/ /g, '');
 }
+
+export function erTomStreng(input: string) {
+    return removeWhitespace(input).length === 0;
+}

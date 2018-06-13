@@ -18,7 +18,7 @@ import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/utils';
-import { removeWhitespace } from '../../../utils/string-utils';
+import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { InputState } from '../formUtils';
 
 export interface TelefonInput {
@@ -35,7 +35,7 @@ interface State {
 }
 
 interface DispatchProps {
-    endreNavKontaktinformasjon: (request: Request) => Promise<{}>;
+    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
     tilbakestillReducer: () => void;
 }
 
@@ -86,8 +86,8 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
 function initialState(kontaktinformasjon: NavKontaktinformasjon) {
     return {
         mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
-        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobb),
-        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjem),
+        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
+        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjemTelefon),
         formErEndret: false,
         visFeilmeldinger: false
     };
@@ -97,6 +97,16 @@ function erEndret(telefon1: TelefonInput, telefon2: TelefonInput) {
     const retningsnummerEndret = telefon1.retningsnummer.input !== telefon2.retningsnummer.input;
     const identifikatorEndret = telefon1.identifikator.input !== telefon2.identifikator.input;
     return retningsnummerEndret || identifikatorEndret;
+}
+
+function getTelefonHvisSatt(telefon: TelefonInput) {
+    if (erTomStreng(telefon.identifikator.input) || erTomStreng(telefon.retningsnummer.input)) {
+        return undefined;
+    }
+    return {
+        identifikator: removeWhitespace(telefon.identifikator.input),
+        retningsnummer: removeWhitespace(telefon.retningsnummer.input)
+    };
 }
 
 class KontaktinformasjonForm extends React.Component<Props, State> {
@@ -227,21 +237,11 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         }
 
         const request = {
-            fødselsnummer: this.props.person.fødselsnummer,
-            mobil: {
-                identifikator: removeWhitespace(this.state.mobilInput.identifikator.input),
-                retningsnummer: this.state.mobilInput.retningsnummer.input
-            },
-            jobb: {
-                identifikator: removeWhitespace(this.state.jobbTelefonInput.identifikator.input),
-                retningsnummer: this.state.jobbTelefonInput.retningsnummer.input
-            },
-            hjem: {
-                identifikator: removeWhitespace(this.state.hjemTelefonInput.identifikator.input),
-                retningsnummer: this.state.hjemTelefonInput.retningsnummer.input
-            },
+            mobil: getTelefonHvisSatt(this.state.mobilInput),
+            jobb: getTelefonHvisSatt(this.state.jobbTelefonInput),
+            hjem: getTelefonHvisSatt(this.state.hjemTelefonInput)
         };
-        this.props.endreNavKontaktinformasjon(request);
+        this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
     }
 
     requestIsPending() {
@@ -250,8 +250,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     formErEndret() {
         const mobilProps = getInitialTelefonState(this.props.person.kontaktinformasjon.mobil);
-        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobb);
-        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjem);
+        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobbTelefon);
+        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjemTelefon);
 
         const mobilErEndret = erEndret(mobilProps, this.state.mobilInput);
         const jobbErEndret = erEndret(jobbProps, this.state.jobbTelefonInput);
@@ -302,7 +302,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             Hjemmenummer
                         </TelefonInput>
                     </TelefonWrapper>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjem}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.jobbTelefonInput}
@@ -312,7 +312,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     >
                         Jobbnummer
                     </TelefonInput>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobb}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
                 </InputWrapper>
                 <FormKnapperWrapper>
                     <KnappBase
@@ -346,8 +346,8 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        endreNavKontaktinformasjon: (request: Request) =>
-            dispatch(endreNavKontaktinformasjon(request)),
+        endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
+            dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
         tilbakestillReducer: () => dispatch(tilbakestillReducer())
     };
 }
