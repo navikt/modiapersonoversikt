@@ -1,7 +1,7 @@
 export interface NavKontaktinformasjon {
     mobil?: Telefon;
-    jobb?: Telefon;
-    hjem?: Telefon;
+    jobbTelefon?: Telefon;
+    hjemTelefon?: Telefon;
 }
 
 export interface Telefon {

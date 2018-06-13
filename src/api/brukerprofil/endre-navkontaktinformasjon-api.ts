@@ -5,7 +5,6 @@ export interface Request {
     mobil?: Telefon;
     jobb?: Telefon;
     hjem?: Telefon;
-    fødselsnummer: string;
 }
 
 interface Telefon {
@@ -13,7 +12,7 @@ interface Telefon {
     identifikator: string;
 }
 
-export function fetchEndreNavKontaktinformasjon(request: Request): Promise<{}> {
-    const uri = `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/telefon/`;
+export function fetchEndreNavKontaktinformasjon(request: Request, fødselsnummer: string): Promise<{}> {
+    const uri = `${apiBaseUri}/brukerprofil/${fødselsnummer}/telefonnummer/`;
     return post(uri, request);
 }

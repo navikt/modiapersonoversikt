@@ -20,7 +20,7 @@ import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
-import { getNavKontaktinformasjon } from './navKontaktinformasjon';
+import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {

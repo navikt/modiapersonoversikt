@@ -10,11 +10,11 @@ export function getNavKontaktinformasjon(faker: FakerStatic) {
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.jobb = getMockTelefon(faker, faker.phone.phoneNumber('########'));
+        kontaktinformasjon.jobbTelefon = getMockTelefon(faker, faker.phone.phoneNumber('########'));
     }
 
     if (vektetSjanse(faker, 0.3)) {
-        kontaktinformasjon.hjem = getMockTelefon(faker, faker.phone.phoneNumber('########'));
+        kontaktinformasjon.hjemTelefon = getMockTelefon(faker, faker.phone.phoneNumber('########'));
     }
 
     return kontaktinformasjon;
