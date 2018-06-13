@@ -18,7 +18,7 @@ import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/utils';
-import { removeWhitespace } from '../../../utils/string-utils';
+import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { InputState } from '../formUtils';
 
 export interface TelefonInput {
@@ -97,6 +97,16 @@ function erEndret(telefon1: TelefonInput, telefon2: TelefonInput) {
     const retningsnummerEndret = telefon1.retningsnummer.input !== telefon2.retningsnummer.input;
     const identifikatorEndret = telefon1.identifikator.input !== telefon2.identifikator.input;
     return retningsnummerEndret || identifikatorEndret;
+}
+
+function getTelefonHvisSatt(telefon: TelefonInput) {
+    if (erTomStreng(telefon.identifikator.input) || erTomStreng(telefon.retningsnummer.input)) {
+        return undefined;
+    }
+    return {
+        identifikator: removeWhitespace(telefon.identifikator.input),
+        retningsnummer: removeWhitespace(telefon.retningsnummer.input)
+    };
 }
 
 class KontaktinformasjonForm extends React.Component<Props, State> {
@@ -228,18 +238,9 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
         const request = {
             fødselsnummer: this.props.person.fødselsnummer,
-            mobil: {
-                identifikator: removeWhitespace(this.state.mobilInput.identifikator.input),
-                retningsnummer: this.state.mobilInput.retningsnummer.input
-            },
-            jobb: {
-                identifikator: removeWhitespace(this.state.jobbTelefonInput.identifikator.input),
-                retningsnummer: this.state.jobbTelefonInput.retningsnummer.input
-            },
-            hjem: {
-                identifikator: removeWhitespace(this.state.hjemTelefonInput.identifikator.input),
-                retningsnummer: this.state.hjemTelefonInput.retningsnummer.input
-            },
+            mobil: getTelefonHvisSatt(this.state.mobilInput),
+            jobb: getTelefonHvisSatt(this.state.jobbTelefonInput),
+            hjem: getTelefonHvisSatt(this.state.hjemTelefonInput)
         };
         this.props.endreNavKontaktinformasjon(request);
     }
