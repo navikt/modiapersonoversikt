@@ -32,7 +32,7 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
 
 export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjon}) {
     const {navKontaktinformasjon} = props;
-    if (!navKontaktinformasjon.hjem && !navKontaktinformasjon.jobb && !navKontaktinformasjon.mobil) {
+    if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
         return null;
     }
 
@@ -45,12 +45,12 @@ export default function NavKontaktinformasjon(props: {navKontaktinformasjon: Nav
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
-                telefon={navKontaktinformasjon.hjem}
+                telefon={navKontaktinformasjon.hjemTelefon}
                 beskrivelse={'Hjem'}
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
-                telefon={navKontaktinformasjon.jobb}
+                telefon={navKontaktinformasjon.jobbTelefon}
                 beskrivelse={'Jobb'}
             />
         </VisittkortElement>
