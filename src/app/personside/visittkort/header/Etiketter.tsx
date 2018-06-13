@@ -26,7 +26,7 @@ function lagDiskresjonskodeEtikett(diskresjonskode: string) {
         case Diskresjonskoder.FORTROLIG_ADRESSE:
             return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 7</EtikettBase>;
         default:
-            return '';
+            return null;
     }
 }
 
