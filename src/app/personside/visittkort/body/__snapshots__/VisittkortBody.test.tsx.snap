@@ -593,7 +593,7 @@ Array [
             </div>
             <a
               className="lenke sc-gzVnrw dkfjFD"
-              href="/norg2-frontend/#/startsok?enhetNr=0118"
+              href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
               rel="noopener noreferrer"
               target="_blank"
             >
