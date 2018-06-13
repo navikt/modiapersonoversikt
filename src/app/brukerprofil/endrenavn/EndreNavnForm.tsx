@@ -14,9 +14,10 @@ import { AppState } from '../../../redux/reducer';
 import { endreNavn, reset } from '../../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
+import RequestTilbakemelding from '../RequestTilbakemelding';
 import { brukersNavnKanEndres, validerNavn, veilederHarPåkrevdRolle } from './endrenavn-utils';
 import Infomelding from './Infomelding';
+import { InputState } from '../formUtils';
 
 const ENTER_KEY_PRESS = 13;
 
@@ -28,10 +29,7 @@ function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
 
 interface NavnInputProps {
     label: string;
-    state: {
-        input: string;
-        feilmelding: string | undefined;
-    };
+    state: InputState;
     disabled: boolean;
     onChange: (input: string) => void;
 }
@@ -51,18 +49,9 @@ function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
 }
 
 interface State {
-    fornavn: {
-        input: string;
-        feilmelding: string | undefined;
-    };
-    mellomnavn: {
-        input: string;
-        feilmelding: string | undefined;
-    };
-    etternavn: {
-        input: string;
-        feilmelding: string | undefined;
-    };
+    fornavn: InputState;
+    mellomnavn: InputState;
+    etternavn: InputState;
     formErEndret: boolean;
 }
 
@@ -100,15 +89,15 @@ class EndreNavnForm extends React.Component<Props, State> {
         return {
             fornavn: {
                 input: props.person.navn.fornavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             mellomnavn: {
                 input: props.person.navn.mellomnavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             etternavn: {
                 input: props.person.navn.etternavn || '',
-                feilmelding: undefined
+                feilmelding: null
             },
             formErEndret: false
         };
@@ -122,7 +111,7 @@ class EndreNavnForm extends React.Component<Props, State> {
         this.setState({
             fornavn: {
                 input,
-                feilmelding: undefined
+                feilmelding: null
             },
             formErEndret: true
         });
@@ -131,7 +120,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     mellomnavnInputChange(input: string) {
         this.setState({
             mellomnavn: {
-                feilmelding: undefined,
+                feilmelding: null,
                 input
             },
             formErEndret: true
@@ -141,7 +130,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     etternavnInputChange(input: string) {
         this.setState({
             etternavn: {
-                feilmelding: undefined,
+                feilmelding: null,
                 input
             },
             formErEndret: true
