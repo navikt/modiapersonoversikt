@@ -1,6 +1,6 @@
 import { BaseUrlsResponse } from '../models/baseurls';
 
-export function getBaseUrls(): BaseUrlsResponse {
+export function mockBaseUrls(): BaseUrlsResponse {
     return {
         baseUrls: [
             {

@@ -18,10 +18,12 @@ import { mockVergemal } from './mock/vergemal-mocks';
 import { kontaktinformasjonActionNames } from './redux/kontaktinformasjon';
 import { actionNames as egenAnsattActionNames } from './redux/egenansatt';
 import { actionNames as vergeMålActionNames } from './redux/vergemal';
+import { actionNames as baseUrlsActionNames } from './redux/baseurls';
 import { getMockKontaktinformasjon } from './mock/kontaktinformasjon-mock';
 import { personinformasjonActionNames } from './redux/personinformasjon';
 import { getPerson } from './mock/person/personMock';
 import { erEgenAnsatt } from './mock/egenansatt-mock';
+import { mockBaseUrls } from './mock/baseUrls-mock';
 
 export const testStore = createStore(reducers);
 const aremarkFnr = '10108000398';
@@ -31,3 +33,4 @@ testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118
 testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon(aremarkFnr) });
 testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
 testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
+testStore.dispatch({ type: baseUrlsActionNames.OK, data: mockBaseUrls() });

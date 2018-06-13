@@ -9,12 +9,12 @@ export function hentBaseUrls() {
 }
 
 export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
-    const baseUrl = baseUrlsResponse.baseUrls.find((baseUrl : BaseUrl) => {
+    const resultUrl = baseUrlsResponse.baseUrls.find((baseUrl: BaseUrl) => {
         return baseUrl.key === key;
     });
 
-    if(baseUrl) {
-        return baseUrl.url;
+    if (resultUrl) {
+        return resultUrl.url;
     }
     return '';
 }
