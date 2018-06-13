@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
 
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
@@ -54,8 +53,7 @@ export default combineReducers<AppState>({
     veilederRoller: veilederRollerReducer,
     retningsnummerReducer: retningsnummereReducer,
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
-    endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
-    router: routerReducer
+    endreKontaktinformasjonReducer: endreKontaktinformasjonReducer
 });
 
 export interface Reducer<T> {
