@@ -26,7 +26,7 @@ function lagDiskresjonskodeEtikett(diskresjonskode: string) {
         case Diskresjonskoder.FORTROLIG_ADRESSE:
             return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 7</EtikettBase>;
         default:
-            return <EtikettBase key={diskresjonskode} type={'info'}>{diskresjonskode}</EtikettBase>;
+            return null;
     }
 }
 
@@ -56,7 +56,10 @@ function harVergemål(vergemal?: Vergemal) {
 function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal) {
     const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
-        etiketter.push(lagDiskresjonskodeEtikett(person.diskresjonskode));
+        const diskresjonskodeEtikett = lagDiskresjonskodeEtikett(person.diskresjonskode);
+        if (diskresjonskodeEtikett) {
+            etiketter.push(diskresjonskodeEtikett);
+        }
     }
     if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());

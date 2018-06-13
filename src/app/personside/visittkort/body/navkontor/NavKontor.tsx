@@ -9,6 +9,8 @@ import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettMini from '../../../../../components/EtikettMini';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
+import { BaseUrlsResponse } from '../../../../../models/baseurls';
+import { hentBaseUrl } from '../../../../../redux/baseurls';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -95,7 +97,7 @@ function flerePublikumsmottak(antallMottak: number) {
     return null;
 }
 
-function Publikumsmottak(props: {publikumsmottak: PublikumsMottak[]}) {
+function Publikumsmottak(props: { publikumsmottak: PublikumsMottak[] }) {
     const antallPublikumsmottak = props.publikumsmottak.length;
     if (antallPublikumsmottak === 0) {
         return <Undertekst>Ingen publikumsmottak</Undertekst>;
@@ -110,12 +112,12 @@ function Publikumsmottak(props: {publikumsmottak: PublikumsMottak[]}) {
     );
 }
 
-function navkontorInfo(navKontor: NavKontor) {
+function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
     return (
         <>
             <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
             <StyledLenke
-                href={`/norg2-frontend/#/startsok?enhetNr=${navKontor.enhetId}`}
+                href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={'lenke'}
@@ -126,10 +128,10 @@ function navkontorInfo(navKontor: NavKontor) {
     );
 }
 
-function NavKontorVisning(props: { navKontor?: NavKontor }) {
+function NavKontorVisning(props: { navKontor?: NavKontor, baseUrlsResponse?: BaseUrlsResponse }) {
     if (!props.navKontor) {
         return (
-            <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
+            <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo/>}>
                 <br/>
             </VisittkortElement>
         );
@@ -137,11 +139,21 @@ function NavKontorVisning(props: { navKontor?: NavKontor }) {
 
     const beskrivelse = `${props.navKontor.enhetId} ${props.navKontor.enhetNavn}`;
 
+    var norg2Url = hentNorg2Url(props.baseUrlsResponse);
+
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
-            {navkontorInfo(props.navKontor)}
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo/>}>
+            {navkontorInfo(props.navKontor, norg2Url)}
         </VisittkortElement>
     );
+}
+
+function hentNorg2Url(baseUrlsResponse?: BaseUrlsResponse) {
+    if (baseUrlsResponse) {
+        return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
+    }
+
+    return '';
 }
 
 export default NavKontorVisning;
