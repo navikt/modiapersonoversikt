@@ -35,7 +35,7 @@ interface State {
 }
 
 interface DispatchProps {
-    endreNavKontaktinformasjon: (request: Request) => Promise<{}>;
+    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
     tilbakestillReducer: () => void;
 }
 
@@ -86,8 +86,8 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
 function initialState(kontaktinformasjon: NavKontaktinformasjon) {
     return {
         mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
-        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobb),
-        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjem),
+        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
+        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjemTelefon),
         formErEndret: false,
         visFeilmeldinger: false
     };
@@ -237,12 +237,11 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         }
 
         const request = {
-            fødselsnummer: this.props.person.fødselsnummer,
             mobil: getTelefonHvisSatt(this.state.mobilInput),
             jobb: getTelefonHvisSatt(this.state.jobbTelefonInput),
             hjem: getTelefonHvisSatt(this.state.hjemTelefonInput)
         };
-        this.props.endreNavKontaktinformasjon(request);
+        this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
     }
 
     requestIsPending() {
@@ -251,8 +250,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     formErEndret() {
         const mobilProps = getInitialTelefonState(this.props.person.kontaktinformasjon.mobil);
-        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobb);
-        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjem);
+        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobbTelefon);
+        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjemTelefon);
 
         const mobilErEndret = erEndret(mobilProps, this.state.mobilInput);
         const jobbErEndret = erEndret(jobbProps, this.state.jobbTelefonInput);
@@ -303,7 +302,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             Hjemmenummer
                         </TelefonInput>
                     </TelefonWrapper>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjem}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.jobbTelefonInput}
@@ -313,7 +312,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     >
                         Jobbnummer
                     </TelefonInput>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobb}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
                 </InputWrapper>
                 <FormKnapperWrapper>
                     <KnappBase
@@ -347,8 +346,8 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        endreNavKontaktinformasjon: (request: Request) =>
-            dispatch(endreNavKontaktinformasjon(request)),
+        endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
+            dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
         tilbakestillReducer: () => dispatch(tilbakestillReducer())
     };
 }
