@@ -1,16 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import VisittkortElement from '../VisittkortElement';
-import { Verge, Vergemal } from '../../../../../models/vergemal/vergemal';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
-import { formaterDato } from '../../../../../utils/dateUtils';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
-import { Periode } from '../../../../../models/vergemal/vergemal';
-import { InfoGruppe } from '../styledComponents';
-import VergemålLogo from '../../../../../svg/Utropstegn';
+import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
+import VisittkortElement, { TittelStyle } from '../VisittkortElement';
+import { Periode, Verge, Vergemal } from '../../../../../models/vergemal/vergemal';
+import { formaterDato } from '../../../../../utils/dateUtils';
+import VergemålLogo from '../../../../../svg/Utropstegn';
+import EtikettMini from '../../../../../components/EtikettMini';
+
+export const feilmelding = 'Feil ved visning av vergemål';
 const emdash = '\u2014';
 
 function Periode(props: {periode: Periode}) {
@@ -20,7 +20,7 @@ function Periode(props: {periode: Periode}) {
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
     return(
-        <EtikettLiten>{fom} {emdash} {tom}</EtikettLiten>
+        <EtikettMini>{fom} {emdash} {tom}</EtikettMini>
     );
 }
 
@@ -29,42 +29,57 @@ const Vergeinformasjon = styled.div`
 `;
 
 const VergeDiv = styled.div`
+  margin-top: 1em;
   padding-bottom: 1.5em;
+`;
+
+const Vergesakstype = styled.span`
+  display: block;
 `;
 
 function Verge(props: {verge: Verge}) {
     const {verge} = props;
     return (
-        <VisittkortElement beskrivelse="Verge" ikon={<VergemålLogo />}>
-            <VergeDiv>
-                <Vergeinformasjon>
-                    <Undertekst>{verge.navn.sammensatt}</Undertekst>
-                    <Undertekst>{verge.ident}</Undertekst>
-                    <Undertekst>{verge.vergetype ? verge.vergetype.value : ''}</Undertekst>
-                </Vergeinformasjon>
-                <UndertekstBold>{verge.vergesakstype ? verge.vergesakstype.value : ''}</UndertekstBold>
-                <Undertekst>{verge.mandattype ? verge.mandattype.value : ''}</Undertekst>
-                <Undertekst>{verge.mandattekst || ''}</Undertekst>
-                <Undertekst>{verge.embete ? verge.embete.value : ''}</Undertekst>
-                <Periode periode={verge.virkningsperiode}/>
-            </VergeDiv>
-        </VisittkortElement>
-
+        <VergeDiv>
+            <EtikettLiten><TittelStyle>Verge</TittelStyle></EtikettLiten>
+            <Vergeinformasjon>
+                <Undertekst>{verge.navn.sammensatt}</Undertekst>
+                <Undertekst>{verge.ident}</Undertekst>
+                <Undertekst>{verge.vergetype ? verge.vergetype.value : ''}</Undertekst>
+            </Vergeinformasjon>
+            <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
+            <Undertekst>{verge.mandattype ? verge.mandattype.value : ''}</Undertekst>
+            <Undertekst>{verge.mandattekst || ''}</Undertekst>
+            <EtikettMini>{verge.embete ? verge.embete.value : ''}</EtikettMini>
+            <Periode periode={verge.virkningsperiode}/>
+        </VergeDiv>
     );
 }
 
 function Vergemal(props: {vergemal: Vergemal}) {
-    const verger = props.vergemal.verger.map(verge => <Verge verge={verge} key={verge.ident}/>);
+    const alleVergesakstyper = props.vergemal.verger.map(verge => verge.vergesakstype ?
+        verge.vergesakstype.value : 'Ingen vergesakstype oppgitt').join(', ');
+    const verger = props.vergemal.verger.map(verge =>
+        <Verge verge={verge} key={verge.ident}/>);
     return (
-        <InfoGruppe tittel={'Bruker er under vergemål'}>
-            {verger}
-        </InfoGruppe>
+        <VisittkortElement
+            beskrivelse={'Bruker er under vergemål'}
+            ikon={<VergemålLogo />}
+            type={'header'}
+        >
+            <>
+                <Vergesakstype>
+                    <Undertekst>{alleVergesakstyper}</Undertekst>
+                </Vergesakstype>
+                {verger}
+            </>
+        </VisittkortElement>
     );
 }
 
 function VergemalWrapper(props: {vergemal?: Vergemal}) {
     if (!props.vergemal) {
-        return <p>Feil ved visning av vergemål</p>;
+        return <p>{feilmelding}</p>;
     }
 
     if (props.vergemal.verger.length === 0) {
