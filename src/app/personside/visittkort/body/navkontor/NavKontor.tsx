@@ -117,7 +117,7 @@ function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
         <>
             <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
             <StyledLenke
-                href={norg2Url + `/#/startsok?enhetNr=${navKontor.enhetId}`}
+                href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={'lenke'}
@@ -151,9 +151,6 @@ function NavKontorVisning(props: { navKontor?: NavKontor, baseUrlsResponse?: Bas
 function hentNorg2Url(props: { navKontor?: NavKontor; baseUrlsResponse?: BaseUrlsResponse }) {
     var norg2Url = hentBaseUrl(props.baseUrlsResponse, 'norg2-frontend');
 
-    if ('' === norg2Url) {
-        norg2Url = 'https://norg2-frontend.nais.adeo.no';
-    }
     return norg2Url;
 }
 
