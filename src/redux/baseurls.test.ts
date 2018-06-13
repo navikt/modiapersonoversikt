@@ -17,7 +17,6 @@ const baseUrlResponse = {
     ]
 };
 
-
 it('Returnerer URL dersom key finnes i lista', () => {
     expect(hentBaseUrl(baseUrlResponse, key1)).toEqual(url);
     expect(hentBaseUrl(baseUrlResponse, key2)).toEqual(url2);
