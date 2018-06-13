@@ -139,7 +139,7 @@ function NavKontorVisning(props: { navKontor?: NavKontor, baseUrlsResponse?: Bas
 
     const beskrivelse = `${props.navKontor.enhetId} ${props.navKontor.enhetNavn}`;
 
-    var norg2Url = hentNorg2Url(props);
+    var norg2Url = hentNorg2Url(props.baseUrlsResponse);
 
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo/>}>
@@ -148,10 +148,12 @@ function NavKontorVisning(props: { navKontor?: NavKontor, baseUrlsResponse?: Bas
     );
 }
 
-function hentNorg2Url(props: { navKontor?: NavKontor; baseUrlsResponse?: BaseUrlsResponse }) {
-    var norg2Url = hentBaseUrl(props.baseUrlsResponse, 'norg2-frontend');
+function hentNorg2Url(baseUrlsResponse?: BaseUrlsResponse) {
+    if (baseUrlsResponse) {
+        return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
+    }
 
-    return norg2Url;
+    return '';
 }
 
 export default NavKontorVisning;
