@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Fragment } from 'react';
 
-import { Undertekst } from 'nav-frontend-typografi';
+import Undertekst from "nav-frontend-typografi/lib/undertekst";
 
 import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
@@ -11,6 +11,7 @@ import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/baseurls';
+
 
 const NameCase = styled.span`
   text-transform: capitalize;
