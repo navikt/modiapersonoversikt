@@ -12,11 +12,11 @@ const aremarkKontaktinformasjon = {
     reservert: undefined,
     epost: {
         value: 'aremark@testfamilien.no',
-        sistOppdatert: getSistOppdatert()
+        sistOppdatert: '2014-05-15T11:32:43+02:00'
     },
     mobiltelefon: {
         value: '11223344',
-        sistOppdatert: getSistOppdatert()
+        sistOppdatert: '2014-05-15T11:32:43+02:00'
     }
 };
 
@@ -29,7 +29,7 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
     return {
         epost: vektetSjansePerson(0.7, personData) ? getEpost(personData as Person) : undefined,
         mobiltelefon: vektetSjansePerson(0.7, personData) ? getMobiltelefon() : undefined,
-        reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
+        reservasjon: vektetSjanse(faker, 0.7) ? undefined : 'true'
     };
 }
 

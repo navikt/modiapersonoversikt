@@ -2,13 +2,13 @@
 
 exports[`viser info om bruker i visittkort-header 1`] = `
 <div
-  className="sc-ifAKCX hMtwKY"
+  className="sc-EHOje iEMKnz"
 >
   <div
-    className="sc-EHOje ZXjoY"
+    className="sc-bZQynM kCagj"
   >
     <div
-      className="sc-gzVnrw eZQuth"
+      className="sc-htoDjs cUPGxf"
       title="Mann"
     >
       <svg
@@ -24,25 +24,21 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </svg>
     </div>
     <div
-      className="sc-htoDjs bQxDUW"
+      className="sc-dnqmqq cOJMoz"
     >
       <h2
         className="typo-undertittel"
       >
-        <span
-          className="sc-dnqmqq jzvNCD"
-        >
-          AREMARK TESTFAMILIEN
-           (
-          42
-          )
-        </span>
+        AREMARK TESTFAMILIEN
+         (
+        42
+        )
       </h2>
       <span
         className="typo-undertekst"
       >
         <span
-          className="sc-htpNat eiDUlg"
+          className="sc-bxivhb dCGcuR"
         >
           <span
             title="Fødselsnummer"
@@ -52,7 +48,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           </span>
         </span>
         <ul
-          className="sc-bwzfXH bdrGTU"
+          className="sc-htpNat gxIENh"
         >
           <li
             title="Statsborgerskap"
@@ -75,10 +71,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </div>
   </div>
   <div
-    className="sc-bZQynM iwaBxj"
+    className="sc-gzVnrw dcXaNe"
   >
     <div
-      className="sc-bxivhb ezGmfP"
+      className="sc-ifAKCX eHvGAp"
     >
       <div
         className="etikett etikett--advarsel"
@@ -86,7 +82,25 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         <span
           className="typo-normal"
         >
-          Fortrolig adresse
+          Kode 7
+        </span>
+      </div>
+      <div
+        className="etikett etikett--advarsel"
+      >
+        <span
+          className="typo-normal"
+        >
+          Sikkerhetstiltak
+        </span>
+      </div>
+      <div
+        className="etikett etikett--fokus"
+      >
+        <span
+          className="typo-normal"
+        >
+          Vergemål
         </span>
       </div>
       <div
@@ -103,7 +117,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       className="typo-undertekst"
     >
       <dl
-        className="sc-bdVaJa hdCgJK"
+        className="sc-bwzfXH gvaWfu"
       >
         <dt>
           NAV-kontor

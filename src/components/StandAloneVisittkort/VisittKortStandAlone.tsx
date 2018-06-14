@@ -13,6 +13,7 @@ import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import Brukerprofilside from '../../app/brukerprofil/BrukerprofilSide';
 import { paths } from '../../app/routes/routing';
+import ErrorBoundary from '../ErrorBoundary';
 
 interface Props {
     fødselsnummer: string;
@@ -35,16 +36,18 @@ class VisittkortStandAlone extends React.Component<Props> {
 
     render() {
         return (
-            <Provider store={store}>
-                <ThemeProvider theme={personOversiktTheme}>
-                    <MemoryRouter>
-                        <Switch>
-                            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
-                            <Route component={StandAloneVisittKortContainer}/>
-                        </Switch>
-                    </MemoryRouter>
-                </ThemeProvider>
-            </Provider>
+            <ErrorBoundary>
+                <Provider store={store}>
+                    <ThemeProvider theme={personOversiktTheme}>
+                        <MemoryRouter>
+                            <Switch>
+                                <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
+                                <Route component={StandAloneVisittKortContainer}/>
+                            </Switch>
+                        </MemoryRouter>
+                    </ThemeProvider>
+                </Provider>
+            </ErrorBoundary>
         );
     }
 }

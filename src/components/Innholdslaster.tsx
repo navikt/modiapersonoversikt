@@ -4,6 +4,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/utils';
 import { Reducer } from '../redux/reducer';
+import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 
 interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild | JSX.Element[];
@@ -33,7 +34,9 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
             return null;
         } else {
             return this.props.returnOnPending || (
-                <NavFrontendSpinner type={this.props.spinnerSize || 'XXL'}/>
+                <FillCenterAndFadeIn>
+                    <NavFrontendSpinner type={this.props.spinnerSize || 'XXL'} />
+                </FillCenterAndFadeIn>
             );
         }
     }

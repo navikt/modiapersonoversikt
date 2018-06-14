@@ -2,14 +2,11 @@ import * as React from 'react';
 import { FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import styled from 'styled-components';
 
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/utils';
 import { AppState } from '../../../redux/reducer';
-import { VeilederRoller } from '../../../models/veilederRoller';
 import {
     EndreTilrettelagtKommunikasjonrequest
 } from
@@ -19,13 +16,8 @@ import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import RequestTilbakemelding from './RequestTilbakemelding';
-
-const SubmitknappWrapper = styled.div`
-  margin-top: 1em;
-`;
-
-const påkrevdRolle = '0000-GA-BD06_EndreKontaktAdresse';
+import RequestTilbakemelding from '../RequestTilbakemelding';
+import { FormKnapperWrapper } from '../BrukerprofilForm';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -42,7 +34,6 @@ interface StateProps {
 
 interface OwnProps {
     person: Person;
-    veilederRoller?: VeilederRoller;
     tilrettelagtKommunikasjonKodeverk: KodeverkResponse;
 }
 
@@ -57,6 +48,11 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.tilbakestillForm = this.tilbakestillForm.bind(this);
+    }
+
+    componentWillUnmount() {
+        this.props.resetEndreTilrettelagtKommunikasjonReducer();
     }
 
     lagKnapper() {
@@ -68,7 +64,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                 id: kommunikasjonsmetode.kodeRef,
                 checked: this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
                     tk.behovKode === kommunikasjonsmetode.kodeRef),
-                disabled: !this.harVeilderPåkrevdRolle()
             };
         });
     }
@@ -93,13 +88,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         });
     }
 
-    harVeilderPåkrevdRolle() {
-        if (!this.props.veilederRoller) {
-            return false;
-        }
-        return this.props.veilederRoller.roller.includes(påkrevdRolle);
-    }
-
     erEndret() {
         return this.state.checkbokser.some((checkboks) => {
             const erTilrettelagt = this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
@@ -111,21 +99,31 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         });
     }
 
+    tilbakestillForm(event: React.MouseEvent<HTMLButtonElement>) {
+        this.setState({
+            checkbokser: this.lagKnapper()
+        });
+        this.props.resetEndreTilrettelagtKommunikasjonReducer();
+        event.preventDefault();
+    }
+
     render() {
-        const title = this.harVeilderPåkrevdRolle()
-            ? ''
-            : `Du trenger AD-rolle ${påkrevdRolle} for å endre dette`;
         return (
-            <form onSubmit={this.handleSubmit} title={title}>
-                <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
+            <form onSubmit={this.handleSubmit}>
                 <CheckboksPanelGruppe
                     checkboxes={this.state.checkbokser}
                     legend={''}
                     onChange={this.handleOnChange}
                 />
-                <SubmitknappWrapper>
+                <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
+                        onClick={this.tilbakestillForm}
+                    >
+                        Avbryt
+                    </KnappBase>
+                    <KnappBase
+                        type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
                         disabled={!this.erEndret()}
                         title={!this.erEndret() ? 'Ingen endringer' : ''}
@@ -133,7 +131,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     >
                         Endre tilrettelagt kommunikasjon
                     </KnappBase>
-                </SubmitknappWrapper>
+                </FormKnapperWrapper>
                 <RequestTilbakemelding
                     status={this.props.status}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
@@ -141,7 +139,6 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                          Det kan ta noen minutter før endringene blir synlig.`}
                 />
             </form>
-
         );
     }
 }

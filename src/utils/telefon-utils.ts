@@ -1,4 +1,4 @@
-import { formatNumber } from './helpers';
+import { formatNumber } from './string-utils';
 
 export function formaterMobiltelefonnummer(telefonnummer: string) {
     if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {

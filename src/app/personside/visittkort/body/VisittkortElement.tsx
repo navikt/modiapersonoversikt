@@ -1,14 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { EtikettLiten } from 'nav-frontend-typografi';
+
+import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import Element from 'nav-frontend-typografi/lib/element';
 
 interface ElementProps {
     children: string | JSX.Element | JSX.Element[];
     beskrivelse?: string;
+    type?: 'header' | 'subheader';
     ikon?: JSX.Element;
 }
 
-const Element = styled.div`
+const ElementStyle = styled.div`
   display: flex;
   flex: 0 0 auto;
   margin-right: 50px;
@@ -28,26 +31,32 @@ const InfoDiv = styled.div`
   text-align: left;
 `;
 
-const Tittel = styled.span`
+export const TittelStyle = styled.span`
   opacity: 0.7;
 `;
 
+function Tittel(props: {type?: string, children: string}) {
+    if (props.type === 'header') {
+        return <Element>{props.children}</Element>;
+    } else {
+        return <EtikettLiten><TittelStyle>{props.children}</TittelStyle></EtikettLiten>;
+    }
+}
+
 function VisittkortElement(props: ElementProps) {
     const ikon = props.ikon || '';
-    const tittel = props.beskrivelse
-        ? <EtikettLiten><Tittel>{props.beskrivelse}</Tittel></EtikettLiten>
-        : '';
+    const tittelTekst = props.beskrivelse ? props.beskrivelse : '';
 
     return (
-        <Element>
+        <ElementStyle>
             <IkonDiv>
                 {ikon}
             </IkonDiv>
             <InfoDiv>
-                {tittel}
+                <Tittel type={props.type}>{tittelTekst}</Tittel>
                 {props.children}
             </InfoDiv>
-        </Element>
+        </ElementStyle>
     );
 }
 

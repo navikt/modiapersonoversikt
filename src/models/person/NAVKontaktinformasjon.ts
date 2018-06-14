@@ -7,6 +7,6 @@ export interface NavKontaktinformasjon {
 export interface Telefon {
     sistEndret: string;
     retningsnummer: string;
-    telefonnummer: string;
+    identifikator: string;
     sistEndretAv: string;
 }

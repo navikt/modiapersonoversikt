@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -10,26 +10,37 @@ import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
+import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
+import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/brukerprofil/kontaktinformasjon';
+import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
+import RequestTilbakemelding from '../RequestTilbakemelding';
+import { STATUS } from '../../../redux/utils';
+import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
+import { InputState } from '../formUtils';
 
 export interface TelefonInput {
-    retningsnummer: string;
-    telefonnummer: string;
+    retningsnummer: InputState;
+    identifikator: InputState;
 }
 
 interface State {
     mobilInput: TelefonInput;
     jobbTelefonInput: TelefonInput;
     hjemTelefonInput: TelefonInput;
+    formErEndret: boolean;
+    visFeilmeldinger: boolean;
 }
 
 interface DispatchProps {
+    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
+    tilbakestillReducer: () => void;
 }
 
 interface StateProps {
+    reducerStatus: STATUS;
 }
 
 interface OwnProps {
@@ -47,10 +58,54 @@ const TelefonWrapper = styled.div`
   margin-bottom: 1em;
 `;
 
-function getInitialTelefonState(telefon: Telefon | undefined) {
+function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
+    if (!telefon) {
+        return {
+            retningsnummer: {
+                input: '',
+                feilmelding: 'Velg retningsnummer'
+            }, identifikator: {
+                input: '',
+                feilmelding: 'Fyll ut telefonnummer'
+            }
+        };
+    }
+
     return {
-        retningsnummer: telefon ? telefon.retningsnummer : '',
-        telefonnummer: telefon ? formaterMobiltelefonnummer(telefon.telefonnummer) : ''
+        retningsnummer: {
+            input: telefon.retningsnummer,
+            feilmelding: null
+        },
+        identifikator: {
+            input: formaterMobiltelefonnummer(telefon.identifikator),
+            feilmelding: null
+        }
+    };
+}
+
+function initialState(kontaktinformasjon: NavKontaktinformasjon) {
+    return {
+        mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
+        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
+        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjemTelefon),
+        formErEndret: false,
+        visFeilmeldinger: false
+    };
+}
+
+function erEndret(telefon1: TelefonInput, telefon2: TelefonInput) {
+    const retningsnummerEndret = telefon1.retningsnummer.input !== telefon2.retningsnummer.input;
+    const identifikatorEndret = telefon1.identifikator.input !== telefon2.identifikator.input;
+    return retningsnummerEndret || identifikatorEndret;
+}
+
+function getTelefonHvisSatt(telefon: TelefonInput) {
+    if (erTomStreng(telefon.identifikator.input) || erTomStreng(telefon.retningsnummer.input)) {
+        return undefined;
+    }
+    return {
+        identifikator: removeWhitespace(telefon.identifikator.input),
+        retningsnummer: removeWhitespace(telefon.retningsnummer.input)
     };
 }
 
@@ -59,81 +114,167 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.state = {
-            mobilInput: getInitialTelefonState(this.props.person.kontaktinformasjon.mobil),
-            jobbTelefonInput: getInitialTelefonState(this.props.person.kontaktinformasjon.jobbTelefon),
-            hjemTelefonInput: getInitialTelefonState(this.props.person.kontaktinformasjon.hjemTelefon),
-        };
-
+        this.state = initialState(this.props.person.kontaktinformasjon);
         this.mobilTelefonnummerInputChange = this.mobilTelefonnummerInputChange.bind(this);
         this.mobilRetningsnummerInputChange = this.mobilRetningsnummerInputChange.bind(this);
         this.jobbTelefonnummerInputChange = this.jobbTelefonnummerInputChange.bind(this);
         this.jobbRetningsnummerInputChange = this.jobbRetningsnummerInputChange.bind(this);
         this.hjemTelefonnummerInputChange = this.hjemTelefonnummerInputChange.bind(this);
         this.hjemRetningsnummerInputChange = this.hjemRetningsnummerInputChange.bind(this);
+        this.avbryt = this.avbryt.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    mobilTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    componentWillUnmount() {
+        this.props.tilbakestillReducer();
+    }
+
+    mobilTelefonnummerInputChange(input: string) {
         this.setState({
             mobilInput: {
                 ...this.state.mobilInput,
-                telefonnummer: formaterMobiltelefonnummer(event.target.value),
-            }
+                identifikator: {
+                    input: formaterMobiltelefonnummer(input),
+                    feilmelding: null
+                },
+            },
+            formErEndret: true
         });
     }
 
-    mobilRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
+    mobilRetningsnummerInputChange(input: string) {
         this.setState({
             mobilInput: {
                 ...this.state.mobilInput,
-                retningsnummer: event.target.value
-            }
+                retningsnummer: {
+                    input,
+                    feilmelding: null
+                }
+            },
+            formErEndret: true
         });
     }
 
-    jobbTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    jobbTelefonnummerInputChange(input: string) {
         this.setState({
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
-                telefonnummer: formaterHustelefonnummer(event.target.value)
-            }
+                identifikator: {
+                    input: formaterHustelefonnummer(input),
+                    feilmelding: null
+                }
+            },
+            formErEndret: true
         });
     }
 
-    jobbRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
+    jobbRetningsnummerInputChange(input: string) {
         this.setState({
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
-                retningsnummer: event.target.value
-            }
+                retningsnummer: {
+                    input,
+                    feilmelding: null
+                }
+            },
+            formErEndret: true
         });
     }
 
-    hjemTelefonnummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+    hjemTelefonnummerInputChange(input: string) {
         this.setState({
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
-                telefonnummer: formaterHustelefonnummer(event.target.value)
-            }
+                identifikator: {
+                    input: formaterHustelefonnummer(input),
+                    feilmelding: null
+                }
+            },
+            formErEndret: true
         });
     }
 
-    hjemRetningsnummerInputChange(event: ChangeEvent<HTMLSelectElement>) {
+    hjemRetningsnummerInputChange(input: string) {
         this.setState({
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
-                retningsnummer: event.target.value
-            }
+                retningsnummer: {
+                    input,
+                    feilmelding: null
+                }
+            },
+            formErEndret: true
         });
+    }
+
+    avbryt(event: React.MouseEvent<HTMLButtonElement>) {
+        event.preventDefault();
+        this.setState(initialState(this.props.person.kontaktinformasjon));
+    }
+
+    validInput() {
+        const {hjemTelefonInput, jobbTelefonInput, mobilInput} = this.state;
+
+        if (hjemTelefonInput.identifikator.input.length > 0 && hjemTelefonInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        if (jobbTelefonInput.identifikator.input.length > 0 && jobbTelefonInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        if (mobilInput.identifikator.input.length > 0 && mobilInput.retningsnummer.feilmelding) {
+            return false;
+        }
+        return true;
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        this.setState({formErEndret: false});
+
+        if (!this.validInput()) {
+            this.setState({visFeilmeldinger: true});
+            return;
+        }
+
+        const request = {
+            mobil: getTelefonHvisSatt(this.state.mobilInput),
+            jobb: getTelefonHvisSatt(this.state.jobbTelefonInput),
+            hjem: getTelefonHvisSatt(this.state.hjemTelefonInput)
+        };
+        this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
+    }
+
+    requestIsPending() {
+        return this.props.reducerStatus === STATUS.PENDING;
+    }
+
+    formErEndret() {
+        const mobilProps = getInitialTelefonState(this.props.person.kontaktinformasjon.mobil);
+        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobbTelefon);
+        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjemTelefon);
+
+        const mobilErEndret = erEndret(mobilProps, this.state.mobilInput);
+        const jobbErEndret = erEndret(jobbProps, this.state.jobbTelefonInput);
+        const hjemErEndret = erEndret(hjemProps, this.state.hjemTelefonInput);
+
+        return mobilErEndret || jobbErEndret || hjemErEndret;
+    }
+
+    Tilbakemelding() {
+        if (this.state.formErEndret) {
+            return null;
+        } else {
+            return (
+                <RequestTilbakemelding
+                    status={this.props.reducerStatus}
+                    onSuccess={'Telefonnummer(e) ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                    onError={'Det skjedde en feil ved lagring av telefonnummer'}
+                />
+            );
+        }
     }
 
     render() {
-
         return (
             <form onSubmit={this.handleSubmit}>
                 <UndertekstBold>Telefonnummer bruker ønsker å bli oppringt på</UndertekstBold>
@@ -144,6 +285,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             inputValue={this.state.mobilInput}
                             retningsnummerInputChange={this.mobilRetningsnummerInputChange}
                             telfonnummerInputChange={this.mobilTelefonnummerInputChange}
+                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Mobiltelefon
                         </TelefonInput>
@@ -155,6 +297,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             inputValue={this.state.hjemTelefonInput}
                             retningsnummerInputChange={this.hjemRetningsnummerInputChange}
                             telfonnummerInputChange={this.hjemTelefonnummerInputChange}
+                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Hjemmenummer
                         </TelefonInput>
@@ -165,6 +308,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                         inputValue={this.state.jobbTelefonInput}
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
+                        visFeilmeldinger={this.state.visFeilmeldinger}
                     >
                         Jobbnummer
                     </TelefonInput>
@@ -173,18 +317,21 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
-                        disabled={false}
+                        disabled={!this.formErEndret() || this.requestIsPending() || !this.state.formErEndret}
+                        onClick={this.avbryt}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        disabled={false}
+                        disabled={!this.formErEndret() || !this.state.formErEndret}
+                        spinner={this.requestIsPending()}
                         autoDisableVedSpinner={true}
                     >
                         Endre telefonnummer
                     </KnappBase>
                 </FormKnapperWrapper>
+                {this.Tilbakemelding()}
             </form>
 
         );
@@ -193,11 +340,15 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
+        reducerStatus: state.endreKontaktinformasjonReducer.status
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
+            dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
+        tilbakestillReducer: () => dispatch(tilbakestillReducer())
     };
 }
 

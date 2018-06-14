@@ -23,7 +23,6 @@ interface StateProps {
 }
 
 interface OwnProps {
-    fødselsnummer: string;
     person: Person;
 }
 
@@ -65,7 +64,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 
     render() {
         return (
-            <>
+            <div>
                 <Undertittel>Kontaktinformasjon</Undertittel>
                 <Innholdslaster
                     avhengigheter={[this.props.retningsnummerReducer]}
@@ -75,7 +74,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
                         person={this.props.person}
                     />
                 </Innholdslaster>
-            </>
+            </div>
         );
     }
 }
@@ -83,7 +82,6 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
     return ({
         retningsnummerReducer: state.retningsnummerReducer,
-        fødselsnummer: ownProps.fødselsnummer,
         person: ownProps.person
     });
 };

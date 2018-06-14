@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-interface Props {}
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface State {
     hasError: boolean;
@@ -18,8 +17,8 @@ interface State {
  * Prod, men er ikke verifisert enda.
  */
 
-class ErrorBoundary extends React.Component<Props, State> {
-    constructor(props: Props) {
+class ErrorBoundary extends React.Component<{}, State> {
+    constructor(props: {}) {
         super(props);
         this.state = { hasError: false };
     }
@@ -32,7 +31,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     render() {
         if (this.state.hasError) {
             return (
-                <b>Beklager, det skjedde en feil ved lasting av dataelementet. Feil er logget.</b>
+                <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil.</AlertStripe>
             );
         }
         return this.props.children;

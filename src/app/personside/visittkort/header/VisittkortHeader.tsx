@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './NavKontorContainer';
 
-import { erDød, Person } from '../../../../models/person/person';
+import { erDød, Navn, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
@@ -51,10 +51,6 @@ const InfoDiv = styled.div`
   };
 `;
 
-const UpperCaseForMock = styled.span`
-  text-transform: uppercase;
-`;
-
 interface PersonProps {
     person: Person;
 }
@@ -63,11 +59,15 @@ function Navnelinje({person}: PersonProps) {
     const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
         <Undertittel>
-            <UpperCaseForMock>
-                {person.navn.sammensatt} ({alder})
-            </UpperCaseForMock>
+            {hentNavn(person.navn)} ({alder})
         </Undertittel>
     );
+}
+
+function hentNavn(navn: Navn) {
+    return navn.fornavn +
+        (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ')
+        + navn.etternavn;
 }
 
 function VisittkortHeader({person}: VisittkortHeaderProps) {
