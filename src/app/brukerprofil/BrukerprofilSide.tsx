@@ -101,7 +101,7 @@ const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingP
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch)),
+        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

@@ -24,13 +24,11 @@ function Epost({epost}: EpostProps) {
 }
 
 interface EpostVisningProps {
-    kontaktinformasjon: Kontaktinformasjon | undefined;
+    kontaktinformasjon: Kontaktinformasjon;
 }
 
-export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
-    if (!kontaktinformasjon) {
-        return <Undertekst>Ingen kontaktinformasjon registrert</Undertekst>;
-    } else if ('true' === kontaktinformasjon.reservasjon) {
+export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
+    if ('true' === kontaktinformasjon.reservasjon) {
         return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;

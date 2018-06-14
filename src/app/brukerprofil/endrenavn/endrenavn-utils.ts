@@ -18,9 +18,6 @@ export function validerNavn(input: string) {
     }
 }
 
-export function veilederHarPåkrevdRolle(veiledersRoller?: VeilederRoller) {
-    if (!veiledersRoller) {
-        return false;
-    }
+export function veilederHarPåkrevdRolle(veiledersRoller: VeilederRoller) {
     return veiledersRoller.roller.includes('0000-GA-BD06_EndreNavn');
 }

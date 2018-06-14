@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 
-import Vergemål, { feilmelding } from './Vergemal';
-
-test('Vergemål uten data fra server', () => {
-    const vergemål = mount(<Vergemål/>);
-
-    expect(vergemål.text()).toEqual(feilmelding);
-});
+import Vergemål from './Vergemal';
 
 test('Vergemål uten verge', () => {
     const vergemål = {

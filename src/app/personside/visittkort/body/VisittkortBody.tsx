@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Person } from '../../../../models/person/person';
-import NavKontorContainer from './navkontor/NavKontorContainer';
 import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
@@ -13,16 +12,19 @@ import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import { paths } from '../../../routes/routing';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import NavKontorContainer from './navkontor/NavKontorContainer';
 
 interface VisittkortBodyProps {
     person: Person;
 }
 
-const NavKontor = (
-    <InfoGruppe tittel={'NAV-kontor'}>
-        <NavKontorContainer/>
-    </InfoGruppe>
-);
+function NavKontorSeksjon({person}: {person: Person}) {
+    return (
+        <InfoGruppe tittel={'NAV-kontor'}>
+            <NavKontorContainer person={person}/>
+        </InfoGruppe>
+    );
+}
 
 function OneColumnLayout(person: Person) {
     return (
@@ -30,7 +32,7 @@ function OneColumnLayout(person: Person) {
             <Kolonne>
                 <Kontaktinformasjon person={person}/>
                 <Familie person={person}/>
-                {NavKontor}
+                <NavKontorSeksjon person={person}/>
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
@@ -47,7 +49,7 @@ function TwoColumnLayout(person: Person) {
                 <Familie person={person}/>
             </Kolonne>
             <Kolonne>
-                {NavKontor}
+                <NavKontorSeksjon person={person}/>
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person} />
@@ -68,7 +70,7 @@ function ThreeColumnLayout(person: Person) {
                 <VergemalContainer/>
             </Kolonne>
             <Kolonne>
-                {NavKontor}
+                <NavKontorSeksjon person={person}/>
                 <Sikkerhetstiltak person={person} />
             </Kolonne>
         </>

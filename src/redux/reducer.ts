@@ -16,7 +16,7 @@ import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
-import { NavKontor } from '../models/navkontor';
+import { BrukersNavKontorResponse } from '../models/navkontor';
 import { Kontaktinformasjon } from '../models/kontaktinformasjon';
 import { Egenansatt } from '../models/egenansatt';
 import { Vergemal } from '../models/vergemal/vergemal';
@@ -26,7 +26,7 @@ import { BaseUrlsResponse } from '../models/baseurls';
 
 export interface AppState {
     personinformasjon: RestReducer<PersonRespons>;
-    brukersNavKontor: RestReducer<NavKontor>;
+    brukersNavKontor: RestReducer<BrukersNavKontorResponse>;
     oppgaver: RestReducer<Oppgave[]>;
     kontaktinformasjon: RestReducer<Kontaktinformasjon>;
     egenAnsatt: RestReducer<Egenansatt>;
@@ -58,6 +58,6 @@ export default combineReducers<AppState>({
 
 export interface RestReducer<T> {
     status: STATUS;
-    data?: T;
+    data: T;
     error?: String;
 }

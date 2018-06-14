@@ -4,7 +4,6 @@ import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { AppState, RestReducer } from '../../../redux/reducer';
 import Innholdslaster from '../../../components/Innholdslaster';
@@ -28,27 +27,9 @@ interface OwnProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-interface KontaktinformasjonWrapperProps {
-    retningsnummerKodeverk: KodeverkResponse | undefined;
-    person: Person;
-}
-
 const NavKontaktinformasjonWrapper = styled.div`
   margin-top: 2em;
 `;
-
-function KontaktinformasjonWrapper({ person, retningsnummerKodeverk}:
-                                       KontaktinformasjonWrapperProps) {
-    if (!retningsnummerKodeverk) {
-        return <Undertekst>Kunne ikke hente kodeverk for retningsnummere</Undertekst>;
-    } else {
-        return (
-            <NavKontaktinformasjonWrapper>
-                <KontaktinformasjonForm person={person} retningsnummerKodeverk={retningsnummerKodeverk} />
-            </NavKontaktinformasjonWrapper>
-        );
-    }
-}
 
 class KontaktinformasjonFormContainer extends React.Component<Props> {
 
@@ -66,13 +47,13 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
         return (
             <div>
                 <Undertittel>Kontaktinformasjon</Undertittel>
-                <Innholdslaster
-                    avhengigheter={[this.props.retningsnummerReducer]}
-                >
-                    <KontaktinformasjonWrapper
-                        retningsnummerKodeverk={this.props.retningsnummerReducer.data}
-                        person={this.props.person}
-                    />
+                <Innholdslaster avhengigheter={[this.props.retningsnummerReducer]}>
+                    <NavKontaktinformasjonWrapper>
+                        <KontaktinformasjonForm
+                            person={this.props.person}
+                            retningsnummerKodeverk={this.props.retningsnummerReducer.data}
+                        />
+                    </NavKontaktinformasjonWrapper>
                 </Innholdslaster>
             </div>
         );

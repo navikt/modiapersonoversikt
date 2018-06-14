@@ -38,7 +38,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     getSideinnhold() {
         const data = this.props.personReducer.data;
 
-        if (data !== undefined && erPersonResponsAvTypeBegrensetTilgang(data)) {
+        if (erPersonResponsAvTypeBegrensetTilgang(data)) {
             return (
                 <BegrensetTilgangSide person={data as BegrensetTilgang}/>
             );

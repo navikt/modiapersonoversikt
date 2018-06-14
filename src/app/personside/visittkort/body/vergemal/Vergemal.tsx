@@ -10,7 +10,6 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
 
-export const feilmelding = 'Feil ved visning av vergemål';
 const emdash = '\u2014';
 
 function Periode(props: {periode: Periode}) {
@@ -77,11 +76,7 @@ function Vergemal(props: {vergemal: Vergemal}) {
     );
 }
 
-function VergemalWrapper(props: {vergemal?: Vergemal}) {
-    if (!props.vergemal) {
-        return <p>{feilmelding}</p>;
-    }
-
+function VergemalWrapper(props: {vergemal: Vergemal}) {
     if (props.vergemal.verger.length === 0) {
         return null;
     }

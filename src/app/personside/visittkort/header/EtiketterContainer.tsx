@@ -12,24 +12,11 @@ interface Props {
     vergemalReducer: RestReducer<Vergemal>;
 }
 
-function EtikkerWrapper(props: { person?: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal }) {
-    if ( !props.person) {
-        return <p>Kunne ikke vise etiketter</p>;
-    }
-    return (
-        <Etiketter
-            person={props.person}
-            egenAnsatt={props.egenAnsatt}
-            vergemal={props.vergemal}
-        />
-    );
-}
-
 class EtiketterContainer extends React.Component<Props> {
 
     render() {
         return (
-            <EtikkerWrapper
+            <Etiketter
                 person={this.props.personReducer.data as Person}
                 egenAnsatt={this.props.egenAnsattReducer.data}
                 vergemal={this.props.vergemalReducer.data}

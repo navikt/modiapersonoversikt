@@ -24,7 +24,7 @@ function Infomelding(props: {children: string}) {
     );
 }
 
-export default function InfomeldingWrapper(props: {veilderRoller?: VeilederRoller, person: Person}) {
+export default function InfomeldingWrapper(props: {veilderRoller: VeilederRoller, person: Person}) {
 
     if (!veilederHarPåkrevdRolle(props.veilderRoller)) {
         return (

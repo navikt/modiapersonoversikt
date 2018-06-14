@@ -26,13 +26,11 @@ function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
 }
 
 interface MobiltelefonVisningProps {
-    kontaktinformasjon?: Kontaktinformasjon;
+    kontaktinformasjon: Kontaktinformasjon;
 }
 
 export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
-    if (!kontaktinformasjon) {
-        return <>Ingen kontaktinformasjon </>;
-    } else if ('true' === kontaktinformasjon.reservasjon) {
+    if ('true' === kontaktinformasjon.reservasjon) {
         return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;

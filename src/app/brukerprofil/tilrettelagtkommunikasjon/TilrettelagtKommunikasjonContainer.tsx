@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+import { Action } from 'history';
+
+import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
+import AlertStripe from 'nav-frontend-alertstriper';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+
 import { AppState, RestReducer } from '../../../redux/reducer';
 import { Person } from '../../../models/person/person';
-import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
-import AlertStripe from 'nav-frontend-alertstriper';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import * as tilrettelagtKommunikasjonKodeverkReducer from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
-import { Action } from 'history';
 import { STATUS } from '../../../redux/utils';
 
 interface State {
@@ -40,25 +42,6 @@ const onError = (
     </>
 );
 
-interface TilrettelagtKommunikasjonWrapperProps {
-    person: Person;
-    tilrettelagtKommunikasjonKodeverk: KodeverkResponse | undefined;
-}
-
-function TilrettelagtKommunikasjonWrapper({ person, tilrettelagtKommunikasjonKodeverk }:
-                                              TilrettelagtKommunikasjonWrapperProps) {
-    if (tilrettelagtKommunikasjonKodeverk) {
-        return (
-            <TilrettelagtKommunikasjonsForm
-                person={person}
-                tilrettelagtKommunikasjonKodeverk={tilrettelagtKommunikasjonKodeverk}
-            />
-        );
-    } else {
-        return onError;
-    }
-}
-
 class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
@@ -77,9 +60,9 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
                     avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
                     returnOnError={onError}
                 >
-                    <TilrettelagtKommunikasjonWrapper
-                        tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
+                    <TilrettelagtKommunikasjonsForm
                         person={this.props.person}
+                        tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
                     />
                 </Innholdslaster>
             </div>
