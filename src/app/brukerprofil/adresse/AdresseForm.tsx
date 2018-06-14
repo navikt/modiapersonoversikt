@@ -41,7 +41,7 @@ function MidlertidigAdresseNorge(props: MidlertidigAdresseNorgeProps) {
     );
 }
 
-interface OwnProps {
+interface Props {
     person: Person;
     postnummer: KodeverkResponse;
 }
@@ -54,8 +54,6 @@ interface State {
     midlertidigAdresseNorge: Personadresse;
     selectedRadio: Valg;
 }
-
-type Props = OwnProps;
 
 class AdresseForm extends React.Component<Props, State> {
 
