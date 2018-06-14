@@ -25,19 +25,19 @@ import { KodeverkResponse } from '../models/kodeverk';
 import { BaseUrlsResponse } from '../models/baseurls';
 
 export interface AppState {
-    personinformasjon: Reducer<PersonRespons>;
-    brukersNavKontor: Reducer<NavKontor>;
-    oppgaver: Reducer<Oppgave[]>;
-    kontaktinformasjon: Reducer<Kontaktinformasjon>;
-    egenAnsatt: Reducer<Egenansatt>;
-    vergemal: Reducer<Vergemal>;
-    baseUrlReducer: Reducer<BaseUrlsResponse>;
-    endreNavn: Reducer<{}>;
-    endreTilrettelagtKommunikasjon: Reducer<{}>;
-    veilederRoller: Reducer<VeilederRoller>;
-    retningsnummerReducer: Reducer<KodeverkResponse>;
-    tilrettelagtKommunikasjonKodeverk: Reducer<KodeverkResponse>;
-    endreKontaktinformasjonReducer: Reducer<{}>;
+    personinformasjon: RestReducer<PersonRespons>;
+    brukersNavKontor: RestReducer<NavKontor>;
+    oppgaver: RestReducer<Oppgave[]>;
+    kontaktinformasjon: RestReducer<Kontaktinformasjon>;
+    egenAnsatt: RestReducer<Egenansatt>;
+    vergemal: RestReducer<Vergemal>;
+    baseUrlReducer: RestReducer<BaseUrlsResponse>;
+    endreNavn: RestReducer<{}>;
+    endreTilrettelagtKommunikasjon: RestReducer<{}>;
+    veilederRoller: RestReducer<VeilederRoller>;
+    retningsnummerReducer: RestReducer<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverk: RestReducer<KodeverkResponse>;
+    endreKontaktinformasjonReducer: RestReducer<{}>;
 }
 
 export default combineReducers<AppState>({
@@ -56,7 +56,7 @@ export default combineReducers<AppState>({
     endreKontaktinformasjonReducer: endreKontaktinformasjonReducer
 });
 
-export interface Reducer<T> {
+export interface RestReducer<T> {
     status: STATUS;
     data?: T;
     error?: String;

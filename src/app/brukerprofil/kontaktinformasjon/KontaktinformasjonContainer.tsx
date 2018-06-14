@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import { AppState, Reducer } from '../../../redux/reducer';
+import { AppState, RestReducer } from '../../../redux/reducer';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
@@ -19,7 +19,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    retningsnummerReducer: Reducer<KodeverkResponse>;
+    retningsnummerReducer: RestReducer<KodeverkResponse>;
 }
 
 interface OwnProps {

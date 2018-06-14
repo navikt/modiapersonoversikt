@@ -2,14 +2,14 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { STATUS } from '../../redux/utils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { Reducer } from '../../redux/reducer';
+import { RestReducer } from '../../redux/reducer';
 
 const MarginWrapper = styled.div`
   margin: 15px;
 `;
 
 interface FeilmeldingProps {
-    reducer: Reducer<object>;
+    reducer: RestReducer<object>;
 }
 
 function Feilmelding({reducer}: FeilmeldingProps) {

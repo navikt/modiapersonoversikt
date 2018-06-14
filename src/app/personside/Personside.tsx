@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { AppState, Reducer } from '../../redux/reducer';
+import { AppState, RestReducer } from '../../redux/reducer';
 import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
@@ -11,7 +11,7 @@ import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/perso
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 
 interface PersonsideStateProps {
-    personReducer: Reducer<PersonRespons>;
+    personReducer: RestReducer<PersonRespons>;
 }
 
 const onError = (

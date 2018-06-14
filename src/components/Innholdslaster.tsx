@@ -3,21 +3,23 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/utils';
-import { Reducer } from '../redux/reducer';
+import { RestReducer } from '../redux/reducer';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 
 interface InnholdslasterProps {
     children: React.ReactChildren | React.ReactChild | JSX.Element[];
-    avhengigheter: Reducer<object>[];
+    avhengigheter: RestReducer<object>[];
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
     returnOnPending?: React.ReactChildren | React.ReactChild | null;
     returnOnError?: React.ReactChildren | React.ReactChild;
 }
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
-const harStatus = (...status: STATUS[]) => (element: Reducer<object>) => array(status).includes(element.status);
-const alleLastet = (avhengigheter: Reducer<object>[]) => (avhengigheter && avhengigheter.every(harStatus(STATUS.OK)));
-const noenHarFeil = (avhengigheter: Reducer<object>[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
+const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
+const alleLastet = (avhengigheter: RestReducer<object>[]) =>
+    (avhengigheter && avhengigheter.every(harStatus(STATUS.OK)));
+const noenHarFeil = (avhengigheter: RestReducer<object>[]) =>
+    avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
 
 class Innholdslaster extends React.Component<InnholdslasterProps> {
 

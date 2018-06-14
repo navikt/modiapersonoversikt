@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
-import { AppState, Reducer } from '../../../../../redux/reducer';
+import { AppState, RestReducer } from '../../../../../redux/reducer';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { NavKontor } from '../../../../../models/navkontor';
 import NavKontorVisning from './NavKontor';
@@ -14,11 +14,11 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    baseUrlReducer: Reducer<BaseUrlsResponse>;
+    baseUrlReducer: RestReducer<BaseUrlsResponse>;
 }
 
 interface OwnProps {
-    navKontorReducer: Reducer<NavKontor>;
+    navKontorReducer: RestReducer<NavKontor>;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;

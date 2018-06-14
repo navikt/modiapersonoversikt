@@ -4,7 +4,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../../redux/reducer';
+import { RestReducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import EmailIkon from '../../../../../../svg/Email';
@@ -40,7 +40,7 @@ export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonReducer: Reducer<Kontaktinformasjon>;
+    kontaktinformasjonReducer: RestReducer<Kontaktinformasjon>;
 }
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {

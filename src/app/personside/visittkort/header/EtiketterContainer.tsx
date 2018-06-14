@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Egenansatt } from '../../../../models/egenansatt';
-import { AppState, Reducer } from '../../../../redux/reducer';
+import { AppState, RestReducer } from '../../../../redux/reducer';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import Etiketter from './Etiketter';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
 
 interface Props {
-    egenAnsattReducer: Reducer<Egenansatt>;
-    personReducer: Reducer<PersonRespons>;
-    vergemalReducer: Reducer<Vergemal>;
+    egenAnsattReducer: RestReducer<Egenansatt>;
+    personReducer: RestReducer<PersonRespons>;
+    vergemalReducer: RestReducer<Vergemal>;
 }
 
 function EtikkerWrapper(props: { person?: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal }) {

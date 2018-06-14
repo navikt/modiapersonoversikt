@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
-import { AppState, Reducer } from '../../../redux/reducer';
+import { AppState, RestReducer } from '../../../redux/reducer';
 import { Person } from '../../../models/person/person';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
@@ -18,7 +18,7 @@ interface State {
 }
 
 interface StateProps {
-    tilrettelagtKommunikasjonKodeverkReducer: Reducer<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverkReducer: RestReducer<KodeverkResponse>;
 }
 
 interface DispatchProps {

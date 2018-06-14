@@ -4,7 +4,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../../redux/reducer';
+import { RestReducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
@@ -42,7 +42,7 @@ export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningPr
 }
 
 interface MobiltelefonWrapperProps {
-    kontaktinformasjonReducer: Reducer<Kontaktinformasjon>;
+    kontaktinformasjonReducer: RestReducer<Kontaktinformasjon>;
 }
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
