@@ -273,7 +273,7 @@ Array [
               className="typo-undertekst"
             >
               <span
-                className="sc-fjdhpX fWRaVg"
+                className="sc-jzJRlG exVAhN"
               >
                 <span>
                   1234
@@ -649,13 +649,9 @@ Array [
           className="sc-ifAKCX hocsAo"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-element"
           >
-            <span
-              className="sc-EHOje dSVpOp"
-            >
-              Tilrettelagt Kommunikasjon
-            </span>
+            Tilrettelagt Kommunikasjon
           </p>
           <p
             className="typo-undertekst"
@@ -665,52 +661,57 @@ Array [
         </div>
       </div>
       <div
-        className="sc-gZMcBi kLWPNi"
+        className="sc-htpNat hNjnAD"
       >
-        <p
-          className="typo-element"
+        <div
+          className="sc-bxivhb hhMe"
         >
-          <span
-            className="sc-gqjmRU kKjQrn"
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <div
+          className="sc-ifAKCX hocsAo"
+        >
+          <p
+            className="typo-element"
           >
             Bruker er under vergemål
-          </span>
-        </p>
-        <div
-          className="sc-htpNat hNjnAD"
-        >
-          <div
-            className="sc-bxivhb hhMe"
+          </p>
+          <span
+            className="sc-fjdhpX cIaEQc"
           >
-            <svg
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
+            <p
+              className="typo-undertekst"
             >
-              <circle
-                cx="50"
-                cy="50"
-                fill="#FFB249"
-                r="50"
-              />
-              <line
-                stroke="#3E3832"
-                strokeLinecap="round"
-                strokeWidth="4"
-                x1="50"
-                x2="50"
-                y1="25"
-                y2="57"
-              />
-              <circle
-                cx="50"
-                cy="72"
-                fill="#3E3832"
-                r="4.5"
-              />
-            </svg>
-          </div>
+              Enslig mindreårig asylsøker
+            </p>
+          </span>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-jTzLTM gbPTSe"
           >
             <p
               className="typo-etikett-liten"
@@ -722,57 +723,65 @@ Array [
               </span>
             </p>
             <div
-              className="sc-jTzLTM iEpGPv"
+              className="sc-VigVT jugxAq"
             >
-              <div
-                className="sc-VigVT jugxAq"
-              >
-                <p
-                  className="typo-undertekst"
-                >
-                   Solli Simen
-                </p>
-                <p
-                  className="typo-undertekst"
-                >
-                  21042900076
-                </p>
-                <p
-                  className="typo-undertekst"
-                >
-                  Advokat
-                </p>
-              </div>
               <p
-                className="typo-undertekst-bold"
+                className="typo-undertekst"
               >
-                Enslig mindreårig asylsøker
+                 Solli Simen
               </p>
               <p
                 className="typo-undertekst"
               >
-                Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
+                21042900076
               </p>
               <p
                 className="typo-undertekst"
               >
-                Her kommen en fritekst som er sånn passelig lang
+                Advokat
               </p>
-              <p
-                className="typo-undertekst"
+            </div>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-EHOje dSVpOp"
+              >
+                Mandat
+              </span>
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
+            </p>
+            <p
+              className="typo-undertekst"
+            >
+              Her kommen en fritekst som er sånn passelig lang
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-bwzfXH hRFBVQ"
               >
                 Fylkesmannen i Østfold
-              </p>
-              <p
-                className="typo-etikett-liten"
+              </span>
+            </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              <span
+                className="sc-bwzfXH hRFBVQ"
               >
                 27.03.2016
                  
                 —
                  
                 30.06.2013
-              </p>
-            </div>
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -826,13 +835,9 @@ Array [
           className="sc-ifAKCX hocsAo"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-element"
           >
-            <span
-              className="sc-EHOje dSVpOp"
-            >
-              Sikkerhetstiltak
-            </span>
+            Sikkerhetstiltak
           </p>
           <p
             className="typo-etikett-liten"
@@ -856,10 +861,10 @@ Array [
     </div>
   </div>,
   <div
-    className="sc-dVhcbM khZBWk"
+    className="sc-eqIVtm KDWhF"
   >
     <div
-      className="sc-eqIVtm gNmtuA"
+      className="sc-fAjcbJ UCcPv"
     />
     <a
       className="lenke"
