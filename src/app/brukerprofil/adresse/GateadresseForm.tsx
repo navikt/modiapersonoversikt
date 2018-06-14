@@ -24,7 +24,7 @@ function GateadresseForm(props: GateadresseFormProps) {
         if (postnummer.length === 4) {
             const poststed = props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
             if (poststed) {
-                props.onChange({...props.gateadresse, poststed: poststed.value});
+                props.onChange({...props.gateadresse, poststed: poststed.kodeRef});
             }
         }
     }

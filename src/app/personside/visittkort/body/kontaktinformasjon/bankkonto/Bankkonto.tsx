@@ -32,8 +32,8 @@ function formaterKontonummer(kontonummer: string) {
 
 function Bankkonto({person}: BankkontoProps) {
     let beskrivelse = 'Kontonummer';
-    if (person.bankkonto) {
-        beskrivelse += person.bankkonto.erNorskKonto ? '' : ' utland';
+    if (person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kodeRef !== 'NOR') {
+        beskrivelse += ' utland';
     }
 
     return (

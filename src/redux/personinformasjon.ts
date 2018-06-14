@@ -15,7 +15,10 @@ export function hentPerson(fødselsnummer: string, dispatch: Function) {
         .then(person => {
             if (erPersonResponsAvTypePerson(person)) {
                 if (person.geografiskTilknytning || person.diskresjonskode) {
-                    dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode));
+                    dispatch(hentNavKontor(
+                        person.geografiskTilknytning,
+                        person.diskresjonskode && person.diskresjonskode.kodeRef
+                    ));
                 } else {
                     dispatch(settBrukerUtenNavKontor());
                 }

@@ -41,7 +41,7 @@ function getEpost(personData: Person) {
     const fornavn = personData.navn.fornavn || '';
     const etternavn = personData.navn.etternavn || '';
     return {
-        value: faker.internet.email(fornavn, etternavn),
+        value: faker.internet.email(fornavn.toLowerCase(), etternavn.toLowerCase()),
         sistOppdatert: getSistOppdatert()
     };
 }
