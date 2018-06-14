@@ -20,14 +20,14 @@ interface DispatchProps {
     hentPostnummerKodeverk: () => void;
 }
 
-class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
-
-    content(kodeverk: KodeverkResponse | undefined) {
-        if (!kodeverk) {
-            return <AlertStripe type={'stopp'}>Klarte ikke hente kodeverk for postnummer</AlertStripe>;
-        }
-        return <AdresseForm person={this.props.person} postnummer={kodeverk}/>;
+function AdresseFormWrapper(props: {postnummer: KodeverkResponse | undefined, person: Person}) {
+    if (!props.postnummer) {
+        return <AlertStripe type={'stopp'}>Klarte ikke hente kodeverk for postnummer</AlertStripe>;
     }
+    return <AdresseForm person={props.person} postnummer={props.postnummer}/>;
+}
+
+class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
 
     componentDidMount() {
         if (this.props.postnummerReducer.status === STATUS.NOT_STARTED) {
@@ -38,7 +38,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
     render() {
         return (
             <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
-                {this.content(this.props.postnummerReducer.data)}
+                <AdresseFormWrapper postnummer={this.props.postnummerReducer.data} person={this.props.person}/>
             </Innholdslaster>
         );
     }
