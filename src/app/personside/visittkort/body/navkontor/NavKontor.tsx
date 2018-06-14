@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Fragment } from 'react';
-
-import { Undertekst } from 'nav-frontend-typografi';
-
+import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettMini from '../../../../../components/EtikettMini';

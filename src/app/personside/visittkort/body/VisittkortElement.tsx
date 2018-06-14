@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { EtikettLiten } from 'nav-frontend-typografi';
+import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 
 interface ElementProps {
     children: string | JSX.Element | JSX.Element[];
