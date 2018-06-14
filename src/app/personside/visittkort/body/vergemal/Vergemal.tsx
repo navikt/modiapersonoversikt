@@ -10,8 +10,7 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { Periode } from '../../../../../models/vergemal/vergemal';
 import { InfoGruppe } from '../styledComponents';
 import VergemålLogo from '../../../../../svg/Utropstegn';
-
-const emdash = '\u2014';
+import { EMDASH } from '../../../../../utils/string-utils';
 
 function Periode(props: {periode: Periode}) {
     const {periode} = props;
@@ -20,7 +19,7 @@ function Periode(props: {periode: Periode}) {
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
     return(
-        <EtikettLiten>{fom} {emdash} {tom}</EtikettLiten>
+        <EtikettLiten>{fom} {EMDASH} {tom}</EtikettLiten>
     );
 }
 

@@ -1,3 +1,5 @@
+export const EMDASH = '\u2014';
+
 export function formatNumber(format: string, streng: string) {
     let result = '';
 
