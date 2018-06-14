@@ -107,7 +107,6 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onSubmit(event: FormEvent<HTMLFormElement>) {
-        console.log(this.state);
         event.preventDefault();
     }
 
