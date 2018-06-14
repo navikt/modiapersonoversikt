@@ -11,7 +11,7 @@ import { setupMock } from '../mock/setup-mock';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
 import reducers from '../redux/reducer';
 import { mockEnabled } from '../api/config';
-import AppWrapper from './AppWrapper';
+import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 
 if (mockEnabled === 'true') {
@@ -36,10 +36,10 @@ class App extends React.Component<{}> {
                     <AppWrapper>
                         <nav id="header" />
                         <BrowserRouter>
-                            <>
+                            <Content>
                                 <Eventlistener/>
                                 <Routing/>
-                            </>
+                            </Content>
                         </BrowserRouter>
                         <UnderArbeid />
                     </AppWrapper>
