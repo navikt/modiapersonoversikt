@@ -38,7 +38,7 @@ const HøyreKolonne = styled<{ DialogPanelSize?: DialogPanelSize; }, 'section'>(
       background-color: white;
       border-radius: ${props => props.theme.borderRadius.layout};
     }
-    transition: 1s;
+    transition: .3s;
     @media(${props => props.theme.media.wideScreen}) {
       flex: 0 1 ${props => {
         if (props.DialogPanelSize === DialogPanelSize.Normal) {
