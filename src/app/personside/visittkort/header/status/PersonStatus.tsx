@@ -41,7 +41,7 @@ function Dødsdato({ person }: PersonProps) {
 }
 
 function Utvandret({ person }: PersonProps) {
-    if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
+    if (person.personstatus.bostatus  && person.personstatus.bostatus.kodeRef === BostatusTyper.Utvandret) {
         return <>{ENDASH} Utvandret</>;
     } else {
         return null;
@@ -63,7 +63,7 @@ function PersonStatus({ person }: PersonProps) {
                 <FødselsnummerLinje person={person}/>
             </Luft>
             <PersonStatusListe>
-                <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
+                <Statsborgerskap statsborgerskap={person.statsborgerskap && person.statsborgerskap.beskrivelse}/>
                 <Sivilstand sivilstand={person.sivilstand} kjønn={person.kjønn}/>
                 <AntallBarn familierelasjoner={person.familierelasjoner}/>
             </PersonStatusListe>

@@ -1,3 +1,5 @@
+import { Kodeverk } from '../kodeverk';
+
 export interface NavKontaktinformasjon {
     mobil?: Telefon;
     jobbTelefon?: Telefon;
@@ -6,7 +8,7 @@ export interface NavKontaktinformasjon {
 
 export interface Telefon {
     sistEndret: string;
-    retningsnummer: string;
+    retningsnummer: Kodeverk;
     identifikator: string;
     sistEndretAv: string;
 }

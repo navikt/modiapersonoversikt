@@ -86,12 +86,10 @@ function getTilfeldigVergetype(): Kodeverk | undefined {
     return VERGETYPER[faker.random.number(VERGETYPER.length - 1)];
 }
 
-function lagKodeverksverdi(kode: string, decode: string): Kodeverk {
+function lagKodeverksverdi(kodeRef: string, beskrivelse: string): Kodeverk {
     return {
-        value: decode,
-        kodeRef: kode,
-        beskrivelse: decode,
-        gyldig: true
+        kodeRef: kodeRef,
+        beskrivelse: beskrivelse,
     };
 }
 

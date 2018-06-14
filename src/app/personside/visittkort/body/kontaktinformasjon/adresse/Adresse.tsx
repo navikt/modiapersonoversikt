@@ -137,12 +137,13 @@ function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
 }
 
 function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse) {
-    const landkode = `${adresse.landkode || 'Ukjent'}`;
+    const landkode = `${adresse.landkode && adresse.landkode.beskrivelse || 'Ukjent'}`;
 
     return (
         <div key={landkode}>
             {hentPeriode(adresse.periode)}
-            <Undertekst>{adresse.adresselinje}, {landkode}</Undertekst>
+            {adresse.adresselinjer.map((linje, i) => <Undertekst key={i}>{linje}</Undertekst>)}
+            <Undertekst>{adresse.landkode && adresse.landkode.beskrivelse}</Undertekst>
         </div>
     );
 }
