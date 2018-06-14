@@ -10,7 +10,6 @@ import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/baseurls';
 
-
 const NameCase = styled.span`
   text-transform: capitalize;
 `;
