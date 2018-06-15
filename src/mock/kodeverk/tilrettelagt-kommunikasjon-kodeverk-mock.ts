@@ -34,7 +34,7 @@ const mockKodeverk = [
     }
 ];
 
-export function mockTilrettelagtKommunikasjon(): KodeverkResponse {
+export function mockTilrettelagtKommunikasjonKodeverk(): KodeverkResponse {
     return {
         kodeverk: mockKodeverk
     };
