@@ -38,7 +38,6 @@ class NavKontorContainer extends React.Component<Props> {
         if (this.props.baseUrlReducer.status ===  STATUS.NOT_STARTED) {
             this.props.hentBaseUrls();
         }
-
         if (this.props.navKontorReducer.status === STATUS.NOT_STARTED) {
             this.props.hentNavKontor(this.props.person);
         }

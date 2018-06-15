@@ -9,8 +9,8 @@ import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mocks';
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
-import { mockRetningsnummere } from './kodeverk/retningsnummer-mock';
-import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
+import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
+import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 
 const STATUS_OK = () => 200;
 
@@ -94,14 +94,14 @@ function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Retningsnumre', withDelayedResponse(
         700,
         STATUS_OK,
-        () => mockRetningsnummere()));
+        () => mockRetningsnummereKodeverk()));
 }
 
 function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/TilrettelagtKommunikasjon', withDelayedResponse(
         3000,
         STATUS_OK,
-        () => mockTilrettelagtKommunikasjon()));
+        () => mockTilrettelagtKommunikasjonKodeverk()));
 }
 
 export function setupMock() {

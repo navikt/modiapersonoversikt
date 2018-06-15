@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Fragment } from 'react';
 import styled from 'styled-components';
+
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+
 import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettMini from '../../../../../components/EtikettMini';
@@ -9,6 +11,7 @@ import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/baseurls';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -53,7 +56,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
             </dt>
             <dd>
                 <Undertekst>
-                    {klokkeslettToString(apningstid.apentFra)} - {klokkeslettToString(apningstid.apentTil)}
+                    {klokkeslettToString(apningstid.apentFra)} {ENDASH} {klokkeslettToString(apningstid.apentTil)}
                 </Undertekst>
             </dd>
         </Fragment>

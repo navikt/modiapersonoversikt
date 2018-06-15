@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 
+import '../../../../../test/setupTests';
+
 import Vergemål from './Vergemal';
 
 test('Vergemål uten verge', () => {

@@ -1,6 +1,6 @@
 import { KodeverkResponse } from '../../models/kodeverk';
 
-export function mockRetningsnummere(): KodeverkResponse {
+export function mockRetningsnummereKodeverk(): KodeverkResponse {
     return {
         kodeverk: [
             mockRetningsnummer('Norge', '+47'),
