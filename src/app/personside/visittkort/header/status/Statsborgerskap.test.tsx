@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
+import '../../../../../test/setupTests';
+
 import Statsborgerskap from './Statsborgerskap';
 
 test('Formaterer statsborgerskap', () => {

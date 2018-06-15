@@ -639,13 +639,9 @@ Array [
           className="sc-ifAKCX hocsAo"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-element"
           >
-            <span
-              className="sc-EHOje dSVpOp"
-            >
-              Tilrettelagt Kommunikasjon
-            </span>
+            Tilrettelagt Kommunikasjon
           </p>
           <p
             className="typo-undertekst"
@@ -829,13 +825,9 @@ Array [
           className="sc-ifAKCX hocsAo"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-element"
           >
-            <span
-              className="sc-EHOje dSVpOp"
-            >
-              Sikkerhetstiltak
-            </span>
+            Sikkerhetstiltak
           </p>
           <p
             className="typo-etikett-liten"
