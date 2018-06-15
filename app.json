@@ -12,6 +12,7 @@
       "required": true
     }
   },
+  "success_url": "/modiapersonoversikt/",
   "formation": {
   },
   "addons": [
