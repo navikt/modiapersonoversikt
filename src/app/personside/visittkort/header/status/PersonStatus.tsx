@@ -7,7 +7,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
 import { AntallBarn } from './Antallbarn';
-import { EMDASH } from '../../../../../utils/string-utils';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 const PersonStatusListe = styled.ul`
   margin: 0;
@@ -34,7 +34,7 @@ interface PersonProps {
 function Dødsdato({ person }: PersonProps) {
     if (person.personstatus.dødsdato) {
         const formatertDødsdato = formaterDato(person.personstatus.dødsdato);
-        return <>{EMDASH} Død {formatertDødsdato}</>;
+        return <>{ENDASH} Død {formatertDødsdato}</>;
     } else {
         return null;
     }
@@ -42,7 +42,7 @@ function Dødsdato({ person }: PersonProps) {
 
 function Utvandret({ person }: PersonProps) {
     if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
-        return <>{EMDASH} Utvandret</>;
+        return <>{ENDASH} Utvandret</>;
     } else {
         return null;
     }

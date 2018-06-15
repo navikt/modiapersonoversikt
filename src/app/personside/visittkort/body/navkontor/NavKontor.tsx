@@ -11,7 +11,7 @@ import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/baseurls';
-import { EMDASH } from '../../../../../utils/string-utils';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 const NameCase = styled.span`
   text-transform: capitalize;
@@ -56,7 +56,7 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
             </dt>
             <dd>
                 <Undertekst>
-                    {klokkeslettToString(apningstid.apentFra)} {EMDASH} {klokkeslettToString(apningstid.apentTil)}
+                    {klokkeslettToString(apningstid.apentFra)} {ENDASH} {klokkeslettToString(apningstid.apentTil)}
                 </Undertekst>
             </dd>
         </Fragment>

@@ -9,7 +9,7 @@ import { Periode, Verge, Vergemal } from '../../../../../models/vergemal/vergema
 import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
-import { EMDASH } from '../../../../../utils/string-utils';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 export const feilmelding = 'Feil ved visning av vergemål';
 
@@ -20,7 +20,7 @@ function Periode(props: {periode: Periode}) {
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
     return(
-        <EtikettMini>{fom} {EMDASH} {tom}</EtikettMini>
+        <EtikettMini>{fom} {ENDASH} {tom}</EtikettMini>
     );
 }
 
