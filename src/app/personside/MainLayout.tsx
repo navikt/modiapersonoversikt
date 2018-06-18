@@ -11,7 +11,6 @@ export enum DialogPanelSize {
 
 const LayoutWrapper = styled.div`
     flex-grow: 1;
-    overflow-y: scroll;
     padding: ${props => props.theme.margin.layout};
     animation: ${props => props.theme.animation.fadeIn};
     @media (${props => props.theme.media.wideScreen}) {
