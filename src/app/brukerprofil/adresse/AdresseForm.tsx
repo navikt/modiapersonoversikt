@@ -12,7 +12,7 @@ import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontakt
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
-import { Reducer } from '../../../redux/reducer';
+import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, { MidlertidigeAdresserNorge } from './MidlertidigAdresseNorge';
 
@@ -34,7 +34,7 @@ interface Props {
     person: Person;
     postnummer: KodeverkResponse;
     endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
-    endreAdresseReducer: Reducer<{}>;
+    endreAdresseReducer: RestReducer<{}>;
 }
 
 enum Valg {

@@ -11,8 +11,6 @@ import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
 import { ENDASH } from '../../../../../utils/string-utils';
 
-export const feilmelding = 'Feil ved visning av vergemål';
-
 function Periode(props: {periode: Periode}) {
     const {periode} = props;
 
@@ -77,11 +75,7 @@ function Vergemal(props: {vergemal: Vergemal}) {
     );
 }
 
-function VergemalWrapper(props: {vergemal?: Vergemal}) {
-    if (!props.vergemal) {
-        return <p>{feilmelding}</p>;
-    }
-
+function VergemalWrapper(props: {vergemal: Vergemal}) {
     if (props.vergemal.verger.length === 0) {
         return null;
     }

@@ -1,19 +1,28 @@
 import { apiBaseUri } from './config';
-import { NavKontor } from '../models/navkontor';
+import { BrukersNavKontorResponse } from '../models/navkontor';
 
-export function getNavkontor(geografiskTilknytning?: string, diskresjonsKode?: string): Promise<NavKontor> {
+export function getNavkontor(geografiskTilknytning?: string, diskresjonsKode?: string)
+: Promise<BrukersNavKontorResponse> {
     const uri =
         `${apiBaseUri}/enheter?gt=${geografiskTilknytning}${diskresjonsKode ? '&dkode=' + diskresjonsKode : ''}`;
     return fetch(uri, {credentials: 'include'})
         .then((response) => {
             if (response.ok) {
-                return response.json();
+                return transformResponse(response);
             } else if (response.status === 404) {
-                return new Promise((resolve) => {
-                    resolve(undefined);
-                });
+                return {
+                    navKontor: null
+                };
             } else {
                 throw response.statusText;
             }
         });
+}
+
+function transformResponse(response: Response): Promise<BrukersNavKontorResponse> {
+    return response.json().then(navKontor => {
+        return {
+            navKontor
+        };
+    });
 }

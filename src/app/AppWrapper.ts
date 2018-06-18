@@ -7,4 +7,9 @@ const AppWrapper = styled.div`
   background-color: ${(props) => props.theme.color.bakgrunn};
 `;
 
+export const Content = styled.div`
+  flex-grow: 1;
+  overflow-y: scroll;
+`;
+
 export default AppWrapper;

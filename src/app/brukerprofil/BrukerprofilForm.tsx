@@ -21,7 +21,7 @@ export const FormKnapperWrapper = styled.div`
 
 interface Props {
     person: Person;
-    veilderRoller?: VeilederRoller;
+    veilderRoller: VeilederRoller;
 }
 
 function BrukerprofilForm({ person, veilderRoller }: Props) {
