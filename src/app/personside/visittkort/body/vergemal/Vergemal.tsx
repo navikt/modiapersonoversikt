@@ -9,9 +9,9 @@ import { Periode, Verge, Vergemal } from '../../../../../models/vergemal/vergema
 import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 export const feilmelding = 'Feil ved visning av vergemål';
-const emdash = '\u2014';
 
 function Periode(props: {periode: Periode}) {
     const {periode} = props;
@@ -20,7 +20,7 @@ function Periode(props: {periode: Periode}) {
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
     return(
-        <EtikettMini>{fom} {emdash} {tom}</EtikettMini>
+        <EtikettMini>{fom} {ENDASH} {tom}</EtikettMini>
     );
 }
 
@@ -45,12 +45,12 @@ function Verge(props: {verge: Verge}) {
             <Vergeinformasjon>
                 <Undertekst>{verge.navn.sammensatt}</Undertekst>
                 <Undertekst>{verge.ident}</Undertekst>
-                <Undertekst>{verge.vergetype ? verge.vergetype.value : ''}</Undertekst>
+                <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
-            <Undertekst>{verge.mandattype ? verge.mandattype.value : ''}</Undertekst>
+            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : ''}</Undertekst>
             <Undertekst>{verge.mandattekst || ''}</Undertekst>
-            <EtikettMini>{verge.embete ? verge.embete.value : ''}</EtikettMini>
+            <EtikettMini>{verge.embete ? verge.embete.beskrivelse : ''}</EtikettMini>
             <Periode periode={verge.virkningsperiode}/>
         </VergeDiv>
     );
@@ -58,7 +58,7 @@ function Verge(props: {verge: Verge}) {
 
 function Vergemal(props: {vergemal: Vergemal}) {
     const alleVergesakstyper = props.vergemal.verger.map(verge => verge.vergesakstype ?
-        verge.vergesakstype.value : 'Ingen vergesakstype oppgitt').join(', ');
+        verge.vergesakstype.beskrivelse : 'Ingen vergesakstype oppgitt').join(', ');
     const verger = props.vergemal.verger.map(verge =>
         <Verge verge={verge} key={verge.ident}/>);
     return (
