@@ -36,7 +36,7 @@ export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware))
 const aremarkFnr = '10108000398';
 
 testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
-testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118', undefined) });
+testStore.dispatch({ type: navKontorActionNames.OK, data: {navKontor: getMockNavKontor('0118', undefined) }});
 testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon(aremarkFnr) });
 testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
 testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });

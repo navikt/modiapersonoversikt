@@ -7,7 +7,7 @@ import { connect, Dispatch } from 'react-redux';
 
 import { paths } from '../routes/routing';
 import BrukerprofilForm from './BrukerprofilForm';
-import { AppState, Reducer } from '../../redux/reducer';
+import { AppState, RestReducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
 import { hentPerson } from '../../redux/personinformasjon';
@@ -47,8 +47,8 @@ interface DispatchProps {
 
 interface OwnProps {
     fødselsnummer: string;
-    personReducer: Reducer<PersonRespons>;
-    veilederRollerReducer: Reducer<VeilederRoller>;
+    personReducer: RestReducer<PersonRespons>;
+    veilederRollerReducer: RestReducer<VeilederRoller>;
 }
 
 type Props = RouteComponentProps<RoutingProps> & OwnProps & DispatchProps ;
@@ -101,7 +101,7 @@ const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingP
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer, dispatch)),
+        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

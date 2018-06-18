@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { AppState, Reducer } from '../../../../../redux/reducer';
+import { AppState, RestReducer } from '../../../../../redux/reducer';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
 
 interface Props {
-    vergemalReducer: Reducer<Vergemal>;
+    vergemalReducer: RestReducer<Vergemal>;
 }
 
 const feilmelding = () => (

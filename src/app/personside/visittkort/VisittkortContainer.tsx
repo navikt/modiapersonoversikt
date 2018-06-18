@@ -6,22 +6,18 @@ import { AppState } from '../../../redux/reducer';
 import { PersonRespons, Person } from '../../../models/person/person';
 
 interface VisittkortContainerProps {
-    person: PersonRespons | undefined;
+    personResponse: PersonRespons;
 }
 
 class VisittkortContainer extends React.Component<VisittkortContainerProps> {
 
     render() {
-        if (!this.props.person) {
-            return <>Ingen person lastet</>;
-        }
-
-        return <Visittkort person={this.props.person as Person}/>;
+        return <Visittkort person={this.props.personResponse as Person}/>;
     }
 }
 const mapStateToProps = (state: AppState) => {
     return ({
-        person: state.personinformasjon.data,
+        personResponse: state.personinformasjon.data,
     });
 };
 

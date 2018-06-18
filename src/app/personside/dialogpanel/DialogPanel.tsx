@@ -6,7 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import KnappBase from 'nav-frontend-knapper';
 
-import { AppState, Reducer } from '../../../redux/reducer';
+import { AppState, RestReducer } from '../../../redux/reducer';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/oppgaver';
 import { STATUS } from '../../../redux/utils';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
@@ -40,7 +40,7 @@ const Knapperad = styled.div`
 interface StateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgaveReducer: Reducer<Oppgave[]>;
+    oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
 
