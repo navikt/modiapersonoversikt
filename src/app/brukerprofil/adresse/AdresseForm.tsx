@@ -2,19 +2,19 @@ import * as React from 'react';
 import { FormEvent } from 'react';
 
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import Radio from 'nav-frontend-skjema/lib/radio';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { Gateadresse, Matrikkeladresse, Personadresse } from '../../../models/personadresse';
-import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontaktinformasjon/adresse/Adresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, { MidlertidigeAdresserNorge } from './MidlertidigAdresseNorge';
+import FolkeregistrertAdresse from './FolkeregistrertAdresse';
+import { AdresseValg } from './AdresseValg';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {
@@ -37,7 +37,7 @@ interface Props {
     endreAdresseReducer: RestReducer<{}>;
 }
 
-enum Valg {
+export enum Valg {
     FOLKEREGISTRERT, MIDLERTIDIG_NORGE, MIDLERTIDIG_UTLAND
 }
 
@@ -52,6 +52,7 @@ class AdresseForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.initialState = this.initialState.bind(this);
+        this.onAdresseValgChange = this.onAdresseValgChange.bind(this);
         this.onMidlertidigAdresseNorgeInput = this.onMidlertidigAdresseNorgeInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
@@ -137,41 +138,41 @@ class AdresseForm extends React.Component<Props, State> {
         });
     }
 
-    render() {
-        const {person} = this.props;
-        const adresse = person.folkeregistrertAdresse ?
-            formatterRiktigAdresse(person.folkeregistrertAdresse)
-            : 'Ikke registrert';
+    onAdresseValgChange(valg: Valg) {
+        this.setState({selectedRadio: valg});
+    }
 
+    render() {
         return (
             <form onSubmit={this.onSubmit}>
                 <Undertittel>Adresse</Undertittel>
-                <Radio
-                    label="Bostedsadresse fra folkeregisteret"
-                    name="folkeregistrertRadio"
-                    onChange={() => this.setState({selectedRadio: Valg.FOLKEREGISTRERT})}
+                <AdresseValg
+                    label={'Bostedsadresse fra folkeregisteret'}
+                    onAdresseValgChange={this.onAdresseValgChange}
                     checked={this.state.selectedRadio === Valg.FOLKEREGISTRERT}
+                    valg={Valg.FOLKEREGISTRERT}
                 />
-                {adresse}
-                <Radio
-                    label="Midlertidig adresse i Norge"
-                    name="midlertidigAdresseRadio"
-                    onChange={() => this.setState({selectedRadio: Valg.MIDLERTIDIG_NORGE})}
+                <FolkeregistrertAdresse person={this.props.person}/>
+                <AdresseValg
+                    label={'Midlertidig adresse i Norge'}
+                    onAdresseValgChange={this.onAdresseValgChange}
                     checked={this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE}
-                />
-                {this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE &&
-                <MidlertidigAdresseNorge
-                    midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
-                    onChange={this.onMidlertidigAdresseNorgeInput}
-                    postnummerKodeverk={this.props.postnummer.kodeverk}
-                />
-                }
-                <Radio
+                    valg={Valg.MIDLERTIDIG_NORGE}
+                >
+                    <MidlertidigAdresseNorge
+                        midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
+                        onChange={this.onMidlertidigAdresseNorgeInput}
+                        postnummerKodeverk={this.props.postnummer.kodeverk}
+                    />
+                </AdresseValg>
+                <AdresseValg
                     label="Midlertidig adresse i utlandet"
-                    name="midlertidigAdresseUtlandRadio"
-                    onChange={() => this.setState({selectedRadio: Valg.MIDLERTIDIG_UTLAND})}
+                    valg={Valg.MIDLERTIDIG_UTLAND}
+                    onAdresseValgChange={this.onAdresseValgChange}
                     checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
-                />
+                >
+                    <span>Utenlandsk adresseform</span>
+                </AdresseValg>
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
@@ -189,10 +190,7 @@ class AdresseForm extends React.Component<Props, State> {
                         Endre adresse
                     </KnappBase>
                 </FormKnapperWrapper>
-                <Tilbakemelding
-                    formErEndret={this.state.formErEndret}
-                    status={this.props.endreAdresseReducer.status}
-                />
+                <Tilbakemelding formErEndret={this.state.formErEndret} status={this.props.endreAdresseReducer.status}/>
             </form>
         );
     }
