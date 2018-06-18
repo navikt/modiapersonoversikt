@@ -67,7 +67,16 @@ function endreNavKontaktinformasjonMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefon', withDelayedResponse(
         1200,
         STATUS_OK,
-        () => {return {}; }));
+        () => ({})
+    ));
+}
+
+function setupEndreAdresseMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/adresse', withDelayedResponse(
+        1900,
+        STATUS_OK,
+        () => ({})
+    ));
 }
 
 function setupVergemalMock(mock: FetchMock) {
@@ -138,4 +147,5 @@ export function setupMock() {
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
     setupPostnummerKodeverk(mock);
     endreNavKontaktinformasjonMock(mock);
+    setupEndreAdresseMock(mock);
 }

@@ -2,48 +2,39 @@ import * as React from 'react';
 import { FormEvent } from 'react';
 
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import Select from 'nav-frontend-skjema/lib/select';
 import Radio from 'nav-frontend-skjema/lib/radio';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { Gateadresse, Personadresse } from '../../../models/personadresse';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import { Gateadresse, Matrikkeladresse, Personadresse } from '../../../models/personadresse';
 import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontaktinformasjon/adresse/Adresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import GateadresseForm from './GateadresseForm';
+import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
+import { STATUS } from '../../../redux/utils';
+import { Reducer } from '../../../redux/reducer';
+import RequestTilbakemelding from '../RequestTilbakemelding';
+import MidlertidigAdresseNorge, { MidlertidigeAdresserNorge } from './MidlertidigAdresseNorge';
 
-interface MidlertidigAdresseNorgeProps {
-    onChange: (gateadresse: Gateadresse) => void;
-    midlertidigAdresseNorge: Personadresse;
-    postnummerKodeverk: Kodeverk[];
-}
+function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
+    if (!props.formErEndret) {
+        return null;
+    }
 
-function MidlertidigAdresseNorge(props: MidlertidigAdresseNorgeProps) {
-
-    const options = [<option key={'Gateadresse'}>Gateadresse</option>,
-        <option key={'Matrikkeladresse'}>Matrikkeladresse</option>];
     return (
-        <>
-            <Select
-                label="Landkode"
-                bredde={'m'}
-                defaultValue={'Gateadresse'}
-            >
-                {options}
-            </Select>
-            <GateadresseForm
-                onChange={props.onChange}
-                gateadresse={props.midlertidigAdresseNorge.gateadresse as Gateadresse}
-                postnummerKodeverk={props.postnummerKodeverk}
-            />
-        </>
+        <RequestTilbakemelding
+            status={props.status}
+            onSuccess={'Adressen ble endret'}
+            onError={'Det skjedde en feil ved endring av adresse'}
+        />
     );
 }
 
 interface Props {
     person: Person;
     postnummer: KodeverkResponse;
+    endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
+    endreAdresseReducer: Reducer<{}>;
 }
 
 enum Valg {
@@ -51,22 +42,29 @@ enum Valg {
 }
 
 interface State {
-    midlertidigAdresseNorge: Personadresse;
+    midlertidigAdresseNorge: MidlertidigeAdresserNorge;
     selectedRadio: Valg;
+    formErEndret: boolean;
 }
 
 class AdresseForm extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse),
-            selectedRadio: this.initialRadioValg()
-        };
-
-        this.onGateadresseInput = this.onGateadresseInput.bind(this);
+        this.initialState = this.initialState.bind(this);
+        this.onMidlertidigAdresseNorgeInput = this.onMidlertidigAdresseNorgeInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.erEndret = this.erEndret.bind(this);
+        this.onAvbryt = this.onAvbryt.bind(this);
+
+        this.state = this.initialState(props);
+    }
+
+    initialState(props: Props) {
+        return {
+            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse),
+            selectedRadio: this.initialRadioValg(),
+            formErEndret: false
+        };
     }
 
     initialRadioValg() {
@@ -84,15 +82,17 @@ class AdresseForm extends React.Component<Props, State> {
     intialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
         if (!alternativAdresse) {
             return {
-                gateadresse: this.initialGateadresse(undefined)
+                gateadresse: this.initialGateadresse(undefined),
+                matrikkeladresse: this.initialMatrikkeladresse(undefined)
             };
         }
         return {
-            gateadresse: this.initialGateadresse(alternativAdresse.gateadresse)
+            gateadresse: this.initialGateadresse(alternativAdresse.gateadresse),
+            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse)
         };
     }
 
-    initialGateadresse(gateadresse: Gateadresse | undefined) {
+    initialGateadresse(gateadresse: Gateadresse | undefined): Gateadresse {
         if (!gateadresse) {
             return {
                 gatenavn: '',
@@ -100,28 +100,41 @@ class AdresseForm extends React.Component<Props, State> {
                 postnummer: ''
             };
         }
-
         return gateadresse;
     }
 
-    onSubmit(event: FormEvent<HTMLFormElement>) {
+    initialMatrikkeladresse(matrikkeladresse: Matrikkeladresse | undefined): Matrikkeladresse {
+        if (!matrikkeladresse) {
+            return {
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return matrikkeladresse;
+    }
+
+    onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
+        this.setState(this.initialState(this.props));
         event.preventDefault();
     }
 
-    onGateadresseInput(gateadresse: Gateadresse) {
-        this.setState({
-            midlertidigAdresseNorge: {
-                gateadresse: gateadresse
-            }
-        });
+    onSubmit(event: FormEvent<HTMLFormElement>) {
+        let request = {};
+        if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+            request = {
+                norskAdresse: this.state.midlertidigAdresseNorge
+            };
+        }
+
+        this.props.endreAdresse(this.props.person.fødselsnummer, request);
+        event.preventDefault();
     }
 
-    erEndret() {
-        if (this.props.person.alternativAdresse && this.props.person.alternativAdresse.gateadresse) {
-            return JSON.stringify(this.state.midlertidigAdresseNorge.gateadresse) ===
-                JSON.stringify(this.props.person.alternativAdresse.gateadresse);
-        }
-        return false;
+    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorge) {
+        this.setState({
+            midlertidigAdresseNorge: adresser,
+            formErEndret: true
+        });
     }
 
     render() {
@@ -149,7 +162,7 @@ class AdresseForm extends React.Component<Props, State> {
                 {this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE &&
                 <MidlertidigAdresseNorge
                     midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
-                    onChange={this.onGateadresseInput}
+                    onChange={this.onMidlertidigAdresseNorgeInput}
                     postnummerKodeverk={this.props.postnummer.kodeverk}
                 />
                 }
@@ -162,16 +175,24 @@ class AdresseForm extends React.Component<Props, State> {
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
+                        onClick={this.onAvbryt}
+                        disabled={!this.state.formErEndret}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        disabled={this.erEndret()}
+                        spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
+                        autoDisableVedSpinner={true}
+                        disabled={!this.state.formErEndret}
                     >
                         Endre adresse
                     </KnappBase>
                 </FormKnapperWrapper>
+                <Tilbakemelding
+                    formErEndret={this.state.formErEndret}
+                    status={this.props.endreAdresseReducer.status}
+                />
             </form>
         );
     }

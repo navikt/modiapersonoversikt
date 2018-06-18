@@ -13,6 +13,7 @@ import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
 import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
+import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
@@ -40,6 +41,7 @@ export interface AppState {
     tilrettelagtKommunikasjonKodeverk: Reducer<KodeverkResponse>;
     endreKontaktinformasjonReducer: Reducer<{}>;
     postnummerReducer: Reducer<KodeverkResponse>;
+    endreAdresseReducer: Reducer<{}>;
 }
 
 export default combineReducers<AppState>({
@@ -56,7 +58,8 @@ export default combineReducers<AppState>({
     retningsnummerReducer: retningsnummereReducer,
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
     endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
-    postnummerReducer: postnummerReducer
+    postnummerReducer: postnummerReducer,
+    endreAdresseReducer
 });
 
 export interface Reducer<T> {
