@@ -7,7 +7,7 @@ interface Props {
 }
 
 function getBeskrivelseForSivilstand(sivilstand: Sivilstand, kjønn: Kjønn) {
-    if (sivilstand.value === SivilstandTyper.Enke) {
+    if (sivilstand.kodeRef === SivilstandTyper.Enke) {
         return kjønn === Kjønn.Mann ? 'Enkemann' : 'Enke';
     } else {
         return sivilstand.beskrivelse;

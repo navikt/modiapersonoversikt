@@ -25,6 +25,6 @@ function getMockTelefon(faker: FakerStatic, identifikator: string) {
         sistEndret: getSistOppdatert(),
         sistEndretAv: '1010800 BD03',
         identifikator: identifikator,
-        retningsnummer: vektetSjanse(faker, 0.3) ? '' : '+47'
+        retningsnummer: { kodeRef: vektetSjanse(faker, 0.3) ? '' : '+47', beskrivelse: '' }
     };
 }

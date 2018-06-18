@@ -7,7 +7,7 @@ import FakerStatic = Faker.FakerStatic;
 
 const ugift = (fraOgMed: string) => {
     return {
-        value: SivilstandTyper.Ugift,
+        kodeRef: SivilstandTyper.Ugift,
         beskrivelse: 'Ugift',
         fraOgMed
     };
@@ -15,7 +15,7 @@ const ugift = (fraOgMed: string) => {
 
 const gift = (fraOgMed: string) => {
     return {
-        value: SivilstandTyper.Gift,
+        kodeRef: SivilstandTyper.Gift,
         beskrivelse: 'Gift',
         fraOgMed
     };
@@ -23,7 +23,7 @@ const gift = (fraOgMed: string) => {
 
 const skilt = (fraOgMed: string) => {
     return {
-        value: SivilstandTyper.Skilt,
+        kodeRef: SivilstandTyper.Skilt,
         beskrivelse: 'Skilt',
         fraOgMed
     };
@@ -31,7 +31,7 @@ const skilt = (fraOgMed: string) => {
 
 const samboer = (fraOgMed: string) => {
     return {
-        value: SivilstandTyper.Samboer,
+        kodeRef: SivilstandTyper.Samboer,
         beskrivelse: 'Samboer',
         fraOgMed
     };
@@ -39,7 +39,7 @@ const samboer = (fraOgMed: string) => {
 
 const enke = (fraOgMed: string) => {
     return {
-        value: SivilstandTyper.Enke,
+        kodeRef: SivilstandTyper.Enke,
         beskrivelse: 'Enke',
         fraOgMed
     };

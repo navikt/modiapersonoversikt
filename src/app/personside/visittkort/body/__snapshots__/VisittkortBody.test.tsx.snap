@@ -486,14 +486,14 @@ Array [
                 </span>
               </p>
               <dl
-                className="sc-dVhcbM fqHGgH"
+                className="sc-eqIVtm gDGogF"
               >
                 <dt>
                   <p
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fBuWsC eMQpKg"
+                      className="sc-fMiknA aJmBt"
                     >
                       mandag
                     </span>
@@ -515,7 +515,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fBuWsC eMQpKg"
+                      className="sc-fMiknA aJmBt"
                     >
                       tirsdag
                     </span>
@@ -537,7 +537,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fBuWsC eMQpKg"
+                      className="sc-fMiknA aJmBt"
                     >
                       onsdag
                     </span>
@@ -559,7 +559,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fBuWsC eMQpKg"
+                      className="sc-fMiknA aJmBt"
                     >
                       torsdag
                     </span>
@@ -581,7 +581,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-fBuWsC eMQpKg"
+                      className="sc-fMiknA aJmBt"
                     >
                       fredag
                     </span>
@@ -602,7 +602,7 @@ Array [
               <br />
             </div>
             <a
-              className="lenke sc-fMiknA cVIKhj"
+              className="lenke sc-dVhcbM kGlMei"
               href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
               rel="noopener noreferrer"
               target="_blank"

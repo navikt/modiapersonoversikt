@@ -43,12 +43,12 @@ function Verge(props: {verge: Verge}) {
             <Vergeinformasjon>
                 <Undertekst>{verge.navn.sammensatt}</Undertekst>
                 <Undertekst>{verge.ident}</Undertekst>
-                <Undertekst>{verge.vergetype ? verge.vergetype.value : ''}</Undertekst>
+                <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
-            <Undertekst>{verge.mandattype ? verge.mandattype.value : ''}</Undertekst>
+            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : ''}</Undertekst>
             <Undertekst>{verge.mandattekst || ''}</Undertekst>
-            <EtikettMini>{verge.embete ? verge.embete.value : ''}</EtikettMini>
+            <EtikettMini>{verge.embete ? verge.embete.beskrivelse : ''}</EtikettMini>
             <Periode periode={verge.virkningsperiode}/>
         </VergeDiv>
     );
@@ -56,7 +56,7 @@ function Verge(props: {verge: Verge}) {
 
 function Vergemal(props: {vergemal: Vergemal}) {
     const alleVergesakstyper = props.vergemal.verger.map(verge => verge.vergesakstype ?
-        verge.vergesakstype.value : 'Ingen vergesakstype oppgitt').join(', ');
+        verge.vergesakstype.beskrivelse : 'Ingen vergesakstype oppgitt').join(', ');
     const verger = props.vergemal.verger.map(verge =>
         <Verge verge={verge} key={verge.ident}/>);
     return (
