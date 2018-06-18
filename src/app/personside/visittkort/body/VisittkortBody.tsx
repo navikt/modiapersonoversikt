@@ -12,6 +12,7 @@ import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import { paths } from '../../../routes/routing';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -120,7 +121,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
         const columnLayOut = this.getColumnLayout(numberOfColumns);
 
         return (
-            <>
+            <ErrorBoundary>
                 <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
                     {columnLayOut}
                 </VisittkortBodyDiv>
@@ -133,7 +134,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                         Administrer brukerprofil
                     </Link>
                 </RedigerBrukerprofilWrapper>
-            </>
+            </ErrorBoundary>
         );
     }
 }

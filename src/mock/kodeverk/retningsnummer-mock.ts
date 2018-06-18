@@ -1,26 +1,21 @@
 import { KodeverkResponse } from '../../models/kodeverk';
 
-export function mockRetningsnummer(): KodeverkResponse {
+export function mockRetningsnummereKodeverk(): KodeverkResponse {
     return {
         kodeverk: [
-            {
-                value: 'Norge',
-                kodeRef: '47',
-                beskrivelse: 'Norge',
-                gyldig: true
-            },
-            {
-                value: 'Sverige',
-                kodeRef: '46',
-                beskrivelse: 'Sverige',
-                gyldig: true
-            },
-            {
-                value: 'Storbritannia (UK)',
-                kodeRef: '44',
-                beskrivelse: 'Storbritannia (UK)',
-                gyldig: true
-            }
+            mockRetningsnummer('Norge', '+47'),
+            mockRetningsnummer('Sverige', '+46'),
+            mockRetningsnummer('Storbritannia (UK)', '+44'),
+            mockRetningsnummer('Argentina', '+54')
         ]
+    };
+}
+
+function mockRetningsnummer(value: string, kodeRef: string) {
+    return {
+        value,
+        kodeRef,
+        beskrivelse: value,
+        gyldig: true
     };
 }

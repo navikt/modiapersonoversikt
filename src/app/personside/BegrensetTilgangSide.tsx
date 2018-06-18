@@ -7,7 +7,6 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import VisPeriode from '../../components/person/VisPeriode';
 import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
-import Systemtittel from 'nav-frontend-typografi/lib/systemtittel';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 interface BegrensetTilgangProps {
@@ -18,9 +17,7 @@ function BegrensetTilgangSide({person}: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>
             <AlertStripe type="advarsel">
-                <Systemtittel>Begrenset tilgang til bruker</Systemtittel>
                 <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse}/>
-                <Undertittel>Sikkerhetstiltak</Undertittel>
                 {visSikkerhetstiltak(person.sikkerhetstiltak)}
             </AlertStripe>
         </FillCenterAndFadeIn>
@@ -33,6 +30,7 @@ function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak) {
     }
     return (
         <>
+            <Undertittel>Sikkerhetstiltak</Undertittel>
             {hentPeriode(sikkerhetstiltak.periode)}
             <Undertekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Undertekst>
         </>

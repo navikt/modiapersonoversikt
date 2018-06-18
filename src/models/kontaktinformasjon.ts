@@ -1,7 +1,7 @@
 export interface Kontaktinformasjon {
     epost?: KontaktinformasjonVerdi;
     mobiltelefon?: KontaktinformasjonVerdi;
-    reservert?: string;
+    reservasjon?: string;
 }
 
 export interface KontaktinformasjonVerdi {

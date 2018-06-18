@@ -1,3 +1,5 @@
+export const ENDASH = '\u2013';
+
 export function formatNumber(format: string, streng: string) {
     let result = '';
 
@@ -20,4 +22,12 @@ export function padLeft(streng: string, width: number, symbol: string) {
     const leadingSymbol = symbol.length > 0 ? symbol.charAt(0) : ' ';
 
     return leadingSymbol.repeat(width - streng.length) + streng;
+}
+
+export function removeWhitespace(input: string) {
+    return input.replace(/ /g, '');
+}
+
+export function erTomStreng(input: string) {
+    return removeWhitespace(input).length === 0;
 }

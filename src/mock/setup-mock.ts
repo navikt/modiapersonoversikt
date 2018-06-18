@@ -7,9 +7,11 @@ import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fet
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockVergemal } from './vergemal-mocks';
+import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
-import { mockRetningsnummer } from './kodeverk/retningsnummer-mock';
-import { mockTilrettelagtKommunikasjon } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
+import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
+import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
+import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 
 const STATUS_OK = () => 200;
 
@@ -58,6 +60,13 @@ function endreNavnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
         1200,
         STATUS_OK,
+        () => {return undefined; }));
+}
+
+function endreNavKontaktinformasjonMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefon', withDelayedResponse(
+        1200,
+        STATUS_OK,
         () => {return {}; }));
 }
 
@@ -68,6 +77,13 @@ function setupVergemalMock(mock: FetchMock) {
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
 }
 
+function setupBaseUrlsMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/baseurls', withDelayedResponse(
+        2500,
+        STATUS_OK,
+        () => {return mockBaseUrls(); }));
+}
+
 function setupVeilederRollerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
         700,
@@ -76,17 +92,24 @@ function setupVeilederRollerMock(mock: FetchMock) {
 }
 
 function setupRetningsnummerKodeverkMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/kodeverk/Retningsnummer', withDelayedResponse(
+    mock.get(apiBaseUri + '/kodeverk/Retningsnumre', withDelayedResponse(
         700,
         STATUS_OK,
-        () => mockRetningsnummer()));
+        () => mockRetningsnummereKodeverk()));
 }
 
 function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/TilrettelagtKommunikasjon', withDelayedResponse(
         3000,
         STATUS_OK,
-        () => mockTilrettelagtKommunikasjon()));
+        () => mockTilrettelagtKommunikasjonKodeverk()));
+}
+
+function setupPostnummerKodeverk(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Postnummer', withDelayedResponse(
+        200,
+        STATUS_OK,
+        () => mockPostnummere()));
 }
 
 export function setupMock() {
@@ -108,8 +131,11 @@ export function setupMock() {
     setupGeografiskTilknytningMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
+    setupBaseUrlsMock(mock);
     endreNavnMock(mock);
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
+    setupPostnummerKodeverk(mock);
+    endreNavKontaktinformasjonMock(mock);
 }

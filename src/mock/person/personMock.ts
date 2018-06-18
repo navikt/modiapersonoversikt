@@ -20,7 +20,7 @@ import { getBankKonto } from './bankkontoMock';
 import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
-import { getNavKontaktinformasjon } from './navKontaktinformasjon';
+import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -80,7 +80,7 @@ function getNavn(fødselsnummer: string): Navn {
 
 export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
-    const dødsdato = bostatus === BostatusTyper.Død ? moment(faker.date.past(alder))
+    const dødsdato = bostatus && bostatus.kodeRef === BostatusTyper.Død ? moment(faker.date.past(alder))
         .format(moment.ISO_8601.__momentBuiltinFormatBrand) : undefined;
     return {
         bostatus,
@@ -90,9 +90,9 @@ export function getPersonstatus(alder: number): Bostatus {
 
 function getBostatus() {
     if (vektetSjanse(faker, 0.1)) {
-        return BostatusTyper.Død;
+        return { kodeRef: BostatusTyper.Død, beskrivelse: 'Død' };
     } else if (vektetSjanse(faker, 0.1)) {
-        return BostatusTyper.Utvandret;
+        return { kodeRef: BostatusTyper.Utvandret, beskrivelse: 'Utvandret' };
     } else {
         return undefined;
     }
@@ -103,35 +103,35 @@ function getTilrettelagtKommunikasjonsListe() {
     if (vektetSjanse(faker, 0.1)) {
         liste.push(
             {
-                behovKode: 'LESA',
+                kodeRef: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             }
         );
     } else if (vektetSjanse(faker, 0.1)) {
         liste.push(
             {
-                behovKode: 'KOSK',
+                kodeRef: 'KOSK',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
             }
         );
     } else if (vektetSjanse(faker, 0.1)) {
         liste.push(
             {
-                behovKode: 'KOMU',
+                kodeRef: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         );
     } else if (vektetSjanse(faker, 0.1)) {
         liste.push(
             {
-                behovKode: 'TOHJ',
+                kodeRef: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
             }
         );
     } else if (vektetSjanse(faker, 0.1)) {
         liste.push(
             {
-                behovKode: 'LESA',
+                kodeRef: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             },
 
@@ -139,22 +139,22 @@ function getTilrettelagtKommunikasjonsListe() {
     } else if (vektetSjanse(faker, 0.05)) {
         liste.push(
             {
-                behovKode: 'LESA',
+                kodeRef: 'LESA',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
             },
             {
-                behovKode: 'KOMU',
+                kodeRef: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         );
     } else if (vektetSjanse(faker, 0.05)) {
         liste.push(
             {
-                behovKode: 'TOHJ',
+                kodeRef: 'TOHJ',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
             },
             {
-                behovKode: 'KOMU',
+                kodeRef: 'KOMU',
                 beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
             }
         );
@@ -165,9 +165,15 @@ function getTilrettelagtKommunikasjonsListe() {
 
 function getDiskresjonskode() {
     if (vektetSjanse(faker, 0.1)) {
-        return Diskresjonskoder.FORTROLIG_ADRESSE;
+        return {
+            kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
+            beskrivelse: 'Sperret adresse, fortrolig'
+        };
     } else if (vektetSjanse(faker, 0.1)) {
-        return Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+        return {
+            kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+            beskrivelse: 'Sperret adresse, strengt fortrolig'
+        };
     } else {
         return undefined;
     }
@@ -193,7 +199,10 @@ function getGeografiskTilknytning() {
 
 function getStatsborgerskap() {
     if (vektetSjanse(faker, 0.7)) {
-        return 'NORGE';
+        return { kodeRef: 'NOR', beskrivelse: 'NORGE' };
     }
-    return faker.address.country().toUpperCase();
+    return {
+        kodeRef: faker.address.countryCode(),
+        beskrivelse: faker.address.country().toUpperCase()
+    };
 }

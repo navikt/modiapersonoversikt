@@ -29,7 +29,7 @@ export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinform
     return {
         epost: vektetSjansePerson(0.7, personData) ? getEpost(personData as Person) : undefined,
         mobiltelefon: vektetSjansePerson(0.7, personData) ? getMobiltelefon() : undefined,
-        reservert: vektetSjanse(faker, 0.7) ? undefined : 'Reservert'
+        reservasjon: vektetSjanse(faker, 0.7) ? undefined : 'true'
     };
 }
 
@@ -41,7 +41,7 @@ function getEpost(personData: Person) {
     const fornavn = personData.navn.fornavn || '';
     const etternavn = personData.navn.etternavn || '';
     return {
-        value: faker.internet.email(fornavn, etternavn),
+        value: faker.internet.email(fornavn.toLowerCase(), etternavn.toLowerCase()),
         sistOppdatert: getSistOppdatert()
     };
 }

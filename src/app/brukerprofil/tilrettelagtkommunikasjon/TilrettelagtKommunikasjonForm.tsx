@@ -16,7 +16,7 @@ import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import RequestTilbakemelding from './RequestTilbakemelding';
+import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 
 interface State {
@@ -60,10 +60,10 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         return tilrettelagtKommunikasjonKodeverk.map((kommunikasjonsmetode) => {
             return {
                 label: kommunikasjonsmetode.beskrivelse,
-                value: kommunikasjonsmetode.value,
+                value: kommunikasjonsmetode.kodeRef,
                 id: kommunikasjonsmetode.kodeRef,
                 checked: this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
-                    tk.behovKode === kommunikasjonsmetode.kodeRef),
+                    tk.kodeRef === kommunikasjonsmetode.kodeRef),
             };
         });
     }
@@ -91,7 +91,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     erEndret() {
         return this.state.checkbokser.some((checkboks) => {
             const erTilrettelagt = this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
-                checkboks.id === tk.behovKode
+                checkboks.id === tk.kodeRef
             );
             const fjernet = !checkboks.checked && erTilrettelagt;
             const lagtTil = checkboks.checked && !erTilrettelagt;

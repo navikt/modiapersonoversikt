@@ -38,8 +38,8 @@ const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkelad
 
 const tilfeldigUtlandsadresse = (folkeregistrertAdresse: boolean): Utlandsadresse => {
     return {
-        landkode: faker.address.countryCode(),
-        adresselinje: faker.address.streetAddress(true).toUpperCase(),
+        landkode: {kodeRef: faker.address.countryCode(), beskrivelse: faker.address.country()},
+        adresselinjer: [faker.address.streetAddress().toUpperCase(), faker.address.city()],
         periode: folkeregistrertAdresse ? getPeriode() : undefined
     };
 };

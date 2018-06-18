@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { TilrettelagtKommunikasjon } from '../../../../../models/person/person';
-import VisittkortElement from '../VisittkortElement';
+
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+
+import VisittkortElement from '../VisittkortElement';
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
+import { Kodeverk } from '../../../../../models/kodeverk';
 
 interface TilrettelagtKommunikasjonProps {
-    tilrettelagtKommunikasjonsListe: TilrettelagtKommunikasjon[];
+    tilrettelagtKommunikasjonsListe: Kodeverk[];
 }
 
 function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: TilrettelagtKommunikasjonProps) {
@@ -16,16 +18,20 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikon={<UtropstegnIkon />}>
+        <VisittkortElement
+            beskrivelse="Tilrettelagt Kommunikasjon"
+            ikon={<UtropstegnIkon />}
+            type={'header'}
+        >
             {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
 
     );
 }
 
-function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
+function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
     return (
-        <Undertekst key={tilrettelagtKommunikasjon.behovKode}>
+        <Undertekst key={tilrettelagtKommunikasjon.kodeRef}>
             {tilrettelagtKommunikasjon.beskrivelse}
         </Undertekst>
     );

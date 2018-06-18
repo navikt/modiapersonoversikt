@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import { createBrowserHistory } from 'history';
 import thunkMiddleware from 'redux-thunk';
 import { ThemeProvider } from 'styled-components';
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import Routing from './routes/routing';
 import UnderArbeid from '../components/underarbeid/UnderArbeid';
@@ -12,25 +11,21 @@ import { setupMock } from '../mock/setup-mock';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
 import reducers from '../redux/reducer';
 import { mockEnabled } from '../api/config';
-import AppWrapper from './AppWrapper';
-
-interface AppProps {
-
-}
+import AppWrapper, { Content } from './AppWrapper';
+import Eventlistener from './Eventlistener';
 
 if (mockEnabled === 'true') {
     setupMock();
 }
 
-const history = createBrowserHistory();
 const store = createStore(
     reducers,
-    applyMiddleware(thunkMiddleware, routerMiddleware(history))
+    applyMiddleware(thunkMiddleware)
 );
 
-class App extends React.Component<AppProps> {
+class App extends React.Component<{}> {
 
-    constructor(props: AppProps) {
+    constructor(props: {}) {
         super(props);
     }
 
@@ -40,9 +35,12 @@ class App extends React.Component<AppProps> {
                 <ThemeProvider theme={personOversiktTheme}>
                     <AppWrapper>
                         <nav id="header" />
-                        <ConnectedRouter history={history}>
-                            <Routing />
-                        </ConnectedRouter>
+                        <BrowserRouter>
+                            <Content>
+                                <Eventlistener/>
+                                <Routing/>
+                            </Content>
+                        </BrowserRouter>
                         <UnderArbeid />
                     </AppWrapper>
                 </ThemeProvider>

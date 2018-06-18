@@ -8,8 +8,7 @@ export const aremark: Person = {
     geografiskTilknytning: '0118',
     alder: 42,
     bankkonto: {
-        erNorskKonto: true,
-        bank: 'Bien sparebank',
+        banknavn: 'Bien sparebank',
         kontonummer: '12345678910',
         sistEndret: '2005-12-12',
         sistEndretAv: 'Daniel'
@@ -24,25 +23,25 @@ export const aremark: Person = {
         }
     },
     navn: {
-        sammensatt: 'AREMARK TESTFAMILIEN',
+        sammensatt: 'TESTFAMILIEN AREMARK',
         fornavn: 'AREMARK',
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN',
     },
     tilrettelagtKomunikasjonsListe: [
         {
-            behovKode: 'TOHJ',
+            kodeRef: 'TOHJ',
             beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
         }
     ],
-    diskresjonskode: Diskresjonskoder.FORTROLIG_ADRESSE,
-    statsborgerskap: 'NORSK',
+    diskresjonskode: { kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE, beskrivelse: 'Sperret adresse, fortrolig' },
+    statsborgerskap: { kodeRef: 'NOR', beskrivelse: 'NORGE' },
     personstatus: {
         dødsdato: undefined,
         bostatus: undefined
     },
     sivilstand: {
-        value: SivilstandTyper.Gift,
+        kodeRef: SivilstandTyper.Gift,
         beskrivelse: 'Gift',
         fraOgMed: '2005-12-12'
     },
@@ -66,8 +65,8 @@ export const aremark: Person = {
     kontaktinformasjon: {
         mobil: {
             sistEndret: '2014-06-21T18:44:39+02:00',
-            telefonnummer: '99887766',
-            retningsnummer: '47',
+            identifikator: '99887766',
+            retningsnummer: { kodeRef: '+47', beskrivelse: 'Norge' },
             sistEndretAv: 'BRUKER'
         }
     }

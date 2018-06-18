@@ -1,4 +1,5 @@
 import { Periode } from './periode';
+import { Kodeverk } from './kodeverk';
 
 export interface Endringsinfo {
     sistEndretAv: string;
@@ -33,8 +34,8 @@ export interface Matrikkeladresse {
 }
 
 export interface Utlandsadresse {
-    landkode?: string;
-    adresselinje: string;
+    landkode?: Kodeverk;
+    adresselinjer: string[];
     periode?: Periode;
 }
 

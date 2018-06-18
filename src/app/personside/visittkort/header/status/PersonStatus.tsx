@@ -7,8 +7,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
 import { AntallBarn } from './Antallbarn';
-
-const emdash = '\u2014';
+import { ENDASH } from '../../../../../utils/string-utils';
 
 const PersonStatusListe = styled.ul`
   margin: 0;
@@ -35,15 +34,15 @@ interface PersonProps {
 function Dødsdato({ person }: PersonProps) {
     if (person.personstatus.dødsdato) {
         const formatertDødsdato = formaterDato(person.personstatus.dødsdato);
-        return <>{emdash} Død {formatertDødsdato}</>;
+        return <>{ENDASH} Død {formatertDødsdato}</>;
     } else {
         return null;
     }
 }
 
 function Utvandret({ person }: PersonProps) {
-    if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
-        return <>{emdash} Utvandret</>;
+    if (person.personstatus.bostatus  && person.personstatus.bostatus.kodeRef === BostatusTyper.Utvandret) {
+        return <>{ENDASH} Utvandret</>;
     } else {
         return null;
     }
@@ -64,7 +63,7 @@ function PersonStatus({ person }: PersonProps) {
                 <FødselsnummerLinje person={person}/>
             </Luft>
             <PersonStatusListe>
-                <Statsborgerskap statsborgerskap={person.statsborgerskap}/>
+                <Statsborgerskap statsborgerskap={person.statsborgerskap && person.statsborgerskap.beskrivelse}/>
                 <Sivilstand sivilstand={person.sivilstand} kjønn={person.kjønn}/>
                 <AntallBarn familierelasjoner={person.familierelasjoner}/>
             </PersonStatusListe>

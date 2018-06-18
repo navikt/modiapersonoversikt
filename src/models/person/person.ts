@@ -17,10 +17,10 @@ export interface Person extends PersonRespons {
     geografiskTilknytning?: string;
     fødselsnummer: string;
     alder: number;
-    diskresjonskode?: string;
+    diskresjonskode?: Kodeverk;
     bankkonto?: Bankkonto;
-    tilrettelagtKomunikasjonsListe: TilrettelagtKommunikasjon[];
-    statsborgerskap?: string;
+    tilrettelagtKomunikasjonsListe: Kodeverk[];
+    statsborgerskap?: Kodeverk;
     folkeregistrertAdresse?: Personadresse;
     alternativAdresse?: Personadresse;
     postadresse?: Personadresse;
@@ -38,24 +38,19 @@ export interface Navn {
 }
 
 export interface Bankkonto {
-    erNorskKonto: boolean;
     kontonummer: string;
-    bank: string;
+    banknavn: string;
+    bankkode?: string;
+    swift?: string;
+    landkode?: Kodeverk;
+    adresse?: {
+        linje1: string;
+        linje2: string;
+        linje3: string;
+    };
+    valuta?: Kodeverk;
     sistEndret: string;
     sistEndretAv: string;
-}
-
-export interface BankkontoUtland extends  Bankkonto {
-    swift: string;
-    landkode: Kodeverk;
-    bankkode: string;
-    bankAdresse: UstrukturertAdresse;
-    valuta: Kodeverk;
-}
-
-export interface TilrettelagtKommunikasjon {
-    behovKode: string;
-    beskrivelse: string;
 }
 
 export interface Familierelasjon {
@@ -72,7 +67,7 @@ export interface Familierelasjon {
 
 export interface Bostatus {
     dødsdato?: string;
-    bostatus?: string;
+    bostatus?: Kodeverk;
 }
 
 export enum BostatusTyper {
@@ -90,9 +85,7 @@ export enum Relasjonstype {
     Far = 'FARA'
 }
 
-export interface Sivilstand {
-    value: SivilstandTyper;
-    beskrivelse: string;
+export interface Sivilstand extends Kodeverk {
     fraOgMed: string;
 }
 
@@ -118,7 +111,7 @@ export enum BegrensetTilgangTyper {
 }
 
 export function erDød(personstatus: Bostatus) {
-    return personstatus.dødsdato || personstatus.bostatus === BostatusTyper.Død;
+    return personstatus.dødsdato || (personstatus.bostatus && personstatus.bostatus.kodeRef === BostatusTyper.Død);
 }
 
 export function getBarn(familierelasjoner: Familierelasjon[]) {
