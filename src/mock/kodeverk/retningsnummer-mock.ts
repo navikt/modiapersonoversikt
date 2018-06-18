@@ -3,8 +3,8 @@ import { KodeverkResponse } from '../../models/kodeverk';
 export function mockRetningsnummereKodeverk(): KodeverkResponse {
     return {
         kodeverk: [
-            mockRetningsnummer('Norge', '+47'),
             mockRetningsnummer('Sverige', '+46'),
+            mockRetningsnummer('Norge', '+47'),
             mockRetningsnummer('Storbritannia (UK)', '+44'),
             mockRetningsnummer('Argentina', '+54')
         ]
