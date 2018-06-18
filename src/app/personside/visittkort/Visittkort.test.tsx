@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import { Provider } from 'react-redux';
-import { testStore } from '../../../setupTests';
+import { testStore } from '../../../test/setupTests';
 import { personinformasjonActionNames } from '../../../redux/personinformasjon';
 import { ThemeProvider } from 'styled-components';
 import { personOversiktTheme } from '../../../themes/personOversiktTheme';

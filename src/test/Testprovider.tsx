@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { personOversiktTheme } from './themes/personOversiktTheme';
+import { personOversiktTheme } from '../themes/personOversiktTheme';
 import { testStore } from './setupTests';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';

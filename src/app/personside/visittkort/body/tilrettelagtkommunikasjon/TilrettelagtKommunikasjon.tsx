@@ -1,7 +1,9 @@
 import * as React from 'react';
+
+import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+
 import { TilrettelagtKommunikasjon } from '../../../../../models/person/person';
 import VisittkortElement from '../VisittkortElement';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
 
 interface TilrettelagtKommunikasjonProps {
@@ -16,7 +18,11 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Tilrettelagt Kommunikasjon" ikon={<UtropstegnIkon />}>
+        <VisittkortElement
+            beskrivelse="Tilrettelagt Kommunikasjon"
+            ikon={<UtropstegnIkon />}
+            type={'header'}
+        >
             {tilrettelagtKommunikasjonsTekst}
         </VisittkortElement>
 

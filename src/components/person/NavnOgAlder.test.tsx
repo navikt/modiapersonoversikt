@@ -2,6 +2,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import NavnOgAlder from './NavnOgAlder';
 import { Familierelasjon, Relasjonstype } from '../../models/person/person';
+import '../../test/setupTests';
 
 const relasjon: Familierelasjon = {
     harSammeBosted: false,

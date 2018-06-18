@@ -16,7 +16,7 @@ function Sikkerhetstiltak({person}: SikkerhetstiltakProps) {
         return null;
     }
     return (
-        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikon={<SikkerhetsTiltakIkon />}>
+        <VisittkortElement beskrivelse="Sikkerhetstiltak" ikon={<SikkerhetsTiltakIkon />} type={'header'}>
             {tiltaksinfo(person.sikkerhetstiltak)}
         </VisittkortElement>
     );
