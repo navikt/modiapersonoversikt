@@ -5,7 +5,7 @@ import { connect, Dispatch } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { Person } from '../../../models/person/person';
-import { AppState, Reducer } from '../../../redux/reducer';
+import { AppState, RestReducer } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
@@ -13,7 +13,7 @@ import { STATUS } from '../../../redux/utils';
 import AdresseForm from './AdresseForm';
 
 interface StateProps {
-    postnummerReducer: Reducer<KodeverkResponse>;
+    postnummerReducer: RestReducer<KodeverkResponse>;
 }
 
 interface DispatchProps {

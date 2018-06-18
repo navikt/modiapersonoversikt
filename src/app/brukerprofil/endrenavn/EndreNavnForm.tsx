@@ -66,7 +66,7 @@ interface StateProps {
 
 interface OwnProps {
     person: Person;
-    veilederRoller?: VeilederRoller;
+    veilederRoller: VeilederRoller;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { AppState, Reducer } from '../../redux/reducer';
+import { AppState, RestReducer } from '../../redux/reducer';
 import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
@@ -12,7 +12,7 @@ import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
 
 interface PersonsideStateProps {
-    personReducer: Reducer<PersonRespons>;
+    personReducer: RestReducer<PersonRespons>;
 }
 
 const onPending = (
@@ -38,7 +38,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     getSideinnhold() {
         const data = this.props.personReducer.data;
 
-        if (data !== undefined && erPersonResponsAvTypeBegrensetTilgang(data)) {
+        if (erPersonResponsAvTypeBegrensetTilgang(data)) {
             return (
                 <BegrensetTilgangSide person={data as BegrensetTilgang}/>
             );
