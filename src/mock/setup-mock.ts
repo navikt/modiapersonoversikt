@@ -112,6 +112,30 @@ function setupPostnummerKodeverk(mock: FetchMock) {
         () => mockPostnummere()));
 }
 
+function setupNavigasjonsmenyMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/hode/me', withDelayedResponse(
+        300,
+        STATUS_OK,
+        () => ({
+            'ident': 'z123445',
+            'fornavn': 'Nils',
+            'etternavn': 'Saksbehandler',
+            'navn': 'Nils Saksbehandler'
+        })
+    ));
+
+    mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(
+        450,
+        STATUS_OK,
+        () => ({
+            enhetliste: [{
+                'navn': 'NAV Oslo',
+                'enhetId': '1220'
+            }]
+        })
+    ));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -138,4 +162,5 @@ export function setupMock() {
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
     setupPostnummerKodeverk(mock);
     endreNavKontaktinformasjonMock(mock);
+    setupNavigasjonsmenyMock(mock);
 }
