@@ -22,7 +22,9 @@ import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { tilrettelagtKommunikasjonActionNames } from '../redux/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { retningsnummerKodeverkActionNames } from '../redux/kodeverk/retningsnummereReducer';
+import { postnummerActionNames } from '../redux/kodeverk/postnummerReducer';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
+import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import thunkMiddleware from 'redux-thunk';
 
 configure({ adapter: new EnzymeReactAdapter() });
@@ -44,3 +46,4 @@ testStore.dispatch({ type: baseUrlsActionNames.OK, data: mockBaseUrls() });
 testStore.dispatch({ type: veilederRollerReducerActionNames.OK, data: getMockVeilederRoller() });
 testStore.dispatch({ type: tilrettelagtKommunikasjonActionNames.OK, data: mockTilrettelagtKommunikasjonKodeverk() });
 testStore.dispatch({ type: retningsnummerKodeverkActionNames.OK, data: mockRetningsnummereKodeverk() });
+testStore.dispatch({ type: postnummerActionNames.OK, data: mockPostnummere() });
