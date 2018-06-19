@@ -38,8 +38,8 @@ export function sorterRetningsnummerMedNorgeFørst(retningsnummerKodeverk: Kodev
 function sorterRetningsnummerListe(retningsnummerKodeverk: KodeverkResponse)  {
      retningsnummerKodeverk.kodeverk.sort(
         function (a: Kodeverk, b: Kodeverk) {
-            var x = a.value.toLowerCase();
-            var y = b.value.toLowerCase();
+            var x = a.beskrivelse.toLowerCase();
+            var y = b.beskrivelse.toLowerCase();
             if (x < y) {
                 return -1;
             }
