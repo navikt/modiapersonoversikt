@@ -11,11 +11,9 @@ export function mockRetningsnummereKodeverk(): KodeverkResponse {
     };
 }
 
-function mockRetningsnummer(value: string, kodeRef: string) {
+function mockRetningsnummer(beskrivelse: string, kodeRef: string) {
     return {
-        value,
         kodeRef,
-        beskrivelse: value,
-        gyldig: true
+        beskrivelse: beskrivelse
     };
 }
