@@ -13,7 +13,7 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import KnappBase from 'nav-frontend-knapper';
-import RadioPanelGruppe, { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { ChangeEvent } from 'react';
 import {
     removeWhitespaceAndDot,
@@ -26,11 +26,23 @@ import {
     from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
+import { Kodeverk } from '../../../models/kodeverk';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
     erUtenlandsk = 'Kontonummer i utlandet'
 }
+
+const radioKnappProps = [
+    {
+        label: bankEnum.erNorsk,
+        value: bankEnum.erNorsk
+    },
+    {
+        label: bankEnum.erUtenlandsk,
+        value: bankEnum.erUtenlandsk
+    }
+];
 
 interface State {
     bankKontoInput: BankKontoUtenOptionals;
@@ -48,6 +60,7 @@ interface OwnProps {
     person: Person;
     veilederRoller?: VeilederRoller;
 }
+
 type Props = DispatchProps & StateProps & OwnProps;
 
 class EndreKontonummerForm extends React.Component<Props, State> {
@@ -55,9 +68,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = this.getInitialState();
-        this.createInputChangeHandler = this.createInputChangeHandler.bind(this);
-        this.createSelectChangeHandler = this.createSelectChangeHandler.bind(this);
-        this.createAdresseInputChangeHandler = this.createAdresseInputChangeHandler.bind(this);
+        this.handleNorskKontonummerInputChange = this.handleNorskKontonummerInputChange.bind(this);
+        this.createPropertyUpdateHandler = this.createPropertyUpdateHandler.bind(this);
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
     }
@@ -88,63 +100,28 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             || validerKontonummer(kontonummer || this.state.bankKontoInput.kontonummer);
     }
 
-    getRadioKnappProps(): RadioProps[] {
-        return [
-            {
-                label: bankEnum.erNorsk,
-                value: bankEnum.erNorsk
-            },
-            {
-                label: bankEnum.erUtenlandsk,
-                value: bankEnum.erUtenlandsk
-            }
-        ];
-    }
-
     handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+        event.preventDefault(); // TODO kall til backend
     }
 
-    createInputChangeHandler(property: string) {
-        return (event: ChangeEvent<HTMLInputElement>) => {
-            const value = property === 'kontonummer' && this.state.norskKontoRadio
-                ? formaterNorskKontonummer(event.target.value)
-                : event.target.value;
+    handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
+        const kontonummer = formaterNorskKontonummer(event.target.value);
+        this.setState({
+            bankKontoInput: {
+                ...this.state.bankKontoInput,
+                kontonummer: kontonummer
+            }
+        });
+    }
+
+    createPropertyUpdateHandler(property: string) {
+        return (value: string | Kodeverk | BankAdresse) => {
             this.setState({
                 bankKontoInput: {
                     ...this.state.bankKontoInput,
                     [property]: value
                 }
             });
-        };
-    }
-
-    createSelectChangeHandler(property: string) {
-        return (event: ChangeEvent<HTMLSelectElement>) => {
-            console.log(event.target.value);
-            const value = event.target.value;
-            this.setState({
-                bankKontoInput: {
-                    ...this.state.bankKontoInput,
-                    [property]: value
-                }
-            });
-        };
-    }
-
-    createAdresseInputChangeHandler(property: string) {
-        return (event: ChangeEvent<HTMLInputElement>) => {
-            const adresse: BankAdresse = {
-                ...this.state.bankKontoInput.adresse,
-                [property]: event.target.value
-            };
-            this.setState({
-                    bankKontoInput: {
-                        ...this.state.bankKontoInput,
-                        adresse: adresse
-                    }
-                }
-            );
         };
     }
 
@@ -174,19 +151,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             <Input
                 label="Kontonummer"
                 value={this.state.bankKontoInput.kontonummer}
-                onChange={this.createInputChangeHandler('kontonummer')}
+                onChange={this.handleNorskKontonummerInputChange}
                 feil={ugyldigKontonummer ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
             />
         );
     }
 
     render() {
-        console.log(this.state.bankKontoInput);
         return (
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Kontonummer</Undertittel>
                 <RadioPanelGruppe
-                    radios={this.getRadioKnappProps()}
+                    radios={radioKnappProps}
                     legend={''}
                     name={'Velg norsk eller utenlandsk konto'}
                     checked={this.state.norskKontoRadio ? bankEnum.erNorsk : bankEnum.erUtenlandsk}
@@ -197,9 +173,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                         ? this.getNorskKontonrInputs()
                         : <UtenlandskKontonrInputs
                             bankkonto={this.state.bankKontoInput}
-                            createInputChangeHandler={this.createInputChangeHandler}
-                            createAdresseInputChangeHandler={this.createAdresseInputChangeHandler}
-                            createSelectInputChangeHandler={this.createSelectChangeHandler}
+                            createPropertyUpdateHandler={this.createPropertyUpdateHandler}
                         />
                 }
                 <FormKnapperWrapper>
@@ -214,7 +188,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                         type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
                         autoDisableVedSpinner={true}
-                        disabled={!this.kontoErEndret() || !this.erKontonummerValid()}
+                        disabled={!this.kontoErEndret()}
                     >
                         Endre kontonummer
                     </KnappBase>
@@ -232,7 +206,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreNavn.status
+        status: state.endreNavn.status // TODO, riktig status her
     });
 };
 
