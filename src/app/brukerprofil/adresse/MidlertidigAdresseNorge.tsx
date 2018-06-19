@@ -7,50 +7,87 @@ import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 
-enum Valg {
+export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE
 }
 
-export interface MidlertidigeAdresserNorge {
+export interface MidlertidigeAdresserNorgeInput {
     gateadresse: Gateadresse;
     matrikkeladresse: Matrikkeladresse;
+    valg: MidlertidigeAdresserNorgeInputValg;
 }
 
-interface Props {
-    onChange: (adresser: MidlertidigeAdresserNorge) => void;
-    midlertidigAdresseNorge: MidlertidigeAdresserNorge;
-}
-
-interface State {
-    valg: Valg;
-}
-
-function getValgtAdressetype(value: string): Valg {
-    switch (value) {
-        case Valg.MATRIKKELADRESSE.toString():
-            return Valg.MATRIKKELADRESSE;
-        case Valg.GATEADRESSE.toString():
-            return Valg.GATEADRESSE;
-        default:
-            return Valg.GATEADRESSE;
+export function getValgAdresseType(input: MidlertidigeAdresserNorgeInput) {
+    if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
+        return {
+            norskAdresse: {
+                gateadresse: input.gateadresse,
+                matrikkeladresse: null
+            }
+        };
+    } else {
+        return {
+            norskAdresse: {
+                matrikkeladresse: input.matrikkeladresse,
+                gateadresse: null
+            }
+        };
     }
 }
 
-class MidlertidigAdresseNorge extends React.Component<Props, State> {
+interface Props {
+    onChange: (adresser: MidlertidigeAdresserNorgeInput) => void;
+    midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
+}
+
+function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg {
+    switch (value) {
+        case MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE;
+        case MidlertidigeAdresserNorgeInputValg.GATEADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+        default:
+            return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+    }
+}
+
+export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse {
+    if (!gateadresse) {
+        return {
+            gatenavn: '',
+            poststed: '',
+            postnummer: ''
+        };
+    }
+    return gateadresse;
+}
+
+export function getOrDefaultMatrikkeladresse(matrikkeladresse?: Matrikkeladresse): Matrikkeladresse {
+    if (!matrikkeladresse) {
+        return {
+            poststed: '',
+            postnummer: ''
+        };
+    }
+    return matrikkeladresse;
+}
+
+class MidlertidigAdresseNorge extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
         this.onAdresseTypeChange = this.onAdresseTypeChange.bind(this);
-        this.state = {
-            valg: Valg.GATEADRESSE
-        };
     }
 
     onAdresseTypeChange(event: ChangeEvent<HTMLSelectElement>) {
-        this.setState({valg: getValgtAdressetype(event.target.value)});
+        const valg = getValgtAdressetype(event.target.value);
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            valg
+        });
     }
 
-    onGateadresseInputChange(gateadresse: Gateadresse) {
+    onGateadresseInputChange(gateadresse: Gateadresse ) {
         this.props.onChange({...this.props.midlertidigAdresseNorge, gateadresse});
     }
 
@@ -59,30 +96,38 @@ class MidlertidigAdresseNorge extends React.Component<Props, State> {
     }
 
     render() {
+
+        const {valg, gateadresse, matrikkeladresse} = this.props.midlertidigAdresseNorge;
+
         return (
             <>
                 <Select
                     label="Landkode"
                     bredde={'m'}
-                    defaultValue={this.state.valg.toString()}
+                    defaultValue={valg.toString()}
                     onChange={this.onAdresseTypeChange}
                 >
-                    <option key={Valg.GATEADRESSE} value={Valg.GATEADRESSE}>Gateadresse</option>
                     <option
-                        key={Valg.MATRIKKELADRESSE}
-                        value={Valg.MATRIKKELADRESSE}
+                        key={MidlertidigeAdresserNorgeInputValg.GATEADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.GATEADRESSE}
+                    >
+                        Gateadresse
+                    </option>
+                    <option
+                        key={MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE}
                     >
                         Områdeadresse (uten veinavn)
                     </option>
                 </Select>
-                {this.state.valg === Valg.GATEADRESSE && <GateadresseForm
-                    onChange={(gateadresse: Gateadresse) => this.onGateadresseInputChange(gateadresse)}
-                    gateadresse={this.props.midlertidigAdresseNorge.gateadresse as Gateadresse}
+                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
+                    onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
+                    gateadresse={getOrDefaultGateadresse(gateadresse)}
                 />}
-                {this.state.valg === Valg.MATRIKKELADRESSE && <MatrikkeladresseForm
-                    onChange={(matrikkeladresse: Matrikkeladresse) =>
-                        this.onMatrikkeladresseInputChange(matrikkeladresse)}
-                    matrikkeladresse={this.props.midlertidigAdresseNorge.matrikkeladresse as Matrikkeladresse}
+                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
+                    onChange={(matrikkeladresseInput: Matrikkeladresse) =>
+                        this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
+                    matrikkeladresse={getOrDefaultMatrikkeladresse(matrikkeladresse)}
                 />}
             </>
         );

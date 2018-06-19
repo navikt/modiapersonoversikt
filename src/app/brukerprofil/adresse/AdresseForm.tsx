@@ -5,13 +5,18 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Matrikkeladresse, Personadresse } from '../../../models/personadresse';
+import { Personadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import MidlertidigAdresseNorge, { MidlertidigeAdresserNorge } from './MidlertidigAdresseNorge';
+import MidlertidigAdresseNorge, {
+    getOrDefaultGateadresse, getOrDefaultMatrikkeladresse,
+    getValgAdresseType,
+    MidlertidigeAdresserNorgeInput,
+    MidlertidigeAdresserNorgeInputValg
+} from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
 
@@ -40,9 +45,17 @@ export enum Valg {
 }
 
 interface State {
-    midlertidigAdresseNorge: MidlertidigeAdresserNorge;
+    midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
     selectedRadio: Valg;
     formErEndret: boolean;
+}
+
+function createRequest(state: State): EndreAdresseRequest {
+    if (state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+        return getValgAdresseType(state.midlertidigAdresseNorge);
+    } else {
+        return {norskAdresse: null};
+    }
 }
 
 class AdresseForm extends React.Component<Props, State> {
@@ -81,55 +94,19 @@ class AdresseForm extends React.Component<Props, State> {
     intialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
         if (!alternativAdresse) {
             return {
-                gateadresse: this.initialGateadresse(undefined),
-                matrikkeladresse: this.initialMatrikkeladresse(undefined)
+                gateadresse: getOrDefaultGateadresse(undefined),
+                matrikkeladresse: getOrDefaultMatrikkeladresse(undefined),
+                valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
             };
         }
         return {
-            gateadresse: this.initialGateadresse(alternativAdresse.gateadresse),
-            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse)
+            gateadresse: getOrDefaultGateadresse(alternativAdresse.gateadresse),
+            matrikkeladresse: getOrDefaultMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
         };
     }
 
-    initialGateadresse(gateadresse: Gateadresse | undefined): Gateadresse {
-        if (!gateadresse) {
-            return {
-                gatenavn: '',
-                poststed: '',
-                postnummer: ''
-            };
-        }
-        return gateadresse;
-    }
-
-    initialMatrikkeladresse(matrikkeladresse: Matrikkeladresse | undefined): Matrikkeladresse {
-        if (!matrikkeladresse) {
-            return {
-                poststed: '',
-                postnummer: ''
-            };
-        }
-        return matrikkeladresse;
-    }
-
-    onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
-        this.setState(this.initialState(this.props));
-        event.preventDefault();
-    }
-
-    onSubmit(event: FormEvent<HTMLFormElement>) {
-        let request = {};
-        if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
-            request = {
-                norskAdresse: this.state.midlertidigAdresseNorge
-            };
-        }
-
-        this.props.endreAdresse(this.props.person.fødselsnummer, request);
-        event.preventDefault();
-    }
-
-    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorge) {
+    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {
         this.setState({
             midlertidigAdresseNorge: adresser,
             formErEndret: true
@@ -138,6 +115,18 @@ class AdresseForm extends React.Component<Props, State> {
 
     onAdresseValgChange(valg: Valg) {
         this.setState({selectedRadio: valg});
+    }
+
+    onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
+        this.setState(this.initialState(this.props));
+        event.preventDefault();
+    }
+
+    onSubmit(event: FormEvent<HTMLFormElement>) {
+        const request = createRequest(this.state);
+
+        this.props.endreAdresse(this.props.person.fødselsnummer, request);
+        event.preventDefault();
     }
 
     render() {
