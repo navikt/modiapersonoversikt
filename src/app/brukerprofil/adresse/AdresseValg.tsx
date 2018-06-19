@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import Radio from 'nav-frontend-skjema/lib/radio';
 
@@ -12,10 +13,14 @@ interface AdresseValgProps {
     children?: JSX.Element;
 }
 
+const Wrapper = styled.div`
+  margin-top: 2em;
+`;
+
 export function AdresseValg(props: AdresseValgProps) {
     const child = props.children ? props.children : <></>;
     return (
-        <>
+        <Wrapper>
             <Radio
                 label={props.label}
                 name={props.valg.toString()}
@@ -23,6 +28,6 @@ export function AdresseValg(props: AdresseValgProps) {
                 checked={props.checked}
             />
             {props.checked && child}
-        </>
+        </Wrapper>
     );
 }

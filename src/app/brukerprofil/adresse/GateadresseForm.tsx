@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
+import Datovelger from 'nav-datovelger';
 
 import { Gateadresse } from '../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
@@ -22,9 +23,18 @@ function onPostinformasjonChange(props: Props) {
     };
 }
 
+function onGyldigTilChange(props: Props) {
+    return (gyldigTil: Date) => {
+        const periode = { fra: new Date().toISOString(), til: gyldigTil.toISOString()};
+        props.onChange({...props.gateadresse, periode});
+    };
+}
+
 function GateadresseForm(props: Props) {
 
     const {postnummer, poststed} = props.gateadresse;
+
+    const gyldigTil = props.gateadresse.periode ? new Date(props.gateadresse.periode.til) : new Date();
 
     return (
         <>
@@ -68,6 +78,14 @@ function GateadresseForm(props: Props) {
                 />
             </InputLinje>
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
+            <>
+                <label className={'skjemaelement__label'}>Gyldig til</label>
+                <Datovelger
+                    dato={gyldigTil}
+                    id={'1'}
+                    onChange={onGyldigTilChange(props)}
+                />
+            </>
         </>
     );
 }

@@ -36,14 +36,16 @@ type Props = StateProps & OwnProps;
 class Poststed extends React.Component<Props> {
 
     onPostnummerInput(input: string) {
+        this.props.onChange({...this.props.poststedInformasjon, postnummer: input});
         const {kodeverk} = this.props.postnummerReducer.data;
         const postnummer = input.trim();
         if (postnummer.length === 4) {
             const poststed = kodeverk.find(({kodeRef}) => kodeRef === postnummer);
             if (poststed) {
-                this.props.onChange({...this.props.poststedInformasjon, poststed: poststed.beskrivelse});
+                this.props.onChange({postnummer, poststed: poststed.beskrivelse});
             }
         }
+
     }
 
     render() {

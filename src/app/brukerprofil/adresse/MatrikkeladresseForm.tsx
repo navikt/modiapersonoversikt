@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 
 import Input from 'nav-frontend-skjema/lib/input';
+import Datovelger from 'nav-datovelger';
 
 import { Matrikkeladresse } from '../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
@@ -17,9 +18,17 @@ function onPostinformasjonChange(props: Props) {
     };
 }
 
+function onGyldigTilChange(props: Props) {
+    return (gyldigTil: Date) => {
+        const periode = { fra: new Date().toISOString(), til: gyldigTil.toISOString()};
+        props.onChange({...props.matrikkeladresse, periode});
+    };
+}
+
 function MatrikkeladresseForm(props: Props) {
 
     const {postnummer, poststed} = props.matrikkeladresse;
+    const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : new Date();
 
     return (
         <>
@@ -38,6 +47,14 @@ function MatrikkeladresseForm(props: Props) {
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
             />
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
+            <>
+                <label className={'skjemaelement__label'}>Gyldig til</label>
+                <Datovelger
+                    dato={gyldigTil}
+                    id={'1'}
+                    onChange={onGyldigTilChange(props)}
+                />
+            </>
         </>
     );
 }
