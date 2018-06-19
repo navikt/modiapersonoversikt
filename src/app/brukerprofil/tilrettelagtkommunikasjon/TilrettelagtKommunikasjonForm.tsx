@@ -70,8 +70,9 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         this.props.endreTilrettelagtKommunikasjon({
-            fødselsnummer: this.props.person.fødselsnummer // TODO må sende inn en gyldig request her
-        });
+            fødselsnummer: this.props.person.fødselsnummer,
+            tilrettelagtKommunikasjon: this.hentValgtTilrettelagtKommunikasjon()
+        } as EndreTilrettelagtKommunikasjonrequest);
         event.preventDefault();
     }
 
@@ -105,6 +106,12 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         });
         this.props.resetEndreTilrettelagtKommunikasjonReducer();
         event.preventDefault();
+    }
+
+    hentValgtTilrettelagtKommunikasjon() {
+        return this.state.checkbokser
+            .filter(element => element.checked)
+            .map(element => element.value);
     }
 
     render() {
