@@ -10,8 +10,8 @@ import { Kodeverk } from '../../../../models/kodeverk';
 
 interface Props {
     person: Person;
-    egenAnsatt?: Egenansatt;
-    vergemal?: Vergemal;
+    egenAnsatt: Egenansatt;
+    vergemal: Vergemal;
 }
 
 const StyledEtikketter = styled.div`
@@ -50,11 +50,11 @@ function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Kodeverk
         </EtikettBase>);
 }
 
-function harVergemål(vergemal?: Vergemal) {
-    return vergemal && vergemal.verger && vergemal.verger.length > 0;
+function harVergemål(vergemal: Vergemal) {
+    return vergemal.verger && vergemal.verger.length > 0;
 }
 
-function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal) {
+function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal) {
     const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
         const diskresjonskodeEtikett = lagDiskresjonskodeEtikett(person.diskresjonskode);
@@ -62,7 +62,7 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergem
             etiketter.push(diskresjonskodeEtikett);
         }
     }
-    if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
+    if (egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {

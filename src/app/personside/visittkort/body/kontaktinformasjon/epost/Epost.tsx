@@ -4,7 +4,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { Reducer } from '../../../../../../redux/reducer';
+import { RestReducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import EmailIkon from '../../../../../../svg/Email';
@@ -24,13 +24,11 @@ function Epost({epost}: EpostProps) {
 }
 
 interface EpostVisningProps {
-    kontaktinformasjon: Kontaktinformasjon | undefined;
+    kontaktinformasjon: Kontaktinformasjon;
 }
 
-export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
-    if (!kontaktinformasjon) {
-        return <Undertekst>Ingen kontaktinformasjon registrert</Undertekst>;
-    } else if ('true' === kontaktinformasjon.reservasjon) {
+export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
+    if ('true' === kontaktinformasjon.reservasjon) {
         return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
@@ -40,7 +38,7 @@ export function EpostVisning({kontaktinformasjon }: EpostVisningProps) {
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonReducer: Reducer<Kontaktinformasjon>;
+    kontaktinformasjonReducer: RestReducer<Kontaktinformasjon>;
 }
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
