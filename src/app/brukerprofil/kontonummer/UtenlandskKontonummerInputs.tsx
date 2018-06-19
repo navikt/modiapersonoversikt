@@ -116,11 +116,14 @@ function Inputs(props: Props) {
 function VelgLand(props: Props) {
     const options = props.landKodeverkReducer.data.kodeverk
         .sort(sorterKodeverkAlfabetisk)
-        .map(landKodeverk => (
-            <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
-                {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)}
-            </option>
-        ));
+        .map(landKodeverk => {
+            const selected = landKodeverk.kodeRef === props.bankkonto.landkode.kodeRef;
+            return (
+                <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef} selected={selected}>
+                    {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)}
+                </option>
+            );
+        });
     return (
         <Select label="Velg land" onChange={handleSelectChange('landkode', props.landKodeverkReducer, props)}>
             <option key="default" value="Velg land">Velg Land</option>
@@ -132,11 +135,14 @@ function VelgLand(props: Props) {
 function VelgValutta(props: Props) {
     const options = props.valuttaKodeverkReducer.data.kodeverk
         .sort(sorterKodeverkAlfabetisk)
-        .map(valuttakodeverk => (
-            <option key={valuttakodeverk.kodeRef} value={valuttakodeverk.kodeRef}>
-                {valuttakodeverk.beskrivelse}
-            </option>
-        ));
+        .map((valuttakodeverk: Kodeverk) => {
+            const selected = valuttakodeverk.kodeRef === props.bankkonto.valuta.kodeRef;
+            return (
+                <option key={valuttakodeverk.kodeRef} value={valuttakodeverk.kodeRef} selected={selected}>
+                    {valuttakodeverk.beskrivelse}
+                </option>
+            );
+        });
     return (
         <Select
             label="Velg valutta"
