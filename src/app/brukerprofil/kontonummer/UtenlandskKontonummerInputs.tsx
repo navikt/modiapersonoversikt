@@ -5,7 +5,7 @@ import { ChangeEvent } from 'react';
 import { BankKontoUtenOptionals } from './kontonummerUtils';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import * as valuttaKodeverkReducer from '../../../redux/kodeverk/valuttaKodeverk';
+import * as valutaKodeverkReducer from '../../../redux/kodeverk/valutaKodeverk';
 import * as landKodeverkReducer from '../../../redux/kodeverk/landKodeverk';
 import { AppState, RestReducer } from '../../../redux/reducer';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
@@ -23,7 +23,7 @@ interface State {
 }
 
 interface DispatchProps {
-    hentValuttaKodeverk: () => void;
+    hentValutaKodeverk: () => void;
     hentLandKodeverk: () => void;
 }
 
@@ -40,7 +40,7 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
         super(props);
 
         if (this.props.valuttaKodeverkReducer.status === STATUS.NOT_STARTED) {
-            this.props.hentValuttaKodeverk();
+            this.props.hentValutaKodeverk();
         }
 
         if (this.props.landKodeverkReducer.status === STATUS.NOT_STARTED) {
@@ -163,7 +163,7 @@ function handleSelectChange(property: string, kodeverkReducer: RestReducer<Kodev
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
     return ({
-        hentValuttaKodeverk: () => dispatch(valuttaKodeverkReducer.hentValuttaer()),
+        hentValutaKodeverk: () => dispatch(valutaKodeverkReducer.hentValutaer()),
         hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLand())
     });
 };

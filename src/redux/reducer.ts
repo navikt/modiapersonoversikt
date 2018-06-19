@@ -13,7 +13,7 @@ import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
 import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
-import valuttaKodeverkReducer from './kodeverk/valuttaKodeverk';
+import valuttaKodeverkReducer from './kodeverk/valutaKodeverk';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import { STATUS } from './utils';
