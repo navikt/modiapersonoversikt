@@ -7,7 +7,7 @@ import { connect, Dispatch } from 'react-redux';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { STATUS } from '../../../redux/utils';
-import { Person } from '../../../models/person/person';
+import { BankAdresse, Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -15,9 +15,17 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import KnappBase from 'nav-frontend-knapper';
 import RadioPanelGruppe, { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { ChangeEvent } from 'react';
-import RequestTilbakemelding from '../kontaktinformasjon/RequestTilbakemelding';
-import { removeWhitespaceAndDot, formaterNorskKontonummer, validerKontonummer } from './kontonummerUtils';
+import {
+    removeWhitespaceAndDot,
+    formaterNorskKontonummer,
+    validerKontonummer,
+    erBrukersKontonummerUtenlandsk,
+    BankKontoUtenOptionals,
+    tomBankKonto
+}
+    from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
+import RequestTilbakemelding from '../RequestTilbakemelding';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -25,9 +33,8 @@ enum bankEnum {
 }
 
 interface State {
-    kontonummerInput: string | number;
+    bankKontoInput: BankKontoUtenOptionals;
     norskKontoRadio: boolean;
-    ugydligKontonummerWarning: boolean;
 }
 
 interface DispatchProps {
@@ -41,7 +48,6 @@ interface OwnProps {
     person: Person;
     veilederRoller?: VeilederRoller;
 }
-
 type Props = DispatchProps & StateProps & OwnProps;
 
 class EndreKontonummerForm extends React.Component<Props, State> {
@@ -49,35 +55,37 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = this.getInitialState();
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.createInputChangeHandler = this.createInputChangeHandler.bind(this);
+        this.createSelectChangeHandler = this.createSelectChangeHandler.bind(this);
+        this.createAdresseInputChangeHandler = this.createAdresseInputChangeHandler.bind(this);
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
     }
 
     getInitialState(): State {
         return {
-            kontonummerInput: this.brukersKontonummer()
-                ? formaterNorskKontonummer(this.brukersKontonummer())
-                : this.brukersKontonummer(),
-            norskKontoRadio: this.erBrukersKontonummerNorsk(),
-            ugydligKontonummerWarning: false
+            bankKontoInput: this.getBrukersBankkonto(),
+            norskKontoRadio: !erBrukersKontonummerUtenlandsk(this.props.person)
         };
     }
 
-    brukersKontonummer() {
-        if (this.props.person.bankkonto === undefined) {
-            return '';
+    getBrukersBankkonto(): BankKontoUtenOptionals {
+        const person = this.props.person;
+        if (person.bankkonto === undefined) {
+            return tomBankKonto;
         }
-        return this.props.person.bankkonto.kontonummer;
-    }
-
-    erBrukersKontonummerNorsk() {
-        return this.props.person.bankkonto ? this.props.person.bankkonto.erNorskKonto : true;
+        return {
+            ...tomBankKonto,
+            ...person.bankkonto,
+            kontonummer: erBrukersKontonummerUtenlandsk(person)
+                ? person.bankkonto.kontonummer
+                : formaterNorskKontonummer(person.bankkonto.kontonummer)
+        };
     }
 
     erKontonummerValid(kontonummer?: string) {
         return !this.state.norskKontoRadio
-            || validerKontonummer(kontonummer || this.state.kontonummerInput);
+            || validerKontonummer(kontonummer || this.state.bankKontoInput.kontonummer);
     }
 
     getRadioKnappProps(): RadioProps[] {
@@ -97,50 +105,83 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         event.preventDefault();
     }
 
-    valgtKontoOpphav() {
-        if (!this.state.norskKontoRadio) {
-            return bankEnum.erUtenlandsk;
-        }
-        return bankEnum.erNorsk;
+    createInputChangeHandler(property: string) {
+        return (event: ChangeEvent<HTMLInputElement>) => {
+            const value = property === 'kontonummer' && this.state.norskKontoRadio
+                ? formaterNorskKontonummer(event.target.value)
+                : event.target.value;
+            this.setState({
+                bankKontoInput: {
+                    ...this.state.bankKontoInput,
+                    [property]: value
+                }
+            });
+        };
     }
 
-    handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-        const input = event.target.value;
-        this.setState({
-            kontonummerInput: this.state.norskKontoRadio ? formaterNorskKontonummer(input) : input,
-            ugydligKontonummerWarning:
-                removeWhitespaceAndDot(input).length >= 11 ? !this.erKontonummerValid(input) : false
-        });
+    createSelectChangeHandler(property: string) {
+        return (event: ChangeEvent<HTMLSelectElement>) => {
+            console.log(event.target.value);
+            const value = event.target.value;
+            this.setState({
+                bankKontoInput: {
+                    ...this.state.bankKontoInput,
+                    [property]: value
+                }
+            });
+        };
+    }
+
+    createAdresseInputChangeHandler(property: string) {
+        return (event: ChangeEvent<HTMLInputElement>) => {
+            const adresse: BankAdresse = {
+                ...this.state.bankKontoInput.adresse,
+                [property]: event.target.value
+            };
+            this.setState({
+                    bankKontoInput: {
+                        ...this.state.bankKontoInput,
+                        adresse: adresse
+                    }
+                }
+            );
+        };
     }
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
         this.setState({
-            norskKontoRadio: value === bankEnum.erNorsk,
-            ugydligKontonummerWarning: false
+            norskKontoRadio: value === bankEnum.erNorsk
         });
     }
 
     tilbakestill() {
-        this.setState(this.getInitialState());
+        this.setState({
+            ...this.getInitialState(),
+            norskKontoRadio: this.state.norskKontoRadio
+        });
     }
 
-    kontonummerErEndret() {
-        return this.brukersKontonummer() !== this.state.kontonummerInput
-            || this.erBrukersKontonummerNorsk() !== this.state.norskKontoRadio;
+    kontoErEndret() {
+        return JSON.stringify(this.getBrukersBankkonto()) !== JSON.stringify(this.state.bankKontoInput);
     }
 
     getNorskKontonrInputs() {
+        const ugyldigKontonummer = this.state.norskKontoRadio
+        && removeWhitespaceAndDot(this.state.bankKontoInput.kontonummer).length >= 11
+            ? !this.erKontonummerValid(this.state.bankKontoInput.kontonummer)
+            : false;
         return (
             <Input
                 label="Kontonummer"
-                value={this.state.kontonummerInput}
-                onChange={this.handleInputChange}
-                feil={this.state.ugydligKontonummerWarning ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
+                value={this.state.bankKontoInput.kontonummer}
+                onChange={this.createInputChangeHandler('kontonummer')}
+                feil={ugyldigKontonummer ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
             />
         );
     }
 
     render() {
+        console.log(this.state.bankKontoInput);
         return (
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Kontonummer</Undertittel>
@@ -148,14 +189,24 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     radios={this.getRadioKnappProps()}
                     legend={''}
                     name={'Velg norsk eller utenlandsk konto'}
-                    checked={this.valgtKontoOpphav()}
+                    checked={this.state.norskKontoRadio ? bankEnum.erNorsk : bankEnum.erUtenlandsk}
                     onChange={this.handleRadioChange}
                 />
-                {this.state.norskKontoRadio ? this.getNorskKontonrInputs() : <UtenlandskKontonrInputs/>}
+                {
+                    this.state.norskKontoRadio
+                        ? this.getNorskKontonrInputs()
+                        : <UtenlandskKontonrInputs
+                            bankkonto={this.state.bankKontoInput}
+                            createInputChangeHandler={this.createInputChangeHandler}
+                            createAdresseInputChangeHandler={this.createAdresseInputChangeHandler}
+                            createSelectInputChangeHandler={this.createSelectChangeHandler}
+                        />
+                }
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestill}
+                        disabled={!this.kontoErEndret()}
                     >
                         Avbryt
                     </KnappBase>
@@ -163,7 +214,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                         type="hoved"
                         spinner={this.props.status === STATUS.PENDING}
                         autoDisableVedSpinner={true}
-                        disabled={!this.kontonummerErEndret() || !this.erKontonummerValid()}
+                        disabled={!this.kontoErEndret() || !this.erKontonummerValid()}
                     >
                         Endre kontonummer
                     </KnappBase>

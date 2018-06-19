@@ -1,6 +1,8 @@
 import { formatNumber } from '../../../utils/string-utils';
+import { BankAdresse, Person } from '../../../models/person/person';
+import { Kodeverk } from '../../../models/kodeverk';
 
-export function formaterNorskKontonummer(kontonummer: string | number): string {
+export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
     if (rensetKontonummer.length === 11) {
         return formatNumber('##### ## ####', rensetKontonummer);
@@ -8,7 +10,11 @@ export function formaterNorskKontonummer(kontonummer: string | number): string {
     return kontonummer.toString();
 }
 
-export function validerKontonummer(kontonummer?: string | number) {
+export function erBrukersKontonummerUtenlandsk(person: Person) {
+    return person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kodeRef !== 'NOR';
+}
+
+export function validerKontonummer(kontonummer?: string) {
     if (!kontonummer) {
         return false;
     }
@@ -22,7 +28,7 @@ export function validerKontonummer(kontonummer?: string | number) {
         === mod11FraTallMedKontrollsiffer(kontonummer);
 }
 
-export function removeWhitespaceAndDot(kontonummer: string | number): string {
+export function removeWhitespaceAndDot(kontonummer: string): string {
     return kontonummer.toString().replace(/[. ]/g, '');
 }
 
@@ -40,3 +46,37 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     const result = (11 - sumForMod % 11);
     return result === 11 ? 0 : result;
 }
+
+export interface BankKontoUtenOptionals {
+    kontonummer: string;
+    banknavn: string;
+    bankkode: string;
+    swift: string;
+    landkode: Kodeverk;
+    adresse: BankAdresse;
+    valuta: Kodeverk;
+    sistEndret: string;
+    sistEndretAv: string;
+}
+
+export const tomBankKonto: BankKontoUtenOptionals = {
+    kontonummer: '',
+    banknavn: '',
+    bankkode: '',
+    swift: '',
+    landkode: {
+        kodeRef: '',
+        beskrivelse: ''
+    },
+    adresse: {
+        linje1: '',
+        linje2: '',
+        linje3: ''
+    },
+    valuta: {
+        kodeRef: '',
+        beskrivelse: ''
+    },
+    sistEndret: '',
+    sistEndretAv: ''
+};

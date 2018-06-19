@@ -1,4 +1,4 @@
-import { Personadresse, UstrukturertAdresse } from '../personadresse';
+import { Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
@@ -37,17 +37,19 @@ export interface Navn {
     etternavn: string | null;
 }
 
+export interface BankAdresse {
+    linje1: string;
+    linje2: string;
+    linje3: string;
+}
+
 export interface Bankkonto {
     kontonummer: string;
     banknavn: string;
     bankkode?: string;
     swift?: string;
     landkode?: Kodeverk;
-    adresse?: {
-        linje1: string;
-        linje2: string;
-        linje3: string;
-    };
+    adresse?: BankAdresse;
     valuta?: Kodeverk;
     sistEndret: string;
     sistEndretAv: string;

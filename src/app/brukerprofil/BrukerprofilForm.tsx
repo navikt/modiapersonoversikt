@@ -10,7 +10,6 @@ import ErrorBoundary from '../../components/ErrorBoundary';
 import AdresseForm from './adresse/AdresseContainer';
 import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
-
 export const FormKnapperWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
