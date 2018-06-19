@@ -5,7 +5,7 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 export function brukersNavnKanEndres(person: Person): boolean {
     if (erDnummer(person.fødselsnummer)) {
         return true;
-    } else if (person.personstatus.bostatus === BostatusTyper.Utvandret) {
+    } else if (person.personstatus.bostatus && person.personstatus.bostatus.kodeRef === BostatusTyper.Utvandret) {
         return true;
     }
 
@@ -18,9 +18,6 @@ export function validerNavn(input: string) {
     }
 }
 
-export function veilederHarPåkrevdRolle(veiledersRoller?: VeilederRoller) {
-    if (!veiledersRoller) {
-        return false;
-    }
+export function veilederHarPåkrevdRolle(veiledersRoller: VeilederRoller) {
     return veiledersRoller.roller.includes('0000-GA-BD06_EndreNavn');
 }

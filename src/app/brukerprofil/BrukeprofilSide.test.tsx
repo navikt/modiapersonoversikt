@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import BrukerprofilSide from './BrukerprofilSide';
 import TestProvider from '../../test/Testprovider';
 
-test('Smoketese brukerprofil', () => {
+test('Smoketeste brukerprofil', () => {
     const brukerprofil = mount(
         <TestProvider>
             <BrukerprofilSide />

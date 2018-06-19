@@ -1,16 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Person, TilrettelagtKommunikasjon } from '../../../../models/person/person';
+import { Person } from '../../../../models/person/person';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Diskresjonskoder } from '../../../../konstanter';
 import { Egenansatt } from '../../../../models/egenansatt';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
+import { Kodeverk } from '../../../../models/kodeverk';
 
 interface Props {
     person: Person;
-    egenAnsatt?: Egenansatt;
-    vergemal?: Vergemal;
+    egenAnsatt: Egenansatt;
+    vergemal: Vergemal;
 }
 
 const StyledEtikketter = styled.div`
@@ -19,12 +20,12 @@ const StyledEtikketter = styled.div`
   }
 `;
 
-function lagDiskresjonskodeEtikett(diskresjonskode: string) {
-    switch (diskresjonskode) {
+function lagDiskresjonskodeEtikett(diskresjonskode: Kodeverk) {
+    switch (diskresjonskode.kodeRef) {
         case Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 6</EtikettBase>;
+            return <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>Kode 6</EtikettBase>;
         case Diskresjonskoder.FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode} type={'advarsel'}>Kode 7</EtikettBase>;
+            return <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>Kode 7</EtikettBase>;
         default:
             return null;
     }
@@ -42,18 +43,18 @@ function lagSikkerhetstiltakEtikett() {
     );
 }
 
-function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
+function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Kodeverk) {
     return (
-        <EtikettBase key={tilrettelagtKommunikasjon.behovKode} type={'fokus'}>
+        <EtikettBase key={tilrettelagtKommunikasjon.kodeRef} type={'fokus'}>
             {tilrettelagtKommunikasjon.beskrivelse}
         </EtikettBase>);
 }
 
-function harVergemål(vergemal?: Vergemal) {
-    return vergemal && vergemal.verger && vergemal.verger.length > 0;
+function harVergemål(vergemal: Vergemal) {
+    return vergemal.verger && vergemal.verger.length > 0;
 }
 
-function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergemal) {
+function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal) {
     const etiketter: JSX.Element[]  = [];
     if (person.diskresjonskode) {
         const diskresjonskodeEtikett = lagDiskresjonskodeEtikett(person.diskresjonskode);
@@ -61,7 +62,7 @@ function lagEtiketter(person: Person, egenAnsatt?: Egenansatt, vergemal?: Vergem
             etiketter.push(diskresjonskodeEtikett);
         }
     }
-    if (egenAnsatt && egenAnsatt.erEgenAnsatt) {
+    if (egenAnsatt.erEgenAnsatt) {
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {

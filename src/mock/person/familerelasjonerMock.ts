@@ -15,9 +15,9 @@ export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilsta
 
     relasjoner = relasjoner.concat(lagForeldre(faker, alder));
 
-    if (sivilstand.value === SivilstandTyper.Gift) {
+    if (sivilstand.kodeRef === SivilstandTyper.Gift) {
         relasjoner.push(lagPartner(faker, Relasjonstype.Ektefelle));
-    } else if (sivilstand.value === SivilstandTyper.Samboer) {
+    } else if (sivilstand.kodeRef === SivilstandTyper.Samboer) {
         relasjoner.push(lagPartner(faker, Relasjonstype.Samboer));
     }
 

@@ -17,3 +17,7 @@ export interface NavKontor {
     enhetId: string;
     publikumsmottak: PublikumsMottak[];
 }
+
+export interface BrukersNavKontorResponse {
+    navKontor: NavKontor | null;
+}

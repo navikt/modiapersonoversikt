@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import NavKontorContainer from './NavKontorContainer';
+import NavKontorContainer from './navkontor/NavKontorContainer';
 
 import { erDød, Navn, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
@@ -90,7 +90,7 @@ function VisittkortHeader({person}: VisittkortHeaderProps) {
 
             <HøyreFelt>
                 <EtiketterContainer/>
-                <NavKontorContainer/>
+                <NavKontorContainer person={person}/>
             </HøyreFelt>
 
         </VisittkortHeaderDiv>

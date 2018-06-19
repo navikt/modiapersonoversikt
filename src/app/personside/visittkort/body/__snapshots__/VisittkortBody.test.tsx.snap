@@ -3,28 +3,28 @@
 exports[`viser info om bruker i visittkortbody 1`] = `
 Array [
   <div
-    className="sc-dnqmqq iHapwm"
+    className="sc-bdVaJa pmvgK"
   >
     <div
-      className="sc-iwsKbI flLCdc"
+      className="sc-bwzfXH hgcIEu"
     >
       <div
-        className="sc-gZMcBi kLWPNi"
+        className="sc-htpNat gBwftC"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-gqjmRU kKjQrn"
+            className="sc-bxivhb bAonbG"
           >
             Kontaktinformasjon
           </span>
         </p>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -52,13 +52,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Bostedsadresse fra Folkeregisteret
               </span>
@@ -71,10 +71,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -94,13 +94,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 E-post Kontakt- og reservasjonsregisteret
               </span>
@@ -114,7 +114,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 Endret 
                 15.05.2014
@@ -123,10 +123,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -146,13 +146,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Telefon Kontakt- og reservasjonsregisteret
               </span>
@@ -166,7 +166,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 Endret 
                 15.05.2014
@@ -175,21 +175,21 @@ Array [
           </div>
         </div>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Telefon til bruk for NAV
               </span>
@@ -206,7 +206,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 Endret 
                 21.06.2014
@@ -217,10 +217,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -258,13 +258,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Kontonummer
               </span>
@@ -273,7 +273,7 @@ Array [
               className="typo-undertekst"
             >
               <span
-                className="sc-jzJRlG exVAhN"
+                className="sc-VigVT hxkgeM"
               >
                 <span>
                   1234
@@ -290,7 +290,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 Endret 
                 12.12.2005
@@ -302,22 +302,22 @@ Array [
         </div>
       </div>
       <div
-        className="sc-gZMcBi kLWPNi"
+        className="sc-htpNat gBwftC"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-gqjmRU kKjQrn"
+            className="sc-bxivhb bAonbG"
           >
             Familie
           </span>
         </p>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -336,13 +336,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Sivilstand
               </span>
@@ -358,10 +358,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height={24}
@@ -379,13 +379,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Jente
               </span>
@@ -412,22 +412,22 @@ Array [
         </div>
       </div>
       <div
-        className="sc-gZMcBi kLWPNi"
+        className="sc-htpNat gBwftC"
       >
         <p
           className="typo-element"
         >
           <span
-            className="sc-gqjmRU kKjQrn"
+            className="sc-bxivhb bAonbG"
           >
             NAV-kontor
           </span>
         </p>
         <div
-          className="sc-htpNat hNjnAD"
+          className="sc-ifAKCX eNjmjb"
         >
           <div
-            className="sc-bxivhb hhMe"
+            className="sc-EHOje jfHNJm"
           >
             <svg
               height="62.9"
@@ -442,13 +442,13 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-ifAKCX hocsAo"
+            className="sc-bZQynM fTTZkH"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 0118 NAV Aremark
               </span>
@@ -459,7 +459,7 @@ Array [
                 className="typo-etikett-liten"
               >
                 <span
-                  className="sc-bwzfXH hRFBVQ"
+                  className="sc-htoDjs gZDaDG"
                 >
                   Besøksadresse
                 </span>
@@ -480,20 +480,20 @@ Array [
                 className="typo-etikett-liten"
               >
                 <span
-                  className="sc-bwzfXH hRFBVQ"
+                  className="sc-htoDjs gZDaDG"
                 >
                   Åpningstider
                 </span>
               </p>
               <dl
-                className="sc-htoDjs hMJfPq"
+                className="sc-eqIVtm gDGogF"
               >
                 <dt>
                   <p
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-bZQynM kgOdWJ"
+                      className="sc-fMiknA aJmBt"
                     >
                       mandag
                     </span>
@@ -515,7 +515,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-bZQynM kgOdWJ"
+                      className="sc-fMiknA aJmBt"
                     >
                       tirsdag
                     </span>
@@ -537,7 +537,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-bZQynM kgOdWJ"
+                      className="sc-fMiknA aJmBt"
                     >
                       onsdag
                     </span>
@@ -559,7 +559,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-bZQynM kgOdWJ"
+                      className="sc-fMiknA aJmBt"
                     >
                       torsdag
                     </span>
@@ -581,7 +581,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-bZQynM kgOdWJ"
+                      className="sc-fMiknA aJmBt"
                     >
                       fredag
                     </span>
@@ -602,7 +602,7 @@ Array [
               <br />
             </div>
             <a
-              className="lenke sc-gzVnrw dkfjFD"
+              className="lenke sc-dVhcbM kGlMei"
               href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
               rel="noopener noreferrer"
               target="_blank"
@@ -613,10 +613,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-htpNat hNjnAD"
+        className="sc-ifAKCX eNjmjb"
       >
         <div
-          className="sc-bxivhb hhMe"
+          className="sc-EHOje jfHNJm"
         >
           <svg
             viewBox="0 0 100 100"
@@ -646,7 +646,7 @@ Array [
           </svg>
         </div>
         <div
-          className="sc-ifAKCX hocsAo"
+          className="sc-bZQynM fTTZkH"
         >
           <p
             className="typo-element"
@@ -661,10 +661,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-htpNat hNjnAD"
+        className="sc-ifAKCX eNjmjb"
       >
         <div
-          className="sc-bxivhb hhMe"
+          className="sc-EHOje jfHNJm"
         >
           <svg
             viewBox="0 0 100 100"
@@ -694,7 +694,7 @@ Array [
           </svg>
         </div>
         <div
-          className="sc-ifAKCX hocsAo"
+          className="sc-bZQynM fTTZkH"
         >
           <p
             className="typo-element"
@@ -702,7 +702,7 @@ Array [
             Bruker er under vergemål
           </p>
           <span
-            className="sc-fjdhpX cIaEQc"
+            className="sc-gqjmRU iMlnVN"
           >
             <p
               className="typo-undertekst"
@@ -711,19 +711,19 @@ Array [
             </p>
           </span>
           <div
-            className="sc-jTzLTM gbPTSe"
+            className="sc-gZMcBi hFEBeX"
           >
             <p
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Verge
               </span>
             </p>
             <div
-              className="sc-VigVT jugxAq"
+              className="sc-iwsKbI daBgpt"
             >
               <p
                 className="typo-undertekst"
@@ -745,7 +745,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-EHOje dSVpOp"
+                className="sc-gzVnrw eJuxhJ"
               >
                 Mandat
               </span>
@@ -764,7 +764,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 Fylkesmannen i Østfold
               </span>
@@ -773,7 +773,7 @@ Array [
               className="typo-etikett-liten"
             >
               <span
-                className="sc-bwzfXH hRFBVQ"
+                className="sc-htoDjs gZDaDG"
               >
                 27.03.2016
                  
@@ -786,10 +786,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-htpNat hNjnAD"
+        className="sc-ifAKCX eNjmjb"
       >
         <div
-          className="sc-bxivhb hhMe"
+          className="sc-EHOje jfHNJm"
         >
           <svg
             viewBox="0 0 100 100"
@@ -832,7 +832,7 @@ Array [
           </svg>
         </div>
         <div
-          className="sc-ifAKCX hocsAo"
+          className="sc-bZQynM fTTZkH"
         >
           <p
             className="typo-element"
@@ -843,7 +843,7 @@ Array [
             className="typo-etikett-liten"
           >
             <span
-              className="sc-bwzfXH hRFBVQ"
+              className="sc-htoDjs gZDaDG"
             >
               Gyldig: 
               12.12.2005
@@ -861,10 +861,10 @@ Array [
     </div>
   </div>,
   <div
-    className="sc-eqIVtm KDWhF"
+    className="sc-fAjcbJ iHHUto"
   >
     <div
-      className="sc-fAjcbJ UCcPv"
+      className="sc-caSCKo eXAjBk"
     />
     <a
       className="lenke"

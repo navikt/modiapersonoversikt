@@ -77,7 +77,7 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
 
     return {
         retningsnummer: {
-            input: telefon.retningsnummer,
+            input: telefon.retningsnummer.kodeRef,
             feilmelding: null
         },
         identifikator: {

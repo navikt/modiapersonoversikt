@@ -9,6 +9,7 @@ import { VeilederRoller } from '../../models/veilederRoller';
 import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer';
 import TilrettelagtKommunikasjonContainer from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjonContainer';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import AdresseForm from './adresse/AdresseContainer';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
@@ -20,16 +21,14 @@ export const FormKnapperWrapper = styled.div`
 
 interface Props {
     person: Person;
-    veilderRoller?: VeilederRoller;
+    veilderRoller: VeilederRoller;
 }
 
 function BrukerprofilForm({ person, veilderRoller }: Props) {
     return (
         <ErrorBoundary>
             <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
-            <form>
-                <Undertittel>Adresse</Undertittel>
-            </form>
+            <AdresseForm person={person}/>
             <form>
                 <Undertittel>Kontonummer</Undertittel>
             </form>

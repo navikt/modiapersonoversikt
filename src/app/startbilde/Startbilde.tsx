@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import KnappBase from 'nav-frontend-knapper';
 
-import { AppState, Reducer } from '../../redux/reducer';
+import { AppState, RestReducer } from '../../redux/reducer';
 import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/oppgaver';
 import { STATUS } from '../../redux/utils';
 import StartBildeLayout from './StartBildeLayout';
@@ -16,7 +16,7 @@ import { settPersonIKontekst } from '../routes/routing';
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgaveReducer: Reducer<Oppgave[]>;
+    oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
 

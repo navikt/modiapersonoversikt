@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { AppState, Reducer } from '../../redux/reducer';
-import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
+import AlertStripe from 'nav-frontend-alertstriper';
+
+import { AppState, RestReducer } from '../../redux/reducer';
+import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 
 interface PersonsideStateProps {
-    personReducer: Reducer<PersonRespons>;
+    personReducer: RestReducer<PersonRespons>;
 }
 
 const onError = (
@@ -29,9 +29,9 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     }
 
     getSideinnhold() {
-        var data = this.props.personReducer.data;
+        const data = this.props.personReducer.data;
 
-        if (data !== undefined && erPersonResponsAvTypeBegrensetTilgang(data)) {
+        if (erPersonResponsAvTypeBegrensetTilgang(data)) {
             return (
                 <BegrensetTilgangSide person={data as BegrensetTilgang}/>
             );

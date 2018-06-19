@@ -4,17 +4,23 @@ import { Bankkonto } from '../../models/person/person';
 import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 
 export const bankkontoNorsk: Bankkonto = {
-    erNorskKonto: true,
-    bank: 'Nordea ASA',
+    banknavn: 'Nordea ASA',
     kontonummer: Number(faker.finance.account(11)).toString(),
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };
 
 export const bankkontoUtland: Bankkonto = {
-    erNorskKonto: false,
-    bank: 'BBVA',
+    banknavn: 'BBVA',
     kontonummer: Number(faker.finance.account(9)).toString(),
+    swift: faker.finance.bic(),
+    landkode: { kodeRef: faker.address.countryCode(), beskrivelse: faker.address.country() },
+    valuta: { kodeRef: faker.finance.currencyCode(), beskrivelse: faker.finance.currencyName() },
+    adresse: {
+        linje1: faker.address.streetAddress(),
+        linje2: faker.address.zipCode('##### ') + faker.address.county(),
+        linje3: ''
+    },
     sistEndretAv: '1010800 BD03',
     sistEndret: getSistOppdatert(),
 };

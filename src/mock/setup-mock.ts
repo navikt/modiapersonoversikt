@@ -11,6 +11,7 @@ import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
+import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 
 const STATUS_OK = () => 200;
 
@@ -104,6 +105,37 @@ function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
         () => mockTilrettelagtKommunikasjonKodeverk()));
 }
 
+function setupPostnummerKodeverk(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Postnummer', withDelayedResponse(
+        200,
+        STATUS_OK,
+        () => mockPostnummere()));
+}
+
+function setupNavigasjonsmenyMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/hode/me', withDelayedResponse(
+        300,
+        STATUS_OK,
+        () => ({
+            'ident': 'z123445',
+            'fornavn': 'Nils',
+            'etternavn': 'Saksbehandler',
+            'navn': 'Nils Saksbehandler'
+        })
+    ));
+
+    mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(
+        450,
+        STATUS_OK,
+        () => ({
+            enhetliste: [{
+                'navn': 'NAV Oslo',
+                'enhetId': '1220'
+            }]
+        })
+    ));
+}
+
 export function setupMock() {
     console.log('### MOCK ENABLED! ###');
     /* tslint:disable-next-line */
@@ -128,5 +160,7 @@ export function setupMock() {
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
+    setupPostnummerKodeverk(mock);
     endreNavKontaktinformasjonMock(mock);
+    setupNavigasjonsmenyMock(mock);
 }

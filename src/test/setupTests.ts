@@ -5,7 +5,7 @@ import 'babel-polyfill';
 import { getMockNavKontor } from '../mock/navkontor-mock';
 
 import reducers from '../redux/reducer';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { actionNames as navKontorActionNames } from '../redux/navkontor';
 import { mockVergemal } from '../mock/vergemal-mocks';
 import { kontaktinformasjonActionNames } from '../redux/kontaktinformasjon';
@@ -23,6 +23,7 @@ import { tilrettelagtKommunikasjonActionNames } from '../redux/kodeverk/tilrette
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { retningsnummerKodeverkActionNames } from '../redux/kodeverk/retningsnummereReducer';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
+import thunkMiddleware from 'redux-thunk';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -31,11 +32,11 @@ const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
 
-export const testStore = createStore(reducers);
+export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
 const aremarkFnr = '10108000398';
 
 testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
-testStore.dispatch({ type: navKontorActionNames.OK, data: getMockNavKontor('0118', undefined) });
+testStore.dispatch({ type: navKontorActionNames.OK, data: {navKontor: getMockNavKontor('0118', undefined) }});
 testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon(aremarkFnr) });
 testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
 testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
