@@ -22,9 +22,10 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     const formatertDato = formaterDato(telefon.sistEndret);
     const endretAv = endretAvTekst(telefon.sistEndretAv);
     const formatertNummer = nummerFormaterer(telefon.identifikator);
+    const retningsnummmer = telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '';
     return (
         <>
-            <Undertekst>{`${telefon.retningsnummer.kodeRef} ${formatertNummer}`} ({beskrivelse})</Undertekst>
+            <Undertekst>{`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})</Undertekst>
             <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
         </>
     );
