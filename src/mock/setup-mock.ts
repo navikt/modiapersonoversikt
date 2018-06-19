@@ -12,6 +12,8 @@ import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
 import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
+import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
+import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 
 const STATUS_OK = () => 200;
 
@@ -119,6 +121,20 @@ function setupPostnummerKodeverk(mock: FetchMock) {
         () => mockPostnummere()));
 }
 
+function setupLandKodeverk(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Landkoder', withDelayedResponse(
+        400,
+        STATUS_OK,
+        () => mockLandKodeverk()));
+}
+
+function setupValutaKodeverk(mock: FetchMock) {
+    mock.get(apiBaseUri + '/kodeverk/Valutaer', withDelayedResponse(
+        600,
+        STATUS_OK,
+        () => mockValutaKodeverk()));
+}
+
 function setupNavigasjonsmenyMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/hode/me', withDelayedResponse(
         300,
@@ -171,4 +187,6 @@ export function setupMock() {
     endreNavKontaktinformasjonMock(mock);
     endreTilrettelagtKommunikasjonnMock(mock);
     setupNavigasjonsmenyMock(mock);
+    setupLandKodeverk(mock);
+    setupValutaKodeverk(mock);
 }
