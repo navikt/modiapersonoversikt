@@ -4,7 +4,6 @@ import { ChangeEvent } from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
-import { Kodeverk } from '../../../models/kodeverk';
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 
@@ -20,7 +19,6 @@ export interface MidlertidigeAdresserNorge {
 interface Props {
     onChange: (adresser: MidlertidigeAdresserNorge) => void;
     midlertidigAdresseNorge: MidlertidigeAdresserNorge;
-    postnummerKodeverk: Kodeverk[];
 }
 
 interface State {
@@ -80,13 +78,11 @@ class MidlertidigAdresseNorge extends React.Component<Props, State> {
                 {this.state.valg === Valg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresse: Gateadresse) => this.onGateadresseInputChange(gateadresse)}
                     gateadresse={this.props.midlertidigAdresseNorge.gateadresse as Gateadresse}
-                    postnummerKodeverk={this.props.postnummerKodeverk}
                 />}
                 {this.state.valg === Valg.MATRIKKELADRESSE && <MatrikkeladresseForm
                     onChange={(matrikkeladresse: Matrikkeladresse) =>
                         this.onMatrikkeladresseInputChange(matrikkeladresse)}
                     matrikkeladresse={this.props.midlertidigAdresseNorge.matrikkeladresse as Matrikkeladresse}
-                    postnummerKodeverk={this.props.postnummerKodeverk}
                 />}
             </>
         );

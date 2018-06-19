@@ -1,33 +1,25 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { Matrikkeladresse } from '../../../models/personadresse';
-import { Kodeverk } from '../../../models/kodeverk';
+import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;
     matrikkeladresse: Matrikkeladresse;
-    postnummerKodeverk: Kodeverk[];
 }
 
-export const InputLinje = styled.div`
-  display: flex;
-`;
+function onPostinformasjonChange(props: Props) {
+    return ({poststed, postnummer}: PoststedInformasjon) => {
+        props.onChange({...props.matrikkeladresse, postnummer, poststed});
+    };
+}
 
 function MatrikkeladresseForm(props: Props) {
 
-    function onPostnummerInput(input: string) {
-        const postnummer = input.trim();
-        if (postnummer.length === 4) {
-            const poststed = props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
-            if (poststed) {
-                props.onChange({...props.matrikkeladresse, poststed: poststed.beskrivelse});
-            }
-        }
-    }
+    const {postnummer, poststed} = props.matrikkeladresse;
 
     return (
         <>
@@ -45,26 +37,7 @@ function MatrikkeladresseForm(props: Props) {
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
             />
-            <InputLinje>
-                <Input
-                    bredde={'S'}
-                    label="Postnummer"
-                    defaultValue={props.matrikkeladresse.postnummer}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                        props.onChange({...props.matrikkeladresse, postnummer: event.target.value});
-                        onPostnummerInput(event.target.value);
-                    }
-                    }
-                />
-                <div style={{flex: 4, marginLeft: 15}} >
-                    <Input
-                        bredde={'XXL'}
-                        label="Poststed"
-                        disabled={true}
-                        value={props.matrikkeladresse.poststed}
-                    />
-                </div>
-            </InputLinje>
+            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
         </>
     );
 }

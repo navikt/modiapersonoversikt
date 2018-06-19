@@ -5,29 +5,26 @@ import styled from 'styled-components';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { Gateadresse } from '../../../models/personadresse';
-import { Kodeverk } from '../../../models/kodeverk';
+import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
 
-interface GateadresseFormProps {
+interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
-    postnummerKodeverk: Kodeverk[];
 }
 
-export const InputLinje = styled.div`
+const InputLinje = styled.div`
   display: flex;
 `;
 
-function GateadresseForm(props: GateadresseFormProps) {
+function onPostinformasjonChange(props: Props) {
+    return ({poststed, postnummer}: PoststedInformasjon) => {
+        props.onChange({...props.gateadresse, postnummer, poststed});
+    };
+}
 
-    function onPostnummerInput(input: string) {
-        const postnummer = input.trim();
-        if (postnummer.length === 4) {
-            const poststed = props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
-            if (poststed) {
-                props.onChange({...props.gateadresse, poststed: poststed.beskrivelse});
-            }
-        }
-    }
+function GateadresseForm(props: Props) {
+
+    const {postnummer, poststed} = props.gateadresse;
 
     return (
         <>
@@ -70,26 +67,7 @@ function GateadresseForm(props: GateadresseFormProps) {
                         props.onChange({...props.gateadresse, bolignummer: event.target.value})}
                 />
             </InputLinje>
-            <InputLinje>
-                <Input
-                    bredde={'S'}
-                    label="Postnummer"
-                    defaultValue={props.gateadresse.postnummer}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                        props.onChange({...props.gateadresse, postnummer: event.target.value});
-                        onPostnummerInput(event.target.value);
-                    }
-                    }
-                />
-                <div style={{flex: 4, marginLeft: 15}} >
-                    <Input
-                        bredde={'XXL'}
-                        label="Poststed"
-                        disabled={true}
-                        value={props.gateadresse.poststed}
-                    />
-                </div>
-            </InputLinje>
+            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
         </>
     );
 }
