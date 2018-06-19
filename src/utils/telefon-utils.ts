@@ -20,7 +20,7 @@ export function formaterHustelefonnummer(telefonnummer: string) {
 }
 
 export function sorterRetningsnummerMedNorgeFørst(retningsnummerKodeverk: KodeverkResponse) {
-    let NORSK_RETNINGSNUMMER_PREFIX = '+47';
+    const NORSK_RETNINGSNUMMER_PREFIX = '+47';
     const retningsnummerNorge = retningsnummerKodeverk.kodeverk.find(retningsnummer =>
         retningsnummer.kodeRef === NORSK_RETNINGSNUMMER_PREFIX);
 
