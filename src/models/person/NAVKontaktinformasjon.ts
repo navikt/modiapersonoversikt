@@ -8,7 +8,7 @@ export interface NavKontaktinformasjon {
 
 export interface Telefon {
     sistEndret: string;
-    retningsnummer: Kodeverk;
+    retningsnummer: Kodeverk | null;
     identifikator: string;
     sistEndretAv: string;
 }
