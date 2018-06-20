@@ -63,7 +63,7 @@ export default combineReducers<AppState>({
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
     endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
     postnummerReducer: postnummerReducer,
-    endreAdresseReducer
+    endreAdresseReducer,
     valuttaReducer: valuttaKodeverkReducer,
     landReducer: landKodeverkReducer
 });
