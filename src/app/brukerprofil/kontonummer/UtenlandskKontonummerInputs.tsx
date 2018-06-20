@@ -2,7 +2,7 @@ import * as React from 'react';
 import Input from 'nav-frontend-skjema/lib/input';
 import Select from 'nav-frontend-skjema/lib/select';
 import { ChangeEvent } from 'react';
-import { BankKontoUtenOptionals } from './kontonummerUtils';
+import { BankkontoUtenOptionals } from './kontonummerUtils';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import * as valutaKodeverkReducer from '../../../redux/kodeverk/valutaKodeverk';
@@ -15,7 +15,7 @@ import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittk
 import { BankAdresse } from '../../../models/person/person';
 
 interface OwnProps {
-    bankkonto: BankKontoUtenOptionals;
+    bankkonto: BankkontoUtenOptionals;
     createPropertyUpdateHandler: (property: string) => (value: string | Kodeverk | BankAdresse) => void;
 }
 

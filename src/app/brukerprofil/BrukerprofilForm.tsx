@@ -28,7 +28,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
         <ErrorBoundary>
             <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
             <AdresseForm person={person}/>
-            <EndreKontonummerForm person={person} />
+            <EndreKontonummerForm person={person} veilederRoller={veilderRoller}/>
             <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
         </ErrorBoundary>

@@ -13,12 +13,12 @@ export const aremark: Person = {
         sistEndret: '2005-12-12',
         sistEndretAv: 'Daniel',
         landkode: {
-            kodeRef: 'CUB',
-            beskrivelse: 'CUBA'
+            kodeRef: 'NOR',
+            beskrivelse: 'Norge'
         },
         valuta: {
-            beskrivelse: 'Tuvalu Dollars Tuvalu',
-            kodeRef: 'TVD'
+            beskrivelse: 'Spesidaler',
+            kodeRef: 'SPD'
         }
     },
     sikkerhetstiltak: {

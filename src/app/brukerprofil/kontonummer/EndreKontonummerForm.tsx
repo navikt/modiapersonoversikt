@@ -1,4 +1,3 @@
-///<reference path="kontonummerUtils.ts"/>
 import * as React from 'react';
 import { FormEvent } from 'react';
 import { Action } from 'history';
@@ -20,8 +19,8 @@ import {
     formaterNorskKontonummer,
     validerKontonummer,
     erBrukersKontonummerUtenlandsk,
-    BankKontoUtenOptionals,
-    tomBankKonto
+    BankkontoUtenOptionals,
+    tomBankkonto
 }
     from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
@@ -34,18 +33,12 @@ enum bankEnum {
 }
 
 const radioKnappProps = [
-    {
-        label: bankEnum.erNorsk,
-        value: bankEnum.erNorsk
-    },
-    {
-        label: bankEnum.erUtenlandsk,
-        value: bankEnum.erUtenlandsk
-    }
+    { label: bankEnum.erNorsk, value: bankEnum.erNorsk },
+    { label: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk }
 ];
 
 interface State {
-    bankKontoInput: BankKontoUtenOptionals;
+    bankkontoInput: BankkontoUtenOptionals;
     norskKontoRadio: boolean;
 }
 
@@ -58,7 +51,7 @@ interface StateProps {
 
 interface OwnProps {
     person: Person;
-    veilederRoller?: VeilederRoller;
+    veilederRoller: VeilederRoller;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
@@ -76,18 +69,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     getInitialState(): State {
         return {
-            bankKontoInput: this.getBrukersBankkonto(),
+            bankkontoInput: this.getBrukersBankkonto(),
             norskKontoRadio: !erBrukersKontonummerUtenlandsk(this.props.person)
         };
     }
 
-    getBrukersBankkonto(): BankKontoUtenOptionals {
+    getBrukersBankkonto(): BankkontoUtenOptionals {
         const person = this.props.person;
         if (person.bankkonto === undefined) {
-            return tomBankKonto;
+            return tomBankkonto;
         }
         return {
-            ...tomBankKonto,
+            ...tomBankkonto,
             ...person.bankkonto,
             kontonummer: erBrukersKontonummerUtenlandsk(person)
                 ? person.bankkonto.kontonummer
@@ -97,7 +90,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     erKontonummerValid(kontonummer?: string) {
         return !this.state.norskKontoRadio
-            || validerKontonummer(kontonummer || this.state.bankKontoInput.kontonummer);
+            || validerKontonummer(kontonummer || this.state.bankkontoInput.kontonummer);
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -107,8 +100,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         const kontonummer = formaterNorskKontonummer(event.target.value);
         this.setState({
-            bankKontoInput: {
-                ...this.state.bankKontoInput,
+            bankkontoInput: {
+                ...this.state.bankkontoInput,
                 kontonummer: kontonummer
             }
         });
@@ -117,8 +110,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     createPropertyUpdateHandler(property: string) {
         return (value: string | Kodeverk | BankAdresse) => {
             this.setState({
-                bankKontoInput: {
-                    ...this.state.bankKontoInput,
+                bankkontoInput: {
+                    ...this.state.bankkontoInput,
                     [property]: value
                 }
             });
@@ -139,18 +132,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     kontoErEndret() {
-        return JSON.stringify(this.getBrukersBankkonto()) !== JSON.stringify(this.state.bankKontoInput);
+        return JSON.stringify(this.getBrukersBankkonto()) !== JSON.stringify(this.state.bankkontoInput);
     }
 
     getNorskKontonrInputs() {
         const ugyldigKontonummer = this.state.norskKontoRadio
-        && removeWhitespaceAndDot(this.state.bankKontoInput.kontonummer).length >= 11
-            ? !this.erKontonummerValid(this.state.bankKontoInput.kontonummer)
+        && removeWhitespaceAndDot(this.state.bankkontoInput.kontonummer).length >= 11
+            ? !this.erKontonummerValid(this.state.bankkontoInput.kontonummer)
             : false;
         return (
             <Input
                 label="Kontonummer"
-                value={this.state.bankKontoInput.kontonummer}
+                value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 feil={ugyldigKontonummer ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
             />
@@ -158,47 +151,53 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     render() {
+        const norskEllerUtenlandskKontoRadio = (
+            <RadioPanelGruppe
+                radios={radioKnappProps}
+                legend={''}
+                name={'Velg norsk eller utenlandsk konto'}
+                checked={this.state.norskKontoRadio ? bankEnum.erNorsk : bankEnum.erUtenlandsk}
+                onChange={this.handleRadioChange}
+            />);
+        const kontoInputs = this.state.norskKontoRadio ? this.getNorskKontonrInputs() : (
+                    <UtenlandskKontonrInputs
+                        bankkonto={this.state.bankkontoInput}
+                        createPropertyUpdateHandler={this.createPropertyUpdateHandler}
+                    />);
+        const knapper = (
+            <FormKnapperWrapper>
+                <KnappBase
+                    type="standard"
+                    onClick={this.tilbakestill}
+                    disabled={!this.kontoErEndret()}
+                >
+                    Avbryt
+                </KnappBase>
+                <KnappBase
+                    type="hoved"
+                    spinner={this.props.status === STATUS.PENDING}
+                    autoDisableVedSpinner={true}
+                    disabled={!this.kontoErEndret()}
+                >
+                    Endre kontonummer
+                </KnappBase>
+            </FormKnapperWrapper>
+        );
+        const endreKontonummerRequestTilbakemelding = (
+            <RequestTilbakemelding
+                status={this.props.status}
+                onError={'Det skjedde en feil ved endring av kontonummer.'}
+                onSuccess={`Kontonummer ble endret.
+                 Det kan ta noen minutter før endringene blir synlig.`}
+            />
+        );
         return (
             <form onSubmit={this.handleSubmit}>
                 <Undertittel>Kontonummer</Undertittel>
-                <RadioPanelGruppe
-                    radios={radioKnappProps}
-                    legend={''}
-                    name={'Velg norsk eller utenlandsk konto'}
-                    checked={this.state.norskKontoRadio ? bankEnum.erNorsk : bankEnum.erUtenlandsk}
-                    onChange={this.handleRadioChange}
-                />
-                {
-                    this.state.norskKontoRadio
-                        ? this.getNorskKontonrInputs()
-                        : <UtenlandskKontonrInputs
-                            bankkonto={this.state.bankKontoInput}
-                            createPropertyUpdateHandler={this.createPropertyUpdateHandler}
-                        />
-                }
-                <FormKnapperWrapper>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.tilbakestill}
-                        disabled={!this.kontoErEndret()}
-                    >
-                        Avbryt
-                    </KnappBase>
-                    <KnappBase
-                        type="hoved"
-                        spinner={this.props.status === STATUS.PENDING}
-                        autoDisableVedSpinner={true}
-                        disabled={!this.kontoErEndret()}
-                    >
-                        Endre kontonummer
-                    </KnappBase>
-                </FormKnapperWrapper>
-                <RequestTilbakemelding
-                    status={this.props.status}
-                    onError={'Det skjedde en feil ved endring av kontonummer.'}
-                    onSuccess={`Kontonummer ble endret.
-                         Det kan ta noen minutter før endringene blir synlig.`}
-                />
+                {norskEllerUtenlandskKontoRadio}
+                {kontoInputs}
+                {knapper}
+                {endreKontonummerRequestTilbakemelding}
             </form>
         );
     }
