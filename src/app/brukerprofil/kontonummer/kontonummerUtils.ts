@@ -47,7 +47,7 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     return result === 11 ? 0 : result;
 }
 
-export interface BankkontoUtenOptionals {
+export interface EndreBankkontoState {
     kontonummer: string;
     banknavn: string;
     bankkode: string;
@@ -59,7 +59,7 @@ export interface BankkontoUtenOptionals {
     sistEndretAv: string;
 }
 
-export const tomBankkonto: BankkontoUtenOptionals = {
+export const tomBankkonto: EndreBankkontoState = {
     kontonummer: '',
     banknavn: '',
     bankkode: '',

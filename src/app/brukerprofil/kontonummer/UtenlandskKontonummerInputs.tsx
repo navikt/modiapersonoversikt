@@ -2,7 +2,7 @@ import * as React from 'react';
 import Input from 'nav-frontend-skjema/lib/input';
 import Select from 'nav-frontend-skjema/lib/select';
 import { ChangeEvent } from 'react';
-import { BankkontoUtenOptionals } from './kontonummerUtils';
+import { EndreBankkontoState } from './kontonummerUtils';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 import * as valutaKodeverkReducer from '../../../redux/kodeverk/valutaKodeverk';
@@ -12,11 +12,10 @@ import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { STATUS } from '../../../redux/utils';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
-import { BankAdresse } from '../../../models/person/person';
 
 interface OwnProps {
-    bankkonto: BankkontoUtenOptionals;
-    createPropertyUpdateHandler: (property: string) => (value: string | Kodeverk | BankAdresse) => void;
+    bankkonto: EndreBankkontoState;
+    createPropertyUpdateHandler<T>(property: keyof T): (value: T[keyof T]) => void;
 }
 
 interface State {
@@ -67,12 +66,14 @@ function Inputs(props: Props) {
             <Input
                 label="Bankens navn"
                 value={bankkonto.banknavn}
-                onChange={event => props.createPropertyUpdateHandler('banknavn')(event.target.value)}
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('banknavn')(
+                    event.target.value
+                )}
             />
             <Input
                 label="Bankens adresse"
                 value={bankkonto.adresse.linje1}
-                onChange={event => props.createPropertyUpdateHandler('adresse')({
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('adresse')({
                     ...props.bankkonto.adresse,
                     linje1: event.target.value
                 })}
@@ -80,7 +81,7 @@ function Inputs(props: Props) {
             <Input
                 label=""
                 value={bankkonto.adresse.linje2}
-                onChange={event => props.createPropertyUpdateHandler('adresse')({
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('adresse')({
                     ...props.bankkonto.adresse,
                     linje2: event.target.value
                 })}
@@ -88,7 +89,7 @@ function Inputs(props: Props) {
             <Input
                 label=""
                 value={bankkonto.adresse.linje3}
-                onChange={event => props.createPropertyUpdateHandler('adresse')({
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('adresse')({
                     ...props.bankkonto.adresse,
                     linje3: event.target.value
                 })}
@@ -96,17 +97,23 @@ function Inputs(props: Props) {
             <Input
                 label="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
-                onChange={event => props.createPropertyUpdateHandler('kontonummer')(event.target.value)}
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('kontonummer')(
+                    event.target.value
+                )}
             />
             <Input
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
-                onChange={event => props.createPropertyUpdateHandler('swift')(event.target.value)}
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('swift')(
+                    event.target.value
+                )}
             />
             <Input
                 label="BankKode"
                 value={bankkonto.bankkode}
-                onChange={event => props.createPropertyUpdateHandler('bankkode')(event.target.value)}
+                onChange={event => props.createPropertyUpdateHandler<EndreBankkontoState>('bankkode')(
+                    event.target.value
+                )}
             />
             <VelgValutta {...props} />
         </>
@@ -158,12 +165,14 @@ function sorterKodeverkAlfabetisk(a: Kodeverk, b: Kodeverk) {
     return a.beskrivelse > b.beskrivelse ? 1 : a.beskrivelse === b.beskrivelse ? 0 : -1;
 }
 
-function handleSelectChange(property: string, kodeverkReducer: RestReducer<KodeverkResponse>, props: Props) {
+function handleSelectChange(property: keyof EndreBankkontoState,
+                            kodeverkReducer: RestReducer<KodeverkResponse>,
+                            props: Props) {
     return (event: ChangeEvent<HTMLSelectElement>) => {
         const valgtKodeverk: Kodeverk = kodeverkReducer.data.kodeverk
-            .find(kodeverk => kodeverk.kodeRef === event.target.value)
+                .find(kodeverk => kodeverk.kodeRef === event.target.value)
             || { kodeRef: '', beskrivelse: '' };
-        props.createPropertyUpdateHandler(property)(valgtKodeverk);
+        props.createPropertyUpdateHandler<EndreBankkontoState>(property)(valgtKodeverk);
     };
 }
 

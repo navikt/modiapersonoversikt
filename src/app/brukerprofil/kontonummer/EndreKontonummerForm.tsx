@@ -1,31 +1,29 @@
 import * as React from 'react';
-import { FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { STATUS } from '../../../redux/utils';
-import { BankAdresse, Person } from '../../../models/person/person';
+import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import KnappBase from 'nav-frontend-knapper';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import {
     removeWhitespaceAndDot,
     formaterNorskKontonummer,
     validerKontonummer,
     erBrukersKontonummerUtenlandsk,
-    BankkontoUtenOptionals,
+    EndreBankkontoState,
     tomBankkonto
 }
     from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { Kodeverk } from '../../../models/kodeverk';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -38,7 +36,7 @@ const radioKnappProps = [
 ];
 
 interface State {
-    bankkontoInput: BankkontoUtenOptionals;
+    bankkontoInput: EndreBankkontoState;
     norskKontoRadio: boolean;
 }
 
@@ -74,7 +72,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         };
     }
 
-    getBrukersBankkonto(): BankkontoUtenOptionals {
+    getBrukersBankkonto(): EndreBankkontoState {
         const person = this.props.person;
         if (person.bankkonto === undefined) {
             return tomBankkonto;
@@ -107,8 +105,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         });
     }
 
-    createPropertyUpdateHandler(property: string) {
-        return (value: string | Kodeverk | BankAdresse) => {
+    createPropertyUpdateHandler<T>(property: keyof T) {
+        return (value: T[keyof T]) => {
             this.setState({
                 bankkontoInput: {
                     ...this.state.bankkontoInput,
