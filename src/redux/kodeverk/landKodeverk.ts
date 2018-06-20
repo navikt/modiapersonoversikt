@@ -7,5 +7,5 @@ export function hentLand() {
     return action(() => fetchKodeverk('Landkoder'));
 }
 
-export const valuttaerActionNames = actionNames;
+export const landActionNames = actionNames;
 export default reducer;
