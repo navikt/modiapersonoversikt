@@ -1,7 +1,6 @@
 import { apiBaseUri } from '../config';
 import { post } from '../api';
 import { Gateadresse, Matrikkeladresse } from '../../models/personadresse';
-import { Periode } from '../../models/periode';
 
 export interface EndreAdresseRequest {
     norskAdresse: {
@@ -17,7 +16,7 @@ export interface EndreGateadresseRequest {
     husbokstav?: string;
     postnummer: string;
     bolignummer?: string;
-    periode?: Periode;
+    gyldigTil: string;
 }
 
 function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest): Promise<{}> {
@@ -25,11 +24,20 @@ function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest):
     return post(`${apiBaseUri}/brukerprofil/${fødselsnummer}/adresse/`, request);
 }
 
+function getGyldigTil(gateadresse: Gateadresse) {
+    if (!gateadresse.periode) {
+        throw 'Ugyldig periode for endring av adresse';
+    }
+    return gateadresse.periode.til;
+}
+
 export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
-    const {poststed, ...mappedGateadresse} = gateadresse;
+    const {poststed, periode, ...mappedGateadresse} = gateadresse;
     const request: EndreAdresseRequest = {
         norskAdresse: {
-            gateadresse: mappedGateadresse,
+            gateadresse: {
+                ...mappedGateadresse,
+                gyldigTil: getGyldigTil(gateadresse)},
             matrikkeladresse: null
         }
     };
