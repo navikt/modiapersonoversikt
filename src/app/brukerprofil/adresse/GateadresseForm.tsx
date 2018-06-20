@@ -6,6 +6,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
 import { Gateadresse } from '../../../models/personadresse';
+import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
@@ -24,7 +25,10 @@ function onPostinformasjonChange(props: Props) {
 
 function onGyldigTilChange(props: Props) {
     return (gyldigTil: Date) => {
-        const periode = { fra: new Date().toISOString(), til: gyldigTil.toISOString()};
+        const periode = {
+            fra: formaterTilISO8601Date(new Date()),
+            til: formaterTilISO8601Date(gyldigTil)
+        };
         props.onChange({...props.gateadresse, periode});
     };
 }
