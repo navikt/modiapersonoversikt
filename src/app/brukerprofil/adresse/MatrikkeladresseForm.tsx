@@ -47,14 +47,13 @@ function MatrikkeladresseForm(props: Props) {
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
             />
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-            <>
-                <label className={'skjemaelement__label'}>Gyldig til</label>
-                <Datovelger
-                    dato={gyldigTil}
-                    id={'1'}
-                    onChange={onGyldigTilChange(props)}
-                />
-            </>
+          
+            <label className={'skjemaelement__label'}>Gyldig til</label>
+            <Datovelger
+                dato={gyldigTil}
+                id={'1'}
+                onChange={onGyldigTilChange(props)}
+            />
         </>
     );
 }
