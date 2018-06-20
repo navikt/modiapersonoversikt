@@ -20,11 +20,11 @@ export const InputLinje = styled.div`
 function GateadresseForm(props: GateadresseFormProps) {
 
     function onPostnummerInput(input: string) {
-        let postnummer = input.trim();
+        const postnummer = input.trim();
         if (postnummer.length === 4) {
             const poststed = props.postnummerKodeverk.find((kodeverk) => kodeverk.kodeRef === postnummer);
             if (poststed) {
-                props.onChange({...props.gateadresse, poststed: poststed.kodeRef});
+                props.onChange({...props.gateadresse, poststed: poststed.beskrivelse});
             }
         }
     }
