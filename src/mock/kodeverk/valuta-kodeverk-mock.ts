@@ -2,17 +2,20 @@ import { KodeverkResponse } from '../../models/kodeverk';
 
 const mockKodeverk = [
     {
-        kodeRef: 'FJD',
-        beskrivelse: 'Dollars Fiji'
+        kodeRef: 'GUL',
+        beskrivelse: 'Gullmynter, Kong Salomons Rike'
     }, {
-        kodeRef: 'IDR',
-        beskrivelse: 'Indonesia'
+        kodeRef: 'SPD',
+        beskrivelse: 'Spesidaler'
     }, {
         kodeRef: 'NZD',
         beskrivelse: 'New Zealand Dollar'
     }, {
         kodeRef: 'USD',
         beskrivelse: 'Amerikanske Dollar'
+    }, {
+        kodeRef: 'NOK',
+        beskrivelse: 'Norske Kroner'
     }
 ];
 

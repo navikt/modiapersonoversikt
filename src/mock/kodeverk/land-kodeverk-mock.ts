@@ -4,10 +4,11 @@ const mockKodeverk = [
     { kodeRef: 'COL', beskrivelse: 'COLOMBIA' },
     { kodeRef: 'USA', beskrivelse: 'USA' },
     { kodeRef: 'ESP', beskrivelse: 'SPANIA' },
-    { kodeRef: 'EST', beskrivelse: 'ESTLAND' },
+    { kodeRef: 'LVS', beskrivelse: 'LANGTVEKKISTAN' },
     { kodeRef: 'BMU', beskrivelse: 'BERMUDA' },
-    { kodeRef: 'MSR', beskrivelse: 'MONSERRAT' },
-    { kodeRef: 'ZMB', beskrivelse: 'ZAMBIA' }
+    { kodeRef: 'MRS', beskrivelse: 'MARS' },
+    { kodeRef: 'NRN', beskrivelse: 'NARNIA' },
+    { kodeRef: 'NOR', beskrivelse: 'NORGE' }
 ];
 
 export function mockLandKodeverk(): KodeverkResponse {
