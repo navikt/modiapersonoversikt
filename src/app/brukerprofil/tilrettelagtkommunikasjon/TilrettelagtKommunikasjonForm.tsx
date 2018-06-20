@@ -126,6 +126,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
+                        disabled={!this.erEndret()}
                     >
                         Avbryt
                     </KnappBase>
