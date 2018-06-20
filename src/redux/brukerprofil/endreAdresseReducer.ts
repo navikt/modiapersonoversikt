@@ -1,10 +1,11 @@
 import { createActionsAndReducer } from '../restReducer';
-import { EndreAdresseRequest, postEndreAdresse } from '../../api/brukerprofil/adresse-api';
+import { postEndreNorskGateadresse } from '../../api/brukerprofil/adresse-api';
+import { Gateadresse } from '../../models/personadresse';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endreadresse');
 
-export function endreAdresse(fødselsnummer: string, request: EndreAdresseRequest) {
-    return action(() => postEndreAdresse(fødselsnummer, request));
+export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
+    return action(() => postEndreNorskGateadresse(fødselsnummer, gateadresse));
 }
 
 export function reset() {

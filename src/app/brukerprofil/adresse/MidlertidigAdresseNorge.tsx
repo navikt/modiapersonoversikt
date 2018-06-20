@@ -17,24 +17,6 @@ export interface MidlertidigeAdresserNorgeInput {
     valg: MidlertidigeAdresserNorgeInputValg;
 }
 
-export function getValgAdresseType(input: MidlertidigeAdresserNorgeInput) {
-    if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
-        return {
-            norskAdresse: {
-                gateadresse: input.gateadresse,
-                matrikkeladresse: null
-            }
-        };
-    } else {
-        return {
-            norskAdresse: {
-                matrikkeladresse: input.matrikkeladresse,
-                gateadresse: null
-            }
-        };
-    }
-}
-
 interface Props {
     onChange: (adresser: MidlertidigeAdresserNorgeInput) => void;
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
@@ -122,7 +104,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 </Select>
                 {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
-                    gateadresse={getOrDefaultGateadresse(gateadresse)}
+                    gateadresse={gateadresse}
                 />}
                 {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
                     onChange={(matrikkeladresseInput: Matrikkeladresse) =>

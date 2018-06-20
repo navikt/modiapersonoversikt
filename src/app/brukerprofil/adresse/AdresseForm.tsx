@@ -5,15 +5,14 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Personadresse } from '../../../models/personadresse';
+import { Gateadresse, Personadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, {
-    getOrDefaultGateadresse, getOrDefaultMatrikkeladresse,
-    getValgAdresseType,
+    getOrDefaultGateadresse,
+    getOrDefaultMatrikkeladresse,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
 } from './MidlertidigAdresseNorge';
@@ -36,7 +35,7 @@ function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
 
 interface Props {
     person: Person;
-    endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
+    endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
@@ -50,11 +49,19 @@ interface State {
     formErEndret: boolean;
 }
 
-function createRequest(state: State): EndreAdresseRequest {
-    if (state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
-        return getValgAdresseType(state.midlertidigAdresseNorge);
+function submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput, props: Props) {
+    if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
+        props.endreNorskGateadresse(props.person.fødselsnummer, input.gateadresse);
     } else {
-        return {norskAdresse: null};
+        console.error('Not implemented');
+    }
+}
+
+function submitAdresseEndring(state: State, props: Props) {
+    if (state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+         submitMidlertidigNorskAdresse(state.midlertidigAdresseNorge, props);
+    } else {
+        console.error('Not implemented');
     }
 }
 
@@ -123,9 +130,7 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onSubmit(event: FormEvent<HTMLFormElement>) {
-        const request = createRequest(this.state);
-
-        this.props.endreAdresse(this.props.person.fødselsnummer, request);
+        submitAdresseEndring(this.state, this.props);
         event.preventDefault();
     }
 

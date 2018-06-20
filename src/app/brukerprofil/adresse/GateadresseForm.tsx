@@ -4,9 +4,8 @@ import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
-
-import { Gateadresse } from '../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
+import { Gateadresse } from '../../../models/personadresse';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
