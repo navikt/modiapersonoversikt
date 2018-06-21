@@ -14,6 +14,8 @@ import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
 import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
 import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
+import valuttaKodeverkReducer from './kodeverk/valuttaKodeverk';
+import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
@@ -42,6 +44,8 @@ export interface AppState {
     endreKontaktinformasjonReducer: RestReducer<{}>;
     postnummerReducer: RestReducer<KodeverkResponse>;
     endreAdresseReducer: RestReducer<{}>;
+    valuttaReducer: RestReducer<KodeverkResponse>;
+    landReducer: RestReducer<KodeverkResponse>;
 }
 
 export default combineReducers<AppState>({
@@ -59,7 +63,9 @@ export default combineReducers<AppState>({
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
     endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
     postnummerReducer: postnummerReducer,
-    endreAdresseReducer
+    endreAdresseReducer,
+    valuttaReducer: valuttaKodeverkReducer,
+    landReducer: landKodeverkReducer
 });
 
 export interface RestReducer<T> {

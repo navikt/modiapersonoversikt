@@ -11,7 +11,11 @@ import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
-import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../utils/telefon-utils';
+import {
+    formaterHustelefonnummer,
+    formaterMobiltelefonnummer,
+    sorterRetningsnummerMedNorgeFørst
+} from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/brukerprofil/kontaktinformasjon';
@@ -73,7 +77,7 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
 
     return {
         retningsnummer: {
-            input: telefon.retningsnummer.kodeRef,
+            input: telefon.retningsnummer ? telefon.retningsnummer.kodeRef  : '',
             feilmelding: null
         },
         identifikator: {
@@ -123,6 +127,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.hjemRetningsnummerInputChange = this.hjemRetningsnummerInputChange.bind(this);
         this.avbryt = this.avbryt.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        sorterRetningsnummerMedNorgeFørst(props.retningsnummerKodeverk);
     }
 
     componentWillUnmount() {
