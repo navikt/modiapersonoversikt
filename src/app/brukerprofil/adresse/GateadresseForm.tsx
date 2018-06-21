@@ -82,7 +82,7 @@ function GateadresseForm(props: Props) {
                 <label className={'skjemaelement__label'}>Gyldig til</label>
                 <Datovelger
                     dato={gyldigTil}
-                    id={'1'}
+                    id={'gateform-datovelger'}
                     onChange={onGyldigTilChange(props)}
                 />
             </>
