@@ -5,7 +5,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Matrikkeladresse, Personadresse } from '../../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Personadresse, Postboksadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
@@ -82,12 +82,14 @@ class AdresseForm extends React.Component<Props, State> {
         if (!alternativAdresse) {
             return {
                 gateadresse: this.initialGateadresse(undefined),
-                matrikkeladresse: this.initialMatrikkeladresse(undefined)
+                matrikkeladresse: this.initialMatrikkeladresse(undefined),
+                postboksadresse: this.initialPostboksadresse(undefined)
             };
         }
         return {
             gateadresse: this.initialGateadresse(alternativAdresse.gateadresse),
-            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse)
+            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse)
         };
     }
 
@@ -110,6 +112,17 @@ class AdresseForm extends React.Component<Props, State> {
             };
         }
         return matrikkeladresse;
+    }
+
+    initialPostboksadresse(postboksadresse: Postboksadresse | undefined): Postboksadresse {
+        if (!postboksadresse) {
+            return {
+                postboksnummer: '',
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return postboksadresse;
     }
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
