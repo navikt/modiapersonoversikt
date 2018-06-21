@@ -60,7 +60,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         super(props);
         this.state = this.getInitialState();
         this.handleNorskKontonummerInputChange = this.handleNorskKontonummerInputChange.bind(this);
-        this.createPropertyUpdateHandler = this.createPropertyUpdateHandler.bind(this);
+        this.updateBankkontoInputsState = this.updateBankkontoInputsState.bind(this);
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
     }
@@ -97,23 +97,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         const kontonummer = formaterNorskKontonummer(event.target.value);
-        this.setState({
-            bankkontoInput: {
-                ...this.state.bankkontoInput,
+        this.updateBankkontoInputsState({
                 kontonummer: kontonummer
-            }
         });
     }
 
-    createPropertyUpdateHandler<T>(property: keyof T) {
-        return (value: T[keyof T]) => {
-            this.setState({
-                bankkontoInput: {
-                    ...this.state.bankkontoInput,
-                    [property]: value
-                }
-            });
-        };
+    updateBankkontoInputsState(property: Partial<EndreBankkontoState>) {
+        this.setState({
+            bankkontoInput: {
+                ...this.state.bankkontoInput,
+                ...property
+            }
+        });
     }
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
@@ -158,10 +153,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 onChange={this.handleRadioChange}
             />);
         const kontoInputs = this.state.norskKontoRadio ? this.getNorskKontonrInputs() : (
-                    <UtenlandskKontonrInputs
-                        bankkonto={this.state.bankkontoInput}
-                        createPropertyUpdateHandler={this.createPropertyUpdateHandler}
-                    />);
+            <UtenlandskKontonrInputs
+                bankkonto={this.state.bankkontoInput}
+                updateBankkontoInputsState={this.updateBankkontoInputsState}
+            />);
         const knapper = (
             <FormKnapperWrapper>
                 <KnappBase
