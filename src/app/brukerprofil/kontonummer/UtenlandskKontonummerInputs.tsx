@@ -16,6 +16,7 @@ import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittk
 interface OwnProps {
     bankkonto: EndreBankkontoState;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
+    disabled: boolean;
 }
 
 interface State {
@@ -65,13 +66,14 @@ function Inputs(props: Props) {
             <VelgLand {...props} />
             <Input
                 label="Bankens navn"
-                value={bankkonto.banknavn}
-                onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value }
-                )}
+                value={bankkonto.banknavn || ''}
+                disabled={props.disabled}
+                onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
             />
             <Input
                 label="Bankens adresse"
                 value={bankkonto.adresse.linje1}
+                disabled={props.disabled}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -82,6 +84,7 @@ function Inputs(props: Props) {
             <Input
                 label=""
                 value={bankkonto.adresse.linje2}
+                disabled={props.disabled}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -92,6 +95,7 @@ function Inputs(props: Props) {
             <Input
                 label=""
                 value={bankkonto.adresse.linje3}
+                disabled={props.disabled}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -102,23 +106,20 @@ function Inputs(props: Props) {
             <Input
                 label="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
-                onChange={event => props.updateBankkontoInputsState({
-                    kontonummer: event.target.value
-                })}
+                disabled={props.disabled}
+                onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
             />
             <Input
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
-                onChange={event => props.updateBankkontoInputsState({
-                    swift: event.target.value
-                })}
+                disabled={props.disabled}
+                onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
             />
             <Input
                 label="BankKode"
                 value={bankkonto.bankkode}
-                onChange={event => props.updateBankkontoInputsState({
-                    bankkode: event.target.value
-                })}
+                disabled={props.disabled}
+                onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
             />
             <VelgValutta {...props} />
         </>
@@ -139,6 +140,7 @@ function VelgLand(props: Props) {
         <Select
             label="Velg land"
             value={props.bankkonto.landkode.kodeRef}
+            disabled={props.disabled}
             onChange={event => handleLandChange(props, event)}
         >
             <option key="default" value="Velg land">Velg Land</option>
@@ -161,6 +163,7 @@ function VelgValutta(props: Props) {
         <Select
             label="Velg valutta"
             value={props.bankkonto.valuta.kodeRef}
+            disabled={props.disabled}
             onChange={event => handleValutaChange(props, event)}
         >
             <option key="default" value="Velg valuta">Velg valuta</option>
@@ -177,18 +180,16 @@ function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
         const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
                 .find(kodeverk => kodeverk.kodeRef === event.target.value)
             || { kodeRef: '', beskrivelse: '' };
-        props.updateBankkontoInputsState({
-            landkode: valgtKodeverk
-        });
+
+        props.updateBankkontoInputsState({ landkode: valgtKodeverk });
 }
 
 function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
         const valgtKodeverk: Kodeverk = props.valuttaKodeverkReducer.data.kodeverk
                 .find(kodeverk => kodeverk.kodeRef === event.target.value)
             || { kodeRef: '', beskrivelse: '' };
-        props.updateBankkontoInputsState({
-            valuta: valgtKodeverk
-        });
+
+        props.updateBankkontoInputsState({ valuta: valgtKodeverk });
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {

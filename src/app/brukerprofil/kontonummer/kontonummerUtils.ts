@@ -1,13 +1,14 @@
 import { formatNumber } from '../../../utils/string-utils';
 import { BankAdresse, Person } from '../../../models/person/person';
 import { Kodeverk } from '../../../models/kodeverk';
+import { VeilederRoller } from '../../../models/veilederRoller';
 
 export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
-    if (rensetKontonummer.length === 11) {
-        return formatNumber('##### ## ####', rensetKontonummer);
+    if (rensetKontonummer.length >= 11) {
+        return formatNumber('#### ## #####', rensetKontonummer);
     }
-    return kontonummer.toString();
+    return kontonummer;
 }
 
 export function erBrukersKontonummerUtenlandsk(person: Person) {
@@ -47,9 +48,13 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     return result === 11 ? 0 : result;
 }
 
+export function harPåkrevdRolle(veilederRoller: VeilederRoller) {
+    return veilederRoller.roller.includes('0000-GA-BD06_EndreKontonummer');
+}
+
 export interface EndreBankkontoState {
     kontonummer: string;
-    banknavn: string;
+    banknavn: string | null;
     bankkode: string;
     swift: string;
     landkode: Kodeverk;

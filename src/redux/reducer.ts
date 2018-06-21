@@ -8,6 +8,7 @@ import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import baseUrlReducer from './baseurls';
 import endreNavnReducer from './brukerprofil/endreNavn';
+import endrekontonummer from './brukerprofil/endreKontonummer';
 import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettelagtKommunikasjon';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
@@ -37,6 +38,7 @@ export interface AppState {
     vergemal: RestReducer<Vergemal>;
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     endreNavn: RestReducer<{}>;
+    endreKontonummer: RestReducer<{}>;
     endreTilrettelagtKommunikasjon: RestReducer<{}>;
     veilederRoller: RestReducer<VeilederRoller>;
     retningsnummerReducer: RestReducer<KodeverkResponse>;
@@ -56,6 +58,7 @@ export default combineReducers<AppState>({
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
     baseUrlReducer: baseUrlReducer,
+    endreKontonummer: endrekontonummer,
     endreNavn: endreNavnReducer,
     endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
     veilederRoller: veilederRollerReducer,

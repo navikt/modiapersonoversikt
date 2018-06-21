@@ -45,7 +45,7 @@ export interface BankAdresse {
 
 export interface Bankkonto {
     kontonummer: string;
-    banknavn: string;
+    banknavn: string | null;
     bankkode?: string;
     swift?: string;
     landkode?: Kodeverk;
