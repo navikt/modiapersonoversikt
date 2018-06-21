@@ -3,24 +3,24 @@ import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
-import { Kodeverk } from '../../../models/kodeverk';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
+import PostboksadresseForm from './PostboksadresseForm';
 
 enum Valg {
-    GATEADRESSE, MATRIKKELADRESSE
+    GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
 }
 
 export interface MidlertidigeAdresserNorge {
     gateadresse: Gateadresse;
     matrikkeladresse: Matrikkeladresse;
+    postboksadresse: Postboksadresse;
 }
 
 interface Props {
     onChange: (adresser: MidlertidigeAdresserNorge) => void;
     midlertidigAdresseNorge: MidlertidigeAdresserNorge;
-    postnummerKodeverk: Kodeverk[];
 }
 
 interface State {
@@ -33,6 +33,8 @@ function getValgtAdressetype(value: string): Valg {
             return Valg.MATRIKKELADRESSE;
         case Valg.GATEADRESSE.toString():
             return Valg.GATEADRESSE;
+        case Valg.POSTBOKSADRESSE.toString():
+            return Valg.POSTBOKSADRESSE;
         default:
             return Valg.GATEADRESSE;
     }
@@ -60,6 +62,10 @@ class MidlertidigAdresseNorge extends React.Component<Props, State> {
         this.props.onChange({...this.props.midlertidigAdresseNorge, matrikkeladresse});
     }
 
+    onPostboksadresseInputChange(postboksadresse: Postboksadresse) {
+        this.props.onChange({...this.props.midlertidigAdresseNorge, postboksadresse});
+    }
+
     render() {
         return (
             <>
@@ -76,17 +82,22 @@ class MidlertidigAdresseNorge extends React.Component<Props, State> {
                     >
                         Områdeadresse (uten veinavn)
                     </option>
+                    <option key={Valg.POSTBOKSADRESSE} value={Valg.POSTBOKSADRESSE}>Postboksadresse</option>
                 </Select>
                 {this.state.valg === Valg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresse: Gateadresse) => this.onGateadresseInputChange(gateadresse)}
                     gateadresse={this.props.midlertidigAdresseNorge.gateadresse as Gateadresse}
-                    postnummerKodeverk={this.props.postnummerKodeverk}
                 />}
                 {this.state.valg === Valg.MATRIKKELADRESSE && <MatrikkeladresseForm
                     onChange={(matrikkeladresse: Matrikkeladresse) =>
                         this.onMatrikkeladresseInputChange(matrikkeladresse)}
                     matrikkeladresse={this.props.midlertidigAdresseNorge.matrikkeladresse as Matrikkeladresse}
-                    postnummerKodeverk={this.props.postnummerKodeverk}
+                />}
+                {this.state.valg === Valg.POSTBOKSADRESSE && <PostboksadresseForm
+                    onChange={(postboksadresse: Postboksadresse) =>
+                        this.onPostboksadresseInputChange(postboksadresse)}
+                    postboksadresse={this.props.midlertidigAdresseNorge.postboksadresse as Postboksadresse}
+
                 />}
             </>
         );

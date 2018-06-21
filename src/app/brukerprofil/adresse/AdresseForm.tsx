@@ -5,8 +5,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { KodeverkResponse } from '../../../models/kodeverk';
-import { Gateadresse, Matrikkeladresse, Personadresse } from '../../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Personadresse, Postboksadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
@@ -32,7 +31,6 @@ function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
 
 interface Props {
     person: Person;
-    postnummer: KodeverkResponse;
     endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
@@ -84,12 +82,14 @@ class AdresseForm extends React.Component<Props, State> {
         if (!alternativAdresse) {
             return {
                 gateadresse: this.initialGateadresse(undefined),
-                matrikkeladresse: this.initialMatrikkeladresse(undefined)
+                matrikkeladresse: this.initialMatrikkeladresse(undefined),
+                postboksadresse: this.initialPostboksadresse(undefined)
             };
         }
         return {
             gateadresse: this.initialGateadresse(alternativAdresse.gateadresse),
-            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse)
+            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse)
         };
     }
 
@@ -112,6 +112,17 @@ class AdresseForm extends React.Component<Props, State> {
             };
         }
         return matrikkeladresse;
+    }
+
+    initialPostboksadresse(postboksadresse: Postboksadresse | undefined): Postboksadresse {
+        if (!postboksadresse) {
+            return {
+                postboksnummer: '',
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return postboksadresse;
     }
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
@@ -162,7 +173,6 @@ class AdresseForm extends React.Component<Props, State> {
                     <MidlertidigAdresseNorge
                         midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
                         onChange={this.onMidlertidigAdresseNorgeInput}
-                        postnummerKodeverk={this.props.postnummer.kodeverk}
                     />
                 </AdresseValg>
                 <AdresseValg

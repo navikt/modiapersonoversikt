@@ -34,7 +34,6 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
         return (
             <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
                 <AdresseForm
-                    postnummer={this.props.postnummerReducer.data}
                     person={this.props.person}
                     endreAdresse={this.props.endreAdresse}
                     endreAdresseReducer={this.props.endreAdresseReducer}
