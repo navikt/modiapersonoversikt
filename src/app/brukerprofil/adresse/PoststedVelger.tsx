@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
-import { KodeverkResponse } from '../../../models/kodeverk';
+import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { connect } from 'react-redux';
 import { AppState, RestReducer } from '../../../redux/reducer';
-
-export interface PoststedInformasjon {
-    postnummer: string;
-    poststed: string;
-}
+import { Skjemainput } from './InputFelt';
 
 const InputLinje = styled.div`
   display: flex;
@@ -26,49 +21,64 @@ interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
 }
 
+interface State {
+    poststed: string;
+}
+
 interface OwnProps {
-    poststedInformasjon: PoststedInformasjon;
-    onChange: (poststedInformasjon: PoststedInformasjon) => void;
+    postnummer: Skjemainput;
+    onChange: (postnummer: Skjemainput) => void;
 }
 
 type Props = StateProps & OwnProps;
 
-class Poststed extends React.Component<Props> {
+function getPoststed(kodeverk: Kodeverk[], postnummer: string) {
+    if (postnummer.length !== 4) {
+        return undefined;
+    }
+    return kodeverk.find(({kodeRef}) => kodeRef === postnummer);
+}
+
+class Poststed extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+
+        const poststed = getPoststed(props.postnummerReducer.data.kodeverk, props.postnummer.value);
+        this.state = {
+            poststed: poststed ? poststed.beskrivelse : ''
+        };
+    }
 
     onPostnummerInput(input: string) {
-        this.props.onChange({...this.props.poststedInformasjon, postnummer: input});
         const {kodeverk} = this.props.postnummerReducer.data;
-        const postnummer = input.trim();
-        if (postnummer.length === 4) {
-            const poststed = kodeverk.find(({kodeRef}) => kodeRef === postnummer);
-            if (poststed) {
-                this.props.onChange({postnummer, poststed: poststed.beskrivelse});
-            }
-        }
 
+        const poststed = getPoststed(kodeverk, input);
+        if (poststed) {
+            this.setState({poststed: poststed.beskrivelse});
+        }
     }
 
     render() {
-        const {poststedInformasjon} = this.props;
+        const {postnummer} = this.props;
 
         return (
             <InputLinje>
-                <Input
+                <Skjemainput
                     bredde={'S'}
                     label="Postnummer"
-                    defaultValue={poststedInformasjon.postnummer}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                        this.props.onChange({...poststedInformasjon, postnummer: event.target.value});
-                        this.onPostnummerInput(event.target.value);
-                    }
-                    }
+                    skjemainput={postnummer}
+                    onSkjemainput={(skjemainput) => {
+                        this.props.onChange(skjemainput);
+                        this.onPostnummerInput(skjemainput.value);
+                    }}
                 />
                 <PoststedInput>
                     <Input
                         bredde={'XXL'}
                         label="Poststed"
                         disabled={true}
-                        value={poststedInformasjon.poststed}
+                        value={this.state.poststed}
                     />
                 </PoststedInput>
             </InputLinje>

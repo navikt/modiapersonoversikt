@@ -1,58 +1,74 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 
-import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
 
+import PoststedVelger from './PoststedVelger';
+import { Skjemainput } from './InputFelt';
+import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 import { Matrikkeladresse } from '../../../models/personadresse';
-import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
+import { defaultSkjemainput, stringTilSkjemainput } from '../formUtils';
 
 interface Props {
-    onChange: (matrikkeladresse: Matrikkeladresse) => void;
-    matrikkeladresse: Matrikkeladresse;
+    onChange: (matrikkeladresse: Partial<MatrikkeladresseSkjemainput>) => void;
+    matrikkeladresse: MatrikkeladresseSkjemainput;
 }
 
-function onPostinformasjonChange(props: Props) {
-    return ({poststed, postnummer}: PoststedInformasjon) => {
-        props.onChange({...props.matrikkeladresse, postnummer, poststed});
-    };
+export interface MatrikkeladresseSkjemainput {
+    postnummer: Skjemainput;
+    gyldigTil: Skjemainput;
+    tilleggsadresse: Skjemainput;
+    eiendomsnavn: Skjemainput;
 }
 
-function onGyldigTilChange(props: Props) {
-    return (gyldigTil: Date) => {
-        const periode = { fra: new Date().toISOString(), til: gyldigTil.toISOString()};
-        props.onChange({...props.matrikkeladresse, periode});
+export function getOrDefaultMatrikkeladresse(matrikkeladresse?: Matrikkeladresse): MatrikkeladresseSkjemainput {
+    if (!matrikkeladresse) {
+        return {
+            postnummer: defaultSkjemainput,
+            gyldigTil: defaultSkjemainput,
+            tilleggsadresse: defaultSkjemainput,
+            eiendomsnavn: defaultSkjemainput
+        };
+    }
+
+    const gyldigTil = matrikkeladresse.periode ? matrikkeladresse.periode.til : formaterTilISO8601Date(new Date());
+    return {
+        postnummer: stringTilSkjemainput(matrikkeladresse.postnummer),
+        gyldigTil: stringTilSkjemainput(gyldigTil),
+        tilleggsadresse: stringTilSkjemainput(matrikkeladresse.tilleggsadresse),
+        eiendomsnavn: stringTilSkjemainput(matrikkeladresse.eiendomsnavn)
     };
 }
 
 function MatrikkeladresseForm(props: Props) {
-
-    const {postnummer, poststed} = props.matrikkeladresse;
-    const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : new Date();
+    const {onChange} = props;
+    const gyldigTilDate = new Date(props.matrikkeladresse.gyldigTil.value);
 
     return (
         <>
-            <Input
+            <Skjemainput
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={props.matrikkeladresse.tilleggsadresse}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...props.matrikkeladresse, tilleggsadresse: event.target.value})}
+                skjemainput={props.matrikkeladresse.tilleggsadresse}
+                onSkjemainput={(tilleggsadresse) => onChange({tilleggsadresse})}
             />
-            <Input
+            <Skjemainput
                 bredde={'XXL'}
                 label="Områdeadresse"
-                defaultValue={props.matrikkeladresse.eiendomsnavn}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
+                skjemainput={props.matrikkeladresse.eiendomsnavn}
+                onSkjemainput={(eiendomsnavn) => onChange({eiendomsnavn})}
             />
-            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-          
+            <PoststedVelger
+                postnummer={props.matrikkeladresse.postnummer}
+                onChange={(postnummer) => onChange({postnummer})}
+            />
+
             <label className={'skjemaelement__label'}>Gyldig til</label>
             <Datovelger
-                dato={gyldigTil}
+                dato={gyldigTilDate}
                 id={'matrikkeladresse-datovelger'}
-                onChange={onGyldigTilChange(props)}
+                onChange={(date) => onChange({gyldigTil: {
+                        value: formaterTilISO8601Date(date), skjemafeil: []
+                    }})}
             />
         </>
     );

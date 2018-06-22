@@ -10,7 +10,7 @@ import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
 import { STATUS } from '../../../redux/utils';
 import AdresseForm from './AdresseForm';
 import { endreNorskGateadresse } from '../../../redux/brukerprofil/endreAdresseReducer';
-import { Gateadresse } from '../../../models/personadresse';
+import { GateadresseSkjemainput } from './GateadresseForm';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -19,7 +19,7 @@ interface StateProps {
 
 interface DispatchProps {
     hentPostnummerKodeverk: () => void;
-    endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
+    endreNorskGateadresse: (fødselsnummer: string, gateadresse: GateadresseSkjemainput) => void;
 }
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
@@ -53,7 +53,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         hentPostnummerKodeverk: () => dispatch(hentPostnummere()),
-        endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>
+        endreNorskGateadresse: (fødselsnummer: string, gateadresse: GateadresseSkjemainput) =>
             dispatch(endreNorskGateadresse(fødselsnummer, gateadresse))
     };
 }

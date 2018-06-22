@@ -1,6 +1,7 @@
 import { apiBaseUri } from '../config';
 import { post } from '../api';
-import { Gateadresse, Matrikkeladresse } from '../../models/personadresse';
+import { Matrikkeladresse } from '../../models/personadresse';
+import { GateadresseSkjemainput } from '../../app/brukerprofil/adresse/GateadresseForm';
 
 export interface EndreAdresseRequest {
     norskAdresse: {
@@ -24,20 +25,18 @@ function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest):
     return post(`${apiBaseUri}/brukerprofil/${fødselsnummer}/adresse/`, request);
 }
 
-function getGyldigTil(gateadresse: Gateadresse) {
-    if (!gateadresse.periode) {
-        throw 'Ugyldig periode for endring av adresse';
-    }
-    return gateadresse.periode.til;
-}
-
-export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
-    const {poststed, periode, ...mappedGateadresse} = gateadresse;
+export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: GateadresseSkjemainput) {
     const request: EndreAdresseRequest = {
         norskAdresse: {
             gateadresse: {
-                ...mappedGateadresse,
-                gyldigTil: getGyldigTil(gateadresse)},
+                gatenavn: gateadresse.gatenavn.value,
+                bolignummer: gateadresse.bolignummer.value,
+                husbokstav: gateadresse.husbokstav.value,
+                husnummer: gateadresse.husnummer.value,
+                postnummer: gateadresse.postnummer.value,
+                gyldigTil: gateadresse.gyldigTil.value,
+                tilleggsadresse: gateadresse.tilleggsadresse.value
+            },
             matrikkeladresse: null
         }
     };
