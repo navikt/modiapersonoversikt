@@ -30,7 +30,7 @@ function hentFolkeregistrertAdresse(person: Person) {
         formatterRiktigAdresse(person.folkeregistrertAdresse) : <Undertekst>Ikke registrert</Undertekst>;
 
     return (
-        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin />}>
+        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin/>}>
             {adresse}
         </VisittkortElement>
     );
@@ -40,7 +40,7 @@ function hentFolkeregistrertAdresse(person: Person) {
 function hentMidlertidigAdresse(person: Person) {
     if (person.alternativAdresse != null) {
         return (
-            <VisittkortElement beskrivelse={adressebeskrivelse(person.alternativAdresse)} ikon={<LocationPin />}>
+            <VisittkortElement beskrivelse={adressebeskrivelse(person.alternativAdresse)} ikon={<LocationPin/>}>
                 {formatterRiktigAdresse(person.alternativAdresse)}
             </VisittkortElement>
         );
@@ -51,7 +51,7 @@ function hentMidlertidigAdresse(person: Person) {
 function hentPostadresse(person: Person) {
     if (person.postadresse != null) {
         return (
-            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikon={<LocationPin />}>
+            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikon={<LocationPin/>}>
                 {formatterRiktigAdresse(person.postadresse)}
             </VisittkortElement>
         );
@@ -78,6 +78,8 @@ export function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
         adressetekst = formatterGateadresse(adresse.gateadresse);
     } else if (adresse.matrikkeladresse != null) {
         adressetekst = formatterMatrikkeladresse(adresse.matrikkeladresse);
+    } else if (adresse.postboksadresse != null) {
+        adressetekst = formatterPostboksadresse(adresse.postboksadresse);
     } else if (adresse.utlandsadresse != null) {
         adressetekst = formatterUtenlandsadresse(adresse.utlandsadresse);
     } else if (adresse.ustrukturert != null) {
@@ -136,6 +138,20 @@ function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
     );
 }
 
+function formatterPostboksadresse(adresse: personadresse.Postboksadresse) {
+    const postboksnummer = `${adresse.postboksnummer || 'Ukjent'}`;
+    const poststed = `${adresse.postnummer} ${adresse.poststed}`;
+
+    return (
+        <div key={postboksnummer}>
+            {hentPeriode(adresse.periode)}
+            {hentTilleggsadresse(adresse.tilleggsadresse)}
+            {hentPostboksTekst(adresse.postboksanlegg, adresse.postboksnummer)}
+            <Undertekst>{poststed}</Undertekst>
+        </div>
+    );
+}
+
 function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse) {
     const landkode = `${adresse.landkode && adresse.landkode.beskrivelse || 'Ukjent'}`;
 
@@ -170,6 +186,18 @@ function hentTilleggsadresse(tilleggsadresse?: string) {
         );
     }
     return null;
+}
+
+function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: string) {
+    if (postboksanlegg) {
+        return (
+            <Undertekst>{postboksanlegg + ' ' + postboksnummer}</Undertekst>
+        );
+    } else {
+        return (
+            <Undertekst>{postboksnummer}</Undertekst>
+        );
+    }
 }
 
 function hentBolignummer(adresse: personadresse.Gateadresse) {
