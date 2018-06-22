@@ -2,18 +2,16 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
-
-import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
-import GateadresseForm from './GateadresseForm';
-import MatrikkeladresseForm from './MatrikkeladresseForm';
+import GateadresseForm, { GateadresseSkjemainput } from './GateadresseForm';
+import MatrikkeladresseForm, { MatrikkeladresseSkjemainput } from './MatrikkeladresseForm';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE
 }
 
 export interface MidlertidigeAdresserNorgeInput {
-    gateadresse: Gateadresse;
-    matrikkeladresse: Matrikkeladresse;
+    gateadresse: GateadresseSkjemainput;
+    matrikkeladresse: MatrikkeladresseSkjemainput;
     valg: MidlertidigeAdresserNorgeInputValg;
 }
 
@@ -33,32 +31,13 @@ function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg 
     }
 }
 
-export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse {
-    if (!gateadresse) {
-        return {
-            gatenavn: '',
-            poststed: '',
-            postnummer: ''
-        };
-    }
-    return gateadresse;
-}
-
-export function getOrDefaultMatrikkeladresse(matrikkeladresse?: Matrikkeladresse): Matrikkeladresse {
-    if (!matrikkeladresse) {
-        return {
-            poststed: '',
-            postnummer: ''
-        };
-    }
-    return matrikkeladresse;
-}
-
 class MidlertidigAdresseNorge extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
         this.onAdresseTypeChange = this.onAdresseTypeChange.bind(this);
+        this.onGateadresseInputChange = this.onGateadresseInputChange.bind(this);
+        this.onMatrikkeladresseInputChange = this.onMatrikkeladresseInputChange.bind(this);
     }
 
     onAdresseTypeChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -69,12 +48,24 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
         });
     }
 
-    onGateadresseInputChange(gateadresse: Gateadresse ) {
-        this.props.onChange({...this.props.midlertidigAdresseNorge, gateadresse});
+    onGateadresseInputChange(partial: Partial<GateadresseSkjemainput> ) {
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            gateadresse: {
+                ...this.props.midlertidigAdresseNorge.gateadresse,
+                ...partial
+            }
+        });
     }
 
-    onMatrikkeladresseInputChange(matrikkeladresse: Matrikkeladresse) {
-        this.props.onChange({...this.props.midlertidigAdresseNorge, matrikkeladresse});
+    onMatrikkeladresseInputChange(partial: Partial<MatrikkeladresseSkjemainput> ) {
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            matrikkeladresse: {
+                ...this.props.midlertidigAdresseNorge.matrikkeladresse,
+                ...partial
+            }
+        });
     }
 
     render() {
@@ -102,14 +93,15 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                         Områdeadresse (uten veinavn)
                     </option>
                 </Select>
-                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
-                    onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
+                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE &&
+                <GateadresseForm
+                    onChange={this.onGateadresseInputChange}
                     gateadresse={gateadresse}
                 />}
-                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
-                    onChange={(matrikkeladresseInput: Matrikkeladresse) =>
-                        this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
-                    matrikkeladresse={getOrDefaultMatrikkeladresse(matrikkeladresse)}
+                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE &&
+                <MatrikkeladresseForm
+                    onChange={this.onMatrikkeladresseInputChange}
+                    matrikkeladresse={matrikkeladresse}
                 />}
             </>
         );

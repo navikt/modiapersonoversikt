@@ -5,19 +5,19 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Personadresse } from '../../../models/personadresse';
+import { Personadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, {
-    getOrDefaultGateadresse,
-    getOrDefaultMatrikkeladresse,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
 } from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
+import { GateadresseSkjemainput, getOrDefaultGateadresse } from './GateadresseForm';
+import { getOrDefaultMatrikkeladresse } from './MatrikkeladresseForm';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {
@@ -35,7 +35,7 @@ function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
 
 interface Props {
     person: Person;
-    endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
+    endreNorskGateadresse: (fødselsnummer: string, gateadresse: GateadresseSkjemainput) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
