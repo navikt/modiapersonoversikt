@@ -3,17 +3,19 @@ import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
+import PostboksadresseForm from './PostboksadresseForm';
 
 export enum MidlertidigeAdresserNorgeInputValg {
-    GATEADRESSE, MATRIKKELADRESSE
+    GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
 }
 
 export interface MidlertidigeAdresserNorgeInput {
     gateadresse: Gateadresse;
     matrikkeladresse: Matrikkeladresse;
+    postboksadresse: Postboksadresse;
     valg: MidlertidigeAdresserNorgeInputValg;
 }
 
@@ -28,6 +30,8 @@ function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg 
             return MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE;
         case MidlertidigeAdresserNorgeInputValg.GATEADRESSE.toString():
             return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+        case MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE;
         default:
             return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
     }
@@ -77,6 +81,10 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
         this.props.onChange({...this.props.midlertidigAdresseNorge, matrikkeladresse});
     }
 
+    onPostboksadresseInputChange(postboksadresse: Postboksadresse) {
+        this.props.onChange({...this.props.midlertidigAdresseNorge, postboksadresse});
+    }
+
     render() {
 
         const {valg, gateadresse, matrikkeladresse} = this.props.midlertidigAdresseNorge;
@@ -101,6 +109,12 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                     >
                         Områdeadresse (uten veinavn)
                     </option>
+                    <option
+                        key={MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE}
+                    >
+                        Postboksadresse
+                    </option>
                 </Select>
                 {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
@@ -110,6 +124,11 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                     onChange={(matrikkeladresseInput: Matrikkeladresse) =>
                         this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
                     matrikkeladresse={getOrDefaultMatrikkeladresse(matrikkeladresse)}
+                />}
+                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
+                    onChange={(postboksadresse: Postboksadresse) =>
+                        this.onPostboksadresseInputChange(postboksadresse)}
+                    postboksadresse={this.props.midlertidigAdresseNorge.postboksadresse}
                 />}
             </>
         );

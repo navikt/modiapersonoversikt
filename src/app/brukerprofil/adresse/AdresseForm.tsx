@@ -5,7 +5,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Personadresse } from '../../../models/personadresse';
+import { Gateadresse, Personadresse, Postboksadresse } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
@@ -103,14 +103,27 @@ class AdresseForm extends React.Component<Props, State> {
             return {
                 gateadresse: getOrDefaultGateadresse(undefined),
                 matrikkeladresse: getOrDefaultMatrikkeladresse(undefined),
+                postboksadresse: this.initialPostboksadresse(undefined),
                 valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
             };
         }
         return {
             gateadresse: getOrDefaultGateadresse(alternativAdresse.gateadresse),
             matrikkeladresse: getOrDefaultMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
             valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
         };
+    }
+
+    initialPostboksadresse(postboksadresse: Postboksadresse | undefined): Postboksadresse {
+        if (!postboksadresse) {
+            return {
+                postboksnummer: '',
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return postboksadresse;
     }
 
     onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {

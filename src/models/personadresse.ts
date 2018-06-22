@@ -9,6 +9,7 @@ export interface Endringsinfo {
 export interface Personadresse {
     endringsinfo?: Endringsinfo;
     gateadresse?: Gateadresse;
+    postboksadresse?: Postboksadresse;
     matrikkeladresse?: Matrikkeladresse;
     utlandsadresse?: Utlandsadresse;
     ustrukturert?: UstrukturertAdresse;
@@ -22,6 +23,15 @@ export interface Gateadresse {
     postnummer: string;
     poststed: string;
     bolignummer?: string;
+    periode?: Periode;
+}
+
+export interface Postboksadresse {
+    postboksnummer: string;
+    postnummer: string;
+    poststed: string;
+    tilleggsadresse?: string;
+    postboksanlegg?: string;
     periode?: Periode;
 }
 
