@@ -65,6 +65,18 @@ function submitAdresseEndring(state: State, props: Props) {
     }
 }
 
+function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
+    if (alternativAdresse.gateadresse) {
+        return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+    } else if (alternativAdresse.matrikkeladresse) {
+        return MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE;
+    } else if (alternativAdresse.postboksadresse) {
+        return MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE;
+    } else {
+        return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+    }
+}
+
 class AdresseForm extends React.Component<Props, State> {
 
     constructor(props: Props) {
@@ -111,7 +123,7 @@ class AdresseForm extends React.Component<Props, State> {
             gateadresse: getOrDefaultGateadresse(alternativAdresse.gateadresse),
             matrikkeladresse: getOrDefaultMatrikkeladresse(alternativAdresse.matrikkeladresse),
             postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
-            valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
+            valg: getInitialAdresseTypeValg(alternativAdresse)
         };
     }
 
