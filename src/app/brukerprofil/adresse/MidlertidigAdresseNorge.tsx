@@ -40,13 +40,25 @@ function getValgtAdressetype(value: string): Valg {
     }
 }
 
+function getInitialAdresseTypeValg(midlertidigAdresseNorge: MidlertidigeAdresserNorge) {
+    if (midlertidigAdresseNorge.gateadresse.postnummer !== '') {
+        return Valg.GATEADRESSE;
+    } else if (midlertidigAdresseNorge.matrikkeladresse.postnummer !== '') {
+        return Valg.MATRIKKELADRESSE;
+    } else if (midlertidigAdresseNorge.postboksadresse.postnummer !== '') {
+        return Valg.POSTBOKSADRESSE;
+    } else {
+        return Valg.GATEADRESSE;
+    }
+}
+
 class MidlertidigAdresseNorge extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
         this.onAdresseTypeChange = this.onAdresseTypeChange.bind(this);
         this.state = {
-            valg: Valg.GATEADRESSE
+            valg: getInitialAdresseTypeValg(props.midlertidigAdresseNorge)
         };
     }
 
