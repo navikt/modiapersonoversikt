@@ -4,6 +4,5 @@ import { EndreKontonummerRequest } from '../../redux/brukerprofil/endreKontonumm
 
 export function postEndreKontonummer(fødselsnummer: string, request: EndreKontonummerRequest): Promise<{}> {
     const uri = `${apiBaseUri}/brukerprofil/${fødselsnummer}/kontonummer/`;
-    console.log(request);
     return post(uri, request);
 }
