@@ -4,7 +4,7 @@ import EndreKontonummerForm from './EndreKontonummerForm';
 import TestProvider from '../../../test/Testprovider';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { aremark } from '../../../mock/person/aremark';
-import { Bankkonto, Person } from '../../../models/person/person'
+import { Bankkonto, Person } from '../../../models/person/person';
 
 const veilerRoller: VeilederRoller = { roller: ['0000-GA-BD06_EndreKontonummer'] };
 
