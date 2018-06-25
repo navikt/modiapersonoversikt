@@ -13,9 +13,11 @@ import { STATUS } from '../../../redux/utils';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
 import { ignoreEnter } from '../formUtils';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
+    bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
     disabled: boolean;
 }
@@ -62,6 +64,7 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
 
 function Inputs(props: Props) {
     const bankkonto = props.bankkonto;
+    const validering = props.bankkontoValidering.felter;
     return (
         <>
             <VelgLand {...props} />
@@ -71,6 +74,8 @@ function Inputs(props: Props) {
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
+                feil={!validering.banknavn.erGyldig
+                    ? { feilmelding: validering.banknavn.feilmelding } : undefined}
             />
             <Input
                 label="Bankens adresse"
@@ -83,6 +88,7 @@ function Inputs(props: Props) {
                         linje1: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
@@ -95,6 +101,7 @@ function Inputs(props: Props) {
                         linje2: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
@@ -107,6 +114,8 @@ function Inputs(props: Props) {
                         linje3: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig
+                    ? { feilmelding: validering.adresse.feilmelding } : undefined}
             />
             <Input
                 label="Kontonummer eller IBAN"
@@ -114,6 +123,8 @@ function Inputs(props: Props) {
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
+                feil={!validering.kontonummer.erGyldig
+                    ? { feilmelding: validering.kontonummer.feilmelding } : undefined}
             />
             <Input
                 label="BC/SWIFT-kode"
@@ -121,13 +132,17 @@ function Inputs(props: Props) {
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
+                feil={!validering.swift.erGyldig
+                    ? { feilmelding: validering.swift.feilmelding } : undefined}
             />
             <Input
-                label="BankKode"
+                label="Bankkode"
                 value={bankkonto.bankkode}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
+                feil={!validering.bankkode.erGyldig
+                    ? { feilmelding: validering.bankkode.feilmelding } : undefined}
             />
             <VelgValutta {...props} />
         </>

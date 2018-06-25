@@ -16,10 +16,10 @@ import { ChangeEvent, FormEvent } from 'react';
 import {
     removeWhitespaceAndDot,
     formaterNorskKontonummer,
-    validerKontonummer,
     erBrukersKontonummerUtenlandsk,
     EndreBankkontoState,
-    tomBankkonto
+    tomBankkonto,
+    hentEndringstekst
 }
     from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
@@ -29,6 +29,10 @@ import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKonton
 import AlertStripe from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { ignoreEnter } from '../formUtils';
+import { validerNorskBankKonto } from './norskKontoValidator';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { validerUtenlandskKonto } from './utenlandskKontoValidator';
+import EtikettMini from '../../../components/EtikettMini';
 
 const Luft = styled.div`
   margin-top: 1em;
@@ -41,6 +45,7 @@ enum bankEnum {
 
 interface State {
     bankkontoInput: EndreBankkontoState;
+    bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     norskKontoRadio: boolean;
 }
 
@@ -77,9 +82,11 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     getInitialState(): State {
+        const brukersBankkonto = this.getBrukersBankkonto();
         return {
-            bankkontoInput: this.getBrukersBankkonto(),
-            norskKontoRadio: !erBrukersKontonummerUtenlandsk(this.props.person)
+            bankkontoInput: brukersBankkonto,
+            norskKontoRadio: !erBrukersKontonummerUtenlandsk(this.props.person),
+            bankkontoValidering: validerNorskBankKonto(brukersBankkonto)
         };
     }
 
@@ -97,17 +104,23 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         };
     }
 
-    erKontonummerValid(kontonummer?: string) {
-        return !this.state.norskKontoRadio
-            || validerKontonummer(kontonummer || this.state.bankkontoInput.kontonummer);
-    }
-
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const kontoInput = this.state.bankkontoInput;
-        const fnr = this.props.person.fødselsnummer;
 
+        const valideringsResultat = this.state.norskKontoRadio
+            ? validerNorskBankKonto(kontoInput)
+            : validerUtenlandskKonto(kontoInput);
+
+        if (!valideringsResultat.formErGyldig) {
+            this.setState({
+                bankkontoValidering: valideringsResultat
+            });
+            return;
+        }
+
+        const fnr = this.props.person.fødselsnummer;
         if (this.state.norskKontoRadio) {
             this.props.endreKontonummer(fnr, {
                 kontonummer: removeWhitespaceAndDot(kontoInput.kontonummer)
@@ -142,6 +155,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
         this.setState({
+            ...this.getInitialState(),
             norskKontoRadio: value === bankEnum.erNorsk
         });
     }
@@ -159,10 +173,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     getNorskKontonrInputs() {
-        const ugyldigKontonummer = this.state.norskKontoRadio
-        && removeWhitespaceAndDot(this.state.bankkontoInput.kontonummer).length >= 11
-            ? !this.erKontonummerValid(this.state.bankkontoInput.kontonummer)
-            : false;
         return (
             <Input
                 label="Kontonummer"
@@ -170,7 +180,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 onChange={this.handleNorskKontonummerInputChange}
                 disabled={!this.harPåkrevdRolle()}
                 onKeyPress={ignoreEnter}
-                feil={ugyldigKontonummer ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
+                feil={!this.state.bankkontoValidering.felter.kontonummer.erGyldig
+                    ? { feilmelding: this.state.bankkontoValidering.felter.kontonummer.feilmelding } : undefined}
             />
         );
     }
@@ -199,6 +210,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         const kontoInputs = this.state.norskKontoRadio ? this.getNorskKontonrInputs() : (
             <UtenlandskKontonrInputs
                 bankkonto={this.state.bankkontoInput}
+                bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
                 disabled={!this.harPåkrevdRolle()}
             />);
@@ -232,12 +244,14 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         const manglerRolleTekst = 'Du mangler rettigheter til å endre brukers bankkonto';
         const manglerRollerWarning = !this.harPåkrevdRolle() &&
             <Luft><AlertStripe type="info">{manglerRolleTekst}</AlertStripe></Luft>;
+        const sistEndretInfo = <EtikettMini>{hentEndringstekst(this.props.person.bankkonto)}</EtikettMini>;
         const title = this.harPåkrevdRolle() ? undefined : manglerRolleTekst;
         return (
             <form onSubmit={this.handleSubmit} title={title}>
                 <Undertittel>Kontonummer</Undertittel>
                 {manglerRollerWarning}
                 {norskEllerUtenlandskKontoRadio}
+                {sistEndretInfo}
                 {kontoInputs}
                 {knapper}
                 {endreKontonummerRequestTilbakemelding}
