@@ -154,12 +154,12 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
         if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
             this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
         } else {
             console.error('Not implemented');
         }
-        event.preventDefault();
     }
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {

@@ -8,6 +8,7 @@ import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
 import { ValideringsResultat } from './FormValidator';
+import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
@@ -44,7 +45,11 @@ export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse 
         return {
             gatenavn: '',
             poststed: '',
-            postnummer: ''
+            postnummer: '',
+            periode: {
+                fra: formaterTilISO8601Date(new Date()),
+                til: formaterTilISO8601Date(new Date())
+            }
         };
     }
     return gateadresse;
