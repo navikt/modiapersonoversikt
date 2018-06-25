@@ -12,6 +12,7 @@ import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { STATUS } from '../../../redux/utils';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
+import { ignoreEnter } from '../formUtils';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
@@ -68,12 +69,14 @@ function Inputs(props: Props) {
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
             />
             <Input
                 label="Bankens adresse"
                 value={bankkonto.adresse.linje1}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -85,6 +88,7 @@ function Inputs(props: Props) {
                 label=""
                 value={bankkonto.adresse.linje2}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -96,6 +100,7 @@ function Inputs(props: Props) {
                 label=""
                 value={bankkonto.adresse.linje3}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
@@ -107,18 +112,21 @@ function Inputs(props: Props) {
                 label="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
             />
             <Input
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
             />
             <Input
                 label="BankKode"
                 value={bankkonto.bankkode}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
             />
             <VelgValutta {...props} />

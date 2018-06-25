@@ -28,6 +28,7 @@ import { endreKontonummer, reset } from '../../../redux/brukerprofil/endreKonton
 import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKontonummerRequest';
 import AlertStripe from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
+import { ignoreEnter } from '../formUtils';
 
 const Luft = styled.div`
   margin-top: 1em;
@@ -168,6 +169,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 disabled={!this.harPåkrevdRolle()}
+                onKeyPress={ignoreEnter}
                 feil={ugyldigKontonummer ? { feilmelding: 'Kontonummer er ugyldig' } : undefined}
             />
         );
