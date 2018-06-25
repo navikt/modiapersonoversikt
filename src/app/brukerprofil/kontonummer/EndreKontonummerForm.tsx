@@ -165,6 +165,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return (
             <Input
                 label="Kontonummer"
+                id="Kontonummer"
                 value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 disabled={!this.harPåkrevdRolle()}
@@ -180,8 +181,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     radioKnappProps() {
         const disabled = !this.harPåkrevdRolle();
         return [
-            { label: bankEnum.erNorsk, value: bankEnum.erNorsk, disabled },
-            { label: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk, disabled }
+            { label: bankEnum.erNorsk, id: bankEnum.erNorsk, value: bankEnum.erNorsk, disabled },
+            { label: bankEnum.erUtenlandsk, id: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk, disabled }
         ];
     }
 
