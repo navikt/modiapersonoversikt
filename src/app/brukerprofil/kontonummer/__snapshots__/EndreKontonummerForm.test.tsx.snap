@@ -1,0 +1,498 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
+<form
+  onSubmit={[Function]}
+  title={undefined}
+>
+  <h2
+    className="typo-undertittel"
+  >
+    Kontonummer
+  </h2>
+  <div
+    className="inputPanelGruppe"
+  >
+    <fieldset
+      className="skjema__fieldset"
+    >
+      <legend
+        className="skjema__legend"
+      >
+        
+      </legend>
+      <label
+        className="inputPanel radioPanel inputPanel--checked"
+        htmlFor="Kontonummer i Norge"
+      >
+        <input
+          aria-checked={true}
+          checked={true}
+          className="inputPanel__field"
+          disabled={false}
+          id="Kontonummer i Norge"
+          name="Velg norsk eller utenlandsk konto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="inputPanel__label"
+        >
+          Kontonummer i Norge
+        </span>
+      </label>
+      <label
+        className="inputPanel radioPanel"
+        htmlFor="Kontonummer i utlandet"
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          className="inputPanel__field"
+          disabled={false}
+          id="Kontonummer i utlandet"
+          name="Velg norsk eller utenlandsk konto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="inputPanel__label"
+        >
+          Kontonummer i utlandet
+        </span>
+      </label>
+    </fieldset>
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Kontonummer"
+    >
+      Kontonummer
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Kontonummer"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value="1234 56 78911"
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="sc-chPdSV gopUKn"
+  >
+    <button
+      className="knapp knapp--standard knapp--disabled"
+      disabled={true}
+      onClick={[Function]}
+      type="submit"
+    >
+      Avbryt
+    </button>
+    <button
+      className="knapp knapp--hoved knapp--disabled"
+      disabled={true}
+      type="submit"
+    >
+      Endre kontonummer
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
+<form
+  onSubmit={[Function]}
+  title={undefined}
+>
+  <h2
+    className="typo-undertittel"
+  >
+    Kontonummer
+  </h2>
+  <div
+    className="inputPanelGruppe"
+  >
+    <fieldset
+      className="skjema__fieldset"
+    >
+      <legend
+        className="skjema__legend"
+      >
+        
+      </legend>
+      <label
+        className="inputPanel radioPanel"
+        htmlFor="Kontonummer i Norge"
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          className="inputPanel__field"
+          disabled={false}
+          id="Kontonummer i Norge"
+          name="Velg norsk eller utenlandsk konto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="inputPanel__label"
+        >
+          Kontonummer i Norge
+        </span>
+      </label>
+      <label
+        className="inputPanel radioPanel inputPanel--checked"
+        htmlFor="Kontonummer i utlandet"
+      >
+        <input
+          aria-checked={true}
+          checked={true}
+          className="inputPanel__field"
+          disabled={false}
+          id="Kontonummer i utlandet"
+          name="Velg norsk eller utenlandsk konto"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="inputPanel__label"
+        >
+          Kontonummer i utlandet
+        </span>
+      </label>
+    </fieldset>
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Velg land"
+    >
+      Velg land
+    </label>
+    <div
+      className="selectContainer input--fullbredde"
+    >
+      <select
+        className="skjemaelement__input"
+        disabled={false}
+        id="Velg land"
+        onChange={[Function]}
+        value="NRN"
+      >
+        <option
+          value="Velg land"
+        >
+          Velg Land
+        </option>
+        <option
+          value="BMU"
+        >
+          Bermuda
+        </option>
+        <option
+          value="COL"
+        >
+          Colombia
+        </option>
+        <option
+          value="LVS"
+        >
+          Langtvekkistan
+        </option>
+        <option
+          value="MRS"
+        >
+          Mars
+        </option>
+        <option
+          value="NRN"
+        >
+          Narnia
+        </option>
+        <option
+          value="NOR"
+        >
+          Norge
+        </option>
+        <option
+          value="ESP"
+        >
+          Spania
+        </option>
+        <option
+          value="USA"
+        >
+          Usa
+        </option>
+      </select>
+    </div>
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Bankens navn"
+    >
+      Bankens navn
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Bankens navn"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value="Bien sparebank"
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Bankens adresse linje 1"
+    >
+      Bankens adresse
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Bankens adresse linje 1"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Bankens adresse linje 2"
+    >
+      
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Bankens adresse linje 2"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Bankens adresse linje 3"
+    >
+      
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Bankens adresse linje 3"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Kontonummer eller IBAN"
+    >
+      Kontonummer eller IBAN
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="Kontonummer eller IBAN"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value="12345678911"
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="BC/SWIFT-kode"
+    >
+      BC/SWIFT-kode
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="BC/SWIFT-kode"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="BankKode"
+    >
+      BankKode
+    </label>
+    <input
+      className="skjemaelement__input input--fullbredde"
+      disabled={false}
+      id="BankKode"
+      name={undefined}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="skjemaelement"
+  >
+    <label
+      className="skjemaelement__label"
+      htmlFor="Velg valutta"
+    >
+      Velg valutta
+    </label>
+    <div
+      className="selectContainer input--fullbredde"
+    >
+      <select
+        className="skjemaelement__input"
+        disabled={false}
+        id="Velg valutta"
+        onChange={[Function]}
+        value="SPD"
+      >
+        <option
+          value="Velg valuta"
+        >
+          Velg valuta
+        </option>
+        <option
+          value="USD"
+        >
+          Amerikanske Dollar
+        </option>
+        <option
+          value="GUL"
+        >
+          Gullmynter, Kong Salomons Rike
+        </option>
+        <option
+          value="NZD"
+        >
+          New Zealand Dollar
+        </option>
+        <option
+          value="NOK"
+        >
+          Norske Kroner
+        </option>
+        <option
+          value="SPD"
+        >
+          Spesidaler
+        </option>
+      </select>
+    </div>
+    <div
+      aria-live="assertive"
+      role="alert"
+    />
+  </div>
+  <div
+    className="sc-chPdSV gopUKn"
+  >
+    <button
+      className="knapp knapp--standard knapp--disabled"
+      disabled={true}
+      onClick={[Function]}
+      type="submit"
+    >
+      Avbryt
+    </button>
+    <button
+      className="knapp knapp--hoved knapp--disabled"
+      disabled={true}
+      type="submit"
+    >
+      Endre kontonummer
+    </button>
+  </div>
+</form>
+`;

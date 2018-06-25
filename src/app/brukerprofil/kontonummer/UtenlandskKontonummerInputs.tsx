@@ -70,6 +70,7 @@ function Inputs(props: Props) {
             <VelgLand {...props} />
             <Input
                 label="Bankens navn"
+                id="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -79,6 +80,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Bankens adresse"
+                id="Bankens adresse linje 1"
                 value={bankkonto.adresse.linje1}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -92,6 +94,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label=""
+                id="Bankens adresse linje 2"
                 value={bankkonto.adresse.linje2}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -105,6 +108,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label=""
+                id="Bankens adresse linje 3"
                 value={bankkonto.adresse.linje3}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -119,6 +123,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Kontonummer eller IBAN"
+                id="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -128,6 +133,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label="BC/SWIFT-kode"
+                id="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -137,6 +143,7 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Bankkode"
+                id="BankKode"
                 value={bankkonto.bankkode}
                 disabled={props.disabled}
                 onKeyPress={ignoreEnter}
@@ -162,6 +169,7 @@ function VelgLand(props: Props) {
     return (
         <Select
             label="Velg land"
+            id="Velg land"
             value={props.bankkonto.landkode.kodeRef}
             disabled={props.disabled}
             onChange={event => handleLandChange(props, event)}
@@ -185,6 +193,7 @@ function VelgValutta(props: Props) {
     return (
         <Select
             label="Velg valutta"
+            id="Velg valutta"
             value={props.bankkonto.valuta.kodeRef}
             disabled={props.disabled}
             onChange={event => handleValutaChange(props, event)}
