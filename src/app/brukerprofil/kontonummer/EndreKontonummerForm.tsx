@@ -106,9 +106,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
         const kontoInput = this.state.bankkontoInput;
-
         const valideringsResultat = this.state.norskKontoRadio
             ? validerNorskBankKonto(kontoInput)
             : validerUtenlandskKonto(kontoInput);
