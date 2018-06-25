@@ -7,10 +7,13 @@ import Datovelger from 'nav-datovelger';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
 import { Gateadresse } from '../../../models/personadresse';
 import { formaterTilISO8601Date } from '../../../utils/dateUtils';
+import { ValideringsResultat } from './FormValidator';
+import { getSkjemafeilFraValidering } from '../formUtils';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
+    validering?: ValideringsResultat<Gateadresse>;
 }
 
 const InputLinje = styled.div`
@@ -34,9 +37,7 @@ function onGyldigTilChange(props: Props) {
 }
 
 function GateadresseForm(props: Props) {
-
     const {postnummer, poststed} = props.gateadresse;
-
     const gyldigTil = props.gateadresse.periode ? new Date(props.gateadresse.periode.til) : new Date();
 
     return (
@@ -56,6 +57,8 @@ function GateadresseForm(props: Props) {
                         defaultValue={props.gateadresse.gatenavn}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.onChange({...props.gateadresse, gatenavn: event.target.value})}
+                        feil={getSkjemafeilFraValidering(props.validering ?
+                            props.validering.felter.gatenavn : undefined)}
                     />
                 </div>
                 <Input
