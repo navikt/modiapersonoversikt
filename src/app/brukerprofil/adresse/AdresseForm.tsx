@@ -15,10 +15,10 @@ import MidlertidigAdresseNorge, {
     getOrDefaultMatrikkeladresse,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
-} from './MidlertidigAdresseNorge';
+} from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import { validerGateadresse } from './gateadresse/gateadresseValidator';
+import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {

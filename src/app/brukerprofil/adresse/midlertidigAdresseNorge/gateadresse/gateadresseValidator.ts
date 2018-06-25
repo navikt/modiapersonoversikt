@@ -1,6 +1,6 @@
-import { Gateadresse } from '../../../../models/personadresse';
-import FormValidator, { Valideringsregel } from '../../../../utils/forms/FormValidator';
-import { erIkkeTomStreng, erTall } from '../../../../utils/string-utils';
+import { Gateadresse } from '../../../../../models/personadresse';
+import FormValidator, { Valideringsregel } from '../../../../../utils/forms/FormValidator';
+import { erIkkeTomStreng, erTall } from '../../../../../utils/string-utils';
 
 const gatenavnRegel: Valideringsregel<Gateadresse> = {
     felt: 'gatenavn',

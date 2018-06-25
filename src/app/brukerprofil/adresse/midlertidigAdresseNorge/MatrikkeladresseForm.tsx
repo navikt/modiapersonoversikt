@@ -4,8 +4,8 @@ import { ChangeEvent } from 'react';
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
 
-import { Matrikkeladresse } from '../../../models/personadresse';
-import PoststedVelger, { PoststedInformasjon } from './common/PoststedVelger';
+import { Matrikkeladresse } from '../../../../models/personadresse';
+import PoststedVelger, { PoststedInformasjon } from '../common/PoststedVelger';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;

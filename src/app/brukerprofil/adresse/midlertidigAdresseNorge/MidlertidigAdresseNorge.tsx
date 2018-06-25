@@ -3,12 +3,12 @@ import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
 import GateadresseForm from './gateadresse/GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
-import { ValideringsResultat } from '../../../utils/forms/FormValidator';
-import { formaterTilISO8601Date } from '../../../utils/dateUtils';
+import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
+import { formaterTilISO8601Date } from '../../../../utils/dateUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
