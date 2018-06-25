@@ -31,3 +31,7 @@ export function removeWhitespace(input: string) {
 export function erTomStreng(input: string) {
     return removeWhitespace(input).length === 0;
 }
+
+export function erIkkeTomStreng(input: string) {
+    return !erTomStreng(input);
+}

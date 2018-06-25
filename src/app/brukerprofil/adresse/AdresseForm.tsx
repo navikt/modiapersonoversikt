@@ -18,8 +18,7 @@ import MidlertidigAdresseNorge, {
 } from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import FormValidator, { Valideringsregel } from '../../../utils/forms/FormValidator';
-import { removeWhitespace } from '../../../utils/string-utils';
+import { validerGateadresse } from './gateadresse/gateadresseValidator';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {
@@ -50,16 +49,6 @@ interface State {
     selectedRadio: Valg;
     formErEndret: boolean;
 }
-
-function erIkkeTomStreng(input: string) {
-    return removeWhitespace(input).length !== 0;
-}
-
-const rule: Valideringsregel<Gateadresse> = {
-    felt: 'gatenavn',
-    feilmelding: 'Gatenavn kan ikke være tom',
-    validator: (gateadresse: Gateadresse) => erIkkeTomStreng(gateadresse.gatenavn)
-};
 
 function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
     if (alternativAdresse.gateadresse) {
@@ -171,7 +160,7 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     submitGateadresse(input: MidlertidigeAdresserNorgeInput) {
-        const valideringsresultat = new FormValidator<Gateadresse>([rule]).valider(input.gateadresse);
+        const valideringsresultat = validerGateadresse(input.gateadresse);
         if (!valideringsresultat.formErGyldig) {
             this.setState({
                 midlertidigAdresseNorge: {
