@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/nb_NO';
 import FakerStatic = Faker.FakerStatic;
 
 export function getSistOppdatert() {
-    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
+    return moment(faker.date.past(5)).toISOString();
 }
 
 export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {

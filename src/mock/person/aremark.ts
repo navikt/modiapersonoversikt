@@ -9,9 +9,17 @@ export const aremark: Person = {
     alder: 42,
     bankkonto: {
         banknavn: 'Bien sparebank',
-        kontonummer: '12345678910',
+        kontonummer: '12345678911',
         sistEndret: '2005-12-12',
-        sistEndretAv: 'Daniel'
+        sistEndretAv: 'Daniel',
+        landkode: {
+            kodeRef: 'NOR',
+            beskrivelse: 'Norge'
+        },
+        valuta: {
+            beskrivelse: 'Spesidaler',
+            kodeRef: 'SPD'
+        }
     },
     sikkerhetstiltak: {
         sikkerhetstiltaksbeskrivelse: 'Får verken møte opp på NAV-kontor eller ringe på telefon ' +
@@ -26,7 +34,7 @@ export const aremark: Person = {
         sammensatt: 'TESTFAMILIEN AREMARK',
         fornavn: 'AREMARK',
         mellomnavn: '',
-        etternavn: 'TESTFAMILIEN',
+        etternavn: 'TESTFAMILIEN'
     },
     tilrettelagtKomunikasjonsListe: [
         {

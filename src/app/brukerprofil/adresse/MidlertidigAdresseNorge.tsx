@@ -7,66 +7,80 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 
-enum Valg {
+export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
 }
 
-export interface MidlertidigeAdresserNorge {
+export interface MidlertidigeAdresserNorgeInput {
     gateadresse: Gateadresse;
+    gateadresseValidering?: ValideringsResultat<Gateadresse>;
     matrikkeladresse: Matrikkeladresse;
     postboksadresse: Postboksadresse;
+    valg: MidlertidigeAdresserNorgeInputValg;
 }
 
 interface Props {
-    onChange: (adresser: MidlertidigeAdresserNorge) => void;
-    midlertidigAdresseNorge: MidlertidigeAdresserNorge;
+    onChange: (adresser: MidlertidigeAdresserNorgeInput) => void;
+    midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
 }
 
-interface State {
-    valg: Valg;
-}
-
-function getValgtAdressetype(value: string): Valg {
+function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg {
     switch (value) {
-        case Valg.MATRIKKELADRESSE.toString():
-            return Valg.MATRIKKELADRESSE;
-        case Valg.GATEADRESSE.toString():
-            return Valg.GATEADRESSE;
-        case Valg.POSTBOKSADRESSE.toString():
-            return Valg.POSTBOKSADRESSE;
+        case MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE;
+        case MidlertidigeAdresserNorgeInputValg.GATEADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+        case MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE.toString():
+            return MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE;
         default:
-            return Valg.GATEADRESSE;
+            return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
     }
 }
 
-function getInitialAdresseTypeValg(midlertidigAdresseNorge: MidlertidigeAdresserNorge) {
-    if (midlertidigAdresseNorge.gateadresse.postnummer !== '') {
-        return Valg.GATEADRESSE;
-    } else if (midlertidigAdresseNorge.matrikkeladresse.postnummer !== '') {
-        return Valg.MATRIKKELADRESSE;
-    } else if (midlertidigAdresseNorge.postboksadresse.postnummer !== '') {
-        return Valg.POSTBOKSADRESSE;
-    } else {
-        return Valg.GATEADRESSE;
+export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse {
+    if (!gateadresse) {
+        return {
+            gatenavn: '',
+            poststed: '',
+            postnummer: '',
+            periode: {
+                fra: formaterTilISO8601Date(new Date()),
+                til: formaterTilISO8601Date(new Date())
+            }
+        };
     }
+    return gateadresse;
 }
 
-class MidlertidigAdresseNorge extends React.Component<Props, State> {
+export function getOrDefaultMatrikkeladresse(matrikkeladresse?: Matrikkeladresse): Matrikkeladresse {
+    if (!matrikkeladresse) {
+        return {
+            poststed: '',
+            postnummer: ''
+        };
+    }
+    return matrikkeladresse;
+}
+
+class MidlertidigAdresseNorge extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
         this.onAdresseTypeChange = this.onAdresseTypeChange.bind(this);
-        this.state = {
-            valg: getInitialAdresseTypeValg(props.midlertidigAdresseNorge)
-        };
     }
 
     onAdresseTypeChange(event: ChangeEvent<HTMLSelectElement>) {
-        this.setState({valg: getValgtAdressetype(event.target.value)});
+        const valg = getValgtAdressetype(event.target.value);
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            valg
+        });
     }
 
-    onGateadresseInputChange(gateadresse: Gateadresse) {
+    onGateadresseInputChange(gateadresse: Gateadresse ) {
         this.props.onChange({...this.props.midlertidigAdresseNorge, gateadresse});
     }
 
@@ -79,37 +93,50 @@ class MidlertidigAdresseNorge extends React.Component<Props, State> {
     }
 
     render() {
+
+        const {valg, gateadresse, matrikkeladresse} = this.props.midlertidigAdresseNorge;
+
         return (
             <>
                 <Select
                     label="Landkode"
                     bredde={'m'}
-                    defaultValue={this.state.valg.toString()}
+                    defaultValue={valg.toString()}
                     onChange={this.onAdresseTypeChange}
                 >
-                    <option key={Valg.GATEADRESSE} value={Valg.GATEADRESSE}>Gateadresse</option>
                     <option
-                        key={Valg.MATRIKKELADRESSE}
-                        value={Valg.MATRIKKELADRESSE}
+                        key={MidlertidigeAdresserNorgeInputValg.GATEADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.GATEADRESSE}
+                    >
+                        Gateadresse
+                    </option>
+                    <option
+                        key={MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE}
                     >
                         Områdeadresse (uten veinavn)
                     </option>
-                    <option key={Valg.POSTBOKSADRESSE} value={Valg.POSTBOKSADRESSE}>Postboksadresse</option>
+                    <option
+                        key={MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE}
+                        value={MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE}
+                    >
+                        Postboksadresse
+                    </option>
                 </Select>
-                {this.state.valg === Valg.GATEADRESSE && <GateadresseForm
-                    onChange={(gateadresse: Gateadresse) => this.onGateadresseInputChange(gateadresse)}
-                    gateadresse={this.props.midlertidigAdresseNorge.gateadresse as Gateadresse}
+                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
+                    onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
+                    gateadresse={gateadresse}
+                    validering={this.props.midlertidigAdresseNorge.gateadresseValidering}
                 />}
-                {this.state.valg === Valg.MATRIKKELADRESSE && <MatrikkeladresseForm
-                    onChange={(matrikkeladresse: Matrikkeladresse) =>
-                        this.onMatrikkeladresseInputChange(matrikkeladresse)}
-                    matrikkeladresse={this.props.midlertidigAdresseNorge.matrikkeladresse as Matrikkeladresse}
+                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
+                    onChange={(matrikkeladresseInput: Matrikkeladresse) =>
+                        this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
+                    matrikkeladresse={getOrDefaultMatrikkeladresse(matrikkeladresse)}
                 />}
-                {this.state.valg === Valg.POSTBOKSADRESSE && <PostboksadresseForm
+                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
                     onChange={(postboksadresse: Postboksadresse) =>
                         this.onPostboksadresseInputChange(postboksadresse)}
-                    postboksadresse={this.props.midlertidigAdresseNorge.postboksadresse as Postboksadresse}
-
+                    postboksadresse={this.props.midlertidigAdresseNorge.postboksadresse}
                 />}
             </>
         );

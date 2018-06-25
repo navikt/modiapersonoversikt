@@ -28,8 +28,8 @@ import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import thunkMiddleware from 'redux-thunk';
 import { landActionNames } from '../redux/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
-import { valuttaerActionNames } from '../redux/kodeverk/valuttaKodeverk';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
+import { valutaerActionNames } from '../redux/kodeverk/valutaKodeverk';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -52,4 +52,4 @@ testStore.dispatch({ type: tilrettelagtKommunikasjonActionNames.OK, data: mockTi
 testStore.dispatch({ type: retningsnummerKodeverkActionNames.OK, data: mockRetningsnummereKodeverk() });
 testStore.dispatch({ type: postnummerActionNames.OK, data: mockPostnummere() });
 testStore.dispatch({ type: landActionNames.OK, data: mockLandKodeverk() });
-testStore.dispatch({ type: valuttaerActionNames.OK, data: mockValutaKodeverk() });
+testStore.dispatch({ type: valutaerActionNames.OK, data: mockValutaKodeverk() });

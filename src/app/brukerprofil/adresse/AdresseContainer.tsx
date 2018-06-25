@@ -9,8 +9,8 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
 import { STATUS } from '../../../redux/utils';
 import AdresseForm from './AdresseForm';
-import { endreAdresse } from '../../../redux/brukerprofil/endreAdresseReducer';
-import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
+import { endreNorskGateadresse } from '../../../redux/brukerprofil/endreAdresseReducer';
+import { Gateadresse } from '../../../models/personadresse';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -19,7 +19,7 @@ interface StateProps {
 
 interface DispatchProps {
     hentPostnummerKodeverk: () => void;
-    endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
+    endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
 }
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
@@ -35,7 +35,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
             <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
                 <AdresseForm
                     person={this.props.person}
-                    endreAdresse={this.props.endreAdresse}
+                    endreNorskGateadresse={this.props.endreNorskGateadresse}
                     endreAdresseReducer={this.props.endreAdresseReducer}
                 />
             </Innholdslaster>
@@ -53,8 +53,8 @@ const mapStateToProps = (state: AppState): StateProps => {
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         hentPostnummerKodeverk: () => dispatch(hentPostnummere()),
-        endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) =>
-            dispatch(endreAdresse(fødselsnummer, request))
+        endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>
+            dispatch(endreNorskGateadresse(fødselsnummer, gateadresse))
     };
 }
 

@@ -13,13 +13,18 @@ import {
     Utlandsadresse
 } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { EndreAdresseRequest } from '../../../api/brukerprofil/adresse-api';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import MidlertidigAdresseNorge, { MidlertidigeAdresserNorge } from './MidlertidigAdresseNorge';
+import MidlertidigAdresseNorge, {
+    getOrDefaultGateadresse,
+    getOrDefaultMatrikkeladresse,
+    MidlertidigeAdresserNorgeInput,
+    MidlertidigeAdresserNorgeInputValg
+} from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
+import { validerGateadresse } from './gateadresse/gateadresseValidator';
 import MidlertidigAdresseUtland from './MidlertidigAdresseUtland';
 
 function Tilbakemelding(props: { formErEndret: boolean, status: STATUS }) {
@@ -38,7 +43,7 @@ function Tilbakemelding(props: { formErEndret: boolean, status: STATUS }) {
 
 interface Props {
     person: Person;
-    endreAdresse: (fødselsnummer: string, request: EndreAdresseRequest) => void;
+    endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
@@ -47,10 +52,22 @@ export enum Valg {
 }
 
 interface State {
-    midlertidigAdresseNorge: MidlertidigeAdresserNorge;
+    midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
     midlertidigAdresseUtland: Utlandsadresse;
     selectedRadio: Valg;
     formErEndret: boolean;
+}
+
+function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
+    if (alternativAdresse.gateadresse) {
+        return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+    } else if (alternativAdresse.matrikkeladresse) {
+        return MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE;
+    } else if (alternativAdresse.postboksadresse) {
+        return MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE;
+    } else {
+        return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
+    }
 }
 
 class AdresseForm extends React.Component<Props, State> {
@@ -91,15 +108,17 @@ class AdresseForm extends React.Component<Props, State> {
     initialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
         if (!alternativAdresse) {
             return {
-                gateadresse: this.initialGateadresse(undefined),
-                matrikkeladresse: this.initialMatrikkeladresse(undefined),
-                postboksadresse: this.initialPostboksadresse(undefined)
+                gateadresse: getOrDefaultGateadresse(undefined),
+                matrikkeladresse: getOrDefaultMatrikkeladresse(undefined),
+                postboksadresse: this.initialPostboksadresse(undefined),
+                valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
             };
         }
         return {
-            gateadresse: this.initialGateadresse(alternativAdresse.gateadresse),
-            matrikkeladresse: this.initialMatrikkeladresse(alternativAdresse.matrikkeladresse),
-            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse)
+            gateadresse: getOrDefaultGateadresse(alternativAdresse.gateadresse),
+            matrikkeladresse: getOrDefaultMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
+            valg: getInitialAdresseTypeValg(alternativAdresse)
         };
     }
 
@@ -142,6 +161,20 @@ class AdresseForm extends React.Component<Props, State> {
         return postboksadresse;
     }
 
+    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {
+        this.setState({
+            midlertidigAdresseNorge: {
+                ...adresser,
+                gateadresseValidering: undefined
+            },
+            formErEndret: true
+        });
+    }
+
+    onAdresseValgChange(valg: Valg) {
+        this.setState({selectedRadio: valg});
+    }
+
     initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): Utlandsadresse {
         if (!utlandsAdresse) {
             return {
@@ -162,22 +195,20 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onSubmit(event: FormEvent<HTMLFormElement>) {
-        let request = {};
-        if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
-            request = {
-                norskAdresse: this.state.midlertidigAdresseNorge
-            };
-        }
-
-        this.props.endreAdresse(this.props.person.fødselsnummer, request);
         event.preventDefault();
+        if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+            this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
+        } else {
+            console.error('Not implemented');
+        }
     }
 
-    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorge) {
-        this.setState({
-            midlertidigAdresseNorge: adresser,
-            formErEndret: true
-        });
+    submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
+        if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
+            this.submitGateadresse(input);
+        } else {
+            console.error('Not implemented');
+        }
     }
 
     onMidlertidigAdresseUtlandInput(adresser: Utlandsadresse) {
@@ -186,9 +217,19 @@ class AdresseForm extends React.Component<Props, State> {
             formErEndret: true
         });
     }
+    submitGateadresse(input: MidlertidigeAdresserNorgeInput) {
+        const valideringsresultat = validerGateadresse(input.gateadresse);
+        if (!valideringsresultat.formErGyldig) {
+            this.setState({
+                midlertidigAdresseNorge: {
+                    ...this.state.midlertidigAdresseNorge,
+                    gateadresseValidering: valideringsresultat
+                }
+            });
+            return;
+        }
 
-    onAdresseValgChange(valg: Valg) {
-        this.setState({selectedRadio: valg});
+        this.props.endreNorskGateadresse(this.props.person.fødselsnummer, input.gateadresse);
     }
 
     render() {
