@@ -1,4 +1,4 @@
-import { FeltValidering } from './adresse/FormValidator';
+import { FeltValidering } from '../../utils/forms/FormValidator';
 
 export interface InputState {
     input: string;

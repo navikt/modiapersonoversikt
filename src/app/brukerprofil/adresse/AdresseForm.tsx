@@ -18,7 +18,7 @@ import MidlertidigAdresseNorge, {
 } from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import FormValidator, { Valideringsregel } from './FormValidator';
+import FormValidator, { Valideringsregel } from '../../../utils/forms/FormValidator';
 import { removeWhitespace } from '../../../utils/string-utils';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {

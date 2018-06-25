@@ -1,6 +1,6 @@
 import FormValidator, { Valideringsregel } from './FormValidator';
-import { removeWhitespace } from '../../../utils/string-utils';
-import { Gateadresse } from '../../../models/personadresse';
+import { removeWhitespace } from '../string-utils';
+import { Gateadresse } from '../../models/personadresse';
 
 const rule: Valideringsregel<Gateadresse> = {
     felt: 'gatenavn',

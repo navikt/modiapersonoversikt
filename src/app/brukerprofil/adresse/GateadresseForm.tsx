@@ -7,7 +7,7 @@ import Datovelger from 'nav-datovelger';
 import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
 import { Gateadresse } from '../../../models/personadresse';
 import { formaterTilISO8601Date } from '../../../utils/dateUtils';
-import { ValideringsResultat } from './FormValidator';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getSkjemafeilFraValidering } from '../formUtils';
 
 interface Props {

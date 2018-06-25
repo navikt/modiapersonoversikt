@@ -7,7 +7,7 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
-import { ValideringsResultat } from './FormValidator';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
