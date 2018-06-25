@@ -18,6 +18,7 @@ import MidlertidigAdresseNorge, {
 } from './MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
+import { validerGateadresse } from './gateadresse/gateadresseValidator';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {
@@ -47,22 +48,6 @@ interface State {
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
     selectedRadio: Valg;
     formErEndret: boolean;
-}
-
-function submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput, props: Props) {
-    if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
-        props.endreNorskGateadresse(props.person.fødselsnummer, input.gateadresse);
-    } else {
-        console.error('Not implemented');
-    }
-}
-
-function submitAdresseEndring(state: State, props: Props) {
-    if (state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
-         submitMidlertidigNorskAdresse(state.midlertidigAdresseNorge, props);
-    } else {
-        console.error('Not implemented');
-    }
 }
 
 function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
@@ -140,7 +125,10 @@ class AdresseForm extends React.Component<Props, State> {
 
     onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {
         this.setState({
-            midlertidigAdresseNorge: adresser,
+            midlertidigAdresseNorge: {
+                ...adresser,
+                gateadresseValidering: undefined
+            },
             formErEndret: true
         });
     }
@@ -155,8 +143,35 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onSubmit(event: FormEvent<HTMLFormElement>) {
-        submitAdresseEndring(this.state, this.props);
         event.preventDefault();
+        if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+            this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
+        } else {
+            console.error('Not implemented');
+        }
+    }
+
+    submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
+        if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
+            this.submitGateadresse(input);
+        } else {
+            console.error('Not implemented');
+        }
+    }
+
+    submitGateadresse(input: MidlertidigeAdresserNorgeInput) {
+        const valideringsresultat = validerGateadresse(input.gateadresse);
+        if (!valideringsresultat.formErGyldig) {
+            this.setState({
+                midlertidigAdresseNorge: {
+                    ...this.state.midlertidigAdresseNorge,
+                    gateadresseValidering: valideringsresultat
+                }
+            });
+            return;
+        }
+
+        this.props.endreNorskGateadresse(this.props.person.fødselsnummer, input.gateadresse);
     }
 
     render() {

@@ -7,6 +7,8 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/
 import GateadresseForm from './GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { formaterTilISO8601Date } from '../../../utils/dateUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
@@ -14,6 +16,7 @@ export enum MidlertidigeAdresserNorgeInputValg {
 
 export interface MidlertidigeAdresserNorgeInput {
     gateadresse: Gateadresse;
+    gateadresseValidering?: ValideringsResultat<Gateadresse>;
     matrikkeladresse: Matrikkeladresse;
     postboksadresse: Postboksadresse;
     valg: MidlertidigeAdresserNorgeInputValg;
@@ -42,7 +45,11 @@ export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse 
         return {
             gatenavn: '',
             poststed: '',
-            postnummer: ''
+            postnummer: '',
+            periode: {
+                fra: formaterTilISO8601Date(new Date()),
+                til: formaterTilISO8601Date(new Date())
+            }
         };
     }
     return gateadresse;
@@ -119,6 +126,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
                     gateadresse={gateadresse}
+                    validering={this.props.midlertidigAdresseNorge.gateadresseValidering}
                 />}
                 {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
                     onChange={(matrikkeladresseInput: Matrikkeladresse) =>

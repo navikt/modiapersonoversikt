@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FeltValidering } from '../../utils/forms/FormValidator';
 
 export interface InputState {
     input: string;
@@ -9,6 +10,20 @@ export function getSkjemafeil(state: InputState) {
     if (state.feilmelding) {
         return {
             feilmelding: state.feilmelding
+        };
+    } else {
+        return undefined;
+    }
+}
+
+export function getSkjemafeilFraValidering(validering?: FeltValidering) {
+    if (!validering) {
+        return undefined;
+    }
+
+    if (!validering.erGyldig) {
+        return {
+            feilmelding: validering.feilmelding
         };
     } else {
         return undefined;
