@@ -35,6 +35,7 @@ test('Viser riktig form for å endre utenlandsk kontonummer', () => {
             }
         }
     };
+
     const endrekontonummerForm = renderer.create(
         <TestProvider>
             <EndreKontonummerForm person={person} veilederRoller={veilerRoller}/>
