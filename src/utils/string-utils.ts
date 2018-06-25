@@ -5,6 +5,9 @@ export function formatNumber(format: string, streng: string) {
 
     let strengIndex = 0;
     for (let i = 0; i < format.length; i++) {
+        if (streng[strengIndex] === undefined) {
+            break;
+        }
         if (format[i] === '#') {
             result += streng[strengIndex++];
         } else {

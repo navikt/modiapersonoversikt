@@ -1,8 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-
 import EndreNavnForm from './endrenavn/EndreNavnForm';
 import { Person } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
@@ -10,6 +8,7 @@ import Kontaktinformasjon from './kontaktinformasjon/KontaktinformasjonContainer
 import TilrettelagtKommunikasjonContainer from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjonContainer';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import AdresseForm from './adresse/AdresseContainer';
+import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
@@ -29,9 +28,7 @@ function BrukerprofilForm({ person, veilderRoller }: Props) {
         <ErrorBoundary>
             <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
             <AdresseForm person={person}/>
-            <form>
-                <Undertittel>Kontonummer</Undertittel>
-            </form>
+            <EndreKontonummerForm person={person} veilederRoller={veilderRoller}/>
             <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
         </ErrorBoundary>
