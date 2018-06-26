@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FeltValidering } from '../../utils/forms/FormValidator';
 
 export interface InputState {
@@ -26,5 +27,13 @@ export function getSkjemafeilFraValidering(validering?: FeltValidering) {
         };
     } else {
         return undefined;
+    }
+}
+
+const ENTER_KEY_PRESS = 13;
+
+export function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.which === ENTER_KEY_PRESS) {
+        event.preventDefault();
     }
 }

@@ -3,21 +3,26 @@ import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
-import GateadresseForm from './GateadresseForm';
-import MatrikkeladresseForm from './MatrikkeladresseForm';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
+import GateadresseForm from './gateadresse/GateadresseForm';
+import MatrikkeladresseForm from './matrikkeladresse/MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
-import { ValideringsResultat } from '../../../utils/forms/FormValidator';
-import { formaterTilISO8601Date } from '../../../utils/dateUtils';
+import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
+import { formaterTilISO8601Date } from '../../../../utils/dateUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
 }
 
 export interface MidlertidigeAdresserNorgeInput {
-    gateadresse: Gateadresse;
-    gateadresseValidering?: ValideringsResultat<Gateadresse>;
-    matrikkeladresse: Matrikkeladresse;
+    gateadresse: {
+        input: Gateadresse;
+        validering: ValideringsResultat<Gateadresse> | null;
+    };
+    matrikkeladresse: {
+        input: Matrikkeladresse;
+        validering: ValideringsResultat<Matrikkeladresse> | null;
+    };
     postboksadresse: Postboksadresse;
     valg: MidlertidigeAdresserNorgeInputValg;
 }
@@ -40,9 +45,10 @@ function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg 
     }
 }
 
-export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse {
+export function getGateadresseInput(gateadresse?: Gateadresse) {
+    let gateadresseInput = {} as Gateadresse;
     if (!gateadresse) {
-        return {
+        gateadresseInput = {
             gatenavn: '',
             poststed: '',
             postnummer: '',
@@ -51,18 +57,31 @@ export function getOrDefaultGateadresse(gateadresse?: Gateadresse): Gateadresse 
                 til: formaterTilISO8601Date(new Date())
             }
         };
+    } else {
+        gateadresseInput = gateadresse;
     }
-    return gateadresse;
+
+    return {
+        input: gateadresseInput,
+        validering: null
+    };
 }
 
-export function getOrDefaultMatrikkeladresse(matrikkeladresse?: Matrikkeladresse): Matrikkeladresse {
+export function getMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
+    let adresseInput = {} as Matrikkeladresse;
+
     if (!matrikkeladresse) {
-        return {
+        adresseInput = {
             poststed: '',
             postnummer: ''
         };
+    } else {
+        adresseInput = matrikkeladresse;
     }
-    return matrikkeladresse;
+    return {
+        input: adresseInput,
+        validering: null
+    };
 }
 
 class MidlertidigAdresseNorge extends React.Component<Props> {
@@ -81,11 +100,23 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
     }
 
     onGateadresseInputChange(gateadresse: Gateadresse ) {
-        this.props.onChange({...this.props.midlertidigAdresseNorge, gateadresse});
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            gateadresse: {
+                input: gateadresse,
+                validering: null
+            }
+        });
     }
 
     onMatrikkeladresseInputChange(matrikkeladresse: Matrikkeladresse) {
-        this.props.onChange({...this.props.midlertidigAdresseNorge, matrikkeladresse});
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            matrikkeladresse: {
+                input: matrikkeladresse,
+                validering: null
+            }
+        });
     }
 
     onPostboksadresseInputChange(postboksadresse: Postboksadresse) {
@@ -125,13 +156,14 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 </Select>
                 {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
                     onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
-                    gateadresse={gateadresse}
-                    validering={this.props.midlertidigAdresseNorge.gateadresseValidering}
+                    gateadresse={gateadresse.input}
+                    validering={this.props.midlertidigAdresseNorge.gateadresse.validering}
                 />}
                 {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
                     onChange={(matrikkeladresseInput: Matrikkeladresse) =>
                         this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
-                    matrikkeladresse={getOrDefaultMatrikkeladresse(matrikkeladresse)}
+                    matrikkeladresse={matrikkeladresse.input}
+                    validering={matrikkeladresse.validering}
                 />}
                 {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
                     onChange={(postboksadresse: Postboksadresse) =>

@@ -17,15 +17,16 @@ import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, {
-    getOrDefaultGateadresse,
-    getOrDefaultMatrikkeladresse,
+    getGateadresseInput,
+    getMatrikkeladresseInput,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
-} from './MidlertidigAdresseNorge';
+} from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import { validerGateadresse } from './gateadresse/gateadresseValidator';
 import MidlertidigAdresseUtland from './MidlertidigAdresseUtland';
+import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
+import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 
 function Tilbakemelding(props: { formErEndret: boolean, status: STATUS }) {
     if (!props.formErEndret) {
@@ -44,6 +45,7 @@ function Tilbakemelding(props: { formErEndret: boolean, status: STATUS }) {
 interface Props {
     person: Person;
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
+    endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
@@ -108,15 +110,15 @@ class AdresseForm extends React.Component<Props, State> {
     initialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
         if (!alternativAdresse) {
             return {
-                gateadresse: getOrDefaultGateadresse(undefined),
-                matrikkeladresse: getOrDefaultMatrikkeladresse(undefined),
+                gateadresse: getGateadresseInput(undefined),
+                matrikkeladresse: getMatrikkeladresseInput(undefined),
                 postboksadresse: this.initialPostboksadresse(undefined),
                 valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
             };
         }
         return {
-            gateadresse: getOrDefaultGateadresse(alternativAdresse.gateadresse),
-            matrikkeladresse: getOrDefaultMatrikkeladresse(alternativAdresse.matrikkeladresse),
+            gateadresse: getGateadresseInput(alternativAdresse.gateadresse),
+            matrikkeladresse: getMatrikkeladresseInput(alternativAdresse.matrikkeladresse),
             postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
             valg: getInitialAdresseTypeValg(alternativAdresse)
         };
@@ -205,7 +207,9 @@ class AdresseForm extends React.Component<Props, State> {
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
         if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
-            this.submitGateadresse(input);
+            this.submitGateadresse(input.gateadresse.input);
+        } else if (input.valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE) {
+            this.submitMatrikkeladresse(input.matrikkeladresse.input);
         } else {
             console.error('Not implemented');
         }
@@ -217,19 +221,41 @@ class AdresseForm extends React.Component<Props, State> {
             formErEndret: true
         });
     }
-    submitGateadresse(input: MidlertidigeAdresserNorgeInput) {
-        const valideringsresultat = validerGateadresse(input.gateadresse);
+
+    submitGateadresse(gateadresse: Gateadresse) {
+        const valideringsresultat = validerGateadresse(gateadresse);
         if (!valideringsresultat.formErGyldig) {
             this.setState({
                 midlertidigAdresseNorge: {
                     ...this.state.midlertidigAdresseNorge,
-                    gateadresseValidering: valideringsresultat
+                    gateadresse: {
+                        input: gateadresse,
+                        validering: valideringsresultat
+                    }
                 }
             });
             return;
         }
 
-        this.props.endreNorskGateadresse(this.props.person.fødselsnummer, input.gateadresse);
+        this.props.endreNorskGateadresse(this.props.person.fødselsnummer, gateadresse);
+    }
+
+    submitMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
+        const valideringsresultat = validerMatrikkeladresse(matrikkeladresse);
+        if (!valideringsresultat.formErGyldig) {
+            this.setState({
+                midlertidigAdresseNorge: {
+                    ...this.state.midlertidigAdresseNorge,
+                    matrikkeladresse: {
+                        input: matrikkeladresse,
+                        validering: valideringsresultat
+                    }
+                }
+            });
+            return;
+        }
+
+        this.props.endreMatrikkeladresse(this.props.person.fødselsnummer, matrikkeladresse);
     }
 
     render() {

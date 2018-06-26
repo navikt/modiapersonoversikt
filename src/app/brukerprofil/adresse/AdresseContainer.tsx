@@ -9,8 +9,8 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
 import { STATUS } from '../../../redux/utils';
 import AdresseForm from './AdresseForm';
-import { endreNorskGateadresse } from '../../../redux/brukerprofil/endreAdresseReducer';
-import { Gateadresse } from '../../../models/personadresse';
+import { endreMatrikkeladresse, endreNorskGateadresse } from '../../../redux/brukerprofil/endreAdresseReducer';
+import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -20,6 +20,7 @@ interface StateProps {
 interface DispatchProps {
     hentPostnummerKodeverk: () => void;
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
+    endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
 }
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
@@ -36,6 +37,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
                 <AdresseForm
                     person={this.props.person}
                     endreNorskGateadresse={this.props.endreNorskGateadresse}
+                    endreMatrikkeladresse={this.props.endreMatrikkeladresse}
                     endreAdresseReducer={this.props.endreAdresseReducer}
                 />
             </Innholdslaster>
@@ -54,7 +56,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         hentPostnummerKodeverk: () => dispatch(hentPostnummere()),
         endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>
-            dispatch(endreNorskGateadresse(fødselsnummer, gateadresse))
+            dispatch(endreNorskGateadresse(fødselsnummer, gateadresse)),
+        endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) =>
+            dispatch(endreMatrikkeladresse(fødselsnummer, matrikkeladresse))
     };
 }
 

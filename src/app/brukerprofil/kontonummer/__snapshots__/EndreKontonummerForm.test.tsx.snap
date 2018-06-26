@@ -71,6 +71,15 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       role="alert"
     />
   </div>
+  <p
+    className="typo-etikett-liten"
+  >
+    <span
+      className="sc-bxivhb eDjwbT"
+    >
+      Endret 12.12.2005 Daniel
+    </span>
+  </p>
   <div
     className="skjemaelement"
   >
@@ -86,6 +95,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       id="Kontonummer"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value="1234 56 78911"
     />
@@ -187,6 +197,15 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       role="alert"
     />
   </div>
+  <p
+    className="typo-etikett-liten"
+  >
+    <span
+      className="sc-bxivhb eDjwbT"
+    >
+      Endret 12.12.2005 Daniel
+    </span>
+  </p>
   <div
     className="skjemaelement"
   >
@@ -273,6 +292,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="Bankens navn"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value="Bien sparebank"
     />
@@ -296,6 +316,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="Bankens adresse linje 1"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value=""
     />
@@ -319,6 +340,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="Bankens adresse linje 2"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value=""
     />
@@ -342,6 +364,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="Bankens adresse linje 3"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value=""
     />
@@ -365,6 +388,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="Kontonummer eller IBAN"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value="12345678911"
     />
@@ -388,6 +412,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="BC/SWIFT-kode"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value=""
     />
@@ -403,7 +428,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       className="skjemaelement__label"
       htmlFor="BankKode"
     >
-      BankKode
+      Bankkode
     </label>
     <input
       className="skjemaelement__input input--fullbredde"
@@ -411,6 +436,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       id="BankKode"
       name={undefined}
       onChange={[Function]}
+      onKeyPress={[Function]}
       type="text"
       value=""
     />

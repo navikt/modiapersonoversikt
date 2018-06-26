@@ -4,16 +4,16 @@ import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
-import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
-import { Gateadresse } from '../../../models/personadresse';
-import { formaterTilISO8601Date } from '../../../utils/dateUtils';
-import { ValideringsResultat } from '../../../utils/forms/FormValidator';
-import { getSkjemafeilFraValidering } from '../formUtils';
+import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
+import { Gateadresse } from '../../../../../models/personadresse';
+import { formaterTilISO8601Date } from '../../../../../utils/dateUtils';
+import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
+import { getSkjemafeilFraValidering } from '../../../formUtils';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
-    validering?: ValideringsResultat<Gateadresse>;
+    validering: ValideringsResultat<Gateadresse> | null;
 }
 
 const InputLinje = styled.div`
@@ -83,7 +83,12 @@ function GateadresseForm(props: Props) {
                         props.onChange({...props.gateadresse, bolignummer: event.target.value})}
                 />
             </InputLinje>
-            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
+            <PoststedVelger
+                poststedInformasjon={{postnummer, poststed}}
+                onChange={onPostinformasjonChange(props)}
+                feil={getSkjemafeilFraValidering(props.validering ?
+                    props.validering.felter.postnummer : undefined)}
+            />
             <>
                 <label className={'skjemaelement__label'}>Gyldig til</label>
                 <Datovelger

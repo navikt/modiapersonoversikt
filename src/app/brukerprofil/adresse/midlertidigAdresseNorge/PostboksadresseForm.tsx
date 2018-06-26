@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
 
-import { Postboksadresse } from '../../../models/personadresse';
-import PoststedVelger, { PoststedInformasjon } from './PoststedVelger';
+import { Postboksadresse } from '../../../../models/personadresse';
+import PoststedVelger, { PoststedInformasjon } from '../common/PoststedVelger';
 
 interface Props {
     onChange: (postboksadresse: Postboksadresse) => void;
