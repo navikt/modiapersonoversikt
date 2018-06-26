@@ -44,6 +44,6 @@ describe('Vergemål med flere verger', () => {
 
         const VergemålWrapper = mount(<Vergemål vergemal={{verger: [mockVerge('0'), verge2]}}/>);
 
-        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen, Advokat');
+        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen, Enslig Asylsøker');
     });
 });
