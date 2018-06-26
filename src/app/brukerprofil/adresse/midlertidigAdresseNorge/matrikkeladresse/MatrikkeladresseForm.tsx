@@ -4,12 +4,15 @@ import { ChangeEvent } from 'react';
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
 
-import { Matrikkeladresse } from '../../../models/personadresse';
-import PoststedVelger, { PoststedInformasjon } from './common/PoststedVelger';
+import { Matrikkeladresse } from '../../../../../models/personadresse';
+import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
+import { getSkjemafeilFraValidering } from '../../../formUtils';
+import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;
     matrikkeladresse: Matrikkeladresse;
+    validering: ValideringsResultat<Matrikkeladresse> | null;
 }
 
 function onPostinformasjonChange(props: Props) {
@@ -45,6 +48,8 @@ function MatrikkeladresseForm(props: Props) {
                 defaultValue={props.matrikkeladresse.eiendomsnavn}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
+                feil={getSkjemafeilFraValidering(props.validering ?
+                    props.validering.felter.eiendomsnavn : undefined)}
             />
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
           
