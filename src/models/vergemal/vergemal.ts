@@ -6,14 +6,14 @@ export interface Vergemal {
 }
 
 export interface Verge {
-    ident: string;
+    ident?: string;
     vergetype?: Kodeverk;
     vergesakstype?: Kodeverk;
     mandattype?: Kodeverk;
     mandattekst?: string;
     embete?: Kodeverk;
     virkningsperiode: Periode;
-    navn: Navn;
+    navn?: Navn;
 }
 
 export interface Periode {

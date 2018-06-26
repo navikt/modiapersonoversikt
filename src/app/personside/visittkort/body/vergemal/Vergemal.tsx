@@ -38,12 +38,12 @@ function Verge(props: {verge: Verge}) {
         <VergeDiv>
             <EtikettLiten><TittelStyle>Verge</TittelStyle></EtikettLiten>
             <Vergeinformasjon>
-                <Undertekst>{verge.navn.sammensatt}</Undertekst>
+                <Undertekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Undertekst>
                 <Undertekst>{verge.ident}</Undertekst>
                 <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
-            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : ''}</Undertekst>
+            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : 'Ikke oppgitt'}</Undertekst>
             <Undertekst>{verge.mandattekst || ''}</Undertekst>
             <EtikettMini>{verge.embete ? verge.embete.beskrivelse : ''}</EtikettMini>
             <Periode periode={verge.virkningsperiode}/>
