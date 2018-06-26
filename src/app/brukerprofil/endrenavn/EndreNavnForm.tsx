@@ -17,15 +17,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { brukersNavnKanEndres, validerNavn, veilederHarPåkrevdRolle } from './endrenavn-utils';
 import Infomelding from './Infomelding';
-import { InputState } from '../formUtils';
-
-const ENTER_KEY_PRESS = 13;
-
-function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.which === ENTER_KEY_PRESS) {
-        event.preventDefault();
-    }
-}
+import { ignoreEnter, InputState } from '../formUtils';
 
 interface NavnInputProps {
     label: string;

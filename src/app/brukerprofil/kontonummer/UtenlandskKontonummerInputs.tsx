@@ -12,9 +12,12 @@ import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { STATUS } from '../../../redux/utils';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
+import { ignoreEnter } from '../formUtils';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
+    bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
     disabled: boolean;
 }
@@ -61,6 +64,7 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
 
 function Inputs(props: Props) {
     const bankkonto = props.bankkonto;
+    const validering = props.bankkontoValidering.felter;
     return (
         <>
             <VelgLand {...props} />
@@ -69,64 +73,83 @@ function Inputs(props: Props) {
                 id="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
+                feil={!validering.banknavn.erGyldig
+                    ? { feilmelding: validering.banknavn.feilmelding } : undefined}
             />
             <Input
                 label="Bankens adresse"
                 id="Bankens adresse linje 1"
                 value={bankkonto.adresse.linje1}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
                         linje1: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
                 id="Bankens adresse linje 2"
                 value={bankkonto.adresse.linje2}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
                         linje2: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
                 id="Bankens adresse linje 3"
                 value={bankkonto.adresse.linje3}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
                         ...props.bankkonto.adresse,
                         linje3: event.target.value
                     }
                 })}
+                feil={!validering.adresse.erGyldig
+                    ? { feilmelding: validering.adresse.feilmelding } : undefined}
             />
             <Input
                 label="Kontonummer eller IBAN"
                 id="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
+                feil={!validering.kontonummer.erGyldig
+                    ? { feilmelding: validering.kontonummer.feilmelding } : undefined}
             />
             <Input
                 label="BC/SWIFT-kode"
                 id="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
+                feil={!validering.swift.erGyldig
+                    ? { feilmelding: validering.swift.feilmelding } : undefined}
             />
             <Input
-                label="BankKode"
+                label="Bankkode"
                 id="BankKode"
                 value={bankkonto.bankkode}
                 disabled={props.disabled}
+                onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
+                feil={!validering.bankkode.erGyldig
+                    ? { feilmelding: validering.bankkode.feilmelding } : undefined}
             />
             <VelgValutta {...props} />
         </>
