@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
-import { KodeverkResponse } from '../../../models/kodeverk';
+import { KodeverkResponse } from '../../../../models/kodeverk';
 import { connect } from 'react-redux';
-import { AppState, RestReducer } from '../../../redux/reducer';
+import { AppState, RestReducer } from '../../../../redux/reducer';
+import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
 
 export interface PoststedInformasjon {
     postnummer: string;
@@ -28,6 +29,7 @@ interface StateProps {
 
 interface OwnProps {
     poststedInformasjon: PoststedInformasjon;
+    feil?: SkjemaelementFeil;
     onChange: (poststedInformasjon: PoststedInformasjon) => void;
 }
 
@@ -49,7 +51,7 @@ class Poststed extends React.Component<Props> {
     }
 
     render() {
-        const {poststedInformasjon} = this.props;
+        const {poststedInformasjon, feil} = this.props;
 
         return (
             <InputLinje>
@@ -62,6 +64,7 @@ class Poststed extends React.Component<Props> {
                         this.onPostnummerInput(event.target.value);
                     }
                     }
+                    feil={feil}
                 />
                 <PoststedInput>
                     <Input

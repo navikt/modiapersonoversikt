@@ -38,3 +38,7 @@ export function erTomStreng(input: string) {
 export function erIkkeTomStreng(input: string) {
     return !erTomStreng(input);
 }
+
+export function erTall(input: string) {
+    return !isNaN(Number(input));
+}
