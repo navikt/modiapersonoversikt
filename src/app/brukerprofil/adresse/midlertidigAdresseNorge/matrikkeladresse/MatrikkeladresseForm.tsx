@@ -6,7 +6,6 @@ import Datovelger from 'nav-datovelger';
 
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
-import { getSkjemafeilFraValidering } from '../../../formUtils';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
 
 interface Props {
@@ -48,11 +47,13 @@ function MatrikkeladresseForm(props: Props) {
                 defaultValue={props.matrikkeladresse.eiendomsnavn}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
-                feil={getSkjemafeilFraValidering(props.validering ?
-                    props.validering.felter.eiendomsnavn : undefined)}
+                feil={props.validering ?
+                    (props.validering.felter.eiendomsnavn ? props.validering.felter.eiendomsnavn.skjemafeil : undefined)
+                    : undefined}
+
             />
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-          
+
             <label className={'skjemaelement__label'}>Gyldig til</label>
             <Datovelger
                 dato={gyldigTil}

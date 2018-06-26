@@ -1,3 +1,5 @@
+import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
+
 export interface Valideringsregel<T> {
     felt: keyof T;
     feilmelding: string;
@@ -11,12 +13,13 @@ export interface ValideringsResultat<T> {
 
 export interface FeltValidering {
     erGyldig: boolean;
-    feilmelding: string[];
+    feilmeldinger: string[];
+    skjemafeil: SkjemaelementFeil | undefined;
 }
 
 type FormValidering<T> = {
     [P in keyof T]: FeltValidering;
-    };
+};
 
 export default class FormValidator<T> {
 
@@ -40,21 +43,24 @@ export default class FormValidator<T> {
             if (!result[regel.felt]) {
                 result[regel.felt] = {
                     erGyldig: true,
-                    feilmelding: []
+                    feilmeldinger: [],
+                    skjemafeil: undefined
                 };
             }
 
             const validering = regel.validator(obj);
             if (!validering) {
                 result[regel.felt].erGyldig = false;
-                result[regel.felt].feilmelding.push(regel.feilmelding);
+                result[regel.felt].feilmeldinger.push(regel.feilmelding);
                 formErGyldig = false;
             }
         });
 
+        const feltValideringer = this.sammenslåFeilmeldinger(result);
+
         return {
             formErGyldig: formErGyldig,
-            felter: result
+            felter: feltValideringer
         };
     }
 
@@ -67,9 +73,32 @@ export default class FormValidator<T> {
             }
             result[key] = {
                 erGyldig: true,
-                feilmelding: []
+                feilmeldinger: [],
+                skjemafeil: undefined
             };
         }
         return result;
+    }
+
+    private sammenslåFeilmeldinger(felt: FormValidering<T>) {
+        for (const key in felt) {
+            if (!felt.hasOwnProperty(key)) {
+                continue;
+            }
+            const skjemafeil = this.getSkjemafeil(felt[key].feilmeldinger);
+
+            felt[key].skjemafeil = skjemafeil;
+        }
+        return felt;
+    }
+
+    private getSkjemafeil(feilmeldinger: string[]) {
+        if (feilmeldinger.length === 0 ) {
+            return undefined;
+        }
+
+        return {
+            feilmelding: feilmeldinger.join('. ')
+        };
     }
 }
