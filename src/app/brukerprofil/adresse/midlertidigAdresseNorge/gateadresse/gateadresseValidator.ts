@@ -17,3 +17,7 @@ const postnummerRegel: Valideringsregel<Gateadresse> = {
 export function validerGateadresse(gateadresse: Gateadresse) {
     return new FormValidator<Gateadresse>([gatenavnRegel, postnummerRegel]).valider(gateadresse);
 }
+
+export function getValidGateadresseForm(gateadresse: Gateadresse) {
+    return new FormValidator<Gateadresse>([]).valider(gateadresse);
+}

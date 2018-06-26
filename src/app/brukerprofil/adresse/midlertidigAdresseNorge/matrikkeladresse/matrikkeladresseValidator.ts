@@ -19,3 +19,7 @@ const postnummerRegel: Valideringsregel<Matrikkeladresse> = {
 export function validerMatrikkeladresse(gateadresse: Matrikkeladresse) {
     return new FormValidator<Matrikkeladresse>([eiendomsnavnRegel, postnummerRegel]).valider(gateadresse);
 }
+
+export function getValidMatrikkeladresseForm(matrikkeladresse: Matrikkeladresse) {
+    return new FormValidator<Matrikkeladresse>([]).valider(matrikkeladresse);
+}

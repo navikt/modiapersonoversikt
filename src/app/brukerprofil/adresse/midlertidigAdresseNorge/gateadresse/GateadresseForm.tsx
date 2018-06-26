@@ -12,7 +12,7 @@ import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
-    validering: ValideringsResultat<Gateadresse> | null;
+    validering: ValideringsResultat<Gateadresse>;
 }
 
 const InputLinje = styled.div`
@@ -56,7 +56,7 @@ function GateadresseForm(props: Props) {
                         defaultValue={props.gateadresse.gatenavn}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.onChange({...props.gateadresse, gatenavn: event.target.value})}
-                        feil={props.validering ? props.validering.felter.gatenavn.skjemafeil : undefined}
+                        feil={props.validering.felter.gatenavn.skjemafeil}
                     />
                 </div>
                 <Input
@@ -84,7 +84,7 @@ function GateadresseForm(props: Props) {
             <PoststedVelger
                 poststedInformasjon={{postnummer, poststed}}
                 onChange={onPostinformasjonChange(props)}
-                feil={props.validering ? props.validering.felter.postnummer.skjemafeil : undefined}
+                feil={props.validering.felter.postnummer.skjemafeil}
             />
             <>
                 <label className={'skjemaelement__label'}>Gyldig til</label>
