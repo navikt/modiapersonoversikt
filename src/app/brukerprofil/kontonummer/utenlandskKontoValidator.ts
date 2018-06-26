@@ -14,22 +14,22 @@ const regler: Valideringsregel<EndreBankkontoState>[] = [{
     validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.kontonummer)
 }, {
     felt: 'kontonummer',
-    feilmelding: 'Kontonummer må være under 36 tegn',
+    feilmelding: 'Kontonummer må være 36 eller færre tegn',
     validator: (konto: EndreBankkontoState) =>
         BANK_UTLAND_KONTONUMMER_REGEX.test(konto.kontonummer)
 }, {
     felt: 'banknavn',
-    feilmelding: 'Banknavn må være under 36 tegn',
+    feilmelding: 'Banknavn må være 36 eller færre tegn',
     validator: (konto: EndreBankkontoState) =>
         BANK_UTLAND_NAVN_REGEX.test(konto.banknavn || '')
 }, {
     felt: 'bankkode',
-    feilmelding: 'Bankkode må være under 36 tegn',
+    feilmelding: 'Bankkode må være 36 eller færre tegn',
     validator: (konto: EndreBankkontoState) =>
         BANK_UTLAND_KODE_REGEX.test(konto.bankkode)
 }, {
     felt: 'swift',
-    feilmelding: 'Swift må være under 11 tegn',
+    feilmelding: 'Swift må være 11 eller færre tegn',
     validator: (konto: EndreBankkontoState) =>
         SWIFT_REGEX.test(konto.swift)
 }, {

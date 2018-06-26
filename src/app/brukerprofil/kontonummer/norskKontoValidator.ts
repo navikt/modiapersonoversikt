@@ -3,7 +3,7 @@ import { default as FormValidator, Valideringsregel } from '../../../utils/forms
 
 const regler: Valideringsregel<EndreBankkontoState>[] = [{
     felt: 'kontonummer',
-    feilmelding: 'Kontonummer må være eleve tall',
+    feilmelding: 'Kontonummer må være elleve tall',
     validator: (konto: EndreBankkontoState) => removeWhitespaceAndDot(konto.kontonummer).length === 11
 }, {
     felt: 'kontonummer',
