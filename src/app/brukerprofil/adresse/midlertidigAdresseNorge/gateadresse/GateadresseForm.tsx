@@ -13,7 +13,7 @@ import { getSkjemafeilFraValidering } from '../../../formUtils';
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
-    validering?: ValideringsResultat<Gateadresse>;
+    validering: ValideringsResultat<Gateadresse> | null;
 }
 
 const InputLinje = styled.div`
