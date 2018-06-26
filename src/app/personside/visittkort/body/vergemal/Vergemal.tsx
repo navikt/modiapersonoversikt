@@ -10,6 +10,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
 import { ENDASH } from '../../../../../utils/string-utils';
+import { Vergesakstype } from './Vergesakstype';
 
 function Periode(props: {periode: Periode}) {
     const {periode} = props;
@@ -29,10 +30,6 @@ const Vergeinformasjon = styled.div`
 const VergeDiv = styled.div`
   margin-top: 1em;
   padding-bottom: 1.5em;
-`;
-
-const Vergesakstype = styled.span`
-  display: block;
 `;
 
 function Verge(props: {verge: Verge}) {
@@ -55,8 +52,6 @@ function Verge(props: {verge: Verge}) {
 }
 
 function Vergemal(props: {vergemal: Vergemal}) {
-    const alleVergesakstyper = props.vergemal.verger.map(verge => verge.vergesakstype ?
-        verge.vergesakstype.beskrivelse : 'Ingen vergesakstype oppgitt').join(', ');
     const verger = props.vergemal.verger.map(verge =>
         <Verge verge={verge} key={verge.ident}/>);
     return (
@@ -66,9 +61,7 @@ function Vergemal(props: {vergemal: Vergemal}) {
             type={'header'}
         >
             <>
-                <Vergesakstype>
-                    <Undertekst>{alleVergesakstyper}</Undertekst>
-                </Vergesakstype>
+                <Vergesakstype verger={props.vergemal.verger}/>
                 {verger}
             </>
         </VisittkortElement>
