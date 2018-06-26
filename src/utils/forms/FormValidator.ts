@@ -26,14 +26,6 @@ export default class FormValidator<T> {
         this.regler = regler;
     }
 
-    validerRegel(regel: Valideringsregel<T>, obj: T): FeltValidering {
-        const valideringsresultat = regel.validator(obj);
-        return {
-            erGyldig: valideringsresultat,
-            feilmelding: valideringsresultat ? '' : regel.feilmelding
-        };
-    }
-
     valider(t: T): ValideringsResultat<T> {
         return this.validate(t);
     }
@@ -82,6 +74,14 @@ export default class FormValidator<T> {
 
     private validerObjekt(obj: T) {
         return (regel: Valideringsregel<T>) => this.validerRegel(regel, obj);
+    }
+
+    private validerRegel(regel: Valideringsregel<T>, obj: T): FeltValidering {
+        const valideringsresultat = regel.validator(obj);
+        return {
+            erGyldig: valideringsresultat,
+            feilmelding: valideringsresultat ? '' : regel.feilmelding
+        };
     }
 
     private kunInvalideValideringer(validering: FeltValidering) {

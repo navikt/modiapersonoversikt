@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
-import GateadresseForm from './GateadresseForm';
+import GateadresseForm from './gateadresse/GateadresseForm';
 import MatrikkeladresseForm from './MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
