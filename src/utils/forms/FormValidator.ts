@@ -11,12 +11,12 @@ export interface ValideringsResultat<T> {
 
 export interface FeltValidering {
     erGyldig: boolean;
-    feilmelding: string;
+    feilmelding: string[];
 }
 
 type FormValidering<T> = {
     [P in keyof T]: FeltValidering;
-};
+    };
 
 export default class FormValidator<T> {
 
@@ -31,27 +31,26 @@ export default class FormValidator<T> {
     }
 
     private validate(obj: T): ValideringsResultat<T> {
-        let result = {} as FormValidering<T>;
         let formErGyldig = true;
-        for (const key in obj) {
-            if (!obj.hasOwnProperty(key)) {
-                continue;
+        let result = this.settAlleFelterTilGyldig(obj);
+
+        this.regler.forEach(regel => {
+
+            // Hvis et optional-felt i interfacet er fraværende
+            if (!result[regel.felt]) {
+                result[regel.felt] = {
+                    erGyldig: true,
+                    feilmelding: []
+                };
             }
 
-            const skjemafeil = this.getSkjemafeil(obj, key);
-
-            const feilmelding = skjemafeil.map(validering => validering.feilmelding).join(', ');
-            const feltHarSkjemafeil = skjemafeil.length !== 0;
-
-            if (feltHarSkjemafeil) {
+            const validering = regel.validator(obj);
+            if (!validering) {
+                result[regel.felt].erGyldig = false;
+                result[regel.felt].feilmelding.push(regel.feilmelding);
                 formErGyldig = false;
             }
-
-            result[key] = {
-                erGyldig: !feltHarSkjemafeil,
-                feilmelding
-            };
-        }
+        });
 
         return {
             formErGyldig: formErGyldig,
@@ -59,33 +58,18 @@ export default class FormValidator<T> {
         };
     }
 
-    private getSkjemafeil(obj: T, key: string) {
-        return this.regler
-            .filter(this.erSammeFeltPåObjekt(key))
-            .map(this.validerObjekt(obj))
-            .filter(this.kunInvalideValideringer);
-    }
+    private settAlleFelterTilGyldig(obj: T) {
+        let result = {} as FormValidering<T>;
 
-    private erSammeFeltPåObjekt(key: string) {
-        return (regel: Valideringsregel<T>) => {
-            return regel.felt.toString() === key;
-        };
+        for (const key in obj) {
+            if (!obj.hasOwnProperty(key)) {
+                continue;
+            }
+            result[key] = {
+                erGyldig: true,
+                feilmelding: []
+            };
+        }
+        return result;
     }
-
-    private validerObjekt(obj: T) {
-        return (regel: Valideringsregel<T>) => this.validerRegel(regel, obj);
-    }
-
-    private validerRegel(regel: Valideringsregel<T>, obj: T): FeltValidering {
-        const valideringsresultat = regel.validator(obj);
-        return {
-            erGyldig: valideringsresultat,
-            feilmelding: valideringsresultat ? '' : regel.feilmelding
-        };
-    }
-
-    private kunInvalideValideringer(validering: FeltValidering) {
-        return !validering.erGyldig;
-    }
-
 }
