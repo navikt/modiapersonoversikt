@@ -1,6 +1,5 @@
 import { Action } from 'history';
 import { STATUS } from '../../../redux/utils';
-import styled from 'styled-components';
 import { AppState, RestReducer } from '../../../redux/reducer';
 import { connect, Dispatch } from 'react-redux';
 import * as React from 'react';
@@ -27,10 +26,6 @@ interface OwnProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const LandContainerWrapper = styled.div`
-  margin-top: 2em;
-`;
-
 class LandContainer extends React.Component<Props> {
 
     constructor(props: Props) {
@@ -47,14 +42,12 @@ class LandContainer extends React.Component<Props> {
         return (
             <div>
                 <Innholdslaster avhengigheter={[this.props.landReducer]}>
-                    <LandContainerWrapper>
-                        <Land
-                            visFeilmeldinger={false}
-                            landKodeverk={this.props.landReducer.data}
-                            midlertidigAdresseUtland={this.props.midlertidigAdresseUtland}
-                            onChange={this.props.landChanged}
-                        />
-                    </LandContainerWrapper>
+                    <Land
+                        visFeilmeldinger={false}
+                        landKodeverk={this.props.landReducer.data}
+                        midlertidigAdresseUtland={this.props.midlertidigAdresseUtland}
+                        onChange={this.props.landChanged}
+                    />
                 </Innholdslaster>
             </div>
         );
