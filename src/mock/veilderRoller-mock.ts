@@ -10,5 +10,9 @@ export function getMockVeilederRoller(): VeilederRoller {
         roller.push('0000-GA-BD06_EndreNavn');
     }
 
+    if (vektetSjanse(faker, 0.5)) {
+        roller.push('0000-GA-BD06_EndreKontonummer');
+    }
+
     return { roller: roller };
 }
