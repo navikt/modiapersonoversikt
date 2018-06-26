@@ -182,9 +182,7 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     submitMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
-        console.log(matrikkeladresse);
         const valideringsresultat = validerMatrikkeladresse(matrikkeladresse);
-        console.log(valideringsresultat);
         if (!valideringsresultat.formErGyldig) {
             this.setState({
                 midlertidigAdresseNorge: {
