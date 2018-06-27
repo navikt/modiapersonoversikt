@@ -31,8 +31,7 @@ const MANDATTYPER = [
     lagKodeverksverdi('CMB', 'Ivareta personens interesser innenfor det personlige og økonomiske området'),
     lagKodeverksverdi('FIN', 'Ivareta personens interesser innenfor det økonomiske området'),
     lagKodeverksverdi('PER', 'Ivareta personens interesser innenfor det personlige området'),
-    lagKodeverksverdi('ADP', 'Tilpasset mandat (utfyllende tekst i eget felt)'),
-    undefined
+    lagKodeverksverdi('ADP', 'Tilpasset mandat (utfyllende tekst i eget felt)')
 ];
 
 export function mockVergemal(fødselsnummer: String): Vergemal {
@@ -62,13 +61,14 @@ function getVergemal() {
 
 function getVerge(): Verge {
     const vergesFødselsnummer = seededTilfeldigFodselsnummer(faker, 18, 100);
+    const vergemålManglerVergeData = vektetSjanse(faker, 0.2);
     return {
-        ident: vergesFødselsnummer,
+        ident: vergemålManglerVergeData ? undefined : vergesFødselsnummer,
         vergesakstype: getTilfeldigVergesakstype(),
-        mandattype: getTilfeldigMandattype(),
-        mandattekst: 'Her kommen en fritekst som er sånn passelig lang',
+        mandattype: vektetSjanse(faker, 0.5) ? getTilfeldigMandattype() : undefined,
+        mandattekst: vektetSjanse(faker, 0.1) ? 'Fritekst vedrørende mandat' : undefined,
         virkningsperiode: getTilfeldigPeriode(),
-        navn: lagNavn(faker),
+        navn: vergemålManglerVergeData ? undefined : lagNavn(faker),
         vergetype: getTilfeldigVergetype(),
         embete: lagKodeverksverdi('AAA', 'Fylkesmannen i ' + faker.address.city())
     };

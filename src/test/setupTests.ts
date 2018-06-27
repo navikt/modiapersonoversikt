@@ -7,7 +7,7 @@ import { getMockNavKontor } from '../mock/navkontor-mock';
 import reducers from '../redux/reducer';
 import { applyMiddleware, createStore } from 'redux';
 import { actionNames as navKontorActionNames } from '../redux/navkontor';
-import { mockVergemal } from '../mock/vergemal-mocks';
+import { mockVergemal } from '../mock/vergemal-mock';
 import { kontaktinformasjonActionNames } from '../redux/kontaktinformasjon';
 import { actionNames as egenAnsattActionNames } from '../redux/egenansatt';
 import { actionNames as vergeMålActionNames } from '../redux/vergemal';
