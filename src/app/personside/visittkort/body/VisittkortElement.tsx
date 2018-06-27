@@ -12,14 +12,25 @@ interface ElementProps {
 }
 
 const ElementStyle = styled.div`
-  display: flex;
   flex: 0 0 auto;
   margin-right: 50px;
 `;
 
+const TittelOgIkon = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+const TittelDiv = styled.div`
+  margin-left: 50px;
+`;
+
 const IkonDiv = styled.div`
-  flex: 0 0 50px;
-  text-align: center;
+  position: absolute;
+  width: 50px;
+  display: flex;
+  justify-content: center;
   > svg {
     height: 24px;
     width: auto;
@@ -27,15 +38,15 @@ const IkonDiv = styled.div`
 `;
 
 const InfoDiv = styled.div`
-  flex: 1 1;
   text-align: left;
+  margin-left: 50px;
 `;
 
 export const TittelStyle = styled.span`
   opacity: 0.7;
 `;
 
-function Tittel(props: {type?: string, children: string}) {
+function Tittel(props: { type?: string, children: string }) {
     if (props.type === 'header') {
         return <Element>{props.children}</Element>;
     } else {
@@ -49,11 +60,17 @@ function VisittkortElement(props: ElementProps) {
 
     return (
         <ElementStyle>
-            <IkonDiv>
-                {ikon}
-            </IkonDiv>
+            <TittelOgIkon>
+                <IkonDiv>
+                    {ikon}
+                </IkonDiv>
+                <TittelDiv>
+                    <Tittel type={props.type}>
+                        {tittelTekst}
+                    </Tittel>
+                </TittelDiv>
+            </TittelOgIkon>
             <InfoDiv>
-                <Tittel type={props.type}>{tittelTekst}</Tittel>
                 {props.children}
             </InfoDiv>
         </ElementStyle>
