@@ -29,7 +29,6 @@ const Vergeinformasjon = styled.div`
 
 const VergeDiv = styled.div`
   margin-top: 1em;
-  padding-bottom: 1.5em;
 `;
 
 function Verge(props: {verge: Verge}) {

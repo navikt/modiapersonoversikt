@@ -5,6 +5,7 @@ import Element from 'nav-frontend-typografi/lib/element';
 export const VisittkortBodyDiv = styled.div`
   display: flex;
   margin-bottom: 10px;
+  margin-top: 12px;
   > * {
     flex: 1 1 50%;
   }

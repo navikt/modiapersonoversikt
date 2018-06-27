@@ -21,7 +21,7 @@ const IkonDiv = styled.div`
   flex: 0 0 50px;
   text-align: center;
   > svg {
-    height: 25px;
+    height: 24px;
     width: auto;
   }
 `;

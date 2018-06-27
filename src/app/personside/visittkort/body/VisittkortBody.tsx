@@ -77,7 +77,7 @@ function ThreeColumnLayout(person: Person) {
     );
 }
 
-const RedigerBrukerprofilWrapper = styled.div`
+const LenkeEndreBrukerprofil = styled.div`
   display: flex;
 `;
 
@@ -127,7 +127,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
                     {columnLayOut}
                 </VisittkortBodyDiv>
-                <RedigerBrukerprofilWrapper>
+                <LenkeEndreBrukerprofil>
                     <Filler/>
                     <Link
                         className={'lenke'}
@@ -135,7 +135,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                     >
                         Administrer brukerprofil
                     </Link>
-                </RedigerBrukerprofilWrapper>
+                </LenkeEndreBrukerprofil>
             </ErrorBoundary>
         );
     }
