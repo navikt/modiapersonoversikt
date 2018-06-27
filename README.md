@@ -23,14 +23,18 @@ npm install
 npm run build
 npm run start
 ```
+
 #### Førstegangsoppsett for lokal npm publish (publish-local.sh)
 
-Adduser kjøres med egen AD-bruker+passord+epostadresse
+Adduser kjøres med egen AD-bruker(liten forbokstav)+passord+epostadresse
 Auth-token legges ikke i kildekontroll, få full config fra en annen i teamet
 
 ```console
+npm install
 npm adduser
 npm config set //repo.adeo.no/repository/npm-internal/:_authToken=
+
+./publish-local.sh
 ```
 
 #### Storybook
