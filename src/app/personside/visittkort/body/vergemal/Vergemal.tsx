@@ -10,6 +10,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettMini from '../../../../../components/EtikettMini';
 import { ENDASH } from '../../../../../utils/string-utils';
+import { Vergesakstype } from './Vergesakstype';
 
 function Periode(props: {periode: Periode}) {
     const {periode} = props;
@@ -31,22 +32,18 @@ const VergeDiv = styled.div`
   padding-bottom: 1.5em;
 `;
 
-const Vergesakstype = styled.span`
-  display: block;
-`;
-
 function Verge(props: {verge: Verge}) {
     const {verge} = props;
     return (
         <VergeDiv>
             <EtikettLiten><TittelStyle>Verge</TittelStyle></EtikettLiten>
             <Vergeinformasjon>
-                <Undertekst>{verge.navn.sammensatt}</Undertekst>
+                <Undertekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Undertekst>
                 <Undertekst>{verge.ident}</Undertekst>
                 <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
-            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : ''}</Undertekst>
+            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : 'Ikke oppgitt'}</Undertekst>
             <Undertekst>{verge.mandattekst || ''}</Undertekst>
             <EtikettMini>{verge.embete ? verge.embete.beskrivelse : ''}</EtikettMini>
             <Periode periode={verge.virkningsperiode}/>
@@ -55,8 +52,6 @@ function Verge(props: {verge: Verge}) {
 }
 
 function Vergemal(props: {vergemal: Vergemal}) {
-    const alleVergesakstyper = props.vergemal.verger.map(verge => verge.vergesakstype ?
-        verge.vergesakstype.beskrivelse : 'Ingen vergesakstype oppgitt').join(', ');
     const verger = props.vergemal.verger.map(verge =>
         <Verge verge={verge} key={verge.ident}/>);
     return (
@@ -66,9 +61,7 @@ function Vergemal(props: {vergemal: Vergemal}) {
             type={'header'}
         >
             <>
-                <Vergesakstype>
-                    <Undertekst>{alleVergesakstyper}</Undertekst>
-                </Vergesakstype>
+                <Vergesakstype verger={props.vergemal.verger}/>
                 {verger}
             </>
         </VisittkortElement>
