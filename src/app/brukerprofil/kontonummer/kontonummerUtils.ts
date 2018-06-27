@@ -1,7 +1,8 @@
 import { formatNumber } from '../../../utils/string-utils';
-import { BankAdresse, Person } from '../../../models/person/person';
+import { BankAdresse, Bankkonto, Person } from '../../../models/person/person';
 import { Kodeverk } from '../../../models/kodeverk';
-import { VeilederRoller } from '../../../models/veilederRoller';
+import { formaterDato } from '../../../utils/dateUtils';
+import { endretAvTekst } from '../../../utils/endretAvUtil';
 
 export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
@@ -48,8 +49,14 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     return result === 11 ? 0 : result;
 }
 
-export function harPåkrevdRolle(veilederRoller: VeilederRoller) {
-    return veilederRoller.roller.includes('0000-GA-BD06_EndreKontonummer');
+export function hentEndringstekst(konto: Bankkonto | undefined): string {
+    if (konto && konto.sistEndret != null && konto.sistEndretAv !== null) {
+        const formattertdato = formaterDato(konto.sistEndret);
+        const endretAv = endretAvTekst(konto.sistEndretAv);
+        return `Endret ${formattertdato} ${endretAv}`;
+    } else {
+        return '';
+    }
 }
 
 export interface EndreBankkontoState {
