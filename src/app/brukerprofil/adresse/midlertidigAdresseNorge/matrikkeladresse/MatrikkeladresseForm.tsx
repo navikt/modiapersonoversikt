@@ -50,8 +50,11 @@ function MatrikkeladresseForm(props: Props) {
                 feil={validering.felter.eiendomsnavn ? validering.felter.eiendomsnavn.skjemafeil : undefined}
 
             />
-            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-
+            <PoststedVelger
+                poststedInformasjon={{postnummer, poststed}}
+                onChange={onPostinformasjonChange(props)}
+                feil={props.validering.felter.postnummer.skjemafeil}
+            />
             <label className={'skjemaelement__label'}>Gyldig til</label>
             <Datovelger
                 dato={gyldigTil}
