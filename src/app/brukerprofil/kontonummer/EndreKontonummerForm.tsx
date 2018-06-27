@@ -111,7 +111,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             ? validerNorskBankKonto(kontoInput)
             : validerUtenlandskKonto(kontoInput);
 
-        console.log(valideringsResultat);
         if (!valideringsResultat.formErGyldig) {
             this.setState({
                 bankkontoValidering: valideringsResultat
