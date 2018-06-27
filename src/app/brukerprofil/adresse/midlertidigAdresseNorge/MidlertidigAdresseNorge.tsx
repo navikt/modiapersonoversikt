@@ -75,7 +75,11 @@ export function getMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
     if (!matrikkeladresse) {
         adresseInput = {
             poststed: '',
-            postnummer: ''
+            postnummer: '',
+            periode: {
+                fra: formaterTilISO8601Date(new Date()),
+                til: formaterTilISO8601Date(new Date())
+            }
         };
     } else {
         adresseInput = matrikkeladresse;
