@@ -10,3 +10,7 @@ const valideringsregel = lagPostnummerRegel('postnummer', gateadresse => gateadr
 export function validerGateadresse(gateadresse: Gateadresse) {
     return new FormValidator<Gateadresse>([gatenavnRegel, valideringsregel]).valider(gateadresse);
 }
+
+export function getValidGateadresseForm(gateadresse: Gateadresse) {
+    return new FormValidator<Gateadresse>([]).valider(gateadresse);
+}
