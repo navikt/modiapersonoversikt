@@ -6,14 +6,20 @@ import Select from 'nav-frontend-skjema/lib/select';
 import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
 import GateadresseForm from './gateadresse/GateadresseForm';
 import MatrikkeladresseForm from './matrikkeladresse/MatrikkeladresseForm';
-import PostboksadresseForm from './PostboksadresseForm';
+import PostboksadresseForm from './postboksadresse/PostboksadresseForm';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { formaterTilISO8601Date } from '../../../../utils/dateUtils';
 import { getValidGateadresseForm } from './gateadresse/gateadresseValidator';
 import { getValidMatrikkeladresseForm } from './matrikkeladresse/matrikkeladresseValidator';
+import { getValidPostboksadresseForm } from './postboksadresse/postboksadresseValidator';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
+}
+
+export interface AdresseFormInput<T> {
+    value: T;
+    validering: ValideringsResultat<T>;
 }
 
 export interface MidlertidigeAdresserNorgeInput {
@@ -25,7 +31,7 @@ export interface MidlertidigeAdresserNorgeInput {
         input: Matrikkeladresse;
         validering: ValideringsResultat<Matrikkeladresse>;
     };
-    postboksadresse: Postboksadresse;
+    postboksadresse: AdresseFormInput<Postboksadresse>;
     valg: MidlertidigeAdresserNorgeInputValg;
 }
 
@@ -47,7 +53,7 @@ function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg 
     }
 }
 
-export function getGateadresseInput(gateadresse?: Gateadresse) {
+export function getInitialGateadresseInput(gateadresse?: Gateadresse) {
     let gateadresseInput = {} as Gateadresse;
     if (!gateadresse) {
         gateadresseInput = {
@@ -69,7 +75,7 @@ export function getGateadresseInput(gateadresse?: Gateadresse) {
     };
 }
 
-export function getMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
+export function getInitialMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
     let adresseInput = {} as Matrikkeladresse;
 
     if (!matrikkeladresse) {
@@ -87,6 +93,23 @@ export function getMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
     return {
         input: adresseInput,
         validering: getValidMatrikkeladresseForm(adresseInput)
+    };
+}
+
+export function getInitialPostboksadresse(postboksadresse?: Postboksadresse) {
+    let postboksadresseInput = {} as Postboksadresse;
+    if (!postboksadresse) {
+        postboksadresseInput = {
+            postboksnummer: '',
+            poststed: '',
+            postnummer: ''
+        };
+    } else {
+        postboksadresseInput = postboksadresse;
+    }
+    return {
+        value: postboksadresseInput,
+        validering: getValidPostboksadresseForm(postboksadresseInput)
     };
 }
 
@@ -126,7 +149,13 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
     }
 
     onPostboksadresseInputChange(postboksadresse: Postboksadresse) {
-        this.props.onChange({...this.props.midlertidigAdresseNorge, postboksadresse});
+        this.props.onChange({
+            ...this.props.midlertidigAdresseNorge,
+            postboksadresse : {
+                value: postboksadresse,
+                validering: getValidPostboksadresseForm(postboksadresse)
+            }
+        });
     }
 
     render() {
@@ -174,7 +203,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
                     onChange={(postboksadresse: Postboksadresse) =>
                         this.onPostboksadresseInputChange(postboksadresse)}
-                    postboksadresse={this.props.midlertidigAdresseNorge.postboksadresse}
+                    input={this.props.midlertidigAdresseNorge.postboksadresse}
                 />}
             </>
         );

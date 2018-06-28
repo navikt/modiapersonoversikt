@@ -11,8 +11,9 @@ import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, {
-    getGateadresseInput,
-    getMatrikkeladresseInput,
+    getInitialGateadresseInput,
+    getInitialMatrikkeladresseInput,
+    getInitialPostboksadresse,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
@@ -20,6 +21,7 @@ import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
+import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
 
 function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
     if (!props.formErEndret) {
@@ -39,6 +41,7 @@ interface Props {
     person: Person;
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
+    endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
@@ -78,8 +81,9 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     initialState(props: Props) {
+        const alternativAdresse = props.person.alternativAdresse ? props.person.alternativAdresse : {};
         return {
-            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse),
+            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorgeInput(alternativAdresse),
             selectedRadio: this.initialRadioValg(),
             formErEndret: false
         };
@@ -97,32 +101,13 @@ class AdresseForm extends React.Component<Props, State> {
         }
     }
 
-    intialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
-        if (!alternativAdresse) {
-            return {
-                gateadresse: getGateadresseInput(undefined),
-                matrikkeladresse: getMatrikkeladresseInput(undefined),
-                postboksadresse: this.initialPostboksadresse(undefined),
-                valg: MidlertidigeAdresserNorgeInputValg.GATEADRESSE
-            };
-        }
+    intialMidlertidigAdresseNorgeInput(alternativAdresse: Personadresse) {
         return {
-            gateadresse: getGateadresseInput(alternativAdresse.gateadresse),
-            matrikkeladresse: getMatrikkeladresseInput(alternativAdresse.matrikkeladresse),
-            postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
+            gateadresse: getInitialGateadresseInput(alternativAdresse.gateadresse),
+            matrikkeladresse: getInitialMatrikkeladresseInput(alternativAdresse.matrikkeladresse),
+            postboksadresse: getInitialPostboksadresse(alternativAdresse.postboksadresse),
             valg: getInitialAdresseTypeValg(alternativAdresse)
         };
-    }
-
-    initialPostboksadresse(postboksadresse: Postboksadresse | undefined): Postboksadresse {
-        if (!postboksadresse) {
-            return {
-                postboksnummer: '',
-                poststed: '',
-                postnummer: ''
-            };
-        }
-        return postboksadresse;
     }
 
     onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {
@@ -158,6 +143,8 @@ class AdresseForm extends React.Component<Props, State> {
             this.submitGateadresse(input.gateadresse.input);
         } else if (input.valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE) {
             this.submitMatrikkeladresse(input.matrikkeladresse.input);
+        } else if (input.valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE) {
+            this.submitPostboksadresse(input.postboksadresse.value);
         } else {
             console.error('Not implemented');
         }
@@ -197,6 +184,23 @@ class AdresseForm extends React.Component<Props, State> {
         }
 
         this.props.endreMatrikkeladresse(this.props.person.fødselsnummer, matrikkeladresse);
+    }
+
+    submitPostboksadresse(postboksadresse: Postboksadresse) {
+        const valideringsresultat = validerPostboksadresse(postboksadresse);
+        if (!valideringsresultat.formErGyldig) {
+            this.setState({
+                midlertidigAdresseNorge : {
+                    ...this.state.midlertidigAdresseNorge,
+                    postboksadresse: {
+                        value: postboksadresse,
+                        validering: valideringsresultat
+                    }
+                }
+            });
+            return;
+        }
+        this.props.endrePostboksadresse(this.props.person.fødselsnummer, postboksadresse);
     }
 
     render() {

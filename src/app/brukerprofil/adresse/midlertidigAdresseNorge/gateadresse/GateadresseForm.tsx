@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
-import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
+import { PoststedInformasjon, default as PoststedVelger } from '../../common/PoststedVelger';
 import { Gateadresse } from '../../../../../models/personadresse';
 import { formaterTilISO8601Date } from '../../../../../utils/dateUtils';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
