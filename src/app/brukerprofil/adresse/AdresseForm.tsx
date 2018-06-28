@@ -5,7 +5,13 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Matrikkeladresse, Personadresse, Postboksadresse } from '../../../models/personadresse';
+import {
+    Gateadresse,
+    Matrikkeladresse,
+    Personadresse,
+    Postboksadresse,
+    Utlandsadresse
+} from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
@@ -18,6 +24,7 @@ import MidlertidigAdresseNorge, {
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
+import MidlertidigAdresseUtland from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
@@ -37,6 +44,7 @@ export enum Valg {
 
 interface State {
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
+    midlertidigAdresseUtland: Utlandsadresse;
     selectedRadio: Valg;
     formErEndret: boolean;
 }
@@ -60,6 +68,7 @@ class AdresseForm extends React.Component<Props, State> {
         this.initialState = this.initialState.bind(this);
         this.onAdresseValgChange = this.onAdresseValgChange.bind(this);
         this.updateMidlertidigAdresseNorgeInputState = this.updateMidlertidigAdresseNorgeInputState.bind(this);
+        this.onMidlertidigAdresseUtlandInput = this.onMidlertidigAdresseUtlandInput.bind(this);
         this.onFormChanged = this.onFormChanged.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
@@ -71,6 +80,7 @@ class AdresseForm extends React.Component<Props, State> {
         const alternativAdresse = props.person.alternativAdresse ? props.person.alternativAdresse : {};
         return {
             midlertidigAdresseNorge: this.intialMidlertidigAdresseNorgeInput(alternativAdresse),
+            midlertidigAdresseUtland: this.initialMidlertidigAdresseUtland(props.person.alternativAdresse),
             selectedRadio: this.initialRadioValg(),
             formErEndret: false
         };
@@ -97,12 +107,25 @@ class AdresseForm extends React.Component<Props, State> {
         };
     }
 
+    initialMidlertidigAdresseUtland(alternativAdresse: Personadresse | undefined) {
+        if (!alternativAdresse) {
+            return this.initialUtlandsAdresse(undefined);
+        }
+        return this.initialUtlandsAdresse(alternativAdresse.utlandsadresse);
+    }
+
     updateMidlertidigAdresseNorgeInputState(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
         this.setState({
             midlertidigAdresseNorge: {
                 ...this.state.midlertidigAdresseNorge,
                 ...adresse
             }
+        });
+    }
+
+    onMidlertidigAdresseUtlandInput(adresser: Utlandsadresse) {
+        this.setState({
+            midlertidigAdresseUtland: adresser
         });
     }
 
@@ -113,6 +136,20 @@ class AdresseForm extends React.Component<Props, State> {
 
     onAdresseValgChange(valg: Valg) {
         this.setState({selectedRadio: valg});
+    }
+
+    initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): Utlandsadresse {
+        if (!utlandsAdresse) {
+            return {
+                landkode: {kodeRef: '', beskrivelse: ''},
+                adresselinjer: [''],
+                periode: {
+                    fra: '',
+                    til: ''
+                }
+            };
+        }
+        return utlandsAdresse;
     }
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
@@ -214,7 +251,12 @@ class AdresseForm extends React.Component<Props, State> {
                     onAdresseValgChange={this.onAdresseValgChange}
                     checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
                 >
-                    <span>Utenlandsk adresseform</span>
+                    <MidlertidigAdresseUtland
+                        midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
+                        onChange={this.onMidlertidigAdresseUtlandInput}
+                        visFeilmeldinger={false}
+                        land={this.state.midlertidigAdresseUtland.landkode}
+                    />
                 </AdresseValg>
                 <FormKnapperWrapper>
                     <KnappBase

@@ -222,7 +222,7 @@ function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>)
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
     return ({
         hentValutaKodeverk: () => dispatch(valutaKodeverkReducer.hentValutaer()),
-        hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLand())
+        hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLandKodeverk())
     });
 };
 
