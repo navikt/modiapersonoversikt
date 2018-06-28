@@ -61,7 +61,7 @@ interface PersonProps {
 function Navnelinje({person}: PersonProps) {
     const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
-        <Undertittel>
+        <Undertittel tag="h1">
             {hentNavn(person.navn)} ({alder})
         </Undertittel>
     );

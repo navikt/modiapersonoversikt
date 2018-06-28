@@ -3,20 +3,23 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import styled from 'styled-components';
 
 interface Props {
-     children: React.ReactChildren | React.ReactChild | string | string[];
+    children: React.ReactChildren | React.ReactChild | string | string[];
 }
 
 const CustomStyling = styled.span`
-  font-size: 0.8em;
+  .typo-etikett-liten{
+    font-size: 0.7rem;
+    line-height: 1rem;
+  }
 `;
 
 function EtikettMini(props: Props) {
     return (
-        <EtikettLiten>
-            <CustomStyling>
+        <CustomStyling>
+            <EtikettLiten>
                 {props.children}
-            </CustomStyling>
-        </EtikettLiten>
+            </EtikettLiten>
+        </CustomStyling>
     );
 }
 
