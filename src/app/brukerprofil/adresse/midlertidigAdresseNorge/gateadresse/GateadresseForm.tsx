@@ -3,11 +3,10 @@ import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
-import Datovelger from 'nav-datovelger';
 import { default as PoststedVelger, PoststedInformasjon } from '../../common/PoststedVelger';
 import { Gateadresse } from '../../../../../models/personadresse';
-import { formaterTilISO8601Date } from '../../../../../utils/dateUtils';
 import { AdresseFormInput } from '../MidlertidigAdresseNorge';
+import Datovelger, { tilPeriode } from '../../../../../components/forms/Datovelger';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
@@ -21,16 +20,6 @@ const InputLinje = styled.div`
 function onPostinformasjonChange(props: Props) {
     return ({poststed, postnummer}: PoststedInformasjon) => {
         props.onChange({...props.input.value, postnummer, poststed});
-    };
-}
-
-function onGyldigTilChange(props: Props) {
-    return (gyldigTil: Date) => {
-        const periode = {
-            fra: formaterTilISO8601Date(new Date()),
-            til: formaterTilISO8601Date(gyldigTil)
-        };
-        props.onChange({...props.input.value, periode});
     };
 }
 
@@ -86,14 +75,14 @@ function GateadresseForm(props: Props) {
                 onChange={onPostinformasjonChange(props)}
                 feil={validering.felter.postnummer.skjemafeil}
             />
-            <>
-                <label className={'skjemaelement__label'}>Gyldig til</label>
-                <Datovelger
-                    dato={adresseGyldigTil}
-                    id={'gateform-datovelger'}
-                    onChange={onGyldigTilChange(props)}
-                />
-            </>
+            <Datovelger
+                dato={adresseGyldigTil}
+                id={'gateform-datovelger'}
+                onChange={(date: Date) => props.onChange({...gateadresse, periode: tilPeriode(date)})}
+                feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
+            >
+                Gyldig til
+            </Datovelger>
         </>
     );
 }

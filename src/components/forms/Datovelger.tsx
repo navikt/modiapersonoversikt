@@ -1,6 +1,7 @@
 import * as React from 'react';
 import NavDatovelger from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { formaterTilISO8601Date } from '../../utils/dateUtils';
 
 interface Props {
     dato: Date;
@@ -19,6 +20,13 @@ function Feilmelding({feil}: { feil: SkjemaelementFeil | undefined}) {
             <div className={'skjemaelement__feilmelding'}>{feil.feilmelding}</div>
         </div>
     );
+}
+
+export function tilPeriode(gyldigTil: Date) {
+    return {
+        fra: formaterTilISO8601Date(new Date()),
+        til: formaterTilISO8601Date(gyldigTil)
+    };
 }
 
 export default function Datovelger({dato, id, onChange, feil, children}: Props) {

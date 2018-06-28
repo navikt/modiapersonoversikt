@@ -7,7 +7,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { Postboksadresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
 import { AdresseFormInput } from '../MidlertidigAdresseNorge';
-import Datovelger from '../../../../../components/forms/Datovelger';
+import Datovelger, { tilPeriode } from '../../../../../components/forms/Datovelger';
 
 interface Props {
     onChange: (postboksadresse: Postboksadresse) => void;
@@ -21,13 +21,6 @@ const InputLinje = styled.div`
 function onPostinformasjonChange(props: Props) {
     return ({poststed, postnummer}: PoststedInformasjon) => {
         props.onChange({...props.input.value, postnummer, poststed});
-    };
-}
-
-function onGyldigTilChange(props: Props) {
-    return (gyldigTil: Date) => {
-        const periode = {fra: new Date().toISOString(), til: gyldigTil.toISOString()};
-        props.onChange({...props.input.value, periode});
     };
 }
 
@@ -72,7 +65,7 @@ function PostboksadresseForm(props: Props) {
 
             <Datovelger
                 id={'postboksadresse-gyldig-til'}
-                onChange={(dato) => onGyldigTilChange(props)(dato)}
+                onChange={(date: Date) => props.onChange({...postboksadresse, periode: tilPeriode(date)})}
                 dato={gyldigTil}
                 feil={props.input.validering.felter.periode ?
                     props.input.validering.felter.periode.skjemafeil : undefined}
