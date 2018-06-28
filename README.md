@@ -39,9 +39,19 @@ Storybook lar oss spinne opp enkeltkomponenter slik at de kan testes i isolasjon
 npm run storybook
 ```
 
+## Dokumentasjon
+
+Vi bruker Architecture Decision Records (ADR) til å beskrive viktige arkitekturbeslutninger for vår app. Dette sjekkes inn i kildekoden og kan bidra til man i ettertid kan skjønne hvorfor koden har blitt sånn den har blitt. Filosofien bak er dokumentert [her](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).
+
+Dokumentasjonen vår innes i `doc/architecture/decisions`
+
+### Generere dokumentasjon
+
+Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som ADRs. F.eks: https://github.com/npryce/adr-tools
+
 ## Publisere npm-pakke
 
-Modiapersonoversikt kan publiseres om en npm-modul og dras inn i modiabrukerdialog
+Modiapersonoversikt kan publiseres som en npm-modul og dras inn i modiabrukerdialog
 
 ### Førstegangsoppsett for lokal npm publish (publish-local.sh)
 
