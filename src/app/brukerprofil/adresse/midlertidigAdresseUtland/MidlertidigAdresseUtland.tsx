@@ -1,30 +1,29 @@
 import * as React from 'react';
-import { Utlandsadresse } from '../../../models/personadresse';
+import { Utlandsadresse } from '../../../../models/personadresse';
 import Datovelger from 'nav-datovelger';
 import Input from 'nav-frontend-skjema/lib/input';
 import styled from 'styled-components';
 import { ChangeEvent } from 'react';
-import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
+import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
-import { hentLand } from '../../../redux/kodeverk/landKodeverk';
-import { AppState, RestReducer } from '../../../redux/reducer';
-import { InputState } from '../formUtils';
-import LandContainer from './LandContainer';
+import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
+import { AppState, RestReducer } from '../../../../redux/reducer';
+import LandContainer from '../LandContainer';
 
 interface OwnProps {
     onChange: (adresser: Utlandsadresse) => void;
     midlertidigAdresseUtland: Utlandsadresse;
     visFeilmeldinger: boolean;
+    land?: Kodeverk;
 }
 
 interface DispatchProps {
-    hentLand: () => void;
+    hentLandKodeverk: () => void;
 }
 
 interface StateProps {
     landReducer: RestReducer<KodeverkResponse>;
-    land: InputState;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
@@ -70,7 +69,6 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
         return (
             <>
                 <LandContainer
-                    state={this.props.land}
                     landChanged={input => onLandChanged(input, this.props)}
                     midlertidigAdresseUtland={this.props.midlertidigAdresseUtland}
                 />
@@ -135,14 +133,13 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        landReducer: state.landReducer,
-        land: {input: '', feilmelding: ''}
+        landReducer: state.landReducer
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentLand: () => dispatch(hentLand())
+        hentLandKodeverk: () => dispatch(hentLandKodeverk())
     };
 }
 

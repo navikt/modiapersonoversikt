@@ -24,7 +24,7 @@ import MidlertidigAdresseNorge, {
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import MidlertidigAdresseUtland from './MidlertidigAdresseUtland';
+import MidlertidigAdresseUtland from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 
@@ -290,6 +290,7 @@ class AdresseForm extends React.Component<Props, State> {
                         midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
                         onChange={this.onMidlertidigAdresseUtlandInput}
                         visFeilmeldinger={false}
+                        land={this.state.midlertidigAdresseUtland.landkode}
                     />
                 </AdresseValg>
                 <FormKnapperWrapper>

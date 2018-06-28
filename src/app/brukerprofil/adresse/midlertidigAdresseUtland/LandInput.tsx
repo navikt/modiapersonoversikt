@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { Utlandsadresse } from '../../../models/personadresse';
+import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
+import { Utlandsadresse } from '../../../../models/personadresse';
 
 const LandWrapper = styled.div`
   margin-right: 2em;

@@ -4,10 +4,9 @@ import { AppState, RestReducer } from '../../../redux/reducer';
 import { connect, Dispatch } from 'react-redux';
 import * as React from 'react';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { hentLand } from '../../../redux/kodeverk/landKodeverk';
+import { hentLandKodeverk } from '../../../redux/kodeverk/landKodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
-import { Land } from './LandInput';
-import { InputState } from '../formUtils';
+import { Land } from './midlertidigAdresseUtland/LandInput';
 import { Utlandsadresse } from '../../../models/personadresse';
 
 interface DispatchProps {
@@ -21,7 +20,6 @@ interface StateProps {
 interface OwnProps {
     midlertidigAdresseUtland: Utlandsadresse;
     landChanged: (input: Kodeverk) => void;
-    state: InputState;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
@@ -62,7 +60,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentLand: () => dispatch(hentLand())
+        hentLand: () => dispatch(hentLandKodeverk())
     };
 }
 
