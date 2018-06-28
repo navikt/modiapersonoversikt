@@ -5,11 +5,12 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { STATUS } from '../redux/utils';
 import { RestReducer } from '../redux/reducer';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
+import { ReactNode } from 'react';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
 interface InnholdslasterProps {
-    children: React.ReactChildren | React.ReactChild | JSX.Element[];
+    children: ReactNode;
     avhengigheter: RestReducer<object>[];
     spinnerSize?: SpinnerSize;
     returnOnPending?: React.ReactChildren | React.ReactChild;

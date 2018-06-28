@@ -5,7 +5,7 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { ReactNode } from 'react';
 
 interface ElementProps {
-    children: string | JSX.Element | JSX.Element[] | ReactNode;
+    children: ReactNode;
     beskrivelse?: string;
     ikon?: JSX.Element;
 }

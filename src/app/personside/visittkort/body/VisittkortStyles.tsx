@@ -27,7 +27,7 @@ export const Kolonne = styled.div`
 `;
 
 interface Props {
-    children: string | JSX.Element | JSX.Element[] | ReactNode;
+    children: ReactNode;
     tittel: string;
     ikon?: JSX.Element;
 }
