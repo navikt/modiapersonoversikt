@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Person } from '../../../../models/person/person';
-import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
+import { VisittkortGruppe, Kolonne, VisittkortBodyDiv } from './VisittkortStyles';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
