@@ -9,6 +9,8 @@ import MatrikkeladresseForm from './matrikkeladresse/MatrikkeladresseForm';
 import PostboksadresseForm from './PostboksadresseForm';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { formaterTilISO8601Date } from '../../../../utils/dateUtils';
+import { getValidGateadresseForm } from './gateadresse/gateadresseValidator';
+import { getValidMatrikkeladresseForm } from './matrikkeladresse/matrikkeladresseValidator';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
@@ -17,11 +19,11 @@ export enum MidlertidigeAdresserNorgeInputValg {
 export interface MidlertidigeAdresserNorgeInput {
     gateadresse: {
         input: Gateadresse;
-        validering: ValideringsResultat<Gateadresse> | null;
+        validering: ValideringsResultat<Gateadresse>;
     };
     matrikkeladresse: {
         input: Matrikkeladresse;
-        validering: ValideringsResultat<Matrikkeladresse> | null;
+        validering: ValideringsResultat<Matrikkeladresse>;
     };
     postboksadresse: Postboksadresse;
     valg: MidlertidigeAdresserNorgeInputValg;
@@ -63,7 +65,7 @@ export function getGateadresseInput(gateadresse?: Gateadresse) {
 
     return {
         input: gateadresseInput,
-        validering: null
+        validering: getValidGateadresseForm(gateadresseInput)
     };
 }
 
@@ -80,7 +82,7 @@ export function getMatrikkeladresseInput(matrikkeladresse?: Matrikkeladresse) {
     }
     return {
         input: adresseInput,
-        validering: null
+        validering: getValidMatrikkeladresseForm(adresseInput)
     };
 }
 
@@ -104,7 +106,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
             ...this.props.midlertidigAdresseNorge,
             gateadresse: {
                 input: gateadresse,
-                validering: null
+                validering: getValidGateadresseForm(gateadresse)
             }
         });
     }
@@ -114,7 +116,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
             ...this.props.midlertidigAdresseNorge,
             matrikkeladresse: {
                 input: matrikkeladresse,
-                validering: null
+                validering: getValidMatrikkeladresseForm(matrikkeladresse)
             }
         });
     }

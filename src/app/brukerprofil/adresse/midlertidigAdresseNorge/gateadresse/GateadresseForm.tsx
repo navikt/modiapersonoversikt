@@ -8,12 +8,11 @@ import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger
 import { Gateadresse } from '../../../../../models/personadresse';
 import { formaterTilISO8601Date } from '../../../../../utils/dateUtils';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
-import { getSkjemafeilFraValidering } from '../../../formUtils';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
     gateadresse: Gateadresse;
-    validering: ValideringsResultat<Gateadresse> | null;
+    validering: ValideringsResultat<Gateadresse>;
 }
 
 const InputLinje = styled.div`
@@ -57,8 +56,7 @@ function GateadresseForm(props: Props) {
                         defaultValue={props.gateadresse.gatenavn}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.onChange({...props.gateadresse, gatenavn: event.target.value})}
-                        feil={getSkjemafeilFraValidering(props.validering ?
-                            props.validering.felter.gatenavn : undefined)}
+                        feil={props.validering.felter.gatenavn.skjemafeil}
                     />
                 </div>
                 <Input
@@ -86,8 +84,7 @@ function GateadresseForm(props: Props) {
             <PoststedVelger
                 poststedInformasjon={{postnummer, poststed}}
                 onChange={onPostinformasjonChange(props)}
-                feil={getSkjemafeilFraValidering(props.validering ?
-                    props.validering.felter.postnummer : undefined)}
+                feil={props.validering.felter.postnummer.skjemafeil}
             />
             <>
                 <label className={'skjemaelement__label'}>Gyldig til</label>

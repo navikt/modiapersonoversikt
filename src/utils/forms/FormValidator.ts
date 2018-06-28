@@ -1,3 +1,5 @@
+import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
+
 export interface Valideringsregel<T> {
     felt: keyof T;
     feilmelding: string;
@@ -11,7 +13,8 @@ export interface ValideringsResultat<T> {
 
 export interface FeltValidering {
     erGyldig: boolean;
-    feilmelding: string;
+    feilmeldinger: string[];
+    skjemafeil: SkjemaelementFeil | undefined;
 }
 
 type FormValidering<T> = {
@@ -31,61 +34,71 @@ export default class FormValidator<T> {
     }
 
     private validate(obj: T): ValideringsResultat<T> {
-        let result = {} as FormValidering<T>;
         let formErGyldig = true;
+        let result = this.settAlleFelterTilGyldig(obj);
+
+        this.regler.forEach(regel => {
+
+            // Hvis et optional-felt i interfacet er fraværende
+            if (!result[regel.felt]) {
+                result[regel.felt] = {
+                    erGyldig: true,
+                    feilmeldinger: [],
+                    skjemafeil: undefined
+                };
+            }
+
+            const validering = regel.validator(obj);
+            if (!validering) {
+                result[regel.felt].erGyldig = false;
+                result[regel.felt].feilmeldinger.push(regel.feilmelding);
+                formErGyldig = false;
+            }
+        });
+
+        const feltValideringer = this.sammenslåFeilmeldinger(result);
+
+        return {
+            formErGyldig: formErGyldig,
+            felter: feltValideringer
+        };
+    }
+
+    private settAlleFelterTilGyldig(obj: T) {
+        let result = {} as FormValidering<T>;
+
         for (const key in obj) {
             if (!obj.hasOwnProperty(key)) {
                 continue;
             }
-
-            const skjemafeil = this.getSkjemafeil(obj, key);
-
-            const feilmelding = skjemafeil.map(validering => validering.feilmelding).join(', ');
-            const feltHarSkjemafeil = skjemafeil.length !== 0;
-
-            if (feltHarSkjemafeil) {
-                formErGyldig = false;
-            }
-
             result[key] = {
-                erGyldig: !feltHarSkjemafeil,
-                feilmelding
+                erGyldig: true,
+                feilmeldinger: [],
+                skjemafeil: undefined
             };
+        }
+        return result;
+    }
+
+    private sammenslåFeilmeldinger(felt: FormValidering<T>) {
+        for (const key in felt) {
+            if (!felt.hasOwnProperty(key)) {
+                continue;
+            }
+            const skjemafeil = this.getSkjemafeil(felt[key].feilmeldinger);
+
+            felt[key].skjemafeil = skjemafeil;
+        }
+        return felt;
+    }
+
+    private getSkjemafeil(feilmeldinger: string[]) {
+        if (feilmeldinger.length === 0 ) {
+            return undefined;
         }
 
         return {
-            formErGyldig: formErGyldig,
-            felter: result
+            feilmelding: feilmeldinger.join('. ')
         };
     }
-
-    private getSkjemafeil(obj: T, key: string) {
-        return this.regler
-            .filter(this.erSammeFeltPåObjekt(key))
-            .map(this.validerObjekt(obj))
-            .filter(this.kunInvalideValideringer);
-    }
-
-    private erSammeFeltPåObjekt(key: string) {
-        return (regel: Valideringsregel<T>) => {
-            return regel.felt.toString() === key;
-        };
-    }
-
-    private validerObjekt(obj: T) {
-        return (regel: Valideringsregel<T>) => this.validerRegel(regel, obj);
-    }
-
-    private validerRegel(regel: Valideringsregel<T>, obj: T): FeltValidering {
-        const valideringsresultat = regel.validator(obj);
-        return {
-            erGyldig: valideringsresultat,
-            feilmelding: valideringsresultat ? '' : regel.feilmelding
-        };
-    }
-
-    private kunInvalideValideringer(validering: FeltValidering) {
-        return !validering.erGyldig;
-    }
-
 }

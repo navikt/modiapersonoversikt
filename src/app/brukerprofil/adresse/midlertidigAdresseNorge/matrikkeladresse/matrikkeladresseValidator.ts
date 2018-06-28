@@ -11,3 +11,7 @@ const postnummerRegel = lagPostnummerRegel('postnummer', matrikkeladresse => mat
 export function validerMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
     return new FormValidator<Matrikkeladresse>([eiendomsnavnRegel, postnummerRegel]).valider(matrikkeladresse);
 }
+
+export function getValidMatrikkeladresseForm(matrikkeladresse: Matrikkeladresse) {
+    return new FormValidator<Matrikkeladresse>([]).valider(matrikkeladresse);
+}
