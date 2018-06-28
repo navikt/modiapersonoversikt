@@ -41,3 +41,30 @@ test('Validerer gyldig gateadresse', () => {
     expect(validering.felter.gatenavn.erGyldig).toEqual(true);
     expect(validering.formErGyldig).toEqual(true);
 });
+
+test('Validerer felter som er satt til optional i modellen men har regler knyttet til seg', () => {
+    const testAdresse: Gateadresse = {
+        husnummer: 'test',
+        gatenavn: 'Rådhusgata',
+        poststed: '',
+        postnummer: ''
+    };
+
+    const bolignummerRegel: Valideringsregel<Gateadresse> = {
+        felt: 'bolignummer',
+        feilmelding: 'Bolignummer kan ikke være tom',
+        validator: (gateadresse: Gateadresse) => erIkkeTomStreng(gateadresse.bolignummer ?
+            gateadresse.bolignummer : '')
+    };
+
+    const gateadresseValidator = new FormValidator<Gateadresse>([bolignummerRegel]);
+    const validering = gateadresseValidator.valider(testAdresse);
+
+    const bolignummer = validering.felter.bolignummer;
+    if (!bolignummer) {
+        expect(true).toBe(false);
+    } else {
+        expect(bolignummer.erGyldig).toEqual(false);
+    }
+
+});
