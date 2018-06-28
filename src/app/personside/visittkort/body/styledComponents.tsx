@@ -19,7 +19,7 @@ export const Kolonne = styled.div`
 
 const GruppeDiv = styled.div`
   > *:not(:last-child):not(:first-child) {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   > *:first-child{
     margin-bottom: 10px;
