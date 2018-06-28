@@ -26,9 +26,6 @@ export const Kolonne = styled.div`
   }
 `;
 
-const GruppeDiv = styled.div`
-`;
-
 interface Props {
     children: string | JSX.Element | JSX.Element[] | ReactNode;
     tittel: string;
@@ -38,9 +35,9 @@ interface Props {
 export function VisittkortGruppe(props: Props) {
     const tittel = <Element tag="h2">{props.tittel}</Element>;
     return (
-        <GruppeDiv>
+        <div>
             <TittelOgIkon tittel={tittel} ikon={props.ikon}/>
             {props.children}
-        </GruppeDiv>
+        </div>
     );
 }
