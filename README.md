@@ -47,7 +47,7 @@ Dokumentasjonen vår innes i `doc/architecture/decisions`
 
 ### Generere dokumentasjon
 
-Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som ADRs. F.eks: https://github.com/npryce/adr-tools
+Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som ADRs. F.eks: [adr-tools](https://github.com/npryce/adr-tools)
 
 ## Publisere npm-pakke
 
