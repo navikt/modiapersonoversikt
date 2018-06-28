@@ -9,7 +9,6 @@ import { Gateadresse, Matrikkeladresse, Personadresse, Postboksadresse } from '.
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
-import RequestTilbakemelding from '../RequestTilbakemelding';
 import MidlertidigAdresseNorge, {
     getInitialGateadresseInput,
     getInitialMatrikkeladresseInput,
@@ -22,20 +21,7 @@ import { AdresseValg } from './AdresseValg';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
-
-function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
-    if (!props.formErEndret) {
-        return null;
-    }
-
-    return (
-        <RequestTilbakemelding
-            status={props.status}
-            onSuccess={'Adressen ble endret'}
-            onError={'Det skjedde en feil ved endring av adresse'}
-        />
-    );
-}
+import SubmitFeedback from './common/SubmitFeedback';
 
 interface Props {
     person: Person;
@@ -73,14 +59,15 @@ class AdresseForm extends React.Component<Props, State> {
         super(props);
         this.initialState = this.initialState.bind(this);
         this.onAdresseValgChange = this.onAdresseValgChange.bind(this);
-        this.onMidlertidigAdresseNorgeInput = this.onMidlertidigAdresseNorgeInput.bind(this);
+        this.updateMidlertidigAdresseNorgeInputState = this.updateMidlertidigAdresseNorgeInputState.bind(this);
+        this.onFormChanged = this.onFormChanged.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
 
         this.state = this.initialState(props);
     }
 
-    initialState(props: Props) {
+    initialState(props: Props): State {
         const alternativAdresse = props.person.alternativAdresse ? props.person.alternativAdresse : {};
         return {
             midlertidigAdresseNorge: this.intialMidlertidigAdresseNorgeInput(alternativAdresse),
@@ -101,7 +88,7 @@ class AdresseForm extends React.Component<Props, State> {
         }
     }
 
-    intialMidlertidigAdresseNorgeInput(alternativAdresse: Personadresse) {
+    intialMidlertidigAdresseNorgeInput(alternativAdresse: Personadresse): MidlertidigeAdresserNorgeInput {
         return {
             gateadresse: getInitialGateadresseInput(alternativAdresse.gateadresse),
             matrikkeladresse: getInitialMatrikkeladresseInput(alternativAdresse.matrikkeladresse),
@@ -110,14 +97,18 @@ class AdresseForm extends React.Component<Props, State> {
         };
     }
 
-    onMidlertidigAdresseNorgeInput(adresser: MidlertidigeAdresserNorgeInput) {
+    updateMidlertidigAdresseNorgeInputState(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
         this.setState({
             midlertidigAdresseNorge: {
-                ...adresser,
-                gateadresseValidering: undefined
-            },
-            formErEndret: true
+                ...this.state.midlertidigAdresseNorge,
+                ...adresse
+            }
         });
+    }
+
+    onFormChanged(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
+        this.updateMidlertidigAdresseNorgeInputState(adresse);
+        this.setState({formErEndret: true});
     }
 
     onAdresseValgChange(valg: Valg) {
@@ -132,6 +123,7 @@ class AdresseForm extends React.Component<Props, State> {
     onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+            this.setState({formErEndret: false});
             this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
         } else {
             console.error('Not implemented');
@@ -140,9 +132,9 @@ class AdresseForm extends React.Component<Props, State> {
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
         if (input.valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE) {
-            this.submitGateadresse(input.gateadresse.input);
+            this.submitGateadresse(input.gateadresse.value);
         } else if (input.valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE) {
-            this.submitMatrikkeladresse(input.matrikkeladresse.input);
+            this.submitMatrikkeladresse(input.matrikkeladresse.value);
         } else if (input.valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE) {
             this.submitPostboksadresse(input.postboksadresse.value);
         } else {
@@ -151,15 +143,12 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     submitGateadresse(gateadresse: Gateadresse) {
-        const valideringsresultat = validerGateadresse(gateadresse);
-        if (!valideringsresultat.formErGyldig) {
-            this.setState({
-                midlertidigAdresseNorge: {
-                    ...this.state.midlertidigAdresseNorge,
-                    gateadresse: {
-                        input: gateadresse,
-                        validering: valideringsresultat
-                    }
+        const validering = validerGateadresse(gateadresse);
+        if (!validering.formErGyldig) {
+            this.updateMidlertidigAdresseNorgeInputState({
+                gateadresse: {
+                    value: gateadresse,
+                    validering
                 }
             });
             return;
@@ -169,15 +158,12 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     submitMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
-        const valideringsresultat = validerMatrikkeladresse(matrikkeladresse);
-        if (!valideringsresultat.formErGyldig) {
-            this.setState({
-                midlertidigAdresseNorge: {
-                    ...this.state.midlertidigAdresseNorge,
-                    matrikkeladresse: {
-                        input: matrikkeladresse,
-                        validering: valideringsresultat
-                    }
+        const validering = validerMatrikkeladresse(matrikkeladresse);
+        if (!validering.formErGyldig) {
+            this.updateMidlertidigAdresseNorgeInputState({
+                matrikkeladresse: {
+                    value: matrikkeladresse,
+                    validering
                 }
             });
             return;
@@ -187,15 +173,12 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     submitPostboksadresse(postboksadresse: Postboksadresse) {
-        const valideringsresultat = validerPostboksadresse(postboksadresse);
-        if (!valideringsresultat.formErGyldig) {
-            this.setState({
-                midlertidigAdresseNorge : {
-                    ...this.state.midlertidigAdresseNorge,
-                    postboksadresse: {
-                        value: postboksadresse,
-                        validering: valideringsresultat
-                    }
+        const validering = validerPostboksadresse(postboksadresse);
+        if (!validering.formErGyldig) {
+            this.updateMidlertidigAdresseNorgeInputState({
+                postboksadresse: {
+                    value: postboksadresse,
+                    validering
                 }
             });
             return;
@@ -222,7 +205,7 @@ class AdresseForm extends React.Component<Props, State> {
                 >
                     <MidlertidigAdresseNorge
                         midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
-                        onChange={this.onMidlertidigAdresseNorgeInput}
+                        onChange={this.onFormChanged}
                     />
                 </AdresseValg>
                 <AdresseValg
@@ -250,7 +233,7 @@ class AdresseForm extends React.Component<Props, State> {
                         Endre adresse
                     </KnappBase>
                 </FormKnapperWrapper>
-                <Tilbakemelding formErEndret={this.state.formErEndret} status={this.props.endreAdresseReducer.status}/>
+                <SubmitFeedback visFeedback={!this.state.formErEndret} status={this.props.endreAdresseReducer.status}/>
             </form>
         );
     }

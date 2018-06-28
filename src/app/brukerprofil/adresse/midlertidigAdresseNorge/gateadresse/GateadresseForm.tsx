@@ -4,15 +4,14 @@ import styled from 'styled-components';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Datovelger from 'nav-datovelger';
-import { PoststedInformasjon, default as PoststedVelger } from '../../common/PoststedVelger';
+import { default as PoststedVelger, PoststedInformasjon } from '../../common/PoststedVelger';
 import { Gateadresse } from '../../../../../models/personadresse';
 import { formaterTilISO8601Date } from '../../../../../utils/dateUtils';
-import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
+import { AdresseFormInput } from '../MidlertidigAdresseNorge';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
-    gateadresse: Gateadresse;
-    validering: ValideringsResultat<Gateadresse>;
+    input: AdresseFormInput<Gateadresse>;
 }
 
 const InputLinje = styled.div`
@@ -21,7 +20,7 @@ const InputLinje = styled.div`
 
 function onPostinformasjonChange(props: Props) {
     return ({poststed, postnummer}: PoststedInformasjon) => {
-        props.onChange({...props.gateadresse, postnummer, poststed});
+        props.onChange({...props.input.value, postnummer, poststed});
     };
 }
 
@@ -31,65 +30,66 @@ function onGyldigTilChange(props: Props) {
             fra: formaterTilISO8601Date(new Date()),
             til: formaterTilISO8601Date(gyldigTil)
         };
-        props.onChange({...props.gateadresse, periode});
+        props.onChange({...props.input.value, periode});
     };
 }
 
 function GateadresseForm(props: Props) {
-    const {postnummer, poststed} = props.gateadresse;
-    const gyldigTil = props.gateadresse.periode ? new Date(props.gateadresse.periode.til) : new Date();
+    const gateadresse = props.input.value;
+    const validering = props.input.validering;
+    const adresseGyldigTil = gateadresse.periode ? new Date(gateadresse.periode.til) : new Date();
 
     return (
         <>
             <Input
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={props.gateadresse.tilleggsadresse}
+                defaultValue={gateadresse.tilleggsadresse}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...props.gateadresse, tilleggsadresse: event.target.value})}
+                    props.onChange({...gateadresse, tilleggsadresse: event.target.value})}
             />
             <InputLinje>
                 <div style={{flex: 4, marginRight: 15}} >
                     <Input
                         bredde={'XXL'}
                         label="Gateadresse"
-                        defaultValue={props.gateadresse.gatenavn}
+                        defaultValue={gateadresse.gatenavn}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.onChange({...props.gateadresse, gatenavn: event.target.value})}
-                        feil={props.validering.felter.gatenavn.skjemafeil}
+                            props.onChange({...gateadresse, gatenavn: event.target.value})}
+                        feil={validering.felter.gatenavn.skjemafeil}
                     />
                 </div>
                 <Input
                     bredde={'S'}
                     label="Husnummer"
-                    defaultValue={props.gateadresse.husnummer}
+                    defaultValue={gateadresse.husnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        props.onChange({...props.gateadresse, husnummer: event.target.value})}
+                        props.onChange({...gateadresse, husnummer: event.target.value})}
                 />
                 <Input
                     bredde={'S'}
                     label="Husbokstav"
-                    defaultValue={props.gateadresse.husbokstav}
+                    defaultValue={gateadresse.husbokstav}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        props.onChange({...props.gateadresse, husbokstav: event.target.value})}
+                        props.onChange({...gateadresse, husbokstav: event.target.value})}
                 />
                 <Input
                     bredde={'S'}
                     label="Bolignummer"
-                    defaultValue={props.gateadresse.bolignummer}
+                    defaultValue={gateadresse.bolignummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        props.onChange({...props.gateadresse, bolignummer: event.target.value})}
+                        props.onChange({...gateadresse, bolignummer: event.target.value})}
                 />
             </InputLinje>
             <PoststedVelger
-                poststedInformasjon={{postnummer, poststed}}
+                poststedInformasjon={{postnummer: gateadresse.postnummer, poststed: gateadresse.poststed}}
                 onChange={onPostinformasjonChange(props)}
-                feil={props.validering.felter.postnummer.skjemafeil}
+                feil={validering.felter.postnummer.skjemafeil}
             />
             <>
                 <label className={'skjemaelement__label'}>Gyldig til</label>
                 <Datovelger
-                    dato={gyldigTil}
+                    dato={adresseGyldigTil}
                     id={'gateform-datovelger'}
                     onChange={onGyldigTilChange(props)}
                 />

@@ -23,20 +23,14 @@ export interface AdresseFormInput<T> {
 }
 
 export interface MidlertidigeAdresserNorgeInput {
-    gateadresse: {
-        input: Gateadresse;
-        validering: ValideringsResultat<Gateadresse>;
-    };
-    matrikkeladresse: {
-        input: Matrikkeladresse;
-        validering: ValideringsResultat<Matrikkeladresse>;
-    };
+    gateadresse: AdresseFormInput<Gateadresse>;
+    matrikkeladresse: AdresseFormInput<Matrikkeladresse>;
     postboksadresse: AdresseFormInput<Postboksadresse>;
     valg: MidlertidigeAdresserNorgeInputValg;
 }
 
 interface Props {
-    onChange: (adresser: MidlertidigeAdresserNorgeInput) => void;
+    onChange: (adresse: Partial<MidlertidigeAdresserNorgeInput>) => void;
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
 }
 
@@ -70,7 +64,7 @@ export function getInitialGateadresseInput(gateadresse?: Gateadresse) {
     }
 
     return {
-        input: gateadresseInput,
+        value: gateadresseInput,
         validering: getValidGateadresseForm(gateadresseInput)
     };
 }
@@ -91,7 +85,7 @@ export function getInitialMatrikkeladresseInput(matrikkeladresse?: Matrikkeladre
         adresseInput = matrikkeladresse;
     }
     return {
-        input: adresseInput,
+        value: adresseInput,
         validering: getValidMatrikkeladresseForm(adresseInput)
     };
 }
@@ -122,17 +116,13 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
 
     onAdresseTypeChange(event: ChangeEvent<HTMLSelectElement>) {
         const valg = getValgtAdressetype(event.target.value);
-        this.props.onChange({
-            ...this.props.midlertidigAdresseNorge,
-            valg
-        });
+        this.props.onChange({valg});
     }
 
     onGateadresseInputChange(gateadresse: Gateadresse ) {
         this.props.onChange({
-            ...this.props.midlertidigAdresseNorge,
             gateadresse: {
-                input: gateadresse,
+                value: gateadresse,
                 validering: getValidGateadresseForm(gateadresse)
             }
         });
@@ -140,9 +130,8 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
 
     onMatrikkeladresseInputChange(matrikkeladresse: Matrikkeladresse) {
         this.props.onChange({
-            ...this.props.midlertidigAdresseNorge,
             matrikkeladresse: {
-                input: matrikkeladresse,
+                value: matrikkeladresse,
                 validering: getValidMatrikkeladresseForm(matrikkeladresse)
             }
         });
@@ -150,7 +139,6 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
 
     onPostboksadresseInputChange(postboksadresse: Postboksadresse) {
         this.props.onChange({
-            ...this.props.midlertidigAdresseNorge,
             postboksadresse : {
                 value: postboksadresse,
                 validering: getValidPostboksadresseForm(postboksadresse)
@@ -189,15 +177,16 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                         Postboksadresse
                     </option>
                 </Select>
-                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE && <GateadresseForm
+                {valg === MidlertidigeAdresserNorgeInputValg.GATEADRESSE &&
+                <GateadresseForm
                     onChange={(gateadresseInput: Gateadresse) => this.onGateadresseInputChange(gateadresseInput)}
-                    gateadresse={gateadresse.input}
-                    validering={this.props.midlertidigAdresseNorge.gateadresse.validering}
+                    input={gateadresse}
                 />}
-                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE && <MatrikkeladresseForm
+                {valg === MidlertidigeAdresserNorgeInputValg.MATRIKKELADRESSE &&
+                <MatrikkeladresseForm
                     onChange={(matrikkeladresseInput: Matrikkeladresse) =>
                         this.onMatrikkeladresseInputChange(matrikkeladresseInput)}
-                    matrikkeladresse={matrikkeladresse.input}
+                    matrikkeladresse={matrikkeladresse.value}
                     validering={matrikkeladresse.validering}
                 />}
                 {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
