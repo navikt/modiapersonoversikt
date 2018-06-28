@@ -29,7 +29,11 @@ export interface EndreMatrikkeladresseRequest {
 }
 
 interface EndrePostboksadresseRequest {
-
+    postboksnummer: string;
+    postnummer: string;
+    tilleggsadresse?: string;
+    postboksanlegg?: string;
+    gyldigTil: string;
 }
 
 function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest): Promise<{}> {
