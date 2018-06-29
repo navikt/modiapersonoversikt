@@ -9,8 +9,12 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
 import { STATUS } from '../../../redux/utils';
 import AdresseForm from './AdresseForm';
-import { endreMatrikkeladresse, endreNorskGateadresse } from '../../../redux/brukerprofil/endreAdresseReducer';
-import { Gateadresse, Matrikkeladresse } from '../../../models/personadresse';
+import {
+    endreMatrikkeladresse,
+    endreNorskGateadresse,
+    endrePostboksadrese
+} from '../../../redux/brukerprofil/endreAdresseReducer';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -21,6 +25,7 @@ interface DispatchProps {
     hentPostnummerKodeverk: () => void;
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
+    endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
 }
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
@@ -38,6 +43,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
                     person={this.props.person}
                     endreNorskGateadresse={this.props.endreNorskGateadresse}
                     endreMatrikkeladresse={this.props.endreMatrikkeladresse}
+                    endrePostboksadresse={this.props.endrePostboksadresse}
                     endreAdresseReducer={this.props.endreAdresseReducer}
                 />
             </Innholdslaster>
@@ -58,7 +64,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>
             dispatch(endreNorskGateadresse(fødselsnummer, gateadresse)),
         endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) =>
-            dispatch(endreMatrikkeladresse(fødselsnummer, matrikkeladresse))
+            dispatch(endreMatrikkeladresse(fødselsnummer, matrikkeladresse)),
+        endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) =>
+            dispatch(endrePostboksadrese(fødselsnummer, postboksadresse))
     };
 }
 

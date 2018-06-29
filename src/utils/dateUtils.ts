@@ -7,3 +7,12 @@ export function formaterDato(rawDate: string): string {
 export function formaterTilISO8601Date(date: Date) {
     return moment(date).format('YYYY-MM-DD');
 }
+
+export function isValidDate(streng: string) {
+    const timestamp = Date.parse(streng);
+    return !isNaN(timestamp);
+}
+
+export function erImorgenEllerSenere(date: Date) {
+    return moment(date).isAfter(new Date(), 'day');
+}

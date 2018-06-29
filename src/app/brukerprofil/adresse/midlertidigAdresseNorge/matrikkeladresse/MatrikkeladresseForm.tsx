@@ -2,11 +2,11 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 
 import Input from 'nav-frontend-skjema/lib/input';
-import Datovelger from 'nav-datovelger';
 
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
+import { default as Datovelger, tilPeriode } from '../../../../../components/forms/Datovelger';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;
@@ -17,13 +17,6 @@ interface Props {
 function onPostinformasjonChange(props: Props) {
     return ({poststed, postnummer}: PoststedInformasjon) => {
         props.onChange({...props.matrikkeladresse, postnummer, poststed});
-    };
-}
-
-function onGyldigTilChange(props: Props) {
-    return (gyldigTil: Date) => {
-        const periode = { fra: new Date().toISOString(), til: gyldigTil.toISOString()};
-        props.onChange({...props.matrikkeladresse, periode});
     };
 }
 
@@ -50,14 +43,19 @@ function MatrikkeladresseForm(props: Props) {
                 feil={validering.felter.eiendomsnavn ? validering.felter.eiendomsnavn.skjemafeil : undefined}
 
             />
-            <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-
-            <label className={'skjemaelement__label'}>Gyldig til</label>
-            <Datovelger
-                dato={gyldigTil}
-                id={'matrikkeladresse-datovelger'}
-                onChange={onGyldigTilChange(props)}
+            <PoststedVelger
+                poststedInformasjon={{postnummer, poststed}}
+                onChange={onPostinformasjonChange(props)}
+                feil={props.validering.felter.postnummer.skjemafeil}
             />
+            <Datovelger
+                id={'postboksadresse-gyldig-til'}
+                onChange={(date: Date) => props.onChange({...matrikkeladresse, periode: tilPeriode(date)})}
+                dato={gyldigTil}
+                feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
+            >
+                Gyldig til
+            </Datovelger>
         </>
     );
 }

@@ -1,5 +1,6 @@
 import { Valideringsregel } from './FormValidator';
 import { erIkkeTomStreng, erTall } from '../string-utils';
+import { erImorgenEllerSenere, isValidDate } from '../dateUtils';
 
 export function lagPostnummerRegel<T>(key: keyof T, getPostnummer: (t: T) => string ): Valideringsregel<T>  {
     return {
@@ -15,5 +16,21 @@ export function lagErIkkeTomtFeltRegel<T>(key: keyof T, getFelt: (t: T) => strin
         felt: key,
         feilmelding: feilmelding,
         validator: (obj: T) => erIkkeTomStreng(getFelt(obj))
+    };
+}
+
+export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
+    return {
+        felt: key,
+        feilmelding: 'Ugyldig dato',
+        validator: (obj: T) => isValidDate(getGyldigTil(obj))
+    };
+}
+
+export function datoErIfremtidenValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
+    return {
+        felt: key,
+        feilmelding: 'Dato må være etter idag',
+        validator: (obj: T) => isValidDate(getGyldigTil(obj)) && erImorgenEllerSenere(new Date(getGyldigTil(obj)))
     };
 }
