@@ -35,6 +35,7 @@ interface Props {
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
+    slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
@@ -157,14 +158,32 @@ class AdresseForm extends React.Component<Props, State> {
         event.preventDefault();
     }
 
+    kanSletteMidlertidigeAdresser() {
+        if (!(this.state.selectedRadio === Valg.FOLKEREGISTRERT)) {
+            return false;
+        }
+
+        if (this.props.person.alternativAdresse) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        this.setState({formErEndret: false});
         if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
-            this.setState({formErEndret: false});
             this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
+        } else if (this.state.selectedRadio === Valg.FOLKEREGISTRERT) {
+            this.submitSlettMidlertidigeAdresser();
         } else {
             console.error('Not implemented');
         }
+    }
+
+    submitSlettMidlertidigeAdresser() {
+        this.props.slettMidlertidigeAdresser(this.props.person.fødselsnummer);
     }
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
@@ -270,7 +289,7 @@ class AdresseForm extends React.Component<Props, State> {
                         type="hoved"
                         spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
                         autoDisableVedSpinner={true}
-                        disabled={!this.state.formErEndret}
+                        disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                     >
                         Endre adresse
                     </KnappBase>
