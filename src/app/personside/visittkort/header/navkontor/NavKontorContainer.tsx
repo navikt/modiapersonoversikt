@@ -36,7 +36,7 @@ const NavKontorDescriptionList = styled.dl`
   }
   dt:after {
     content: '/';
-    margin: 0 0.5em;
+    margin: 0 0.2em;
   }
   dd {
     display: flex;

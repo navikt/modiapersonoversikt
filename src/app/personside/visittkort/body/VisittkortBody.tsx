@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Person } from '../../../../models/person/person';
-import { InfoGruppe, Kolonne, VisittkortBodyDiv } from './styledComponents';
+import { VisittkortGruppe, Kolonne, VisittkortBodyDiv } from './VisittkortStyles';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
@@ -18,26 +18,46 @@ interface VisittkortBodyProps {
     person: Person;
 }
 
-function NavKontorSeksjon({person}: {person: Person}) {
+const LenkeEndreBrukerprofil = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 0.9em;
+`;
+
+function LenkeBrukerprofil({ person }: { person: Person }) {
     return (
-        <InfoGruppe tittel={'NAV-kontor'}>
+        <LenkeEndreBrukerprofil>
+            <Link
+                className={'lenke'}
+                to={`${paths.brukerprofil}/${person.fødselsnummer}`}
+            >
+                Administrer brukerprofil
+            </Link>
+        </LenkeEndreBrukerprofil>
+    );
+}
+
+function NavKontorSeksjon({ person }: { person: Person }) {
+    return (
+        <VisittkortGruppe tittel={'NAV-kontor'}>
             <NavKontorContainer person={person}/>
-        </InfoGruppe>
+        </VisittkortGruppe>
     );
 }
 
 function OneColumnLayout(person: Person) {
     return (
-        <>
-            <Kolonne>
-                <Kontaktinformasjon person={person}/>
-                <Familie person={person}/>
-                <NavKontorSeksjon person={person}/>
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                <VergemalContainer/>
-                <Sikkerhetstiltak person={person} />
-            </Kolonne>
-        </>
+        <Kolonne>
+            <Kontaktinformasjon person={person}/>
+            <Familie person={person}/>
+            <NavKontorSeksjon person={person}/>
+            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
+            <VergemalContainer/>
+            <Sikkerhetstiltak person={person}/>
+            <LenkeBrukerprofil person={person}/>
+        </Kolonne>
     );
 }
 
@@ -52,7 +72,8 @@ function TwoColumnLayout(person: Person) {
                 <NavKontorSeksjon person={person}/>
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
-                <Sikkerhetstiltak person={person} />
+                <Sikkerhetstiltak person={person}/>
+                <LenkeBrukerprofil person={person}/>
             </Kolonne>
         </>
     );
@@ -71,19 +92,12 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <NavKontorSeksjon person={person}/>
-                <Sikkerhetstiltak person={person} />
+                <Sikkerhetstiltak person={person}/>
+                <LenkeBrukerprofil person={person}/>
             </Kolonne>
         </>
     );
 }
-
-const RedigerBrukerprofilWrapper = styled.div`
-  display: flex;
-`;
-
-const Filler = styled.div`
-  flex-grow: 1;
-`;
 
 class VisittkortBody extends Component<VisittkortBodyProps> {
 
@@ -116,9 +130,10 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 return ThreeColumnLayout(this.props.person);
         }
     }
+
     render() {
         const componentWidth = this.getComponentWidth();
-        const maxColumnWidth = 250;
+        const maxColumnWidth = 275;
         const numberOfColumns = Math.floor(componentWidth / maxColumnWidth);
         const columnLayOut = this.getColumnLayout(numberOfColumns);
 
@@ -127,15 +142,6 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
                     {columnLayOut}
                 </VisittkortBodyDiv>
-                <RedigerBrukerprofilWrapper>
-                    <Filler/>
-                    <Link
-                        className={'lenke'}
-                        to={`${paths.brukerprofil}/${this.props.person.fødselsnummer}`}
-                    >
-                        Administrer brukerprofil
-                    </Link>
-                </RedigerBrukerprofilWrapper>
             </ErrorBoundary>
         );
     }

@@ -71,15 +71,15 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       role="alert"
     />
   </div>
-  <p
-    className="typo-etikett-liten"
+  <span
+    className="sc-bxivhb nxAxK"
   >
-    <span
-      className="sc-bxivhb eDjwbT"
+    <p
+      className="typo-etikett-liten"
     >
       Endret 12.12.2005 Daniel
-    </span>
-  </p>
+    </p>
+  </span>
   <div
     className="skjemaelement"
   >
@@ -105,7 +105,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
     />
   </div>
   <div
-    className="sc-chPdSV gopUKn"
+    className="sc-kGXeez hgoYW"
   >
     <button
       className="knapp knapp--standard knapp--disabled"
@@ -197,15 +197,15 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       role="alert"
     />
   </div>
-  <p
-    className="typo-etikett-liten"
+  <span
+    className="sc-bxivhb nxAxK"
   >
-    <span
-      className="sc-bxivhb eDjwbT"
+    <p
+      className="typo-etikett-liten"
     >
       Endret 12.12.2005 Daniel
-    </span>
-  </p>
+    </p>
+  </span>
   <div
     className="skjemaelement"
   >
@@ -502,7 +502,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     />
   </div>
   <div
-    className="sc-chPdSV gopUKn"
+    className="sc-kGXeez hgoYW"
   >
     <button
       className="knapp knapp--standard knapp--disabled"

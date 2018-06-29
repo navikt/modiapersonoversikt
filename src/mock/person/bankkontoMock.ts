@@ -25,12 +25,12 @@ export const bankkontoUtland: Bankkonto = {
     sistEndret: getSistOppdatert(),
 };
 
-export function getBankKonto(): Bankkonto | undefined {
+export function getBankKonto(): Bankkonto | null {
     if (vektetSjanse(faker, 0.7)) {
         return bankkontoNorsk;
     } else if (vektetSjanse(faker, 0.2)) {
         return bankkontoUtland;
     } else {
-        return undefined;
+        return null;
     }
 }

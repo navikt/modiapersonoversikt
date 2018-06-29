@@ -1,12 +1,13 @@
 import { apiBaseUri } from '../config';
 import { post } from '../api';
-import { Gateadresse, Matrikkeladresse } from '../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../models/personadresse';
 import { Periode } from '../../models/periode';
 
 export interface EndreAdresseRequest {
     norskAdresse: {
         gateadresse: EndreGateadresseRequest | null;
-        matrikkeladresse: MatrikkeladresseRequest | null;
+        matrikkeladresse: EndreMatrikkeladresseRequest | null;
+        postboksadresse: EndrePostboksadresseRequest | null;
     } | null;
 }
 
@@ -20,10 +21,18 @@ export interface EndreGateadresseRequest {
     gyldigTil: string;
 }
 
-export interface MatrikkeladresseRequest {
+export interface EndreMatrikkeladresseRequest {
     tilleggsadresse?: string;
     eiendomsnavn?: string;
     postnummer: string;
+    gyldigTil: string;
+}
+
+interface EndrePostboksadresseRequest {
+    postboksnummer: string;
+    postnummer: string;
+    tilleggsadresse?: string;
+    postboksanlegg?: string;
     gyldigTil: string;
 }
 
@@ -46,7 +55,8 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
             gateadresse: {
                 ...mappedGateadresse,
                 gyldigTil: getGyldigTil(gateadresse.periode)},
-            matrikkeladresse: null
+            matrikkeladresse: null,
+            postboksadresse: null
         }
     };
     return postEndreAdresse(fødselsnummer, request);
@@ -57,10 +67,33 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
     const request: EndreAdresseRequest = {
         norskAdresse: {
             gateadresse: null,
+            postboksadresse: null,
             matrikkeladresse: {
                 ...mappedMatrikkeladresse,
                 gyldigTil: getGyldigTil(matrikkeladresse.periode)},
         }
+    };
+    return postEndreAdresse(fødselsnummer, request);
+}
+
+export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse: Postboksadresse) {
+    const {poststed, periode, ...mappedPostboksadresse} = postboksadresse;
+    const request: EndreAdresseRequest = {
+        norskAdresse: {
+            gateadresse: null,
+            matrikkeladresse: null,
+            postboksadresse: {
+                ...mappedPostboksadresse,
+                gyldigTil: getGyldigTil(postboksadresse.periode)
+            }
+        }
+    };
+    return postEndreAdresse(fødselsnummer, request);
+}
+
+export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
+    const request: EndreAdresseRequest = {
+        norskAdresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
