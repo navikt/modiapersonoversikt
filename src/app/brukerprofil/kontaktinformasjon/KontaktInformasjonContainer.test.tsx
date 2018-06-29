@@ -6,11 +6,11 @@ import KontaktinformasjonContainer from './KontaktinformasjonContainer';
 
 test('Viser form for endre kontaktinformasjon', () => {
 
-    const endreTilrettelagtKommunikasjonForm = renderer.create(
+    const endreKontaktInformasjon = renderer.create(
         <TestProvider>
             <KontaktinformasjonContainer person={aremark} />
         </TestProvider>
     );
 
-    expect(endreTilrettelagtKommunikasjonForm.toJSON()).toMatchSnapshot();
+    expect(endreKontaktInformasjon.toJSON()).toMatchSnapshot();
 });

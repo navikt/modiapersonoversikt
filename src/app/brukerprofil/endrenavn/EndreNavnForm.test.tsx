@@ -5,14 +5,14 @@ import { aremark } from '../../../mock/person/aremark';
 import EndreNavnForm from './EndreNavnForm';
 import { VeilederRoller } from '../../../models/veilederRoller';
 
-test('Viser form for endre kontaktinformasjon', () => {
+test('Viser form for endre navn', () => {
 
     const veilederRoller: VeilederRoller = { roller: ['0000-GA-BD06_EndreNavn']};
-    const endreTilrettelagtKommunikasjonForm = renderer.create(
+    const endreNavn = renderer.create(
         <TestProvider>
             <EndreNavnForm person={aremark} veilederRoller={veilederRoller} />
         </TestProvider>
     );
 
-    expect(endreTilrettelagtKommunikasjonForm.toJSON()).toMatchSnapshot();
+    expect(endreNavn.toJSON()).toMatchSnapshot();
 });

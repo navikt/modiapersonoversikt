@@ -486,14 +486,14 @@ Array [
                 </span>
               </p>
               <dl
-                className="sc-cHGsZl gJINtr"
+                className="sc-kgAjT cMhSQi"
               >
                 <dt>
                   <p
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-gisBJw fdgywn"
+                      className="sc-cHGsZl itEbEs"
                     >
                       mandag
                     </span>
@@ -515,7 +515,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-gisBJw fdgywn"
+                      className="sc-cHGsZl itEbEs"
                     >
                       tirsdag
                     </span>
@@ -537,7 +537,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-gisBJw fdgywn"
+                      className="sc-cHGsZl itEbEs"
                     >
                       onsdag
                     </span>
@@ -559,7 +559,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-gisBJw fdgywn"
+                      className="sc-cHGsZl itEbEs"
                     >
                       torsdag
                     </span>
@@ -581,7 +581,7 @@ Array [
                     className="typo-undertekst"
                   >
                     <span
-                      className="sc-gisBJw fdgywn"
+                      className="sc-cHGsZl itEbEs"
                     >
                       fredag
                     </span>
@@ -602,7 +602,7 @@ Array [
               <br />
             </div>
             <a
-              className="lenke sc-kjoXOD kqIJrs"
+              className="lenke sc-TOsTZ iKXIgF"
               href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
               rel="noopener noreferrer"
               target="_blank"
@@ -861,10 +861,10 @@ Array [
     </div>
   </div>,
   <div
-    className="sc-TOsTZ ixAgsd"
+    className="sc-cJSrbW kSIIvy"
   >
     <div
-      className="sc-kgAjT hbLhyK"
+      className="sc-ksYbfQ jkdaT"
     />
     <a
       className="lenke"
