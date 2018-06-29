@@ -49,7 +49,7 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     return result === 11 ? 0 : result;
 }
 
-export function hentEndringstekst(konto: Bankkonto | undefined): string {
+export function hentEndringstekst(konto: Bankkonto | null): string {
     if (konto && konto.sistEndret != null && konto.sistEndretAv !== null) {
         const formattertdato = formaterDato(konto.sistEndret);
         const endretAv = endretAvTekst(konto.sistEndretAv);

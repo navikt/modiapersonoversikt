@@ -35,7 +35,7 @@ function Verge(props: { verge: Verge }) {
 
             <Vergeinformasjon>
                 <Undertekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Undertekst>
-                <Undertekst>{verge.ident}</Undertekst>
+                <Undertekst>{verge.ident || ''}</Undertekst>
                 <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
 
@@ -50,8 +50,8 @@ function Verge(props: { verge: Verge }) {
 }
 
 function Vergemal(props: { vergemal: Vergemal }) {
-    const verger = props.vergemal.verger.map(verge =>
-        <Verge verge={verge} key={verge.ident}/>);
+    const verger = props.vergemal.verger.map((verge, index) =>
+        <Verge verge={verge} key={index}/>);
     return (
         <VisittkortGruppe ikon={<VergemålLogo />} tittel="Bruker er under vergemål">
             <Vergesakstype verger={props.vergemal.verger}/>
