@@ -16,3 +16,8 @@ export function isValidDate(streng: string) {
 export function erImorgenEllerSenere(date: Date) {
     return moment(date).isAfter(new Date(), 'day');
 }
+
+export function erMaksEttÅrFramITid(date: Date) {
+    const ettÅrFramITid = moment().add(1, 'years');
+    return moment(date).isSameOrBefore(ettÅrFramITid);
+}
