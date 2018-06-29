@@ -90,3 +90,10 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
     };
     return postEndreAdresse(fødselsnummer, request);
 }
+
+export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
+    const request: EndreAdresseRequest = {
+        norskAdresse: null
+    };
+    return postEndreAdresse(fødselsnummer, request);
+}

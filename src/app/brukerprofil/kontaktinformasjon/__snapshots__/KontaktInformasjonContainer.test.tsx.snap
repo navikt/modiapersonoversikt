@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser form for endre kontaktinformasjon 1`] = `
+<div>
+  <h2
+    className="typo-undertittel"
+  >
+    Kontaktinformasjon
+  </h2>
+  <div
+    className="sc-kpOJdX cTiSZX"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <p
+        className="typo-undertekst-bold"
+      >
+        Telefonnummer bruker ønsker å bli oppringt på
+      </p>
+      <div
+        className="sc-kgoBCf bepbwp"
+      >
+        <div
+          className="sc-kGXeez iWjhrf"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Mobiltelefon
+          </p>
+          <div
+            className="sc-ifAKCX WOpjk"
+          >
+            <div
+              className="sc-htpNat dUHUAp"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Retningsnummer Mobiltelefon"
+                >
+                  Landkode
+                </label>
+                <div
+                  className="selectContainer input--m"
+                >
+                  <select
+                    className="skjemaelement__input"
+                    disabled={false}
+                    id="Retningsnummer Mobiltelefon"
+                    onChange={[Function]}
+                    value="+47"
+                  >
+                    <option
+                      disabled={true}
+                      value=""
+                    >
+                      Velg retningsnummer
+                    </option>
+                    <option
+                      value="+47"
+                    >
+                      Norge
+                       (
+                      +47
+                      )
+                    </option>
+                    <option
+                      value="+54"
+                    >
+                      Argentina
+                       (
+                      +54
+                      )
+                    </option>
+                    <option
+                      value="+44"
+                    >
+                      Storbritannia (UK)
+                       (
+                      +44
+                      )
+                    </option>
+                    <option
+                      value="+46"
+                    >
+                      Sverige
+                       (
+                      +46
+                      )
+                    </option>
+                  </select>
+                </div>
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+            </div>
+            <div
+              className="sc-bxivhb eILgmy"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Mobiltelefon"
+                >
+                  Telefonnummer
+                </label>
+                <input
+                  className="skjemaelement__input input--xxl"
+                  id="Mobiltelefon"
+                  name={undefined}
+                  onChange={[Function]}
+                  type="text"
+                  value="998 87 766"
+                />
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+            </div>
+          </div>
+          <span
+            className="sc-bwzfXH opmLB"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              Endret 
+              21.06.2014
+               
+              BRUKER
+            </p>
+          </span>
+        </div>
+        <div
+          className="sc-kGXeez iWjhrf"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Hjemmenummer
+          </p>
+          <div
+            className="sc-ifAKCX WOpjk"
+          >
+            <div
+              className="sc-htpNat dUHUAp"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Retningsnummer Hjemmenummer"
+                >
+                  Landkode
+                </label>
+                <div
+                  className="selectContainer input--m"
+                >
+                  <select
+                    className="skjemaelement__input"
+                    disabled={false}
+                    id="Retningsnummer Hjemmenummer"
+                    onChange={[Function]}
+                    value=""
+                  >
+                    <option
+                      disabled={true}
+                      value=""
+                    >
+                      Velg retningsnummer
+                    </option>
+                    <option
+                      value="+47"
+                    >
+                      Norge
+                       (
+                      +47
+                      )
+                    </option>
+                    <option
+                      value="+54"
+                    >
+                      Argentina
+                       (
+                      +54
+                      )
+                    </option>
+                    <option
+                      value="+44"
+                    >
+                      Storbritannia (UK)
+                       (
+                      +44
+                      )
+                    </option>
+                    <option
+                      value="+46"
+                    >
+                      Sverige
+                       (
+                      +46
+                      )
+                    </option>
+                  </select>
+                </div>
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+            </div>
+            <div
+              className="sc-bxivhb eILgmy"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Hjemmenummer"
+                >
+                  Telefonnummer
+                </label>
+                <input
+                  className="skjemaelement__input input--xxl"
+                  id="Hjemmenummer"
+                  name={undefined}
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p
+          className="typo-ingress"
+        >
+          Jobbnummer
+        </p>
+        <div
+          className="sc-ifAKCX WOpjk"
+        >
+          <div
+            className="sc-htpNat dUHUAp"
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Retningsnummer Jobbnummer"
+              >
+                Landkode
+              </label>
+              <div
+                className="selectContainer input--m"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Retningsnummer Jobbnummer"
+                  onChange={[Function]}
+                  value=""
+                >
+                  <option
+                    disabled={true}
+                    value=""
+                  >
+                    Velg retningsnummer
+                  </option>
+                  <option
+                    value="+47"
+                  >
+                    Norge
+                     (
+                    +47
+                    )
+                  </option>
+                  <option
+                    value="+54"
+                  >
+                    Argentina
+                     (
+                    +54
+                    )
+                  </option>
+                  <option
+                    value="+44"
+                  >
+                    Storbritannia (UK)
+                     (
+                    +44
+                    )
+                  </option>
+                  <option
+                    value="+46"
+                  >
+                    Sverige
+                     (
+                    +46
+                    )
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            className="sc-bxivhb eILgmy"
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Jobbnummer"
+              >
+                Telefonnummer
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Jobbnummer"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-chPdSV gopUKn"
+      >
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre telefonnummer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

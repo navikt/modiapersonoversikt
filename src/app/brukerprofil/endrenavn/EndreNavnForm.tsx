@@ -31,6 +31,7 @@ function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
     return (
         <Input
             label={label}
+            name={label}
             value={state.input}
             onChange={(event) => onChange(event.target.value.toUpperCase())}
             disabled={disabled}

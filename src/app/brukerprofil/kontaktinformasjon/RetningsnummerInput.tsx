@@ -16,6 +16,7 @@ interface RetningsnummerInputProps {
     state: InputState;
     onChange: (input: string) => void;
     visFeilmeldinger: boolean;
+    id: string;
 }
 
 function DefaultRetningsnummer() {
@@ -60,6 +61,7 @@ export function Retningsnummer(props: RetningsnummerInputProps) {
     return (
         <RetningsnummerWrapper>
             <Select
+                id={props.id}
                 label="Landkode"
                 bredde={'m'}
                 value={valgtRetningsnummer}
