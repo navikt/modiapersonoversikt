@@ -52,8 +52,8 @@ function Verge(props: {verge: Verge}) {
 }
 
 function Vergemal(props: {vergemal: Vergemal}) {
-    const verger = props.vergemal.verger.map(verge =>
-        <Verge verge={verge} key={verge.ident}/>);
+    const verger = props.vergemal.verger.map((verge, index) =>
+        <Verge verge={verge} key={index}/>);
     return (
         <VisittkortElement
             beskrivelse={'Bruker er under vergemål'}
