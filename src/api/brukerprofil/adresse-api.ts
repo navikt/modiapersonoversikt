@@ -1,6 +1,6 @@
 import { apiBaseUri } from '../config';
 import { post } from '../api';
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../models/personadresse';
 import { Periode } from '../../models/periode';
 
 export interface EndreAdresseRequest {
@@ -8,6 +8,9 @@ export interface EndreAdresseRequest {
         gateadresse: EndreGateadresseRequest | null;
         matrikkeladresse: EndreMatrikkeladresseRequest | null;
         postboksadresse: EndrePostboksadresseRequest | null;
+    } | null;
+    utlandsadresse:  {
+
     } | null;
 }
 
@@ -57,7 +60,8 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
                 gyldigTil: getGyldigTil(gateadresse.periode)},
             matrikkeladresse: null,
             postboksadresse: null
-        }
+        },
+        utlandsadresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -71,7 +75,8 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
             matrikkeladresse: {
                 ...mappedMatrikkeladresse,
                 gyldigTil: getGyldigTil(matrikkeladresse.periode)},
-        }
+        },
+        utlandsadresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -86,14 +91,25 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
                 ...mappedPostboksadresse,
                 gyldigTil: getGyldigTil(postboksadresse.periode)
             }
-        }
+        },
+        utlandsadresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
 
 export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
     const request: EndreAdresseRequest = {
-        norskAdresse: null
+        norskAdresse: null,
+        utlandsadresse: null
     };
+    return postEndreAdresse(fødselsnummer, request);
+}
+
+export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlandsadresse) {
+    const request: EndreAdresseRequest = {
+        norskAdresse: null,
+        utlandsadresse: adresse
+    };
+
     return postEndreAdresse(fødselsnummer, request);
 }

@@ -12,9 +12,9 @@ import AdresseForm from './AdresseForm';
 import {
     endreMatrikkeladresse,
     endreNorskGateadresse,
-    endrePostboksadrese, slettMidlertidigeAdresser
+    endrePostboksadrese, endreUtlandsadresse, slettMidlertidigeAdresser
 } from '../../../redux/brukerprofil/endreAdresseReducer';
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -26,6 +26,7 @@ interface DispatchProps {
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
+    endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
 }
 
@@ -45,6 +46,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
                     endreNorskGateadresse={this.props.endreNorskGateadresse}
                     endreMatrikkeladresse={this.props.endreMatrikkeladresse}
                     endrePostboksadresse={this.props.endrePostboksadresse}
+                    endreUtlandsadresse={this.props.endreUtlandsadresse}
                     slettMidlertidigeAdresser={this.props.slettMidlertidigeAdresser}
                     endreAdresseReducer={this.props.endreAdresseReducer}
                 />
@@ -69,6 +71,8 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
             dispatch(endreMatrikkeladresse(fødselsnummer, matrikkeladresse)),
         endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) =>
             dispatch(endrePostboksadrese(fødselsnummer, postboksadresse)),
+        endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) =>
+            dispatch(endreUtlandsadresse(fødselsnummer, utlandsadresse)),
         slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer))
     };
 }
