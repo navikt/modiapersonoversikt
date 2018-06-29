@@ -19,7 +19,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -56,7 +56,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Bostedsadresse fra Folkeregisteret
             </span>
@@ -69,7 +69,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -98,7 +98,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               E-post Kontakt- og reservasjonsregisteret
             </span>
@@ -110,7 +110,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           aremark@testfamilien.no
         </p>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -121,7 +121,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -150,7 +150,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Telefon Kontakt- og reservasjonsregisteret
             </span>
@@ -162,7 +162,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           112 23 344
         </p>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -173,7 +173,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -183,7 +183,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Telefon til bruk for NAV
             </span>
@@ -198,7 +198,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           )
         </p>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -211,7 +211,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -258,7 +258,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Kontonummer
             </span>
@@ -268,7 +268,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-undertekst"
         >
           <span
-            className="sc-dnqmqq ctgDOn"
+            className="sc-iwsKbI jjtoRm"
           >
             <span>
               1234
@@ -282,7 +282,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </span>
         </p>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -307,7 +307,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -335,7 +335,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Sivilstand
             </span>
@@ -351,7 +351,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -378,7 +378,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Jente
             </span>
@@ -416,7 +416,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -440,7 +440,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               0118 NAV Aremark
             </span>
@@ -449,7 +449,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div>
           <br />
           <span
-            className="sc-bZQynM blNKre"
+            className="sc-gzVnrw edyGDB"
           >
             <p
               className="typo-etikett-liten"
@@ -470,7 +470,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
           <br />
           <span
-            className="sc-bZQynM blNKre"
+            className="sc-gzVnrw edyGDB"
           >
             <p
               className="typo-etikett-liten"
@@ -645,7 +645,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -655,7 +655,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             />
           </h3>
         </div>
@@ -712,7 +712,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         Enslig mindreårig asylsøker
       </p>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -722,14 +722,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             >
               Verge
             </span>
           </h3>
         </div>
         <div
-          className="sc-htoDjs croZbu"
+          className="sc-dnqmqq bGwqvd"
         >
           <p
             className="typo-undertekst"
@@ -751,7 +751,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-etikett-liten"
         >
           <span
-            className="sc-EHOje dSVpOp"
+            className="sc-bZQynM CdcFA"
           >
             Mandat
           </span>
@@ -767,7 +767,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Her kommen en fritekst som er sånn passelig lang
         </p>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -776,7 +776,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </span>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -844,7 +844,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="sc-ifAKCX eAfAry"
+        className="sc-EHOje hAiecK"
       >
         <div
           className="sc-bdVaJa gjXcFS"
@@ -854,12 +854,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="sc-EHOje dSVpOp"
+              className="sc-bZQynM CdcFA"
             />
           </h3>
         </div>
         <span
-          className="sc-bZQynM blNKre"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"

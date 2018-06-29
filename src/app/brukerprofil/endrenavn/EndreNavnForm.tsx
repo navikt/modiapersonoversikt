@@ -15,10 +15,11 @@ import { endreNavn, reset } from '../../../redux/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { brukersNavnKanEndres, validerNavn, veilederHarPåkrevdRolle } from './endrenavn-utils';
-import Infomelding from './Infomelding';
-import { ignoreEnter, InputState } from '../formUtils';
+import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
+import { EndreNavnInfomeldingWrapper } from '../Infomelding';
+import { ignoreEnter, InputState } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
+import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 
 interface NavnInputProps {
     label: string;
@@ -208,13 +209,13 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     render() {
-        const kanEndreNavn = veilederHarPåkrevdRolle(this.props.veilederRoller) &&
+        const kanEndreNavn = veilederHarPåkrevdRolleForEndreNavn(this.props.veilederRoller) &&
             brukersNavnKanEndres(this.props.person);
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!kanEndreNavn}>
                     <Undertittel>Navn</Undertittel>
-                    <Infomelding person={this.props.person} veilderRoller={this.props.veilederRoller}/>
+                    <EndreNavnInfomeldingWrapper person={this.props.person} veilderRoller={this.props.veilederRoller}/>
                     <NavnInput
                         label="Fornavn"
                         state={this.state.fornavn}
