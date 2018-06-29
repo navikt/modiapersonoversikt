@@ -127,18 +127,18 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               </div>
             </div>
           </div>
-          <p
-            className="typo-etikett-liten"
+          <span
+            className="sc-bwzfXH opmLB"
           >
-            <span
-              className="sc-bwzfXH hRFBVQ"
+            <p
+              className="typo-etikett-liten"
             >
               Endret 
               21.06.2014
                
               BRUKER
-            </span>
-          </p>
+            </p>
+          </span>
         </div>
         <div
           className="sc-kGXeez iWjhrf"

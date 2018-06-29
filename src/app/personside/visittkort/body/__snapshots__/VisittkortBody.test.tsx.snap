@@ -1,30 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkortbody 1`] = `
-Array [
+<div
+  className="sc-htpNat dBxAcu"
+>
   <div
-    className="sc-bdVaJa pmvgK"
+    className="sc-bxivhb eUbrRI"
   >
-    <div
-      className="sc-bwzfXH hgcIEu"
-    >
+    <div>
       <div
-        className="sc-htpNat gBwftC"
+        className="sc-bdVaJa gjXcFS"
       >
-        <p
+        
+        <h2
           className="typo-element"
         >
-          <span
-            className="sc-bxivhb bAonbG"
-          >
-            Kontaktinformasjon
-          </span>
-        </p>
+          Kontaktinformasjon
+        </h2>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -51,30 +52,30 @@ Array [
               </g>
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Bostedsadresse fra Folkeregisteret
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Ikke registrert
-            </p>
-          </div>
+              Bostedsadresse fra Folkeregisteret
+            </span>
+          </h3>
         </div>
+        <p
+          className="typo-undertekst"
+        >
+          Ikke registrert
+        </p>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -93,40 +94,40 @@ Array [
               />
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                E-post Kontakt- og reservasjonsregisteret
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              aremark@testfamilien.no
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                Endret 
-                15.05.2014
-              </span>
-            </p>
-          </div>
+              E-post Kontakt- og reservasjonsregisteret
+            </span>
+          </h3>
         </div>
+        <p
+          className="typo-undertekst"
+        >
+          aremark@testfamilien.no
+        </p>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            15.05.2014
+          </p>
+        </span>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -145,82 +146,78 @@ Array [
               />
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Telefon Kontakt- og reservasjonsregisteret
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              112 23 344
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                Endret 
-                15.05.2014
-              </span>
-            </p>
-          </div>
+              Telefon Kontakt- og reservasjonsregisteret
+            </span>
+          </h3>
         </div>
+        <p
+          className="typo-undertekst"
+        >
+          112 23 344
+        </p>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            15.05.2014
+          </p>
+        </span>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
+        >
+          
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-EHOje dSVpOp"
+            >
+              Telefon til bruk for NAV
+            </span>
+          </h3>
+        </div>
+        <p
+          className="typo-undertekst"
+        >
+          +47 998 87 766
+           (
+          Mobil
+          )
+        </p>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            21.06.2014
+             
+            BRUKER
+          </p>
+        </span>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
+        <div
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
-          >
-            
-          </div>
-          <div
-            className="sc-bZQynM fTTZkH"
-          >
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Telefon til bruk for NAV
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              +47 998 87 766
-               (
-              Mobil
-              )
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                Endret 
-                21.06.2014
-                 
-                BRUKER
-              </span>
-            </p>
-          </div>
-        </div>
-        <div
-          className="sc-ifAKCX eNjmjb"
-        >
-          <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -257,67 +254,66 @@ Array [
               </g>
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Kontonummer
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              <span
-                className="sc-VigVT hxkgeM"
-              >
-                <span>
-                  1234
-                </span>
-                <span>
-                  56
-                </span>
-                <span>
-                  78911
-                </span>
-              </span>
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                Endret 
-                12.12.2005
-                 
-                Daniel
-              </span>
-            </p>
-          </div>
+              Kontonummer
+            </span>
+          </h3>
         </div>
-      </div>
-      <div
-        className="sc-htpNat gBwftC"
-      >
         <p
-          className="typo-element"
+          className="typo-undertekst"
         >
           <span
-            className="sc-bxivhb bAonbG"
+            className="sc-dnqmqq ctgDOn"
           >
-            Familie
+            <span>
+              1234
+            </span>
+            <span>
+              56
+            </span>
+            <span>
+              78911
+            </span>
           </span>
         </p>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            12.12.2005
+             
+            Daniel
+          </p>
+        </span>
+      </div>
+    </div>
+    <div>
+      <div
+        className="sc-bdVaJa gjXcFS"
+      >
+        
+        <h2
+          className="typo-element"
+        >
+          Familie
+        </h2>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -335,33 +331,33 @@ Array [
               />
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Sivilstand
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Gift
-               (
-              12.12.2005
-              )
-            </p>
-          </div>
+              Sivilstand
+            </span>
+          </h3>
         </div>
+        <p
+          className="typo-undertekst"
+        >
+          Gift
+           (
+          12.12.2005
+          )
+        </p>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -378,56 +374,55 @@ Array [
               </g>
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
           >
-            <p
-              className="typo-etikett-liten"
+            <span
+              className="sc-EHOje dSVpOp"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Jente
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Siri Aremark
-               (
-              17
-              ) 
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              10117100000
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Bor ikke med bruker
-            </p>
-          </div>
+              Jente
+            </span>
+          </h3>
         </div>
-      </div>
-      <div
-        className="sc-htpNat gBwftC"
-      >
         <p
+          className="typo-undertekst"
+        >
+          Siri Aremark
+           (
+          17
+          ) 
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          10117100000
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          Bor ikke med bruker
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        className="sc-bdVaJa gjXcFS"
+      >
+        
+        <h2
           className="typo-element"
         >
-          <span
-            className="sc-bxivhb bAonbG"
-          >
-            NAV-kontor
-          </span>
-        </p>
+          NAV-kontor
+        </h2>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
         <div
-          className="sc-ifAKCX eNjmjb"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="sc-EHOje jfHNJm"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height="62.9"
@@ -441,230 +436,180 @@ Array [
               />
             </svg>
           </div>
-          <div
-            className="sc-bZQynM fTTZkH"
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-EHOje dSVpOp"
+            >
+              0118 NAV Aremark
+            </span>
+          </h3>
+        </div>
+        <div>
+          <br />
+          <span
+            className="sc-bZQynM blNKre"
           >
             <p
               className="typo-etikett-liten"
             >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                0118 NAV Aremark
-              </span>
+              Besøksadresse
             </p>
-            <div>
-              <br />
-              <p
-                className="typo-etikett-liten"
-              >
-                <span
-                  className="sc-htoDjs gZDaDG"
-                >
-                  Besøksadresse
-                </span>
-              </p>
-              <p
-                className="typo-undertekst"
-              >
-                
-            Rådhuset 6A
-              </p>
-              <p
-                className="typo-undertekst"
-              >
-                1798 Aremark
-              </p>
-              <br />
-              <p
-                className="typo-etikett-liten"
-              >
-                <span
-                  className="sc-htoDjs gZDaDG"
-                >
-                  Åpningstider
-                </span>
-              </p>
-              <dl
-                className="sc-kgAjT cMhSQi"
-              >
-                <dt>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    <span
-                      className="sc-cHGsZl itEbEs"
-                    >
-                      mandag
-                    </span>
-                  </p>
-                </dt>
-                <dd>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.00
-                     
-                    –
-                     
-                    14.30
-                  </p>
-                </dd>
-                <dt>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    <span
-                      className="sc-cHGsZl itEbEs"
-                    >
-                      tirsdag
-                    </span>
-                  </p>
-                </dt>
-                <dd>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.00
-                     
-                    –
-                     
-                    14.30
-                  </p>
-                </dd>
-                <dt>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    <span
-                      className="sc-cHGsZl itEbEs"
-                    >
-                      onsdag
-                    </span>
-                  </p>
-                </dt>
-                <dd>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.00
-                     
-                    –
-                     
-                    14.30
-                  </p>
-                </dd>
-                <dt>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    <span
-                      className="sc-cHGsZl itEbEs"
-                    >
-                      torsdag
-                    </span>
-                  </p>
-                </dt>
-                <dd>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.00
-                     
-                    –
-                     
-                    14.30
-                  </p>
-                </dd>
-                <dt>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    <span
-                      className="sc-cHGsZl itEbEs"
-                    >
-                      fredag
-                    </span>
-                  </p>
-                </dt>
-                <dd>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.00
-                     
-                    –
-                     
-                    14.30
-                  </p>
-                </dd>
-              </dl>
-              <br />
-            </div>
-            <a
-              className="lenke sc-TOsTZ iKXIgF"
-              href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Mer informasjon om kontoret
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        className="sc-ifAKCX eNjmjb"
-      >
-        <div
-          className="sc-EHOje jfHNJm"
-        >
-          <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              fill="#FFB249"
-              r="50"
-            />
-            <line
-              stroke="#3E3832"
-              strokeLinecap="round"
-              strokeWidth="4"
-              x1="50"
-              x2="50"
-              y1="25"
-              y2="57"
-            />
-            <circle
-              cx="50"
-              cy="72"
-              fill="#3E3832"
-              r="4.5"
-            />
-          </svg>
-        </div>
-        <div
-          className="sc-bZQynM fTTZkH"
-        >
+          </span>
           <p
-            className="typo-element"
+            className="typo-undertekst"
           >
-            Tilrettelagt Kommunikasjon
+            
+            Rådhuset 6A
           </p>
           <p
             className="typo-undertekst"
           >
-            Tolkehjelp
+            1798 Aremark
           </p>
+          <br />
+          <span
+            className="sc-bZQynM blNKre"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              Åpningstider
+            </p>
+          </span>
+          <dl
+            className="sc-gisBJw digCxr"
+          >
+            <dt>
+              <p
+                className="typo-undertekst"
+              >
+                <span
+                  className="sc-fAjcbJ lgKhus"
+                >
+                  mandag
+                </span>
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-undertekst"
+              >
+                09.00
+                 
+                –
+                 
+                14.30
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-undertekst"
+              >
+                <span
+                  className="sc-fAjcbJ lgKhus"
+                >
+                  tirsdag
+                </span>
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-undertekst"
+              >
+                09.00
+                 
+                –
+                 
+                14.30
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-undertekst"
+              >
+                <span
+                  className="sc-fAjcbJ lgKhus"
+                >
+                  onsdag
+                </span>
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-undertekst"
+              >
+                09.00
+                 
+                –
+                 
+                14.30
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-undertekst"
+              >
+                <span
+                  className="sc-fAjcbJ lgKhus"
+                >
+                  torsdag
+                </span>
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-undertekst"
+              >
+                09.00
+                 
+                –
+                 
+                14.30
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-undertekst"
+              >
+                <span
+                  className="sc-fAjcbJ lgKhus"
+                >
+                  fredag
+                </span>
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-undertekst"
+              >
+                09.00
+                 
+                –
+                 
+                14.30
+              </p>
+            </dd>
+          </dl>
+          <br />
         </div>
+        <a
+          className="lenke sc-caSCKo hMbBSZ"
+          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Mer informasjon om kontoret
+        </a>
       </div>
+    </div>
+    <div>
       <div
-        className="sc-ifAKCX eNjmjb"
+        className="sc-bdVaJa gjXcFS"
       >
         <div
-          className="sc-EHOje jfHNJm"
+          className="sc-bwzfXH joUhmT"
         >
           <svg
             viewBox="0 0 100 100"
@@ -693,103 +638,164 @@ Array [
             />
           </svg>
         </div>
-        <div
-          className="sc-bZQynM fTTZkH"
+        <h2
+          className="typo-element"
         >
-          <p
-            className="typo-element"
-          >
-            Bruker er under vergemål
-          </p>
-          <span
-            className="sc-iwsKbI jiPRqw"
-          >
-            <p
-              className="typo-undertekst"
-            >
-              Enslig mindreårig asylsøker
-            </p>
-          </span>
-          <div
-            className="sc-gqjmRU bwFIfE"
-          >
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Verge
-              </span>
-            </p>
-            <div
-              className="sc-gZMcBi kUtLNr"
-            >
-              <p
-                className="typo-undertekst"
-              >
-                 Solli Simen
-              </p>
-              <p
-                className="typo-undertekst"
-              >
-                21042900076
-              </p>
-              <p
-                className="typo-undertekst"
-              >
-                Advokat
-              </p>
-            </div>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-gzVnrw eJuxhJ"
-              >
-                Mandat
-              </span>
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
-            </p>
-            <p
-              className="typo-undertekst"
-            >
-              Her kommen en fritekst som er sånn passelig lang
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                Fylkesmannen i Østfold
-              </span>
-            </p>
-            <p
-              className="typo-etikett-liten"
-            >
-              <span
-                className="sc-htoDjs gZDaDG"
-              >
-                27.03.2016
-                 
-                –
-                 
-                30.06.2013
-              </span>
-            </p>
-          </div>
-        </div>
+          Tilrettelagt Kommunikasjon
+        </h2>
       </div>
       <div
-        className="sc-ifAKCX eNjmjb"
+        className="sc-ifAKCX eAfAry"
       >
         <div
-          className="sc-EHOje jfHNJm"
+          className="sc-bdVaJa gjXcFS"
+        >
+          
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-EHOje dSVpOp"
+            />
+          </h3>
+        </div>
+        <p
+          className="typo-undertekst"
+        >
+          Tolkehjelp
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        className="sc-bdVaJa gjXcFS"
+      >
+        <div
+          className="sc-bwzfXH joUhmT"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h2
+          className="typo-element"
+        >
+          Bruker er under vergemål
+        </h2>
+      </div>
+      <p
+        className="typo-undertekst"
+      >
+        Enslig mindreårig asylsøker
+      </p>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
+        <div
+          className="sc-bdVaJa gjXcFS"
+        >
+          
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="sc-EHOje dSVpOp"
+            >
+              Verge
+            </span>
+          </h3>
+        </div>
+        <div
+          className="sc-htoDjs croZbu"
+        >
+          <p
+            className="typo-undertekst"
+          >
+             Solli Simen
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            21042900076
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            Advokat
+          </p>
+        </div>
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="sc-EHOje dSVpOp"
+          >
+            Mandat
+          </span>
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          Her kommen en fritekst som er sånn passelig lang
+        </p>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Fylkesmannen i Østfold
+          </p>
+        </span>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            27.03.2016
+             
+            –
+             
+            30.06.2013
+          </p>
+        </span>
+      </div>
+    </div>
+    <div>
+      <div
+        className="sc-bdVaJa gjXcFS"
+      >
+        <div
+          className="sc-bwzfXH joUhmT"
         >
           <svg
             viewBox="0 0 100 100"
@@ -831,48 +837,57 @@ Array [
             />
           </svg>
         </div>
-        <div
-          className="sc-bZQynM fTTZkH"
+        <h2
+          className="typo-element"
         >
-          <p
-            className="typo-element"
-          >
-            Sikkerhetstiltak
-          </p>
-          <p
+          Sikkerhetstiltak
+        </h2>
+      </div>
+      <div
+        className="sc-ifAKCX eAfAry"
+      >
+        <div
+          className="sc-bdVaJa gjXcFS"
+        >
+          
+          <h3
             className="typo-etikett-liten"
           >
             <span
-              className="sc-htoDjs gZDaDG"
-            >
-              Gyldig: 
-              12.12.2005
-               - 
-              12.12.2025
-            </span>
-          </p>
-          <p
-            className="typo-undertekst"
-          >
-            Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.
-          </p>
+              className="sc-EHOje dSVpOp"
+            />
+          </h3>
         </div>
+        <span
+          className="sc-bZQynM blNKre"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Gyldig: 
+            12.12.2005
+             - 
+            12.12.2025
+          </p>
+        </span>
+        <p
+          className="typo-undertekst"
+        >
+          Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.
+        </p>
       </div>
     </div>
-  </div>,
-  <div
-    className="sc-cJSrbW kSIIvy"
-  >
     <div
-      className="sc-ksYbfQ jkdaT"
-    />
-    <a
-      className="lenke"
-      href="/modiapersonoversikt/brukerprofil/10108000398"
-      onClick={[Function]}
+      className="sc-kjoXOD iCDFNe"
     >
-      Administrer brukerprofil
-    </a>
-  </div>,
-]
+      <a
+        className="lenke"
+        href="/modiapersonoversikt/brukerprofil/10108000398"
+        onClick={[Function]}
+      >
+        Administrer brukerprofil
+      </a>
+    </div>
+  </div>
+</div>
 `;
