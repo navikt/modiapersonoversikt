@@ -1,15 +1,22 @@
 import { Postboksadresse } from '../../../../../models/personadresse';
 import FormValidator from '../../../../../utils/forms/FormValidator';
-import { lagGyldigTilRegel, lagPostnummerRegel } from '../../../../../utils/forms/commonValidatorRegler';
+import {
+    datoErGyldigValidatorRegel, datoErIfremtidenValidatorRegel,
+    lagPostnummerRegel
+} from '../../../../../utils/forms/commonValidatorRegler';
 
-const gyldigTilRegel = lagGyldigTilRegel<Postboksadresse>('periode', postboksadresse =>
+const datoGyldigRegel = datoErGyldigValidatorRegel<Postboksadresse>('periode', postboksadresse =>
+    postboksadresse.periode ? postboksadresse.periode.til : '');
+
+const datoErIfremtidenRegel = datoErIfremtidenValidatorRegel<Postboksadresse>('periode', postboksadresse =>
     postboksadresse.periode ? postboksadresse.periode.til : '');
 
 const postnummerRegel = lagPostnummerRegel('postnummer', postboksadresse =>
     postboksadresse.postnummer );
 
 export function validerPostboksadresse(postboksadresse: Postboksadresse) {
-    return new FormValidator<Postboksadresse>([postnummerRegel, gyldigTilRegel]).valider(postboksadresse);
+    const regler = [postnummerRegel, datoGyldigRegel, datoErIfremtidenRegel];
+    return new FormValidator<Postboksadresse>(regler).valider(postboksadresse);
 }
 
 export function getValidPostboksadresseForm(postboksadresse: Postboksadresse) {

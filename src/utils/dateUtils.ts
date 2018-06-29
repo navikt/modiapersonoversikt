@@ -12,3 +12,7 @@ export function isValidDate(streng: string) {
     const timestamp = Date.parse(streng);
     return !isNaN(timestamp);
 }
+
+export function erImorgenEllerSenere(date: Date) {
+    return moment(date).isAfter(new Date(), 'day');
+}
