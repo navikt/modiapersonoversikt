@@ -39,7 +39,7 @@ function Verge(props: {verge: Verge}) {
             <EtikettLiten><TittelStyle>Verge</TittelStyle></EtikettLiten>
             <Vergeinformasjon>
                 <Undertekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Undertekst>
-                <Undertekst>{verge.ident}</Undertekst>
+                <Undertekst>{verge.ident || ''}</Undertekst>
                 <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
             </Vergeinformasjon>
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
