@@ -6,13 +6,12 @@ import Datovelger from 'nav-datovelger';
 
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
-import { getSkjemafeilFraValidering } from '../../../formUtils';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;
     matrikkeladresse: Matrikkeladresse;
-    validering: ValideringsResultat<Matrikkeladresse> | null;
+    validering: ValideringsResultat<Matrikkeladresse>;
 }
 
 function onPostinformasjonChange(props: Props) {
@@ -29,8 +28,8 @@ function onGyldigTilChange(props: Props) {
 }
 
 function MatrikkeladresseForm(props: Props) {
-
-    const {postnummer, poststed} = props.matrikkeladresse;
+    const {matrikkeladresse, validering} = props;
+    const {postnummer, poststed} = matrikkeladresse;
     const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : new Date();
 
     return (
@@ -38,7 +37,7 @@ function MatrikkeladresseForm(props: Props) {
             <Input
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={props.matrikkeladresse.tilleggsadresse}
+                defaultValue={matrikkeladresse.tilleggsadresse}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, tilleggsadresse: event.target.value})}
             />
@@ -48,11 +47,11 @@ function MatrikkeladresseForm(props: Props) {
                 defaultValue={props.matrikkeladresse.eiendomsnavn}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
-                feil={getSkjemafeilFraValidering(props.validering ?
-                    props.validering.felter.eiendomsnavn : undefined)}
+                feil={validering.felter.eiendomsnavn ? validering.felter.eiendomsnavn.skjemafeil : undefined}
+
             />
             <PoststedVelger poststedInformasjon={{postnummer, poststed}} onChange={onPostinformasjonChange(props)} />
-          
+
             <label className={'skjemaelement__label'}>Gyldig til</label>
             <Datovelger
                 dato={gyldigTil}

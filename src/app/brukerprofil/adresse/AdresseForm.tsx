@@ -5,7 +5,13 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
-import { Gateadresse, Matrikkeladresse, Personadresse, Postboksadresse } from '../../../models/personadresse';
+import {
+    Gateadresse,
+    Matrikkeladresse,
+    Personadresse,
+    Postboksadresse,
+    Utlandsadresse
+} from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/utils';
 import { RestReducer } from '../../../redux/reducer';
@@ -18,10 +24,11 @@ import MidlertidigAdresseNorge, {
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
+import MidlertidigAdresseUtland from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 
-function Tilbakemelding(props: {formErEndret: boolean, status: STATUS}) {
+function Tilbakemelding(props: { formErEndret: boolean, status: STATUS }) {
     if (!props.formErEndret) {
         return null;
     }
@@ -48,6 +55,7 @@ export enum Valg {
 
 interface State {
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
+    midlertidigAdresseUtland: Utlandsadresse;
     selectedRadio: Valg;
     formErEndret: boolean;
 }
@@ -71,6 +79,7 @@ class AdresseForm extends React.Component<Props, State> {
         this.initialState = this.initialState.bind(this);
         this.onAdresseValgChange = this.onAdresseValgChange.bind(this);
         this.onMidlertidigAdresseNorgeInput = this.onMidlertidigAdresseNorgeInput.bind(this);
+        this.onMidlertidigAdresseUtlandInput = this.onMidlertidigAdresseUtlandInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
 
@@ -79,7 +88,8 @@ class AdresseForm extends React.Component<Props, State> {
 
     initialState(props: Props) {
         return {
-            midlertidigAdresseNorge: this.intialMidlertidigAdresseNorge(props.person.alternativAdresse),
+            midlertidigAdresseNorge: this.initialMidlertidigAdresseNorge(props.person.alternativAdresse),
+            midlertidigAdresseUtland: this.initialMidlertidigAdresseUtland(props.person.alternativAdresse),
             selectedRadio: this.initialRadioValg(),
             formErEndret: false
         };
@@ -97,7 +107,7 @@ class AdresseForm extends React.Component<Props, State> {
         }
     }
 
-    intialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
+    initialMidlertidigAdresseNorge(alternativAdresse: Personadresse | undefined) {
         if (!alternativAdresse) {
             return {
                 gateadresse: getGateadresseInput(undefined),
@@ -112,6 +122,34 @@ class AdresseForm extends React.Component<Props, State> {
             postboksadresse: this.initialPostboksadresse(alternativAdresse.postboksadresse),
             valg: getInitialAdresseTypeValg(alternativAdresse)
         };
+    }
+
+    initialMidlertidigAdresseUtland(alternativAdresse: Personadresse | undefined) {
+        if (!alternativAdresse) {
+            return this.initialUtlandsAdresse(undefined);
+        }
+        return this.initialUtlandsAdresse(alternativAdresse.utlandsadresse);
+    }
+
+    initialGateadresse(gateadresse: Gateadresse | undefined): Gateadresse {
+        if (!gateadresse) {
+            return {
+                gatenavn: '',
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return gateadresse;
+    }
+
+    initialMatrikkeladresse(matrikkeladresse: Matrikkeladresse | undefined): Matrikkeladresse {
+        if (!matrikkeladresse) {
+            return {
+                poststed: '',
+                postnummer: ''
+            };
+        }
+        return matrikkeladresse;
     }
 
     initialPostboksadresse(postboksadresse: Postboksadresse | undefined): Postboksadresse {
@@ -139,6 +177,20 @@ class AdresseForm extends React.Component<Props, State> {
         this.setState({selectedRadio: valg});
     }
 
+    initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): Utlandsadresse {
+        if (!utlandsAdresse) {
+            return {
+                landkode: {kodeRef: '', beskrivelse: ''},
+                adresselinjer: [''],
+                periode: {
+                    fra: '',
+                    til: ''
+                }
+            };
+        }
+        return utlandsAdresse;
+    }
+
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
         this.setState(this.initialState(this.props));
         event.preventDefault();
@@ -161,6 +213,13 @@ class AdresseForm extends React.Component<Props, State> {
         } else {
             console.error('Not implemented');
         }
+    }
+
+    onMidlertidigAdresseUtlandInput(adresser: Utlandsadresse) {
+        this.setState({
+            midlertidigAdresseUtland: adresser,
+            formErEndret: true
+        });
     }
 
     submitGateadresse(gateadresse: Gateadresse) {
@@ -227,7 +286,12 @@ class AdresseForm extends React.Component<Props, State> {
                     onAdresseValgChange={this.onAdresseValgChange}
                     checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
                 >
-                    <span>Utenlandsk adresseform</span>
+                    <MidlertidigAdresseUtland
+                        midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
+                        onChange={this.onMidlertidigAdresseUtlandInput}
+                        visFeilmeldinger={false}
+                        land={this.state.midlertidigAdresseUtland.landkode}
+                    />
                 </AdresseValg>
                 <FormKnapperWrapper>
                     <KnappBase

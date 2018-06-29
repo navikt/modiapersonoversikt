@@ -11,6 +11,6 @@ const regler: Valideringsregel<EndreBankkontoState>[] = [{
     validator: (konto: EndreBankkontoState) => validerKontonummer(removeWhitespaceAndDot(konto.kontonummer))
 }];
 
-export function validerNorskBankKonto(gateadresse: EndreBankkontoState) {
-    return new FormValidator<EndreBankkontoState>(regler).valider(gateadresse);
+export function validerNorskBankKonto(bankkonto: EndreBankkontoState) {
+    return new FormValidator<EndreBankkontoState>(regler).valider(bankkonto);
 }

@@ -5,7 +5,7 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 
 ## Komme i gang
 
-### Kjøre appen
+### Konfiguere miljøvariabler
 
 Opprett filen `.env` med følgende innhold:
 
@@ -16,7 +16,7 @@ REACT_APP_HODE_URL=https://example.com/head.min.js # URL til navigasjonsmenyen
 PORT=80 # Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
 ```
 
-#### For utvikling
+### Starte appen lokalt
 
 ```console
 npm install
@@ -24,17 +24,46 @@ npm run build
 npm run start
 ```
 
-#### Storybook
+### Bygge og kjøre via docker
+
+```console
+docker build -t personoversikt .
+docker run --env-file .env --name personoversikt -d -p 8080:80 personoversikt
+```
+
+### Starte Storybook
+
+Storybook lar oss spinne opp enkeltkomponenter slik at de kan testes i isolasjon.
 
 ```console
 npm run storybook
 ```
 
-#### Med docker
+## Dokumentasjon
+
+Vi bruker Architecture Decision Records (ADR) til å beskrive viktige arkitekturbeslutninger for vår app. Dette sjekkes inn i kildekoden og kan bidra til man i ettertid kan skjønne hvorfor koden har blitt sånn den har blitt. Filosofien bak er dokumentert [her](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).
+
+Dokumentasjonen vår innes i `doc/architecture/decisions`
+
+### Generere dokumentasjon
+
+Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som ADRs. F.eks: [adr-tools](https://github.com/npryce/adr-tools)
+
+## Publisere npm-pakke
+
+Modiapersonoversikt kan publiseres som en npm-modul og dras inn i modiabrukerdialog
+
+### Førstegangsoppsett for lokal npm publish (publish-local.sh)
+
+Adduser kjøres med egen AD-bruker(liten forbokstav)+passord+epostadresse
+Auth-token legges ikke i kildekontroll, få full config fra en annen i teamet
 
 ```console
-docker build -t personoversikt .
-docker run --env-file .env --name personoversikt -d -p 8080:80 personoversikt
+npm install
+npm adduser
+npm config set //repo.adeo.no/repository/npm-internal/:_authToken=
+
+./publish-local.sh
 ```
 
 ---

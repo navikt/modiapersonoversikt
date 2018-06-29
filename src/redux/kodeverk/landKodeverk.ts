@@ -3,7 +3,7 @@ import { fetchKodeverk } from '../../api/kodeverk';
 
 const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-land');
 
-export function hentLand() {
+export function hentLandKodeverk() {
     return action(() => fetchKodeverk('Landkoder'));
 }
 
