@@ -43,9 +43,12 @@ const IkonDiv = styled.div`
   }
 `;
 
-const InfoDiv = styled.div`
+const GrunninfoDiv = styled.div`
   flex: 1 1;
   text-align: left;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   > *:first-child {
     margin-bottom: 0.2em !important;
   };
@@ -58,7 +61,7 @@ interface PersonProps {
 function Navnelinje({person}: PersonProps) {
     const alder = erDød(person.personstatus) ? 'Død' : person.alder;
     return (
-        <Undertittel>
+        <Undertittel tag="h1">
             {hentNavn(person.navn)} ({alder})
         </Undertittel>
     );
@@ -82,10 +85,10 @@ function VisittkortHeader({person}: VisittkortHeaderProps) {
                 <IkonDiv title={ikon.alt}>
                     {ikon.ikon}
                 </IkonDiv>
-                <InfoDiv>
+                <GrunninfoDiv>
                     <Navnelinje person={person}/>
                     <PersonStatus person={person}/>
-                </InfoDiv>
+                </GrunninfoDiv>
             </VenstreFelt>
 
             <HøyreFelt>

@@ -31,7 +31,7 @@ const KnappWrapper = styled<StyleProps, 'button'>('button')`
     stroke-width: 0.7;
     fill: none
   }
-  transition: transform 1s;
+  transition: transform .5s;
   transform: rotate(${props => getDirection(props.direction)});
 `;
 

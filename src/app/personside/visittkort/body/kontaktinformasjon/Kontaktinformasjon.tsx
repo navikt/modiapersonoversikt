@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Person } from '../../../../../models/person/person';
-import { InfoGruppe } from '../styledComponents';
+import { VisittkortGruppe } from '../VisittkortStyles';
 import Adresse from './adresse/Adresse';
 import EpostContainer from './epost/EpostContainer';
 import MobiltelefonContainer from './telefon/MobiltelefonContainer';
@@ -14,12 +14,12 @@ interface Props {
 
 export default function Kontaktinformasjon({person}: Props) {
     return (
-        <InfoGruppe tittel={'Kontaktinformasjon'}>
+        <VisittkortGruppe tittel={'Kontaktinformasjon'}>
             <Adresse  person={person}/>
             <EpostContainer/>
             <MobiltelefonContainer/>
             <NavKontaktinformasjon navKontaktinformasjon={person.kontaktinformasjon}/>
             <Bankkonto person={person}/>
-        </InfoGruppe>
+        </VisittkortGruppe>
     );
 }
