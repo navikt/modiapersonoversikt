@@ -2,15 +2,16 @@ import * as React from 'react';
 
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
-import VisittkortElement from '../VisittkortElement';
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
 import { Kodeverk } from '../../../../../models/kodeverk';
+import { VisittkortGruppe } from '../VisittkortStyles';
+import VisittkortElement from '../VisittkortElement';
 
 interface TilrettelagtKommunikasjonProps {
     tilrettelagtKommunikasjonsListe: Kodeverk[];
 }
 
-function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: TilrettelagtKommunikasjonProps) {
+function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjonsListe }: TilrettelagtKommunikasjonProps) {
     const tilrettelagtKommunikasjonsTekst = tilrettelagtKommunikasjonsListe.map(tilrettelagtKommunikasjon =>
         tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon));
 
@@ -18,13 +19,14 @@ function TilrettelagtKommunikasjon({tilrettelagtKommunikasjonsListe}: Tilrettela
         return null;
     }
     return (
-        <VisittkortElement
-            beskrivelse="Tilrettelagt Kommunikasjon"
-            ikon={<UtropstegnIkon />}
-            type={'header'}
+        <VisittkortGruppe
+            tittel="Tilrettelagt Kommunikasjon"
+            ikon={<UtropstegnIkon/>}
         >
-            {tilrettelagtKommunikasjonsTekst}
-        </VisittkortElement>
+            <VisittkortElement>
+                {tilrettelagtKommunikasjonsTekst}
+            </VisittkortElement>
+        </VisittkortGruppe>
 
     );
 }

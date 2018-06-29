@@ -24,16 +24,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </svg>
     </div>
     <div
-      className="sc-dnqmqq cOJMoz"
+      className="sc-dnqmqq eUlWRD"
     >
-      <h2
+      <h1
         className="typo-undertittel"
       >
         AREMARK TESTFAMILIEN
          (
         42
         )
-      </h2>
+      </h1>
       <span
         className="typo-undertekst"
       >
@@ -117,7 +117,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       className="typo-undertekst"
     >
       <dl
-        className="sc-bwzfXH gvaWfu"
+        className="sc-bwzfXH blhaLS"
       >
         <dt>
           NAV-kontor
