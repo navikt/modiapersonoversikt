@@ -18,15 +18,15 @@ import RequestTilbakemelding from '../RequestTilbakemelding';
 import { brukersNavnKanEndres, validerNavn, veilederHarPåkrevdRolle } from './endrenavn-utils';
 import Infomelding from './Infomelding';
 import { ignoreEnter, InputState } from '../formUtils';
+import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 
 interface NavnInputProps {
     label: string;
     state: InputState;
-    disabled: boolean;
     onChange: (input: string) => void;
 }
 
-function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
+function NavnInput({label, state, onChange}: NavnInputProps) {
     const feilmelding = state.feilmelding ? {feilmelding: state.feilmelding} : undefined;
     return (
         <Input
@@ -34,7 +34,6 @@ function NavnInput({label, state, disabled, onChange}: NavnInputProps) {
             name={label}
             value={state.input}
             onChange={(event) => onChange(event.target.value.toUpperCase())}
-            disabled={disabled}
             onKeyPress={ignoreEnter}
             feil={feilmelding}
         />
@@ -213,51 +212,50 @@ class EndreNavnForm extends React.Component<Props, State> {
             brukersNavnKanEndres(this.props.person);
         return (
             <form onSubmit={this.handleSubmit}>
-                <Undertittel>Navn</Undertittel>
-                <Infomelding person={this.props.person} veilderRoller={this.props.veilederRoller}/>
-                <NavnInput
-                    label="Fornavn"
-                    state={this.state.fornavn}
-                    onChange={this.fornavnInputChange}
-                    disabled={!kanEndreNavn}
-                />
-                <NavnInput
-                    label="Mellomnavn"
-                    state={this.state.mellomnavn}
-                    onChange={this.mellomnavnInputChange}
-                    disabled={!kanEndreNavn}
-                />
-                <NavnInput
-                    label="Etternavn"
-                    state={this.state.etternavn}
-                    onChange={this.etternavnInputChange}
-                    disabled={!kanEndreNavn}
-                />
-                <FormKnapperWrapper>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.tilbakestillForm}
-                        disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
-                    >
-                        Avbryt
-                    </KnappBase>
-                    <KnappBase
-                        type="hoved"
-                        spinner={this.props.status === STATUS.PENDING}
-                        disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
-                        autoDisableVedSpinner={true}
-                    >
-                        Endre navn
-                    </KnappBase>
-                </FormKnapperWrapper>
-                {!this.state.formErEndret
-                    ? (<RequestTilbakemelding
-                        status={this.props.status}
-                        onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
-                        onError={'Det skjedde en feil ved endring av navn.'}
-                    />)
-                    : null
-                }
+                <FormFieldSet disabled={!kanEndreNavn}>
+                    <Undertittel>Navn</Undertittel>
+                    <Infomelding person={this.props.person} veilderRoller={this.props.veilederRoller}/>
+                    <NavnInput
+                        label="Fornavn"
+                        state={this.state.fornavn}
+                        onChange={this.fornavnInputChange}
+                    />
+                    <NavnInput
+                        label="Mellomnavn"
+                        state={this.state.mellomnavn}
+                        onChange={this.mellomnavnInputChange}
+                    />
+                    <NavnInput
+                        label="Etternavn"
+                        state={this.state.etternavn}
+                        onChange={this.etternavnInputChange}
+                    />
+                    <FormKnapperWrapper>
+                        <KnappBase
+                            type="standard"
+                            onClick={this.tilbakestillForm}
+                            disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
+                        >
+                            Avbryt
+                        </KnappBase>
+                        <KnappBase
+                            type="hoved"
+                            spinner={this.props.status === STATUS.PENDING}
+                            disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
+                            autoDisableVedSpinner={true}
+                        >
+                            Endre navn
+                        </KnappBase>
+                    </FormKnapperWrapper>
+                    {!this.state.formErEndret
+                        ? (<RequestTilbakemelding
+                            status={this.props.status}
+                            onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                            onError={'Det skjedde en feil ved endring av navn.'}
+                        />)
+                        : null
+                    }
+                </FormFieldSet>
             </form>
 
         );
