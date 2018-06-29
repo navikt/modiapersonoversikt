@@ -292,6 +292,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             retningsnummerInputChange={this.mobilRetningsnummerInputChange}
                             telfonnummerInputChange={this.mobilTelefonnummerInputChange}
                             visFeilmeldinger={this.state.visFeilmeldinger}
+                            id="Mobiltelefon"
                         >
                             Mobiltelefon
                         </TelefonInput>
@@ -304,6 +305,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                             retningsnummerInputChange={this.hjemRetningsnummerInputChange}
                             telfonnummerInputChange={this.hjemTelefonnummerInputChange}
                             visFeilmeldinger={this.state.visFeilmeldinger}
+                            id="Hjemmenummer"
                         >
                             Hjemmenummer
                         </TelefonInput>
@@ -315,6 +317,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
                         visFeilmeldinger={this.state.visFeilmeldinger}
+                        id="Jobbnummer"
                     >
                         Jobbnummer
                     </TelefonInput>
