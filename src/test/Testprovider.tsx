@@ -4,9 +4,10 @@ import { testStore } from './setupTests';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { ThemeProvider } from 'styled-components';
+import { ReactNode } from 'react';
 
 interface Props {
-    children: React.ReactChildren | React.ReactChild | JSX.Element[];
+    children: ReactNode;
 }
 
 function TestProvider({ children }: Props) {

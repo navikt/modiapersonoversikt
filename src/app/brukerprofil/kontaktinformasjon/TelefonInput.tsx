@@ -22,6 +22,7 @@ const TelefonInputWrapper = styled.div`
 `;
 
 interface TelefonInputProps {
+    id: string;
     children: string;
     retningsnummerKodeverk: KodeverkResponse;
     inputValue: TelefonInput;
@@ -49,6 +50,7 @@ export function TelefonInput(props: TelefonInputProps) {
             <Ingress>{props.children}</Ingress>
             <TelefonInputWrapper>
                 <Retningsnummer
+                    id={'Retningsnummer ' + props.id}
                     retningsnummerKodeverk={props.retningsnummerKodeverk}
                     state={props.inputValue.retningsnummer}
                     onChange={props.retningsnummerInputChange}
@@ -56,6 +58,7 @@ export function TelefonInput(props: TelefonInputProps) {
                 />
                 <TelefonnummerWrapper>
                     <Input
+                        id={props.id}
                         bredde={'XXL'}
                         label="Telefonnummer"
                         value={props.inputValue.identifikator.input}
