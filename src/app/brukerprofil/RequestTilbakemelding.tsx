@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { STATUS } from '../../redux/utils';
-import AlertStripe from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
+
+import AlertStripe from 'nav-frontend-alertstriper';
+
+import { STATUS } from '../../redux/utils';
 
 const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;
