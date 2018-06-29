@@ -1,7 +1,7 @@
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import FormValidator from '../../../../../utils/forms/FormValidator';
 import {
-    lagDatoErIfremtidenRegel,
+    lagDatoErInnenEtÅrRegel,
     lagErIkkeTomtFeltRegel,
     lagPostnummerRegel
 } from '../../../../../utils/forms/commonValidatorRegler';
@@ -11,7 +11,7 @@ const eiendomsnavnRegel = lagErIkkeTomtFeltRegel<Matrikkeladresse>(
     (matrikkeladresse) => matrikkeladresse.eiendomsnavn ? matrikkeladresse.eiendomsnavn : '',
     'Områdeadresse kan ikke være tom');
 const postnummerRegel = lagPostnummerRegel('postnummer', matrikkeladresse => matrikkeladresse.postnummer );
-const gyldigTilRegel = lagDatoErIfremtidenRegel<Matrikkeladresse>('periode', matrikkeladresse =>
+const gyldigTilRegel = lagDatoErInnenEtÅrRegel<Matrikkeladresse>('periode', matrikkeladresse =>
     matrikkeladresse.periode ? matrikkeladresse.periode.til : '');
 
 export function validerMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {

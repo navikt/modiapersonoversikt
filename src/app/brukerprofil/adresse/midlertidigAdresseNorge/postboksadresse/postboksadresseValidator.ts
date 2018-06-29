@@ -1,14 +1,14 @@
 import { Postboksadresse } from '../../../../../models/personadresse';
 import FormValidator from '../../../../../utils/forms/FormValidator';
 import {
-    datoErGyldigValidatorRegel, lagDatoErIfremtidenRegel,
+    datoErGyldigValidatorRegel, lagDatoErInnenEtÅrRegel,
     lagPostnummerRegel
 } from '../../../../../utils/forms/commonValidatorRegler';
 
 const datoGyldigRegel = datoErGyldigValidatorRegel<Postboksadresse>('periode', postboksadresse =>
     postboksadresse.periode ? postboksadresse.periode.til : '');
 
-const datoErIfremtidenRegel = lagDatoErIfremtidenRegel<Postboksadresse>('periode', postboksadresse =>
+const datoErIfremtidenRegel = lagDatoErInnenEtÅrRegel<Postboksadresse>('periode', postboksadresse =>
     postboksadresse.periode ? postboksadresse.periode.til : '');
 
 const postnummerRegel = lagPostnummerRegel('postnummer', postboksadresse =>

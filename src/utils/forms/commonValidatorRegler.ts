@@ -27,7 +27,7 @@ export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T)
     };
 }
 
-export function lagDatoErIfremtidenRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
+export function lagDatoErInnenEtÅrRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
     return {
         felt: key,
         feilmelding: 'Dato må være etter idag og innen ett år',
