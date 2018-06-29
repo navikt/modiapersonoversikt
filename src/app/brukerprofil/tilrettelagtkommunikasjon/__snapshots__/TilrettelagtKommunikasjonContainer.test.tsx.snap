@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
+<div>
+  <h2
+    className="typo-undertittel"
+  >
+    Tilrettelagt Kommunikasjon
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="inputPanelGruppe"
+    >
+      <fieldset
+        className="skjema__fieldset"
+      >
+        <legend
+          className="skjema__legend"
+        >
+          
+        </legend>
+        <label
+          className="inputPanel checkboksPanel inputPanel--checked"
+          htmlFor="TOHJ"
+        >
+          <input
+            aria-checked={true}
+            checked={true}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="TOHJ"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="inputPanel__label"
+          >
+            Tolkehjelp
+          </span>
+        </label>
+        <label
+          className="inputPanel checkboksPanel"
+          htmlFor="LESA"
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="LESA"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="inputPanel__label"
+          >
+            Ledsager
+          </span>
+        </label>
+        <label
+          className="inputPanel checkboksPanel"
+          htmlFor="KOMU"
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="KOMU"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="inputPanel__label"
+          >
+            Muntlig kommunikasjon
+          </span>
+        </label>
+        <label
+          className="inputPanel checkboksPanel"
+          htmlFor="KOSK"
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="KOSK"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="inputPanel__label"
+          >
+            Skriftlig kommunikasjon
+          </span>
+        </label>
+        <label
+          className="inputPanel checkboksPanel"
+          htmlFor="TELE"
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="TELE"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="inputPanel__label"
+          >
+            Telepatisk kommunikasjon
+          </span>
+        </label>
+      </fieldset>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="sc-kpOJdX cEVecM"
+    >
+      <button
+        className="knapp knapp--standard knapp--disabled"
+        disabled={true}
+        onClick={[Function]}
+        type="submit"
+      >
+        Avbryt
+      </button>
+      <button
+        className="knapp knapp--hoved knapp--disabled"
+        disabled={true}
+        title="Ingen endringer"
+        type="submit"
+      >
+        Endre tilrettelagt kommunikasjon
+      </button>
+    </div>
+  </form>
+</div>
+`;
