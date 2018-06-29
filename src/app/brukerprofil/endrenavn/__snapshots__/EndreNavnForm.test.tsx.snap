@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre navn 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c1 > * {
+  margin-left: 1em;
+}
+
+.c0 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 <form
   onSubmit={[Function]}
 >
@@ -10,7 +30,7 @@ exports[`Viser form for endre navn 1`] = `
     Navn
   </h2>
   <div
-    className="sc-kpOJdX haeJXb"
+    className="c0"
   >
     <div
       aria-live={undefined}
@@ -131,7 +151,7 @@ exports[`Viser form for endre navn 1`] = `
     />
   </div>
   <div
-    className="sc-kGXeez hgoYW"
+    className="c1"
   >
     <button
       className="knapp knapp--standard knapp--disabled"
