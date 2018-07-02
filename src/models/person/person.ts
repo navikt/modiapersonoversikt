@@ -18,7 +18,7 @@ export interface Person extends PersonRespons {
     fødselsnummer: string;
     alder: number;
     diskresjonskode?: Kodeverk;
-    bankkonto?: Bankkonto;
+    bankkonto: Bankkonto | null;
     tilrettelagtKomunikasjonsListe: Kodeverk[];
     statsborgerskap?: Kodeverk;
     folkeregistrertAdresse?: Personadresse;
@@ -108,7 +108,7 @@ export enum BegrensetTilgangTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
     EgenAnsatt = 'sikkerhetsbegrensning.diskresjonEgenAnsatt',
-    Geografi = 'sikkerhetsbegrensing.geografisk',
+    Geografi = 'sikkerhetsbegrensning.geografisk',
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 

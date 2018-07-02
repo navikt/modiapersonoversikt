@@ -88,7 +88,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     getBrukersBankkonto(): EndreBankkontoState {
         const person = this.props.person;
-        if (person.bankkonto === undefined) {
+        if (!person.bankkonto) {
             return tomBankkonto;
         }
         return {
