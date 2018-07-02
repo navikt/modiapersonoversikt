@@ -14,55 +14,6 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       Kontonummer
     </h2>
     <div
-      className="sc-bwzfXH efHyHm"
-    >
-      <div
-        aria-live={undefined}
-        className="alertstripe alertstripe--info"
-      >
-        <span
-          aria-label="info"
-          className="alertstripe__ikon"
-        >
-          <svg
-            focusable="false"
-            height="1.5em"
-            kind="info-sirkel-orange"
-            onClick={undefined}
-            style={undefined}
-            viewBox="0 0 24 24"
-            width="1.5em"
-          >
-            <title>
-              Informasjon
-            </title>
-            <g
-              fill="#D87F0A"
-              fillRule="evenodd"
-            >
-              <path
-                d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
-              />
-              <path
-                d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
-              />
-              <ellipse
-                cx="11.478"
-                cy="5.739"
-                rx="1.043"
-                ry="1.043"
-              />
-            </g>
-          </svg>
-        </span>
-        <span
-          className="typo-normal alertstripe__tekst"
-        >
-          Du har ikke nødvendig rolle for å endre brukers bankkonto
-        </span>
-      </div>
-    </div>
-    <div
       className="inputPanelGruppe"
     >
       <fieldset
@@ -191,55 +142,6 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       Kontonummer
     </h2>
-    <div
-      className="sc-bwzfXH efHyHm"
-    >
-      <div
-        aria-live={undefined}
-        className="alertstripe alertstripe--info"
-      >
-        <span
-          aria-label="info"
-          className="alertstripe__ikon"
-        >
-          <svg
-            focusable="false"
-            height="1.5em"
-            kind="info-sirkel-orange"
-            onClick={undefined}
-            style={undefined}
-            viewBox="0 0 24 24"
-            width="1.5em"
-          >
-            <title>
-              Informasjon
-            </title>
-            <g
-              fill="#D87F0A"
-              fillRule="evenodd"
-            >
-              <path
-                d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
-              />
-              <path
-                d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
-              />
-              <ellipse
-                cx="11.478"
-                cy="5.739"
-                rx="1.043"
-                ry="1.043"
-              />
-            </g>
-          </svg>
-        </span>
-        <span
-          className="typo-normal alertstripe__tekst"
-        >
-          Du har ikke nødvendig rolle for å endre brukers bankkonto
-        </span>
-      </div>
-    </div>
     <div
       className="inputPanelGruppe"
     >

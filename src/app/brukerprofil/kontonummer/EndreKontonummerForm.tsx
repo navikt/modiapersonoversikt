@@ -214,7 +214,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     type="hoved"
                     spinner={this.props.status === STATUS.PENDING}
                     autoDisableVedSpinner={true}
-                    disabled={!this.kontoErEndret() || !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}
+                    disabled={!this.kontoErEndret() ||
+                    !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}
                 >
                     Endre kontonummer
                 </KnappBase>
