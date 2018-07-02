@@ -14,5 +14,9 @@ export function getMockVeilederRoller(): VeilederRoller {
         roller.push('0000-GA-BD06_EndreKontonummer');
     }
 
+    if (vektetSjanse(faker, 0.7)) {
+        roller.push('0000-GA-BD06_EndreKontaktAdresse');
+    }
+
     return { roller: roller };
 }

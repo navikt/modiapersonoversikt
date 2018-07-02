@@ -8,7 +8,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
     Kontaktinformasjon
   </h2>
   <div
-    className="sc-kpOJdX cTiSZX"
+    className="sc-ckVGcZ fNhbdt"
   >
     <form
       onSubmit={[Function]}
@@ -19,10 +19,10 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
         Telefonnummer bruker ønsker å bli oppringt på
       </p>
       <div
-        className="sc-kgoBCf bepbwp"
+        className="sc-kpOJdX bAbMGK"
       >
         <div
-          className="sc-kGXeez iWjhrf"
+          className="sc-dxgOiQ cfTtrn"
         >
           <p
             className="typo-ingress"
@@ -141,7 +141,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
           </span>
         </div>
         <div
-          className="sc-kGXeez iWjhrf"
+          className="sc-dxgOiQ cfTtrn"
         >
           <p
             className="typo-ingress"
@@ -352,7 +352,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
         </div>
       </div>
       <div
-        className="sc-chPdSV gopUKn"
+        className="sc-kGXeez hgoYW"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
