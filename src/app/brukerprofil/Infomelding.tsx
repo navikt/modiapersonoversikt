@@ -6,7 +6,11 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { brukersNavnKanEndres } from './endrenavn/endrenavn-utils';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { Person } from '../../models/person/person';
-import { veilederHarPåkrevdRolleForEndreAdresse, veilederHarPåkrevdRolleForEndreNavn } from './utils/RollerUtils';
+import {
+    veilederHarPåkrevdRolleForEndreAdresse,
+    veilederHarPåkrevdRolleForEndreKontonummer,
+    veilederHarPåkrevdRolleForEndreNavn
+} from './utils/RollerUtils';
 
 const Luft = styled.div`
   margin-top: 1em;
@@ -57,7 +61,7 @@ export function EndreAdresseInfomeldingWrapper(props: {veilderRoller: VeilederRo
 
 export function EndreKontonummerInfomeldingWrapper(props: {veilderRoller: VeilederRoller}) {
 
-    if (!veilederHarPåkrevdRolleForEndreAdresse(props.veilderRoller)) {
+    if (!veilederHarPåkrevdRolleForEndreKontonummer(props.veilderRoller)) {
         return (
             <Infomelding>Du har ikke nødvendig rolle for å endre brukers bankkonto</Infomelding>
         );

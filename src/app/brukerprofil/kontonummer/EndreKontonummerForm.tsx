@@ -31,7 +31,7 @@ import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { validerUtenlandskKonto } from './utenlandskKontoValidator';
 import EtikettMini from '../../../components/EtikettMini';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
-import { harPåkrevdRolle } from '../utils/RollerUtils';
+import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 
 enum bankEnum {
@@ -214,7 +214,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     type="hoved"
                     spinner={this.props.status === STATUS.PENDING}
                     autoDisableVedSpinner={true}
-                    disabled={!this.kontoErEndret() || !harPåkrevdRolle(this.props.veilederRoller)}
+                    disabled={!this.kontoErEndret() || !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}
                 >
                     Endre kontonummer
                 </KnappBase>
@@ -232,7 +232,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         const sistEndretInfo = <EtikettMini>{hentEndringstekst(this.props.person.bankkonto)}</EtikettMini>;
         return (
             <form onSubmit={this.handleSubmit}>
-                <FormFieldSet disabled={!harPåkrevdRolle(this.props.veilederRoller)}>
+                <FormFieldSet disabled={!veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}>
                     <Undertittel>Kontonummer</Undertittel>
                     <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller}/>
                     {norskEllerUtenlandskKontoRadio}
