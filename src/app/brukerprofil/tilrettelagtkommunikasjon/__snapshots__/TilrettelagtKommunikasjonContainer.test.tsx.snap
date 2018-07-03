@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c0 > * {
+  margin-left: 1em;
+}
+
 <div>
   <h2
     className="typo-undertittel"
@@ -133,7 +148,7 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
       />
     </div>
     <div
-      className="sc-ckVGcZ kNKPfy"
+      className="c0"
     >
       <button
         className="knapp knapp--standard knapp--disabled"

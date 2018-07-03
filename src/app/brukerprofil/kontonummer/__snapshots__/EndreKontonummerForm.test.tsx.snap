@@ -1,11 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
+.c0 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.c1 .typo-etikett-liten {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2 > * {
+  margin-left: 1em;
+}
+
 <form
   onSubmit={[Function]}
 >
   <fieldset
-    className="sc-bZQynM cLvBuE"
+    className="c0"
     disabled={false}
   >
     <h2
@@ -75,7 +101,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       />
     </div>
     <span
-      className="sc-htoDjs dWEqUE"
+      className="c1"
     >
       <p
         className="typo-etikett-liten"
@@ -107,7 +133,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="sc-ckVGcZ kNKPfy"
+      className="c2"
     >
       <button
         className="knapp knapp--standard knapp--disabled"
@@ -130,11 +156,37 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 `;
 
 exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
+.c0 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.c1 .typo-etikett-liten {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2 > * {
+  margin-left: 1em;
+}
+
 <form
   onSubmit={[Function]}
 >
   <fieldset
-    className="sc-bZQynM cLvBuE"
+    className="c0"
     disabled={false}
   >
     <h2
@@ -204,7 +256,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       />
     </div>
     <span
-      className="sc-htoDjs dWEqUE"
+      className="c1"
     >
       <p
         className="typo-etikett-liten"
@@ -501,7 +553,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="sc-ckVGcZ kNKPfy"
+      className="c2"
     >
       <button
         className="knapp knapp--standard knapp--disabled"
