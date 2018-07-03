@@ -7,9 +7,7 @@ import TestProvider from '../../../../test/Testprovider';
 test('viser info om bruker i visittkortbody', () => {
 
     const visittkortbody = renderer.create(
-        <TestProvider><VisittkortBody person={aremark}/>
-        </TestProvider>
+        <TestProvider><VisittkortBody person={aremark}/></TestProvider>
     );
-
     expect(visittkortbody.toJSON()).toMatchSnapshot();
 });

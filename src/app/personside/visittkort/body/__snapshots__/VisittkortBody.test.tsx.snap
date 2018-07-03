@@ -878,43 +878,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-gzVnrw ljOQMZ"
+      className="sc-kjoXOD iCDFNe"
     >
-      <svg
-        aria-label="Laster innhold"
-        className="spinner spinner--l"
-        focusable="false"
-        height={32}
-        kind="spinner"
-        onClick={undefined}
-        preserveAspectRatio="xMidYMid"
-        style={undefined}
-        viewBox="0 0 100 100"
-        width={32}
+      <a
+        className="lenke"
+        href="/modiabrukerdialog/person/10108000398#!brukerprofil"
       >
-        <title>
-          Venter...
-        </title>
-        <circle
-          cx="50"
-          cy="50"
-          fill="none"
-          r="40"
-          stroke="#bdbab7"
-          strokeWidth="10"
-          xmlns="http://www.w3.org/2000/svg"
-        />
-        <circle
-          cx="50"
-          cy="50"
-          fill="none"
-          r="40"
-          stroke="#7f756c"
-          strokeDasharray="50 155"
-          strokeLinecap="round"
-          strokeWidth="10"
-        />
-      </svg>
+        Administrer brukerprofil
+      </a>
     </div>
   </div>
 </div>
