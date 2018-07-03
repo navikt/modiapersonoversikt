@@ -36,7 +36,7 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
                 spinnerSize={'L'}
             >
                 <LenkeBrukerprofilVisning
-                    nyBrukerprofilToggle={this.props.featureToggleReducer.data.value}
+                    nyBrukerprofilToggle={this.props.featureToggleReducer.data['modiabrukerdialog.ny-brukerprofil']}
                     person={this.props.person}
                 />
             </Innholdslaster>
