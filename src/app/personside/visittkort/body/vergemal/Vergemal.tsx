@@ -13,15 +13,11 @@ import { Vergesakstype } from './Vergesakstype';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 
-function Periode(props: { periode: Periode }) {
-    const { periode } = props;
-
+function getPeriodeTekst(periode: Periode) {
     const fom = periode.fom ? formaterDato(periode.fom) : '';
     const tom = periode.tom ? formaterDato(periode.tom) : '';
 
-    return (
-        <EtikettMini>{fom} {ENDASH} {tom}</EtikettMini>
-    );
+    return `${fom} ${ENDASH} ${tom}`;
 }
 
 const Vergeinformasjon = styled.div`
@@ -42,8 +38,11 @@ function Verge(props: { verge: Verge }) {
             <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
             <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : 'Ikke oppgitt'}</Undertekst>
             <Undertekst>{verge.mandattekst || ''}</Undertekst>
-            <EtikettMini>{verge.embete ? verge.embete.beskrivelse : ''}</EtikettMini>
-            <Periode periode={verge.virkningsperiode}/>
+            <EtikettMini>
+                {verge.embete ? verge.embete.beskrivelse : ''}
+                {verge.embete ? <br /> : ''}
+                {getPeriodeTekst(verge.virkningsperiode)}
+            </EtikettMini>
 
         </VisittkortElement>
     );
