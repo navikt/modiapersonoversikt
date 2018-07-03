@@ -7,6 +7,7 @@ import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { erEgenAnsatt } from './egenansatt';
 import { hentVergemal } from './vergemal';
 import { resetNavKontorReducer } from './navkontor';
+import { hentFeatureToggle } from './featuretoggle';
 
 const { reducer, action, actionNames} = createActionsAndReducer('personinformasjon');
 
@@ -19,6 +20,7 @@ export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: st
     dispatch(hentKontaktinformasjon(fødselsnummer));
     dispatch(erEgenAnsatt(fødselsnummer));
     dispatch(hentVergemal(fødselsnummer));
+    dispatch(hentFeatureToggle('ny-brukerprofil'));
     dispatch(resetNavKontorReducer());
 }
 export const personinformasjonActionNames = actionNames;

@@ -14,6 +14,7 @@ import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-k
 import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
+import { mockFeatureToggleAdminBrukerprofil } from './featureToggle-mock';
 
 const STATUS_OK = () => 200;
 
@@ -102,6 +103,13 @@ function setupBaseUrlsMock(mock: FetchMock) {
         () => {return mockBaseUrls(); }));
 }
 
+function setupFeatureToggleMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/featuretoggle/:toggleId', withDelayedResponse(
+        200,
+        STATUS_OK,
+        () => {return mockFeatureToggleAdminBrukerprofil('ny-brukerprofil'); }));
+}
+
 function setupVeilederRollerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
         700,
@@ -188,6 +196,7 @@ export function setupMock() {
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
+    setupFeatureToggleMock(mock);
     endreNavnMock(mock);
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);

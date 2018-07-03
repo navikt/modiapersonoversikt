@@ -10,7 +10,9 @@ import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
 export const paths = {
     personUri: '/modiapersonoversikt/person',
     brukerprofil: '/modiapersonoversikt/brukerprofil',
-    basePath: '/modiapersonoversikt'
+    basePath: '/modiapersonoversikt',
+    legacyPersonPath: '/modiabrukerdialog/person',
+    legacyBrukerprofil: '#!brukerprofil'
 };
 
 function Routing(props: RouteComponentProps<{}> ) {

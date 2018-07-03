@@ -3,6 +3,7 @@ import * as EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import 'jest-enzyme';
 import 'babel-polyfill';
 import { getMockNavKontor } from '../mock/navkontor-mock';
+import 'jest-styled-components';
 
 import reducers from '../redux/reducer';
 import { applyMiddleware, createStore } from 'redux';
@@ -12,6 +13,7 @@ import { kontaktinformasjonActionNames } from '../redux/kontaktinformasjon';
 import { actionNames as egenAnsattActionNames } from '../redux/egenansatt';
 import { actionNames as vergeMålActionNames } from '../redux/vergemal';
 import { actionNames as baseUrlsActionNames } from '../redux/baseurls';
+import { actionNames as featureToggleActionNames } from '../redux/featuretoggle';
 import { getMockKontaktinformasjon } from '../mock/kontaktinformasjon-mock';
 import { personinformasjonActionNames } from '../redux/personinformasjon';
 import { getPerson } from '../mock/person/personMock';
@@ -30,6 +32,7 @@ import { landActionNames } from '../redux/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { valutaerActionNames } from '../redux/kodeverk/valutaKodeverk';
+import { mockFeatureToggleAdminBrukerprofil } from '../mock/featureToggle-mock';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -47,6 +50,7 @@ testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontak
 testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
 testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
 testStore.dispatch({ type: baseUrlsActionNames.OK, data: mockBaseUrls() });
+testStore.dispatch({ type: featureToggleActionNames.OK, data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil') });
 testStore.dispatch({ type: veilederRollerReducerActionNames.OK, data: getMockVeilederRoller() });
 testStore.dispatch({ type: tilrettelagtKommunikasjonActionNames.OK, data: mockTilrettelagtKommunikasjonKodeverk() });
 testStore.dispatch({ type: retningsnummerKodeverkActionNames.OK, data: mockRetningsnummereKodeverk() });

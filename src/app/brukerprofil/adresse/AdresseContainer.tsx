@@ -15,6 +15,7 @@ import {
     endrePostboksadrese, endreUtlandsadresse, slettMidlertidigeAdresser
 } from '../../../redux/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
+import { VeilederRoller } from '../../../models/veilederRoller';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -30,7 +31,12 @@ interface DispatchProps {
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
 }
 
-class AdresseFormContainer extends React.Component<StateProps & DispatchProps & {person: Person}> {
+interface OwnProps {
+    person: Person;
+    veilederRoller: VeilederRoller;
+}
+
+class AdresseFormContainer extends React.Component<StateProps & DispatchProps & OwnProps> {
 
     componentDidMount() {
         if (this.props.postnummerReducer.status === STATUS.NOT_STARTED) {
@@ -42,6 +48,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
         return (
             <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
                 <AdresseForm
+                    veilederRoller={this.props.veilederRoller}
                     person={this.props.person}
                     endreNorskGateadresse={this.props.endreNorskGateadresse}
                     endreMatrikkeladresse={this.props.endreMatrikkeladresse}

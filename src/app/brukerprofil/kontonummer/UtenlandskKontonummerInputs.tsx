@@ -12,14 +12,13 @@ import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { STATUS } from '../../../redux/utils';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
-import { ignoreEnter } from '../formUtils';
+import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
     bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
-    disabled: boolean;
 }
 
 interface State {
@@ -72,7 +71,6 @@ function Inputs(props: Props) {
                 label="Bankens navn"
                 id="Bankens navn"
                 value={bankkonto.banknavn || ''}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
                 feil={validering.banknavn.skjemafeil}
@@ -81,7 +79,6 @@ function Inputs(props: Props) {
                 label="Bankens adresse"
                 id="Bankens adresse linje 1"
                 value={bankkonto.adresse.linje1}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
@@ -95,7 +92,6 @@ function Inputs(props: Props) {
                 label=""
                 id="Bankens adresse linje 2"
                 value={bankkonto.adresse.linje2}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
@@ -109,7 +105,6 @@ function Inputs(props: Props) {
                 label=""
                 id="Bankens adresse linje 3"
                 value={bankkonto.adresse.linje3}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
                     adresse: {
@@ -123,7 +118,6 @@ function Inputs(props: Props) {
                 label="Kontonummer eller IBAN"
                 id="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
                 feil={validering.kontonummer.skjemafeil}
@@ -132,7 +126,6 @@ function Inputs(props: Props) {
                 label="BC/SWIFT-kode"
                 id="BC/SWIFT-kode"
                 value={bankkonto.swift}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
                 feil={validering.swift.skjemafeil}
@@ -141,7 +134,6 @@ function Inputs(props: Props) {
                 label="Bankkode"
                 id="BankKode"
                 value={bankkonto.bankkode}
-                disabled={props.disabled}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
                 feil={validering.bankkode.skjemafeil}
@@ -166,7 +158,6 @@ function VelgLand(props: Props) {
             label="Velg land"
             id="Velg land"
             value={props.bankkonto.landkode.kodeRef}
-            disabled={props.disabled}
             onChange={event => handleLandChange(props, event)}
         >
             <option key="default" value="Velg land">Velg Land</option>
@@ -190,7 +181,6 @@ function VelgValutta(props: Props) {
             label="Velg valutta"
             id="Velg valutta"
             value={props.bankkonto.valuta.kodeRef}
-            disabled={props.disabled}
             onChange={event => handleValutaChange(props, event)}
         >
             <option key="default" value="Velg valuta">Velg valuta</option>

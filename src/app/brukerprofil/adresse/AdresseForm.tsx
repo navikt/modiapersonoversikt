@@ -29,8 +29,13 @@ import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gatead
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
 import SubmitFeedback from './common/SubmitFeedback';
+import { VeilederRoller } from '../../../models/veilederRoller';
+import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
+import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
+import { EndreAdresseInfomeldingWrapper } from '../Infomelding';
 
 interface Props {
+    veilederRoller: VeilederRoller;
     person: Person;
     endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) => void;
     endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) => void;
@@ -251,9 +256,14 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     render() {
+        const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
         return (
             <form onSubmit={this.onSubmit}>
+                <FormFieldSet disabled={!kanEndreAdresse}>
                 <Undertittel>Adresse</Undertittel>
+                    <EndreAdresseInfomeldingWrapper
+                        veilderRoller={this.props.veilederRoller}
+                    />
                 <AdresseValg
                     label={'Bostedsadresse fra folkeregisteret'}
                     onAdresseValgChange={this.onAdresseValgChange}
@@ -302,6 +312,7 @@ class AdresseForm extends React.Component<Props, State> {
                     </KnappBase>
                 </FormKnapperWrapper>
                 <SubmitFeedback visFeedback={!this.state.formErEndret} status={this.props.endreAdresseReducer.status}/>
+                </FormFieldSet>
             </form>
         );
     }

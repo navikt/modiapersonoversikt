@@ -1,6 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre kontaktinformasjon 1`] = `
+.c6 .typo-etikett-liten {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+
+.c4 {
+  margin-right: 2em;
+}
+
+.c5 {
+  -webkit-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c7 > * {
+  margin-left: 1em;
+}
+
+.c1 {
+  margin-top: 1em;
+}
+
+.c2 {
+  margin-bottom: 1em;
+}
+
+.c0 {
+  margin-top: 2em;
+}
+
 <div>
   <h2
     className="typo-undertittel"
@@ -8,7 +57,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
     Kontaktinformasjon
   </h2>
   <div
-    className="sc-kpOJdX cTiSZX"
+    className="c0"
   >
     <form
       onSubmit={[Function]}
@@ -19,10 +68,10 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
         Telefonnummer bruker ønsker å bli oppringt på
       </p>
       <div
-        className="sc-kgoBCf bepbwp"
+        className="c1"
       >
         <div
-          className="sc-kGXeez iWjhrf"
+          className="c2"
         >
           <p
             className="typo-ingress"
@@ -30,10 +79,10 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             Mobiltelefon
           </p>
           <div
-            className="sc-ifAKCX WOpjk"
+            className="c3"
           >
             <div
-              className="sc-htpNat dUHUAp"
+              className="c4"
             >
               <div
                 className="skjemaelement"
@@ -101,7 +150,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               </div>
             </div>
             <div
-              className="sc-bxivhb eILgmy"
+              className="c5"
             >
               <div
                 className="skjemaelement"
@@ -128,7 +177,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             </div>
           </div>
           <span
-            className="sc-bwzfXH opmLB"
+            className="c6"
           >
             <p
               className="typo-etikett-liten"
@@ -141,7 +190,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
           </span>
         </div>
         <div
-          className="sc-kGXeez iWjhrf"
+          className="c2"
         >
           <p
             className="typo-ingress"
@@ -149,10 +198,10 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             Hjemmenummer
           </p>
           <div
-            className="sc-ifAKCX WOpjk"
+            className="c3"
           >
             <div
-              className="sc-htpNat dUHUAp"
+              className="c4"
             >
               <div
                 className="skjemaelement"
@@ -220,7 +269,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               </div>
             </div>
             <div
-              className="sc-bxivhb eILgmy"
+              className="c5"
             >
               <div
                 className="skjemaelement"
@@ -253,10 +302,10 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
           Jobbnummer
         </p>
         <div
-          className="sc-ifAKCX WOpjk"
+          className="c3"
         >
           <div
-            className="sc-htpNat dUHUAp"
+            className="c4"
           >
             <div
               className="skjemaelement"
@@ -324,7 +373,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             </div>
           </div>
           <div
-            className="sc-bxivhb eILgmy"
+            className="c5"
           >
             <div
               className="skjemaelement"
@@ -352,7 +401,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
         </div>
       </div>
       <div
-        className="sc-chPdSV gopUKn"
+        className="c7"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
