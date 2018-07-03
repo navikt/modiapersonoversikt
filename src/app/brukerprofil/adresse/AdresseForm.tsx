@@ -260,58 +260,61 @@ class AdresseForm extends React.Component<Props, State> {
         return (
             <form onSubmit={this.onSubmit}>
                 <FormFieldSet disabled={!kanEndreAdresse}>
-                <Undertittel>Adresse</Undertittel>
+                    <Undertittel>Adresse</Undertittel>
                     <EndreAdresseInfomeldingWrapper
                         veilderRoller={this.props.veilederRoller}
                     />
-                <AdresseValg
-                    label={'Bostedsadresse fra folkeregisteret'}
-                    onAdresseValgChange={this.onAdresseValgChange}
-                    checked={this.state.selectedRadio === Valg.FOLKEREGISTRERT}
-                    valg={Valg.FOLKEREGISTRERT}
-                />
-                <FolkeregistrertAdresse person={this.props.person}/>
-                <AdresseValg
-                    label={'Midlertidig adresse i Norge'}
-                    onAdresseValgChange={this.onAdresseValgChange}
-                    checked={this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE}
-                    valg={Valg.MIDLERTIDIG_NORGE}
-                >
-                    <MidlertidigAdresseNorge
-                        midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
-                        onChange={this.onMidlertidigAdresseNorgeFormChange}
+                    <AdresseValg
+                        label={'Bostedsadresse fra folkeregisteret'}
+                        onAdresseValgChange={this.onAdresseValgChange}
+                        checked={this.state.selectedRadio === Valg.FOLKEREGISTRERT}
+                        valg={Valg.FOLKEREGISTRERT}
                     />
-                </AdresseValg>
-                <AdresseValg
-                    label="Midlertidig adresse i utlandet"
-                    valg={Valg.MIDLERTIDIG_UTLAND}
-                    onAdresseValgChange={this.onAdresseValgChange}
-                    checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
-                >
-                    <MidlertidigAdresseUtland
-                        midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
-                        onChange={this.onMidlertidigAdresseUtlandFormChange}
-                        visFeilmeldinger={false}
+                    <FolkeregistrertAdresse person={this.props.person}/>
+                    <AdresseValg
+                        label={'Midlertidig adresse i Norge'}
+                        onAdresseValgChange={this.onAdresseValgChange}
+                        checked={this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE}
+                        valg={Valg.MIDLERTIDIG_NORGE}
+                    >
+                        <MidlertidigAdresseNorge
+                            midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
+                            onChange={this.onMidlertidigAdresseNorgeFormChange}
+                        />
+                    </AdresseValg>
+                    <AdresseValg
+                        label="Midlertidig adresse i utlandet"
+                        valg={Valg.MIDLERTIDIG_UTLAND}
+                        onAdresseValgChange={this.onAdresseValgChange}
+                        checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
+                    >
+                        <MidlertidigAdresseUtland
+                            midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
+                            onChange={this.onMidlertidigAdresseUtlandFormChange}
+                            visFeilmeldinger={false}
+                        />
+                    </AdresseValg>
+                    <FormKnapperWrapper>
+                        <KnappBase
+                            type="standard"
+                            onClick={this.onAvbryt}
+                            disabled={!this.state.formErEndret}
+                        >
+                            Avbryt
+                        </KnappBase>
+                        <KnappBase
+                            type="hoved"
+                            spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
+                            autoDisableVedSpinner={true}
+                            disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
+                        >
+                            Endre adresse
+                        </KnappBase>
+                    </FormKnapperWrapper>
+                    <SubmitFeedback
+                        visFeedback={!this.state.formErEndret}
+                        status={this.props.endreAdresseReducer.status}
                     />
-                </AdresseValg>
-                <FormKnapperWrapper>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.onAvbryt}
-                        disabled={!this.state.formErEndret}
-                    >
-                        Avbryt
-                    </KnappBase>
-                    <KnappBase
-                        type="hoved"
-                        spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
-                        autoDisableVedSpinner={true}
-                        disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
-                    >
-                        Endre adresse
-                    </KnappBase>
-                </FormKnapperWrapper>
-                <SubmitFeedback visFeedback={!this.state.formErEndret} status={this.props.endreAdresseReducer.status}/>
                 </FormFieldSet>
             </form>
         );
