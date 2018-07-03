@@ -18,6 +18,7 @@ import valuttaKodeverkReducer from './kodeverk/valutaKodeverk';
 import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
+import featureToggleReducer from './featuretoggle';
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
@@ -28,6 +29,7 @@ import { Vergemal } from '../models/vergemal/vergemal';
 import { VeilederRoller } from '../models/veilederRoller';
 import { KodeverkResponse } from '../models/kodeverk';
 import { BaseUrlsResponse } from '../models/baseurls';
+import { FeatureToggleResponse } from '../models/featureToggle';
 
 export interface AppState {
     personinformasjon: RestReducer<PersonRespons>;
@@ -48,6 +50,7 @@ export interface AppState {
     endreAdresseReducer: RestReducer<{}>;
     valuttaReducer: RestReducer<KodeverkResponse>;
     landReducer: RestReducer<KodeverkResponse>;
+    featureToggleReducer: RestReducer<FeatureToggleResponse>;
 }
 
 export default combineReducers<AppState>({
@@ -68,7 +71,8 @@ export default combineReducers<AppState>({
     postnummerReducer: postnummerReducer,
     endreAdresseReducer,
     valuttaReducer: valuttaKodeverkReducer,
-    landReducer: landKodeverkReducer
+    landReducer: landKodeverkReducer,
+    featureToggleReducer: featureToggleReducer
 });
 
 export interface RestReducer<T> {

@@ -479,14 +479,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </span>
           <dl
-            className="sc-gisBJw digCxr"
+            className="sc-gqjmRU lkLXbX"
           >
             <dt>
               <p
                 className="typo-undertekst"
               >
                 <span
-                  className="sc-fAjcbJ lgKhus"
+                  className="sc-iwsKbI iTJsEg"
                 >
                   mandag
                 </span>
@@ -508,7 +508,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="sc-fAjcbJ lgKhus"
+                  className="sc-iwsKbI iTJsEg"
                 >
                   tirsdag
                 </span>
@@ -530,7 +530,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="sc-fAjcbJ lgKhus"
+                  className="sc-iwsKbI iTJsEg"
                 >
                   onsdag
                 </span>
@@ -552,7 +552,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="sc-fAjcbJ lgKhus"
+                  className="sc-iwsKbI iTJsEg"
                 >
                   torsdag
                 </span>
@@ -574,7 +574,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="sc-fAjcbJ lgKhus"
+                  className="sc-iwsKbI iTJsEg"
                 >
                   fredag
                 </span>
@@ -595,7 +595,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <br />
         </div>
         <a
-          className="lenke sc-caSCKo hMbBSZ"
+          className="lenke sc-gZMcBi hoPzjm"
           href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
           rel="noopener noreferrer"
           target="_blank"
@@ -878,15 +878,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="sc-kjoXOD iCDFNe"
+      className="sc-gzVnrw ljOQMZ"
     >
-      <a
-        className="lenke"
-        href="/modiapersonoversikt/brukerprofil/10108000398"
-        onClick={[Function]}
+      <svg
+        aria-label="Laster innhold"
+        className="spinner spinner--l"
+        focusable="false"
+        height={32}
+        kind="spinner"
+        onClick={undefined}
+        preserveAspectRatio="xMidYMid"
+        style={undefined}
+        viewBox="0 0 100 100"
+        width={32}
       >
-        Administrer brukerprofil
-      </a>
+        <title>
+          Venter...
+        </title>
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          r="40"
+          stroke="#bdbab7"
+          strokeWidth="10"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          r="40"
+          stroke="#7f756c"
+          strokeDasharray="50 155"
+          strokeLinecap="round"
+          strokeWidth="10"
+        />
+      </svg>
     </div>
   </div>
 </div>
