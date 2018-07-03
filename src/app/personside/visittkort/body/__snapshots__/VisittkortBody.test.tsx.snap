@@ -79,28 +79,35 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   opacity: 0.7;
 }
 
-.c6 .typo-etikett-liten {
+.c7 {
   font-size: 0.7rem;
+}
+
+.c6 {
+  margin-top: 3px;
+}
+
+.c6 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c11 {
+.c12 {
   margin-bottom: 5px;
 }
 
-.c7 span:not(:last-child):after {
+.c8 span:not(:last-child):after {
   content: '.';
 }
 
-.c9 {
+.c10 {
   text-transform: capitalize;
 }
 
-.c10 {
+.c11 {
   font-size: 0.9em;
 }
 
-.c8 {
+.c9 {
   margin: initial;
   padding: initial;
   list-style: none;
@@ -113,20 +120,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-flow: row wrap;
 }
 
-.c8 dt {
+.c9 dt {
   -webkit-flex: 1 1 50%;
   -ms-flex: 1 1 50%;
   flex: 1 1 50%;
 }
 
-.c8 dd {
+.c9 dd {
   -webkit-flex: 2 2 50%;
   -ms-flex: 2 2 50%;
   flex: 2 2 50%;
   margin: 0;
 }
 
-.c12 {
+.c13 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -260,8 +267,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Endret 
-            15.05.2014
+            <span
+              className="c7"
+            >
+              Endret 
+              15.05.2014
+            </span>
           </p>
         </span>
       </div>
@@ -312,8 +323,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Endret 
-            15.05.2014
+            <span
+              className="c7"
+            >
+              Endret 
+              15.05.2014
+            </span>
           </p>
         </span>
       </div>
@@ -348,10 +363,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Endret 
-            21.06.2014
-             
-            BRUKER
+            <span
+              className="c7"
+            >
+              Endret 
+              21.06.2014
+               
+              BRUKER
+            </span>
           </p>
         </span>
       </div>
@@ -413,7 +432,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-undertekst"
         >
           <span
-            className="c7"
+            className="c8"
           >
             <span>
               1234
@@ -432,10 +451,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Endret 
-            12.12.2005
-             
-            Daniel
+            <span
+              className="c7"
+            >
+              Endret 
+              12.12.2005
+               
+              Daniel
+            </span>
           </p>
         </span>
       </div>
@@ -599,7 +622,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-etikett-liten"
             >
-              Besøksadresse
+              <span
+                className="c7"
+              >
+                Besøksadresse
+              </span>
             </p>
           </span>
           <p
@@ -620,18 +647,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-etikett-liten"
             >
-              Åpningstider
+              <span
+                className="c7"
+              >
+                Åpningstider
+              </span>
             </p>
           </span>
           <dl
-            className="c8"
+            className="c9"
           >
             <dt>
               <p
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   mandag
                 </span>
@@ -653,7 +684,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   tirsdag
                 </span>
@@ -675,7 +706,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   onsdag
                 </span>
@@ -697,7 +728,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   torsdag
                 </span>
@@ -719,7 +750,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   fredag
                 </span>
@@ -740,7 +771,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <br />
         </div>
         <a
-          className="lenke c10"
+          className="lenke c11"
           href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
           rel="noopener noreferrer"
           target="_blank"
@@ -874,7 +905,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h3>
         </div>
         <div
-          className="c11"
+          className="c12"
         >
           <p
             className="typo-undertekst"
@@ -917,20 +948,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Fylkesmannen i Østfold
-          </p>
-        </span>
-        <span
-          className="c6"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            27.03.2016
-             
-            –
-             
-            30.06.2013
+            <span
+              className="c7"
+            >
+              Fylkesmannen i Østfold
+              <br />
+              27.03.2016 – 30.06.2013
+            </span>
           </p>
         </span>
       </div>
@@ -1009,10 +1033,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Gyldig: 
-            12.12.2005
-             - 
-            12.12.2025
+            <span
+              className="c7"
+            >
+              Gyldig: 
+              12.12.2005
+               - 
+              12.12.2025
+            </span>
           </p>
         </span>
         <p
@@ -1023,7 +1051,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="c12"
+      className="c13"
     >
       <a
         className="lenke"
