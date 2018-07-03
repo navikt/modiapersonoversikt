@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { getSkjemafeil, InputState } from '../formUtils';
+import { getSkjemafeil, InputState } from '../utils/formUtils';
 
 const RetningsnummerWrapper = styled.div`
   margin-right: 2em;

@@ -1,160 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkortbody 1`] = `
-.c2 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c4 {
-  position: absolute;
-  left: -50px;
-  width: 50px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c4 > svg {
-  height: 24px;
-  width: auto;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 10px;
-  margin-top: 12px;
-}
-
-.c0 > * {
-  -webkit-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  -ms-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-.c1:last-child {
-  margin-right: 20px;
-}
-
-.c1 > *:not(:last-child) {
-  margin-bottom: 40px;
-}
-
-.c3 {
-  margin: 10px 0 20px 0;
-}
-
-.c3:last-child {
-  margin: 10px 0 0 0;
-}
-
-.c5 {
-  opacity: 0.7;
-}
-
-.c6 .typo-etikett-liten {
-  font-size: 0.7rem;
-  line-height: 1rem;
-}
-
-.c11 {
-  margin-bottom: 5px;
-}
-
-.c7 span:not(:last-child):after {
-  content: '.';
-}
-
-.c9 {
-  text-transform: capitalize;
-}
-
-.c10 {
-  font-size: 0.9em;
-}
-
-.c8 {
-  margin: initial;
-  padding: initial;
-  list-style: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c8 dt {
-  -webkit-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
-}
-
-.c8 dd {
-  -webkit-flex: 2 2 50%;
-  -ms-flex: 2 2 50%;
-  flex: 2 2 50%;
-  margin: 0;
-}
-
-.c12 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  font-size: 0.9em;
-}
-
 <div
-  className="c0"
+  className="sc-htpNat dBxAcu"
 >
   <div
-    className="c1"
+    className="sc-bxivhb eUbrRI"
   >
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         
         <h2
@@ -164,13 +19,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -201,7 +56,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Bostedsadresse fra Folkeregisteret
             </span>
@@ -214,13 +69,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -243,7 +98,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               E-post Kontakt- og reservasjonsregisteret
             </span>
@@ -255,7 +110,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           aremark@testfamilien.no
         </p>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -266,13 +121,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -295,7 +150,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Telefon Kontakt- og reservasjonsregisteret
             </span>
@@ -307,7 +162,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           112 23 344
         </p>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -318,17 +173,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           
           <h3
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Telefon til bruk for NAV
             </span>
@@ -343,7 +198,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           )
         </p>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -356,13 +211,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </span>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -403,7 +258,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Kontonummer
             </span>
@@ -413,7 +268,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-undertekst"
         >
           <span
-            className="c7"
+            className="sc-iwsKbI jjtoRm"
           >
             <span>
               1234
@@ -427,7 +282,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </span>
         </p>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -442,7 +297,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         
         <h2
@@ -452,13 +307,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -480,7 +335,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Sivilstand
             </span>
@@ -496,13 +351,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height={24}
@@ -523,7 +378,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Jente
             </span>
@@ -551,7 +406,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         
         <h2
@@ -561,13 +416,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           <div
-            className="c4"
+            className="sc-bwzfXH joUhmT"
           >
             <svg
               height="62.9"
@@ -585,7 +440,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               0118 NAV Aremark
             </span>
@@ -594,7 +449,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div>
           <br />
           <span
-            className="c6"
+            className="sc-gzVnrw edyGDB"
           >
             <p
               className="typo-etikett-liten"
@@ -615,7 +470,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
           <br />
           <span
-            className="c6"
+            className="sc-gzVnrw edyGDB"
           >
             <p
               className="typo-etikett-liten"
@@ -624,14 +479,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </span>
           <dl
-            className="c8"
+            className="sc-gisBJw digCxr"
           >
             <dt>
               <p
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="sc-fAjcbJ lgKhus"
                 >
                   mandag
                 </span>
@@ -653,7 +508,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="sc-fAjcbJ lgKhus"
                 >
                   tirsdag
                 </span>
@@ -675,7 +530,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="sc-fAjcbJ lgKhus"
                 >
                   onsdag
                 </span>
@@ -697,7 +552,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="sc-fAjcbJ lgKhus"
                 >
                   torsdag
                 </span>
@@ -719,7 +574,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-undertekst"
               >
                 <span
-                  className="c9"
+                  className="sc-fAjcbJ lgKhus"
                 >
                   fredag
                 </span>
@@ -740,7 +595,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <br />
         </div>
         <a
-          className="lenke c10"
+          className="lenke sc-caSCKo hMbBSZ"
           href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
           rel="noopener noreferrer"
           target="_blank"
@@ -751,10 +606,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         <div
-          className="c4"
+          className="sc-bwzfXH joUhmT"
         >
           <svg
             viewBox="0 0 100 100"
@@ -790,17 +645,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           
           <h3
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             />
           </h3>
         </div>
@@ -813,10 +668,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         <div
-          className="c4"
+          className="sc-bwzfXH joUhmT"
         >
           <svg
             viewBox="0 0 100 100"
@@ -857,24 +712,24 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         Enslig mindreårig asylsøker
       </p>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           
           <h3
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             >
               Verge
             </span>
           </h3>
         </div>
         <div
-          className="c11"
+          className="sc-dnqmqq bGwqvd"
         >
           <p
             className="typo-undertekst"
@@ -896,7 +751,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-etikett-liten"
         >
           <span
-            className="c5"
+            className="sc-bZQynM CdcFA"
           >
             Mandat
           </span>
@@ -912,7 +767,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Her kommen en fritekst som er sånn passelig lang
         </p>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -921,7 +776,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </span>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -937,10 +792,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </div>
     <div>
       <div
-        className="c2"
+        className="sc-bdVaJa gjXcFS"
       >
         <div
-          className="c4"
+          className="sc-bwzfXH joUhmT"
         >
           <svg
             viewBox="0 0 100 100"
@@ -989,22 +844,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h2>
       </div>
       <div
-        className="c3"
+        className="sc-EHOje hAiecK"
       >
         <div
-          className="c2"
+          className="sc-bdVaJa gjXcFS"
         >
           
           <h3
             className="typo-etikett-liten"
           >
             <span
-              className="c5"
+              className="sc-bZQynM CdcFA"
             />
           </h3>
         </div>
         <span
-          className="c6"
+          className="sc-gzVnrw edyGDB"
         >
           <p
             className="typo-etikett-liten"
@@ -1023,7 +878,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </div>
     <div
-      className="c12"
+      className="sc-kjoXOD iCDFNe"
     >
       <a
         className="lenke"

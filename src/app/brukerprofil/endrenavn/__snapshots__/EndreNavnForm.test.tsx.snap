@@ -1,173 +1,155 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre navn 1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c1 > * {
-  margin-left: 1em;
-}
-
-.c0 {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
 <form
   onSubmit={[Function]}
 >
-  <h2
-    className="typo-undertittel"
+  <fieldset
+    className="sc-kpOJdX jQQBgv"
+    disabled={true}
   >
-    Navn
-  </h2>
-  <div
-    className="c0"
-  >
-    <div
-      aria-live={undefined}
-      className="alertstripe alertstripe--info"
+    <h2
+      className="typo-undertittel"
     >
-      <span
-        aria-label="info"
-        className="alertstripe__ikon"
+      Navn
+    </h2>
+    <div
+      className="sc-dxgOiQ faDWPh"
+    >
+      <div
+        aria-live={undefined}
+        className="alertstripe alertstripe--info"
       >
-        <svg
-          focusable="false"
-          height="1.5em"
-          kind="info-sirkel-orange"
-          onClick={undefined}
-          style={undefined}
-          viewBox="0 0 24 24"
-          width="1.5em"
+        <span
+          aria-label="info"
+          className="alertstripe__ikon"
         >
-          <title>
-            Informasjon
-          </title>
-          <g
-            fill="#D87F0A"
-            fillRule="evenodd"
+          <svg
+            focusable="false"
+            height="1.5em"
+            kind="info-sirkel-orange"
+            onClick={undefined}
+            style={undefined}
+            viewBox="0 0 24 24"
+            width="1.5em"
           >
-            <path
-              d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
-            />
-            <path
-              d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
-            />
-            <ellipse
-              cx="11.478"
-              cy="5.739"
-              rx="1.043"
-              ry="1.043"
-            />
-          </g>
-        </svg>
-      </span>
-      <span
-        className="typo-normal alertstripe__tekst"
-      >
-        Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
-      </span>
+            <title>
+              Informasjon
+            </title>
+            <g
+              fill="#D87F0A"
+              fillRule="evenodd"
+            >
+              <path
+                d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
+              />
+              <path
+                d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
+              />
+              <ellipse
+                cx="11.478"
+                cy="5.739"
+                rx="1.043"
+                ry="1.043"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="typo-normal alertstripe__tekst"
+        >
+          Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
+        </span>
+      </div>
     </div>
-  </div>
-  <div
-    className="skjemaelement"
-  >
-    <label
-      className="skjemaelement__label"
-      htmlFor="Fornavn"
-    >
-      Fornavn
-    </label>
-    <input
-      className="skjemaelement__input input--fullbredde"
-      disabled={true}
-      id="Fornavn"
-      name="Fornavn"
-      onChange={[Function]}
-      onKeyPress={[Function]}
-      type="text"
-      value="AREMARK"
-    />
     <div
-      aria-live="assertive"
-      role="alert"
-    />
-  </div>
-  <div
-    className="skjemaelement"
-  >
-    <label
-      className="skjemaelement__label"
-      htmlFor="Mellomnavn"
+      className="skjemaelement"
     >
-      Mellomnavn
-    </label>
-    <input
-      className="skjemaelement__input input--fullbredde"
-      disabled={true}
-      id="Mellomnavn"
-      name="Mellomnavn"
-      onChange={[Function]}
-      onKeyPress={[Function]}
-      type="text"
-      value=""
-    />
+      <label
+        className="skjemaelement__label"
+        htmlFor="Fornavn"
+      >
+        Fornavn
+      </label>
+      <input
+        className="skjemaelement__input input--fullbredde"
+        id="Fornavn"
+        name="Fornavn"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value="AREMARK"
+      />
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
     <div
-      aria-live="assertive"
-      role="alert"
-    />
-  </div>
-  <div
-    className="skjemaelement"
-  >
-    <label
-      className="skjemaelement__label"
-      htmlFor="Etternavn"
+      className="skjemaelement"
     >
-      Etternavn
-    </label>
-    <input
-      className="skjemaelement__input input--fullbredde"
-      disabled={true}
-      id="Etternavn"
-      name="Etternavn"
-      onChange={[Function]}
-      onKeyPress={[Function]}
-      type="text"
-      value="TESTFAMILIEN"
-    />
+      <label
+        className="skjemaelement__label"
+        htmlFor="Mellomnavn"
+      >
+        Mellomnavn
+      </label>
+      <input
+        className="skjemaelement__input input--fullbredde"
+        id="Mellomnavn"
+        name="Mellomnavn"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value=""
+      />
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
     <div
-      aria-live="assertive"
-      role="alert"
-    />
-  </div>
-  <div
-    className="c1"
-  >
-    <button
-      className="knapp knapp--standard knapp--disabled"
-      disabled={true}
-      onClick={[Function]}
-      type="submit"
+      className="skjemaelement"
     >
-      Avbryt
-    </button>
-    <button
-      className="knapp knapp--hoved knapp--disabled"
-      disabled={true}
-      type="submit"
+      <label
+        className="skjemaelement__label"
+        htmlFor="Etternavn"
+      >
+        Etternavn
+      </label>
+      <input
+        className="skjemaelement__input input--fullbredde"
+        id="Etternavn"
+        name="Etternavn"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="text"
+        value="TESTFAMILIEN"
+      />
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="sc-ckVGcZ kNKPfy"
     >
-      Endre navn
-    </button>
-  </div>
+      <button
+        className="knapp knapp--standard knapp--disabled"
+        disabled={true}
+        onClick={[Function]}
+        type="submit"
+      >
+        Avbryt
+      </button>
+      <button
+        className="knapp knapp--hoved knapp--disabled"
+        disabled={true}
+        type="submit"
+      >
+        Endre navn
+      </button>
+    </div>
+  </fieldset>
 </form>
 `;
