@@ -9,7 +9,7 @@ import { Person } from '../../../../../models/person/person';
 import { paths } from '../../../../routes/routing';
 
 interface StateProps {
-    featureToggleReducer: RestReducer<FeatureToggleResponse>;
+    featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
 }
 
 interface OwnProps {
@@ -32,11 +32,13 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
         return (
             <Innholdslaster
                 returnOnError={feilmelding(this.props.person.fødselsnummer)}
-                avhengigheter={[this.props.featureToggleReducer]}
+                avhengigheter={[this.props.featureToggleNyBrukerprofilReducer]}
                 spinnerSize={'L'}
             >
                 <LenkeBrukerprofilVisning
-                    nyBrukerprofilToggle={this.props.featureToggleReducer.data['modiabrukerdialog.ny-brukerprofil']}
+                    nyBrukerprofilToggle={
+                        this.props.featureToggleNyBrukerprofilReducer.data['modiabrukerdialog.ny-brukerprofil']
+                    }
                     person={this.props.person}
                 />
             </Innholdslaster>
@@ -46,7 +48,7 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        featureToggleReducer: state.featureToggleReducer
+        featureToggleNyBrukerprofilReducer: state.featureToggleNyBrukerprofilReducer
     });
 };
 

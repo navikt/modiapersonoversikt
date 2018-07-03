@@ -50,7 +50,7 @@ export interface AppState {
     endreAdresseReducer: RestReducer<{}>;
     valuttaReducer: RestReducer<KodeverkResponse>;
     landReducer: RestReducer<KodeverkResponse>;
-    featureToggleReducer: RestReducer<FeatureToggleResponse>;
+    featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
 }
 
 export default combineReducers<AppState>({
@@ -72,7 +72,7 @@ export default combineReducers<AppState>({
     endreAdresseReducer,
     valuttaReducer: valuttaKodeverkReducer,
     landReducer: landKodeverkReducer,
-    featureToggleReducer: featureToggleReducer
+    featureToggleNyBrukerprofilReducer: featureToggleReducer
 });
 
 export interface RestReducer<T> {
