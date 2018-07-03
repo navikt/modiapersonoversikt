@@ -9,5 +9,6 @@ test('viser info om bruker i visittkortbody', () => {
     const visittkortbody = renderer.create(
         <TestProvider><VisittkortBody person={aremark}/></TestProvider>
     );
+    
     expect(visittkortbody.toJSON()).toMatchSnapshot();
 });

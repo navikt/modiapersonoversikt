@@ -3,6 +3,7 @@ import * as EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import 'jest-enzyme';
 import 'babel-polyfill';
 import { getMockNavKontor } from '../mock/navkontor-mock';
+import 'jest-styled-components';
 
 import reducers from '../redux/reducer';
 import { applyMiddleware, createStore } from 'redux';

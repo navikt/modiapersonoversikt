@@ -23,7 +23,7 @@ import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-a
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
-import { InputState } from '../formUtils';
+import { InputState } from '../utils/formUtils';
 
 export interface TelefonInput {
     retningsnummer: InputState;

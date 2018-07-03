@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 
@@ -12,31 +13,26 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import KnappBase from 'nav-frontend-knapper';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
-import { ChangeEvent, FormEvent } from 'react';
 import {
-    removeWhitespaceAndDot,
-    formaterNorskKontonummer,
-    erBrukersKontonummerUtenlandsk,
     EndreBankkontoState,
-    tomBankkonto,
-    hentEndringstekst
-}
-    from './kontonummerUtils';
+    erBrukersKontonummerUtenlandsk,
+    formaterNorskKontonummer,
+    hentEndringstekst,
+    removeWhitespaceAndDot,
+    tomBankkonto
+} from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { endreKontonummer, reset } from '../../../redux/brukerprofil/endreKontonummer';
 import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKontonummerRequest';
-import AlertStripe from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
-import { ignoreEnter } from '../formUtils';
+import { ignoreEnter } from '../utils/formUtils';
 import { validerNorskBankKonto } from './norskKontoValidator';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { validerUtenlandskKonto } from './utenlandskKontoValidator';
 import EtikettMini from '../../../components/EtikettMini';
-
-const Luft = styled.div`
-  margin-top: 1em;
-`;
+import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
+import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
+import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -177,22 +173,16 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 id="Kontonummer"
                 value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
-                disabled={!this.harPåkrevdRolle()}
                 onKeyPress={ignoreEnter}
                 feil={this.state.bankkontoValidering.felter.kontonummer.skjemafeil}
             />
         );
     }
 
-    harPåkrevdRolle() {
-        return this.props.veilederRoller.roller.includes('0000-GA-BD06_EndreKontonummer');
-    }
-
     radioKnappProps() {
-        const disabled = !this.harPåkrevdRolle();
         return [
-            { label: bankEnum.erNorsk, id: bankEnum.erNorsk, value: bankEnum.erNorsk, disabled },
-            { label: bankEnum.erUtenlandsk, id: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk, disabled }
+            { label: bankEnum.erNorsk, id: bankEnum.erNorsk, value: bankEnum.erNorsk },
+            { label: bankEnum.erUtenlandsk, id: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk }
         ];
     }
 
@@ -210,7 +200,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankkonto={this.state.bankkontoInput}
                 bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
-                disabled={!this.harPåkrevdRolle()}
             />);
         const knapper = (
             <FormKnapperWrapper>
@@ -225,7 +214,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     type="hoved"
                     spinner={this.props.status === STATUS.PENDING}
                     autoDisableVedSpinner={true}
-                    disabled={!this.kontoErEndret() || !this.harPåkrevdRolle()}
+                    disabled={!this.kontoErEndret() ||
+                    !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}
                 >
                     Endre kontonummer
                 </KnappBase>
@@ -239,20 +229,19 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                  Det kan ta noen minutter før endringene blir synlig.`}
             />
         );
-        const manglerRolleTekst = 'Du mangler rettigheter til å endre brukers bankkonto';
-        const manglerRollerWarning = !this.harPåkrevdRolle() &&
-            <Luft><AlertStripe type="info">{manglerRolleTekst}</AlertStripe></Luft>;
+
         const sistEndretInfo = <EtikettMini>{hentEndringstekst(this.props.person.bankkonto)}</EtikettMini>;
-        const title = this.harPåkrevdRolle() ? undefined : manglerRolleTekst;
         return (
-            <form onSubmit={this.handleSubmit} title={title}>
-                <Undertittel>Kontonummer</Undertittel>
-                {manglerRollerWarning}
-                {norskEllerUtenlandskKontoRadio}
-                {sistEndretInfo}
-                {kontoInputs}
-                {knapper}
-                {endreKontonummerRequestTilbakemelding}
+            <form onSubmit={this.handleSubmit}>
+                <FormFieldSet disabled={!veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}>
+                    <Undertittel>Kontonummer</Undertittel>
+                    <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller}/>
+                    {norskEllerUtenlandskKontoRadio}
+                    {sistEndretInfo}
+                    {kontoInputs}
+                    {knapper}
+                    {endreKontonummerRequestTilbakemelding}
+                </FormFieldSet>
             </form>
         );
     }
