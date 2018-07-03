@@ -1027,8 +1027,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     >
       <a
         className="lenke"
-        href="/modiapersonoversikt/brukerprofil/10108000398"
-        onClick={[Function]}
+        href="/modiabrukerdialog/person/10108000398#!brukerprofil"
       >
         Administrer brukerprofil
       </a>
