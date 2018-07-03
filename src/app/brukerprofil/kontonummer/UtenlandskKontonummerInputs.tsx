@@ -30,7 +30,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    valuttaKodeverkReducer: RestReducer<KodeverkResponse>;
+    valutaKodeverkReducer: RestReducer<KodeverkResponse>;
     landKodeverkReducer: RestReducer<KodeverkResponse>;
 }
 
@@ -41,7 +41,7 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        if (this.props.valuttaKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (this.props.valutaKodeverkReducer.status === STATUS.NOT_STARTED) {
             this.props.hentValutaKodeverk();
         }
 
@@ -53,7 +53,7 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
     render() {
         return (
             <Innholdslaster
-                avhengigheter={[this.props.valuttaKodeverkReducer, this.props.landKodeverkReducer]}
+                avhengigheter={[this.props.valutaKodeverkReducer, this.props.landKodeverkReducer]}
             >
                 <Inputs {...this.props} />
             </Innholdslaster>
@@ -138,7 +138,7 @@ function Inputs(props: Props) {
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
                 feil={validering.bankkode.skjemafeil}
             />
-            <VelgValutta {...props} />
+            <VelgValuta {...props} />
         </>
     );
 }
@@ -166,20 +166,20 @@ function VelgLand(props: Props) {
     );
 }
 
-function VelgValutta(props: Props) {
-    const options = props.valuttaKodeverkReducer.data.kodeverk
+function VelgValuta(props: Props) {
+    const options = props.valutaKodeverkReducer.data.kodeverk
         .sort(sorterKodeverkAlfabetisk)
-        .map((valuttakodeverk: Kodeverk) => {
+        .map((valutakodeverk: Kodeverk) => {
             return (
-                <option key={valuttakodeverk.kodeRef} value={valuttakodeverk.kodeRef}>
-                    {valuttakodeverk.beskrivelse}
+                <option key={valutakodeverk.kodeRef} value={valutakodeverk.kodeRef}>
+                    {valutakodeverk.beskrivelse}
                 </option>
             );
         });
     return (
         <Select
-            label="Velg valutta"
-            id="Velg valutta"
+            label="Velg valuta"
+            id="Velg valuta"
             value={props.bankkonto.valuta.kodeRef}
             onChange={event => handleValutaChange(props, event)}
         >
@@ -202,7 +202,7 @@ function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
 }
 
 function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
-        const valgtKodeverk: Kodeverk = props.valuttaKodeverkReducer.data.kodeverk
+        const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
                 .find(kodeverk => kodeverk.kodeRef === event.target.value)
             || { kodeRef: '', beskrivelse: '' };
 
@@ -218,7 +218,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        valuttaKodeverkReducer: state.valuttaReducer,
+        valutaKodeverkReducer: state.valutaReducer,
         landKodeverkReducer: state.landReducer
     });
 };
