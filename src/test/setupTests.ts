@@ -32,7 +32,7 @@ import { landActionNames } from '../redux/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { valutaerActionNames } from '../redux/kodeverk/valutaKodeverk';
-import { mockFeatureToggleAdminBrukerprofil } from "../mock/featureToggle-mock";
+import { mockFeatureToggleAdminBrukerprofil } from '../mock/featureToggle-mock';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -50,7 +50,7 @@ testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontak
 testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
 testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
 testStore.dispatch({ type: baseUrlsActionNames.OK, data: mockBaseUrls() });
-testStore.dispatch({ type: featureToggleActionNames.OK, data: mockFeatureToggleAdminBrukerprofil("ny-brukerprofil") });
+testStore.dispatch({ type: featureToggleActionNames.OK, data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil') });
 testStore.dispatch({ type: veilederRollerReducerActionNames.OK, data: getMockVeilederRoller() });
 testStore.dispatch({ type: tilrettelagtKommunikasjonActionNames.OK, data: mockTilrettelagtKommunikasjonKodeverk() });
 testStore.dispatch({ type: retningsnummerKodeverkActionNames.OK, data: mockRetningsnummereKodeverk() });
