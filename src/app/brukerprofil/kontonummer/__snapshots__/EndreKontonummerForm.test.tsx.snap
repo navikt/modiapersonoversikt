@@ -8,7 +8,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 }
 
 .c2 {
-  font-size: 0.7rem;
+  font-size: 11px;
 }
 
 .c1 {
@@ -107,7 +107,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
         role="alert"
       />
     </div>
-    <span
+    <div
       className="c1"
     >
       <p
@@ -119,7 +119,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
           Endret 12.12.2005 Daniel
         </span>
       </p>
-    </span>
+    </div>
     <div
       className="skjemaelement"
     >
@@ -174,7 +174,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
 }
 
 .c2 {
-  font-size: 0.7rem;
+  font-size: 11px;
 }
 
 .c1 {
@@ -273,7 +273,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         role="alert"
       />
     </div>
-    <span
+    <div
       className="c1"
     >
       <p
@@ -285,7 +285,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
           Endret 12.12.2005 Daniel
         </span>
       </p>
-    </span>
+    </div>
     <div
       className="skjemaelement"
     >

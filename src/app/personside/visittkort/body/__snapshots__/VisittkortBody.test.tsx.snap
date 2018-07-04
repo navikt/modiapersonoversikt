@@ -80,7 +80,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 }
 
 .c7 {
-  font-size: 0.7rem;
+  font-size: 11px;
 }
 
 .c6 {
@@ -261,7 +261,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           aremark@testfamilien.no
         </p>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -274,7 +274,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               15.05.2014
             </span>
           </p>
-        </span>
+        </div>
       </div>
       <div
         className="c3"
@@ -317,7 +317,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           112 23 344
         </p>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -330,7 +330,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               15.05.2014
             </span>
           </p>
-        </span>
+        </div>
       </div>
       <div
         className="c3"
@@ -357,7 +357,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Mobil
           )
         </p>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -372,7 +372,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               BRUKER
             </span>
           </p>
-        </span>
+        </div>
       </div>
       <div
         className="c3"
@@ -445,7 +445,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </span>
           </span>
         </p>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -460,7 +460,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               Daniel
             </span>
           </p>
-        </span>
+        </div>
       </div>
     </div>
     <div>
@@ -616,7 +616,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
         <div>
           <br />
-          <span
+          <div
             className="c6"
           >
             <p
@@ -628,7 +628,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 Besøksadresse
               </span>
             </p>
-          </span>
+          </div>
           <p
             className="typo-undertekst"
           >
@@ -641,7 +641,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             1798 Aremark
           </p>
           <br />
-          <span
+          <div
             className="c6"
           >
             <p
@@ -653,7 +653,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 Åpningstider
               </span>
             </p>
-          </span>
+          </div>
           <dl
             className="c9"
           >
@@ -942,7 +942,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           Her kommen en fritekst som er sånn passelig lang
         </p>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -956,7 +956,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               27.03.2016 – 30.06.2013
             </span>
           </p>
-        </span>
+        </div>
       </div>
     </div>
     <div>
@@ -1027,7 +1027,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             />
           </h3>
         </div>
-        <span
+        <div
           className="c6"
         >
           <p
@@ -1042,7 +1042,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               12.12.2025
             </span>
           </p>
-        </span>
+        </div>
         <p
           className="typo-undertekst"
         >

@@ -2,7 +2,7 @@
 
 exports[`Viser form for endre kontaktinformasjon 1`] = `
 .c7 {
-  font-size: 0.7rem;
+  font-size: 11px;
 }
 
 .c6 {
@@ -183,7 +183,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               </div>
             </div>
           </div>
-          <span
+          <div
             className="c6"
           >
             <p
@@ -198,7 +198,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                 BRUKER
               </span>
             </p>
-          </span>
+          </div>
         </div>
         <div
           className="c2"
