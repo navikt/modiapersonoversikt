@@ -1,8 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre kontaktinformasjon 1`] = `
-.c6 .typo-etikett-liten {
+.c7 {
   font-size: 0.7rem;
+}
+
+.c6 {
+  margin-top: 3px;
+}
+
+.c6 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -23,7 +30,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
   display: flex;
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,7 +41,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
   justify-content: flex-end;
 }
 
-.c7 > * {
+.c8 > * {
   margin-left: 1em;
 }
 
@@ -182,10 +189,14 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             <p
               className="typo-etikett-liten"
             >
-              Endret 
-              21.06.2014
-               
-              BRUKER
+              <span
+                className="c7"
+              >
+                Endret 
+                21.06.2014
+                 
+                BRUKER
+              </span>
             </p>
           </span>
         </div>
@@ -401,7 +412,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
         </div>
       </div>
       <div
-        className="c7"
+        className="c8"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
