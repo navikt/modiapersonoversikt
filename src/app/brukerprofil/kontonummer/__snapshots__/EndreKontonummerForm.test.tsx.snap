@@ -7,12 +7,19 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   border: 0;
 }
 
+.c2 {
+  font-size: 11px;
+}
+
+.c1 {
+  margin-top: 3px;
+}
+
 .c1 .typo-etikett-liten {
-  font-size: 0.7rem;
   line-height: 1rem;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,7 +30,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   justify-content: flex-end;
 }
 
-.c2 > * {
+.c3 > * {
   margin-left: 1em;
 }
 
@@ -100,15 +107,19 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
         role="alert"
       />
     </div>
-    <span
+    <div
       className="c1"
     >
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 Daniel
+        <span
+          className="c2"
+        >
+          Endret 12.12.2005 Daniel
+        </span>
       </p>
-    </span>
+    </div>
     <div
       className="skjemaelement"
     >
@@ -133,7 +144,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="c2"
+      className="c3"
     >
       <button
         className="knapp knapp--standard knapp--disabled"
@@ -162,12 +173,19 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   border: 0;
 }
 
+.c2 {
+  font-size: 11px;
+}
+
+.c1 {
+  margin-top: 3px;
+}
+
 .c1 .typo-etikett-liten {
-  font-size: 0.7rem;
   line-height: 1rem;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -178,7 +196,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   justify-content: flex-end;
 }
 
-.c2 > * {
+.c3 > * {
   margin-left: 1em;
 }
 
@@ -255,15 +273,19 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         role="alert"
       />
     </div>
-    <span
+    <div
       className="c1"
     >
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 Daniel
+        <span
+          className="c2"
+        >
+          Endret 12.12.2005 Daniel
+        </span>
       </p>
-    </span>
+    </div>
     <div
       className="skjemaelement"
     >
@@ -501,9 +523,9 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Velg valutta"
+        htmlFor="Velg valuta"
       >
-        Velg valutta
+        Velg valuta
       </label>
       <div
         className="selectContainer input--fullbredde"
@@ -511,7 +533,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         <select
           className="skjemaelement__input"
           disabled={false}
-          id="Velg valutta"
+          id="Velg valuta"
           onChange={[Function]}
           value="SPD"
         >
@@ -553,7 +575,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="c2"
+      className="c3"
     >
       <button
         className="knapp knapp--standard knapp--disabled"

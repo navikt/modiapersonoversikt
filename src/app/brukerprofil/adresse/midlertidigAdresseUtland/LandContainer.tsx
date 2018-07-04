@@ -1,13 +1,13 @@
 import { Action } from 'history';
-import { STATUS } from '../../../redux/utils';
-import { AppState, RestReducer } from '../../../redux/reducer';
+import { STATUS } from '../../../../redux/utils';
+import { AppState, RestReducer } from '../../../../redux/reducer';
 import { connect, Dispatch } from 'react-redux';
 import * as React from 'react';
-import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { hentLandKodeverk } from '../../../redux/kodeverk/landKodeverk';
-import Innholdslaster from '../../../components/Innholdslaster';
-import { Land } from './midlertidigAdresseUtland/LandInput';
-import { Utlandsadresse } from '../../../models/personadresse';
+import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
+import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
+import Innholdslaster from '../../../../components/Innholdslaster';
+import { Land } from './LandInput';
+import { Utlandsadresse } from '../../../../models/personadresse';
 
 interface DispatchProps {
     hentLand: () => void;

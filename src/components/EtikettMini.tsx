@@ -7,20 +7,27 @@ interface Props {
     children: ReactNode;
 }
 
-const CustomStyling = styled.span`
-  .typo-etikett-liten{
-    font-size: 0.7rem;
-    line-height: 1rem;
-  }
+const FontSize = styled.span`
+    // Må sette font-size hardt her for at det skal funke i gamlemodia
+    font-size: 11px;
+`;
+
+const Wrapper = styled.div`
+    margin-top: 3px;
+    .typo-etikett-liten {
+      line-height: 1rem;
+    }
 `;
 
 function EtikettMini(props: Props) {
     return (
-        <CustomStyling>
+        <Wrapper>
             <EtikettLiten>
-                {props.children}
+                <FontSize>
+                    {props.children}
+                </FontSize>
             </EtikettLiten>
-        </CustomStyling>
+        </Wrapper>
     );
 }
 
