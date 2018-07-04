@@ -149,7 +149,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
         this.setState({
-            ...this.getInitialState(),
+            bankkontoInput: tomBankkonto,
             norskKontoRadio: value === bankEnum.erNorsk
         });
     }
@@ -157,8 +157,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     tilbakestill() {
         this.props.resetEndreKontonummerReducer();
         this.setState({
-            ...this.getInitialState(),
-            norskKontoRadio: this.state.norskKontoRadio
+            ...this.getInitialState()
         });
     }
 

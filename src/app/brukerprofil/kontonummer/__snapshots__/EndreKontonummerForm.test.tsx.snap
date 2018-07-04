@@ -523,9 +523,9 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Velg valutta"
+        htmlFor="Velg valuta"
       >
-        Velg valutta
+        Velg valuta
       </label>
       <div
         className="selectContainer input--fullbredde"
@@ -533,7 +533,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         <select
           className="skjemaelement__input"
           disabled={false}
-          id="Velg valutta"
+          id="Velg valuta"
           onChange={[Function]}
           value="SPD"
         >
