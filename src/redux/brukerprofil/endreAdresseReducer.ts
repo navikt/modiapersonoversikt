@@ -1,9 +1,9 @@
 import { createActionsAndReducer } from '../restReducer';
 import {
     postEndreMatrikkeladresse, postEndreNorskGateadresse,
-    postEndrePostboksadresse, postSlettMidlertidigeAdresser
+    postEndrePostboksadresse, postEndreUtenlandsadresse, postSlettMidlertidigeAdresser
 } from '../../api/brukerprofil/adresse-api';
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../models/personadresse';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endreadresse');
 
@@ -21,6 +21,10 @@ export function endrePostboksadrese(fødselsnummer: string, postboksadresse: Pos
 
 export function slettMidlertidigeAdresser(fødselsnummer: string) {
     return action(() => postSlettMidlertidigeAdresser(fødselsnummer));
+}
+
+export function endreUtlandsadresse(fødselsnummer: string, utlandsadresse: Utlandsadresse) {
+    return action(() => postEndreUtenlandsadresse(fødselsnummer, utlandsadresse));
 }
 
 export function reset() {

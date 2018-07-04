@@ -1,21 +1,22 @@
 import * as React from 'react';
-import { Utlandsadresse } from '../../../../models/personadresse';
-import Datovelger from 'nav-datovelger';
-import Input from 'nav-frontend-skjema/lib/input';
-import styled from 'styled-components';
 import { ChangeEvent } from 'react';
-import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
+import styled from 'styled-components';
 import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
+
+import Datovelger from 'nav-datovelger';
+import Input from 'nav-frontend-skjema/lib/input';
+
+import { Utlandsadresse } from '../../../../models/personadresse';
+import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
 import { AppState, RestReducer } from '../../../../redux/reducer';
-import LandContainer from '../LandContainer';
+import LandContainer from './LandContainer';
 
 interface OwnProps {
     onChange: (adresser: Utlandsadresse) => void;
     midlertidigAdresseUtland: Utlandsadresse;
     visFeilmeldinger: boolean;
-    land?: Kodeverk;
 }
 
 interface DispatchProps {
@@ -53,10 +54,6 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
-    }
-
-    onInputChange(utlandsadressePartial: Partial<Utlandsadresse>) {
-        this.props.onChange({...this.props.midlertidigAdresseUtland, ...utlandsadressePartial});
     }
 
     render() {

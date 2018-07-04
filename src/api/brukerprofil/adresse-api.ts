@@ -1,6 +1,6 @@
 import { apiBaseUri } from '../config';
 import { post } from '../api';
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../models/personadresse';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../models/personadresse';
 import { Periode } from '../../models/periode';
 
 export interface EndreAdresseRequest {
@@ -9,6 +9,7 @@ export interface EndreAdresseRequest {
         matrikkeladresse: EndreMatrikkeladresseRequest | null;
         postboksadresse: EndrePostboksadresseRequest | null;
     } | null;
+    utenlandskAdresse: EndreUtlandsadresseRequest | null;
 }
 
 export interface EndreGateadresseRequest {
@@ -36,6 +37,14 @@ interface EndrePostboksadresseRequest {
     gyldigTil: string;
 }
 
+interface EndreUtlandsadresseRequest {
+    landkode: string;
+    adresselinje1: string;
+    adresselinje2: string;
+    adresselinje3: string;
+    gyldigTil: string;
+}
+
 function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest): Promise<{}> {
     console.log(request);
     return post(`${apiBaseUri}/brukerprofil/${fødselsnummer}/adresse/`, request);
@@ -57,7 +66,8 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
                 gyldigTil: getGyldigTil(gateadresse.periode)},
             matrikkeladresse: null,
             postboksadresse: null
-        }
+        },
+        utenlandskAdresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -71,7 +81,8 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
             matrikkeladresse: {
                 ...mappedMatrikkeladresse,
                 gyldigTil: getGyldigTil(matrikkeladresse.periode)},
-        }
+        },
+        utenlandskAdresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -86,14 +97,39 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
                 ...mappedPostboksadresse,
                 gyldigTil: getGyldigTil(postboksadresse.periode)
             }
-        }
+        },
+        utenlandskAdresse: null
     };
     return postEndreAdresse(fødselsnummer, request);
 }
 
 export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
     const request: EndreAdresseRequest = {
-        norskAdresse: null
+        norskAdresse: null,
+        utenlandskAdresse: null
     };
+    return postEndreAdresse(fødselsnummer, request);
+}
+
+function getOrBlank(adresselinjer: string[], index: number) {
+    if (adresselinjer.length <= index) {
+        return '';
+    } else {
+        return adresselinjer[index];
+    }
+}
+
+export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlandsadresse) {
+    const request: EndreAdresseRequest = {
+        norskAdresse: null,
+        utenlandskAdresse: {
+            landkode: adresse.landkode ? adresse.landkode.kodeRef : '',
+            adresselinje1: getOrBlank(adresse.adresselinjer, 0),
+            adresselinje2: getOrBlank(adresse.adresselinjer, 1),
+            adresselinje3: getOrBlank(adresse.adresselinjer, 2),
+            gyldigTil: getGyldigTil(adresse.periode)
+        }
+    };
+
     return postEndreAdresse(fødselsnummer, request);
 }
