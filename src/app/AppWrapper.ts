@@ -10,6 +10,7 @@ const AppWrapper = styled.div`
 export const Content = styled.div`
   flex-grow: 1;
   overflow-y: scroll;
+  display: flex;
 `;
 
 export default AppWrapper;

@@ -10,14 +10,21 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
+import styled from 'styled-components';
 
 interface PersonsideStateProps {
     personReducer: RestReducer<PersonRespons>;
 }
 
+const Margin = styled.div`
+  margin: 1em;
+`;
+
 const onPending = (
     <FillCenterAndFadeIn>
-        <NavFrontendSpinner type={'XXL'} />
+        <Margin>
+            <NavFrontendSpinner type={'XL'}/>
+        </Margin>
     </FillCenterAndFadeIn>
 );
 
