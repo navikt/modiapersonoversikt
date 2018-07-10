@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import { configure } from '@storybook/react';
 
 // automatically import all files ending in *.stories.js
