@@ -10,7 +10,7 @@ import BrukerprofilForm from './BrukerprofilForm';
 import { AppState, RestReducer } from '../../redux/reducer';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
-import { hentPerson } from '../../redux/personinformasjon';
+import { hentAllPersonData } from '../../redux/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { getVeilederRoller } from '../../redux/veilederRoller';
 import { STATUS } from '../../redux/utils';
@@ -101,7 +101,7 @@ const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingP
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
+        hentPersonData: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

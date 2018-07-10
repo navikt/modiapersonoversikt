@@ -8,7 +8,7 @@ import { MemoryRouter, Route, Switch } from 'react-router';
 import { personOversiktTheme } from '../../themes/personOversiktTheme';
 import reducers from '../../redux/reducer';
 import { hentAllPersonData } from '../../redux/personinformasjon';
-import StandAloneVisittKortContainer from './VisittKortLaster';
+import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import Brukerprofilside from '../../app/brukerprofil/BrukerprofilSide';
@@ -42,7 +42,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <MemoryRouter>
                             <Switch>
                                 <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
-                                <Route component={StandAloneVisittKortContainer}/>
+                                <Route render={() => <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />} />
                             </Switch>
                         </MemoryRouter>
                     </ThemeProvider>
