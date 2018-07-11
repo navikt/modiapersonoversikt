@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 
 import { AppState, RestReducer } from '../../redux/reducer';
 import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
@@ -11,13 +11,25 @@ import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/perso
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
 import styled from 'styled-components';
+import { hentAllPersonData } from '../../redux/personinformasjon';
+import { Action } from 'redux';
+
+interface OwnProps {
+    fødselsnummer: string;
+}
 
 interface PersonsideStateProps {
     personReducer: RestReducer<PersonRespons>;
 }
 
+interface DispatchProps {
+    hentPerson: (fødelsnummer: string) => void;
+}
+
+type Props = OwnProps & PersonsideStateProps & DispatchProps;
+
 const Margin = styled.div`
-  margin: 1em;
+  margin: .5em;
 `;
 
 const onPending = (
@@ -36,10 +48,14 @@ const onError = (
     </FillCenterAndFadeIn>
 );
 
-class Personside extends React.PureComponent<PersonsideStateProps> {
+class Personside extends React.PureComponent<Props> {
 
-    constructor(props: PersonsideStateProps) {
+    constructor(props: Props) {
         super(props);
+    }
+
+    componentWillMount() {
+        this.props.hentPerson(this.props.fødselsnummer);
     }
 
     getSideinnhold() {
@@ -75,4 +91,10 @@ function mapStateToProps(state: AppState): PersonsideStateProps {
     };
 }
 
-export default connect(mapStateToProps, null) (Personside);
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+    return {
+        hentPerson: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Personside);

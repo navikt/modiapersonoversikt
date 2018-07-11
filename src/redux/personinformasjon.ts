@@ -9,7 +9,7 @@ import { hentVergemal } from './vergemal';
 import { resetNavKontorReducer } from './navkontor';
 import { hentFeatureToggle } from './featuretoggle';
 
-const { reducer, action, actionNames} = createActionsAndReducer('personinformasjon');
+const { reducer, action, actionNames } = createActionsAndReducer('personinformasjon');
 
 export function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));

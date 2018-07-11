@@ -82,13 +82,14 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
 
     constructor(props: VisittkortBodyProps) {
         super(props);
+        this.handleResize = this.handleResize.bind(this);
     }
     componentDidMount() {
         this.handleResize();
-        window.addEventListener('resize', () => this.handleResize());
+        window.addEventListener('resize', this.handleResize);
     }
     componentWillUnmount() {
-        window.removeEventListener('resize', () => this.handleResize());
+        window.removeEventListener('resize', this.handleResize);
     }
     handleResize() {
         this.forceUpdate();
