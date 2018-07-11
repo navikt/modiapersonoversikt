@@ -6,6 +6,7 @@ import Select from 'nav-frontend-skjema/lib/select';
 
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { Utlandsadresse } from '../../../../models/personadresse';
+import { alfabetiskKodeverkComparator } from '../../../../utils/kodeverkUtils';
 
 const LandWrapper = styled.div`
   margin-right: 2em;
@@ -18,27 +19,16 @@ interface LandInputProps {
     visFeilmeldinger: boolean;
 }
 
-function DefaultLand() {
-    return (
-        <option
-            disabled={true}
-            value={''}
-            key={''}
-        >
-            Velg land
-        </option>
-    );
-}
-
 function getLandSelectValg(landKodeverk: KodeverkResponse) {
-    const land = landKodeverk.kodeverk.map(kodeverk =>
-        (
-            <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                {kodeverk.beskrivelse} ({kodeverk.kodeRef})
-            </option>
-        )
-    );
-    return [DefaultLand()].concat(land);
+    return landKodeverk.kodeverk
+        .sort(alfabetiskKodeverkComparator)
+        .map(kodeverk =>
+            (
+                <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
+                    {kodeverk.beskrivelse} ({kodeverk.kodeRef})
+                </option>
+            )
+        );
 }
 
 function getValgtLand(landKodeverk: KodeverkResponse, landInput?: Kodeverk) {
@@ -77,6 +67,7 @@ export function Land(props: LandInputProps) {
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                     props.onChange(getValgtLandKode(props.landKodeverk, event.target.value))}
             >
+                <option disabled={true} value={''} key={''}>Velg land</option>
                 {landValg}
             </Select>
         </LandWrapper>
