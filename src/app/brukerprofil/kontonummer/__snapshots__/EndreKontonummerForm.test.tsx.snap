@@ -306,7 +306,8 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
           value="NRN"
         >
           <option
-            value="Velg land"
+            disabled={true}
+            value=""
           >
             Velg Land
           </option>
@@ -562,7 +563,8 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
           value="SPD"
         >
           <option
-            value="Velg valuta"
+            disabled={true}
+            value=""
           >
             Velg valuta
           </option>

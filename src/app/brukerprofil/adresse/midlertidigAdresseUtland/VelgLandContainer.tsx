@@ -6,8 +6,8 @@ import * as React from 'react';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { Land } from './LandInput';
-import { Utlandsadresse } from '../../../../models/personadresse';
+import { VelgLand } from './VelgLand';
+import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
 
 interface DispatchProps {
     hentLand: () => void;
@@ -18,13 +18,13 @@ interface StateProps {
 }
 
 interface OwnProps {
-    midlertidigAdresseUtland: Utlandsadresse;
+    midlertidigAdresseUtlandInput: MidlertidigAdresseUtlandInputs;
     landChanged: (input: Kodeverk) => void;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-class LandContainer extends React.Component<Props> {
+class VelgLandContainer extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
@@ -40,10 +40,10 @@ class LandContainer extends React.Component<Props> {
         return (
             <div>
                 <Innholdslaster avhengigheter={[this.props.landReducer]}>
-                    <Land
+                    <VelgLand
                         visFeilmeldinger={false}
                         landKodeverk={this.props.landReducer.data}
-                        midlertidigAdresseUtland={this.props.midlertidigAdresseUtland}
+                        midlertidigAdresseUtlandInputs={this.props.midlertidigAdresseUtlandInput}
                         onChange={this.props.landChanged}
                     />
                 </Innholdslaster>
@@ -64,4 +64,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(VelgLandContainer);
