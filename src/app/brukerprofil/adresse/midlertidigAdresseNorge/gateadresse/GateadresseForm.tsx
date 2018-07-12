@@ -54,6 +54,7 @@ function GateadresseForm(props: Props) {
                     defaultValue={gateadresse.husnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...gateadresse, husnummer: event.target.value})}
+                    feil={validering.felter.husnummer.skjemafeil}
                 />
                 <Input
                     bredde={'S'}

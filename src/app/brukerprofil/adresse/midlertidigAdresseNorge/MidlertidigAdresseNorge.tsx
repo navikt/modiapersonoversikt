@@ -52,6 +52,7 @@ export function getInitialGateadresseInput(gateadresse?: Gateadresse) {
     if (!gateadresse) {
         gateadresseInput = {
             gatenavn: '',
+            husnummer: '',
             poststed: '',
             postnummer: '',
             periode: {
