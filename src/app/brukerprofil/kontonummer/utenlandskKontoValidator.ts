@@ -41,6 +41,6 @@ const regler: Valideringsregel<EndreBankkontoState>[] = [{
         && BANK_UTLAND_ADRESSE_REGEX.test(konto.adresse.linje3)
 }];
 
-export function validerUtenlandskKonto(gateadresse: EndreBankkontoState) {
-    return new FormValidator<EndreBankkontoState>(regler).valider(gateadresse);
+export function validerUtenlandskKonto(bankKonto: EndreBankkontoState) {
+    return new FormValidator<EndreBankkontoState>(regler).valider(bankKonto);
 }

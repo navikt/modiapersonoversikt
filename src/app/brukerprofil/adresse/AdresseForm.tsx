@@ -24,7 +24,8 @@ import MidlertidigAdresseNorge, {
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import MidlertidigAdresseUtland from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
+import MidlertidigAdresseUtland, { MidlertidigAdresseUtlandInputs, tomUtlandsadresse }
+    from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
@@ -33,6 +34,8 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
 import { EndreAdresseInfomeldingWrapper } from '../Infomelding';
+import { getValidUtlandsadresseForm, validerUtenlandsAdresse }
+    from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -51,7 +54,7 @@ export enum Valg {
 
 interface State {
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
-    midlertidigAdresseUtland: Utlandsadresse;
+    midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs;
     selectedRadio: Valg;
     formErEndret: boolean;
 }
@@ -130,11 +133,21 @@ class AdresseForm extends React.Component<Props, State> {
         });
     }
 
-    onMidlertidigAdresseUtlandFormChange(adresser: Utlandsadresse) {
-        this.setState({formErEndret: true});
+    updateMidlertidigAdresseUtlandInputState(endring: Partial<Utlandsadresse>) {
         this.setState({
-            midlertidigAdresseUtland: adresser
+            midlertidigAdresseUtland: {
+                validering: getValidUtlandsadresseForm(tomUtlandsadresse),
+                value: {
+                    ...this.state.midlertidigAdresseUtland.value,
+                    ...endring
+                }
+            }
         });
+    }
+
+    onMidlertidigAdresseUtlandFormChange(endring: Partial<Utlandsadresse>) {
+        this.setState({formErEndret: true});
+        this.updateMidlertidigAdresseUtlandInputState(endring);
     }
 
     onMidlertidigAdresseNorgeFormChange(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
@@ -146,18 +159,17 @@ class AdresseForm extends React.Component<Props, State> {
         this.setState({selectedRadio: valg});
     }
 
-    initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): Utlandsadresse {
+    initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): MidlertidigAdresseUtlandInputs {
         if (!utlandsAdresse) {
             return {
-                landkode: {kodeRef: '', beskrivelse: ''},
-                adresselinjer: [''],
-                periode: {
-                    fra: '',
-                    til: ''
-                }
+                value: tomUtlandsadresse,
+                validering: getValidUtlandsadresseForm(tomUtlandsadresse)
             };
         }
-        return utlandsAdresse;
+        return {
+            value: utlandsAdresse,
+            validering: getValidUtlandsadresseForm(tomUtlandsadresse)
+        };
     }
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
@@ -191,8 +203,19 @@ class AdresseForm extends React.Component<Props, State> {
         }
     }
 
-    submitMidlertidigUtenlandsadresse(midlertidigAdresseUtland: Utlandsadresse) {
-        this.props.endreUtlandsadresse(this.props.person.fødselsnummer, midlertidigAdresseUtland);
+    submitMidlertidigUtenlandsadresse(midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs) {
+        const validering = validerUtenlandsAdresse(midlertidigAdresseUtland.value);
+        console.log(validering);
+        if (!validering.formErGyldig) {
+            this.setState({
+                midlertidigAdresseUtland: {
+                    ...this.state.midlertidigAdresseUtland,
+                    validering: validering
+                }
+            });
+            return;
+        }
+        this.props.endreUtlandsadresse(this.props.person.fødselsnummer, midlertidigAdresseUtland.value);
     }
 
     submitSlettMidlertidigeAdresser() {

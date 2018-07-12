@@ -32,7 +32,7 @@ export function tilPeriode(gyldigTil: Date) {
 export default function Datovelger({dato, id, onChange, feil, children}: Props) {
     return (
         <>
-            <label className={'skjemaelement__label'}>{children}</label>
+            <label htmlFor={id} className={'skjemaelement__label'}>{children}</label>
             <NavDatovelger
                 dato={dato}
                 id={id}
