@@ -20,7 +20,7 @@ function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjonsListe }: Tilrette
     }
     return (
         <VisittkortGruppe
-            tittel="Tilrettelagt Kommunikasjon"
+            tittel="Tilrettelagt kommunikasjon"
             ikon={<UtropstegnIkon/>}
         >
             <VisittkortElement>
