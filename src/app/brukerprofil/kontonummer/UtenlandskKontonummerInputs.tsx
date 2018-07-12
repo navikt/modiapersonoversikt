@@ -149,7 +149,7 @@ function VelgLand(props: Props) {
         .map(landKodeverk => {
             return (
                 <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
-                    {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)}
+                    {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)} ({landKodeverk.kodeRef})
                 </option>
             );
         });
@@ -158,6 +158,7 @@ function VelgLand(props: Props) {
             label="Velg land"
             id="Velg land"
             value={props.bankkonto.landkode.kodeRef}
+            feil={props.bankkontoValidering.felter.landkode.skjemafeil}
             onChange={event => handleLandChange(props, event)}
         >
             <option key="default" value="Velg land">Velg Land</option>
@@ -172,7 +173,7 @@ function VelgValuta(props: Props) {
         .map((valutakodeverk: Kodeverk) => {
             return (
                 <option key={valutakodeverk.kodeRef} value={valutakodeverk.kodeRef}>
-                    {valutakodeverk.beskrivelse}
+                    {valutakodeverk.beskrivelse} ({valutakodeverk.kodeRef})
                 </option>
             );
         });
@@ -181,6 +182,7 @@ function VelgValuta(props: Props) {
             label="Velg valuta"
             id="Velg valuta"
             value={props.bankkonto.valuta.kodeRef}
+            feil={props.bankkontoValidering.felter.valuta.skjemafeil}
             onChange={event => handleValutaChange(props, event)}
         >
             <option key="default" value="Velg valuta">Velg valuta</option>

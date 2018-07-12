@@ -1,4 +1,4 @@
-import { EndreBankkontoState } from './kontonummerUtils';
+import { EndreBankkontoState, tomBankkonto } from './kontonummerUtils';
 import { default as FormValidator, Valideringsregel } from '../../../utils/forms/FormValidator';
 import { erIkkeTomStreng } from '../../../utils/string-utils';
 
@@ -9,6 +9,14 @@ const BANK_UTLAND_KONTONUMMER_REGEX = RegExp('^\\s*.{0,36}\\s*$');
 const SWIFT_REGEX = RegExp('^\\s*.{0,11}\\s*$');
 
 const regler: Valideringsregel<EndreBankkontoState>[] = [{
+    felt: 'landkode',
+    feilmelding: 'Du må velge et land',
+    validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.landkode.kodeRef)
+}, {
+    felt: 'valuta',
+    feilmelding: 'Du må velge en valuta',
+    validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.valuta.kodeRef)
+}, {
     felt: 'kontonummer',
     feilmelding: 'Kontonummer må ikke være tom',
     validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.kontonummer)
@@ -43,4 +51,8 @@ const regler: Valideringsregel<EndreBankkontoState>[] = [{
 
 export function validerUtenlandskKonto(gateadresse: EndreBankkontoState) {
     return new FormValidator<EndreBankkontoState>(regler).valider(gateadresse);
+}
+
+export function getValidUtenlandskKontoForm() {
+    return new FormValidator<EndreBankkontoState>([]).valider(tomBankkonto);
 }
