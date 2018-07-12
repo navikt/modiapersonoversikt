@@ -1,4 +1,4 @@
-import { formatNumber } from './string-utils';
+import { formatNumber, removeWhitespace } from './string-utils';
 import { Kodeverk, KodeverkResponse } from '../models/kodeverk';
 
 export function formaterMobiltelefonnummer(telefonnummer: string) {
@@ -16,6 +16,17 @@ export function formaterHustelefonnummer(telefonnummer: string) {
         return formatNumber('## ## ## ##', telefonnummer);
     } else {
         return telefonnummer;
+    }
+}
+
+export function formaterTelefonnummer(telefonnummer: string) {
+    const utenSpace = removeWhitespace(telefonnummer);
+    if (utenSpace.length !== 8) {
+        return telefonnummer;
+    } else if ('489'.includes(utenSpace[0])) {
+        return formatNumber('### ## ###', utenSpace);
+    } else {
+        return formatNumber('## ## ## ##', utenSpace);
     }
 }
 
@@ -49,4 +60,8 @@ function sorterRetningsnummerListe(retningsnummerKodeverk: KodeverkResponse)  {
             return 0;
         });
 
+}
+
+export function gyldigTelefonnummer(telefonnummer: string): boolean {
+    return /^[\d ]+$/.test(telefonnummer);
 }
