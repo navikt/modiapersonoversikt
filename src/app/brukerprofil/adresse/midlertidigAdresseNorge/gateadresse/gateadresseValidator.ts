@@ -11,7 +11,7 @@ const gatenavnRegel = lagErIkkeTomtFeltRegel(
     gateadresse => gateadresse.gatenavn, 'Gatenavn kan ikke være tom');
 const husnummerRegel = lagErIkkeTomtFeltRegel(
     'husnummer',
-    gateadresse => gateadresse.husnummer, 'Husnummer kan ikke være tom');
+    gateadresse => gateadresse.husnummer, 'Husnummer kan ikke være tomt');
 const postnummerRegel = lagPostnummerRegel('postnummer', gateadresse => gateadresse.postnummer );
 const gyldigTilRegel = lagDatoErInnenEtÅrRegel<Gateadresse>('periode', gateadresse =>
     gateadresse.periode ? gateadresse.periode.til : '');

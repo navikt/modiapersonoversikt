@@ -154,7 +154,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
         return (
             <>
                 <Select
-                    label="Type adressee"
+                    label="Adressetype"
                     bredde={'m'}
                     defaultValue={valg.toString()}
                     onChange={this.onAdresseTypeChange}
