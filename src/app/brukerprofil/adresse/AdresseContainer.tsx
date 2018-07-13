@@ -12,7 +12,10 @@ import AdresseForm from './AdresseForm';
 import {
     endreMatrikkeladresse,
     endreNorskGateadresse,
-    endrePostboksadrese, endreUtlandsadresse, slettMidlertidigeAdresser
+    endrePostboksadrese,
+    endreUtlandsadresse,
+    reset,
+    slettMidlertidigeAdresser
 } from '../../../redux/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
@@ -29,6 +32,7 @@ interface DispatchProps {
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
+    resetEndreAdresseReducer: () => void;
 }
 
 interface OwnProps {
@@ -42,6 +46,10 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
         if (this.props.postnummerReducer.status === STATUS.NOT_STARTED) {
             this.props.hentPostnummerKodeverk();
         }
+    }
+
+    componentWillUnmount() {
+        this.props.resetEndreAdresseReducer();
     }
 
     render() {
@@ -80,7 +88,8 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
             dispatch(endrePostboksadrese(fødselsnummer, postboksadresse)),
         endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) =>
             dispatch(endreUtlandsadresse(fødselsnummer, utlandsadresse)),
-        slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer))
+        slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer)),
+        resetEndreAdresseReducer: () => dispatch(reset())
     };
 }
 

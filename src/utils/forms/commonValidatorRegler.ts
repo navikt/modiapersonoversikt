@@ -38,7 +38,7 @@ export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T)
 export function lagDatoErInnenEtÅrRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
     return {
         felt: key,
-        feilmelding: 'Dato må være etter idag og innen ett år',
+        feilmelding: 'Sluttdato kan ikke være mer enn ett år frem i tid',
         validator: (obj: T) =>
             isValidDate(getGyldigTil(obj)) &&
             erImorgenEllerSenere(new Date(getGyldigTil(obj))) &&

@@ -251,7 +251,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     {!this.state.formErEndret
                         ? (<RequestTilbakemelding
                             status={this.props.status}
-                            onSuccess={'Navnet ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                            onSuccess={'Navnet ble endret.'}
                             onError={'Det skjedde en feil ved endring av navn.'}
                         />)
                         : null

@@ -116,22 +116,14 @@ export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
     return postEndreAdresse(fødselsnummer, request);
 }
 
-function getOrBlank(adresselinjer: string[], index: number) {
-    if (adresselinjer.length <= index) {
-        return '';
-    } else {
-        return adresselinjer[index];
-    }
-}
-
 export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlandsadresse) {
     const request: EndreAdresseRequest = {
         norskAdresse: null,
         utenlandskAdresse: {
             landkode: adresse.landkode ? adresse.landkode.kodeRef : '',
-            adresselinje1: getOrBlank(adresse.adresselinjer, 0),
-            adresselinje2: getOrBlank(adresse.adresselinjer, 1),
-            adresselinje3: getOrBlank(adresse.adresselinjer, 2),
+            adresselinje1: adresse.adresselinjer[0],
+            adresselinje2: adresse.adresselinjer[1],
+            adresselinje3: adresse.adresselinjer[2],
             gyldigTil: getGyldigTil(adresse.periode)
         },
         folkeregistrertAdresse: false

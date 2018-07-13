@@ -295,7 +295,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             return (
                 <RequestTilbakemelding
                     status={this.props.reducerStatus}
-                    onSuccess={'Telefonnummer(e) ble endret. Det kan ta noen minutter før endringene blir synlig.'}
+                    onSuccess={'Telefonnummer(e) ble endret.'}
                     onError={'Det skjedde en feil ved lagring av telefonnummer'}
                 />
             );

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
-.c0 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,8 +12,12 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
   justify-content: flex-end;
 }
 
-.c0 > * {
+.c1 > * {
   margin-left: 1em;
+}
+
+.c0 {
+  margin-top: 0.5em;
 }
 
 <div>
@@ -149,6 +153,9 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
     </div>
     <div
       className="c0"
+    />
+    <div
+      className="c1"
     >
       <button
         className="knapp knapp--standard knapp--disabled"

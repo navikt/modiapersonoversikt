@@ -18,6 +18,7 @@ import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
+import styled from 'styled-components';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -38,6 +39,10 @@ interface OwnProps {
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
+
+const Luft = styled.div`
+  margin-top: 0.5em;
+`;
 
 class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
@@ -122,6 +127,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     legend={''}
                     onChange={this.handleOnChange}
                 />
+                <Luft />
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
@@ -143,8 +149,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                 <RequestTilbakemelding
                     status={this.props.status}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
-                    onSuccess={`Tilrettelagt kommunikasjon ble endret.
-                         Det kan ta noen minutter før endringene blir synlig.`}
+                    onSuccess={`Tilrettelagt kommunikasjon ble endret.`}
                 />
             </form>
         );
