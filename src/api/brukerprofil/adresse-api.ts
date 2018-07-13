@@ -10,6 +10,7 @@ export interface EndreAdresseRequest {
         postboksadresse: EndrePostboksadresseRequest | null;
     } | null;
     utenlandskAdresse: EndreUtlandsadresseRequest | null;
+    folkeregistrertAdresse: boolean | null;
 }
 
 export interface EndreGateadresseRequest {
@@ -67,7 +68,8 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
             matrikkeladresse: null,
             postboksadresse: null
         },
-        utenlandskAdresse: null
+        utenlandskAdresse: null,
+        folkeregistrertAdresse: false
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -82,7 +84,8 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
                 ...mappedMatrikkeladresse,
                 gyldigTil: getGyldigTil(matrikkeladresse.periode)},
         },
-        utenlandskAdresse: null
+        utenlandskAdresse: null,
+        folkeregistrertAdresse: false
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -98,7 +101,8 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
                 gyldigTil: getGyldigTil(postboksadresse.periode)
             }
         },
-        utenlandskAdresse: null
+        utenlandskAdresse: null,
+        folkeregistrertAdresse: false
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -106,7 +110,8 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
 export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
     const request: EndreAdresseRequest = {
         norskAdresse: null,
-        utenlandskAdresse: null
+        utenlandskAdresse: null,
+        folkeregistrertAdresse: true
     };
     return postEndreAdresse(fødselsnummer, request);
 }
@@ -128,7 +133,8 @@ export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlan
             adresselinje2: getOrBlank(adresse.adresselinjer, 1),
             adresselinje3: getOrBlank(adresse.adresselinjer, 2),
             gyldigTil: getGyldigTil(adresse.periode)
-        }
+        },
+        folkeregistrertAdresse: false
     };
 
     return postEndreAdresse(fødselsnummer, request);
