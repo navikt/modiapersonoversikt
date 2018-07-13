@@ -26,7 +26,7 @@ function onPostinformasjonChange(props: Props) {
 function GateadresseForm(props: Props) {
     const gateadresse = props.input.value;
     const validering = props.input.validering;
-    const adresseGyldigTil = gateadresse.periode ? new Date(gateadresse.periode.til) : new Date();
+    const adresseGyldigTil = gateadresse.periode ? new Date(gateadresse.periode.til) : undefined;
 
     return (
         <>
@@ -79,6 +79,7 @@ function GateadresseForm(props: Props) {
             <Datovelger
                 dato={adresseGyldigTil}
                 id={'gateform-datovelger'}
+                innenEtÅr={true}
                 onChange={(date: Date) => props.onChange({...gateadresse, periode: tilPeriode(date)})}
                 feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
             >

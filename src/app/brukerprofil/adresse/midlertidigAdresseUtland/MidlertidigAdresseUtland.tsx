@@ -82,8 +82,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
         const utlandsadresseValidering = this.props.midlertidigAdresseUtland.validering;
 
         const gyldigTil = utlandsadresseState.periode && utlandsadresseState.periode.til ?
-            new Date(utlandsadresseState.periode.til)
-            : new Date();
+            new Date(utlandsadresseState.periode.til) : undefined;
 
         return (
             <>
@@ -130,6 +129,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                 </InputLinje>
                 <Datovelger
                     dato={gyldigTil}
+                    innenEtÅr={true}
                     id={'utlandsadresse-datovelger'}
                     feil={utlandsadresseValidering.felter.periode ?
                         utlandsadresseValidering.felter.periode.skjemafeil : undefined}

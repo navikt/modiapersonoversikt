@@ -1,14 +1,15 @@
 import * as React from 'react';
-import NavDatovelger from 'nav-datovelger';
+import NavDatovelger, { Avgrensninger } from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { formaterTilISO8601Date } from '../../utils/dateUtils';
 
 interface Props {
-    dato: Date;
+    dato: Date | undefined;
     id: string;
     onChange: (dato: Date) => void;
     feil?: SkjemaelementFeil;
     children: string;
+    innenEtÅr?: boolean;
 }
 
 function Feilmelding({feil}: { feil: SkjemaelementFeil | undefined}) {
@@ -29,13 +30,30 @@ export function tilPeriode(gyldigTil: Date) {
     };
 }
 
-export default function Datovelger({dato, id, onChange, feil, children}: Props) {
+function getAvgrensninger(): Avgrensninger {
+    const iDag = new Date();
+
+    let iMorgen = new Date();
+    iMorgen.setDate(iDag.getDate() + 1);
+
+    let omEtÅr = new Date();
+    omEtÅr.setDate(iDag.getDate() + 365);
+
+    return {
+        minDato: iMorgen,
+        maksDato: omEtÅr
+    };
+}
+
+export default function Datovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
+    const avgrensninger: Avgrensninger | undefined = innenEtÅr ? getAvgrensninger() : undefined;
     return (
         <>
             <label htmlFor={id} className={'skjemaelement__label'}>{children}</label>
             <NavDatovelger
                 dato={dato}
                 id={id}
+                avgrensninger={avgrensninger}
                 onChange={onChange}
             />
             <Feilmelding feil={feil}/>

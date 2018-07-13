@@ -27,8 +27,7 @@ function onPostinformasjonChange(props: Props) {
 function PostboksadresseForm(props: Props) {
     const postboksadresse = props.input.value;
 
-    const gyldigTil = postboksadresse.periode ? new Date(postboksadresse.periode.til) :
-        new Date();
+    const gyldigTil = postboksadresse.periode ? new Date(postboksadresse.periode.til) : undefined;
 
     return (
         <>
@@ -68,6 +67,7 @@ function PostboksadresseForm(props: Props) {
                 id={'postboksadresse-gyldig-til'}
                 onChange={(date: Date) => props.onChange({...postboksadresse, periode: tilPeriode(date)})}
                 dato={gyldigTil}
+                innenEtÅr={true}
                 feil={props.input.validering.felter.periode ?
                     props.input.validering.felter.periode.skjemafeil : undefined}
             >
