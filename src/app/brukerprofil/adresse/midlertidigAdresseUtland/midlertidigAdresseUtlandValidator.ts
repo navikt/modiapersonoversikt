@@ -12,9 +12,9 @@ const regler: Valideringsregel<Utlandsadresse>[] = [
     gyldigTilRegel,
     {
         felt: 'adresselinjer',
-        feilmelding: 'Du må skrive en adresse',
+        feilmelding: 'Første adresselinje kan ikke være tom',
         validator: (utenlandsadresse: Utlandsadresse) =>
-            !erTomStreng(utenlandsadresse.adresselinjer.join(''))
+            !erTomStreng(utenlandsadresse.adresselinjer[0])
     }, {
         felt: 'landkode',
         feilmelding: 'Du må velge et land',

@@ -128,19 +128,6 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                         />
                     </div>
                 </InputLinje>
-                <InputLinje>
-                    <div style={{flex: 4, marginRight: 15}}>
-                        <Input
-                            bredde={'XXL'}
-                            label="Adresselinje4 "
-                            defaultValue={utlandsadresseState.adresselinjer[3]}
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                                onAdresselinjeChange(event, this.props, 3);
-                            }}
-                        />
-                    </div>
-                </InputLinje>
-
                 <Datovelger
                     dato={gyldigTil}
                     id={'utlandsadresse-datovelger'}

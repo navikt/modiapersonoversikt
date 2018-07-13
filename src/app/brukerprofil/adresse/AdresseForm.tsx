@@ -205,7 +205,6 @@ class AdresseForm extends React.Component<Props, State> {
 
     submitMidlertidigUtenlandsadresse(midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs) {
         const validering = validerUtenlandsAdresse(midlertidigAdresseUtland.value);
-        console.log(validering);
         if (!validering.formErGyldig) {
             this.setState({
                 midlertidigAdresseUtland: {
