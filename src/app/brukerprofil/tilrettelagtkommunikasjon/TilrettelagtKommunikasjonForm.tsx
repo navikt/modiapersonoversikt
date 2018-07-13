@@ -149,8 +149,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                 <RequestTilbakemelding
                     status={this.props.status}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
-                    onSuccess={`Tilrettelagt kommunikasjon ble endret.
-                         Det kan ta noen minutter før endringene blir synlig.`}
+                    onSuccess={`Tilrettelagt kommunikasjon ble endret.`}
                 />
             </form>
         );
