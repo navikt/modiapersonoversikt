@@ -12,7 +12,7 @@ import EtikettMini from '../../../components/EtikettMini';
 import { formaterDato } from '../../../utils/dateUtils';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Retningsnummer } from './RetningsnummerInput';
-import { getSkjemafeil } from '../utils/formUtils';
+import { getSkjemafeil, ignoreEnter } from '../utils/formUtils';
 
 const TelefonnummerWrapper = styled.div`
   flex: auto;
@@ -66,6 +66,7 @@ export function TelefonInput(props: TelefonInputProps) {
                         label="Telefonnummer"
                         value={props.inputValue.identifikator.input}
                         feil={skjemafeil}
+                        onKeyPress={ignoreEnter}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.telfonnummerInputChange(event.target.value)}
                     />
