@@ -18,7 +18,7 @@ export interface Personadresse {
 export interface Gateadresse {
     tilleggsadresse?: string;
     gatenavn: string;
-    husnummer?: string;
+    husnummer: string;
     husbokstav?: string;
     postnummer: string;
     poststed: string;
