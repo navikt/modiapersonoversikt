@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
-import { Utlandsadresse } from '../../../../models/personadresse';
+import { alfabetiskKodeverkComparator } from '../../../../utils/kodeverkUtils';
+import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
 
 const LandWrapper = styled.div`
   margin-right: 2em;
@@ -13,32 +14,21 @@ const LandWrapper = styled.div`
 
 interface LandInputProps {
     landKodeverk: KodeverkResponse;
-    midlertidigAdresseUtland: Utlandsadresse;
+    midlertidigAdresseUtlandInputs: MidlertidigAdresseUtlandInputs;
     onChange: (input: Kodeverk) => void;
     visFeilmeldinger: boolean;
 }
 
-function DefaultLand() {
-    return (
-        <option
-            disabled={true}
-            value={''}
-            key={''}
-        >
-            Velg land
-        </option>
-    );
-}
-
 function getLandSelectValg(landKodeverk: KodeverkResponse) {
-    const land = landKodeverk.kodeverk.map(kodeverk =>
-        (
-            <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                {kodeverk.beskrivelse} ({kodeverk.kodeRef})
-            </option>
-        )
-    );
-    return [DefaultLand()].concat(land);
+    return landKodeverk.kodeverk
+        .sort(alfabetiskKodeverkComparator)
+        .map(kodeverk =>
+            (
+                <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
+                    {kodeverk.beskrivelse} ({kodeverk.kodeRef})
+                </option>
+            )
+        );
 }
 
 function getValgtLand(landKodeverk: KodeverkResponse, landInput?: Kodeverk) {
@@ -64,9 +54,9 @@ function getValgtLandKode(landKodeverk: KodeverkResponse, landInput: string) {
     return land;
 }
 
-export function Land(props: LandInputProps) {
+export function VelgLand(props: LandInputProps) {
     const landValg = getLandSelectValg(props.landKodeverk);
-    const valgtLand = getValgtLand(props.landKodeverk, props.midlertidigAdresseUtland.landkode);
+    const valgtLand = getValgtLand(props.landKodeverk, props.midlertidigAdresseUtlandInputs.value.landkode);
 
     return (
         <LandWrapper>
@@ -74,9 +64,14 @@ export function Land(props: LandInputProps) {
                 label="Land"
                 bredde={'m'}
                 value={valgtLand}
+                feil={
+                    props.midlertidigAdresseUtlandInputs.validering.felter.landkode ?
+                    props.midlertidigAdresseUtlandInputs.validering.felter.landkode.skjemafeil : undefined
+                }
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                     props.onChange(getValgtLandKode(props.landKodeverk, event.target.value))}
             >
+                <option disabled={true} value={''} key={''}>Velg land</option>
                 {landValg}
             </Select>
         </LandWrapper>

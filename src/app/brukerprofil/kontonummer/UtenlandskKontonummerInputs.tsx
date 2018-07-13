@@ -14,6 +14,7 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
@@ -145,7 +146,7 @@ function Inputs(props: Props) {
 
 function VelgLand(props: Props) {
     const options = props.landKodeverkReducer.data.kodeverk
-        .sort(sorterKodeverkAlfabetisk)
+        .sort(alfabetiskKodeverkComparator)
         .map(landKodeverk => {
             return (
                 <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
@@ -160,7 +161,7 @@ function VelgLand(props: Props) {
             value={props.bankkonto.landkode.kodeRef}
             onChange={event => handleLandChange(props, event)}
         >
-            <option key="default" value="Velg land">Velg Land</option>
+            <option key="default" disabled={true} value="">Velg Land</option>
             {options}
         </Select>
     );
@@ -168,7 +169,7 @@ function VelgLand(props: Props) {
 
 function VelgValuta(props: Props) {
     const options = props.valutaKodeverkReducer.data.kodeverk
-        .sort(sorterKodeverkAlfabetisk)
+        .sort(alfabetiskKodeverkComparator)
         .map((valutakodeverk: Kodeverk) => {
             return (
                 <option key={valutakodeverk.kodeRef} value={valutakodeverk.kodeRef}>
@@ -183,14 +184,10 @@ function VelgValuta(props: Props) {
             value={props.bankkonto.valuta.kodeRef}
             onChange={event => handleValutaChange(props, event)}
         >
-            <option key="default" value="Velg valuta">Velg valuta</option>
+            <option key="default" disabled={true} value="">Velg valuta</option>
             {options}
         </Select>
     );
-}
-
-function sorterKodeverkAlfabetisk(a: Kodeverk, b: Kodeverk) {
-    return a.beskrivelse > b.beskrivelse ? 1 : a.beskrivelse === b.beskrivelse ? 0 : -1;
 }
 
 function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
