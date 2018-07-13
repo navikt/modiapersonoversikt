@@ -52,6 +52,7 @@ export function getInitialGateadresseInput(gateadresse?: Gateadresse) {
     if (!gateadresse) {
         gateadresseInput = {
             gatenavn: '',
+            husnummer: '',
             poststed: '',
             postnummer: '',
             periode: {
@@ -153,7 +154,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
         return (
             <>
                 <Select
-                    label="Landkode"
+                    label="Adressetype"
                     bredde={'m'}
                     defaultValue={valg.toString()}
                     onChange={this.onAdresseTypeChange}

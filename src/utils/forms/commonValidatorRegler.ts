@@ -10,6 +10,14 @@ export function lagPostnummerRegel<T>(key: keyof T, getPostnummer: (t: T) => str
     };
 }
 
+export function lagPostboksnummerRegel<T>(key: keyof T, getPostboksnummer: (t: T) => string ): Valideringsregel<T>  {
+    return {
+        felt: key,
+        feilmelding: 'Postboksnummer kan maks ha 4 tall',
+        validator: (obj: T) => erTall(getPostboksnummer(obj)) && getPostboksnummer(obj).length < 5
+    };
+}
+
 export function lagErIkkeTomtFeltRegel<T>(key: keyof T, getFelt: (t: T) => string, feilmelding: string)
 : Valideringsregel<T>  {
     return {

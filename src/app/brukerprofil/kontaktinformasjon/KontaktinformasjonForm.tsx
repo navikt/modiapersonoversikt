@@ -12,8 +12,8 @@ import { AppState } from '../../../redux/reducer';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import {
-    formaterHustelefonnummer,
-    formaterMobiltelefonnummer,
+    formaterTelefonnummer,
+    gyldigTelefonnummer,
     sorterRetningsnummerMedNorgeFørst
 } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
@@ -67,21 +67,21 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
         return {
             retningsnummer: {
                 input: '',
-                feilmelding: 'Velg retningsnummer'
+                feilmelding: null
             }, identifikator: {
                 input: '',
-                feilmelding: 'Fyll ut telefonnummer'
+                feilmelding: null
             }
         };
     }
 
     return {
         retningsnummer: {
-            input: telefon.retningsnummer ? telefon.retningsnummer.kodeRef  : '',
+            input: telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '',
             feilmelding: null
         },
         identifikator: {
-            input: formaterMobiltelefonnummer(telefon.identifikator),
+            input: formaterTelefonnummer(telefon.identifikator),
             feilmelding: null
         }
     };
@@ -140,7 +140,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             mobilInput: {
                 ...this.state.mobilInput,
                 identifikator: {
-                    input: formaterMobiltelefonnummer(input),
+                    input: formaterTelefonnummer(input),
                     feilmelding: null
                 },
             },
@@ -166,7 +166,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             jobbTelefonInput: {
                 ...this.state.jobbTelefonInput,
                 identifikator: {
-                    input: formaterHustelefonnummer(input),
+                    input: formaterTelefonnummer(input),
                     feilmelding: null
                 }
             },
@@ -192,7 +192,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
             hjemTelefonInput: {
                 ...this.state.hjemTelefonInput,
                 identifikator: {
-                    input: formaterHustelefonnummer(input),
+                    input: formaterTelefonnummer(input),
                     feilmelding: null
                 }
             },
@@ -218,19 +218,41 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.setState(initialState(this.props.person.kontaktinformasjon));
     }
 
-    validInput() {
+    telefonInputErUgyldig([telefontype, telefonnummer]: [string, TelefonInput]): boolean {
+        let retningsnummerfeilmelding = null;
+        let telefonnummerfeilmelding = null;
+
+        if (!telefonnummer.retningsnummer.input && telefonnummer.identifikator.input.length !== 0) {
+            retningsnummerfeilmelding = 'Velg retningsnummer';
+        }
+        if (telefonnummer.identifikator.input.length !== 0
+            && !gyldigTelefonnummer(telefonnummer.identifikator.input)) {
+            telefonnummerfeilmelding = 'Telefonnummer kan kun inneholde tall';
+        }
+
+        const state = {};
+        state[telefontype] = {
+            ...telefonnummer,
+            identifikator: {
+                ...telefonnummer.identifikator,
+                feilmelding: telefonnummerfeilmelding
+            },
+            retningsnummer: {
+                ...telefonnummer.retningsnummer,
+                feilmelding: retningsnummerfeilmelding
+            }
+        };
+        this.setState(state);
+
+        return retningsnummerfeilmelding !== null || telefonnummerfeilmelding !== null;
+    }
+
+    validInput(): boolean {
         const {hjemTelefonInput, jobbTelefonInput, mobilInput} = this.state;
 
-        if (hjemTelefonInput.identifikator.input.length > 0 && hjemTelefonInput.retningsnummer.feilmelding) {
-            return false;
-        }
-        if (jobbTelefonInput.identifikator.input.length > 0 && jobbTelefonInput.retningsnummer.feilmelding) {
-            return false;
-        }
-        if (mobilInput.identifikator.input.length > 0 && mobilInput.retningsnummer.feilmelding) {
-            return false;
-        }
-        return true;
+        return Object.entries({hjemTelefonInput, jobbTelefonInput, mobilInput})
+            .filter(this.telefonInputErUgyldig, this)
+            .length === 0;
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -361,4 +383,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (KontaktinformasjonForm);
+export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonForm);

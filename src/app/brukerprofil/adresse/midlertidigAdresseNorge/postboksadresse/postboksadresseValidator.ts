@@ -1,9 +1,17 @@
 import { Postboksadresse } from '../../../../../models/personadresse';
 import FormValidator from '../../../../../utils/forms/FormValidator';
 import {
-    datoErGyldigValidatorRegel, lagDatoErInnenEtÅrRegel,
+    datoErGyldigValidatorRegel, lagDatoErInnenEtÅrRegel, lagErIkkeTomtFeltRegel, lagPostboksnummerRegel,
     lagPostnummerRegel
 } from '../../../../../utils/forms/commonValidatorRegler';
+
+const postboksnummerObligatoriskRegel = lagErIkkeTomtFeltRegel(
+    'postboksnummer',
+    postboksadresse => postboksadresse.postboksnummer, 'Postboksnummer kan ikke være tom');
+
+const postboksnummerLengdeRegel = lagPostboksnummerRegel(
+    'postboksnummer',
+    postboksadresse => postboksadresse.postboksnummer);
 
 const datoGyldigRegel = datoErGyldigValidatorRegel<Postboksadresse>('periode', postboksadresse =>
     postboksadresse.periode ? postboksadresse.periode.til : '');
@@ -12,10 +20,17 @@ const datoErIfremtidenRegel = lagDatoErInnenEtÅrRegel<Postboksadresse>('periode
     postboksadresse.periode ? postboksadresse.periode.til : '');
 
 const postnummerRegel = lagPostnummerRegel('postnummer', postboksadresse =>
-    postboksadresse.postnummer );
+    postboksadresse.postnummer);
 
 export function validerPostboksadresse(postboksadresse: Postboksadresse) {
-    const regler = [postnummerRegel, datoGyldigRegel, datoErIfremtidenRegel];
+    const regler =
+        [
+            postboksnummerObligatoriskRegel,
+            postboksnummerLengdeRegel,
+            postnummerRegel,
+            datoGyldigRegel,
+            datoErIfremtidenRegel
+        ];
     return new FormValidator<Postboksadresse>(regler).valider(postboksadresse);
 }
 
