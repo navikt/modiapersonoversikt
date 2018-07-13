@@ -55,6 +55,7 @@ function PostboksadresseForm(props: Props) {
                     defaultValue={postboksadresse.postboksnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...postboksadresse, postboksnummer: event.target.value})}
+                    feil={props.input.validering.felter.postboksnummer.skjemafeil}
                 />
             </InputLinje>
             <PoststedVelger
