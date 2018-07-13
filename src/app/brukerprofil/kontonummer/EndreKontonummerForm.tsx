@@ -26,9 +26,9 @@ import RequestTilbakemelding from '../RequestTilbakemelding';
 import { endreKontonummer, reset } from '../../../redux/brukerprofil/endreKontonummer';
 import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKontonummerRequest';
 import { ignoreEnter } from '../utils/formUtils';
-import { validerNorskBankKonto } from './norskKontoValidator';
+import { getValidNorskBankKontoForm, validerNorskBankKonto } from './norskKontoValidator';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
-import { validerUtenlandskKonto } from './utenlandskKontoValidator';
+import { getValidUtenlandskKontoForm, validerUtenlandskKonto } from './utenlandskKontoValidator';
 import EtikettMini from '../../../components/EtikettMini';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
@@ -79,10 +79,11 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     getInitialState(): State {
         const brukersBankkonto = this.getBrukersBankkonto();
+        const erNorsk = !erBrukersKontonummerUtenlandsk(this.props.person);
         return {
             bankkontoInput: brukersBankkonto,
-            norskKontoRadio: !erBrukersKontonummerUtenlandsk(this.props.person),
-            bankkontoValidering: validerNorskBankKonto(brukersBankkonto)
+            norskKontoRadio: erNorsk,
+            bankkontoValidering: erNorsk ? getValidNorskBankKontoForm() : getValidUtenlandskKontoForm()
         };
     }
 
@@ -139,7 +140,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     updateBankkontoInputsState(partial: Partial<EndreBankkontoState>) {
+        const gyldingValidering = this.state.norskKontoRadio
+            ? getValidNorskBankKontoForm() : getValidUtenlandskKontoForm();
         this.setState({
+            bankkontoValidering: gyldingValidering,
             bankkontoInput: {
                 ...this.state.bankkontoInput,
                 ...partial

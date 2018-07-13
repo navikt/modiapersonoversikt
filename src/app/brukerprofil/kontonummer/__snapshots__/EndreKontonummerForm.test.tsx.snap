@@ -315,41 +315,65 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
             value="BMU"
           >
             Bermuda
+             (
+            BMU
+            )
           </option>
           <option
             value="COL"
           >
             Colombia
+             (
+            COL
+            )
           </option>
           <option
             value="LVS"
           >
             Langtvekkistan
+             (
+            LVS
+            )
           </option>
           <option
             value="MRS"
           >
             Mars
+             (
+            MRS
+            )
           </option>
           <option
             value="NRN"
           >
             Narnia
+             (
+            NRN
+            )
           </option>
           <option
             value="NOR"
           >
             Norge
+             (
+            NOR
+            )
           </option>
           <option
             value="ESP"
           >
             Spania
+             (
+            ESP
+            )
           </option>
           <option
             value="USA"
           >
             Usa
+             (
+            USA
+            )
           </option>
         </select>
       </div>
@@ -548,26 +572,41 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
             value="USD"
           >
             Amerikanske Dollar
+             (
+            USD
+            )
           </option>
           <option
             value="GUL"
           >
             Gullmynter, Kong Salomons Rike
+             (
+            GUL
+            )
           </option>
           <option
             value="NZD"
           >
             New Zealand Dollar
+             (
+            NZD
+            )
           </option>
           <option
             value="NOK"
           >
             Norske Kroner
+             (
+            NOK
+            )
           </option>
           <option
             value="SPD"
           >
             Spesidaler
+             (
+            SPD
+            )
           </option>
         </select>
       </div>
