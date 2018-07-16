@@ -7,6 +7,7 @@ import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import ShortcutListener from './ShortcutListener';
 
 interface VisittkortProps {
     person: Person;
@@ -26,6 +27,7 @@ function Visittkort({ person }: VisittkortProps) {
 
     return (
         <ErrorBoundary>
+            <ShortcutListener fødselsnummer={person.fødselsnummer} />
             <VisittKortDiv>
                 <EkspanderbartpanelBase apen={false} heading={visittkortheader} ariaTittel="Visittkort">
                     <VisittkortBody person={person}/>
