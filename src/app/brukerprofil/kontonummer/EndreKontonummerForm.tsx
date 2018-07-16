@@ -228,8 +228,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             <RequestTilbakemelding
                 status={this.props.status}
                 onError={'Det skjedde en feil ved endring av kontonummer.'}
-                onSuccess={`Kontonummer ble endret.
-                 Det kan ta noen minutter før endringene blir synlig.`}
+                onSuccess={`Kontonummer ble endret.`}
             />
         );
 

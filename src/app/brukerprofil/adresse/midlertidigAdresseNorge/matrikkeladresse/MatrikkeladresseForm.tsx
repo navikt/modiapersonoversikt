@@ -23,7 +23,7 @@ function onPostinformasjonChange(props: Props) {
 function MatrikkeladresseForm(props: Props) {
     const {matrikkeladresse, validering} = props;
     const {postnummer, poststed} = matrikkeladresse;
-    const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : new Date();
+    const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : undefined;
 
     return (
         <>
@@ -52,6 +52,7 @@ function MatrikkeladresseForm(props: Props) {
                 id={'postboksadresse-gyldig-til'}
                 onChange={(date: Date) => props.onChange({...matrikkeladresse, periode: tilPeriode(date)})}
                 dato={gyldigTil}
+                innenEtÅr={true}
                 feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
             >
                 Gyldig til
