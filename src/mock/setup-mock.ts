@@ -82,6 +82,14 @@ function setupEndreAdresseMock(mock: FetchMock) {
     ));
 }
 
+function setupEndreKontonummerMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/kontonummer', withDelayedResponse(
+        900,
+        STATUS_OK,
+        () => ({})
+    ));
+}
+
 function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/tilrettelagtkommunikasjon', withDelayedResponse(
         1200,
@@ -192,6 +200,7 @@ export function setupMock() {
     endreNavnMock(mock);
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
+    setupEndreKontonummerMock(mock);
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
     setupPostnummerKodeverk(mock);
     endreNavKontaktinformasjonMock(mock);
