@@ -173,6 +173,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                   id="Mobiltelefon"
                   name={undefined}
                   onChange={[Function]}
+                  onKeyPress={[Function]}
                   type="text"
                   value="998 87 766"
                 />
@@ -296,6 +297,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                   id="Hjemmenummer"
                   name={undefined}
                   onChange={[Function]}
+                  onKeyPress={[Function]}
                   type="text"
                   value=""
                 />
@@ -400,6 +402,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                 id="Jobbnummer"
                 name={undefined}
                 onChange={[Function]}
+                onKeyPress={[Function]}
                 type="text"
                 value=""
               />
