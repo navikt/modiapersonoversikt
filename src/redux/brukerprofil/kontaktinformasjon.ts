@@ -1,10 +1,10 @@
 import { createActionsAndReducer } from '../restReducer';
-import { fetchEndreNavKontaktinformasjon, Request } from '../../api/brukerprofil/endre-navkontaktinformasjon-api';
+import { postEndreNavKontaktinformasjon, Request } from '../../api/brukerprofil/endre-navkontaktinformasjon-api';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endre-kontaktinformasjon');
 
 export function endreNavKontaktinformasjon(request: Request, fødselsnummer: string) {
-    return action(() => fetchEndreNavKontaktinformasjon(request, fødselsnummer));
+    return action(() => postEndreNavKontaktinformasjon(request, fødselsnummer));
 }
 
 function dispatchTilbakestillReducer() { return tilbakestillReducer; }

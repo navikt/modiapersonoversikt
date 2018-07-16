@@ -12,7 +12,7 @@ interface Telefon {
     identifikator: string;
 }
 
-export function fetchEndreNavKontaktinformasjon(request: Request, fødselsnummer: string): Promise<{}> {
+export function postEndreNavKontaktinformasjon(request: Request, fødselsnummer: string): Promise<{}> {
     const uri = `${apiBaseUri}/brukerprofil/${fødselsnummer}/telefonnummer/`;
     return post(uri, request);
 }

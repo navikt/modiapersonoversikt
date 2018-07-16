@@ -16,6 +16,7 @@ import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 
 const STATUS_OK = () => 200;
+const STATUS_SERVER_ERROR = () => 500;
 
 function setupPersonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
@@ -66,7 +67,7 @@ function endreNavnMock(mock: FetchMock) {
 }
 
 function endreNavKontaktinformasjonMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefon', withDelayedResponse(
+    mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefonnummer', withDelayedResponse(
         1200,
         STATUS_OK,
         () => ({})
