@@ -19,6 +19,8 @@ import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import featureToggleReducer from './featuretoggle';
+import VisittkortUiReducer, { VisittkortUi } from './ui/VisittkortUIDuck';
+
 import { STATUS } from './utils';
 import { PersonRespons } from '../models/person/person';
 import { Oppgave } from '../models/oppgave';
@@ -51,6 +53,7 @@ export interface AppState {
     valutaReducer: RestReducer<KodeverkResponse>;
     landReducer: RestReducer<KodeverkResponse>;
     featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
+    visittkortUi: VisittkortUi;
 }
 
 export default combineReducers<AppState>({
@@ -72,7 +75,8 @@ export default combineReducers<AppState>({
     endreAdresseReducer,
     valutaReducer: valutaKodeverkReducer,
     landReducer: landKodeverkReducer,
-    featureToggleNyBrukerprofilReducer: featureToggleReducer
+    featureToggleNyBrukerprofilReducer: featureToggleReducer,
+    visittkortUi: VisittkortUiReducer
 });
 
 export interface RestReducer<T> {
