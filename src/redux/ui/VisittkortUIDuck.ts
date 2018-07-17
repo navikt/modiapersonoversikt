@@ -3,11 +3,11 @@ import { Action } from 'redux';
 export const TOGGLE_VISITTKORT = 'TOGGLE_VISITTKORT';
 
 export interface VisittkortUi {
-    visittkortÅpent: true;
+    visittkortÅpent: boolean;
 }
 
 const initialState: VisittkortUi = {
-    visittkortÅpent: true
+    visittkortÅpent: false
 };
 
 export function toggleVisittkort() {
