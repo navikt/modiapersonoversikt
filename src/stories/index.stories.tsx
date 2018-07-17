@@ -9,7 +9,7 @@ import FloatingChildren from './responsive-columns/FloatingChildren';
 import JSResponsive from './responsive-columns/EventListener';
 import PilKnapp from '../components/pilknapp';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
-import VisittkortStandAlone from '../components/StandAloneVisittkort/VisittkortStandAlone';
+import VisittkortStandAlone from '../components/StandAloneVisittkort/VisittKortStandAlone';
 
 const NiceContainer = styled.div`
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
