@@ -1,15 +1,15 @@
 import * as React from 'react';
-
 import { storiesOf } from '@storybook/react';
-import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
 import styled, { ThemeProvider } from 'styled-components';
+
+import ComponentPlaceholder from '../components/component-placeholder/ComponentPlaceHolder';
 import GridLayout from './grid-layout/GridLayout';
 import ResponsiveFlexColumns from './responsive-columns/ResponsiveFlexColumns';
 import FloatingChildren from './responsive-columns/FloatingChildren';
 import JSResponsive from './responsive-columns/EventListener';
 import PilKnapp from '../components/pilknapp';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
-import VisittkortStandAlone from '../components/StandAloneVisittkort/VisittKortStandAlone';
+import VisittkortStandAlone from '../components/StandAloneVisittkort/VisittkortStandAlone';
 
 const NiceContainer = styled.div`
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);

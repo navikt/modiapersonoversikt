@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Egenansatt } from '../../../../models/egenansatt';
-import { AppState, RestReducer } from '../../../../redux/reducer';
+import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import Etiketter from './Etiketter';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
+import { RestReducer } from '../../../../redux/restReducers/restReducers';
 
 interface Props {
     egenAnsattReducer: RestReducer<Egenansatt>;
@@ -27,9 +28,9 @@ class EtiketterContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        egenAnsattReducer: state.egenAnsatt,
-        personReducer: state.personinformasjon,
-        vergemalReducer: state.vergemal
+        egenAnsattReducer: state.restEndepunkter.egenAnsatt,
+        personReducer: state.restEndepunkter.personinformasjon,
+        vergemalReducer: state.restEndepunkter.vergemal
     });
 };
 

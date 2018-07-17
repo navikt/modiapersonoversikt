@@ -1,5 +1,5 @@
 import { createActionsAndReducer } from './restReducer';
-import { getVergemal } from '../api/vergemal-api';
+import { getVergemal } from '../../api/vergemal-api';
 
 const { reducer, action, actionNames } = createActionsAndReducer('vergemal');
 

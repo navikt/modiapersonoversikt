@@ -2,8 +2,8 @@ import { createActionsAndReducer } from '../restReducer';
 import {
     postEndreMatrikkeladresse, postEndreNorskGateadresse,
     postEndrePostboksadresse, postEndreUtenlandsadresse, postSlettMidlertidigeAdresser
-} from '../../api/brukerprofil/adresse-api';
-import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../models/personadresse';
+} from '../../../api/brukerprofil/adresse-api';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endreadresse');
 

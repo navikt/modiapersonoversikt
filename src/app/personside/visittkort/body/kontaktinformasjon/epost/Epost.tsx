@@ -4,10 +4,10 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import VisittkortElement from '../../VisittkortElement';
 import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { RestReducer } from '../../../../../../redux/reducer';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import EmailIkon from '../../../../../../svg/Email';
+import { RestReducer } from '../../../../../../redux/restReducers/restReducers';
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;

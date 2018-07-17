@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { STATUS } from '../../redux/utils';
+import { STATUS } from '../../redux/restReducers/utils';
 
 const TilbakemeldingWrapper = styled.div`
   margin-top: 1em;

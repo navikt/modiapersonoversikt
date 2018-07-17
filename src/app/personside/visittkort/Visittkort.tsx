@@ -9,8 +9,8 @@ import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import ShortcutListener from './ShortcutListener';
-import { AppState } from '../../../redux/reducer';
-import { toggleVisittkort } from '../../../redux/ui/VisittkortUIDuck';
+import { AppState } from '../../../redux/reducers';
+import { toggleVisittkort } from '../../../redux/uiReducers/VisittkortUIDuck';
 
 interface VisittkortProps {
     person: Person;

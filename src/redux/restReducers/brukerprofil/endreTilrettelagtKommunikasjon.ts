@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from '../restReducer';
 import { EndreTilrettelagtKommunikasjonrequest } from './endreTilrettelagtKommunikasjonrequest';
-import { postEndreTilrettelagtKommunikasjon } from '../../api/brukerprofil/endretilrettelagtkommunikasjon-api';
+import { postEndreTilrettelagtKommunikasjon } from '../../../api/brukerprofil/endretilrettelagtkommunikasjon-api';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endretilrettelagtkommunikasjon');
 

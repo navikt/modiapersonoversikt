@@ -5,9 +5,9 @@ import { connect, Dispatch } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
-import { STATUS } from '../../../redux/utils';
+import { STATUS } from '../../../redux/restReducers/utils';
 import { Person } from '../../../models/person/person';
-import { AppState } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
@@ -23,8 +23,8 @@ import {
 } from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { endreKontonummer, reset } from '../../../redux/brukerprofil/endreKontonummer';
-import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKontonummerRequest';
+import { endreKontonummer, reset } from '../../../redux/restReducers/brukerprofil/endreKontonummer';
+import { EndreKontonummerRequest } from '../../../redux/restReducers/brukerprofil/endreKontonummerRequest';
 import { ignoreEnter } from '../utils/formUtils';
 import { getValidNorskBankKontoForm, validerNorskBankKonto } from './norskKontoValidator';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
@@ -251,7 +251,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreKontonummer.status
+        status: state.restEndepunkter.endreKontonummer.status
     });
 };
 

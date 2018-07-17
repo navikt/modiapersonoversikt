@@ -1,7 +1,7 @@
 import { Dispatch } from 'react-redux';
 import { Action } from 'redux';
 
-import { getPerson } from '../api/person-api';
+import { getPerson } from '../../api/person-api';
 import { createActionsAndReducer } from './restReducer';
 import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { erEgenAnsatt } from './egenansatt';

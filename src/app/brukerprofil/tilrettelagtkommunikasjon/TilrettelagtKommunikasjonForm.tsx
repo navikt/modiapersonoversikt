@@ -5,13 +5,14 @@ import { connect, Dispatch } from 'react-redux';
 
 import KnappBase from 'nav-frontend-knapper';
 
-import { STATUS } from '../../../redux/utils';
-import { AppState } from '../../../redux/reducer';
+import { STATUS } from '../../../redux/restReducers/utils';
+import { AppState } from '../../../redux/reducers';
 import {
     EndreTilrettelagtKommunikasjonrequest
 } from
-        '../../../redux/brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import { endreTilrettelagtKommunikasjon, reset } from '../../../redux/brukerprofil/endreTilrettelagtKommunikasjon';
+        '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { endreTilrettelagtKommunikasjon, reset }
+    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjon';
 import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
@@ -158,7 +159,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreTilrettelagtKommunikasjon.status
+        status: state.restEndepunkter.endreTilrettelagtKommunikasjon.status
     });
 };
 

@@ -6,8 +6,8 @@ import thunkMiddleware from 'redux-thunk';
 import { MemoryRouter, Route, Switch } from 'react-router';
 
 import { personOversiktTheme } from '../../themes/personOversiktTheme';
-import reducers from '../../redux/reducer';
-import { hentAllPersonData } from '../../redux/personinformasjon';
+import reducers from '../../redux/reducers';
+import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
