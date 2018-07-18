@@ -20,8 +20,6 @@
     "test": "react-scripts-ts test --env=jsdom",
     "test-coverage": "react-scripts-ts test --env=jsdom --coverage",
     "eject": "react-scripts-ts eject",
-    "storybook": "start-storybook -p 3000",
-    "build-storybook": "build-storybook -c .storybook -o build/storybook",
     "build:less": "node node_modules/less/bin/lessc src/index.less src/index.css",
     "compile": "tsc",
     "build:svg": "cd src/svg/ && svgtoreact dir --force"
@@ -81,10 +79,6 @@
     "yet-another-fetch-mock": "^2.3.3"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.8",
-    "@storybook/addon-links": "^3.4.8",
-    "@storybook/addons": "^3.4.8",
-    "@storybook/react": "^3.4.8",
     "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.11",
     "@types/enzyme-adapter-react-16": "^1.0.2",
@@ -97,9 +91,7 @@
     "@types/react-redux": "^5.0.20",
     "@types/react-router-dom": "^4.2.7",
     "@types/react-test-renderer": "^16.0.1",
-    "@types/storybook__react": "^3.0.8",
     "awesome-typescript-loader": "^3.4.1",
-    "babel-core": "^6.26.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.4.0",
