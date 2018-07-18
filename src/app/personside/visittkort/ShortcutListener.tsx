@@ -1,12 +1,18 @@
 import { RouteComponentProps, withRouter } from 'react-router';
 import * as React from 'react';
 import { paths } from '../../routes/routing';
+import { connect, Dispatch } from 'react-redux';
+import { toggleVisittkort } from '../../../redux/ui/VisittkortUIDuck';
 
 interface OwnProps {
     fødselsnummer: string;
 }
 
-type Props = OwnProps & RouteComponentProps<{}>;
+interface DispatchProps {
+    toggleVisittkort: () => void;
+}
+
+type Props = OwnProps & RouteComponentProps<{}> & DispatchProps;
 
 class ShortcutListener extends React.Component<Props> {
 
@@ -16,11 +22,11 @@ class ShortcutListener extends React.Component<Props> {
     }
 
     componentDidMount() {
-        document.addEventListener('keyup', this.handleShortcut);
+        document.addEventListener('keydown', this.handleShortcut);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keyup', this.handleShortcut);
+        document.removeEventListener('keydown', this.handleShortcut);
     }
 
     render() {
@@ -28,10 +34,18 @@ class ShortcutListener extends React.Component<Props> {
     }
 
     private handleShortcut(event: KeyboardEvent) {
-        if (event.altKey && event.key === 'b') {
+        if (event.altKey && event.code === 'KeyB') {
             this.props.history.push(`${paths.brukerprofil}/${this.props.fødselsnummer}`);
+        } else if (event.altKey && event.code === 'KeyN') {
+            this.props.toggleVisittkort();
         }
     }
 }
 
-export default withRouter(ShortcutListener);
+function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+    return {
+        toggleVisittkort: () => dispatch(toggleVisittkort())
+    };
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(ShortcutListener));
