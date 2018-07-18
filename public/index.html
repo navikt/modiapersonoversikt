@@ -24,5 +24,17 @@
     You need to enable JavaScript to run this app.
 </noscript>
 <div id="root"></div>
+<script type="text/javascript">
+    window.doorbellOptions = {
+        id: '9267',
+        appKey: 'igtoE68jz6LHipRZW9MM8N0OsGX1H3FLLbTsvlTNbauiOmmSj2pVrUghUEmAZfL0'
+    };
+    (function(w, d, t) {
+        var hasLoaded = false;
+        function l() { if (hasLoaded) { return; } hasLoaded = true; window.doorbellOptions.windowLoaded = true; var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/'+window.doorbellOptions['id']+'?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g); }
+        if (w.attachEvent) { w.attachEvent('onload', l); } else if (w.addEventListener) { w.addEventListener('load', l, false); } else { l(); }
+        if (d.readyState == 'complete') { l(); }
+    }(window, document, 'script'));
+</script>
 </body>
 </html>
