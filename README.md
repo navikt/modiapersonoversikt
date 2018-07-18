@@ -69,6 +69,7 @@ Spørsmål knyttet til koden eller prosjektet kan rettes mot:
 * Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
 * Ketil S. Velle, ketil.s.velle@nav.no
 * Joakim Lindquister, joakim.lindquister@nav.no
+* Jørund Amsen, jorund.amsen@nav.no
 * Richard Borge, richard.borge@nav.no
 
 ### For NAV-ansatte
