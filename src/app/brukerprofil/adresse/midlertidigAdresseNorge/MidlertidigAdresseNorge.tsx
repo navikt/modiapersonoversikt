@@ -149,7 +149,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 <Select
                     label="Adressetype"
                     bredde={'m'}
-                    defaultValue={valg.toString()}
+                    value={valg.toString()}
                     onChange={this.onAdresseTypeChange}
                 >
                     <option
@@ -183,7 +183,8 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                     matrikkeladresse={matrikkeladresse.value}
                     validering={matrikkeladresse.validering}
                 />}
-                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
+                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE &&
+                <PostboksadresseForm
                     onChange={(postboksadresse: Postboksadresse) =>
                         this.onPostboksadresseInputChange(postboksadresse)}
                     input={this.props.midlertidigAdresseNorge.postboksadresse}
