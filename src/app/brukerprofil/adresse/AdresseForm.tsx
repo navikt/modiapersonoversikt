@@ -49,7 +49,9 @@ interface Props {
 }
 
 export enum Valg {
-    FOLKEREGISTRERT, MIDLERTIDIG_NORGE, MIDLERTIDIG_UTLAND
+    FOLKEREGISTRERT = 'folkeregistrert',
+    MIDLERTIDIG_NORGE = 'midlertidigNorge',
+    MIDLERTIDIG_UTLAND = 'midlertidigUtland'
 }
 
 interface State {

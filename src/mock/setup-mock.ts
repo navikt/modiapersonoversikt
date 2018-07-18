@@ -16,7 +16,6 @@ import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 
 const STATUS_OK = () => 200;
-const STATUS_SERVER_ERROR = () => 500;
 
 function setupPersonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
