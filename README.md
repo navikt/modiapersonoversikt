@@ -31,14 +31,6 @@ docker build -t personoversikt .
 docker run --env-file .env --name personoversikt -d -p 8080:80 personoversikt
 ```
 
-### Starte Storybook
-
-Storybook lar oss spinne opp enkeltkomponenter slik at de kan testes i isolasjon.
-
-```console
-npm run storybook
-```
-
 ## Dokumentasjon
 
 Vi bruker Architecture Decision Records (ADR) til å beskrive viktige arkitekturbeslutninger for vår app. Dette sjekkes inn i kildekoden og kan bidra til man i ettertid kan skjønne hvorfor koden har blitt sånn den har blitt. Filosofien bak er dokumentert [her](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).
