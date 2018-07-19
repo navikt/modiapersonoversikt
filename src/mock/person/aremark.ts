@@ -7,6 +7,29 @@ export const aremark: Person = {
     kjønn: Kjønn.Mann,
     geografiskTilknytning: '0118',
     alder: 42,
+    folkeregistrertAdresse: {
+        endringsinfo: {
+            sistEndret: '2017-11-25T21:29:14.049Z',
+            sistEndretAv: 'SKD'
+        },
+        gateadresse: {
+            gatenavn: 'Islandsgate',
+            husnummer: '49',
+            postnummer: '7693',
+            poststed: 'Hovedøya'
+        }
+    },
+    alternativAdresse: {
+        endringsinfo: {
+            sistEndret: '2018-04-10T09:06:58.256Z',
+            sistEndretAv: 'SKD'
+        },
+        postboksadresse: {
+            postboksnummer: '9698',
+            postnummer: '7705',
+            poststed: 'Færder fyr'
+        }
+    },
     bankkonto: {
         banknavn: 'Bien sparebank',
         kontonummer: '12345678911',
