@@ -38,133 +38,135 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   margin-top: 2em;
 }
 
-<form
-  onSubmit={[Function]}
->
-  <fieldset
-    className="c0"
-    disabled={false}
+<div>
+  <h2
+    className="typo-undertittel"
   >
-    <h2
-      className="typo-undertittel"
-    >
-      Adresse
-    </h2>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={true}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="0"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Bostedsadresse fra folkeregisteret
-        </label>
-      </div>
-    </div>
-    <div>
-      <p
-        className="typo-undertekst"
-      >
-        Islandsgate 49
-      </p>
-      <p
-        className="typo-undertekst"
-      >
-        7693 Hovedøya
-      </p>
-    </div>
-    <div
-      className="c2"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        <span
-          className="c3"
-        >
-          Endret 
-          25.11.2017
-           
-          i Folkeregisteret
-        </span>
-      </p>
-    </div>
-    <div
-      className="c1"
+    Adresse
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="c0"
+      disabled={false}
     >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="1"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
         >
-          Midlertidig adresse i Norge
-        </label>
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="folkeregistrert"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Bostedsadresse fra folkeregisteret
+          </label>
+        </div>
       </div>
-    </div>
-    <div
-      className="c1"
-    >
+      <div>
+        <p
+          className="typo-undertekst"
+        >
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          7693 Hovedøya
+        </p>
+      </div>
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c2"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="2"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <p
+          className="typo-etikett-liten"
         >
-          Midlertidig adresse i utlandet
-        </label>
+          <span
+            className="c3"
+          >
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </span>
+        </p>
       </div>
-    </div>
-    <div
-      className="c4"
-    >
-      <button
-        className="knapp knapp--standard knapp--disabled"
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="c1"
       >
-        Avbryt
-      </button>
-      <button
-        className="knapp knapp--hoved knapp--disabled"
-        disabled={true}
-        type="submit"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigNorge"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i Norge
+          </label>
+        </div>
+      </div>
+      <div
+        className="c1"
       >
-        Endre adresse
-      </button>
-    </div>
-  </fieldset>
-</form>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigUtland"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i utlandet
+          </label>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre adresse
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
@@ -226,163 +228,187 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   margin-top: 2em;
 }
 
-<form
-  onSubmit={[Function]}
->
-  <fieldset
-    className="c0"
-    disabled={false}
+<div>
+  <h2
+    className="typo-undertittel"
   >
-    <h2
-      className="typo-undertittel"
-    >
-      Adresse
-    </h2>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="0"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Bostedsadresse fra folkeregisteret
-        </label>
-      </div>
-    </div>
-    <div>
-      <p
-        className="typo-undertekst"
-      >
-        Islandsgate 49
-      </p>
-      <p
-        className="typo-undertekst"
-      >
-        7693 Hovedøya
-      </p>
-    </div>
-    <div
-      className="c2"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        <span
-          className="c3"
-        >
-          Endret 
-          25.11.2017
-           
-          i Folkeregisteret
-        </span>
-      </p>
-    </div>
-    <div
-      className="c1"
+    Adresse
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="c0"
+      disabled={false}
     >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={true}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="1"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Midlertidig adresse i Norge
-        </label>
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Adressetype
-        </label>
         <div
-          className="selectContainer input--m"
+          className="skjemaelement skjemaelement--horisontal"
         >
-          <select
-            className="skjemaelement__input"
-            defaultValue="0"
-            disabled={false}
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
             id="Helt tilfeldig ID"
+            name="folkeregistrert"
             onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <option
-              value={0}
-            >
-              Gateadresse
-            </option>
-            <option
-              value={1}
-            >
-              Områdeadresse (uten veinavn)
-            </option>
-            <option
-              value={2}
-            >
-              Postboksadresse
-            </option>
-          </select>
+            Bostedsadresse fra folkeregisteret
+          </label>
+        </div>
+      </div>
+      <div>
+        <p
+          className="typo-undertekst"
+        >
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          7693 Hovedøya
+        </p>
+      </div>
+      <div
+        className="c2"
+      >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="c3"
+          >
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </span>
+        </p>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigNorge"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i Norge
+          </label>
         </div>
         <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+          className="skjemaelement"
         >
-          Merkes med C/O
-        </label>
-        <input
-          className="skjemaelement__input input--xxl"
-          defaultValue={undefined}
-          id="Helt tilfeldig ID"
-          name={undefined}
-          onChange={[Function]}
-          type="text"
-        />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Adressetype
+          </label>
+          <div
+            className="selectContainer input--m"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value="0"
+            >
+              <option
+                value={0}
+              >
+                Gateadresse
+              </option>
+              <option
+                value={1}
+              >
+                Områdeadresse (uten veinavn)
+              </option>
+              <option
+                value={2}
+              >
+                Postboksadresse
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
         <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="c4"
-      >
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Merkes med C/O
+          </label>
+          <input
+            className="skjemaelement__input input--xxl"
+            id="Helt tilfeldig ID"
+            name={undefined}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
         <div
-          style={
-            Object {
-              "flex": 4,
-              "marginRight": 15,
+          className="c4"
+        >
+          <div
+            style={
+              Object {
+                "flex": 4,
+                "marginRight": 15,
+              }
             }
-          }
-        >
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Gateadresse
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Helt tilfeldig ID"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value="Islandsgate"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
           <div
             className="skjemaelement"
           >
@@ -390,117 +416,21 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Gateadresse
+              Husnummer
             </label>
             <input
-              className="skjemaelement__input input--xxl"
-              defaultValue="Islandsgate"
+              className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
               name={undefined}
               onChange={[Function]}
               type="text"
+              value="49"
             />
             <div
               aria-live="assertive"
               role="alert"
             />
           </div>
-        </div>
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Husnummer
-          </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue="49"
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Husbokstav
-          </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue={undefined}
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Bolignummer
-          </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue={undefined}
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-      </div>
-      <div
-        className="c5"
-      >
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Postnummer
-          </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue="7693"
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="c6"
-        >
           <div
             className="skjemaelement"
           >
@@ -508,142 +438,216 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Poststed
+              Husbokstav
             </label>
             <input
-              className="skjemaelement__input input--xxl"
-              disabled={true}
+              className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
               name={undefined}
-              type="text"
-              value="Hovedøya"
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </div>
-      </div>
-      <label
-        className="skjemaelement__label"
-        htmlFor="gateform-datovelger"
-      >
-        Gyldig til
-      </label>
-      <div
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={undefined}
-      >
-        <div
-          className="nav-datovelger"
-        >
-          <p
-            className="sr-only"
-            id="Helt tilfeldig ID_srDesc"
-          >
-            Dato må være mellom "02.01.1970" og "01.01.1971". 
-          </p>
-          <div
-            className="nav-datovelger__inputContainer"
-          >
-            <input
-              aria-describedby="Helt tilfeldig ID_srDesc"
-              aria-invalid={false}
-              autoComplete="off"
-              autoCorrect="off"
-              className="nav-datovelger__input"
-              disabled={undefined}
-              id="gateform-datovelger"
-              maxLength={10}
-              onBlur={[Function]}
               onChange={[Function]}
-              onKeyDown={[Function]}
-              pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
               type="text"
               value=""
             />
-            <button
-              aria-expanded={false}
-              aria-label="Kalender"
-              className="nav-datovelger__kalenderknapp"
-              disabled={undefined}
-              onClick={[Function]}
-              role="button"
-              type="button"
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
             >
-              <svg
-                aria-hidden="true"
-                height={16}
-                role="presentation"
-                viewBox="0 0 18 18"
-                width={16}
+              Bolignummer
+            </label>
+            <input
+              className="skjemaelement__input input--s"
+              id="Helt tilfeldig ID"
+              name={undefined}
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Postnummer
+            </label>
+            <input
+              className="skjemaelement__input input--s"
+              id="Helt tilfeldig ID"
+              name={undefined}
+              onChange={[Function]}
+              type="text"
+              value="7693"
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="c6"
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <title>
-                  Kalenderikon
-                </title>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="#0067C5"
+                Poststed
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                disabled={true}
+                id="Helt tilfeldig ID"
+                name={undefined}
+                type="text"
+                value="Hovedøya"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <label
+          className="skjemaelement__label"
+          htmlFor="gateform-datovelger"
+        >
+          Gyldig til
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={undefined}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <p
+              className="sr-only"
+              id="Helt tilfeldig ID_srDesc"
+            >
+              Dato må være mellom "02.01.1970" og "01.01.1971". 
+            </p>
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-describedby="Helt tilfeldig ID_srDesc"
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                disabled={undefined}
+                id="gateform-datovelger"
+                maxLength={10}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value=""
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                disabled={undefined}
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
                 >
-                  <path
-                    d="M4 2.667H1.333v14h15.334v-14H14"
-                  />
-                  <path
-                    d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                  />
-                </g>
-              </svg>
-            </button>
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="c1"
-    >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="2"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
         >
-          Midlertidig adresse i utlandet
-        </label>
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigUtland"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i utlandet
+          </label>
+        </div>
       </div>
-    </div>
-    <div
-      className="c7"
-    >
-      <button
-        className="knapp knapp--standard knapp--disabled"
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="c7"
       >
-        Avbryt
-      </button>
-      <button
-        className="knapp knapp--hoved knapp--disabled"
-        disabled={true}
-        type="submit"
-      >
-        Endre adresse
-      </button>
-    </div>
-  </fieldset>
-</form>
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre adresse
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
@@ -698,177 +702,90 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   margin-top: 2em;
 }
 
-<form
-  onSubmit={[Function]}
->
-  <fieldset
-    className="c0"
-    disabled={false}
+<div>
+  <h2
+    className="typo-undertittel"
   >
-    <h2
-      className="typo-undertittel"
-    >
-      Adresse
-    </h2>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="0"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Bostedsadresse fra folkeregisteret
-        </label>
-      </div>
-    </div>
-    <div>
-      <p
-        className="typo-undertekst"
-      >
-        Islandsgate 49
-      </p>
-      <p
-        className="typo-undertekst"
-      >
-        7693 Hovedøya
-      </p>
-    </div>
-    <div
-      className="c2"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        <span
-          className="c3"
-        >
-          Endret 
-          25.11.2017
-           
-          i Folkeregisteret
-        </span>
-      </p>
-    </div>
-    <div
-      className="c1"
+    Adresse
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="c0"
+      disabled={false}
     >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={true}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="1"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Midlertidig adresse i Norge
-        </label>
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Adressetype
-        </label>
         <div
-          className="selectContainer input--m"
+          className="skjemaelement skjemaelement--horisontal"
         >
-          <select
-            className="skjemaelement__input"
-            defaultValue="1"
-            disabled={false}
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
             id="Helt tilfeldig ID"
+            name="folkeregistrert"
             onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <option
-              value={0}
-            >
-              Gateadresse
-            </option>
-            <option
-              value={1}
-            >
-              Områdeadresse (uten veinavn)
-            </option>
-            <option
-              value={2}
-            >
-              Postboksadresse
-            </option>
-          </select>
+            Bostedsadresse fra folkeregisteret
+          </label>
         </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
       </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+      <div>
+        <p
+          className="typo-undertekst"
         >
-          Merkes med C/O
-        </label>
-        <input
-          className="skjemaelement__input input--xxl"
-          defaultValue={undefined}
-          id="Helt tilfeldig ID"
-          name={undefined}
-          onChange={[Function]}
-          type="text"
-        />
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-undertekst"
         >
-          Områdeadresse
-        </label>
-        <input
-          className="skjemaelement__input input--xxl"
-          defaultValue={undefined}
-          id="Helt tilfeldig ID"
-          name={undefined}
-          onChange={[Function]}
-          type="text"
-        />
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
+          7693 Hovedøya
+        </p>
       </div>
       <div
-        className="c4"
+        className="c2"
       >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="c3"
+          >
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </span>
+        </p>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigNorge"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i Norge
+          </label>
+        </div>
         <div
           className="skjemaelement"
         >
@@ -876,15 +793,56 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Postnummer
+            Adressetype
+          </label>
+          <div
+            className="selectContainer input--m"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value="1"
+            >
+              <option
+                value={0}
+              >
+                Gateadresse
+              </option>
+              <option
+                value={1}
+              >
+                Områdeadresse (uten veinavn)
+              </option>
+              <option
+                value={2}
+              >
+                Postboksadresse
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Merkes med C/O
           </label>
           <input
-            className="skjemaelement__input input--s"
-            defaultValue="5468"
+            className="skjemaelement__input input--xxl"
             id="Helt tilfeldig ID"
             name={undefined}
             onChange={[Function]}
             type="text"
+            value=""
           />
           <div
             aria-live="assertive"
@@ -892,7 +850,29 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           />
         </div>
         <div
-          className="c5"
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Områdeadresse
+          </label>
+          <input
+            className="skjemaelement__input input--xxl"
+            id="Helt tilfeldig ID"
+            name={undefined}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="c4"
         >
           <div
             className="skjemaelement"
@@ -901,142 +881,168 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Poststed
+              Postnummer
             </label>
             <input
-              className="skjemaelement__input input--xxl"
-              disabled={true}
+              className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
               name={undefined}
+              onChange={[Function]}
               type="text"
-              value="Lillomarka"
+              value="5468"
             />
             <div
               aria-live="assertive"
               role="alert"
             />
           </div>
-        </div>
-      </div>
-      <label
-        className="skjemaelement__label"
-        htmlFor="postboksadresse-gyldig-til"
-      >
-        Gyldig til
-      </label>
-      <div
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={undefined}
-      >
-        <div
-          className="nav-datovelger"
-        >
-          <p
-            className="sr-only"
-            id="Helt tilfeldig ID_srDesc"
-          >
-            Dato må være mellom "02.01.1970" og "01.01.1971". 
-          </p>
           <div
-            className="nav-datovelger__inputContainer"
+            className="c5"
           >
-            <input
-              aria-describedby="Helt tilfeldig ID_srDesc"
-              aria-invalid={false}
-              autoComplete="off"
-              autoCorrect="off"
-              className="nav-datovelger__input"
-              disabled={undefined}
-              id="postboksadresse-gyldig-til"
-              maxLength={10}
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-              type="text"
-              value=""
-            />
-            <button
-              aria-expanded={false}
-              aria-label="Kalender"
-              className="nav-datovelger__kalenderknapp"
-              disabled={undefined}
-              onClick={[Function]}
-              role="button"
-              type="button"
+            <div
+              className="skjemaelement"
             >
-              <svg
-                aria-hidden="true"
-                height={16}
-                role="presentation"
-                viewBox="0 0 18 18"
-                width={16}
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <title>
-                  Kalenderikon
-                </title>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="#0067C5"
+                Poststed
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                disabled={true}
+                id="Helt tilfeldig ID"
+                name={undefined}
+                type="text"
+                value="Lillomarka"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <label
+          className="skjemaelement__label"
+          htmlFor="postboksadresse-gyldig-til"
+        >
+          Gyldig til
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={undefined}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <p
+              className="sr-only"
+              id="Helt tilfeldig ID_srDesc"
+            >
+              Dato må være mellom "02.01.1970" og "01.01.1971". 
+            </p>
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-describedby="Helt tilfeldig ID_srDesc"
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                disabled={undefined}
+                id="postboksadresse-gyldig-til"
+                maxLength={10}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value=""
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                disabled={undefined}
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
                 >
-                  <path
-                    d="M4 2.667H1.333v14h15.334v-14H14"
-                  />
-                  <path
-                    d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                  />
-                </g>
-              </svg>
-            </button>
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="c1"
-    >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="2"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
         >
-          Midlertidig adresse i utlandet
-        </label>
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigUtland"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i utlandet
+          </label>
+        </div>
       </div>
-    </div>
-    <div
-      className="c6"
-    >
-      <button
-        className="knapp knapp--standard knapp--disabled"
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="c6"
       >
-        Avbryt
-      </button>
-      <button
-        className="knapp knapp--hoved knapp--disabled"
-        disabled={true}
-        type="submit"
-      >
-        Endre adresse
-      </button>
-    </div>
-  </fieldset>
-</form>
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre adresse
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
@@ -1098,185 +1104,89 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   margin-top: 2em;
 }
 
-<form
-  onSubmit={[Function]}
->
-  <fieldset
-    className="c0"
-    disabled={false}
+<div>
+  <h2
+    className="typo-undertittel"
   >
-    <h2
-      className="typo-undertittel"
-    >
-      Adresse
-    </h2>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="0"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Bostedsadresse fra folkeregisteret
-        </label>
-      </div>
-    </div>
-    <div>
-      <p
-        className="typo-undertekst"
-      >
-        Islandsgate 49
-      </p>
-      <p
-        className="typo-undertekst"
-      >
-        7693 Hovedøya
-      </p>
-    </div>
-    <div
-      className="c2"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        <span
-          className="c3"
-        >
-          Endret 
-          25.11.2017
-           
-          i Folkeregisteret
-        </span>
-      </p>
-    </div>
-    <div
-      className="c1"
+    Adresse
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="c0"
+      disabled={false}
     >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={true}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="1"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Midlertidig adresse i Norge
-        </label>
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Adressetype
-        </label>
         <div
-          className="selectContainer input--m"
+          className="skjemaelement skjemaelement--horisontal"
         >
-          <select
-            className="skjemaelement__input"
-            defaultValue="2"
-            disabled={false}
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
             id="Helt tilfeldig ID"
+            name="folkeregistrert"
             onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <option
-              value={0}
-            >
-              Gateadresse
-            </option>
-            <option
-              value={1}
-            >
-              Områdeadresse (uten veinavn)
-            </option>
-            <option
-              value={2}
-            >
-              Postboksadresse
-            </option>
-          </select>
+            Bostedsadresse fra folkeregisteret
+          </label>
         </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
+      </div>
+      <div>
+        <p
+          className="typo-undertekst"
+        >
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          7693 Hovedøya
+        </p>
       </div>
       <div
-        className="skjemaelement"
+        className="c2"
       >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <p
+          className="typo-etikett-liten"
         >
-          Merkes med C/O
-        </label>
-        <input
-          className="skjemaelement__input input--xxl"
-          defaultValue={undefined}
-          id="Helt tilfeldig ID"
-          name={undefined}
-          onChange={[Function]}
-          type="text"
-        />
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          style={
-            Object {
-              "flex": 4,
-              "marginRight": 15,
-            }
-          }
-        >
-          <div
-            className="skjemaelement"
+          <span
+            className="c3"
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Postboksanlegg
-            </label>
-            <input
-              className="skjemaelement__input input--xxl"
-              defaultValue={undefined}
-              id="Helt tilfeldig ID"
-              name={undefined}
-              onChange={[Function]}
-              type="text"
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </span>
+        </p>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigNorge"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i Norge
+          </label>
         </div>
         <div
           className="skjemaelement"
@@ -1285,193 +1195,291 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Postboksnummer
+            Adressetype
           </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue="9698"
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
           <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-      </div>
-      <div
-        className="c5"
-      >
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            className="selectContainer input--m"
           >
-            Postnummer
-          </label>
-          <input
-            className="skjemaelement__input input--s"
-            defaultValue="7705"
-            id="Helt tilfeldig ID"
-            name={undefined}
-            onChange={[Function]}
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="c6"
-        >
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Poststed
-            </label>
-            <input
-              className="skjemaelement__input input--xxl"
-              disabled={true}
+            <select
+              className="skjemaelement__input"
+              disabled={false}
               id="Helt tilfeldig ID"
-              name={undefined}
-              type="text"
-              value="Færder fyr"
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </div>
-      </div>
-      <label
-        className="skjemaelement__label"
-        htmlFor="postboksadresse-gyldig-til"
-      >
-        Gyldig til
-      </label>
-      <div
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={undefined}
-      >
-        <div
-          className="nav-datovelger"
-        >
-          <p
-            className="sr-only"
-            id="Helt tilfeldig ID_srDesc"
-          >
-            Dato må være mellom "02.01.1970" og "01.01.1971". 
-          </p>
-          <div
-            className="nav-datovelger__inputContainer"
-          >
-            <input
-              aria-describedby="Helt tilfeldig ID_srDesc"
-              aria-invalid={false}
-              autoComplete="off"
-              autoCorrect="off"
-              className="nav-datovelger__input"
-              disabled={undefined}
-              id="postboksadresse-gyldig-til"
-              maxLength={10}
-              onBlur={[Function]}
               onChange={[Function]}
-              onKeyDown={[Function]}
-              pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-              type="text"
-              value=""
-            />
-            <button
-              aria-expanded={false}
-              aria-label="Kalender"
-              className="nav-datovelger__kalenderknapp"
-              disabled={undefined}
-              onClick={[Function]}
-              role="button"
-              type="button"
+              value="2"
             >
-              <svg
-                aria-hidden="true"
-                height={16}
-                role="presentation"
-                viewBox="0 0 18 18"
-                width={16}
+              <option
+                value={0}
               >
-                <title>
-                  Kalenderikon
-                </title>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="#0067C5"
+                Gateadresse
+              </option>
+              <option
+                value={1}
+              >
+                Områdeadresse (uten veinavn)
+              </option>
+              <option
+                value={2}
+              >
+                Postboksadresse
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Merkes med C/O
+          </label>
+          <input
+            className="skjemaelement__input input--xxl"
+            id="Helt tilfeldig ID"
+            name={undefined}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            style={
+              Object {
+                "flex": 4,
+                "marginRight": 15,
+              }
+            }
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Postboksanlegg
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Helt tilfeldig ID"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Postboksnummer
+            </label>
+            <input
+              className="skjemaelement__input input--s"
+              id="Helt tilfeldig ID"
+              name={undefined}
+              onChange={[Function]}
+              type="text"
+              value="9698"
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Postnummer
+            </label>
+            <input
+              className="skjemaelement__input input--s"
+              id="Helt tilfeldig ID"
+              name={undefined}
+              onChange={[Function]}
+              type="text"
+              value="7705"
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="c6"
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Poststed
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                disabled={true}
+                id="Helt tilfeldig ID"
+                name={undefined}
+                type="text"
+                value="Færder fyr"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <label
+          className="skjemaelement__label"
+          htmlFor="postboksadresse-gyldig-til"
+        >
+          Gyldig til
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={undefined}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <p
+              className="sr-only"
+              id="Helt tilfeldig ID_srDesc"
+            >
+              Dato må være mellom "02.01.1970" og "01.01.1971". 
+            </p>
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-describedby="Helt tilfeldig ID_srDesc"
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                disabled={undefined}
+                id="postboksadresse-gyldig-til"
+                maxLength={10}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value=""
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                disabled={undefined}
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
                 >
-                  <path
-                    d="M4 2.667H1.333v14h15.334v-14H14"
-                  />
-                  <path
-                    d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                  />
-                </g>
-              </svg>
-            </button>
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="c1"
-    >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="2"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
         >
-          Midlertidig adresse i utlandet
-        </label>
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigUtland"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i utlandet
+          </label>
+        </div>
       </div>
-    </div>
-    <div
-      className="c7"
-    >
-      <button
-        className="knapp knapp--standard knapp--disabled"
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="c7"
       >
-        Avbryt
-      </button>
-      <button
-        className="knapp knapp--hoved knapp--disabled"
-        disabled={true}
-        type="submit"
-      >
-        Endre adresse
-      </button>
-    </div>
-  </fieldset>
-</form>
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre adresse
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
@@ -1523,413 +1531,431 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   display: flex;
 }
 
-<form
-  onSubmit={[Function]}
->
-  <fieldset
-    className="c0"
-    disabled={false}
+<div>
+  <h2
+    className="typo-undertittel"
   >
-    <h2
-      className="typo-undertittel"
-    >
-      Adresse
-    </h2>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="0"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Bostedsadresse fra folkeregisteret
-        </label>
-      </div>
-    </div>
-    <div>
-      <p
-        className="typo-undertekst"
-      >
-        Islandsgate 49
-      </p>
-      <p
-        className="typo-undertekst"
-      >
-        7693 Hovedøya
-      </p>
-    </div>
-    <div
-      className="c2"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        <span
-          className="c3"
-        >
-          Endret 
-          25.11.2017
-           
-          i Folkeregisteret
-        </span>
-      </p>
-    </div>
-    <div
-      className="c1"
+    Adresse
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="c0"
+      disabled={false}
     >
       <div
-        className="skjemaelement skjemaelement--horisontal"
+        className="c1"
       >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="1"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <div
+          className="skjemaelement skjemaelement--horisontal"
         >
-          Midlertidig adresse i Norge
-        </label>
-      </div>
-    </div>
-    <div
-      className="c1"
-    >
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={true}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="2"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Midlertidig adresse i utlandet
-        </label>
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="folkeregistrert"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Bostedsadresse fra folkeregisteret
+          </label>
+        </div>
       </div>
       <div>
-        <div
-          className="c4"
+        <p
+          className="typo-undertekst"
         >
-          <div
-            className="skjemaelement"
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          7693 Hovedøya
+        </p>
+      </div>
+      <div
+        className="c2"
+      >
+        <p
+          className="typo-etikett-liten"
+        >
+          <span
+            className="c3"
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Land
-            </label>
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </span>
+        </p>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigNorge"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i Norge
+          </label>
+        </div>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="midlertidigUtland"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Midlertidig adresse i utlandet
+          </label>
+        </div>
+        <div>
+          <div
+            className="c4"
+          >
             <div
-              className="selectContainer input--m"
+              className="skjemaelement"
             >
-              <select
-                className="skjemaelement__input"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                value=""
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <option
-                  disabled={true}
-                  value=""
+                Land
+              </label>
+              <div
+                className="selectContainer input--m"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  value="SYD"
                 >
-                  Velg land
-                </option>
-                <option
-                  value="BMU"
-                >
-                  BERMUDA
-                   (
-                  BMU
-                  )
-                </option>
-                <option
-                  value="COL"
-                >
-                  COLOMBIA
-                   (
-                  COL
-                  )
-                </option>
-                <option
-                  value="LVS"
-                >
-                  LANGTVEKKISTAN
-                   (
-                  LVS
-                  )
-                </option>
-                <option
-                  value="MRS"
-                >
-                  MARS
-                   (
-                  MRS
-                  )
-                </option>
-                <option
-                  value="NRN"
-                >
-                  NARNIA
-                   (
-                  NRN
-                  )
-                </option>
-                <option
-                  value="NOR"
-                >
-                  NORGE
-                   (
-                  NOR
-                  )
-                </option>
-                <option
-                  value="ESP"
-                >
-                  SPANIA
-                   (
-                  ESP
-                  )
-                </option>
-                <option
-                  value="USA"
-                >
-                  USA
-                   (
-                  USA
-                  )
-                </option>
-              </select>
+                  <option
+                    disabled={true}
+                    value=""
+                  >
+                    Velg land
+                  </option>
+                  <option
+                    value="BMU"
+                  >
+                    BERMUDA
+                     (
+                    BMU
+                    )
+                  </option>
+                  <option
+                    value="COL"
+                  >
+                    COLOMBIA
+                     (
+                    COL
+                    )
+                  </option>
+                  <option
+                    value="LVS"
+                  >
+                    LANGTVEKKISTAN
+                     (
+                    LVS
+                    )
+                  </option>
+                  <option
+                    value="MRS"
+                  >
+                    MARS
+                     (
+                    MRS
+                    )
+                  </option>
+                  <option
+                    value="NRN"
+                  >
+                    NARNIA
+                     (
+                    NRN
+                    )
+                  </option>
+                  <option
+                    value="NOR"
+                  >
+                    NORGE
+                     (
+                    NOR
+                    )
+                  </option>
+                  <option
+                    value="ESP"
+                  >
+                    SPANIA
+                     (
+                    ESP
+                    )
+                  </option>
+                  <option
+                    value="SYD"
+                  >
+                    SYDEN
+                     (
+                    SYD
+                    )
+                  </option>
+                  <option
+                    value="USA"
+                  >
+                    USA
+                     (
+                    USA
+                    )
+                  </option>
+                  <option
+                    value="UTL"
+                  >
+                    UTLANDET
+                     (
+                    UTL
+                    )
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
             </div>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
           </div>
         </div>
-      </div>
-      <div
-        className="c5"
-      >
         <div
-          style={
-            Object {
-              "flex": 4,
-              "marginRight": 15,
+          className="c5"
+        >
+          <div
+            style={
+              Object {
+                "flex": 4,
+                "marginRight": 15,
+              }
             }
-          }
-        >
-          <div
-            className="skjemaelement"
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Adresselinje 1
-            </label>
-            <input
-              className="skjemaelement__input input--xxl"
-              defaultValue="Ut av landet"
-              id="Helt tilfeldig ID"
-              name={undefined}
-              onChange={[Function]}
-              type="text"
-            />
             <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        className="c5"
-      >
-        <div
-          style={
-            Object {
-              "flex": 4,
-              "marginRight": 15,
-            }
-          }
-        >
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
+              className="skjemaelement"
             >
-              Adresselinje 2
-            </label>
-            <input
-              className="skjemaelement__input input--xxl"
-              defaultValue="Rundt svingen"
-              id="Helt tilfeldig ID"
-              name={undefined}
-              onChange={[Function]}
-              type="text"
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        className="c5"
-      >
-        <div
-          style={
-            Object {
-              "flex": 4,
-              "marginRight": 15,
-            }
-          }
-        >
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Adresselinje 3
-            </label>
-            <input
-              className="skjemaelement__input input--xxl"
-              defaultValue={undefined}
-              id="Helt tilfeldig ID"
-              name={undefined}
-              onChange={[Function]}
-              type="text"
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </div>
-      </div>
-      <label
-        className="skjemaelement__label"
-        htmlFor="utlandsadresse-datovelger"
-      >
-        Gyldig til
-      </label>
-      <div
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={undefined}
-      >
-        <div
-          className="nav-datovelger"
-        >
-          <p
-            className="sr-only"
-            id="Helt tilfeldig ID_srDesc"
-          >
-            Dato må være mellom "02.01.1970" og "01.01.1971". 
-          </p>
-          <div
-            className="nav-datovelger__inputContainer"
-          >
-            <input
-              aria-describedby="Helt tilfeldig ID_srDesc"
-              aria-invalid={false}
-              autoComplete="off"
-              autoCorrect="off"
-              className="nav-datovelger__input"
-              disabled={undefined}
-              id="utlandsadresse-datovelger"
-              maxLength={10}
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-              type="text"
-              value=""
-            />
-            <button
-              aria-expanded={false}
-              aria-label="Kalender"
-              className="nav-datovelger__kalenderknapp"
-              disabled={undefined}
-              onClick={[Function]}
-              role="button"
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                height={16}
-                role="presentation"
-                viewBox="0 0 18 18"
-                width={16}
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <title>
-                  Kalenderikon
-                </title>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="#0067C5"
+                Adresselinje 1
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Helt tilfeldig ID"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value="Ut av landet"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <div
+            style={
+              Object {
+                "flex": 4,
+                "marginRight": 15,
+              }
+            }
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Adresselinje 2
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Helt tilfeldig ID"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value="Rundt svingen"
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <div
+            style={
+              Object {
+                "flex": 4,
+                "marginRight": 15,
+              }
+            }
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Adresselinje 3
+              </label>
+              <input
+                className="skjemaelement__input input--xxl"
+                id="Helt tilfeldig ID"
+                name={undefined}
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+        </div>
+        <label
+          className="skjemaelement__label"
+          htmlFor="utlandsadresse-datovelger"
+        >
+          Gyldig til
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={undefined}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <p
+              className="sr-only"
+              id="Helt tilfeldig ID_srDesc"
+            >
+              Dato må være mellom "02.01.1970" og "01.01.1971". 
+            </p>
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-describedby="Helt tilfeldig ID_srDesc"
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                disabled={undefined}
+                id="utlandsadresse-datovelger"
+                maxLength={10}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value=""
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                disabled={undefined}
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
                 >
-                  <path
-                    d="M4 2.667H1.333v14h15.334v-14H14"
-                  />
-                  <path
-                    d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                  />
-                </g>
-              </svg>
-            </button>
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="c6"
-    >
-      <button
-        className="knapp knapp--standard knapp--disabled"
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="c6"
       >
-        Avbryt
-      </button>
-      <button
-        className="knapp knapp--hoved knapp--disabled"
-        disabled={true}
-        type="submit"
-      >
-        Endre adresse
-      </button>
-    </div>
-  </fieldset>
-</form>
+        <button
+          className="knapp knapp--standard knapp--disabled"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          Avbryt
+        </button>
+        <button
+          className="knapp knapp--hoved knapp--disabled"
+          disabled={true}
+          type="submit"
+        >
+          Endre adresse
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
 `;
