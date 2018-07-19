@@ -13,8 +13,6 @@ import {
 import AdresseForm from './AdresseForm';
 import { Person } from '../../../models/person/person';
 
-jest.mock('nav-frontend-js-utils');
-
 const endreAdresseRolle = {roller: ['0000-GA-BD06_EndreKontaktAdresse']};
 
 test('Rendrer adresseform når postnummere er lastet', () => {
@@ -86,7 +84,6 @@ test('Rendrer adresseform riktig ved midlertidig utenlandsadresse', () => {
 
     expect(adresseContainer.toJSON()).toMatchSnapshot();
 });
-
 
 function renderEndreAdresseForm(person: Person) {
     return renderer.create(

@@ -125,13 +125,13 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Kontonummer"
+        htmlFor="Helt tilfeldig ID"
       >
         Kontonummer
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Kontonummer"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -291,7 +291,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Velg land"
+        htmlFor="Helt tilfeldig ID"
       >
         Velg land
       </label>
@@ -301,7 +301,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         <select
           className="skjemaelement__input"
           disabled={false}
-          id="Velg land"
+          id="Helt tilfeldig ID"
           onChange={[Function]}
           value="NRN"
         >
@@ -387,13 +387,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Bankens navn"
+        htmlFor="Helt tilfeldig ID"
       >
         Bankens navn
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Bankens navn"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -410,13 +410,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Bankens adresse linje 1"
+        htmlFor="Helt tilfeldig ID"
       >
         Bankens adresse
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Bankens adresse linje 1"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -433,13 +433,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Bankens adresse linje 2"
+        htmlFor="Helt tilfeldig ID"
       >
         
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Bankens adresse linje 2"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -456,13 +456,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Bankens adresse linje 3"
+        htmlFor="Helt tilfeldig ID"
       >
         
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Bankens adresse linje 3"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -479,13 +479,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Kontonummer eller IBAN"
+        htmlFor="Helt tilfeldig ID"
       >
         Kontonummer eller IBAN
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="Kontonummer eller IBAN"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -502,13 +502,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="BC/SWIFT-kode"
+        htmlFor="Helt tilfeldig ID"
       >
         BC/SWIFT-kode
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="BC/SWIFT-kode"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -525,13 +525,13 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="BankKode"
+        htmlFor="Helt tilfeldig ID"
       >
         Bankkode
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
-        id="BankKode"
+        id="Helt tilfeldig ID"
         name={undefined}
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -548,7 +548,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Velg valuta"
+        htmlFor="Helt tilfeldig ID"
       >
         Velg valuta
       </label>
@@ -558,7 +558,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         <select
           className="skjemaelement__input"
           disabled={false}
-          id="Velg valuta"
+          id="Helt tilfeldig ID"
           onChange={[Function]}
           value="SPD"
         >

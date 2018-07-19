@@ -96,7 +96,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               >
                 <label
                   className="skjemaelement__label"
-                  htmlFor="Retningsnummer Mobiltelefon"
+                  htmlFor="Helt tilfeldig ID"
                 >
                   Landkode
                 </label>
@@ -106,7 +106,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                   <select
                     className="skjemaelement__input"
                     disabled={false}
-                    id="Retningsnummer Mobiltelefon"
+                    id="Helt tilfeldig ID"
                     onChange={[Function]}
                     value="+47"
                   >
@@ -164,13 +164,13 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               >
                 <label
                   className="skjemaelement__label"
-                  htmlFor="Mobiltelefon"
+                  htmlFor="Helt tilfeldig ID"
                 >
                   Telefonnummer
                 </label>
                 <input
                   className="skjemaelement__input input--xxl"
-                  id="Mobiltelefon"
+                  id="Helt tilfeldig ID"
                   name={undefined}
                   onChange={[Function]}
                   onKeyPress={[Function]}
@@ -220,7 +220,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               >
                 <label
                   className="skjemaelement__label"
-                  htmlFor="Retningsnummer Hjemmenummer"
+                  htmlFor="Helt tilfeldig ID"
                 >
                   Landkode
                 </label>
@@ -230,7 +230,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                   <select
                     className="skjemaelement__input"
                     disabled={false}
-                    id="Retningsnummer Hjemmenummer"
+                    id="Helt tilfeldig ID"
                     onChange={[Function]}
                     value=""
                   >
@@ -288,13 +288,13 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               >
                 <label
                   className="skjemaelement__label"
-                  htmlFor="Hjemmenummer"
+                  htmlFor="Helt tilfeldig ID"
                 >
                   Telefonnummer
                 </label>
                 <input
                   className="skjemaelement__input input--xxl"
-                  id="Hjemmenummer"
+                  id="Helt tilfeldig ID"
                   name={undefined}
                   onChange={[Function]}
                   onKeyPress={[Function]}
@@ -325,7 +325,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             >
               <label
                 className="skjemaelement__label"
-                htmlFor="Retningsnummer Jobbnummer"
+                htmlFor="Helt tilfeldig ID"
               >
                 Landkode
               </label>
@@ -335,7 +335,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                 <select
                   className="skjemaelement__input"
                   disabled={false}
-                  id="Retningsnummer Jobbnummer"
+                  id="Helt tilfeldig ID"
                   onChange={[Function]}
                   value=""
                 >
@@ -393,13 +393,13 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
             >
               <label
                 className="skjemaelement__label"
-                htmlFor="Jobbnummer"
+                htmlFor="Helt tilfeldig ID"
               >
                 Telefonnummer
               </label>
               <input
                 className="skjemaelement__input input--xxl"
-                id="Jobbnummer"
+                id="Helt tilfeldig ID"
                 name={undefined}
                 onChange={[Function]}
                 onKeyPress={[Function]}

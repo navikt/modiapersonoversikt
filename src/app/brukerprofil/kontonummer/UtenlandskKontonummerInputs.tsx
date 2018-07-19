@@ -70,7 +70,6 @@ function Inputs(props: Props) {
             <VelgLand {...props} />
             <Input
                 label="Bankens navn"
-                id="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
@@ -78,7 +77,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Bankens adresse"
-                id="Bankens adresse linje 1"
                 value={bankkonto.adresse.linje1}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
@@ -91,7 +89,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label=""
-                id="Bankens adresse linje 2"
                 value={bankkonto.adresse.linje2}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
@@ -104,7 +101,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label=""
-                id="Bankens adresse linje 3"
                 value={bankkonto.adresse.linje3}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({
@@ -117,7 +113,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Kontonummer eller IBAN"
-                id="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
@@ -125,7 +120,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label="BC/SWIFT-kode"
-                id="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
@@ -133,7 +127,6 @@ function Inputs(props: Props) {
             />
             <Input
                 label="Bankkode"
-                id="BankKode"
                 value={bankkonto.bankkode}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
@@ -157,7 +150,6 @@ function VelgLand(props: Props) {
     return (
         <Select
             label="Velg land"
-            id="Velg land"
             value={props.bankkonto.landkode.kodeRef}
             feil={props.bankkontoValidering.felter.landkode.skjemafeil}
             onChange={event => handleLandChange(props, event)}
@@ -181,7 +173,6 @@ function VelgValuta(props: Props) {
     return (
         <Select
             label="Velg valuta"
-            id="Velg valuta"
             value={props.bankkonto.valuta.kodeRef}
             feil={props.bankkontoValidering.felter.valuta.skjemafeil}
             onChange={event => handleValutaChange(props, event)}

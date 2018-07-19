@@ -173,7 +173,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return (
             <Input
                 label="Kontonummer"
-                id="Kontonummer"
                 value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 onKeyPress={ignoreEnter}

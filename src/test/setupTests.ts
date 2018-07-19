@@ -40,8 +40,10 @@ const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
 
-// tslint:disable-next-line
+// Mocker funksjoner som returnerer dynamisk data
 Date.now = jest.fn(() => 0);
+const JSutils = require('nav-frontend-js-utils');
+JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 
 export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
 const aremarkFnr = aremark.fødselsnummer;
