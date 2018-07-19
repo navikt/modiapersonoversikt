@@ -214,11 +214,107 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </span>
           </h3>
         </div>
-        <p
-          className="typo-undertekst"
+        <div>
+          <p
+            className="typo-undertekst"
+          >
+            Islandsgate 49
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            7693 Hovedøya
+          </p>
+        </div>
+        <div
+          className="c6"
         >
-          Ikke registrert
-        </p>
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="c7"
+            >
+              Endret 
+              25.11.2017
+               
+              i Folkeregisteret
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c4"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="none"
+                stroke="rgba(0, 0, 0, 0.5)"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth="1.4"
+              >
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                />
+                <circle
+                  cx={12}
+                  cy={8}
+                  r={3}
+                />
+              </g>
+            </svg>
+          </div>
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="c5"
+            >
+              Midlertidig adresse, Norge
+            </span>
+          </h3>
+        </div>
+        <div>
+          <p
+            className="typo-undertekst"
+          >
+            9698
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            7705 Færder fyr
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            <span
+              className="c7"
+            >
+              Endret 
+              10.04.2018
+               
+              i Folkeregisteret
+            </span>
+          </p>
+        </div>
       </div>
       <div
         className="c3"
