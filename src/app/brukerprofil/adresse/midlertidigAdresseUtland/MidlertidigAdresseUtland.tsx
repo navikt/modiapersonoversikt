@@ -55,21 +55,24 @@ const InputLinje = styled.div`
 function onGyldigTilChange(props: Props) {
     return (gyldigTil: Date) => {
         const periode = tilPeriode(gyldigTil);
-        props.onChange({...props.midlertidigAdresseUtland.value, periode});
+        props.onChange({
+            periode: periode
+        });
     };
 }
 
 function onAdresselinjeChange(event: ChangeEvent<HTMLInputElement>, props: Props, index: number) {
-    props.midlertidigAdresseUtland.value.adresselinjer[index] = event.target.value;
+    let adresselinjer = props.midlertidigAdresseUtland.value.adresselinjer.slice();
+    adresselinjer[index] = event.target.value;
     props.onChange({
-        ...props.midlertidigAdresseUtland.value,
-        adresselinjer: props.midlertidigAdresseUtland.value.adresselinjer
+        adresselinjer: adresselinjer
     });
 }
 
 function onLandChanged(input: Kodeverk, props: Props) {
-    props.midlertidigAdresseUtland.value.landkode = input;
-    props.onChange({...props.midlertidigAdresseUtland.value, landkode: props.midlertidigAdresseUtland.value.landkode});
+    props.onChange({
+        landkode: input
+    });
 }
 
 class MidlertidigAdresseUtland extends React.Component<Props> {
@@ -96,7 +99,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 1"
-                            defaultValue={utlandsadresseState.adresselinjer[0]}
+                            value={utlandsadresseState.adresselinjer[0] || ''}
                             feil={utlandsadresseValidering.felter.adresselinjer.skjemafeil}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 onAdresselinjeChange(event, this.props, 0);
@@ -109,7 +112,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 2"
-                            defaultValue={utlandsadresseState.adresselinjer[1]}
+                            value={utlandsadresseState.adresselinjer[1] || ''}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 onAdresselinjeChange(event, this.props, 1);
                             }}
@@ -121,7 +124,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 3"
-                            defaultValue={utlandsadresseState.adresselinjer[2]}
+                            value={utlandsadresseState.adresselinjer[2] || ''}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 onAdresselinjeChange(event, this.props, 2);
                             }}

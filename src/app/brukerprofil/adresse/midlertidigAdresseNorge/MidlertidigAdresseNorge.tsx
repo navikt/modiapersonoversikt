@@ -8,7 +8,6 @@ import GateadresseForm from './gateadresse/GateadresseForm';
 import MatrikkeladresseForm from './matrikkeladresse/MatrikkeladresseForm';
 import PostboksadresseForm from './postboksadresse/PostboksadresseForm';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { formaterTilISO8601Date } from '../../../../utils/dateUtils';
 import { getValidGateadresseForm } from './gateadresse/gateadresseValidator';
 import { getValidMatrikkeladresseForm } from './matrikkeladresse/matrikkeladresseValidator';
 import { getValidPostboksadresseForm } from './postboksadresse/postboksadresseValidator';
@@ -55,10 +54,7 @@ export function getInitialGateadresseInput(gateadresse?: Gateadresse) {
             husnummer: '',
             poststed: '',
             postnummer: '',
-            periode: {
-                fra: formaterTilISO8601Date(new Date()),
-                til: formaterTilISO8601Date(new Date())
-            }
+            periode: undefined
         };
     } else {
         gateadresseInput = gateadresse;
@@ -77,10 +73,7 @@ export function getInitialMatrikkeladresseInput(matrikkeladresse?: Matrikkeladre
         adresseInput = {
             poststed: '',
             postnummer: '',
-            periode: {
-                fra: formaterTilISO8601Date(new Date()),
-                til: formaterTilISO8601Date(new Date())
-            }
+            periode: undefined
         };
     } else {
         adresseInput = matrikkeladresse;
@@ -156,7 +149,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                 <Select
                     label="Adressetype"
                     bredde={'m'}
-                    defaultValue={valg.toString()}
+                    value={valg.toString()}
                     onChange={this.onAdresseTypeChange}
                 >
                     <option
@@ -190,7 +183,8 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
                     matrikkeladresse={matrikkeladresse.value}
                     validering={matrikkeladresse.validering}
                 />}
-                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE && <PostboksadresseForm
+                {valg === MidlertidigeAdresserNorgeInputValg.POSTBOKSADRESSE &&
+                <PostboksadresseForm
                     onChange={(postboksadresse: Postboksadresse) =>
                         this.onPostboksadresseInputChange(postboksadresse)}
                     input={this.props.midlertidigAdresseNorge.postboksadresse}

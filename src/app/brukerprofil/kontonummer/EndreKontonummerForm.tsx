@@ -51,7 +51,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    status: STATUS;
+    reducerStatus: STATUS;
 }
 
 interface OwnProps {
@@ -74,7 +74,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.props.resetEndreKontonummerReducer();
+        this.resetReducer();
     }
 
     getInitialState(): State {
@@ -149,6 +149,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 ...partial
             }
         });
+        this.resetReducer();
     }
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
@@ -189,6 +190,16 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         ];
     }
 
+    resetReducer() {
+        if (this.props.reducerStatus !== STATUS.NOT_STARTED) {
+            this.props.resetEndreKontonummerReducer();
+        }
+    }
+
+    kontonummerBleLagret() {
+        return this.props.reducerStatus === STATUS.OK;
+    }
+
     render() {
         const norskEllerUtenlandskKontoRadio = (
             <RadioPanelGruppe
@@ -209,16 +220,19 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}
-                    disabled={!this.kontoErEndret()}
+                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret()}
                 >
                     Avbryt
                 </KnappBase>
                 <KnappBase
                     type="hoved"
-                    spinner={this.props.status === STATUS.PENDING}
+                    spinner={this.props.reducerStatus === STATUS.PENDING}
                     autoDisableVedSpinner={true}
-                    disabled={!this.kontoErEndret() ||
-                    !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}
+                    disabled={
+                        !this.kontoErEndret()
+                        || !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)
+                        || this.kontonummerBleLagret()
+                    }
                 >
                     Endre kontonummer
                 </KnappBase>
@@ -226,7 +240,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         );
         const endreKontonummerRequestTilbakemelding = (
             <RequestTilbakemelding
-                status={this.props.status}
+                status={this.props.reducerStatus}
                 onError={'Det skjedde en feil ved endring av kontonummer.'}
                 onSuccess={`Kontonummer ble endret.`}
             />
@@ -251,7 +265,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.restEndepunkter.endreKontonummer.status
+        reducerStatus: state.restEndepunkter.endreKontonummer.status
     });
 };
 

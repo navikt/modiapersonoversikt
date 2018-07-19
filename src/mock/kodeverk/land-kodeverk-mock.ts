@@ -8,7 +8,9 @@ const mockKodeverk = [
     { kodeRef: 'BMU', beskrivelse: 'BERMUDA' },
     { kodeRef: 'MRS', beskrivelse: 'MARS' },
     { kodeRef: 'NRN', beskrivelse: 'NARNIA' },
-    { kodeRef: 'NOR', beskrivelse: 'NORGE' }
+    { kodeRef: 'NOR', beskrivelse: 'NORGE' },
+    { kodeRef: 'SYD', beskrivelse: 'SYDEN' },
+    { kodeRef: 'UTL', beskrivelse: 'UTLANDET' }
 ];
 
 export function mockLandKodeverk(): KodeverkResponse {

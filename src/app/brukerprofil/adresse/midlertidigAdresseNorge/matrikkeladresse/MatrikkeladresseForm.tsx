@@ -30,14 +30,14 @@ function MatrikkeladresseForm(props: Props) {
             <Input
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={matrikkeladresse.tilleggsadresse}
+                value={matrikkeladresse.tilleggsadresse || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, tilleggsadresse: event.target.value})}
             />
             <Input
                 bredde={'XXL'}
                 label="Områdeadresse"
-                defaultValue={props.matrikkeladresse.eiendomsnavn}
+                value={props.matrikkeladresse.eiendomsnavn || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
                 feil={validering.felter.eiendomsnavn ? validering.felter.eiendomsnavn.skjemafeil : undefined}

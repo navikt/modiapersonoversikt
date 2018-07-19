@@ -35,7 +35,6 @@ interface State {
     mobilInput: TelefonInput;
     jobbTelefonInput: TelefonInput;
     hjemTelefonInput: TelefonInput;
-    formErEndret: boolean;
     visFeilmeldinger: boolean;
 }
 
@@ -93,7 +92,6 @@ function initialState(kontaktinformasjon: NavKontaktinformasjon) {
         mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
         jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
         hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjemTelefon),
-        formErEndret: false,
         visFeilmeldinger: false
     };
 }
@@ -133,7 +131,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.props.tilbakestillReducer();
+        this.resetReducer();
     }
 
     mobilTelefonnummerInputChange(input: string) {
@@ -143,10 +141,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 identifikator: {
                     input: formaterTelefonnummer(input),
                     feilmelding: null
-                },
-            },
-            formErEndret: true
+                }
+            }
         });
+        this.resetReducer();
     }
 
     mobilRetningsnummerInputChange(input: string) {
@@ -157,9 +155,9 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     input,
                     feilmelding: null
                 }
-            },
-            formErEndret: true
+            }
         });
+        this.resetReducer();
     }
 
     jobbTelefonnummerInputChange(input: string) {
@@ -170,9 +168,9 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     input: formaterTelefonnummer(input),
                     feilmelding: null
                 }
-            },
-            formErEndret: true
+            }
         });
+        this.resetReducer();
     }
 
     jobbRetningsnummerInputChange(input: string) {
@@ -183,9 +181,9 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     input,
                     feilmelding: null
                 }
-            },
-            formErEndret: true
+            }
         });
+        this.resetReducer();
     }
 
     hjemTelefonnummerInputChange(input: string) {
@@ -196,9 +194,9 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     input: formaterTelefonnummer(input),
                     feilmelding: null
                 }
-            },
-            formErEndret: true
+            }
         });
+        this.resetReducer();
     }
 
     hjemRetningsnummerInputChange(input: string) {
@@ -209,14 +207,21 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     input,
                     feilmelding: null
                 }
-            },
-            formErEndret: true
+            }
         });
+        this.resetReducer();
+    }
+
+    resetReducer() {
+        if (this.props.reducerStatus !== STATUS.NOT_STARTED) {
+            this.props.tilbakestillReducer();
+        }
     }
 
     avbryt(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
         this.setState(initialState(this.props.person.kontaktinformasjon));
+        this.resetReducer();
     }
 
     telefonInputErUgyldig([telefontype, telefonnummer]: [string, TelefonInput]): boolean {
@@ -258,7 +263,6 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        this.setState({formErEndret: false});
 
         if (!this.validInput()) {
             this.setState({visFeilmeldinger: true});
@@ -289,18 +293,18 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         return mobilErEndret || jobbErEndret || hjemErEndret;
     }
 
+    kontaktInfoBleLagret() {
+        return this.props.reducerStatus === STATUS.OK;
+    }
+
     Tilbakemelding() {
-        if (this.state.formErEndret) {
-            return null;
-        } else {
-            return (
-                <RequestTilbakemelding
-                    status={this.props.reducerStatus}
-                    onSuccess={'Telefonnummer(e) ble endret.'}
-                    onError={'Det skjedde en feil ved lagring av telefonnummer'}
-                />
-            );
-        }
+        return (
+            <RequestTilbakemelding
+                status={this.props.reducerStatus}
+                onSuccess={'Telefonnummer(e) ble endret.'}
+                onError={'Det skjedde en feil ved lagring av telefonnummer'}
+            />
+        );
     }
 
     render() {
@@ -349,14 +353,14 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
-                        disabled={!this.formErEndret() || this.requestIsPending() || !this.state.formErEndret}
+                        disabled={!this.formErEndret() || this.requestIsPending() || this.kontaktInfoBleLagret()}
                         onClick={this.avbryt}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        disabled={!this.formErEndret() || !this.state.formErEndret}
+                        disabled={!this.formErEndret() || this.kontaktInfoBleLagret()}
                         spinner={this.requestIsPending()}
                         autoDisableVedSpinner={true}
                     >

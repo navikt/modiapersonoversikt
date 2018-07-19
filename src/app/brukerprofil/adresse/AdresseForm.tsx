@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
 
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
 import { Person } from '../../../models/person/person';
@@ -34,12 +33,10 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { EndreAdresseInfomeldingWrapper } from '../Infomelding';
-import {
-    getValidUtlandsadresseForm,
-    validerUtenlandsAdresse
-} from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { getValidUtlandsadresseForm, validerUtenlandsAdresse }
+    from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
+import { EndreAdresseInfomelding } from '../Infomelding';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -49,11 +46,14 @@ interface Props {
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
+    resetEndreAdresseReducer: () => void;
     endreAdresseReducer: RestReducer<{}>;
 }
 
 export enum Valg {
-    FOLKEREGISTRERT, MIDLERTIDIG_NORGE, MIDLERTIDIG_UTLAND
+    FOLKEREGISTRERT = 'folkeregistrert',
+    MIDLERTIDIG_NORGE = 'midlertidigNorge',
+    MIDLERTIDIG_UTLAND = 'midlertidigUtland'
 }
 
 interface State {
@@ -79,7 +79,7 @@ class AdresseForm extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.initialState = this.initialState.bind(this);
+        this.getInitialState = this.getInitialState.bind(this);
         this.onAdresseValgChange = this.onAdresseValgChange.bind(this);
         this.updateMidlertidigAdresseNorgeInputState = this.updateMidlertidigAdresseNorgeInputState.bind(this);
         this.onMidlertidigAdresseUtlandFormChange = this.onMidlertidigAdresseUtlandFormChange.bind(this);
@@ -87,14 +87,15 @@ class AdresseForm extends React.Component<Props, State> {
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
 
-        this.state = this.initialState(props);
+        this.state = this.getInitialState();
     }
 
-    initialState(props: Props): State {
+    getInitialState(): State {
+        const props = this.props;
         const alternativAdresse = props.person.alternativAdresse ? props.person.alternativAdresse : {};
         return {
             midlertidigAdresseNorge: this.intialMidlertidigAdresseNorgeInput(alternativAdresse),
-            midlertidigAdresseUtland: this.initialMidlertidigAdresseUtland(props.person.alternativAdresse),
+            midlertidigAdresseUtland: this.initialMidlertidigAdresseUtland(alternativAdresse),
             selectedRadio: this.initialRadioValg(),
             formErEndret: false
         };
@@ -128,11 +129,32 @@ class AdresseForm extends React.Component<Props, State> {
         return this.initialUtlandsAdresse(alternativAdresse.utlandsadresse);
     }
 
+    resetStateToInitalAdresse() {
+        const {midlertidigAdresseUtland, midlertidigAdresseNorge}: Partial<State> = this.getInitialState();
+        this.setState({
+            midlertidigAdresseUtland,
+            midlertidigAdresseNorge
+        });
+    }
+
     updateMidlertidigAdresseNorgeInputState(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
+        this.setState(
+            {
+                midlertidigAdresseNorge: {
+                    ...this.state.midlertidigAdresseNorge,
+                    ...adresse
+                }
+            },
+            adresse.valg ? this.clearMidlertidigAdresseNorge : undefined
+        );
+    }
+
+    clearMidlertidigAdresseNorge() {
+        const {midlertidigAdresseNorge}: Partial<State> = this.getInitialState();
         this.setState({
             midlertidigAdresseNorge: {
-                ...this.state.midlertidigAdresseNorge,
-                ...adresse
+                ...midlertidigAdresseNorge,
+                valg: this.state.midlertidigAdresseNorge.valg
             }
         });
     }
@@ -152,15 +174,19 @@ class AdresseForm extends React.Component<Props, State> {
     onMidlertidigAdresseUtlandFormChange(endring: Partial<Utlandsadresse>) {
         this.setState({formErEndret: true});
         this.updateMidlertidigAdresseUtlandInputState(endring);
+        this.resetReducer();
     }
 
     onMidlertidigAdresseNorgeFormChange(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
         this.updateMidlertidigAdresseNorgeInputState(adresse);
         this.setState({formErEndret: true});
+        this.resetReducer();
     }
 
     onAdresseValgChange(valg: Valg) {
         this.setState({selectedRadio: valg});
+        this.resetReducer();
+        this.resetStateToInitalAdresse();
     }
 
     initialUtlandsAdresse(utlandsAdresse: Utlandsadresse | undefined): MidlertidigAdresseUtlandInputs {
@@ -177,7 +203,8 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
-        this.setState(this.initialState(this.props));
+        this.setState(this.getInitialState());
+        this.resetReducer();
         event.preventDefault();
     }
 
@@ -281,13 +308,18 @@ class AdresseForm extends React.Component<Props, State> {
         this.props.endrePostboksadresse(this.props.person.fødselsnummer, postboksadresse);
     }
 
+    resetReducer() {
+        if (this.props.endreAdresseReducer.status !== STATUS.NOT_STARTED) {
+            this.props.resetEndreAdresseReducer();
+        }
+    }
+
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
         return (
             <form onSubmit={this.onSubmit}>
                 <FormFieldSet disabled={!kanEndreAdresse}>
-                    <Undertittel>Adresse</Undertittel>
-                    <EndreAdresseInfomeldingWrapper
+                    <EndreAdresseInfomelding
                         veilderRoller={this.props.veilederRoller}
                     />
                     <AdresseValg
@@ -324,7 +356,9 @@ class AdresseForm extends React.Component<Props, State> {
                         <KnappBase
                             type="standard"
                             onClick={this.onAvbryt}
-                            disabled={!this.state.formErEndret}
+                            disabled={
+                                !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.ERROR
+                            }
                         >
                             Avbryt
                         </KnappBase>
