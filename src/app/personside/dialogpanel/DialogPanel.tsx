@@ -6,15 +6,16 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import KnappBase from 'nav-frontend-knapper';
 
-import { AppState, RestReducer } from '../../../redux/reducer';
-import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/oppgaver';
-import { STATUS } from '../../../redux/utils';
+import { AppState } from '../../../redux/reducers';
+import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
+import { STATUS } from '../../../redux/restReducers/utils';
 import Feilmelding from '../../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../../models/oppgave';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import PilKnapp from '../../../components/pilknapp';
 import { DialogPanelSize } from '../MainLayout';
 import { settPersonIKontekst } from '../../routes/routing';
+import { RestReducer } from '../../../redux/restReducers/restReducers';
 
 const DialogPanelWrapper = styled.div`
   display: flex;
@@ -100,7 +101,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>) {
     return {
         valgtEnhet: '4100',
         valgtTemagruppe: 'ARBD',
-        oppgaveReducer: state.oppgaver,
+        oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };
 }

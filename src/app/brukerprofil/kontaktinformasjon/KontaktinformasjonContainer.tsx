@@ -5,13 +5,14 @@ import styled from 'styled-components';
 
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
-import { AppState, RestReducer } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { hentRetningsnummere } from '../../../redux/kodeverk/retningsnummereReducer';
+import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
-import { STATUS } from '../../../redux/utils';
+import { STATUS } from '../../../redux/restReducers/utils';
+import { RestReducer } from '../../../redux/restReducers/restReducers';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;
@@ -62,7 +63,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
     return ({
-        retningsnummerReducer: state.retningsnummerReducer,
+        retningsnummerReducer: state.restEndepunkter.retningsnummerReducer,
         person: ownProps.person
     });
 };

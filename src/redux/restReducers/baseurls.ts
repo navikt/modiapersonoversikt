@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from './restReducer';
-import { getBaseUrls } from '../api/baseurls-api';
-import { BaseUrl, BaseUrlsResponse } from '../models/baseurls';
+import { getBaseUrls } from '../../api/baseurls-api';
+import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 
 const { reducer, action, actionNames } = createActionsAndReducer('baseurls');
 

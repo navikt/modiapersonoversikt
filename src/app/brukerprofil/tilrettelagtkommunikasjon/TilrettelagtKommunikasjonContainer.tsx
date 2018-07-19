@@ -6,14 +6,16 @@ import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
-import { AppState, RestReducer } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
-import * as tilrettelagtKommunikasjonKodeverkReducer from '../../../redux/kodeverk/tilrettelagtKommunikasjonReducer';
-import { STATUS } from '../../../redux/utils';
+import * as tilrettelagtKommunikasjonKodeverkReducer from
+        '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
+import { STATUS } from '../../../redux/restReducers/utils';
+import { RestReducer } from '../../../redux/restReducers/restReducers';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -79,7 +81,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        tilrettelagtKommunikasjonKodeverkReducer: state.tilrettelagtKommunikasjonKodeverk
+        tilrettelagtKommunikasjonKodeverkReducer: state.restEndepunkter.tilrettelagtKommunikasjonKodeverk
     });
 };
 

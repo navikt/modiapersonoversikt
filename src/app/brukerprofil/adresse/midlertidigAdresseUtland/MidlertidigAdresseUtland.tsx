@@ -9,10 +9,11 @@ import Input from 'nav-frontend-skjema/lib/input';
 
 import { Utlandsadresse } from '../../../../models/personadresse';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
-import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
-import { AppState, RestReducer } from '../../../../redux/reducer';
+import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
+import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
+import { RestReducer } from '../../../../redux/restReducers/restReducers';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
@@ -146,7 +147,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        landReducer: state.landReducer
+        landReducer: state.restEndepunkter.landReducer
     });
 };
 

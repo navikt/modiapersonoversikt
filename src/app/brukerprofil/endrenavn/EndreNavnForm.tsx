@@ -7,11 +7,11 @@ import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 
-import { STATUS } from '../../../redux/utils';
-import { EndreNavnRequest } from '../../../redux/brukerprofil/endreNavnRequest';
+import { STATUS } from '../../../redux/restReducers/utils';
+import { EndreNavnRequest } from '../../../redux/restReducers/brukerprofil/endreNavnRequest';
 import { Person } from '../../../models/person/person';
-import { AppState } from '../../../redux/reducer';
-import { endreNavn, reset } from '../../../redux/brukerprofil/endreNavn';
+import { AppState } from '../../../redux/reducers';
+import { endreNavn, reset } from '../../../redux/restReducers/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
@@ -265,7 +265,7 @@ class EndreNavnForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreNavn.status
+        status: state.restEndepunkter.endreNavn.status
     });
 };
 

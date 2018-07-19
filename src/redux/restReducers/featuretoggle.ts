@@ -1,5 +1,5 @@
 import { createActionsAndReducer } from './restReducer';
-import { getFeatureToggle } from '../api/featuretoggle-api';
+import { getFeatureToggle } from '../../api/featuretoggle-api';
 
 const { reducer, action, actionNames } = createActionsAndReducer('featuretoggle');
 

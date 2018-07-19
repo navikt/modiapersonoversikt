@@ -2,15 +2,16 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action } from 'history';
 
-import { AppState, RestReducer } from '../../../../../redux/reducer';
+import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
 import NavKontorVisning from './NavKontor';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
-import { hentBaseUrls } from '../../../../../redux/baseurls';
-import { STATUS } from '../../../../../redux/utils';
+import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
+import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
-import { hentNavKontor } from '../../../../../redux/navkontor';
+import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
+import { RestReducer } from '../../../../../redux/restReducers/restReducers';
 
 interface DispatchProps {
     hentBaseUrls: () => void;
@@ -58,8 +59,8 @@ class NavKontorContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        navKontorReducer: state.brukersNavKontor,
-        baseUrlReducer: state.baseUrlReducer
+        navKontorReducer: state.restEndepunkter.brukersNavKontor,
+        baseUrlReducer: state.restEndepunkter.baseUrlReducer
     });
 };
 

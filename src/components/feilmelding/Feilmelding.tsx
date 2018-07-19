@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { STATUS } from '../../redux/utils';
+import { STATUS } from '../../redux/restReducers/utils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { RestReducer } from '../../redux/reducer';
+import { RestReducer } from '../../redux/restReducers/restReducers';
 
 const MarginWrapper = styled.div`
   margin: 15px;

@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from '../restReducer';
 import { EndreKontonummerRequest } from './endreKontonummerRequest';
-import { postEndreKontonummer } from '../../api/brukerprofil/endreKontonummer-api';
+import { postEndreKontonummer } from '../../../api/brukerprofil/endreKontonummer-api';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endre-kontonummer');
 

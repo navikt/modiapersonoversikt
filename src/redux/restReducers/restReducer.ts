@@ -9,6 +9,12 @@ export interface ActionTypes {
     INITIALIZED: string;
 }
 
+export interface RestReducer<T> {
+    status: STATUS;
+    data: T;
+    error?: String;
+}
+
 function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + '/';
     return {

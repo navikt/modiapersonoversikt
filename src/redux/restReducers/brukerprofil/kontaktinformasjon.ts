@@ -1,5 +1,5 @@
 import { createActionsAndReducer } from '../restReducer';
-import { postEndreNavKontaktinformasjon, Request } from '../../api/brukerprofil/endre-navkontaktinformasjon-api';
+import { postEndreNavKontaktinformasjon, Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endre-kontaktinformasjon');
 

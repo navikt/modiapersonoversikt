@@ -10,7 +10,7 @@ import EtikettMini from '../../../../../components/EtikettMini';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
-import { hentBaseUrl } from '../../../../../redux/baseurls';
+import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { ENDASH } from '../../../../../utils/string-utils';
 
 const NameCase = styled.span`
