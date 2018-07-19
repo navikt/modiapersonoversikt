@@ -58,12 +58,11 @@ class Poststed extends React.Component<Props> {
                 <Input
                     bredde={'S'}
                     label="Postnummer"
-                    defaultValue={poststedInformasjon.postnummer}
+                    value={poststedInformasjon.postnummer || ''}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => {
                         this.props.onChange({...poststedInformasjon, postnummer: event.target.value});
                         this.onPostnummerInput(event.target.value);
-                    }
-                    }
+                    }}
                     feil={feil}
                 />
                 <PoststedInput>

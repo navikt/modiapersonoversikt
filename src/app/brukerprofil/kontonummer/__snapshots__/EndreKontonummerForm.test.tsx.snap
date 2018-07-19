@@ -368,11 +368,27 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
             )
           </option>
           <option
+            value="SYD"
+          >
+            Syden
+             (
+            SYD
+            )
+          </option>
+          <option
             value="USA"
           >
             Usa
              (
             USA
+            )
+          </option>
+          <option
+            value="UTL"
+          >
+            Utlandet
+             (
+            UTL
             )
           </option>
         </select>

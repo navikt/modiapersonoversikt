@@ -34,7 +34,7 @@ function PostboksadresseForm(props: Props) {
             <Input
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={postboksadresse.tilleggsadresse}
+                value={postboksadresse.tilleggsadresse || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...postboksadresse, tilleggsadresse: event.target.value})}
             />
@@ -43,7 +43,7 @@ function PostboksadresseForm(props: Props) {
                     <Input
                         bredde={'XXL'}
                         label="Postboksanlegg"
-                        defaultValue={postboksadresse.postboksanlegg}
+                        value={postboksadresse.postboksanlegg || ''}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.onChange({...postboksadresse, postboksanlegg: event.target.value})}
                     />
@@ -51,7 +51,7 @@ function PostboksadresseForm(props: Props) {
                 <Input
                     bredde={'S'}
                     label="Postboksnummer"
-                    defaultValue={postboksadresse.postboksnummer}
+                    value={postboksadresse.postboksnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...postboksadresse, postboksnummer: event.target.value})}
                     feil={props.input.validering.felter.postboksnummer.skjemafeil}
