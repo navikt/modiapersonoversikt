@@ -33,7 +33,7 @@ function GateadresseForm(props: Props) {
             <Input
                 bredde={'XXL'}
                 label="Merkes med C/O"
-                defaultValue={gateadresse.tilleggsadresse}
+                value={gateadresse.tilleggsadresse || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     props.onChange({...gateadresse, tilleggsadresse: event.target.value})}
             />
@@ -42,7 +42,7 @@ function GateadresseForm(props: Props) {
                     <Input
                         bredde={'XXL'}
                         label="Gateadresse"
-                        defaultValue={gateadresse.gatenavn}
+                        value={gateadresse.gatenavn}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.onChange({...gateadresse, gatenavn: event.target.value})}
                         feil={validering.felter.gatenavn.skjemafeil}
@@ -51,7 +51,7 @@ function GateadresseForm(props: Props) {
                 <Input
                     bredde={'S'}
                     label="Husnummer"
-                    defaultValue={gateadresse.husnummer}
+                    value={gateadresse.husnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...gateadresse, husnummer: event.target.value})}
                     feil={validering.felter.husnummer.skjemafeil}
@@ -59,14 +59,14 @@ function GateadresseForm(props: Props) {
                 <Input
                     bredde={'S'}
                     label="Husbokstav"
-                    defaultValue={gateadresse.husbokstav}
+                    value={gateadresse.husbokstav || ''}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...gateadresse, husbokstav: event.target.value})}
                 />
                 <Input
                     bredde={'S'}
                     label="Bolignummer"
-                    defaultValue={gateadresse.bolignummer}
+                    value={gateadresse.bolignummer || ''}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         props.onChange({...gateadresse, bolignummer: event.target.value})}
                 />

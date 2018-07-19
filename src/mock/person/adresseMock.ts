@@ -5,12 +5,15 @@ import {
     Gateadresse,
     Matrikkeladresse,
     Personadresse,
+    Postboksadresse,
     UstrukturertAdresse,
     Utlandsadresse
 } from '../../models/personadresse';
 import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
 import { getPeriode } from './periodeMock';
 import { FOLKEREGISTERET } from '../../utils/endretAvUtil';
+import { mockLandKodeverk } from '../kodeverk/land-kodeverk-mock';
+import { Kodeverk } from '../../models/kodeverk';
 
 export const tilfeldigGateadresse = (adresseSkalHaPeriode: boolean): Gateadresse => {
     return {
@@ -36,10 +39,24 @@ const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkelad
     };
 };
 
+function getRandomLand(): Kodeverk {
+    const landKodeverk = mockLandKodeverk().kodeverk;
+    return landKodeverk[ faker.random.number(landKodeverk.length - 1) ];
+}
+
 const tilfeldigUtlandsadresse = (folkeregistrertAdresse: boolean): Utlandsadresse => {
     return {
-        landkode: {kodeRef: faker.address.countryCode(), beskrivelse: faker.address.country()},
+        landkode: getRandomLand(),
         adresselinjer: [faker.address.streetAddress().toUpperCase(), faker.address.city()],
+        periode: folkeregistrertAdresse ? getPeriode() : undefined
+    };
+};
+
+const tilfeldigPostboksadresse = (folkeregistrertAdresse: boolean): Postboksadresse => {
+    return {
+        postboksnummer: faker.address.zipCode('####'),
+        postnummer: faker.address.zipCode('####'),
+        poststed: faker.address.city().toUpperCase(),
         periode: folkeregistrertAdresse ? getPeriode() : undefined
     };
 };
@@ -58,6 +75,11 @@ function getTilfeldigAdresse(adresseSkalHaPeriode: boolean): Personadresse {
         return {
             endringsinfo: getEndringsinfo(),
             utlandsadresse: tilfeldigUtlandsadresse(adresseSkalHaPeriode)
+        };
+    } else if (vektetSjanse(faker, 0.2)) {
+        return {
+            endringsinfo: getEndringsinfo(),
+            postboksadresse: tilfeldigPostboksadresse(adresseSkalHaPeriode)
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {

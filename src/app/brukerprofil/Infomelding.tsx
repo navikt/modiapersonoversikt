@@ -48,7 +48,7 @@ export function EndreNavnInfomeldingWrapper(props: {veilderRoller: VeilederRolle
     return null;
 }
 
-export function EndreAdresseInfomeldingWrapper(props: {veilderRoller: VeilederRoller}) {
+export function EndreAdresseInfomelding(props: {veilderRoller: VeilederRoller}) {
 
     if (!veilederHarPåkrevdRolleForEndreAdresse(props.veilderRoller)) {
         return (

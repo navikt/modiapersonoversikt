@@ -98,7 +98,7 @@ Når bruker skriver noe igjen, kan man velge å sette valideringsresultatet til 
 <Input
     bredde={'XXL'}
     label="Gateadresse"
-    defaultValue={props.gateadresse.gatenavn}
+    value={props.gateadresse.gatenavn}
     onChange={(event: ChangeEvent<HTMLInputElement>) =>
         props.onChange({...props.gateadresse, gatenavn: event.target.value})}
     feil={getSkjemafeilFraValidering(props.validering ?

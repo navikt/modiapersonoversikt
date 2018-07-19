@@ -19,6 +19,7 @@ import {
 } from '../../../redux/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -54,18 +55,22 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
-                <AdresseForm
-                    veilederRoller={this.props.veilederRoller}
-                    person={this.props.person}
-                    endreNorskGateadresse={this.props.endreNorskGateadresse}
-                    endreMatrikkeladresse={this.props.endreMatrikkeladresse}
-                    endrePostboksadresse={this.props.endrePostboksadresse}
-                    endreUtlandsadresse={this.props.endreUtlandsadresse}
-                    slettMidlertidigeAdresser={this.props.slettMidlertidigeAdresser}
-                    endreAdresseReducer={this.props.endreAdresseReducer}
-                />
-            </Innholdslaster>
+            <div>
+                <Undertittel>Adresse</Undertittel>
+                <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
+                    <AdresseForm
+                        veilederRoller={this.props.veilederRoller}
+                        person={this.props.person}
+                        endreNorskGateadresse={this.props.endreNorskGateadresse}
+                        endreMatrikkeladresse={this.props.endreMatrikkeladresse}
+                        endrePostboksadresse={this.props.endrePostboksadresse}
+                        endreUtlandsadresse={this.props.endreUtlandsadresse}
+                        slettMidlertidigeAdresser={this.props.slettMidlertidigeAdresser}
+                        resetEndreAdresseReducer={this.props.resetEndreAdresseReducer}
+                        endreAdresseReducer={this.props.endreAdresseReducer}
+                    />
+                </Innholdslaster>
+            </div>
         );
     }
 }
