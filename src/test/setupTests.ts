@@ -31,6 +31,7 @@ import { landActionNames } from '../redux/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { valutaerActionNames } from '../redux/kodeverk/valutaKodeverk';
+import { aremark } from '../mock/person/aremark';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -39,8 +40,11 @@ const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
 
+// tslint:disable-next-line
+Date.now = jest.fn(() => 0);
+
 export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-const aremarkFnr = '10108000398';
+const aremarkFnr = aremark.fødselsnummer;
 
 testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
 testStore.dispatch({ type: navKontorActionNames.OK, data: {navKontor: getMockNavKontor('0118', undefined) }});
