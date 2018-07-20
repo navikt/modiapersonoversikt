@@ -277,7 +277,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     requestIsPending() {
-        return this.props.reducerStatus === STATUS.PENDING;
+        return this.props.reducerStatus === STATUS.LOADING;
     }
 
     formErEndret() {

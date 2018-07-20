@@ -84,7 +84,7 @@ class DialogPanel extends React.Component<DialogPanelProps> {
                     <KnappBase
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
-                        spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
+                        spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
                     >
                         Hent oppgave
                     </KnappBase>

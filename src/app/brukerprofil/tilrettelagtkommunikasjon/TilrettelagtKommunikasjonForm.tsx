@@ -30,7 +30,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    status: STATUS;
+    reducerStatus: STATUS;
 }
 
 interface OwnProps {
@@ -132,13 +132,13 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={!this.erEndret()}
+                        disabled={!this.erEndret() || this.props.reducerStatus === STATUS.LOADING}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        spinner={this.props.status === STATUS.PENDING}
+                        spinner={this.props.reducerStatus === STATUS.LOADING}
                         disabled={!this.erEndret()}
                         title={!this.erEndret() ? 'Ingen endringer' : ''}
                         autoDisableVedSpinner={true}
@@ -147,7 +147,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     </KnappBase>
                 </FormKnapperWrapper>
                 <RequestTilbakemelding
-                    status={this.props.status}
+                    status={this.props.reducerStatus}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
                     onSuccess={`Tilrettelagt kommunikasjon ble endret.`}
                 />
@@ -158,7 +158,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.endreTilrettelagtKommunikasjon.status
+        reducerStatus: state.endreTilrettelagtKommunikasjon.status
     });
 };
 

@@ -42,15 +42,20 @@ globalAny._mockEnabled = 'true';
 export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
 const aremarkFnr = '10108000398';
 
-testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
-testStore.dispatch({ type: navKontorActionNames.OK, data: {navKontor: getMockNavKontor('0118', undefined) }});
-testStore.dispatch({ type: kontaktinformasjonActionNames.OK, data: getMockKontaktinformasjon(aremarkFnr) });
-testStore.dispatch({ type: egenAnsattActionNames.OK, data: erEgenAnsatt(aremarkFnr) });
-testStore.dispatch({ type: vergeMålActionNames.OK, data: mockVergemal(aremarkFnr) });
-testStore.dispatch({ type: baseUrlsActionNames.OK, data: mockBaseUrls() });
-testStore.dispatch({ type: veilederRollerReducerActionNames.OK, data: getMockVeilederRoller() });
-testStore.dispatch({ type: tilrettelagtKommunikasjonActionNames.OK, data: mockTilrettelagtKommunikasjonKodeverk() });
-testStore.dispatch({ type: retningsnummerKodeverkActionNames.OK, data: mockRetningsnummereKodeverk() });
-testStore.dispatch({ type: postnummerActionNames.OK, data: mockPostnummere() });
-testStore.dispatch({ type: landActionNames.OK, data: mockLandKodeverk() });
-testStore.dispatch({ type: valutaerActionNames.OK, data: mockValutaKodeverk() });
+testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr)});
+testStore.dispatch({
+    type: navKontorActionNames.FINISHED,
+    data: {navKontor: getMockNavKontor('0118', undefined) }
+});
+testStore.dispatch({ type: kontaktinformasjonActionNames.FINISHED, data: getMockKontaktinformasjon(aremarkFnr) });
+testStore.dispatch({ type: egenAnsattActionNames.FINISHED, data: erEgenAnsatt(aremarkFnr) });
+testStore.dispatch({ type: vergeMålActionNames.FINISHED, data: mockVergemal(aremarkFnr) });
+testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
+testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
+testStore.dispatch({
+    type: tilrettelagtKommunikasjonActionNames.FINISHED, data: mockTilrettelagtKommunikasjonKodeverk()
+});
+testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk() });
+testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
+testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
+testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });

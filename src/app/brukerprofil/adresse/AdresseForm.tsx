@@ -356,13 +356,14 @@ class AdresseForm extends React.Component<Props, State> {
                             onClick={this.onAvbryt}
                             disabled={
                                 !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.ERROR
+                                || this.requestIsPending()
                             }
                         >
                             Avbryt
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
+                            spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
                             autoDisableVedSpinner={true}
                             disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                         >

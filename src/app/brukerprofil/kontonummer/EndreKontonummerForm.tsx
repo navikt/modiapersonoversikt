@@ -220,13 +220,13 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}
-                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret()}
+                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret() || this.requestIsPending()}
                 >
                     Avbryt
                 </KnappBase>
                 <KnappBase
                     type="hoved"
-                    spinner={this.props.reducerStatus === STATUS.PENDING}
+                    spinner={this.props.reducerStatus === STATUS.LOADING}
                     autoDisableVedSpinner={true}
                     disabled={
                         !this.kontoErEndret()
