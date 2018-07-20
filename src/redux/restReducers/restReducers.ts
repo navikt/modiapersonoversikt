@@ -19,21 +19,19 @@ import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import featureToggleReducer from './featuretoggle';
-import VisittkortUiReducer, { VisittkortUi } from './ui/VisittkortUIDuck';
+import { PersonRespons } from '../../models/person/person';
+import { Oppgave } from '../../models/oppgave';
+import { BrukersNavKontorResponse } from '../../models/navkontor';
+import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
+import { Egenansatt } from '../../models/egenansatt';
+import { Vergemal } from '../../models/vergemal/vergemal';
+import { VeilederRoller } from '../../models/veilederRoller';
+import { KodeverkResponse } from '../../models/kodeverk';
+import { BaseUrlsResponse } from '../../models/baseurls';
+import { FeatureToggleResponse } from '../../models/featureToggle';
+import { RestReducer } from './restReducer';
 
-import { STATUS } from './utils';
-import { PersonRespons } from '../models/person/person';
-import { Oppgave } from '../models/oppgave';
-import { BrukersNavKontorResponse } from '../models/navkontor';
-import { KRRKontaktinformasjon } from '../models/kontaktinformasjon';
-import { Egenansatt } from '../models/egenansatt';
-import { Vergemal } from '../models/vergemal/vergemal';
-import { VeilederRoller } from '../models/veilederRoller';
-import { KodeverkResponse } from '../models/kodeverk';
-import { BaseUrlsResponse } from '../models/baseurls';
-import { FeatureToggleResponse } from '../models/featureToggle';
-
-export interface AppState {
+export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
     brukersNavKontor: RestReducer<BrukersNavKontorResponse>;
     oppgaver: RestReducer<Oppgave[]>;
@@ -53,10 +51,9 @@ export interface AppState {
     valutaReducer: RestReducer<KodeverkResponse>;
     landReducer: RestReducer<KodeverkResponse>;
     featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
-    visittkortUi: VisittkortUi;
 }
 
-export default combineReducers<AppState>({
+export default combineReducers<RestEndepunkter>({
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,
@@ -76,11 +73,4 @@ export default combineReducers<AppState>({
     valutaReducer: valutaKodeverkReducer,
     landReducer: landKodeverkReducer,
     featureToggleNyBrukerprofilReducer: featureToggleReducer,
-    visittkortUi: VisittkortUiReducer
 });
-
-export interface RestReducer<T> {
-    status: STATUS;
-    data: T;
-    error?: String;
-}

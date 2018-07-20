@@ -9,6 +9,12 @@ export interface ActionTypes {
     INITIALIZE: string;
 }
 
+export interface RestReducer<T> {
+    status: STATUS;
+    data: T;
+    error?: String;
+}
+
 function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + ' / ';
     return {
@@ -37,27 +43,23 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
             switch (action.type) {
                 case actionTypes.STARTING:
                     const status: STATUS = state.status === STATUS.NOT_STARTED ? STATUS.LOADING : STATUS.RELOADING;
-                    console.log(status, action.type);
                     return {
                         ...state,
                         status: status
                     };
                 case actionTypes.FINISHED:
-                    console.log(STATUS.OK, action.type);
                     return {
                         ...state,
                         status: STATUS.OK,
                         data: (<FetchSuccess<object>> action).data
                     };
                 case actionTypes.FAILED:
-                    console.log(STATUS.ERROR, action.type);
                     return {
                         ...state,
                         status: STATUS.ERROR,
                         error: (<FetchError> action).error
                     };
                 case actionTypes.INITIALIZE:
-                    console.log(STATUS.NOT_STARTED, action.type);
                     return initialState;
                 default:
                     return state;

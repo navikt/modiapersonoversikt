@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import Visittkort from './Visittkort';
-import { AppState } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { Person, PersonRespons } from '../../../models/person/person';
 
 interface VisittkortContainerProps {
@@ -18,7 +18,7 @@ class VisittkortContainer extends React.Component<VisittkortContainerProps> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        personResponse: state.personinformasjon.data
+        personResponse: state.restEndepunkter.personinformasjon.data
     });
 };
 

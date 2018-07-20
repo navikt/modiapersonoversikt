@@ -1,8 +1,8 @@
-import { plukkOppgaveFraServer } from '../api/oppgave-api';
+import { plukkOppgaveFraServer } from '../../api/oppgave-api';
 import { createActionsAndReducer } from './restReducer';
-import { Oppgave } from '../models/oppgave';
+import { Oppgave } from '../../models/oppgave';
 
-const { reducer, action} = createActionsAndReducer<Oppgave[]>('oppgave');
+const { reducer, action } = createActionsAndReducer<Oppgave[]>('oppgave');
 
 export function plukkOppgaver(enhet: string, temagruppe: string) {
     return action(() => plukkOppgaveFraServer(enhet, temagruppe));

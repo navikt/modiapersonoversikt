@@ -5,12 +5,13 @@ import styled from 'styled-components';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import { BrukersNavKontorResponse, NavKontor } from '../../../../../models/navkontor';
-import { AppState, RestReducer } from '../../../../../redux/reducer';
+import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
 import { Action } from 'history';
-import { hentNavKontor } from '../../../../../redux/navkontor';
-import { STATUS } from '../../../../../redux/utils';
+import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
+import { STATUS } from '../../../../../redux/restReducers/utils';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface StateProps {
     navKontorReducer: RestReducer<BrukersNavKontorResponse>;
@@ -91,7 +92,7 @@ class NavKontorContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        navKontorReducer: state.brukersNavKontor
+        navKontorReducer: state.restEndepunkter.brukersNavKontor
     });
 };
 

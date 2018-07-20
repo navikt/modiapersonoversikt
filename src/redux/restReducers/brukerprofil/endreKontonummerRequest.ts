@@ -1,4 +1,4 @@
-import { BankAdresse } from '../../models/person/person';
+import { BankAdresse } from '../../../models/person/person';
 
 export interface EndreKontonummerRequest {
     kontonummer: string;

@@ -6,8 +6,9 @@ import Input from 'nav-frontend-skjema/lib/input';
 
 import { KodeverkResponse } from '../../../../models/kodeverk';
 import { connect } from 'react-redux';
-import { AppState, RestReducer } from '../../../../redux/reducer';
+import { AppState } from '../../../../redux/reducers';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 export interface PoststedInformasjon {
     postnummer: string;
@@ -80,7 +81,7 @@ class Poststed extends React.Component<Props> {
 
 function mapStateToProps(appState: AppState) {
     return {
-        postnummerReducer: appState.postnummerReducer
+        postnummerReducer: appState.restEndepunkter.postnummerReducer
     };
 }
 

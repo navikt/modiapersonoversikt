@@ -3,11 +3,11 @@ import { Action } from 'history';
 import { connect, Dispatch } from 'react-redux';
 
 import { Person } from '../../../models/person/person';
-import { AppState, RestReducer } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
-import { hentPostnummere } from '../../../redux/kodeverk/postnummerReducer';
-import { STATUS } from '../../../redux/utils';
+import { hentPostnummere } from '../../../redux/restReducers/kodeverk/postnummerReducer';
+import { STATUS } from '../../../redux/restReducers/utils';
 import AdresseForm from './AdresseForm';
 import {
     endreMatrikkeladresse,
@@ -16,11 +16,12 @@ import {
     endreUtlandsadresse,
     reset,
     slettMidlertidigeAdresser
-} from '../../../redux/brukerprofil/endreAdresseReducer';
+} from '../../../redux/restReducers/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
-import { hentPerson } from '../../../redux/personinformasjon';
+import { hentPerson } from '../../../redux/restReducers/personinformasjon';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -80,8 +81,8 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        postnummerReducer: state.postnummerReducer,
-        endreAdresseReducer: state.endreAdresseReducer
+        postnummerReducer: state.restEndepunkter.postnummerReducer,
+        endreAdresseReducer: state.restEndepunkter.endreAdresseReducer
     });
 };
 

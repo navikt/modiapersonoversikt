@@ -5,9 +5,9 @@ import { connect, Dispatch } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 
-import { STATUS } from '../../../redux/utils';
+import { STATUS } from '../../../redux/restReducers/utils';
 import { Person } from '../../../models/person/person';
-import { AppState } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
@@ -23,8 +23,8 @@ import {
 } from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { endreKontonummer, reset } from '../../../redux/brukerprofil/endreKontonummer';
-import { EndreKontonummerRequest } from '../../../redux/brukerprofil/endreKontonummerRequest';
+import { endreKontonummer, reset } from '../../../redux/restReducers/brukerprofil/endreKontonummer';
+import { EndreKontonummerRequest } from '../../../redux/restReducers/brukerprofil/endreKontonummerRequest';
 import { ignoreEnter } from '../utils/formUtils';
 import { getValidNorskBankKontoForm, validerNorskBankKonto } from './norskKontoValidator';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
@@ -33,7 +33,7 @@ import EtikettMini from '../../../components/EtikettMini';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
-import { hentPerson } from '../../../redux/personinformasjon';
+import { hentPerson } from '../../../redux/restReducers/personinformasjon';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -186,7 +186,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return (
             <Input
                 label="Kontonummer"
-                id="Kontonummer"
                 value={this.state.bankkontoInput.kontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 onKeyPress={ignoreEnter}
@@ -281,7 +280,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        reducerStatus: state.endreKontonummer.status
+        reducerStatus: state.restEndepunkter.endreKontonummer.status
     });
 };
 

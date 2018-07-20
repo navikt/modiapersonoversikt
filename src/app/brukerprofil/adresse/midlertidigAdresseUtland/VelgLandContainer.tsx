@@ -1,13 +1,15 @@
-import { Action } from 'history';
-import { STATUS } from '../../../../redux/utils';
-import { AppState, RestReducer } from '../../../../redux/reducer';
-import { connect, Dispatch } from 'react-redux';
 import * as React from 'react';
+import { Action } from 'history';
+import { connect, Dispatch } from 'react-redux';
+
+import { STATUS } from '../../../../redux/restReducers/utils';
+import { AppState } from '../../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
-import { hentLandKodeverk } from '../../../../redux/kodeverk/landKodeverk';
+import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface DispatchProps {
     hentLand: () => void;
@@ -54,7 +56,7 @@ class VelgLandContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        landReducer: state.landReducer,
+        landReducer: state.restEndepunkter.landReducer,
     });
 };
 

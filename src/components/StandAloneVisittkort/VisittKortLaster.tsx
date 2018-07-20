@@ -1,18 +1,20 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { connect, Dispatch } from 'react-redux';
+import { Action } from 'redux';
 
-import { AppState, RestReducer } from '../../redux/reducer';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import AlertStripe from 'nav-frontend-alertstriper';
+
+import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
-import styled from 'styled-components';
-import { hentAllPersonData } from '../../redux/personinformasjon';
-import { Action } from 'redux';
+import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -87,7 +89,7 @@ class Personside extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
     return {
-        personReducer: state.personinformasjon
+        personReducer: state.restEndepunkter.personinformasjon
     };
 }
 

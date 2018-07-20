@@ -5,13 +5,14 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import KnappBase from 'nav-frontend-knapper';
 
-import { AppState, RestReducer } from '../../redux/reducer';
-import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/oppgaver';
-import { STATUS } from '../../redux/utils';
+import { AppState } from '../../redux/reducers';
+import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/restReducers/oppgaver';
+import { STATUS } from '../../redux/restReducers/utils';
 import StartBildeLayout from './StartBildeLayout';
 import Feilmelding from '../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -69,8 +70,8 @@ class Startbilde extends React.Component<StartbildeProps> {
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StartbildeStateProps {
     return {
         valgtEnhet: '4100',
-        valgtTemagruppe: 'ARBD',
-        oppgaveReducer: state.oppgaver,
+        valgtTemagruppe: state.valgtTemagruppe,
+        oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };
 }

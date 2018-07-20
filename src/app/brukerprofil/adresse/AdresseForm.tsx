@@ -12,8 +12,7 @@ import {
     Utlandsadresse
 } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { STATUS } from '../../../redux/utils';
-import { RestReducer } from '../../../redux/reducer';
+import { STATUS } from '../../../redux/restReducers/utils';
 import MidlertidigAdresseNorge, {
     getInitialGateadresseInput,
     getInitialMatrikkeladresseInput,
@@ -23,8 +22,10 @@ import MidlertidigAdresseNorge, {
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { AdresseValg } from './AdresseValg';
-import MidlertidigAdresseUtland, { MidlertidigAdresseUtlandInputs, tomUtlandsadresse }
-    from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
+import MidlertidigAdresseUtland, {
+    MidlertidigAdresseUtlandInputs,
+    tomUtlandsadresse
+} from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
 import { validerGateadresse } from './midlertidigAdresseNorge/gateadresse/gateadresseValidator';
 import { validerMatrikkeladresse } from './midlertidigAdresseNorge/matrikkeladresse/matrikkeladresseValidator';
 import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadresse/postboksadresseValidator';
@@ -32,9 +33,10 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { EndreAdresseInfomelding } from '../Infomelding';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 import { getValidUtlandsadresseForm, validerUtenlandsAdresse }
     from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
+import { EndreAdresseInfomelding } from '../Infomelding';
 
 interface Props {
     veilederRoller: VeilederRoller;

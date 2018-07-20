@@ -9,7 +9,7 @@ export function plukkOppgaveFraServer(enhet: string, temagruppe: string): Promis
             if (response.ok) {
                 return response.json();
             } else {
-                throw response.statusText;
+                throw response;
             }
         });
 }

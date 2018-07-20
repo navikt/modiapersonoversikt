@@ -4,7 +4,7 @@ import { History } from 'history';
 import * as React from 'react';
 
 import { paths, settPersonIKontekst } from './routes/routing';
-import { AppState } from '../redux/reducer';
+import { AppState } from '../redux/reducers';
 
 interface StateProps {
     history: History;

@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from './restReducer';
-import { getKontaktinformasjon } from '../api/kontaktinformasjon-api';
-import { KRRKontaktinformasjon } from '../models/kontaktinformasjon';
+import { getKontaktinformasjon } from '../../api/kontaktinformasjon-api';
+import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 
 const { reducer, action, actionNames} = createActionsAndReducer('kontaktinformasjon');
 

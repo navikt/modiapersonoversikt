@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { AppState, RestReducer } from '../../redux/reducer';
+import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface PersonsideStateProps {
     personReducer: RestReducer<PersonRespons>;
@@ -57,7 +58,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 function mapStateToProps(state: AppState): PersonsideStateProps {
 
     return {
-        personReducer: state.personinformasjon
+        personReducer: state.restEndepunkter.personinformasjon
     };
 }
 

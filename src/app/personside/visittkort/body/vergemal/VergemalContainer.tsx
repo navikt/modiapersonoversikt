@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { AppState, RestReducer } from '../../../../../redux/reducer';
+import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface Props {
     vergemalReducer: RestReducer<Vergemal>;
@@ -32,7 +33,7 @@ class VergemalContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        vergemalReducer: state.vergemal
+        vergemalReducer: state.restEndepunkter.vergemal
     });
 };
 

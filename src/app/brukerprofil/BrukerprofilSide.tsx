@@ -7,14 +7,15 @@ import { connect, Dispatch } from 'react-redux';
 
 import { paths } from '../routes/routing';
 import BrukerprofilForm from './BrukerprofilForm';
-import { AppState, RestReducer } from '../../redux/reducer';
+import { AppState } from '../../redux/reducers';
 import { Person, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
-import { hentAllPersonData } from '../../redux/personinformasjon';
+import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { getVeilederRoller } from '../../redux/veilederRoller';
-import { STATUS } from '../../redux/utils';
+import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
+import { STATUS } from '../../redux/restReducers/utils';
 import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 const BrukerprofilWrapper = styled.section`
   flex-grow: 1;
@@ -94,8 +95,8 @@ class BrukerprofilSide extends React.Component<Props> {
 const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingProps>): OwnProps => {
     return ({
         fødselsnummer: ownProps.match.params.fodselsnummer,
-        personReducer: state.personinformasjon,
-        veilederRollerReducer: state.veilederRoller
+        personReducer: state.restEndepunkter.personinformasjon,
+        veilederRollerReducer: state.restEndepunkter.veilederRoller
     });
 };
 

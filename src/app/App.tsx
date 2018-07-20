@@ -9,7 +9,7 @@ import Routing from './routes/routing';
 import UnderArbeid from '../components/underarbeid/UnderArbeid';
 import { setupMock } from '../mock/setup-mock';
 import { personOversiktTheme } from '../themes/personOversiktTheme';
-import reducers from '../redux/reducer';
+import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
