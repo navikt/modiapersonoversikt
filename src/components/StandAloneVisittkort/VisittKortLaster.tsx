@@ -14,7 +14,7 @@ import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/perso
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
-import { RestReducer } from '../../redux/restReducers/restReducers';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface OwnProps {
     fødselsnummer: string;

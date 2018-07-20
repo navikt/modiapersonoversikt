@@ -9,7 +9,7 @@ import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { RestReducer } from '../../redux/restReducers/restReducers';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface PersonsideStateProps {
     personReducer: RestReducer<PersonRespons>;

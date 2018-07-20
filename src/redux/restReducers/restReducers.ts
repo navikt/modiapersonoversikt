@@ -19,7 +19,6 @@ import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import featureToggleReducer from './featuretoggle';
-import { STATUS } from './utils';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -30,6 +29,7 @@ import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
 import { FeatureToggleResponse } from '../../models/featureToggle';
+import { RestReducer } from './restReducer';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -74,9 +74,3 @@ export default combineReducers<RestEndepunkter>({
     landReducer: landKodeverkReducer,
     featureToggleNyBrukerprofilReducer: featureToggleReducer,
 });
-
-export interface RestReducer<T> {
-    status: STATUS;
-    data: T;
-    error?: String;
-}

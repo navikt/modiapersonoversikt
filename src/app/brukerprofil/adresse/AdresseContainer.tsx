@@ -20,7 +20,7 @@ import {
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
-import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;

@@ -15,7 +15,7 @@ import { VeilederRoller } from '../../models/veilederRoller';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { STATUS } from '../../redux/restReducers/utils';
 import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
-import { RestReducer } from '../../redux/restReducers/restReducers';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 const BrukerprofilWrapper = styled.section`
   flex-grow: 1;

@@ -15,7 +15,7 @@ import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import * as tilrettelagtKommunikasjonKodeverkReducer from
         '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface State {
     checkbokser: CheckboksProps[];

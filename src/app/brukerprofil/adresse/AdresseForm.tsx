@@ -33,7 +33,7 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 import { getValidUtlandsadresseForm, validerUtenlandsAdresse }
     from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 import { EndreAdresseInfomelding } from '../Infomelding';

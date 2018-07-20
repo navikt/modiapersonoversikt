@@ -12,7 +12,7 @@ import StartBildeLayout from './StartBildeLayout';
 import Feilmelding from '../../components/feilmelding/Feilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
-import { RestReducer } from '../../redux/restReducers/restReducers';
+import { RestReducer } from '../../redux/restReducers/restReducer';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -70,7 +70,7 @@ class Startbilde extends React.Component<StartbildeProps> {
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StartbildeStateProps {
     return {
         valgtEnhet: '4100',
-        valgtTemagruppe: 'ARBD',
+        valgtTemagruppe: state.valgtTemagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };

@@ -13,7 +13,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { RestReducer } from '../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
