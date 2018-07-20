@@ -91,12 +91,12 @@ class AdresseForm extends React.Component<Props, State> {
         this.state = this.getInitialState();
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        this.reloadOnEndret(nextProps);
+    componentDidUpdate(prevPropps: Props) {
+        this.reloadOnEndret(prevPropps);
     }
 
-    reloadOnEndret(nextProps: Props) {
-        if (this.props.endreAdresseReducer.status !== STATUS.OK && nextProps.endreAdresseReducer.status === STATUS.OK) {
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.endreAdresseReducer.status !== STATUS.OK && this.props.endreAdresseReducer.status === STATUS.OK) {
             this.props.reloadPersonInfo(this.props.person.fødselsnummer);
         }
     }

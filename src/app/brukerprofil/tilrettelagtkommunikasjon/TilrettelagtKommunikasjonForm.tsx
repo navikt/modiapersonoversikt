@@ -63,12 +63,12 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         this.props.resetEndreTilrettelagtKommunikasjonReducer();
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        this.reloadOnEndret(nextProps);
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
     }
 
-    reloadOnEndret(nextProps: Props) {
-        if (this.props.reducerStatus !== STATUS.OK && nextProps.reducerStatus === STATUS.OK) {
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
             this.props.hentPersonData(this.props.person.fødselsnummer);
         }
     }

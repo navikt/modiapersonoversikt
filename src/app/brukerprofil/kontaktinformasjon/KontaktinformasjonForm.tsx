@@ -136,12 +136,12 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         this.resetReducer();
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        this.reloadOnEndret(nextProps);
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
     }
 
-    reloadOnEndret(nextProps: Props) {
-        if (this.props.reducerStatus !== STATUS.OK && nextProps.reducerStatus === STATUS.OK) {
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
             this.props.hentPersonInfo(this.props.person.fødselsnummer);
         }
     }
