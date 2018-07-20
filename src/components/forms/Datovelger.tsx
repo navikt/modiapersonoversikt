@@ -33,10 +33,10 @@ export function tilPeriode(gyldigTil: Date) {
 function getAvgrensninger(): Avgrensninger {
     const iDag = new Date(Date.now());
 
-    let iMorgen = new Date(iDag);
+    const iMorgen = new Date(iDag);
     iMorgen.setDate(iDag.getDate() + 1);
 
-    let omEtÅr = new Date(iDag);
+    const omEtÅr = new Date(iDag);
     omEtÅr.setDate(iDag.getDate() + 365);
 
     return {
