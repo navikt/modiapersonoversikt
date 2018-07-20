@@ -1,35 +1,65 @@
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
+import { Personadresse } from '../../models/personadresse';
+
+export const gateAdresseAremark: Personadresse = {
+    endringsinfo: {
+        sistEndret: '2017-11-25T21:29:14.049Z',
+        sistEndretAv: 'SKD'
+    },
+    gateadresse: {
+        gatenavn: 'Islandsgate',
+        husnummer: '49',
+        postnummer: '7693',
+        poststed: 'Hovedøya'
+    }
+};
+
+export const postboksAdresseAremark: Personadresse = {
+    endringsinfo: {
+        sistEndret: '2018-04-10T09:06:58.256Z',
+        sistEndretAv: 'SKD'
+    },
+    postboksadresse: {
+        postboksnummer: '9698',
+        postnummer: '7705',
+        poststed: 'Færder fyr'
+    }
+};
+
+export const matrikkelAdresseAremark: Personadresse = {
+    endringsinfo: {
+        sistEndret: '2018-04-10T09:06:58.256Z',
+        sistEndretAv: 'SKD'
+    },
+    matrikkeladresse: {
+        postnummer: '5468',
+        poststed: 'Lillomarka'
+    }
+};
+
+export const utlandsAdresseAremark: Personadresse = {
+    endringsinfo: {
+        sistEndret: '2018-04-10T09:06:58.256Z',
+        sistEndretAv: 'SKD'
+    },
+    utlandsadresse: {
+        landkode: {
+            kodeRef: 'SYD',
+            beskrivelse: 'Syden'
+        },
+        adresselinjer: ['Ut av landet', 'Rundt svingen']
+    }
+};
 
 export const aremark: Person = {
     fødselsnummer: '10108000398',
     kjønn: Kjønn.Mann,
     geografiskTilknytning: '0118',
     alder: 42,
-    folkeregistrertAdresse: {
-        endringsinfo: {
-            sistEndret: '2017-11-25T21:29:14.049Z',
-            sistEndretAv: 'SKD'
-        },
-        gateadresse: {
-            gatenavn: 'Islandsgate',
-            husnummer: '49',
-            postnummer: '7693',
-            poststed: 'Hovedøya'
-        }
-    },
-    alternativAdresse: {
-        endringsinfo: {
-            sistEndret: '2018-04-10T09:06:58.256Z',
-            sistEndretAv: 'SKD'
-        },
-        postboksadresse: {
-            postboksnummer: '9698',
-            postnummer: '7705',
-            poststed: 'Færder fyr'
-        }
-    },
+    folkeregistrertAdresse: gateAdresseAremark,
+    alternativAdresse: postboksAdresseAremark,
     bankkonto: {
         banknavn: 'Bien sparebank',
         kontonummer: '12345678911',

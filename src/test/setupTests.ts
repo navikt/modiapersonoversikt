@@ -30,6 +30,7 @@ import thunkMiddleware from 'redux-thunk';
 import { landActionNames } from '../redux/restReducers/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
+import { aremark } from '../mock/person/aremark';
 import { valutaerActionNames } from '../redux/restReducers/kodeverk/valutaKodeverk';
 
 configure({ adapter: new EnzymeReactAdapter() });
@@ -39,8 +40,13 @@ const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
 
+// Mocker funksjoner som returnerer dynamisk data
+Date.now = jest.fn(() => 0);
+const JSutils = require('nav-frontend-js-utils');
+JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
+
 export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-const aremarkFnr = '10108000398';
+const aremarkFnr = aremark.fødselsnummer;
 
 testStore.dispatch({ type: personinformasjonActionNames.OK, data: getPerson(aremarkFnr)});
 testStore.dispatch({ type: navKontorActionNames.OK, data: {navKontor: getMockNavKontor('0118', undefined) }});
