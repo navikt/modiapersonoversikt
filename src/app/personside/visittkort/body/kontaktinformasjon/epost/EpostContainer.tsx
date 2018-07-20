@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import Epost from './Epost';
 import { Kontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
 
 interface Props {
     kontaktinformasjon: RestReducer<Kontaktinformasjon>;

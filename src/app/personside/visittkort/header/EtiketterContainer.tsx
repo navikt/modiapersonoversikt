@@ -5,7 +5,7 @@ import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import Etiketter from './Etiketter';
 import { Vergemal } from '../../../../models/vergemal/vergemal';
-import { RestReducer } from '../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface Props {
     egenAnsattReducer: RestReducer<Egenansatt>;

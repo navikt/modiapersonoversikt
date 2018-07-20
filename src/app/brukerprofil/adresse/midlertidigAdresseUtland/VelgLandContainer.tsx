@@ -9,7 +9,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { RestReducer } from '../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface DispatchProps {
     hentLand: () => void;

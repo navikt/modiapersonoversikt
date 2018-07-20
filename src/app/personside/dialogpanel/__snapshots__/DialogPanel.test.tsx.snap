@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser dialogpanel 1`] = `
+.c2 {
+  width: 30px;
+  height: 30px;
+  border: 0.2em solid rgb(0,103,197);
+  padding: 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+  -webkit-transition: -webkit-transform .5s;
+  -webkit-transition: transform .5s;
+  transition: transform .5s;
+  -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+}
+
+.c2:hover {
+  background-color: rgb(0,103,197);
+}
+
+.c2:hover svg {
+  stroke: white;
+}
+
+.c2:active {
+  opacity: 0.8;
+}
+
+.c2:focus {
+  outline: none;
+  box-shadow: 0 0 0px 3px #FFBD66;
+}
+
+.c2 svg {
+  stroke: rgb(0,103,197);
+  stroke-width: 0.7;
+  fill: none;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 > *:not(first-child) {
+  margin: .4em 0 0 0;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c4 > *:first-child {
+  margin-bottom: 0;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  white-space: nowrap;
+}
+
+.c4 > *:last-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin-left: .4em;
+  margin-top: 1.9rem;
+  text-transform: none;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.c1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <button
+      className="c2"
+      direction="right"
+      onClick={[Function]}
+      width="30px"
+    >
+      <svg
+        viewBox="-1 -1 5 5"
+      >
+        <path
+          d="M0,0 L1,1.5 L0,3"
+        />
+        <path
+          d="M2,0 L3,1.5 L2,3"
+        />
+      </svg>
+    </button>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Hent oppgave fra temagruppe
+          </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                disabled={true}
+                value=""
+              >
+                Velg temagruppe
+              </option>
+              <option
+                value="ARBD"
+              >
+                Arbeid
+              </option>
+              <option
+                value="FMLI"
+              >
+                Familie
+              </option>
+              <option
+                value="HJLPM"
+              >
+                Hjelpemidler
+              </option>
+              <option
+                value="BIL"
+              >
+                Hjelpemidler bil
+              </option>
+              <option
+                value="ORT_HJE"
+              >
+                Ortopediske hjelpemidler
+              </option>
+              <option
+                value="PENS"
+              >
+                Pensjon
+              </option>
+              <option
+                value="PLEIEPENGERSY"
+              >
+                Pleiepenger sykt barn
+              </option>
+              <option
+                value="UFRT"
+              >
+                Uføretrygd
+              </option>
+              <option
+                value="UTLAND"
+              >
+                Utland
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Hent
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

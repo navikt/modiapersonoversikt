@@ -5,7 +5,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { STATUS } from '../redux/restReducers/utils';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 import { ReactNode } from 'react';
-import { RestReducer } from '../redux/restReducers/restReducers';
+import { RestReducer } from '../redux/restReducers/restReducer';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 

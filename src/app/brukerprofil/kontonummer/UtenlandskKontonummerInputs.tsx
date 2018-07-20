@@ -17,7 +17,7 @@ import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittk
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;

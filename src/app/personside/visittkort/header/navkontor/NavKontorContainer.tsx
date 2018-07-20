@@ -11,7 +11,7 @@ import { Person } from '../../../../../models/person/person';
 import { Action } from 'history';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { STATUS } from '../../../../../redux/restReducers/utils';
-import { RestReducer } from '../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface StateProps {
     navKontorReducer: RestReducer<BrukersNavKontorResponse>;

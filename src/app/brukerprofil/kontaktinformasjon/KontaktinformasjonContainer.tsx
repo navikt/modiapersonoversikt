@@ -12,7 +12,7 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
 import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;

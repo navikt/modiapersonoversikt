@@ -11,7 +11,7 @@ import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { RestReducer } from '../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface DispatchProps {
     hentBaseUrls: () => void;

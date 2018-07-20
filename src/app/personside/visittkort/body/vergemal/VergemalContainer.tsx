@@ -5,7 +5,7 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
-import { RestReducer } from '../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface Props {
     vergemalReducer: RestReducer<Vergemal>;

@@ -7,7 +7,7 @@ import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import EmailIkon from '../../../../../../svg/Email';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;

@@ -8,7 +8,7 @@ import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import PhoneIkon from '../../../../../../svg/Phone';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducers';
+import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
 
 interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
