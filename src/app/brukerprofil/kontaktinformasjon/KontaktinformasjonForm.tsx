@@ -24,6 +24,7 @@ import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { InputState } from '../utils/formUtils';
+import { hentPerson } from '../../../redux/personinformasjon';
 
 export interface TelefonInput {
     retningsnummer: InputState;
@@ -38,6 +39,7 @@ interface State {
 }
 
 interface DispatchProps {
+    hentPersonInfo: (fødselsnummer: string) => void;
     endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
     tilbakestillReducer: () => void;
 }
@@ -131,6 +133,16 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     componentWillUnmount() {
         this.resetReducer();
+    }
+
+    componentWillReceiveProps(nextProps: Props) {
+        this.reloadOnEndret(nextProps);
+    }
+
+    reloadOnEndret(nextProps: Props) {
+        if (this.props.reducerStatus !== STATUS.OK && nextProps.reducerStatus === STATUS.OK) {
+            this.props.hentPersonInfo(this.props.person.fødselsnummer);
+        }
     }
 
     mobilTelefonnummerInputChange(input: string) {
@@ -381,6 +393,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        hentPersonInfo: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
             dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
         tilbakestillReducer: () => dispatch(tilbakestillReducer())

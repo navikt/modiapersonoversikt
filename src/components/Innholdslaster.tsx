@@ -20,8 +20,10 @@ interface InnholdslasterProps {
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
 const harGyldigResponse = ((reducer: RestReducer<object>) => reducer.data !== undefined);
-const alleLastet = (avhengigheter: RestReducer<object>[]) =>
-    (avhengigheter.every(harStatus(STATUS.OK)) && avhengigheter.every(harGyldigResponse));
+const alleLastet = (avhengigheter: RestReducer<object>[]) => (
+    avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING)) &&
+    avhengigheter.every(harGyldigResponse)
+);
 const alleHarValidResponse = (avhengigheter: RestReducer<object>[]) =>
     avhengigheter.filter(harStatus(STATUS.OK)).every(harGyldigResponse);
 const noenHarFeil = (avhengigheter: RestReducer<object>[]) => {

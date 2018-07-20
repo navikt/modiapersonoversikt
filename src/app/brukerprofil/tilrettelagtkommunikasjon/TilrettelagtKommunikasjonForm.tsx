@@ -19,12 +19,14 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
+import { hentPerson } from '../../../redux/personinformasjon';
 
 interface State {
     checkbokser: CheckboksProps[];
 }
 
 interface DispatchProps {
+    hentPersonData: (fødselsnummer: string) => void;
     endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) => void;
     resetEndreTilrettelagtKommunikasjonReducer: () => void;
 }
@@ -58,6 +60,16 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     componentWillUnmount() {
         this.props.resetEndreTilrettelagtKommunikasjonReducer();
+    }
+
+    componentWillReceiveProps(nextProps: Props) {
+        this.reloadOnEndret(nextProps);
+    }
+
+    reloadOnEndret(nextProps: Props) {
+        if (this.props.reducerStatus !== STATUS.OK && nextProps.reducerStatus === STATUS.OK) {
+            this.props.hentPersonData(this.props.person.fødselsnummer);
+        }
     }
 
     lagKnapper() {
@@ -164,6 +176,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
             dispatch(endreTilrettelagtKommunikasjon(request)),
         resetEndreTilrettelagtKommunikasjonReducer: () => dispatch(reset())

@@ -46,6 +46,7 @@ interface Props {
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     resetEndreAdresseReducer: () => void;
     endreAdresseReducer: RestReducer<{}>;
+    reloadPersonInfo: (fødselsnummer: string) => void;
 }
 
 export enum Valg {
@@ -86,6 +87,16 @@ class AdresseForm extends React.Component<Props, State> {
         this.onAvbryt = this.onAvbryt.bind(this);
 
         this.state = this.getInitialState();
+    }
+
+    componentWillReceiveProps(nextProps: Props) {
+        this.reloadOnEndret(nextProps);
+    }
+
+    reloadOnEndret(nextProps: Props) {
+        if (this.props.endreAdresseReducer.status !== STATUS.OK && nextProps.endreAdresseReducer.status === STATUS.OK) {
+            this.props.reloadPersonInfo(this.props.person.fødselsnummer);
+        }
     }
 
     getInitialState(): State {
@@ -310,6 +321,10 @@ class AdresseForm extends React.Component<Props, State> {
         if (this.props.endreAdresseReducer.status !== STATUS.NOT_STARTED) {
             this.props.resetEndreAdresseReducer();
         }
+    }
+
+    requestIsPending() {
+        return this.props.endreAdresseReducer.status === STATUS.LOADING;
     }
 
     render() {
