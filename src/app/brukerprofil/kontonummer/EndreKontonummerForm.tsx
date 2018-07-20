@@ -33,6 +33,7 @@ import EtikettMini from '../../../components/EtikettMini';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
+import { hentPerson } from '../../../redux/restReducers/personinformasjon';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -46,6 +47,7 @@ interface State {
 }
 
 interface DispatchProps {
+    hentPersonInfo: (fødselsnummer: string) => void;
     endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) => void;
     resetEndreKontonummerReducer: () => void;
 }
@@ -75,6 +77,16 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     componentWillUnmount() {
         this.resetReducer();
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
+    }
+
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+            this.props.hentPersonInfo(this.props.person.fødselsnummer);
+        }
     }
 
     getInitialState(): State {
@@ -199,6 +211,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return this.props.reducerStatus === STATUS.OK;
     }
 
+    requestIsPending() {
+        return this.props.reducerStatus === STATUS.LOADING;
+    }
+
     render() {
         const norskEllerUtenlandskKontoRadio = (
             <RadioPanelGruppe
@@ -219,13 +235,13 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}
-                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret()}
+                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret() || this.requestIsPending()}
                 >
                     Avbryt
                 </KnappBase>
                 <KnappBase
                     type="hoved"
-                    spinner={this.props.reducerStatus === STATUS.PENDING}
+                    spinner={this.props.reducerStatus === STATUS.LOADING}
                     autoDisableVedSpinner={true}
                     disabled={
                         !this.kontoErEndret()
@@ -270,6 +286,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        hentPersonInfo: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>
             dispatch(endreKontonummer(fødselsnummer, request)),
         resetEndreKontonummerReducer: () => dispatch(reset())

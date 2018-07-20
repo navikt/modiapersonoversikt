@@ -2,7 +2,7 @@ import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../../VisittkortElement';
-import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import { KRRKontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
@@ -24,7 +24,7 @@ function Epost({epost}: EpostProps) {
 }
 
 interface EpostVisningProps {
-    kontaktinformasjon: Kontaktinformasjon;
+    kontaktinformasjon: KRRKontaktinformasjon;
 }
 
 export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
@@ -38,7 +38,7 @@ export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonReducer: RestReducer<Kontaktinformasjon>;
+    kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
 }
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {

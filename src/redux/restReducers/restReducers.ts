@@ -22,7 +22,7 @@ import featureToggleReducer from './featuretoggle';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
-import { Kontaktinformasjon } from '../../models/kontaktinformasjon';
+import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
 import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
@@ -35,7 +35,7 @@ export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
     brukersNavKontor: RestReducer<BrukersNavKontorResponse>;
     oppgaver: RestReducer<Oppgave[]>;
-    kontaktinformasjon: RestReducer<Kontaktinformasjon>;
+    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
     egenAnsatt: RestReducer<Egenansatt>;
     vergemal: RestReducer<Vergemal>;
     baseUrlReducer: RestReducer<BaseUrlsResponse>;

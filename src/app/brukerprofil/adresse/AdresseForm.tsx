@@ -48,6 +48,7 @@ interface Props {
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     resetEndreAdresseReducer: () => void;
     endreAdresseReducer: RestReducer<{}>;
+    reloadPersonInfo: (fødselsnummer: string) => void;
 }
 
 export enum Valg {
@@ -88,6 +89,16 @@ class AdresseForm extends React.Component<Props, State> {
         this.onAvbryt = this.onAvbryt.bind(this);
 
         this.state = this.getInitialState();
+    }
+
+    componentDidUpdate(prevPropps: Props) {
+        this.reloadOnEndret(prevPropps);
+    }
+
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.endreAdresseReducer.status !== STATUS.OK && this.props.endreAdresseReducer.status === STATUS.OK) {
+            this.props.reloadPersonInfo(this.props.person.fødselsnummer);
+        }
     }
 
     getInitialState(): State {
@@ -314,6 +325,10 @@ class AdresseForm extends React.Component<Props, State> {
         }
     }
 
+    requestIsPending() {
+        return this.props.endreAdresseReducer.status === STATUS.LOADING;
+    }
+
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
         return (
@@ -358,13 +373,14 @@ class AdresseForm extends React.Component<Props, State> {
                             onClick={this.onAvbryt}
                             disabled={
                                 !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.ERROR
+                                || this.requestIsPending()
                             }
                         >
                             Avbryt
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.endreAdresseReducer.status === STATUS.PENDING}
+                            spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
                             autoDisableVedSpinner={true}
                             disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                         >

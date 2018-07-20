@@ -1,7 +1,7 @@
-import { Kontaktinformasjon } from '../models/kontaktinformasjon';
+import { KRRKontaktinformasjon } from '../models/kontaktinformasjon';
 import { apiBaseUri } from './config';
 
-export function getKontaktinformasjon(fodselsnummer: string): Promise<Kontaktinformasjon> {
+export function getKontaktinformasjon(fodselsnummer: string): Promise<KRRKontaktinformasjon> {
     const uri = `${apiBaseUri}/person/${fodselsnummer}/kontaktinformasjon`;
     return fetch(uri, {credentials: 'include'})
         .then((response) => {

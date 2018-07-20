@@ -126,7 +126,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                     <KnappBase
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
-                        spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
+                        spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
                     >
                         Hent
                     </KnappBase>

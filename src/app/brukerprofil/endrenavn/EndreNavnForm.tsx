@@ -54,7 +54,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    status: STATUS;
+    reducerStatus: STATUS;
 }
 
 interface OwnProps {
@@ -241,7 +241,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.status === STATUS.PENDING}
+                            spinner={this.props.reducerStatus === STATUS.LOADING}
                             disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
                             autoDisableVedSpinner={true}
                         >
@@ -250,8 +250,8 @@ class EndreNavnForm extends React.Component<Props, State> {
                     </FormKnapperWrapper>
                     {!this.state.formErEndret
                         ? (<RequestTilbakemelding
-                            status={this.props.status}
-                            onSuccess={'Navnet ble endret.'}
+                            status={this.props.reducerStatus}
+                            onSuccess={'Navnet ble endret. Det kan ta noe tid før endringen blir synlig'}
                             onError={'Det skjedde en feil ved endring av navn.'}
                         />)
                         : null
@@ -265,7 +265,7 @@ class EndreNavnForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.restEndepunkter.endreNavn.status
+        reducerStatus: state.restEndepunkter.endreNavn.status
     });
 };
 

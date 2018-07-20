@@ -3,10 +3,10 @@ import { Action } from 'redux';
 import { Dispatch } from 'react-redux';
 
 export interface ActionTypes {
-    PENDING: string;
-    OK: string;
-    ERROR: string;
-    INITIALIZED: string;
+    STARTING: string;
+    FINISHED: string;
+    FAILED: string;
+    INITIALIZE: string;
 }
 
 export interface RestReducer<T> {
@@ -16,12 +16,12 @@ export interface RestReducer<T> {
 }
 
 function getActionTypes(reducerNavn: string): ActionTypes {
-    const navnUppercase = reducerNavn.toUpperCase() + '/';
+    const navnUppercase = reducerNavn.toUpperCase() + ' / ';
     return {
-        PENDING: navnUppercase + STATUS.PENDING,
-        OK: navnUppercase + STATUS.OK,
-        ERROR: navnUppercase + STATUS.ERROR,
-        INITIALIZED: navnUppercase + STATUS.NOT_STARTED
+        STARTING: navnUppercase + 'STARTING',
+        FINISHED: navnUppercase + 'FINISHED',
+        FAILED: navnUppercase + 'FAILED',
+        INITIALIZE: navnUppercase + 'INITIALIZE'
     };
 }
 
@@ -30,38 +30,37 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
 
     const actionFunction = (fn: () => Promise<T>) => doThenDispatch(fn, actionTypes);
 
+    const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZE}); };
+
     const initialState = {
         data: {},
         status: STATUS.NOT_STARTED
     };
-    const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZED}); };
     return {
         action: actionFunction,
         tilbakestillReducer: tilbakestillReducer,
         reducer: (state = initialState, action: Action) => {
             switch (action.type) {
-                case actionTypes.PENDING:
+                case actionTypes.STARTING:
+                    const status: STATUS = state.status === STATUS.NOT_STARTED ? STATUS.LOADING : STATUS.RELOADING;
                     return {
                         ...state,
-                        status: STATUS.PENDING
+                        status: status
                     };
-                case actionTypes.OK:
+                case actionTypes.FINISHED:
                     return {
                         ...state,
                         status: STATUS.OK,
                         data: (<FetchSuccess<object>> action).data
                     };
-                case actionTypes.ERROR:
+                case actionTypes.FAILED:
                     return {
                         ...state,
                         status: STATUS.ERROR,
                         error: (<FetchError> action).error
                     };
-                case actionTypes.INITIALIZED:
-                    return {
-                        ...state,
-                        status: STATUS.NOT_STARTED
-                    };
+                case actionTypes.INITIALIZE:
+                    return initialState;
                 default:
                     return state;
             }

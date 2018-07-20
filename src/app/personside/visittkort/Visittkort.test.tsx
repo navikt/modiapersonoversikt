@@ -11,7 +11,7 @@ import { personOversiktTheme } from '../../../themes/personOversiktTheme';
 import { aremark } from '../../../mock/person/aremark';
 import { StaticRouter } from 'react-router';
 
-testStore.dispatch({ type: personinformasjonActionNames.OK, data: aremark });
+testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: aremark });
 
 const visittkort = mount((
     <ThemeProvider theme={personOversiktTheme}>

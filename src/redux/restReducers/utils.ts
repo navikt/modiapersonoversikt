@@ -4,7 +4,7 @@ import { ActionTypes } from './restReducer';
 
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',
-    PENDING = 'PENDING',
+    LOADING = 'LOADING',
     OK = 'OK',
     RELOADING = 'RELOADING',
     ERROR = 'ERROR'
@@ -22,7 +22,10 @@ export interface FetchError {
 
 function sendResultatTilDispatch<T>(dispatch: Dispatch<Action>, action: string) {
     return (data: T) => {
-         dispatch({type: action, data});
+         dispatch({
+             type: action,
+             data: data
+         });
          return Promise.resolve(data);
     };
 }
@@ -30,18 +33,19 @@ function sendResultatTilDispatch<T>(dispatch: Dispatch<Action>, action: string) 
 function handterFeil(dispatch: Dispatch<Action>, action: string) {
     return (error: Error) => {
         console.error(error);
-        dispatch({type: action, error: error.message});
+        dispatch({
+            type: action,
+            error: error.message
+        });
         return Promise.reject(error);
     };
 }
 
-export function doThenDispatch<T>(fn: () => Promise<T>, { PENDING, OK, ERROR }: ActionTypes) {
+export function doThenDispatch<T>(fn: () => Promise<T>, actionNames: ActionTypes) {
     return (dispatch: Dispatch<Action>) => {
-        if (PENDING) {
-            dispatch({type: PENDING});
-        }
+        dispatch({type: actionNames.STARTING});
         return fn()
-            .then(sendResultatTilDispatch(dispatch, OK))
-            .catch(handterFeil(dispatch, ERROR));
+            .then(sendResultatTilDispatch(dispatch, actionNames.FINISHED))
+            .catch(handterFeil(dispatch, actionNames.FAILED));
     };
 }

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import Epost from './Epost';
-import { Kontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
+import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
 
 interface Props {
-    kontaktinformasjon: RestReducer<Kontaktinformasjon>;
+    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
 }
 
 class EpostContainer extends React.Component<Props> {

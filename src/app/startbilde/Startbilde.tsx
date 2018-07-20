@@ -57,7 +57,7 @@ class Startbilde extends React.Component<StartbildeProps> {
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
-                    spinner={this.props.oppgaveReducer.status === STATUS.PENDING}
+                    spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
                 >
                     Hent oppgave
                 </KnappBase>

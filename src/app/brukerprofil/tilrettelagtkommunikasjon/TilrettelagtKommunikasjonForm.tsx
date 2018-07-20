@@ -20,18 +20,20 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
+import { hentPerson } from '../../../redux/restReducers/personinformasjon';
 
 interface State {
     checkbokser: CheckboksProps[];
 }
 
 interface DispatchProps {
+    hentPersonData: (fødselsnummer: string) => void;
     endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) => void;
     resetEndreTilrettelagtKommunikasjonReducer: () => void;
 }
 
 interface StateProps {
-    status: STATUS;
+    reducerStatus: STATUS;
 }
 
 interface OwnProps {
@@ -59,6 +61,16 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     componentWillUnmount() {
         this.props.resetEndreTilrettelagtKommunikasjonReducer();
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
+    }
+
+    reloadOnEndret(prevProps: Props) {
+        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+            this.props.hentPersonData(this.props.person.fødselsnummer);
+        }
     }
 
     lagKnapper() {
@@ -133,13 +145,13 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={!this.erEndret()}
+                        disabled={!this.erEndret() || this.props.reducerStatus === STATUS.LOADING}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        spinner={this.props.status === STATUS.PENDING}
+                        spinner={this.props.reducerStatus === STATUS.LOADING}
                         disabled={!this.erEndret()}
                         title={!this.erEndret() ? 'Ingen endringer' : ''}
                         autoDisableVedSpinner={true}
@@ -148,7 +160,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     </KnappBase>
                 </FormKnapperWrapper>
                 <RequestTilbakemelding
-                    status={this.props.status}
+                    status={this.props.reducerStatus}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
                     onSuccess={`Tilrettelagt kommunikasjon ble endret.`}
                 />
@@ -159,12 +171,13 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        status: state.restEndepunkter.endreTilrettelagtKommunikasjon.status
+        reducerStatus: state.restEndepunkter.endreTilrettelagtKommunikasjon.status
     });
 };
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
             dispatch(endreTilrettelagtKommunikasjon(request)),
         resetEndreTilrettelagtKommunikasjonReducer: () => dispatch(reset())

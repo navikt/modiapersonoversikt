@@ -2,7 +2,7 @@ import * as React from 'react';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../../VisittkortElement';
-import { Kontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import { KRRKontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettMini from '../../../../../../components/EtikettMini';
@@ -26,7 +26,7 @@ function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
 }
 
 interface MobiltelefonVisningProps {
-    kontaktinformasjon: Kontaktinformasjon;
+    kontaktinformasjon: KRRKontaktinformasjon;
 }
 
 export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
@@ -40,7 +40,7 @@ export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningPr
 }
 
 interface MobiltelefonWrapperProps {
-    kontaktinformasjonReducer: RestReducer<Kontaktinformasjon>;
+    kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
 }
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
