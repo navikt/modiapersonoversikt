@@ -8,7 +8,7 @@ import KnappBase from 'nav-frontend-knapper';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 
 import { Person } from '../../../models/person/person';
-import { AppState } from '../../../redux/reducer';
+import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import {
@@ -18,10 +18,11 @@ import {
 } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { endreNavKontaktinformasjon, tilbakestillReducer } from '../../../redux/brukerprofil/kontaktinformasjon';
+import { endreNavKontaktinformasjon, tilbakestillReducer }
+    from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { STATUS } from '../../../redux/utils';
+import { STATUS } from '../../../redux/restReducers/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { InputState } from '../utils/formUtils';
 
@@ -372,7 +373,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        reducerStatus: state.endreKontaktinformasjonReducer.status
+        reducerStatus: state.restEndepunkter.endreKontaktinformasjonReducer.status
     });
 };
 

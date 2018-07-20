@@ -1,5 +1,6 @@
 image: navikt/modiapersonoversikt
 port: 80
+team: oppfolging
 fasitResources:
   used:
     - alias: loadbalancer:modiapersonoversikt

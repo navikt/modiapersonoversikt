@@ -3,8 +3,8 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
 import { Action } from 'redux';
 
-import { AppState } from '../../redux/reducer';
-import { hentAllPersonData } from '../../redux/personinformasjon';
+import { AppState } from '../../redux/reducers';
+import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import renderDecoratorHead from '../../decorator';
 import Personside from './Personside';
 

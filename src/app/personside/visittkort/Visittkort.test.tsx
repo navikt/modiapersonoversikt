@@ -5,7 +5,7 @@ import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import { Provider } from 'react-redux';
 import { testStore } from '../../../test/setupTests';
-import { personinformasjonActionNames } from '../../../redux/personinformasjon';
+import { personinformasjonActionNames } from '../../../redux/restReducers/personinformasjon';
 import { ThemeProvider } from 'styled-components';
 import { personOversiktTheme } from '../../../themes/personOversiktTheme';
 import { aremark } from '../../../mock/person/aremark';

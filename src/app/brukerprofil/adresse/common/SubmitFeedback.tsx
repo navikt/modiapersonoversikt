@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { STATUS } from '../../../../redux/utils';
+import { STATUS } from '../../../../redux/restReducers/utils';
 import RequestTilbakemelding from '../../RequestTilbakemelding';
 
 export default function SubmitFeedback(props: {visFeedback: boolean, status: STATUS}) {

@@ -2,10 +2,10 @@ import * as React from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { STATUS } from '../redux/utils';
-import { RestReducer } from '../redux/reducer';
+import { STATUS } from '../redux/restReducers/utils';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 import { ReactNode } from 'react';
+import { RestReducer } from '../redux/restReducers/restReducers';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 

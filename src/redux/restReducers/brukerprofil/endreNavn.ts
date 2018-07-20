@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from '../restReducer';
 import { EndreNavnRequest } from './endreNavnRequest';
-import { postEndreNavn } from '../../api/brukerprofil/endrenavn-api';
+import { postEndreNavn } from '../../../api/brukerprofil/endrenavn-api';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endrenavn');
 

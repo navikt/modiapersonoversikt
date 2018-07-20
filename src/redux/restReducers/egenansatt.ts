@@ -1,4 +1,4 @@
-import { getEgenAnsatt } from '../api/egenansatt';
+import { getEgenAnsatt } from '../../api/egenansatt';
 import { createActionsAndReducer } from './restReducer';
 
 const { reducer, action, actionNames } = createActionsAndReducer('egenansatt');

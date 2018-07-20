@@ -1,6 +1,6 @@
-import { getNavkontor } from '../api/navkontor';
+import { getNavkontor } from '../../api/navkontor';
 import { createActionsAndReducer } from './restReducer';
-import { Kodeverk } from '../models/kodeverk';
+import { Kodeverk } from '../../models/kodeverk';
 
 const { reducer, action, actionNames, tilbakestillReducer } = createActionsAndReducer('navkontor');
 
