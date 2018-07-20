@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
-import { Kontaktinformasjon } from '../models/kontaktinformasjon';
+import { KRRKontaktinformasjon } from '../models/kontaktinformasjon';
 import { getPerson } from './person/personMock';
 import { Person, PersonRespons } from '../models/person/person';
 import { aremark } from './person/aremark';
@@ -20,7 +20,7 @@ const aremarkKontaktinformasjon = {
     }
 };
 
-export function getMockKontaktinformasjon(fødselsnummer: string): Kontaktinformasjon {
+export function getMockKontaktinformasjon(fødselsnummer: string): KRRKontaktinformasjon {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremarkKontaktinformasjon;
     }

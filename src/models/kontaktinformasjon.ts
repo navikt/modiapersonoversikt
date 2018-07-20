@@ -1,4 +1,5 @@
-export interface Kontaktinformasjon {
+// KRR = Kontakt- og reservasjonsregisteret
+export interface KRRKontaktinformasjon {
     epost?: KontaktinformasjonVerdi;
     mobiltelefon?: KontaktinformasjonVerdi;
     reservasjon?: string;
