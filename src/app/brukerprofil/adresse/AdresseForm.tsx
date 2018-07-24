@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
+import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
 
@@ -13,16 +14,16 @@ import {
 } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import { STATUS } from '../../../redux/restReducers/utils';
-import MidlertidigAdresseNorge, {
+import {
+    default as MidlertidigAdresseNorge,
     getInitialGateadresseInput,
     getInitialMatrikkeladresseInput,
     getInitialPostboksadresse,
     MidlertidigeAdresserNorgeInput,
     MidlertidigeAdresserNorgeInputValg
 } from './midlertidigAdresseNorge/MidlertidigAdresseNorge';
-import FolkeregistrertAdresse from './FolkeregistrertAdresse';
-import { AdresseValg } from './AdresseValg';
-import MidlertidigAdresseUtland, {
+import {
+    default as MidlertidigAdresseUtland,
     MidlertidigAdresseUtlandInputs,
     tomUtlandsadresse
 } from './midlertidigAdresseUtland/MidlertidigAdresseUtland';
@@ -34,9 +35,13 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
-import { getValidUtlandsadresseForm, validerUtenlandsAdresse }
-    from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
+import {
+    getValidUtlandsadresseForm,
+    validerUtenlandsAdresse
+} from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 import { EndreAdresseInfomelding } from '../Infomelding';
+import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -57,6 +62,15 @@ export enum Valg {
     MIDLERTIDIG_UTLAND = 'midlertidigUtland'
 }
 
+function getValg(value: string): Valg {
+    if (Valg.FOLKEREGISTRERT === value) {
+        return Valg.FOLKEREGISTRERT;
+    } else if (Valg.MIDLERTIDIG_NORGE === value) {
+        return Valg.MIDLERTIDIG_NORGE;
+    }
+    return Valg.MIDLERTIDIG_UTLAND;
+}
+
 interface State {
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
     midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs;
@@ -75,6 +89,10 @@ function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
         return MidlertidigeAdresserNorgeInputValg.GATEADRESSE;
     }
 }
+
+const Wrapper = styled.div`
+  margin-top: 2em;
+`;
 
 class AdresseForm extends React.Component<Props, State> {
 
@@ -112,7 +130,7 @@ class AdresseForm extends React.Component<Props, State> {
         };
     }
 
-    initialRadioValg() {
+    initialRadioValg(): Valg {
         const {alternativAdresse} = this.props.person;
 
         if (alternativAdresse && alternativAdresse.utlandsadresse) {
@@ -194,8 +212,8 @@ class AdresseForm extends React.Component<Props, State> {
         this.resetReducer();
     }
 
-    onAdresseValgChange(valg: Valg) {
-        this.setState({selectedRadio: valg});
+    onAdresseValgChange(event: React.SyntheticEvent<EventTarget>,  value: string) {
+        this.setState({selectedRadio: getValg(value)});
         this.resetReducer();
         this.resetStateToInitalAdresse();
     }
@@ -228,6 +246,27 @@ class AdresseForm extends React.Component<Props, State> {
             return true;
         } else {
             return false;
+        }
+    }
+
+    getAktivForm() {
+        if (this.state.selectedRadio === Valg.FOLKEREGISTRERT) {
+            return <FolkeregistrertAdresse person={this.props.person}/>;
+        } else if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
+            return (
+                <MidlertidigAdresseNorge
+                    midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
+                    onChange={this.onMidlertidigAdresseNorgeFormChange}
+                />
+            );
+        } else {
+            return (
+                <MidlertidigAdresseUtland
+                    midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
+                    onChange={this.onMidlertidigAdresseUtlandFormChange}
+                    visFeilmeldinger={false}
+                />
+            );
         }
     }
 
@@ -331,42 +370,29 @@ class AdresseForm extends React.Component<Props, State> {
 
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
+
+        const aktivForm = this.getAktivForm();
+
         return (
             <form onSubmit={this.onSubmit}>
                 <FormFieldSet disabled={!kanEndreAdresse}>
                     <EndreAdresseInfomelding
                         veilderRoller={this.props.veilederRoller}
                     />
-                    <AdresseValg
-                        label={'Bostedsadresse fra folkeregisteret'}
-                        onAdresseValgChange={this.onAdresseValgChange}
-                        checked={this.state.selectedRadio === Valg.FOLKEREGISTRERT}
-                        valg={Valg.FOLKEREGISTRERT}
+                    <RadioPanelGruppe
+                        radios={[
+                            {label: 'Bostedsadresse fra folkeregisteret', value: Valg.FOLKEREGISTRERT},
+                            {label: 'Midlertidig adresse i Norge', value: Valg.MIDLERTIDIG_NORGE},
+                            {label: 'Midlertidig adresse i utlandet', value: Valg.MIDLERTIDIG_UTLAND}
+                        ]}
+                        name={'Velg adressetype'}
+                        checked={this.state.selectedRadio}
+                        legend={''}
+                        onChange={this.onAdresseValgChange}
                     />
-                    <FolkeregistrertAdresse person={this.props.person}/>
-                    <AdresseValg
-                        label={'Midlertidig adresse i Norge'}
-                        onAdresseValgChange={this.onAdresseValgChange}
-                        checked={this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE}
-                        valg={Valg.MIDLERTIDIG_NORGE}
-                    >
-                        <MidlertidigAdresseNorge
-                            midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
-                            onChange={this.onMidlertidigAdresseNorgeFormChange}
-                        />
-                    </AdresseValg>
-                    <AdresseValg
-                        label="Midlertidig adresse i utlandet"
-                        valg={Valg.MIDLERTIDIG_UTLAND}
-                        onAdresseValgChange={this.onAdresseValgChange}
-                        checked={this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND}
-                    >
-                        <MidlertidigAdresseUtland
-                            midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
-                            onChange={this.onMidlertidigAdresseUtlandFormChange}
-                            visFeilmeldinger={false}
-                        />
-                    </AdresseValg>
+                    <Wrapper>
+                        {aktivForm}
+                    </Wrapper>
                     <FormKnapperWrapper>
                         <KnappBase
                             type="standard"

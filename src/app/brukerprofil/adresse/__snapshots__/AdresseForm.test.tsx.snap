@@ -52,97 +52,118 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
       disabled={false}
     >
       <div
-        className="c1"
+        className="inputPanelGruppe"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
+        <fieldset
+          className="skjema__fieldset"
         >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="folkeregistrert"
-            onChange={[Function]}
-            type="radio"
-          />
+          <legend
+            className="skjema__legend"
+          >
+            
+          </legend>
           <label
-            className="skjemaelement__label"
+            className="inputPanel radioPanel inputPanel--checked"
             htmlFor="Helt tilfeldig ID"
           >
-            Bostedsadresse fra folkeregisteret
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Bostedsadresse fra folkeregisteret
+            </span>
           </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i Norge
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i utlandet
+            </span>
+          </label>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="c1"
+      >
+        <div>
+          <p
+            className="typo-undertekst"
+          >
+            Islandsgate 49
+          </p>
+          <p
+            className="typo-undertekst"
+          >
+            7693 Hovedøya
+          </p>
         </div>
-      </div>
-      <div>
-        <p
-          className="typo-undertekst"
-        >
-          Islandsgate 49
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          7693 Hovedøya
-        </p>
-      </div>
-      <div
-        className="c2"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="c3"
-          >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
-          </span>
-        </p>
-      </div>
-      <div
-        className="c1"
-      >
         <div
-          className="skjemaelement skjemaelement--horisontal"
+          className="c2"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigNorge"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+          <p
+            className="typo-etikett-liten"
           >
-            Midlertidig adresse i Norge
-          </label>
-        </div>
-      </div>
-      <div
-        className="c1"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigUtland"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i utlandet
-          </label>
+            <span
+              className="c3"
+            >
+              Endret 
+              25.11.2017
+               
+              i Folkeregisteret
+            </span>
+          </p>
         </div>
       </div>
       <div
@@ -176,19 +197,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   border: 0;
 }
 
-.c3 {
-  font-size: 11px;
-}
-
-.c2 {
-  margin-top: 3px;
-}
-
-.c2 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -199,25 +208,25 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c7 > * {
+.c5 > * {
   margin-left: 1em;
 }
 
-.c5 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c6 {
+.c4 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
 }
 
-.c4 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -242,76 +251,91 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
       disabled={false}
     >
       <div
-        className="c1"
+        className="inputPanelGruppe"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
+        <fieldset
+          className="skjema__fieldset"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="folkeregistrert"
-            onChange={[Function]}
-            type="radio"
-          />
+          <legend
+            className="skjema__legend"
+          >
+            
+          </legend>
           <label
-            className="skjemaelement__label"
+            className="inputPanel radioPanel"
             htmlFor="Helt tilfeldig ID"
           >
-            Bostedsadresse fra folkeregisteret
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Bostedsadresse fra folkeregisteret
+            </span>
           </label>
-        </div>
-      </div>
-      <div>
-        <p
-          className="typo-undertekst"
-        >
-          Islandsgate 49
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          7693 Hovedøya
-        </p>
-      </div>
-      <div
-        className="c2"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="c3"
+          <label
+            className="inputPanel radioPanel inputPanel--checked"
+            htmlFor="Helt tilfeldig ID"
           >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
-          </span>
-        </p>
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i Norge
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i utlandet
+            </span>
+          </label>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
       </div>
       <div
         className="c1"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigNorge"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i Norge
-          </label>
-        </div>
         <div
           className="skjemaelement"
         >
@@ -376,7 +400,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           />
         </div>
         <div
-          className="c4"
+          className="c2"
         >
           <div
             style={
@@ -477,7 +501,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           </div>
         </div>
         <div
-          className="c5"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -502,7 +526,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             />
           </div>
           <div
-            className="c6"
+            className="c4"
           >
             <div
               className="skjemaelement"
@@ -605,29 +629,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
         </div>
       </div>
       <div
-        className="c1"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigUtland"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i utlandet
-          </label>
-        </div>
-      </div>
-      <div
-        className="c7"
+        className="c5"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -657,19 +659,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   border: 0;
 }
 
-.c3 {
-  font-size: 11px;
-}
-
-.c2 {
-  margin-top: 3px;
-}
-
-.c2 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c6 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -680,18 +670,18 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   justify-content: flex-end;
 }
 
-.c6 > * {
+.c4 > * {
   margin-left: 1em;
 }
 
-.c4 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c5 {
+.c3 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
@@ -716,76 +706,91 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
       disabled={false}
     >
       <div
-        className="c1"
+        className="inputPanelGruppe"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
+        <fieldset
+          className="skjema__fieldset"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="folkeregistrert"
-            onChange={[Function]}
-            type="radio"
-          />
+          <legend
+            className="skjema__legend"
+          >
+            
+          </legend>
           <label
-            className="skjemaelement__label"
+            className="inputPanel radioPanel"
             htmlFor="Helt tilfeldig ID"
           >
-            Bostedsadresse fra folkeregisteret
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Bostedsadresse fra folkeregisteret
+            </span>
           </label>
-        </div>
-      </div>
-      <div>
-        <p
-          className="typo-undertekst"
-        >
-          Islandsgate 49
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          7693 Hovedøya
-        </p>
-      </div>
-      <div
-        className="c2"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="c3"
+          <label
+            className="inputPanel radioPanel inputPanel--checked"
+            htmlFor="Helt tilfeldig ID"
           >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
-          </span>
-        </p>
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i Norge
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i utlandet
+            </span>
+          </label>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
       </div>
       <div
         className="c1"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigNorge"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i Norge
-          </label>
-        </div>
         <div
           className="skjemaelement"
         >
@@ -872,7 +877,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           />
         </div>
         <div
-          className="c4"
+          className="c2"
         >
           <div
             className="skjemaelement"
@@ -897,7 +902,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             />
           </div>
           <div
-            className="c5"
+            className="c3"
           >
             <div
               className="skjemaelement"
@@ -1000,29 +1005,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
         </div>
       </div>
       <div
-        className="c1"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigUtland"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i utlandet
-          </label>
-        </div>
-      </div>
-      <div
-        className="c6"
+        className="c4"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1052,19 +1035,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   border: 0;
 }
 
-.c3 {
-  font-size: 11px;
-}
-
-.c2 {
-  margin-top: 3px;
-}
-
-.c2 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1075,25 +1046,25 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c7 > * {
+.c5 > * {
   margin-left: 1em;
 }
 
-.c5 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c6 {
+.c4 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
 }
 
-.c4 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1118,76 +1089,91 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
       disabled={false}
     >
       <div
-        className="c1"
+        className="inputPanelGruppe"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
+        <fieldset
+          className="skjema__fieldset"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="folkeregistrert"
-            onChange={[Function]}
-            type="radio"
-          />
+          <legend
+            className="skjema__legend"
+          >
+            
+          </legend>
           <label
-            className="skjemaelement__label"
+            className="inputPanel radioPanel"
             htmlFor="Helt tilfeldig ID"
           >
-            Bostedsadresse fra folkeregisteret
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Bostedsadresse fra folkeregisteret
+            </span>
           </label>
-        </div>
-      </div>
-      <div>
-        <p
-          className="typo-undertekst"
-        >
-          Islandsgate 49
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          7693 Hovedøya
-        </p>
-      </div>
-      <div
-        className="c2"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="c3"
+          <label
+            className="inputPanel radioPanel inputPanel--checked"
+            htmlFor="Helt tilfeldig ID"
           >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
-          </span>
-        </p>
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i Norge
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i utlandet
+            </span>
+          </label>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
       </div>
       <div
         className="c1"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigNorge"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i Norge
-          </label>
-        </div>
         <div
           className="skjemaelement"
         >
@@ -1252,7 +1238,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           />
         </div>
         <div
-          className="c4"
+          className="c2"
         >
           <div
             style={
@@ -1309,7 +1295,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           </div>
         </div>
         <div
-          className="c5"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -1334,7 +1320,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             />
           </div>
           <div
-            className="c6"
+            className="c4"
           >
             <div
               className="skjemaelement"
@@ -1437,29 +1423,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
         </div>
       </div>
       <div
-        className="c1"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigUtland"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i utlandet
-          </label>
-        </div>
-      </div>
-      <div
-        className="c7"
+        className="c5"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1489,19 +1453,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   border: 0;
 }
 
-.c3 {
-  font-size: 11px;
-}
-
-.c2 {
-  margin-top: 3px;
-}
-
-.c2 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c6 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1512,23 +1464,23 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c6 > * {
+.c4 > * {
   margin-left: 1em;
 }
 
-.c1 {
-  margin-top: 2em;
-}
-
-.c4 {
+.c2 {
   margin-right: 2em;
 }
 
-.c5 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.c1 {
+  margin-top: 2em;
 }
 
 <div>
@@ -1545,101 +1497,94 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
       disabled={false}
     >
       <div
-        className="c1"
+        className="inputPanelGruppe"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
+        <fieldset
+          className="skjema__fieldset"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="folkeregistrert"
-            onChange={[Function]}
-            type="radio"
-          />
+          <legend
+            className="skjema__legend"
+          >
+            
+          </legend>
           <label
-            className="skjemaelement__label"
+            className="inputPanel radioPanel"
             htmlFor="Helt tilfeldig ID"
           >
-            Bostedsadresse fra folkeregisteret
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Bostedsadresse fra folkeregisteret
+            </span>
           </label>
-        </div>
-      </div>
-      <div>
-        <p
-          className="typo-undertekst"
-        >
-          Islandsgate 49
-        </p>
-        <p
-          className="typo-undertekst"
-        >
-          7693 Hovedøya
-        </p>
-      </div>
-      <div
-        className="c2"
-      >
-        <p
-          className="typo-etikett-liten"
-        >
-          <span
-            className="c3"
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
           >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
-          </span>
-        </p>
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i Norge
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--checked"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="Helt tilfeldig ID"
+              name="Velg adressetype"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Midlertidig adresse i utlandet
+            </span>
+          </label>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
       </div>
       <div
         className="c1"
       >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigNorge"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i Norge
-          </label>
-        </div>
-      </div>
-      <div
-        className="c1"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="midlertidigUtland"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Midlertidig adresse i utlandet
-          </label>
-        </div>
         <div>
           <div
-            className="c4"
+            className="c2"
           >
             <div
               className="skjemaelement"
@@ -1756,7 +1701,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c5"
+          className="c3"
         >
           <div
             style={
@@ -1791,7 +1736,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c5"
+          className="c3"
         >
           <div
             style={
@@ -1826,7 +1771,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c5"
+          className="c3"
         >
           <div
             style={
@@ -1937,7 +1882,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
         </div>
       </div>
       <div
-        className="c6"
+        className="c4"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
