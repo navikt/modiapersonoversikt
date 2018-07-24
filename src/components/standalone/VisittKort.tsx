@@ -7,7 +7,6 @@ import { MemoryRouter, Route, Switch } from 'react-router';
 
 import { personOversiktTheme } from '../../themes/personOversiktTheme';
 import reducers from '../../redux/reducers';
-import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
@@ -29,10 +28,6 @@ if (mockEnabled === 'true') {
 }
 
 class VisittkortStandAlone extends React.Component<Props> {
-
-    componentWillMount() {
-        hentAllPersonData(store.dispatch, this.props.fødselsnummer);
-    }
 
     render() {
         return (
