@@ -235,6 +235,7 @@ exports[`viser dialogpanel 1`] = `
         <button
           className="knapp knapp--hoved"
           disabled={false}
+          id="hentoppgaveknapp"
           onClick={[Function]}
           type="submit"
         >
