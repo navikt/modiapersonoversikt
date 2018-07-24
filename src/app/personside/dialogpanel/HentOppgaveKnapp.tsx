@@ -124,6 +124,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         {temagruppeOptions}
                     </Select>
                     <KnappBase
+                        id="hentoppgaveknapp"
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
                         spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
