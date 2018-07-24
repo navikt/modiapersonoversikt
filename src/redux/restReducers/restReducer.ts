@@ -42,7 +42,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
         reducer: (state = initialState, action: Action) => {
             switch (action.type) {
                 case actionTypes.STARTING:
-                    const status: STATUS = state.status === STATUS.NOT_STARTED ? STATUS.LOADING : STATUS.RELOADING;
+                    const status: STATUS = state.status === STATUS.OK ? STATUS.RELOADING : STATUS.LOADING;
                     return {
                         ...state,
                         status: status
