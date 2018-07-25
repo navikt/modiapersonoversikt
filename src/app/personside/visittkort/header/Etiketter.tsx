@@ -20,7 +20,7 @@ const StyledEtikketter = styled.div`
   }
 `;
 
-function lagDiskresjonskodeEtikett(diskresjonskode: Kodeverk) {
+export function lagDiskresjonskodeEtikett(diskresjonskode: Kodeverk) {
     switch (diskresjonskode.kodeRef) {
         case Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE:
             return <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>Kode 6</EtikettBase>;

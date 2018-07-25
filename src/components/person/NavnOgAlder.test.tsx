@@ -28,15 +28,24 @@ test('Fornavn, etternavn og alder vises', () => {
 });
 
 test('Fornavn, mellomnavn, etternavn og alder vises', () => {
-    relasjon.tilPerson.navn.mellomnavn = 'de';
+    relasjon.tilPerson.navn = {
+        fornavn: 'Baruch',
+        etternavn: 'Spinoza',
+        sammensatt: 'Sammensatt',
+        mellomnavn: 'de'
+    };
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Baruch de Spinoza (15) ');
 });
 
 test('Navn og alder uten fornavn og etternavn defaulter til sammensatt navn', () => {
-    relasjon.tilPerson.navn.fornavn = null;
-    relasjon.tilPerson.navn.etternavn = null;
+    relasjon.tilPerson.navn = {
+        fornavn: null,
+        etternavn: null,
+        sammensatt: 'Sammensatt',
+        mellomnavn: ''
+    };
 
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
 
@@ -44,9 +53,12 @@ test('Navn og alder uten fornavn og etternavn defaulter til sammensatt navn', ()
 });
 
 test('Uten navn returnerer ukjent navn', () => {
-    relasjon.tilPerson.navn.fornavn = null;
-    relasjon.tilPerson.navn.etternavn = null;
-    relasjon.tilPerson.navn.sammensatt = '';
+    relasjon.tilPerson.navn = {
+        fornavn: null,
+        etternavn: null,
+        sammensatt: '',
+        mellomnavn: ''
+    };
 
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
 
@@ -54,10 +66,12 @@ test('Uten navn returnerer ukjent navn', () => {
 });
 
 test('Uten fornavn, men med etternavn', () => {
-    relasjon.tilPerson.navn.fornavn = null;
-    relasjon.tilPerson.navn.mellomnavn = null;
-    relasjon.tilPerson.navn.etternavn = 'Sokrates';
-    relasjon.tilPerson.navn.sammensatt = '';
+    relasjon.tilPerson.navn = {
+        fornavn: null,
+        etternavn: null,
+        sammensatt: 'Sokrates',
+        mellomnavn: ''
+    };
 
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
 

@@ -59,11 +59,12 @@ export interface Familierelasjon {
     harSammeBosted: boolean;
     rolle: Relasjonstype;
     tilPerson: {
-        navn: Navn;
+        navn: Navn | null;
         alder: number;
         alderMåneder: number;
-        fødselsnummer: string;
+        fødselsnummer: string | null;
         personstatus: Bostatus;
+        diskresjonskode?: Kodeverk;
     };
 }
 
@@ -101,7 +102,8 @@ export enum SivilstandTyper {
 
 export enum Kjønn {
     Mann = 'M',
-    Kvinne = 'K'
+    Kvinne = 'K',
+    Diskresjonskode = 'D'
 }
 
 export enum BegrensetTilgangTyper {
