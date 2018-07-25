@@ -1,9 +1,10 @@
-import { doThenDispatch, FetchError, FetchSuccess, STATUS } from './utils';
+import { doThenDispatch, FetchError, FetchSuccess, reloadThenDispatch, STATUS } from './utils';
 import { Action } from 'redux';
 import { Dispatch } from 'react-redux';
 
 export interface ActionTypes {
     STARTING: string;
+    RELOADING: string;
     FINISHED: string;
     FAILED: string;
     INITIALIZE: string;
@@ -19,6 +20,7 @@ function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + ' / ';
     return {
         STARTING: navnUppercase + 'STARTING',
+        RELOADING: navnUppercase + 'RELOADING',
         FINISHED: navnUppercase + 'FINISHED',
         FAILED: navnUppercase + 'FAILED',
         INITIALIZE: navnUppercase + 'INITIALIZE'
@@ -29,6 +31,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
     const actionTypes = getActionTypes(reducerNavn);
 
     const actionFunction = (fn: () => Promise<T>) => doThenDispatch(fn, actionTypes);
+    const reload = (fn: () => Promise<T>) => reloadThenDispatch(fn, actionTypes);
 
     const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZE}); };
 
@@ -38,14 +41,19 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
     };
     return {
         action: actionFunction,
+        reload,
         tilbakestillReducer: tilbakestillReducer,
         reducer: (state = initialState, action: Action) => {
             switch (action.type) {
                 case actionTypes.STARTING:
-                    const status: STATUS = state.status === STATUS.OK ? STATUS.RELOADING : STATUS.LOADING;
                     return {
                         ...state,
-                        status: status
+                        status: STATUS.LOADING
+                    };
+                case actionTypes.RELOADING:
+                    return {
+                        ...state,
+                        status: STATUS.RELOADING
                     };
                 case actionTypes.FINISHED:
                     return {
