@@ -12,7 +12,7 @@ export function selectFodselsnummerfraOppgaver(oppgaver: Oppgave[]) {
     if (oppgaver.length === 0) {
         return null;
     } else {
-        return oppgaver[0].fodselsnummer;
+        return oppgaver[0].fødselsnummer;
     }
 }
 

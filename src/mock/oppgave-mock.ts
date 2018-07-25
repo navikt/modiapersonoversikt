@@ -4,6 +4,6 @@ import { randomFodselsnummer } from './utils/fnr-utils';
 
 export function getTilfeldigeOppgaver(): Oppgave[] {
     return Array.from({length: faker.random.number({min: 0, max: 4})}, () => {
-        return {fodselsnummer: randomFodselsnummer(), henvendelseId: '123'};
+        return {fødselsnummer: randomFodselsnummer(), henvendelseId: '123', oppgaveid: '456'};
     });
 }
