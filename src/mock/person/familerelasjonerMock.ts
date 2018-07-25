@@ -6,6 +6,7 @@ import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } f
 import { vektetSjanse } from '../utils/mock-utils';
 import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 import { lagNavn } from '../utils/person-utils';
+import { Diskresjonskoder } from '../../konstanter';
 
 export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilstand: Sivilstand) {
     let relasjoner: Familierelasjon[] = [];
@@ -20,6 +21,8 @@ export function getFamilierelasjoner(faker: FakerStatic, alder: number, sivilsta
     } else if (sivilstand.kodeRef === SivilstandTyper.Samboer) {
         relasjoner.push(lagPartner(faker, Relasjonstype.Samboer));
     }
+
+    relasjoner = kanskjeLeggTilDiskresjonskoder(faker, relasjoner);
 
     return relasjoner;
 }
@@ -108,4 +111,18 @@ function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Re
 
 function getAlderFromFødselsnummer(fødselsnummer: string) {
     return moment().diff(getFodselsdato(fødselsnummer), 'years');
+}
+
+function kanskjeLeggTilDiskresjonskoder(faker: FakerStatic, relasjoner: Familierelasjon[]) {
+    relasjoner.forEach(relasjon => {
+       if (vektetSjanse(faker, 0.5)) {
+           relasjon.tilPerson.diskresjonskode = {
+               kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
+               beskrivelse: 'Sperret adresse, fortrolig'
+           };
+           relasjon.tilPerson.navn = null;
+           relasjon.tilPerson.fødselsnummer = null;
+       }
+    });
+    return relasjoner;
 }
