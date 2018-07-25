@@ -1,4 +1,5 @@
 export interface Oppgave {
-    fodselsnummer: string;
+    oppgaveid: string;
+    fødselsnummer: string;
     henvendelseId: string;
 }

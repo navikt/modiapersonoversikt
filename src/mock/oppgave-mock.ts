@@ -8,7 +8,7 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
         return [];
     }
 
-    return Array.from({length: faker.random.number({min: 1, max: 4})}, () => {
-        return {fodselsnummer: randomFodselsnummer(), henvendelseId: '123'};
+    return Array.from({length: faker.random.number({min: 0, max: 4})}, () => {
+        return {fødselsnummer: randomFodselsnummer(), henvendelseId: '123', oppgaveid: '456'};
     });
 }
