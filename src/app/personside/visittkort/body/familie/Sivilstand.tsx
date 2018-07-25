@@ -8,6 +8,7 @@ import { Familierelasjon, getPartner, Person, Sivilstand, SivilstandTyper } from
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import HeartIkon from '../../../../../svg/Heart';
+import { Diskresjonskode } from './common/Diskresjonskode';
 
 interface Props {
     person: Person;
@@ -40,6 +41,7 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
     return (
         <>
             <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>
+            <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
             <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>

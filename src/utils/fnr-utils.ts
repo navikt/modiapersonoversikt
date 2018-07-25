@@ -1,6 +1,9 @@
 import { Kjønn } from '../models/person/person';
 
-export function utledKjønnFraFødselsnummer(fødselsnummer: string): Kjønn {
+export function utledKjønnFraFødselsnummer(fødselsnummer: string | null): Kjønn {
+    if (!fødselsnummer) {
+        return Kjønn.Diskresjonskode;
+    }
     return Number(fødselsnummer.charAt(8)) % 2 === 1 ? Kjønn.Mann : Kjønn.Kvinne;
 }
 

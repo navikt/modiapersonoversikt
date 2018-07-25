@@ -2,12 +2,11 @@ import * as React from 'react';
 
 import VisittkortElement from '../VisittkortElement';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import { Familierelasjon, getBarnUnder21, Kjønn } from '../../../../../models/person/person';
+import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
-import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
-import JenteIkon from '../../../../../svg/Jentebarn';
-import GutteIkon from '../../../../../svg/Guttebarn';
+import { Diskresjonskode } from './common/Diskresjonskode';
+import { getKjønnBeskrivelseForBarn, getKjønnIkon } from './common/Kjønn';
 
 interface Props {
     relasjoner: Familierelasjon[];
@@ -18,11 +17,11 @@ interface BarnProps {
 }
 
 function Barn({barn}: BarnProps) {
-    const kjønn = utledKjønnFraFødselsnummer(barn.tilPerson.fødselsnummer);
-    const beskrivelse = kjønn === Kjønn.Kvinne ? 'Jente' : 'Gutt';
-    const ikon = kjønn === Kjønn.Kvinne ? <JenteIkon /> : <GutteIkon />;
+    const ikon = getKjønnIkon(barn.tilPerson.fødselsnummer);
+    const beskrivelse = getKjønnBeskrivelseForBarn(barn.tilPerson.fødselsnummer);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
+            <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode}/>
             <Undertekst><NavnOgAlder relasjon={barn}/></Undertekst>
             <Undertekst>{barn.tilPerson.fødselsnummer}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Undertekst>
@@ -34,7 +33,13 @@ function ListeAvBarn({relasjoner}: Props) {
     const barnUnder21 = getBarnUnder21(relasjoner);
     barnUnder21.sort((a, b) => a.tilPerson.alder - b.tilPerson.alder);
 
-    const barn = barnUnder21.map(barnet => <Barn key={barnet.tilPerson.fødselsnummer} barn={barnet}/>);
+    const barn = barnUnder21.map((barnet, index) => (
+            <Barn
+                key={barnet.tilPerson.fødselsnummer ? barnet.tilPerson.fødselsnummer : index}
+                barn={barnet}
+            />
+        )
+    );
     return <>{barn}</>;
 }
 

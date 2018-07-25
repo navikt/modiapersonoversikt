@@ -1,10 +1,10 @@
-import { apiBaseUri, postConfig } from './config';
+import { apiBaseUri } from './config';
 import { Oppgave } from '../models/oppgave';
 
 export function plukkOppgaveFraServer(enhet: string, temagruppe: string): Promise<Oppgave[]> {
-    const uri = `${apiBaseUri}/oppgave/plukk`;
+    const uri = `${apiBaseUri}/oppgaver/plukk/${temagruppe}`;
 
-    return fetch(uri, postConfig({enhet: enhet, temagruppe: temagruppe}))
+    return fetch(uri, {credentials: 'include'})
         .then((response) => {
             if (response.ok) {
                 return response.json();

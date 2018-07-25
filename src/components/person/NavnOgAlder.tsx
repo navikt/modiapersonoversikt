@@ -34,7 +34,7 @@ function getAlder(relasjon: Familierelasjon) {
 
 function NavnOgAlder({relasjon}: Props) {
     const alder = erDød(relasjon.tilPerson.personstatus) ? 'Død' : getAlder(relasjon);
-    const navn = getNavn(relasjon.tilPerson.navn);
+    const navn = relasjon.tilPerson.navn ? getNavn(relasjon.tilPerson.navn) : '';
     return <>{navn} ({alder}) </>;
 }
 
