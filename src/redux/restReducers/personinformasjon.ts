@@ -7,10 +7,14 @@ import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { erEgenAnsatt } from './egenansatt';
 import { hentVergemal } from './vergemal';
 
-const { reducer, action, actionNames } = createActionsAndReducer('personinformasjon');
+const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
 export function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));
+}
+
+export function reloadPerson(fødselsnummer: string) {
+    return reload(() => getPerson(fødselsnummer));
 }
 
 export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: string) {

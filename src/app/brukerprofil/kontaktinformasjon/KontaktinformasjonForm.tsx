@@ -18,14 +18,16 @@ import {
 } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { endreNavKontaktinformasjon, tilbakestillReducer }
-    from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
+import {
+    endreNavKontaktinformasjon,
+    tilbakestillReducer
+} from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { InputState } from '../utils/formUtils';
-import { hentPerson } from '../../../redux/restReducers/personinformasjon';
+import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 
 export interface TelefonInput {
     retningsnummer: InputState;
@@ -40,7 +42,7 @@ interface State {
 }
 
 interface DispatchProps {
-    hentPersonInfo: (fødselsnummer: string) => void;
+    reloadPerson: (fødselsnummer: string) => void;
     endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
     tilbakestillReducer: () => void;
 }
@@ -142,7 +144,7 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     reloadOnEndret(prevProps: Props) {
         if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
-            this.props.hentPersonInfo(this.props.person.fødselsnummer);
+            this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
 
@@ -391,7 +393,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonInfo: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
+        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
             dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
         tilbakestillReducer: () => dispatch(tilbakestillReducer())

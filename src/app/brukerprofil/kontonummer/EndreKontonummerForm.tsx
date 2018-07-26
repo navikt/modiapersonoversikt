@@ -33,7 +33,7 @@ import EtikettMini from '../../../components/EtikettMini';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
-import { hentPerson } from '../../../redux/restReducers/personinformasjon';
+import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -47,7 +47,7 @@ interface State {
 }
 
 interface DispatchProps {
-    hentPersonInfo: (fødselsnummer: string) => void;
+    reloadPerson: (fødselsnummer: string) => void;
     endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) => void;
     resetEndreKontonummerReducer: () => void;
 }
@@ -85,7 +85,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     reloadOnEndret(prevProps: Props) {
         if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
-            this.props.hentPersonInfo(this.props.person.fødselsnummer);
+            this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
 
@@ -286,7 +286,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonInfo: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
+        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>
             dispatch(endreKontonummer(fødselsnummer, request)),
         resetEndreKontonummerReducer: () => dispatch(reset())

@@ -20,7 +20,7 @@ import {
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
-import { hentPerson } from '../../../redux/restReducers/personinformasjon';
+import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 interface StateProps {
@@ -36,7 +36,7 @@ interface DispatchProps {
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     resetEndreAdresseReducer: () => void;
-    hentPersonInfo: (fødselsnummer: string) => void;
+    reloadPerson: (fødselsnummer: string) => void;
 }
 
 interface OwnProps {
@@ -71,7 +71,7 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
                         slettMidlertidigeAdresser={this.props.slettMidlertidigeAdresser}
                         resetEndreAdresseReducer={this.props.resetEndreAdresseReducer}
                         endreAdresseReducer={this.props.endreAdresseReducer}
-                        reloadPersonInfo={this.props.hentPersonInfo}
+                        reloadPersonInfo={this.props.reloadPerson}
                     />
                 </Innholdslaster>
             </div>
@@ -99,7 +99,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
             dispatch(endreUtlandsadresse(fødselsnummer, utlandsadresse)),
         slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer)),
         resetEndreAdresseReducer: () => dispatch(reset()),
-        hentPersonInfo: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer))
+        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer))
     };
 }
 
