@@ -49,3 +49,12 @@ export function doThenDispatch<T>(fn: () => Promise<T>, actionNames: ActionTypes
             .catch(handterFeil(dispatch, actionNames.FAILED));
     };
 }
+
+export function reloadThenDispatch<T>(fn: () => Promise<T>, actionNames: ActionTypes) {
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({type: actionNames.RELOADING});
+        return fn()
+            .then(sendResultatTilDispatch(dispatch, actionNames.FINISHED))
+            .catch(handterFeil(dispatch, actionNames.FAILED));
+    };
+}

@@ -1,5 +1,5 @@
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
-import { Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
+import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { Personadresse } from '../../models/personadresse';
 
@@ -99,7 +99,10 @@ export const aremark: Person = {
     statsborgerskap: { kodeRef: 'NOR', beskrivelse: 'NORGE' },
     personstatus: {
         dødsdato: undefined,
-        bostatus: undefined
+        bostatus: {
+            kodeRef: BostatusTyper.Utvandret,
+            beskrivelse: BostatusTyper.Utvandret
+        }
     },
     sivilstand: {
         kodeRef: SivilstandTyper.Gift,

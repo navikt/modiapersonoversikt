@@ -7,12 +7,12 @@ import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
+import { EndreTilrettelagtKommunikasjonrequest }
+    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import {
-    EndreTilrettelagtKommunikasjonrequest
-} from
-        '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import { endreTilrettelagtKommunikasjon, reset }
-    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjon';
+    endreTilrettelagtKommunikasjon,
+    reset
+} from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjon';
 import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
@@ -20,14 +20,14 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
-import { hentPerson } from '../../../redux/restReducers/personinformasjon';
+import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 
 interface State {
     checkbokser: CheckboksProps[];
 }
 
 interface DispatchProps {
-    hentPersonData: (fødselsnummer: string) => void;
+    reloadPerson: (fødselsnummer: string) => void;
     endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) => void;
     resetEndreTilrettelagtKommunikasjonReducer: () => void;
 }
@@ -69,7 +69,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     reloadOnEndret(prevProps: Props) {
         if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
-            this.props.hentPersonData(this.props.person.fødselsnummer);
+            this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
 
@@ -177,7 +177,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => dispatch(hentPerson(fødselsnummer)),
+        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
             dispatch(endreTilrettelagtKommunikasjon(request)),
         resetEndreTilrettelagtKommunikasjonReducer: () => dispatch(reset())
