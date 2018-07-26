@@ -1,3 +1,5 @@
+import * as faker from 'faker/locale/nb_NO';
+
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
@@ -17,30 +19,34 @@ import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 
 const STATUS_OK = () => 200;
 
+function randomDelay() {
+    return faker.random.number(3000);
+}
+
 function setupPersonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
-        800,
+        randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 }
 
 function setupEgenAnsattMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/egenansatt/:fodselsnummer', withDelayedResponse(
-        50,
+        randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))));
 }
 
 function setupKontaktinformasjonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
-        700,
+        randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/enheter', withDelayedResponse(
-        2000,
+        randomDelay(),
         (args: HandlerArgument) => {
             if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
                 return 404;
@@ -52,22 +58,22 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
 }
 
 function setupOppgaveMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/oppgave/plukk', withDelayedResponse(
-        1200,
+    mock.post(apiBaseUri + '/oppgaver/plukk/FMLI', withDelayedResponse(
+        randomDelay(),
         STATUS_OK,
         () => getTilfeldigeOppgaver()));
 }
 
 function endreNavnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/navn', withDelayedResponse(
-        1200,
+        randomDelay(),
         STATUS_OK,
         () => {return undefined; }));
 }
 
 function endreNavKontaktinformasjonMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/telefonnummer', withDelayedResponse(
-        1200,
+        randomDelay(),
         STATUS_OK,
         () => ({})
     ));
@@ -75,7 +81,7 @@ function endreNavKontaktinformasjonMock(mock: FetchMock) {
 
 function setupEndreAdresseMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/adresse', withDelayedResponse(
-        1900,
+        randomDelay(),
         STATUS_OK,
         () => ({})
     ));
@@ -83,7 +89,7 @@ function setupEndreAdresseMock(mock: FetchMock) {
 
 function setupEndreKontonummerMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/kontonummer', withDelayedResponse(
-        900,
+        randomDelay(),
         STATUS_OK,
         () => ({})
     ));
@@ -91,70 +97,70 @@ function setupEndreKontonummerMock(mock: FetchMock) {
 
 function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/brukerprofil/:fodselsnummer/tilrettelagtkommunikasjon', withDelayedResponse(
-        1200,
+        randomDelay(),
         STATUS_OK,
         () => {return {}; }));
 }
 
 function setupVergemalMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
-        2500,
+        randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
 }
 
 function setupBaseUrlsMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/baseurls', withDelayedResponse(
-        2500,
+        randomDelay(),
         STATUS_OK,
         () => {return mockBaseUrls(); }));
 }
 
 function setupVeilederRollerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/veileder/roller', withDelayedResponse(
-        700,
+        randomDelay(),
         STATUS_OK,
         () => getMockVeilederRoller()));
 }
 
 function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Retningsnumre', withDelayedResponse(
-        700,
+        randomDelay(),
         STATUS_OK,
         () => mockRetningsnummereKodeverk()));
 }
 
 function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/TilrettelagtKommunikasjon', withDelayedResponse(
-        3000,
+        randomDelay(),
         STATUS_OK,
         () => mockTilrettelagtKommunikasjonKodeverk()));
 }
 
 function setupPostnummerKodeverk(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Postnummer', withDelayedResponse(
-        200,
+        randomDelay(),
         STATUS_OK,
         () => mockPostnummere()));
 }
 
 function setupLandKodeverk(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Landkoder', withDelayedResponse(
-        400,
+        randomDelay(),
         STATUS_OK,
         () => mockLandKodeverk()));
 }
 
 function setupValutaKodeverk(mock: FetchMock) {
     mock.get(apiBaseUri + '/kodeverk/Valutaer', withDelayedResponse(
-        600,
+        randomDelay(),
         STATUS_OK,
         () => mockValutaKodeverk()));
 }
 
 function setupNavigasjonsmenyMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/hode/me', withDelayedResponse(
-        300,
+        randomDelay(),
         STATUS_OK,
         () => ({
             'ident': 'z123445',
@@ -165,7 +171,7 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     ));
 
     mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(
-        450,
+        randomDelay(),
         STATUS_OK,
         () => ({
             enhetliste: [{
