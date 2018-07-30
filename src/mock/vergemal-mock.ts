@@ -60,7 +60,7 @@ function getVergemal() {
 }
 
 function getVerge(): Verge {
-    const vergesFødselsnummer = seededTilfeldigFodselsnummer(faker, 18, 100);
+    const vergesFødselsnummer = seededTilfeldigFodselsnummer(18, 100);
     const vergemålManglerVergeData = vektetSjanse(faker, 0.2);
     return {
         ident: vergemålManglerVergeData ? undefined : vergesFødselsnummer,

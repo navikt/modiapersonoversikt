@@ -51,7 +51,7 @@ function kalkulerAntallBarn(faker: FakerStatic, foreldresAlder: number) {
 function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
     const maxAlder = foreldresAlder - 18;
     const minAlder = Math.max(foreldresAlder - 50, 0);
-    const barnetsFødselsnummer = seededTilfeldigFodselsnummer(faker, minAlder, maxAlder);
+    const barnetsFødselsnummer = seededTilfeldigFodselsnummer(minAlder, maxAlder);
     const alder = getAlderFromFødselsnummer(barnetsFødselsnummer);
     return {
         harSammeBosted: vektetSjanse(faker, 0.7),
@@ -67,7 +67,7 @@ function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
 }
 
 function lagPartner(faker: FakerStatic, relasjonstype: Relasjonstype): Familierelasjon {
-    const partnersFødslesnummer = seededTilfeldigFodselsnummer(faker, 18, 100);
+    const partnersFødslesnummer = seededTilfeldigFodselsnummer(18, 100);
     const alder = getAlderFromFødselsnummer(partnersFødslesnummer);
     return {
         harSammeBosted: vektetSjanse(faker, 0.9),
@@ -96,7 +96,7 @@ function lagForeldre(faker: FakerStatic, barnetsAlder: number): Familierelasjon[
 function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Relasjonstype) {
     const minAlder = barnetsAlder + 18;
     const kjønn = relasjonstype === Relasjonstype.Mor ? Kjønn.Kvinne : Kjønn.Mann;
-    const foreldersFødselsnummer = seededTilfeldigFodselsnummer(faker, minAlder, Math.max(minAlder, 100), kjønn);
+    const foreldersFødselsnummer = seededTilfeldigFodselsnummer(minAlder, Math.max(minAlder, 100), kjønn);
     const alder = getAlderFromFødselsnummer(foreldersFødselsnummer);
     return {
         harSammeBosted: vektetSjanse(faker, 0.9),
