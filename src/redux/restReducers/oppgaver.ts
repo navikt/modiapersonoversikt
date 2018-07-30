@@ -4,8 +4,8 @@ import { Oppgave } from '../../models/oppgave';
 
 const { reducer, action } = createActionsAndReducer<Oppgave[]>('oppgave');
 
-export function plukkOppgaver(enhet: string, temagruppe: string) {
-    return action(() => plukkOppgaveFraServer(enhet, temagruppe));
+export function plukkOppgaver(temagruppe: string) {
+    return action(() => plukkOppgaveFraServer(temagruppe));
 }
 
 export function selectFodselsnummerfraOppgaver(oppgaver: Oppgave[]) {
