@@ -30,6 +30,9 @@ const KnappLayout = styled.div`
   display: flex;
   align-items: flex-start;
   > *:first-child {
+    select {
+      width: unset;
+    }
     margin-bottom: 0;
     flex-grow: 2;
     white-space: nowrap;
