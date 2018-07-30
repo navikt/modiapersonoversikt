@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { getSkjemafeil, InputState } from '../utils/formUtils';
 
 const RetningsnummerWrapper = styled.div`
   margin-right: 2em;
@@ -13,9 +12,8 @@ const RetningsnummerWrapper = styled.div`
 
 interface RetningsnummerInputProps {
     retningsnummerKodeverk: KodeverkResponse;
-    state: InputState;
+    retningsnummer: string;
     onChange: (input: string) => void;
-    visFeilmeldinger: boolean;
 }
 
 function DefaultRetningsnummer() {
@@ -53,9 +51,7 @@ function getValgtRetningsnummer(retningsnummerKodeverk: KodeverkResponse, retnin
 
 export function Retningsnummer(props: RetningsnummerInputProps) {
     const retningsnummerValg = getRetningsnummerSelectValg(props.retningsnummerKodeverk);
-    const valgtRetningsnummer = getValgtRetningsnummer(props.retningsnummerKodeverk, props.state.input);
-
-    const skjemafeil = props.visFeilmeldinger ? getSkjemafeil(props.state) : undefined;
+    const valgtRetningsnummer = getValgtRetningsnummer(props.retningsnummerKodeverk, props.retningsnummer);
 
     return (
         <RetningsnummerWrapper>
@@ -63,7 +59,6 @@ export function Retningsnummer(props: RetningsnummerInputProps) {
                 label="Landkode"
                 bredde={'m'}
                 value={valgtRetningsnummer}
-                feil={skjemafeil}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                     props.onChange(event.target.value)}
             >

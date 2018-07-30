@@ -13,7 +13,6 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import {
     formaterTelefonnummer,
-    gyldigTelefonnummer,
     sorterRetningsnummerMedNorgeFørst
 } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
@@ -26,18 +25,24 @@ import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-a
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
-import { InputState } from '../utils/formUtils';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { getValidTelefonInputForm, validerTelefonInput } from './kontaktinformasjonValidator';
 
 export interface TelefonInput {
-    retningsnummer: InputState;
-    identifikator: InputState;
+    retningsnummer: string;
+    identifikator: string;
 }
 
-interface State {
-    mobilInput: TelefonInput;
-    jobbTelefonInput: TelefonInput;
-    hjemTelefonInput: TelefonInput;
+export interface EndreKontaktinformasjonInputs {
+    mobil: TelefonInput;
+    jobb: TelefonInput;
+    hjem: TelefonInput;
+}
+
+export interface EndreKontaktinformasjonState {
+    inputs: EndreKontaktinformasjonInputs;
+    validator: ValideringsResultat<EndreKontaktinformasjonInputs>;
     visFeilmeldinger: boolean;
 }
 
@@ -69,59 +74,46 @@ const TelefonWrapper = styled.div`
 function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
     if (!telefon) {
         return {
-            retningsnummer: {
-                input: '',
-                feilmelding: null
-            }, identifikator: {
-                input: '',
-                feilmelding: null
-            }
+            retningsnummer: '',
+            identifikator: ''
         };
     }
 
     return {
-        retningsnummer: {
-            input: telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '',
-            feilmelding: null
-        },
-        identifikator: {
-            input: formaterTelefonnummer(telefon.identifikator),
-            feilmelding: null
-        }
+        retningsnummer: telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '',
+        identifikator: formaterTelefonnummer(telefon.identifikator)
     };
 }
 
-function initialState(kontaktinformasjon: NavKontaktinformasjon) {
+function getInitialState(kontaktinformasjon: NavKontaktinformasjon): EndreKontaktinformasjonState {
+    const inputs = {
+        mobil: getInitialTelefonState(kontaktinformasjon.mobil),
+        jobb: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
+        hjem: getInitialTelefonState(kontaktinformasjon.hjemTelefon)
+    };
     return {
-        mobilInput: getInitialTelefonState(kontaktinformasjon.mobil),
-        jobbTelefonInput: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
-        hjemTelefonInput: getInitialTelefonState(kontaktinformasjon.hjemTelefon),
+        inputs: inputs,
+        validator: getValidTelefonInputForm(inputs),
         visFeilmeldinger: false
     };
 }
 
-function erEndret(telefon1: TelefonInput, telefon2: TelefonInput) {
-    const retningsnummerEndret = telefon1.retningsnummer.input !== telefon2.retningsnummer.input;
-    const identifikatorEndret = telefon1.identifikator.input !== telefon2.identifikator.input;
-    return retningsnummerEndret || identifikatorEndret;
-}
-
 function getTelefonHvisSatt(telefon: TelefonInput) {
-    if (erTomStreng(telefon.identifikator.input) || erTomStreng(telefon.retningsnummer.input)) {
+    if (erTomStreng(telefon.identifikator) || erTomStreng(telefon.retningsnummer)) {
         return undefined;
     }
     return {
-        identifikator: removeWhitespace(telefon.identifikator.input),
-        retningsnummer: removeWhitespace(telefon.retningsnummer.input)
+        identifikator: removeWhitespace(telefon.identifikator),
+        retningsnummer: removeWhitespace(telefon.retningsnummer)
     };
 }
 
-class KontaktinformasjonForm extends React.Component<Props, State> {
+class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformasjonState> {
 
     constructor(props: Props) {
         super(props);
 
-        this.state = initialState(this.props.person.kontaktinformasjon);
+        this.state = getInitialState(this.props.person.kontaktinformasjon);
         this.mobilTelefonnummerInputChange = this.mobilTelefonnummerInputChange.bind(this);
         this.mobilRetningsnummerInputChange = this.mobilRetningsnummerInputChange.bind(this);
         this.jobbTelefonnummerInputChange = this.jobbTelefonnummerInputChange.bind(this);
@@ -148,79 +140,72 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
         }
     }
 
-    mobilTelefonnummerInputChange(input: string) {
+    inputChange(change: Partial<EndreKontaktinformasjonInputs>) {
         this.setState({
-            mobilInput: {
-                ...this.state.mobilInput,
-                identifikator: {
-                    input: formaterTelefonnummer(input),
-                    feilmelding: null
-                }
+            inputs: {
+                ...this.state.inputs,
+                ...change
+            },
+            validator: getValidTelefonInputForm(this.state.inputs)
+        });
+    }
+
+    mobilTelefonnummerInputChange(input: string) {
+        this.inputChange({
+            mobil: {
+                ...this.state.inputs.mobil,
+                identifikator: formaterTelefonnummer(input)
             }
         });
         this.resetReducer();
     }
 
     mobilRetningsnummerInputChange(input: string) {
-        this.setState({
-            mobilInput: {
-                ...this.state.mobilInput,
-                retningsnummer: {
-                    input,
-                    feilmelding: null
-                }
+        this.inputChange({
+            mobil: {
+                ...this.state.inputs.mobil,
+                retningsnummer: input
+
             }
         });
         this.resetReducer();
     }
 
     jobbTelefonnummerInputChange(input: string) {
-        this.setState({
-            jobbTelefonInput: {
-                ...this.state.jobbTelefonInput,
-                identifikator: {
-                    input: formaterTelefonnummer(input),
-                    feilmelding: null
-                }
+        this.inputChange({
+            jobb: {
+                ...this.state.inputs.jobb,
+                identifikator: formaterTelefonnummer(input)
             }
         });
         this.resetReducer();
     }
 
     jobbRetningsnummerInputChange(input: string) {
-        this.setState({
-            jobbTelefonInput: {
-                ...this.state.jobbTelefonInput,
-                retningsnummer: {
-                    input,
-                    feilmelding: null
-                }
+        this.inputChange({
+            jobb: {
+                ...this.state.inputs.jobb,
+                retningsnummer: input
             }
         });
         this.resetReducer();
     }
 
     hjemTelefonnummerInputChange(input: string) {
-        this.setState({
-            hjemTelefonInput: {
-                ...this.state.hjemTelefonInput,
-                identifikator: {
-                    input: formaterTelefonnummer(input),
-                    feilmelding: null
-                }
+        this.inputChange({
+            hjem: {
+                ...this.state.inputs.hjem,
+                identifikator: formaterTelefonnummer(input)
             }
         });
         this.resetReducer();
     }
 
     hjemRetningsnummerInputChange(input: string) {
-        this.setState({
-            hjemTelefonInput: {
-                ...this.state.hjemTelefonInput,
-                retningsnummer: {
-                    input,
-                    feilmelding: null
-                }
+        this.inputChange({
+            hjem: {
+                ...this.state.inputs.hjem,
+                retningsnummer: input
             }
         });
         this.resetReducer();
@@ -234,59 +219,26 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
 
     avbryt(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
-        this.setState(initialState(this.props.person.kontaktinformasjon));
+        this.setState(getInitialState(this.props.person.kontaktinformasjon));
         this.resetReducer();
-    }
-
-    telefonInputErUgyldig([telefontype, telefonnummer]: [string, TelefonInput]): boolean {
-        let retningsnummerfeilmelding = null;
-        let telefonnummerfeilmelding = null;
-
-        if (!telefonnummer.retningsnummer.input && telefonnummer.identifikator.input.length !== 0) {
-            retningsnummerfeilmelding = 'Velg retningsnummer';
-        }
-        if (telefonnummer.identifikator.input.length !== 0
-            && !gyldigTelefonnummer(telefonnummer.identifikator.input)) {
-            telefonnummerfeilmelding = 'Telefonnummer kan kun inneholde tall';
-        }
-
-        const state = {};
-        state[telefontype] = {
-            ...telefonnummer,
-            identifikator: {
-                ...telefonnummer.identifikator,
-                feilmelding: telefonnummerfeilmelding
-            },
-            retningsnummer: {
-                ...telefonnummer.retningsnummer,
-                feilmelding: retningsnummerfeilmelding
-            }
-        };
-        this.setState(state);
-
-        return retningsnummerfeilmelding !== null || telefonnummerfeilmelding !== null;
-    }
-
-    validInput(): boolean {
-        const {hjemTelefonInput, jobbTelefonInput, mobilInput} = this.state;
-
-        return Object.entries({hjemTelefonInput, jobbTelefonInput, mobilInput})
-            .filter(this.telefonInputErUgyldig, this)
-            .length === 0;
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (!this.validInput()) {
-            this.setState({visFeilmeldinger: true});
+        const validerinsResultat = validerTelefonInput(this.state.inputs);
+
+        if (!validerinsResultat.formErGyldig) {
+            this.setState({
+                validator: validerinsResultat
+            });
             return;
         }
 
         const request = {
-            mobil: getTelefonHvisSatt(this.state.mobilInput),
-            jobb: getTelefonHvisSatt(this.state.jobbTelefonInput),
-            hjem: getTelefonHvisSatt(this.state.hjemTelefonInput)
+            mobil: getTelefonHvisSatt(this.state.inputs.mobil),
+            jobb: getTelefonHvisSatt(this.state.inputs.jobb),
+            hjem: getTelefonHvisSatt(this.state.inputs.hjem)
         };
         this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
     }
@@ -296,15 +248,8 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
     }
 
     formErEndret() {
-        const mobilProps = getInitialTelefonState(this.props.person.kontaktinformasjon.mobil);
-        const jobbProps = getInitialTelefonState(this.props.person.kontaktinformasjon.jobbTelefon);
-        const hjemProps = getInitialTelefonState(this.props.person.kontaktinformasjon.hjemTelefon);
-
-        const mobilErEndret = erEndret(mobilProps, this.state.mobilInput);
-        const jobbErEndret = erEndret(jobbProps, this.state.jobbTelefonInput);
-        const hjemErEndret = erEndret(hjemProps, this.state.hjemTelefonInput);
-
-        return mobilErEndret || jobbErEndret || hjemErEndret;
+        const initialState: EndreKontaktinformasjonState = getInitialState(this.props.person.kontaktinformasjon);
+        return JSON.stringify(initialState) !== JSON.stringify(this.state);
     }
 
     kontaktInfoBleLagret() {
@@ -329,10 +274,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     <TelefonWrapper>
                         <TelefonInput
                             retningsnummerKodeverk={this.props.retningsnummerKodeverk}
-                            inputValue={this.state.mobilInput}
+                            inputValue={this.state.inputs.mobil}
+                            skjemafeil={this.state.validator.felter.mobil.skjemafeil}
                             retningsnummerInputChange={this.mobilRetningsnummerInputChange}
                             telfonnummerInputChange={this.mobilTelefonnummerInputChange}
-                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Mobiltelefon
                         </TelefonInput>
@@ -341,10 +286,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     <TelefonWrapper>
                         <TelefonInput
                             retningsnummerKodeverk={this.props.retningsnummerKodeverk}
-                            inputValue={this.state.hjemTelefonInput}
+                            inputValue={this.state.inputs.hjem}
+                            skjemafeil={this.state.validator.felter.hjem.skjemafeil}
                             retningsnummerInputChange={this.hjemRetningsnummerInputChange}
                             telfonnummerInputChange={this.hjemTelefonnummerInputChange}
-                            visFeilmeldinger={this.state.visFeilmeldinger}
                         >
                             Hjemmenummer
                         </TelefonInput>
@@ -352,10 +297,10 @@ class KontaktinformasjonForm extends React.Component<Props, State> {
                     <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
-                        inputValue={this.state.jobbTelefonInput}
+                        inputValue={this.state.inputs.jobb}
+                        skjemafeil={this.state.validator.felter.jobb.skjemafeil}
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
-                        visFeilmeldinger={this.state.visFeilmeldinger}
                     >
                         Jobbnummer
                     </TelefonInput>
