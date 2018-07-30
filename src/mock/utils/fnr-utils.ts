@@ -1,16 +1,12 @@
 import *  as moment from 'moment';
-import { Moment } from 'moment';
-import fnrGenerator from 'fnr-generator';
-import * as faker from 'faker/locale/nb_NO';
-import FakerStatic = Faker.FakerStatic;
+
+import navfaker from 'nav-faker/dist/index';
+import { Kjønn as Kjønnstyper } from 'nav-faker/dist/fodselsnummer/fodselsnummer';
 import { Kjønn } from '../../models/person/person';
-import { erDnummer, utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
-import { aremark } from '../person/aremark';
-import { padLeft } from '../../utils/string-utils';
+import FakerStatic = Faker.FakerStatic;
 
 export function randomFodselsnummer(): string {
-    const tilfeldigDato = faker.date.past(120);
-    return fnrGenerator(tilfeldigDato).next().value;
+    return navfaker.fødselsnummer.generer();
 }
 
 export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic,
@@ -19,109 +15,18 @@ export function seededTilfeldigFodselsnummer(seededFaker: FakerStatic,
                                              kjønn?: Kjønn) {
     const fromDate = moment().subtract(maxAlder, 'years').toDate();
     const toDate = moment().subtract(minAlder, 'years').toDate();
-    const tilfeldigFødselsdato = seededFaker.date.between(fromDate, toDate);
-
-    var fnr = fnrGenerator(tilfeldigFødselsdato).next().value;
-    if (kjønn != null) {
-        return getRiktigKjønnPåFødslesnummer(fnr, kjønn);
-    }
-    return fnr;
+    const tilfeldigFødselsdato = navfaker.dato.mellom(fromDate, toDate);
+    return navfaker.fødselsnummer.generer({fødselsdato: tilfeldigFødselsdato, kjønn: getKjønnstype(kjønn)});
 }
 
-export function getFodselsdato(fødselsnummer: string): Moment {
-    if (fødselsnummer.length !== 11) {
-        throw Error('Ugyldig lengde på fødselsnummer: ' + fødselsnummer);
-    }
-
-    const dag = getDag(fødselsnummer);
-
-    const fireSifretÅr = getFiresifretÅr(fødselsnummer);
-    const måned = fødselsnummer.substring(2, 4);
-    return moment(`${fireSifretÅr}-${måned}-${dag}`);
-}
-
-function getDag(fødselsnummer: string): string {
-    let dag = Number(fødselsnummer.substring(0, 2));
-    if (erDnummer(fødselsnummer)) {
-        dag = dag - 40;
-    } else if (dag >= 72) {
-        throw Error('Fødselsnummer er av ukjent format: ' + fødselsnummer);
-    }
-
-    return padLeft(String(dag), 2, '0');
-}
-
-function getFiresifretÅr(fødselsnummer: string) {
-    const year = Number(fødselsnummer.substring(4, 6));
-    const individnummer = Number(fødselsnummer.substring(6, 9));
-
-    if (individnummer < 500) {
-        return year +  1900;
-    } else if (individnummer < 750 && 56 < year) {
-        return year + 1800;
-    } else if (individnummer < 1000 && year < 40) {
-        return year + 2000;
-    } else if (900 < individnummer  || individnummer > 1000 || 39 >= year) {
-        throw new Error('Ugyldig fødselsnummer: ' + fødselsnummer);
+function getKjønnstype(kjønn?: Kjønn): Kjønnstyper | undefined {
+    if (kjønn) {
+        if (kjønn === Kjønn.Kvinne) {
+            return Kjønnstyper.KVINNE;
+        } else {
+            return Kjønnstyper.MANN;
+        }
     } else {
-        return year + 1900;
-    }
-
-}
-
-function getRiktigKjønnPåFødslesnummer(fødselsnummer: string, kjønn: Kjønn) {
-    if (utledKjønnFraFødselsnummer(fødselsnummer) !== kjønn) {
-        const kjønnsiffer = getTilfeldigKjønnsiffer(kjønn);
-        const nyttfnr = getNyttFødselsnummer(fødselsnummer, kjønnsiffer);
-
-        return nyttfnr.length > 11 ? aremark.fødselsnummer : nyttfnr;
-    } else {
-        return fødselsnummer;
+        return undefined;
     }
 }
-
-function getTilfeldigKjønnsiffer(kjønn: Kjønn) {
-    const tilfeldigPartall = getTilfeldigPartall().toString();
-    const tilfeldigOddetall = (getTilfeldigPartall() + 1).toString();
-    return kjønn === Kjønn.Kvinne ? tilfeldigPartall : tilfeldigOddetall;
-}
-
-function getTilfeldigPartall() {
-    return (Math.floor(Math.random() * 4) + 1) * 2;
-}
-
-function getNyttFødselsnummer(fødselsnummer: String, kjønnsiffer: String) {
-    var nyttfnr = fødselsnummer.substr(0, 8) + kjønnsiffer + fødselsnummer.substr(9, 11);
-    nyttfnr = nyttfnr.substr(0, 9) + getKontrollsiffer1(nyttfnr) + nyttfnr.substr(10, 11);
-    return  nyttfnr.substr(0, 10) + getKontrollsiffer2(nyttfnr);
-}
-
-function getKontrollsiffer1(fnr: string) {
-    return 11 - ((3 * d1(fnr) + 7 * d2(fnr) + 6 * m1(fnr) + 1 * m2(fnr) + 8 * å1(fnr) + 9 * å2(fnr)
-        + 4 * i1(fnr) + 5 * i2(fnr) + 2 * i3(fnr)) % 11);
-}
-
-function getKontrollsiffer2(fnr: string) {
-    return 11 - ((5 * d1(fnr) + 4 * d2(fnr) + 3 * m1(fnr) + 2 * m2(fnr) + 7 * å1(fnr) + 6 * å2(fnr)
-        + 5 * i1(fnr) + 4 * i2(fnr) + 3 * i3(fnr) + 2 * k1(fnr)) % 11);
-}
-
-function d1(fnr: string) { return Number(fnr.charAt(0)); }
-
-function d2(fnr: string) { return Number(fnr.charAt(1)); }
-
-function m1(fnr: string) { return Number(fnr.charAt(2)); }
-
-function m2(fnr: string) { return Number(fnr.charAt(3)); }
-
-function å1(fnr: string) { return Number(fnr.charAt(4)); }
-
-function å2(fnr: string) { return Number(fnr.charAt(5)); }
-
-function i1(fnr: string) { return Number(fnr.charAt(6)); }
-
-function i2(fnr: string) { return Number(fnr.charAt(7)); }
-
-function i3(fnr: string) { return Number(fnr.charAt(8)); }
-
-function k1(fnr: string) { return Number(fnr.charAt(9)); }
