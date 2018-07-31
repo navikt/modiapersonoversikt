@@ -14,7 +14,7 @@ import {
 } from '../../models/person/person';
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
-import { getFamilierelasjoner } from './familerelasjonerMock';
+import { getFamilierelasjoner } from './familierelasjoner/familerelasjonerMock';
 import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
@@ -31,7 +31,7 @@ export function getPerson(fødselsnummer: string): PersonRespons {
         if (vektetSjanse(faker, 0.02)) {
             return getBegrensetInnsyn();
         } else {
-            return getTilfeldigPerson(fødselsnummer);
+            return genererPerson(fødselsnummer);
         }
     }
 }
@@ -43,9 +43,10 @@ function getBegrensetInnsyn(): BegrensetTilgang {
     };
 }
 
-function getTilfeldigPerson(fødselsnummer: string): Person {
-    const alder = moment().diff(navfaker.fødselsnummer.getFødselsdato(fødselsnummer), 'years');
-    const sivilstand = getSivilstand(moment(navfaker.fødselsnummer.getFødselsdato(fødselsnummer)), faker);
+function genererPerson(fødselsnummer: string): Person {
+    const fødselsdato = navfaker.fødselsnummer.getFødselsdato(fødselsnummer);
+    const alder = moment().diff(fødselsdato, 'years');
+    const sivilstand = getSivilstand(moment(fødselsdato), faker);
     return {
         fødselsnummer: fødselsnummer,
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
@@ -61,7 +62,7 @@ function getTilfeldigPerson(fødselsnummer: string): Person {
         alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
         postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
         sivilstand: sivilstand,
-        familierelasjoner: getFamilierelasjoner(faker, alder, sivilstand),
+        familierelasjoner: getFamilierelasjoner(faker, fødselsdato, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak(),
         kontaktinformasjon: getNavKontaktinformasjon(faker)
     };

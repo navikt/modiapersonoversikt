@@ -8,7 +8,7 @@ import 'jest-styled-components';
 import reducers from '../redux/reducers';
 import { applyMiddleware, createStore } from 'redux';
 import { actionNames as navKontorActionNames } from '../redux/restReducers/navkontor';
-import { mockVergemal } from '../mock/vergemal-mock';
+import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
 import { kontaktinformasjonActionNames } from '../redux/restReducers/kontaktinformasjon';
 import { actionNames as egenAnsattActionNames } from '../redux/restReducers/egenansatt';
 import { actionNames as vergeMålActionNames } from '../redux/restReducers/vergemal';

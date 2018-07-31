@@ -1,10 +1,12 @@
 import * as faker from 'faker/locale/nb_NO';
-import { getSistOppdatert, vektetSjanse } from './utils/mock-utils';
-import { Verge, Vergemal } from '../models/vergemal/vergemal';
-import { seededTilfeldigFodselsnummer } from './utils/fnr-utils';
-import { lagNavn } from './utils/person-utils';
-import { Kodeverk } from '../models/kodeverk';
-import { aremark } from './person/aremark';
+
+import navfaker from 'nav-faker';
+
+import { Verge, Vergemal } from '../../../models/vergemal/vergemal';
+import { aremark } from '../aremark';
+import { getSistOppdatert, vektetSjanse } from '../../utils/mock-utils';
+import { lagNavn } from '../../utils/person-utils';
+import { Kodeverk } from '../../../models/kodeverk';
 
 const VERGETYPER = [
     lagKodeverksverdi('ADV', 'Advokat'),
@@ -60,7 +62,7 @@ function getVergemal() {
 }
 
 function getVerge(): Verge {
-    const vergesFødselsnummer = seededTilfeldigFodselsnummer(18, 100);
+    const vergesFødselsnummer = navfaker.fødselsnummer.myndig();
     const vergemålManglerVergeData = vektetSjanse(faker, 0.2);
     return {
         ident: vergemålManglerVergeData ? undefined : vergesFødselsnummer,
