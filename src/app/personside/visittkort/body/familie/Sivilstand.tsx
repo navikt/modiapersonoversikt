@@ -43,7 +43,7 @@ function Partner({relasjon, sivilstand}: PartnerProps) {
             <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
-            <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
+            <Undertekst>{relasjon.tilPerson.fødselsnummer || ''}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
         </>
     );

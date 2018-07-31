@@ -23,7 +23,7 @@ function Barn({barn}: BarnProps) {
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode}/>
             <Undertekst><NavnOgAlder relasjon={barn}/></Undertekst>
-            <Undertekst>{barn.tilPerson.fødselsnummer}</Undertekst>
+            <Undertekst>{barn.tilPerson.fødselsnummer || ''}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Undertekst>
         </VisittkortElement>
     );
