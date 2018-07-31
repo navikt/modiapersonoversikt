@@ -13,7 +13,7 @@ import { formaterDato } from '../../../utils/dateUtils';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Retningsnummer } from './RetningsnummerInput';
 import { ignoreEnter } from '../utils/formUtils';
-import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 const TelefonnummerWrapper = styled.div`
   flex: auto;
@@ -27,7 +27,7 @@ interface TelefonInputProps {
     children: string;
     retningsnummerKodeverk: KodeverkResponse;
     inputValue: TelefonInput;
-    skjemafeil: SkjemaelementFeil | undefined;
+    valideringsresultat: ValideringsResultat<TelefonInput>;
     retningsnummerInputChange: (input: string) => void;
     telfonnummerInputChange: (input: string) => void;
 }
@@ -53,6 +53,7 @@ export function TelefonInput(props: TelefonInputProps) {
                 <Retningsnummer
                     retningsnummerKodeverk={props.retningsnummerKodeverk}
                     retningsnummer={props.inputValue.retningsnummer}
+                    valideringsresultat={props.valideringsresultat}
                     onChange={props.retningsnummerInputChange}
                 />
                 <TelefonnummerWrapper>
@@ -60,7 +61,7 @@ export function TelefonInput(props: TelefonInputProps) {
                         bredde={'XXL'}
                         label="Telefonnummer"
                         value={props.inputValue.identifikator}
-                        feil={props.skjemafeil}
+                        feil={props.valideringsresultat.felter.identifikator.skjemafeil}
                         onKeyPress={ignoreEnter}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.telfonnummerInputChange(event.target.value)}

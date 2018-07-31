@@ -10,7 +10,7 @@ import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { NavKontaktinformasjon, Telefon } from '../../../models/person/NAVKontaktinformasjon';
+import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import {
     formaterTelefonnummer,
     sorterRetningsnummerMedNorgeFørst
@@ -27,7 +27,7 @@ import { STATUS } from '../../../redux/restReducers/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
-import { getValidTelefonInputForm, validerTelefonInput } from './kontaktinformasjonValidator';
+import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -40,9 +40,15 @@ export interface EndreKontaktinformasjonInputs {
     hjem: TelefonInput;
 }
 
+export interface EndreKontaktinformasjonValidator {
+    mobil: ValideringsResultat<TelefonInput>;
+    hjem: ValideringsResultat<TelefonInput>;
+    jobb: ValideringsResultat<TelefonInput>;
+}
+
 export interface EndreKontaktinformasjonState {
     inputs: EndreKontaktinformasjonInputs;
-    validator: ValideringsResultat<EndreKontaktinformasjonInputs>;
+    validator: EndreKontaktinformasjonValidator;
     visFeilmeldinger: boolean;
 }
 
@@ -85,19 +91,6 @@ function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
     };
 }
 
-function getInitialState(kontaktinformasjon: NavKontaktinformasjon): EndreKontaktinformasjonState {
-    const inputs = {
-        mobil: getInitialTelefonState(kontaktinformasjon.mobil),
-        jobb: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
-        hjem: getInitialTelefonState(kontaktinformasjon.hjemTelefon)
-    };
-    return {
-        inputs: inputs,
-        validator: getValidTelefonInputForm(inputs),
-        visFeilmeldinger: false
-    };
-}
-
 function getTelefonHvisSatt(telefon: TelefonInput) {
     if (erTomStreng(telefon.identifikator) || erTomStreng(telefon.retningsnummer)) {
         return undefined;
@@ -113,7 +106,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     constructor(props: Props) {
         super(props);
 
-        this.state = getInitialState(this.props.person.kontaktinformasjon);
+        this.state = this.getInitialState();
         this.mobilTelefonnummerInputChange = this.mobilTelefonnummerInputChange.bind(this);
         this.mobilRetningsnummerInputChange = this.mobilRetningsnummerInputChange.bind(this);
         this.jobbTelefonnummerInputChange = this.jobbTelefonnummerInputChange.bind(this);
@@ -134,6 +127,25 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
         this.reloadOnEndret(prevProps);
     }
 
+    getInitialState(): EndreKontaktinformasjonState {
+        const kontaktinformasjon = this.props.person.kontaktinformasjon;
+        const inputs = {
+            mobil: getInitialTelefonState(kontaktinformasjon.mobil),
+            jobb: getInitialTelefonState(kontaktinformasjon.jobbTelefon),
+            hjem: getInitialTelefonState(kontaktinformasjon.hjemTelefon)
+        };
+        const initialValidator: EndreKontaktinformasjonValidator = {
+            hjem: getValidTelefonInput(),
+            jobb: getValidTelefonInput(),
+            mobil: getValidTelefonInput()
+        };
+        return {
+            inputs: inputs,
+            validator: initialValidator,
+            visFeilmeldinger: false
+        };
+    }
+
     reloadOnEndret(prevProps: Props) {
         if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
@@ -146,7 +158,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 ...this.state.inputs,
                 ...change
             },
-            validator: getValidTelefonInputForm(this.state.inputs)
+            validator: this.getInitialState().validator
         });
     }
 
@@ -219,16 +231,20 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
 
     avbryt(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
-        this.setState(getInitialState(this.props.person.kontaktinformasjon));
+        this.setState(this.getInitialState());
         this.resetReducer();
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const validerinsResultat = validerTelefonInput(this.state.inputs);
+        const validerinsResultat = this.getValideringsResultat();
+        const formErGyldig =
+            validerinsResultat.mobil.formErGyldig
+            && validerinsResultat.jobb.formErGyldig
+            && validerinsResultat.hjem.formErGyldig;
 
-        if (!validerinsResultat.formErGyldig) {
+        if (!formErGyldig) {
             this.setState({
                 validator: validerinsResultat
             });
@@ -243,12 +259,24 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
         this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
     }
 
+    getValideringsResultat(): EndreKontaktinformasjonValidator {
+        const hjemValidator = validerTelefonInput(this.state.inputs.hjem, 'hjem');
+        const jobbValidator = validerTelefonInput(this.state.inputs.jobb, 'jobb');
+        const mobilValidator = validerTelefonInput(this.state.inputs.mobil, 'mobil');
+
+        return {
+            hjem: hjemValidator,
+            jobb: jobbValidator,
+            mobil: mobilValidator
+        };
+    }
+
     requestIsPending() {
         return this.props.reducerStatus === STATUS.LOADING;
     }
 
     formErEndret() {
-        const initialState: EndreKontaktinformasjonState = getInitialState(this.props.person.kontaktinformasjon);
+        const initialState: EndreKontaktinformasjonState = this.getInitialState();
         return JSON.stringify(initialState) !== JSON.stringify(this.state);
     }
 
@@ -275,7 +303,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                         <TelefonInput
                             retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                             inputValue={this.state.inputs.mobil}
-                            skjemafeil={this.state.validator.felter.mobil.skjemafeil}
+                            valideringsresultat={this.state.validator.mobil}
                             retningsnummerInputChange={this.mobilRetningsnummerInputChange}
                             telfonnummerInputChange={this.mobilTelefonnummerInputChange}
                         >
@@ -287,7 +315,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                         <TelefonInput
                             retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                             inputValue={this.state.inputs.hjem}
-                            skjemafeil={this.state.validator.felter.hjem.skjemafeil}
+                            valideringsresultat={this.state.validator.hjem}
                             retningsnummerInputChange={this.hjemRetningsnummerInputChange}
                             telfonnummerInputChange={this.hjemTelefonnummerInputChange}
                         >
@@ -298,7 +326,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.inputs.jobb}
-                        skjemafeil={this.state.validator.felter.jobb.skjemafeil}
+                        valideringsresultat={this.state.validator.jobb}
                         retningsnummerInputChange={this.jobbRetningsnummerInputChange}
                         telfonnummerInputChange={this.jobbTelefonnummerInputChange}
                     >

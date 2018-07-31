@@ -1,40 +1,31 @@
 import { default as FormValidator, Valideringsregel } from '../../../utils/forms/FormValidator';
-import { EndreKontaktinformasjonInputs } from './KontaktinformasjonForm';
+import { EndreKontaktinformasjonInputs, TelefonInput } from './KontaktinformasjonForm';
 import { erIkkeTomStreng, erTomStreng } from '../../../utils/string-utils';
 import { gyldigTelefonnummer } from '../../../utils/telefon-utils';
 
-function lagRetningsnummerRegelFor(felt: keyof EndreKontaktinformasjonInputs) {
-    return {
-        felt: felt,
+const regler: Valideringsregel<TelefonInput>[] = [{
+        felt: 'retningsnummer',
         feilmelding: 'Mangler retningsnummer',
-        validator: (kontaktinfo: EndreKontaktinformasjonInputs) =>
-            erTomStreng(kontaktinfo[felt].identifikator) ||
-            erIkkeTomStreng(kontaktinfo[felt].identifikator) && erIkkeTomStreng(kontaktinfo[felt].retningsnummer)
-    };
-}
-
-function lagGyldigTelefonnummerRegelFor(felt: keyof EndreKontaktinformasjonInputs) {
-    return {
-        felt: felt,
+        validator: (input: TelefonInput) =>
+            erTomStreng(input.identifikator) ||
+            erIkkeTomStreng(input.identifikator) && erIkkeTomStreng(input.retningsnummer)
+    }, {
+        felt: 'identifikator',
         feilmelding: 'Ugyldig telefonnummer',
-        validator: (kontaktinfo: EndreKontaktinformasjonInputs) =>
-            kontaktinfo[felt].identifikator.length === 0 || gyldigTelefonnummer(kontaktinfo[felt].identifikator)
-    };
-}
-
-const regler: Valideringsregel<EndreKontaktinformasjonInputs>[] = [
-    lagRetningsnummerRegelFor('mobil'),
-    lagGyldigTelefonnummerRegelFor('mobil'),
-    lagRetningsnummerRegelFor( 'hjem'),
-    lagGyldigTelefonnummerRegelFor('hjem'),
-    lagRetningsnummerRegelFor('jobb'),
-    lagGyldigTelefonnummerRegelFor('jobb')
+        validator: (input: TelefonInput) =>
+            input.identifikator.length === 0 || gyldigTelefonnummer(input.identifikator)
+    }
 ];
 
-export function validerTelefonInput(kontaktInfo: EndreKontaktinformasjonInputs) {
-    return new FormValidator<EndreKontaktinformasjonInputs>(regler).valider(kontaktInfo);
+export function validerTelefonInput(input: TelefonInput, felt: keyof EndreKontaktinformasjonInputs) {
+    return new FormValidator<TelefonInput>(regler).valider(input);
 }
 
-export function getValidTelefonInputForm(kontaktInfo: EndreKontaktinformasjonInputs) {
-    return new FormValidator<EndreKontaktinformasjonInputs>([]).valider(kontaktInfo);
+const dummyInput: TelefonInput = {
+    identifikator: '',
+    retningsnummer: ''
+};
+
+export function getValidTelefonInput() {
+    return new FormValidator<TelefonInput>([]).valider(dummyInput);
 }

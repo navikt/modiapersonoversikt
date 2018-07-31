@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Select from 'nav-frontend-skjema/lib/select';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
+import { TelefonInput } from './KontaktinformasjonForm';
 
 const RetningsnummerWrapper = styled.div`
   margin-right: 2em;
@@ -13,6 +15,7 @@ const RetningsnummerWrapper = styled.div`
 interface RetningsnummerInputProps {
     retningsnummerKodeverk: KodeverkResponse;
     retningsnummer: string;
+    valideringsresultat: ValideringsResultat<TelefonInput>;
     onChange: (input: string) => void;
 }
 
@@ -59,6 +62,7 @@ export function Retningsnummer(props: RetningsnummerInputProps) {
                 label="Landkode"
                 bredde={'m'}
                 value={valgtRetningsnummer}
+                feil={props.valideringsresultat.felter.retningsnummer.skjemafeil}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                     props.onChange(event.target.value)}
             >
