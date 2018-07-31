@@ -12,7 +12,8 @@ import EtikettMini from '../../../components/EtikettMini';
 import { formaterDato } from '../../../utils/dateUtils';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Retningsnummer } from './RetningsnummerInput';
-import { getSkjemafeil, ignoreEnter } from '../utils/formUtils';
+import { ignoreEnter } from '../utils/formUtils';
+import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 const TelefonnummerWrapper = styled.div`
   flex: auto;
@@ -26,9 +27,9 @@ interface TelefonInputProps {
     children: string;
     retningsnummerKodeverk: KodeverkResponse;
     inputValue: TelefonInput;
+    valideringsresultat: ValideringsResultat<TelefonInput>;
     retningsnummerInputChange: (input: string) => void;
     telfonnummerInputChange: (input: string) => void;
-    visFeilmeldinger: boolean;
 }
 
 export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
@@ -45,24 +46,22 @@ export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
 
 export function TelefonInput(props: TelefonInputProps) {
 
-    const skjemafeil = props.visFeilmeldinger ? getSkjemafeil(props.inputValue.identifikator) : undefined;
-
     return (
         <>
             <Ingress>{props.children}</Ingress>
             <TelefonInputWrapper>
                 <Retningsnummer
                     retningsnummerKodeverk={props.retningsnummerKodeverk}
-                    state={props.inputValue.retningsnummer}
+                    retningsnummer={props.inputValue.retningsnummer}
+                    valideringsresultat={props.valideringsresultat}
                     onChange={props.retningsnummerInputChange}
-                    visFeilmeldinger={props.visFeilmeldinger}
                 />
                 <TelefonnummerWrapper>
                     <Input
                         bredde={'XXL'}
                         label="Telefonnummer"
-                        value={props.inputValue.identifikator.input}
-                        feil={skjemafeil}
+                        value={props.inputValue.identifikator}
+                        feil={props.valideringsresultat.felter.identifikator.skjemafeil}
                         onKeyPress={ignoreEnter}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.telfonnummerInputChange(event.target.value)}
