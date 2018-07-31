@@ -1,10 +1,12 @@
 import FakerStatic = Faker.FakerStatic;
 import * as moment from 'moment';
 
+import navfaker from 'nav-faker/dist/index';
+
 import { getPersonstatus } from './personMock';
 import { Familierelasjon, Kjønn, Relasjonstype, Sivilstand, SivilstandTyper } from '../../models/person/person';
 import { vektetSjanse } from '../utils/mock-utils';
-import { getFodselsdato, seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
+import { seededTilfeldigFodselsnummer } from '../utils/fnr-utils';
 import { lagNavn } from '../utils/person-utils';
 import { Diskresjonskoder } from '../../konstanter';
 
@@ -110,12 +112,12 @@ function lagForelder(faker: FakerStatic, barnetsAlder: number, relasjonstype: Re
 }
 
 function getAlderFromFødselsnummer(fødselsnummer: string) {
-    return moment().diff(getFodselsdato(fødselsnummer), 'years');
+    return moment().diff(navfaker.fødselsnummer.getFødselsdato(fødselsnummer), 'years');
 }
 
 function kanskjeLeggTilDiskresjonskoder(faker: FakerStatic, relasjoner: Familierelasjon[]) {
     relasjoner.forEach(relasjon => {
-       if (vektetSjanse(faker, 0.5)) {
+       if (vektetSjanse(faker, 0.1)) {
            relasjon.tilPerson.diskresjonskode = {
                kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
                beskrivelse: 'Sperret adresse, fortrolig'

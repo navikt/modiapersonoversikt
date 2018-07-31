@@ -25,7 +25,7 @@ export function Forelder({relasjon}: ForelderProps) {
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
             <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
-            <Undertekst>{relasjon.tilPerson.fødselsnummer}</Undertekst>
+            <Undertekst>{relasjon.tilPerson.fødselsnummer || ''}</Undertekst>
             <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
         </VisittkortElement>
     );

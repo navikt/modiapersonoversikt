@@ -77,6 +77,10 @@ exports[`viser dialogpanel 1`] = `
   white-space: nowrap;
 }
 
+.c4 > *:first-child select {
+  width: unset;
+}
+
 .c4 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
