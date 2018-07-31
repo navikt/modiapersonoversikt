@@ -1,17 +1,19 @@
 import * as React from 'react';
-import KnappBase from 'nav-frontend-knapper';
-import { Oppgave } from '../../../models/oppgave';
-import { settPersonIKontekst } from '../../routes/routing';
+import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect, Dispatch } from 'react-redux';
-import { History } from 'history';
-import Feilmelding from '../../../components/feilmelding/Feilmelding';
-import Select from 'nav-frontend-skjema/lib/select';
-import { ChangeEvent } from 'react';
-import { velgTemagruppe } from '../../../redux/temagruppe';
 import { Action } from 'redux';
 import styled from 'styled-components';
+
+import KnappBase from 'nav-frontend-knapper';
+import Select from 'nav-frontend-skjema/lib/select';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+
+import { Oppgave } from '../../../models/oppgave';
+import { settPersonIKontekst } from '../../routes/routing';
+import { History } from 'history';
+import Feilmelding from '../../../components/feilmelding/Feilmelding';
+import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
@@ -60,14 +62,13 @@ interface State {
 }
 
 interface StateProps {
-    valgtEnhet: string;
     valgtTemagruppe: string | null;
     oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
 
 interface DispatchProps {
-    plukkOppgaver: (enhet: string, temagruppe: string) => Promise<Oppgave[]>;
+    plukkOppgaver: (temagruppe: string) => Promise<Oppgave[]>;
     velgTemagruppe: (temagruppe: string) => void;
 }
 
@@ -88,7 +89,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
             return;
         }
         this.setState({temagruppeFeilmelding: undefined, tomKø: false});
-        this.props.plukkOppgaver(this.props.valgtEnhet, this.props.valgtTemagruppe)
+        this.props.plukkOppgaver(this.props.valgtTemagruppe)
             .then((oppgaver: Oppgave[]) => {
                 const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
                 if (!fødselsnummer) {
@@ -146,7 +147,6 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
     return {
-        valgtEnhet: '4100',
         valgtTemagruppe: state.valgtTemagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
@@ -155,7 +155,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        plukkOppgaver: (enhet, temagruppe) => dispatch(plukkOppgaver(enhet, temagruppe)),
+        plukkOppgaver: (temagruppe) => dispatch(plukkOppgaver(temagruppe)),
         velgTemagruppe: (temagruppe) => dispatch(velgTemagruppe(temagruppe))
     };
 

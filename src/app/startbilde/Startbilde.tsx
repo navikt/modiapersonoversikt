@@ -78,7 +78,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
 
 function mapDispatchToProps(dispatch: Dispatch<Oppgave[]>): DispatchProps {
     return {
-        plukkOppgaver: () => dispatch(plukkOppgaver('', '')),
+        plukkOppgaver: () => dispatch(plukkOppgaver('')),
     };
 }
 

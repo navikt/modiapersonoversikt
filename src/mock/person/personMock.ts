@@ -1,6 +1,8 @@
 import * as faker from 'faker/locale/nb_NO';
 import * as moment from 'moment';
 
+import navfaker from 'nav-faker/dist/index';
+
 import {
     BegrensetTilgang,
     BegrensetTilgangTyper,
@@ -13,7 +15,6 @@ import {
 import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familerelasjonerMock';
-import { getFodselsdato } from '../utils/fnr-utils';
 import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
@@ -43,8 +44,8 @@ function getBegrensetInnsyn(): BegrensetTilgang {
 }
 
 function getTilfeldigPerson(fødselsnummer: string): Person {
-    const alder = moment().diff(getFodselsdato(fødselsnummer), 'years');
-    const sivilstand = getSivilstand(getFodselsdato(fødselsnummer), faker);
+    const alder = moment().diff(navfaker.fødselsnummer.getFødselsdato(fødselsnummer), 'years');
+    const sivilstand = getSivilstand(moment(navfaker.fødselsnummer.getFødselsdato(fødselsnummer)), faker);
     return {
         fødselsnummer: fødselsnummer,
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
