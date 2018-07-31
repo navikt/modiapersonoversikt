@@ -8,7 +8,6 @@ import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
-import { mockVergemal } from './vergemal-mock';
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
@@ -16,6 +15,7 @@ import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-k
 import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
+import { mockVergemal } from './person/vergemal/vergemalMock';
 
 const STATUS_OK = () => 200;
 

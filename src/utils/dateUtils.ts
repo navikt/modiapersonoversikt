@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import navfaker from 'nav-faker';
 
 export function formaterDato(rawDate: string): string {
     return moment(rawDate).format('DD.MM.YYYY');
@@ -20,4 +21,8 @@ export function erImorgenEllerSenere(date: Date) {
 export function erMaksEttÅrFramITid(date: Date) {
     const ettÅrFramITid = moment().add(1, 'years');
     return moment(date).isSameOrBefore(ettÅrFramITid);
+}
+
+export function getAlderFromFødselsnummer(fødselsnummer: string) {
+    return moment().diff(navfaker.fødselsnummer.getFødselsdato(fødselsnummer), 'years');
 }
