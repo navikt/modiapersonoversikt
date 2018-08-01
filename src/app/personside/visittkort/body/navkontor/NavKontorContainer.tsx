@@ -44,6 +44,12 @@ class NavKontorContainer extends React.Component<Props> {
         }
     }
 
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.person.fødselsnummer !== prevProps.person.fødselsnummer) {
+            this.props.hentNavKontor(this.props.person);
+        }
+    }
+
     render() {
         const baseUrlResponse = this.props.baseUrlReducer;
         return (
