@@ -56,13 +56,13 @@ export interface Bankkonto {
 }
 
 export interface Familierelasjon {
-    harSammeBosted: boolean;
+    harSammeBosted?: boolean;
     rolle: Relasjonstype;
     tilPerson: {
         navn: Navn | null;
-        alder: number;
-        alderMåneder: number;
-        fødselsnummer: string | null;
+        alder?: number;
+        alderMåneder?: number;
+        fødselsnummer?: string;
         personstatus: Bostatus;
         diskresjonskode?: Kodeverk;
     };
@@ -123,8 +123,12 @@ export function getBarn(familierelasjoner: Familierelasjon[]) {
         .filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
 }
 
+function getAlderOrDefault(relasjon: Familierelasjon) {
+    return relasjon.tilPerson.alder ? relasjon.tilPerson.alder : 0;
+}
+
 export function getBarnUnder21(familierelasjoner: Familierelasjon[]) {
-    return getBarn(familierelasjoner).filter(barn => barn.tilPerson.alder <= 21);
+    return getBarn(familierelasjoner).filter(barn => getAlderOrDefault(barn) <= 21);
 }
 
 export function getPartner(person: Person) {

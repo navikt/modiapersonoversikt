@@ -6,7 +6,7 @@ import MannIkon from '../../../../../../svg/Mann';
 import KvinneIkon from '../../../../../../svg/Kvinne';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
 
-export function getKjønnIkon(fødselsnummer: string | null) {
+export function getKjønnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
         case Kjønn.Mann:
@@ -20,7 +20,7 @@ export function getKjønnIkon(fødselsnummer: string | null) {
     }
 }
 
-export function getKjønnBeskrivelseForBarn(fødselsnummer: string | null) {
+export function getKjønnBeskrivelseForBarn(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
         case Kjønn.Mann:
