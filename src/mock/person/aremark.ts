@@ -110,21 +110,29 @@ export const aremark: Person = {
         fraOgMed: '2005-12-12'
     },
     familierelasjoner: [{
-        harSammeBosted: false,
         rolle: Relasjonstype.Barn,
         tilPerson: {
+            navn: null,
+            diskresjonskode: {
+                kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
+                beskrivelse: 'Sperret adresse, fortrolig'
+            },
+            personstatus: {}
+        }
+
+    }, {
+        harSammeBosted: true,
+        rolle: Relasjonstype.Barn,
+        tilPerson: {
+            fødselsnummer: '10117100000',
             navn: {
                 sammensatt: '',
                 fornavn: 'Siri',
                 mellomnavn: null,
                 etternavn: 'Aremark'
             },
-            alder: 17,
-            alderMåneder: 184,
-            fødselsnummer: '10117100000',
             personstatus: {}
         }
-
     }],
     kontaktinformasjon: {
         mobil: {

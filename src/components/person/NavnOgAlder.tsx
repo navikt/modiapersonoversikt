@@ -25,17 +25,31 @@ function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
 }
 
 function getAlder(relasjon: Familierelasjon) {
-    if (relasjon.tilPerson.alder > 0) {
+    if (relasjon.tilPerson.alder  === undefined || relasjon.tilPerson.alder === undefined) {
+        return null;
+    } else if (relasjon.tilPerson.alder > 0) {
         return relasjon.tilPerson.alder;
     } else {
         return relasjon.tilPerson.alderMåneder + ' mnd';
     }
 }
 
+export function getAlderTekst(relasjon: Familierelasjon) {
+    if (erDød(relasjon.tilPerson.personstatus)) {
+        return '(Død)';
+    }
+
+    if (relasjon.tilPerson.alder === undefined) {
+        return null;
+    } else {
+        const alder = getAlder(relasjon);
+        return `(${alder})`;
+    }
+}
+
 function NavnOgAlder({relasjon}: Props) {
-    const alder = erDød(relasjon.tilPerson.personstatus) ? 'Død' : getAlder(relasjon);
     const navn = relasjon.tilPerson.navn ? getNavn(relasjon.tilPerson.navn) : '';
-    return <>{navn} ({alder}) </>;
+    return <>{navn} {getAlderTekst(relasjon)} </>;
 }
 
 export default NavnOgAlder;

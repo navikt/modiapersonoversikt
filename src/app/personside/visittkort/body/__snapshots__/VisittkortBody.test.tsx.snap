@@ -630,6 +630,62 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
+                fill="#15680C"
+              />
+            </svg>
+          </div>
+          <h3
+            className="typo-etikett-liten"
+          >
+            <span
+              className="c5"
+            >
+              Barn
+            </span>
+          </h3>
+        </div>
+        <div
+          className="etikett etikett--advarsel"
+        >
+          <span
+            className="typo-normal"
+          >
+            Kode 7
+          </span>
+        </div>
+        <p
+          className="typo-undertekst"
+        >
+          
+           
+           
+        </p>
+        <p
+          className="typo-undertekst"
+        >
+          
+        </p>
+        <p
+          className="typo-undertekst"
+        />
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c4"
+          >
+            <svg
+              height={64}
+              viewBox="0 0 64 64"
+              width={64}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
                 d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm11.8 27.7c-.9.3-1.8-.2-2.2-1l-3-9.6a.9.9 0 1 0-1.7.4l5 16.5h-4.8v11.8a2.2 2.2 0 1 1-4.4 0V42h-1.4v11.8a2.2 2.2 0 0 1-4.4 0V42H22l5-16.5c.2-.5 0-.9-.5-1a.9.9 0 0 0-1.1.6l-3 9.6c-.4.8-1.3 1.3-2.2 1-1-.3-1.5-1.3-1.2-2.3L23 20.3c1.2-3.5 4-3.5 6.6-3.5h4.6c2.6 0 5.4 0 6.6 3.5l4.1 13c.3 1-.2 2.1-1.2 2.4z"
                 fill="#C86151"
               />
@@ -649,9 +705,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-undertekst"
         >
           Siri Aremark
-           (
-          17
-          ) 
+           
+           
         </p>
         <p
           className="typo-undertekst"
@@ -661,7 +716,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-undertekst"
         >
-          Bor ikke med bruker
+          Bor med bruker
         </p>
       </div>
     </div>
