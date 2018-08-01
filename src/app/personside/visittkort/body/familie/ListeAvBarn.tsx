@@ -29,9 +29,13 @@ function Barn({barn}: BarnProps) {
     );
 }
 
+function getAlderOrDefault(familierelasjon: Familierelasjon) {
+    return familierelasjon.tilPerson.alder ? familierelasjon.tilPerson.alder : 0;
+}
+
 function ListeAvBarn({relasjoner}: Props) {
     const barnUnder21 = getBarnUnder21(relasjoner);
-    barnUnder21.sort((a, b) => a.tilPerson.alder - b.tilPerson.alder);
+    barnUnder21.sort((a, b) => getAlderOrDefault(b) - getAlderOrDefault(b));
 
     const barn = barnUnder21.map((barnet, index) => (
             <Barn

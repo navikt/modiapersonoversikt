@@ -35,7 +35,7 @@ function kanskjeLeggTilDiskresjonskoder(faker: FakerStatic, relasjoner: Familier
                beskrivelse: 'Sperret adresse, fortrolig'
            };
            relasjon.tilPerson.navn = null;
-           relasjon.tilPerson.fødselsnummer = null;
+           relasjon.tilPerson.fødselsnummer = undefined;
        }
     });
     return relasjoner;

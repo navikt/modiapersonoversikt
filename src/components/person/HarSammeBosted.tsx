@@ -1,11 +1,13 @@
 import * as React from 'react';
 
 interface Props {
-    harSammeBosted: boolean;
+    harSammeBosted?: boolean;
 }
 
 function BorMedBruker({harSammeBosted}: Props) {
-    if (harSammeBosted) {
+    if (harSammeBosted === undefined) {
+       return null;
+    } else if (harSammeBosted) {
         return <>Bor med bruker</>;
     } else {
         return <>Bor ikke med bruker</>;
