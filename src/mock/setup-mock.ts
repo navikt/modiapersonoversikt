@@ -58,7 +58,7 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
 }
 
 function setupOppgaveMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/oppgaver/plukk/:temagruppe', withDelayedResponse(
+    mock.post(apiBaseUri + '/oppgaver/plukk/:temagruppe', withDelayedResponse(
         randomDelay(),
         STATUS_OK,
         () => getTilfeldigeOppgaver()));
