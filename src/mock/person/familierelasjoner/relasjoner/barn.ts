@@ -10,7 +10,6 @@ import navfaker from 'nav-faker';
 
 export function getMockBarn(faker: FakerStatic, foreldresAlder: number) {
     const antallBarn = kalkulerAntallBarn(faker, foreldresAlder);
-    console.log(antallBarn);
     let barn = [];
     for (let i =  0; i < antallBarn; i++) {
         barn.push(lagBarn(faker, foreldresAlder));
