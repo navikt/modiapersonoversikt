@@ -12,7 +12,7 @@ import {
     Person,
     PersonRespons
 } from '../../models/person/person';
-import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
+import { TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familierelasjoner/familerelasjonerMock';
 import { aremark } from './aremark';
@@ -22,12 +22,14 @@ import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
 import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
+import { getDiskresjonskode } from '../utils/diskresjonskode-util';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
     } else {
         faker.seed(Number(fødselsnummer));
+        navfaker.seed(fødselsnummer);
         if (vektetSjanse(faker, 0.02)) {
             return getBegrensetInnsyn();
         } else {
@@ -54,7 +56,7 @@ function genererPerson(fødselsnummer: string): Person {
         alder: alder,
         navn: getNavn(fødselsnummer),
         tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
-        diskresjonskode: getDiskresjonskode(),
+        diskresjonskode: navfaker.random.vektetSjanse(0.05) ? getDiskresjonskode() : undefined,
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),
         bankkonto: getBankKonto(),
@@ -163,22 +165,6 @@ function getTilrettelagtKommunikasjonsListe() {
     }
 
     return liste;
-}
-
-function getDiskresjonskode() {
-    if (vektetSjanse(faker, 0.025)) {
-        return {
-            kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
-            beskrivelse: 'Sperret adresse, fortrolig'
-        };
-    } else if (vektetSjanse(faker, 0.025    )) {
-        return {
-            kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
-            beskrivelse: 'Sperret adresse, strengt fortrolig'
-        };
-    } else {
-        return undefined;
-    }
 }
 
 function getFornavn(fødselsnummer: string): string {
