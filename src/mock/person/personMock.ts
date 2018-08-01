@@ -166,12 +166,12 @@ function getTilrettelagtKommunikasjonsListe() {
 }
 
 function getDiskresjonskode() {
-    if (vektetSjanse(faker, 0.1)) {
+    if (vektetSjanse(faker, 0.025)) {
         return {
             kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
             beskrivelse: 'Sperret adresse, fortrolig'
         };
-    } else if (vektetSjanse(faker, 0.1)) {
+    } else if (vektetSjanse(faker, 0.025    )) {
         return {
             kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
             beskrivelse: 'Sperret adresse, strengt fortrolig'
