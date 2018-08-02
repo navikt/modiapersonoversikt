@@ -1,11 +1,13 @@
 import FakerStatic = Faker.FakerStatic;
 import * as moment from 'moment';
+
+import navfaker from 'nav-faker';
+
 import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../../models/person/person';
-import { vektetSjanse } from '../../utils/mock-utils';
-import { Diskresjonskoder } from '../../../konstanter';
 import { lagForeldre } from './relasjoner/foreldre';
 import { getMockBarn } from './relasjoner/barn';
 import { lagPartner } from './relasjoner/partner';
+import { getDiskresjonskode } from '../../utils/diskresjonskode-util';
 
 export function getFamilierelasjoner(faker: FakerStatic, fødselsdato: Date, sivilstand: Sivilstand) {
     let relasjoner: Familierelasjon[] = [];
@@ -22,21 +24,36 @@ export function getFamilierelasjoner(faker: FakerStatic, fødselsdato: Date, siv
         relasjoner.push(lagPartner(faker, Relasjonstype.Samboer));
     }
 
-    relasjoner = kanskjeLeggTilDiskresjonskoder(faker, relasjoner);
+    relasjoner = kanskjeLeggTilDiskresjonskoder(relasjoner);
 
     return relasjoner;
 }
 
-function kanskjeLeggTilDiskresjonskoder(faker: FakerStatic, relasjoner: Familierelasjon[]) {
-    relasjoner.forEach(relasjon => {
-       if (vektetSjanse(faker, 0.1)) {
-           relasjon.tilPerson.diskresjonskode = {
-               kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
-               beskrivelse: 'Sperret adresse, fortrolig'
-           };
-           relasjon.tilPerson.navn = null;
-           relasjon.tilPerson.fødselsnummer = undefined;
+function kanskjeLeggTilDiskresjonskoder(relasjoner: Familierelasjon[]): Familierelasjon[] {
+    const saksbehandlerHarTilgangTilDiskresjonskoder = harSaksbehandlerTilgangTilDiskresjonskode();
+    return relasjoner.map(relasjon => {
+       if (navfaker.random.vektetSjanse(0.3)) {
+           return leggTilDiskresjonskode(relasjon, saksbehandlerHarTilgangTilDiskresjonskoder);
+       } else {
+           return relasjon;
        }
     });
-    return relasjoner;
+}
+
+function leggTilDiskresjonskode(relasjon: Familierelasjon, saksBehandlerHarTilgangTilDiskresjonskode: boolean) {
+    relasjon.tilPerson.diskresjonskode = getDiskresjonskode();
+
+    if (!saksBehandlerHarTilgangTilDiskresjonskode) {
+        relasjon.tilPerson.navn = null;
+        relasjon.tilPerson.fødselsnummer = undefined;
+        relasjon.harSammeBosted = undefined;
+        relasjon.tilPerson.alder = undefined;
+        relasjon.tilPerson.alderMåneder = undefined;
+    }
+
+    return relasjon;
+}
+
+function harSaksbehandlerTilgangTilDiskresjonskode() {
+    return navfaker.random.vektetSjanse(0.5);
 }
