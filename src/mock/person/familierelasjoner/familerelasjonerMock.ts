@@ -1,35 +1,38 @@
-import FakerStatic = Faker.FakerStatic;
 import * as moment from 'moment';
+
+import navfaker from 'nav-faker';
+
 import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../../models/person/person';
-import { vektetSjanse } from '../../utils/mock-utils';
 import { Diskresjonskoder } from '../../../konstanter';
 import { lagForeldre } from './relasjoner/foreldre';
-import { getMockBarn } from './relasjoner/barn';
+import { mockBarn } from './relasjoner/barn';
 import { lagPartner } from './relasjoner/partner';
 
-export function getFamilierelasjoner(faker: FakerStatic, fødselsdato: Date, sivilstand: Sivilstand) {
-    let relasjoner: Familierelasjon[] = [];
+export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivilstand) {
+    const fødselsdato = navfaker.fødselsnummer.getFødselsdato(forFødselsnummer);
     const alder = moment().diff(fødselsdato, 'years');
+
+    let relasjoner: Familierelasjon[] = [];
     if (alder >= 18) {
-        relasjoner = relasjoner.concat(getMockBarn(faker, alder));
+        relasjoner = relasjoner.concat(mockBarn(forFødselsnummer));
     }
 
-    relasjoner = relasjoner.concat(lagForeldre(faker, moment(fødselsdato)));
+    relasjoner = relasjoner.concat(lagForeldre(moment(fødselsdato)));
 
     if (sivilstand.kodeRef === SivilstandTyper.Gift) {
-        relasjoner.push(lagPartner(faker, Relasjonstype.Ektefelle));
+        relasjoner.push(lagPartner(Relasjonstype.Ektefelle));
     } else if (sivilstand.kodeRef === SivilstandTyper.Samboer) {
-        relasjoner.push(lagPartner(faker, Relasjonstype.Samboer));
+        relasjoner.push(lagPartner(Relasjonstype.Samboer));
     }
 
-    relasjoner = kanskjeLeggTilDiskresjonskoder(faker, relasjoner);
+    relasjoner = kanskjeLeggTilDiskresjonskoder(relasjoner);
 
     return relasjoner;
 }
 
-function kanskjeLeggTilDiskresjonskoder(faker: FakerStatic, relasjoner: Familierelasjon[]) {
+function kanskjeLeggTilDiskresjonskoder(relasjoner: Familierelasjon[]) {
     relasjoner.forEach(relasjon => {
-       if (vektetSjanse(faker, 0.1)) {
+       if (navfaker.random.vektetSjanse(0.1)) {
            relasjon.tilPerson.diskresjonskode = {
                kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
                beskrivelse: 'Sperret adresse, fortrolig'

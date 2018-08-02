@@ -6,10 +6,6 @@ export function getSistOppdatert() {
     return moment(faker.date.past(5)).toISOString();
 }
 
-export function datoForÅrSiden(årSiden: number): Date {
-    return moment().subtract(årSiden, 'years').toDate();
-}
-
 export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {
     const tilfeldigTall = seededFaker.random.number({
         max: 1,

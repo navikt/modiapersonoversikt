@@ -48,7 +48,7 @@ function genererPerson(fødselsnummer: string): Person {
     const alder = moment().diff(fødselsdato, 'years');
     const sivilstand = getSivilstand(moment(fødselsdato), faker);
     return {
-        fødselsnummer: fødselsnummer,
+        fødselsnummer,
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
@@ -62,7 +62,7 @@ function genererPerson(fødselsnummer: string): Person {
         alternativAdresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
         postadresse: vektetSjanse(faker, 0.2) ? getTilfeldigAdresseMedPeriode() : undefined,
         sivilstand: sivilstand,
-        familierelasjoner: getFamilierelasjoner(faker, fødselsdato, sivilstand),
+        familierelasjoner: getFamilierelasjoner(fødselsnummer, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak(),
         kontaktinformasjon: getNavKontaktinformasjon(faker)
     };

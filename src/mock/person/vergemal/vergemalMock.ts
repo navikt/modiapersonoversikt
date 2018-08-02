@@ -70,7 +70,7 @@ function getVerge(): Verge {
         mandattype: vektetSjanse(faker, 0.5) ? getTilfeldigMandattype() : undefined,
         mandattekst: vektetSjanse(faker, 0.1) ? 'Fritekst vedrørende mandat' : undefined,
         virkningsperiode: getTilfeldigPeriode(),
-        navn: vergemålManglerVergeData ? undefined : lagNavn(faker),
+        navn: vergemålManglerVergeData ? undefined : lagNavn(vergesFødselsnummer),
         vergetype: getTilfeldigVergetype(),
         embete: lagKodeverksverdi('AAA', 'Fylkesmannen i ' + faker.address.city())
     };

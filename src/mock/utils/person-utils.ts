@@ -1,10 +1,12 @@
-import FakerStatic = Faker.FakerStatic;
-import { vektetSjanse } from './mock-utils';
+import * as faker from 'faker/locale/nb_NO';
+import navfaker from 'nav-faker';
 
-export function lagNavn(faker: FakerStatic) {
+export function lagNavn(fødselsnummer: string) {
+    faker.seed(Number(fødselsnummer));
+    navfaker.seed(fødselsnummer);
     const fornavn = faker.name.firstName();
     const etternavn = faker.name.lastName();
-    const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName() : '';
+    const mellomnavn = navfaker.random.vektetSjanse(0.5) ? faker.name.lastName() : '';
 
     return {
         fornavn: fornavn,

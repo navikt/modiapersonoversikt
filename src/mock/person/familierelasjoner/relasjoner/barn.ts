@@ -1,47 +1,57 @@
-import FakerStatic = Faker.FakerStatic;
+import * as moment from 'moment';
 
-import { datoForÅrSiden, vektetSjanse } from '../../../utils/mock-utils';
+import navfaker from 'nav-faker';
+
 import { tilfeldigFodselsnummer } from '../../../utils/fnr-utils';
 import { getPersonstatus } from '../../personMock';
 import { lagNavn } from '../../../utils/person-utils';
 import { getAlderFromFødselsnummer } from '../../../../utils/dateUtils';
 import { Familierelasjon, Relasjonstype } from '../../../../models/person/person';
-import navfaker from 'nav-faker';
 
-export function getMockBarn(faker: FakerStatic, foreldresAlder: number) {
-    const antallBarn = kalkulerAntallBarn(faker, foreldresAlder);
+export function mockBarn(foreldresFødselsnummer: string) {
+    navfaker.seed(foreldresFødselsnummer);
+    const foreldresFødseldato = navfaker.fødselsnummer.getFødselsdato(foreldresFødselsnummer);
+    const alder = moment().diff(foreldresFødseldato, 'years');
+    const antallBarn = kalkulerAntallBarn(alder);
+
     let barn = [];
     for (let i =  0; i < antallBarn; i++) {
-        barn.push(lagBarn(faker, foreldresAlder));
+        barn.push(lagBarn(alder));
     }
     return barn;
 }
 
-function kalkulerAntallBarn(faker: FakerStatic, foreldresAlder: number) {
+function kalkulerAntallBarn(foreldresAlder: number) {
     const maksAntallBarn = foreldresAlder - 18;
-    if (vektetSjanse(faker, 0.05)) {
-        return faker.random.number({min: 0, max: Math.min(maksAntallBarn, 15)});
-    } else if (vektetSjanse(faker, 0.75)) {
-        return faker.random.number(Math.min(maksAntallBarn, 5));
+    if (navfaker.random.vektetSjanse(0.05)) {
+        return navfaker.random.number({min: 0, max: Math.min(maksAntallBarn, 15)});
+    } else if (navfaker.random.vektetSjanse(0.75)) {
+        return navfaker.random.number(Math.min(maksAntallBarn, 5));
     }
     return 0;
 }
 
-function lagBarn(faker: FakerStatic, foreldresAlder: number): Familierelasjon {
-    const maxAlder = foreldresAlder - 18;
-    const minAlder = Math.max(foreldresAlder - 50, 0);
-    const barnetsFødelsdato = navfaker.dato.mellom(datoForÅrSiden(maxAlder), datoForÅrSiden(minAlder));
+function lagBarn(foreldresAlder: number): Familierelasjon {
+    const barnetsFødelsdato = getBarnetsAlder(foreldresAlder);
     const barnetsFødselsnummer = tilfeldigFodselsnummer(barnetsFødelsdato);
     const alder = getAlderFromFødselsnummer(barnetsFødselsnummer);
     return {
-        harSammeBosted: vektetSjanse(faker, 0.7),
+        harSammeBosted: navfaker.random.vektetSjanse(0.7),
         rolle: Relasjonstype.Barn,
         tilPerson: {
-            navn: lagNavn(faker),
+            navn: lagNavn(barnetsFødselsnummer),
             alder: alder,
             alderMåneder: alder > 0 ? alder * 12 + 1 : 3,
             fødselsnummer: barnetsFødselsnummer,
             personstatus: getPersonstatus(alder)
         },
     };
+}
+
+function getBarnetsAlder(foreldresAlder: number) {
+    const maxAlder = foreldresAlder - 18;
+    const minAlder = Math.max(foreldresAlder - 50, 0);
+    return navfaker.dato.mellom(
+        navfaker.dato.forÅrSiden(maxAlder),
+        navfaker.dato.forÅrSiden(minAlder));
 }
