@@ -2,10 +2,6 @@ import navfaker from 'nav-faker/dist/index';
 import { Kjønn as Kjønnstyper } from 'nav-faker/dist/fodselsnummer/fodselsnummer';
 import { Kjønn } from '../../models/person/person';
 
-export function randomFodselsnummer(): string {
-    return navfaker.fødselsnummer.generer();
-}
-
 export function tilfeldigFodselsnummer(date: Date, kjønn?: Kjønn) {
     return navfaker.fødselsnummer.generer({fødselsdato: date, kjønn: getKjønnstype(kjønn)});
 }

@@ -3,10 +3,10 @@ import * as moment from 'moment';
 import navfaker from 'nav-faker';
 
 import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../../models/person/person';
-import { Diskresjonskoder } from '../../../konstanter';
 import { lagForeldre } from './relasjoner/foreldre';
 import { mockBarn } from './relasjoner/barn';
 import { lagPartner } from './relasjoner/partner';
+import { getDiskresjonskode } from '../../utils/diskresjonskode-util';
 
 export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivilstand) {
     const fødselsdato = navfaker.fødselsnummer.getFødselsdato(forFødselsnummer);
@@ -30,16 +30,31 @@ export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivi
     return relasjoner;
 }
 
-function kanskjeLeggTilDiskresjonskoder(relasjoner: Familierelasjon[]) {
-    relasjoner.forEach(relasjon => {
+function kanskjeLeggTilDiskresjonskoder(relasjoner: Familierelasjon[]): Familierelasjon[] {
+    const saksbehandlerHarTilgangTilDiskresjonskoder = harSaksbehandlerTilgangTilDiskresjonskode();
+    return relasjoner.map(relasjon => {
        if (navfaker.random.vektetSjanse(0.1)) {
-           relasjon.tilPerson.diskresjonskode = {
-               kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
-               beskrivelse: 'Sperret adresse, fortrolig'
-           };
-           relasjon.tilPerson.navn = null;
-           relasjon.tilPerson.fødselsnummer = undefined;
+           return leggTilDiskresjonskode(relasjon, saksbehandlerHarTilgangTilDiskresjonskoder);
+       } else {
+           return relasjon;
        }
     });
-    return relasjoner;
+}
+
+function leggTilDiskresjonskode(relasjon: Familierelasjon, saksBehandlerHarTilgangTilDiskresjonskode: boolean) {
+    relasjon.tilPerson.diskresjonskode = getDiskresjonskode();
+
+    if (!saksBehandlerHarTilgangTilDiskresjonskode) {
+        relasjon.tilPerson.navn = null;
+        relasjon.tilPerson.fødselsnummer = undefined;
+        relasjon.harSammeBosted = undefined;
+        relasjon.tilPerson.alder = undefined;
+        relasjon.tilPerson.alderMåneder = undefined;
+    }
+
+    return relasjon;
+}
+
+function harSaksbehandlerTilgangTilDiskresjonskode() {
+    return navfaker.random.vektetSjanse(0.5);
 }
