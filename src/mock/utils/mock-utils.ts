@@ -1,13 +1,9 @@
 import * as moment from 'moment';
-import * as faker from 'faker/locale/nb_NO';
+import navfaker from 'nav-faker';
 import FakerStatic = Faker.FakerStatic;
 
 export function getSistOppdatert() {
-    return moment(faker.date.past(5)).toISOString();
-}
-
-export function datoForÅrSiden(årSiden: number): Date {
-    return moment().subtract(årSiden, 'years').toDate();
+    return moment(navfaker.dato.forÅrSiden(5)).toISOString();
 }
 
 export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {

@@ -4,7 +4,7 @@ import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { getMockKontaktinformasjon } from './kontaktinformasjon-mock';
+import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';

@@ -1,12 +1,12 @@
 import * as faker from 'faker/locale/nb_NO';
-import * as moment from 'moment';
 
-import { KRRKontaktinformasjon } from '../models/kontaktinformasjon';
-import { getPerson } from './person/personMock';
-import { Person, PersonRespons } from '../models/person/person';
-import { aremark } from './person/aremark';
-import { vektetSjanse } from './utils/mock-utils';
-import { erPersonResponsAvTypePerson } from '../models/person/person';
+import navfaker from 'nav-faker';
+
+import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
+import { getPerson } from '../personMock';
+import { erPersonResponsAvTypePerson, Person } from '../../../models/person/person';
+import { aremark } from '../aremark';
+import { getSistOppdatert } from '../../utils/mock-utils';
 
 const aremarkKontaktinformasjon = {
     reservert: undefined,
@@ -25,16 +25,15 @@ export function getMockKontaktinformasjon(fødselsnummer: string): KRRKontaktinf
         return aremarkKontaktinformasjon;
     }
     const personData = getPerson(fødselsnummer);
-    faker.seed(Number(fødselsnummer));
-    return {
-        epost: vektetSjansePerson(0.7, personData) ? getEpost(personData as Person) : undefined,
-        mobiltelefon: vektetSjansePerson(0.7, personData) ? getMobiltelefon() : undefined,
-        reservasjon: vektetSjanse(faker, 0.7) ? undefined : 'true'
-    };
-}
+    if (!erPersonResponsAvTypePerson(personData)) {
+        return {};
+    }
 
-function vektetSjansePerson(vekt: number, person: PersonRespons) {
-    return vektetSjanse(faker, vekt) && erPersonResponsAvTypePerson(person);
+    return {
+        epost: navfaker.random.vektetSjanse(0.7) ? getEpost(personData) : undefined,
+        mobiltelefon: navfaker.random.vektetSjanse(0.7) ? getMobiltelefon() : undefined,
+        reservasjon: navfaker.random.vektetSjanse(0.7) ? undefined : 'true'
+    };
 }
 
 function getEpost(personData: Person) {
@@ -51,8 +50,4 @@ function getMobiltelefon() {
         value: faker.phone.phoneNumber('+479#######'),
         sistOppdatert: getSistOppdatert()
     };
-}
-
-function getSistOppdatert() {
-    return moment(faker.date.past(5)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
