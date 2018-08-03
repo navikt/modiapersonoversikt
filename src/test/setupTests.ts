@@ -13,7 +13,7 @@ import { kontaktinformasjonActionNames } from '../redux/restReducers/kontaktinfo
 import { actionNames as egenAnsattActionNames } from '../redux/restReducers/egenansatt';
 import { actionNames as vergeMålActionNames } from '../redux/restReducers/vergemal';
 import { actionNames as baseUrlsActionNames } from '../redux/restReducers/baseurls';
-import { getMockKontaktinformasjon } from '../mock/kontaktinformasjon-mock';
+import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { personinformasjonActionNames } from '../redux/restReducers/personinformasjon';
 import { getPerson } from '../mock/person/personMock';
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
