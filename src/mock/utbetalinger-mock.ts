@@ -6,7 +6,7 @@ import navfaker from 'nav-faker/dist/index';
 import { Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode } from '../models/utbetalinger';
 import { vektetSjanse } from './utils/mock-utils';
 
-export function getUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
+export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer);
 
