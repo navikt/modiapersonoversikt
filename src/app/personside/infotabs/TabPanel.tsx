@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { LAMELLER } from './LamellEnum';
+import { INFOTABS } from './InfoTabEnum';
 import styled from 'styled-components';
 import TabKnapp from './TabKnapp';
 
 interface TabPanelProps {
     onTabChange: Function;
-    openTab: LAMELLER;
+    openTab: INFOTABS;
 }
 
 const TabPanelDiv = styled.nav`
@@ -20,14 +20,14 @@ const KnappWrapper = styled.div`
       box-sizing: border-box;
     `;
 
-function LamellTabPanel(props: TabPanelProps) {
+function InfoTabPanel(props: TabPanelProps) {
 
-    const tabLenker = Object.keys(LAMELLER).map((panel) => {
-        const erValgt = LAMELLER[panel] === props.openTab;
+    const tabLenker = Object.keys(INFOTABS).map((panel) => {
+        const erValgt = INFOTABS[panel] === props.openTab;
         return (
             <KnappWrapper key={panel}>
                 <TabKnapp valgt={erValgt} onClick={() => props.onTabChange(panel)}>
-                    {LAMELLER[panel]}
+                    {INFOTABS[panel]}
                 </TabKnapp>
             </KnappWrapper>
         );
@@ -40,4 +40,4 @@ function LamellTabPanel(props: TabPanelProps) {
     );
 }
 
-export default LamellTabPanel;
+export default InfoTabPanel;
