@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { LAMELLER } from './LamellEnum';
-import LamellTabPanel from './TabPanel';
+import { INFOTABS } from './InfoTabEnum';
+import TabPanel from './TabPanel';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 
-interface LamellerProps {
+interface InfoTabsProps {
 }
 
-interface LamellerState {
-    openTab: LAMELLER;
+interface InfoTabsState {
+    openTab: INFOTABS;
 }
 
 const dummypaneler = {
@@ -19,36 +19,36 @@ const dummypaneler = {
     Pleiepenger: <ComponentPlaceholder height={'800px'} name={'Pleiepenger'} hue={300} />
 };
 
-const LamellPanel = styled.article`
+const InfoTabPanel = styled.article`
         `;
 
-const Lamell = styled.div`
+const InfoTab = styled.div`
         `;
 
-class Lameller extends React.PureComponent<LamellerProps, LamellerState> {
+class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
 
-    constructor(props: LamellerProps) {
+    constructor(props: InfoTabsProps) {
         super(props);
-        this.state = {openTab: LAMELLER.OVERSIKT};
+        this.state = {openTab: INFOTABS.OVERSIKT};
         this.onTabChange = this.onTabChange.bind(this);
     }
 
-    onTabChange(newTab: LAMELLER) {
+    onTabChange(newTab: INFOTABS) {
         this.setState({
-            openTab: LAMELLER[newTab]
+            openTab: INFOTABS[newTab]
         });
     }
 
     render() {
         return (
-            <LamellPanel>
-                <LamellTabPanel onTabChange={this.onTabChange} openTab={this.state.openTab} />
-                <Lamell>
+            <InfoTabPanel>
+                <TabPanel onTabChange={this.onTabChange} openTab={this.state.openTab} />
+                <InfoTab>
                     {dummypaneler[this.state.openTab]}
-                </Lamell>
-            </LamellPanel>
+                </InfoTab>
+            </InfoTabPanel>
         );
     }
 }
 
-export default Lameller;
+export default InfoTabs;

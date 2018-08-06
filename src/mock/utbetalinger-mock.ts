@@ -3,8 +3,8 @@ import * as moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 
-import {Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode} from '../models/utbetalinger';
-import {vektetSjanse} from './utils/mock-utils';
+import { Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode } from '../models/utbetalinger';
+import { vektetSjanse } from './utils/mock-utils';
 
 export function getUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -18,7 +18,7 @@ export function getUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
 function getUtbetalingerListe() {
     var liste = [];
     var n = faker.random.number(20);
-    for(var i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) {
         liste.push(getUtbetaling());
     }
     return liste;
@@ -50,14 +50,14 @@ function getYtelse(): Ytelse {
         type: randomYtelseType(),
         nettobeløp: Number(faker.commerce.price()),
         periode: getPeriode()
-    }
+    };
 }
 
 function getPeriode(): YtelsePeriode {
     return {
         start: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         slutt: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand)
-    }
+    };
 }
 
 function randomStatus() {
