@@ -17,6 +17,9 @@ export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerRespons
 
 function getUtbetalingerListe() {
     var liste = [];
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return;
+    }
     var n = faker.random.number(20);
     for (var i = 0; i < n; i++) {
         liste.push(getUtbetaling());

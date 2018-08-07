@@ -1,26 +1,55 @@
 import * as React from 'react';
 import Utbetalinger from './utbetalinger';
-import { getMockUtbetalinger } from '../../../../mock/utbetalinger-mock';
+import { AppState } from '../../../../redux/reducers';
+import { connect, Dispatch } from 'react-redux';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { UtbetalingerResponse } from '../../../../models/utbetalinger';
+import Innholdslaster from '../../../../components/Innholdslaster';
+import { STATUS } from '../../../../redux/restReducers/utils';
+import { Action } from 'redux';
+import { hentUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 
-interface Props {
+interface StateProps {
+    utbetalingerReducer: RestReducer<UtbetalingerResponse>;
+}
+
+interface DispatchProps {
+    hentUtbetalinger: (personnummer: string) => void;
+}
+
+interface OwnProps {
     personnummer: string;
 }
 
+type Props = StateProps & DispatchProps & OwnProps;
+
 class UtbetalingerContainer extends React.Component<Props> {
 
-    constructor(props: Props) {
-        super(props);
+    componentDidMount() {
+        if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
+            this.props.hentUtbetalinger(this.props.personnummer);
+        }
     }
 
     render() {
         return (
-            <div>
-                <Utbetalinger utbetalinger={getMockUtbetalinger(this.props.personnummer).utbetalinger}/>
-            </div>
+            <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
+                <Utbetalinger utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}/>
+            </Innholdslaster>
         );
     }
 }
 
-export default UtbetalingerContainer;
+function mapStateToProps (state: AppState): StateProps {
+    return ({
+        utbetalingerReducer: state.restEndepunkter.utbetalingerReducer
+    });
+}
 
-// TODO legg til restreducer her
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+    return {
+        hentUtbetalinger: (personnummer: string) => dispatch(hentUtbetalinger(personnummer))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UtbetalingerContainer);

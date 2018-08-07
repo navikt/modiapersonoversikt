@@ -16,11 +16,16 @@ import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
+import { getMockUtbetalinger } from './utbetalinger-mock';
+import navfaker from '../../node_modules/nav-faker';
 
 const STATUS_OK = () => 200;
 
 function randomDelay() {
-    return faker.random.number(3000);
+    if (navfaker.random.vektetSjanse(0.05)) {
+        return faker.random.number(8000);
+    }
+    return faker.random.number(1500);
 }
 
 function setupPersonMock(mock: FetchMock) {
@@ -42,6 +47,13 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
         randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
+}
+
+function setupUtbetalingerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/utbetaling/:fodselsnummer', withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockUtbetalinger(fodselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
@@ -199,6 +211,7 @@ export function setupMock() {
     setupEgenAnsattMock(mock);
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);
+    setupUtbetalingerMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
