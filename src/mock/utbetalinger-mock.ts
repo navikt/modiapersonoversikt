@@ -5,7 +5,7 @@ import navfaker from 'nav-faker/dist/index';
 
 import { Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode } from '../models/utbetalinger';
 
-export function getUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
+export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer);
 
@@ -15,6 +15,10 @@ export function getUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
 }
 
 function getUtbetalingerListe() {
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return;
+    }
+
     var liste = [];
     var n = navfaker.random.number(20);
     for (var i = 0; i < n; i++) {

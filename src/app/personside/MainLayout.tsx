@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import VisittkortContainer from './visittkort/VisittkortContainer';
-import InfoTabs from './infotabs/InfoTabs';
+import InfoTabsContainer from './infotabs/InfotabsContainer';
 import DialogPanel from './dialogpanel/DialogPanel';
 
 export enum DialogPanelSize {
@@ -75,7 +75,7 @@ class MainLayout extends React.Component<Props, State> {
             <LayoutWrapper>
                 <VenstreKolonne>
                     <VisittkortContainer/>
-                    <InfoTabs/>
+                    <InfoTabsContainer/>
                 </VenstreKolonne>
                 <HøyreKolonne DialogPanelSize={this.state.dialogPanelSize}>
                     <DialogPanel

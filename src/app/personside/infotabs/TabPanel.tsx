@@ -9,16 +9,20 @@ interface TabPanelProps {
 }
 
 const TabPanelDiv = styled.nav`
-      display: table;
+      display: flex;
       width: 100%;
-      table-layout: fixed;
-      border-spacing: 1em 0;
-    `;
+      > *:not(:last-child){
+        margin-right: .2em;
+      }
+      > *:not(:first-child){
+        margin-left: .2em;
+      }
+`;
 
 const KnappWrapper = styled.div`
-      display: table-cell;
-      box-sizing: border-box;
-    `;
+  flex: 1 0;
+  box-sizing: border-box;
+`;
 
 function InfoTabPanel(props: TabPanelProps) {
 

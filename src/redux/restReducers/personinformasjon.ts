@@ -7,6 +7,7 @@ import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { erEgenAnsatt } from './egenansatt';
 import { hentVergemal } from './vergemal';
 import { resetNavKontorReducer } from './navkontor';
+import { resetUtbetalingerReducer } from './utbetalinger';
 
 const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
@@ -24,6 +25,7 @@ export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: st
     dispatch(erEgenAnsatt(fødselsnummer));
     dispatch(hentVergemal(fødselsnummer));
     dispatch(resetNavKontorReducer());
+    dispatch(resetUtbetalingerReducer());
 }
 export const personinformasjonActionNames = actionNames;
 
