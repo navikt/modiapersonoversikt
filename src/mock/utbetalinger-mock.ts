@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import navfaker from 'nav-faker/dist/index';
 
 import { Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode } from '../models/utbetalinger';
-import { vektetSjanse } from './utils/mock-utils';
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -16,11 +15,12 @@ export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerRespons
 }
 
 function getUtbetalingerListe() {
-    var liste = [];
     if (navfaker.random.vektetSjanse(0.3)) {
         return;
     }
-    var n = faker.random.number(20);
+
+    var liste = [];
+    var n = navfaker.random.number(20);
     for (var i = 0; i < n; i++) {
         liste.push(getUtbetaling());
     }
@@ -64,9 +64,9 @@ function getPeriode(): YtelsePeriode {
 }
 
 function randomStatus() {
-    if (vektetSjanse(faker, 0.2)) {
+    if (navfaker.random.vektetSjanse(0.2)) {
         return 'Venter';
-    } else if (vektetSjanse(faker, 0.2)) {
+    } else if (navfaker.random.vektetSjanse(0.2)) {
         return 'Avvist';
     } else {
         return 'Fullført';
@@ -74,11 +74,11 @@ function randomStatus() {
 }
 
 function randomYtelseType() {
-    if (vektetSjanse(faker, 0.2)) {
+    if (navfaker.random.vektetSjanse(0.2)) {
         return 'Foreldrepenger';
-    } else if (vektetSjanse(faker, 0.2)) {
+    } else if (navfaker.random.vektetSjanse(0.2)) {
         return 'Dagpenger';
-    } else if (vektetSjanse(faker, 0.2)) {
+    } else if (navfaker.random.vektetSjanse(0.2)) {
         return 'Arbeidsavklaringspenger';
     } else {
         return 'Sykepenger';
