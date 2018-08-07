@@ -23,7 +23,7 @@ export interface Pleiepengeperiode {
 export interface Arbeidsforhold {
     arbeidsgiverNavn: string;
     arbeidsgiverKontonr?: string;
-    intektsperiode?: string;
+    inntektsperiode?: string;
     inntektForPerioden?: number;
     refusjonTom?: string;
     refusjonstype?: string;

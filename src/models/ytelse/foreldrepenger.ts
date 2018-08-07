@@ -19,10 +19,10 @@ export interface Foreldrepengerrettighet {
     rettighetFom?: string;
     eldsteIdDato?: string;
     foreldreAvSammeKjønn?: string;
-    periode?: Foreldrepengeperiode[];
+    periode?: Foreldrepengerperiode[];
 }
 
-export interface Foreldrepengeperiode {
+export interface Foreldrepengerperiode {
     fødselsnummer: string;
     harAleneomsorgFar?: boolean;
     harAleneomsorgMor?: boolean;
