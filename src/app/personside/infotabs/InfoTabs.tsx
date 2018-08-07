@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/utbetalingerContainer';
 
 interface InfoTabsProps {
-    personnummer: string;
+    fødselsnummer: string;
 }
 
 interface InfoTabsState {
@@ -25,7 +25,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
 
     constructor(props: InfoTabsProps) {
         super(props);
-        this.state = {openTab: INFOTABS.UTBETALINGER};
+        this.state = {openTab: INFOTABS.OVERSIKT};
         this.onTabChange = this.onTabChange.bind(this);
     }
 
@@ -46,7 +46,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
             case INFOTABS.SAKSOVERSIKT:
                 return <ComponentPlaceholder height={'700px'} name={'Saksoversikt'} hue={150}/>;
             case INFOTABS.UTBETALINGER:
-                return <UtbetalingerContainer personnummer={this.props.personnummer}/>;
+                return <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>;
             default:
                 return <div>Ikke implementert</div>;
         }

@@ -16,7 +16,7 @@ class InfoTabsContainer extends React.Component<VisittkortContainerProps> {
     render() {
         return (
             <Innholdslaster avhengigheter={[this.props.personReducer]}>
-                <InfoTabs personnummer={(this.props.personReducer.data as Person).fødselsnummer}/>
+                <InfoTabs fødselsnummer={(this.props.personReducer.data as Person).fødselsnummer}/>
             </Innholdslaster>
         );
     }

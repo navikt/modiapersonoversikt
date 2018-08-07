@@ -14,11 +14,11 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    hentUtbetalinger: (personnummer: string) => void;
+    hentUtbetalinger: (fødselsnummer: string) => void;
 }
 
 interface OwnProps {
-    personnummer: string;
+    fødselsnummer: string;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -27,7 +27,7 @@ class UtbetalingerContainer extends React.Component<Props> {
 
     componentDidMount() {
         if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
-            this.props.hentUtbetalinger(this.props.personnummer);
+            this.props.hentUtbetalinger(this.props.fødselsnummer);
         }
     }
 
@@ -48,7 +48,7 @@ function mapStateToProps (state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentUtbetalinger: (personnummer: string) => dispatch(hentUtbetalinger(personnummer))
+        hentUtbetalinger: (fødselsnummer: string) => dispatch(hentUtbetalinger(fødselsnummer))
     };
 }
 
