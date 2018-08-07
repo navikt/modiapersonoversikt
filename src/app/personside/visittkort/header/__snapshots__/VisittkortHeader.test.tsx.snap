@@ -60,6 +60,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c7 > * {
   margin: 3px;
+  white-space: nowrap;
 }
 
 .c0 {
