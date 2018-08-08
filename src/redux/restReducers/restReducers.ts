@@ -20,6 +20,9 @@ import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import featureToggleReducer from './featuretoggle';
 import utbetalingerReducer from './utbetalinger';
+import sykepengerReducer from './ytelser/sykepenger';
+import pleiepengerReducer from './ytelser/pleiepenger';
+import foreldrepengerReducer from './ytelser/foreldrepenger';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -32,6 +35,9 @@ import { BaseUrlsResponse } from '../../models/baseurls';
 import { FeatureToggleResponse } from '../../models/featureToggle';
 import { RestReducer } from './restReducer';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
+import { SykepengerResponse } from '../../models/ytelse/sykepenger';
+import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
+import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -54,6 +60,9 @@ export interface RestEndepunkter {
     landReducer: RestReducer<KodeverkResponse>;
     featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
     utbetalingerReducer: RestReducer<UtbetalingerResponse>;
+    sykepengerReducer: RestReducer<SykepengerResponse>;
+    pleiepengerReducer: RestReducer<PleiepengerResponse>;
+    foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -76,5 +85,8 @@ export default combineReducers<RestEndepunkter>({
     valutaReducer: valutaKodeverkReducer,
     landReducer: landKodeverkReducer,
     featureToggleNyBrukerprofilReducer: featureToggleReducer,
-    utbetalingerReducer: utbetalingerReducer
+    utbetalingerReducer: utbetalingerReducer,
+    sykepengerReducer: sykepengerReducer,
+    pleiepengerReducer: pleiepengerReducer,
+    foreldrepengerReducer: foreldrepengerReducer
 });
