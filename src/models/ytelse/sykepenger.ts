@@ -3,12 +3,12 @@ import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from './yt
 
 export interface SykepengerResponse {
     bruker: string;
-    perioder: Sykemeldingsperiode[];
+    perioder: Sykmeldingsperiode[];
 }
 
-export interface Sykemeldingsperiode {
+export interface Sykmeldingsperiode {
     fødselsnummer: string;
-    sykemeldtFom: string;
+    sykmeldtFom: string;
     forbrukteDager: number;
     ferie1?: Periode;
     ferie2?: Periode;
