@@ -15,11 +15,11 @@ export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {
     return tilfeldigTall <= vekt;
 }
 
-export function fyllRandomListe(fn: Function, repeat: number) {
+export function fyllRandomListe<T>(dataGen: () => T, repeat: number) {
     var liste = [];
     var n = navfaker.random.number(repeat);
     for (var i = 0; i < n; i++) {
-        liste.push(fn());
+        liste.push(dataGen());
     }
     return liste;
 }

@@ -15,7 +15,7 @@ export function getPleiepenger(fødselsnummer: string): PleiepengerResponse {
     navfaker.seed(fødselsnummer);
 
     return {
-        pleiepenger: fyllRandomListe(() => getPleiepengerettighet(fødselsnummer), 10)
+        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getPleiepengerettighet(fødselsnummer), 10)
     };
 }
 
@@ -28,7 +28,7 @@ function getPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
         forbrukteDagerTomIDag: navfaker.random.number(20),
         pleiepengedager: navfaker.random.number(200),
         restDagerAnvist: navfaker.random.number(50),
-        perioder: fyllRandomListe(() => getPleiepengeperiode(), 10)
+        perioder: fyllRandomListe<Pleiepengeperiode>(() => getPleiepengeperiode(), 10)
     };
 }
 
@@ -36,8 +36,8 @@ function getPleiepengeperiode(): Pleiepengeperiode {
     return {
         fom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         antallPleiepengedager: navfaker.random.number(100),
-        arbeidsforhold: fyllRandomListe(() => getArbeidsforhold(), 10),
-        vedtak: fyllRandomListe(() => getVedtak(), 10)
+        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 10),
+        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 10)
     };
 }
 

@@ -13,6 +13,7 @@ import {
 import { getPeriode } from '../person/periodeMock';
 import { fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
+import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 
 export function getSykepenger(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -20,7 +21,7 @@ export function getSykepenger(fødselsnummer: string): SykepengerResponse {
 
     return {
         bruker: fødselsnummer,
-        perioder: fyllRandomListe(() => getSykmeldingsperiode(fødselsnummer), 10)
+        perioder: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 10)
     };
 }
 
@@ -35,10 +36,10 @@ function getSykmeldingsperiode(fødselsnummer: string): Sykmeldingsperiode {
         stansårsak: faker.lorem.words(5),
         unntakAktivitet: faker.lorem.words(1),
         forsikring: getForsikring(),
-        sykmeldinger: fyllRandomListe(() => getSykmelding(), 3),
-        historiskeUtbetalinger: fyllRandomListe(() => getHistoriskUtbetaling(faker), 5),
-        kommendeUtbetalinger: fyllRandomListe(() => getKommendeUtbetaling(faker), 5),
-        utbetalingerPåVent: fyllRandomListe(() => getUtbetalingPåVent(faker), 5),
+        sykmeldinger: fyllRandomListe<Sykmelding>(() => getSykmelding(), 3),
+        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5),
+        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 5),
+        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 5),
         bruker: fødselsnummer,
         midlertidigStanset: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand)
     };

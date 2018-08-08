@@ -11,6 +11,7 @@ import {
 import { getPeriode } from '../person/periodeMock';
 import { fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
+import { HistoriskUtbetaling, KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 
 export function getForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -35,7 +36,7 @@ function getForeldrepengerrettighet(fødselsnummer: string): Foreldrepengerretti
         restDager: navfaker.random.number(50),
         rettighetFom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         eldsteIdDato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        periode: fyllRandomListe(() => getForeldrepengerperiode(fødselsnummer), 10)
+        periode: fyllRandomListe<Foreldrepengerperiode>(() => getForeldrepengerperiode(fødselsnummer), 10)
     };
 }
 
@@ -60,7 +61,7 @@ function getForeldrepengerperiode(fødselsnummer: string): Foreldrepengerperiode
         rettTilFedrekvote: 'RETTF',
         rettTilMødrekvote: 'RETTM',
         stansårsak: 'STANS',
-        historiskeUtbetalinger: fyllRandomListe(() => getHistoriskUtbetaling(faker), 5),
-        kommendeUtbetalinger: fyllRandomListe(() => getKommendeUtbetaling(faker), 5)
+        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5),
+        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 5)
     };
 }
