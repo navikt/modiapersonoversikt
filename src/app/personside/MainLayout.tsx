@@ -22,7 +22,6 @@ const LayoutWrapper = styled.div`
 const VenstreKolonne = styled.section`
     > * {
       margin-bottom: ${props => props.theme.margin.layout};
-      background-color: white;
       border-radius: ${props => props.theme.borderRadius.layout};
     }
     @media (${props => props.theme.media.wideScreen}) {

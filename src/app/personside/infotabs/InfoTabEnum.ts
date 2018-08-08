@@ -1,7 +1,8 @@
 export enum INFOTABS {
-    OVERSIKT = 'Oversikt',
-    INNBOKS = 'Innboks',
-    SAKSOVERSIKT = 'Saksoversikt',
-    UTBETALINGER = 'Utbetalinger',
-    PLEIEPENGER = 'Pleiepenger'
+    OVERSIKT = 'OVERSIKT',
+    OPPFOLGING = 'OPPFØLGING',
+    MELDINGER = 'MELDINGER',
+    UTBETALING = 'UTBETALING',
+    SAKER = 'SAKER',
+    YTELSER = 'YTELSER'
 }

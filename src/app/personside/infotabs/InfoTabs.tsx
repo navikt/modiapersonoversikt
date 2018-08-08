@@ -14,11 +14,10 @@ interface InfoTabsState {
 }
 
 const InfoTabPanel = styled.article`
-  padding: 1em;
 `;
 
-const InfoTab = styled.div`
-  margin-top: 0.2em;
+const OpenTab = styled.div`
+  margin-top: 0.5em;
 `;
 
 class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
@@ -37,16 +36,18 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
 
     getOpenInfoTab() {
         switch (this.state.openTab) {
-            case INFOTABS.INNBOKS:
-                return <ComponentPlaceholder height={'600px'} name={'Innboks'} hue={30}/>;
             case INFOTABS.OVERSIKT:
                 return <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0}/>;
-            case INFOTABS.PLEIEPENGER:
-                return <ComponentPlaceholder height={'800px'} name={'Pleiepenger'} hue={300}/>;
-            case INFOTABS.SAKSOVERSIKT:
-                return <ComponentPlaceholder height={'700px'} name={'Saksoversikt'} hue={150}/>;
-            case INFOTABS.UTBETALINGER:
+            case INFOTABS.OPPFOLGING:
+                return <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30}/>;
+            case INFOTABS.MELDINGER:
+                return <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150}/>;
+            case INFOTABS.UTBETALING:
                 return <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>;
+            case INFOTABS.SAKER:
+                return <ComponentPlaceholder height={'800px'} name={'Saker'} hue={300}/>;
+            case INFOTABS.YTELSER:
+                return <ComponentPlaceholder height={'300px'} name={'Ytelser'} hue={190}/>;
             default:
                 return <div>Ikke implementert</div>;
         }
@@ -56,9 +57,9 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
         return (
             <InfoTabPanel>
                 <TabPanel onTabChange={this.onTabChange} openTab={this.state.openTab}/>
-                <InfoTab>
+                <OpenTab>
                     {this.getOpenInfoTab()}
-                </InfoTab>
+                </OpenTab>
             </InfoTabPanel>
         );
     }
