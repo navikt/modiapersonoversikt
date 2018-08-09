@@ -9,7 +9,7 @@ import { lagPartner } from './relasjoner/partner';
 import { getDiskresjonskode } from '../../utils/diskresjonskode-util';
 
 export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivilstand) {
-    const fødselsdato = navfaker.fødselsnummer.getFødselsdato(forFødselsnummer);
+    const fødselsdato = navfaker.personIdentifikator.getFødselsdato(forFødselsnummer);
     const alder = moment().diff(fødselsdato, 'years');
 
     let relasjoner: Familierelasjon[] = [];

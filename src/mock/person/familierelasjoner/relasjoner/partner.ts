@@ -6,7 +6,7 @@ import { Familierelasjon, Relasjonstype } from '../../../../models/person/person
 import { getAlderFromFødselsnummer } from '../../../../utils/dateUtils';
 
 export function lagPartner(relasjonstype: Relasjonstype): Familierelasjon {
-    const partnersFødselsnummer = navfaker.fødselsnummer.myndig();
+    const partnersFødselsnummer = navfaker.personIdentifikator.myndigFødselsnummer();
     const alder = getAlderFromFødselsnummer(partnersFødselsnummer);
     return {
         harSammeBosted: navfaker.random.vektetSjanse(0.9),

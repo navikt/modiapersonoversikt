@@ -39,7 +39,7 @@
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.2",
     "nav-datovelger": "^1.1.8",
-    "nav-faker": "^1.0.10",
+    "nav-faker": "^3.1.0",
     "nav-frontend-alertstriper": "^1.0.14",
     "nav-frontend-alertstriper-style": "^0.2.35",
     "nav-frontend-chevron-style": "^0.3.4",

@@ -20,7 +20,7 @@ function getUtbetalingerListe() {
     }
 
     var liste = [];
-    var n = navfaker.random.number(20);
+    var n = navfaker.random.integer(20);
     for (var i = 0; i < n; i++) {
         liste.push(getUtbetaling());
     }

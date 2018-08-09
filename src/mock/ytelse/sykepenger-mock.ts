@@ -29,7 +29,7 @@ function getSykmeldingsperiode(fødselsnummer: string): Sykmeldingsperiode {
     return {
         fødselsnummer: fødselsnummer,
         sykmeldtFom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        forbrukteDager: navfaker.random.number(100),
+        forbrukteDager: navfaker.random.integer(100),
         ferie1: getPeriode(),
         ferie2: getPeriode(),
         sanksjon: getPeriode(),
@@ -59,7 +59,7 @@ function getSykmelding(): Sykmelding {
         sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
         behandlet: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         sykmeldt: getPeriode(),
-        sykmeldingsgrad: navfaker.random.number(100),
+        sykmeldingsgrad: navfaker.random.integer(100),
         gjelderYrkesskade: getYrkesskade()
     };
 }
