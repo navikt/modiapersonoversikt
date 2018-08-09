@@ -3,48 +3,44 @@ import styled from 'styled-components';
 import VisittkortContainer from './visittkort/VisittkortContainer';
 import InfoTabsContainer from './infotabs/InfotabsContainer';
 import DialogPanel from './dialogpanel/DialogPanel';
+import PilKnapp from '../../components/pilknapp';
+import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
 
-export enum DialogPanelSize {
+enum DialogPanelSize {
     Normal,
     Stor
 }
 
 const LayoutWrapper = styled.div`
+    width: 100vw;
     flex-grow: 1;
-    padding: ${props => props.theme.margin.layout};
     animation: ${props => props.theme.animation.fadeIn};
-    @media (${props => props.theme.media.wideScreen}) {
-      display: flex;
-      flex-flow: row nowrap;
-    }
+    display: flex;
+    flex-flow: row nowrap;
 `;
 
-const VenstreKolonne = styled.section`
+const VenstreKolonne = styled<{ dialogPanelSize?: DialogPanelSize; }, 'section'>('section')`
+    width: ${props => props.dialogPanelSize === DialogPanelSize.Normal ? '70%' : '50%' };
+    transition: .5s ease-out;
+    padding: ${props => props.theme.margin.layout};
+    overflow-y: scroll;
     > * {
       margin-bottom: ${props => props.theme.margin.layout};
       border-radius: ${props => props.theme.borderRadius.layout};
     }
-    @media (${props => props.theme.media.wideScreen}) {
-      flex: 1 1 50%;
-      margin-right: ${props => props.theme.margin.layout};
-    }
 `;
 
-const HøyreKolonne = styled<{ DialogPanelSize?: DialogPanelSize; }, 'section'>('section')`
+const HøyreKolonne = styled<{ dialogPanelSize?: DialogPanelSize; }, 'section'>('section')`
+    width: ${props => props.dialogPanelSize === DialogPanelSize.Normal ? '30%' : '50%' };
+    transition: .5s ease-out;
+    overflow-y: scroll;
+    background-color: #d8d8d8;
+    display: flex;
+    flex-flow: column nowrap;
     > * {
-      margin-bottom: ${props => props.theme.margin.layout};
-      background-color: white;
-      border-radius: ${props => props.theme.borderRadius.layout};
+        padding: ${props => props.theme.margin.layout};
+        flex-shrink: 0;
     }
-    transition: .5s;
-    @media(${props => props.theme.media.wideScreen}) {
-      flex: 0 1 ${props => {
-        if (props.DialogPanelSize === DialogPanelSize.Normal) {
-            return '25%';
-        } else {
-            return '50%';
-        }}}
-     }
 `;
 
 interface Props {
@@ -65,22 +61,27 @@ class MainLayout extends React.Component<Props, State> {
 
     handleDialogPanelToggle() {
         this.state.dialogPanelSize === DialogPanelSize.Normal
-            ? this.setState({dialogPanelSize: DialogPanelSize.Stor})
-            : this.setState({dialogPanelSize: DialogPanelSize.Normal});
+            ? this.setState({ dialogPanelSize: DialogPanelSize.Stor })
+            : this.setState({ dialogPanelSize: DialogPanelSize.Normal });
     }
 
     render() {
         return (
             <LayoutWrapper>
-                <VenstreKolonne>
+                <VenstreKolonne dialogPanelSize={this.state.dialogPanelSize}>
                     <VisittkortContainer/>
                     <InfoTabsContainer/>
                 </VenstreKolonne>
-                <HøyreKolonne DialogPanelSize={this.state.dialogPanelSize}>
-                    <DialogPanel
-                        onToggleDialogpanel={() => this.handleDialogPanelToggle()}
-                        dialogPanelSize={this.state.dialogPanelSize}
-                    />
+                <HøyreKolonne dialogPanelSize={this.state.dialogPanelSize}>
+                    <HentOppgaveKnapp/>
+                    <DialogPanel/>
+                    <div>
+                        <PilKnapp
+                            width="30px"
+                            direction={this.state.dialogPanelSize === DialogPanelSize.Normal ? 'left' : 'right'}
+                            onClick={() => this.handleDialogPanelToggle()}
+                        />
+                    </div>
                 </HøyreKolonne>
             </LayoutWrapper>
         );
