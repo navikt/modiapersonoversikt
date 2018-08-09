@@ -16,7 +16,7 @@ interface Props {
 
 const StyledEtikketter = styled.div`
   > * {
-    margin: 3px;
+    margin: 6px 0 0 6px;
     white-space: nowrap;
   }
 `;

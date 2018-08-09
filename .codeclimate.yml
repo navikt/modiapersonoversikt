@@ -17,5 +17,5 @@ plugins:
     enabled: true
   fixme:
     enabled: true
-  TSLint:
+  tslint:
     enabled: true

@@ -10,6 +10,7 @@ interface TabPanelProps {
 
 const TabPanelDiv = styled.nav`
       display: flex;
+      flex-flow: row wrap;
       width: 100%;
       > *:not(:last-child){
         margin-right: .2em;

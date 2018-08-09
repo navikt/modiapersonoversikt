@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
+  padding: 1em 0;
+  background-color: white;
   > *:first-child {
     flex: 1 0 100%;
     text-align: center;
