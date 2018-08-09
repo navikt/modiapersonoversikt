@@ -24,5 +24,5 @@ export function erMaksEttÅrFramITid(date: Date) {
 }
 
 export function getAlderFromFødselsnummer(fødselsnummer: string) {
-    return moment().diff(navfaker.fødselsnummer.getFødselsdato(fødselsnummer), 'years');
+    return moment().diff(navfaker.personIdentifikator.getFødselsdato(fødselsnummer), 'years');
 }

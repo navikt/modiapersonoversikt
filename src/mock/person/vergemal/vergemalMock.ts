@@ -62,7 +62,7 @@ function getVergemal() {
 }
 
 function getVerge(): Verge {
-    const vergesFødselsnummer = navfaker.fødselsnummer.myndig();
+    const vergesFødselsnummer = navfaker.personIdentifikator.myndigFødselsnummer();
     const vergemålManglerVergeData = vektetSjanse(faker, 0.2);
     return {
         ident: vergemålManglerVergeData ? undefined : vergesFødselsnummer,

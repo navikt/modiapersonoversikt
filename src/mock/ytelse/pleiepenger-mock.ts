@@ -21,13 +21,13 @@ export function getPleiepenger(fødselsnummer: string): PleiepengerResponse {
 
 function getPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
     return {
-        barnet: navfaker.fødselsnummer.generer(),
+        barnet: navfaker.personIdentifikator.fødselsnummer(),
         omsorgsperson: fødselsnummer,
-        andreOmsorgsperson: navfaker.fødselsnummer.generer(),
-        restDagerFomIMorgen: navfaker.random.number(100),
-        forbrukteDagerTomIDag: navfaker.random.number(20),
-        pleiepengedager: navfaker.random.number(200),
-        restDagerAnvist: navfaker.random.number(50),
+        andreOmsorgsperson: navfaker.personIdentifikator.fødselsnummer(),
+        restDagerFomIMorgen: navfaker.random.integer(100),
+        forbrukteDagerTomIDag: navfaker.random.integer(20),
+        pleiepengedager: navfaker.random.integer(200),
+        restDagerAnvist: navfaker.random.integer(50),
         perioder: fyllRandomListe<Pleiepengeperiode>(() => getPleiepengeperiode(), 10)
     };
 }
@@ -35,7 +35,7 @@ function getPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
 function getPleiepengeperiode(): Pleiepengeperiode {
     return {
         fom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        antallPleiepengedager: navfaker.random.number(100),
+        antallPleiepengedager: navfaker.random.integer(100),
         arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 10),
         vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 10)
     };
@@ -57,12 +57,12 @@ function getArbeidsforhold(): Arbeidsforhold {
 function getVedtak(): Vedtak {
     return {
         periode: getPeriode(),
-        kompensasjonsgrad: navfaker.random.number(90),
-        utbetalingsgrad: navfaker.random.number(90),
+        kompensasjonsgrad: navfaker.random.integer(90),
+        utbetalingsgrad: navfaker.random.integer(90),
         anvistUtbetaling: 'ANVIST',
         bruttobeløp: Number(faker.commerce.price()),
-        dagsats: navfaker.random.number(70),
-        pleiepengegrad: navfaker.random.number(60)
+        dagsats: navfaker.random.integer(70),
+        pleiepengegrad: navfaker.random.integer(60)
     };
 }
 

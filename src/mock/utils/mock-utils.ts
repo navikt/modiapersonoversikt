@@ -17,7 +17,7 @@ export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {
 
 export function fyllRandomListe<T>(dataGen: () => T, repeat: number) {
     var liste = [];
-    var n = navfaker.random.number(repeat);
+    var n = navfaker.random.integer(repeat);
     for (var i = 0; i < n; i++) {
         liste.push(dataGen());
     }
