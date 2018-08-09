@@ -3,6 +3,7 @@
   "version": "0.4.2",
   "private": false,
   "homepage": "/modiapersonoversikt",
+  "license": "MIT",
   "main": "build/dist/index.js",
   "files": [
     "build/dist/"
