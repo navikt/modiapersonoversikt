@@ -1,5 +1,5 @@
 export interface UtbetalingerResponse {
-    utbetalinger?: Utbetaling[];
+    utbetalinger: Utbetaling[];
 }
 
 export interface Utbetaling {
