@@ -18,19 +18,19 @@ const VisittkortHeaderDiv = styled.div`
   display: flex;
   flex-flow: row wrap;
   padding-right: 0.5em;
+  > * {
+    flex: 1 1 50%;
+  }
 `;
 
 const VenstreFelt = styled.div`
   display: flex;
-  flex-grow: 1;
-  margin-right: 1em;
 `;
 
 const HøyreFelt = styled.div`
   display: flex;
-  flex-grow: 1;
   flex-flow: column nowrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   text-align: right;
   box-sizing: border-box;
 `;

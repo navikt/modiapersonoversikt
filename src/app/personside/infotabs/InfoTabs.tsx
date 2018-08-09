@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
-import TabPanel from './TabPanel';
+import TabKnapper from './TabKnapper';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/utbetalingerContainer';
@@ -56,7 +56,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
     render() {
         return (
             <InfoTabPanel>
-                <TabPanel onTabChange={this.onTabChange} openTab={this.state.openTab}/>
+                <TabKnapper onTabChange={this.onTabChange} openTab={this.state.openTab}/>
                 <OpenTab>
                     {this.getOpenInfoTab()}
                 </OpenTab>

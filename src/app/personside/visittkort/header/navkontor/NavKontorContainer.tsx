@@ -28,7 +28,7 @@ interface OwnProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const NavKontorDescriptionList = styled.dl`
-  margin: initial;
+  margin: 0;
   display: flex;
   justify-content: flex-end;
   > * {
