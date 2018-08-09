@@ -16,7 +16,8 @@ interface VisittkortHeaderProps {
 const VisittkortHeaderDiv = styled.div`
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+  padding-right: 0.5em;
 `;
 
 const VenstreFelt = styled.div`
@@ -27,10 +28,10 @@ const VenstreFelt = styled.div`
 
 const HøyreFelt = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-flow: column nowrap;
   justify-content: flex-end;
   text-align: right;
-  padding-right: 1em;
   box-sizing: border-box;
 `;
 
