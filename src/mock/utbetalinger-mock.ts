@@ -50,7 +50,7 @@ function getYtelserListe() {
 
 function getYtelse(): Ytelse {
     return {
-        type: randomYtelseType(),
+        type: navfaker.nav.ytelse(),
         nettobeløp: Number(faker.commerce.price()),
         periode: getPeriode()
     };
@@ -70,17 +70,5 @@ function randomStatus() {
         return 'Avvist';
     } else {
         return 'Fullført';
-    }
-}
-
-function randomYtelseType() {
-    if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Foreldrepenger';
-    } else if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Dagpenger';
-    } else if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Arbeidsavklaringspenger';
-    } else {
-        return 'Sykepenger';
     }
 }
