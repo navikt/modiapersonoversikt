@@ -9,13 +9,13 @@ interface StyleProps {
 const KnappWrapper = styled<StyleProps, 'button'>('button')`
   width:  ${props => props.width || '10%'};
   height:  ${props => props.width || '10%'};
-  border: 0.2em solid ${props => props.theme.color.lenke};
+  border: none;
   padding: 0;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
   &:hover {
-    background-color: ${props => props.theme.color.lenke};
+    background-color: #3E3832;
     svg{
       stroke: white;
     }
@@ -27,9 +27,10 @@ const KnappWrapper = styled<StyleProps, 'button'>('button')`
     ${props => props.theme.focus}
   }
   svg {
-    stroke: ${props => props.theme.color.lenke};
-    stroke-width: 0.7;
-    fill: none
+    stroke: #3E3832;
+    stroke-width: 0.4;
+    fill: none;
+    stroke-linecap: round;
   }
   transition: transform .5s;
   transform: rotate(${props => getDirection(props.direction)});

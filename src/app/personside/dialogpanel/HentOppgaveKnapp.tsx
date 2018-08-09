@@ -20,29 +20,26 @@ import { AppState } from '../../../redux/reducers';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
 
 const HentOppgaveLayout = styled.div`
-  display: flex;
-  flex-basis: 0;
-  flex-direction: column;
-  > *:not(first-child) {
+  text-align: center;
+  > *:not(:first-child) {
     margin: .4em 0 0 0;
   }
 `;
 
 const KnappLayout = styled.div`
-  display: flex;
-  align-items: flex-start;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  > * {
+    margin-right: .4em;
+    flex-grow: 1;
+  }
   > *:first-child {
-    select {
-      width: unset;
-    }
     margin-bottom: 0;
-    flex-grow: 2;
     white-space: nowrap;
   }
   > *:last-child {
-    flex-grow: 1;
-    margin-left: .4em;
-    margin-top: 1.9rem;
+    margin-top: .4em;
     text-transform: none;
   }
 `;
