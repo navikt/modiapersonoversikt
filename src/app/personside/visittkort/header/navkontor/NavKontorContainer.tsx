@@ -29,7 +29,6 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 const NavKontorDescriptionList = styled.dl`
   margin: initial;
-  margin-left: 1em;
   display: flex;
   justify-content: flex-end;
   > * {
