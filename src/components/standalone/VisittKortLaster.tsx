@@ -12,9 +12,9 @@ import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import VisittkortContainer from '../../app/personside/visittkort/VisittkortContainer';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { RestReducer } from '../../redux/restReducers/restReducer';
+import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -69,7 +69,7 @@ class Personside extends React.PureComponent<Props> {
             );
         } else {
             return (
-                <VisittkortContainer />
+                <Visittkort />
             );
         }
     }

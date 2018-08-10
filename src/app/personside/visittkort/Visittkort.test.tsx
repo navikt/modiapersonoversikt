@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Visittkort from './Visittkort';
+import Visittkort from './VisittkortContainer';
 import { mount } from 'enzyme';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -17,7 +17,7 @@ const visittkort = mount((
     <ThemeProvider theme={personOversiktTheme}>
         <Provider store={testStore}>
             <StaticRouter context={{}}>
-                <Visittkort person={aremark}/>
+                <Visittkort/>
             </StaticRouter>
         </Provider>
     </ThemeProvider>
