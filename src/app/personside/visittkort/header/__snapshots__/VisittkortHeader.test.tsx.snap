@@ -57,21 +57,6 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-right: 1em;
 }
 
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  width: 100%;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
 .c7 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
