@@ -8,7 +8,7 @@ const AppWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 0; // IE 11 hack for at flex skal funke
+  height: 0; // IE11-hack for at flex skal funke
   flex-grow: 1;
   display: flex;
 `;
