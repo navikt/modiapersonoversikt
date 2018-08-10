@@ -2,7 +2,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import * as React from 'react';
 import { paths } from '../../routes/routing';
 import { connect, Dispatch } from 'react-redux';
-import { toggleVisittkort } from '../../../redux/uiReducers/VisittkortUIDuck';
+import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 
 interface OwnProps {
     fødselsnummer: string;

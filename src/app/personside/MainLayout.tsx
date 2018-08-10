@@ -1,85 +1,41 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import VisittkortContainer from './visittkort/VisittkortContainer';
 import InfoTabsContainer from './infotabs/InfotabsContainer';
 import DialogPanel from './dialogpanel/DialogPanel';
 import PilKnapp from '../../components/pilknapp';
 import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
+import Visittkort from './visittkort/VisittkortContainer';
+import { toggleDialogpanel, UIState } from '../../redux/uiReducers/UIReducer';
+import { AppState } from '../../redux/reducers';
+import { connect, Dispatch } from 'react-redux';
+import { HøyreKolonne, LayoutWrapper, VenstreKolonne } from './MainLayoutStyles';
 
-enum DialogPanelSize {
-    Normal,
-    Stor
+interface StateProps {
+    UI: UIState;
 }
 
-const LayoutWrapper = styled.div`
-    width: 100vw;
-    flex-grow: 1;
-    animation: ${props => props.theme.animation.fadeIn};
-    display: flex;
-    flex-flow: row nowrap;
-`;
-
-const VenstreKolonne = styled<{ dialogPanelSize?: DialogPanelSize; }, 'section'>('section')`
-    width: ${props => props.dialogPanelSize === DialogPanelSize.Normal ? '70%' : '50%' };
-    transition: .5s ease-out;
-    padding: ${props => props.theme.margin.layout};
-    overflow-y: scroll;
-    > * {
-      margin-bottom: ${props => props.theme.margin.layout};
-      border-radius: ${props => props.theme.borderRadius.layout};
-    }
-`;
-
-const HøyreKolonne = styled<{ dialogPanelSize?: DialogPanelSize; }, 'section'>('section')`
-    width: ${props => props.dialogPanelSize === DialogPanelSize.Normal ? '30%' : '50%' };
-    transition: .5s ease-out;
-    overflow-y: scroll;
-    background-color: #d8d8d8;
-    display: flex;
-    flex-flow: column nowrap;
-    > * {
-        padding: ${props => props.theme.margin.layout};
-        flex-shrink: 0;
-    }
-`;
-
-interface Props {
+interface DispatchProps {
+    toggleDialogpanel: () => void;
 }
 
-interface State {
-    dialogPanelSize: DialogPanelSize;
-}
+type Props = StateProps & DispatchProps;
 
-class MainLayout extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            dialogPanelSize: DialogPanelSize.Normal
-        };
-    }
-
-    handleDialogPanelToggle() {
-        this.state.dialogPanelSize === DialogPanelSize.Normal
-            ? this.setState({ dialogPanelSize: DialogPanelSize.Stor })
-            : this.setState({ dialogPanelSize: DialogPanelSize.Normal });
-    }
+class MainLayout extends React.Component<Props> {
 
     render() {
         return (
             <LayoutWrapper>
-                <VenstreKolonne dialogPanelSize={this.state.dialogPanelSize}>
-                    <VisittkortContainer/>
+                <VenstreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
+                    <Visittkort/>
                     <InfoTabsContainer/>
                 </VenstreKolonne>
-                <HøyreKolonne dialogPanelSize={this.state.dialogPanelSize}>
+                <HøyreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
                     <HentOppgaveKnapp/>
                     <DialogPanel/>
                     <div>
                         <PilKnapp
                             width="30px"
-                            direction={this.state.dialogPanelSize === DialogPanelSize.Normal ? 'left' : 'right'}
-                            onClick={() => this.handleDialogPanelToggle()}
+                            direction={this.props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
+                            onClick={() => this.props.toggleDialogpanel()}
                         />
                     </div>
                 </HøyreKolonne>
@@ -88,4 +44,16 @@ class MainLayout extends React.Component<Props, State> {
     }
 }
 
-export default MainLayout;
+function mapStateToProps(state: AppState) {
+    return {
+        UI: state.ui,
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+    return {
+        toggleDialogpanel: () => dispatch(toggleDialogpanel())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
