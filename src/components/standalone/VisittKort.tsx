@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { MemoryRouter, Route, Switch } from 'react-router';
 
-import { personOversiktTheme } from '../../themes/personOversiktTheme';
 import reducers from '../../redux/reducers';
 import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
@@ -33,14 +31,12 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <ThemeProvider theme={personOversiktTheme}>
-                        <MemoryRouter>
-                            <Switch>
-                                <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
-                                <Route render={() => <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />} />
-                            </Switch>
-                        </MemoryRouter>
-                    </ThemeProvider>
+                    <MemoryRouter>
+                        <Switch>
+                            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
+                            <Route render={() => <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>}/>
+                        </Switch>
+                    </MemoryRouter>
                 </Provider>
             </ErrorBoundary>
         );

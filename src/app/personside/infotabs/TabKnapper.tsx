@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import styled from 'styled-components';
+import { styles } from '../../../styles/personOversiktStyles';
 
 interface TabPanelProps {
     onTabChange: Function;
@@ -35,13 +36,13 @@ const TabKnapp = styled<TabKnappProps, 'button'>('button')`
     padding-top: 0.5em;
     margin-top: 0.5em;
     border: none;
-    border-bottom: 4px solid ${props => props.valgt ? props.theme.color.selectedLink : 'transparent'};
+    border-bottom: 4px solid ${props => props.valgt ? styles.color.selectedLink : 'transparent'};
     text-align: center;
     cursor: pointer;
     transition: 0.5s;
     font-weight: bold;
     &:hover {
-      border-bottom: 4px solid ${props => props.theme.color.hoverLink};
+      border-bottom: 4px solid ${styles.color.hoverLink};
     }
 `;
 
