@@ -46,7 +46,7 @@ function getBegrensetInnsyn(): BegrensetTilgang {
 }
 
 function genererPerson(fødselsnummer: string): Person {
-    const fødselsdato = navfaker.fødselsnummer.getFødselsdato(fødselsnummer);
+    const fødselsdato = navfaker.personIdentifikator.getFødselsdato(fødselsnummer);
     const alder = moment().diff(fødselsdato, 'years');
     const sivilstand = getSivilstand(moment(fødselsdato), faker);
     return {

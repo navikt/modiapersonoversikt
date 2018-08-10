@@ -10,7 +10,7 @@ import { Familierelasjon, Relasjonstype } from '../../../../models/person/person
 
 export function mockBarn(foreldresFødselsnummer: string) {
     navfaker.seed(foreldresFødselsnummer);
-    const foreldresFødseldato = navfaker.fødselsnummer.getFødselsdato(foreldresFødselsnummer);
+    const foreldresFødseldato = navfaker.personIdentifikator.getFødselsdato(foreldresFødselsnummer);
     const alder = moment().diff(foreldresFødseldato, 'years');
     const antallBarn = kalkulerAntallBarn(alder);
 
@@ -24,9 +24,9 @@ export function mockBarn(foreldresFødselsnummer: string) {
 function kalkulerAntallBarn(foreldresAlder: number) {
     const maksAntallBarn = foreldresAlder - 18;
     if (navfaker.random.vektetSjanse(0.05)) {
-        return navfaker.random.number({min: 0, max: Math.min(maksAntallBarn, 15)});
+        return navfaker.random.integer(Math.min(maksAntallBarn, 15), 0);
     } else if (navfaker.random.vektetSjanse(0.75)) {
-        return navfaker.random.number(Math.min(maksAntallBarn, 5));
+        return navfaker.random.integer(Math.min(maksAntallBarn, 5));
     }
     return 0;
 }

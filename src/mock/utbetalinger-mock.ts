@@ -10,21 +10,16 @@ export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerRespons
     navfaker.seed(fødselsnummer);
 
     return {
-        utbetalinger: getUtbetalingerListe()
+        utbetalinger: getUtbetalinger()
     };
 }
 
-function getUtbetalingerListe() {
+function getUtbetalinger() {
     if (navfaker.random.vektetSjanse(0.3)) {
-        return;
+        return [];
     }
 
-    var liste = [];
-    var n = navfaker.random.number(20);
-    for (var i = 0; i < n; i++) {
-        liste.push(getUtbetaling());
-    }
-    return liste;
+    return Array(navfaker.random.integer(20, 1)).fill(null).map(getUtbetaling);
 }
 
 function getUtbetaling(): Utbetaling {
@@ -38,19 +33,13 @@ function getUtbetaling(): Utbetaling {
         metode: 'Bankkontooverføring',
         status: randomStatus(),
         konto: Number(faker.finance.account(11)).toString(),
-        ytelser: getYtelserListe()
+        ytelser: [getYtelse()]
     };
-}
-
-function getYtelserListe() {
-    var liste = [];
-    liste.push(getYtelse());
-    return liste;
 }
 
 function getYtelse(): Ytelse {
     return {
-        type: randomYtelseType(),
+        type: navfaker.nav.ytelse(),
         nettobeløp: Number(faker.commerce.price()),
         periode: getPeriode()
     };
@@ -70,17 +59,5 @@ function randomStatus() {
         return 'Avvist';
     } else {
         return 'Fullført';
-    }
-}
-
-function randomYtelseType() {
-    if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Foreldrepenger';
-    } else if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Dagpenger';
-    } else if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Arbeidsavklaringspenger';
-    } else {
-        return 'Sykepenger';
     }
 }
