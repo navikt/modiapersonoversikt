@@ -11,6 +11,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import ShortcutListener from './ShortcutListener';
 import { AppState } from '../../../redux/reducers';
 import { toggleVisittkort, UIState } from '../../../redux/uiReducers/UIReducer';
+import { theme } from '../../../styles/personOversiktTheme';
 
 interface StateProps {
     UI: UIState;
@@ -24,7 +25,7 @@ interface DispatchProps {
 const VisittKortDiv = styled.article`
   .ekspanderbartPanel__hode {
       // For å lage en "strek" mellom visittkorthode og visittkortkropp:
-      border-bottom: ${props => props.theme.color.bakgrunn} 2px solid;
+      border-bottom: ${theme.color.bakgrunn} 2px solid;
       &:hover { color: inherit; }
   }
 `;

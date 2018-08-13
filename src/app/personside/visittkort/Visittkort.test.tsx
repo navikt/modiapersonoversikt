@@ -6,21 +6,17 @@ import VisittkortBody from './body/VisittkortBody';
 import { Provider } from 'react-redux';
 import { testStore } from '../../../test/setupTests';
 import { personinformasjonActionNames } from '../../../redux/restReducers/personinformasjon';
-import { ThemeProvider } from 'styled-components';
-import { personOversiktTheme } from '../../../themes/personOversiktTheme';
 import { aremark } from '../../../mock/person/aremark';
 import { StaticRouter } from 'react-router';
 
-testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: aremark });
+testStore.dispatch({type: personinformasjonActionNames.FINISHED, data: aremark});
 
 const visittkort = mount((
-    <ThemeProvider theme={personOversiktTheme}>
-        <Provider store={testStore}>
-            <StaticRouter context={{}}>
-                <Visittkort/>
-            </StaticRouter>
-        </Provider>
-    </ThemeProvider>
+    <Provider store={testStore}>
+        <StaticRouter context={{}}>
+            <Visittkort/>
+        </StaticRouter>
+    </Provider>
 ));
 
 test('viser visittkortheader når visittkort først rendres', () => {
