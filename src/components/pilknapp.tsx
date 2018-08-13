@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { styles } from '../styles/personOversiktStyles';
+import { theme } from '../styles/personOversiktTheme';
 
 interface StyleProps {
     width?: string;
@@ -25,7 +25,7 @@ const KnappWrapper = styled<StyleProps, 'button'>('button')`
     opacity: 0.8;
   }
   &:focus {
-    ${styles.focus}
+    ${theme.focus}
   }
   svg {
     stroke: #3E3832;

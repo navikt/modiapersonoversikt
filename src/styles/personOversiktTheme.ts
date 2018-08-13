@@ -4,7 +4,7 @@ const fadeIn = keyframes`
     from { opacity: 0 }
 `;
 
-export const styles = {
+export const theme = {
     color: {
         selectedLink: '#66CBEC',
         hoverLink: '#C6C2BF',
@@ -30,4 +30,4 @@ export const styles = {
     focus: 'outline: none; box-shadow: 0 0 0px 3px #FFBD66;'
 };
 
-export default styles;
+export default theme;

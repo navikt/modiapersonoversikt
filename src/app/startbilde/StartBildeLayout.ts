@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { styles } from '../../styles/personOversiktStyles';
+import { theme } from '../../styles/personOversiktTheme';
 
 const StartBildeLayout = styled.div`
     margin-top: 7em;
@@ -7,7 +7,7 @@ const StartBildeLayout = styled.div`
     flex-grow: 1;
     flex-flow: column wrap;
     align-items: center;
-    animation: ${styles.animation.fadeIn};
+    animation: ${theme.animation.fadeIn};
     > * {
         margin-bottom: 2em;
         min-width: 20em;

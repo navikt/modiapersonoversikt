@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { styles } from '../styles/personOversiktStyles';
+import { theme } from '../styles/personOversiktTheme';
 
 const FillCenterAndFadeIn = styled.div`
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: ${styles.animation.fadeIn};
+    animation: ${theme.animation.fadeIn};
 `;
 
 export default FillCenterAndFadeIn;

@@ -16,7 +16,7 @@ import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { STATUS } from '../../redux/restReducers/utils';
 import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
 import { RestReducer } from '../../redux/restReducers/restReducer';
-import { styles } from '../../styles/personOversiktStyles';
+import { theme } from '../../styles/personOversiktTheme';
 
 const BrukerprofilWrapper = styled.section`
   flex-grow: 1;
@@ -25,10 +25,10 @@ const BrukerprofilWrapper = styled.section`
   width: 90%;
   display: flex;
   flex-flow: column nowrap;
-  animation: ${styles.animation.fadeIn};
+  animation: ${theme.animation.fadeIn};
   > *:not(:first-child):not(:nth-child(2)) {
     background-color: white;
-    border-radius: ${styles.borderRadius.layout};
+    border-radius: ${theme.borderRadius.layout};
     margin: 1em 0;
     padding: 2em;
   }
