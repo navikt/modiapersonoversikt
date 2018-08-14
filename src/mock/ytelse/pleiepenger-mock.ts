@@ -10,9 +10,13 @@ import {
 } from '../../models/ytelse/pleiepenger';
 import { fyllRandomListe } from '../utils/mock-utils';
 
-export function getPleiepenger(fødselsnummer: string): PleiepengerResponse {
+export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer);
+    navfaker.seed(fødselsnummer + 'pleiepenger');
+
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return {};
+    }
 
     return {
         pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getPleiepengerettighet(fødselsnummer), 10)

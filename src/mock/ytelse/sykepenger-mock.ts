@@ -15,13 +15,16 @@ import { fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 
-export function getSykepenger(fødselsnummer: string): SykepengerResponse {
+export function getMockSykepenger(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer);
+    navfaker.seed(fødselsnummer + 'sykepenger');
+
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return {};
+    }
 
     return {
-        bruker: fødselsnummer,
-        perioder: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 10)
+        sykepenger: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 10)
     };
 }
 

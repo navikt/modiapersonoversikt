@@ -7,7 +7,7 @@ import { Utbetaling, UtbetalingerResponse, Ytelse, YtelsePeriode } from '../mode
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer);
+    navfaker.seed(fødselsnummer + 'utbetalinger');
 
     return {
         utbetalinger: getUtbetalinger()

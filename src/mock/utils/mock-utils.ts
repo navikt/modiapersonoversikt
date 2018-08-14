@@ -15,10 +15,10 @@ export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {
     return tilfeldigTall <= vekt;
 }
 
-export function fyllRandomListe<T>(dataGen: () => T, repeat: number) {
-    var liste = [];
-    var n = navfaker.random.integer(repeat);
-    for (var i = 0; i < n; i++) {
+export function fyllRandomListe<T>(dataGen: () => T, max: number): Array<T> {
+    let liste = [];
+    let n = navfaker.random.integer(max) || 1;
+    for (let i = 0; i < n; i++) {
         liste.push(dataGen());
     }
     return liste;

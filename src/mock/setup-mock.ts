@@ -18,6 +18,9 @@ import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
 import { getMockUtbetalinger } from './utbetalinger-mock';
 import navfaker from '../../node_modules/nav-faker';
+import { getMockSykepenger } from './ytelse/sykepenger-mock';
+import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
+import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 
 const STATUS_OK = () => 200;
 
@@ -54,6 +57,27 @@ function setupUtbetalingerMock(mock: FetchMock) {
         randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockUtbetalinger(fodselsnummer))));
+}
+
+function setupSykepengerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/ytelse/sykepenger/:fodselsnummer', withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockSykepenger(fodselsnummer))));
+}
+
+function setupForeldrepengerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/ytelse/foreldrepenger/:fodselsnummer', withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockForeldrepenger(fodselsnummer))));
+}
+
+function setupPleiepengerMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/ytelse/pleiepenger/:fodselsnummer', withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
@@ -212,6 +236,9 @@ export function setupMock() {
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);
     setupUtbetalingerMock(mock);
+    setupSykepengerMock(mock);
+    setupForeldrepengerMock(mock);
+    setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
