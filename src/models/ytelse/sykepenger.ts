@@ -2,7 +2,7 @@ import { Periode } from '../periode';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 
 export interface SykepengerResponse {
-    sykepenger?: Sykmeldingsperiode[];
+    sykepenger: Sykmeldingsperiode[] | null;
 }
 
 export interface Sykmeldingsperiode {

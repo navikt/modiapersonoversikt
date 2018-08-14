@@ -46,9 +46,6 @@ class YtelserContainer extends React.Component<Props> {
     }
 
     render() {
-        console.log('Sykepenger', this.props.sykepengerReducer.data);
-        console.log('Pleiepenger', this.props.pleiepengerReducer.data);
-        console.log('Foreldrepenger', this.props.foreldrepengerReducer.data);
         return (
             <>
                 <Innholdstittel>Sykepenger</Innholdstittel>

@@ -18,7 +18,9 @@ export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerRes
     navfaker.seed(fødselsnummer + 'foreldrepenger');
 
     if (navfaker.random.vektetSjanse(0.3)) {
-        return {};
+        return {
+            foreldrepenger: null
+        };
     }
 
     return {

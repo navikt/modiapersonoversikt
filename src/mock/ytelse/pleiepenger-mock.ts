@@ -15,7 +15,9 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
     navfaker.seed(fødselsnummer + 'pleiepenger');
 
     if (navfaker.random.vektetSjanse(0.3)) {
-        return {};
+        return {
+            pleiepenger: null
+        };
     }
 
     return {

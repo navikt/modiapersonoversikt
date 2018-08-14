@@ -20,7 +20,9 @@ export function getMockSykepenger(fødselsnummer: string): SykepengerResponse {
     navfaker.seed(fødselsnummer + 'sykepenger');
 
     if (navfaker.random.vektetSjanse(0.3)) {
-        return {};
+        return {
+            sykepenger: null
+        };
     }
 
     return {
