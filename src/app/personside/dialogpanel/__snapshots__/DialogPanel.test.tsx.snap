@@ -28,35 +28,5 @@ exports[`viser dialogpanel 1`] = `
   >
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
   </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
-  <p
-    className="typo-undertekst"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
-  </p>
 </div>
 `;
