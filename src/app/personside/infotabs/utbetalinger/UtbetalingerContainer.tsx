@@ -18,7 +18,10 @@ const initialState: State = {
     filter: {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
-            egendefinertPeriode: undefined
+            egendefinertPeriode: {
+                fra: undefined,
+                til: new Date()
+            }
         },
         utbetaltTil: {
             bruker: true,

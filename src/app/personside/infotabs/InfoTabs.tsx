@@ -25,7 +25,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
 
     constructor(props: InfoTabsProps) {
         super(props);
-        this.state = {openTab: INFOTABS.UTBETALING};
+        this.state = {openTab: INFOTABS.OVERSIKT};
         this.onTabChange = this.onTabChange.bind(this);
     }
 
