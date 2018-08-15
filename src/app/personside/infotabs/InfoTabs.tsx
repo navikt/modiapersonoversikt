@@ -3,7 +3,7 @@ import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
-import UtbetalingerContainer from './utbetalinger/utbetalingerContainer';
+import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
 
 interface InfoTabsProps {
@@ -25,7 +25,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
 
     constructor(props: InfoTabsProps) {
         super(props);
-        this.state = {openTab: INFOTABS.OVERSIKT};
+        this.state = {openTab: INFOTABS.UTBETALING};
         this.onTabChange = this.onTabChange.bind(this);
     }
 
