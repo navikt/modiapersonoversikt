@@ -21,12 +21,6 @@ function DialogPanel() {
         <DialogPanelWrapper>
             <Undertittel>Dialogpanel</Undertittel>
             <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
         </DialogPanelWrapper>
     );
 }

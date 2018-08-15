@@ -1,5 +1,5 @@
 export interface PleiepengerResponse {
-    pleiepenger?: Pleiepengerettighet[];
+    pleiepenger: Pleiepengerettighet[] | null;
 }
 
 export interface Pleiepengerettighet {

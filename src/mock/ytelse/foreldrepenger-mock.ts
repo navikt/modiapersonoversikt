@@ -13,9 +13,15 @@ import { fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 
-export function getForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
+export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer);
+    navfaker.seed(fødselsnummer + 'foreldrepenger');
+
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return {
+            foreldrepenger: null
+        };
+    }
 
     return {
         foreldrepenger: getForeldrepengerrettighet(fødselsnummer)

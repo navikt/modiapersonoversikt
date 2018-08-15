@@ -2,7 +2,7 @@ import { Periode } from '../periode';
 import { HistoriskUtbetaling, KommendeUtbetaling } from './ytelse-utbetalinger';
 
 export interface ForeldrepengerResponse {
-    foreldrepenger?: Foreldrepengerrettighet;
+    foreldrepenger: Foreldrepengerrettighet | null;
 }
 
 export interface Foreldrepengerrettighet {

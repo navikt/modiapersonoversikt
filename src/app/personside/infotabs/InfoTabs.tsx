@@ -4,6 +4,7 @@ import TabKnapper from './TabKnapper';
 import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/utbetalingerContainer';
+import YtelserContainer from './ytelser/YtelserContainer';
 
 interface InfoTabsProps {
     fødselsnummer: string;
@@ -47,7 +48,7 @@ class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
             case INFOTABS.SAKER:
                 return <ComponentPlaceholder height={'800px'} name={'Saker'} hue={300}/>;
             case INFOTABS.YTELSER:
-                return <ComponentPlaceholder height={'300px'} name={'Ytelser'} hue={190}/>;
+                return <YtelserContainer fødselsnummer={this.props.fødselsnummer}/>;
             default:
                 return <div>Ikke implementert</div>;
         }
