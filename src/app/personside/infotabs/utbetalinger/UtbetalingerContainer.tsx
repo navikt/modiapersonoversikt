@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Utbetalinger from './utbetalinger';
+import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect, Dispatch } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
@@ -8,6 +8,30 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { Action } from 'redux';
 import { hentUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
+import { FilterState, PeriodeValg } from './Filter';
+
+interface State {
+    filter: FilterState;
+}
+
+const initialState: State = {
+    filter: {
+        periode: {
+            radioValg: PeriodeValg.SISTE_30_DAGER,
+            egendefinertPeriode: {
+                fra: undefined,
+                til: new Date()
+            }
+        },
+        utbetaltTil: {
+            bruker: true,
+            annenMottaker: true
+        },
+        ytelse: {
+            alleYtelser: true
+        }
+    }
+};
 
 interface StateProps {
     utbetalingerReducer: RestReducer<UtbetalingerResponse>;
@@ -23,7 +47,22 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class UtbetalingerContainer extends React.Component<Props> {
+class UtbetalingerContainer extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {...initialState};
+        this.onFilterChange = this.onFilterChange.bind(this);
+    }
+
+    onFilterChange(change: Partial<FilterState>) {
+        this.setState({
+            filter: {
+                ...this.state.filter,
+                ...change
+            }
+        });
+    }
 
     componentDidMount() {
         if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
@@ -34,7 +73,11 @@ class UtbetalingerContainer extends React.Component<Props> {
     render() {
         return (
             <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
-                <Utbetalinger utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}/>
+                <Utbetalinger
+                    utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
+                    onFilterChange={this.onFilterChange}
+                    filter={this.state.filter}
+                />
             </Innholdslaster>
         );
     }

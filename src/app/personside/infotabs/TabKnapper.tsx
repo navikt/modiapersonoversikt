@@ -51,12 +51,12 @@ const TabKnapp = styled<TabKnappProps, 'button'>('button')`
 
 function TabKnapper(props: TabPanelProps) {
 
-    const knapper = Object.keys(INFOTABS).map((panel) => {
-        const erValgt = INFOTABS[panel] === props.openTab;
+    const knapper = Object.keys(INFOTABS).map(key => {
+        const erValgt = INFOTABS[key] === props.openTab;
         return (
-            <KnappWrapper key={panel}>
-                <TabKnapp valgt={erValgt} onClick={() => props.onTabChange(panel)}>
-                    {INFOTABS[panel]}
+            <KnappWrapper key={key}>
+                <TabKnapp valgt={erValgt} onClick={() => props.onTabChange(key)}>
+                    {INFOTABS[key]}
                 </TabKnapp>
             </KnappWrapper>
         );
