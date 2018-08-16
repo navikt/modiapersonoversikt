@@ -70,14 +70,19 @@ function onRadioChange(props: Props, key: PeriodeValg) {
     });
 }
 
-function onDatoChange(props: Props, dato: Partial<FraTil>) {
+function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
+    const newPeriode: FraTilDato = {
+        fra: dato.fra && moment(dato.fra).isValid()
+            ? dato.fra
+            : new Date(props.filterState.periode.egendefinertPeriode.fra),
+        til: dato.til && moment(dato.til).isValid()
+            ? dato.til
+            : new Date(props.filterState.periode.egendefinertPeriode.til)
+    };
     props.onChange({
         periode: {
             ...props.filterState.periode,
-            egendefinertPeriode: {
-                ...props.filterState.periode.egendefinertPeriode,
-                ...dato
-            }
+            egendefinertPeriode: newPeriode
         }
     });
 }
