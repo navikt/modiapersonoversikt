@@ -29,11 +29,11 @@ export interface Ytelse {
 }
 
 export interface Ytelseskomponent {
-    ytelseskomponenttype: string,
-    satsbeløp?: number,
-    satstype?: string,
-    satsantall?: number,
-    ytelseskomponentbeløp: number
+    ytelseskomponenttype: string;
+    satsbeløp?: number;
+    satstype?: string;
+    satsantall?: number;
+    ytelseskomponentbeløp: number;
 }
 
 export interface Trekk {

@@ -12,7 +12,7 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../models/utbetalinger';
-import {fyllRandomListe} from './utils/mock-utils';
+import { fyllRandomListe } from './utils/mock-utils';
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
