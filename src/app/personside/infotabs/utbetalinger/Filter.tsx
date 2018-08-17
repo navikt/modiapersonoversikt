@@ -5,21 +5,22 @@ import { Element } from 'nav-frontend-typografi';
 import EtikettMini from '../../../../components/EtikettMini';
 import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
+import * as moment from 'moment';
 
 export interface FilterState {
-    periode: Periode;
+    periode: PeriodeOptions;
     utbetaltTil: UtbetaltTilValg;
     ytelse: Ytelse;
 }
 
-interface FraTil {
-    fra?: Date;
-    til?: Date;
+export interface FraTilDato {
+    fra: Date;
+    til: Date;
 }
 
-interface Periode {
+interface PeriodeOptions {
     radioValg: PeriodeValg;
-    egendefinertPeriode: FraTil;
+    egendefinertPeriode: FraTilDato;
 }
 
 interface UtbetaltTilValg {
