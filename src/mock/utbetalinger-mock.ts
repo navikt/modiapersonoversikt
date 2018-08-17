@@ -28,16 +28,16 @@ function getUtbetalinger() {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(getUtbetaling);
+    return Array(navfaker.random.integer(20, 1)).fill(null).map(getMockUtbetaling);
 }
 
-function getUtbetaling(): Utbetaling {
+export function getMockUtbetaling(): Utbetaling {
     return {
         utbetaltTil: faker.name.firstName() + ' ' + faker.name.lastName(),
         nettobeløp: Number(faker.commerce.price()),
-        posteringsdato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        utbetalingsdato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        forfallsdato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        posteringsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        utbetalingsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        forfallsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: randomStatus(),
