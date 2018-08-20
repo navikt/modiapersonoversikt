@@ -5,6 +5,8 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 
 ## Komme i gang
 
+
+
 ### Konfiguere miljøvariabler
 
 Opprett filen `.env` med følgende innhold:
