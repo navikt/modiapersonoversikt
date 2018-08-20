@@ -9,6 +9,7 @@ import { STATUS } from '../../../../redux/restReducers/utils';
 import { Action } from 'redux';
 import { hentUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { FilterState, PeriodeValg } from './Filter';
+import moment = require('moment');
 
 interface State {
     filter: FilterState;
@@ -19,7 +20,7 @@ const initialState: State = {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
             egendefinertPeriode: {
-                fra: undefined,
+                fra: moment().subtract(1, 'year').toDate(),
                 til: new Date()
             }
         },

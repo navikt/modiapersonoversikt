@@ -12,7 +12,7 @@ interface FeilmeldingProps {
     reducer: RestReducer<object>;
 }
 
-function Feilmelding({reducer}: FeilmeldingProps) {
+function ReducerFeilmelding({reducer}: FeilmeldingProps) {
     if (reducer.status === STATUS.ERROR) {
         return (
             <MarginWrapper>
@@ -24,4 +24,4 @@ function Feilmelding({reducer}: FeilmeldingProps) {
     }
 }
 
-export default Feilmelding;
+export default ReducerFeilmelding;

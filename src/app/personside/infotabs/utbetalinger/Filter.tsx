@@ -4,26 +4,28 @@ import { Checkbox, Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import EtikettMini from '../../../../components/EtikettMini';
 import NavDatovelger from 'nav-datovelger';
+import { Feilmelding } from '../../../../utils/Feilmelding';
+import * as moment from 'moment';
 
 export interface FilterState {
-    periode: Periode;
+    periode: PeriodeOptions;
     utbetaltTil: UtbetaltTilValg;
     ytelse: Ytelse;
-}
-
-interface FraTil {
-    fra?: Date;
-    til?: Date;
-}
-
-interface Periode {
-    radioValg: PeriodeValg;
-    egendefinertPeriode: FraTil;
 }
 
 interface UtbetaltTilValg {
     bruker: boolean;
     annenMottaker: boolean;
+}
+
+interface PeriodeOptions {
+    radioValg: PeriodeValg;
+    egendefinertPeriode: FraTilDato;
+}
+
+export interface FraTilDato {
+    fra: Date;
+    til: Date;
 }
 
 interface Ytelse {
@@ -33,6 +35,13 @@ interface Ytelse {
 interface Props {
     onChange: (change: Partial<FilterState>) => void;
     filterState: FilterState;
+}
+
+export enum PeriodeValg {
+    SISTE_30_DAGER = 'Siste 30 dager',
+    INNEVÆRENDE_ÅR = 'Inneværende år',
+    I_FJOR = 'I fjor',
+    EGENDEFINERT = 'Egendefinert'
 }
 
 const FiltreringsPanel = styled.nav`
@@ -53,13 +62,6 @@ const Opacity = styled.span`
   opacity: .5;
 `;
 
-export enum PeriodeValg {
-    SISTE_30_DAGER = 'Siste 30 dager',
-    INNEVÆRENDE_ÅR = 'Inneværende år',
-    I_FJOR = 'I fjor',
-    EGENDEFINERT = 'Egendefinert'
-}
-
 function onRadioChange(props: Props, key: PeriodeValg) {
     props.onChange({
         periode: {
@@ -69,14 +71,19 @@ function onRadioChange(props: Props, key: PeriodeValg) {
     });
 }
 
-function onDatoChange(props: Props, dato: Partial<FraTil>) {
+function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
+    const newPeriode: FraTilDato = {
+        fra: dato.fra && moment(dato.fra).isValid()
+            ? dato.fra
+            : new Date(props.filterState.periode.egendefinertPeriode.fra),
+        til: dato.til && moment(dato.til).isValid()
+            ? dato.til
+            : new Date(props.filterState.periode.egendefinertPeriode.til)
+    };
     props.onChange({
         periode: {
             ...props.filterState.periode,
-            egendefinertPeriode: {
-                ...props.filterState.periode.egendefinertPeriode,
-                ...dato
-            }
+            egendefinertPeriode: newPeriode
         }
     });
 }
@@ -99,22 +106,14 @@ function onYtelseChange(props: Props, change: Partial<Ytelse>) {
     });
 }
 
-function Filtrering(props: Props) {
+function egendefinertDatoInputs(props: Props) {
 
-    const radios = Object.keys(PeriodeValg).map(key => {
-        const label = PeriodeValg[key];
-        const checked = props.filterState.periode.radioValg === label;
-        return (
-            <Radio
-                label={label}
-                key={label}
-                checked={checked}
-                onChange={() => onRadioChange(props, PeriodeValg[key])}
-                name="FiltreringsvalgGruppe"
-            />);
-    });
+    const fra = props.filterState.periode.egendefinertPeriode.fra;
+    const til = props.filterState.periode.egendefinertPeriode.til;
+    const periodeFeilmelding = fra && til && fra > til ?
+        <Feilmelding feil={{feilmelding: 'Fra-dato kan ikke være senere enn til-dato'}}/> : null;
 
-    const datoFiltrering = (
+    return (
         <>
             <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
             <NavDatovelger
@@ -130,8 +129,25 @@ function Filtrering(props: Props) {
                 avgrensninger={{maksDato: new Date()}}
                 onChange={dato => onDatoChange(props, {til: dato})}
             />
+            {periodeFeilmelding}
         </>
     );
+}
+
+function Filtrering(props: Props) {
+
+    const radios = Object.keys(PeriodeValg).map(key => {
+        const label = PeriodeValg[key];
+        const checked = props.filterState.periode.radioValg === label;
+        return (
+            <Radio
+                label={label}
+                key={label}
+                checked={checked}
+                onChange={() => onRadioChange(props, PeriodeValg[key])}
+                name="FiltreringsvalgGruppe"
+            />);
+    });
 
     return (
         <FiltreringsPanel>
@@ -140,7 +156,7 @@ function Filtrering(props: Props) {
             <InputPanel>
                 <EtikettMini><Opacity>Velg periode</Opacity></EtikettMini>
                 {radios}
-                {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && datoFiltrering}
+                {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
             </InputPanel>
 
             <InputPanel>
@@ -156,7 +172,7 @@ function Filtrering(props: Props) {
                     onChange={() => onUtbetaltTilChange(
                         props,
                         {annenMottaker: !props.filterState.utbetaltTil.annenMottaker}
-                        )}
+                    )}
                 />
             </InputPanel>
 
