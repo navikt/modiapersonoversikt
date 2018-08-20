@@ -25,7 +25,7 @@ function getFra(filter: FilterState): Date {
             return returDato;
         case PeriodeValg.I_FJOR:
             returDato.setDate(0);
-            returDato.setFullYear(-1);
+            returDato.setFullYear(returDato.getFullYear() - 1);
             return returDato;
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.fra || new Date();

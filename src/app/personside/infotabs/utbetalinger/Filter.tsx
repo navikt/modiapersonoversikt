@@ -13,9 +13,9 @@ export interface FilterState {
     ytelse: Ytelse;
 }
 
-export interface FraTilDato {
-    fra: Date;
-    til: Date;
+interface UtbetaltTilValg {
+    bruker: boolean;
+    annenMottaker: boolean;
 }
 
 interface PeriodeOptions {
@@ -23,9 +23,9 @@ interface PeriodeOptions {
     egendefinertPeriode: FraTilDato;
 }
 
-interface UtbetaltTilValg {
-    bruker: boolean;
-    annenMottaker: boolean;
+export interface FraTilDato {
+    fra: Date;
+    til: Date;
 }
 
 interface Ytelse {
@@ -35,6 +35,13 @@ interface Ytelse {
 interface Props {
     onChange: (change: Partial<FilterState>) => void;
     filterState: FilterState;
+}
+
+export enum PeriodeValg {
+    SISTE_30_DAGER = 'Siste 30 dager',
+    INNEVÆRENDE_ÅR = 'Inneværende år',
+    I_FJOR = 'I fjor',
+    EGENDEFINERT = 'Egendefinert'
 }
 
 const FiltreringsPanel = styled.nav`
@@ -54,13 +61,6 @@ const InputPanel = styled.form`
 const Opacity = styled.span`
   opacity: .5;
 `;
-
-export enum PeriodeValg {
-    SISTE_30_DAGER = 'Siste 30 dager',
-    INNEVÆRENDE_ÅR = 'Inneværende år',
-    I_FJOR = 'I fjor',
-    EGENDEFINERT = 'Egendefinert'
-}
 
 function onRadioChange(props: Props, key: PeriodeValg) {
     props.onChange({

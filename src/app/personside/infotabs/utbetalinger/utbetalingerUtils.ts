@@ -16,10 +16,21 @@ const månedTilNavnMapping = {
     11: 'Desember'
 };
 
+export function datoVerbose(dato: string | Date) {
+    const måned = månedTilNavnMapping[moment(dato).month()];
+    const år = moment(dato).year();
+    const dag = moment(dato).date();
+    return {
+        dag: dag,
+        måned: måned,
+        år: år,
+        sammensatt: `${dag}. ${måned} ${år}`
+    };
+}
+
 export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
-    const måned = moment(utbetaling.posteringsdato).month();
-    const år = moment(utbetaling.posteringsdato).year();
-    return månedTilNavnMapping[måned] + ' ' + år;
+    const verbose = datoVerbose(utbetaling.posteringsdato);
+    return `${verbose.måned} ${verbose.år}`;
 }
 
 export function sortByPosteringsDato(a: Utbetaling, b: Utbetaling) {
