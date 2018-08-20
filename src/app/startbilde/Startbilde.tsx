@@ -9,7 +9,7 @@ import { AppState } from '../../redux/reducers';
 import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/restReducers/oppgaver';
 import { STATUS } from '../../redux/restReducers/utils';
 import StartBildeLayout from './StartBildeLayout';
-import Feilmelding from '../../components/feilmelding/Feilmelding';
+import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
 import { RestReducer } from '../../redux/restReducers/restReducer';
@@ -61,7 +61,7 @@ class Startbilde extends React.Component<StartbildeProps> {
                 >
                     Hent oppgave
                 </KnappBase>
-                <Feilmelding reducer={this.props.oppgaveReducer}/>
+                <ReducerFeilmelding reducer={this.props.oppgaveReducer}/>
             </StartBildeLayout>
         );
     }

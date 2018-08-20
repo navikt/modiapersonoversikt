@@ -12,7 +12,7 @@ import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { Oppgave } from '../../../models/oppgave';
 import { settPersonIKontekst } from '../../routes/routing';
 import { History } from 'history';
-import Feilmelding from '../../../components/feilmelding/Feilmelding';
+import ReducerFeilmelding from '../../../components/feilmelding/ReducerFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { STATUS } from '../../../redux/restReducers/utils';
@@ -133,7 +133,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         Hent
                     </KnappBase>
                 </KnappLayout>
-                <Feilmelding reducer={this.props.oppgaveReducer}/>
+                <ReducerFeilmelding reducer={this.props.oppgaveReducer}/>
                 {tomtTilbakemelding}
             </HentOppgaveLayout>
         );

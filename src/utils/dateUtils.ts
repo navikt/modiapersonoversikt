@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import navfaker from 'nav-faker';
 
-export function formaterDato(rawDate: string): string {
+export function formaterDato(rawDate: string | Date): string {
     return moment(rawDate).format('DD.MM.YYYY');
 }
 
