@@ -9,6 +9,7 @@ interface Props {
 
 const PrintIkonStyle = styled.button`
   border: none;
+  background-color: transparent;
   svg {
     height: 20px;
     width: 20px;

@@ -119,14 +119,12 @@ function egendefinertDatoInputs(props: Props) {
             <NavDatovelger
                 dato={props.filterState.periode.egendefinertPeriode.fra}
                 id={'utbetalinger-datovelger-fra'}
-                avgrensninger={{maksDato: new Date()}}
                 onChange={dato => onDatoChange(props, {fra: dato})}
             />
             <label htmlFor="utbetalinger-datovelger-til">Til:</label>
             <NavDatovelger
                 dato={props.filterState.periode.egendefinertPeriode.til}
                 id={'utbetalinger-datovelger-til'}
-                avgrensninger={{maksDato: new Date()}}
                 onChange={dato => onDatoChange(props, {til: dato})}
             />
             {periodeFeilmelding}

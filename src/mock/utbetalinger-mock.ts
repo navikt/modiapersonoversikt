@@ -42,11 +42,11 @@ export function getMockUtbetaling(): Utbetaling {
         metode: 'Bankkontooverføring',
         status: randomStatus(),
         konto: Number(faker.finance.account(11)).toString(),
-        ytelser: [getYtelse()]
+        ytelser: [getMockYtelse()]
     };
 }
 
-function getYtelse(): Ytelse {
+export function getMockYtelse(): Ytelse {
     return {
         type: navfaker.nav.ytelse(),
         ytelseskomponentListe: fyllRandomListe<Ytelseskomponent>(() => getYtelseskomponent(), 10),
@@ -93,11 +93,9 @@ function getPeriode(): YtelsePeriode {
 }
 
 function randomStatus() {
-    if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Venter';
-    } else if (navfaker.random.vektetSjanse(0.2)) {
-        return 'Avvist';
-    } else {
-        return 'Fullført';
-    }
+    return navfaker.random.arrayElement([
+        'Ligger hos banken',
+        'Utbetalt',
+        'Returnert for saksbehandling'
+    ]);
 }
