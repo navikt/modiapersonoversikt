@@ -7,7 +7,7 @@ import {
     datoVerbose,
     formaterNOK,
     getGjeldendeDatoForUtbetaling,
-    getNettoSumUtbetaling,
+    getNettoSumYtelser,
     periodeStringFromYtelse
 }
     from './utbetalingerUtils';
@@ -71,7 +71,7 @@ function Utbetaling({utbetaling}: Props) {
         return <AlertStripeInfo>Manglende data om utbetaling</AlertStripeInfo>;
     }
     const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
-    const sum = formaterNOK(getNettoSumUtbetaling(utbetaling));
+    const sum = formaterNOK(getNettoSumYtelser(utbetaling.ytelser));
     const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato
         ? `Forfallsdato: ${dato}` : null;
     const tittel = utbetaling.ytelser.length > 1 ? 'Diverse ytelser' : utbetaling.ytelser[0].type;

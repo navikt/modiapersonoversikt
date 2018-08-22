@@ -88,27 +88,41 @@ export function periodeStringFromYtelse(ytelse: Ytelse): string {
         : 'Periode for ytelse ikke funnet';
 }
 
-export function getNettoSumUtbetaling(utbetaling: Utbetaling): number {
-    if (utbetaling.ytelser) {
-        return utbetaling.ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
-    }
-    return -0; // TODO
+export function getNettoSumYtelser(ytelser: Ytelse[]): number {
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
 }
 
-export function getBruttoSumUtbetaling(utbetaling: Utbetaling): number {
-    if (utbetaling.ytelser) {
-        return utbetaling.ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.ytelseskomponentersum, 0);
-    }
-    return -0; // TODO
+export function getBruttoSumYtelser(ytelser: Ytelse[]): number {
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.ytelseskomponentersum, 0);
 }
 
-export function getTrekkSumUtbetaling(utbetaling: Utbetaling): number {
-    if (utbetaling.ytelser) {
-        return utbetaling.ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
-    }
-    return -0; // TODO
+export function getTrekkSumYtelser(ytelser: Ytelse[]): number {
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
 }
 
 export function formaterNOK(beløp: number): string {
-    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
+    return beløp.toLocaleString('no', {minimumFractionDigits: 2});
+}
+
+export function summertBelløpStringFraUtbetalinger(
+    utbetalinger: Utbetaling[],
+    getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
+
+    try {
+        const sum = utbetalinger.reduce(
+            (acc: number, utbetaling: Utbetaling) => {
+
+                if (!utbetaling.ytelser) {
+                    console.error('"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser', utbetaling);
+                    throw new Error();
+                }
+
+                return acc + getSumFromYtelser(utbetaling.ytelser);
+            },
+            0);
+
+        return formaterNOK(sum);
+    } catch (e) {
+        return 'Manglende data';
+    }
 }

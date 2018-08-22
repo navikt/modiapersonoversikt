@@ -1,13 +1,16 @@
-import { Utbetaling } from '../../../../models/utbetalinger';
+import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../mock/utbetalinger-mock';
 import {
-    getNettoSumUtbetaling,
-    månedOgÅrForUtbetaling,
+    getBruttoSumYtelser,
+    getGjeldendeDatoForUtbetaling,
+    getNettoSumYtelser, getTrekkSumYtelser,
+    månedOgÅrForUtbetaling, periodeStringFromYtelse, summertBelløpStringFraUtbetalinger,
     utbetalingDatoComparator
 }
     from './utbetalingerUtils';
 
 const randomUtbetaling = getMockUtbetaling();
+const {utbetalingsdato, forfallsdato, ...randomUtbetlaingUtenDato} = randomUtbetaling;
 const randomYtelse = getMockYtelse();
 
 test('lager riktig måned og år string for utbetaling', () => {
@@ -21,29 +24,72 @@ test('lager riktig måned og år string for utbetaling', () => {
     expect(result).toEqual('Desember 1986');
 });
 
+test('returnerer tellende dato for utbetaling', () => {
+    const utbetalingMedPosteringsdato: Utbetaling = {
+        ...randomUtbetlaingUtenDato,
+        posteringsdato: '1900-01-01'
+    };
+
+    const utbetalingMedForfallsDato: Utbetaling = {
+        ...utbetalingMedPosteringsdato,
+        forfallsdato: '1950-01-01'
+    };
+
+    const utbetalingMedUtbetalingsDato: Utbetaling = {
+        ...utbetalingMedForfallsDato,
+        utbetalingsdato: '2000-01-01'
+    };
+
+    expect(getGjeldendeDatoForUtbetaling(utbetalingMedPosteringsdato)).toEqual('1900-01-01');
+    expect(getGjeldendeDatoForUtbetaling(utbetalingMedForfallsDato)).toEqual('1950-01-01');
+    expect(getGjeldendeDatoForUtbetaling(utbetalingMedUtbetalingsDato)).toEqual('2000-01-01');
+});
+
+test('lager riktig periodestreng for ytelse', () => {
+    const ytelse: Ytelse = {
+        ...randomYtelse,
+        periode: {
+            start: '2010-01-01',
+            slutt: '2015-01-01'
+        }
+    };
+
+    const periodestreng = periodeStringFromYtelse(ytelse);
+
+    expect(periodestreng).toEqual('01.01.2010 - 01.01.2015');
+});
+
 test('sorterer utbetalinger etter dato', () => {
     const utbetalingerFør: Utbetaling[] = [
         {
-            ...randomUtbetaling,
-            posteringsdato: '1900-12-28'
+            ...randomUtbetlaingUtenDato,
+            posteringsdato: '1900-12-28',
+            forfallsdato: undefined,
+            utbetalingsdato: undefined
         }, {
-            ...randomUtbetaling,
-            posteringsdato: '1986-12-28'
+            ...randomUtbetlaingUtenDato,
+            posteringsdato: '1930-12-28',
+            utbetalingsdato: '1986-12-28',
+            forfallsdato: undefined
         }, {
-            ...randomUtbetaling,
-            posteringsdato: '1950-12-28'
+            ...randomUtbetlaingUtenDato,
+            posteringsdato: '1800-12-28',
+            forfallsdato: '1950-12-28',
+            utbetalingsdato: undefined
         }
     ];
 
     const utbetalingerEtter: Utbetaling[] = [
         {
-            ...randomUtbetaling,
-            posteringsdato: '1986-12-28'
+            ...randomUtbetlaingUtenDato,
+            posteringsdato: '1930-12-28',
+            utbetalingsdato: '1986-12-28'
         }, {
-            ...randomUtbetaling,
-            posteringsdato: '1950-12-28'
+            ...randomUtbetlaingUtenDato,
+            posteringsdato: '1800-12-28',
+            forfallsdato: '1950-12-28'
         }, {
-            ...randomUtbetaling,
+            ...randomUtbetlaingUtenDato,
             posteringsdato: '1900-12-28'
         }
     ];
@@ -53,19 +99,72 @@ test('sorterer utbetalinger etter dato', () => {
     expect(utbetalingerEtter).toEqual(sorterteUtbetalinger);
 });
 
-test('summerer utbetaling riktig', () => {
-   const utbetaling: Utbetaling = {
-       ...randomUtbetaling,
-       ytelser: [{
+test('summerer netto utbetaling riktig', () => {
+   const ytelser: Ytelse[] = [{
            ...randomYtelse,
            nettobeløp: 100
        }, {
            ...randomYtelse,
            nettobeløp: 200
-       }]
-   };
+       }];
 
-   const sumForYtelser = getNettoSumUtbetaling(utbetaling);
+   const sumForYtelser = getNettoSumYtelser(ytelser);
 
    expect(sumForYtelser).toEqual(300);
+});
+
+test('summerer brutto utbetaling riktig', () => {
+   const ytelser: Ytelse[] = [{
+           ...randomYtelse,
+           ytelseskomponentersum: 100
+       }, {
+           ...randomYtelse,
+           ytelseskomponentersum: 500
+       }];
+
+   const sumForYtelser = getBruttoSumYtelser(ytelser);
+
+   expect(sumForYtelser).toEqual(600);
+});
+
+test('summerer trekk riktig', () => {
+   const ytelser: Ytelse[] = [{
+           ...randomYtelse,
+           skattsum: -100,
+           trekksum: 0
+       }, {
+           ...randomYtelse,
+           skattsum: -200,
+           trekksum: -100
+       }];
+
+   const trekkForYtelser = getTrekkSumYtelser(ytelser);
+
+   expect(trekkForYtelser).toEqual(-400);
+});
+
+test('summerer beløp på tvers av utbetalinger', () => {
+    const utbetalinger: Utbetaling [] = [{
+        ...randomUtbetaling,
+        ytelser: [{
+            ...randomYtelse,
+            nettobeløp: 200
+        }, {
+            ...randomYtelse,
+            nettobeløp: 200
+        }]
+    }, {
+        ...randomUtbetaling,
+        ytelser: [{
+            ...randomYtelse,
+            nettobeløp: 100
+        }, {
+            ...randomYtelse,
+            nettobeløp: 100
+        }]
+    }];
+
+    const summert = summertBelløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
+
+    expect(parseInt(summert, 10)).toEqual(600);
 });

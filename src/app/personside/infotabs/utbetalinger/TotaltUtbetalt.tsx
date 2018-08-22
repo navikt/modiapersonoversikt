@@ -7,7 +7,11 @@ import styled from 'styled-components';
 import PrintKnapp from '../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../utils/dateUtils';
 import {
-    formaterNOK, getBruttoSumUtbetaling, getFraDateFromFilter, getTilDateFromFilter, getTrekkSumUtbetaling
+    getBruttoSumYtelser,
+    getFraDateFromFilter,
+    getNettoSumYtelser,
+    getTilDateFromFilter,
+    getTrekkSumYtelser, summertBelløpStringFraUtbetalinger
 }
     from './utbetalingerUtils';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
@@ -42,10 +46,9 @@ function TotaltUtbetalt(props: Props) {
         fra: getFraDateFromFilter(props.filter),
         til: getTilDateFromFilter(props.filter)
     };
-    const brutto: number = props.utbetalinger
-        .reduce((acc: number, utbetaling: Utbetaling) => acc + getBruttoSumUtbetaling(utbetaling), 0);
-    const trekk: number = props.utbetalinger
-        .reduce((acc: number, utbetaling: Utbetaling) => acc + getTrekkSumUtbetaling(utbetaling), 0);
+    const brutto: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getBruttoSumYtelser);
+    const trekk: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getTrekkSumYtelser);
+    const utbetalt: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getNettoSumYtelser);
 
     return (
         <Style>
@@ -64,9 +67,9 @@ function TotaltUtbetalt(props: Props) {
                     <tbody>
                     <tr>
                         <td>{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
-                        <td>{formaterNOK(brutto)}</td>
-                        <td>{formaterNOK(trekk)}</td>
-                        <td>{formaterNOK(brutto - (-trekk))}</td>
+                        <td>{brutto}</td>
+                        <td>{trekk}</td>
+                        <td>{utbetalt}</td>
                     </tr>
                     </tbody>
                 </table>

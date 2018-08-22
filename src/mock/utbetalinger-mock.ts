@@ -48,15 +48,18 @@ export function getMockUtbetaling(): Utbetaling {
 }
 
 export function getMockYtelse(): Ytelse {
+    const nettobeløp = Number(faker.commerce.price()) * 10;
+    const trekksum = -Number(faker.commerce.price());
+    const skattsum = -Number(faker.commerce.price());
     return {
         type: navfaker.nav.ytelse(),
         ytelseskomponentListe: fyllRandomListe<Ytelseskomponent>(() => getYtelseskomponent(), 10),
-        ytelseskomponentersum: Number(faker.commerce.price()) * 10,
+        ytelseskomponentersum: nettobeløp,
         trekkListe: fyllRandomListe<Trekk>(() => getTrekk(), 5),
-        trekksum: -Number(faker.commerce.price()),
+        trekksum: trekksum,
         skattListe: fyllRandomListe<Skatt>(() => getSkatt(), 5),
-        skattsum: -Number(faker.commerce.price()),
-        nettobeløp: Number(faker.commerce.price()) * 10,
+        skattsum: skattsum,
+        nettobeløp: nettobeløp + trekksum + skattsum,
         periode: getPeriode(),
         bilagsnummer: faker.finance.account(10)
     };
