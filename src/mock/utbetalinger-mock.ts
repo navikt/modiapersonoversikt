@@ -12,7 +12,7 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../models/utbetalinger';
-import { fyllRandomListe } from './utils/mock-utils';
+import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -32,17 +32,18 @@ function getUtbetalinger() {
 }
 
 export function getMockUtbetaling(): Utbetaling {
+    const randomDato = () => moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
     return {
         utbetaltTil: faker.name.firstName() + ' ' + faker.name.lastName(),
         nettobeløp: Number(faker.commerce.price()),
-        posteringsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        utbetalingsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        forfallsdato: moment(faker.date.past(1)).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        posteringsdato: randomDato(),
+        utbetalingsdato: vektetSjanse(faker, 0.5) ? randomDato() : undefined,
+        forfallsdato: vektetSjanse(faker, 0.5) ? randomDato() : undefined,
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: randomStatus(),
         konto: Number(faker.finance.account(11)).toString(),
-        ytelser: [getMockYtelse()]
+        ytelser: fyllRandomListe(() => getMockYtelse(), vektetSjanse(faker, 0.7) ? 1 : 3)
     };
 }
 
@@ -50,12 +51,12 @@ export function getMockYtelse(): Ytelse {
     return {
         type: navfaker.nav.ytelse(),
         ytelseskomponentListe: fyllRandomListe<Ytelseskomponent>(() => getYtelseskomponent(), 10),
-        ytelseskomponentersum: Number(faker.commerce.price()),
+        ytelseskomponentersum: Number(faker.commerce.price()) * 10,
         trekkListe: fyllRandomListe<Trekk>(() => getTrekk(), 5),
-        trekksum: Number(faker.commerce.price()),
+        trekksum: -Number(faker.commerce.price()),
         skattListe: fyllRandomListe<Skatt>(() => getSkatt(), 5),
-        skattsum: Number(faker.commerce.price()),
-        nettobeløp: Number(faker.commerce.price()),
+        skattsum: -Number(faker.commerce.price()),
+        nettobeløp: Number(faker.commerce.price()) * 10,
         periode: getPeriode(),
         bilagsnummer: faker.finance.account(10)
     };
@@ -74,14 +75,14 @@ function getYtelseskomponent(): Ytelseskomponent {
 function getTrekk(): Trekk {
     return {
         trekktype: 'Prosenttrekk',
-        trekkbeløp: Number(faker.commerce.price()),
+        trekkbeløp: -Number(faker.commerce.price()),
         kreditor: faker.company.companyName()
     };
 }
 
 function getSkatt(): Skatt {
     return {
-        skattebeløp: Number(faker.commerce.price())
+        skattebeløp: -Number(faker.commerce.price())
     };
 }
 

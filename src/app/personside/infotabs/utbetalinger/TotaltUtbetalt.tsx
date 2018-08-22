@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import PrintKnapp from '../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../utils/dateUtils';
 import {
-    formatNOK, getBruttoSumUtbetaling, getFraDateFromFilter, getTilDateFromFilter, getTrekkSumUtbetaling
+    formaterNOK, getBruttoSumUtbetaling, getFraDateFromFilter, getTilDateFromFilter, getTrekkSumUtbetaling
 }
     from './utbetalingerUtils';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
@@ -64,9 +64,9 @@ function TotaltUtbetalt(props: Props) {
                     <tbody>
                     <tr>
                         <td>{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
-                        <td>{formatNOK(brutto)}</td>
-                        <td>{formatNOK(trekk)}</td>
-                        <td>{formatNOK(brutto - (-trekk))}</td>
+                        <td>{formaterNOK(brutto)}</td>
+                        <td>{formaterNOK(trekk)}</td>
+                        <td>{formaterNOK(brutto - (-trekk))}</td>
                     </tr>
                     </tbody>
                 </table>

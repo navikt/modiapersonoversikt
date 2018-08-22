@@ -7,7 +7,7 @@ import { FilterState } from './Filter';
 import TotaltUtbetalt from './TotaltUtbetalt';
 import { AlignTextCenter, Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
-import { månedOgÅrForUtbetaling, sortByPosteringsDato } from './utbetalingerUtils';
+import { månedOgÅrForUtbetaling, utbetalingDatoComparator } from './utbetalingerUtils';
 import EnkeltUtbetaling from './Utbetaling';
 
 export interface UtbetalingerProps {
@@ -16,15 +16,13 @@ export interface UtbetalingerProps {
     onFilterChange: (change: Partial<FilterState>) => void;
 }
 
-const ArenaLenkeStyle = styled.div`
-  margin: 1.2rem;
-  text-align: right;
-`;
-
 const MånedGruppeStyle = styled.div`
   > *:first-child {
     background-color: ${theme.color.bakgrunn};
     padding: .2rem 1.2rem;
+  }
+  > *:nth-child(2) ~ * {
+    border-top: solid 2px ${theme.color.bakgrunn};
   }
 `;
 
@@ -34,20 +32,10 @@ const UtbetalingerStyle = styled.div`
   }
 `;
 
-function ArenaLenke() {
-    return (
-        <ArenaLenkeStyle>
-            <Undertekst>
-                Lenke til Arena: <a className="lenke">Meldinger/utbetalinger i Arena</a>
-            </Undertekst>
-        </ArenaLenkeStyle>
-    );
-}
-
 function Månedsgruppe({ gruppe }: { gruppe: ArrayGroup<Utbetaling> }) {
     return (
         <MånedGruppeStyle>
-            <Undertekst><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Undertekst>
+            <Undertekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Undertekst>
             {gruppe.array.map((utbetaling, index) =>
                 <EnkeltUtbetaling utbetaling={utbetaling} key={index}/>)}
         </MånedGruppeStyle>
@@ -58,20 +46,18 @@ function Utbetalinger(props: UtbetalingerProps) {
     if (props.utbetalinger.length === 0) {
         return (
             <>
-                <ArenaLenke/>
                 <AlignTextCenter><Undertekst>Ingen utbetalinger funnet</Undertekst></AlignTextCenter>
             </>
         );
     }
 
     const utbetalingerGruppert: GroupedArray<Utbetaling> = groupArray(
-        props.utbetalinger.sort(sortByPosteringsDato),
+        props.utbetalinger.sort(utbetalingDatoComparator),
         månedOgÅrForUtbetaling
     );
 
     return (
         <>
-            <ArenaLenke/>
             <TotaltUtbetalt utbetalinger={props.utbetalinger} filter={props.filter}/>
             <UtbetalingerStyle>
                 <Undertittel>Utbetalinger</Undertittel>

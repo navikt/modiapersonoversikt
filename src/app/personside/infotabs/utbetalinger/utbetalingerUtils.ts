@@ -1,7 +1,7 @@
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from './Filter';
-import { Periode } from '../../../../models/periode';
 import moment = require('moment');
+import { formaterDato } from '../../../../utils/dateUtils';
 
 const månedTilNavnMapping = {
     0: 'Januar',
@@ -35,8 +35,8 @@ export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
     return `${verbose.måned} ${verbose.år}`;
 }
 
-export function sortByPosteringsDato(a: Utbetaling, b: Utbetaling) {
-    return moment(b.posteringsdato).unix() - moment(a.posteringsdato).unix();
+export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
+    return moment(getGjeldendeDatoForUtbetaling(b)).unix() - moment(getGjeldendeDatoForUtbetaling(a)).unix();
 }
 
 export function getFraDateFromFilter(filter: FilterState): Date {
@@ -82,28 +82,10 @@ export function getGjeldendeDatoForUtbetaling(utbetaling: Utbetaling): string {
     return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
 }
 
-export function getPeriodeFromUtbetalig(utbetaling: Utbetaling): Periode {
-    return utbetaling.ytelser ? utbetaling.ytelser.reduce(
-        (acc: Periode, ytelse: Ytelse) => {
-            if (!ytelse.periode) {
-                return acc;
-            }
-            return {
-                fra: moment(ytelse.periode.start).isBefore(moment(acc.fra)) ? ytelse.periode.start : acc.fra,
-                til: moment(ytelse.periode.slutt).isAfter(moment(acc.til)) ? ytelse.periode.slutt : acc.til
-            };
-        },
-        {
-            fra: moment().format(),
-            til: moment(0).format()
-        }) : {fra: '', til: ''};
-}
-
-export function getOverskriftFromUtbetaling(utbetaling: Utbetaling): String {
-    if (utbetaling.ytelser && utbetaling.ytelser.length === 1) {
-        return utbetaling.ytelser[0].type || 'Ukjent type';
-    }
-    return 'Diverse ytelser';
+export function periodeStringFromYtelse(ytelse: Ytelse): string {
+    return ytelse.periode
+        ? `${formaterDato(ytelse.periode.start)} - ${formaterDato(ytelse.periode.slutt)}`
+        : 'Periode for ytelse ikke funnet';
 }
 
 export function getNettoSumUtbetaling(utbetaling: Utbetaling): number {
@@ -127,6 +109,6 @@ export function getTrekkSumUtbetaling(utbetaling: Utbetaling): number {
     return -0; // TODO
 }
 
-export function formatNOK(sum: number): string {
-    return sum.toLocaleString('no', { minimumFractionDigits: 2 });
+export function formaterNOK(beløp: number): string {
+    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
 }

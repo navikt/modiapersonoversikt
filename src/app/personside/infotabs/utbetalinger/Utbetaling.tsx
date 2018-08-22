@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { Utbetaling } from '../../../../models/utbetalinger';
+import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
 import styled from 'styled-components';
 import {
-    datoVerbose, formatNOK,
+    datoVerbose,
+    formaterNOK,
     getGjeldendeDatoForUtbetaling,
-    getOverskriftFromUtbetaling,
-    getPeriodeFromUtbetalig,
-    getNettoSumUtbetaling
+    getNettoSumUtbetaling,
+    periodeStringFromYtelse
 }
     from './utbetalingerUtils';
 import PrintKnapp from '../../../../components/PrintKnapp';
-import { formaterDato } from '../../../../utils/dateUtils';
 import { ReactNode } from 'react';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     utbetaling: Utbetaling;
@@ -29,42 +29,86 @@ function UndertekstGrå(props: { children: ReactNode }) {
 
 const UtbetalingStyle = styled.div`
   padding: .5rem 1.2rem;
-  > *:not(:first-child):not(:nth-child(3)) {
-    margin-top: .5rem;
+`;
+
+const EnkeltYtelseStyle = styled.div`
+  margin-left: .5rem;
+`;
+
+const Luft = styled.div`
+  margin-top: .5rem;
+`;
+
+function EnkeltYtelse({ytelse}: { ytelse: Ytelse }) {
+    const periode = periodeStringFromYtelse(ytelse);
+    return (
+        <EnkeltYtelseStyle>
+            <SpaceBetween>
+                <UndertekstGrå><Bold>
+                    {ytelse.type}
+                </Bold></UndertekstGrå>
+                <UndertekstGrå><Bold>
+                    {formaterNOK(ytelse.nettobeløp)}
+                </Bold></UndertekstGrå>
+            </SpaceBetween>
+            <UndertekstGrå>
+                {periode}
+            </UndertekstGrå>
+        </EnkeltYtelseStyle>
+    );
+}
+
+const YtelsesListe = styled.div`
+  margin-top: 1rem;
+  > * {
+    margin-top: .2rem;
   }
 `;
 
-function getDatoForUtbetaling(utbetaling: Utbetaling): string {
-    return datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
-}
-
-function Utbetaling({ utbetaling }: Props) {
-
-    const periode = getPeriodeFromUtbetalig(utbetaling);
-    const sum = formatNOK(getNettoSumUtbetaling(utbetaling));
+function Utbetaling({utbetaling}: Props) {
+    if (!utbetaling.ytelser) {
+        console.error('Utbetaling mangler ytelser', utbetaling);
+        return <AlertStripeInfo>Manglende data om utbetaling</AlertStripeInfo>;
+    }
+    const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
+    const sum = formaterNOK(getNettoSumUtbetaling(utbetaling));
     const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato
-        ? `Forfallsdato: ${getDatoForUtbetaling(utbetaling)}` : null;
+        ? `Forfallsdato: ${dato}` : null;
+    const tittel = utbetaling.ytelser.length > 1 ? 'Diverse ytelser' : utbetaling.ytelser[0].type;
+
     return (
         <UtbetalingStyle>
             <SpaceBetween>
                 <UndertekstGrå>
-                    {getDatoForUtbetaling(utbetaling)} / <Bold>{utbetaling.status}</Bold>
+                    {dato} / <Bold>{utbetaling.status}</Bold>
                 </UndertekstGrå>
                 <PrintKnapp onClick={() => console.log('ikke implementert')}/>
             </SpaceBetween>
             <SpaceBetween>
-                <UndertekstBold>{getOverskriftFromUtbetaling(utbetaling)}</UndertekstBold>
+                <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
                 <UndertekstBold>{sum}</UndertekstBold>
             </SpaceBetween>
-            <SpaceBetween>
-                <UndertekstGrå>
-                    {formaterDato(periode.fra)} - {formaterDato(periode.til)}
-                </UndertekstGrå>
-                <UndertekstGrå>
-                    {forfallsInfo}
-                </UndertekstGrå>
-            </SpaceBetween>
+
+            {utbetaling.ytelser.length === 1
+                ? <SpaceBetween>
+                    <UndertekstGrå>{periodeStringFromYtelse(utbetaling.ytelser[0])}</UndertekstGrå>
+                    <UndertekstGrå>{forfallsInfo}</UndertekstGrå>
+                </SpaceBetween>
+                : <SpaceBetween>
+                    <div/>
+                    <UndertekstGrå>{forfallsInfo}</UndertekstGrå>
+                </SpaceBetween>
+            }
+
+                <Luft/>
             <UndertekstGrå>Utbetaling til: {utbetaling.utbetaltTil}</UndertekstGrå>
+
+            {utbetaling.ytelser.length > 1
+                ? <YtelsesListe>
+                    {utbetaling.ytelser.map((ytelse, index) => <EnkeltYtelse ytelse={ytelse} key={index}/>)}
+                </YtelsesListe>
+                : null}
+
         </UtbetalingStyle>
     );
 }

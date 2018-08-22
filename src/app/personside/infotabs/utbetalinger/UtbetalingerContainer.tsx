@@ -15,7 +15,7 @@ import { restoreScroll } from '../../../../utils/restoreScroll';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Coins from '../../../../svg/Coins';
 
 interface State {
@@ -88,6 +88,21 @@ const Opacity = styled.span`
   opacity: .5;
 `;
 
+const ArenaLenkeStyle = styled.div`
+  margin: 1.2rem;
+  text-align: right;
+`;
+
+function ArenaLenke() {
+    return (
+        <ArenaLenkeStyle>
+            <Undertekst>
+                Lenke til Arena: <a className="lenke">Meldinger/utbetalinger i Arena</a>
+            </Undertekst>
+        </ArenaLenkeStyle>
+    );
+}
+
 class UtbetalingerContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
@@ -132,6 +147,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                     <Filtrering filterState={this.state.filter} onChange={this.onFilterChange}/>
                 </Venstre>
                 <Hoyre>
+                    <ArenaLenke/>
                     <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                         <Utbetalinger
                             utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
