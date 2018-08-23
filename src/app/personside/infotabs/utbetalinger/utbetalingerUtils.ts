@@ -104,12 +104,20 @@ export function formaterNOK(beløp: number): string {
     return beløp.toLocaleString('no', {minimumFractionDigits: 2});
 }
 
+function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
+    return utbetaling.utbetalingsdato !== null
+        // Utbetalinger kan feilaktig ha en utbetalingsdato selv om de er returnert til nav for saksbehandling
+        && !utbetaling.status.includes('Returnert til NAV');
+}
+
 export function summertBelløpStringFraUtbetalinger(
     utbetalinger: Utbetaling[],
     getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
 
     try {
-        const sum = utbetalinger.reduce(
+        const sum = utbetalinger
+            .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
+            .reduce(
             (acc: number, utbetaling: Utbetaling) => {
 
                 if (!utbetaling.ytelser) {

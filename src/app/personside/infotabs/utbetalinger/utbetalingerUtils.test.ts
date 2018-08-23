@@ -10,7 +10,11 @@ import {
     from './utbetalingerUtils';
 
 const randomUtbetaling = getMockUtbetaling();
-const {utbetalingsdato, forfallsdato, ...randomUtbetlaingUtenDato} = randomUtbetaling;
+const randomUtbetlaingUtenDato: Utbetaling = {
+        ...randomUtbetaling,
+        forfallsdato: null,
+        utbetalingsdato: null
+};
 const randomYtelse = getMockYtelse();
 
 test('lager riktig måned og år string for utbetaling', () => {
@@ -64,18 +68,14 @@ test('sorterer utbetalinger etter dato', () => {
         {
             ...randomUtbetlaingUtenDato,
             posteringsdato: '1900-12-28',
-            forfallsdato: undefined,
-            utbetalingsdato: undefined
         }, {
             ...randomUtbetlaingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28',
-            forfallsdato: undefined
         }, {
             ...randomUtbetlaingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28',
-            utbetalingsdato: undefined
         }
     ];
 
@@ -144,8 +144,14 @@ test('summerer trekk riktig', () => {
 });
 
 test('summerer beløp på tvers av utbetalinger', () => {
-    const utbetalinger: Utbetaling [] = [{
+    const randomTellendeUtbetaling = {
         ...randomUtbetaling,
+        status: 'ok',
+        utbetalingsdato: '2010-01-01'
+    };
+
+    const utbetalinger: Utbetaling [] = [{
+        ...randomTellendeUtbetaling,
         ytelser: [{
             ...randomYtelse,
             nettobeløp: 200
@@ -154,13 +160,24 @@ test('summerer beløp på tvers av utbetalinger', () => {
             nettobeløp: 200
         }]
     }, {
-        ...randomUtbetaling,
+        ...randomTellendeUtbetaling,
         ytelser: [{
             ...randomYtelse,
-            nettobeløp: 100
-        }, {
+            nettobeløp: 200
+        }]
+    }, {
+        ...randomUtbetaling,
+        status: 'Returnert til NAV',
+        ytelser: [{
             ...randomYtelse,
-            nettobeløp: 100
+            nettobeløp: 10000
+        }]
+    }, {
+        ...randomUtbetaling,
+        utbetalingsdato: null,
+        ytelser: [{
+            ...randomYtelse,
+            nettobeløp: 10000
         }]
     }];
 
