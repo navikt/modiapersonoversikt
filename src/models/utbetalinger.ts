@@ -16,7 +16,7 @@ export interface Utbetaling {
 }
 
 export interface Ytelse {
-    type: string;
+    type?: string;
     ytelseskomponentListe?: Ytelseskomponent[];
     ytelseskomponentersum: number;
     trekkListe?: Trekk[];

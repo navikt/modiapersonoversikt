@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { Utbetaling } from '../../../../models/utbetalinger';
 import { AlignTextRight } from '../../../../components/common-styled-components';
-import { FilterState, FraTilDato, PeriodeValg } from './Filter';
-import { Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { FilterState, FraTilDato } from './Filter';
+import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import PrintKnapp from '../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../utils/dateUtils';
+import {
+    getBruttoSumYtelser,
+    getFraDateFromFilter,
+    getNettoSumYtelser,
+    getTilDateFromFilter,
+    getTrekkSumYtelser, summertBelløpStringFraUtbetalinger
+}
+    from './utbetalingerUtils';
+import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 interface Props {
     utbetalinger: Utbetaling[];
@@ -14,47 +23,57 @@ interface Props {
 
 const Style = styled.div`
   margin: 1.2rem;
+  table {
+    width: 100%;
+    text-align: right;
+  }
+  th {
+    font-weight: normal;
+  }
+  td {
+    font-weight: bold;
+  }
+  tr {
+    > *:first-child {
+      text-align: left;
+    }
+  }
 `;
-
-function getFra(filter: FilterState): Date {
-    const iDag = new Date();
-    let returDato = new Date();
-    switch (filter.periode.radioValg) {
-        case PeriodeValg.INNEVÆRENDE_ÅR:
-            returDato.setDate(0);
-            return returDato;
-        case PeriodeValg.I_FJOR:
-            returDato.setDate(0);
-            returDato.setFullYear(returDato.getFullYear() - 1);
-            return returDato;
-        case PeriodeValg.EGENDEFINERT:
-            return filter.periode.egendefinertPeriode.fra || new Date();
-        case PeriodeValg.SISTE_30_DAGER:
-        default:
-            returDato.setDate(iDag.getDate() - 30);
-            return returDato;
-    }
-}
-
-function getTil(filter: FilterState): Date {
-    if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
-        return filter.periode.egendefinertPeriode.til || new Date();
-    }
-    return new Date();
-}
 
 function TotaltUtbetalt(props: Props) {
 
     const periode: FraTilDato = {
-        fra: getFra(props.filter),
-        til: getTil(props.filter)
+        fra: getFraDateFromFilter(props.filter),
+        til: getTilDateFromFilter(props.filter)
     };
+    const brutto: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getBruttoSumYtelser);
+    const trekk: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getTrekkSumYtelser);
+    const utbetalt: string = summertBelløpStringFraUtbetalinger(props.utbetalinger, getNettoSumYtelser);
 
     return (
         <Style>
             <Undertittel>Totalt utbetalt for perioden</Undertittel>
-            <Undertekst>{formaterDato(periode.fra)} - {formaterDato(periode.til)}</Undertekst>
             <AlignTextRight><PrintKnapp onClick={() => console.log('ikke implementert')}/></AlignTextRight>
+            <Undertekst tag="span">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Totalt Utbetalt</th>
+                        <th>Brutto</th>
+                        <th>Trekk</th>
+                        <th>Utbetalt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
+                        <td>{brutto}</td>
+                        <td>{trekk}</td>
+                        <td>{utbetalt}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </Undertekst>
         </Style>
     );
 }

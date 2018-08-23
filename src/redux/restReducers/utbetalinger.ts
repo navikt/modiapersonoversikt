@@ -3,12 +3,12 @@ import { getUtbetalinger } from '../../api/utbetaling-api';
 
 const { reducer, action, reload, tilbakestillReducer } = createActionsAndReducer('utbetalinger');
 
-export function hentUtbetalinger(fødselsnummer: string) {
-    return action(() => getUtbetalinger(fødselsnummer));
+export function hentUtbetalinger(fødselsnummer: string, startDato: Date, sluttDato: Date) {
+    return action(() => getUtbetalinger(fødselsnummer, startDato, sluttDato));
 }
 
-export function reloadUtbetalinger(fødselsnummer: string) {
-    return reload(() => getUtbetalinger(fødselsnummer));
+export function reloadUtbetalinger(fødselsnummer: string, startDato: Date, sluttDato: Date) {
+    return reload(() => getUtbetalinger(fødselsnummer, startDato, sluttDato));
 }
 
 export function resetUtbetalingerReducer() {
