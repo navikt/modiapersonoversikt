@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from './Filter';
 import moment = require('moment');
@@ -31,7 +32,7 @@ export function datoVerbose(dato: string | Date) {
 }
 
 export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
-    const verbose = datoVerbose(utbetaling.posteringsdato);
+    const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
     return `${verbose.måned} ${verbose.år}`;
 }
 
@@ -133,4 +134,24 @@ export function summertBelløpStringFraUtbetalinger(
     } catch (e) {
         return 'Manglende data';
     }
+}
+
+export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined>>) {
+    return (
+        <table>
+            <thead>
+            <tr>
+                {tittelrekke.map(tittel => <th key={tittel}>{tittel}</th>)}
+            </tr>
+            </thead>
+            <tbody>
+            {table.map((row, index) =>
+                <tr key={index}>{row.map(entry =>
+                    <td key={entry}>{entry}</td>
+                )}
+                </tr>
+            )}
+            </tbody>
+        </table>
+    );
 }

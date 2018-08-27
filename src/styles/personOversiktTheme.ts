@@ -22,7 +22,8 @@ export const theme = {
         layout: '0 0.1em 0.6em rgba(150, 150, 150, 0.7)'
     },
     borderRadius: {
-        layout: '4px;'
+        layout: '4px;',
+        knapp: '8px;'
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`

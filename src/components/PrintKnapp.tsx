@@ -10,6 +10,8 @@ interface Props {
 const PrintIkonStyle = styled.button`
   border: none;
   background-color: transparent;
+  border-radius: ${theme.borderRadius.knapp};
+  padding: 0;
   svg {
     height: 20px;
     width: 20px;
