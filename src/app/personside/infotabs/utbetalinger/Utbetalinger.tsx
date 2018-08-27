@@ -22,7 +22,7 @@ const MånedGruppeStyle = styled.li`
     background-color: ${theme.color.bakgrunn};
     padding: .2rem 1.2rem;
   }
-  > *:nth-child(2) ~ * {
+  ol > * {
     border-top: solid 2px ${theme.color.bakgrunn};
   }
 `;
@@ -58,7 +58,9 @@ function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
 function Utbetalinger(props: UtbetalingerProps) {
     if (props.utbetalinger.length === 0) {
         return (
-            <AlertStripeInfo>Ingen utbetalinger funnet</AlertStripeInfo>
+            <AlertStripeInfo>
+                Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
+            </AlertStripeInfo>
         );
     }
 

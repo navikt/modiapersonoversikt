@@ -146,8 +146,8 @@ export function createTable(tittelrekke: string[], table: Array<Array<string | n
             </thead>
             <tbody>
             {table.map((row, index) =>
-                <tr key={index}>{row.map(entry =>
-                    <td key={entry}>{entry}</td>
+                <tr key={index}>{row.map((entry, i) =>
+                    <td key={i}>{entry}</td>
                 )}
                 </tr>
             )}

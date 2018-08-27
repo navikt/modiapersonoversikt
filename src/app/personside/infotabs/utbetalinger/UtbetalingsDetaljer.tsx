@@ -5,6 +5,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { createTable, formaterNOK } from './utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../models/utbetalinger';
 import { EnkeltYtelseProps } from './SammensattUtbetaling';
+import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 
 const Wrapper = styled.div`
   margin: .5rem 0;
@@ -23,6 +24,9 @@ const Wrapper = styled.div`
     > *:first-child {
       text-align: left;
     }
+    > *:not(:first-child) {
+      width: 20%;
+    }
   }
 `;
 
@@ -31,29 +35,53 @@ const Border = styled.div`
   margin: .5rem 0;
 `;
 
-function utbetalingskomponenterListe(ytelse: Ytelse) {
-    if (ytelse.ytelseskomponentListe) {
-        const tittelrekke = ['Utbetalingsdetaljer', 'Sats', 'Antall', 'Beløp'];
+function utbetalingsDetaljerTable(ytelse: Ytelse) {
+    if (ytelse.ytelseskomponentListe || ytelse.trekkListe) {
+        const tittelrekke = ['Detaljer', 'Sats', 'Antall', 'Beløp'];
+        let tabellElementer: Array<Array<number | string | undefined>> = [];
 
-        const tabellElementer = ytelse.ytelseskomponentListe.map((ytelseskomponent: Ytelseskomponent) => [
-            ytelseskomponent.ytelseskomponenttype,
-            formaterNOK(ytelseskomponent.satsbeløp || 0),
-            ytelseskomponent.satsantall,
-            formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
-        ]);
+        if (ytelse.ytelseskomponentListe) {
+            ytelse.ytelseskomponentListe.map((ytelseskomponent: Ytelseskomponent) =>
+                tabellElementer.push([
+                ytelseskomponent.ytelseskomponenttype,
+                ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
+                ytelseskomponent.satsantall,
+                formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
+            ]));
+        }
+
+        if (ytelse.skattListe) {
+            ytelse.skattListe.map(skattElement =>
+                tabellElementer.push([
+                'Skattetrekk',
+                '',
+                '',
+                formaterNOK(skattElement.skattebeløp)
+            ]));
+        }
+
+        if (ytelse.trekkListe) {
+            ytelse.trekkListe.map(trekkElement =>
+                tabellElementer.push([
+                trekkElement.trekktype,
+                '',
+                '',
+                formaterNOK(trekkElement.trekkbeløp)
+            ]));
+        }
 
         return createTable(
             tittelrekke,
             tabellElementer
         );
     } else {
-        return 'Mangler detaljer om ytelseskomponenter i utbetaling';
+        return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
     }
 }
 
 function UtbetalingsDetaljer(props: EnkeltYtelseProps) {
     const ytelse = props.ytelse;
-    const ytelsesKomponenter = utbetalingskomponenterListe(ytelse);
+    const ytelsesKomponenter = utbetalingsDetaljerTable(ytelse);
     const oversikt = createTable(
         ['Konto', 'Brutto', 'Trekk', 'Utbetalt'],
         [[
@@ -73,8 +101,8 @@ function UtbetalingsDetaljer(props: EnkeltYtelseProps) {
                 {ytelsesKomponenter}
             </Undertekst>
             <Border/>
-            <UndertekstBold tag={'h4'}>Melding:</UndertekstBold>
-            <Undertekst>{props.melding}</Undertekst>
+            <UndertekstBold tag={'h4'}>Melding</UndertekstBold>
+            <Undertekst>{props.melding || ''}</Undertekst>
         </Wrapper>
     );
 }
