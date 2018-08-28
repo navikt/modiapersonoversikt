@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from './Filter';
 import moment = require('moment');
@@ -31,7 +32,7 @@ export function datoVerbose(dato: string | Date) {
 }
 
 export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
-    const verbose = datoVerbose(utbetaling.posteringsdato);
+    const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
     return `${verbose.måned} ${verbose.år}`;
 }
 
@@ -104,12 +105,20 @@ export function formaterNOK(beløp: number): string {
     return beløp.toLocaleString('no', {minimumFractionDigits: 2});
 }
 
+function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
+    return utbetaling.utbetalingsdato !== null
+        // Utbetalinger kan feilaktig ha en utbetalingsdato selv om de er returnert til nav for saksbehandling
+        && !utbetaling.status.includes('Returnert til NAV');
+}
+
 export function summertBelløpStringFraUtbetalinger(
     utbetalinger: Utbetaling[],
     getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
 
     try {
-        const sum = utbetalinger.reduce(
+        const sum = utbetalinger
+            .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
+            .reduce(
             (acc: number, utbetaling: Utbetaling) => {
 
                 if (!utbetaling.ytelser) {
@@ -125,4 +134,24 @@ export function summertBelløpStringFraUtbetalinger(
     } catch (e) {
         return 'Manglende data';
     }
+}
+
+export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined>>) {
+    return (
+        <table>
+            <thead>
+            <tr>
+                {tittelrekke.map(tittel => <th key={tittel}>{tittel}</th>)}
+            </tr>
+            </thead>
+            <tbody>
+            {table.map((row, index) =>
+                <tr key={index}>{row.map((entry, i) =>
+                    <td key={i}>{entry}</td>
+                )}
+                </tr>
+            )}
+            </tbody>
+        </table>
+    );
 }

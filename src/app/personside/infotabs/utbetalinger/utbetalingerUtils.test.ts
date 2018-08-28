@@ -10,13 +10,17 @@ import {
     from './utbetalingerUtils';
 
 const randomUtbetaling = getMockUtbetaling();
-const {utbetalingsdato, forfallsdato, ...randomUtbetlaingUtenDato} = randomUtbetaling;
+const randomUtbetalingUtenDato: Utbetaling = {
+        ...randomUtbetaling,
+        forfallsdato: null,
+        utbetalingsdato: null
+};
 const randomYtelse = getMockYtelse();
 
 test('lager riktig måned og år string for utbetaling', () => {
     const utbetaling: Utbetaling = {
         ...randomUtbetaling,
-        posteringsdato: '1986-12-28'
+        utbetalingsdato: '1986-12-28'
     };
 
     const result = månedOgÅrForUtbetaling(utbetaling);
@@ -26,7 +30,7 @@ test('lager riktig måned og år string for utbetaling', () => {
 
 test('returnerer tellende dato for utbetaling', () => {
     const utbetalingMedPosteringsdato: Utbetaling = {
-        ...randomUtbetlaingUtenDato,
+        ...randomUtbetalingUtenDato,
         posteringsdato: '1900-01-01'
     };
 
@@ -62,34 +66,30 @@ test('lager riktig periodestreng for ytelse', () => {
 test('sorterer utbetalinger etter dato', () => {
     const utbetalingerFør: Utbetaling[] = [
         {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1900-12-28',
-            forfallsdato: undefined,
-            utbetalingsdato: undefined
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28',
-            forfallsdato: undefined
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28',
-            utbetalingsdato: undefined
         }
     ];
 
     const utbetalingerEtter: Utbetaling[] = [
         {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28'
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28'
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1900-12-28'
         }
     ];
@@ -144,8 +144,14 @@ test('summerer trekk riktig', () => {
 });
 
 test('summerer beløp på tvers av utbetalinger', () => {
-    const utbetalinger: Utbetaling [] = [{
+    const randomTellendeUtbetaling = {
         ...randomUtbetaling,
+        status: 'ok',
+        utbetalingsdato: '2010-01-01'
+    };
+
+    const utbetalinger: Utbetaling [] = [{
+        ...randomTellendeUtbetaling,
         ytelser: [{
             ...randomYtelse,
             nettobeløp: 200
@@ -154,13 +160,24 @@ test('summerer beløp på tvers av utbetalinger', () => {
             nettobeløp: 200
         }]
     }, {
-        ...randomUtbetaling,
+        ...randomTellendeUtbetaling,
         ytelser: [{
             ...randomYtelse,
-            nettobeløp: 100
-        }, {
+            nettobeløp: 200
+        }]
+    }, {
+        ...randomUtbetaling,
+        status: 'Returnert til NAV',
+        ytelser: [{
             ...randomYtelse,
-            nettobeløp: 100
+            nettobeløp: 10000
+        }]
+    }, {
+        ...randomUtbetaling,
+        utbetalingsdato: null,
+        ytelser: [{
+            ...randomYtelse,
+            nettobeløp: 10000
         }]
     }];
 

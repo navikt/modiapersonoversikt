@@ -4,8 +4,8 @@ export interface UtbetalingerResponse {
 
 export interface Utbetaling {
     posteringsdato: string;
-    utbetalingsdato?: string;
-    forfallsdato?: string;
+    utbetalingsdato: string | null;
+    forfallsdato: string | null;
     utbetaltTil: string;
     nettobeløp: number;
     melding?: string;

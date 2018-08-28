@@ -37,8 +37,8 @@ export function getMockUtbetaling(): Utbetaling {
         utbetaltTil: faker.name.firstName() + ' ' + faker.name.lastName(),
         nettobeløp: Number(faker.commerce.price()),
         posteringsdato: randomDato(),
-        utbetalingsdato: vektetSjanse(faker, 0.5) ? randomDato() : undefined,
-        forfallsdato: vektetSjanse(faker, 0.5) ? randomDato() : undefined,
+        utbetalingsdato: vektetSjanse(faker, 0.5) ? randomDato() : null,
+        forfallsdato: vektetSjanse(faker, 0.5) ? randomDato() : null,
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: randomStatus(),
@@ -48,18 +48,18 @@ export function getMockUtbetaling(): Utbetaling {
 }
 
 export function getMockYtelse(): Ytelse {
-    const nettobeløp = Number(faker.commerce.price()) * 10;
+    const brutto = Number(faker.commerce.price()) * 10;
     const trekksum = -Number(faker.commerce.price());
     const skattsum = -Number(faker.commerce.price());
     return {
         type: navfaker.nav.ytelse(),
         ytelseskomponentListe: fyllRandomListe<Ytelseskomponent>(() => getYtelseskomponent(), 10),
-        ytelseskomponentersum: nettobeløp,
+        ytelseskomponentersum: brutto,
         trekkListe: fyllRandomListe<Trekk>(() => getTrekk(), 5),
         trekksum: trekksum,
         skattListe: fyllRandomListe<Skatt>(() => getSkatt(), 5),
         skattsum: skattsum,
-        nettobeløp: nettobeløp + trekksum + skattsum,
+        nettobeløp: brutto + trekksum + skattsum,
         periode: getPeriode(),
         bilagsnummer: faker.finance.account(10)
     };
@@ -67,7 +67,7 @@ export function getMockYtelse(): Ytelse {
 
 function getYtelseskomponent(): Ytelseskomponent {
     return {
-        ytelseskomponenttype: 'Komponenttype',
+        ytelseskomponenttype: faker.commerce.product(),
         satsbeløp: Number(faker.commerce.price()),
         satstype: 'Satstype',
         satsantall: navfaker.random.integer(10, 1),
