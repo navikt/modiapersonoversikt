@@ -36,7 +36,7 @@ const Border = styled.div`
 `;
 
 function utbetalingsDetaljerTable(ytelse: Ytelse) {
-    if (ytelse.ytelseskomponentListe || ytelse.trekkListe) {
+    if (ytelse.ytelseskomponentListe || ytelse.trekkListe || ytelse.skattListe) {
         const tittelrekke = ['Detaljer', 'Sats', 'Antall', 'Beløp'];
         let tabellElementer: Array<Array<number | string | undefined>> = [];
 
