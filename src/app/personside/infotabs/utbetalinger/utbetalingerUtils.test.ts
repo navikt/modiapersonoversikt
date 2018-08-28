@@ -10,7 +10,7 @@ import {
     from './utbetalingerUtils';
 
 const randomUtbetaling = getMockUtbetaling();
-const randomUtbetlaingUtenDato: Utbetaling = {
+const randomUtbetalingUtenDato: Utbetaling = {
         ...randomUtbetaling,
         forfallsdato: null,
         utbetalingsdato: null
@@ -30,7 +30,7 @@ test('lager riktig måned og år string for utbetaling', () => {
 
 test('returnerer tellende dato for utbetaling', () => {
     const utbetalingMedPosteringsdato: Utbetaling = {
-        ...randomUtbetlaingUtenDato,
+        ...randomUtbetalingUtenDato,
         posteringsdato: '1900-01-01'
     };
 
@@ -66,14 +66,14 @@ test('lager riktig periodestreng for ytelse', () => {
 test('sorterer utbetalinger etter dato', () => {
     const utbetalingerFør: Utbetaling[] = [
         {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1900-12-28',
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28',
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28',
         }
@@ -81,15 +81,15 @@ test('sorterer utbetalinger etter dato', () => {
 
     const utbetalingerEtter: Utbetaling[] = [
         {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28'
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28'
         }, {
-            ...randomUtbetlaingUtenDato,
+            ...randomUtbetalingUtenDato,
             posteringsdato: '1900-12-28'
         }
     ];
