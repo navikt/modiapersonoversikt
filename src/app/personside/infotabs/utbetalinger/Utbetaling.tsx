@@ -36,9 +36,6 @@ const Luft = styled.div`
 
 const KnappWrapper = styled.div`
   display: flex;
-  > * {
-    width: 25px;
-  }
   > *:not(:first-child) {
     margin-left: .5rem;
   }

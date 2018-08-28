@@ -17,6 +17,7 @@ import styled from 'styled-components';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Coins from '../../../../svg/Coins';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 interface State {
     filter: FilterState;
@@ -141,22 +142,27 @@ class UtbetalingerContainer extends React.Component<Props, State> {
 
     render() {
         return (
-            <Wrapper>
-                <Venstre onClick={restoreScroll}>
-                    <TittelOgIkon tittel={<Undertittel>Utbetalinger</Undertittel>} ikon={<Opacity><Coins/></Opacity>}/>
-                    <Filtrering filterState={this.state.filter} onChange={this.onFilterChange}/>
-                </Venstre>
-                <Hoyre>
-                    <ArenaLenke/>
-                    <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
-                        <Utbetalinger
-                            utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                            onFilterChange={this.onFilterChange}
-                            filter={this.state.filter}
+            <ErrorBoundary>
+                <Wrapper>
+                    <Venstre onClick={restoreScroll}>
+                        <TittelOgIkon
+                            tittel={<Undertittel tag="h1">Utbetalinger</Undertittel>}
+                            ikon={<Opacity><Coins/></Opacity>}
                         />
-                    </Innholdslaster>
-                </Hoyre>
-            </Wrapper>
+                        <Filtrering filterState={this.state.filter} onChange={this.onFilterChange}/>
+                    </Venstre>
+                    <Hoyre>
+                        <ArenaLenke/>
+                        <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
+                            <Utbetalinger
+                                utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
+                                onFilterChange={this.onFilterChange}
+                                filter={this.state.filter}
+                            />
+                        </Innholdslaster>
+                    </Hoyre>
+                </Wrapper>
+            </ErrorBoundary>
         );
     }
 }
