@@ -20,7 +20,7 @@ const randomYtelse = getMockYtelse();
 test('lager riktig måned og år string for utbetaling', () => {
     const utbetaling: Utbetaling = {
         ...randomUtbetaling,
-        posteringsdato: '1986-12-28'
+        utbetalingsdato: '1986-12-28'
     };
 
     const result = månedOgÅrForUtbetaling(utbetaling);
