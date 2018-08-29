@@ -53,7 +53,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
                 case actionTypes.RELOADING:
                     return {
                         ...state,
-                        status: STATUS.RELOADING
+                        status: state.status === STATUS.OK ? STATUS.RELOADING : STATUS.LOADING
                     };
                 case actionTypes.FINISHED:
                     return {
