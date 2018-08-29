@@ -48,16 +48,16 @@ const Wrapper = styled.div`
       padding: 0;
       margin: 0;
     }
-    tr > * {
-      padding: 0.1rem;
-    }
-  }
-  tr {
-    > *:first-child {
-      text-align: left;
-    }
-    > *:not(:first-child) {
-      width: 6em;
+    tr {
+      > * {
+        padding: 0.1rem;
+      }
+      > *:first-child {
+        text-align: left;
+      }
+      > *:not(:first-child) {
+        width: 6rem;
+      }
     }
   }
 `;

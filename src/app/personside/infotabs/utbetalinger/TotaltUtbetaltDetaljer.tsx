@@ -28,21 +28,22 @@ const Wrapper = styled.div`
     > *:first-child {
       flex-grow: 1;
     }
-    > *:not(:first-child):not(:nth-child(n+5)) {
-      flex-basis: 8em;
+    > *:nth-child(4) {
+      font-weight: bold;
     }
     > *:nth-child(n+5) {
-      flex-basis: 50%;
+      flex-basis: 100%;
       opacity: .7;
     }
     > *:nth-child(5) {
       text-align: left;
     }
     > *:last-child {
+      flex-grow: 1;
       text-align: right;
     }
     dl {
-      margin: .5rem 0;
+      margin-right: 12rem;
       display: flex;
       flex-flow: row wrap;
       text-align: right;
