@@ -27,8 +27,9 @@ interface State {
     visDetaljer: boolean;
 }
 
-const Wrapper = styled.div`
-    margin: 1.2rem;
+const Wrapper = styled<{åpen?: boolean}, 'div'>('div')`
+    padding: .2rem 1.2rem 1.2rem;
+    ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
 `;
 
 const TotaltUtbetaltOversikt = styled.div`
@@ -78,7 +79,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Wrapper>
+            <Wrapper åpen={this.state.visDetaljer}>
                 <Undertittel>Totalt utbetalt for perioden</Undertittel>
                 <KnappWrapper>
                     <PrintKnapp onClick={() => console.log('ikke implementert')}/>

@@ -24,10 +24,10 @@ interface State {
     visDetaljer: boolean;
 }
 
-export const UtbetalingStyle = styled<{ focus?: boolean }, 'li'>('li')`
+export const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
   padding: .5rem 1.2rem;
   transition: 0.3s;
-  ${props => props.focus && 'background-color: rgba(0, 0, 0, 0.03);'}
+  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
 `;
 
 const Luft = styled.div`
@@ -78,7 +78,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         );
 
         return (
-            <UtbetalingStyle focus={this.state.visDetaljer}>
+            <UtbetalingStyle åpen={this.state.visDetaljer}>
                 <SpaceBetween>
                     <UndertekstGrå>
                         {dato} / <Bold>{utbetaling.status}</Bold>
