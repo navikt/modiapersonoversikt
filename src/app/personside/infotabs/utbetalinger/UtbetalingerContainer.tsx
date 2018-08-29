@@ -18,6 +18,7 @@ import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Coins from '../../../../svg/Coins';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import LazySpinner from '../../../../components/LazySpinner';
 
 interface State {
     filter: FilterState;
@@ -154,6 +155,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                     <Hoyre>
                         <ArenaLenke/>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
+                            {this.props.utbetalingerReducer.status === STATUS.RELOADING && <LazySpinner/>}
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
                                 onFilterChange={this.onFilterChange}
