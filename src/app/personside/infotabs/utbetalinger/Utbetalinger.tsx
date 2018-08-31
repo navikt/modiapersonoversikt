@@ -35,7 +35,7 @@ const UtbetalingerStyle = styled.div`
 `;
 
 const Wrapper = styled.div`
-    ol {
+  ol {
     margin: 0;
     padding: 0;
     list-style: none;

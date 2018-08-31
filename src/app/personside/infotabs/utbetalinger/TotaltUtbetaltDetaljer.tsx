@@ -28,32 +28,31 @@ const Wrapper = styled.div`
     > *:first-child {
       flex-grow: 1;
     }
-    > *:nth-child(4) {
+    .sumNetto {
       font-weight: bold;
     }
-    > *:nth-child(n+5) {
+    .periodeForYtelse, .ytelseDetaljer {
       flex-basis: 100%;
       opacity: .7;
     }
-    > *:nth-child(5) {
+    .periodeForYtelse {
       text-align: left;
     }
-    > *:last-child {
+    .ytelseDetaljer {
       flex-grow: 1;
       text-align: right;
-    }
-    dl {
       margin-right: 12rem;
-      display: flex;
-      flex-flow: row wrap;
-      text-align: right;
-      dt {
-        flex-basis: 50%;
-        flex-grow: 1;
-      }
-      dd {
-        padding-left: 1rem;
-        flex-basis: 7rem;
+      dl {
+        display: flex;
+        flex-flow: row wrap;
+        dt {
+          flex-basis: 50%;
+          flex-grow: 1;
+        }
+        dd {
+          padding-left: 1rem;
+          flex-basis: 7rem;
+        }
       }
     }
   }
@@ -115,17 +114,17 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     );
     const ytelsesSammendrag = ytelserGruppertPåTema.map(gruppe => {
         const ytelser = gruppe.array;
-        const type = gruppe.category;
+        const ytelsesType = gruppe.category;
         const periode = getPeriodeFromYtelser(ytelser);
         const ytelsesKomponentSammendragListe = getYtelsesKomponentSammendragListe(ytelser);
         return (
-            <tr key={type}>
-                <th>{type}</th>
-                <td>{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
-                <td>{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
-                <td>{formaterNOK(getNettoSumYtelser(ytelser))}</td>
-                <td>{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
-                <td>{ytelsesKomponentSammendragListe}</td>
+            <tr key={ytelsesType}>
+                <th>{ytelsesType}</th>
+                <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
+                <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
+                <td className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
+                <td className="periodeForYtelse">{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
+                <td className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
             </tr>
         );
     });
