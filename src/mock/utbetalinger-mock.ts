@@ -12,37 +12,40 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../models/utbetalinger';
-import { fyllRandomListe } from './utils/mock-utils';
+import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
+import { getMockNavn } from './person/personMock';
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 
     return {
-        utbetalinger: getUtbetalinger()
+        utbetalinger: getUtbetalinger(fødselsnummer)
     };
 }
 
-function getUtbetalinger() {
+function getUtbetalinger(fødselsnummer: string) {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(getMockUtbetaling);
+    return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getMockUtbetaling(fødselsnummer));
 }
 
 function randomDato(seededFaker: FakerStatic) {
     return moment(seededFaker.date.past(2)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
 
-export function getMockUtbetaling(): Utbetaling {
+export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
     const status = randomStatus();
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
     const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
     const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
     return {
-        utbetaltTil: faker.name.firstName() + ' ' + faker.name.lastName(),
+        utbetaltTil: vektetSjanse(faker, 0.9)
+            ? getMockNavn(fødselsnummer || '').sammensatt
+            : getMockNavn(Math.random().toString()).sammensatt,
         nettobeløp: netto,
         posteringsdato: randomDato(faker),
         utbetalingsdato: utbetalingsDato,
