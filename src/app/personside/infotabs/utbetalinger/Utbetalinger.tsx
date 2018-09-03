@@ -79,8 +79,18 @@ function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
     );
 }
 
+function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
+    return utbetalinger
+        .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter));
+}
+
+function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
+    return filter.utbetaltTil.includes(utbetaling.utbetaltTil);
+}
+
 function Utbetalinger(props: UtbetalingerProps) {
-    if (props.utbetalinger.length === 0) {
+    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, props.filter);
+    if (filtrerteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
                 Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
@@ -89,7 +99,7 @@ function Utbetalinger(props: UtbetalingerProps) {
     }
 
     const utbetalingerGruppert: GroupedArray<Utbetaling> = groupArray(
-        props.utbetalinger.sort(utbetalingDatoComparator),
+        filtrerteUtbetalinger.sort(utbetalingDatoComparator),
         månedOgÅrForUtbetaling
     );
     const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) =>
@@ -98,7 +108,7 @@ function Utbetalinger(props: UtbetalingerProps) {
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={props.utbetalinger} filter={props.filter}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
             <UtbetalingerStyle>
                 <Undertittel>Utbetalinger</Undertittel>
                 <ol>

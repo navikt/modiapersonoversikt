@@ -6,16 +6,16 @@ import EtikettMini from '../../../../components/EtikettMini';
 import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
 import * as moment from 'moment';
+import LazySpinner from '../../../../components/LazySpinner';
+import { UtbetalingerResponse } from '../../../../models/utbetalinger';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../components/Innholdslaster';
+import UtbetaltTilValg from './UtbetaltTilValg';
 
 export interface FilterState {
     periode: PeriodeOptions;
-    utbetaltTil: UtbetaltTilValg;
+    utbetaltTil: Array<string>;
     ytelse: Ytelse;
-}
-
-interface UtbetaltTilValg {
-    bruker: boolean;
-    annenMottaker: boolean;
 }
 
 interface PeriodeOptions {
@@ -35,6 +35,8 @@ interface Ytelse {
 interface Props {
     onChange: (change: Partial<FilterState>) => void;
     filterState: FilterState;
+    showSpinner: boolean;
+    utbetalingReducer: RestReducer<UtbetalingerResponse>;
 }
 
 export enum PeriodeValg {
@@ -88,15 +90,6 @@ function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
     });
 }
 
-function onUtbetaltTilChange(props: Props, change: Partial<UtbetaltTilValg>) {
-    props.onChange({
-        utbetaltTil: {
-            ...props.filterState.utbetaltTil,
-            ...change
-        }
-    });
-}
-
 function onYtelseChange(props: Props, change: Partial<Ytelse>) {
     props.onChange({
         ytelse: {
@@ -132,19 +125,32 @@ function egendefinertDatoInputs(props: Props) {
     );
 }
 
+const RadioWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  > * {
+    margin: 0;
+  }
+  > :nth-child(2) {
+    margin-left: .5rem;
+  }
+`;
+
 function Filtrering(props: Props) {
 
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];
         const checked = props.filterState.periode.radioValg === label;
         return (
-            <Radio
-                label={label}
-                key={label}
-                checked={checked}
-                onChange={() => onRadioChange(props, PeriodeValg[key])}
-                name="FiltreringsvalgGruppe"
-            />);
+            <RadioWrapper key={label}>
+                <Radio
+                    label={label}
+                    checked={checked}
+                    onChange={() => onRadioChange(props, PeriodeValg[key])}
+                    name="FiltreringsvalgGruppe"
+                />
+                {checked && props.showSpinner && <LazySpinner type="S"/>}
+            </RadioWrapper>);
     });
 
     return (
@@ -159,19 +165,13 @@ function Filtrering(props: Props) {
 
             <InputPanel>
                 <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
-                <Checkbox
-                    label="Bruker"
-                    checked={props.filterState.utbetaltTil.bruker}
-                    onChange={() => onUtbetaltTilChange(props, {bruker: !props.filterState.utbetaltTil.bruker})}
-                />
-                <Checkbox
-                    label="Annen mottaker"
-                    checked={props.filterState.utbetaltTil.annenMottaker}
-                    onChange={() => onUtbetaltTilChange(
-                        props,
-                        {annenMottaker: !props.filterState.utbetaltTil.annenMottaker}
-                    )}
-                />
+                <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
+                    <UtbetaltTilValg
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                    />
+                </Innholdslaster>
             </InputPanel>
 
             <InputPanel>

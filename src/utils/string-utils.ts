@@ -42,3 +42,7 @@ export function erIkkeTomStreng(input: string) {
 export function erTall(input: string) {
     return !isNaN(Number(input));
 }
+
+export function sorterAlfabetisk(a: string, b: string) {
+    return a > b ? 1 : -1;
+}

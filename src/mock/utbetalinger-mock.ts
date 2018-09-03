@@ -37,17 +37,21 @@ function randomDato(seededFaker: FakerStatic) {
 }
 
 export function getMockUtbetaling(): Utbetaling {
+    const status = randomStatus();
+    const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
+    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
+    const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
     return {
         utbetaltTil: faker.name.firstName() + ' ' + faker.name.lastName(),
-        nettobeløp: Number(faker.commerce.price()),
+        nettobeløp: netto,
         posteringsdato: randomDato(faker),
-        utbetalingsdato: navfaker.random.vektetSjanse( 0.5) ? randomDato(faker) : null,
+        utbetalingsdato: utbetalingsDato,
         forfallsdato: navfaker.random.vektetSjanse( 0.5) ? randomDato(faker) : null,
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
-        status: randomStatus(),
+        status: status,
         konto: Number(faker.finance.account(11)).toString(),
-        ytelser: fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3)
+        ytelser: ytelser
     };
 }
 
@@ -109,6 +113,6 @@ function randomStatus() {
     return navfaker.random.arrayElement([
         'Ligger hos banken',
         'Utbetalt',
-        'Returnert for saksbehandling'
+        'Returnert til NAV for saksbehandling'
     ]);
 }
