@@ -4,19 +4,30 @@ import { sorterAlfabetisk } from '../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
 
-interface UtbetaltTilProps {
+interface Props {
     onChange: (change: Partial<FilterState>) => void;
     filterState: FilterState;
     utbetalinger: Utbetaling[];
 }
 
-class UtbetaltTilValg extends React.Component<UtbetaltTilProps> {
+class UtbetaltTilValg extends React.Component<Props> {
 
-    constructor(props: UtbetaltTilProps) {
+    constructor(props: Props) {
         super(props);
         this.props.onChange({
-            utbetaltTil: [...this.getUnikeMottakere()]
+            utbetaltTil: [...this.getUnikeMottakere(props.utbetalinger)]
         });
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        const tidligereMottakere = this.getUnikeMottakere(prevProps.utbetalinger);
+        const nyeMottakere = this.getUnikeMottakere(this.props.utbetalinger)
+            .filter((mottaker: string) => !tidligereMottakere.includes(mottaker));
+        if (nyeMottakere.length > 0) {
+            this.props.onChange({
+                utbetaltTil: [...this.props.filterState.utbetaltTil, ...nyeMottakere]
+            });
+        }
     }
 
     onUtbetaltTilChange(change: string) {
@@ -29,18 +40,16 @@ class UtbetaltTilValg extends React.Component<UtbetaltTilProps> {
         });
     }
 
-    getUnikeMottakere() {
+    getUnikeMottakere(utbetalinger: Utbetaling[]) {
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
-        const unikeMottakere = this.props.utbetalinger
-            .map(utbetaling => utbetaling.utbetaltTil)
+        return utbetalinger.map(utbetaling => utbetaling.utbetaltTil)
             .filter(fjernDuplikater)
             .sort(sorterAlfabetisk);
-        return unikeMottakere;
     }
 
     render() {
-        const unikeMottakere = this.getUnikeMottakere();
+        const unikeMottakere = this.getUnikeMottakere(this.props.utbetalinger);
         const checkboxer = unikeMottakere.map(mottaker => (
             <Checkbox
                 key={mottaker}
