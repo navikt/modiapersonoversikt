@@ -112,7 +112,7 @@ export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling)
         && !utbetaling.status.includes('Returnert til NAV');
 }
 
-export function summertBelløpStringFraUtbetalinger(
+export function summertBeløpStringFraUtbetalinger(
     utbetalinger: Utbetaling[],
     getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
 

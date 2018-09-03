@@ -4,7 +4,7 @@ import {
     getBruttoSumYtelser,
     getGjeldendeDatoForUtbetaling,
     getNettoSumYtelser, getTrekkSumYtelser,
-    månedOgÅrForUtbetaling, periodeStringFromYtelse, summertBelløpStringFraUtbetalinger,
+    månedOgÅrForUtbetaling, periodeStringFromYtelse, summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
 }
     from './utbetalingerUtils';
@@ -181,7 +181,7 @@ test('summerer beløp på tvers av utbetalinger', () => {
         }]
     }];
 
-    const summert = summertBelløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
+    const summert = summertBeløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
 
     expect(parseInt(summert, 10)).toEqual(600);
 });
