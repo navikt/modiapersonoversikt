@@ -50,8 +50,13 @@ const FiltreringsPanel = styled.nav`
 `;
 
 const InputPanel = styled.form`
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 33%;
   margin-top: 1em;
-  margin-bottom: 1em;
+  &:not(:last-child) {
+    padding-right: 1rem;
+  }
   > *:not(:last-child) {
     margin-bottom: 1em;
   }
