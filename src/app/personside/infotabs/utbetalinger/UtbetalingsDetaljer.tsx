@@ -10,23 +10,8 @@ import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstr
 const Wrapper = styled.div`
   margin: .5rem 0;
   opacity: .8;
-  table {
-    width: 100%;
-    text-align: right;
-    * {
-      padding: 0;
-    }
-  }
   th {
     font-weight: bold;
-  }
-  tr {
-    > *:first-child {
-      text-align: left;
-    }
-    > *:not(:first-child) {
-      width: 20%;
-    }
   }
 `;
 

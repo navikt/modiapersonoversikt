@@ -3,6 +3,7 @@ import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from './Filter';
 import moment = require('moment');
 import { formaterDato } from '../../../../utils/dateUtils';
+import { Periode } from '../../../../models/periode';
 
 const månedTilNavnMapping = {
     0: 'Januar',
@@ -105,7 +106,7 @@ export function formaterNOK(beløp: number): string {
     return beløp.toLocaleString('no', {minimumFractionDigits: 2});
 }
 
-function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
+export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
     return utbetaling.utbetalingsdato !== null
         // Utbetalinger kan feilaktig ha en utbetalingsdato selv om de er returnert til nav for saksbehandling
         && !utbetaling.status.includes('Returnert til NAV');
@@ -154,4 +155,21 @@ export function createTable(tittelrekke: string[], table: Array<Array<string | n
             </tbody>
         </table>
     );
+}
+
+export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
+    return ytelser.reduce(
+        (acc: Periode, ytelse: Ytelse) => {
+            if (!ytelse.periode) {
+                return acc;
+            }
+            return {
+                fra: moment(ytelse.periode.start).isBefore(moment(acc.fra)) ? ytelse.periode.start : acc.fra,
+                til: moment(ytelse.periode.slutt).isAfter(moment(acc.til)) ? ytelse.periode.slutt : acc.til
+            };
+        },
+        {
+            fra: moment().format(),
+            til: moment(0).format()
+        });
 }

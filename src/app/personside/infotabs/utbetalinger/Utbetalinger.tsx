@@ -28,13 +28,37 @@ const MånedGruppeStyle = styled.li`
 `;
 
 const UtbetalingerStyle = styled.div`
+  border-top: 1rem solid ${theme.color.bakgrunn};
   > *:first-child {
-    padding: 0 1.2rem .2rem;
+    padding: .5rem 1.2rem;
   }
+`;
+
+const Wrapper = styled.div`
   ol {
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+  table {
+    width: 100%;
+    text-align: right;
+    border-spacing: 0;
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    tr {
+      > * {
+        padding: 0.1rem;
+      }
+      > *:first-child {
+        text-align: left;
+      }
+      > *:not(:first-child) {
+        width: 6rem;
+      }
+    }
   }
 `;
 
@@ -73,7 +97,7 @@ function Utbetalinger(props: UtbetalingerProps) {
     );
 
     return (
-        <>
+        <Wrapper>
             <TotaltUtbetalt utbetalinger={props.utbetalinger} filter={props.filter}/>
             <UtbetalingerStyle>
                 <Undertittel>Utbetalinger</Undertittel>
@@ -81,7 +105,7 @@ function Utbetalinger(props: UtbetalingerProps) {
                     {månedsGrupper}
                 </ol>
             </UtbetalingerStyle>
-        </>
+        </Wrapper>
     );
 }
 
