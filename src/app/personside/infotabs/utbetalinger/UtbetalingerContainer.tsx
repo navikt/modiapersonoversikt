@@ -33,9 +33,7 @@ const initialState: State = {
             }
         },
         utbetaltTil: [],
-        ytelse: {
-            alleYtelser: true
-        }
+        ytelser: []
     }
 };
 
@@ -105,17 +103,19 @@ class UtbetalingerContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = { ...initialState };
+        this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
     }
 
     onFilterChange(change: Partial<FilterState>) {
         this.setState(
-            {
-                filter: {
-                    ...this.state.filter,
-                    ...change
-                }
+            (prevState) => { // Sender inn funksjon her for å motvirke race-conditions fra UtbetaltTilValg og YtelseValg
+                return {
+                    filter: {
+                        ...prevState.filter,
+                        ...change
+                    }
+                };
             },
             () => change.periode && this.reloadUtbetalinger()
         );
@@ -158,7 +158,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                                onFilterChange={this.onFilterChange}
                                 filter={this.state.filter}
                             />
                         </Innholdslaster>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Checkbox, Radio } from 'nav-frontend-skjema';
+import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import EtikettMini from '../../../../components/EtikettMini';
 import NavDatovelger from 'nav-datovelger';
@@ -11,11 +11,12 @@ import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import UtbetaltTilValg from './UtbetaltTilValg';
+import YtelseValg from './YtelseValg';
 
 export interface FilterState {
     periode: PeriodeOptions;
     utbetaltTil: Array<string>;
-    ytelse: Ytelse;
+    ytelser: Array<string>;
 }
 
 interface PeriodeOptions {
@@ -26,10 +27,6 @@ interface PeriodeOptions {
 export interface FraTilDato {
     fra: Date;
     til: Date;
-}
-
-interface Ytelse {
-    alleYtelser: boolean;
 }
 
 interface Props {
@@ -86,15 +83,6 @@ function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
         periode: {
             ...props.filterState.periode,
             egendefinertPeriode: newPeriode
-        }
-    });
-}
-
-function onYtelseChange(props: Props, change: Partial<Ytelse>) {
-    props.onChange({
-        ytelse: {
-            ...props.filterState.ytelse,
-            ...change
         }
     });
 }
@@ -163,25 +151,24 @@ function Filtrering(props: Props) {
                 {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
             </InputPanel>
 
-            <InputPanel>
-                <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
-                <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
+            <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
+                <InputPanel>
+                    <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
                     <UtbetaltTilValg
                         utbetalinger={props.utbetalingReducer.data.utbetalinger}
                         onChange={props.onChange}
                         filterState={props.filterState}
                     />
-                </Innholdslaster>
-            </InputPanel>
-
-            <InputPanel>
-                <EtikettMini><Opacity>Velg ytelse</Opacity></EtikettMini>
-                <Checkbox
-                    label="Alle"
-                    checked={props.filterState.ytelse.alleYtelser}
-                    onChange={() => onYtelseChange(props, {alleYtelser: !props.filterState.ytelse.alleYtelser})}
-                />
-            </InputPanel>
+                </InputPanel>
+                <InputPanel>
+                    <EtikettMini><Opacity>Velg ytelse</Opacity></EtikettMini>
+                    <YtelseValg
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                    />
+                </InputPanel>
+            </Innholdslaster>
 
         </FiltreringsPanel>
     );

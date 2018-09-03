@@ -11,7 +11,7 @@ import {
     getBruttoSumYtelser,
     getNettoSumYtelser,
     getPeriodeFromYtelser,
-    getTrekkSumYtelser
+    getTrekkSumYtelser, getTypeFromYtelse, reduceUtbetlingerTilYtelser
 } from './utbetalingerUtils';
 import { formaterDato } from '../../../../utils/dateUtils';
 import { Fragment } from 'react';
@@ -94,23 +94,15 @@ function getYtelsesKomponentSammendragListe(ytelser: Ytelse[]) {
 }
 
 function getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger: Utbetaling[]) {
-    return utbetalinger
-        .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
-        .reduce(
-            (acc: Ytelse[], utbetaling: Utbetaling) => {
-                if (!utbetaling.ytelser) {
-                    throw new Error('Utbetaling mangler ytelser');
-                }
-                return [...acc, ...utbetaling.ytelser];
-            },
-            []);
+    const utbetalteUtbetalinger = utbetalinger.filter(filtrerBortUtbetalingerSomIkkeErUtbetalt);
+    return reduceUtbetlingerTilYtelser(utbetalteUtbetalinger);
 }
 
 function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     const alleUtbetalteYtelser: Ytelse[] = getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger);
     const ytelserGruppertPåTema = groupArray(
         alleUtbetalteYtelser,
-        ytelse => ytelse.type || 'Mangler type'
+        getTypeFromYtelse
     );
     const ytelsesSammendrag = ytelserGruppertPåTema.map(gruppe => {
         const ytelser = gruppe.array;

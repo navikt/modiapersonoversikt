@@ -7,14 +7,18 @@ import { FilterState } from './Filter';
 import TotaltUtbetalt from './TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
-import { getGjeldendeDatoForUtbetaling, månedOgÅrForUtbetaling, utbetalingDatoComparator } from './utbetalingerUtils';
+import {
+    getGjeldendeDatoForUtbetaling, getTypeFromYtelse,
+    månedOgÅrForUtbetaling,
+    reduceUtbetlingerTilYtelser,
+    utbetalingDatoComparator
+} from './utbetalingerUtils';
 import UtbetalingKomponent from './Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export interface UtbetalingerProps {
     utbetalinger: Utbetaling[];
     filter: FilterState;
-    onFilterChange: (change: Partial<FilterState>) => void;
 }
 
 const MånedGruppeStyle = styled.li`
@@ -81,11 +85,21 @@ function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
 
 function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
     return utbetalinger
-        .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter));
+        .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter))
+        .filter(utbetaling => filtrerPaYtelseValg(utbetaling, filter));
 }
 
 function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
     return filter.utbetaltTil.includes(utbetaling.utbetaltTil);
+}
+
+function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
+    const ytelsesTyperIUtbetaling =
+        reduceUtbetlingerTilYtelser([utbetaling])
+            .map(getTypeFromYtelse);
+    return filter.ytelser.some(
+        valgtYtelse => ytelsesTyperIUtbetaling.includes(valgtYtelse)
+    );
 }
 
 function Utbetalinger(props: UtbetalingerProps) {

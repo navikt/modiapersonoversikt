@@ -173,3 +173,16 @@ export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
             til: moment(0).format()
         });
 }
+
+export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[] {
+    return utbetalinger.reduce(
+        (acc: Ytelse[], utbetaling: Utbetaling) => {
+            if (!utbetaling.ytelser) {
+                throw new Error('Utbetaling mangler ytelser');
+            }
+            return [...acc, ...utbetaling.ytelser];
+        },
+        []);
+}
+
+export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler type';
