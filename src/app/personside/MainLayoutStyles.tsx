@@ -8,7 +8,7 @@ export const LayoutWrapper = styled.div`
     display: flex;
     flex-flow: row nowrap;
     > * {
-      transition: .3s ease-out;
+      transition: width .3s ease-out;
       overflow-y: scroll;
     }
 `;

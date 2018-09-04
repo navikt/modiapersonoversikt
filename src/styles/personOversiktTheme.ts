@@ -12,8 +12,8 @@ export const theme = {
         bakgrunn: '#efefef'
     },
     media: {
-        smallScreen: 'max-width: 750px',
-        wideScreen: 'min-width: 750px'
+        smallScreen: 'max-width: 550px',
+        wideScreen: 'min-width: 550px'
     },
     margin: {
         layout: '15px'
