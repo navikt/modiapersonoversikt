@@ -32,6 +32,8 @@ import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { aremark } from '../mock/person/aremark';
 import { valutaerActionNames } from '../redux/restReducers/kodeverk/valutaKodeverk';
+import { utbetalingerActions } from '../redux/restReducers/utbetalinger';
+import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
@@ -65,3 +67,4 @@ testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: moc
 testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
 testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
 testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
+testStore.dispatch({ type: utbetalingerActions.FINISHED, data: { utbetalinger: [statiskMockUtbetaling] }});
