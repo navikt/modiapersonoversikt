@@ -7,7 +7,8 @@ import Visittkort from './visittkort/VisittkortContainer';
 import { toggleDialogpanel, UIState } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
 import { connect, Dispatch } from 'react-redux';
-import { HøyreKolonne, LayoutWrapper, VenstreKolonne } from './MainLayoutStyles';
+import { LayoutWrapper } from './MainLayoutStyles';
+import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 
 interface StateProps {
     UI: UIState;
@@ -39,6 +40,7 @@ class MainLayout extends React.Component<Props> {
                         />
                     </div>
                 </HøyreKolonne>
+                <SmallScreenToggleButton UI={this.props.UI} toggleDialogpanel={this.props.toggleDialogpanel}/>
             </LayoutWrapper>
         );
     }
