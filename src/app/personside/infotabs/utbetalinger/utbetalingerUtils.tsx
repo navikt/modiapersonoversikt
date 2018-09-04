@@ -42,41 +42,27 @@ export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
 }
 
 export function getFraDateFromFilter(filter: FilterState): Date {
-    let returDato = new Date();
-    returDato.setHours(0, 0, 0, 0);
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
-            returDato.setMonth(0);
-            returDato.setDate(1);
-            return returDato;
+            return moment().startOf('year').toDate();
         case PeriodeValg.I_FJOR:
-            returDato.setDate(1);
-            returDato.setMonth(0);
-            returDato.setFullYear(returDato.getFullYear() - 1);
-            return returDato;
+            return moment().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.fra;
         case PeriodeValg.SISTE_30_DAGER:
         default:
-            returDato.setDate(returDato.getDate() - 30);
-            return returDato;
+            return moment().subtract(30, 'day').startOf('day').toDate();
     }
 }
 
 export function getTilDateFromFilter(filter: FilterState): Date {
-    let returDato = new Date();
-    returDato.setHours(0, 0, 0, 0);
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
-            returDato.setMonth(11);
-            returDato.setDate(31);
-            returDato.setFullYear(returDato.getFullYear() - 1);
-            return returDato;
+            return moment().subtract(1, 'year').endOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.til;
         default:
-            returDato.setDate(returDato.getDate() + 30);
-            return returDato;
+            return moment().add(90, 'day').endOf('day').toDate();
     }
 }
 
@@ -112,7 +98,7 @@ export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling)
         && !utbetaling.status.includes('Returnert til NAV');
 }
 
-export function summertBelløpStringFraUtbetalinger(
+export function summertBeløpStringFraUtbetalinger(
     utbetalinger: Utbetaling[],
     getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
 
@@ -173,3 +159,16 @@ export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
             til: moment(0).format()
         });
 }
+
+export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[] {
+    return utbetalinger.reduce(
+        (acc: Ytelse[], utbetaling: Utbetaling) => {
+            if (!utbetaling.ytelser) {
+                throw new Error('Utbetaling mangler ytelser');
+            }
+            return [...acc, ...utbetaling.ytelser];
+        },
+        []);
+}
+
+export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler type';

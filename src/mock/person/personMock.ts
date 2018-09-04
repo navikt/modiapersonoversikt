@@ -23,6 +23,7 @@ import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } fro
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 import { getDiskresjonskode } from '../utils/diskresjonskode-util';
+import FakerStatic = Faker.FakerStatic;
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -54,7 +55,7 @@ function genererPerson(fødselsnummer: string): Person {
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
-        navn: getNavn(fødselsnummer),
+        navn: getMockNavn(fødselsnummer),
         tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: navfaker.random.vektetSjanse(0.05) ? getDiskresjonskode() : undefined,
         statsborgerskap: getStatsborgerskap(),
@@ -70,8 +71,12 @@ function genererPerson(fødselsnummer: string): Person {
     };
 }
 
-function getNavn(fødselsnummer: string): Navn {
-    const fornavn = getFornavn(fødselsnummer).toUpperCase();
+export function getMockNavn(fødselsnummer: string): Navn {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return aremark.navn;
+    }
+    faker.seed(Number(fødselsnummer));
+    const fornavn = getFornavn(faker, fødselsnummer).toUpperCase();
     const etternavn = faker.name.lastName().toUpperCase();
     const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName().toUpperCase() : '';
     return {
@@ -167,11 +172,11 @@ function getTilrettelagtKommunikasjonsListe() {
     return liste;
 }
 
-function getFornavn(fødselsnummer: string): string {
+function getFornavn(seededFaker: FakerStatic, fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0 ) {
-        return faker.name.firstName(1);
+        return seededFaker.name.firstName(1);
     } else {
-        return faker.name.firstName(0);
+        return seededFaker.name.firstName(0);
     }
 }
 

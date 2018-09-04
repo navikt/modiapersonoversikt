@@ -1,10 +1,10 @@
 import * as React from 'react';
-import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Timer = NodeJS.Timer;
 
 interface Props {
     delay?: number;
+    type?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 }
 
 interface State {
@@ -30,9 +30,7 @@ class LazySpinner extends React.Component<Props, State> {
     render() {
         if (this.state.showSpinner) {
             return (
-                <FillCenterAndFadeIn>
-                    <NavFrontendSpinner type="XL"/>
-                </FillCenterAndFadeIn>
+                <NavFrontendSpinner type={this.props.type || 'XL'}/>
             );
         }
         return null;

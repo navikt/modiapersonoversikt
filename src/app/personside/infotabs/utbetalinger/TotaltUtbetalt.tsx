@@ -11,7 +11,7 @@ import {
     getFraDateFromFilter,
     getNettoSumYtelser,
     getTilDateFromFilter,
-    getTrekkSumYtelser, summertBelløpStringFraUtbetalinger
+    getTrekkSumYtelser, summertBeløpStringFraUtbetalinger
 }
     from './utbetalingerUtils';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
@@ -71,9 +71,9 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             formaterDato(getFraDateFromFilter(this.props.filter))
             + ' - '
             + formaterDato(getTilDateFromFilter(this.props.filter));
-        const brutto: string = summertBelløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
-        const trekk: string = summertBelløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
-        const utbetalt: string = summertBelløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);
+        const brutto: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
+        const trekk: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
+        const utbetalt: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);
         const totaltUtbetaltTabell = createTable(
             ['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt'],
             [[periode, brutto, trekk, utbetalt]]);

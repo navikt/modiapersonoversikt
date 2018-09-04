@@ -8,8 +8,7 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { Action } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
-import { FilterState, default as Filtrering, PeriodeValg } from './Filter';
-import moment = require('moment');
+import { default as Filtrering, FilterState, PeriodeValg } from './Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utbetalingerUtils';
 import { restoreScroll } from '../../../../utils/restoreScroll';
 import theme from '../../../../styles/personOversiktTheme';
@@ -18,7 +17,7 @@ import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Coins from '../../../../svg/Coins';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import LazySpinner from '../../../../components/LazySpinner';
+import moment = require('moment');
 
 interface State {
     filter: FilterState;
@@ -33,13 +32,8 @@ const initialState: State = {
                 til: new Date()
             }
         },
-        utbetaltTil: {
-            bruker: true,
-            annenMottaker: true
-        },
-        ytelse: {
-            alleYtelser: true
-        }
+        utbetaltTil: [],
+        ytelser: []
     }
 };
 
@@ -58,10 +52,12 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
+export const utbetalingerMediaTreshold = '80rem';
+
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  @media(max-width: 1100px) {
+  @media(max-width: ${utbetalingerMediaTreshold}) {
     display: block;
   }
 `;
@@ -79,9 +75,10 @@ const Venstre = styled.div`
 
 const Hoyre = styled.div`
   flex-grow: 1;
+  min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
   border-radius: ${theme.borderRadius.layout};
   background-color: white;
-  @media not all and (max-width: 1100px) {
+  @media not all and (max-width: ${utbetalingerMediaTreshold}) {
       margin-left: ${theme.margin.layout};
   }
 `;
@@ -109,19 +106,21 @@ class UtbetalingerContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = { ...initialState };
+        this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
     }
 
     onFilterChange(change: Partial<FilterState>) {
         this.setState(
-            {
-                filter: {
-                    ...this.state.filter,
-                    ...change
-                }
+            (prevState) => { // Sender inn funksjon her for å motvirke race-conditions fra UtbetaltTilValg og YtelseValg
+                return {
+                    filter: {
+                        ...prevState.filter,
+                        ...change
+                    }
+                };
             },
-            () => this.reloadUtbetalinger()
+            () => change.periode && this.reloadUtbetalinger()
         );
     }
 
@@ -150,15 +149,18 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                             tittel={<Undertittel tag="h1">Utbetalinger</Undertittel>}
                             ikon={<Opacity><Coins/></Opacity>}
                         />
-                        <Filtrering filterState={this.state.filter} onChange={this.onFilterChange}/>
+                        <Filtrering
+                            filterState={this.state.filter}
+                            onChange={this.onFilterChange}
+                            showSpinner={this.props.utbetalingerReducer.status === STATUS.RELOADING}
+                            utbetalingReducer={this.props.utbetalingerReducer}
+                        />
                     </Venstre>
                     <Hoyre>
                         <ArenaLenke/>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
-                            {this.props.utbetalingerReducer.status === STATUS.RELOADING && <LazySpinner/>}
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                                onFilterChange={this.onFilterChange}
                                 filter={this.state.filter}
                             />
                         </Innholdslaster>

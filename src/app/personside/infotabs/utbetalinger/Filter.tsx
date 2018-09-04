@@ -1,21 +1,22 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Checkbox, Radio } from 'nav-frontend-skjema';
+import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import EtikettMini from '../../../../components/EtikettMini';
 import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
 import * as moment from 'moment';
+import LazySpinner from '../../../../components/LazySpinner';
+import { UtbetalingerResponse } from '../../../../models/utbetalinger';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../components/Innholdslaster';
+import UtbetaltTilValg from './UtbetaltTilValg';
+import YtelseValg from './YtelseValg';
 
 export interface FilterState {
     periode: PeriodeOptions;
-    utbetaltTil: UtbetaltTilValg;
-    ytelse: Ytelse;
-}
-
-interface UtbetaltTilValg {
-    bruker: boolean;
-    annenMottaker: boolean;
+    utbetaltTil: Array<string>;
+    ytelser: Array<string>;
 }
 
 interface PeriodeOptions {
@@ -28,13 +29,11 @@ export interface FraTilDato {
     til: Date;
 }
 
-interface Ytelse {
-    alleYtelser: boolean;
-}
-
 interface Props {
     onChange: (change: Partial<FilterState>) => void;
     filterState: FilterState;
+    showSpinner: boolean;
+    utbetalingReducer: RestReducer<UtbetalingerResponse>;
 }
 
 export enum PeriodeValg {
@@ -51,8 +50,13 @@ const FiltreringsPanel = styled.nav`
 `;
 
 const InputPanel = styled.form`
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 33%;
   margin-top: 1em;
-  margin-bottom: 1em;
+  &:not(:last-child) {
+    padding-right: 1rem;
+  }
   > *:not(:last-child) {
     margin-bottom: 1em;
   }
@@ -88,24 +92,6 @@ function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
     });
 }
 
-function onUtbetaltTilChange(props: Props, change: Partial<UtbetaltTilValg>) {
-    props.onChange({
-        utbetaltTil: {
-            ...props.filterState.utbetaltTil,
-            ...change
-        }
-    });
-}
-
-function onYtelseChange(props: Props, change: Partial<Ytelse>) {
-    props.onChange({
-        ytelse: {
-            ...props.filterState.ytelse,
-            ...change
-        }
-    });
-}
-
 function egendefinertDatoInputs(props: Props) {
 
     const fra = props.filterState.periode.egendefinertPeriode.fra;
@@ -132,19 +118,32 @@ function egendefinertDatoInputs(props: Props) {
     );
 }
 
+const RadioWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  > * {
+    margin: 0;
+  }
+  > :nth-child(2) {
+    margin-left: .5rem;
+  }
+`;
+
 function Filtrering(props: Props) {
 
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];
         const checked = props.filterState.periode.radioValg === label;
         return (
-            <Radio
-                label={label}
-                key={label}
-                checked={checked}
-                onChange={() => onRadioChange(props, PeriodeValg[key])}
-                name="FiltreringsvalgGruppe"
-            />);
+            <RadioWrapper key={label}>
+                <Radio
+                    label={label}
+                    checked={checked}
+                    onChange={() => onRadioChange(props, PeriodeValg[key])}
+                    name="FiltreringsvalgGruppe"
+                />
+                {checked && props.showSpinner && <LazySpinner type="S"/>}
+            </RadioWrapper>);
     });
 
     return (
@@ -157,31 +156,24 @@ function Filtrering(props: Props) {
                 {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
             </InputPanel>
 
-            <InputPanel>
-                <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
-                <Checkbox
-                    label="Bruker"
-                    checked={props.filterState.utbetaltTil.bruker}
-                    onChange={() => onUtbetaltTilChange(props, {bruker: !props.filterState.utbetaltTil.bruker})}
-                />
-                <Checkbox
-                    label="Annen mottaker"
-                    checked={props.filterState.utbetaltTil.annenMottaker}
-                    onChange={() => onUtbetaltTilChange(
-                        props,
-                        {annenMottaker: !props.filterState.utbetaltTil.annenMottaker}
-                    )}
-                />
-            </InputPanel>
-
-            <InputPanel>
-                <EtikettMini><Opacity>Velg ytelse</Opacity></EtikettMini>
-                <Checkbox
-                    label="Alle"
-                    checked={props.filterState.ytelse.alleYtelser}
-                    onChange={() => onYtelseChange(props, {alleYtelser: !props.filterState.ytelse.alleYtelser})}
-                />
-            </InputPanel>
+            <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
+                <InputPanel>
+                    <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
+                    <UtbetaltTilValg
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                    />
+                </InputPanel>
+                <InputPanel>
+                    <EtikettMini><Opacity>Velg ytelse</Opacity></EtikettMini>
+                    <YtelseValg
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                    />
+                </InputPanel>
+            </Innholdslaster>
 
         </FiltreringsPanel>
     );

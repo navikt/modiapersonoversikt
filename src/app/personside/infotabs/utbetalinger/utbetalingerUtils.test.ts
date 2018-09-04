@@ -1,13 +1,15 @@
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../mock/utbetalinger-mock';
 import {
-    getBruttoSumYtelser,
+    getBruttoSumYtelser, getFraDateFromFilter,
     getGjeldendeDatoForUtbetaling,
-    getNettoSumYtelser, getTrekkSumYtelser,
-    månedOgÅrForUtbetaling, periodeStringFromYtelse, summertBelløpStringFraUtbetalinger,
+    getNettoSumYtelser, getTilDateFromFilter, getTrekkSumYtelser,
+    månedOgÅrForUtbetaling, periodeStringFromYtelse, summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
 }
     from './utbetalingerUtils';
+import { FilterState, PeriodeValg } from './Filter';
+import moment = require('moment');
 
 const randomUtbetaling = getMockUtbetaling();
 const randomUtbetalingUtenDato: Utbetaling = {
@@ -181,7 +183,86 @@ test('summerer beløp på tvers av utbetalinger', () => {
         }]
     }];
 
-    const summert = summertBelløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
+    const summert = summertBeløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
 
     expect(parseInt(summert, 10)).toEqual(600);
+});
+
+const mockFilter: FilterState = {
+    periode: {
+        radioValg: PeriodeValg.SISTE_30_DAGER,
+        egendefinertPeriode: {
+            fra: new Date(),
+            til: new Date()
+        }
+    },
+    ytelser: [],
+    utbetaltTil: []
+};
+
+test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', () => {
+    const filter: FilterState = {
+        ...mockFilter,
+        periode: {
+            ...mockFilter.periode,
+            radioValg: PeriodeValg.SISTE_30_DAGER
+        }
+    };
+
+    const fraDate: Date = getFraDateFromFilter(filter);
+    const tilDate: Date = getTilDateFromFilter(filter);
+
+    expect(moment(fraDate).toString()).toEqual(moment().subtract(30, 'day').startOf('day').toString());
+    expect(moment(tilDate).toString()).toEqual(moment().add(90, 'day').endOf('day').toString());
+});
+
+test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
+    const filter: FilterState = {
+        ...mockFilter,
+        periode: {
+            ...mockFilter.periode,
+            radioValg: PeriodeValg.INNEVÆRENDE_ÅR
+        }
+    };
+
+    const fraDate: Date = getFraDateFromFilter(filter);
+    const tilDate: Date = getTilDateFromFilter(filter);
+
+    expect(moment(fraDate).toString()).toEqual(moment().startOf('year').toString());
+    expect(moment(tilDate).toString()).toEqual(moment().add(90, 'day').endOf('day').toString());
+});
+
+test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
+    const filter: FilterState = {
+        ...mockFilter,
+        periode: {
+            ...mockFilter.periode,
+            radioValg: PeriodeValg.I_FJOR
+        }
+    };
+
+    const fraDate: Date = getFraDateFromFilter(filter);
+    const tilDate: Date = getTilDateFromFilter(filter);
+
+    expect(moment(fraDate).toString()).toEqual(moment().subtract(1, 'year').startOf('year').toString());
+    expect(moment(tilDate).toString()).toEqual(moment().subtract(1, 'year').endOf('year').toString());
+});
+
+test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode', () => {
+    const filter: FilterState = {
+        ...mockFilter,
+        periode: {
+            egendefinertPeriode: {
+                fra: new Date(0),
+                til: new Date(0)
+            },
+            radioValg: PeriodeValg.EGENDEFINERT
+        }
+    };
+
+    const fraDate: Date = getFraDateFromFilter(filter);
+    const tilDate: Date = getTilDateFromFilter(filter);
+
+    expect(moment(fraDate).toString()).toEqual(moment(0).toString());
+    expect(moment(tilDate).toString()).toEqual(moment(0).toString());
 });
