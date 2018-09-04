@@ -28,7 +28,14 @@ export const theme = {
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
     },
-    focus: 'outline: none; box-shadow: 0 0 0px 3px #FFBD66;'
+    focus: 'outline: none; box-shadow: 0 0 0px 3px #FFBD66;',
+    visuallyHidden: `
+        position: absolute !important;
+        height: 1px; width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+    `
 };
 
 export default theme;
