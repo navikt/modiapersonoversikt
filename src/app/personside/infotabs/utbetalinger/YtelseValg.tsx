@@ -21,9 +21,9 @@ class YtelseValg extends React.Component<Props> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        const tidligereYtesler = this.getUnikeYtelser(prevProps.utbetalinger);
+        const tidligereYtelser = this.getUnikeYtelser(prevProps.utbetalinger);
         const nyeYtelser = this.getUnikeYtelser(this.props.utbetalinger)
-            .filter((ytelse: string) => !tidligereYtesler.includes(ytelse));
+            .filter((ytelse: string) => !tidligereYtelser.includes(ytelse));
         if (nyeYtelser.length > 0) {
             this.props.onChange({
                 ytelser: [...this.props.filterState.ytelser, ...nyeYtelser]
