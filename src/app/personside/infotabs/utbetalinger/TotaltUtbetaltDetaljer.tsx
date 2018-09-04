@@ -25,10 +25,22 @@ const Wrapper = styled.div`
   tr {
     display: flex;
     flex-flow: row wrap;
+    position: relative; /* IE11 */
     > *:first-child {
       flex-grow: 1;
+      display: block; /* IE11 */
+    }
+    .sumBrutto, .sumNetto, .sumTrekk {
+      position: absolute; /* IE11 */
+    }
+    .sumBrutto {
+      right: 12rem; /* IE11 */
+    }
+    .sumTrekk {
+      right: 6rem; /* IE11 */
     }
     .sumNetto {
+      right: 0; /* IE11 */
       font-weight: bold;
     }
     .periodeForYtelse, .ytelseDetaljer {
@@ -36,9 +48,11 @@ const Wrapper = styled.div`
       opacity: .7;
     }
     .periodeForYtelse {
+      display: block; /* IE11 */
       text-align: left;
     }
     .ytelseDetaljer {
+      display: block; /* IE11 */
       flex-grow: 1;
       text-align: right;
       margin-right: 12rem;
@@ -56,10 +70,12 @@ const Wrapper = styled.div`
       }
     }
   }
-  tbody tr > *:nth-last-child(n+3) {
-      padding-top: .5rem;
-      margin-top: .5rem;
-      border-top: 2px solid ${theme.color.bakgrunn};
+  tbody tr {
+    margin-top: .5rem;
+    > *:nth-last-child(n+3) {
+        padding-top: .5rem;
+        border-top: 2px solid ${theme.color.bakgrunn};
+    }
   }
 `;
 
@@ -134,9 +150,9 @@ function TotaltUtbetaltDetaljer(props: TotaltUtbetaltProps) {
                         <thead>
                         <tr>
                             <th>Ytelse</th>
-                            <th>Brutto</th>
-                            <th>Trekk</th>
-                            <th>Utbetalt</th>
+                            <th className="sumBrutto">Brutto</th>
+                            <th className="sumTrekk">Trekk</th>
+                            <th className="sumNetto">Utbetalt</th>
                             <th className="visually-hidden">Periode</th>
                             <th className="visually-hidden">Detaljer</th>
                         </tr>

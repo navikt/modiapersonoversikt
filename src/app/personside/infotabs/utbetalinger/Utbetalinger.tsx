@@ -55,6 +55,7 @@ const Wrapper = styled.div`
     tr {
       > * {
         padding: 0.1rem;
+        text-align: right;
       }
       > *:first-child {
         text-align: left;
