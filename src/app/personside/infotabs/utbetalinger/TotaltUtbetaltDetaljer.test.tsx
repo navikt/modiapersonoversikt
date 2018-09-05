@@ -6,6 +6,8 @@ import { FilterState, PeriodeValg } from './Filter';
 import { aremark } from '../../../../mock/person/aremark';
 import { Utbetaling } from '../../../../models/utbetalinger';
 
+Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
+
 const filterState: FilterState = {
     periode: {
         radioValg: PeriodeValg.SISTE_30_DAGER,

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import '../test/setupTests';
 
 import App from './App';
 

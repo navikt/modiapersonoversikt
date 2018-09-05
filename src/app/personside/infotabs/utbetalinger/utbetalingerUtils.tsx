@@ -171,4 +171,4 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
         []);
 }
 
-export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler type';
+export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';

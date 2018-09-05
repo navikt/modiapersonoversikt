@@ -1,8 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
+.c0 {
+  margin: .5rem 0;
+  opacity: .8;
+}
+
+.c0 th {
+  font-weight: bold;
+}
+
+.c1 {
+  border-top: 2px solid #efefef;
+  margin: .5rem 0;
+}
+
 <div
-  className="sc-gzVnrw iCqlhe"
+  className="c0"
 >
   <span
     className="typo-undertekst"
@@ -43,7 +57,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     </table>
   </span>
   <div
-    className="sc-htoDjs dnMOek"
+    className="c1"
   />
   <span
     className="typo-undertekst"
@@ -154,7 +168,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     </table>
   </span>
   <div
-    className="sc-htoDjs dnMOek"
+    className="c1"
   />
   <h4
     className="typo-undertekst-bold"
