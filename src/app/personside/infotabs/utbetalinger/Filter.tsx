@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Radio } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
-import EtikettMini from '../../../../components/EtikettMini';
+import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
 import * as moment from 'moment';
@@ -12,6 +11,8 @@ import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
+import theme from '../../../../styles/personOversiktTheme';
+import { restoreScroll } from '../../../../utils/restoreScroll';
 
 export interface FilterState {
     periode: PeriodeOptions;
@@ -44,8 +45,12 @@ export enum PeriodeValg {
 }
 
 const FiltreringsPanel = styled.nav`
-  > *:first-child {
-    margin-top: 2em;
+  background-color: white;
+  border-radius: ${theme.borderRadius.layout};
+  padding: ${theme.margin.px20};
+  margin-bottom: ${theme.margin.layout};
+  > *:not(:first-child) {
+    margin-top: 1.5rem;
   }
 `;
 
@@ -53,17 +58,12 @@ const InputPanel = styled.form`
   display: inline-flex;
   flex-direction: column;
   min-width: 33%;
-  margin-top: 1em;
   &:not(:last-child) {
     padding-right: 1rem;
   }
-  > *:not(:last-child) {
-    margin-bottom: 1em;
+  > *:first-child {
+    margin-bottom: .7rem;
   }
-`;
-
-const Opacity = styled.span`
-  opacity: .5;
 `;
 
 function onRadioChange(props: Props, key: PeriodeValg) {
@@ -122,7 +122,7 @@ const RadioWrapper = styled.div`
   display: flex;
   align-items: center;
   > * {
-    margin: 0;
+    margin: .4rem 0;
   }
   > :nth-child(2) {
     margin-left: .5rem;
@@ -147,18 +147,18 @@ function Filtrering(props: Props) {
     });
 
     return (
-        <FiltreringsPanel>
-            <Element>Filtrering</Element>
+        <FiltreringsPanel onClick={restoreScroll}>
+            <Undertittel>Filtrering</Undertittel>
 
             <InputPanel>
-                <EtikettMini><Opacity>Velg periode</Opacity></EtikettMini>
+                <EtikettLiten>Velg periode</EtikettLiten>
                 {radios}
                 {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
             </InputPanel>
 
             <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
                 <InputPanel>
-                    <EtikettMini><Opacity>Utbetaling til</Opacity></EtikettMini>
+                    <EtikettLiten>Utbetaling til</EtikettLiten>
                     <UtbetaltTilValg
                         utbetalinger={props.utbetalingReducer.data.utbetalinger}
                         onChange={props.onChange}
@@ -166,7 +166,7 @@ function Filtrering(props: Props) {
                     />
                 </InputPanel>
                 <InputPanel>
-                    <EtikettMini><Opacity>Velg ytelse</Opacity></EtikettMini>
+                    <EtikettLiten>Velg ytelse</EtikettLiten>
                     <YtelseValg
                         onChange={props.onChange}
                         filterState={props.filterState}

@@ -11,6 +11,8 @@ interface Props {
 const KnappWrapper = styled.button`
   border: none;
   padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;

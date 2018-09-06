@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface } from '../../../../models/utbetalinger';
-import { UndertekstBold } from 'nav-frontend-typografi';
-import { Bold, SpaceBetween, UndertekstGrå } from '../../../../components/common-styled-components';
+import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
 import styled from 'styled-components';
 import {
     datoVerbose,
@@ -15,6 +15,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerKnapp from './DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -25,17 +26,20 @@ interface State {
 }
 
 export const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
-  padding: .5rem 1.2rem;
+  padding: ${theme.margin.px20} ${theme.margin.px10};
   transition: 0.3s;
   ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
-`;
-
-const Luft = styled.div`
-  margin-top: .5rem;
+  > *:first-child, > *:nth-child(2), > *:nth-child(3) {
+    height: 1.3rem;
+  }
+  > *:nth-child(3) {
+    margin-bottom: .8rem;
+  }
 `;
 
 const KnappWrapper = styled.div`
   display: flex;
+  padding-bottom: .2rem;
   > *:not(:first-child) {
     margin-left: .5rem;
   }
@@ -80,9 +84,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         return (
             <UtbetalingStyle åpen={this.state.visDetaljer}>
                 <SpaceBetween>
-                    <UndertekstGrå>
+                    <Undertekst>
                         {dato} / <Bold>{utbetaling.status}</Bold>
-                    </UndertekstGrå>
+                    </Undertekst>
                     <KnappWrapper>
                         <PrintKnapp onClick={() => alert('ikke implementert')}/>
                         <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
@@ -93,11 +97,10 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                     <UndertekstBold>{sum}</UndertekstBold>
                 </SpaceBetween>
                 <SpaceBetween>
-                    <UndertekstGrå>{periode}</UndertekstGrå>
-                    <UndertekstGrå>{forfallsInfo}</UndertekstGrå>
+                    <Undertekst>{periode}</Undertekst>
+                    <Undertekst>{forfallsInfo}</Undertekst>
                 </SpaceBetween>
-                <Luft/>
-                <UndertekstGrå>Utbetaling til: {utbetaling.utbetaltTil}</UndertekstGrå>
+                <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
                 {utbetalingsDetaljer}
             </UtbetalingStyle>
         );

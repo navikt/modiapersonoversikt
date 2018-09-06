@@ -8,9 +8,9 @@ import {
 } from './utbetalingerUtils';
 import { UtbetalingStyle } from './Utbetaling';
 import styled from 'styled-components';
-import { Bold, SpaceBetween, UndertekstGrå, UndertekstGråBold } from '../../../../components/common-styled-components';
+import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
 import PrintKnapp from '../../../../components/PrintKnapp';
-import { UndertekstBold } from 'nav-frontend-typografi';
+import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import DetaljerKnapp from './DetaljerKnapp';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
@@ -59,20 +59,20 @@ class EnkeltYtelse extends React.Component<EnkeltYtelseProps, EnkeltYtelseState>
         return (
             <EnkeltYtelseStyle focus={this.state.visDetaljer}>
                 <SpaceBetween>
-                    <UndertekstGråBold>
+                    <UndertekstBold>
                         {ytelse.type}
-                    </UndertekstGråBold>
+                    </UndertekstBold>
                     <SpaceBetween>
-                        <UndertekstGråBold>
+                        <UndertekstBold>
                             {formaterNOK(ytelse.nettobeløp)}
-                        </UndertekstGråBold>
+                        </UndertekstBold>
                         <PadLeft/>
                         <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
                     </SpaceBetween>
                 </SpaceBetween>
-                <UndertekstGrå>
+                <Undertekst>
                     {periode}
-                </UndertekstGrå>
+                </Undertekst>
                 {detaljer}
             </EnkeltYtelseStyle>
         );
@@ -84,10 +84,11 @@ interface Props {
 }
 
 const YtelsesListe = styled.ul`
-  padding-left: .5rem;
   list-style: none;
+  padding: 0;
   > * {
-    margin-top: .2rem;
+    padding-left: .5rem;
+    margin-top: 1rem;
   }
 `;
 
@@ -113,9 +114,9 @@ function SammensattUtbetaling(props: Props) {
     return (
         <UtbetalingStyle>
             <SpaceBetween>
-                <UndertekstGrå>
+                <Undertekst>
                     {dato} / <Bold>{utbetaling.status}</Bold>
-                </UndertekstGrå>
+                </Undertekst>
                 <PrintKnapp onClick={() => alert('ikke implementert')}/>
             </SpaceBetween>
             <SpaceBetween>
@@ -123,8 +124,8 @@ function SammensattUtbetaling(props: Props) {
                 <UndertekstBold>{sum}</UndertekstBold>
             </SpaceBetween>
             <SpaceBetween>
-                <UndertekstGrå>Utbetaling til: {utbetaling.utbetaltTil}</UndertekstGrå>
-                <UndertekstGrå>{forfallsInfo}</UndertekstGrå>
+                <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
+                <Undertekst>{forfallsInfo}</Undertekst>
             </SpaceBetween>
             <YtelsesListe>
                 {ytelsesListe}

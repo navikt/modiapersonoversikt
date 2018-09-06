@@ -5,8 +5,12 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   margin: 1.5rem 0 .5rem;
 }
 
+.c0 th:not(:first-child) {
+  font-weight: normal;
+}
+
 .c0 th {
-  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .c0 tr {
@@ -44,6 +48,9 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 
 .c0 tr .sumNetto {
   right: 0;
+}
+
+.c0 tr td.sumNetto {
   font-weight: bold;
 }
 

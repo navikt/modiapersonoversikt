@@ -16,7 +16,9 @@ export const theme = {
         wideScreen: 'min-width: 550px'
     },
     margin: {
-        layout: '15px'
+        layout: '.8rem',
+        px20: '1.2rem',
+        px10: '.6rem'
     },
     boxShadow: {
         layout: '0 0.1em 0.6em rgba(150, 150, 150, 0.7)'

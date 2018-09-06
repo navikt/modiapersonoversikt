@@ -10,12 +10,9 @@ import { Action } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utbetalingerUtils';
-import { restoreScroll } from '../../../../utils/restoreScroll';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
-import { Undertekst, Undertittel } from 'nav-frontend-typografi';
-import Coins from '../../../../svg/Coins';
+import { Undertekst } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import moment = require('moment');
 
@@ -63,40 +60,31 @@ const Wrapper = styled.div`
 `;
 
 const Venstre = styled.div`
-  > *:first-child {
-    margin-left: 50px;
-  }  
   flex-basis: 16em;
   flex-shrink: 1;
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
-  padding: 1.2rem;
 `;
 
 const Hoyre = styled.div`
+  position: relative;
   flex-grow: 1;
   min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
-  border-radius: ${theme.borderRadius.layout};
-  background-color: white;
   @media not all and (max-width: ${utbetalingerMediaTreshold}) {
       margin-left: ${theme.margin.layout};
   }
 `;
 
-const Opacity = styled.span`
-  opacity: .5;
-`;
-
 const ArenaLenkeStyle = styled.div`
-  margin: 1.2rem;
   text-align: right;
+  position: absolute;
+  top: ${theme.margin.px20}
+  right: ${theme.margin.px20}
 `;
 
 function ArenaLenke() {
     return (
         <ArenaLenkeStyle>
             <Undertekst>
-                Lenke til Arena: <a className="lenke">Meldinger/utbetalinger i Arena</a>
+                <a className="lenke">Meldinger/utbetalinger i Arena</a>
             </Undertekst>
         </ArenaLenkeStyle>
     );
@@ -144,11 +132,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         return (
             <ErrorBoundary>
                 <Wrapper>
-                    <Venstre onClick={restoreScroll}>
-                        <TittelOgIkon
-                            tittel={<Undertittel tag="h1">Utbetalinger</Undertittel>}
-                            ikon={<Opacity><Coins/></Opacity>}
-                        />
+                    <Venstre>
                         <Filtrering
                             filterState={this.state.filter}
                             onChange={this.onFilterChange}

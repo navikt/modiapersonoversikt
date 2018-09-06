@@ -12,9 +12,11 @@ const PrintIkonStyle = styled.button`
   background-color: transparent;
   border-radius: ${theme.borderRadius.knapp};
   padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
   svg {
-    height: 20px;
-    width: 20px;
+    height: 1.2rem;
+    width: 1.2rem;
   }
   &:focus {
     ${theme.focus}
