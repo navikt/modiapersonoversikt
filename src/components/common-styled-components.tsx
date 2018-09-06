@@ -25,7 +25,7 @@ export const Bold = styled.span`
 `;
 
 const Opacity = styled.span`
-  opacity: .7;
+  opacity: 1; // TODO Fjern denne
 `;
 
 export function UndertekstGrå(props: { children: ReactNode }) {

@@ -23,25 +23,34 @@ export interface UtbetalingerProps {
 
 const MånedGruppeStyle = styled.li`
   > *:first-child {
-    background-color: ${theme.color.bakgrunn};
-    padding: .2rem 1.2rem;
+    background-color: rgba(102, 203, 236, 0.18);
+    padding: .2rem ${theme.margin.px10};
   }
-  ol > * {
+  ol {
+    padding: 0;
+    margin: 0;
+  }
+  ol > *:not(:first-child) {
     border-top: solid 2px ${theme.color.bakgrunn};
   }
 `;
 
 const UtbetalingerStyle = styled.div`
-  border-top: 1rem solid ${theme.color.bakgrunn};
+  background-color: white;
+  border-radius: ${theme.borderRadius.layout};
+  margin-top: ${theme.margin.layout};
   > *:first-child {
-    padding: .5rem 1.2rem;
+    padding: ${theme.margin.px20};
   }
+`;
+
+const UtbetalingerListe = styled.ol`
+  padding: 0 ${theme.margin.px10};
+  margin: 0;
 `;
 
 const Wrapper = styled.div`
   ol {
-    margin: 0;
-    padding: 0;
     list-style: none;
   }
   table {
@@ -126,9 +135,9 @@ function Utbetalinger(props: UtbetalingerProps) {
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
             <UtbetalingerStyle>
                 <Undertittel>Utbetalinger</Undertittel>
-                <ol>
+                <UtbetalingerListe>
                     {månedsGrupper}
-                </ol>
+                </UtbetalingerListe>
             </UtbetalingerStyle>
         </Wrapper>
     );

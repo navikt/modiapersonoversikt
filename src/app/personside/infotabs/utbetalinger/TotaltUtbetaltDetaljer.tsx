@@ -19,8 +19,11 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 const Wrapper = styled.div`
   margin: 1.5rem 0 .5rem;
+  th:not(:first-child) {
+    font-weight: normal;
+  }
   th {
-    font-weight: bold;
+    text-transform: uppercase;
   }
   tr {
     display: flex;
@@ -41,6 +44,8 @@ const Wrapper = styled.div`
     }
     .sumNetto {
       right: 0; /* IE11 */
+    }
+    td.sumNetto {
       font-weight: bold;
     }
     .periodeForYtelse, .ytelseDetaljer {

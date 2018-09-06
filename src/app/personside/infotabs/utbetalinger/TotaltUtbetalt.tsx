@@ -17,6 +17,7 @@ import {
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import DetaljerKnapp from './DetaljerKnapp';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
+import theme from '../../../../styles/personOversiktTheme';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -27,9 +28,10 @@ interface State {
     visDetaljer: boolean;
 }
 
-const Wrapper = styled<{åpen?: boolean}, 'div'>('div')`
-    padding: .2rem 1.2rem 1.2rem;
-    ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
+const Wrapper = styled.div`
+  background-color: white;
+  border-radius: ${theme.borderRadius.layout};
+  padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
 `;
 
 const TotaltUtbetaltOversikt = styled.div`
@@ -47,6 +49,9 @@ const TotaltUtbetaltOversikt = styled.div`
 const KnappWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+  height: 2rem;
+  padding-bottom: .2rem;
   > *:not(:first-child) {
     margin-left: .5rem;
   }
@@ -79,7 +84,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Wrapper åpen={this.state.visDetaljer}>
+            <Wrapper>
                 <Undertittel>Totalt utbetalt for perioden</Undertittel>
                 <KnappWrapper>
                     <PrintKnapp onClick={() => console.log('ikke implementert')}/>

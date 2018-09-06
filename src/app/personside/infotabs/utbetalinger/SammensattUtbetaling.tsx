@@ -84,10 +84,11 @@ interface Props {
 }
 
 const YtelsesListe = styled.ul`
-  padding-left: .5rem;
   list-style: none;
+  padding: 0;
   > * {
-    margin-top: .2rem;
+    padding-left: .5rem;
+    margin-top: 1rem;
   }
 `;
 
