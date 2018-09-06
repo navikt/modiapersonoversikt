@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface } from '../../../../models/utbetalinger';
-import { UndertekstBold } from 'nav-frontend-typografi';
-import { Bold, SpaceBetween, UndertekstGrå } from '../../../../components/common-styled-components';
+import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
 import styled from 'styled-components';
 import {
     datoVerbose,
@@ -84,9 +84,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         return (
             <UtbetalingStyle åpen={this.state.visDetaljer}>
                 <SpaceBetween>
-                    <UndertekstGrå>
+                    <Undertekst>
                         {dato} / <Bold>{utbetaling.status}</Bold>
-                    </UndertekstGrå>
+                    </Undertekst>
                     <KnappWrapper>
                         <PrintKnapp onClick={() => alert('ikke implementert')}/>
                         <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
@@ -97,10 +97,10 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                     <UndertekstBold>{sum}</UndertekstBold>
                 </SpaceBetween>
                 <SpaceBetween>
-                    <UndertekstGrå>{periode}</UndertekstGrå>
-                    <UndertekstGrå>{forfallsInfo}</UndertekstGrå>
+                    <Undertekst>{periode}</Undertekst>
+                    <Undertekst>{forfallsInfo}</Undertekst>
                 </SpaceBetween>
-                <UndertekstGrå>Utbetaling til: {utbetaling.utbetaltTil}</UndertekstGrå>
+                <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
                 {utbetalingsDetaljer}
             </UtbetalingStyle>
         );
