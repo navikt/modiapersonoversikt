@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
+.c0 {
+  margin: 1.5rem 0 .5rem;
+}
+
+.c0 th {
+  font-weight: bold;
+}
+
+.c0 tr {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.c0 tr > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: block;
+}
+
+.c0 tr .sumBrutto,
+.c0 tr .sumNetto,
+.c0 tr .sumTrekk {
+  position: absolute;
+}
+
+.c0 tr .sumBrutto {
+  right: 12rem;
+}
+
+.c0 tr .sumTrekk {
+  right: 6rem;
+}
+
+.c0 tr .sumNetto {
+  right: 0;
+  font-weight: bold;
+}
+
+.c0 tr .periodeForYtelse,
+.c0 tr .ytelseDetaljer {
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  opacity: .7;
+}
+
+.c0 tr .periodeForYtelse {
+  display: block;
+  text-align: left;
+}
+
+.c0 tr .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c0 tr .ytelseDetaljer {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 12rem;
+}
+
+.c0 tr .ytelseDetaljer dl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c0 tr .ytelseDetaljer dl dt {
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c0 tr .ytelseDetaljer dl dd {
+  padding-left: 1rem;
+  -webkit-flex-basis: 7rem;
+  -ms-flex-preferred-size: 7rem;
+  flex-basis: 7rem;
+}
+
+.c0 tbody tr {
+  margin-top: .5rem;
+}
+
+.c0 tbody tr > *:nth-last-child(n+3) {
+  padding-top: .5rem;
+  border-top: 2px solid #efefef;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="typo-undertekst"
+  >
+    <h2>
+      Sammendrag
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Ytelse
+          </th>
+          <th
+            className="sumBrutto"
+          >
+            Brutto
+          </th>
+          <th
+            className="sumTrekk"
+          >
+            Trekk
+          </th>
+          <th
+            className="sumNetto"
+          >
+            Utbetalt
+          </th>
+          <th
+            className="visually-hidden"
+          >
+            Periode
+          </th>
+          <th
+            className="visually-hidden"
+          >
+            Detaljer
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            Sykepenger
+          </th>
+          <td
+            className="sumBrutto"
+          >
+            26,740.00
+          </td>
+          <td
+            className="sumTrekk"
+          >
+            -3,968.00
+          </td>
+          <td
+            className="sumNetto"
+          >
+            22,772.00
+          </td>
+          <td
+            className="periodeForYtelse"
+          >
+            09.11.2016
+             - 
+            31.10.2017
+          </td>
+          <td
+            className="ytelseDetaljer"
+          >
+            <dl>
+              <dt>
+                Mouse
+              </dt>
+              <dd>
+                7,720.00
+              </dd>
+              <dt>
+                Computer
+              </dt>
+              <dd>
+                7,860.00
+              </dd>
+              <dt>
+                Bacon
+              </dt>
+              <dd>
+                11,160.00
+              </dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
+</div>
+`;

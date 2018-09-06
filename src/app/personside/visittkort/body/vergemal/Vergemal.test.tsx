@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-
-import '../../../../../test/setupTests';
-
 import Vergemål from './Vergemal';
 import { Vergesakstype } from './Vergesakstype';
 

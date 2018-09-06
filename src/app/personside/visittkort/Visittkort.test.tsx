@@ -3,20 +3,13 @@ import Visittkort from './VisittkortContainer';
 import { mount } from 'enzyme';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
-import { Provider } from 'react-redux';
-import { testStore } from '../../../test/setupTests';
-import { personinformasjonActionNames } from '../../../redux/restReducers/personinformasjon';
 import { aremark } from '../../../mock/person/aremark';
-import { StaticRouter } from 'react-router';
-
-testStore.dispatch({type: personinformasjonActionNames.FINISHED, data: aremark});
+import TestProvider from '../../../test/Testprovider';
 
 const visittkort = mount((
-    <Provider store={testStore}>
-        <StaticRouter context={{}}>
+    <TestProvider>
             <Visittkort/>
-        </StaticRouter>
-    </Provider>
+    </TestProvider>
 ));
 
 test('viser visittkortheader når visittkort først rendres', () => {

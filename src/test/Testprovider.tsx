@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { testStore } from './setupTests';
+import { testStore } from '../setupTests';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { ReactNode } from 'react';
