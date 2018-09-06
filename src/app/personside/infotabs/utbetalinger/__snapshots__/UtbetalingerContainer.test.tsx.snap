@@ -1,45 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c16 {
+.c10 {
   border: none;
   background-color: transparent;
   border-radius: 8px;
   padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
-.c16 svg {
-  height: 20px;
-  width: 20px;
+.c10 svg {
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
-.c16:focus {
+.c10:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c16:hover {
+.c10:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.c8 {
-  font-size: 11px;
+.c2 {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: .8rem;
 }
 
-.c7 {
-  margin-top: 3px;
+.c2 > *:not(:first-child) {
+  margin-top: 1.5rem;
 }
 
-.c7 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c5 > *:first-child {
-  margin-top: 2em;
-}
-
-.c6 {
+.c3 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -48,22 +45,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   min-width: 33%;
-  margin-top: 1em;
 }
 
-.c6:not(:last-child) {
+.c3:not(:last-child) {
   padding-right: 1rem;
 }
 
-.c6 > *:not(:last-child) {
-  margin-bottom: 1em;
+.c3 > *:first-child {
+  margin-bottom: .7rem;
 }
 
-.c9 {
-  opacity: .5;
-}
-
-.c10 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -74,48 +66,52 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   align-items: center;
 }
 
-.c10 > * {
-  margin: 0;
+.c4 > * {
+  margin: .4rem 0;
 }
 
-.c10 > :nth-child(2) {
+.c4 > :nth-child(2) {
   margin-left: .5rem;
 }
 
-.c17 {
+.c11 {
   border: none;
   padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
 }
 
-.c17:hover {
+.c11:hover {
   background-color: #C6C2BF;
 }
 
-.c17:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c14 {
-  padding: .2rem 1.2rem 1.2rem;
+.c8 {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1.2rem 1.2rem 2rem;
 }
 
-.c18 th:not(:first-child) {
+.c12 th:not(:first-child) {
   font-weight: normal;
 }
 
-.c18 th {
+.c12 th {
   text-transform: uppercase;
 }
 
-.c18 td {
+.c12 td {
   font-weight: bold;
 }
 
-.c15 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -124,13 +120,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  height: 2rem;
+  padding-bottom: .2rem;
 }
 
-.c15 > *:not(:first-child) {
+.c9 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c24 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -141,115 +143,97 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c22 {
+.c17 {
   text-transform: uppercase;
 }
 
-.c21 {
+.c16 {
   font-weight: bold;
 }
 
-.c25 {
-  opacity: .7;
-}
-
-.c23 {
-  padding: .5rem 1.2rem;
+.c18 {
+  padding: 1.2rem .6rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c27 {
-  margin-top: .5rem;
+.c18 > *:first-child,
+.c18 > *:nth-child(2),
+.c18 > *:nth-child(3) {
+  height: 1.3rem;
 }
 
-.c26 {
+.c18 > *:nth-child(3) {
+  margin-bottom: .8rem;
+}
+
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  padding-bottom: .2rem;
 }
 
-.c26 > *:not(:first-child) {
+.c20 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c20 > *:first-child {
-  background-color: #efefef;
-  padding: .2rem 1.2rem;
+.c15 > *:first-child {
+  background-color: rgba(102,203,236,0.18);
+  padding: .2rem .6rem;
 }
 
-.c20 ol > * {
+.c15 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c15 ol > *:not(:first-child) {
   border-top: solid 2px #efefef;
 }
 
-.c19 {
-  border-top: 1rem solid #efefef;
+.c13 {
+  background-color: white;
+  border-radius: 4px;
+  margin-top: .8rem;
 }
 
-.c19 > *:first-child {
-  padding: .5rem 1.2rem;
+.c13 > *:first-child {
+  padding: 1.2rem;
 }
 
-.c13 ol {
+.c14 {
+  padding: 0 .6rem;
   margin: 0;
-  padding: 0;
+}
+
+.c7 ol {
   list-style: none;
 }
 
-.c13 table {
+.c7 table {
   width: 100%;
   text-align: right;
   border-spacing: 0;
 }
 
-.c13 table * {
+.c7 table * {
   padding: 0;
   margin: 0;
 }
 
-.c13 table tr > * {
+.c7 table tr > * {
   padding: 0.1rem;
   text-align: right;
 }
 
-.c13 table tr > *:first-child {
+.c7 table tr > *:first-child {
   text-align: left;
 }
 
-.c13 table tr > *:not(:first-child) {
+.c7 table tr > *:not(:first-child) {
   width: 6rem;
-}
-
-.c2 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 {
-  position: absolute;
-  left: -50px;
-  width: 50px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c3 > svg {
-  height: 24px;
-  width: auto;
 }
 
 .c0 {
@@ -270,32 +254,22 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-flex-shrink: 1;
   -ms-flex-negative: 1;
   flex-shrink: 1;
-  background-color: white;
-  border-radius: 4px;
-  padding: 1.2rem;
 }
 
-.c1 > *:first-child {
-  margin-left: 50px;
-}
-
-.c11 {
+.c5 {
+  position: relative;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   min-width: 35rem;
-  border-radius: 4px;
-  background-color: white;
 }
 
-.c4 {
-  opacity: .5;
-}
-
-.c12 {
-  margin: 1.2rem;
+.c6 {
   text-align: right;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
 }
 
 @media (max-width:80rem) {
@@ -305,8 +279,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media not all and (max-width:80rem) {
-  .c11 {
-    margin-left: 15px;
+  .c5 {
+    margin-left: .8rem;
   }
 }
 
@@ -315,89 +289,26 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 >
   <div
     className="c1"
-    onClick={[Function]}
   >
-    <div
+    <nav
       className="c2"
+      onClick={[Function]}
     >
-      <div
-        className="c3"
-      >
-        <span
-          className="c4"
-        >
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g
-              fill="none"
-              stroke="rgba(0, 0, 0, 0.5)"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeMiterlimit={10}
-              strokeWidth="1.2"
-            >
-              <ellipse
-                cx={8}
-                cy="2.5"
-                rx="7.5"
-                ry={2}
-              />
-              <path
-                d="M15.5 2.5v3c0 1.1-3.3 2-7.5 2C4 7.5.5 6.6.5 5.5v-3m15 3v3c0 1.1-3.3 2-7.5 2-4.1 0-7.5-.9-7.5-2v-3"
-              />
-              <ellipse
-                cx={16}
-                cy="15.5"
-                rx="7.5"
-                ry={2}
-              />
-              <path
-                d="M23.5 15.5v3c0 1.1-3.3 2-7.5 2-4.1 0-7.5-.9-7.5-2v-3m15 3v3c0 1.1-3.3 2-7.5 2-4.1 0-7.5-.9-7.5-2v-3m7-10v3c0 1.1-3.3 2-7.5 2-4.1 0-7.5-.9-7.5-2v-3m0 3v3c0 1.1 3.4 2 7.5 2h.5m-8-2v3c0 1.1 3.4 2 7.5 2h.5m7-8v2"
-              />
-            </g>
-          </svg>
-        </span>
-      </div>
-      <h1
+      <h2
         className="typo-undertittel"
       >
-        Utbetalinger
-      </h1>
-    </div>
-    <nav
-      className="c5"
-    >
-      <p
-        className="typo-element"
-      >
         Filtrering
-      </p>
+      </h2>
       <form
-        className="c6"
+        className="c3"
       >
-        <div
-          className="c7"
+        <p
+          className="typo-etikett-liten"
         >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="c8"
-            >
-              <span
-                className="c9"
-              >
-                Velg periode
-              </span>
-            </span>
-          </p>
-        </div>
+          Velg periode
+        </p>
         <div
-          className="c10"
+          className="c4"
         >
           <div
             className="skjemaelement skjemaelement--horisontal"
@@ -419,7 +330,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </div>
         <div
-          className="c10"
+          className="c4"
         >
           <div
             className="skjemaelement skjemaelement--horisontal"
@@ -441,7 +352,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </div>
         <div
-          className="c10"
+          className="c4"
         >
           <div
             className="skjemaelement skjemaelement--horisontal"
@@ -463,7 +374,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </div>
         <div
-          className="c10"
+          className="c4"
         >
           <div
             className="skjemaelement skjemaelement--horisontal"
@@ -486,25 +397,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </div>
       </form>
       <form
-        className="c6"
+        className="c3"
       >
-        <div
-          className="c7"
+        <p
+          className="typo-etikett-liten"
         >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="c8"
-            >
-              <span
-                className="c9"
-              >
-                Utbetaling til
-              </span>
-            </span>
-          </p>
-        </div>
+          Utbetaling til
+        </p>
         <div
           className="skjemaelement skjemaelement--horisontal"
         >
@@ -528,25 +427,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </div>
       </form>
       <form
-        className="c6"
+        className="c3"
       >
-        <div
-          className="c7"
+        <p
+          className="typo-etikett-liten"
         >
-          <p
-            className="typo-etikett-liten"
-          >
-            <span
-              className="c8"
-            >
-              <span
-                className="c9"
-              >
-                Velg ytelse
-              </span>
-            </span>
-          </p>
-        </div>
+          Velg ytelse
+        </p>
         <div
           className="skjemaelement skjemaelement--horisontal"
         >
@@ -572,15 +459,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     </nav>
   </div>
   <div
-    className="c11"
+    className="c5"
   >
     <div
-      className="c12"
+      className="c6"
     >
       <p
         className="typo-undertekst"
       >
-        Lenke til Arena: 
         <a
           className="lenke"
         >
@@ -589,10 +475,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       </p>
     </div>
     <div
-      className="c13"
+      className="c7"
     >
       <div
-        className="c14"
+        className="c8"
       >
         <h2
           className="typo-undertittel"
@@ -600,10 +486,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           Totalt utbetalt for perioden
         </h2>
         <div
-          className="c15"
+          className="c9"
         >
           <button
-            className="c16"
+            className="c10"
             onClick={[Function]}
           >
             <svg
@@ -626,7 +512,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           <button
             aria-expanded={false}
             aria-label="Detaljer"
-            className="c17"
+            className="c11"
             onClick={[Function]}
           >
             <i
@@ -635,7 +521,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </button>
         </div>
         <div
-          className="c18"
+          className="c12"
         >
           <span
             className="typo-undertekst"
@@ -678,25 +564,27 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </div>
       </div>
       <div
-        className="c19"
+        className="c13"
       >
         <h2
           className="typo-undertittel"
         >
           Utbetalinger
         </h2>
-        <ol>
+        <ol
+          className="c14"
+        >
           <li
-            className="c20"
+            className="c15"
           >
             <h3
               className="typo-undertekst"
             >
               <span
-                className="c21"
+                className="c16"
               >
                 <span
-                  className="c22"
+                  className="c17"
                 >
                   Mars 2017
                 </span>
@@ -704,31 +592,27 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </h3>
             <ol>
               <li
-                className="c23"
+                className="c18"
               >
                 <div
-                  className="c24"
+                  className="c19"
                 >
                   <p
                     className="typo-undertekst"
                   >
+                    29. Mars 2017
+                     / 
                     <span
-                      className="c25"
+                      className="c16"
                     >
-                      29. Mars 2017
-                       / 
-                      <span
-                        className="c21"
-                      >
-                        Utbetalt
-                      </span>
+                      Utbetalt
                     </span>
                   </p>
                   <div
-                    className="c26"
+                    className="c20"
                   >
                     <button
-                      className="c16"
+                      className="c10"
                       onClick={[Function]}
                     >
                       <svg
@@ -751,7 +635,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Detaljer"
-                      className="c17"
+                      className="c11"
                       onClick={[Function]}
                     >
                       <i
@@ -761,7 +645,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c24"
+                  className="c19"
                 >
                   <h4
                     className="typo-undertekst-bold"
@@ -775,39 +659,24 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </p>
                 </div>
                 <div
-                  className="c24"
+                  className="c19"
                 >
                   <p
                     className="typo-undertekst"
                   >
-                    <span
-                      className="c25"
-                    >
-                      09.11.2016 - 31.10.2017
-                    </span>
+                    09.11.2016 - 31.10.2017
                   </p>
                   <p
                     className="typo-undertekst"
                   >
-                    <span
-                      className="c25"
-                    >
-                      
-                    </span>
+                    
                   </p>
                 </div>
-                <div
-                  className="c27"
-                />
                 <p
                   className="typo-undertekst"
                 >
-                  <span
-                    className="c25"
-                  >
-                    Utbetaling til: 
-                    AREMARK TESTFAMILIEN
-                  </span>
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
                 </p>
               </li>
             </ol>
