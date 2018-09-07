@@ -7,7 +7,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { KodeverkResponse } from '../../../../models/kodeverk';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
-import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
+import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 export interface PoststedInformasjon {

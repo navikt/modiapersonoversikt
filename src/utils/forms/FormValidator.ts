@@ -1,4 +1,4 @@
-import { SkjemaelementFeil } from 'nav-frontend-skjema/src/skjemaelement-feilmelding';
+import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 export interface Valideringsregel<T> {
     felt: keyof T;
