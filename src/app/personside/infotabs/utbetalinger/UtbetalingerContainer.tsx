@@ -60,8 +60,8 @@ const Wrapper = styled.div`
 `;
 
 const Venstre = styled.div`
-  flex-basis: 16em;
-  flex-shrink: 1;
+  min-width: 18rem;
+  flex-basis: 18rem;
 `;
 
 const Hoyre = styled.div`
