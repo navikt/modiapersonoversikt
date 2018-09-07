@@ -26,7 +26,7 @@ class InfoTabs extends React.PureComponent<Props> {
         this.onTabChange = this.onTabChange.bind(this);
     }
 
-    getOpenTabFromUrl(): INFOTABS {
+    getOpenTabFromRouter(): INFOTABS {
         const currentPathName = this.props.history.location.pathname;
         const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
         const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
@@ -58,7 +58,7 @@ class InfoTabs extends React.PureComponent<Props> {
 
         return (
             <section>
-                <TabKnapper onTabChange={this.onTabChange} openTab={this.getOpenTabFromUrl()}/>
+                <TabKnapper onTabChange={this.onTabChange} openTab={this.getOpenTabFromRouter()}/>
                 <OpenTab>
                     <Switch location={this.props.history.location}>
                         <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps}/>
