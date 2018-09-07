@@ -9,7 +9,6 @@ import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstr
 
 const Wrapper = styled.div`
   margin: .5rem 0;
-  opacity: .8;
   th {
     font-weight: bold;
   }

@@ -52,7 +52,6 @@ const Wrapper = styled.div`
     }
     .periodeForYtelse, .ytelseDetaljer {
       flex-basis: 100%;
-      opacity: .7;
     }
     .periodeForYtelse {
       display: block; /* IE11 */
