@@ -3,19 +3,14 @@ import { Utbetaling as UtbetalingInterface } from '../../../../models/utbetaling
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
 import styled from 'styled-components';
-import {
-    datoVerbose,
-    formaterNOK,
-    getGjeldendeDatoForUtbetaling,
-    periodeStringFromYtelse
-}
-    from './utbetalingerUtils';
+import { datoVerbose, formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from './utbetalingerUtils';
 import PrintKnapp from '../../../../components/PrintKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerKnapp from './DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../styles/personOversiktTheme';
+import { UnmountClosed } from 'react-collapse';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -25,10 +20,11 @@ interface State {
     visDetaljer: boolean;
 }
 
-export const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
+const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
   padding: ${theme.margin.px20} ${theme.margin.px10};
   transition: 0.3s;
   ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
+  cursor: pointer;
   > *:first-child, > *:nth-child(2), > *:nth-child(3) {
     height: 1.3rem;
   }
@@ -73,16 +69,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         const periode = periodeStringFromYtelse(ytelse);
         const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato
             ? `Forfallsdato: ${dato}` : '';
-        const utbetalingsDetaljer = this.state.visDetaljer && (
-            <UtbetalingsDetaljer
-                ytelse={ytelse}
-                konto={utbetaling.konto}
-                melding={utbetaling.melding}
-            />
-        );
 
         return (
-            <UtbetalingStyle åpen={this.state.visDetaljer}>
+            <UtbetalingStyle onClick={this.toggleVisDetaljer} åpen={this.state.visDetaljer}>
                 <SpaceBetween>
                     <Undertekst>
                         {dato} / <Bold>{utbetaling.status}</Bold>
@@ -101,7 +90,13 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                     <Undertekst>{forfallsInfo}</Undertekst>
                 </SpaceBetween>
                 <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
-                {utbetalingsDetaljer}
+                <UnmountClosed isOpened={this.state.visDetaljer}>
+                    <UtbetalingsDetaljer
+                        ytelse={ytelse}
+                        konto={utbetaling.konto}
+                        melding={utbetaling.melding}
+                    />
+                </UnmountClosed>
             </UtbetalingStyle>
         );
     }
