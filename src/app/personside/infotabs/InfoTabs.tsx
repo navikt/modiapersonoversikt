@@ -26,22 +26,19 @@ class InfoTabs extends React.PureComponent<Props> {
         this.onTabChange = this.onTabChange.bind(this);
     }
 
-    getOpenTabFromUrl() {
+    getOpenTabFromUrl(): INFOTABS {
         const currentPathName = this.props.history.location.pathname;
-        const supportedRoutes: string[] = Object.keys(INFOTABS);
-        const initalTab: string | undefined = supportedRoutes.find((route: string) =>
+        const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
+        const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
             currentPathName
                     .toUpperCase()
                     .split('/')
-                    .includes(route));
-        if (initalTab) {
-            return INFOTABS[initalTab];
-        }
-        return INFOTABS.OVERSIKT;
+                    .includes(infoTab));
+        return openTab || INFOTABS.OVERSIKT;
     }
 
     updateRouterPath(newTab: INFOTABS) {
-        this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}/${newTab.toLowerCase()}/`);
+        this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
     }
 
     onTabChange(newTab: INFOTABS) {
