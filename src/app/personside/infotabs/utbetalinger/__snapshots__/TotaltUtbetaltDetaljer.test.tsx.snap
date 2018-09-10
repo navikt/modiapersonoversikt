@@ -2,7 +2,7 @@
 
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
 .c0 {
-  margin: 1.5rem 0 .5rem;
+  padding: 1.5rem 0 .5rem;
 }
 
 .c0 th:not(:first-child) {
@@ -59,7 +59,6 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   -webkit-flex-basis: 100%;
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
-  opacity: .7;
 }
 
 .c0 tr .periodeForYtelse {
@@ -169,7 +168,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
       <tbody>
         <tr>
           <th>
-            Sykepenger
+            Sykepenger 2017
           </th>
           <td
             className="sumBrutto"

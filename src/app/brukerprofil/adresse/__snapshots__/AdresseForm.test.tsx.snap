@@ -62,72 +62,79 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
           >
             
           </legend>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
+          <div
+            className="inputPanelGruppe__inner"
           >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
             >
-              Bostedsadresse fra folkeregisteret
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="folkeregistrert"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Bostedsadresse fra folkeregisteret
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigNorge"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i Norge
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i utlandet
-            </span>
-          </label>
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigUtland"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i utlandet
+              </span>
+            </label>
+          </div>
         </fieldset>
         <div
           aria-live="assertive"
@@ -261,72 +268,79 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           >
             
           </legend>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <div
+            className="inputPanelGruppe__inner"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Bostedsadresse fra folkeregisteret
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="folkeregistrert"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Bostedsadresse fra folkeregisteret
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigNorge"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i Norge
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i utlandet
-            </span>
-          </label>
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigUtland"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i utlandet
+              </span>
+            </label>
+          </div>
         </fieldset>
         <div
           aria-live="assertive"
@@ -716,72 +730,79 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           >
             
           </legend>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <div
+            className="inputPanelGruppe__inner"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Bostedsadresse fra folkeregisteret
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="folkeregistrert"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Bostedsadresse fra folkeregisteret
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigNorge"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i Norge
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i utlandet
-            </span>
-          </label>
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigUtland"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i utlandet
+              </span>
+            </label>
+          </div>
         </fieldset>
         <div
           aria-live="assertive"
@@ -1099,72 +1120,79 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           >
             
           </legend>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <div
+            className="inputPanelGruppe__inner"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Bostedsadresse fra folkeregisteret
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="folkeregistrert"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Bostedsadresse fra folkeregisteret
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigNorge"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i Norge
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i utlandet
-            </span>
-          </label>
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigUtland"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i utlandet
+              </span>
+            </label>
+          </div>
         </fieldset>
         <div
           aria-live="assertive"
@@ -1507,72 +1535,79 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           >
             
           </legend>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <div
+            className="inputPanelGruppe__inner"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Bostedsadresse fra folkeregisteret
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="folkeregistrert"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Bostedsadresse fra folkeregisteret
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Helt tilfeldig ID"
-              name="Velg adressetype"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-            />
-            <span
-              className="inputPanel__label"
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigNorge"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i Norge
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
             >
-              Midlertidig adresse i utlandet
-            </span>
-          </label>
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                disabled={undefined}
+                id="Helt tilfeldig ID"
+                name="Velg adressetype"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="midlertidigUtland"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Midlertidig adresse i utlandet
+              </span>
+            </label>
+          </div>
         </fieldset>
         <div
           aria-live="assertive"

@@ -2,8 +2,7 @@
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 .c0 {
-  margin: .5rem 0;
-  opacity: .8;
+  padding: .5rem 0;
 }
 
 .c0 th {
