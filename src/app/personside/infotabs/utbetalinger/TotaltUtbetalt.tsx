@@ -29,14 +29,14 @@ interface State {
     visDetaljer: boolean;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
   padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
   cursor: pointer;
 `;
 
-const TotaltUtbetaltOversikt = styled.div`
+const TotaltUtbetaltOversikt = styled.section`
   th:not(:first-child) {
     font-weight: normal;
   }
@@ -48,7 +48,7 @@ const TotaltUtbetaltOversikt = styled.div`
   }
 `;
 
-const KnappWrapper = styled.div`
+const KnappWrapper = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

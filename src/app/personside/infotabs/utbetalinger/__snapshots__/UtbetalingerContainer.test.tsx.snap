@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c11 {
+.c10 {
   border: none;
   background-color: transparent;
   border-radius: 8px;
@@ -10,17 +10,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   width: 1.2rem;
 }
 
-.c11 svg {
+.c10 svg {
   height: 1.2rem;
   width: 1.2rem;
 }
 
-.c11:focus {
+.c10:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c11:hover {
+.c10:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -69,7 +69,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-top: 1.5rem;
 }
 
-.c12 {
+.c11 {
   border: none;
   padding: 0;
   height: 1.2rem;
@@ -79,35 +79,35 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   background-color: transparent;
 }
 
-.c12:hover {
+.c11:hover {
   background-color: #C6C2BF;
 }
 
-.c12:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c9 {
+.c8 {
   background-color: white;
   border-radius: 4px;
   padding: 1.2rem 1.2rem 2rem;
   cursor: pointer;
 }
 
-.c13 th:not(:first-child) {
+.c12 th:not(:first-child) {
   font-weight: normal;
 }
 
-.c13 th {
+.c12 th {
   text-transform: uppercase;
 }
 
-.c13 td {
+.c12 td {
   font-weight: bold;
 }
 
-.c10 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -124,11 +124,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding-bottom: .2rem;
 }
 
-.c10 > *:not(:first-child) {
+.c9 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -139,32 +139,45 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c18 {
+.c17 {
   text-transform: uppercase;
 }
 
-.c17 {
+.c16 {
   font-weight: bold;
 }
 
-.c19 {
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding: 1.2rem .6rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.c19 > *:first-child,
-.c19 > *:nth-child(2),
-.c19 > *:nth-child(3) {
+.c18 .order-first {
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  order: -1;
+}
+
+.c18 > *:first-child,
+.c18 > *:nth-child(2),
+.c18 > *:nth-child(3) {
   height: 1.3rem;
 }
 
-.c19 > *:nth-child(3) {
+.c18 > *:nth-child(3) {
   margin-bottom: .8rem;
 }
 
-.c21 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -172,64 +185,64 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding-bottom: .2rem;
 }
 
-.c21 > *:not(:first-child) {
+.c20 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c16 > *:first-child {
+.c15 > *:first-child {
   background-color: rgba(102,203,236,0.18);
   padding: .2rem .6rem;
 }
 
-.c16 ol {
+.c15 ol {
   padding: 0;
   margin: 0;
 }
 
-.c16 ol > *:not(:first-child) {
+.c15 ol > *:not(:first-child) {
   border-top: solid 2px #efefef;
 }
 
-.c14 {
+.c13 {
   background-color: white;
   border-radius: 4px;
   margin-top: .8rem;
 }
 
-.c14 > *:first-child {
+.c13 > *:first-child {
   padding: 1.2rem;
 }
 
-.c15 {
+.c14 {
   padding: 0 .6rem;
   margin: 0;
 }
 
-.c8 ol {
+.c7 ol {
   list-style: none;
 }
 
-.c8 table {
+.c7 table {
   width: 100%;
   text-align: right;
   border-spacing: 0;
 }
 
-.c8 table * {
+.c7 table * {
   padding: 0;
   margin: 0;
 }
 
-.c8 table tr > * {
+.c7 table tr > * {
   padding: 0.1rem;
   text-align: right;
 }
 
-.c8 table tr > *:first-child {
+.c7 table tr > *:first-child {
   text-align: left;
 }
 
-.c8 table tr > *:not(:first-child) {
+.c7 table tr > *:not(:first-child) {
   width: 6rem;
 }
 
@@ -242,6 +255,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
+}
+
+.c0 .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
 }
 
 .c1 {
@@ -260,7 +284,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   min-width: 35rem;
 }
 
-.c7 {
+.c21 {
   text-align: right;
   position: absolute;
   top: 1.2rem;
@@ -279,10 +303,15 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-<div
+<article
   className="c0"
 >
-  <div
+  <h1
+    className="typo-innholdstittel visually-hidden"
+  >
+    Brukerens utbetalinger
+  </h1>
+  <section
     className="c1"
   >
     <nav
@@ -456,28 +485,20 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </form>
       </div>
     </nav>
-  </div>
-  <div
+  </section>
+  <section
     className="c6"
   >
+    <h2
+      className="typo-undertittel visually-hidden"
+    >
+      Filtrerte utbetalinger
+    </h2>
     <div
       className="c7"
     >
-      <p
-        className="typo-undertekst"
-      >
-        <a
-          className="lenke"
-        >
-          Meldinger/utbetalinger i Arena
-        </a>
-      </p>
-    </div>
-    <div
-      className="c8"
-    >
-      <div
-        className="c9"
+      <article
+        className="c8"
         onClick={[Function]}
       >
         <h2
@@ -485,11 +506,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         >
           Totalt utbetalt for perioden
         </h2>
-        <div
-          className="c10"
+        <nav
+          className="c9"
         >
           <button
-            className="c11"
+            className="c10"
             onClick={[Function]}
           >
             <svg
@@ -512,16 +533,16 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           <button
             aria-expanded={false}
             aria-label="Detaljer"
-            className="c12"
+            className="c11"
             onClick={[Function]}
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--ned"
             />
           </button>
-        </div>
-        <div
-          className="c13"
+        </nav>
+        <section
+          className="c12"
         >
           <span
             className="typo-undertekst"
@@ -561,10 +582,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               </tbody>
             </table>
           </span>
-        </div>
-      </div>
-      <div
-        className="c14"
+        </section>
+      </article>
+      <article
+        className="c13"
       >
         <h2
           className="typo-undertittel"
@@ -572,19 +593,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           Utbetalinger
         </h2>
         <ol
-          className="c15"
+          className="c14"
         >
           <li
-            className="c16"
+            className="c15"
           >
             <h3
               className="typo-undertekst"
             >
               <span
-                className="c17"
+                className="c16"
               >
                 <span
-                  className="c18"
+                  className="c17"
                 >
                   Mars 2017
                 </span>
@@ -592,11 +613,25 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </h3>
             <ol>
               <li
-                className="c19"
+                className="c18"
                 onClick={[Function]}
               >
                 <div
-                  className="c20"
+                  className="c19"
+                >
+                  <h4
+                    className="typo-undertekst-bold"
+                  >
+                    Sykepenger
+                  </h4>
+                  <p
+                    className="typo-undertekst-bold"
+                  >
+                    11,386.00
+                  </p>
+                </div>
+                <div
+                  className="order-first c19"
                 >
                   <p
                     className="typo-undertekst"
@@ -604,16 +639,16 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     29. Mars 2017
                      / 
                     <span
-                      className="c17"
+                      className="c16"
                     >
                       Utbetalt
                     </span>
                   </p>
                   <div
-                    className="c21"
+                    className="c20"
                   >
                     <button
-                      className="c11"
+                      className="c10"
                       onClick={[Function]}
                     >
                       <svg
@@ -636,7 +671,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Detaljer"
-                      className="c12"
+                      className="c11"
                       onClick={[Function]}
                     >
                       <i
@@ -646,21 +681,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c20"
-                >
-                  <h4
-                    className="typo-undertekst-bold"
-                  >
-                    Sykepenger
-                  </h4>
-                  <p
-                    className="typo-undertekst-bold"
-                  >
-                    11,386.00
-                  </p>
-                </div>
-                <div
-                  className="c20"
+                  className="c19"
                 >
                   <p
                     className="typo-undertekst"
@@ -683,8 +704,21 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </ol>
           </li>
         </ol>
-      </div>
+      </article>
     </div>
-  </div>
-</div>
+    <div
+      className="c21"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        <a
+          className="lenke"
+        >
+          Meldinger/utbetalinger i Arena
+        </a>
+      </p>
+    </div>
+  </section>
+</article>
 `;

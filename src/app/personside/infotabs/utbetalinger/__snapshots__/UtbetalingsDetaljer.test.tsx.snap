@@ -14,7 +14,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   margin: .5rem 0;
 }
 
-<div
+<aside
   className="c0"
 >
   <span
@@ -179,5 +179,5 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   >
     Dette er en melding
   </p>
-</div>
+</aside>
 `;

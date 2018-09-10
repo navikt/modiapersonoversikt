@@ -35,7 +35,7 @@ const MånedGruppeStyle = styled.li`
   }
 `;
 
-const UtbetalingerStyle = styled.div`
+const UtbetalingerArticle = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
   margin-top: ${theme.margin.layout};
@@ -133,12 +133,12 @@ function Utbetalinger(props: UtbetalingerProps) {
     return (
         <Wrapper>
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
-            <UtbetalingerStyle>
+            <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
                 <UtbetalingerListe>
                     {månedsGrupper}
                 </UtbetalingerListe>
-            </UtbetalingerStyle>
+            </UtbetalingerArticle>
         </Wrapper>
     );
 }

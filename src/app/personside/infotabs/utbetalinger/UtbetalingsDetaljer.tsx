@@ -7,7 +7,7 @@ import { Ytelse, Ytelseskomponent } from '../../../../models/utbetalinger';
 import { EnkeltYtelseProps } from './SammensattUtbetaling';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   padding: .5rem 0;
   th {
     font-weight: bold;

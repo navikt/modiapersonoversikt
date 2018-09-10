@@ -19,7 +19,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import * as moment from 'moment';
 import { sorterAlfabetisk } from '../../../../utils/string-utils';
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   padding: 1.5rem 0 .5rem;
   th:not(:first-child) {
     font-weight: normal;

@@ -12,7 +12,7 @@ import { default as Filtrering, FilterState, PeriodeValg } from './Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Undertekst } from 'nav-frontend-typografi';
+import { Innholdstittel, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import moment = require('moment');
 
@@ -51,20 +51,23 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 export const utbetalingerMediaTreshold = '80rem';
 
-const Wrapper = styled.div`
+const UtbetalingerArticle = styled.article`
   display: flex;
   align-items: flex-start;
   @media(max-width: ${utbetalingerMediaTreshold}) {
     display: block;
   }
+  .visually-hidden {
+    ${theme.visuallyHidden}
+  }
 `;
 
-const Venstre = styled.div`
+const FiltreringSection = styled.section`
   min-width: 18rem;
   flex-basis: 18rem;
 `;
 
-const Hoyre = styled.div`
+const UtbetalingerSection = styled.section`
   position: relative;
   flex-grow: 1;
   min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
@@ -131,25 +134,27 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     render() {
         return (
             <ErrorBoundary>
-                <Wrapper>
-                    <Venstre>
+                <UtbetalingerArticle>
+                    <Innholdstittel className="visually-hidden">Brukerens utbetalinger</Innholdstittel>
+                    <FiltreringSection>
                         <Filtrering
                             filterState={this.state.filter}
                             onChange={this.onFilterChange}
                             hentUtbetalinger={this.reloadUtbetalinger}
                             utbetalingReducer={this.props.utbetalingerReducer}
                         />
-                    </Venstre>
-                    <Hoyre>
-                        <ArenaLenke/>
+                    </FiltreringSection>
+                    <UtbetalingerSection>
+                        <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
                                 filter={this.state.filter}
                             />
                         </Innholdslaster>
-                    </Hoyre>
-                </Wrapper>
+                        <ArenaLenke/>
+                    </UtbetalingerSection>
+                </UtbetalingerArticle>
             </ErrorBoundary>
         );
     }
