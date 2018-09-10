@@ -19,22 +19,21 @@ const OpenTab = styled.div`
   margin-top: 0.5em;
 `;
 
+export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
+    const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
+    const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
+        currentPath
+            .toUpperCase()
+            .split('/')
+            .includes(infoTab));
+    return openTab || INFOTABS.OVERSIKT;
+}
+
 class InfoTabs extends React.PureComponent<Props> {
 
     constructor(props: Props) {
         super(props);
         this.onTabChange = this.onTabChange.bind(this);
-    }
-
-    getOpenTabFromRouter(): INFOTABS {
-        const currentPathName = this.props.history.location.pathname;
-        const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
-        const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
-            currentPathName
-                    .toUpperCase()
-                    .split('/')
-                    .includes(infoTab));
-        return openTab || INFOTABS.OVERSIKT;
     }
 
     updateRouterPath(newTab: INFOTABS) {
@@ -58,7 +57,10 @@ class InfoTabs extends React.PureComponent<Props> {
 
         return (
             <section>
-                <TabKnapper onTabChange={this.onTabChange} openTab={this.getOpenTabFromRouter()}/>
+                <TabKnapper
+                    onTabChange={this.onTabChange}
+                    openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
+                />
                 <OpenTab>
                     <Switch location={this.props.history.location}>
                         <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps}/>
