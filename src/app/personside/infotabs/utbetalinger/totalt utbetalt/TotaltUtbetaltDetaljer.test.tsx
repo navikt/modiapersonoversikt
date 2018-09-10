@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { statiskMockUtbetaling } from '../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling } from '../../../../../mock/statiskMockUtbetaling';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import { FilterState, PeriodeValg } from './Filter';
-import { aremark } from '../../../../mock/person/aremark';
-import { Utbetaling } from '../../../../models/utbetalinger';
+import { FilterState, PeriodeValg } from '../filter/Filter';
+import { aremark } from '../../../../../mock/person/aremark';
+import { Utbetaling } from '../../../../../models/utbetalinger';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 

@@ -5,15 +5,15 @@ import {
     getGjeldendeDatoForUtbetaling,
     getNettoSumYtelser,
     periodeStringFromYtelse
-} from './utbetalingerUtils';
+} from '../utils/utbetalingerUtils';
 import styled from 'styled-components';
-import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
-import PrintKnapp from '../../../../components/PrintKnapp';
+import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
+import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import DetaljerKnapp from './DetaljerKnapp';
+import DetaljerKnapp from '../utils/DetaljerKnapp';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
-import theme from '../../../../styles/personOversiktTheme';
+import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 
 export interface EnkeltYtelseProps {

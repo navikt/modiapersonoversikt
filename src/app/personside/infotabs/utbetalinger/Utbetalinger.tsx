@@ -3,8 +3,8 @@ import { Utbetaling } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
-import { FilterState } from './Filter';
-import TotaltUtbetalt from './TotaltUtbetalt';
+import { FilterState } from './filter/Filter';
+import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
@@ -12,8 +12,8 @@ import {
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
     utbetalingDatoComparator
-} from './utbetalingerUtils';
-import UtbetalingKomponent from './Utbetaling';
+} from './utils/utbetalingerUtils';
+import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export interface UtbetalingerProps {

@@ -1,6 +1,6 @@
 import { FilterState } from './Filter';
-import { Utbetaling } from '../../../../models/utbetalinger';
-import { sorterAlfabetisk } from '../../../../utils/string-utils';
+import { Utbetaling } from '../../../../../models/utbetalinger';
+import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
 

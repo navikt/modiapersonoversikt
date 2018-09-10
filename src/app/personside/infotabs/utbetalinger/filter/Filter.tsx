@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import NavDatovelger from 'nav-datovelger';
-import { Feilmelding } from '../../../../utils/Feilmelding';
+import { Feilmelding } from '../../../../../utils/Feilmelding';
 import * as moment from 'moment';
-import { UtbetalingerResponse } from '../../../../models/utbetalinger';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import Innholdslaster from '../../../../components/Innholdslaster';
+import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../../components/Innholdslaster';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
-import theme from '../../../../styles/personOversiktTheme';
-import { restoreScroll } from '../../../../utils/restoreScroll';
+import theme from '../../../../../styles/personOversiktTheme';
+import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
-import { STATUS } from '../../../../redux/restReducers/utils';
+import { STATUS } from '../../../../../redux/restReducers/utils';
 
 export interface FilterState {
     periode: PeriodeOptions;

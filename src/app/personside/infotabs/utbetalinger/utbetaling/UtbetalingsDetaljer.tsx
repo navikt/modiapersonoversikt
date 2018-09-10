@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
-import { createTable, formaterNOK } from './utbetalingerUtils';
-import { Ytelse, Ytelseskomponent } from '../../../../models/utbetalinger';
+import theme from '../../../../../styles/personOversiktTheme';
+import { createTable, formaterNOK } from '../utils/utbetalingerUtils';
+import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { EnkeltYtelseProps } from './SammensattUtbetaling';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 

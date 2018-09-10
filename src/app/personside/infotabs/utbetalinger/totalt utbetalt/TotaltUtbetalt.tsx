@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Utbetaling } from '../../../../models/utbetalinger';
-import { FilterState } from './Filter';
+import { Utbetaling } from '../../../../../models/utbetalinger';
+import { FilterState } from '../filter/Filter';
 import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import PrintKnapp from '../../../../components/PrintKnapp';
-import { formaterDato } from '../../../../utils/dateUtils';
+import PrintKnapp from '../../../../../components/PrintKnapp';
+import { formaterDato } from '../../../../../utils/dateUtils';
 import {
     createTable,
     getBruttoSumYtelser,
@@ -13,11 +13,11 @@ import {
     getTilDateFromFilter,
     getTrekkSumYtelser, summertBeløpStringFraUtbetalinger
 }
-    from './utbetalingerUtils';
+    from '../utils/utbetalingerUtils';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import DetaljerKnapp from './DetaljerKnapp';
+import DetaljerKnapp from '../utils/DetaljerKnapp';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 
 export interface TotaltUtbetaltProps {

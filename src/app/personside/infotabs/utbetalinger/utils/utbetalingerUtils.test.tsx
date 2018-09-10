@@ -1,5 +1,5 @@
-import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
-import { getMockUtbetaling, getMockYtelse } from '../../../../mock/utbetalinger-mock';
+import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger-mock';
 import {
     createTable,
     datoVerbose, filtrerBortUtbetalingerSomIkkeErUtbetalt,
@@ -10,12 +10,12 @@ import {
     utbetalingDatoComparator
 }
     from './utbetalingerUtils';
-import { FilterState, PeriodeValg } from './Filter';
+import { FilterState, PeriodeValg } from '../filter/Filter';
 import moment = require('moment');
-import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { Periode } from '../../../../models/periode';
+import { Periode } from '../../../../../models/periode';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 

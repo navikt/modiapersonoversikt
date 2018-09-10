@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { TotaltUtbetaltProps } from './TotaltUtbetalt';
 import { Undertekst } from 'nav-frontend-typografi';
-import { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../models/utbetalinger';
-import { groupArray } from '../../../../utils/groupArray';
-import theme from '../../../../styles/personOversiktTheme';
+import { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
+import { groupArray } from '../../../../../utils/groupArray';
+import theme from '../../../../../styles/personOversiktTheme';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,
@@ -12,12 +12,12 @@ import {
     getNettoSumYtelser,
     getPeriodeFromYtelser,
     getTrekkSumYtelser, getTypeFromYtelse, reduceUtbetlingerTilYtelser
-} from './utbetalingerUtils';
-import { formaterDato } from '../../../../utils/dateUtils';
+} from '../utils/utbetalingerUtils';
+import { formaterDato } from '../../../../../utils/dateUtils';
 import { Fragment } from 'react';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import * as moment from 'moment';
-import { sorterAlfabetisk } from '../../../../utils/string-utils';
+import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 
 const Wrapper = styled.aside`
   padding: 1.5rem 0 .5rem;

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
-import { FilterState, PeriodeValg } from './Filter';
+import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import { FilterState, PeriodeValg } from '../filter/Filter';
 import moment = require('moment');
-import { formaterDato } from '../../../../utils/dateUtils';
-import { Periode } from '../../../../models/periode';
+import { formaterDato } from '../../../../../utils/dateUtils';
+import { Periode } from '../../../../../models/periode';
 
 const månedTilNavnMapping = {
     0: 'Januar',

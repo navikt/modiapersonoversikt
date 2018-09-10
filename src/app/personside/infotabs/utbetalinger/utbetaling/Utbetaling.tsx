@@ -1,15 +1,20 @@
 import * as React from 'react';
-import { Utbetaling as UtbetalingInterface } from '../../../../models/utbetalinger';
+import { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import { Bold, SpaceBetween } from '../../../../components/common-styled-components';
+import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import styled from 'styled-components';
-import { datoVerbose, formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from './utbetalingerUtils';
-import PrintKnapp from '../../../../components/PrintKnapp';
+import {
+    datoVerbose,
+    formaterNOK,
+    getGjeldendeDatoForUtbetaling,
+    periodeStringFromYtelse
+} from '../utils/utbetalingerUtils';
+import PrintKnapp from '../../../../../components/PrintKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import DetaljerKnapp from './DetaljerKnapp';
+import DetaljerKnapp from '../utils/DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 
 interface Props {
