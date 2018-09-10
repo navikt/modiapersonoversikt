@@ -5,65 +5,75 @@ import ComponentPlaceholder from '../../../components/component-placeholder/Comp
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
+import { paths } from '../../routes/routing';
+import { Route, RouteComponentProps, Switch } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
-interface InfoTabsProps {
+interface OwnProps {
     fødselsnummer: string;
 }
 
-interface InfoTabsState {
-    openTab: INFOTABS;
-}
-
-const InfoTabPanel = styled.article`
-`;
+type Props = RouteComponentProps<{}> & OwnProps;
 
 const OpenTab = styled.div`
   margin-top: 0.5em;
 `;
 
-class InfoTabs extends React.PureComponent<InfoTabsProps, InfoTabsState> {
+export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
+    const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
+    const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
+        currentPath
+            .toUpperCase()
+            .split('/')
+            .includes(infoTab));
+    return openTab || INFOTABS.OVERSIKT;
+}
 
-    constructor(props: InfoTabsProps) {
+class InfoTabs extends React.PureComponent<Props> {
+
+    constructor(props: Props) {
         super(props);
-        this.state = {openTab: INFOTABS.OVERSIKT};
         this.onTabChange = this.onTabChange.bind(this);
     }
 
-    onTabChange(newTab: INFOTABS) {
-        this.setState({
-            openTab: INFOTABS[newTab]
-        });
+    updateRouterPath(newTab: INFOTABS) {
+        this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
     }
 
-    getOpenInfoTab() {
-        switch (this.state.openTab) {
-            case INFOTABS.OVERSIKT:
-                return <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0}/>;
-            case INFOTABS.OPPFOLGING:
-                return <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30}/>;
-            case INFOTABS.MELDINGER:
-                return <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150}/>;
-            case INFOTABS.UTBETALING:
-                return <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>;
-            case INFOTABS.SAKER:
-                return <ComponentPlaceholder height={'800px'} name={'Saker'} hue={300}/>;
-            case INFOTABS.YTELSER:
-                return <YtelserContainer fødselsnummer={this.props.fødselsnummer}/>;
-            default:
-                return <div>Ikke implementert</div>;
-        }
+    onTabChange(newTab: INFOTABS) {
+        this.updateRouterPath(newTab);
+        this.forceUpdate();
     }
 
     render() {
+        const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>;
+        const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0}/>;
+        const OppfolgingWithProps = () => <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30}/>;
+        const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150}/>;
+        const SakerWithProps = () => <ComponentPlaceholder height={'800px'} name={'Saker'} hue={300}/>;
+        const YtelserWithProps = () => <YtelserContainer fødselsnummer={this.props.fødselsnummer}/>;
+
+        const basePath = paths.personUri + '/:fodselsnummer/';
+
         return (
-            <InfoTabPanel>
-                <TabKnapper onTabChange={this.onTabChange} openTab={this.state.openTab}/>
+            <section>
+                <TabKnapper
+                    onTabChange={this.onTabChange}
+                    openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
+                />
                 <OpenTab>
-                    {this.getOpenInfoTab()}
+                    <Switch location={this.props.history.location}>
+                        <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps}/>
+                        <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingWithProps}/>
+                        <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerWithProps}/>
+                        <Route path={basePath + INFOTABS.SAKER + '/'} component={SakerWithProps}/>
+                        <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserWithProps}/>
+                        <Route component={OversiktWithProps}/>
+                    </Switch>
                 </OpenTab>
-            </InfoTabPanel>
+            </section>
         );
     }
 }
 
-export default InfoTabs;
+export default withRouter(InfoTabs);
