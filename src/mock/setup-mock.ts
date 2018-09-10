@@ -17,7 +17,7 @@ import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
 import { getMockUtbetalinger } from './utbetalinger-mock';
-import navfaker from '../../node_modules/nav-faker';
+import navfaker from 'nav-faker';
 import { getMockSykepenger } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
