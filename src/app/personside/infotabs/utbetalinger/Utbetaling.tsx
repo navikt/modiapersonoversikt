@@ -21,6 +21,11 @@ interface State {
 }
 
 const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
+  display: flex;
+  flex-direction: column;
+  .order-first {
+    order: -1;
+  }
   padding: ${theme.margin.px20} ${theme.margin.px10};
   transition: 0.3s;
   ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
@@ -73,6 +78,10 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         return (
             <UtbetalingStyle onClick={this.toggleVisDetaljer} åpen={this.state.visDetaljer}>
                 <SpaceBetween>
+                    <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
+                    <UndertekstBold>{sum}</UndertekstBold>
+                </SpaceBetween>
+                <SpaceBetween className="order-first">
                     <Undertekst>
                         {dato} / <Bold>{utbetaling.status}</Bold>
                     </Undertekst>
@@ -80,10 +89,6 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                         <PrintKnapp onClick={() => alert('ikke implementert')}/>
                         <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
                     </KnappWrapper>
-                </SpaceBetween>
-                <SpaceBetween>
-                    <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
-                    <UndertekstBold>{sum}</UndertekstBold>
                 </SpaceBetween>
                 <SpaceBetween>
                     <Undertekst>{periode}</Undertekst>
