@@ -8,7 +8,7 @@ import { EnkeltYtelseProps } from './SammensattUtbetaling';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 
 const Wrapper = styled.div`
-  margin: .5rem 0;
+  padding: .5rem 0;
   th {
     font-weight: bold;
   }

@@ -20,7 +20,7 @@ import * as moment from 'moment';
 import { sorterAlfabetisk } from '../../../../utils/string-utils';
 
 const Wrapper = styled.div`
-  margin: 1.5rem 0 .5rem;
+  padding: 1.5rem 0 .5rem;
   th:not(:first-child) {
     font-weight: normal;
   }
