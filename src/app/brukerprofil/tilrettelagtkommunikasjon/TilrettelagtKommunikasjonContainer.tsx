@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action } from 'history';
 
-import { CheckboksProps } from 'nav-frontend-skjema/src/checkboks-panel';
+import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 

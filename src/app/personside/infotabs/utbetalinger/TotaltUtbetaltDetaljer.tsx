@@ -16,9 +16,11 @@ import {
 import { formaterDato } from '../../../../utils/dateUtils';
 import { Fragment } from 'react';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import * as moment from 'moment';
+import { sorterAlfabetisk } from '../../../../utils/string-utils';
 
 const Wrapper = styled.div`
-  margin: 1.5rem 0 .5rem;
+  padding: 1.5rem 0 .5rem;
   th:not(:first-child) {
     font-weight: normal;
   }
@@ -50,7 +52,6 @@ const Wrapper = styled.div`
     }
     .periodeForYtelse, .ytelseDetaljer {
       flex-basis: 100%;
-      opacity: .7;
     }
     .periodeForYtelse {
       display: block; /* IE11 */
@@ -122,13 +123,19 @@ function getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger: Utbetaling[]) {
     return reduceUtbetlingerTilYtelser(utbetalteUtbetalinger);
 }
 
+function getTypeOgÅrFromYtelse(ytelse: Ytelse): string {
+    return getTypeFromYtelse(ytelse) + ' ' + moment(ytelse.periode.slutt).year();
+}
+
 function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     const alleUtbetalteYtelser: Ytelse[] = getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger);
     const ytelserGruppertPåTema = groupArray(
         alleUtbetalteYtelser,
-        getTypeFromYtelse
+        getTypeOgÅrFromYtelse
     );
-    const ytelsesSammendrag = ytelserGruppertPåTema.map(gruppe => {
+    const ytelsesSammendrag = ytelserGruppertPåTema
+        .sort((a, b) => sorterAlfabetisk(a.category, b.category))
+        .map(gruppe => {
         const ytelser = gruppe.array;
         const ytelsesType = gruppe.category;
         const periode = getPeriodeFromYtelser(ytelser);

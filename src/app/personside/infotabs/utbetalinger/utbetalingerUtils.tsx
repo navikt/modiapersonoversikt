@@ -62,7 +62,7 @@ export function getTilDateFromFilter(filter: FilterState): Date {
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.til;
         default:
-            return moment().add(90, 'day').endOf('day').toDate();
+            return moment().endOf('day').toDate();
     }
 }
 

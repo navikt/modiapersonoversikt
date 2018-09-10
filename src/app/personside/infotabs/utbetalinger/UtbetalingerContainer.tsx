@@ -60,8 +60,8 @@ const Wrapper = styled.div`
 `;
 
 const Venstre = styled.div`
-  flex-basis: 16em;
-  flex-shrink: 1;
+  min-width: 18rem;
+  flex-basis: 18rem;
 `;
 
 const Hoyre = styled.div`
@@ -96,6 +96,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         super(props);
         this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
+        this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
     }
 
     onFilterChange(change: Partial<FilterState>) {
@@ -107,8 +108,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         ...change
                     }
                 };
-            },
-            () => change.periode && this.reloadUtbetalinger()
+            }
         );
     }
 
@@ -136,7 +136,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Filtrering
                             filterState={this.state.filter}
                             onChange={this.onFilterChange}
-                            showSpinner={this.props.utbetalingerReducer.status === STATUS.RELOADING}
+                            hentUtbetalinger={this.reloadUtbetalinger}
                             utbetalingReducer={this.props.utbetalingerReducer}
                         />
                     </Venstre>

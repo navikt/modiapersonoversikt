@@ -18,6 +18,7 @@ import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import DetaljerKnapp from './DetaljerKnapp';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../styles/personOversiktTheme';
+import { UnmountClosed } from 'react-collapse';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
   padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
+  cursor: pointer;
 `;
 
 const TotaltUtbetaltOversikt = styled.div`
@@ -84,7 +86,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Wrapper>
+            <Wrapper onClick={this.toggleVisDetaljer}>
                 <Undertittel>Totalt utbetalt for perioden</Undertittel>
                 <KnappWrapper>
                     <PrintKnapp onClick={() => console.log('ikke implementert')}/>
@@ -95,7 +97,9 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
                         {totaltUtbetaltTabell}
                     </Undertekst>
                 </TotaltUtbetaltOversikt>
-                {this.state.visDetaljer && <TotaltUtbetaltDetaljer {...this.props} />}
+                <UnmountClosed isOpened={this.state.visDetaljer}>
+                    <TotaltUtbetaltDetaljer {...this.props} />
+                </UnmountClosed>
             </Wrapper>
         );
     }
