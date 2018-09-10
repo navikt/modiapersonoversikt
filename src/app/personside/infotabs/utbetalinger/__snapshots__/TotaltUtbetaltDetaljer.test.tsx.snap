@@ -123,7 +123,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   border-top: 2px solid #efefef;
 }
 
-<div
+<aside
   className="c0"
 >
   <span
@@ -220,5 +220,5 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
       </tbody>
     </table>
   </span>
-</div>
+</aside>
 `;
