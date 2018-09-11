@@ -13,13 +13,15 @@ const visittkort = mount((
 ));
 
 test('viser visittkortheader når visittkort først rendres', () => {
-    expect(visittkort).toContainReact(<VisittkortHeader person={aremark}/>);
+    expect(visittkort).toContainReact(
+        <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null}/>);
     expect(visittkort).not.toContainReact(<VisittkortBody person={aremark}/>);
 });
 
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
     visittkort.find('button.ekspanderbartPanel__hode').simulate('click');
 
-    expect(visittkort).toContainReact(<VisittkortHeader person={aremark}/>);
+    expect(visittkort).toContainReact(
+        <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null}/>);
     expect(visittkort).toContainReact(<VisittkortBody person={aremark}/>);
 });

@@ -6,6 +6,9 @@ const AppWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: ${theme.color.bakgrunn};
+  .visually-hidden {
+    ${theme.visuallyHidden}
+  }
 `;
 
 export const Content = styled.div`

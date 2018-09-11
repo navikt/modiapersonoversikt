@@ -22,7 +22,8 @@ export const TittelStyle = styled.span`
 `;
 
 function VisittkortElement(props: ElementProps) {
-    const tittel = <EtikettLiten tag="h3"><TittelStyle>{props.beskrivelse}</TittelStyle></EtikettLiten>;
+    const tittel = props.beskrivelse
+        ? <EtikettLiten tag="h4"><TittelStyle>{props.beskrivelse}</TittelStyle></EtikettLiten> : null;
     return (
         <VisittkortElementStyle>
             <TittelOgIkon tittel={tittel} ikon={props.ikon}/>

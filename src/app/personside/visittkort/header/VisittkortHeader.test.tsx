@@ -6,7 +6,9 @@ import TestProvider from '../../../../test/Testprovider';
 
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
-        <TestProvider><VisittkortHeader person={aremark} /></TestProvider>
+        <TestProvider>
+            <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null} />
+        </TestProvider>
     );
 
     const json = visittkortheader.toJSON();

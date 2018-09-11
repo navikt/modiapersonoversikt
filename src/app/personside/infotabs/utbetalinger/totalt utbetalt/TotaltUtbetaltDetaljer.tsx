@@ -57,9 +57,6 @@ const Wrapper = styled.aside`
       display: block; /* IE11 */
       text-align: left;
     }
-    .visually-hidden {
-      ${theme.visuallyHidden}
-    }
     .ytelseDetaljer {
       display: block; /* IE11 */
       flex-grow: 1;

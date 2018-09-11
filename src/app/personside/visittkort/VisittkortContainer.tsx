@@ -1,9 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { connect, Dispatch } from 'react-redux';
-
-import EkspanderbartpanelBasePure from 'nav-frontend-ekspanderbartpanel/lib/ekspanderbartpanel-base-pure';
-
 import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -11,7 +7,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import ShortcutListener from './ShortcutListener';
 import { AppState } from '../../../redux/reducers';
 import { toggleVisittkort, UIState } from '../../../redux/uiReducers/UIReducer';
-import { theme } from '../../../styles/personOversiktTheme';
+import { UnmountClosed } from 'react-collapse';
 
 interface StateProps {
     UI: UIState;
@@ -22,32 +18,24 @@ interface DispatchProps {
     toggleVisittkort: () => void;
 }
 
-const VisittKortDiv = styled.article`
-  .ekspanderbartPanel__hode {
-      // For å lage en "strek" mellom visittkorthode og visittkortkropp:
-      border-bottom: ${theme.color.bakgrunn} 2px solid;
-      &:hover { color: inherit; }
-  }
-`;
-
 class VisittkortContainer extends React.Component<StateProps & DispatchProps> {
 
     render() {
         const person = this.props.person;
-        const visittkortheader = <VisittkortHeader person={person}/>;
+        const erApnet = this.props.UI.visittkort.apent;
         return (
             <ErrorBoundary>
                 <ShortcutListener fødselsnummer={person.fødselsnummer}/>
-                <VisittKortDiv>
-                    <EkspanderbartpanelBasePure
-                        apen={this.props.UI.visittkort.apent}
-                        heading={visittkortheader}
-                        ariaTittel="Visittkort"
-                        onClick={() => this.props.toggleVisittkort()}
-                    >
-                        <VisittkortBody person={person} />
-                    </EkspanderbartpanelBasePure>
-                </VisittKortDiv>
+                <article role="region" aria-label="Visittkort">
+                    <VisittkortHeader
+                        person={person}
+                        toggleVisittkort={this.props.toggleVisittkort}
+                        visittkortApent={erApnet}
+                    />
+                    <UnmountClosed isOpened={erApnet}>
+                        <VisittkortBody person={person}/>
+                    </UnmountClosed>
+                </article>
             </ErrorBoundary>
         );
     }

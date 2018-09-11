@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 
 import { Person } from '../../../../models/person/person';
-import { Kolonne, VisittkortBodyDiv, VisittkortGruppe } from './VisittkortStyles';
+import { Kolonne, VisittkortBodyWrapper, VisittkortGruppe } from './VisittkortStyles';
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
@@ -141,9 +141,13 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
 
         return (
             <ErrorBoundary>
-                <VisittkortBodyDiv innerRef={ref => this.visittKortBodyRef = ref}>
+                <VisittkortBodyWrapper
+                    role="region"
+                    aria-label="Visittkortdetaljer"
+                    innerRef={ref => this.visittKortBodyRef = ref}
+                >
                     {columnLayOut}
-                </VisittkortBodyDiv>
+                </VisittkortBodyWrapper>
             </ErrorBoundary>
         );
     }

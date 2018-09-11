@@ -57,9 +57,6 @@ const UtbetalingerArticle = styled.article`
   @media(max-width: ${utbetalingerMediaTreshold}) {
     display: block;
   }
-  .visually-hidden {
-    ${theme.visuallyHidden}
-  }
 `;
 
 const FiltreringSection = styled.section`
