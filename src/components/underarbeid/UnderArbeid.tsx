@@ -20,7 +20,7 @@ const UnderArbeidDiv = styled.div`
 
 function UnderArbeid() {
     return (
-        <UnderArbeidDiv>
+        <UnderArbeidDiv role="region" aria-label="Under arbeid">
             Under Arbeid
         </UnderArbeidDiv>
     );

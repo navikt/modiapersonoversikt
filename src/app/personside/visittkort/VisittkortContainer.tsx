@@ -15,7 +15,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    toggleVisittkort: () => void;
+    toggleVisittkort: (erApen?: boolean) => void;
 }
 
 class VisittkortContainer extends React.Component<StateProps & DispatchProps> {
@@ -50,7 +50,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
     return {
-        toggleVisittkort: () => dispatch(toggleVisittkort())
+        toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
     };
 }
 

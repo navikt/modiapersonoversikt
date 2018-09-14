@@ -12,7 +12,7 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Innholdstittel, Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertekst, Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import moment = require('moment');
 
@@ -131,8 +131,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     render() {
         return (
             <ErrorBoundary>
-                <UtbetalingerArticle>
-                    <Innholdstittel className="visually-hidden">Brukerens utbetalinger</Innholdstittel>
+                <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                     <FiltreringSection>
                         <Filtrering
                             filterState={this.state.filter}

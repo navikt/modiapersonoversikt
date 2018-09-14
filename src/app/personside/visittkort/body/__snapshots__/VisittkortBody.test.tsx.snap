@@ -33,12 +33,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 }
 
 .c0 {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1.2rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 10px;
-  margin-top: 12px;
+  margin-top: .2rem;
 }
 
 .c0 > * {
@@ -153,22 +155,24 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   font-size: 0.9em;
 }
 
-<div
+<section
+  aria-label="Visittkortdetaljer"
   className="c0"
+  role="region"
 >
   <div
     className="c1"
   >
-    <div>
+    <section>
       <div
         className="c2"
       >
         
-        <h2
+        <h3
           className="typo-element"
         >
           Kontaktinformasjon
-        </h2>
+        </h3>
       </div>
       <div
         className="c3"
@@ -204,7 +208,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </g>
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -212,7 +216,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Bostedsadresse fra Folkeregisteret
             </span>
-          </h3>
+          </h4>
         </div>
         <div>
           <p
@@ -277,7 +281,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </g>
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -285,7 +289,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Midlertidig adresse, Norge
             </span>
-          </h3>
+          </h4>
         </div>
         <div>
           <p
@@ -342,7 +346,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -350,7 +354,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               E-post Kontakt- og reservasjonsregisteret
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -398,7 +402,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -406,7 +410,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Telefon Kontakt- og reservasjonsregisteret
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -435,7 +439,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c2"
         >
           
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -443,7 +447,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Telefon til bruk for NAV
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -514,7 +518,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </g>
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -522,7 +526,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Kontonummer
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -558,17 +562,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <div
         className="c2"
       >
         
-        <h2
+        <h3
           className="typo-element"
         >
           Familie
-        </h2>
+        </h3>
       </div>
       <div
         className="c3"
@@ -595,7 +599,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -603,7 +607,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Sivilstand
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -635,7 +639,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -643,7 +647,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Barn
             </span>
-          </h3>
+          </h4>
         </div>
         <div
           className="etikett etikett--advarsel"
@@ -691,7 +695,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -699,7 +703,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Jente
             </span>
-          </h3>
+          </h4>
         </div>
         <p
           className="typo-undertekst"
@@ -719,17 +723,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Bor med bruker
         </p>
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <div
         className="c2"
       >
         
-        <h2
+        <h3
           className="typo-element"
         >
           NAV-kontor
-        </h2>
+        </h3>
       </div>
       <div
         className="c3"
@@ -752,7 +756,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </svg>
           </div>
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -760,7 +764,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               0118 NAV Aremark
             </span>
-          </h3>
+          </h4>
         </div>
         <div>
           <br />
@@ -927,8 +931,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Mer informasjon om kontoret
         </a>
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <div
         className="c2"
       >
@@ -962,11 +966,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             />
           </svg>
         </div>
-        <h2
+        <h3
           className="typo-element"
         >
           Tilrettelagt kommunikasjon
-        </h2>
+        </h3>
       </div>
       <div
         className="c3"
@@ -975,13 +979,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c2"
         >
           
-          <h3
-            className="typo-etikett-liten"
-          >
-            <span
-              className="c5"
-            />
-          </h3>
         </div>
         <p
           className="typo-undertekst"
@@ -989,8 +986,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Tolkehjelp
         </p>
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <div
         className="c2"
       >
@@ -1024,11 +1021,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             />
           </svg>
         </div>
-        <h2
+        <h3
           className="typo-element"
         >
           Bruker er under vergemål
-        </h2>
+        </h3>
       </div>
       <p
         className="typo-undertekst"
@@ -1042,7 +1039,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c2"
         >
           
-          <h3
+          <h4
             className="typo-etikett-liten"
           >
             <span
@@ -1050,7 +1047,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Verge
             </span>
-          </h3>
+          </h4>
         </div>
         <div
           className="c12"
@@ -1106,8 +1103,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <div
         className="c2"
       >
@@ -1154,11 +1151,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             />
           </svg>
         </div>
-        <h2
+        <h3
           className="typo-element"
         >
           Sikkerhetstiltak
-        </h2>
+        </h3>
       </div>
       <div
         className="c3"
@@ -1167,13 +1164,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c2"
         >
           
-          <h3
-            className="typo-etikett-liten"
-          >
-            <span
-              className="c5"
-            />
-          </h3>
         </div>
         <div
           className="c6"
@@ -1197,7 +1187,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.
         </p>
       </div>
-    </div>
+    </section>
     <div
       className="c13"
     >
@@ -1211,5 +1201,5 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </a>
     </div>
   </div>
-</div>
+</section>
 `;

@@ -16,7 +16,9 @@ exports[`viser dialogpanel 1`] = `
 }
 
 <div
+  aria-label="Dialogpanel"
   className="c0"
+  role="region"
 >
   <h2
     className="typo-undertittel"

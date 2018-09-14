@@ -13,7 +13,7 @@ import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     person: Person;
-    toggleVisittkort: () => void;
+    toggleVisittkort: (erApen?: boolean) => void;
     visittkortApent: boolean;
 }
 
@@ -95,7 +95,11 @@ function VisittkortHeader({person, toggleVisittkort, visittkortApent}: Props) {
         ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
     };
     return (
-        <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleVisittkort}>
+        <VisittkortHeaderDiv
+            role="region"
+            aria-label="Visittkort-hode"
+            onClick={() => toggleVisittkort(!visittkortApent)}
+        >
 
             <VenstreFelt>
                 <IkonDiv>
@@ -113,7 +117,7 @@ function VisittkortHeader({person, toggleVisittkort, visittkortApent}: Props) {
             </HøyreFelt>
 
             <ChevronStyling>
-                <DetaljerKnapp onClick={() => null} open={visittkortApent}>
+                <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
