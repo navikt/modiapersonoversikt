@@ -107,7 +107,7 @@ export const aremark: Person = {
     sivilstand: {
         kodeRef: SivilstandTyper.Gift,
         beskrivelse: 'Gift',
-        fraOgMed: '2005-12-12'
+        fraOgMed: '2005-12-12',
     },
     familierelasjoner: [{
         rolle: Relasjonstype.Barn,
@@ -116,6 +116,17 @@ export const aremark: Person = {
             diskresjonskode: {
                 kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
                 beskrivelse: 'Sperret adresse, fortrolig'
+            },
+            personstatus: {}
+        }
+
+    }, {
+        rolle: Relasjonstype.Barn,
+        tilPerson: {
+            navn: null,
+            diskresjonskode: {
+                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
             },
             personstatus: {}
         }
@@ -130,6 +141,17 @@ export const aremark: Person = {
                 fornavn: 'Siri',
                 mellomnavn: null,
                 etternavn: 'Aremark'
+            },
+            personstatus: {}
+        }
+    }, {
+        harSammeBosted: false,
+        rolle: Relasjonstype.Ektefelle,
+        tilPerson: {
+            navn: null,
+            diskresjonskode: {
+                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
             },
             personstatus: {}
         }

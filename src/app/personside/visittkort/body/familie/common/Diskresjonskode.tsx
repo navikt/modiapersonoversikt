@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { lagDiskresjonskodeEtikett } from '../../../header/Etiketter';
 import { Kodeverk } from '../../../../../../models/kodeverk';
 
 export function Diskresjonskode({diskresjonskode}: {diskresjonskode?: Kodeverk | null}) {
@@ -9,7 +7,7 @@ export function Diskresjonskode({diskresjonskode}: {diskresjonskode?: Kodeverk |
     }
     return (
         <>
-            {diskresjonskode ? lagDiskresjonskodeEtikett(diskresjonskode) : ''}
+            {diskresjonskode ? diskresjonskode.beskrivelse : ''}
         </>
     );
 }
