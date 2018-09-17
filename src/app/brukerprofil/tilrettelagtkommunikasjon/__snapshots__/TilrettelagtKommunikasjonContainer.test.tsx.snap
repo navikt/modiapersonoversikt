@@ -40,111 +40,115 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
         >
           
         </legend>
-        <label
-          className="inputPanel checkboksPanel inputPanel--checked"
-          htmlFor="TOHJ"
+        <div
+          className="inputPanelGruppe__inner"
         >
-          <input
-            aria-checked={true}
-            checked={true}
-            className="inputPanel__field"
-            disabled={undefined}
-            id="TOHJ"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="checkbox"
-          />
-          <span
-            className="inputPanel__label"
+          <label
+            className="inputPanel checkboksPanel inputPanel--checked"
+            htmlFor="TOHJ"
           >
-            Tolkehjelp
-          </span>
-        </label>
-        <label
-          className="inputPanel checkboksPanel"
-          htmlFor="LESA"
-        >
-          <input
-            aria-checked={false}
-            checked={false}
-            className="inputPanel__field"
-            disabled={undefined}
-            id="LESA"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="checkbox"
-          />
-          <span
-            className="inputPanel__label"
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="TOHJ"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Tolkehjelp
+            </span>
+          </label>
+          <label
+            className="inputPanel checkboksPanel"
+            htmlFor="LESA"
           >
-            Ledsager
-          </span>
-        </label>
-        <label
-          className="inputPanel checkboksPanel"
-          htmlFor="KOMU"
-        >
-          <input
-            aria-checked={false}
-            checked={false}
-            className="inputPanel__field"
-            disabled={undefined}
-            id="KOMU"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="checkbox"
-          />
-          <span
-            className="inputPanel__label"
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="LESA"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Ledsager
+            </span>
+          </label>
+          <label
+            className="inputPanel checkboksPanel"
+            htmlFor="KOMU"
           >
-            Muntlig kommunikasjon
-          </span>
-        </label>
-        <label
-          className="inputPanel checkboksPanel"
-          htmlFor="KOSK"
-        >
-          <input
-            aria-checked={false}
-            checked={false}
-            className="inputPanel__field"
-            disabled={undefined}
-            id="KOSK"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="checkbox"
-          />
-          <span
-            className="inputPanel__label"
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="KOMU"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Muntlig kommunikasjon
+            </span>
+          </label>
+          <label
+            className="inputPanel checkboksPanel"
+            htmlFor="KOSK"
           >
-            Skriftlig kommunikasjon
-          </span>
-        </label>
-        <label
-          className="inputPanel checkboksPanel"
-          htmlFor="TELE"
-        >
-          <input
-            aria-checked={false}
-            checked={false}
-            className="inputPanel__field"
-            disabled={undefined}
-            id="TELE"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="checkbox"
-          />
-          <span
-            className="inputPanel__label"
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="KOSK"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Skriftlig kommunikasjon
+            </span>
+          </label>
+          <label
+            className="inputPanel checkboksPanel"
+            htmlFor="TELE"
           >
-            Telepatisk kommunikasjon
-          </span>
-        </label>
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={undefined}
+              id="TELE"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Telepatisk kommunikasjon
+            </span>
+          </label>
+        </div>
       </fieldset>
       <div
         aria-live="assertive"
