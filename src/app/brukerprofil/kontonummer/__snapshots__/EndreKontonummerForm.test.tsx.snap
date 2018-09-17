@@ -57,56 +57,50 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
         >
           
         </legend>
-        <div
-          className="inputPanelGruppe__inner"
+        <label
+          className="inputPanel radioPanel inputPanel--checked"
+          htmlFor="Kontonummer i Norge"
         >
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Kontonummer i Norge"
+          <input
+            aria-checked={true}
+            checked={true}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="Kontonummer i Norge"
+            name="Velg norsk eller utenlandsk konto"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="radio"
+          />
+          <span
+            className="inputPanel__label"
           >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Kontonummer i Norge"
-              name="Velg norsk eller utenlandsk konto"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="Kontonummer i Norge"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Kontonummer i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Kontonummer i utlandet"
+            Kontonummer i Norge
+          </span>
+        </label>
+        <label
+          className="inputPanel radioPanel"
+          htmlFor="Kontonummer i utlandet"
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="Kontonummer i utlandet"
+            name="Velg norsk eller utenlandsk konto"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="radio"
+          />
+          <span
+            className="inputPanel__label"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Kontonummer i utlandet"
-              name="Velg norsk eller utenlandsk konto"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="Kontonummer i utlandet"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Kontonummer i utlandet
-            </span>
-          </label>
-        </div>
+            Kontonummer i utlandet
+          </span>
+        </label>
       </fieldset>
       <div
         aria-live="assertive"
@@ -229,56 +223,50 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         >
           
         </legend>
-        <div
-          className="inputPanelGruppe__inner"
+        <label
+          className="inputPanel radioPanel"
+          htmlFor="Kontonummer i Norge"
         >
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Kontonummer i Norge"
+          <input
+            aria-checked={false}
+            checked={false}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="Kontonummer i Norge"
+            name="Velg norsk eller utenlandsk konto"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="radio"
+          />
+          <span
+            className="inputPanel__label"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Kontonummer i Norge"
-              name="Velg norsk eller utenlandsk konto"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="Kontonummer i Norge"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Kontonummer i Norge
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Kontonummer i utlandet"
+            Kontonummer i Norge
+          </span>
+        </label>
+        <label
+          className="inputPanel radioPanel inputPanel--checked"
+          htmlFor="Kontonummer i utlandet"
+        >
+          <input
+            aria-checked={true}
+            checked={true}
+            className="inputPanel__field"
+            disabled={undefined}
+            id="Kontonummer i utlandet"
+            name="Velg norsk eller utenlandsk konto"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="radio"
+          />
+          <span
+            className="inputPanel__label"
           >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              disabled={undefined}
-              id="Kontonummer i utlandet"
-              name="Velg norsk eller utenlandsk konto"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="Kontonummer i utlandet"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Kontonummer i utlandet
-            </span>
-          </label>
-        </div>
+            Kontonummer i utlandet
+          </span>
+        </label>
       </fieldset>
       <div
         aria-live="assertive"
