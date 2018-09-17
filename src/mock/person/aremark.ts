@@ -107,7 +107,7 @@ export const aremark: Person = {
     sivilstand: {
         kodeRef: SivilstandTyper.Gift,
         beskrivelse: 'Gift',
-        fraOgMed: '2005-12-12',
+        fraOgMed: '2005-12-12'
     },
     familierelasjoner: [{
         rolle: Relasjonstype.Barn,
