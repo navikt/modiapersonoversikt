@@ -2,7 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
-import { createTable, formaterNOK } from '../utils/utbetalingerUtils';
+import {
+    createTable,
+    formaterNOK,
+    skattBelopAscComparator, trekkBelopAscComparator,
+    ytelseBelopDescComparator
+} from '../utils/utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { EnkeltYtelseProps } from './SammensattUtbetaling';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
@@ -25,32 +30,38 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
         let tabellElementer: Array<Array<number | string | undefined>> = [];
 
         if (ytelse.ytelseskomponentListe) {
-            ytelse.ytelseskomponentListe.map((ytelseskomponent: Ytelseskomponent) =>
-                tabellElementer.push([
-                ytelseskomponent.ytelseskomponenttype,
-                ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
-                ytelseskomponent.satsantall,
-                formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
+            ytelse.ytelseskomponentListe
+                .sort(ytelseBelopDescComparator)
+                .map((ytelseskomponent: Ytelseskomponent) =>
+                    tabellElementer.push([
+                        ytelseskomponent.ytelseskomponenttype,
+                        ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
+                        ytelseskomponent.satsantall,
+                        formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
             ]));
         }
 
         if (ytelse.skattListe) {
-            ytelse.skattListe.map(skattElement =>
-                tabellElementer.push([
-                'Skattetrekk',
-                '',
-                '',
-                formaterNOK(skattElement.skattebeløp)
+            ytelse.skattListe
+                .sort(skattBelopAscComparator)
+                .map(skattElement =>
+                    tabellElementer.push([
+                        'Skattetrekk',
+                        '',
+                        '',
+                        formaterNOK(skattElement.skattebeløp)
             ]));
         }
 
         if (ytelse.trekkListe) {
-            ytelse.trekkListe.map(trekkElement =>
-                tabellElementer.push([
-                trekkElement.trekktype,
-                '',
-                '',
-                formaterNOK(trekkElement.trekkbeløp)
+            ytelse.trekkListe
+                .sort(trekkBelopAscComparator)
+                .map(trekkElement =>
+                    tabellElementer.push([
+                        trekkElement.trekktype,
+                        '',
+                        '',
+                        formaterNOK(trekkElement.trekkbeløp)
             ]));
         }
 
