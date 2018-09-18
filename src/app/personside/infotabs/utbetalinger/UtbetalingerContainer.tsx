@@ -25,7 +25,7 @@ const initialState: State = {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
             egendefinertPeriode: {
-                fra: moment().subtract(1, 'year').toDate(),
+                fra: moment().subtract(1, 'month').toDate(),
                 til: new Date()
             }
         },
