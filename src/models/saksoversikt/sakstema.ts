@@ -1,6 +1,6 @@
-import { LocalDateTimeType } from '../../utils/localDateTimeUtils';
 import { DokumentMetadata } from './dokumentmetadata';
 import { Sak } from './sak';
+import { Saksdato } from './fellesSak';
 
 export interface SakstemaWrapper {
     resultat: Sakstema[];
@@ -25,5 +25,5 @@ export enum Behandlingsstatus {
 
 export interface Behandlingskjede {
     status: Behandlingsstatus;
-    sistOppdatert: LocalDateTimeType;
+    sistOppdatert: Saksdato;
 }

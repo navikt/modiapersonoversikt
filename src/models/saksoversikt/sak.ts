@@ -1,11 +1,10 @@
-import { Baksystem } from './fellesEnum';
-import { OptionalJodaDateTimeType } from '../../utils/localDateTimeUtils';
+import { Baksystem, Saksdato } from './fellesSak';
 
 export interface Sak {
     temakode: string;
-    saksId: string;
+    saksid: string;
     fagsaksnummer: string;
-    avsluttet: OptionalJodaDateTimeType;
+    avsluttet: Saksdato;
     fagsystem: string;
     baksystem: Baksystem;
 }

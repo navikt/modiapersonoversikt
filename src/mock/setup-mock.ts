@@ -21,7 +21,7 @@ import navfaker from 'nav-faker';
 import { getMockSykepenger } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
-import {getMockSaksoversikt} from './saksoversikt/saksoversikt-mock';
+import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 
 const STATUS_OK = () => 200;
 

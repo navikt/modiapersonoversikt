@@ -1,24 +1,23 @@
-import { LocalDateTimeType } from '../../utils/localDateTimeUtils';
-import { Baksystem } from './fellesEnum';
+import { Baksystem, Saksdato } from './fellesSak';
 
 export interface DokumentMetadata {
     retning: Kommunikasjonsretning;
-    dato: LocalDateTimeType;
+    dato: Saksdato;
     navn: string;
     journalpostId: string;
     hoveddokument: Dokument;
     vedlegg: Dokument[];
     avsender: Entitet;
     mottaker: Entitet;
-    tilhorendeSakid: string;
-    tilhorendeFagsakId: string;
+    tilhørendeSaksid: string;
+    tilhørendeFagsaksid: string;
     baksystem: Baksystem[];
     temakode: string;
     temakodeVisning: string;
     ettersending: boolean;
     erJournalfort: boolean;
-    feilWrapper: FeilWrapper;
     kategoriNotat: KategoriNotat;
+    feil: FeilWrapper;
 }
 
 export enum Kommunikasjonsretning {

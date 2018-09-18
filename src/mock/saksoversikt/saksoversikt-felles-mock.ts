@@ -1,34 +1,16 @@
 import NavFaker from 'nav-faker/dist/navfaker';
-import { LocalDateTimeType, OptionalJodaDateTimeType } from '../../utils/localDateTimeUtils';
-import { Baksystem } from '../../models/saksoversikt/fellesEnum';
+import { Baksystem, Saksdato } from '../../models/saksoversikt/fellesSak';
 import { vektetSjanse } from '../utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
 
-export function getLocalDateTime(navfaker: NavFaker): LocalDateTimeType {
+export function getSaksdato(navfaker: NavFaker): Saksdato {
     return {
-        year: navfaker.random.integer(2018, 2016),
-        monthValue: navfaker.random.integer(12, 1),
-        dayOfMonth: navfaker.random.integer(28, 1),
-        hour: navfaker.random.integer(23, 1),
-        minute: navfaker.random.integer(59, 1),
-        second: navfaker.random.integer(59, 1)
-    };
-}
-
-export function getOptionalJodaDateTime(faker: FakerStatic, navfaker: NavFaker): OptionalJodaDateTimeType {
-    if (vektetSjanse(faker, 0.4)) {
-        return {
-            present: false
-        };
-    }
-
-    return {
-        year: navfaker.random.integer(2018, 2016),
-        monthOfYear: navfaker.random.integer(12, 1),
-        dayOfMonth: navfaker.random.integer(28, 1),
-        hourOfDay: navfaker.random.integer(23, 1),
-        minuteOfHour: navfaker.random.integer(59, 1),
-        secondOfMinute: navfaker.random.integer(59, 1)
+        år: navfaker.random.integer(2018, 2016),
+        måned: navfaker.random.integer(12, 1),
+        dag: navfaker.random.integer(28, 1),
+        time: navfaker.random.integer(23, 1),
+        minutt: navfaker.random.integer(59, 1),
+        sekund: navfaker.random.integer(59, 1)
     };
 }
 

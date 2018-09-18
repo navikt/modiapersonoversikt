@@ -8,6 +8,7 @@ import YtelserContainer from './ytelser/YtelserContainer';
 import { paths } from '../../routes/routing';
 import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -50,7 +51,7 @@ class InfoTabs extends React.PureComponent<Props> {
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0}/>;
         const OppfolgingWithProps = () => <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30}/>;
         const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150}/>;
-        const SakerWithProps = () => <ComponentPlaceholder height={'800px'} name={'Saker'} hue={300}/>;
+        const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer}/>;
         const YtelserWithProps = () => <YtelserContainer fødselsnummer={this.props.fødselsnummer}/>;
 
         const basePath = paths.personUri + '/:fodselsnummer/';

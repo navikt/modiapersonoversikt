@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker/dist/index';
 import { Sakstema, SakstemaWrapper } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
-import { getBaksystem, getOptionalJodaDateTime } from './saksoversikt-felles-mock';
+import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getBehandlingskjeder } from './behandlingskjeder-mock';
 import { getDokumentMetadataListe } from './dokumentmetdata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
@@ -41,9 +41,9 @@ function getSakstema(): Sakstema {
 function getSak(): Sak {
     return {
         temakode: faker.random.alphaNumeric(8),
-        saksId: faker.random.alphaNumeric(8),
+        saksid: faker.random.alphaNumeric(8),
         fagsaksnummer: faker.random.alphaNumeric(8),
-        avsluttet: getOptionalJodaDateTime(faker, navfaker),
+        avsluttet: getSaksdato(navfaker),
         fagsystem: faker.random.alphaNumeric(5),
         baksystem: getBaksystem(faker)
     };

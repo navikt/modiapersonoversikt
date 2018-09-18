@@ -2,7 +2,7 @@ import { Behandlingskjede, Behandlingsstatus } from '../../models/saksoversikt/s
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
 import NavFaker from 'nav-faker/dist/navfaker';
-import { getLocalDateTime } from './saksoversikt-felles-mock';
+import { getSaksdato } from './saksoversikt-felles-mock';
 
 export function getBehandlingskjeder(faker: FakerStatic, navfaker: NavFaker): Behandlingskjede[] {
     if (navfaker.random.vektetSjanse(0.3)) {
@@ -15,7 +15,7 @@ export function getBehandlingskjeder(faker: FakerStatic, navfaker: NavFaker): Be
 function getBehandlingskjede(faker: FakerStatic, navfaker: NavFaker): Behandlingskjede {
     return {
         status: getBehandlingsstatus(faker),
-        sistOppdatert: getLocalDateTime(navfaker)
+        sistOppdatert: getSaksdato(navfaker)
     };
 }
 

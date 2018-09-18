@@ -10,7 +10,7 @@ import {
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
 import NavFaker from 'nav-faker/dist/navfaker';
-import { getBaksystem, getLocalDateTime } from './saksoversikt-felles-mock';
+import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 
 export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
@@ -23,21 +23,21 @@ export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker)
 function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata {
     return {
         retning: getKommunikasjonsretning(faker),
-        dato: getLocalDateTime(navfaker),
+        dato: getSaksdato(navfaker),
         navn: faker.lorem.words(3),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker),
         vedlegg: fyllRandomListe(() => getDokument(faker), 5),
         avsender: getEntitet(faker),
         mottaker: getEntitet(faker),
-        tilhorendeSakid: faker.random.alphaNumeric(8),
-        tilhorendeFagsakId: faker.random.alphaNumeric(8),
+        tilhørendeSaksid: faker.random.alphaNumeric(8),
+        tilhørendeFagsaksid: faker.random.alphaNumeric(8),
         baksystem: fyllRandomListe(() => getBaksystem(faker), 3),
         temakode: faker.random.alphaNumeric(5),
         temakodeVisning: faker.random.alphaNumeric(5),
         ettersending: faker.random.boolean(),
         erJournalfort: faker.random.boolean(),
-        feilWrapper: getFeilWrapper(faker),
+        feil: getFeilWrapper(faker),
         kategoriNotat: getKategoriNotat(faker)
     };
 }
