@@ -84,3 +84,12 @@ test('barn under 1 år', () => {
     const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
     expect(NavnOgAlderWrapper.text()).toEqual('Sokrates (3 mnd) ');
 });
+
+
+test('ingen registrert alder', () => {
+    relasjon.tilPerson.alder = null;
+    relasjon.tilPerson.alderMåneder = null;
+
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    expect(NavnOgAlderWrapper.text()).toEqual('Sokrates  ');
+});

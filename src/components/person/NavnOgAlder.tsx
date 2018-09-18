@@ -25,7 +25,7 @@ function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
 }
 
 function getAlder(relasjon: Familierelasjon) {
-    if (relasjon.tilPerson.alder  === undefined || relasjon.tilPerson.alder === undefined) {
+    if (relasjon.tilPerson.alder  === undefined || relasjon.tilPerson.alder === null) {
         return null;
     } else if (relasjon.tilPerson.alder > 0) {
         return relasjon.tilPerson.alder;
@@ -39,7 +39,7 @@ export function getAlderTekst(relasjon: Familierelasjon) {
         return '(Død)';
     }
 
-    if (relasjon.tilPerson.alder === undefined) {
+    if (relasjon.tilPerson.alder === undefined || relasjon.tilPerson.alder === null) {
         return null;
     } else {
         const alder = getAlder(relasjon);
