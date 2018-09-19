@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Sikkerhetstiltak } from '../../../../../models/sikkerhetstiltak';
 import { Person } from '../../../../../models/person/person';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Periode } from '../../../../../models/periode';
 import VisPeriode from '../../../../../components/person/VisPeriode';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
@@ -30,7 +30,7 @@ function tiltaksinfo(sikkerhetstiltak: Sikkerhetstiltak) {
     return (
         <VisittkortElement>
             {hentPeriode(sikkerhetstiltak.periode)}
-            <Undertekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Undertekst>
+            <Normaltekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Normaltekst>
         </VisittkortElement>
     );
 }

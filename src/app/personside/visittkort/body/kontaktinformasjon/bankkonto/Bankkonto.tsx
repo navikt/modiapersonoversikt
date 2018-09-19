@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../../VisittkortElement';
 import { Person } from '../../../../../../models/person/person';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
-import EtikettMini from '../../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../../components/EtikettGrå';
 import CoinsIkon from '../../../../../../svg/Coins';
 
 const Kontonummer = styled.span`
@@ -50,19 +50,19 @@ function kontoinfo(person: Person) {
         const formatertKontonummer = formaterKontonummer(String(person.bankkonto.kontonummer));
         return (
             <>
-                <Undertekst>
+                <Normaltekst>
                     <Kontonummer>
                         {formatertKontonummer.map(
                             (delString, index) => <span key={index}>{delString}</span>
                         )}
                     </Kontonummer>
-                </Undertekst>
-                <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
+                </Normaltekst>
+                <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
             </>
         );
     }
 
-    return <Undertekst>Ikke registrert</Undertekst>;
+    return <Normaltekst>Ikke registrert</Normaltekst>;
 }
 
 export default Bankkonto;

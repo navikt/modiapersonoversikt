@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import VisittkortElement from '../VisittkortElement';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
@@ -22,9 +22,9 @@ function Barn({barn}: BarnProps) {
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode}/>
-            <Undertekst><NavnOgAlder relasjon={barn}/></Undertekst>
-            <Undertekst>{barn.tilPerson.fødselsnummer || ''}</Undertekst>
-            <Undertekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Undertekst>
+            <Normaltekst><NavnOgAlder relasjon={barn}/></Normaltekst>
+            <Normaltekst>{barn.tilPerson.fødselsnummer || ''}</Normaltekst>
+            <Normaltekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Normaltekst>
         </VisittkortElement>
     );
 }

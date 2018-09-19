@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../../VisittkortElement';
 import { KRRKontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
-import EtikettMini from '../../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../../components/EtikettGrå';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import PhoneIkon from '../../../../../../svg/Phone';
 import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
@@ -19,8 +19,8 @@ function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
     const formatertTelefonnummer = formaterMobiltelefonnummer(mobiltelefon.value);
     return (
         <>
-            <Undertekst>{formatertTelefonnummer}</Undertekst>
-            <EtikettMini>Endret {formatertDato}</EtikettMini>
+            <Normaltekst>{formatertTelefonnummer}</Normaltekst>
+            <EtikettGrå>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGrå>
         </>
     );
 }
@@ -31,11 +31,11 @@ interface MobiltelefonVisningProps {
 
 export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
-        return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
+        return <Normaltekst>Reservert mot kommunikasjon på nett</Normaltekst>;
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
-        return <Undertekst>Ikke registrert</Undertekst>;
+        return <Normaltekst>Ikke registrert</Normaltekst>;
     }
 }
 
@@ -45,7 +45,10 @@ interface MobiltelefonWrapperProps {
 
 function MobiltelefonWrapper ({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="Telefon Kontakt- og reservasjonsregisteret" ikon={<PhoneIkon />}>
+        <VisittkortElement
+            beskrivelse="Telefon"
+            ikon={<PhoneIkon />}
+        >
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <MobiltelefonVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>

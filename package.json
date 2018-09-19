@@ -50,6 +50,8 @@
     "nav-frontend-ekspanderbartpanel-style": "^0.3.14",
     "nav-frontend-etiketter": "^1.0.7",
     "nav-frontend-etiketter-style": "^0.3.14",
+    "nav-frontend-hjelpetekst": "^1.0.27",
+    "nav-frontend-hjelpetekst-style": "^0.3.25",
     "nav-frontend-ikoner-assets": "^0.2.27",
     "nav-frontend-js-utils": "^1.0.6",
     "nav-frontend-knapper": "^1.0.10",

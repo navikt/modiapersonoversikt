@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../../VisittkortElement';
 import { KRRKontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
-import EtikettMini from '../../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
 import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;
@@ -17,8 +17,8 @@ function Epost({epost}: EpostProps) {
     const formatertDato = formaterDato(epost.sistOppdatert);
     return (
         <>
-            <Undertekst>{epost.value}</Undertekst>
-            <EtikettMini>Endret {formatertDato}</EtikettMini>
+            <Normaltekst>{epost.value}</Normaltekst>
+            <EtikettGrå>Endret {formatertDato} i Kontakt-og reservasjonsregisteret</EtikettGrå>
         </>
     );
 }
@@ -29,11 +29,11 @@ interface EpostVisningProps {
 
 export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
-        return <Undertekst>Reservert mot kommunikasjon på nett</Undertekst>;
+        return <Normaltekst>Reservert mot kommunikasjon på nett</Normaltekst>;
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
     } else {
-        return <Undertekst>Ikke registrert</Undertekst>;
+        return <Normaltekst>Ikke registrert</Normaltekst>;
     }
 }
 
@@ -43,7 +43,10 @@ interface EpostWrapperProps {
 
 function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
-        <VisittkortElement beskrivelse="E-post Kontakt- og reservasjonsregisteret" ikon={<EmailIkon />}>
+        <VisittkortElement
+            beskrivelse="E-post"
+            ikon={<EmailIkon />}
+        >
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <EpostVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
             </Innholdslaster>

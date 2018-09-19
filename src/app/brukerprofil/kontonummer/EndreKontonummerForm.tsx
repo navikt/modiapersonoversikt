@@ -29,7 +29,7 @@ import { ignoreEnter } from '../utils/formUtils';
 import { getValidNorskBankKontoForm, validerNorskBankKonto } from './norskKontoValidator';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidUtenlandskKontoForm, validerUtenlandskKonto } from './utenlandskKontoValidator';
-import EtikettMini from '../../../components/EtikettMini';
+import EtikettGrå from '../../../components/EtikettGrå';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
@@ -261,7 +261,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             />
         );
 
-        const sistEndretInfo = <EtikettMini>{hentEndringstekst(this.props.person.bankkonto)}</EtikettMini>;
+        const sistEndretInfo = <EtikettGrå>{hentEndringstekst(this.props.person.bankkonto)}</EtikettGrå>;
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}>

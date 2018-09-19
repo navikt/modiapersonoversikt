@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 import { BrukersNavKontorResponse, NavKontor } from '../../../../../models/navkontor';
 import { AppState } from '../../../../../redux/reducers';
@@ -28,7 +28,8 @@ interface OwnProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const NavKontorDescriptionList = styled.dl`
-  margin: 0;
+  margin: .5rem 0 0 0;
+  font-weight: bold;
   display: flex;
   justify-content: flex-end;
   > * {
@@ -77,7 +78,7 @@ class NavKontorContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Undertekst tag="section">
+            <Normaltekst tag="section">
                 <NavKontorDescriptionList>
                     <dt>NAV-kontor</dt>
                     <dd>
@@ -90,7 +91,7 @@ class NavKontorContainer extends React.Component<Props> {
                         </Innholdslaster>
                     </dd>
                 </NavKontorDescriptionList>
-            </Undertekst>
+            </Normaltekst>
         );
     }
 }

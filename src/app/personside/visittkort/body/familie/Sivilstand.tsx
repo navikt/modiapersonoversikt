@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 
 import { Familierelasjon, getPartner, Person, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
@@ -40,11 +40,11 @@ function Sivilstand(props: {sivilstand: Sivilstand}) {
 function Partner({relasjon, sivilstand}: PartnerProps) {
     return (
         <>
-            <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>
+            <Normaltekst><Sivilstand sivilstand={sivilstand}/></Normaltekst>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
-            <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
-            <Undertekst>{relasjon.tilPerson.fødselsnummer || ''}</Undertekst>
-            <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
+            <Normaltekst><NavnOgAlder relasjon={relasjon}/></Normaltekst>
+            <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
+            <Normaltekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Normaltekst>
         </>
     );
 }
@@ -54,7 +54,7 @@ function SivilstandVisning({person}: Props) {
     const {sivilstand} = person;
 
     if (!partner) {
-        return <Undertekst><Sivilstand sivilstand={sivilstand}/></Undertekst>;
+        return <Normaltekst><Sivilstand sivilstand={sivilstand}/></Normaltekst>;
     }
 
     return (

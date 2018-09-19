@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 
 import VisittkortElement from '../VisittkortElement';
-import EtikettMini from '../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../components/EtikettGrå';
 
 import { NavKontaktinformasjon, Telefon } from '../../../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface TelefonProps {
     nummerFormaterer: (nummer: string) => string;
@@ -25,8 +25,8 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     const retningsnummmer = telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '';
     return (
         <>
-            <Undertekst>{`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})</Undertekst>
-            <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
+            <Normaltekst>{`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})</Normaltekst>
+            <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
         </>
     );
 }
