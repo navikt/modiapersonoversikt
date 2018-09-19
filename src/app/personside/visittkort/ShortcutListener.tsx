@@ -34,9 +34,9 @@ class ShortcutListener extends React.Component<Props> {
     }
 
     private handleShortcut(event: KeyboardEvent) {
-        if (event.altKey && event.code === 'KeyB') {
+        if (event.altKey && event.key === 'b') {
             this.props.history.push(`${paths.brukerprofil}/${this.props.fødselsnummer}`);
-        } else if (event.altKey && event.code === 'KeyN') {
+        } else if (event.altKey && event.key === 'n') {
             this.props.toggleVisittkort();
         }
     }
