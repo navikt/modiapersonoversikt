@@ -77,7 +77,7 @@ class NavKontorContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Undertekst tag="span">
+            <Undertekst tag="section">
                 <NavKontorDescriptionList>
                     <dt>NAV-kontor</dt>
                     <dd>

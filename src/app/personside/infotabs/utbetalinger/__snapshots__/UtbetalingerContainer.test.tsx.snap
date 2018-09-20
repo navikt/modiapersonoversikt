@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c10 {
+.c11 {
   border: none;
   background-color: transparent;
   border-radius: 8px;
@@ -10,17 +10,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   width: 1.2rem;
 }
 
-.c10 svg {
+.c11 svg {
   height: 1.2rem;
   width: 1.2rem;
 }
 
-.c10:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c10:hover {
+.c11:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -65,11 +65,25 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-top: .5rem;
 }
 
-.c5 {
-  margin-top: 1.5rem;
+.c6 {
+  margin-top: 1rem;
 }
 
-.c11 {
+.c5 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c5 > *:first-child {
+  margin-bottom: .8rem;
+}
+
+.c5 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c12 {
   border: none;
   padding: 0;
   height: 1.2rem;
@@ -79,35 +93,35 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   background-color: transparent;
 }
 
-.c11:hover {
+.c12:hover {
   background-color: #C6C2BF;
 }
 
-.c11:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
 
-.c8 {
+.c9 {
   background-color: white;
   border-radius: 4px;
   padding: 1.2rem 1.2rem 2rem;
   cursor: pointer;
 }
 
-.c12 th:not(:first-child) {
+.c13 th:not(:first-child) {
   font-weight: normal;
 }
 
-.c12 th {
+.c13 th {
   text-transform: uppercase;
 }
 
-.c12 td {
+.c13 td {
   font-weight: bold;
 }
 
-.c9 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -124,11 +138,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding-bottom: .2rem;
 }
 
-.c9 > *:not(:first-child) {
+.c10 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c19 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -139,15 +153,15 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c17 {
+.c18 {
   text-transform: uppercase;
 }
 
-.c16 {
+.c17 {
   font-weight: bold;
 }
 
-.c18 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -161,23 +175,23 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c18 .order-first {
+.c19 .order-first {
   -webkit-order: -1;
   -ms-flex-order: -1;
   order: -1;
 }
 
-.c18 > *:first-child,
-.c18 > *:nth-child(2),
-.c18 > *:nth-child(3) {
+.c19 > *:first-child,
+.c19 > *:nth-child(2),
+.c19 > *:nth-child(3) {
   height: 1.3rem;
 }
 
-.c18 > *:nth-child(3) {
+.c19 > *:nth-child(3) {
   margin-bottom: .8rem;
 }
 
-.c20 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -185,64 +199,64 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding-bottom: .2rem;
 }
 
-.c20 > *:not(:first-child) {
+.c21 > *:not(:first-child) {
   margin-left: .5rem;
 }
 
-.c15 > *:first-child {
+.c16 > *:first-child {
   background-color: rgba(102,203,236,0.18);
   padding: .2rem .6rem;
 }
 
-.c15 ol {
+.c16 ol {
   padding: 0;
   margin: 0;
 }
 
-.c15 ol > *:not(:first-child) {
+.c16 ol > *:not(:first-child) {
   border-top: solid 2px #efefef;
 }
 
-.c13 {
+.c14 {
   background-color: white;
   border-radius: 4px;
   margin-top: .8rem;
 }
 
-.c13 > *:first-child {
+.c14 > *:first-child {
   padding: 1.2rem;
 }
 
-.c14 {
+.c15 {
   padding: 0 .6rem;
   margin: 0;
 }
 
-.c7 ol {
+.c8 ol {
   list-style: none;
 }
 
-.c7 table {
+.c8 table {
   width: 100%;
   text-align: right;
   border-spacing: 0;
 }
 
-.c7 table * {
+.c8 table * {
   padding: 0;
   margin: 0;
 }
 
-.c7 table tr > * {
+.c8 table tr > * {
   padding: 0.1rem;
   text-align: right;
 }
 
-.c7 table tr > *:first-child {
+.c8 table tr > *:first-child {
   text-align: left;
 }
 
-.c7 table tr > *:not(:first-child) {
+.c8 table tr > *:not(:first-child) {
   width: 6rem;
 }
 
@@ -257,17 +271,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   align-items: flex-start;
 }
 
-.c0 .visually-hidden {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
 .c1 {
   min-width: 18rem;
   -webkit-flex-basis: 18rem;
@@ -275,7 +278,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   flex-basis: 18rem;
 }
 
-.c6 {
+.c7 {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -284,7 +287,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   min-width: 35rem;
 }
 
-.c21 {
+.c22 {
   text-align: right;
   position: absolute;
   top: 1.2rem;
@@ -298,19 +301,16 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media not all and (max-width:80rem) {
-  .c6 {
+  .c7 {
     margin-left: .8rem;
   }
 }
 
 <article
+  aria-label="Utbetalinger"
   className="c0"
+  role="region"
 >
-  <h1
-    className="typo-innholdstittel visually-hidden"
-  >
-    Brukerens utbetalinger
-  </h1>
   <section
     className="c1"
   >
@@ -329,85 +329,89 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         <form
           className="c4"
         >
-          <p
-            className="typo-etikett-liten"
-          >
-            Velg periode
-          </p>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={true}
-              className="skjemaelement__input radioknapp"
-              id="Helt tilfeldig ID"
-              name="FiltreringsvalgGruppe"
-              onChange={[Function]}
-              type="radio"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Siste 30 dager
-            </label>
-          </div>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={false}
-              className="skjemaelement__input radioknapp"
-              id="Helt tilfeldig ID"
-              name="FiltreringsvalgGruppe"
-              onChange={[Function]}
-              type="radio"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Inneværende år
-            </label>
-          </div>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={false}
-              className="skjemaelement__input radioknapp"
-              id="Helt tilfeldig ID"
-              name="FiltreringsvalgGruppe"
-              onChange={[Function]}
-              type="radio"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              I fjor
-            </label>
-          </div>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={false}
-              className="skjemaelement__input radioknapp"
-              id="Helt tilfeldig ID"
-              name="FiltreringsvalgGruppe"
-              onChange={[Function]}
-              type="radio"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Egendefinert
-            </label>
-          </div>
-          <div
+          <fieldset
             className="c5"
+          >
+            <legend
+              className="typo-etikett-liten"
+            >
+              Velg periode
+            </legend>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={true}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="FiltreringsvalgGruppe"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Siste 30 dager
+              </label>
+            </div>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="FiltreringsvalgGruppe"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Inneværende år
+              </label>
+            </div>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="FiltreringsvalgGruppe"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                I fjor
+              </label>
+            </div>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="FiltreringsvalgGruppe"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Egendefinert
+              </label>
+            </div>
+          </fieldset>
+          <div
+            className="c6"
           >
             <button
               className="knapp knapp--standard"
@@ -487,7 +491,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     </nav>
   </section>
   <section
-    className="c6"
+    className="c7"
   >
     <h2
       className="typo-undertittel visually-hidden"
@@ -495,10 +499,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       Filtrerte utbetalinger
     </h2>
     <div
-      className="c7"
+      className="c8"
     >
       <article
-        className="c8"
+        className="c9"
         onClick={[Function]}
       >
         <h2
@@ -507,14 +511,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           Totalt utbetalt for perioden
         </h2>
         <nav
-          className="c9"
+          className="c10"
         >
           <button
-            className="c10"
+            aria-label="Skriv ut"
+            className="c11"
             onClick={[Function]}
           >
             <svg
-              id="Layer_1"
               viewBox="0 0 17 16"
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -533,7 +537,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           <button
             aria-expanded={false}
             aria-label="Detaljer"
-            className="c11"
+            className="c12"
             onClick={[Function]}
           >
             <i
@@ -542,7 +546,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </button>
         </nav>
         <section
-          className="c12"
+          className="c13"
         >
           <span
             className="typo-undertekst"
@@ -585,7 +589,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </section>
       </article>
       <article
-        className="c13"
+        className="c14"
       >
         <h2
           className="typo-undertittel"
@@ -593,19 +597,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           Utbetalinger
         </h2>
         <ol
-          className="c14"
+          className="c15"
         >
           <li
-            className="c15"
+            className="c16"
           >
             <h3
               className="typo-undertekst"
             >
               <span
-                className="c16"
+                className="c17"
               >
                 <span
-                  className="c17"
+                  className="c18"
                 >
                   Mars 2017
                 </span>
@@ -613,11 +617,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </h3>
             <ol>
               <li
-                className="c18"
+                className="c19"
                 onClick={[Function]}
               >
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <h4
                     className="typo-undertekst-bold"
@@ -631,7 +635,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </p>
                 </div>
                 <div
-                  className="order-first c19"
+                  className="order-first c20"
                 >
                   <p
                     className="typo-undertekst"
@@ -639,20 +643,20 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     29. Mars 2017
                      / 
                     <span
-                      className="c16"
+                      className="c17"
                     >
                       Utbetalt
                     </span>
                   </p>
                   <div
-                    className="c20"
+                    className="c21"
                   >
                     <button
-                      className="c10"
+                      aria-label="Skriv ut"
+                      className="c11"
                       onClick={[Function]}
                     >
                       <svg
-                        id="Layer_1"
                         viewBox="0 0 17 16"
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -671,7 +675,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Detaljer"
-                      className="c11"
+                      className="c12"
                       onClick={[Function]}
                     >
                       <i
@@ -681,7 +685,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <p
                     className="typo-undertekst"
@@ -707,7 +711,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       </article>
     </div>
     <div
-      className="c21"
+      className="c22"
     >
       <p
         className="typo-undertekst"

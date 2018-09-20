@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 import TittelOgIkon from './IkonOgTittel';
 import Element from 'nav-frontend-typografi/lib/element';
+import { theme } from '../../../../styles/personOversiktTheme';
 
-export const VisittkortBodyDiv = styled.div`
+export const VisittkortBodyWrapper = styled.section`
+  background-color: white;
+  border-radius: ${theme.borderRadius.layout};
+  padding: ${theme.margin.px20};
   display: flex;
-  margin-bottom: 10px;
-  margin-top: 12px;
+  margin-top: .2rem;
   > * {
     flex: 1 1 50%;
   }
@@ -39,11 +42,11 @@ interface Props {
 }
 
 export function VisittkortGruppe(props: Props) {
-    const tittel = <Element tag="h2">{props.tittel}</Element>;
+    const tittel = <Element tag="h3">{props.tittel}</Element>;
     return (
-        <div>
+        <section>
             <TittelOgIkon tittel={tittel} ikon={props.ikon}/>
             {props.children}
-        </div>
+        </section>
     );
 }

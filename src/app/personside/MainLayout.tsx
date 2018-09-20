@@ -24,17 +24,25 @@ class MainLayout extends React.Component<Props> {
 
     render() {
         return (
-            <LayoutWrapper>
+            <LayoutWrapper role="main">
                 <VenstreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
                     <Visittkort/>
                     <InfoTabsContainer/>
                 </VenstreKolonne>
-                <HøyreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
+                <HøyreKolonne
+                    role="region"
+                    aria-label="Oppgavepanel"
+                    dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}
+                >
                     <HentOppgaveKnapp/>
                     <DialogPanel/>
                     <div>
                         <PilKnapp
                             width="30px"
+                            beskrivelse={this.props.UI.dialogPanel.ekspandert
+                                ? 'Minimer dialogpanel'
+                                : 'Ekspander dialogpanel'
+                            }
                             direction={this.props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
                             onClick={() => this.props.toggleDialogpanel()}
                         />

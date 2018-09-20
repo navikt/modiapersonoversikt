@@ -73,7 +73,19 @@ const InputPanel = styled.form`
 `;
 
 const KnappWrapper = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+`;
+
+const FieldSet = styled.fieldset`
+  border: none;
+  margin: 0;
+  padding: 0;
+  > *:first-child {
+    margin-bottom: .8rem;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 function onRadioChange(props: Props, key: PeriodeValg) {
@@ -153,8 +165,10 @@ function Filtrering(props: Props) {
 
             <Blokk>
                 <InputPanel>
-                    <EtikettLiten>Velg periode</EtikettLiten>
-                    {radios}
+                    <FieldSet>
+                        <EtikettLiten tag="legend">Velg periode</EtikettLiten>
+                        {radios}
+                    </FieldSet>
                     {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
                     <KnappWrapper>
                         <Knapp

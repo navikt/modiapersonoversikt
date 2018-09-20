@@ -57,12 +57,41 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-right: 1em;
 }
 
+.c4 > *:not(:first-child)::before {
+  content: '–';
+  margin: 0 .5rem;
+}
+
 .c7 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
 
+.c10 {
+  border: none;
+  padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.c10:hover {
+  background-color: #C6C2BF;
+}
+
+.c10:focus {
+  outline: none;
+  box-shadow: 0 0 0px 3px #FFBD66;
+}
+
 .c0 {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1.2rem;
+  padding-right: 3rem;
+  position: relative;
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -71,7 +100,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  padding-right: 0.5em;
+  cursor: pointer;
 }
 
 .c0 > * {
@@ -137,17 +166,29 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-<div
+.c9 {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+<section
+  aria-label="Visittkort-hode"
   className="c0"
+  onClick={[Function]}
+  role="region"
 >
-  <div
+  <section
     className="c1"
   >
     <div
       className="c2"
-      title="Mann"
     >
       <svg
+        alt="Mann"
         height={64}
         viewBox="0 0 64 64"
         width={64}
@@ -159,7 +200,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         />
       </svg>
     </div>
-    <div
+    <section
       className="c3"
     >
       <h1
@@ -180,9 +221,9 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             title="Fødselsnummer"
           >
             10108000398
-             
-            –
-             Utvandret
+          </span>
+          <span>
+            Utvandret
           </span>
         </span>
         <ul
@@ -206,13 +247,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           </li>
         </ul>
       </span>
-    </div>
-  </div>
+    </section>
+  </section>
   <div
     className="c6"
   >
-    <div
+    <section
+      aria-label="etiketter"
       className="c7"
+      role="region"
     >
       <div
         className="etikett etikett--advarsel"
@@ -250,8 +293,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           Tolkehjelp
         </span>
       </div>
-    </div>
-    <span
+    </section>
+    <section
       className="typo-undertekst"
     >
       <dl
@@ -266,7 +309,26 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           NAV Aremark
         </dd>
       </dl>
-    </span>
+    </section>
   </div>
-</div>
+  <div
+    className="c9"
+  >
+    <button
+      aria-expanded={false}
+      aria-label="Detaljer"
+      className="c10"
+      onClick={[Function]}
+    >
+      <i
+        className="nav-frontend-chevron chevronboks chevron--ned"
+      />
+      <span
+        className="visually-hidden"
+      >
+        Ekspander visittkort
+      </span>
+    </button>
+  </div>
+</section>
 `;

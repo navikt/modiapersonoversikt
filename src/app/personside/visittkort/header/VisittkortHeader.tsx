@@ -8,22 +8,31 @@ import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
+import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
+import theme from '../../../../styles/personOversiktTheme';
 
-interface VisittkortHeaderProps {
+interface Props {
     person: Person;
+    toggleVisittkort: (erApen?: boolean) => void;
+    visittkortApent: boolean;
 }
 
-const VisittkortHeaderDiv = styled.div`
+const VisittkortHeaderDiv = styled.section`
+  background-color: white;
+  border-radius: ${theme.borderRadius.layout};
+  padding: ${theme.margin.px20};
+  padding-right: 3rem;
+  position: relative;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  padding-right: 0.5em;
+  cursor: pointer;
   > * {
     flex: 1 1 50%;
   }
 `;
 
-const VenstreFelt = styled.div`
+const VenstreFelt = styled.section`
   display: flex;
 `;
 
@@ -44,7 +53,7 @@ const IkonDiv = styled.div`
   }
 `;
 
-const GrunninfoDiv = styled.div`
+const GrunninfoDiv = styled.section`
   flex: 1 1;
   text-align: left;
   display: flex;
@@ -53,6 +62,13 @@ const GrunninfoDiv = styled.div`
   > *:first-child {
     margin-bottom: 0.2em !important;
   };
+`;
+
+const ChevronStyling = styled.div`
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 interface PersonProps {
@@ -74,16 +90,19 @@ function hentNavn(navn: Navn) {
         + navn.etternavn;
 }
 
-function VisittkortHeader({person}: VisittkortHeaderProps) {
+function VisittkortHeader({person, toggleVisittkort, visittkortApent}: Props) {
     const ikon = {
-        ikon: person.kjønn === 'M' ? <Mann /> : <Kvinne />,
-        alt: person.kjønn === 'M' ? 'Mann' : 'Kvinne'
+        ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
     };
     return (
-        <VisittkortHeaderDiv>
+        <VisittkortHeaderDiv
+            role="region"
+            aria-label="Visittkort-hode"
+            onClick={() => toggleVisittkort(!visittkortApent)}
+        >
 
             <VenstreFelt>
-                <IkonDiv title={ikon.alt}>
+                <IkonDiv>
                     {ikon.ikon}
                 </IkonDiv>
                 <GrunninfoDiv>
@@ -97,6 +116,13 @@ function VisittkortHeader({person}: VisittkortHeaderProps) {
                 <NavKontorContainer person={person}/>
             </HøyreFelt>
 
+            <ChevronStyling>
+                <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
+                    <span className="visually-hidden">
+                        {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
+                        </span>
+                </DetaljerKnapp>
+            </ChevronStyling>
         </VisittkortHeaderDiv>
     );
 }
