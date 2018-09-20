@@ -121,6 +121,17 @@ export const aremark: Person = {
         }
 
     }, {
+        rolle: Relasjonstype.Barn,
+        tilPerson: {
+            navn: null,
+            diskresjonskode: {
+                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            },
+            personstatus: {}
+        }
+
+    }, {
         harSammeBosted: true,
         rolle: Relasjonstype.Barn,
         tilPerson: {
@@ -130,6 +141,17 @@ export const aremark: Person = {
                 fornavn: 'Siri',
                 mellomnavn: null,
                 etternavn: 'Aremark'
+            },
+            personstatus: {}
+        }
+    }, {
+        harSammeBosted: false,
+        rolle: Relasjonstype.Ektefelle,
+        tilPerson: {
+            navn: null,
+            diskresjonskode: {
+                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
             },
             personstatus: {}
         }
