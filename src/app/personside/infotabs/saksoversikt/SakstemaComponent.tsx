@@ -4,34 +4,55 @@ import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/saks
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import styled from 'styled-components';
+import { theme } from '../../../../styles/personOversiktTheme';
+import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
+import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 
 interface Props {
     sakstema: Sakstema;
+    oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
-function compareSaksDato(left: Date, right: Date): number {
-    if (left < right) { return -1; }
-    if (left > right) { return 1; }
-    return 0;
-}
+const KnappWrapper = styled.button`
+  border: none;
+  padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+    background-color: ${theme.color.hoverLink};
+  }
+  &:focus {
+    ${theme.focus}
+  }
+`;
+
+const Wrapper = styled.div`
+    display: flex;
+    > *:first-child {
+        flex-grow: 1;
+    }
+`;
 
 function hentSenesteDatoForDokumenter(dokumentmetadata: DokumentMetadata[]) {
-    let sortertDokumentmetadata: DokumentMetadata[];
-    sortertDokumentmetadata = dokumentmetadata.slice(0);
-    sortertDokumentmetadata.sort((left, right): number => {
-        return compareSaksDato(saksdatoSomDate(left.dato), saksdatoSomDate(right.dato));
-    });
-    return saksdatoSomDate(sortertDokumentmetadata[0].dato);
+    return dokumentmetadata.reduce(
+        (acc: Date, dok: DokumentMetadata) => {
+            return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
+        },
+        new Date(0)
+    );
 }
 
 function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
-    let sortertBehandlingskjede: Behandlingskjede[];
-    sortertBehandlingskjede = behandlingskjede.slice(0);
-    sortertBehandlingskjede.sort((left, right): number => {
-        return compareSaksDato(saksdatoSomDate(left.sistOppdatert), saksdatoSomDate(right.sistOppdatert));
-    });
-
-    return saksdatoSomDate(sortertBehandlingskjede[0].sistOppdatert);
+    return behandlingskjede.reduce(
+        (acc: Date, kjede: Behandlingskjede) => {
+            return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
+        },
+        new Date(0)
+    );
 }
 
 function formatterDato(date: Date) {
@@ -46,19 +67,22 @@ function hentDatoForSisteHendelse(sakstema: Sakstema) {
         return formatterDato(hentSenesteDatoForDokumenter(sakstema.dokumentMetadata));
     }
 
-    let dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
-    let dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
+    const dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
+    const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     return formatterDato(dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter);
 }
 
 function SakstemaComponent(props: Props) {
     return (
-        <>
+        <Wrapper>
             <div>
                 <EtikettLiten>{hentDatoForSisteHendelse(props.sakstema)}</EtikettLiten>
-                <b>{props.sakstema.temanavn}</b>
+                <UndertekstBold>{props.sakstema.temanavn}</UndertekstBold>
             </div>
-        </>
+            <KnappWrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
+                <HoyreChevron/>
+            </KnappWrapper>
+        </Wrapper>
     );
 }
 

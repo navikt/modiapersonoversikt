@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -9,12 +9,13 @@ import { AppState } from '../../../../redux/reducers';
 import { connect, Dispatch } from 'react-redux';
 import { Action } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
-import Sakstema from './Sakstema';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
+import Saker from './Saker';
+import SakstemaVisning from './SakstemaVisning';
 
 interface State {
-
+    valgtSakstema?: Sakstema;
 }
 
 interface StateProps {
@@ -52,6 +53,7 @@ const SakstemaSection = styled.section`
 `;
 
 const SakSection = styled.section`
+  background-color: white;
   position: relative;
   flex-grow: 1;
   min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
@@ -64,6 +66,10 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
+        this.state = {
+            valgtSakstema: undefined
+        };
+        this.oppdaterSakstema = this.oppdaterSakstema.bind(this);
     }
 
     componentDidMount() {
@@ -72,18 +78,25 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         }
     }
 
+    oppdaterSakstema(sakstema: Sakstema) {
+        this.setState({valgtSakstema: sakstema });
+    }
+
     render() {
         return (
             <ErrorBoundary>
                 <SaksoversiktArticle>
-                    <Innholdstittel className="visually-hidden">Brukerens utbetalinger</Innholdstittel>
+                    <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <SakstemaSection>
                         <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
-                            <Sakstema sakstema={this.props.saksoversiktReducer.data.resultat}/>
+                            <SakstemaVisning
+                                sakstema={this.props.saksoversiktReducer.data.resultat}
+                                oppdaterSakstema={this.oppdaterSakstema}
+                            />
                         </Innholdslaster>
                     </SakstemaSection>
                     <SakSection>
-                        <b>Sak</b>
+                        <Saker sakstema={this.state.valgtSakstema}/>
                     </SakSection>
                 </SaksoversiktArticle>
             </ErrorBoundary>

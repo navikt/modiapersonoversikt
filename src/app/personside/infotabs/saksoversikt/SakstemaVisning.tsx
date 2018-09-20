@@ -11,6 +11,7 @@ import { Sak } from '../../../../models/saksoversikt/sak';
 
 export interface SakstemaProps {
     sakstema: Sakstema[];
+    oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
 const GruppeStyle = styled.li`
@@ -62,7 +63,7 @@ const Wrapper = styled.div`
 function GruppertTema(props: SakstemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
-            <SakstemaComponent sakstema={sakstema}/>
+            <SakstemaComponent sakstema={sakstema} oppdaterSakstema={props.oppdaterSakstema}/>
         )
     );
     return (
@@ -75,29 +76,40 @@ function GruppertTema(props: SakstemaProps) {
 }
 
 function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
-    let behandlingskjeder: Behandlingskjede[] = [];
-    let dokumentmetadata: DokumentMetadata[] = [];
-    let tilhørendeSaker: Sak[] = [];
+    const alleBehandlingskjeder: Behandlingskjede[] = alleSakstema.reduce(
+        (acc: Behandlingskjede[], sakstema: Sakstema) => {
+            return [...acc, ...sakstema.behandlingskjeder];
+        },
+        []
+    );
 
-    for (let sakstema of alleSakstema) {
-        behandlingskjeder = behandlingskjeder.concat(sakstema.behandlingskjeder);
-        dokumentmetadata = dokumentmetadata.concat(sakstema.dokumentMetadata);
-        tilhørendeSaker = tilhørendeSaker.concat(sakstema.tilhorendeSaker);
-    }
+    const alleDokumentmetadata: DokumentMetadata[] = alleSakstema.reduce(
+        (acc: DokumentMetadata[], sakstema: Sakstema) => {
+            return [...acc, ...sakstema.dokumentMetadata];
+        },
+        []
+    );
+
+    const alleTilhørendeSaker: Sak[] = alleSakstema.reduce(
+        (acc: Sak[], sakstema: Sakstema) => {
+            return [...acc, ...sakstema.tilhorendeSaker];
+        },
+        []
+    );
 
     return {
         temanavn: 'Alle saker',
         temakode: 'ALLE',
         harTilgang: true,
-        behandlingskjeder: behandlingskjeder,
-        dokumentMetadata: dokumentmetadata,
-        tilhorendeSaker: tilhørendeSaker,
+        behandlingskjeder: alleBehandlingskjeder,
+        dokumentMetadata: alleDokumentmetadata,
+        tilhorendeSaker: alleTilhørendeSaker,
         erGruppert: false,
         feilkoder: []
     };
 }
 
-function Sakstema(props: SakstemaProps) {
+function SakstemaVisning(props: SakstemaProps) {
     if (props.sakstema.length === 0) {
         return (
             <AlertStripeInfo>
@@ -106,18 +118,17 @@ function Sakstema(props: SakstemaProps) {
         );
     }
 
-    let sakstemaer = props.sakstema;
-    let sakstema = aggregertSakstema(props.sakstema);
-    sakstemaer.unshift(sakstema);
+    const alleSakstema = aggregertSakstema(props.sakstema);
+    const komplettListe = [alleSakstema, ...props.sakstema];
 
     return (
         <Wrapper>
             <TittelOgIkon tittel={'Saker'} ikon={<VergemålLogo/>} />
             <SakstemaListe>
-                <GruppertTema sakstema={sakstemaer} />
+                <GruppertTema sakstema={komplettListe} oppdaterSakstema={props.oppdaterSakstema} />
             </SakstemaListe>
         </Wrapper>
     );
 }
 
-export default Sakstema;
+export default SakstemaVisning;
