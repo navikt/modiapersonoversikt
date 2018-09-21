@@ -5,6 +5,8 @@ import { Kjønn } from '../../../../../../models/person/person';
 import MannIkon from '../../../../../../svg/Mann';
 import KvinneIkon from '../../../../../../svg/Kvinne';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
+import Guttebarn from '../../../../../../svg/Guttebarn';
+import Jentebarn from '../../../../../../svg/Jentebarn';
 
 export function getKjønnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
@@ -16,7 +18,21 @@ export function getKjønnIkon(fødselsnummer?: string) {
         case Kjønn.Diskresjonskode:
             return <DiskresjonskodeIkon/>;
         default:
-            return <MannIkon/>;
+            return <DiskresjonskodeIkon/>;
+    }
+}
+
+export function getKjønnBarnIkon(fødselsnummer?: string) {
+    const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
+    switch (kjønn) {
+        case Kjønn.Mann:
+            return <Guttebarn/>;
+        case Kjønn.Kvinne:
+            return <Jentebarn/>;
+        case Kjønn.Diskresjonskode:
+            return <DiskresjonskodeIkon/>;
+        default:
+            return <DiskresjonskodeIkon/>;
     }
 }
 

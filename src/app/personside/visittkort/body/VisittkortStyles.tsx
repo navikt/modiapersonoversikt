@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import TittelOgIkon from './IkonOgTittel';
-import Element from 'nav-frontend-typografi/lib/element';
 import { theme } from '../../../../styles/personOversiktTheme';
+import { Undertittel } from 'nav-frontend-typografi';
 
 export const VisittkortBodyWrapper = styled.section`
   background-color: white;
@@ -19,13 +19,13 @@ export const VisittkortBodyWrapper = styled.section`
 export const Kolonne = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: ${theme.margin.px50};
+  margin-right: ${theme.margin.px50};
   &:last-child {
-    margin-right: 20px;
+    margin-right: ${theme.margin.px20};
   }
   > *:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: ${theme.margin.px40};
   }
 `;
 
@@ -41,11 +41,16 @@ interface Props {
     ikon?: JSX.Element;
 }
 
+const Luft = styled.div`
+  margin-bottom: 1rem;
+`;
+
 export function VisittkortGruppe(props: Props) {
-    const tittel = <Element tag="h3">{props.tittel}</Element>;
+    const tittel = <Undertittel tag="h3">{props.tittel}</Undertittel>;
     return (
         <section>
             <TittelOgIkon tittel={tittel} ikon={props.ikon}/>
+            <Luft/>
             {props.children}
         </section>
     );

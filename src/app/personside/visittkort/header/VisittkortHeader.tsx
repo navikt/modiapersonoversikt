@@ -45,10 +45,10 @@ const HøyreFelt = styled.div`
 `;
 
 const IkonDiv = styled.div`
-  flex: 0 0 50px;
+  flex: 0 0 ${theme.margin.px50};
   text-align: left;
   svg {
-    height: 40px;
+    height: ${theme.margin.px40};
     width: auto;
   }
 `;

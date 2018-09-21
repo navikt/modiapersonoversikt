@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 import { BostatusTyper, Person } from '../../../../../models/person/person';
 import { formaterDato } from '../../../../../utils/dateUtils';
@@ -63,7 +63,7 @@ function Fødselsnummer({ person }: PersonProps) {
 
 function PersonStatus({ person }: PersonProps) {
     return (
-        <Undertekst tag="span">
+        <Normaltekst tag="span">
             <Fødselsnummerlinje>
                 <Fødselsnummer person={person}/>
                 <Dødsdato person={person}/>
@@ -74,7 +74,7 @@ function PersonStatus({ person }: PersonProps) {
                 <Sivilstand sivilstand={person.sivilstand} kjønn={person.kjønn}/>
                 <AntallBarn familierelasjoner={person.familierelasjoner}/>
             </PersonStatusListe>
-        </Undertekst>
+        </Normaltekst>
     );
 }
 

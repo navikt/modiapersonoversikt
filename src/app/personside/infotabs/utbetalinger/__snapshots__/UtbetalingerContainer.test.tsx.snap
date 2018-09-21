@@ -28,7 +28,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c2 {
   background-color: white;
   border-radius: 4px;
-  padding: 1.2rem;
+  padding: 1.25rem;
   margin-bottom: .8rem;
 }
 
@@ -105,7 +105,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c9 {
   background-color: white;
   border-radius: 4px;
-  padding: 1.2rem 1.2rem 2rem;
+  padding: 1.25rem 1.25rem 2rem;
   cursor: pointer;
 }
 
@@ -169,7 +169,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 1.2rem .6rem;
+  padding: 1.25rem .6rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
@@ -224,7 +224,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c14 > *:first-child {
-  padding: 1.2rem;
+  padding: 1.25rem;
 }
 
 .c15 {
@@ -290,8 +290,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c22 {
   text-align: right;
   position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
+  top: 1.25rem;
+  right: 1.25rem;
 }
 
 @media (max-width:80rem) {

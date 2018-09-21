@@ -7,11 +7,8 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   border: 0;
 }
 
-.c3 {
-  font-size: 11px;
-}
-
 .c2 {
+  color: #78706a;
   margin-top: 3px;
 }
 
@@ -19,7 +16,7 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   line-height: 1rem;
 }
 
-.c4 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30,7 +27,7 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c4 > * {
+.c3 > * {
   margin-left: 1em;
 }
 
@@ -146,12 +143,12 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
       >
         <div>
           <p
-            className="typo-undertekst"
+            className="typo-normal"
           >
             Islandsgate 49
           </p>
           <p
-            className="typo-undertekst"
+            className="typo-normal"
           >
             7693 Hovedøya
           </p>
@@ -162,19 +159,15 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            <span
-              className="c3"
-            >
-              Endret 
-              25.11.2017
-               
-              i Folkeregisteret
-            </span>
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
           </p>
         </div>
       </div>
       <div
-        className="c4"
+        className="c3"
       >
         <button
           className="knapp knapp--standard knapp--disabled"

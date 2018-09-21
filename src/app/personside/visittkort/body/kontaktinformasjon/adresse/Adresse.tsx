@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Person } from '../../../../../../models/person/person';
 import VisittkortElement from '../../VisittkortElement';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as personadresse from '../../../../../../models/personadresse';
 import { Personadresse } from '../../../../../../models/personadresse';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
-import EtikettMini from '../../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../../components/EtikettGrå';
 import { Periode } from '../../../../../../models/periode';
 import VisPeriode from '../../../../../../components/person/VisPeriode';
 import LocationPin from '../../../../../../svg/LocationPin';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface AdresseProps {
     person: Person;
@@ -27,7 +27,7 @@ function Adresse({person}: AdresseProps) {
 
 function hentFolkeregistrertAdresse(person: Person) {
     const adresse = person.folkeregistrertAdresse != null ?
-        formatterRiktigAdresse(person.folkeregistrertAdresse) : <Undertekst>Ikke registrert</Undertekst>;
+        formatterRiktigAdresse(person.folkeregistrertAdresse) : <Normaltekst>Ikke registrert</Normaltekst>;
 
     return (
         <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin/>}>
@@ -69,9 +69,9 @@ function adressebeskrivelse(adresse: personadresse.Personadresse) {
 
 export function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
     let adressetekst = (
-        <Undertekst>
+        <Normaltekst>
             Ingen registrert adresse
-        </Undertekst>
+        </Normaltekst>
     );
 
     if (adresse.gateadresse != null) {
@@ -100,9 +100,9 @@ function hentEndringstekst(adresse: Personadresse) {
         const formattertdato = formaterDato(adresse.endringsinfo.sistEndret);
         const endretAv = endretAvTekst(adresse.endringsinfo.sistEndretAv);
         return (
-            <EtikettMini>
+            <EtikettGrå>
                 Endret {formattertdato} {endretAv}
-            </EtikettMini>
+            </EtikettGrå>
         );
     } else {
         return null;
@@ -117,9 +117,9 @@ function formatterGateadresse(adresse: personadresse.Gateadresse) {
         <div key={gateadresse}>
             {hentPeriode(adresse.periode)}
             {hentTilleggsadresse(adresse.tilleggsadresse)}
-            <Undertekst>{gateadresse}</Undertekst>
+            <Normaltekst>{gateadresse}</Normaltekst>
             {hentBolignummer(adresse)}
-            <Undertekst>{poststed}</Undertekst>
+            <Normaltekst>{poststed}</Normaltekst>
         </div>
     );
 }
@@ -132,8 +132,8 @@ function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
         <div key={eiendom}>
             {hentPeriode(adresse.periode)}
             {hentTilleggsadresse(adresse.tilleggsadresse)}
-            <Undertekst>{eiendom}</Undertekst>
-            <Undertekst>{poststed}</Undertekst>
+            <Normaltekst>{eiendom}</Normaltekst>
+            <Normaltekst>{poststed}</Normaltekst>
         </div>
     );
 }
@@ -147,7 +147,7 @@ function formatterPostboksadresse(adresse: personadresse.Postboksadresse) {
             {hentPeriode(adresse.periode)}
             {hentTilleggsadresse(adresse.tilleggsadresse)}
             {hentPostboksTekst(adresse.postboksanlegg, adresse.postboksnummer)}
-            <Undertekst>{poststed}</Undertekst>
+            <Normaltekst>{poststed}</Normaltekst>
         </div>
     );
 }
@@ -158,15 +158,15 @@ function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse) {
     return (
         <div key={landkode}>
             {hentPeriode(adresse.periode)}
-            {adresse.adresselinjer.map((linje, i) => <Undertekst key={i}>{linje}</Undertekst>)}
-            <Undertekst>{adresse.landkode && adresse.landkode.beskrivelse}</Undertekst>
+            {adresse.adresselinjer.map((linje, i) => <Normaltekst key={i}>{linje}</Normaltekst>)}
+            <Normaltekst>{adresse.landkode && adresse.landkode.beskrivelse}</Normaltekst>
         </div>
     );
 }
 
 function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {
     return (
-        <Undertekst>{adresse.adresselinje}</Undertekst>
+        <Normaltekst>{adresse.adresselinje}</Normaltekst>
     );
 }
 
@@ -182,7 +182,7 @@ function hentPeriode(periode?: Periode) {
 function hentTilleggsadresse(tilleggsadresse?: string) {
     if (tilleggsadresse != null) {
         return (
-            <Undertekst>{tilleggsadresse}</Undertekst>
+            <Normaltekst>{tilleggsadresse}</Normaltekst>
         );
     }
     return null;
@@ -191,11 +191,11 @@ function hentTilleggsadresse(tilleggsadresse?: string) {
 function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: string) {
     if (postboksanlegg) {
         return (
-            <Undertekst>{postboksanlegg + ' ' + postboksnummer}</Undertekst>
+            <Normaltekst>{postboksanlegg + ' ' + postboksnummer}</Normaltekst>
         );
     } else {
         return (
-            <Undertekst>{postboksnummer}</Undertekst>
+            <Normaltekst>{postboksnummer}</Normaltekst>
         );
     }
 }
@@ -203,7 +203,7 @@ function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: s
 function hentBolignummer(adresse: personadresse.Gateadresse) {
     if (adresse.bolignummer) {
         return (
-            <Undertekst>{adresse.bolignummer}</Undertekst>
+            <Normaltekst>{adresse.bolignummer}</Normaltekst>
         );
     }
     return null;

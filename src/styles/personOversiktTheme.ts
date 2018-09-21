@@ -17,7 +17,9 @@ export const theme = {
     },
     margin: {
         layout: '.8rem',
-        px20: '1.2rem',
+        px50: '3.125rem',
+        px40: '2.5rem',
+        px20: '1.25rem',
         px10: '.6rem'
     },
     boxShadow: {
