@@ -30,7 +30,7 @@ function hentFolkeregistrertAdresse(person: Person) {
         formatterRiktigAdresse(person.folkeregistrertAdresse) : <Normaltekst>Ikke registrert</Normaltekst>;
 
     return (
-        <VisittkortElement beskrivelse="Bostedsadresse fra Folkeregisteret" ikon={<LocationPin/>}>
+        <VisittkortElement beskrivelse="Bostedsadresse" ikon={<LocationPin/>}>
             {adresse}
         </VisittkortElement>
     );
@@ -51,7 +51,7 @@ function hentMidlertidigAdresse(person: Person) {
 function hentPostadresse(person: Person) {
     if (person.postadresse != null) {
         return (
-            <VisittkortElement beskrivelse="Postadresse fra Folkeregistreret" ikon={<LocationPin/>}>
+            <VisittkortElement beskrivelse="Postadresse" ikon={<LocationPin/>}>
                 {formatterRiktigAdresse(person.postadresse)}
             </VisittkortElement>
         );
@@ -63,7 +63,7 @@ function adressebeskrivelse(adresse: personadresse.Personadresse) {
     if (adresse.utlandsadresse != null) {
         return 'Midlertidig adresse, Utland';
     } else {
-        return 'Midlertidig adresse, Norge';
+        return 'Midlertidig adresse';
     }
 }
 
