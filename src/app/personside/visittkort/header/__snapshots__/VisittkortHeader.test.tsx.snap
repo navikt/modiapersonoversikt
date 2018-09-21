@@ -2,7 +2,8 @@
 
 exports[`viser info om bruker i visittkort-header 1`] = `
 .c8 {
-  margin: 0;
+  margin: .5rem 0 0 0;
+  font-weight: bold;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -89,7 +90,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 .c0 {
   background-color: white;
   border-radius: 4px;
-  padding: 1.2rem;
+  padding: 1.25rem;
   padding-right: 3rem;
   position: relative;
   width: 100%;
@@ -133,14 +134,14 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 }
 
 .c2 {
-  -webkit-flex: 0 0 50px;
-  -ms-flex: 0 0 50px;
-  flex: 0 0 50px;
+  -webkit-flex: 0 0 3.125rem;
+  -ms-flex: 0 0 3.125rem;
+  flex: 0 0 3.125rem;
   text-align: left;
 }
 
 .c2 svg {
-  height: 40px;
+  height: 2.5rem;
   width: auto;
 }
 
@@ -212,7 +213,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         )
       </h1>
       <span
-        className="typo-undertekst"
+        className="typo-normal"
       >
         <span
           className="c4"
@@ -242,7 +243,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           <li
             title="Barn under 21 år"
           >
-            3
+            4
              barn under 21 år
           </li>
         </ul>
@@ -295,7 +296,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </div>
     </section>
     <section
-      className="typo-undertekst"
+      className="typo-normal"
     >
       <dl
         className="c8"
