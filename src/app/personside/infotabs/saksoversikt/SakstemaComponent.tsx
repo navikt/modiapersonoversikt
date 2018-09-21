@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Behandlingskjede, Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
 import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
+import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 
 interface Props {
     sakstema: Sakstema;
@@ -32,6 +33,10 @@ const KnappWrapper = styled.button`
 
 const Wrapper = styled.div`
     display: flex;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(102, 203, 236, 0.18);
+    }
     > *:first-child {
         flex-grow: 1;
     }
@@ -72,12 +77,38 @@ function hentDatoForSisteHendelse(sakstema: Sakstema) {
     return formatterDato(dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter);
 }
 
+function tellUnderBehandling(sakstema: Sakstema) {
+    const antallUnderbehandling = sakstema.behandlingskjeder
+        .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.UnderBehandling).length;
+
+    if (antallUnderbehandling === 0) {
+        return null;
+    }
+
+    const soknad = antallUnderbehandling === 1 ? 'søknad' : 'søknader';
+    return <Normaltekst>{antallUnderbehandling} {soknad} er under behandling.</Normaltekst>;
+}
+
+function tellFerdigBehandlet(sakstema: Sakstema) {
+    const antallFerdigBehandlet = sakstema.behandlingskjeder
+        .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.FerdigBehandlet).length;
+
+    if (antallFerdigBehandlet === 0) {
+        return null;
+    }
+
+    const soknad = antallFerdigBehandlet === 1 ? 'søknad' : 'søknader';
+    return <Normaltekst>{antallFerdigBehandlet} {soknad} er ferdig behandlet.</Normaltekst>;
+}
+
 function SakstemaComponent(props: Props) {
     return (
-        <Wrapper>
+        <Wrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
                 <EtikettLiten>{hentDatoForSisteHendelse(props.sakstema)}</EtikettLiten>
                 <UndertekstBold>{props.sakstema.temanavn}</UndertekstBold>
+                {tellUnderBehandling(props.sakstema)}
+                {tellFerdigBehandlet(props.sakstema)}
             </div>
             <KnappWrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
                 <HoyreChevron/>

@@ -11,7 +11,7 @@ import { Action } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import Saker from './Saker';
+import DokumenterVisning from './DokumenterVisning';
 import SakstemaVisning from './SakstemaVisning';
 
 interface State {
@@ -96,7 +96,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                         </Innholdslaster>
                     </SakstemaSection>
                     <SakSection>
-                        <Saker sakstema={this.state.valgtSakstema}/>
+                        <DokumenterVisning sakstema={this.state.valgtSakstema}/>
                     </SakSection>
                 </SaksoversiktArticle>
             </ErrorBoundary>

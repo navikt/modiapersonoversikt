@@ -123,7 +123,7 @@ function SakstemaVisning(props: SakstemaProps) {
 
     return (
         <Wrapper>
-            <TittelOgIkon tittel={'Saker'} ikon={<VergemålLogo/>} />
+            <TittelOgIkon tittel={'SakerVisning'} ikon={<VergemålLogo/>} />
             <SakstemaListe>
                 <GruppertTema sakstema={komplettListe} oppdaterSakstema={props.oppdaterSakstema} />
             </SakstemaListe>
