@@ -11,6 +11,7 @@ import { resetUtbetalingerReducer } from './utbetalinger';
 import { resetSykepengerReducer } from './ytelser/sykepenger';
 import { resetPleiepengerReducer } from './ytelser/pleiepenger';
 import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
+import { hentFeatureToggle } from './featuretoggle';
 
 const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
@@ -27,6 +28,7 @@ export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: st
     dispatch(hentKontaktinformasjon(fødselsnummer));
     dispatch(erEgenAnsatt(fødselsnummer));
     dispatch(hentVergemal(fødselsnummer));
+    dispatch(hentFeatureToggle('ny-brukerprofil'));
     dispatch(resetNavKontorReducer());
     dispatch(resetUtbetalingerReducer());
     dispatch(resetSykepengerReducer());

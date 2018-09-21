@@ -10,34 +10,10 @@ import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { paths } from '../../../routes/routing';
+import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
 
 interface VisittkortBodyProps {
     person: Person;
-}
-
-const LenkeEndreBrukerprofil = styled.div`
-  flex-grow: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-size: 0.9em;
-`;
-
-function LenkeBrukerprofil({ person }: { person: Person }) {
-    return (
-        <LenkeEndreBrukerprofil>
-            <Link
-                id={'brukerprofillenke'}
-                className={'lenke'}
-                to={`${paths.brukerprofil}/${person.fødselsnummer}`}
-            >
-                Administrer brukerprofil
-            </Link>
-        </LenkeEndreBrukerprofil>
-    );
 }
 
 function NavKontorSeksjon({ person }: { person: Person }) {
@@ -57,7 +33,7 @@ function OneColumnLayout(person: Person) {
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
             <VergemalContainer/>
             <Sikkerhetstiltak person={person}/>
-            <LenkeBrukerprofil person={person}/>
+            <LenkeBrukerprofilContainer person={person}/>
         </Kolonne>
     );
 }
@@ -74,7 +50,7 @@ function TwoColumnLayout(person: Person) {
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person}/>
-                <LenkeBrukerprofil person={person}/>
+                <LenkeBrukerprofilContainer person={person}/>
             </Kolonne>
         </>
     );
@@ -94,7 +70,7 @@ function ThreeColumnLayout(person: Person) {
             <Kolonne>
                 <NavKontorSeksjon person={person}/>
                 <Sikkerhetstiltak person={person}/>
-                <LenkeBrukerprofil person={person}/>
+                <LenkeBrukerprofilContainer person={person}/>
             </Kolonne>
         </>
     );
