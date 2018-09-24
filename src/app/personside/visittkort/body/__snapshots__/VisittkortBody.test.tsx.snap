@@ -219,7 +219,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Bostedsadresse fra Folkeregisteret
+            Bostedsadresse
           </h4>
         </div>
         <div>
@@ -292,7 +292,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Midlertidig adresse, Norge
+            Midlertidig adresse
           </h4>
         </div>
         <div>
