@@ -1217,12 +1217,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c5"
         >
           <svg
+            height={100}
             viewBox="0 0 100 100"
+            width={100}
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
               <mask
-                id="a"
+                id="sikkerhetstiltakmask"
               >
                 <rect
                   fill="#fff"
@@ -1248,7 +1250,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </defs>
             <polygon
               fill="#BA3A26"
-              mask="url(#a)"
+              mask="url(#sikkerhetstiltakmask)"
               points="50,5 95,95 5,95"
               stroke="#BA3A26"
               strokeLinejoin="round"
