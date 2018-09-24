@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import theme from '../../../../styles/personOversiktTheme';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 const TittelOgIkonDiv = styled.div`
   position: relative;
@@ -29,13 +28,10 @@ interface Props {
 
 function TittelOgIkon(props: Props) {
     const ikon = props.ikon ? <IkonDiv>{props.ikon}</IkonDiv> : '';
-    /* TODO ErrorBoundary trengs for at Visittkort.test.tsx skal funke. Hvorfor? */
     return (
-        <ErrorBoundary>
-            <TittelOgIkonDiv>
-                {ikon}{props.tittel}
-            </TittelOgIkonDiv>
-        </ErrorBoundary>
+        <TittelOgIkonDiv>
+            {ikon}{props.tittel}
+        </TittelOgIkonDiv>
     );
 }
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 import TittelOgIkon from './IkonOgTittel';
 import { theme } from '../../../../styles/personOversiktTheme';
-import { Undertittel } from 'nav-frontend-typografi';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 export const VisittkortBodyWrapper = styled.section`
   background-color: white;
