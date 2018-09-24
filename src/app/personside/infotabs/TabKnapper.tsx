@@ -8,7 +8,7 @@ interface TabPanelProps {
     openTab: INFOTABS;
 }
 
-const TabKnapperDiv = styled.nav`
+const TabKnapperNav = styled.nav`
       display: flex;
       flex-flow: row wrap;
       width: 100%;
@@ -55,7 +55,7 @@ function TabKnapper(props: TabPanelProps) {
         const erValgt = INFOTABS[key] === props.openTab;
         return (
             <KnappWrapper key={key}>
-                <TabKnapp valgt={erValgt} onClick={() => props.onTabChange(key)}>
+                <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
                     {INFOTABS[key]}
                 </TabKnapp>
             </KnappWrapper>
@@ -63,9 +63,9 @@ function TabKnapper(props: TabPanelProps) {
     });
 
     return (
-        <TabKnapperDiv>
+        <TabKnapperNav aria-label="Tabpanel">
             {knapper}
-        </TabKnapperDiv>
+        </TabKnapperNav>
     );
 }
 
