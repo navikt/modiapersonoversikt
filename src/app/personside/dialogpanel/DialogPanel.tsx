@@ -18,7 +18,7 @@ const DialogPanelWrapper = styled.div`
 
 function DialogPanel() {
     return (
-        <DialogPanelWrapper>
+        <DialogPanelWrapper role="region" aria-label="Dialogpanel">
             <Undertittel>Dialogpanel</Undertittel>
             <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
         </DialogPanelWrapper>

@@ -28,7 +28,9 @@ const PrintIkonStyle = styled.button`
 `;
 
 function PrintKnapp({onClick}: Props) {
-    return <PrintIkonStyle onClick={onClick}><Printer/></PrintIkonStyle>;
+    return (
+        <PrintIkonStyle onClick={onClick} aria-label="Skriv ut"><Printer/></PrintIkonStyle>
+    );
 }
 
 export default PrintKnapp;

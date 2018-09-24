@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 import VisittkortElement from '../VisittkortElement';
 
@@ -24,9 +24,9 @@ export function Forelder({relasjon}: ForelderProps) {
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
-            <Undertekst><NavnOgAlder relasjon={relasjon}/></Undertekst>
-            <Undertekst>{relasjon.tilPerson.fødselsnummer || ''}</Undertekst>
-            <Undertekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Undertekst>
+            <Normaltekst><NavnOgAlder relasjon={relasjon}/></Normaltekst>
+            <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
+            <Normaltekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Normaltekst>
         </VisittkortElement>
     );
 }

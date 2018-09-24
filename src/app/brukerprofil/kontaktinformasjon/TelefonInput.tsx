@@ -8,7 +8,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { TelefonInput } from './KontaktinformasjonForm';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
-import EtikettMini from '../../../components/EtikettMini';
+import EtikettGrå from '../../../components/EtikettGrå';
 import { formaterDato } from '../../../utils/dateUtils';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Retningsnummer } from './RetningsnummerInput';
@@ -40,7 +40,7 @@ export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
     const formatertDato = formaterDato(props.telefon.sistEndret);
     const endretAv = endretAvTekst(props.telefon.sistEndretAv);
     return (
-        <EtikettMini>Endret {formatertDato} {endretAv}</EtikettMini>
+        <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
     );
 }
 

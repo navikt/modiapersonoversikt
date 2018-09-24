@@ -64,7 +64,7 @@ export const aremark: Person = {
         banknavn: 'Bien sparebank',
         kontonummer: '12345678911',
         sistEndret: '2005-12-12',
-        sistEndretAv: 'Daniel',
+        sistEndretAv: '10108000398',
         landkode: {
             kodeRef: 'NOR',
             beskrivelse: 'Norge'
@@ -146,6 +146,19 @@ export const aremark: Person = {
         }
     }, {
         harSammeBosted: false,
+        rolle: Relasjonstype.Barn,
+        tilPerson: {
+            fødselsnummer: '10117100100',
+            navn: {
+                sammensatt: '',
+                fornavn: 'Ola',
+                mellomnavn: null,
+                etternavn: 'Aremark'
+            },
+            personstatus: {}
+        }
+    }, {
+        harSammeBosted: false,
         rolle: Relasjonstype.Ektefelle,
         tilPerson: {
             navn: null,
@@ -161,7 +174,7 @@ export const aremark: Person = {
             sistEndret: '2014-06-21T18:44:39+02:00',
             identifikator: '99887766',
             retningsnummer: { kodeRef: '+47', beskrivelse: 'Norge' },
-            sistEndretAv: 'BRUKER'
+            sistEndretAv: '10108000398'
         }
     }
 };

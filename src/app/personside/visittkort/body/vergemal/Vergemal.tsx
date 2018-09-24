@@ -1,17 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
-import VisittkortElement, { TittelStyle } from '../VisittkortElement';
+import VisittkortElement from '../VisittkortElement';
 import { Periode, Verge, Vergemal } from '../../../../../models/vergemal/vergemal';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
-import EtikettMini from '../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../components/EtikettGrå';
 import { ENDASH } from '../../../../../utils/string-utils';
 import { Vergesakstype } from './Vergesakstype';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import { Element } from 'nav-frontend-typografi';
 
 function getPeriodeTekst(periode: Periode) {
     const fom = periode.fom ? formaterDato(periode.fom) : '';
@@ -30,19 +30,19 @@ function Verge(props: { verge: Verge }) {
         <VisittkortElement beskrivelse={'Verge'}>
 
             <Vergeinformasjon>
-                <Undertekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Undertekst>
-                <Undertekst>{verge.ident || ''}</Undertekst>
-                <Undertekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Undertekst>
+                <Normaltekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Normaltekst>
+                <Normaltekst>{verge.ident || ''}</Normaltekst>
+                <Normaltekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Normaltekst>
             </Vergeinformasjon>
 
-            <EtikettLiten><TittelStyle>Mandat</TittelStyle></EtikettLiten>
-            <Undertekst>{verge.mandattype ? verge.mandattype.beskrivelse : 'Ikke oppgitt'}</Undertekst>
-            <Undertekst>{verge.mandattekst || ''}</Undertekst>
-            <EtikettMini>
+            <Element>Mandat</Element>
+            <Normaltekst>{verge.mandattype ? verge.mandattype.beskrivelse : 'Ikke oppgitt'}</Normaltekst>
+            <Normaltekst>{verge.mandattekst || ''}</Normaltekst>
+            <EtikettGrå>
                 {verge.embete ? verge.embete.beskrivelse : ''}
                 {verge.embete ? <br /> : ''}
                 {getPeriodeTekst(verge.virkningsperiode)}
-            </EtikettMini>
+            </EtikettGrå>
 
         </VisittkortElement>
     );
