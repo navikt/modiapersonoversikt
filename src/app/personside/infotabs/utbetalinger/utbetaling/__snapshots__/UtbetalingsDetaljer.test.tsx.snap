@@ -81,16 +81,16 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       <tbody>
         <tr>
           <td>
-            Mouse
+            Bacon
           </td>
           <td>
-            1,930.00
+            558.00
           </td>
           <td>
-            2
+            10
           </td>
           <td>
-            3,860.00
+            5,580.00
           </td>
         </tr>
         <tr>
@@ -109,16 +109,16 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         </tr>
         <tr>
           <td>
-            Bacon
+            Mouse
           </td>
           <td>
-            558.00
+            1,930.00
           </td>
           <td>
-            10
+            2
           </td>
           <td>
-            5,580.00
+            3,860.00
           </td>
         </tr>
         <tr>

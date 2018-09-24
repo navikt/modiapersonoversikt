@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from '../filter/Filter';
-import moment = require('moment');
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Periode } from '../../../../../models/periode';
+import moment = require('moment');
 
 const månedTilNavnMapping = {
     0: 'Januar',
@@ -39,6 +39,18 @@ export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
 
 export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
     return moment(getGjeldendeDatoForUtbetaling(b)).unix() - moment(getGjeldendeDatoForUtbetaling(a)).unix();
+}
+
+export function ytelseBelopDescComparator(a: Ytelseskomponent, b: Ytelseskomponent) {
+    return b.ytelseskomponentbeløp - a.ytelseskomponentbeløp;
+}
+
+export function skattBelopAscComparator(a: Skatt, b: Skatt) {
+    return a.skattebeløp - b.skattebeløp;
+}
+
+export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
+    return a.trekkbeløp - b.trekkbeløp;
 }
 
 export function getFraDateFromFilter(filter: FilterState): Date {
