@@ -41,6 +41,8 @@ class UtbetaltTilValg extends React.Component<Props> {
     }
 
     getUnikeMottakere(utbetalinger: Utbetaling[]) {
+        this.substituerUtbetalingerTilBrukerMedEgenTekst(utbetalinger);
+
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
         return utbetalinger.map(utbetaling => utbetaling.utbetaltTil)
@@ -48,8 +50,17 @@ class UtbetaltTilValg extends React.Component<Props> {
             .sort(sorterAlfabetisk);
     }
 
+   substituerUtbetalingerTilBrukerMedEgenTekst(utbetalinger: Utbetaling[]) {
+        utbetalinger.forEach(utbetaling => {
+            if (utbetaling.erUtbetaltTilPerson) {
+                utbetaling.utbetaltTil = 'Bruker';
+            }
+        });
+    }
+
     render() {
         const unikeMottakere = this.getUnikeMottakere(this.props.utbetalinger);
+
         const checkboxer = unikeMottakere.map(mottaker => (
             <Checkbox
                 key={mottaker}

@@ -14,7 +14,7 @@ import {
 } from '../models/utbetalinger';
 import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
-import { getMockNavn } from './person/personMock';
+import { getBedriftsNavn, getMockNavn } from './person/personMock';
 
 export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -42,10 +42,16 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
     const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
     const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
+
+    const utbetaltTilPerson = vektetSjanse(faker, 0.9);
+
     return {
-        utbetaltTil: vektetSjanse(faker, 0.9)
+        utbetaltTil: utbetaltTilPerson
             ? getMockNavn(fødselsnummer || '').sammensatt
-            : getMockNavn(Math.random().toString()).sammensatt,
+            : getBedriftsNavn(Math.random().toString()),
+        erUtbetaltTilPerson: utbetaltTilPerson,
+        erUtbetaltTilOrganisasjon: !utbetaltTilPerson,
+        erUtbetaltTilSamhandler: !utbetaltTilPerson,
         nettobeløp: netto,
         posteringsdato: randomDato(faker),
         utbetalingsdato: utbetalingsDato,
