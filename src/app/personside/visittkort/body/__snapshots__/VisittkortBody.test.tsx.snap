@@ -194,7 +194,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               >
                 <defs>
                   <mask
-                    id="a"
+                    id="locationpinmask"
                   >
                     <rect
                       fill="#fff"
@@ -211,7 +211,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 </defs>
                 <path
                   d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
-                  mask="url(#a)"
+                  mask="url(#locationpinmask)"
                 />
               </g>
             </svg>
@@ -267,7 +267,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               >
                 <defs>
                   <mask
-                    id="a"
+                    id="locationpinmask"
                   >
                     <rect
                       fill="#fff"
@@ -284,7 +284,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 </defs>
                 <path
                   d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
-                  mask="url(#a)"
+                  mask="url(#locationpinmask)"
                 />
               </g>
             </svg>
