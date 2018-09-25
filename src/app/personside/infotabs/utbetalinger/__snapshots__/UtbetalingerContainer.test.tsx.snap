@@ -1,30 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c11 {
-  border: none;
-  background-color: transparent;
-  border-radius: 8px;
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c11 svg {
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c11:focus {
-  outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
-}
-
-.c11:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
 .c2 {
   background-color: white;
   border-radius: 4px;
@@ -83,183 +59,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c12 {
-  border: none;
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.c12:hover {
-  background-color: #C6C2BF;
-}
-
-.c12:focus {
-  outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
-}
-
-.c9 {
-  background-color: white;
-  border-radius: 4px;
-  padding: 1.25rem 1.25rem 2rem;
-  cursor: pointer;
-}
-
-.c13 th:not(:first-child) {
-  font-weight: normal;
-}
-
-.c13 th {
-  text-transform: uppercase;
-}
-
-.c13 td {
-  font-weight: bold;
-}
-
-.c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-  height: 2rem;
-  padding-bottom: .2rem;
-}
-
-.c10 > *:not(:first-child) {
-  margin-left: .5rem;
-}
-
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c18 {
-  text-transform: uppercase;
-}
-
-.c17 {
-  font-weight: bold;
-}
-
-.c19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding: 1.25rem .6rem;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.c19 .order-first {
-  -webkit-order: -1;
-  -ms-flex-order: -1;
-  order: -1;
-}
-
-.c19 > *:first-child,
-.c19 > *:nth-child(2),
-.c19 > *:nth-child(3) {
-  height: 1.3rem;
-}
-
-.c19 > *:nth-child(3) {
-  margin-bottom: .8rem;
-}
-
-.c21 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding-bottom: .2rem;
-}
-
-.c21 > *:not(:first-child) {
-  margin-left: .5rem;
-}
-
-.c16 > *:first-child {
-  background-color: rgba(102,203,236,0.18);
-  padding: .2rem .6rem;
-}
-
-.c16 ol {
-  padding: 0;
-  margin: 0;
-}
-
-.c16 ol > *:not(:first-child) {
-  border-top: solid 2px #efefef;
-}
-
-.c14 {
-  background-color: white;
-  border-radius: 4px;
-  margin-top: .8rem;
-}
-
-.c14 > *:first-child {
-  padding: 1.25rem;
-}
-
-.c15 {
-  padding: 0 .6rem;
-  margin: 0;
-}
-
-.c8 ol {
-  list-style: none;
-}
-
-.c8 table {
-  width: 100%;
-  text-align: right;
-  border-spacing: 0;
-}
-
-.c8 table * {
-  padding: 0;
-  margin: 0;
-}
-
-.c8 table tr > * {
-  padding: 0.1rem;
-  text-align: right;
-}
-
-.c8 table tr > *:first-child {
-  text-align: left;
-}
-
-.c8 table tr > *:not(:first-child) {
-  width: 6rem;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -287,7 +86,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   min-width: 35rem;
 }
 
-.c22 {
+.c8 {
   text-align: right;
   position: absolute;
   top: 1.25rem;
@@ -499,219 +298,52 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       Filtrerte utbetalinger
     </h2>
     <div
-      className="c8"
+      aria-live={undefined}
+      className="alertstripe alertstripe--info"
     >
-      <article
-        className="c9"
-        onClick={[Function]}
+      <span
+        aria-label="info"
+        className="alertstripe__ikon"
       >
-        <h2
-          className="typo-undertittel"
+        <svg
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-orange"
+          onClick={undefined}
+          style={undefined}
+          viewBox="0 0 24 24"
+          width="1.5em"
         >
-          Totalt utbetalt for perioden
-        </h2>
-        <nav
-          className="c10"
-        >
-          <button
-            aria-label="Skriv ut"
-            className="c11"
-            onClick={[Function]}
+          <title>
+            Informasjon
+          </title>
+          <g
+            fill="#D87F0A"
+            fillRule="evenodd"
           >
-            <svg
-              viewBox="0 0 17 16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                fill="#0067C5"
-                fillRule="evenodd"
-              />
-              <path
-                d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                fill="#0067C5"
-              />
-            </svg>
-          </button>
-          <button
-            aria-expanded={false}
-            aria-label="Detaljer"
-            className="c12"
-            onClick={[Function]}
-          >
-            <i
-              className="nav-frontend-chevron chevronboks chevron--ned"
+            <path
+              d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
             />
-          </button>
-        </nav>
-        <section
-          className="c13"
-        >
-          <span
-            className="typo-undertekst"
-          >
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    Totalt Utbetalt
-                  </th>
-                  <th>
-                    Brutto
-                  </th>
-                  <th>
-                    Trekk
-                  </th>
-                  <th>
-                    Utbetalt
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    02.12.1969 - 01.01.1970
-                  </td>
-                  <td>
-                    13,370.00
-                  </td>
-                  <td>
-                    -1,984.00
-                  </td>
-                  <td>
-                    11,386.00
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </span>
-        </section>
-      </article>
-      <article
-        className="c14"
+            <path
+              d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
+            />
+            <ellipse
+              cx="11.478"
+              cy="5.739"
+              rx="1.043"
+              ry="1.043"
+            />
+          </g>
+        </svg>
+      </span>
+      <span
+        className="typo-normal alertstripe__tekst"
       >
-        <h2
-          className="typo-undertittel"
-        >
-          Utbetalinger
-        </h2>
-        <ol
-          className="c15"
-        >
-          <li
-            className="c16"
-          >
-            <h3
-              className="typo-undertekst"
-            >
-              <span
-                className="c17"
-              >
-                <span
-                  className="c18"
-                >
-                  Mars 2017
-                </span>
-              </span>
-            </h3>
-            <ol>
-              <li
-                className="c19"
-                onClick={[Function]}
-              >
-                <div
-                  className="c20"
-                >
-                  <h4
-                    className="typo-undertekst-bold"
-                  >
-                    Sykepenger
-                  </h4>
-                  <p
-                    className="typo-undertekst-bold"
-                  >
-                    11,386.00
-                  </p>
-                </div>
-                <div
-                  className="order-first c20"
-                >
-                  <p
-                    className="typo-undertekst"
-                  >
-                    29. Mars 2017
-                     / 
-                    <span
-                      className="c17"
-                    >
-                      Utbetalt
-                    </span>
-                  </p>
-                  <div
-                    className="c21"
-                  >
-                    <button
-                      aria-label="Skriv ut"
-                      className="c11"
-                      onClick={[Function]}
-                    >
-                      <svg
-                        viewBox="0 0 17 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                          fill="#0067C5"
-                          fillRule="evenodd"
-                        />
-                        <path
-                          d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                          fill="#0067C5"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      aria-expanded={false}
-                      aria-label="Detaljer"
-                      className="c12"
-                      onClick={[Function]}
-                    >
-                      <i
-                        className="nav-frontend-chevron chevronboks chevron--ned"
-                      />
-                    </button>
-                  </div>
-                </div>
-                <div
-                  className="c20"
-                >
-                  <p
-                    className="typo-undertekst"
-                  >
-                    09.11.2016 - 31.10.2017
-                  </p>
-                  <p
-                    className="typo-undertekst"
-                  >
-                    
-                  </p>
-                </div>
-                <p
-                  className="typo-undertekst"
-                >
-                  Utbetaling til: 
-                  Bruker
-                </p>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </article>
+        Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
+      </span>
     </div>
     <div
-      className="c22"
+      className="c8"
     >
       <p
         className="typo-undertekst"
