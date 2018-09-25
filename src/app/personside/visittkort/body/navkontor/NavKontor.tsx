@@ -17,10 +17,6 @@ const NameCase = styled.span`
   text-transform: capitalize;
 `;
 
-const StyledLenke = styled.a`
-  font-size: 0.9em;
-`;
-
 const ApningsTiderListe = styled.dl`
   margin: initial;
   padding: initial;
@@ -117,14 +113,16 @@ function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
     return (
         <>
             <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
-            <StyledLenke
+            <a
                 href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={'lenke'}
+                className="lenke"
             >
-                Mer informasjon om kontoret
-            </StyledLenke>
+                <Normaltekst tag="span">
+                    Mer informasjon om kontoret
+                </Normaltekst>
+            </a>
         </>
     );
 }
