@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
+import theme from '../../../../styles/personOversiktTheme';
 
 const TittelOgIkonDiv = styled.div`
   position: relative;
@@ -10,12 +11,12 @@ const TittelOgIkonDiv = styled.div`
 
 export const IkonDiv = styled.div`
   position: absolute;
-  left: -50px;
-  width: 50px;
+  left: -${theme.margin.px50};
+  width: ${theme.margin.px50};
   display: flex;
   justify-content: center;
   > svg {
-    height: 24px;
+    height: 1.5rem;
     width: auto;
   }
 `;
@@ -29,8 +30,7 @@ function TittelOgIkon(props: Props) {
     const ikon = props.ikon ? <IkonDiv>{props.ikon}</IkonDiv> : '';
     return (
         <TittelOgIkonDiv>
-            {ikon}
-            {props.tittel}
+            {ikon}{props.tittel}
         </TittelOgIkonDiv>
     );
 }

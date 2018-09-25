@@ -14,7 +14,7 @@ interface Props {
     vergemal: Vergemal;
 }
 
-const StyledEtikketter = styled.div`
+const StyledEtikketter = styled.section`
   > * {
     margin: 6px 0 0 6px;
     white-space: nowrap;
@@ -84,7 +84,7 @@ function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal
 function Etiketter( {person, egenAnsatt, vergemal}: Props) {
     const etiketter = lagEtiketter(person, egenAnsatt, vergemal);
     return (
-        <StyledEtikketter>
+        <StyledEtikketter role="region" aria-label="etiketter">
             {etiketter}
         </StyledEtikketter>
     );

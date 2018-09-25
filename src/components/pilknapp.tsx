@@ -55,11 +55,17 @@ function getDirection(direction: String | undefined) {
 
 interface Props extends StyleProps {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    beskrivelse: string;
 }
 
 function PilKnapp(props: Props) {
     return (
-        <KnappWrapper onClick={props.onClick} width={props.width} direction={props.direction}>
+        <KnappWrapper
+            aria-label={props.beskrivelse}
+            onClick={props.onClick}
+            width={props.width}
+            direction={props.direction}
+        >
             <svg viewBox="-1 -1 5 5">
                 <path d="M0,0 L1,1.5 L0,3"/>
                 <path d="M2,0 L3,1.5 L2,3"/>

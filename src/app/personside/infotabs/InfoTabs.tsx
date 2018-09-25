@@ -57,7 +57,7 @@ class InfoTabs extends React.PureComponent<Props> {
         const basePath = paths.personUri + '/:fodselsnummer/';
 
         return (
-            <section>
+            <section role="region" aria-label="Info-tabs">
                 <TabKnapper
                     onTabChange={this.onTabChange}
                     openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}

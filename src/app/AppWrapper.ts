@@ -6,12 +6,16 @@ const AppWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: ${theme.color.bakgrunn};
+  .visually-hidden {
+    ${theme.visuallyHidden}
+  }
 `;
 
 export const Content = styled.div`
   height: 0; // IE11-hack for at flex skal funke
   flex-grow: 1;
   display: flex;
+  overflow: auto;
 `;
 
 export default AppWrapper;

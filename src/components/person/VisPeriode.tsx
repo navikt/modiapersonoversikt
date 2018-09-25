@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Periode } from '../../models/periode';
 import { formaterDato } from '../../utils/dateUtils';
-import EtikettMini from '../EtikettMini';
+import EtikettGrå from '../EtikettGrå';
 
 interface Props {
     periode: Periode;
@@ -11,7 +11,7 @@ function VisPeriode({periode}: Props) {
     const fra = formaterDato(periode.fra);
     const til = formaterDato(periode.til);
     return (
-        <EtikettMini>Gyldig: {fra} - {til}</EtikettMini>
+        <EtikettGrå>Gyldig: {fra} - {til}</EtikettGrå>
     );
 }
 

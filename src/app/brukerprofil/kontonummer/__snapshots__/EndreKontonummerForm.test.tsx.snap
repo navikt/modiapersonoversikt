@@ -7,11 +7,8 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   border: 0;
 }
 
-.c2 {
-  font-size: 11px;
-}
-
 .c1 {
+  color: #78706a;
   margin-top: 3px;
 }
 
@@ -19,7 +16,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   line-height: 1rem;
 }
 
-.c3 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30,7 +27,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   justify-content: flex-end;
 }
 
-.c3 > * {
+.c2 > * {
   margin-left: 1em;
 }
 
@@ -119,11 +116,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        <span
-          className="c2"
-        >
-          Endret 12.12.2005 Daniel
-        </span>
+        Endret 12.12.2005 av bruker
       </p>
     </div>
     <div
@@ -150,7 +143,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="c3"
+      className="c2"
     >
       <button
         className="knapp knapp--standard knapp--disabled"
@@ -179,11 +172,8 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   border: 0;
 }
 
-.c2 {
-  font-size: 11px;
-}
-
 .c1 {
+  color: #78706a;
   margin-top: 3px;
 }
 
@@ -191,7 +181,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   line-height: 1rem;
 }
 
-.c3 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -202,7 +192,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   justify-content: flex-end;
 }
 
-.c3 > * {
+.c2 > * {
   margin-left: 1em;
 }
 
@@ -291,11 +281,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        <span
-          className="c2"
-        >
-          Endret 12.12.2005 Daniel
-        </span>
+        Endret 12.12.2005 av bruker
       </p>
     </div>
     <div
@@ -644,7 +630,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       />
     </div>
     <div
-      className="c3"
+      className="c2"
     >
       <button
         className="knapp knapp--standard knapp--disabled"

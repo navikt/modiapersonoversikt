@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import VisittkortElement from '../VisittkortElement';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import { Diskresjonskode } from './common/Diskresjonskode';
-import { getKjønnBeskrivelseForBarn, getKjønnIkon } from './common/Kjønn';
+import { getKjønnBarnIkon, getKjønnBeskrivelseForBarn } from './common/Kjønn';
 
 interface Props {
     relasjoner: Familierelasjon[];
@@ -17,14 +17,14 @@ interface BarnProps {
 }
 
 function Barn({barn}: BarnProps) {
-    const ikon = getKjønnIkon(barn.tilPerson.fødselsnummer);
+    const ikon = getKjønnBarnIkon(barn.tilPerson.fødselsnummer);
     const beskrivelse = getKjønnBeskrivelseForBarn(barn.tilPerson.fødselsnummer);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode}/>
-            <Undertekst><NavnOgAlder relasjon={barn}/></Undertekst>
-            <Undertekst>{barn.tilPerson.fødselsnummer || ''}</Undertekst>
-            <Undertekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Undertekst>
+            <Normaltekst><NavnOgAlder relasjon={barn}/></Normaltekst>
+            <Normaltekst>{barn.tilPerson.fødselsnummer || ''}</Normaltekst>
+            <Normaltekst><BorMedBruker harSammeBosted={barn.harSammeBosted}/></Normaltekst>
         </VisittkortElement>
     );
 }

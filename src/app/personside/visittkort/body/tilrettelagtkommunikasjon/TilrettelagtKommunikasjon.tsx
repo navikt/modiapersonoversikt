@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
 import { Kodeverk } from '../../../../../models/kodeverk';
@@ -33,9 +33,9 @@ function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjonsListe }: Tilrette
 
 function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
     return (
-        <Undertekst key={tilrettelagtKommunikasjon.kodeRef}>
+        <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
             {tilrettelagtKommunikasjon.beskrivelse}
-        </Undertekst>
+        </Normaltekst>
     );
 }
 

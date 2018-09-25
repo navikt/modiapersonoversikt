@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Fragment } from 'react';
 import styled from 'styled-components';
 
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
-import EtikettMini from '../../../../../components/EtikettMini';
+import EtikettGrå from '../../../../../components/EtikettGrå';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
@@ -15,10 +15,6 @@ import { ENDASH } from '../../../../../utils/string-utils';
 
 const NameCase = styled.span`
   text-transform: capitalize;
-`;
-
-const StyledLenke = styled.a`
-  font-size: 0.9em;
 `;
 
 const ApningsTiderListe = styled.dl`
@@ -48,16 +44,16 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     const apningstider = publikumsMottak.apningstider.map((apningstid) => (
         <Fragment key={apningstid.ukedag}>
             <dt>
-                <Undertekst>
+                <Normaltekst>
                     <NameCase>
                         {apningstid.ukedag.toLowerCase()}
                     </NameCase>
-                </Undertekst>
+                </Normaltekst>
             </dt>
             <dd>
-                <Undertekst>
+                <Normaltekst>
                     {klokkeslettToString(apningstid.apentFra)} {ENDASH} {klokkeslettToString(apningstid.apentTil)}
-                </Undertekst>
+                </Normaltekst>
             </dd>
         </Fragment>
     ));
@@ -73,11 +69,11 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     return (
         <div key={adresse}>
             <br/>
-            <EtikettMini>Besøksadresse</EtikettMini>
-            <Undertekst>{adresse}</Undertekst>
-            <Undertekst>{postSted}</Undertekst>
+            <EtikettGrå>Besøksadresse</EtikettGrå>
+            <Normaltekst>{adresse}</Normaltekst>
+            <Normaltekst>{postSted}</Normaltekst>
             <br/>
-            <EtikettMini>Åpningstider</EtikettMini>
+            <EtikettGrå>Åpningstider</EtikettGrå>
             <ApningsTiderListe>
                 {apningstider}
             </ApningsTiderListe>
@@ -90,7 +86,7 @@ function flerePublikumsmottak(antallMottak: number) {
     if (antallMottak > 1) {
         return (
             <>
-                <Undertekst>Det finnes flere publikumsmottak</Undertekst>
+                <Normaltekst>Det finnes flere publikumsmottak</Normaltekst>
                 <br/>
             </>
         );
@@ -101,7 +97,7 @@ function flerePublikumsmottak(antallMottak: number) {
 function Publikumsmottak(props: { publikumsmottak: PublikumsMottak[] }) {
     const antallPublikumsmottak = props.publikumsmottak.length;
     if (antallPublikumsmottak === 0) {
-        return <Undertekst>Ingen publikumsmottak</Undertekst>;
+        return <Normaltekst>Ingen publikumsmottak</Normaltekst>;
     }
 
     const førstePublikumsmottak = props.publikumsmottak[0];
@@ -117,14 +113,16 @@ function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
     return (
         <>
             <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
-            <StyledLenke
+            <a
                 href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={'lenke'}
+                className="lenke"
             >
-                Mer informasjon om kontoret
-            </StyledLenke>
+                <Normaltekst tag="span">
+                    Mer informasjon om kontoret
+                </Normaltekst>
+            </a>
         </>
     );
 }
