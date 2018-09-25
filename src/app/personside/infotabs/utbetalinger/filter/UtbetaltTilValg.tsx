@@ -41,23 +41,13 @@ class UtbetaltTilValg extends React.Component<Props> {
     }
 
     getUnikeMottakere(utbetalinger: Utbetaling[]) {
-        this.substituerUtbetalingerTilBrukerMedEgenTekst(utbetalinger);
-
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
-        return utbetalinger.map(utbetaling => utbetaling.utbetaltTil)
+        return utbetalinger.map(utbetaling => utbetaling.erUtbetaltTilPerson ? 'Bruker' : utbetaling.utbetaltTil)
             .filter(fjernDuplikater)
             .sort(sorterAlfabetisk);
     }
-
-   substituerUtbetalingerTilBrukerMedEgenTekst(utbetalinger: Utbetaling[]) {
-        utbetalinger.forEach(utbetaling => {
-            if (utbetaling.erUtbetaltTilPerson) {
-                utbetaling.utbetaltTil = 'Bruker';
-            }
-        });
-    }
-
+    
     render() {
         const unikeMottakere = this.getUnikeMottakere(this.props.utbetalinger);
 
