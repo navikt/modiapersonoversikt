@@ -90,7 +90,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   line-height: 1rem;
 }
 
-.c11 {
+.c10 {
   margin-bottom: 5px;
 }
 
@@ -100,10 +100,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 
 .c9 {
   text-transform: capitalize;
-}
-
-.c10 {
-  font-size: 0.9em;
 }
 
 .c8 {
@@ -132,24 +128,23 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin: 0;
 }
 
-.c12 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
-  font-size: 0.9em;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 <section
@@ -1034,12 +1029,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <br />
         </div>
         <a
-          className="lenke c10"
+          className="lenke"
           href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
           rel="noopener noreferrer"
           target="_blank"
         >
-          Mer informasjon om kontoret
+          <span
+            className="typo-normal"
+          >
+            Mer informasjon om kontoret
+          </span>
         </a>
       </div>
     </section>
@@ -1163,7 +1162,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c11"
+          className="c10"
         >
           <p
             className="typo-normal"
@@ -1295,14 +1294,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c12"
+      className="c11"
     >
       <a
         className="lenke"
         href="/modiapersonoversikt/brukerprofil/10108000398"
         onClick={[Function]}
       >
-        Administrer brukerprofil
+        <span
+          className="typo-normal"
+        >
+          Administrer brukerprofil
+        </span>
       </a>
     </div>
   </div>
