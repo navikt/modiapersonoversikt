@@ -449,7 +449,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              AREMARK TESTFAMILIEN
+              Bruker
             </label>
             <div
               aria-live="assertive"
@@ -702,7 +702,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   className="typo-undertekst"
                 >
                   Utbetaling til: 
-                  AREMARK TESTFAMILIEN
+                  Bruker
                 </p>
               </li>
             </ol>
