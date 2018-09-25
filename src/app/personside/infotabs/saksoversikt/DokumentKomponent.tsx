@@ -13,6 +13,7 @@ interface Props {
 
 const Wrapper = styled.div`
   padding: ${theme.margin.px20} ${theme.margin.px10};
+  cursor: pointer;
 `;
 
 function formatterEntitet(fra: Entitet) {

@@ -63,7 +63,7 @@ const Wrapper = styled.div`
 function GruppertTema(props: SakstemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
-            <SakstemaComponent sakstema={sakstema} oppdaterSakstema={props.oppdaterSakstema}/>
+            <SakstemaComponent sakstema={sakstema} oppdaterSakstema={props.oppdaterSakstema} key={sakstema.temakode}/>
         )
     );
     return (

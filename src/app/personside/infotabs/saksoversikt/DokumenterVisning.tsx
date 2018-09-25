@@ -23,6 +23,7 @@ const CheckboxWrapper = styled.section`
   border-radius: ${theme.borderRadius.layout};
   padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
   display: flex;
+  flex-direction: row;
   > * {
     padding: 10px;
   }
@@ -127,8 +128,8 @@ function dokumentComparator(a: DokumentMetadata, b: DokumentMetadata) {
     const aDate = saksdatoSomDate(a.dato);
     const bDate = saksdatoSomDate(b.dato);
 
-    if (aDate > bDate) { return 1; }
-    if (aDate < bDate) { return -1; }
+    if (aDate > bDate) { return -1; }
+    if (aDate < bDate) { return 1; }
     return 0;
 }
 
