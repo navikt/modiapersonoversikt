@@ -8,6 +8,8 @@ import { FeatureToggleResponse } from '../../../../../models/featureToggle';
 import LenkeBrukerprofilVisning from './LenkeBrukerprofil';
 import { Person } from '../../../../../models/person/person';
 import { paths } from '../../../../routes/routing';
+import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import styled from 'styled-components';
 
 interface StateProps {
     featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
@@ -21,12 +23,21 @@ type Props = StateProps & OwnProps;
 
 const feilmelding = (fnr: string) => (
     <a
-        className={'lenke'}
+        className="lenke"
         href={`${paths.legacyPersonPath}/${fnr}${paths.legacyBrukerprofil}`}
     >
-        Administrer brukerprofil
+        <Normaltekst tag="span">
+            Administrer brukerprofil
+        </Normaltekst>
     </a>
 );
+
+const PlaceBottomRight = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-grow: 1;
+`;
 
 class LenkeBrukerprofilContainer extends React.Component<Props> {
     render() {
@@ -36,12 +47,14 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
                 avhengigheter={[this.props.featureToggleNyBrukerprofilReducer]}
                 spinnerSize={'L'}
             >
-                <LenkeBrukerprofilVisning
-                    nyBrukerprofilToggle={
-                        this.props.featureToggleNyBrukerprofilReducer.data['modiabrukerdialog.ny-brukerprofil']
-                    }
-                    person={this.props.person}
-                />
+                <PlaceBottomRight>
+                    <LenkeBrukerprofilVisning
+                        nyBrukerprofilToggle={
+                            this.props.featureToggleNyBrukerprofilReducer.data['modiabrukerdialog.ny-brukerprofil']
+                        }
+                        person={this.props.person}
+                    />
+                </PlaceBottomRight>
             </Innholdslaster>
         );
     }
