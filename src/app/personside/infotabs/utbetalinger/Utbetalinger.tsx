@@ -11,7 +11,7 @@ import {
     getGjeldendeDatoForUtbetaling, getTypeFromYtelse,
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
-    utbetalingDatoComparator
+    utbetalingDatoComparator, utbetaltTilBruker
 } from './utils/utbetalingerUtils';
 import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -100,7 +100,7 @@ function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterStat
 }
 
 function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
-    return filter.utbetaltTil.includes(utbetaling.utbetaltTil);
+    return filter.utbetaltTil.includes(utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil);
 }
 
 function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
