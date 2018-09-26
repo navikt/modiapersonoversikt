@@ -5,6 +5,8 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import { Periode } from '../../../../../models/periode';
 import moment = require('moment');
 
+export const utbetaltTilBruker = 'Bruker';
+
 const månedTilNavnMapping = {
     0: 'Januar',
     1: 'Februar',

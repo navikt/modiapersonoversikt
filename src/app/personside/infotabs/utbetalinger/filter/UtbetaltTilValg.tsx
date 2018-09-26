@@ -3,6 +3,7 @@ import { Utbetaling } from '../../../../../models/utbetalinger';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
+import { utbetaltTilBruker } from '../utils/utbetalingerUtils';
 
 interface Props {
     onChange: (change: Partial<FilterState>) => void;
@@ -43,11 +44,12 @@ class UtbetaltTilValg extends React.Component<Props> {
     getUnikeMottakere(utbetalinger: Utbetaling[]) {
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
-        return utbetalinger.map(utbetaling => utbetaling.erUtbetaltTilPerson ? 'Bruker' : utbetaling.utbetaltTil)
+        return utbetalinger
+            .map(utbetaling => utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil)
             .filter(fjernDuplikater)
             .sort(sorterAlfabetisk);
     }
-    
+
     render() {
         const unikeMottakere = this.getUnikeMottakere(this.props.utbetalinger);
 
