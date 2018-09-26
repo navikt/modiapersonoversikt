@@ -50,6 +50,9 @@ export const statiskMockYtelse: Ytelse = {
 
 export const statiskMockUtbetaling: Utbetaling = {
     utbetaltTil: 'AREMARK TESTFAMILIEN',
+    erUtbetaltTilPerson: true,
+    erUtbetaltTilOrganisasjon: false,
+    erUtbetaltTilSamhandler: false,
     nettobeløp: 11386,
     posteringsdato: '2017-03-26',
     utbetalingsdato: '2017-03-29',

@@ -7,6 +7,9 @@ export interface Utbetaling {
     utbetalingsdato: string | null;
     forfallsdato: string | null;
     utbetaltTil: string;
+    erUtbetaltTilPerson: boolean;
+    erUtbetaltTilOrganisasjon: boolean;
+    erUtbetaltTilSamhandler: boolean;
     nettobeløp: number;
     melding?: string;
     metode: string;
