@@ -1,14 +1,23 @@
 import * as React from 'react';
-import { DokumentMetadata as DokumentInterface, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
+import {DokumentMetadata as DokumentInterface, Entitet} from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as moment from 'moment';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
+import {saksdatoSomDate} from '../../../../models/saksoversikt/fellesSak';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
+import {UnmountClosed} from 'react-collapse';
+import {getDokument} from '../../../../api/saksoversikt-api';
+
+// const mockPdf = require('../../../../mock/saksoversikt/mock_saksdokument.pdf');
 
 interface Props {
     dokument: DokumentInterface;
+}
+
+interface State {
+    åpnet: boolean;
+    lastetDokument?: string;
 }
 
 const Wrapper = styled.div`
@@ -30,16 +39,40 @@ function formatterDatoOgAvsender(date: Date, fra: Entitet) {
     return `${moment(date).format('DD.MM.YYYY')} / Fra ${formatterEntitet(fra)}`;
 }
 
-function DokumentKomponent(props: Props) {
-    const dokument = props.dokument;
-    const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
-    return (
-        <Wrapper>
-            <Undertekst>{formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}</Undertekst>
-            <UndertekstBold>{dokument.navn}</UndertekstBold>
-            <Undertekst>Saksid: {saksid}</Undertekst>
-        </Wrapper>
-    );
+class DokumentKomponent extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            åpnet: false,
+            lastetDokument: undefined
+        };
+    }
+
+    toggle() {
+        const åpnet = !this.state.åpnet;
+        this.setState({åpnet: åpnet});
+        if (åpnet) {
+            getDokument(this.props.dokument.journalpostId, this.props.dokument.hoveddokument.dokumentreferanse)
+                .then((stream: ReadableStream) => stream.getReader().read())
+                .then((data: any) => this.setState({ lastetDokument: data as string }))
+        }
+    }
+
+    render() {
+        const dokument = this.props.dokument;
+        const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
+
+        return (
+            <Wrapper onClick={() => this.toggle()}>
+                <Undertekst>{formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}</Undertekst>
+                <UndertekstBold>{dokument.navn}</UndertekstBold>
+                <Undertekst>Saksid: {saksid}</Undertekst>
+                <UnmountClosed isOpened={this.state.åpnet}>
+                    <object data={this.state.lastetDokument} type={'application/pdf'} width={'100%'} height={'400px'}/>
+                </UnmountClosed>
+            </Wrapper>
+        );
+    }
 }
 
 export default DokumentKomponent;

@@ -12,3 +12,15 @@ export function getSaksoversikt(fodselsnummer: string): Promise<SakstemaWrapper>
             }
         });
 }
+
+export function getDokument(journalpostId: string, dokumentreferanse: string): Promise<ReadableStream | null> {
+    const uri = `${apiBaseUri}/saker/dokument/${journalpostId}/${dokumentreferanse}`;
+    return fetch(uri, {credentials: 'include'})
+        .then((response) => {
+            if (response.ok) {
+                return response.body;
+            } else {
+                return null;
+            }
+        });
+}
