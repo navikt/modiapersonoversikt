@@ -137,6 +137,28 @@ export function summertBeløpStringFraUtbetalinger(
     }
 }
 
+export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
+    if (!utbetalinger) {
+        return [];
+    }
+    try {
+        const ytelser = utbetalinger
+            .sort(utbetalingDatoComparator)
+            .reduce(
+            (acc: Ytelse[], utbetaling: Utbetaling) => {
+                if (!utbetaling.ytelser) {
+                    throw new Error('"ytelser" er ikke definert på utbetaling');
+                }
+                return [...acc, ...utbetaling.ytelser] ;
+            },
+            []);
+        return ytelser;
+    } catch (e) {
+        console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
+        return [];
+    }
+}
+
 export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined>>) {
     return (
         <table>

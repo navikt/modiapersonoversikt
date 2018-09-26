@@ -3,13 +3,13 @@ import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect, Dispatch } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { UtbetalingerResponse } from '../../../../models/utbetalinger';
+import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { Action } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
-import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
+import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
@@ -18,6 +18,7 @@ import moment = require('moment');
 
 interface State {
     filter: FilterState;
+    valgtYtelse?: Ytelse;
 }
 
 const initialState: State = {
@@ -97,6 +98,9 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
+        this.handleShortcut = this.handleShortcut.bind(this);
+        this.updateValgtYtelse = this.updateValgtYtelse.bind(this);
+        setTimeout(() => this.setState({valgtYtelse: undefined}), 2000);
     }
 
     onFilterChange(change: Partial<FilterState>) {
@@ -128,6 +132,25 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         }
     }
 
+    updateValgtYtelse(nyYtelse: Ytelse | undefined) {
+        console.log('Ny ytelse', nyYtelse);
+        this.setState({
+            valgtYtelse: nyYtelse
+        });
+    }
+
+    handleShortcut(event: KeyboardEvent) {
+        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
+        if (this.state.valgtYtelse === undefined) {
+            console.log('resetter');
+            this.updateValgtYtelse(ytelser[0]);
+        } else if (event.key === 'ArrowDown') {
+            this.updateValgtYtelse(finnNesteYtelse(this.state.valgtYtelse, ytelser, true));
+        } else if (event.key === 'ArrowUp') {
+            this.updateValgtYtelse(finnNesteYtelse(this.state.valgtYtelse, ytelser, false));
+        }
+    }
+
     render() {
         return (
             <ErrorBoundary>
@@ -145,7 +168,10 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
+                                valgtYtelse={this.state.valgtYtelse}
                                 filter={this.state.filter}
+                                handleShortcut={this.handleShortcut}
+                                updateValgtYtelse={this.updateValgtYtelse}
                             />
                         </Innholdslaster>
                         <ArenaLenke/>
@@ -154,6 +180,18 @@ class UtbetalingerContainer extends React.Component<Props, State> {
             </ErrorBoundary>
         );
     }
+}
+
+function finnNesteYtelse(valgtYtelse: Ytelse, ytelser: Ytelse[], retningNed: boolean) {
+    const currentIndex = ytelser.findIndex(ytelse => ytelse === valgtYtelse);
+    let nextIndex = retningNed ? currentIndex + 1 : currentIndex - 1;
+    if (nextIndex >= ytelser.length) {
+        nextIndex = 0;
+    } else if (nextIndex === -1) {
+        nextIndex = ytelser.length - 1;
+    }
+    console.log(nextIndex);
+    return ytelser[nextIndex];
 }
 
 function mapStateToProps(state: AppState): StateProps {

@@ -16,10 +16,13 @@ import DetaljerKnapp from '../utils/DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
+import { FokusProps } from '../Utbetalinger';
 
-interface Props {
+export interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
 }
+
+type Props = UtbetalingComponentProps & FokusProps;
 
 interface State {
     visDetaljer: boolean;
@@ -33,8 +36,11 @@ const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
   }
   padding: ${theme.margin.px20} ${theme.margin.px10};
   transition: 0.3s;
-  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
   cursor: pointer;
+  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
+  &:focus {
+    ${theme.focus}
+  }
   > *:first-child, > *:nth-child(2), > *:nth-child(3) {
     height: 1.3rem;
   }
@@ -53,18 +59,51 @@ const KnappWrapper = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
+    private myRef = React.createRef<HTMLDivElement>();
+
     constructor(props: Props) {
         super(props);
         this.state = {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.handleShortcut = this.handleShortcut.bind(this);
+        this.setTilValgtYtelse = this.setTilValgtYtelse.bind(this);
     }
 
     toggleVisDetaljer() {
         this.setState({
             visDetaljer: !this.state.visDetaljer
         });
+    }
+
+    handleShortcut(event: KeyboardEvent) {
+        if (event.key === 'Enter') {
+            this.toggleVisDetaljer();
+        }
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.erValgt(this.props) && !this.erValgt(prevProps) && this.myRef.current) {
+            this.myRef.current.focus();
+            window.addEventListener('keydown', this.handleShortcut);
+        } else if (!this.erValgt(this.props)) {
+            window.removeEventListener('keydown', this.handleShortcut);
+        }
+    }
+
+    erValgt(props: Props) {
+        if (props.utbetaling && props.utbetaling.ytelser) {
+            return props.valgtYtelse === props.utbetaling.ytelser[0];
+        }
+        return false;
+    }
+
+    setTilValgtYtelse() {
+        console.log('focusing on utbetaling');
+        if (this.props.utbetaling && this.props.utbetaling.ytelser) {
+            this.props.updateValgtYtelse(this.props.utbetaling.ytelser[0]);
+        }
     }
 
     render() {
@@ -81,7 +120,13 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             ? `Forfallsdato: ${dato}` : '';
 
         return (
-            <UtbetalingStyle onClick={this.toggleVisDetaljer} åpen={this.state.visDetaljer}>
+            <UtbetalingStyle
+                onClick={this.toggleVisDetaljer}
+                åpen={this.state.visDetaljer}
+                innerRef={this.myRef}
+                tabIndex={0}
+                onFocus={this.setTilValgtYtelse}
+            >
                 <SpaceBetween>
                     <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
                     <UndertekstBold>{sum}</UndertekstBold>
@@ -113,16 +158,16 @@ class EnkelUtbetaling extends React.Component<Props, State> {
 }
 
 function Utbetaling(props: Props) {
-    const utbetaling = props.utbetaling;
-    if (!utbetaling.ytelser) {
-        console.error('Utbetaling mangler ytelser', utbetaling);
+    if (!props.utbetaling.ytelser) {
+        console.error('Utbetaling mangler ytelser', props.utbetaling);
         return <AlertStripeInfo>Manglende data om utbetaling</AlertStripeInfo>;
     }
 
-    const enkeltYtelse = utbetaling.ytelser.length === 1;
+    const enkeltYtelse = props.utbetaling.ytelser.length === 1;
+
     return enkeltYtelse
-        ? <EnkelUtbetaling utbetaling={utbetaling}/>
-        : <SammensattUtbetaling utbetaling={utbetaling}/>;
+        ? <EnkelUtbetaling {...props}/>
+        : <SammensattUtbetaling {...props}/>;
 }
 
 export default Utbetaling;

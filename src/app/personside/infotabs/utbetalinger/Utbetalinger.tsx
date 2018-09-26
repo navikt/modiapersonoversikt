@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling } from '../../../../models/utbetalinger';
+import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
@@ -8,7 +8,8 @@ import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
-    getGjeldendeDatoForUtbetaling, getTypeFromYtelse,
+    getGjeldendeDatoForUtbetaling,
+    getTypeFromYtelse,
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
     utbetalingDatoComparator, utbetaltTilBruker
@@ -16,10 +17,18 @@ import {
 import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
+export interface FokusProps {
+    valgtYtelse?: Ytelse;
+    updateValgtYtelse: (ytelse: Ytelse) => void;
+}
+
 export interface UtbetalingerProps {
     utbetalinger: Utbetaling[];
     filter: FilterState;
+    handleShortcut: (event: KeyboardEvent) => void;
 }
+
+type Props = UtbetalingerProps & FokusProps;
 
 const MånedGruppeStyle = styled.li`
   > *:first-child {
@@ -76,11 +85,19 @@ const Wrapper = styled.div`
   }
 `;
 
-function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
+interface MånedsgruppeUniqueProps {
+    gruppe: ArrayGroup<Utbetaling>;
+}
+
+type MånedsgruppeProps = MånedsgruppeUniqueProps & FokusProps;
+
+function Månedsgruppe({gruppe, valgtYtelse, updateValgtYtelse}: MånedsgruppeProps) {
     const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
         <UtbetalingKomponent
-            utbetaling={utbetaling}
             key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
+            utbetaling={utbetaling}
+            valgtYtelse={valgtYtelse}
+            updateValgtYtelse={updateValgtYtelse}
         />
     ));
     return (
@@ -112,7 +129,16 @@ function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
     );
 }
 
-function Utbetalinger(props: UtbetalingerProps) {
+function addKeyboardListener(props: Props) {
+    return () => window.addEventListener('keydown', props.handleShortcut);
+}
+
+function removeKeyboardListener(props: Props) {
+    return () => window.removeEventListener('keydown', props.handleShortcut);
+
+}
+
+function Utbetalinger(props: Props) {
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, props.filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
@@ -126,16 +152,22 @@ function Utbetalinger(props: UtbetalingerProps) {
         filtrerteUtbetalinger.sort(utbetalingDatoComparator),
         månedOgÅrForUtbetaling
     );
-    const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) =>
-        <Månedsgruppe gruppe={gruppe} key={gruppe.category}/>
-    );
+
+    const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) => (
+        <Månedsgruppe
+            gruppe={gruppe}
+            key={gruppe.category}
+            valgtYtelse={props.valgtYtelse}
+            updateValgtYtelse={props.updateValgtYtelse}
+        />
+    ));
 
     return (
         <Wrapper>
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
             <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
-                <UtbetalingerListe>
+                <UtbetalingerListe onFocus={addKeyboardListener(props)} onBlur={removeKeyboardListener(props)}>
                     {månedsGrupper}
                 </UtbetalingerListe>
             </UtbetalingerArticle>
