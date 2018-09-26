@@ -23,7 +23,6 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggleAdminBrukerprofil } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
-import { lagMockDokument } from './saksoversikt/dokument-mock';
 
 const STATUS_OK = () => 200;
 
@@ -60,14 +59,6 @@ function setupSaksoversiktMock(mock: FetchMock) {
         randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockSaksoversikt(fødselsnummer))
-    ));
-}
-
-function setupDokumentMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/saker/dokument/:journalpostId/:dokumentreferanse', withDelayedResponse(
-        randomDelay(),
-        STATUS_OK,
-        () => lagMockDokument()
     ));
 }
 
@@ -262,7 +253,6 @@ export function setupMock() {
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);
     setupSaksoversiktMock(mock);
-    setupDokumentMock(mock);
     setupUtbetalingerMock(mock);
     setupSykepengerMock(mock);
     setupForeldrepengerMock(mock);

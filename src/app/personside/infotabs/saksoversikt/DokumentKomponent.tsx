@@ -1,15 +1,13 @@
 import * as React from 'react';
-import {DokumentMetadata as DokumentInterface, Entitet} from '../../../../models/saksoversikt/dokumentmetadata';
+import { DokumentMetadata as DokumentInterface, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as moment from 'moment';
-import {saksdatoSomDate} from '../../../../models/saksoversikt/fellesSak';
+import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
-import {UnmountClosed} from 'react-collapse';
-import {getDokument} from '../../../../api/saksoversikt-api';
-
-// const mockPdf = require('../../../../mock/saksoversikt/mock_saksdokument.pdf');
+import { UnmountClosed } from 'react-collapse';
+import { getSaksdokument } from '../../../../utils/url-utils';
 
 interface Props {
     dokument: DokumentInterface;
@@ -17,7 +15,6 @@ interface Props {
 
 interface State {
     åpnet: boolean;
-    lastetDokument?: string;
 }
 
 const Wrapper = styled.div`
@@ -43,24 +40,19 @@ class DokumentKomponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            åpnet: false,
-            lastetDokument: undefined
+            åpnet: false
         };
     }
 
     toggle() {
         const åpnet = !this.state.åpnet;
         this.setState({åpnet: åpnet});
-        if (åpnet) {
-            getDokument(this.props.dokument.journalpostId, this.props.dokument.hoveddokument.dokumentreferanse)
-                .then((stream: ReadableStream) => stream.getReader().read())
-                .then((data: any) => this.setState({ lastetDokument: data as string }))
-        }
     }
 
     render() {
         const dokument = this.props.dokument;
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
+        const dokUrl = getSaksdokument(dokument.journalpostId, dokument.hoveddokument.dokumentreferanse);
 
         return (
             <Wrapper onClick={() => this.toggle()}>
@@ -68,7 +60,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                 <UndertekstBold>{dokument.navn}</UndertekstBold>
                 <Undertekst>Saksid: {saksid}</Undertekst>
                 <UnmountClosed isOpened={this.state.åpnet}>
-                    <object data={this.state.lastetDokument} type={'application/pdf'} width={'100%'} height={'400px'}/>
+                    <object data={dokUrl} width={'100%'} height={'500px'}/>
                 </UnmountClosed>
             </Wrapper>
         );
