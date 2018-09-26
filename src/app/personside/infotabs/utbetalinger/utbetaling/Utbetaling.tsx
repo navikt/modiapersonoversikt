@@ -18,7 +18,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import { FokusProps } from '../Utbetalinger';
 
-export interface UtbetalingComponentProps {
+interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
 }
 
@@ -67,7 +67,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.handleShortcut = this.handleShortcut.bind(this);
+        this.håndterEnterSnarvei = this.håndterEnterSnarvei.bind(this);
         this.setTilValgtYtelse = this.setTilValgtYtelse.bind(this);
     }
 
@@ -77,7 +77,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         });
     }
 
-    handleShortcut(event: KeyboardEvent) {
+    håndterEnterSnarvei(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.toggleVisDetaljer();
         }
@@ -86,9 +86,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props) {
         if (this.erValgt(this.props) && !this.erValgt(prevProps) && this.myRef.current) {
             this.myRef.current.focus();
-            window.addEventListener('keydown', this.handleShortcut);
+            window.addEventListener('keydown', this.håndterEnterSnarvei);
         } else if (!this.erValgt(this.props)) {
-            window.removeEventListener('keydown', this.handleShortcut);
+            window.removeEventListener('keydown', this.håndterEnterSnarvei);
         }
     }
 
@@ -100,7 +100,6 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     setTilValgtYtelse() {
-        console.log('focusing on utbetaling');
         if (this.props.utbetaling && this.props.utbetaling.ytelser) {
             this.props.updateValgtYtelse(this.props.utbetaling.ytelser[0]);
         }

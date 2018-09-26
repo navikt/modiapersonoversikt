@@ -133,7 +133,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     updateValgtYtelse(nyYtelse: Ytelse | undefined) {
-        console.log('Ny ytelse', nyYtelse);
         this.setState({
             valgtYtelse: nyYtelse
         });
@@ -142,7 +141,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     handleShortcut(event: KeyboardEvent) {
         const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
         if (this.state.valgtYtelse === undefined) {
-            console.log('resetter');
             this.updateValgtYtelse(ytelser[0]);
         } else if (event.key === 'ArrowDown') {
             this.updateValgtYtelse(finnNesteYtelse(this.state.valgtYtelse, ytelser, true));
@@ -187,10 +185,9 @@ function finnNesteYtelse(valgtYtelse: Ytelse, ytelser: Ytelse[], retningNed: boo
     let nextIndex = retningNed ? currentIndex + 1 : currentIndex - 1;
     if (nextIndex >= ytelser.length) {
         nextIndex = 0;
-    } else if (nextIndex === -1) {
+    } else if (nextIndex <= 0) {
         nextIndex = ytelser.length - 1;
     }
-    console.log(nextIndex);
     return ytelser[nextIndex];
 }
 

@@ -45,7 +45,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.handleShortcut = this.handleShortcut.bind(this);
+        this.håndterEnterSnarvei = this.håndterEnterSnarvei.bind(this);
         this.setTilValgtYtelse = this.setTilValgtYtelse.bind(this);
     }
 
@@ -55,7 +55,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
         });
     }
 
-    handleShortcut(event: KeyboardEvent) {
+    håndterEnterSnarvei(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.toggleVisDetaljer();
         }
@@ -64,9 +64,9 @@ class EnkeltYtelse extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props) {
         if (this.erValgt(this.props) && !this.erValgt(prevProps) && this.myRef.current) {
             this.myRef.current.focus();
-            window.addEventListener('keydown', this.handleShortcut);
+            window.addEventListener('keydown', this.håndterEnterSnarvei);
         } else if (!this.erValgt(this.props)) {
-            window.removeEventListener('keydown', this.handleShortcut);
+            window.removeEventListener('keydown', this.håndterEnterSnarvei);
         }
     }
 
@@ -78,7 +78,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
     }
 
     setTilValgtYtelse() {
-        if (this.props.ytelse && this.props.updateValgtYtelse) {
+        if (this.props.ytelse) {
             this.props.updateValgtYtelse(this.props.ytelse);
         }
     }

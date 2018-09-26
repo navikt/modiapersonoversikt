@@ -22,14 +22,6 @@ export interface FokusProps {
     updateValgtYtelse: (ytelse: Ytelse) => void;
 }
 
-export interface UtbetalingerProps {
-    utbetalinger: Utbetaling[];
-    filter: FilterState;
-    handleShortcut: (event: KeyboardEvent) => void;
-}
-
-type Props = UtbetalingerProps & FokusProps;
-
 const MånedGruppeStyle = styled.li`
   > *:first-child {
     background-color: rgba(102, 203, 236, 0.18);
@@ -129,16 +121,23 @@ function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
     );
 }
 
-function addKeyboardListener(props: Props) {
+function addKeyboardListener(props: UtbetalingerProps) {
     return () => window.addEventListener('keydown', props.handleShortcut);
 }
 
-function removeKeyboardListener(props: Props) {
+function removeKeyboardListener(props: UtbetalingerProps) {
     return () => window.removeEventListener('keydown', props.handleShortcut);
-
 }
 
-function Utbetalinger(props: Props) {
+interface UtbetalingerUniqueProps {
+    utbetalinger: Utbetaling[];
+    filter: FilterState;
+    handleShortcut: (event: KeyboardEvent) => void;
+}
+
+type UtbetalingerProps = UtbetalingerUniqueProps & FokusProps;
+
+function Utbetalinger(props: UtbetalingerProps) {
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, props.filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
