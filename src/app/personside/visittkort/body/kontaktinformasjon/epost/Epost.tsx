@@ -29,7 +29,12 @@ interface EpostVisningProps {
 
 export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
-        return <Normaltekst>Reservert mot kommunikasjon på nett</Normaltekst>;
+        return (
+            <>
+                <Normaltekst>Reservert</Normaltekst>
+                <EtikettGrå>I Kontakt- og reservasjonsregisteret</EtikettGrå>
+            </>
+        );
     } else if (kontaktinformasjon.epost) {
         return <Epost epost={kontaktinformasjon.epost}/>;
     } else {
