@@ -18,8 +18,8 @@ import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export interface FokusProps {
-    valgtYtelse?: Ytelse;
-    updateValgtYtelse: (ytelse: Ytelse) => void;
+    ytelseIFokus: Ytelse | null;
+    updateYtelseIFokus: (ytelse: Ytelse) => void;
 }
 
 const MånedGruppeStyle = styled.li`
@@ -83,13 +83,12 @@ interface MånedsgruppeUniqueProps {
 
 type MånedsgruppeProps = MånedsgruppeUniqueProps & FokusProps;
 
-function Månedsgruppe({gruppe, valgtYtelse, updateValgtYtelse}: MånedsgruppeProps) {
+function Månedsgruppe({gruppe, ...props}: MånedsgruppeProps) {
     const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
         <UtbetalingKomponent
             key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
             utbetaling={utbetaling}
-            valgtYtelse={valgtYtelse}
-            updateValgtYtelse={updateValgtYtelse}
+            {...props}
         />
     ));
     return (
@@ -117,16 +116,16 @@ function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
         reduceUtbetlingerTilYtelser([utbetaling])
             .map(getTypeFromYtelse);
     return filter.ytelser.some(
-        valgtYtelse => ytelsesTyperIUtbetaling.includes(valgtYtelse)
+        ytelseIFokus => ytelsesTyperIUtbetaling.includes(ytelseIFokus)
     );
 }
 
-function addKeyboardListener(props: UtbetalingerProps) {
-    return () => window.addEventListener('keydown', props.handleShortcut);
+function addPilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
+    return () => window.addEventListener('keydown', handleShortcut);
 }
 
-function removeKeyboardListener(props: UtbetalingerProps) {
-    return () => window.removeEventListener('keydown', props.handleShortcut);
+function removePilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
+    return () => window.removeEventListener('keydown', handleShortcut);
 }
 
 interface UtbetalingerUniqueProps {
@@ -137,8 +136,8 @@ interface UtbetalingerUniqueProps {
 
 type UtbetalingerProps = UtbetalingerUniqueProps & FokusProps;
 
-function Utbetalinger(props: UtbetalingerProps) {
-    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, props.filter);
+function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
+    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
@@ -154,19 +153,21 @@ function Utbetalinger(props: UtbetalingerProps) {
 
     const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) => (
         <Månedsgruppe
-            gruppe={gruppe}
             key={gruppe.category}
-            valgtYtelse={props.valgtYtelse}
-            updateValgtYtelse={props.updateValgtYtelse}
+            gruppe={gruppe}
+            {...props}
         />
     ));
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={filter}/>
             <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
-                <UtbetalingerListe onFocus={addKeyboardListener(props)} onBlur={removeKeyboardListener(props)}>
+                <UtbetalingerListe
+                    onFocus={addPilknappListener(handleShortcut)}
+                    onBlur={removePilknappListener(handleShortcut)}
+                >
                     {månedsGrupper}
                 </UtbetalingerListe>
             </UtbetalingerArticle>

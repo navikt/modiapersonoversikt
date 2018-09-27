@@ -45,8 +45,8 @@ class EnkeltYtelse extends React.Component<Props, State> {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.håndterEnterSnarvei = this.håndterEnterSnarvei.bind(this);
-        this.setTilValgtYtelse = this.setTilValgtYtelse.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
+        this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
     }
 
     toggleVisDetaljer() {
@@ -55,31 +55,31 @@ class EnkeltYtelse extends React.Component<Props, State> {
         });
     }
 
-    håndterEnterSnarvei(event: KeyboardEvent) {
+    handleEnter(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.toggleVisDetaljer();
         }
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.erValgt(this.props) && !this.erValgt(prevProps) && this.myRef.current) {
+        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.myRef.current) {
             this.myRef.current.focus();
-            window.addEventListener('keydown', this.håndterEnterSnarvei);
-        } else if (!this.erValgt(this.props)) {
-            window.removeEventListener('keydown', this.håndterEnterSnarvei);
+            window.addEventListener('keydown', this.handleEnter);
+        } else if (!this.erIFokus(this.props)) {
+            window.removeEventListener('keydown', this.handleEnter);
         }
     }
 
-    erValgt(props: Props) {
+    erIFokus(props: Props) {
         if (props.ytelse) {
-            return props.valgtYtelse === props.ytelse;
+            return props.ytelseIFokus === props.ytelse;
         }
         return false;
     }
 
-    setTilValgtYtelse() {
+    setTilYtelseIFokus() {
         if (this.props.ytelse) {
-            this.props.updateValgtYtelse(this.props.ytelse);
+            this.props.updateYtelseIFokus(this.props.ytelse);
         }
     }
 
@@ -93,7 +93,8 @@ class EnkeltYtelse extends React.Component<Props, State> {
                 åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}
-                onFocus={this.setTilValgtYtelse}
+                onFocus={this.setTilYtelseIFokus}
+                onBlur={() => window.removeEventListener('keydown', this.handleEnter)}
             >
                 <SpaceBetween>
                     <UndertekstBold>

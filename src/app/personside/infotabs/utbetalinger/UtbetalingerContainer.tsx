@@ -18,7 +18,7 @@ import moment = require('moment');
 
 interface State {
     filter: FilterState;
-    valgtYtelse?: Ytelse;
+    ytelseIFokus: Ytelse | null;
 }
 
 const initialState: State = {
@@ -32,7 +32,8 @@ const initialState: State = {
         },
         utbetaltTil: [],
         ytelser: []
-    }
+    },
+    ytelseIFokus: null
 };
 
 interface StateProps {
@@ -98,9 +99,8 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
-        this.handleShortcut = this.handleShortcut.bind(this);
-        this.updateValgtYtelse = this.updateValgtYtelse.bind(this);
-        setTimeout(() => this.setState({valgtYtelse: undefined}), 2000);
+        this.handlePilknapper = this.handlePilknapper.bind(this);
+        this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
     }
 
     onFilterChange(change: Partial<FilterState>) {
@@ -132,20 +132,20 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         }
     }
 
-    updateValgtYtelse(nyYtelse: Ytelse | undefined) {
+    updateYtelseIFokus(nyYtelse: Ytelse | null) {
         this.setState({
-            valgtYtelse: nyYtelse
+            ytelseIFokus: nyYtelse
         });
     }
 
-    handleShortcut(event: KeyboardEvent) {
+    handlePilknapper(event: KeyboardEvent) {
         const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
-        if (this.state.valgtYtelse === undefined) {
-            this.updateValgtYtelse(ytelser[0]);
+        if (this.state.ytelseIFokus === null) {
+            this.updateYtelseIFokus(ytelser[0]);
         } else if (event.key === 'ArrowDown') {
-            this.updateValgtYtelse(finnNesteYtelse(this.state.valgtYtelse, ytelser, true));
+            this.updateYtelseIFokus(finnNesteYtelse(this.state.ytelseIFokus, ytelser));
         } else if (event.key === 'ArrowUp') {
-            this.updateValgtYtelse(finnNesteYtelse(this.state.valgtYtelse, ytelser, false));
+            this.updateYtelseIFokus(finnForrigeYtelse(this.state.ytelseIFokus, ytelser));
         }
     }
 
@@ -166,10 +166,10 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                                valgtYtelse={this.state.valgtYtelse}
+                                ytelseIFokus={this.state.ytelseIFokus}
                                 filter={this.state.filter}
-                                handleShortcut={this.handleShortcut}
-                                updateValgtYtelse={this.updateValgtYtelse}
+                                handleShortcut={this.handlePilknapper}
+                                updateYtelseIFokus={this.updateYtelseIFokus}
                             />
                         </Innholdslaster>
                         <ArenaLenke/>
@@ -180,15 +180,14 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 }
 
-function finnNesteYtelse(valgtYtelse: Ytelse, ytelser: Ytelse[], retningNed: boolean) {
-    const currentIndex = ytelser.findIndex(ytelse => ytelse === valgtYtelse);
-    let nextIndex = retningNed ? currentIndex + 1 : currentIndex - 1;
-    if (nextIndex >= ytelser.length) {
-        nextIndex = 0;
-    } else if (nextIndex <= 0) {
-        nextIndex = ytelser.length - 1;
-    }
-    return ytelser[nextIndex];
+function finnNesteYtelse(ytelseIFokus: Ytelse, ytelser: Ytelse[]) {
+    const currentIndex = ytelser.indexOf(ytelseIFokus);
+    return ytelser[currentIndex + 1] || ytelser[0];
+}
+
+function finnForrigeYtelse(ytelseIFokus: Ytelse, ytelser: Ytelse[]) {
+    const currentIndex = ytelser.indexOf(ytelseIFokus);
+    return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
 }
 
 function mapStateToProps(state: AppState): StateProps {

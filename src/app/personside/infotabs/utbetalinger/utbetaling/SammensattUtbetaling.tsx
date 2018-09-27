@@ -55,8 +55,8 @@ function SammensattUtbetaling(props: Props) {
             konto={utbetaling.konto}
             melding={utbetaling.melding}
             key={index}
-            valgtYtelse={props.valgtYtelse}
-            updateValgtYtelse={props.updateValgtYtelse}
+            ytelseIFokus={props.ytelseIFokus}
+            updateYtelseIFokus={props.updateYtelseIFokus}
         />
     ));
 

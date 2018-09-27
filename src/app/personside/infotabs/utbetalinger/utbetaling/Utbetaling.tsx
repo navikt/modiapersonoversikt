@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
+import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import styled from 'styled-components';
@@ -67,8 +67,8 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.håndterEnterSnarvei = this.håndterEnterSnarvei.bind(this);
-        this.setTilValgtYtelse = this.setTilValgtYtelse.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
+        this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
     }
 
     toggleVisDetaljer() {
@@ -77,32 +77,30 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         });
     }
 
-    håndterEnterSnarvei(event: KeyboardEvent) {
+    handleEnter(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.toggleVisDetaljer();
         }
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.erValgt(this.props) && !this.erValgt(prevProps) && this.myRef.current) {
+        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.myRef.current) {
             this.myRef.current.focus();
-            window.addEventListener('keydown', this.håndterEnterSnarvei);
-        } else if (!this.erValgt(this.props)) {
-            window.removeEventListener('keydown', this.håndterEnterSnarvei);
+            window.addEventListener('keydown', this.handleEnter);
+        } else if (!this.erIFokus(this.props)) {
+            window.removeEventListener('keydown', this.handleEnter);
         }
     }
 
-    erValgt(props: Props) {
+    erIFokus(props: Props) {
         if (props.utbetaling && props.utbetaling.ytelser) {
-            return props.valgtYtelse === props.utbetaling.ytelser[0];
+            return props.ytelseIFokus === props.utbetaling.ytelser[0];
         }
         return false;
     }
 
-    setTilValgtYtelse() {
-        if (this.props.utbetaling && this.props.utbetaling.ytelser) {
-            this.props.updateValgtYtelse(this.props.utbetaling.ytelser[0]);
-        }
+    setTilYtelseIFokus(ytelse: Ytelse) {
+        this.props.updateYtelseIFokus(ytelse);
     }
 
     render() {
@@ -124,7 +122,8 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                 åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}
-                onFocus={this.setTilValgtYtelse}
+                onFocus={() => this.setTilYtelseIFokus(ytelse)}
+                onBlur={() => window.removeEventListener('keydown', this.handleEnter)}
             >
                 <SpaceBetween>
                     <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
