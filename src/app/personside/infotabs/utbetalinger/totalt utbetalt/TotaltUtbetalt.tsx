@@ -19,6 +19,7 @@ import DetaljerKnapp from '../utils/DetaljerKnapp';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -86,7 +87,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Wrapper onClick={this.toggleVisDetaljer}>
+            <Wrapper onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}>
                 <Undertittel>Totalt utbetalt for perioden</Undertittel>
                 <KnappWrapper>
                     <PrintKnapp onClick={() => console.log('ikke implementert')}/>

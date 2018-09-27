@@ -15,6 +15,7 @@ import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 
 export interface EnkeltYtelseProps {
     ytelse: Ytelse;
@@ -67,7 +68,10 @@ class EnkeltYtelse extends React.Component<EnkeltYtelseProps, EnkeltYtelseState>
         const periode = periodeStringFromYtelse(ytelse);
 
         return (
-            <EnkeltYtelseStyle onClick={this.toggleVisDetaljer} åpen={this.state.visDetaljer}>
+            <EnkeltYtelseStyle
+                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
+                åpen={this.state.visDetaljer}
+            >
                 <SpaceBetween>
                     <UndertekstBold>
                         {ytelse.type}
