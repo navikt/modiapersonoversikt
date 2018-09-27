@@ -31,7 +31,12 @@ interface MobiltelefonVisningProps {
 
 export function MobiltelefonVisning({kontaktinformasjon }: MobiltelefonVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
-        return <Normaltekst>Reservert mot kommunikasjon på nett</Normaltekst>;
+        return (
+            <>
+                <Normaltekst>Reservert</Normaltekst>
+                <EtikettGrå>I Kontakt- og reservasjonsregisteret</EtikettGrå>
+            </>
+        );
     } else if (kontaktinformasjon.mobiltelefon) {
         return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
     } else {
