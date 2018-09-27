@@ -9,13 +9,14 @@ import { theme } from '../../../../styles/personOversiktTheme';
 import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 
 interface Props {
     sakstema: Sakstema;
     oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
-const KnappWrapper = styled.button`
+const Knapp = styled.button`
   border: none;
   padding: 0;
   height: 1.2rem;
@@ -23,11 +24,18 @@ const KnappWrapper = styled.button`
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
-  &:hover {
-    background-color: ${theme.color.hoverLink};
-  }
   &:focus {
     ${theme.focus}
+  }
+`;
+
+const KnappWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  svg {
+    margin-top: .3rem;
+    height: ${theme.margin.px30};
+    width: ${theme.margin.px30};
   }
 `;
 
@@ -110,8 +118,11 @@ function SakstemaComponent(props: Props) {
                 {tellUnderBehandling(props.sakstema)}
                 {tellFerdigBehandlet(props.sakstema)}
             </div>
-            <KnappWrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
-                <HoyreChevron/>
+            <KnappWrapper>
+                <SakIkkeTilgangIkon/>
+                <Knapp onClick={() => props.oppdaterSakstema(props.sakstema)}>
+                    <HoyreChevron stor={true}/>
+                </Knapp>
             </KnappWrapper>
         </Wrapper>
     );

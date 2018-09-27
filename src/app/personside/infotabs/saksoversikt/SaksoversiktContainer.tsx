@@ -44,19 +44,23 @@ const SaksoversiktArticle = styled.article`
   .visually-hidden {
     ${theme.visuallyHidden}
   }
+  > * {
+    margin-bottom: ${theme.margin.layout};
+  }
 `;
 
 const SakstemaSection = styled.section`
+  border-radius: ${theme.borderRadius.layout};
   background-color: white;
   min-width: 18rem;
   flex-basis: 18rem;
 `;
 
 const SakSection = styled.section`
+  border-radius: ${theme.borderRadius.layout};
   background-color: white;
   position: relative;
   flex-grow: 1;
-  min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
   @media not all and (max-width: ${saksoversiktMediaTreshold}) {
       margin-left: ${theme.margin.layout};
   }

@@ -63,6 +63,10 @@ const Wrapper = styled.div`
 
 const TittelWrapper = styled.div`
   padding: ${theme.margin.px20} ${theme.margin.px50};
+  svg {
+    height: ${theme.margin.px30};
+    width: auto;
+  }
 `;
 
 function GruppertTema(props: SakstemaProps) {
