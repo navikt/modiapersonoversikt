@@ -5,9 +5,10 @@ import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
-import VergemålLogo from '../../../../svg/Utropstegn';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import { Sak } from '../../../../models/saksoversikt/sak';
+import { Undertittel } from 'nav-frontend-typografi';
+import SaksIkon from '../../../../svg/SaksIkon';
 
 export interface SakstemaProps {
     sakstema: Sakstema[];
@@ -58,6 +59,10 @@ const Wrapper = styled.div`
       }
     }
   }
+`;
+
+const TittelWrapper = styled.div`
+  padding: ${theme.margin.px20} ${theme.margin.px50};
 `;
 
 function GruppertTema(props: SakstemaProps) {
@@ -123,9 +128,11 @@ function SakstemaVisning(props: SakstemaProps) {
 
     return (
         <Wrapper>
-            <TittelOgIkon tittel={'SakerVisning'} ikon={<VergemålLogo/>} />
+            <TittelWrapper>
+                <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
+            </TittelWrapper>
             <SakstemaListe>
-                <GruppertTema sakstema={komplettListe} oppdaterSakstema={props.oppdaterSakstema} />
+                <GruppertTema sakstema={komplettListe} oppdaterSakstema={props.oppdaterSakstema}/>
             </SakstemaListe>
         </Wrapper>
     );
