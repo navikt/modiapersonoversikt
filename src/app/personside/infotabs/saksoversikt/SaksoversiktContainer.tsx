@@ -49,14 +49,14 @@ const SaksoversiktArticle = styled.article`
   }
 `;
 
-const SakstemaSection = styled.section`
+const SakstemaListe = styled.section`
   border-radius: ${theme.borderRadius.layout};
   background-color: white;
   min-width: 18rem;
   flex-basis: 18rem;
 `;
 
-const SakSection = styled.section`
+const DokumentListe = styled.section`
   border-radius: ${theme.borderRadius.layout};
   background-color: white;
   position: relative;
@@ -67,6 +67,8 @@ const SakSection = styled.section`
 `;
 
 class SaksoversiktContainer extends React.Component<Props, State> {
+
+    private dokumentListeRef = React.createRef<HTMLElement>();
 
     constructor(props: Props) {
         super(props);
@@ -84,6 +86,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
     oppdaterSakstema(sakstema: Sakstema) {
         this.setState({valgtSakstema: sakstema });
+        if (this.dokumentListeRef.current) {
+            this.dokumentListeRef.current.scrollIntoView({behavior: 'smooth'});
+        }
     }
 
     render() {
@@ -91,17 +96,17 @@ class SaksoversiktContainer extends React.Component<Props, State> {
             <ErrorBoundary>
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
-                    <SakstemaSection>
+                    <SakstemaListe>
                         <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
                             <SakstemaVisning
                                 sakstema={this.props.saksoversiktReducer.data.resultat}
                                 oppdaterSakstema={this.oppdaterSakstema}
                             />
                         </Innholdslaster>
-                    </SakstemaSection>
-                    <SakSection>
+                    </SakstemaListe>
+                    <DokumentListe innerRef={this.dokumentListeRef}>
                         <DokumenterVisning sakstema={this.state.valgtSakstema}/>
-                    </SakSection>
+                    </DokumentListe>
                 </SaksoversiktArticle>
             </ErrorBoundary>
         );
