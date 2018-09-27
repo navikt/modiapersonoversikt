@@ -19,6 +19,7 @@ export const theme = {
         layout: '.8rem',
         px50: '3.125rem',
         px40: '2.5rem',
+        px30: '1.875rem',
         px20: '1.25rem',
         px10: '.6rem'
     },
