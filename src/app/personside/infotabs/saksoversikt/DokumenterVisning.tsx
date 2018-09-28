@@ -18,12 +18,10 @@ interface Props {
     sakstema?: Sakstema;
 }
 
-const CheckboxWrapper = styled.section`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+const Header = styled.section`
   padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   > * {
     padding: 10px;
   }
@@ -86,10 +84,14 @@ const Wrapper = styled.div`
 
 const LenkeNorgStyle = styled.div`
   flex-grow: 1;
+  white-space: nowrap;
+`;
+
+const Form = styled.form`
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-size: 0.9em;
+  > *:not(:last-child) {
+    padding-right: 1rem;
+  }
 `;
 
 function LenkeNorg({url}: {url: string}) {
@@ -158,19 +160,21 @@ function DokumenterVisning(props: Props) {
     );
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} key={gruppe.category} />
+        <Dokumentgruppe gruppe={gruppe} key={gruppe.category}/>
     );
 
     const url = norgUrl + props.sakstema.temakode;
 
     return (
         <Wrapper>
-            <CheckboxWrapper>
+            <Header>
                 <LenkeNorg url={url}/>
-                <Checkbox label={'Bruker'} checked={true}/>
-                <Checkbox label={'NAV'} checked={true}/>
-                <Checkbox label={'Andre'} checked={true}/>
-            </CheckboxWrapper>
+                <Form>
+                    <Checkbox label={'Bruker'} checked={true}/>
+                    <Checkbox label={'NAV'} checked={true}/>
+                    <Checkbox label={'Andre'} checked={true}/>
+                </Form>
+            </Header>
             <DokumenterArticle>
                 <DokumenterListe>
                     {årsgrupper}

@@ -45,6 +45,9 @@ const Wrapper = styled.div`
     &:hover {
       background-color: rgba(102, 203, 236, 0.18);
     }
+    &:active {
+      background-color: rgba(102, 203, 236, 0.35);
+    }
     > *:first-child {
         flex-grow: 1;
     }

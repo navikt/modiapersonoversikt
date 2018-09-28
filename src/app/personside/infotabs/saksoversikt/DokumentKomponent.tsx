@@ -2,12 +2,11 @@ import * as React from 'react';
 import { DokumentMetadata as DokumentInterface, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import * as moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import { UnmountClosed } from 'react-collapse';
 import { getSaksdokument } from '../../../../utils/url-utils';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
     dokument: DokumentInterface;
@@ -20,6 +19,11 @@ interface State {
 const Wrapper = styled.div`
   padding: ${theme.margin.px20} ${theme.margin.px10};
   cursor: pointer;
+`;
+
+const BoxShadow = styled.div`
+  margin-top: 2rem;
+  box-shadow: 0 0 2rem #888;
 `;
 
 function formatterEntitet(fra: Entitet) {
@@ -56,11 +60,15 @@ class DokumentKomponent extends React.Component<Props, State> {
 
         return (
             <Wrapper onClick={() => this.toggle()}>
-                <Undertekst>{formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}</Undertekst>
-                <UndertekstBold>{dokument.navn}</UndertekstBold>
-                <Undertekst>Saksid: {saksid}</Undertekst>
+                <Normaltekst>
+                    {formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                </Normaltekst>
+                <Element>{dokument.navn}</Element>
+                <Normaltekst>Saksid: {saksid}</Normaltekst>
                 <UnmountClosed isOpened={this.state.åpnet}>
-                    <object data={dokUrl} width={'100%'} height={'500px'}/>
+                    <BoxShadow>
+                        <object data={dokUrl} width={'100%'} height={'500px'}/>
+                    </BoxShadow>
                 </UnmountClosed>
             </Wrapper>
         );
