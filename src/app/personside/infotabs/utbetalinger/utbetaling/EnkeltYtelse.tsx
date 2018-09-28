@@ -47,6 +47,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
         this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
+        this.removeEnterListener = this.removeEnterListener.bind(this);
     }
 
     toggleVisDetaljer() {
@@ -64,10 +65,18 @@ class EnkeltYtelse extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props) {
         if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.myRef.current) {
             this.myRef.current.focus();
-            window.addEventListener('keydown', this.handleEnter);
+            this.addEnterListener();
         } else if (!this.erIFokus(this.props)) {
-            window.removeEventListener('keydown', this.handleEnter);
+            this.removeEnterListener();
         }
+    }
+
+    removeEnterListener() {
+        window.removeEventListener('keydown', this.handleEnter);
+    }
+
+    addEnterListener() {
+        window.addEventListener('keydown', this.handleEnter);
     }
 
     erIFokus(props: Props) {
@@ -78,9 +87,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
     }
 
     setTilYtelseIFokus() {
-        if (this.props.ytelse) {
-            this.props.updateYtelseIFokus(this.props.ytelse);
-        }
+        this.props.updateYtelseIFokus(this.props.ytelse);
     }
 
     render() {
@@ -94,7 +101,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
                 innerRef={this.myRef}
                 tabIndex={0}
                 onFocus={this.setTilYtelseIFokus}
-                onBlur={() => window.removeEventListener('keydown', this.handleEnter)}
+                onBlur={this.removeEnterListener}
             >
                 <SpaceBetween>
                     <UndertekstBold>

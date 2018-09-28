@@ -139,14 +139,23 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     handlePilknapper(event: KeyboardEvent) {
-        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
-        if (this.state.ytelseIFokus === null) {
-            this.updateYtelseIFokus(ytelser[0]);
-        } else if (event.key === 'ArrowDown') {
-            this.updateYtelseIFokus(finnNesteYtelse(this.state.ytelseIFokus, ytelser));
+        if (event.key === 'ArrowDown') {
+            this.updateYtelseIFokus(this.finnNesteYtelse());
         } else if (event.key === 'ArrowUp') {
-            this.updateYtelseIFokus(finnForrigeYtelse(this.state.ytelseIFokus, ytelser));
+            this.updateYtelseIFokus(this.finnForrigeYtelse());
         }
+    }
+
+    finnNesteYtelse() {
+        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
+        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : -1;
+        return ytelser[currentIndex + 1] || ytelser[0];
+    }
+
+    finnForrigeYtelse() {
+        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
+        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : ytelser.length;
+        return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
     }
 
     render() {
@@ -178,16 +187,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
             </ErrorBoundary>
         );
     }
-}
-
-function finnNesteYtelse(ytelseIFokus: Ytelse, ytelser: Ytelse[]) {
-    const currentIndex = ytelser.indexOf(ytelseIFokus);
-    return ytelser[currentIndex + 1] || ytelser[0];
-}
-
-function finnForrigeYtelse(ytelseIFokus: Ytelse, ytelser: Ytelse[]) {
-    const currentIndex = ytelser.indexOf(ytelseIFokus);
-    return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
 }
 
 function mapStateToProps(state: AppState): StateProps {
