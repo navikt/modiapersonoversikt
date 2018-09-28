@@ -181,6 +181,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   order: -1;
 }
 
+.c19:focus {
+  outline: none;
+  box-shadow: 0 0 0px 3px #FFBD66;
+}
+
 .c19 > *:first-child,
 .c19 > *:nth-child(2),
 .c19 > *:nth-child(3) {
@@ -598,6 +603,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </h2>
         <ol
           className="c15"
+          onBlur={[Function]}
+          onFocus={[Function]}
         >
           <li
             className="c16"
@@ -618,7 +625,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             <ol>
               <li
                 className="c19"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="c20"
