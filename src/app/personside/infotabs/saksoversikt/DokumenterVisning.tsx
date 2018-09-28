@@ -8,14 +8,14 @@ import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetada
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import DokumentKomponent from './DokumentKomponent';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
-import { Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { Link } from 'react-router-dom';
-
-const norgUrl = 'https://norg2-frontend.nais.preprod.local/#/startsok?tema='; // TODO Flytt til property
+import { BaseUrlsResponse } from '../../../../models/baseurls';
+import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
 
 interface Props {
     sakstema?: Sakstema;
+    baseUrlsResponse: BaseUrlsResponse;
 }
 
 const Header = styled.section`
@@ -82,6 +82,12 @@ const Wrapper = styled.div`
   }
 `;
 
+const LenkeWrapper = styled.div`
+  > *:first-child {
+    padding-bottom: 0.5rem;
+  }
+`;
+
 const LenkeNorgStyle = styled.div`
   flex-grow: 1;
   white-space: nowrap;
@@ -94,16 +100,19 @@ const Form = styled.form`
   }
 `;
 
-function LenkeNorg({url}: {url: string}) {
+function lenkeNorg(sakstema: string, norg2Url: string) {
     return (
         <LenkeNorgStyle>
-            <Link
-                id={'lenketilnorg'}
-                className={'lenke'}
-                to={url}
+            <a
+                href={`${norg2Url}/#/startsok?tema=${sakstema}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lenke"
             >
-                Oversikt over enheter og tema de behandler
-            </Link>
+                <Normaltekst tag="span">
+                    Mer informasjon om kontoret
+                </Normaltekst>
+            </a>
         </LenkeNorgStyle>
     );
 }
@@ -139,6 +148,10 @@ function årForDokument(dok: DokumentMetadata) {
     return `${dok.dato.år}`;
 }
 
+function hentNorg2Url(baseUrlsResponse: BaseUrlsResponse) {
+    return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
+}
+
 function DokumenterVisning(props: Props) {
     if (!props.sakstema) {
         return <b>Ingen saker</b>;
@@ -163,12 +176,12 @@ function DokumenterVisning(props: Props) {
         <Dokumentgruppe gruppe={gruppe} key={gruppe.category}/>
     );
 
-    const url = norgUrl + props.sakstema.temakode;
-
     return (
         <Wrapper>
             <Header>
-                <LenkeNorg url={url}/>
+                <LenkeWrapper>
+                    {lenkeNorg(props.sakstema.temakode, hentNorg2Url(props.baseUrlsResponse))}
+                </LenkeWrapper>
                 <Form>
                     <Checkbox label={'Bruker'} checked={true}/>
                     <Checkbox label={'NAV'} checked={true}/>

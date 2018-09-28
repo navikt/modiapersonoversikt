@@ -107,7 +107,7 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     );
 
     return {
-        temanavn: 'Alle saker',
+        temanavn: 'Alle tema',
         temakode: 'ALLE',
         harTilgang: true,
         behandlingskjeder: alleBehandlingskjeder,

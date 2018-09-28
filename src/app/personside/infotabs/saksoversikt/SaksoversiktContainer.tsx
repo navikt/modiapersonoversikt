@@ -13,16 +13,20 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import DokumenterVisning from './DokumenterVisning';
 import SakstemaVisning from './SakstemaVisning';
+import { BaseUrlsResponse } from '../../../../models/baseurls';
+import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 
 interface State {
     valgtSakstema?: Sakstema;
 }
 
 interface StateProps {
+    baseUrlReducer: RestReducer<BaseUrlsResponse>;
     saksoversiktReducer: RestReducer<SakstemaWrapper>;
 }
 
 interface DispatchProps {
+    hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
 }
@@ -52,8 +56,8 @@ const SaksoversiktArticle = styled.article`
 const SakstemaListe = styled.section`
   border-radius: ${theme.borderRadius.layout};
   background-color: white;
-  min-width: 18rem;
-  flex-basis: 18rem;
+  min-width: 24rem;
+  flex-basis: 24rem;
 `;
 
 const DokumentListe = styled.section`
@@ -79,6 +83,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
+        if (this.props.baseUrlReducer.status ===  STATUS.NOT_STARTED) {
+            this.props.hentBaseUrls();
+        }
         if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
@@ -96,17 +103,20 @@ class SaksoversiktContainer extends React.Component<Props, State> {
             <ErrorBoundary>
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
-                    <SakstemaListe>
-                        <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
+                    <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
+                        <SakstemaListe>
                             <SakstemaVisning
                                 sakstema={this.props.saksoversiktReducer.data.resultat}
                                 oppdaterSakstema={this.oppdaterSakstema}
                             />
-                        </Innholdslaster>
-                    </SakstemaListe>
-                    <DokumentListe innerRef={this.dokumentListeRef}>
-                        <DokumenterVisning sakstema={this.state.valgtSakstema}/>
-                    </DokumentListe>
+                        </SakstemaListe>
+                        <DokumentListe innerRef={this.dokumentListeRef}>
+                            <DokumenterVisning
+                                sakstema={this.state.valgtSakstema}
+                                baseUrlsResponse={this.props.baseUrlReducer.data}
+                            />
+                        </DokumentListe>
+                    </Innholdslaster>
                 </SaksoversiktArticle>
             </ErrorBoundary>
         );
@@ -115,12 +125,15 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState): StateProps {
     return ({
-          saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
+            baseUrlReducer: state.restEndepunkter.baseUrlReducer,
+            saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
         });
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
+        hentBaseUrls: () =>
+            dispatch(hentBaseUrls()),
         hentSaksoversikt: (fødselsnummer: string) =>
             dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) =>

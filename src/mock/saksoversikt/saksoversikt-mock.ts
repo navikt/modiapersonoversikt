@@ -8,6 +8,21 @@ import { getBehandlingskjeder } from './behandlingskjeder-mock';
 import { getDokumentMetadataListe } from './dokumentmetdata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 
+const temaarray = [
+    ['AAP', 'Arbeidsavklaringspenger'],
+    ['ENF', 'Enslig forsørger'],
+    ['BAR', 'Barnetrygd'],
+    ['IND', 'Tiltakspenger'],
+    ['OPP', 'Oppfølging'],
+    ['TSR', 'Tilleggsstønad arbeidssøkere'],
+    ['FEI', 'Filutbetaling'],
+    ['DAG', 'Dagpenger'],
+    ['FUL', 'Fullmakt'],
+    ['GEN', 'Generell'],
+    ['PEN', 'Pensjon'],
+    ['SYK', 'Sykepenger']
+];
+
 export function getMockSaksoversikt(fødselsnummer: string): SakstemaWrapper {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
@@ -26,21 +41,25 @@ function getSakstemaListe(): Sakstema[] {
 }
 
 function getSakstema(): Sakstema {
+    const index = navfaker.random.integer(temaarray.length - 1, 0);
+    const temakode = temaarray[index][0];
+    const temanavn = temaarray[index][1];
+
     return {
         harTilgang: faker.random.boolean(),
-        temakode: faker.random.alphaNumeric(8),
-        temanavn: faker.lorem.words(3),
+        temakode: temakode,
+        temanavn: temanavn,
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
         dokumentMetadata: getDokumentMetadataListe(faker, navfaker),
-        tilhorendeSaker: fyllRandomListe(() => getSak(), 5),
+        tilhorendeSaker: fyllRandomListe(() => getSak(temakode), 5),
         feilkoder: getFeilkoder()
     };
 }
 
-function getSak(): Sak {
+function getSak(temakode: string): Sak {
     return {
-        temakode: faker.random.alphaNumeric(8),
+        temakode: temakode,
         saksid: faker.random.alphaNumeric(8),
         fagsaksnummer: faker.random.alphaNumeric(8),
         avsluttet: getSaksdato(navfaker),

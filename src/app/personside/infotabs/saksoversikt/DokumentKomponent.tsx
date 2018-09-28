@@ -7,6 +7,7 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { UnmountClosed } from 'react-collapse';
 import { getSaksdokument } from '../../../../utils/url-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import Dokument from '../../../../svg/Dokument';
 
 interface Props {
     dokument: DokumentInterface;
@@ -19,6 +20,17 @@ interface State {
 const Wrapper = styled.div`
   padding: ${theme.margin.px20} ${theme.margin.px10};
   cursor: pointer;
+  svg {
+    height: ${theme.margin.px30};
+    width: auto;
+  }
+`;
+
+const IkonWrapper = styled.div`
+  display: flex;
+  > * {
+    padding-right: 1rem;
+  }
 `;
 
 const BoxShadow = styled.div`
@@ -60,11 +72,16 @@ class DokumentKomponent extends React.Component<Props, State> {
 
         return (
             <Wrapper onClick={() => this.toggle()}>
-                <Normaltekst>
-                    {formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
-                </Normaltekst>
-                <Element>{dokument.navn}</Element>
-                <Normaltekst>Saksid: {saksid}</Normaltekst>
+                <IkonWrapper>
+                    <Dokument />
+                    <div>
+                        <Normaltekst>
+                            {formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                        </Normaltekst>
+                        <Element>{dokument.navn}</Element>
+                        <Normaltekst>Saksid: {saksid}</Normaltekst>
+                    </div>
+                </IkonWrapper>
                 <UnmountClosed isOpened={this.state.åpnet}>
                     <BoxShadow>
                         <object data={dokUrl} width={'100%'} height={'500px'}/>

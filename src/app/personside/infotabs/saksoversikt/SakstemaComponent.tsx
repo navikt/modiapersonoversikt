@@ -92,7 +92,7 @@ function tellUnderBehandling(sakstema: Sakstema) {
     const antallUnderbehandling = sakstema.behandlingskjeder
         .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.UnderBehandling).length;
 
-    if (antallUnderbehandling === 0) {
+    if (antallUnderbehandling === 0 || sakstema.temakode === 'ALLE') {
         return null;
     }
 
@@ -104,7 +104,7 @@ function tellFerdigBehandlet(sakstema: Sakstema) {
     const antallFerdigBehandlet = sakstema.behandlingskjeder
         .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.FerdigBehandlet).length;
 
-    if (antallFerdigBehandlet === 0) {
+    if (antallFerdigBehandlet === 0 || sakstema.temakode === 'ALLE') {
         return null;
     }
 

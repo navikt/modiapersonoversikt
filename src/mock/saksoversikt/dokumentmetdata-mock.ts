@@ -24,7 +24,7 @@ function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMe
     return {
         retning: getKommunikasjonsretning(faker),
         dato: getSaksdato(navfaker),
-        navn: faker.lorem.words(3),
+        navn: 'Dokument ' + faker.lorem.words(3),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker),
         vedlegg: fyllRandomListe(() => getDokument(faker), 5),
@@ -51,7 +51,7 @@ function getFeilWrapper(faker: FakerStatic): FeilWrapper {
 
 function getDokument(faker: FakerStatic): Dokument {
     return {
-        tittel: faker.lorem.words(4),
+        tittel: 'Dokumentnavn: ' + faker.lorem.words(4),
         dokumentreferanse: faker.random.alphaNumeric(8),
         kanVises: faker.random.boolean(),
         logiskDokument: faker.random.boolean()
