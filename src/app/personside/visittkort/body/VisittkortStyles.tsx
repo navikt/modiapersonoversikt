@@ -11,6 +11,9 @@ export const VisittkortBodyWrapper = styled.section`
   padding: ${theme.margin.px20};
   display: flex;
   margin-top: .2rem;
+  &:focus {
+    ${theme.focus}
+  }
   > * {
     flex: 1 1 50%;
   }
