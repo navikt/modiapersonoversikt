@@ -1,9 +1,13 @@
 export const FOLKEREGISTERET = 'SKD';
 
+
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
-    } else if (endretIFagsystem(rawString) || endretIPesys(rawString) ) {
+    } else if (endretIFagsystem(rawString)
+            || endretIPesys(rawString)
+            || endretIArena(rawString)
+            || endretAvKonvertItSystem(rawString)) {
         return 'av NAV';
     } else if (rawString.match('AAA2101, SKD')) {
         return 'av Skatteetaten';
@@ -28,6 +32,15 @@ function endretAvGammelTypeIdent(rawString: string) {
 
 function endretIPSelv(rawString: string) {
     return rawString.match('Srvpsel');
+}
+
+function endretIArena(rawString: string) {
+    return rawString.match('Arena');
+}
+
+
+function endretAvKonvertItSystem(rawString: string) {
+    return rawString.match('Konvert, IT[0-9]{2}');
 }
 
 function endretIPesys(rawString: string) {
