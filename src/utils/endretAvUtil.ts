@@ -1,6 +1,5 @@
 export const FOLKEREGISTERET = 'SKD';
 
-
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
@@ -37,7 +36,6 @@ function endretIPSelv(rawString: string) {
 function endretIArena(rawString: string) {
     return rawString.match('Arena');
 }
-
 
 function endretAvKonvertItSystem(rawString: string) {
     return rawString.match('Konvert, IT[0-9]{2}');
