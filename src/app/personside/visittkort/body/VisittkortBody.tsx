@@ -86,7 +86,9 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
     }
     componentDidMount() {
         this.handleResize();
-        this.visittKortBodyRef.focus();
+        if (this.visittKortBodyRef) {
+            this.visittKortBodyRef.focus();
+        }
         window.addEventListener('resize', this.handleResize);
     }
     componentWillUnmount() {
