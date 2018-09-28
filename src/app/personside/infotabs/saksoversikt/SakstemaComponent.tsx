@@ -1,15 +1,14 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import { Behandlingskjede, Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
 import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
+import Element from 'nav-frontend-typografi/lib/element';
 
 interface Props {
     sakstema: Sakstema;
@@ -112,17 +111,25 @@ function tellFerdigBehandlet(sakstema: Sakstema) {
     return <Normaltekst>{antallFerdigBehandlet} {soknad} er ferdig behandlet.</Normaltekst>;
 }
 
+function saksikon(harTilgang: boolean) {
+    if (harTilgang) {
+        return null;
+    } else {
+        return <SakIkkeTilgangIkon/>;
+    }
+}
+
 function SakstemaComponent(props: Props) {
     return (
         <Wrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
-                <EtikettLiten>{hentDatoForSisteHendelse(props.sakstema)}</EtikettLiten>
-                <UndertekstBold>{props.sakstema.temanavn}</UndertekstBold>
+                <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
+                <Element>{props.sakstema.temanavn}</Element>
                 {tellUnderBehandling(props.sakstema)}
                 {tellFerdigBehandlet(props.sakstema)}
             </div>
             <KnappWrapper>
-                <SakIkkeTilgangIkon/>
+                {saksikon(props.sakstema.harTilgang)}
                 <Knapp onClick={() => props.oppdaterSakstema(props.sakstema)}>
                     <HoyreChevron stor={true}/>
                 </Knapp>

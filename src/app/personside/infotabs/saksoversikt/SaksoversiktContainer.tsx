@@ -11,10 +11,10 @@ import { Action } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import DokumenterVisning from './DokumenterVisning';
 import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
+import DokumenterVisning from './DokumenterVisning';
 
 interface State {
     valgtSakstema?: Sakstema;
@@ -72,7 +72,7 @@ const DokumentListe = styled.section`
 
 class SaksoversiktContainer extends React.Component<Props, State> {
 
-    private dokumentListeRef = React.createRef<HTMLElement>();
+    private dokumentListeRef = React.createRef<HTMLHeadingElement>();
 
     constructor(props: Props) {
         super(props);
@@ -94,7 +94,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     oppdaterSakstema(sakstema: Sakstema) {
         this.setState({valgtSakstema: sakstema });
         if (this.dokumentListeRef.current) {
-            this.dokumentListeRef.current.scrollIntoView({behavior: 'smooth'});
+            this.dokumentListeRef.current.focus();
         }
     }
 
@@ -110,7 +110,8 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                                 oppdaterSakstema={this.oppdaterSakstema}
                             />
                         </SakstemaListe>
-                        <DokumentListe innerRef={this.dokumentListeRef}>
+                        <DokumentListe>
+                            <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
                                 baseUrlsResponse={this.props.baseUrlReducer.data}

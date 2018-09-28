@@ -110,17 +110,23 @@ function lenkeNorg(sakstema: string, norg2Url: string) {
                 className="lenke"
             >
                 <Normaltekst tag="span">
-                    Mer informasjon om kontoret
+                    Oversikt over enheter og tema de behandler
                 </Normaltekst>
             </a>
         </LenkeNorgStyle>
     );
 }
 
-function Dokumentgruppe({gruppe}: {gruppe: ArrayGroup<DokumentMetadata>}) {
+interface DokumentGruppeProps {
+    gruppe: ArrayGroup<DokumentMetadata>;
+    harTilgang: boolean;
+}
+
+function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
             dokument={dokument}
+            harTilgang={harTilgang}
             key={dokument.temakode + dokument.dato.år + dokument.dato.måned + dokument.dato.dag + dokument.dato.time}
         />
     ));
@@ -160,20 +166,22 @@ function DokumenterVisning(props: Props) {
     const filtrerteDokumenter = props.sakstema.dokumentMetadata;
 
     if (filtrerteDokumenter.length === 0) {
+
         return (
             <AlertStripeInfo>
                 Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
             </AlertStripeInfo>
         );
     }
-
     const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
         filtrerteDokumenter.sort(dokumentComparator),
         årForDokument
     );
 
+    const harTilgang = props.sakstema.harTilgang;
+
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} key={gruppe.category}/>
+        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
     );
 
     return (

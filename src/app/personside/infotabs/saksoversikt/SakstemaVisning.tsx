@@ -118,28 +118,37 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-function SakstemaVisning(props: SakstemaProps) {
-    if (props.sakstema.length === 0) {
-        return (
-            <AlertStripeInfo>
-                Det finnes ingen saker for bruker.
-            </AlertStripeInfo>
-        );
+class SakstemaVisning extends React.Component<SakstemaProps> {
+
+    constructor(props: SakstemaProps) {
+        super(props);
+        this.props.oppdaterSakstema(aggregertSakstema(this.props.sakstema));
     }
 
-    const alleSakstema = aggregertSakstema(props.sakstema);
-    const komplettListe = [alleSakstema, ...props.sakstema];
+    render () {
+        const sakstema = this.props.sakstema;
+        if (sakstema.length === 0) {
+            return (
+                <AlertStripeInfo>
+                    Det finnes ingen saker for bruker.
+                </AlertStripeInfo>
+            );
+        }
 
-    return (
-        <Wrapper>
-            <TittelWrapper>
-                <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
-            </TittelWrapper>
-            <SakstemaListe>
-                <GruppertTema sakstema={komplettListe} oppdaterSakstema={props.oppdaterSakstema}/>
-            </SakstemaListe>
-        </Wrapper>
-    );
+        const alleSakstema = aggregertSakstema(sakstema);
+        const komplettListe = [alleSakstema, ...sakstema];
+
+        return (
+            <Wrapper>
+                <TittelWrapper>
+                    <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
+                </TittelWrapper>
+                <SakstemaListe>
+                    <GruppertTema sakstema={komplettListe} oppdaterSakstema={this.props.oppdaterSakstema}/>
+                </SakstemaListe>
+            </Wrapper>
+        );
+    }
 }
 
 export default SakstemaVisning;
