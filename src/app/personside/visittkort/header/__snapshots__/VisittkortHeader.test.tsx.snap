@@ -162,6 +162,11 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: space-between;
 }
 
+.c3 h3:focus {
+  outline: none;
+  box-shadow: 0 0 0px 3px #FFBD66;
+}
+
 .c3 > *:first-child {
   margin-bottom: 0.2em !important;
 }
@@ -204,12 +209,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       className="c3"
     >
       <h1
-        className="typo-undertittel"
+        tabIndex={-1}
       >
-        AREMARK TESTFAMILIEN
-         (
-        42
-        )
+        <span
+          className="typo-undertittel"
+        >
+          AREMARK TESTFAMILIEN
+           (
+          42
+          )
+        </span>
       </h1>
       <span
         className="typo-normal"
