@@ -9,6 +9,7 @@ import { Ytelse } from '../../../../../models/utbetalinger';
 import { FokusProps } from '../Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 
 export interface EnkeltYtelseProps {
     ytelse: Ytelse;
@@ -96,7 +97,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
 
         return (
             <EnkeltYtelseStyle
-                onClick={this.toggleVisDetaljer}
+                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
                 åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}

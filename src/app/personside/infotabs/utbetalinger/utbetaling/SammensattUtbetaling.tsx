@@ -11,8 +11,8 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
-import EnkeltYtelse from './EnkeltYtelse';
 import { FokusProps } from '../Utbetalinger';
+import EnkeltYtelse from './EnkeltYtelse';
 
 interface SammensattUtbetalingProps {
     utbetaling: Utbetaling;

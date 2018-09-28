@@ -17,6 +17,7 @@ import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import { FokusProps } from '../Utbetalinger';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -127,7 +128,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
 
         return (
             <UtbetalingStyle
-                onClick={this.toggleVisDetaljer}
+                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
                 åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}
