@@ -4,7 +4,7 @@ import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import ShortcutListener from './ShortcutListener';
+import HandleVisittkortHotkeys from './HandleVisittkortHotkeys';
 import { AppState } from '../../../redux/reducers';
 import { toggleVisittkort, UIState } from '../../../redux/uiReducers/UIReducer';
 import { UnmountClosed } from 'react-collapse';
@@ -25,7 +25,7 @@ class VisittkortContainer extends React.Component<StateProps & DispatchProps> {
         const erApnet = this.props.UI.visittkort.apent;
         return (
             <ErrorBoundary>
-                <ShortcutListener fødselsnummer={person.fødselsnummer}/>
+                <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>
                 <article role="region" aria-label="Visittkort">
                     <VisittkortHeader
                         person={person}
