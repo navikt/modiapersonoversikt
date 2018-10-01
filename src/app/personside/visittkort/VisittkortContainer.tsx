@@ -9,6 +9,8 @@ import { AppState } from '../../../redux/reducers';
 import { toggleVisittkort, UIState } from '../../../redux/uiReducers/UIReducer';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
+import styled from 'styled-components';
+import theme from '../../../styles/personOversiktTheme';
 
 interface StateProps {
     UI: UIState;
@@ -19,7 +21,23 @@ interface DispatchProps {
     toggleVisittkort: (erApen?: boolean) => void;
 }
 
-class VisittkortContainer extends React.Component<StateProps & DispatchProps> {
+const VisittkortBodyWrapper = styled.div`
+  &:focus{${theme.focus}}
+  border-radius: ${theme.borderRadius.layout};
+`;
+
+type Props = StateProps & DispatchProps;
+
+class VisittkortContainer extends React.Component<Props> {
+
+    private detaljerRef = React.createRef<HTMLDivElement>();
+
+    componentDidUpdate(prevProps: Props) {
+        const visittkortetBleÅpnet = !prevProps.UI.visittkort.apent && this.props.UI.visittkort.apent;
+        if (visittkortetBleÅpnet && this.detaljerRef.current) {
+            this.detaljerRef.current.focus();
+        }
+    }
 
     render() {
         const person = this.props.person;
@@ -37,9 +55,11 @@ class VisittkortContainer extends React.Component<StateProps & DispatchProps> {
                         toggleVisittkort={this.props.toggleVisittkort}
                         visittkortApent={erApnet}
                     />
-                    <UnmountClosed isOpened={erApnet}>
-                        <VisittkortBody person={person}/>
-                    </UnmountClosed>
+                    <VisittkortBodyWrapper tabIndex={erApnet ? -1 : undefined} innerRef={this.detaljerRef}>
+                        <UnmountClosed isOpened={erApnet}>
+                            <VisittkortBody person={person}/>
+                        </UnmountClosed>
+                    </VisittkortBodyWrapper>
                 </article>
             </ErrorBoundary>
         );

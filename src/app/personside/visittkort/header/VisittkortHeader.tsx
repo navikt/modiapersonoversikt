@@ -22,6 +22,7 @@ const VisittkortHeaderDiv = styled.section`
   border-radius: ${theme.borderRadius.layout};
   padding: ${theme.margin.px20};
   padding-right: 3rem;
+  margin-bottom: .2rem;
   position: relative;
   width: 100%;
   display: flex;
