@@ -16,6 +16,7 @@ import DetaljerKnapp from '../utils/DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -81,7 +82,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             ? `Forfallsdato: ${dato}` : '';
 
         return (
-            <UtbetalingStyle onClick={this.toggleVisDetaljer} åpen={this.state.visDetaljer}>
+            <UtbetalingStyle onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)} åpen={this.state.visDetaljer}>
                 <SpaceBetween>
                     <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
                     <UndertekstBold>{sum}</UndertekstBold>
