@@ -14,29 +14,35 @@ interface DispatchProps {
 
 type Props = OwnProps & RouteComponentProps<{}> & DispatchProps;
 
-class ShortcutListener extends React.Component<Props> {
+class HandleVisittkortHotkeys extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
-        this.handleShortcut = this.handleShortcut.bind(this);
+        this.handleVisittkortHotkeys = this.handleVisittkortHotkeys.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this.handleShortcut);
+        document.addEventListener('keydown', this.handleVisittkortHotkeys);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleShortcut);
+        document.removeEventListener('keydown', this.handleVisittkortHotkeys);
     }
 
     render() {
         return null;
     }
 
-    private handleShortcut(event: KeyboardEvent) {
-        if (event.altKey && event.key === 'b') {
+    private handleVisittkortHotkeys(event: KeyboardEvent) {
+        if (!event.altKey) {
+            return;
+        }
+
+        const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
+
+        if (key === 'b') {
             this.props.history.push(`${paths.brukerprofil}/${this.props.fødselsnummer}`);
-        } else if (event.altKey && event.key === 'n') {
+        } else if (key === 'n') {
             this.props.toggleVisittkort();
         }
     }
@@ -48,4 +54,4 @@ function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
     };
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ShortcutListener));
+export default withRouter(connect(null, mapDispatchToProps)(HandleVisittkortHotkeys));

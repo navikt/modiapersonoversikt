@@ -86,6 +86,9 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
     }
     componentDidMount() {
         this.handleResize();
+        if (this.visittKortBodyRef) {
+            this.visittKortBodyRef.focus();
+        }
         window.addEventListener('resize', this.handleResize);
     }
     componentWillUnmount() {
@@ -120,6 +123,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 <VisittkortBodyWrapper
                     role="region"
                     aria-label="Visittkortdetaljer"
+                    tabIndex={-1} /* For at .focus() skal funke */
                     innerRef={ref => this.visittKortBodyRef = ref}
                 >
                     {columnLayOut}
