@@ -95,27 +95,40 @@ function GruppertTema(props: SakstemaProps) {
     );
 }
 
-function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
+function aggregerteBehandlingskjeder(alleSakstema: Sakstema[]) {
     const alleBehandlingskjeder: Behandlingskjede[] = alleSakstema.reduce(
         (acc: Behandlingskjede[], sakstema: Sakstema) => {
             return [...acc, ...sakstema.behandlingskjeder];
         },
         []
     );
+    return alleBehandlingskjeder;
+}
 
+function aggregerteDokumentMetadata(alleSakstema: Sakstema[]) {
     const alleDokumentmetadata: DokumentMetadata[] = alleSakstema.reduce(
         (acc: DokumentMetadata[], sakstema: Sakstema) => {
             return [...acc, ...sakstema.dokumentMetadata];
         },
         []
     );
+    return alleDokumentmetadata;
+}
 
+function aggregerteSaker(alleSakstema: Sakstema[]) {
     const alleTilhørendeSaker: Sak[] = alleSakstema.reduce(
         (acc: Sak[], sakstema: Sakstema) => {
             return [...acc, ...sakstema.tilhorendeSaker];
         },
         []
     );
+    return alleTilhørendeSaker;
+}
+
+function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
+    const alleBehandlingskjeder = aggregerteBehandlingskjeder(alleSakstema);
+    const alleDokumentmetadata = aggregerteDokumentMetadata(alleSakstema);
+    const alleTilhørendeSaker = aggregerteSaker(alleSakstema);
 
     return {
         temanavn: 'Alle tema',

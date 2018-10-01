@@ -52,28 +52,16 @@ const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
     }
 `;
 
-function tellUnderBehandling(sakstema: Sakstema) {
+function behandlingTag(sakstema: Sakstema, sjekktype: Behandlingsstatus, status: string) {
     const antallUnderbehandling = sakstema.behandlingskjeder
-        .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.UnderBehandling).length;
+        .filter(behandlingskjede => behandlingskjede.status === sjekktype).length;
 
     if (antallUnderbehandling === 0 || sakstema.temakode === 'ALLE') {
         return null;
     }
 
     const soknad = antallUnderbehandling === 1 ? 'søknad' : 'søknader';
-    return <Normaltekst>{antallUnderbehandling} {soknad} er under behandling.</Normaltekst>;
-}
-
-function tellFerdigBehandlet(sakstema: Sakstema) {
-    const antallFerdigBehandlet = sakstema.behandlingskjeder
-        .filter(behandlingskjede => behandlingskjede.status === Behandlingsstatus.FerdigBehandlet).length;
-
-    if (antallFerdigBehandlet === 0 || sakstema.temakode === 'ALLE') {
-        return null;
-    }
-
-    const soknad = antallFerdigBehandlet === 1 ? 'søknad' : 'søknader';
-    return <Normaltekst>{antallFerdigBehandlet} {soknad} er ferdig behandlet.</Normaltekst>;
+    return <Normaltekst>{antallUnderbehandling} {soknad} er {status}.</Normaltekst>;
 }
 
 function saksikon(harTilgang: boolean) {
@@ -91,8 +79,8 @@ function SakstemaComponent(props: Props) {
             <div>
                 <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>
-                {tellUnderBehandling(props.sakstema)}
-                {tellFerdigBehandlet(props.sakstema)}
+                {behandlingTag(props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling')}
+                {behandlingTag(props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet')}
             </div>
             <KnappWrapper>
                 {saksikon(props.sakstema.harTilgang)}
