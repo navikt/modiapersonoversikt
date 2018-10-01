@@ -27,9 +27,9 @@ interface DokumentGruppeProps {
 }
 
 const Header = styled.section`
-  padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   > * {
     padding: 10px;
   }
