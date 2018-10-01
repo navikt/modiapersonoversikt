@@ -16,8 +16,15 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 
+export interface AvsenderFilter {
+    bruker: boolean;
+    nav: boolean;
+    andre: boolean;
+}
+
 interface State {
     valgtSakstema?: Sakstema;
+    avsenderfilter: AvsenderFilter;
 }
 
 interface StateProps {
@@ -77,9 +84,15 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            valgtSakstema: undefined
+            valgtSakstema: undefined,
+            avsenderfilter: {
+                bruker: true,
+                nav: true,
+                andre: true
+            }
         };
         this.oppdaterSakstema = this.oppdaterSakstema.bind(this);
+        this.toggleAvsenderFilter = this.toggleAvsenderFilter.bind(this);
     }
 
     componentDidMount() {
@@ -96,6 +109,15 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
         }
+    }
+
+    toggleAvsenderFilter(key: keyof AvsenderFilter) {
+        this.setState({
+            avsenderfilter: {
+                ...this.state.avsenderfilter,
+                [key]: !this.state.avsenderfilter[key]
+            }
+        });
     }
 
     render() {
@@ -115,6 +137,8 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
                                 baseUrlsResponse={this.props.baseUrlReducer.data}
+                                avsenderFilter={this.state.avsenderfilter}
+                                toggleFilter={this.toggleAvsenderFilter}
                             />
                         </DokumentListe>
                     </Innholdslaster>

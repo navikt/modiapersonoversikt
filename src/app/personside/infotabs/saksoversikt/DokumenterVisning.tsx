@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import { DokumentMetadata, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import DokumentKomponent from './DokumentKomponent';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
@@ -12,10 +12,18 @@ import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
+import { AvsenderFilter } from './SaksoversiktContainer';
 
 interface Props {
     sakstema?: Sakstema;
     baseUrlsResponse: BaseUrlsResponse;
+    avsenderFilter: AvsenderFilter;
+    toggleFilter: (key: keyof AvsenderFilter) => void;
+}
+
+interface DokumentGruppeProps {
+    gruppe: ArrayGroup<DokumentMetadata>;
+    harTilgang: boolean;
 }
 
 const Header = styled.section`
@@ -117,11 +125,6 @@ function lenkeNorg(sakstema: string, norg2Url: string) {
     );
 }
 
-interface DokumentGruppeProps {
-    gruppe: ArrayGroup<DokumentMetadata>;
-    harTilgang: boolean;
-}
-
 function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
@@ -158,12 +161,42 @@ function hentNorg2Url(baseUrlsResponse: BaseUrlsResponse) {
     return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
 }
 
+function sakstemaSomKommaseparertListe(sakstema: Sakstema) {
+    if (sakstema.temakode !== 'ALLE') {
+        return sakstema.temakode;
+    }
+    const temaArray: string[] = sakstema.dokumentMetadata.reduce(
+        (acc: string[], dok: DokumentMetadata) => {
+            const tema = dok.temakode;
+            if (acc.indexOf(tema) > -1) {
+                return acc;
+            } else {
+                return [...acc, tema];
+            }
+        },
+        []
+    );
+    return temaArray.join();
+}
+
+function filterAvsender(avsender: Entitet, avsenderfilter: AvsenderFilter) {
+    switch (avsender) {
+        case Entitet.Sluttbruker:
+            return avsenderfilter.bruker;
+        case Entitet.Nav:
+            return avsenderfilter.nav;
+        default:
+            return avsenderfilter.andre;
+    }
+}
+
 function DokumenterVisning(props: Props) {
     if (!props.sakstema) {
         return <b>Ingen saker</b>;
     }
 
-    const filtrerteDokumenter = props.sakstema.dokumentMetadata;
+    const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
+        filterAvsender(metadata.avsender, props.avsenderFilter));
 
     if (filtrerteDokumenter.length === 0) {
 
@@ -184,16 +217,36 @@ function DokumenterVisning(props: Props) {
         <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
     );
 
+    const temakodeTilNorgoppslag = sakstemaSomKommaseparertListe(props.sakstema);
+
+    const checkboxer = (
+        <>
+            <Checkbox
+                label={'Bruker'}
+                checked={props.avsenderFilter.bruker}
+                onClick={() => props.toggleFilter('bruker')}
+            />
+            <Checkbox
+                label={'NAV'}
+                checked={props.avsenderFilter.nav}
+                onClick={() => props.toggleFilter('nav')}
+            />
+            <Checkbox
+                label={'Andre'}
+                checked={props.avsenderFilter.andre}
+                onClick={() => props.toggleFilter('andre')}
+            />
+        </>
+    );
+
     return (
         <Wrapper>
             <Header>
                 <LenkeWrapper>
-                    {lenkeNorg(props.sakstema.temakode, hentNorg2Url(props.baseUrlsResponse))}
+                    {lenkeNorg(temakodeTilNorgoppslag, hentNorg2Url(props.baseUrlsResponse))}
                 </LenkeWrapper>
                 <Form>
-                    <Checkbox label={'Bruker'} checked={true}/>
-                    <Checkbox label={'NAV'} checked={true}/>
-                    <Checkbox label={'Andre'} checked={true}/>
+                    {checkboxer}
                 </Form>
             </Header>
             <DokumenterArticle>
