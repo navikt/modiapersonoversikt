@@ -42,10 +42,10 @@ const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
     cursor: pointer;
     ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.03);'}
     &:hover {
-      background-color: rgba(102, 203, 236, 0.18);
+      background-color: ${theme.color.objektlisteHover};
     }
     &:active {
-      background-color: rgba(102, 203, 236, 0.35);
+      background-color: ${theme.color.objektlisteActive};
     }
     > *:first-child {
         flex-grow: 1;

@@ -34,10 +34,10 @@ const InfoWrapper = styled.div`
   }
   cursor: pointer;
   &:hover {
-    background-color: rgba(102, 203, 236, 0.18);
+    background-color: ${theme.color.objektlisteHover};
   }
   &:active {
-    background-color: rgba(102, 203, 236, 0.35);
+    background-color: ${theme.color.objektlisteActive};
   }
 `;
 
