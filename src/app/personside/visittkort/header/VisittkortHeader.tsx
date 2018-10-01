@@ -59,7 +59,7 @@ const GrunninfoDiv = styled.section`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  h3:focus {
+  *:focus {
     ${theme.focus}
   }
   > *:first-child {
@@ -82,7 +82,7 @@ function hentNavn(navn: Navn) {
 
 class VisittkortHeader extends React.Component<Props> {
 
-    private navneLinjeRef = React.createRef<HTMLHeadingElement>();
+    private navneLinjeRef = React.createRef<HTMLElement>();
 
     componentDidMount() {
         if (this.navneLinjeRef.current) {
@@ -108,14 +108,14 @@ class VisittkortHeader extends React.Component<Props> {
                         {ikon.ikon}
                     </IkonDiv>
                     <GrunninfoDiv>
-                        <h1
-                            ref={this.navneLinjeRef}
-                            tabIndex={-1} /* for at focus skal funke*/
-                        >
-                            <Undertittel tag="span">
+                        <Undertittel tag="h1">
+                            <span
+                                ref={this.navneLinjeRef}
+                                tabIndex={-1} /* for at focus skal funke*/
+                            >
                                 {hentNavn(person.navn)} ({alder})
-                            </Undertittel>
-                        </h1>
+                            </span>
+                        </Undertittel>
                         <PersonStatus person={person}/>
                     </GrunninfoDiv>
                 </VenstreFelt>
