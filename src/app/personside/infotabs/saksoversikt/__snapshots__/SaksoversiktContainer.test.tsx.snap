@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
+.c1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE .2s ease-out;
+  animation: fYGRJE .2s ease-out;
+}
+
+.c1 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c0 .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c0 > * {
+  margin-bottom: .8rem;
+}
+
+@media (max-width:80rem) {
+  .c0 {
+    display: block;
+  }
+}
+
+<article
+  className="c0"
+>
+  <h1
+    className="typo-innholdstittel visually-hidden"
+  >
+    Brukerens saker
+  </h1>
+  <div
+    className="c1"
+  >
+    <svg
+      aria-label="Laster innhold"
+      className="spinner spinner--xxl"
+      focusable="false"
+      height={32}
+      kind="spinner"
+      onClick={undefined}
+      preserveAspectRatio="xMidYMid"
+      style={undefined}
+      viewBox="0 0 100 100"
+      width={32}
+    >
+      <title>
+        Venter...
+      </title>
+      <circle
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="#bdbab7"
+        strokeWidth="10"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="#7f756c"
+        strokeDasharray="50 155"
+        strokeLinecap="round"
+        strokeWidth="10"
+      />
+    </svg>
+  </div>
+</article>
+`;
