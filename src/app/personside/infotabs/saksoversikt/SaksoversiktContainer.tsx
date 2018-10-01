@@ -130,6 +130,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             <SakstemaVisning
                                 sakstema={this.props.saksoversiktReducer.data.resultat}
                                 oppdaterSakstema={this.oppdaterSakstema}
+                                valgtSakstema={this.state.valgtSakstema}
                             />
                         </SakstemaListe>
                         <DokumentListe>

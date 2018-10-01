@@ -224,17 +224,17 @@ function DokumenterVisning(props: Props) {
             <Checkbox
                 label={'Bruker'}
                 checked={props.avsenderFilter.bruker}
-                onClick={() => props.toggleFilter('bruker')}
+                onChange={() => props.toggleFilter('bruker')}
             />
             <Checkbox
                 label={'NAV'}
                 checked={props.avsenderFilter.nav}
-                onClick={() => props.toggleFilter('nav')}
+                onChange={() => props.toggleFilter('nav')}
             />
             <Checkbox
                 label={'Andre'}
                 checked={props.avsenderFilter.andre}
-                onClick={() => props.toggleFilter('andre')}
+                onChange={() => props.toggleFilter('andre')}
             />
         </>
     );

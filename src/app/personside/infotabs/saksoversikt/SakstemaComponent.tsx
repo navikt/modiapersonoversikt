@@ -1,17 +1,16 @@
 import * as React from 'react';
-import * as moment from 'moment';
-import { Behandlingskjede, Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import { Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
 import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
+import { hentDatoForSisteHendelse } from './saksoversiktUtils';
 
 interface Props {
     sakstema: Sakstema;
+    valgtSakstema?: Sakstema;
     oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
@@ -38,9 +37,10 @@ const KnappWrapper = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
     display: flex;
     cursor: pointer;
+    ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.03);'}
     &:hover {
       background-color: rgba(102, 203, 236, 0.18);
     }
@@ -51,41 +51,6 @@ const Wrapper = styled.div`
         flex-grow: 1;
     }
 `;
-
-function hentSenesteDatoForDokumenter(dokumentmetadata: DokumentMetadata[]) {
-    return dokumentmetadata.reduce(
-        (acc: Date, dok: DokumentMetadata) => {
-            return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
-        },
-        new Date(0)
-    );
-}
-
-function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
-    return behandlingskjede.reduce(
-        (acc: Date, kjede: Behandlingskjede) => {
-            return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
-        },
-        new Date(0)
-    );
-}
-
-function formatterDato(date: Date) {
-    return moment(date).format('DD.MM.YYYY [kl.] hh:mm');
-}
-
-function hentDatoForSisteHendelse(sakstema: Sakstema) {
-    if (sakstema.behandlingskjeder.length > 0 && sakstema.dokumentMetadata.length === 0) {
-        return formatterDato(hentSenesteDatoForBehandling(sakstema.behandlingskjeder));
-    }
-    if (sakstema.behandlingskjeder.length === 0 && sakstema.dokumentMetadata.length > 0) {
-        return formatterDato(hentSenesteDatoForDokumenter(sakstema.dokumentMetadata));
-    }
-
-    const dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
-    const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
-    return formatterDato(dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter);
-}
 
 function tellUnderBehandling(sakstema: Sakstema) {
     const antallUnderbehandling = sakstema.behandlingskjeder
@@ -120,8 +85,9 @@ function saksikon(harTilgang: boolean) {
 }
 
 function SakstemaComponent(props: Props) {
+    console.log(props.sakstema, props.valgtSakstema, props.sakstema === props.valgtSakstema);
     return (
-        <Wrapper onClick={() => props.oppdaterSakstema(props.sakstema)}>
+        <Wrapper valgt={props.sakstema === props.valgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
                 <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>

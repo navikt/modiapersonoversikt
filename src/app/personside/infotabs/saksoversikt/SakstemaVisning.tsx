@@ -9,10 +9,16 @@ import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetada
 import { Sak } from '../../../../models/saksoversikt/sak';
 import { Undertittel } from 'nav-frontend-typografi';
 import SaksIkon from '../../../../svg/SaksIkon';
+import { hentDatoForSisteHendelse } from './saksoversiktUtils';
 
 export interface SakstemaProps {
     sakstema: Sakstema[];
     oppdaterSakstema: (sakstema: Sakstema) => void;
+    valgtSakstema?: Sakstema;
+}
+
+interface State {
+    aggregertSakstema: Sakstema;
 }
 
 const GruppeStyle = styled.li`
@@ -72,7 +78,12 @@ const TittelWrapper = styled.div`
 function GruppertTema(props: SakstemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
-            <SakstemaComponent sakstema={sakstema} oppdaterSakstema={props.oppdaterSakstema} key={sakstema.temakode}/>
+            <SakstemaComponent
+                valgtSakstema={props.valgtSakstema}
+                sakstema={sakstema}
+                oppdaterSakstema={props.oppdaterSakstema}
+                key={sakstema.temakode + hentDatoForSisteHendelse(sakstema)}
+            />
         )
     );
     return (
@@ -118,11 +129,15 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-class SakstemaVisning extends React.Component<SakstemaProps> {
+class SakstemaVisning extends React.Component<SakstemaProps, State> {
 
     constructor(props: SakstemaProps) {
         super(props);
-        this.props.oppdaterSakstema(aggregertSakstema(this.props.sakstema));
+        const aggregert = aggregertSakstema(props.sakstema);
+        this.state = {
+            aggregertSakstema: aggregert
+        };
+        this.props.oppdaterSakstema(aggregert);
     }
 
     render () {
@@ -135,8 +150,7 @@ class SakstemaVisning extends React.Component<SakstemaProps> {
             );
         }
 
-        const alleSakstema = aggregertSakstema(sakstema);
-        const komplettListe = [alleSakstema, ...sakstema];
+        const komplettListe = [this.state.aggregertSakstema, ...sakstema];
 
         return (
             <Wrapper>
@@ -144,7 +158,11 @@ class SakstemaVisning extends React.Component<SakstemaProps> {
                     <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
                 </TittelWrapper>
                 <SakstemaListe>
-                    <GruppertTema sakstema={komplettListe} oppdaterSakstema={this.props.oppdaterSakstema}/>
+                    <GruppertTema
+                        valgtSakstema={this.props.valgtSakstema}
+                        sakstema={komplettListe}
+                        oppdaterSakstema={this.props.oppdaterSakstema}
+                    />
                 </SakstemaListe>
             </Wrapper>
         );

@@ -8,8 +8,8 @@ import { UnmountClosed } from 'react-collapse';
 import { getSaksdokument } from '../../../../utils/url-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
-import DokumentIkkeTilgang from '../../../../svg/DokumentIkkeTilgang';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
 
 interface Props {
     dokument: DokumentInterface;
@@ -35,10 +35,6 @@ const InfoWrapper = styled.div`
   cursor: pointer;
   &:hover {
     background-color: rgba(102, 203, 236, 0.18);
-    svg path {
-      stroke: white;
-      fill: #C6C2BF;
-    }
   }
   &:active {
     background-color: rgba(102, 203, 236, 0.35);
@@ -70,7 +66,7 @@ function dokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
         return <Dokument/>;
     } else {
-        return <DokumentIkkeTilgang/>;
+        return <DokumentIkkeTilgangMerket/>;
     }
 }
 
