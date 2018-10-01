@@ -86,15 +86,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c12 {
   border: none;
   padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
+  height: 100%;
+  width: 100%;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
-}
-
-.c12:hover {
-  background-color: #C6C2BF;
 }
 
 .c12:focus {
@@ -449,7 +445,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              AREMARK TESTFAMILIEN
+              Bruker
             </label>
             <div
               aria-live="assertive"

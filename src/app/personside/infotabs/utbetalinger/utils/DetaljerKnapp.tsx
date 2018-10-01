@@ -12,14 +12,11 @@ interface Props {
 const KnappWrapper = styled.button`
   border: none;
   padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
+  height: 100%;
+  width: 100%;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
-  &:hover {
-    background-color: ${theme.color.hoverLink};
-  }
   &:focus {
     ${theme.focus}
   }
