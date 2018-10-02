@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { testStore } from '../setupTests';
+import { getTestStore } from '../setupTests';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { ReactNode } from 'react';
+import { Store } from 'redux';
+import { AppState } from '../redux/reducers';
 
 interface Props {
     children: ReactNode;
+    customStore?: Store<AppState>;
 }
 
-function TestProvider({children}: Props) {
+function TestProvider({children, customStore}: Props) {
     return (
-        <Provider store={testStore}>
+        <Provider store={customStore || getTestStore()}>
             <StaticRouter context={{}}>
                 {children}
             </StaticRouter>

@@ -9,8 +9,8 @@ import 'babel-polyfill';
 import { getMockNavKontor } from './mock/navkontor-mock';
 import 'jest-styled-components';
 
-import reducers from './redux/reducers';
-import { applyMiddleware, createStore } from 'redux';
+import reducers, { AppState } from './redux/reducers';
+import { applyMiddleware, createStore, Store } from 'redux';
 import { actionNames as navKontorActionNames } from './redux/restReducers/navkontor';
 import { mockVergemal } from './mock/person/vergemal/vergemalMock';
 import { kontaktinformasjonActionNames } from './redux/restReducers/kontaktinformasjon';
@@ -53,28 +53,32 @@ Date.now = jest.fn(() => 0);
 const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 
-export const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-const aremarkFnr = aremark.fødselsnummer;
+export function getTestStore(): Store<AppState> {
+    const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
+    const aremarkFnr = aremark.fødselsnummer;
 
-testStore.dispatch({type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr)});
-testStore.dispatch({
-    type: navKontorActionNames.FINISHED,
-    data: {navKontor: getMockNavKontor('0118', undefined)}
-});
-testStore.dispatch({type: kontaktinformasjonActionNames.FINISHED, data: getMockKontaktinformasjon(aremarkFnr)});
-testStore.dispatch({type: egenAnsattActionNames.FINISHED, data: erEgenAnsatt(aremarkFnr)});
-testStore.dispatch({type: vergeMålActionNames.FINISHED, data: mockVergemal(aremarkFnr)});
-testStore.dispatch({type: baseUrlsActionNames.FINISHED, data: mockBaseUrls()});
-testStore.dispatch({type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller()});
-testStore.dispatch({
-    type: tilrettelagtKommunikasjonActionNames.FINISHED, data: mockTilrettelagtKommunikasjonKodeverk()
-});
-testStore.dispatch({type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk()});
-testStore.dispatch({type: postnummerActionNames.FINISHED, data: mockPostnummere()});
-testStore.dispatch({type: landActionNames.FINISHED, data: mockLandKodeverk()});
-testStore.dispatch({type: valutaerActionNames.FINISHED, data: mockValutaKodeverk()});
-testStore.dispatch({type: utbetalingerActions.FINISHED, data: {utbetalinger: [statiskMockUtbetaling]}});
-testStore.dispatch({
-    type: featureToggleActionNames.FINISHED,
-    data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')
-});
+    testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
+    testStore.dispatch({
+        type: navKontorActionNames.FINISHED,
+        data: { navKontor: getMockNavKontor('0118', undefined) }
+    });
+    testStore.dispatch({ type: kontaktinformasjonActionNames.FINISHED, data: getMockKontaktinformasjon(aremarkFnr) });
+    testStore.dispatch({ type: egenAnsattActionNames.FINISHED, data: erEgenAnsatt(aremarkFnr) });
+    testStore.dispatch({ type: vergeMålActionNames.FINISHED, data: mockVergemal(aremarkFnr) });
+    testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
+    testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
+    testStore.dispatch({
+        type: tilrettelagtKommunikasjonActionNames.FINISHED, data: mockTilrettelagtKommunikasjonKodeverk()
+    });
+    testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk() });
+    testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
+    testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
+    testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
+    testStore.dispatch({ type: utbetalingerActions.FINISHED, data: { utbetalinger: [statiskMockUtbetaling] } });
+    testStore.dispatch({
+        type: featureToggleActionNames.FINISHED,
+        data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')
+    });
+
+    return testStore;
+}
