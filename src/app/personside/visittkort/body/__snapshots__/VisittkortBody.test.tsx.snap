@@ -40,7 +40,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: .2rem;
 }
 
 .c0:focus {
@@ -156,7 +155,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   aria-label="Visittkortdetaljer"
   className="c0"
   role="region"
-  tabIndex={-1}
 >
   <div
     className="c1"

@@ -73,9 +73,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c11 {
   border: none;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+  padding: .1rem;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
@@ -91,6 +89,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 4px;
   padding: 1.25rem;
   padding-right: 3rem;
+  margin-bottom: .2rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
