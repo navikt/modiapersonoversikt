@@ -73,7 +73,6 @@ function saksikon(harTilgang: boolean) {
 }
 
 function SakstemaComponent(props: Props) {
-    console.log(props.sakstema, props.valgtSakstema, props.sakstema === props.valgtSakstema);
     return (
         <Wrapper valgt={props.sakstema === props.valgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
