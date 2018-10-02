@@ -8,10 +8,12 @@ import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
-    getGjeldendeDatoForUtbetaling, getTypeFromYtelse,
+    getGjeldendeDatoForUtbetaling,
+    getTypeFromYtelse,
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
-    utbetalingDatoComparator, utbetaltTilBruker
+    utbetalingDatoComparator,
+    utbetaltTilBruker
 } from './utils/utbetalingerUtils';
 import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -93,23 +95,28 @@ function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
     );
 }
 
-function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
+export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
     return utbetalinger
         .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter))
-        .filter(utbetaling => filtrerPaYtelseValg(utbetaling, filter));
+        .map(utbetaling => filtrerBortYtelserSomIkkeErValgt(utbetaling, filter))
+        .filter(fjernTommeUtbetalinger);
 }
 
 function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
     return filter.utbetaltTil.includes(utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil);
 }
 
-function filtrerPaYtelseValg(utbetaling: Utbetaling, filter: FilterState) {
-    const ytelsesTyperIUtbetaling =
-        reduceUtbetlingerTilYtelser([utbetaling])
-            .map(getTypeFromYtelse);
-    return filter.ytelser.some(
-        valgtYtelse => ytelsesTyperIUtbetaling.includes(valgtYtelse)
-    );
+function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: FilterState): Utbetaling {
+    const ytelser = reduceUtbetlingerTilYtelser([utbetaling])
+        .filter(ytelse => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
+    return {
+        ...utbetaling,
+        ytelser: ytelser
+    };
+}
+
+function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
+    return utbetaling.ytelser && utbetaling.ytelser.length > 0;
 }
 
 function Utbetalinger(props: UtbetalingerProps) {
