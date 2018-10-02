@@ -40,7 +40,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: .2rem;
 }
 
 .c0:focus {
@@ -156,7 +155,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   aria-label="Visittkortdetaljer"
   className="c0"
   role="region"
-  tabIndex={-1}
 >
   <div
     className="c1"
@@ -901,7 +899,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-normal"
           >
             
-            Rådhuset 6A
+                        Rådhuset 6A
           </p>
           <p
             className="typo-normal"
