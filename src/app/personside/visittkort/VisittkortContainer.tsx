@@ -42,6 +42,7 @@ class VisittkortContainer extends React.Component<Props> {
     render() {
         const person = this.props.person;
         const erApnet = this.props.UI.visittkort.apent;
+        const tabIndexForFokus = erApnet ? -1 : undefined; /* undefided så fokus ikke skal bli hengende ved lukking */
         return (
             <ErrorBoundary>
                 <AriaNotification
@@ -55,7 +56,7 @@ class VisittkortContainer extends React.Component<Props> {
                         toggleVisittkort={this.props.toggleVisittkort}
                         visittkortApent={erApnet}
                     />
-                    <VisittkortBodyWrapper tabIndex={erApnet ? -1 : undefined} innerRef={this.detaljerRef}>
+                    <VisittkortBodyWrapper tabIndex={tabIndexForFokus} innerRef={this.detaljerRef}>
                         <UnmountClosed isOpened={erApnet}>
                             <VisittkortBody person={person}/>
                         </UnmountClosed>
