@@ -13,8 +13,8 @@ test('viser visittkortheader når visittkort først rendres', () => {
         </TestProvider>
     ));
 
-    expect(visittkort.find('section [aria-label="Visittkort-hode"]')).toHaveLength(1);
-    expect(visittkort.find('section [aria-label="Visittkortdetaljer"]')).toHaveLength(0);
+    expect(visittkort.find('section[aria-label="Visittkort-hode"]')).toHaveLength(1);
+    expect(visittkort.find('section[aria-label="Visittkortdetaljer"]')).toHaveLength(0);
 });
 
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
@@ -24,10 +24,10 @@ test('viser visittkortheader og visitkortbody når visittkort åpnes med musekli
         </TestProvider>
     ));
 
-    visittkort.find('button [aria-label="Detaljer"]').simulate('click');
+    visittkort.find('button[aria-label="Detaljer"]').simulate('click');
 
-    expect(visittkort.find('section [aria-label="Visittkort-hode"]')).toHaveLength(1);
-    expect(visittkort.find('section [aria-label="Visittkortdetaljer"]')).toHaveLength(1);
+    expect(visittkort.find('section[aria-label="Visittkort-hode"]')).toHaveLength(1);
+    expect(visittkort.find('section[aria-label="Visittkortdetaljer"]')).toHaveLength(1);
 });
 
 test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
