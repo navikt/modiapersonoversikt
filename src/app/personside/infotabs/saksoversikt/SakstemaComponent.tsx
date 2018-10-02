@@ -52,7 +52,7 @@ const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
     }
 `;
 
-function behandlingTag(sakstema: Sakstema, sjekktype: Behandlingsstatus, status: string) {
+function behandlingstag(sakstema: Sakstema, sjekktype: Behandlingsstatus, status: string) {
     const antallUnderbehandling = sakstema.behandlingskjeder
         .filter(behandlingskjede => behandlingskjede.status === sjekktype).length;
 
@@ -79,8 +79,8 @@ function SakstemaComponent(props: Props) {
             <div>
                 <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>
-                {behandlingTag(props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling')}
-                {behandlingTag(props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet')}
+                {behandlingstag(props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling')}
+                {behandlingstag(props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet')}
             </div>
             <KnappWrapper>
                 {saksikon(props.sakstema.harTilgang)}

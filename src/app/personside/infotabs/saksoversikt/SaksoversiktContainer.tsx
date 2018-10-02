@@ -17,9 +17,9 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 
 export interface AvsenderFilter {
-    bruker: boolean;
-    nav: boolean;
-    andre: boolean;
+    fraBruker: boolean;
+    fraNav: boolean;
+    fraAndre: boolean;
 }
 
 interface State {
@@ -86,9 +86,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         this.state = {
             valgtSakstema: undefined,
             avsenderfilter: {
-                bruker: true,
-                nav: true,
-                andre: true
+                fraBruker: true,
+                fraNav: true,
+                fraAndre: true
             }
         };
         this.oppdaterSakstema = this.oppdaterSakstema.bind(this);

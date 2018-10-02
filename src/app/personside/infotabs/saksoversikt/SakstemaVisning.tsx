@@ -75,7 +75,7 @@ const TittelWrapper = styled.div`
   }
 `;
 
-function GruppertTema(props: SakstemaProps) {
+function GrupperteTema(props: SakstemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -171,7 +171,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
                     <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
                 </TittelWrapper>
                 <SakstemaListe>
-                    <GruppertTema
+                    <GrupperteTema
                         valgtSakstema={this.props.valgtSakstema}
                         sakstema={komplettListe}
                         oppdaterSakstema={this.props.oppdaterSakstema}

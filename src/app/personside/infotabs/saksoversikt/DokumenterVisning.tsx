@@ -182,11 +182,11 @@ function sakstemaSomKommaseparertListe(sakstema: Sakstema) {
 function filterAvsender(avsender: Entitet, avsenderfilter: AvsenderFilter) {
     switch (avsender) {
         case Entitet.Sluttbruker:
-            return avsenderfilter.bruker;
+            return avsenderfilter.fraBruker;
         case Entitet.Nav:
-            return avsenderfilter.nav;
+            return avsenderfilter.fraNav;
         default:
-            return avsenderfilter.andre;
+            return avsenderfilter.fraAndre;
     }
 }
 
@@ -223,18 +223,18 @@ function DokumenterVisning(props: Props) {
         <>
             <Checkbox
                 label={'Bruker'}
-                checked={props.avsenderFilter.bruker}
-                onChange={() => props.toggleFilter('bruker')}
+                checked={props.avsenderFilter.fraBruker}
+                onChange={() => props.toggleFilter('fraBruker')}
             />
             <Checkbox
                 label={'NAV'}
-                checked={props.avsenderFilter.nav}
-                onChange={() => props.toggleFilter('nav')}
+                checked={props.avsenderFilter.fraNav}
+                onChange={() => props.toggleFilter('fraNav')}
             />
             <Checkbox
                 label={'Andre'}
-                checked={props.avsenderFilter.andre}
-                onChange={() => props.toggleFilter('andre')}
+                checked={props.avsenderFilter.fraAndre}
+                onChange={() => props.toggleFilter('fraAndre')}
             />
         </>
     );

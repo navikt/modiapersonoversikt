@@ -48,7 +48,7 @@ const EmbedWrapper = styled.div`
   }
 `;
 
-function formatterEntitet(fra: Entitet) {
+function formaterEntitet(fra: Entitet) {
     if (fra === Entitet.Nav) {
         return 'NAV';
     }
@@ -58,8 +58,8 @@ function formatterEntitet(fra: Entitet) {
     return 'andre';
 }
 
-function formatterDatoOgAvsender(date: Date, fra: Entitet) {
-    return `${moment(date).format('DD.MM.YYYY')} / Fra ${formatterEntitet(fra)}`;
+function formaterDatoOgAvsender(date: Date, fra: Entitet) {
+    return `${moment(date).format('DD.MM.YYYY')} / Fra ${formaterEntitet(fra)}`;
 }
 
 function dokumentIkon(harTilgang: boolean) {
@@ -102,7 +102,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                     {dokumentIkon(this.props.harTilgang)}
                     <div>
                         <Normaltekst>
-                            {formatterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                            {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                         </Normaltekst>
                         <Element>{dokument.navn}</Element>
                         <Normaltekst>Saksid: {saksid}</Normaltekst>
