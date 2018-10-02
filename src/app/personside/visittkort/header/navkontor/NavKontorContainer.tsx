@@ -12,6 +12,7 @@ import { Action } from 'history';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Bold } from '../../../../../components/common-styled-components';
 
 interface StateProps {
     navKontorReducer: RestReducer<BrukersNavKontorResponse>;
@@ -27,19 +28,18 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const NavKontorDescriptionList = styled.dl`
+const NavKontorSection = styled.section`
   margin: .5rem 0 0 0;
-  font-weight: bold;
   display: flex;
   justify-content: flex-end;
   > * {
-  white-space: nowrap;
+    white-space: nowrap;
   }
-  dt:after {
+  > *:first-child:after {
     content: '/';
     margin: 0 0.2em;
   }
-  dd {
+  > *:last-child {
     display: flex;
     align-items: center;
     margin: 0;
@@ -50,15 +50,15 @@ const onError = (
     <em>Problemer med å hente nav-enhet</em>
 );
 
-function NavKontorVisning(props: { navKontor: NavKontor | null}) {
+function NavKontorVisning(props: { navKontor: NavKontor | null }) {
     if (!props.navKontor) {
-        return <>Ingen enhet</>;
+        return <Normaltekst><Bold>Ingen enhet</Bold></Normaltekst>;
     }
 
     return (
-        <>
-            {props.navKontor.enhetId} {props.navKontor.enhetNavn}
-        </>
+        <Normaltekst>
+            <Bold>{props.navKontor.enhetId} {props.navKontor.enhetNavn}</Bold>
+        </Normaltekst>
     );
 }
 
@@ -78,20 +78,16 @@ class NavKontorContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Normaltekst tag="section">
-                <NavKontorDescriptionList>
-                    <dt>NAV-kontor</dt>
-                    <dd>
-                        <Innholdslaster
-                            avhengigheter={[this.props.navKontorReducer]}
-                            spinnerSize={'XXS'}
-                            returnOnError={onError}
-                        >
-                            <NavKontorVisning navKontor={this.props.navKontorReducer.data.navKontor}/>
-                        </Innholdslaster>
-                    </dd>
-                </NavKontorDescriptionList>
-            </Normaltekst>
+            <NavKontorSection aria-label="Nav kontor">
+                <Normaltekst tag="h2"><Bold>NAV-kontor</Bold></Normaltekst>
+                <Innholdslaster
+                    avhengigheter={[this.props.navKontorReducer]}
+                    spinnerSize={'XXS'}
+                    returnOnError={onError}
+                >
+                    <NavKontorVisning navKontor={this.props.navKontorReducer.data.navKontor}/>
+                </Innholdslaster>
+            </NavKontorSection>
         );
     }
 }

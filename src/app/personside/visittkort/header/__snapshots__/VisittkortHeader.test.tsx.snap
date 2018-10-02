@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
+.c9 {
+  font-weight: bold;
+}
+
 .c8 {
   margin: .5rem 0 0 0;
-  font-weight: bold;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -18,12 +21,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   white-space: nowrap;
 }
 
-.c8 dt:after {
+.c8 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c8 dd {
+.c8 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -68,21 +71,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   white-space: nowrap;
 }
 
-.c10 {
+.c11 {
   border: none;
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
+  padding: .1rem;
   border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
 }
 
-.c10:hover {
-  background-color: #C6C2BF;
-}
-
-.c10:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0px 3px #FFBD66;
 }
@@ -92,6 +89,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 4px;
   padding: 1.25rem;
   padding-right: 3rem;
+  margin-bottom: .2rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -163,11 +161,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: space-between;
 }
 
+.c3 *:focus {
+  outline: none;
+  box-shadow: 0 0 0px 3px #FFBD66;
+}
+
 .c3 > *:first-child {
   margin-bottom: 0.2em !important;
 }
 
-.c9 {
+.c10 {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -207,10 +210,14 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       <h1
         className="typo-undertittel"
       >
-        AREMARK TESTFAMILIEN
-         (
-        42
-        )
+        <span
+          tabIndex={-1}
+        >
+          AREMARK TESTFAMILIEN
+           (
+          42
+          )
+        </span>
       </h1>
       <span
         className="typo-normal"
@@ -296,29 +303,38 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </div>
     </section>
     <section
-      className="typo-normal"
+      aria-label="Nav kontor"
+      className="c8"
     >
-      <dl
-        className="c8"
+      <h2
+        className="typo-normal"
       >
-        <dt>
+        <span
+          className="c9"
+        >
           NAV-kontor
-        </dt>
-        <dd>
+        </span>
+      </h2>
+      <p
+        className="typo-normal"
+      >
+        <span
+          className="c9"
+        >
           0118
            
           NAV Aremark
-        </dd>
-      </dl>
+        </span>
+      </p>
     </section>
   </div>
   <div
-    className="c9"
+    className="c10"
   >
     <button
       aria-expanded={false}
       aria-label="Detaljer"
-      className="c10"
+      className="c11"
       onClick={[Function]}
     >
       <i
