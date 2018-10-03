@@ -56,7 +56,11 @@ class VisittkortContainer extends React.Component<Props> {
                         toggleVisittkort={this.props.toggleVisittkort}
                         visittkortApent={erApnet}
                     />
-                    <VisittkortBodyWrapper tabIndex={tabIndexForFokus} innerRef={this.detaljerRef}>
+                    <VisittkortBodyWrapper
+                        tabIndex={tabIndexForFokus}
+                        innerRef={this.detaljerRef}
+                        className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper"
+                    >
                         <UnmountClosed isOpened={erApnet}>
                             <VisittkortBody person={person}/>
                         </UnmountClosed>
