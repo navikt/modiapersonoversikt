@@ -164,13 +164,9 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFil
     }
 }
 
-function DokumenterVisning(props: Props) {
-    if (!props.sakstema) {
-        return <b>Ingen saker</b>;
-    }
-
-    const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
-        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter));
+function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter) {
+    const filtrerteDokumenter = sakstema.dokumentMetadata.filter(metadata =>
+        hentRiktigAvsenderfilter(metadata.avsender, avsenderFilter));
 
     if (filtrerteDokumenter.length === 0) {
         return (
@@ -179,16 +175,31 @@ function DokumenterVisning(props: Props) {
             </AlertStripeInfo>
         );
     }
+
     const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
         filtrerteDokumenter.sort(dokumentComparator),
         årForDokument
     );
 
-    const harTilgang = props.sakstema.harTilgang;
+    const harTilgang = sakstema.harTilgang;
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
         <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
     );
+
+    return (
+        <DokumenterArticle>
+            <DokumenterListe>
+                {årsgrupper}
+            </DokumenterListe>
+        </DokumenterArticle>
+    );
+}
+
+function DokumenterVisning(props: Props) {
+    if (!props.sakstema) {
+        return null;
+    }
 
     const checkboxer = (
         <>
@@ -211,6 +222,7 @@ function DokumenterVisning(props: Props) {
     );
 
     const temakodeTilNorgoppslag = byggSøkestrengTilNorgTemaOppslag(props.sakstema);
+    const dokumentinnhold = hentDokumentinnhold(props.sakstema, props.avsenderFilter);
 
     return (
         <div>
@@ -222,11 +234,7 @@ function DokumenterVisning(props: Props) {
                     {checkboxer}
                 </Form>
             </Header>
-            <DokumenterArticle>
-                <DokumenterListe>
-                    {årsgrupper}
-                </DokumenterListe>
-            </DokumenterArticle>
+            {dokumentinnhold}
         </div>
     );
 }
