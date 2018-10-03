@@ -81,7 +81,7 @@ export function getTestStore(): Store<AppState> {
         type: featureToggleActionNames.FINISHED,
         data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')
     });
-    testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversikt(aremarkFnr)})
+    testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversikt(aremarkFnr)});
 
     return testStore;
 }

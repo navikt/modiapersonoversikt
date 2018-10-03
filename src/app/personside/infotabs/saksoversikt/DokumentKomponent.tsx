@@ -10,6 +10,8 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
+import DetaljerKnapp from '../utbetalinger/utils/DetaljerKnapp';
+import { SpaceBetween } from '../../../../components/common-styled-components';
 
 interface Props {
     dokument: DokumentInterface;
@@ -45,6 +47,14 @@ const EmbedWrapper = styled.div`
   padding: 1rem;
   object {
     box-shadow: 0 0 2rem #888;
+  }
+`;
+
+const KnappWrapper = styled.div`
+  display: flex;
+  padding-bottom: .2rem;
+  > *:not(:first-child) {
+    margin-left: .5rem;
   }
 `;
 
@@ -100,13 +110,18 @@ class DokumentKomponent extends React.Component<Props, State> {
             <Wrapper åpen={this.state.åpnet} onClick={() => this.toggle()}>
                 <InfoWrapper>
                     {dokumentIkon(this.props.harTilgang)}
-                    <div>
-                        <Normaltekst>
-                            {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
-                        </Normaltekst>
-                        <Element>{dokument.navn}</Element>
-                        <Normaltekst>Saksid: {saksid}</Normaltekst>
-                    </div>
+                    <SpaceBetween>
+                        <div>
+                            <Normaltekst>
+                                {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                            </Normaltekst>
+                            <Element>{dokument.navn}</Element>
+                            <Normaltekst>Saksid: {saksid}</Normaltekst>
+                        </div>
+                        <KnappWrapper>
+                            <DetaljerKnapp onClick={() => this.toggle()} open={this.state.åpnet}/>
+                        </KnappWrapper>
+                    </SpaceBetween>
                 </InfoWrapper>
                 <UnmountClosed isOpened={this.state.åpnet}>
                     <EmbedWrapper>
