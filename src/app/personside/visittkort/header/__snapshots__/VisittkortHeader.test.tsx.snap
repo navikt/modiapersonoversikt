@@ -81,12 +81,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c11:focus {
   outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
 .c0 {
   background-color: white;
-  border-radius: 4px;
+  border-radius: .25rem;
   padding: 1.25rem;
   padding-right: 3rem;
   margin-bottom: .2rem;
@@ -163,7 +163,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c3 *:focus {
   outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
 .c3 > *:first-child {
