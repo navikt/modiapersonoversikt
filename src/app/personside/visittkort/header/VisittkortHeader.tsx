@@ -22,6 +22,7 @@ const VisittkortHeaderDiv = styled.section`
   border-radius: ${theme.borderRadius.layout};
   padding: ${theme.margin.px20};
   padding-right: 3rem;
+  margin-bottom: .2rem;
   position: relative;
   width: 100%;
   display: flex;
@@ -59,6 +60,9 @@ const GrunninfoDiv = styled.section`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  *:focus {
+    ${theme.focus}
+  }
   > *:first-child {
     margin-bottom: 0.2em !important;
   };
@@ -71,60 +75,67 @@ const ChevronStyling = styled.div`
   transform: translateY(-50%);
 `;
 
-interface PersonProps {
-    person: Person;
-}
-
-function Navnelinje({person}: PersonProps) {
-    const alder = erDød(person.personstatus) ? 'Død' : person.alder;
-    return (
-        <Undertittel tag="h1">
-            {hentNavn(person.navn)} ({alder})
-        </Undertittel>
-    );
-}
-
 function hentNavn(navn: Navn) {
     return navn.fornavn +
         (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ')
         + navn.etternavn;
 }
 
-function VisittkortHeader({person, toggleVisittkort, visittkortApent}: Props) {
-    const ikon = {
-        ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
-    };
-    return (
-        <VisittkortHeaderDiv
-            role="region"
-            aria-label="Visittkort-hode"
-            onClick={() => toggleVisittkort(!visittkortApent)}
-        >
+class VisittkortHeader extends React.Component<Props> {
 
-            <VenstreFelt>
-                <IkonDiv>
-                    {ikon.ikon}
-                </IkonDiv>
-                <GrunninfoDiv>
-                    <Navnelinje person={person}/>
-                    <PersonStatus person={person}/>
-                </GrunninfoDiv>
-            </VenstreFelt>
+    private navneLinjeRef = React.createRef<HTMLElement>();
 
-            <HøyreFelt>
-                <EtiketterContainer/>
-                <NavKontorContainer person={person}/>
-            </HøyreFelt>
+    componentDidMount() {
+        if (this.navneLinjeRef.current) {
+            this.navneLinjeRef.current.focus();
+        }
+    }
 
-            <ChevronStyling>
-                <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
+    render() {
+        const {person, toggleVisittkort, visittkortApent} = this.props;
+        const ikon = {
+            ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
+        };
+        const alder = erDød(person.personstatus) ? 'Død' : person.alder;
+        return (
+            <VisittkortHeaderDiv
+                role="region"
+                aria-label="Visittkort-hode"
+                onClick={() => toggleVisittkort(!visittkortApent)}
+            >
+
+                <VenstreFelt>
+                    <IkonDiv>
+                        {ikon.ikon}
+                    </IkonDiv>
+                    <GrunninfoDiv>
+                        <Undertittel tag="h1">
+                            <span
+                                ref={this.navneLinjeRef}
+                                tabIndex={-1} /* for at focus skal funke*/
+                            >
+                                {hentNavn(person.navn)} ({alder})
+                            </span>
+                        </Undertittel>
+                        <PersonStatus person={person}/>
+                    </GrunninfoDiv>
+                </VenstreFelt>
+
+                <HøyreFelt>
+                    <EtiketterContainer/>
+                    <NavKontorContainer person={person}/>
+                </HøyreFelt>
+
+                <ChevronStyling>
+                    <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
-                </DetaljerKnapp>
-            </ChevronStyling>
-        </VisittkortHeaderDiv>
-    );
+                    </DetaljerKnapp>
+                </ChevronStyling>
+            </VisittkortHeaderDiv>
+        );
+    }
 }
 
 export default VisittkortHeader;
