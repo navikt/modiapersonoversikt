@@ -5,11 +5,12 @@ import theme from '../../../../../styles/personOversiktTheme';
 import {
     createTable,
     formaterNOK,
-    skattBelopAscComparator, trekkBelopAscComparator,
+    skattBelopAscComparator,
+    trekkBelopAscComparator,
     ytelseBelopDescComparator
 } from '../utils/utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { EnkeltYtelseProps } from './SammensattUtbetaling';
+import { EnkeltYtelseProps } from './EnkeltYtelse';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 
 const Wrapper = styled.aside`
