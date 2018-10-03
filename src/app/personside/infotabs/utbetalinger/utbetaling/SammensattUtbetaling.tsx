@@ -3,39 +3,22 @@ import {
     datoVerbose,
     formaterNOK,
     getGjeldendeDatoForUtbetaling,
-    getNettoSumYtelser,
-    periodeStringFromYtelse
+    getNettoSumYtelser
 } from '../utils/utbetalingerUtils';
 import styled from 'styled-components';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import DetaljerKnapp from '../utils/DetaljerKnapp';
-import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import { Utbetaling } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { UnmountClosed } from 'react-collapse';
-import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { FokusProps } from '../Utbetalinger';
+import EnkeltYtelse from './EnkeltYtelse';
 
-export interface EnkeltYtelseProps {
-    ytelse: Ytelse;
-    konto: string | undefined;
-    melding: string | undefined;
+interface SammensattUtbetalingProps {
+    utbetaling: Utbetaling;
 }
 
-interface EnkeltYtelseState {
-    visDetaljer: boolean;
-}
-
-const EnkeltYtelseStyle = styled<{ åpen: boolean }, 'li'>('li')`
-  transition: 0.3s;
-  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
-  cursor: pointer;
-`;
-
-const PadLeft = styled.div`
-  margin-left: .5rem;
-`;
+type Props = SammensattUtbetalingProps & FokusProps;
 
 const SammensattUtbetalingStyle = styled.li`
   padding: ${theme.margin.px20} ${theme.margin.px10};
@@ -46,58 +29,6 @@ const SammensattUtbetalingStyle = styled.li`
     margin-bottom: .8rem;
   }
 `;
-
-class EnkeltYtelse extends React.Component<EnkeltYtelseProps, EnkeltYtelseState> {
-
-    constructor(props: EnkeltYtelseProps) {
-        super(props);
-        this.state = {
-            visDetaljer: false
-        };
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-    }
-
-    toggleVisDetaljer() {
-        this.setState({
-            visDetaljer: !this.state.visDetaljer
-        });
-    }
-
-    render() {
-        const ytelse = this.props.ytelse;
-        const periode = periodeStringFromYtelse(ytelse);
-
-        return (
-            <EnkeltYtelseStyle
-                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                åpen={this.state.visDetaljer}
-            >
-                <SpaceBetween>
-                    <UndertekstBold>
-                        {ytelse.type}
-                    </UndertekstBold>
-                    <SpaceBetween>
-                        <UndertekstBold>
-                            {formaterNOK(ytelse.nettobeløp)}
-                        </UndertekstBold>
-                        <PadLeft/>
-                        <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
-                    </SpaceBetween>
-                </SpaceBetween>
-                <Undertekst>
-                    {periode}
-                </Undertekst>
-                <UnmountClosed isOpened={this.state.visDetaljer}>
-                    <UtbetalingsDetaljer ytelse={ytelse} konto={this.props.konto} melding={this.props.melding}/>
-                </UnmountClosed>
-            </EnkeltYtelseStyle>
-        );
-    }
-}
-
-interface Props {
-    utbetaling: Utbetaling;
-}
 
 const YtelsesListe = styled.ul`
   list-style: none;
@@ -124,6 +55,8 @@ function SammensattUtbetaling(props: Props) {
             konto={utbetaling.konto}
             melding={utbetaling.melding}
             key={index}
+            ytelseIFokus={props.ytelseIFokus}
+            updateYtelseIFokus={props.updateYtelseIFokus}
         />
     ));
 
