@@ -32,7 +32,7 @@ function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMe
         mottaker: getEntitet(faker),
         tilhørendeSaksid: faker.random.alphaNumeric(8),
         tilhørendeFagsaksid: faker.random.alphaNumeric(8),
-        baksystem: fyllRandomListe(() => getBaksystem(faker), 3),
+        baksystem: fyllRandomListe(() => getBaksystem(navfaker), 3),
         temakode: faker.random.alphaNumeric(5),
         temakodeVisning: faker.random.alphaNumeric(5),
         ettersending: faker.random.boolean(),

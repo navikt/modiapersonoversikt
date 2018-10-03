@@ -41,18 +41,16 @@ function getSakstemaListe(): Sakstema[] {
 }
 
 function getSakstema(): Sakstema {
-    const index = navfaker.random.integer(temaarray.length - 1, 0);
-    const temakode = temaarray[index][0];
-    const temanavn = temaarray[index][1];
+    const tema = navfaker.random.arrayElement(temaarray);
 
     return {
         harTilgang: faker.random.boolean(),
-        temakode: temakode,
-        temanavn: temanavn,
+        temakode: tema[0],
+        temanavn: tema[1],
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
         dokumentMetadata: getDokumentMetadataListe(faker, navfaker),
-        tilhorendeSaker: fyllRandomListe(() => getSak(temakode), 5),
+        tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 5),
         feilkoder: getFeilkoder()
     };
 }
@@ -64,7 +62,7 @@ function getSak(temakode: string): Sak {
         fagsaksnummer: faker.random.alphaNumeric(8),
         avsluttet: getSaksdato(navfaker),
         fagsystem: faker.random.alphaNumeric(5),
-        baksystem: getBaksystem(faker)
+        baksystem: getBaksystem(navfaker)
     };
 }
 

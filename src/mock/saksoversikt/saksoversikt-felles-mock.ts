@@ -1,7 +1,5 @@
 import NavFaker from 'nav-faker/dist/navfaker';
 import { Baksystem, Saksdato } from '../../models/saksoversikt/fellesSak';
-import { vektetSjanse } from '../utils/mock-utils';
-import FakerStatic = Faker.FakerStatic;
 
 export function getSaksdato(navfaker: NavFaker): Saksdato {
     return {
@@ -14,24 +12,16 @@ export function getSaksdato(navfaker: NavFaker): Saksdato {
     };
 }
 
-export function getBaksystem(faker: FakerStatic): Baksystem {
-    if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Aktoer;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Gsak;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Henvendelse;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Joark;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.JoarkSikkerhetsbegrensning;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Kodeverk;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.PdfKonvertering;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Baksystem.Pesys;
-    } else {
-        return Baksystem.SakOgBehandling;
-    }
+export function getBaksystem(navfaker: NavFaker): Baksystem {
+    return navfaker.random.arrayElement([
+        Baksystem.SakOgBehandling,
+        Baksystem.Pesys,
+        Baksystem.PdfKonvertering,
+        Baksystem.Kodeverk,
+        Baksystem.JoarkSikkerhetsbegrensning,
+        Baksystem.Joark,
+        Baksystem.Henvendelse,
+        Baksystem.Gsak,
+        Baksystem.Aktoer
+    ]);
 }

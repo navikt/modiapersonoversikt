@@ -58,7 +58,7 @@ function setupSaksoversiktMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/saker/:fodselsnummer/sakstema', withDelayedResponse(
         randomDelay(),
         STATUS_OK,
-        mockGeneratorMedFødselsnummer(fødselsnummer => getMockSaksoversikt(fødselsnummer))
+        mockGeneratorMedFødselsnummer(getMockSaksoversikt)
     ));
 }
 
