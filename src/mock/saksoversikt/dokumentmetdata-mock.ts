@@ -7,10 +7,10 @@ import {
     KategoriNotat,
     Kommunikasjonsretning
 } from '../../models/saksoversikt/dokumentmetadata';
-import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import FakerStatic = Faker.FakerStatic;
+import { fyllRandomListe } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
+import FakerStatic = Faker.FakerStatic;
 
 export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
@@ -22,14 +22,14 @@ export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker)
 
 function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata {
     return {
-        retning: getKommunikasjonsretning(faker),
+        retning: getKommunikasjonsretning(navfaker),
         dato: getSaksdato(navfaker),
         navn: 'Dokument ' + faker.lorem.words(3),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker),
         vedlegg: fyllRandomListe(() => getDokument(faker), 5),
-        avsender: getEntitet(faker),
-        mottaker: getEntitet(faker),
+        avsender: getEntitet(navfaker),
+        mottaker: getEntitet(navfaker),
         tilhørendeSaksid: faker.random.alphaNumeric(8),
         tilhørendeFagsaksid: faker.random.alphaNumeric(8),
         baksystem: fyllRandomListe(() => getBaksystem(navfaker), 3),
@@ -37,15 +37,15 @@ function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMe
         temakodeVisning: faker.random.alphaNumeric(5),
         ettersending: faker.random.boolean(),
         erJournalfort: faker.random.boolean(),
-        feil: getFeilWrapper(faker),
-        kategoriNotat: getKategoriNotat(faker)
+        feil: getFeilWrapper(faker, navfaker),
+        kategoriNotat: getKategoriNotat(navfaker)
     };
 }
 
-function getFeilWrapper(faker: FakerStatic): FeilWrapper {
+function getFeilWrapper(faker: FakerStatic, navfaker: NavFaker): FeilWrapper {
     return {
         inneholderFeil: faker.random.boolean(),
-        feilmelding: getFeilmelding(faker)
+        feilmelding: getFeilmelding(navfaker)
     };
 }
 
@@ -58,58 +58,44 @@ function getDokument(faker: FakerStatic): Dokument {
     };
 }
 
-function getKommunikasjonsretning(faker: FakerStatic): Kommunikasjonsretning {
-    if (vektetSjanse(faker, 0.3)) {
-        return Kommunikasjonsretning.Inn;
-    } else if (vektetSjanse(faker, 0.3)) {
-        return Kommunikasjonsretning.Ut;
-    } else {
-        return Kommunikasjonsretning.Intern;
-    }
+function getKommunikasjonsretning(navfaker: NavFaker): Kommunikasjonsretning {
+    return navfaker.random.arrayElement([
+        Kommunikasjonsretning.Intern,
+        Kommunikasjonsretning.Ut,
+        Kommunikasjonsretning.Inn
+    ]);
 }
 
-function getEntitet(faker: FakerStatic): Entitet {
-    if (vektetSjanse(faker, 0.2)) {
-        return Entitet.EksternPart;
-    } else if (vektetSjanse(faker, 0.2)) {
-        return Entitet.Nav;
-    } else if (vektetSjanse(faker, 0.2)) {
-        return Entitet.Sluttbruker;
-    } else {
-        return Entitet.Ukjent;
-    }
+function getEntitet(navfaker: NavFaker): Entitet {
+    return navfaker.random.arrayElement([
+        Entitet.Nav,
+        Entitet.Sluttbruker,
+        Entitet.Ukjent,
+        Entitet.EksternPart
+    ]);
 }
 
-function getFeilmelding(faker: FakerStatic): Feilmelding {
-    if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.DokumentIkkeFunnet;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.DokumentIkkeTilgjengelig;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.DokumentSlettet;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.IkkeJournalfortEllerAnnenBruker;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.JournalfortAnnetTema;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.KorruptPdf;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.ManglerDokumentmetadata;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.SaksbehandlerIkkeTilgang;
-    } else if (vektetSjanse(faker, 0.1)) {
-        return Feilmelding.Sikkerhetsbegrensning;
-    } else {
-        return Feilmelding.TekniskFeil;
-    }
+function getFeilmelding(navfaker: NavFaker): Feilmelding {
+    return navfaker.random.arrayElement([
+        Feilmelding.TekniskFeil,
+        Feilmelding.Sikkerhetsbegrensning,
+        Feilmelding.SaksbehandlerIkkeTilgang,
+        Feilmelding.ManglerDokumentmetadata,
+        Feilmelding.KorruptPdf,
+        Feilmelding.JournalfortAnnetTema,
+        Feilmelding.IkkeJournalfortEllerAnnenBruker,
+        Feilmelding.DokumentSlettet,
+        Feilmelding.DokumentIkkeTilgjengelig,
+        Feilmelding.DokumentIkkeFunnet,
+        Feilmelding.TemakodeErBidrag,
+        Feilmelding.UkjentFeil
+    ]);
 }
 
-function getKategoriNotat(faker: FakerStatic): KategoriNotat {
-    if (vektetSjanse(faker, 0.3)) {
-        return KategoriNotat.Forvaltningsnotat;
-    } else if (vektetSjanse(faker, 0.3)) {
-        return KategoriNotat.InterntNotat;
-    } else {
-        return KategoriNotat.Referat;
-    }
+function getKategoriNotat(navfaker: NavFaker): KategoriNotat {
+    return navfaker.random.arrayElement([
+        KategoriNotat.Referat,
+        KategoriNotat.InterntNotat,
+        KategoriNotat.Forvaltningsnotat
+    ]);
 }
