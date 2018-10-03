@@ -47,6 +47,7 @@ const DokumenterArticle = styled.article`
 const DokumenterListe = styled.ol`
   padding: 0 ${theme.margin.px10};
   margin: 0;
+  list-style: none;
 `;
 
 const ÅrsGruppeStyle = styled.li`
@@ -60,33 +61,6 @@ const ÅrsGruppeStyle = styled.li`
   }
   ol > *:not(:first-child) {
     border-top: solid 2px ${theme.color.bakgrunn};
-  }
-`;
-
-const Wrapper = styled.div`
-  ol {
-    list-style: none;
-  }
-  table {
-    width: 100%;
-    text-align: right;
-    border-spacing: 0;
-    * {
-      padding: 0;
-      margin: 0;
-    }
-    tr {
-      > * {
-        padding: 0.1rem;
-        text-align: right;
-      }
-      > *:first-child {
-        text-align: left;
-      }
-      > *:not(:first-child) {
-        width: 6rem;
-      }
-    }
   }
 `;
 
@@ -161,14 +135,14 @@ function hentNorg2Url(baseUrlsResponse: BaseUrlsResponse) {
     return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
 }
 
-function sakstemaSomKommaseparertListe(sakstema: Sakstema) {
+function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== 'ALLE') {
         return sakstema.temakode;
     }
     const temaArray: string[] = sakstema.dokumentMetadata.reduce(
         (acc: string[], dok: DokumentMetadata) => {
             const tema = dok.temakode;
-            if (acc.indexOf(tema) > -1) {
+            if (acc.includes(tema)) {
                 return acc;
             } else {
                 return [...acc, tema];
@@ -179,7 +153,7 @@ function sakstemaSomKommaseparertListe(sakstema: Sakstema) {
     return temaArray.join();
 }
 
-function filterAvsender(avsender: Entitet, avsenderfilter: AvsenderFilter) {
+function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFilter) {
     switch (avsender) {
         case Entitet.Sluttbruker:
             return avsenderfilter.fraBruker;
@@ -196,10 +170,9 @@ function DokumenterVisning(props: Props) {
     }
 
     const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
-        filterAvsender(metadata.avsender, props.avsenderFilter));
+        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter));
 
     if (filtrerteDokumenter.length === 0) {
-
         return (
             <AlertStripeInfo>
                 Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
@@ -216,8 +189,6 @@ function DokumenterVisning(props: Props) {
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
         <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
     );
-
-    const temakodeTilNorgoppslag = sakstemaSomKommaseparertListe(props.sakstema);
 
     const checkboxer = (
         <>
@@ -239,8 +210,10 @@ function DokumenterVisning(props: Props) {
         </>
     );
 
+    const temakodeTilNorgoppslag = byggSøkestrengTilNorgTemaOppslag(props.sakstema);
+
     return (
-        <Wrapper>
+        <div>
             <Header>
                 <LenkeWrapper>
                     {lenkeNorg(temakodeTilNorgoppslag, hentNorg2Url(props.baseUrlsResponse))}
@@ -254,7 +227,7 @@ function DokumenterVisning(props: Props) {
                     {årsgrupper}
                 </DokumenterListe>
             </DokumenterArticle>
-        </Wrapper>
+        </div>
     );
 }
 
