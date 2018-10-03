@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling } from '../../../../models/utbetalinger';
+import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Undertekst, Undertittel } from 'nav-frontend-typografi';
@@ -18,9 +18,9 @@ import {
 import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
-export interface UtbetalingerProps {
-    utbetalinger: Utbetaling[];
-    filter: FilterState;
+export interface FokusProps {
+    ytelseIFokus: Ytelse | null;
+    updateYtelseIFokus: (ytelse: Ytelse) => void;
 }
 
 const MånedGruppeStyle = styled.li`
@@ -78,11 +78,18 @@ const Wrapper = styled.div`
   }
 `;
 
-function Månedsgruppe({gruppe}: { gruppe: ArrayGroup<Utbetaling> }) {
+interface MånedsgruppeUniqueProps {
+    gruppe: ArrayGroup<Utbetaling>;
+}
+
+type MånedsgruppeProps = MånedsgruppeUniqueProps & FokusProps;
+
+function Månedsgruppe({gruppe, ...props}: MånedsgruppeProps) {
     const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
         <UtbetalingKomponent
-            utbetaling={utbetaling}
             key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
+            utbetaling={utbetaling}
+            {...props}
         />
     ));
     return (
@@ -119,8 +126,24 @@ function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
     return utbetaling.ytelser && utbetaling.ytelser.length > 0;
 }
 
-function Utbetalinger(props: UtbetalingerProps) {
-    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, props.filter);
+function addPilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
+    return () => window.addEventListener('keydown', handleShortcut);
+}
+
+function removePilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
+    return () => window.removeEventListener('keydown', handleShortcut);
+}
+
+interface UtbetalingerUniqueProps {
+    utbetalinger: Utbetaling[];
+    filter: FilterState;
+    handleShortcut: (event: KeyboardEvent) => void;
+}
+
+type UtbetalingerProps = UtbetalingerUniqueProps & FokusProps;
+
+function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
+    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
@@ -133,16 +156,24 @@ function Utbetalinger(props: UtbetalingerProps) {
         filtrerteUtbetalinger.sort(utbetalingDatoComparator),
         månedOgÅrForUtbetaling
     );
-    const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) =>
-        <Månedsgruppe gruppe={gruppe} key={gruppe.category}/>
-    );
+
+    const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) => (
+        <Månedsgruppe
+            key={gruppe.category}
+            gruppe={gruppe}
+            {...props}
+        />
+    ));
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={props.filter}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={filter}/>
             <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
-                <UtbetalingerListe>
+                <UtbetalingerListe
+                    onFocus={addPilknappListener(handleShortcut)}
+                    onBlur={removePilknappListener(handleShortcut)}
+                >
                     {månedsGrupper}
                 </UtbetalingerListe>
             </UtbetalingerArticle>
