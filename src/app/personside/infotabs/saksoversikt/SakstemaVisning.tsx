@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
-import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
-import { Sak } from '../../../../models/saksoversikt/sak';
 import { Undertittel } from 'nav-frontend-typografi';
 import SaksIkon from '../../../../svg/SaksIkon';
 import { hentDatoForSisteHendelse } from './saksoversiktUtils';
@@ -79,7 +77,7 @@ function GrupperteTema(props: SakstemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
-                valgtSakstema={props.valgtSakstema}
+                erValgtSakstema={props.valgtSakstema === sakstema}
                 sakstema={sakstema}
                 oppdaterSakstema={props.oppdaterSakstema}
                 key={sakstema.temakode + hentDatoForSisteHendelse(sakstema)}
@@ -95,40 +93,19 @@ function GrupperteTema(props: SakstemaProps) {
     );
 }
 
-function aggregerteBehandlingskjeder(alleSakstema: Sakstema[]) {
-    const alleBehandlingskjeder: Behandlingskjede[] = alleSakstema.reduce(
-        (acc: Behandlingskjede[], sakstema: Sakstema) => {
-            return [...acc, ...sakstema.behandlingskjeder];
+function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
+    return alleSakstema.reduce(
+        (acc: T[], sakstema: Sakstema) => {
+            return [...acc, ...getGeneriskElement(sakstema)];
         },
         []
     );
-    return alleBehandlingskjeder;
-}
-
-function aggregerteDokumentMetadata(alleSakstema: Sakstema[]) {
-    const alleDokumentmetadata: DokumentMetadata[] = alleSakstema.reduce(
-        (acc: DokumentMetadata[], sakstema: Sakstema) => {
-            return [...acc, ...sakstema.dokumentMetadata];
-        },
-        []
-    );
-    return alleDokumentmetadata;
-}
-
-function aggregerteSaker(alleSakstema: Sakstema[]) {
-    const alleTilhørendeSaker: Sak[] = alleSakstema.reduce(
-        (acc: Sak[], sakstema: Sakstema) => {
-            return [...acc, ...sakstema.tilhorendeSaker];
-        },
-        []
-    );
-    return alleTilhørendeSaker;
 }
 
 function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
-    const alleBehandlingskjeder = aggregerteBehandlingskjeder(alleSakstema);
-    const alleDokumentmetadata = aggregerteDokumentMetadata(alleSakstema);
-    const alleTilhørendeSaker = aggregerteSaker(alleSakstema);
+    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.behandlingskjeder));
+    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.dokumentMetadata));
+    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.tilhorendeSaker));
 
     return {
         temanavn: 'Alle tema',

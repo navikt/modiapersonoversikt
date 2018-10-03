@@ -10,7 +10,7 @@ import { hentDatoForSisteHendelse } from './saksoversiktUtils';
 
 interface Props {
     sakstema: Sakstema;
-    valgtSakstema?: Sakstema;
+    erValgtSakstema: boolean;
     oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
@@ -52,10 +52,11 @@ const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
     }
 `;
 
-function behandlingstag(sakstema: Sakstema, sjekktype: Behandlingsstatus, status: string) {
+function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatus: Behandlingsstatus, status: string) {
     const antallUnderbehandling = sakstema.behandlingskjeder
-        .filter(behandlingskjede => behandlingskjede.status === sjekktype).length;
+        .filter(behandlingskjede => behandlingskjede.status === sjekkMotStatus).length;
 
+    // Skal ikke vises på det aggregerte sakstemaet
     if (antallUnderbehandling === 0 || sakstema.temakode === 'ALLE') {
         return null;
     }
@@ -73,13 +74,18 @@ function saksikon(harTilgang: boolean) {
 }
 
 function SakstemaComponent(props: Props) {
+    const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
+        props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling');
+    const sakerFerdigBehandlet = visAntallSakerSomHarBehandlingsstatus(
+        props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet');
+
     return (
-        <Wrapper valgt={props.sakstema === props.valgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
+        <Wrapper valgt={props.erValgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
                 <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>
-                {behandlingstag(props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling')}
-                {behandlingstag(props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet')}
+                {sakerUnderBehandling}
+                {sakerFerdigBehandlet}
             </div>
             <KnappWrapper>
                 {saksikon(props.sakstema.harTilgang)}
