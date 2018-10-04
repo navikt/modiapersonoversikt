@@ -13,7 +13,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c10:focus {
   outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
 .c9 {
@@ -177,7 +177,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c25:focus {
   outline: none;
-  box-shadow: 0 0 0px 3px #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
 .c23 {
@@ -254,7 +254,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c17 {
   background-color: white;
-  border-radius: 4px;
+  border-radius: .25rem;
   margin-top: .8rem;
 }
 
@@ -332,7 +332,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c1 {
-  border-radius: 4px;
+  border-radius: .25rem;
   background-color: white;
   min-width: 24rem;
   -webkit-flex-basis: 24rem;
@@ -341,7 +341,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c12 {
-  border-radius: 4px;
+  border-radius: .25rem;
   background-color: white;
   position: relative;
   -webkit-box-flex: 1;
