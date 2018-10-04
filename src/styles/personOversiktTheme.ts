@@ -12,8 +12,8 @@ export const theme = {
         bakgrunn: '#efefef'
     },
     media: {
-        smallScreen: 'max-width: 550px',
-        wideScreen: 'min-width: 550px'
+        smallScreen: 'max-width: 35rem',
+        wideScreen: 'min-width: 35rem'
     },
     margin: {
         layout: '.8rem',
@@ -26,13 +26,13 @@ export const theme = {
         layout: '0 0.1em 0.6em rgba(150, 150, 150, 0.7)'
     },
     borderRadius: {
-        layout: '4px;',
-        knapp: '8px;'
+        layout: '.25rem;',
+        knapp: '.5rem;'
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
     },
-    focus: 'outline: none; box-shadow: 0 0 0px 3px #FFBD66;',
+    focus: 'outline: none; box-shadow: 0 0 0 0.1875rem #FFBD66;',
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;
