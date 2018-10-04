@@ -4,8 +4,8 @@ import navfaker from 'nav-faker/dist/index';
 import { Sakstema, SakstemaWrapper } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import { getBehandlingskjeder } from './behandlingskjeder-mock';
-import { getDokumentMetadataListe } from './dokumentmetdata-mock';
+import { getBehandlingskjede, getBehandlingskjeder } from './behandlingskjeder-mock';
+import { getDokumentMetadata, getDokumentMetadataListe } from './dokumentmetdata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 
 const temaarray = [
@@ -32,12 +32,34 @@ export function getMockSaksoversikt(fødselsnummer: string): SakstemaWrapper {
     };
 }
 
+export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaWrapper {
+    faker.seed(Number(fødselsnummer));
+    navfaker.seed(fødselsnummer + 'utbetaling');
+
+    const tema = navfaker.random.arrayElement(temaarray);
+    return {
+        resultat: [
+            {
+                ...getSakstema(),
+                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
+                dokumentMetadata: [getDokumentMetadata(faker, navfaker)],
+                tilhorendeSaker: [getSak(tema[0])]
+            }, {
+                ...getSakstema(),
+                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
+                dokumentMetadata: [getDokumentMetadata(faker, navfaker)],
+                tilhorendeSaker: [getSak(tema[0])]
+            }
+        ]
+    };
+}
+
 function getSakstemaListe(): Sakstema[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getSakstema());
+    return Array(navfaker.random.integer(15, 1)).fill(null).map(() => getSakstema());
 }
 
 function getSakstema(): Sakstema {

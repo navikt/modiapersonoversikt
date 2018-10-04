@@ -12,7 +12,7 @@ export function getBehandlingskjeder(faker: FakerStatic, navfaker: NavFaker): Be
     return fyllRandomListe(() => getBehandlingskjede(faker, navfaker), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
 }
 
-function getBehandlingskjede(faker: FakerStatic, navfaker: NavFaker): Behandlingskjede {
+export function getBehandlingskjede(faker: FakerStatic, navfaker: NavFaker): Behandlingskjede {
     return {
         status: getBehandlingsstatus(faker),
         sistOppdatert: getSaksdato(navfaker)

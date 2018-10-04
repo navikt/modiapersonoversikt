@@ -17,10 +17,10 @@ export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker)
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker));
+    return Array(navfaker.random.integer(10, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker));
 }
 
-function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata {
+export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata {
     return {
         retning: getKommunikasjonsretning(navfaker),
         dato: getSaksdato(navfaker),

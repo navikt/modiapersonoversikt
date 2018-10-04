@@ -41,7 +41,7 @@ import { utbetalingerActions } from './redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from './mock/statiskMockUtbetaling';
 import { mockFeatureToggleAdminBrukerprofil } from './mock/featureToggle-mock';
 import { saksoversiktActions } from './redux/restReducers/saksoversikt';
-import { getMockSaksoversikt } from './mock/saksoversikt/saksoversikt-mock';
+import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
 
 configure({adapter: new EnzymeReactAdapter()});
 
@@ -81,7 +81,7 @@ export function getTestStore(): Store<AppState> {
         type: featureToggleActionNames.FINISHED,
         data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')
     });
-    testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversikt(aremarkFnr)});
+    testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversiktForTest(aremarkFnr)});
 
     return testStore;
 }
