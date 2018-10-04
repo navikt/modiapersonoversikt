@@ -1,0 +1,809 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
+.c10 {
+  border: none;
+  padding: 0;
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.c10:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 svg {
+  margin-top: .3rem;
+  height: 1.875rem;
+  width: 1.875rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c11:hover {
+  background-color: rgba(102,203,236,0.18);
+}
+
+.c11:active {
+  background-color: rgba(102,203,236,0.35);
+}
+
+.c11 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.03);
+}
+
+.c8:hover {
+  background-color: rgba(102,203,236,0.18);
+}
+
+.c8:active {
+  background-color: rgba(102,203,236,0.35);
+}
+
+.c8 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c5 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c7 ol > *:first-child {
+  padding: 20px 10px 20px 10px;
+}
+
+.c7 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c7 ol > *:not(:first-child) {
+  border-top: solid 2px #efefef;
+  padding: 20px 10px 20px 10px;
+}
+
+.c6 {
+  padding: .2rem .6rem;
+  margin: 0;
+}
+
+.c2 ol {
+  list-style: none;
+}
+
+.c2 table {
+  width: 100%;
+  text-align: right;
+  border-spacing: 0;
+}
+
+.c2 table * {
+  padding: 10px;
+  margin: 0;
+}
+
+.c2 table tr > * {
+  padding: 0.1rem;
+  text-align: right;
+}
+
+.c2 table tr > *:first-child {
+  text-align: left;
+}
+
+.c2 table tr > *:not(:first-child) {
+  width: 6rem;
+}
+
+.c3 {
+  padding: 1.25rem 3.125rem;
+}
+
+.c3 svg {
+  height: 1.875rem;
+  width: auto;
+}
+
+.c25 {
+  border: none;
+  padding: .1rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.c25:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c23 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c21 {
+  text-transform: uppercase;
+}
+
+.c20 {
+  font-weight: bold;
+}
+
+.c22 {
+  padding: 1.25rem .6rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c22 svg {
+  padding-right: 1rem;
+  height: 1.875rem;
+  width: auto;
+}
+
+.c22:hover {
+  background-color: rgba(102,203,236,0.18);
+}
+
+.c22:active {
+  background-color: rgba(102,203,236,0.35);
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: .2rem;
+}
+
+.c24 > *:not(:first-child) {
+  margin-left: .5rem;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+}
+
+.c13 > * {
+  padding: 10px;
+}
+
+.c17 {
+  background-color: white;
+  border-radius: .25rem;
+  margin-top: .8rem;
+}
+
+.c17 > *:first-child {
+  padding: 1.25rem;
+}
+
+.c18 {
+  padding: 0 .6rem;
+  margin: 0;
+  list-style: none;
+}
+
+.c19 > *:first-child {
+  background-color: rgba(102,203,236,0.18);
+  padding: .2rem .6rem;
+}
+
+.c19 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c19 ol > *:not(:first-child) {
+  border-top: solid 2px #efefef;
+}
+
+.c14 > *:first-child {
+  padding-bottom: 0.5rem;
+}
+
+.c15 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c16 > *:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c0 .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c0 > * {
+  margin-bottom: .8rem;
+}
+
+.c1 {
+  border-radius: .25rem;
+  background-color: white;
+  min-width: 24rem;
+  -webkit-flex-basis: 24rem;
+  -ms-flex-preferred-size: 24rem;
+  flex-basis: 24rem;
+}
+
+.c12 {
+  border-radius: .25rem;
+  background-color: white;
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+@media (max-width:80rem) {
+  .c0 {
+    display: block;
+  }
+}
+
+@media not all and (max-width:80rem) {
+  .c12 {
+    margin-left: .8rem;
+  }
+}
+
+<article
+  className="c0"
+>
+  <h1
+    className="typo-innholdstittel visually-hidden"
+  >
+    Brukerens saker
+  </h1>
+  <section
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.5 8H21V6.5c0-.3-.2-.5-.5-.5H8V4.5c0-.3-.2-.5-.5-.5h-7c-.3 0-.5.2-.5.5V21a3 3 0 0 0 3 3h17.5c2 0 3.5-1.6 3.5-3.5v-12c0-.3-.2-.5-.5-.5zM20 8H5.5c-.3 0-.5.2-.5.5V21a2 2 0 0 1-4 0V5h6v1.5c0 .3.2.5.5.5H20v1z"
+                fill="#C6C2BF"
+              />
+            </svg>
+          </div>
+          <h2
+            className="typo-undertittel"
+          >
+            Saker
+          </h2>
+        </div>
+      </div>
+      <ol
+        className="c6"
+      >
+        <li
+          className="c7"
+        >
+          <ol>
+            <div
+              className="c8"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  16.05.2018 kl. 04:59
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Alle tema
+                </p>
+              </div>
+              <div
+                className="c9"
+              >
+                <button
+                  className="c10"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </div>
+            <div
+              className="c11"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  15.02.2016 kl. 05:05
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Sykepenger
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  1
+                   
+                  søknad
+                   er 
+                  ferdig behandlet
+                  .
+                </p>
+              </div>
+              <div
+                className="c9"
+              >
+                <svg
+                  contentScriptType="text/ecmascript"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="#C6C2BF"
+                  >
+                    <path
+                      d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                    />
+                    <path
+                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                    />
+                  </g>
+                </svg>
+                <button
+                  className="c10"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </div>
+            <div
+              className="c11"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  16.05.2018 kl. 04:59
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Arbeidsavklaringspenger
+                </p>
+              </div>
+              <div
+                className="c9"
+              >
+                <svg
+                  contentScriptType="text/ecmascript"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="#C6C2BF"
+                  >
+                    <path
+                      d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                    />
+                    <path
+                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                    />
+                  </g>
+                </svg>
+                <button
+                  className="c10"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </div>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section
+    className="c12"
+  >
+    <h1
+      tabIndex={-1}
+    />
+    <div>
+      <section
+        className="c13"
+      >
+        <div
+          className="c14"
+        >
+          <div
+            className="c15"
+          >
+            <a
+              className="lenke"
+              href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=xe1f8,7izbc"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span
+                className="typo-normal"
+              >
+                Oversikt over enheter og tema de behandler
+              </span>
+            </a>
+          </div>
+        </div>
+        <form
+          className="c16"
+        >
+          <div
+            className="skjemaelement skjemaelement--horisontal"
+          >
+            <input
+              checked={true}
+              className="skjemaelement__input checkboks"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Bruker
+            </label>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement skjemaelement--horisontal"
+          >
+            <input
+              checked={true}
+              className="skjemaelement__input checkboks"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              NAV
+            </label>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement skjemaelement--horisontal"
+          >
+            <input
+              checked={true}
+              className="skjemaelement__input checkboks"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Andre
+            </label>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </form>
+      </section>
+      <article
+        className="c17"
+      >
+        <ol
+          className="c18"
+        >
+          <li
+            className="c19"
+          >
+            <h3
+              className="typo-undertekst"
+            >
+              <span
+                className="c20"
+              >
+                <span
+                  className="c21"
+                >
+                  2018
+                </span>
+              </span>
+            </h3>
+            <ol>
+              <div
+                className=""
+                onClick={[Function]}
+              >
+                <div
+                  className="c22"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
+                      fill="none"
+                      stroke="#C6C2BF"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <div
+                    className="c23"
+                  >
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        16.05.2018 / Fra andre
+                      </p>
+                      <p
+                        className="typo-element"
+                      >
+                        Dokument officiis sunt libero
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        Saksid: 
+                        dxuyjwm0
+                      </p>
+                    </div>
+                    <div
+                      className="c24"
+                    >
+                      <button
+                        aria-expanded={false}
+                        aria-label="Detaljer"
+                        className="c25"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="nav-frontend-chevron chevronboks chevron--ned"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ol>
+          </li>
+          <li
+            className="c19"
+          >
+            <h3
+              className="typo-undertekst"
+            >
+              <span
+                className="c20"
+              >
+                <span
+                  className="c21"
+                >
+                  2016
+                </span>
+              </span>
+            </h3>
+            <ol>
+              <div
+                className=""
+                onClick={[Function]}
+              >
+                <div
+                  className="c22"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
+                      fill="none"
+                      stroke="#C6C2BF"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <div
+                    className="c23"
+                  >
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        09.02.2016 / Fra andre
+                      </p>
+                      <p
+                        className="typo-element"
+                      >
+                        Dokument voluptatibus non ea
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        Saksid: 
+                        00aeiyc5
+                      </p>
+                    </div>
+                    <div
+                      className="c24"
+                    >
+                      <button
+                        aria-expanded={false}
+                        aria-label="Detaljer"
+                        className="c25"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="nav-frontend-chevron chevronboks chevron--ned"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ol>
+          </li>
+        </ol>
+      </article>
+    </div>
+  </section>
+</article>
+`;

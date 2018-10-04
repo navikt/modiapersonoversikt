@@ -22,6 +22,7 @@ import { getMockSykepenger } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggleAdminBrukerprofil } from './featureToggle-mock';
+import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 
 const STATUS_OK = () => 200;
 
@@ -51,6 +52,14 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
         randomDelay(),
         STATUS_OK,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
+}
+
+function setupSaksoversiktMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/saker/:fodselsnummer/sakstema', withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFødselsnummer(getMockSaksoversikt)
+    ));
 }
 
 function setupUtbetalingerMock(mock: FetchMock) {
@@ -243,6 +252,7 @@ export function setupMock() {
     setupEgenAnsattMock(mock);
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);
+    setupSaksoversiktMock(mock);
     setupUtbetalingerMock(mock);
     setupSykepengerMock(mock);
     setupForeldrepengerMock(mock);

@@ -24,6 +24,7 @@ import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
 import oppfolgingReducer from './oppfolging';
+import saksoversiktReducer from './saksoversikt';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -40,6 +41,7 @@ import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { Oppfolging } from '../../models/oppfolging';
+import { SakstemaWrapper } from '../../models/saksoversikt/sakstema';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -66,6 +68,7 @@ export interface RestEndepunkter {
     pleiepengerReducer: RestReducer<PleiepengerResponse>;
     foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
     oppfolgingReducer: RestReducer<Oppfolging>;
+    saksoversiktReducer: RestReducer<SakstemaWrapper>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -92,5 +95,6 @@ export default combineReducers<RestEndepunkter>({
     sykepengerReducer: sykepengerReducer,
     pleiepengerReducer: pleiepengerReducer,
     foreldrepengerReducer: foreldrepengerReducer,
-    oppfolgingReducer: oppfolgingReducer
+    oppfolgingReducer: oppfolgingReducer,
+    saksoversiktReducer: saksoversiktReducer
 });
