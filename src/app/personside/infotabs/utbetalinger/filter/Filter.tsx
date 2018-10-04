@@ -7,7 +7,6 @@ import { Feilmelding } from '../../../../../utils/Feilmelding';
 import * as moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';
-import Innholdslaster from '../../../../../components/Innholdslaster';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -140,6 +139,10 @@ function egendefinertDatoInputs(props: Props) {
     );
 }
 
+function visCheckbokser(utbetalingReducer: RestReducer<UtbetalingerResponse>): boolean {
+    return utbetalingReducer.data.utbetalinger && utbetalingReducer.data.utbetalinger.length > 0;
+}
+
 function Filtrering(props: Props) {
 
     const radios = Object.keys(PeriodeValg).map(key => {
@@ -158,7 +161,28 @@ function Filtrering(props: Props) {
 
     const visSpinner = props.utbetalingReducer.status === STATUS.LOADING
         || props.utbetalingReducer.status === STATUS.RELOADING;
-
+    const checkBokser = visCheckbokser(props.utbetalingReducer) && (
+        <>
+            <Blokk>
+                <InputPanel>
+                    <EtikettLiten>Utbetaling til</EtikettLiten>
+                    <UtbetaltTilValg
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                    />
+                </InputPanel>
+                <InputPanel>
+                    <EtikettLiten>Velg ytelse</EtikettLiten>
+                    <YtelseValg
+                        onChange={props.onChange}
+                        filterState={props.filterState}
+                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                    />
+                </InputPanel>
+            </Blokk>
+        </>
+    );
     return (
         <FiltreringsPanel onClick={restoreScroll}>
             <Undertittel>Filtrering</Undertittel>
@@ -183,26 +207,7 @@ function Filtrering(props: Props) {
                 </InputPanel>
             </Blokk>
 
-            <Innholdslaster avhengigheter={[props.utbetalingReducer]} spinnerSize={'M'}>
-                <Blokk>
-                    <InputPanel>
-                        <EtikettLiten>Utbetaling til</EtikettLiten>
-                        <UtbetaltTilValg
-                            utbetalinger={props.utbetalingReducer.data.utbetalinger}
-                            onChange={props.onChange}
-                            filterState={props.filterState}
-                        />
-                    </InputPanel>
-                    <InputPanel>
-                        <EtikettLiten>Velg ytelse</EtikettLiten>
-                        <YtelseValg
-                            onChange={props.onChange}
-                            filterState={props.filterState}
-                            utbetalinger={props.utbetalingReducer.data.utbetalinger}
-                        />
-                    </InputPanel>
-                </Blokk>
-            </Innholdslaster>
+            {checkBokser}
 
         </FiltreringsPanel>
     );
