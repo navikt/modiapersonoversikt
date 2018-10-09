@@ -495,7 +495,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         className="skjemaelement__label"
         htmlFor="Helt tilfeldig ID"
       >
-        Kontonummer eller IBAN
+        BC/SWIFT-kode
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
@@ -504,7 +504,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value="12345678911"
+        value=""
       />
       <div
         aria-live="assertive"
@@ -518,7 +518,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         className="skjemaelement__label"
         htmlFor="Helt tilfeldig ID"
       >
-        BC/SWIFT-kode
+        Kontonummer eller IBAN
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
@@ -527,7 +527,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value=""
+        value="12345678911"
       />
       <div
         aria-live="assertive"
