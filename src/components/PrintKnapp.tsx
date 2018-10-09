@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Printer from '../svg/Printer';
 import theme from '../styles/personOversiktTheme';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
     onClick: (event: React.MouseEvent) => void;
@@ -10,11 +11,13 @@ interface Props {
 const PrintIkonStyle = styled.button`
   border: none;
   background-color: transparent;
-  border-radius: ${theme.borderRadius.knapp};
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
+  padding: .1rem .2rem;
+  border-radius: ${theme.borderRadius.knapp};;
+  cursor: pointer;
+  display: flex;
+  color: ${theme.color.lenke};
   svg {
+    margin-left: .5rem;
     height: 1.2rem;
     width: 1.2rem;
   }
@@ -23,13 +26,14 @@ const PrintIkonStyle = styled.button`
   }
   &:hover {
     opacity: 0.8;
-    cursor: pointer;
   }
 `;
 
 function PrintKnapp({onClick}: Props) {
     return (
-        <PrintIkonStyle onClick={onClick} aria-label="Skriv ut"><Printer/></PrintIkonStyle>
+        <PrintIkonStyle onClick={onClick} aria-label="Skriv ut">
+            <Normaltekst tag="span">Skriv ut</Normaltekst> <Printer/>
+        </PrintIkonStyle>
     );
 }
 

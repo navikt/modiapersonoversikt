@@ -33,6 +33,8 @@ const mockUtbetalingReturnertForSaksbehandling: Utbetaling = {
 test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig', () => {
     const visittkortheader = renderer.create(
         <TotaltUtbetaltDetaljer
+            visDetaljer={true}
+            toggleVisDetaljer={() => null}
             filter={filterState}
             utbetalinger={[
                 statiskMockUtbetaling,

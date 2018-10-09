@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 import { TotaltUtbetaltProps } from './TotaltUtbetalt';
 import { Undertekst } from 'nav-frontend-typografi';
@@ -11,16 +12,24 @@ import {
     getBruttoSumYtelser,
     getNettoSumYtelser,
     getPeriodeFromYtelser,
-    getTrekkSumYtelser, getTypeFromYtelse, reduceUtbetlingerTilYtelser
+    getTrekkSumYtelser,
+    getTypeFromYtelse,
+    reduceUtbetlingerTilYtelser
 } from '../utils/utbetalingerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
-import { Fragment } from 'react';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import * as moment from 'moment';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
+import DetaljerCollapse from '../DetaljerCollapse';
 
-const Wrapper = styled.aside`
-  padding: 1.5rem 0 .5rem;
+interface OwnProps {
+    visDetaljer: boolean;
+    toggleVisDetaljer: () => void;
+}
+
+type Props = TotaltUtbetaltProps & OwnProps;
+
+const DetaljerStyle = styled.aside`
   th:not(:first-child) {
     font-weight: normal;
   }
@@ -133,49 +142,52 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     const ytelsesSammendrag = ytelserGruppertPåTema
         .sort((a, b) => sorterAlfabetisk(a.category, b.category))
         .map(gruppe => {
-        const ytelser = gruppe.array;
-        const ytelsesType = gruppe.category;
-        const periode = getPeriodeFromYtelser(ytelser);
-        const ytelsesKomponentSammendragListe = getYtelsesKomponentSammendragListe(ytelser);
-        return (
-            <tr key={ytelsesType}>
-                <th>{ytelsesType}</th>
-                <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
-                <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
-                <td className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
-                <td className="periodeForYtelse">{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
-                <td className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
-            </tr>
-        );
-    });
+            const ytelser = gruppe.array;
+            const ytelsesType = gruppe.category;
+            const periode = getPeriodeFromYtelser(ytelser);
+            const ytelsesKomponentSammendragListe = getYtelsesKomponentSammendragListe(ytelser);
+            return (
+                <tr key={ytelsesType}>
+                    <th>{ytelsesType}</th>
+                    <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
+                    <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
+                    <td className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
+                    <td className="periodeForYtelse">{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
+                    <td className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
+                </tr>
+            );
+        });
     return ytelsesSammendrag;
 }
 
-function TotaltUtbetaltDetaljer(props: TotaltUtbetaltProps) {
+function TotaltUtbetaltDetaljer(props: Props) {
     const ytelserSammendrag = getYtelserSammendrag(props.utbetalinger);
     return (
-        <ErrorBoundary>
-            <Wrapper>
-                <Undertekst tag="span">
-                    <h2>Sammendrag</h2>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Ytelse</th>
-                            <th className="sumBrutto">Brutto</th>
-                            <th className="sumTrekk">Trekk</th>
-                            <th className="sumNetto">Utbetalt</th>
-                            <th className="visually-hidden">Periode</th>
-                            <th className="visually-hidden">Detaljer</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {ytelserSammendrag}
-                        </tbody>
-                    </table>
-                </Undertekst>
-            </Wrapper>
-        </ErrorBoundary>
+        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
+            <ErrorBoundary>
+                <DetaljerStyle>
+                    <Undertekst tag="span">
+                        <h2>Sammendrag</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Ytelse</th>
+                                <th className="sumBrutto">Brutto</th>
+                                <th className="sumTrekk">Trekk</th>
+                                <th className="sumNetto">Utbetalt</th>
+                                <th className="visually-hidden">Periode</th>
+                                <th className="visually-hidden">Detaljer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {ytelserSammendrag}
+                            </tbody>
+                        </table>
+                    </Undertekst>
+                </DetaljerStyle>
+            </ErrorBoundary>
+        </DetaljerCollapse>
+
     );
 }
 

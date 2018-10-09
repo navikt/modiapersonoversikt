@@ -25,7 +25,7 @@ export interface FokusProps {
 
 const MånedGruppeStyle = styled.li`
   > *:first-child {
-    background-color: rgba(102, 203, 236, 0.18);
+    background-color: ${theme.color.kategori};
     padding: .2rem ${theme.margin.px10};
   }
   ol {
@@ -33,7 +33,7 @@ const MånedGruppeStyle = styled.li`
     margin: 0;
   }
   ol > *:not(:first-child) {
-    border-top: solid 2px ${theme.color.bakgrunn};
+    border-top: ${theme.border.skille};
   }
 `;
 

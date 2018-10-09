@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import {
     createTable,
@@ -12,10 +12,25 @@ import {
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { EnkeltYtelseProps } from './EnkeltYtelse';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
+import { Bold } from '../../../../../components/common-styled-components';
+import DetaljerCollapse from '../DetaljerCollapse';
+
+interface OwnProps {
+    open: boolean;
+    toggleVisDetaljer: () => void;
+}
+
+type Props = EnkeltYtelseProps & OwnProps;
 
 const Wrapper = styled.aside`
-  padding: .5rem 0;
-  th {
+  th:not(:first-child) {
+    font-weight: normal;
+    font-style: italic;
+  }
+`;
+
+const OversiktStyle = styled.div`
+  td:not(:first-child) {
     font-weight: bold;
   }
 `;
@@ -39,7 +54,7 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                         ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
                         ytelseskomponent.satsantall,
                         formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
-            ]));
+                    ]));
         }
 
         if (ytelse.skattListe) {
@@ -51,7 +66,7 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                         '',
                         '',
                         formaterNOK(skattElement.skattebeløp)
-            ]));
+                    ]));
         }
 
         if (ytelse.trekkListe) {
@@ -63,7 +78,7 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                         '',
                         '',
                         formaterNOK(trekkElement.trekkbeløp)
-            ]));
+                    ]));
         }
 
         return createTable(
@@ -75,9 +90,9 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
     }
 }
 
-function UtbetalingsDetaljer(props: EnkeltYtelseProps) {
+function UtbetalingsDetaljer(props: Props) {
     const ytelse = props.ytelse;
-    const ytelsesKomponenter = utbetalingsDetaljerTable(ytelse);
+    const detaljer = utbetalingsDetaljerTable(ytelse);
     const oversikt = createTable(
         ['Konto', 'Brutto', 'Trekk', 'Utbetalt'],
         [[
@@ -88,18 +103,22 @@ function UtbetalingsDetaljer(props: EnkeltYtelseProps) {
         ]]
     );
     return (
-        <Wrapper>
-            <Undertekst tag="span">
-                {oversikt}
-            </Undertekst>
-            <Border/>
-            <Undertekst tag="span">
-                {ytelsesKomponenter}
-            </Undertekst>
-            <Border/>
-            <UndertekstBold tag={'h4'}>Melding</UndertekstBold>
-            <Undertekst>{props.melding || ''}</Undertekst>
-        </Wrapper>
+        <DetaljerCollapse open={props.open} toggle={props.toggleVisDetaljer}>
+            <Wrapper>
+                <Normaltekst tag="span">
+                    <OversiktStyle>
+                        {oversikt}
+                    </OversiktStyle>
+                </Normaltekst>
+                <Border/>
+                <Normaltekst tag="span">
+                    {detaljer}
+                </Normaltekst>
+                <Border/>
+                <Normaltekst tag={'h4'}><Bold>Melding</Bold></Normaltekst>
+                <Normaltekst>{props.melding || ''}</Normaltekst>
+            </Wrapper>
+        </DetaljerCollapse>
     );
 }
 

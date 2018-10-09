@@ -6,9 +6,9 @@ import {
     getNettoSumYtelser
 } from '../utils/utbetalingerUtils';
 import styled from 'styled-components';
-import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
+import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { FokusProps } from '../Utbetalinger';
@@ -22,20 +22,18 @@ type Props = SammensattUtbetalingProps & FokusProps;
 
 const SammensattUtbetalingStyle = styled.li`
   padding: ${theme.margin.px20} ${theme.margin.px10};
-  > *:first-child, > *:nth-child(2), > *:nth-child(3) {
-    height: 1.3rem;
-  }
   > *:nth-child(3) {
     margin-bottom: .8rem;
   }
 `;
 
 const YtelsesListe = styled.ul`
-  list-style: none;
   padding: 0;
-  > * {
-    padding-left: .5rem;
-    margin-top: 1rem;
+  margin-top: 2rem;
+  > li {
+    margin-left: 1.5rem;
+    border-top: ${theme.border.skilleSvak};
+    padding-top: 1rem;
   }
 `;
 
@@ -62,19 +60,19 @@ function SammensattUtbetaling(props: Props) {
 
     return (
         <SammensattUtbetalingStyle>
-            <SpaceBetween>
-                <Undertekst>
+                <Normaltekst>
                     {dato} / <Bold>{utbetaling.status}</Bold>
-                </Undertekst>
+                </Normaltekst>
+            <SpaceBetween>
+                <Normaltekst tag={'h4'}><Bold>Diverse ytelser</Bold></Normaltekst>
+                <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+            </SpaceBetween>
+            <FlexEnd>
+                <Normaltekst>{forfallsInfo}</Normaltekst>
+            </FlexEnd>
+            <SpaceBetween>
+                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
                 <PrintKnapp onClick={() => alert('ikke implementert')}/>
-            </SpaceBetween>
-            <SpaceBetween>
-                <UndertekstBold tag={'h4'}>{'Diverse ytelser'}</UndertekstBold>
-                <UndertekstBold>{sum}</UndertekstBold>
-            </SpaceBetween>
-            <SpaceBetween>
-                <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
-                <Undertekst>{forfallsInfo}</Undertekst>
             </SpaceBetween>
             <YtelsesListe>
                 {ytelsesListe}

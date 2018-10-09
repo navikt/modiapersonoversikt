@@ -11,15 +11,14 @@ import {
     getFraDateFromFilter,
     getNettoSumYtelser,
     getTilDateFromFilter,
-    getTrekkSumYtelser, summertBeløpStringFraUtbetalinger
-}
-    from '../utils/utbetalingerUtils';
+    getTrekkSumYtelser,
+    summertBeløpStringFraUtbetalinger
+} from '../utils/utbetalingerUtils';
 import Undertekst from 'nav-frontend-typografi/lib/undertekst';
-import DetaljerKnapp from '../utils/DetaljerKnapp';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
-import { UnmountClosed } from 'react-collapse';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { FlexEnd } from '../../../../../components/common-styled-components';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -33,12 +32,13 @@ interface State {
 const Wrapper = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
-  padding: ${theme.margin.px20} ${theme.margin.px20} 2rem;
+  padding: ${theme.margin.px20};
   cursor: pointer;
 `;
 
 const TotaltUtbetaltOversikt = styled.section`
-  th:not(:first-child) {
+  margin: 1rem 0;
+  th {
     font-weight: normal;
   }
   th {
@@ -49,22 +49,11 @@ const TotaltUtbetaltOversikt = styled.section`
   }
 `;
 
-const KnappWrapper = styled.nav`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 2rem;
-  padding-bottom: .2rem;
-  > *:not(:first-child) {
-    margin-left: .5rem;
-  }
-`;
-
 class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
 
     constructor(props: TotaltUtbetaltProps) {
         super(props);
-        this.state = { visDetaljer: false };
+        this.state = {visDetaljer: false};
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
     }
 
@@ -89,18 +78,19 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
         return (
             <Wrapper onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}>
                 <Undertittel>Totalt utbetalt for perioden</Undertittel>
-                <KnappWrapper>
-                    <PrintKnapp onClick={() => console.log('ikke implementert')}/>
-                    <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
-                </KnappWrapper>
                 <TotaltUtbetaltOversikt>
                     <Undertekst tag="span">
                         {totaltUtbetaltTabell}
                     </Undertekst>
                 </TotaltUtbetaltOversikt>
-                <UnmountClosed isOpened={this.state.visDetaljer}>
-                    <TotaltUtbetaltDetaljer {...this.props} />
-                </UnmountClosed>
+                <FlexEnd>
+                    <PrintKnapp onClick={() => console.log('ikke implementert')}/>
+                </FlexEnd>
+                <TotaltUtbetaltDetaljer
+                    visDetaljer={this.state.visDetaljer}
+                    toggleVisDetaljer={this.toggleVisDetaljer}
+                    {...this.props}
+                />
             </Wrapper>
         );
     }

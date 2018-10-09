@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import styled from 'styled-components';
 import {
@@ -11,13 +11,11 @@ import {
 } from '../utils/utbetalingerUtils';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import DetaljerKnapp from '../utils/DetaljerKnapp';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
-import { UnmountClosed } from 'react-collapse';
 import { FokusProps } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -29,32 +27,25 @@ interface State {
     visDetaljer: boolean;
 }
 
-const UtbetalingStyle = styled<{ åpen?: boolean }, 'li'>('li')`
-  display: flex;
-  flex-direction: column;
-  .order-first {
-    order: -1;
-  }
-  padding: ${theme.margin.px20} ${theme.margin.px10};
-  transition: 0.3s;
+const UtbetalingStyle = styled.li`
   cursor: pointer;
-  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
+  padding: ${theme.margin.px10} 0;
   &:focus {
     ${theme.focus}
   }
-  > *:first-child, > *:nth-child(2), > *:nth-child(3) {
-    height: 1.3rem;
-  }
+`;
+
+const UtbetalingHeaderStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 ${theme.margin.px10};
+  transition: 0.3s;
+  cursor: pointer;
   > *:nth-child(3) {
     margin-bottom: .8rem;
   }
-`;
-
-const KnappWrapper = styled.div`
-  display: flex;
-  padding-bottom: .2rem;
-  > *:not(:first-child) {
-    margin-left: .5rem;
+  .order-first {
+    order: -1;
   }
 `;
 
@@ -115,7 +106,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
 
     render() {
         const utbetaling = this.props.utbetaling;
-        if (!utbetaling.ytelser) { return 'Manglende data i utbetaling.'; }
+        if (!utbetaling.ytelser) {
+            return 'Manglende data i utbetaling.';
+        }
 
         const ytelse = utbetaling.ytelser[0];
 
@@ -129,37 +122,35 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         return (
             <UtbetalingStyle
                 onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}
                 onFocus={() => this.setTilYtelseIFokus(ytelse)}
                 onBlur={this.removeEnterListener}
             >
-                <SpaceBetween>
-                    <UndertekstBold tag={'h4'}>{tittel}</UndertekstBold>
-                    <UndertekstBold>{sum}</UndertekstBold>
-                </SpaceBetween>
-                <SpaceBetween className="order-first">
-                    <Undertekst>
+                <UtbetalingHeaderStyle>
+                    <SpaceBetween>
+                        <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
+                        <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+                    </SpaceBetween>
+                    <Normaltekst className="order-first">
                         {dato} / <Bold>{utbetaling.status}</Bold>
-                    </Undertekst>
-                    <KnappWrapper>
+                    </Normaltekst>
+                    <SpaceBetween>
+                        <Normaltekst>{periode}</Normaltekst>
+                        <Normaltekst>{forfallsInfo}</Normaltekst>
+                    </SpaceBetween>
+                    <SpaceBetween>
+                        <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
                         <PrintKnapp onClick={() => alert('ikke implementert')}/>
-                        <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
-                    </KnappWrapper>
-                </SpaceBetween>
-                <SpaceBetween>
-                    <Undertekst>{periode}</Undertekst>
-                    <Undertekst>{forfallsInfo}</Undertekst>
-                </SpaceBetween>
-                <Undertekst>Utbetaling til: {utbetaling.utbetaltTil}</Undertekst>
-                <UnmountClosed isOpened={this.state.visDetaljer}>
-                    <UtbetalingsDetaljer
-                        ytelse={ytelse}
-                        konto={utbetaling.konto}
-                        melding={utbetaling.melding}
-                    />
-                </UnmountClosed>
+                    </SpaceBetween>
+                </UtbetalingHeaderStyle>
+                <UtbetalingsDetaljer
+                    open={this.state.visDetaljer}
+                    toggleVisDetaljer={this.toggleVisDetaljer}
+                    ytelse={ytelse}
+                    konto={utbetaling.konto}
+                    melding={utbetaling.melding}
+                />
             </UtbetalingStyle>
         );
     }

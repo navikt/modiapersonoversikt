@@ -13,6 +13,11 @@ export const SpaceBetween = styled.div`
   justify-content: space-between;
 `;
 
+export const FlexEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const Uppercase = styled.span`
   text-transform: uppercase;
 `;
