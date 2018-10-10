@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Egenansatt } from '../../../../models/egenansatt';
-import { AppState } from '../../../../redux/reducers';
-import { Person, PersonRespons } from '../../../../models/person/person';
+import { Egenansatt } from '../../../../../models/egenansatt';
+import { AppState } from '../../../../../redux/reducers';
+import { Person, PersonRespons } from '../../../../../models/person/person';
+import { Vergemal } from '../../../../../models/vergemal/vergemal';
+import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Etiketter from './Etiketter';
-import { Vergemal } from '../../../../models/vergemal/vergemal';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface Props {
     egenAnsattReducer: RestReducer<Egenansatt>;

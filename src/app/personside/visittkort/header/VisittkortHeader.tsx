@@ -5,7 +5,7 @@ import NavKontorContainer from './navkontor/NavKontorContainer';
 
 import { erDød, Navn, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
-import EtiketterContainer from './EtiketterContainer';
+import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
@@ -86,7 +86,7 @@ class VisittkortHeader extends React.Component<Props> {
     private navneLinjeRef = React.createRef<HTMLElement>();
 
     componentDidMount() {
-        if (this.navneLinjeRef.current) {
+        if (this.navneLinjeRef.current && !this.props.person.sikkerhetstiltak) {
             this.navneLinjeRef.current.focus();
         }
     }
