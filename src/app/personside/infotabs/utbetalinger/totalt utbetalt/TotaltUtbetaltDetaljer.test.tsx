@@ -5,8 +5,16 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import { FilterState, PeriodeValg } from '../filter/Filter';
 import { aremark } from '../../../../../mock/person/aremark';
 import { Utbetaling } from '../../../../../models/utbetalinger';
+import { ReactNode } from 'react';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
+
+// Mock react collapse sin UnmountClosed
+jest.mock('react-collapse', () => {
+    return {
+        UnmountClosed: (props: {children: ReactNode}) => props.children
+    };
+});
 
 const filterState: FilterState = {
     periode: {
