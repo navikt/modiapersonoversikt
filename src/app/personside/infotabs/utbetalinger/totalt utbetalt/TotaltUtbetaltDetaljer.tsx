@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Fragment } from 'react';
 import styled from 'styled-components';
 import { TotaltUtbetaltProps } from './TotaltUtbetalt';
-import { Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { groupArray } from '../../../../../utils/groupArray';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -166,7 +166,7 @@ function TotaltUtbetaltDetaljer(props: Props) {
         <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
             <ErrorBoundary>
                 <DetaljerStyle>
-                    <Undertekst tag="span">
+                    <Normaltekst tag="span">
                         <h2>Sammendrag</h2>
                         <table>
                             <thead>
@@ -183,7 +183,7 @@ function TotaltUtbetaltDetaljer(props: Props) {
                             {ytelserSammendrag}
                             </tbody>
                         </table>
-                    </Undertekst>
+                    </Normaltekst>
                 </DetaljerStyle>
             </ErrorBoundary>
         </DetaljerCollapse>

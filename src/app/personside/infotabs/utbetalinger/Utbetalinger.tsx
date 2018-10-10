@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
@@ -94,7 +94,7 @@ function Månedsgruppe({gruppe, ...props}: MånedsgruppeProps) {
     ));
     return (
         <MånedGruppeStyle>
-            <Undertekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Undertekst>
+            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
             <ol>
                 {utbetalingsKomponenter}
             </ol>

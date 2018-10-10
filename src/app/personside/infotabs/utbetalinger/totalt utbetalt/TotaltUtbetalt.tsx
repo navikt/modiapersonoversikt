@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import { FilterState } from '../filter/Filter';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../../utils/dateUtils';
@@ -14,7 +14,6 @@ import {
     getTrekkSumYtelser,
     summertBeløpStringFraUtbetalinger
 } from '../utils/utbetalingerUtils';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
@@ -83,9 +82,9 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
                 <Header>
                     <Undertittel>Totalt utbetalt for perioden</Undertittel>
                     <TotaltUtbetaltOversikt>
-                        <Undertekst tag="span">
+                        <Normaltekst tag="span">
                             {totaltUtbetaltTabell}
-                        </Undertekst>
+                        </Normaltekst>
                     </TotaltUtbetaltOversikt>
                     <FlexEnd>
                         <PrintKnapp onClick={() => console.log('ikke implementert')}/>
