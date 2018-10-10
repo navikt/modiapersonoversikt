@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Person } from '../../../../models/person/person';
+import { Person } from '../../../../../models/person/person';
 import EtikettBase from 'nav-frontend-etiketter';
-import { Diskresjonskoder } from '../../../../konstanter';
-import { Egenansatt } from '../../../../models/egenansatt';
-import { Vergemal } from '../../../../models/vergemal/vergemal';
-import { Kodeverk } from '../../../../models/kodeverk';
+import { Diskresjonskoder } from '../../../../../konstanter';
+import { Egenansatt } from '../../../../../models/egenansatt';
+import { Vergemal } from '../../../../../models/vergemal/vergemal';
+import { Kodeverk } from '../../../../../models/kodeverk';
+import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
 
 interface Props {
     person: Person;
@@ -36,14 +37,6 @@ function lagEgenAnsattEtikett() {
     return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen ansatt</EtikettBase>;
 }
 
-function lagSikkerhetstiltakEtikett() {
-    return(
-        <EtikettBase key={'sikkerhetstiltak'} type={'advarsel'}>
-            Sikkerhetstiltak
-        </EtikettBase>
-    );
-}
-
 function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Kodeverk) {
     return (
         <EtikettBase key={tilrettelagtKommunikasjon.kodeRef} type={'fokus'}>
@@ -56,7 +49,7 @@ function harVergemål(vergemal: Vergemal) {
 }
 
 function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal) {
-    const etiketter: JSX.Element[]  = [];
+    const etiketter: JSX.Element[] = [];
     if (person.diskresjonskode) {
         const diskresjonskodeEtikett = lagDiskresjonskodeEtikett(person.diskresjonskode);
         if (diskresjonskodeEtikett) {
@@ -67,13 +60,13 @@ function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {
-        etiketter.push(lagSikkerhetstiltakEtikett());
+        etiketter.push(<SikkerhetstiltakEtikett/>);
     }
     if (harVergemål(vergemal)) {
         etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);
     }
 
-    person.tilrettelagtKomunikasjonsListe.forEach(tilrettelagtKommunikasjon  => {
+    person.tilrettelagtKomunikasjonsListe.forEach(tilrettelagtKommunikasjon => {
             etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon));
         }
     );
@@ -81,7 +74,7 @@ function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal
     return etiketter;
 }
 
-function Etiketter( {person, egenAnsatt, vergemal}: Props) {
+function Etiketter({person, egenAnsatt, vergemal}: Props) {
     const etiketter = lagEtiketter(person, egenAnsatt, vergemal);
     return (
         <StyledEtikketter role="region" aria-label="etiketter">
