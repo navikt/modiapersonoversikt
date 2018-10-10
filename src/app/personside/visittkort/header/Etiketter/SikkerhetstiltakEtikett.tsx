@@ -37,7 +37,7 @@ class SikkerhetstiltakEtikett extends React.Component<Props> {
                 role="alert"
                 aria-live="assertive"
             >
-                <EtikettBase key={'sikkerhetstiltak'} type={'advarsel'}>
+                <EtikettBase type={'advarsel'}>
                     Sikkerhetstiltak
                 </EtikettBase>
             </Styling>

@@ -60,7 +60,7 @@ function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {
-        etiketter.push(<SikkerhetstiltakEtikett/>);
+        etiketter.push(<SikkerhetstiltakEtikett key="sikkerhetstiltak"/>);
     }
     if (harVergemål(vergemal)) {
         etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);

@@ -5,6 +5,7 @@ import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../setupTests';
 import { actions } from '../../../redux/uiReducers/UIReducer';
 import { aremark } from '../../../mock/person/aremark';
+import VisittkortHeader from './header/VisittkortHeader';
 
 test('viser visittkortheader når visittkort først rendres', () => {
     const visittkort = mount((
@@ -42,16 +43,4 @@ test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
     const focusedElement = document.activeElement;
 
     expect(focusedElement.innerHTML).toContain('Visittkortdetaljer');
-});
-
-test('setter fokus på brukerens navn on mount', () => {
-    mount((
-        <TestProvider>
-            <Visittkort/>
-        </TestProvider>
-    ));
-
-    const focusedElement = document.activeElement;
-
-    expect(focusedElement.innerHTML.toLowerCase()).toContain(aremark.navn.sammensatt.toLowerCase());
 });
