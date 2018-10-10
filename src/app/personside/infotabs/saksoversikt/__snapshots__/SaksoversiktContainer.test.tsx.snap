@@ -126,7 +126,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c6 {
-  padding: .2rem .6rem;
+  padding: .2rem 0.625rem;
   margin: 0;
 }
 
@@ -200,7 +200,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c22 {
-  padding: 1.25rem .6rem;
+  padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -263,14 +263,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c18 {
-  padding: 0 .6rem;
+  padding: 0 0.625rem;
   margin: 0;
   list-style: none;
 }
 
 .c19 > *:first-child {
   background-color: rgba(102,203,236,0.18);
-  padding: .2rem .6rem;
+  padding: .2rem 0.625rem;
 }
 
 .c19 ol {

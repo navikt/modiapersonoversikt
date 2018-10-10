@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
@@ -25,15 +25,15 @@ export interface FokusProps {
 
 const MånedGruppeStyle = styled.li`
   > *:first-child {
-    background-color: rgba(102, 203, 236, 0.18);
-    padding: .2rem ${theme.margin.px10};
+    background-color: ${theme.color.kategori};
+    padding: .2rem ${theme.margin.px20};
   }
   ol {
     padding: 0;
     margin: 0;
   }
   ol > *:not(:first-child) {
-    border-top: solid 2px ${theme.color.bakgrunn};
+    border-top: ${theme.border.skille};
   }
 `;
 
@@ -47,7 +47,7 @@ const UtbetalingerArticle = styled.article`
 `;
 
 const UtbetalingerListe = styled.ol`
-  padding: 0 ${theme.margin.px10};
+  padding: 0;
   margin: 0;
 `;
 
@@ -94,7 +94,7 @@ function Månedsgruppe({gruppe, ...props}: MånedsgruppeProps) {
     ));
     return (
         <MånedGruppeStyle>
-            <Undertekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Undertekst>
+            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
             <ol>
                 {utbetalingsKomponenter}
             </ol>
