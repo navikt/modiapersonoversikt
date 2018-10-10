@@ -7,16 +7,16 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   border: 0;
 }
 
-.c2 {
+.c3 {
   color: #78706a;
   margin-top: 3px;
 }
 
-.c2 .typo-etikett-liten {
+.c3 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -27,8 +27,12 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c3 > * {
+.c4 > * {
   margin-left: 1em;
+}
+
+.c2 {
+  padding-top: 1rem;
 }
 
 .c1 {
@@ -141,33 +145,75 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
       <div
         className="c1"
       >
-        <div>
+        <div
+          className="c2"
+        >
           <p
-            className="typo-normal"
+            className="typo-element"
           >
-            Islandsgate 49
+            Bostedsadresse fra folkeregisteret
           </p>
-          <p
-            className="typo-normal"
+          <div>
+            <p
+              className="typo-normal"
+            >
+              Islandsgate 49
+            </p>
+            <p
+              className="typo-normal"
+            >
+              7693 Hovedøya
+            </p>
+          </div>
+          <div
+            className="c3"
           >
-            7693 Hovedøya
-          </p>
+            <p
+              className="typo-etikett-liten"
+            >
+              Endret 
+              25.11.2017
+               
+              i Folkeregisteret
+            </p>
+          </div>
         </div>
         <div
           className="c2"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-element"
           >
-            Endret 
-            25.11.2017
-             
-            i Folkeregisteret
+            Postadresse fra folkeregisteret
           </p>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              Islandsgate 49
+            </p>
+            <p
+              className="typo-normal"
+            >
+              7693 Hovedøya
+            </p>
+          </div>
+          <div
+            className="c3"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              Endret 
+              25.11.2017
+               
+              i Folkeregisteret
+            </p>
+          </div>
         </div>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
