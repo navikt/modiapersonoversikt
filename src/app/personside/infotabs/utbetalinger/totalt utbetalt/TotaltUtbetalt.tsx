@@ -32,8 +32,11 @@ interface State {
 const Wrapper = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
-  padding: ${theme.margin.px20};
   cursor: pointer;
+`;
+
+const Header = styled.div`
+  padding: ${theme.margin.px20} ${theme.margin.px20} 0;
 `;
 
 const TotaltUtbetaltOversikt = styled.section`
@@ -77,15 +80,17 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
 
         return (
             <Wrapper onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}>
-                <Undertittel>Totalt utbetalt for perioden</Undertittel>
-                <TotaltUtbetaltOversikt>
-                    <Undertekst tag="span">
-                        {totaltUtbetaltTabell}
-                    </Undertekst>
-                </TotaltUtbetaltOversikt>
-                <FlexEnd>
-                    <PrintKnapp onClick={() => console.log('ikke implementert')}/>
-                </FlexEnd>
+                <Header>
+                    <Undertittel>Totalt utbetalt for perioden</Undertittel>
+                    <TotaltUtbetaltOversikt>
+                        <Undertekst tag="span">
+                            {totaltUtbetaltTabell}
+                        </Undertekst>
+                    </TotaltUtbetaltOversikt>
+                    <FlexEnd>
+                        <PrintKnapp onClick={() => console.log('ikke implementert')}/>
+                    </FlexEnd>
+                </Header>
                 <TotaltUtbetaltDetaljer
                     visDetaljer={this.state.visDetaljer}
                     toggleVisDetaljer={this.toggleVisDetaljer}

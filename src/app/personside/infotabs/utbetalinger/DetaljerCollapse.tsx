@@ -15,6 +15,7 @@ interface Props {
 
 const Wrapper = styled<{ open: boolean }, 'div'>('div')`
   transition: .5s;
+  padding: 0 ${theme.margin.px20} ${theme.margin.px20};
   ${props => props.open && theme.ekspandert};
 `;
 

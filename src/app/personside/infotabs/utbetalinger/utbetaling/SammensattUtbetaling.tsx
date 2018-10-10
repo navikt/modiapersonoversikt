@@ -21,7 +21,7 @@ interface SammensattUtbetalingProps {
 type Props = SammensattUtbetalingProps & FokusProps;
 
 const SammensattUtbetalingStyle = styled.li`
-  padding: ${theme.margin.px20} ${theme.margin.px10};
+  padding: ${theme.margin.px20};
   > *:nth-child(3) {
     margin-bottom: .8rem;
   }

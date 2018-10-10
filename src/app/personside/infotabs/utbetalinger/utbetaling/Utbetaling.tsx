@@ -29,7 +29,6 @@ interface State {
 
 const UtbetalingStyle = styled.li`
   cursor: pointer;
-  padding: ${theme.margin.px10} 0;
   &:focus {
     ${theme.focus}
   }
@@ -38,7 +37,7 @@ const UtbetalingStyle = styled.li`
 const UtbetalingHeaderStyle = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 ${theme.margin.px10};
+  padding: ${theme.margin.px10} ${theme.margin.px20} 0;
   transition: 0.3s;
   cursor: pointer;
   > *:nth-child(3) {

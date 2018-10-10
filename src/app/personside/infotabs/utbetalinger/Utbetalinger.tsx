@@ -26,7 +26,7 @@ export interface FokusProps {
 const MånedGruppeStyle = styled.li`
   > *:first-child {
     background-color: ${theme.color.kategori};
-    padding: .2rem ${theme.margin.px10};
+    padding: .2rem ${theme.margin.px20};
   }
   ol {
     padding: 0;
@@ -47,7 +47,7 @@ const UtbetalingerArticle = styled.article`
 `;
 
 const UtbetalingerListe = styled.ol`
-  padding: 0 ${theme.margin.px10};
+  padding: 0;
   margin: 0;
 `;
 
