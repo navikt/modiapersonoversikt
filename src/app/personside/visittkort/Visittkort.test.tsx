@@ -4,8 +4,6 @@ import { mount } from 'enzyme';
 import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../setupTests';
 import { actions } from '../../../redux/uiReducers/UIReducer';
-import { aremark } from '../../../mock/person/aremark';
-import VisittkortHeader from './header/VisittkortHeader';
 
 test('viser visittkortheader når visittkort først rendres', () => {
     const visittkort = mount((
