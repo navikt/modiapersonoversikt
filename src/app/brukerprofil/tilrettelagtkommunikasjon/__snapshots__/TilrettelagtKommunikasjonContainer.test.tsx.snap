@@ -6,6 +6,9 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
@@ -13,7 +16,7 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
 }
 
 .c1 > * {
-  margin-left: 1em;
+  margin: .5rem 0 .5rem 1em;
 }
 
 .c0 {
