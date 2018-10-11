@@ -2,7 +2,6 @@ import { formatNumber } from '../../../utils/string-utils';
 import { BankAdresse, Bankkonto, Person } from '../../../models/person/person';
 import { Kodeverk } from '../../../models/kodeverk';
 import { formaterDato } from '../../../utils/dateUtils';
-import { endretAvTekst } from '../../../utils/endretAvUtil';
 
 export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
@@ -52,7 +51,7 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
 export function hentEndringstekst(konto: Bankkonto | null): string {
     if (konto && konto.sistEndret != null && konto.sistEndretAv !== null) {
         const formattertdato = formaterDato(konto.sistEndret);
-        const endretAv = endretAvTekst(konto.sistEndretAv);
+        const endretAv = konto.sistEndretAv;
         return `Endret ${formattertdato} ${endretAv}`;
     } else {
         return '';

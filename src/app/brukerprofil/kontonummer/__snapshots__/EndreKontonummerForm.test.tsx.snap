@@ -116,7 +116,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 av bruker
+        Endret 12.12.2005 10108000398
       </p>
     </div>
     <div
@@ -281,7 +281,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 av bruker
+        Endret 12.12.2005 10108000398
       </p>
     </div>
     <div
