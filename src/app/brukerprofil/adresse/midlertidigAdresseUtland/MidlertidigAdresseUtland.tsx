@@ -7,13 +7,14 @@ import { connect, Dispatch } from 'react-redux';
 import Datovelger, { tilPeriode } from '../../../../components/forms/Datovelger';
 import Input from 'nav-frontend-skjema/lib/input';
 
-import { Utlandsadresse } from '../../../../models/personadresse';
+import { Endringsinfo, Utlandsadresse } from '../../../../models/personadresse';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
 import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { endretAvInfoVisning } from '../../utils/formUtils';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
@@ -33,6 +34,7 @@ export const tomUtlandsadresse = {
 };
 
 interface OwnProps {
+    endringsinfo?: Endringsinfo;
     onChange: (adresser: Partial<Utlandsadresse>) => void;
     midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs;
     visFeilmeldinger: boolean;
@@ -90,6 +92,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
         return (
             <>
+                {endretAvInfoVisning(this.props.endringsinfo)}
                 <VelgLandContainer
                     landChanged={input => onLandChanged(input, this.props)}
                     midlertidigAdresseUtlandInput={this.props.midlertidigAdresseUtland}

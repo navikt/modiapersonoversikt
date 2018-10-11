@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 
 import Select from 'nav-frontend-skjema/lib/select';
 
-import { Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
+import { Endringsinfo, Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
 import GateadresseForm from './gateadresse/GateadresseForm';
 import MatrikkeladresseForm from './matrikkeladresse/MatrikkeladresseForm';
 import PostboksadresseForm from './postboksadresse/PostboksadresseForm';
@@ -11,6 +11,7 @@ import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { getValidGateadresseForm } from './gateadresse/gateadresseValidator';
 import { getValidMatrikkeladresseForm } from './matrikkeladresse/matrikkeladresseValidator';
 import { getValidPostboksadresseForm } from './postboksadresse/postboksadresseValidator';
+import { endretAvInfoVisning } from '../../utils/formUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
@@ -31,6 +32,7 @@ export interface MidlertidigeAdresserNorgeInput {
 interface Props {
     onChange: (adresse: Partial<MidlertidigeAdresserNorgeInput>) => void;
     midlertidigAdresseNorge: MidlertidigeAdresserNorgeInput;
+    endringsinfo?: Endringsinfo;
 }
 
 function getValgtAdressetype(value: string): MidlertidigeAdresserNorgeInputValg {
@@ -146,6 +148,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
 
         return (
             <>
+                {endretAvInfoVisning(this.props.endringsinfo)}
                 <Select
                     label="Adressetype"
                     bredde={'m'}
