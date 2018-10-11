@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c9 {
+.c10 {
   font-weight: bold;
 }
 
-.c8 {
+.c9 {
   margin: .5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -17,16 +17,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: flex-end;
 }
 
-.c8 > * {
+.c9 > * {
   white-space: nowrap;
 }
 
-.c8 > *:first-child:after {
+.c9 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c8 > *:last-child {
+.c9 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -66,12 +66,23 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0 .5rem;
 }
 
+.c8 {
+  display: inline-block;
+  -webkit-animation: jNAyoc .3s 8 alternate-reverse ease;
+  animation: jNAyoc .3s 8 alternate-reverse ease;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
 .c7 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
 
-.c11 {
+.c12 {
   border: none;
   padding: .1rem;
   border-radius: 0.5em;
@@ -79,7 +90,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   background-color: transparent;
 }
 
-.c11:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
@@ -170,7 +181,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-.c10 {
+.c11 {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -275,13 +286,20 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </span>
       </div>
       <div
-        className="etikett etikett--advarsel"
+        aria-live="assertive"
+        className="c8"
+        role="alert"
+        tabIndex={-1}
       >
-        <span
-          className="typo-normal"
+        <div
+          className="etikett etikett--advarsel"
         >
-          Sikkerhetstiltak
-        </span>
+          <span
+            className="typo-normal"
+          >
+            Sikkerhetstiltak
+          </span>
+        </div>
       </div>
       <div
         className="etikett etikett--fokus"
@@ -304,13 +322,13 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </section>
     <section
       aria-label="Nav kontor"
-      className="c8"
+      className="c9"
     >
       <h2
         className="typo-normal"
       >
         <span
-          className="c9"
+          className="c10"
         >
           NAV-kontor
         </span>
@@ -319,7 +337,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         className="typo-normal"
       >
         <span
-          className="c9"
+          className="c10"
         >
           0118
            
@@ -329,12 +347,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </section>
   </div>
   <div
-    className="c10"
+    className="c11"
   >
     <button
       aria-expanded={false}
       aria-label="Detaljer"
-      className="c11"
+      className="c12"
       onClick={[Function]}
     >
       <i

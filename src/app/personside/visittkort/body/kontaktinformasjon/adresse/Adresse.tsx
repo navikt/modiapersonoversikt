@@ -191,11 +191,11 @@ function hentTilleggsadresse(tilleggsadresse?: string) {
 function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: string) {
     if (postboksanlegg) {
         return (
-            <Normaltekst>{postboksanlegg + ' ' + postboksnummer}</Normaltekst>
+            <Normaltekst>{postboksanlegg + ', postboksnummer  ' + postboksnummer}</Normaltekst>
         );
     } else {
         return (
-            <Normaltekst>{postboksnummer}</Normaltekst>
+            <Normaltekst>{'Postboksnummer ' + postboksnummer}</Normaltekst>
         );
     }
 }
