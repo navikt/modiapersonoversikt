@@ -119,7 +119,7 @@ function Header({person}: { person: Person }) {
         <HeaderStyle>
             <TilbakeLenke fnr={person.fødselsnummer}/>
             <HeaderContent>
-                <Innholdstittel>Endre brukerprofil</Innholdstittel>
+                <Innholdstittel>Administrer brukerprofil</Innholdstittel>
                 <Navn person={person}/>
                 <Konto person={person}/>
             </HeaderContent>
