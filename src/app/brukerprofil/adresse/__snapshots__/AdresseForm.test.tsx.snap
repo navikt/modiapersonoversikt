@@ -407,7 +407,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             Endret 
             25.11.2017
              
-            i Folkeregisteret
+            SKD
           </p>
         </div>
         <div
@@ -890,7 +890,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             Endret 
             10.04.2018
              
-            i Folkeregisteret
+            SKD
           </p>
         </div>
         <div
@@ -1301,7 +1301,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             Endret 
             10.04.2018
              
-            i Folkeregisteret
+            SKD
           </p>
         </div>
         <div
@@ -1737,7 +1737,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
             Endret 
             10.04.2018
              
-            i Folkeregisteret
+            SKD
           </p>
         </div>
         <div>

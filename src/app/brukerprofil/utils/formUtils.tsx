@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { formaterDato } from '../../../utils/dateUtils';
 import EtikettGrå from '../../../components/EtikettGrå';
-import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Endringsinfo } from '../../../models/personadresse';
 
 export interface InputState {
@@ -33,10 +32,9 @@ export function visEndringsinfo(endringsinfo?: Endringsinfo) {
 
 export function endretAvVisning(sistEndret: string, sistEndretAv: string) {
     const formattertdato = formaterDato(sistEndret);
-    const endretAv = endretAvTekst(sistEndretAv);
     return (
         <EtikettGrå>
-            Endret {formattertdato} {endretAv}
+            Endret {formattertdato} {sistEndretAv}
         </EtikettGrå>
     );
 }
