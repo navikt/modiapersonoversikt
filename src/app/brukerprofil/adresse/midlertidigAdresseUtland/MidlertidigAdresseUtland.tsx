@@ -14,7 +14,7 @@ import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { endretAvInfoVisning } from '../../utils/formUtils';
+import { visEndringsinfo } from '../../utils/formUtils';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
@@ -92,7 +92,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
         return (
             <>
-                {endretAvInfoVisning(this.props.endringsinfo)}
+                {visEndringsinfo(this.props.endringsinfo)}
                 <VelgLandContainer
                     landChanged={input => onLandChanged(input, this.props)}
                     midlertidigAdresseUtlandInput={this.props.midlertidigAdresseUtland}

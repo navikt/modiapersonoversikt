@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
-.c0 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .c3 {
   color: #78706a;
   margin-top: 3px;
@@ -14,6 +8,12 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
 
 .c3 .typo-etikett-liten {
   line-height: 1rem;
+}
+
+.c0 {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .c4 {
@@ -237,13 +237,22 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
+.c2 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c2 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -254,25 +263,25 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c5 > * {
+.c6 > * {
   margin-left: 1em;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c4 {
+.c5 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -390,6 +399,18 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
         className="c1"
       >
         <div
+          className="c2"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            25.11.2017
+             
+            i Folkeregisteret
+          </p>
+        </div>
+        <div
           className="skjemaelement"
         >
           <label
@@ -453,7 +474,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           />
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             style={
@@ -554,7 +575,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c4"
         >
           <div
             className="skjemaelement"
@@ -579,7 +600,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             />
           </div>
           <div
-            className="c4"
+            className="c5"
           >
             <div
               className="skjemaelement"
@@ -682,7 +703,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
         </div>
       </div>
       <div
-        className="c5"
+        className="c6"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -706,13 +727,22 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
+.c2 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c2 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -723,18 +753,18 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   justify-content: flex-end;
 }
 
-.c4 > * {
+.c5 > * {
   margin-left: 1em;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c3 {
+.c4 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
@@ -852,6 +882,18 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
         className="c1"
       >
         <div
+          className="c2"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            10.04.2018
+             
+            i Folkeregisteret
+          </p>
+        </div>
+        <div
           className="skjemaelement"
         >
           <label
@@ -937,7 +979,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           />
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -962,7 +1004,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             />
           </div>
           <div
-            className="c3"
+            className="c4"
           >
             <div
               className="skjemaelement"
@@ -1065,7 +1107,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
         </div>
       </div>
       <div
-        className="c4"
+        className="c5"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1089,13 +1131,22 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
+.c2 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c2 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1106,25 +1157,25 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c5 > * {
+.c6 > * {
   margin-left: 1em;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c4 {
+.c5 {
   -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1242,6 +1293,18 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
         className="c1"
       >
         <div
+          className="c2"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            10.04.2018
+             
+            i Folkeregisteret
+          </p>
+        </div>
+        <div
           className="skjemaelement"
         >
           <label
@@ -1305,7 +1368,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           />
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             style={
@@ -1362,7 +1425,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c4"
         >
           <div
             className="skjemaelement"
@@ -1387,7 +1450,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             />
           </div>
           <div
-            className="c4"
+            className="c5"
           >
             <div
               className="skjemaelement"
@@ -1490,7 +1553,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
         </div>
       </div>
       <div
-        className="c5"
+        className="c6"
       >
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1514,13 +1577,22 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
 `;
 
 exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
+.c2 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c2 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1531,15 +1603,15 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c4 > * {
+.c5 > * {
   margin-left: 1em;
 }
 
-.c2 {
+.c3 {
   margin-right: 2em;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1656,9 +1728,21 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
       <div
         className="c1"
       >
+        <div
+          className="c2"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            10.04.2018
+             
+            i Folkeregisteret
+          </p>
+        </div>
         <div>
           <div
-            className="c2"
+            className="c3"
           >
             <div
               className="skjemaelement"
@@ -1775,7 +1859,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c4"
         >
           <div
             style={
@@ -1810,7 +1894,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c4"
         >
           <div
             style={
@@ -1845,7 +1929,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c4"
         >
           <div
             style={
@@ -1956,7 +2040,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
         </div>
       </div>
       <div
-        className="c4"
+        className="c5"
       >
         <button
           className="knapp knapp--standard knapp--disabled"

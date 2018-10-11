@@ -17,7 +17,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
 import { EndreNavnInfomeldingWrapper } from '../Infomelding';
-import { endretAvInfoVisning, ignoreEnter, InputState } from '../utils/formUtils';
+import { visEndringsinfo, ignoreEnter, InputState } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 
@@ -215,7 +215,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!kanEndreNavn}>
                     <Undertittel>Navn</Undertittel>
-                    {endretAvInfoVisning(this.props.person.navn.endringsinfo)}
+                    {visEndringsinfo(this.props.person.navn.endringsinfo)}
                     <EndreNavnInfomeldingWrapper person={this.props.person} veilderRoller={this.props.veilederRoller}/>
                     <NavnInput
                         label="Fornavn"

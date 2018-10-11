@@ -11,7 +11,7 @@ import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { getValidGateadresseForm } from './gateadresse/gateadresseValidator';
 import { getValidMatrikkeladresseForm } from './matrikkeladresse/matrikkeladresseValidator';
 import { getValidPostboksadresseForm } from './postboksadresse/postboksadresseValidator';
-import { endretAvInfoVisning } from '../../utils/formUtils';
+import { visEndringsinfo } from '../../utils/formUtils';
 
 export enum MidlertidigeAdresserNorgeInputValg {
     GATEADRESSE, MATRIKKELADRESSE, POSTBOKSADRESSE
@@ -148,7 +148,7 @@ class MidlertidigAdresseNorge extends React.Component<Props> {
 
         return (
             <>
-                {endretAvInfoVisning(this.props.endringsinfo)}
+                {visEndringsinfo(this.props.endringsinfo)}
                 <Select
                     label="Adressetype"
                     bredde={'m'}
