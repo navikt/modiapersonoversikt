@@ -7,7 +7,6 @@ import { RouteComponentProps } from 'react-router';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
 import { RestReducer } from '../../redux/restReducers/restReducer';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
@@ -18,8 +17,8 @@ import { Dispatch } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
-import Bankkonto from '../personside/visittkort/body/kontaktinformasjon/bankkonto/Bankkonto';
-import { AlignTextCenter } from '../../components/common-styled-components';
+import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -30,12 +29,16 @@ const BrukerprofilWrapper = styled.article`
 
 const HeaderStyle = styled.section`
   display: flex;
-  justify-content: space-between;
   flex-shrink: 0;
   padding: ${theme.margin.px10} ${theme.margin.px20};
   background-color: white;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
   z-index: 100;
+`;
+
+const HeaderContent = styled.section`
+  text-align: center;
+  flex-grow: 1;
 `;
 
 const ContentWrapper = styled.section`
@@ -57,10 +60,6 @@ const ContentWrapper = styled.section`
 
 const LinkWrapper = styled.div`
   margin-bottom: 1em;
-`;
-
-const PadLeft = styled.div`
-  padding-left: ${theme.margin.px50};
 `;
 
 interface RoutingProps {
@@ -91,11 +90,15 @@ function getAlder(person: Person) {
 }
 
 function Navn({person}: { person: Person }) {
-    return <div>{hentNavn(person)} ({getAlder(person)})</div>;
+    return <Normaltekst>{hentNavn(person)} ({getAlder(person)})</Normaltekst>;
 }
 
 function Konto({person}: { person: Person }) {
-    return <PadLeft><Bankkonto person={person}/></PadLeft>;
+    return (
+        <Normaltekst>
+            Kontonummer: <FormatertKontonummer kontonummer={person.bankkonto && person.bankkonto.kontonummer || ''}/>
+        </Normaltekst>
+    );
 }
 
 function TilbakeLenke({fnr}: { fnr: string }) {
@@ -115,11 +118,11 @@ function Header({person}: { person: Person }) {
     return (
         <HeaderStyle>
             <TilbakeLenke fnr={person.fødselsnummer}/>
-            <AlignTextCenter>
-                <Sidetittel>Endre brukerprofil</Sidetittel>
+            <HeaderContent>
+                <Innholdstittel>Endre brukerprofil</Innholdstittel>
                 <Navn person={person}/>
-            </AlignTextCenter>
-            <Konto person={person}/>
+                <Konto person={person}/>
+            </HeaderContent>
         </HeaderStyle>
     );
 }
