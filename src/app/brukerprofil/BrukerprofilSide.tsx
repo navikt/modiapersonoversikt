@@ -1,32 +1,53 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { Action } from 'history';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { connect, Dispatch } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
 import { paths } from '../routes/routing';
-import BrukerprofilForm from './BrukerprofilForm';
-import { AppState } from '../../redux/reducers';
-import { Person, PersonRespons } from '../../models/person/person';
-import Innholdslaster from '../../components/Innholdslaster';
-import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
-import { STATUS } from '../../redux/restReducers/utils';
 import Sidetittel from 'nav-frontend-typografi/lib/sidetittel';
 import { RestReducer } from '../../redux/restReducers/restReducer';
 import { theme } from '../../styles/personOversiktTheme';
+import Innholdslaster from '../../components/Innholdslaster';
+import BrukerprofilForm from './BrukerprofilForm';
+import { STATUS } from '../../redux/restReducers/utils';
+import { AppState } from '../../redux/reducers';
+import { Dispatch } from 'redux';
+import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
+import { connect } from 'react-redux';
+import Bankkonto from '../personside/visittkort/body/kontaktinformasjon/bankkonto/Bankkonto';
+import { AlignTextCenter } from '../../components/common-styled-components';
 
-const BrukerprofilWrapper = styled.section`
+const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
-  margin: 2em auto 3em;
-  max-width: 720px;
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  animation: ${theme.animation.fadeIn};
+`;
+
+const HeaderStyle = styled.section`
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: ${theme.margin.px10} ${theme.margin.px20};
+  background-color: white;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+  z-index: 100;
+`;
+
+const ContentWrapper = styled.section`
+  overflow-y: scroll;
+  flex-grow: 1;
+  padding: 3rem;
   display: flex;
   flex-flow: column nowrap;
-  animation: ${theme.animation.fadeIn};
-  > *:not(:first-child):not(:nth-child(2)) {
+  align-items: center;
+  > * {
+    max-width: 720px;
+    width: 90%;
     background-color: white;
     border-radius: ${theme.borderRadius.layout};
     margin: 1em 0;
@@ -36,6 +57,10 @@ const BrukerprofilWrapper = styled.section`
 
 const LinkWrapper = styled.div`
   margin-bottom: 1em;
+`;
+
+const PadLeft = styled.div`
+  padding-left: ${theme.margin.px50};
 `;
 
 interface RoutingProps {
@@ -55,7 +80,52 @@ interface OwnProps {
 
 type Props = RouteComponentProps<RoutingProps> & OwnProps & DispatchProps ;
 
-class BrukerprofilSide extends React.Component<Props> {
+function hentNavn({navn}: Person) {
+    return navn.fornavn +
+        (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ')
+        + navn.etternavn;
+}
+
+function getAlder(person: Person) {
+    return erDød(person.personstatus) ? 'Død' : person.alder;
+}
+
+function Navn({person}: { person: Person }) {
+    return <div>{hentNavn(person)} ({getAlder(person)})</div>;
+}
+
+function Konto({person}: { person: Person }) {
+    return <PadLeft><Bankkonto person={person}/></PadLeft>;
+}
+
+function TilbakeLenke({fnr}: { fnr: string }) {
+    return (
+        <LinkWrapper>
+            <Link
+                className={'lenke'}
+                to={`${paths.personUri}/${fnr}`}
+            >
+                {'<'} Tilbake
+            </Link>
+        </LinkWrapper>
+    );
+}
+
+function Header({person}: { person: Person }) {
+    return (
+        <HeaderStyle>
+            <TilbakeLenke fnr={person.fødselsnummer}/>
+            <AlignTextCenter>
+                <Sidetittel>Endre brukerprofil</Sidetittel>
+                <Navn person={person}/>
+            </AlignTextCenter>
+            <Konto person={person}/>
+        </HeaderStyle>
+    );
+}
+
+class BrukerprofilSide extends React.Component
+    <Props> {
 
     componentDidMount() {
         if (this.props.personReducer.status === STATUS.NOT_STARTED) {
@@ -73,19 +143,13 @@ class BrukerprofilSide extends React.Component<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    <LinkWrapper>
-                        <Link
-                            className={'lenke'}
-                            to={`${paths.personUri}/${this.props.fødselsnummer}`}
-                        >
-                            {'<'} Tilbake
-                        </Link>
-                    </LinkWrapper>
-                    <Sidetittel>Endre brukerprofil</Sidetittel>
-                    <BrukerprofilForm
-                        person={this.props.personReducer.data as Person}
-                        veilderRoller={this.props.veilederRollerReducer.data}
-                    />
+                    <Header person={this.props.personReducer.data as Person}/>
+                    <ContentWrapper>
+                        <BrukerprofilForm
+                            person={this.props.personReducer.data as Person}
+                            veilderRoller={this.props.veilederRollerReducer.data}
+                        />
+                    </ContentWrapper>
                 </Innholdslaster>
             </BrukerprofilWrapper>
         );
