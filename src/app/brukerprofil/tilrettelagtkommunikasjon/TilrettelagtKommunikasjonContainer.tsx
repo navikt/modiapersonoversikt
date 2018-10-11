@@ -37,7 +37,6 @@ type Props = StateProps & OwnProps & DispatchProps;
 
 const onError = (
     <>
-        <Undertittel>Tilrettelagt kommunikasjon</Undertittel>
         <AlertStripe type="advarsel">
             Det skjedde en feil ved lasting av kodeverk for tilrettelagt kommunikasjon.
         </AlertStripe>
