@@ -12,9 +12,10 @@ import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   > * {
-    margin-left: 1em;
+    margin: .5rem 0 .5rem 1em;
   }
 `;
 
