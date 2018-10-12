@@ -68,8 +68,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c8 {
   display: inline-block;
-  -webkit-animation: jNAyoc .3s 8 alternate-reverse ease;
-  animation: jNAyoc .3s 8 alternate-reverse ease;
+  -webkit-animation: hcoNTW .3s 1s 6 alternate;
+  animation: hcoNTW .3s 1s 6 alternate;
 }
 
 .c8:focus {

@@ -12,6 +12,7 @@ import { resetSykepengerReducer } from './ytelser/sykepenger';
 import { resetPleiepengerReducer } from './ytelser/pleiepenger';
 import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
 import { hentFeatureToggle } from './featuretoggle';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
@@ -24,6 +25,9 @@ export function reloadPerson(fødselsnummer: string) {
 }
 
 export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: string) {
+    if (!erGyldigFødselsnummer(fødselsnummer)) {
+        console.warn('Ugyldig fødselsnummer: ', fødselsnummer);
+    }
     dispatch(hentPerson(fødselsnummer));
     dispatch(hentKontaktinformasjon(fødselsnummer));
     dispatch(erEgenAnsatt(fødselsnummer));

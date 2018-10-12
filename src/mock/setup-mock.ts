@@ -23,8 +23,10 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggleAdminBrukerprofil } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 const STATUS_OK = () => 200;
+const STATUS_BAD_REQUEST = () => 400;
 
 function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
@@ -33,31 +35,36 @@ function randomDelay() {
     return faker.random.number(750);
 }
 
+const fødselsNummerErGyldigStatus = (args: HandlerArgument) =>
+    erGyldigFødselsnummer(args.pathParams.fodselsnummer)
+        ? STATUS_OK()
+        : STATUS_BAD_REQUEST();
+
 function setupPersonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))));
 }
 
 function setupEgenAnsattMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/egenansatt/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))));
 }
 
 function setupKontaktinformasjonMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))));
 }
 
 function setupSaksoversiktMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/saker/:fodselsnummer/sakstema', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(getMockSaksoversikt)
     ));
 }
@@ -65,28 +72,28 @@ function setupSaksoversiktMock(mock: FetchMock) {
 function setupUtbetalingerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/utbetaling/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockUtbetalinger(fodselsnummer))));
 }
 
 function setupSykepengerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/ytelse/sykepenger/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockSykepenger(fodselsnummer))));
 }
 
 function setupForeldrepengerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/ytelse/foreldrepenger/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockForeldrepenger(fodselsnummer))));
 }
 
 function setupPleiepengerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/ytelse/pleiepenger/:fodselsnummer', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))));
 }
 
@@ -151,7 +158,7 @@ function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
 function setupVergemalMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/person/:fodselsnummer/vergemal', withDelayedResponse(
         randomDelay(),
-        STATUS_OK,
+        fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))));
 }
 

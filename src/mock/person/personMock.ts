@@ -24,10 +24,13 @@ import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 import { getDiskresjonskode } from '../utils/diskresjonskode-util';
 import FakerStatic = Faker.FakerStatic;
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
+    } else if (!erGyldigFødselsnummer(fødselsnummer)) {
+        return {};
     } else {
         faker.seed(Number(fødselsnummer));
         navfaker.seed(fødselsnummer);
