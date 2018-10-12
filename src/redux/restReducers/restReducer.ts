@@ -47,7 +47,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
             switch (action.type) {
                 case actionTypes.STARTING:
                     return {
-                        ...state,
+                        data: {},
                         status: STATUS.LOADING
                     };
                 case actionTypes.RELOADING:
