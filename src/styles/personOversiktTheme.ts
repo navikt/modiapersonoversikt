@@ -24,7 +24,7 @@ export const theme = {
         border-radius: ${pxToRem(4)};
         background-color: #f4f4f4;
         box-shadow: inset 0 0 0 1px #59514b;
-        padding: ${pxToRem(20)} ${pxToRem(10)};
+        padding: ${pxToRem(20)};
         margin: ${pxToRem(20)} 0 0;
     `,
     media: {

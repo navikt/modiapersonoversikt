@@ -105,6 +105,7 @@ class AdresseForm extends React.Component<Props, State> {
         this.onMidlertidigAdresseNorgeFormChange = this.onMidlertidigAdresseNorgeFormChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
+        this.slettMidlertidigAdresse = this.slettMidlertidigAdresse.bind(this);
 
         this.state = this.getInitialState();
     }
@@ -373,10 +374,27 @@ class AdresseForm extends React.Component<Props, State> {
         return this.props.endreAdresseReducer.status === STATUS.LOADING;
     }
 
+    slettMidlertidigAdresse() {
+        this.submitSlettMidlertidigeAdresser();
+    }
+
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
 
         const aktivForm = this.getAktivForm();
+        const sletteKnapp = this.props.person.alternativAdresse
+            ? (
+                <KnappBase
+                    type="fare"
+                    onClick={this.slettMidlertidigAdresse}
+                    spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
+                    autoDisableVedSpinner={true}
+                    disabled={this.requestIsPending()}
+                >
+                    Slett midlertidig adresse
+                </KnappBase>
+            )
+            : null;
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -399,6 +417,7 @@ class AdresseForm extends React.Component<Props, State> {
                         {aktivForm}
                     </Wrapper>
                     <FormKnapperWrapper>
+                        {sletteKnapp}
                         <KnappBase
                             type="standard"
                             onClick={this.onAvbryt}

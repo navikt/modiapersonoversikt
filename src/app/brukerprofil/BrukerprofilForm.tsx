@@ -12,9 +12,10 @@ import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
 export const FormKnapperWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   > * {
-    margin-left: 1em;
+    margin: .5rem 0 .5rem 1em;
   }
 `;
 
@@ -26,11 +27,11 @@ interface Props {
 function BrukerprofilForm({ person, veilderRoller }: Props) {
     return (
         <ErrorBoundary>
-            <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
             <EndreKontonummerForm person={person} veilederRoller={veilderRoller}/>
             <AdresseForm person={person} veilederRoller={veilderRoller}/>
             <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
+            <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
         </ErrorBoundary>
     );
 }

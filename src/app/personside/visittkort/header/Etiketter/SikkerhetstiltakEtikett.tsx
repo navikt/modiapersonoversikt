@@ -3,23 +3,19 @@ import EtikettBase from 'nav-frontend-etiketter';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled, { keyframes } from 'styled-components';
 
-interface Props {
-}
-
-const fadeIn = keyframes`
-  from { transform: scale(1.1); }
-  to { transform: scale(1); }
+const bump = keyframes`
+  to { transform: scale(1.1); }
 `;
 
 const Styling = styled.div`
   display: inline-block;
-  animation: ${fadeIn} .3s 8 alternate-reverse ease;
+  animation: ${bump} .3s 1s 6 alternate;
   &:focus {
     ${theme.focus}
   }
 `;
 
-class SikkerhetstiltakEtikett extends React.Component<Props> {
+class SikkerhetstiltakEtikett extends React.Component<{}> {
 
     private etikettRef = React.createRef<HTMLDivElement>();
 

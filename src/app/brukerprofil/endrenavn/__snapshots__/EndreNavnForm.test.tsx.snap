@@ -1,34 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser form for endre navn 1`] = `
-.c1 {
-  color: #78706a;
-  margin-top: 3px;
-}
-
-.c1 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
 .c0 {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
-.c2 > * {
-  margin-left: 1em;
+.c1 > * {
+  margin: .5rem 0 .5rem 1em;
 }
 
 <form
@@ -43,18 +37,6 @@ exports[`Viser form for endre navn 1`] = `
     >
       Navn
     </h2>
-    <div
-      className="c1"
-    >
-      <p
-        className="typo-etikett-liten"
-      >
-        Endret 
-        12.12.2012
-         
-        NAV
-      </p>
-    </div>
     <div
       className="skjemaelement"
     >
@@ -125,7 +107,7 @@ exports[`Viser form for endre navn 1`] = `
       />
     </div>
     <div
-      className="c2"
+      className="c1"
     >
       <button
         className="knapp knapp--standard knapp--disabled"
