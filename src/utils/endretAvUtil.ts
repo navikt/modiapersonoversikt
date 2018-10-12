@@ -34,11 +34,11 @@ function endretIPSelv(rawString: string) {
 }
 
 function endretIArena(rawString: string) {
-    return rawString.match('Arena');
+    return rawString.match(/arena/i);
 }
 
 function endretAvKonvertItSystem(rawString: string) {
-    return rawString.match('Konvert, IT[0-9]{2}');
+    return rawString.match(/konvert, IT[0-9]{2}/i);
 }
 
 function endretIPesys(rawString: string) {
