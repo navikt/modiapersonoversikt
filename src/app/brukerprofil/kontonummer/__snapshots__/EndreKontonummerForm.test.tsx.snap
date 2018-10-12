@@ -21,6 +21,9 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
@@ -28,7 +31,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 }
 
 .c2 > * {
-  margin-left: 1em;
+  margin: .5rem 0 .5rem 1em;
 }
 
 <form
@@ -146,6 +149,14 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       className="c2"
     >
       <button
+        className="knapp knapp--fare"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Slett kontonummer
+      </button>
+      <button
         className="knapp knapp--standard knapp--disabled"
         disabled={true}
         onClick={[Function]}
@@ -186,6 +197,9 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
@@ -193,7 +207,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
 }
 
 .c2 > * {
-  margin-left: 1em;
+  margin: .5rem 0 .5rem 1em;
 }
 
 <form
@@ -495,7 +509,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         className="skjemaelement__label"
         htmlFor="Helt tilfeldig ID"
       >
-        Kontonummer eller IBAN
+        BC/SWIFT-kode
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
@@ -504,7 +518,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value="12345678911"
+        value=""
       />
       <div
         aria-live="assertive"
@@ -518,7 +532,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         className="skjemaelement__label"
         htmlFor="Helt tilfeldig ID"
       >
-        BC/SWIFT-kode
+        Kontonummer eller IBAN
       </label>
       <input
         className="skjemaelement__input input--fullbredde"
@@ -527,7 +541,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value=""
+        value="12345678911"
       />
       <div
         aria-live="assertive"
@@ -632,6 +646,14 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     <div
       className="c2"
     >
+      <button
+        className="knapp knapp--fare"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Slett kontonummer
+      </button>
       <button
         className="knapp knapp--standard knapp--disabled"
         disabled={true}
