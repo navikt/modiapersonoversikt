@@ -251,6 +251,9 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     getAktivForm() {
+        const endringsinfo = this.props.person.alternativAdresse &&
+            this.props.person.alternativAdresse.endringsinfo || undefined;
+
         if (this.state.selectedRadio === Valg.FOLKEREGISTRERT) {
             return <FolkeregistrertAdresse person={this.props.person}/>;
         } else if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
@@ -258,6 +261,7 @@ class AdresseForm extends React.Component<Props, State> {
                 <MidlertidigAdresseNorge
                     midlertidigAdresseNorge={this.state.midlertidigAdresseNorge}
                     onChange={this.onMidlertidigAdresseNorgeFormChange}
+                    endringsinfo={endringsinfo}
                 />
             );
         } else {
@@ -266,6 +270,7 @@ class AdresseForm extends React.Component<Props, State> {
                     midlertidigAdresseUtland={this.state.midlertidigAdresseUtland}
                     onChange={this.onMidlertidigAdresseUtlandFormChange}
                     visFeilmeldinger={false}
+                    endringsinfo={endringsinfo}
                 />
             );
         }

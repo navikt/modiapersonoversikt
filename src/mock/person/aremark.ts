@@ -84,6 +84,10 @@ export const aremark: Person = {
         }
     },
     navn: {
+        endringsinfo: {
+            sistEndret: '2012-12-12',
+            sistEndretAv: 'NAV'
+        },
         sammensatt: 'AREMARK TESTFAMILIEN',
         fornavn: 'AREMARK',
         mellomnavn: '',

@@ -1,4 +1,4 @@
-import { Personadresse } from '../personadresse';
+import { Endringsinfo, Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
@@ -31,6 +31,7 @@ export interface Person extends PersonRespons {
 }
 
 export interface Navn {
+    endringsinfo?: Endringsinfo;
     sammensatt: string;
     fornavn: string | null;
     mellomnavn: string | null;

@@ -83,6 +83,10 @@ export function getMockNavn(fødselsnummer: string): Navn {
     const etternavn = faker.name.lastName().toUpperCase();
     const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName().toUpperCase() : '';
     return {
+        endringsinfo: {
+            sistEndret: '2012-12-12',
+            sistEndretAv: 'Z010101, BD06'
+        },
         fornavn: fornavn,
         etternavn: etternavn,
         mellomnavn: mellomnavn,

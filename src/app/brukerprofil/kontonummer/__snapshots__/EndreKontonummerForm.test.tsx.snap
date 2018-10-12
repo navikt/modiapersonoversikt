@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
-.c0 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .c1 {
   color: #78706a;
   margin-top: 3px;
@@ -14,6 +8,12 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 
 .c1 .typo-etikett-liten {
   line-height: 1rem;
+}
+
+.c0 {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .c2 {
@@ -119,7 +119,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 av bruker
+        Endret 12.12.2005 10108000398
       </p>
     </div>
     <div
@@ -177,12 +177,6 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 `;
 
 exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
-.c0 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .c1 {
   color: #78706a;
   margin-top: 3px;
@@ -190,6 +184,12 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
 
 .c1 .typo-etikett-liten {
   line-height: 1rem;
+}
+
+.c0 {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .c2 {
@@ -295,7 +295,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 av bruker
+        Endret 12.12.2005 10108000398
       </p>
     </div>
     <div
