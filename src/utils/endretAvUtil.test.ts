@@ -43,7 +43,7 @@ it('Formaterer endretAv gammel type ident + IT00 (Infotrygd-app - NAV) tekst til
 });
 
 it('Formaterer endretAv Konvert + IT00 (Infotrygd-app - NAV) tekst til ønsket visningsformat', () => {
-    const rawString = 'Konvert, IT00';
+    const rawString = 'KONVERT, IT00';
     const formatertTekst = endretAvTekst(rawString);
 
     expect(formatertTekst).toEqual('av NAV');
@@ -57,7 +57,7 @@ it('Formaterer endretAv ident + PP01 (modiabrukerdialog-app - NAV) tekst til øn
 });
 
 it('Formaterer endretAv Arena, PP01 (modiabrukerdialog-app - NAV) tekst til ønsket visningsformat', () => {
-    const rawString = 'Arena, PP01';
+    const rawString = 'ARENA, PP01';
     const formatertTekst = endretAvTekst(rawString);
 
     expect(formatertTekst).toEqual('av NAV');
