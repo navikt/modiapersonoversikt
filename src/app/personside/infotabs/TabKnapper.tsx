@@ -36,7 +36,7 @@ const TabKnapp = styled<TabKnappProps, 'button'>('button')`
     padding-top: 0.5em;
     margin-top: 0.5em;
     border: none;
-    border-bottom: 4px solid ${props => props.valgt ? theme.color.selectedLink : 'transparent'};
+    border-bottom: 4px solid ${props => props.valgt ? theme.color.lenkeSelected : 'transparent'};
     text-align: center;
     cursor: pointer;
     transition: border 0.3s;
@@ -45,7 +45,7 @@ const TabKnapp = styled<TabKnappProps, 'button'>('button')`
       ${theme.focus}
     }
     &:hover {
-      border-bottom: 4px solid ${theme.color.hoverLink};
+      border-bottom: 4px solid ${theme.color.lenkeHover};
     }
 `;
 

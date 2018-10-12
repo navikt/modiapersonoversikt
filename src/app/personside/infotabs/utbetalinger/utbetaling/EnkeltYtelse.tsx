@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
-import { SpaceBetween } from '../../../../../components/common-styled-components';
-import { Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import DetaljerKnapp from '../utils/DetaljerKnapp';
-import { UnmountClosed } from 'react-collapse';
+import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
 import { FokusProps } from '../Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 export interface EnkeltYtelseProps {
     ytelse: Ytelse;
@@ -23,17 +21,12 @@ interface State {
     visDetaljer: boolean;
 }
 
-const EnkeltYtelseStyle = styled<{ åpen: boolean }, 'li'>('li')`
+const EnkeltYtelseStyle = styled.li`
   transition: 0.3s;
   cursor: pointer;
   &:focus {
     ${theme.focus}
   }
-  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
-`;
-
-const PadLeft = styled.div`
-  margin-left: .5rem;
 `;
 
 class EnkeltYtelse extends React.Component<Props, State> {
@@ -98,34 +91,25 @@ class EnkeltYtelse extends React.Component<Props, State> {
         return (
             <EnkeltYtelseStyle
                 onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                åpen={this.state.visDetaljer}
                 innerRef={this.myRef}
                 tabIndex={0}
                 onFocus={this.setTilYtelseIFokus}
                 onBlur={this.removeEnterListener}
             >
                 <SpaceBetween>
-                    <UndertekstBold>
-                        {ytelse.type}
-                    </UndertekstBold>
-                    <SpaceBetween>
-                        <UndertekstBold>
-                            {formaterNOK(ytelse.nettobeløp)}
-                        </UndertekstBold>
-                        <PadLeft/>
-                        <DetaljerKnapp onClick={this.toggleVisDetaljer} open={this.state.visDetaljer}/>
-                    </SpaceBetween>
+                    <Normaltekst><Bold>{ytelse.type}</Bold></Normaltekst>
+                    <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>
                 </SpaceBetween>
-                <Undertekst>
+                <Normaltekst>
                     {periode}
-                </Undertekst>
-                <UnmountClosed isOpened={this.state.visDetaljer}>
-                    <UtbetalingsDetaljer
-                        ytelse={ytelse}
-                        konto={this.props.konto}
-                        melding={this.props.melding}
-                    />
-                </UnmountClosed>
+                </Normaltekst>
+                <UtbetalingsDetaljer
+                    open={this.state.visDetaljer}
+                    toggleVisDetaljer={this.toggleVisDetaljer}
+                    ytelse={ytelse}
+                    konto={this.props.konto}
+                    melding={this.props.melding}
+                />
             </EnkeltYtelseStyle>
         );
     }

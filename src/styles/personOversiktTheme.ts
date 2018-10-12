@@ -4,33 +4,53 @@ const fadeIn = keyframes`
     from { opacity: 0 }
 `;
 
+const oneRemInPx = 16;
+
+function pxToRem(px: number): string {
+    return px / oneRemInPx + 'rem';
+}
+
 export const theme = {
     color: {
-        selectedLink: '#66CBEC',
-        hoverLink: '#C6C2BF',
-        lenke: 'rgb(0, 103, 197)',
+        lenkeSelected: '#66CBEC',
+        lenkeHover: '#C6C2BF',
+        lenke: '#0067c5',
         bakgrunn: '#efefef',
+        kategori: '#9bd0b0',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
+    ekspandert: `
+        border-radius: ${pxToRem(4)};
+        background-color: #f4f4f4;
+        box-shadow: inset 0 0 0 1px #59514b;
+        padding: ${pxToRem(20)} ${pxToRem(10)};
+        margin: ${pxToRem(20)} 0 0;
+    `,
     media: {
         smallScreen: 'max-width: 35rem',
         wideScreen: 'min-width: 35rem'
     },
     margin: {
         layout: '.8rem',
-        px50: '3.125rem',
-        px40: '2.5rem',
-        px30: '1.875rem',
-        px20: '1.25rem',
-        px10: '.6rem'
+        px50: pxToRem(50),
+        px40: pxToRem(40),
+        px30: pxToRem(30),
+        px20: pxToRem(20),
+        px10: pxToRem(10),
+        px2: pxToRem(2),
+        px1: pxToRem(1)
     },
     boxShadow: {
-        layout: '0 0.1em 0.6em rgba(150, 150, 150, 0.7)'
+        layout: '0 0.1rem 0.6rem rgba(150, 150, 150, 0.7)'
     },
     borderRadius: {
         layout: '.25rem;',
-        knapp: '.5rem;'
+        knapp: '.35rem;'
+    },
+    border: {
+        skille: `solid ${pxToRem(1)} #59514b;`,
+        skilleSvak: `solid ${pxToRem(1)} #dddddd;`
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`

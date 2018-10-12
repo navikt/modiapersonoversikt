@@ -28,9 +28,9 @@ const STATUS_OK = () => 200;
 
 function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
-        return faker.random.number(8000);
+        return faker.random.number(5000);
     }
-    return faker.random.number(1500);
+    return faker.random.number(750);
 }
 
 function setupPersonMock(mock: FetchMock) {

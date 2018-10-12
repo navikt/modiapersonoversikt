@@ -12,7 +12,7 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import moment = require('moment');
 
@@ -85,9 +85,9 @@ const ArenaLenkeStyle = styled.div`
 function ArenaLenke() {
     return (
         <ArenaLenkeStyle>
-            <Undertekst>
+            <Normaltekst>
                 <a className="lenke">Meldinger/utbetalinger i Arena</a>
-            </Undertekst>
+            </Normaltekst>
         </ArenaLenkeStyle>
     );
 }
