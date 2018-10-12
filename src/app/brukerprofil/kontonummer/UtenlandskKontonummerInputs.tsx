@@ -115,18 +115,18 @@ function Inputs(props: Props) {
                 feil={validering.adresse.skjemafeil}
             />
             <Input
-                label="Kontonummer eller IBAN"
-                value={bankkonto.kontonummer}
-                onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
-                feil={validering.kontonummer.skjemafeil}
-            />
-            <Input
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 onKeyPress={ignoreEnter}
                 onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
                 feil={validering.swift.skjemafeil}
+            />
+            <Input
+                label="Kontonummer eller IBAN"
+                value={bankkonto.kontonummer}
+                onKeyPress={ignoreEnter}
+                onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
+                feil={validering.kontonummer.skjemafeil}
             />
             <Input
                 label="Bankkode"
