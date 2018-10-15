@@ -6,6 +6,10 @@ import { Person, PersonRespons } from '../../../../../models/person/person';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Etiketter from './Etiketter';
+import Innholdslaster from '../../../../../components/Innholdslaster';
+import styled from 'styled-components';
+import LazySpinner from '../../../../../components/LazySpinner';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     egenAnsattReducer: RestReducer<Egenansatt>;
@@ -13,15 +17,32 @@ interface Props {
     vergemalReducer: RestReducer<Vergemal>;
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 class EtiketterContainer extends React.Component<Props> {
 
     render() {
         return (
-            <Etiketter
-                person={this.props.personReducer.data as Person}
-                egenAnsatt={this.props.egenAnsattReducer.data}
-                vergemal={this.props.vergemalReducer.data}
-            />
+            <Wrapper>
+                <Innholdslaster
+                    avhengigheter={[
+                        this.props.personReducer,
+                        this.props.egenAnsattReducer,
+                        this.props.vergemalReducer
+                    ]}
+                    returnOnPending={<LazySpinner type="S"/>}
+                    returnOnError={<AlertStripeAdvarsel>Feil ved lasting av etiketter</AlertStripeAdvarsel>}
+                />
+                <Etiketter
+                    person={this.props.personReducer.data as Person}
+                    egenAnsatt={this.props.egenAnsattReducer.data}
+                    vergemal={this.props.vergemalReducer.data}
+                />
+            </Wrapper>
         );
     }
 }

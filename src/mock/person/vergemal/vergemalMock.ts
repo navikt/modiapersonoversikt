@@ -36,11 +36,12 @@ const MANDATTYPER = [
     lagKodeverksverdi('ADP', 'Tilpasset mandat (utfyllende tekst i eget felt)')
 ];
 
-export function mockVergemal(fødselsnummer: String): Vergemal {
+export function mockVergemal(fødselsnummer: string): Vergemal {
     if (fødselsnummer === aremark.fødselsnummer) {
         return getAremarkVerge();
     }
     faker.seed(Number(fødselsnummer));
+    navfaker.seed(fødselsnummer);
     if (vektetSjanse(faker, 0.7)) {
         return {
             verger: []
