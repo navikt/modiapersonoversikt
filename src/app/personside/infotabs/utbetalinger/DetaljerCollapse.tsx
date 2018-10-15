@@ -19,6 +19,12 @@ const Wrapper = styled<{ open: boolean }, 'div'>('div')`
   ${props => props.open && theme.ekspandert};
 `;
 
+const CollapseAnimasjon = styled<{ open: boolean }, 'div'>('div')`
+  transition: .5s;
+  padding: 0 ${theme.margin.px20};
+  ${props => props.open && 'padding: 0'};
+`;
+
 const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
   border: none;
   padding: .1rem .2rem;
@@ -66,9 +72,11 @@ function DetaljerKnapp(props: KnappProps) {
 function DetaljerCollapse(props: Props) {
     return (
         <Wrapper open={props.open}>
-            <UnmountClosed isOpened={props.open}>
-                {props.children}
-            </UnmountClosed>
+            <CollapseAnimasjon open={props.open}>
+                <UnmountClosed isOpened={props.open}>
+                    {props.children}
+                </UnmountClosed>
+            </CollapseAnimasjon>
             <FlexEnd>
                 <DetaljerKnapp
                     onClick={props.toggle}
