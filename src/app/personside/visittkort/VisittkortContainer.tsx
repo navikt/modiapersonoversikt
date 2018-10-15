@@ -37,6 +37,15 @@ class VisittkortContainer extends React.Component<Props> {
         if (visittkortetBleÅpnet && this.detaljerRef.current) {
             this.detaljerRef.current.focus();
         }
+        if (this.props.person !== prevProps.person) {
+            // tslint:disable-next-line
+            window['frontendlogger'].info({
+                message: 'Testmelding fra den nye frontenden',
+                extra_felt_til_kibana: 'Litt mer info her'
+            });
+            // tslint:disable-next-line
+            window['frontendlogger'].event('modiapersonoverikt.event');
+        }
     }
 
     render() {
