@@ -731,22 +731,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             onClick={[Function]}
             type="submit"
           >
-            Om en uke
-          </button>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om tre måneder
-          </button>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
             Om et år
           </button>
         </div>
@@ -1183,22 +1167,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
               </div>
             </div>
           </div>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om en uke
-          </button>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om tre måneder
-          </button>
           <button
             className="knapp knapp--flat knapp--mini"
             disabled={false}
@@ -1683,22 +1651,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
               </div>
             </div>
           </div>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om en uke
-          </button>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om tre måneder
-          </button>
           <button
             className="knapp knapp--flat knapp--mini"
             disabled={false}
@@ -2224,22 +2176,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
               </div>
             </div>
           </div>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om en uke
-          </button>
-          <button
-            className="knapp knapp--flat knapp--mini"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Om tre måneder
-          </button>
           <button
             className="knapp knapp--flat knapp--mini"
             disabled={false}
