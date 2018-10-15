@@ -30,6 +30,10 @@ interface OwnProps {
 type Props = TotaltUtbetaltProps & OwnProps;
 
 const DetaljerStyle = styled.aside`
+  h2 {
+    margin: 0;
+    padding: ${theme.margin.px20} 0;
+  }
   th:not(:first-child) {
     font-weight: normal;
   }
