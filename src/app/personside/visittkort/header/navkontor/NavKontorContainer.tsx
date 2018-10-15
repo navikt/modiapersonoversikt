@@ -82,7 +82,7 @@ class NavKontorContainer extends React.Component<Props> {
                 <Normaltekst tag="h2"><Bold>NAV-kontor</Bold></Normaltekst>
                 <Innholdslaster
                     avhengigheter={[this.props.navKontorReducer]}
-                    spinnerSize={'XXS'}
+                    spinnerSize={'S'}
                     returnOnError={onError}
                 >
                     <NavKontorVisning navKontor={this.props.navKontorReducer.data.navKontor}/>

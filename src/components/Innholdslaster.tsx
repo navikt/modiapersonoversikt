@@ -10,7 +10,7 @@ import { RestReducer } from '../redux/restReducers/restReducer';
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
 interface InnholdslasterProps {
-    children: ReactNode;
+    children?: ReactNode;
     avhengigheter: RestReducer<object>[];
     spinnerSize?: SpinnerSize;
     returnOnPending?: React.ReactChildren | React.ReactChild;
@@ -61,7 +61,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps> {
         const alleAvhengigheterErLastetOK = alleLastet(avhengigheter) && alleHarValidResponse(avhengigheter);
 
         if (alleAvhengigheterErLastetOK) {
-            return children;
+            return children || null;
         } else if (noenHarFeil(avhengigheter)) {
             return <Feilvisning onError={returnOnError}/>;
         } else {

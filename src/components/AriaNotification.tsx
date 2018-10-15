@@ -39,6 +39,10 @@ class AriaNotification extends React.Component<Props, State> {
         );
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timeOut);
+    }
+
     render() {
         if (!this.state.render) {
             return null;

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c10 {
+.c11 {
   font-weight: bold;
 }
 
-.c9 {
+.c10 {
   margin: .5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -17,16 +17,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: flex-end;
 }
 
-.c9 > * {
+.c10 > * {
   white-space: nowrap;
 }
 
-.c9 > *:first-child:after {
+.c10 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c9 > *:last-child {
+.c10 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -66,23 +66,38 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0 .5rem;
 }
 
-.c8 {
+.c9 {
   display: inline-block;
   -webkit-animation: hcoNTW .3s 1s 6 alternate;
   animation: hcoNTW .3s 1s 6 alternate;
 }
 
-.c8:focus {
+.c9:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c7 > * {
+.c8 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
 
-.c12 {
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13 {
   border: none;
   padding: .1rem;
   border-radius: 0.5em;
@@ -90,7 +105,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   background-color: transparent;
 }
 
-.c12:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
@@ -181,7 +196,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-.c11 {
+.c12 {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -271,25 +286,13 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   <div
     className="c6"
   >
-    <section
-      aria-label="etiketter"
+    <div
       className="c7"
-      role="region"
     >
-      <div
-        className="etikett etikett--advarsel"
-      >
-        <span
-          className="typo-normal"
-        >
-          Kode 7
-        </span>
-      </div>
-      <div
-        aria-live="assertive"
+      <section
+        aria-label="etiketter"
         className="c8"
-        role="alert"
-        tabIndex={-1}
+        role="region"
       >
         <div
           className="etikett etikett--advarsel"
@@ -297,38 +300,54 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           <span
             className="typo-normal"
           >
-            Sikkerhetstiltak
+            Kode 7
           </span>
         </div>
-      </div>
-      <div
-        className="etikett etikett--fokus"
-      >
-        <span
-          className="typo-normal"
+        <div
+          aria-live="assertive"
+          className="c9"
+          role="alert"
+          tabIndex={-1}
         >
-          Vergemål
-        </span>
-      </div>
-      <div
-        className="etikett etikett--fokus"
-      >
-        <span
-          className="typo-normal"
+          <div
+            className="etikett etikett--advarsel"
+          >
+            <span
+              className="typo-normal"
+            >
+              Sikkerhetstiltak
+            </span>
+          </div>
+        </div>
+        <div
+          className="etikett etikett--fokus"
         >
-          Tolkehjelp
-        </span>
-      </div>
-    </section>
+          <span
+            className="typo-normal"
+          >
+            Vergemål
+          </span>
+        </div>
+        <div
+          className="etikett etikett--fokus"
+        >
+          <span
+            className="typo-normal"
+          >
+            Tolkehjelp
+          </span>
+        </div>
+      </section>
+    </div>
     <section
       aria-label="Nav kontor"
-      className="c9"
+      className="c10"
     >
       <h2
         className="typo-normal"
       >
         <span
-          className="c10"
+          className="c11"
         >
           NAV-kontor
         </span>
@@ -337,7 +356,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         className="typo-normal"
       >
         <span
-          className="c10"
+          className="c11"
         >
           0118
            
@@ -347,12 +366,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </section>
   </div>
   <div
-    className="c11"
+    className="c12"
   >
     <button
       aria-expanded={false}
       aria-label="Detaljer"
-      className="c12"
+      className="c13"
       onClick={[Function]}
     >
       <i
