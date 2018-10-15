@@ -391,7 +391,7 @@ class AdresseForm extends React.Component<Props, State> {
                     autoDisableVedSpinner={true}
                     disabled={this.requestIsPending()}
                 >
-                    Slett midlertidig adresse
+                    Slett adresse
                 </KnappBase>
             )
             : null;

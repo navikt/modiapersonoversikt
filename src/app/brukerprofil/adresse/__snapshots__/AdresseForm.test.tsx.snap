@@ -717,7 +717,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           onClick={[Function]}
           type="submit"
         >
-          Slett midlertidig adresse
+          Slett adresse
         </button>
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1132,7 +1132,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           onClick={[Function]}
           type="submit"
         >
-          Slett midlertidig adresse
+          Slett adresse
         </button>
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -1589,7 +1589,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           onClick={[Function]}
           type="submit"
         >
-          Slett midlertidig adresse
+          Slett adresse
         </button>
         <button
           className="knapp knapp--standard knapp--disabled"
@@ -2087,7 +2087,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           onClick={[Function]}
           type="submit"
         >
-          Slett midlertidig adresse
+          Slett adresse
         </button>
         <button
           className="knapp knapp--standard knapp--disabled"
