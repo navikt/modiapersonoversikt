@@ -34,8 +34,6 @@ export function tilPeriode(gyldigTil: Date) {
 
 const omEtÅr = moment().add(1, 'year').toDate();
 const iMorgen = moment().add(1, 'day').toDate();
-const omEnUke = moment().add(1, 'week').toDate();
-const omTreMåneder = moment().add(3, 'month').toDate();
 
 const avgrensninger: Avgrensninger = {
     minDato: iMorgen,
@@ -44,10 +42,10 @@ const avgrensninger: Avgrensninger = {
 
 export default function Datovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
 
-    function handleHurtigvalg(newDate: Date) {
+    function handleomEtÅrHurtigvalg() {
         return (event: React.MouseEvent<HTMLButtonElement>) => {
             event.preventDefault();
-            onChange(newDate);
+            onChange(omEtÅr);
         };
     }
 
@@ -61,9 +59,7 @@ export default function Datovelger({dato, id, onChange, feil, children, innenEt�
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
                     onChange={onChange}
                 />
-                <KnappBase type="flat" mini={true} onClick={handleHurtigvalg(omEnUke)}>Om en uke</KnappBase>
-                <KnappBase type="flat" mini={true} onClick={handleHurtigvalg(omTreMåneder)}>Om tre måneder</KnappBase>
-                <KnappBase type="flat" mini={true} onClick={handleHurtigvalg(omEtÅr)}>Om et år</KnappBase>
+                <KnappBase type="flat" mini={true} onClick={handleomEtÅrHurtigvalg}>Om et år</KnappBase>
             </Wrapper>
             <Feilmelding feil={feil}/>
         </>
