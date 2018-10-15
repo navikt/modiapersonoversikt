@@ -255,7 +255,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   border: 0;
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -269,7 +269,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c6 > * {
+.c7 > * {
   margin: .5rem 0 .5rem 1em;
 }
 
@@ -285,6 +285,21 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c6 > *:not(:first-child) {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
 }
 
 .c3 {
@@ -639,77 +654,89 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           Gyldig til
         </label>
         <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={undefined}
+          className="c6"
         >
           <div
-            className="nav-datovelger"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={undefined}
           >
-            <p
-              className="sr-only"
-              id="Helt tilfeldig ID_srDesc"
-            >
-              Dato må være mellom "02.01.1970" og "01.01.1971". 
-            </p>
             <div
-              className="nav-datovelger__inputContainer"
+              className="nav-datovelger"
             >
-              <input
-                aria-describedby="Helt tilfeldig ID_srDesc"
-                aria-invalid={false}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                disabled={undefined}
-                id="gateform-datovelger"
-                maxLength={10}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value=""
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                disabled={undefined}
-                onClick={[Function]}
-                role="button"
-                type="button"
+              <p
+                className="sr-only"
+                id="Helt tilfeldig ID_srDesc"
               >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
+                Dato må være mellom "02.01.1970" og "01.01.1971". 
+              </p>
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-describedby="Helt tilfeldig ID_srDesc"
+                  aria-invalid={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  disabled={undefined}
+                  id="gateform-datovelger"
+                  maxLength={10}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value=""
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
                 >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
                   >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+          <button
+            className="knapp knapp--flat knapp--mini"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            Om et år
+          </button>
         </div>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <button
           className="knapp knapp--fare"
@@ -756,7 +783,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   border: 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -770,7 +797,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   justify-content: flex-end;
 }
 
-.c5 > * {
+.c6 > * {
   margin: .5rem 0 .5rem 1em;
 }
 
@@ -786,6 +813,21 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c5 > *:not(:first-child) {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
 }
 
 .c1 {
@@ -1054,77 +1096,89 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           Gyldig til
         </label>
         <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={undefined}
+          className="c5"
         >
           <div
-            className="nav-datovelger"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={undefined}
           >
-            <p
-              className="sr-only"
-              id="Helt tilfeldig ID_srDesc"
-            >
-              Dato må være mellom "02.01.1970" og "01.01.1971". 
-            </p>
             <div
-              className="nav-datovelger__inputContainer"
+              className="nav-datovelger"
             >
-              <input
-                aria-describedby="Helt tilfeldig ID_srDesc"
-                aria-invalid={false}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                disabled={undefined}
-                id="postboksadresse-gyldig-til"
-                maxLength={10}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value=""
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                disabled={undefined}
-                onClick={[Function]}
-                role="button"
-                type="button"
+              <p
+                className="sr-only"
+                id="Helt tilfeldig ID_srDesc"
               >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
+                Dato må være mellom "02.01.1970" og "01.01.1971". 
+              </p>
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-describedby="Helt tilfeldig ID_srDesc"
+                  aria-invalid={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  disabled={undefined}
+                  id="postboksadresse-gyldig-til"
+                  maxLength={10}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value=""
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
                 >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
                   >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+          <button
+            className="knapp knapp--flat knapp--mini"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            Om et år
+          </button>
         </div>
       </div>
       <div
-        className="c5"
+        className="c6"
       >
         <button
           className="knapp knapp--fare"
@@ -1171,7 +1225,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   border: 0;
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1185,7 +1239,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c6 > * {
+.c7 > * {
   margin: .5rem 0 .5rem 1em;
 }
 
@@ -1201,6 +1255,21 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   -ms-flex: 4;
   flex: 4;
   margin-left: 15px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c6 > *:not(:first-child) {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
 }
 
 .c3 {
@@ -1511,77 +1580,89 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           Gyldig til
         </label>
         <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={undefined}
+          className="c6"
         >
           <div
-            className="nav-datovelger"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={undefined}
           >
-            <p
-              className="sr-only"
-              id="Helt tilfeldig ID_srDesc"
-            >
-              Dato må være mellom "02.01.1970" og "01.01.1971". 
-            </p>
             <div
-              className="nav-datovelger__inputContainer"
+              className="nav-datovelger"
             >
-              <input
-                aria-describedby="Helt tilfeldig ID_srDesc"
-                aria-invalid={false}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                disabled={undefined}
-                id="postboksadresse-gyldig-til"
-                maxLength={10}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value=""
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                disabled={undefined}
-                onClick={[Function]}
-                role="button"
-                type="button"
+              <p
+                className="sr-only"
+                id="Helt tilfeldig ID_srDesc"
               >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
+                Dato må være mellom "02.01.1970" og "01.01.1971". 
+              </p>
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-describedby="Helt tilfeldig ID_srDesc"
+                  aria-invalid={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  disabled={undefined}
+                  id="postboksadresse-gyldig-til"
+                  maxLength={10}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value=""
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
                 >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
                   >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+          <button
+            className="knapp knapp--flat knapp--mini"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            Om et år
+          </button>
         </div>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <button
           className="knapp knapp--fare"
@@ -1628,7 +1709,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   border: 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1642,8 +1723,23 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   justify-content: flex-end;
 }
 
-.c5 > * {
+.c6 > * {
   margin: .5rem 0 .5rem 1em;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c5 > *:not(:first-child) {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
 }
 
 .c3 {
@@ -2009,77 +2105,89 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           Gyldig til
         </label>
         <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={undefined}
+          className="c5"
         >
           <div
-            className="nav-datovelger"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={undefined}
           >
-            <p
-              className="sr-only"
-              id="Helt tilfeldig ID_srDesc"
-            >
-              Dato må være mellom "02.01.1970" og "01.01.1971". 
-            </p>
             <div
-              className="nav-datovelger__inputContainer"
+              className="nav-datovelger"
             >
-              <input
-                aria-describedby="Helt tilfeldig ID_srDesc"
-                aria-invalid={false}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                disabled={undefined}
-                id="utlandsadresse-datovelger"
-                maxLength={10}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value=""
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                disabled={undefined}
-                onClick={[Function]}
-                role="button"
-                type="button"
+              <p
+                className="sr-only"
+                id="Helt tilfeldig ID_srDesc"
               >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
+                Dato må være mellom "02.01.1970" og "01.01.1971". 
+              </p>
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-describedby="Helt tilfeldig ID_srDesc"
+                  aria-invalid={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  disabled={undefined}
+                  id="utlandsadresse-datovelger"
+                  maxLength={10}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value=""
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
                 >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
                   >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+          <button
+            className="knapp knapp--flat knapp--mini"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            Om et år
+          </button>
         </div>
       </div>
       <div
-        className="c5"
+        className="c6"
       >
         <button
           className="knapp knapp--fare"
