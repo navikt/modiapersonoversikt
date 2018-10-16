@@ -242,21 +242,22 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             />);
         const sletteKnapp = this.props.person.bankkonto && this.props.person.bankkonto.kontonummer !== ''
             ? (
-                <KnappBase
-                    type="fare"
-                    onClick={this.slettKontonummer}
-                    autoDisableVedSpinner={true}
-                    spinner={this.requestIsPending()}
-                    disabled={this.requestIsPending()}
-                >
-                    Slett kontonummer
-                </KnappBase>
+                <FormKnapperWrapper>
+                    <KnappBase
+                        type="fare"
+                        onClick={this.slettKontonummer}
+                        autoDisableVedSpinner={true}
+                        spinner={this.requestIsPending()}
+                        disabled={this.requestIsPending()}
+                    >
+                        Slett kontonummer
+                    </KnappBase>
+                </FormKnapperWrapper>
             )
             : null;
 
         const knapper = (
             <FormKnapperWrapper>
-                {sletteKnapp}
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}
@@ -296,6 +297,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     {sistEndretInfo}
                     {kontoInputs}
                     {knapper}
+                    {sletteKnapp}
                     {endreKontonummerRequestTilbakemelding}
                 </FormFieldSet>
             </form>
