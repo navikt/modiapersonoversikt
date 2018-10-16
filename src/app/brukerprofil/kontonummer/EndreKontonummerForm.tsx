@@ -292,9 +292,9 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}>
                     <Undertittel>Kontonummer</Undertittel>
+                    {sistEndretInfo}
                     <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller}/>
                     {norskEllerUtenlandskKontoRadio}
-                    {sistEndretInfo}
                     {kontoInputs}
                     {knapper}
                     {sletteKnapp}

@@ -11,6 +11,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 interface StateProps {
     UI: UIState;
@@ -36,6 +37,7 @@ class VisittkortContainer extends React.Component<Props> {
         const visittkortetBleÅpnet = !prevProps.UI.visittkort.apent && this.props.UI.visittkort.apent;
         if (visittkortetBleÅpnet && this.detaljerRef.current) {
             this.detaljerRef.current.focus();
+            loggEvent('visittkort.ekspandert');
         }
     }
 
