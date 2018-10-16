@@ -21,7 +21,6 @@ export function loggEvent(eventName: string, fieldsAndTags?: FieldsAndTags) {
         fields: fieldsAndTags && fieldsAndTags.fields || {},
         tags: fieldsAndTags && fieldsAndTags.tags || {}
     };
-    console.log('event: ', event);
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].event(event.eventName, event.fields, event.tags);
 }
@@ -34,7 +33,6 @@ export function loggInfo(message: string, ekstraFelter?: { [name: string]: strin
         message: message,
         ...ekstraFelter
     };
-    console.log('info:', info);
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].info(info);
 }

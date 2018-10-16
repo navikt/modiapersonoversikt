@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import moment = require('moment');
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface State {
     filter: FilterState;
@@ -101,6 +102,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
         this.handlePilknapper = this.handlePilknapper.bind(this);
         this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
+        loggEvent('utbetalinger.sidevisning');
     }
 
     onFilterChange(change: Partial<FilterState>) {
