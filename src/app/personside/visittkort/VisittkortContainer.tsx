@@ -11,6 +11,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
+import { loggEvent, loggInfo } from '../../../utils/frontendLogger';
 
 interface StateProps {
     UI: UIState;
@@ -37,12 +38,10 @@ class VisittkortContainer extends React.Component<Props> {
         if (visittkortetBleÅpnet && this.detaljerRef.current) {
             this.detaljerRef.current.focus();
         }
-        // tslint:disable-next-line
-        window['frontendlogger'].info({
-            message: 'Testinfo fra den nye frontenden'
-        });
-        // tslint:disable-next-line
-        window['frontendlogger'].event('testhendelse', {}, {});
+        loggInfo('Informasjonstest 123');
+        loggInfo('Informasjonstest med ekstra felter', {ekstraInnhold: true, innhold: 'gankse lite', antallFelter: 3});
+        loggEvent('testEvent');
+        loggEvent('testEvent med ekstragreier', {fields: {felt1: 'innhold'}, tags: {tag1: 'tag'}});
         console.log('frontenlogger bør ha logget');
     }
 
