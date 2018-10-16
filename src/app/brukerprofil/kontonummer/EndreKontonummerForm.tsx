@@ -82,6 +82,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     componentDidUpdate(prevProps: Props) {
         this.reloadOnEndret(prevProps);
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
     reloadOnEndret(prevProps: Props) {
