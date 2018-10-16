@@ -19,6 +19,7 @@ import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { loggEvent } from '../../utils/frontendLogger';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -127,8 +128,7 @@ function Header({person}: { person: Person }) {
     );
 }
 
-class BrukerprofilSide extends React.Component
-    <Props> {
+class BrukerprofilSide extends React.Component<Props> {
 
     componentDidMount() {
         if (this.props.personReducer.status === STATUS.NOT_STARTED) {
@@ -138,6 +138,7 @@ class BrukerprofilSide extends React.Component
         if (this.props.veilederRollerReducer.status === STATUS.NOT_STARTED) {
             this.props.hentVeilederRoller();
         }
+        loggEvent('brukerprofil.sidevisning');
     }
 
     render() {
