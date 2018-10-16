@@ -110,8 +110,12 @@ class AdresseForm extends React.Component<Props, State> {
         this.state = this.getInitialState();
     }
 
-    componentDidUpdate(prevPropps: Props) {
-        this.reloadOnEndret(prevPropps);
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
     reloadOnEndret(prevProps: Props) {
