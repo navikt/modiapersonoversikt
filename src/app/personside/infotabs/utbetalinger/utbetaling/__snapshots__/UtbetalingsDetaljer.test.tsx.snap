@@ -59,6 +59,8 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 
 .c7:hover {
   opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c8 {

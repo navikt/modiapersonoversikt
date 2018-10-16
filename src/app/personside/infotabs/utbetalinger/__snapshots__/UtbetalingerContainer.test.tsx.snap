@@ -27,6 +27,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c13:hover {
   opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c2 {
@@ -153,6 +155,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c16:hover {
   opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c17 {

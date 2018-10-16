@@ -292,13 +292,13 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c6 > *:not(:first-child) {
-  margin-bottom: .5rem;
   margin-left: .5rem;
 }
 
@@ -726,7 +726,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             </div>
           </div>
           <button
-            className="knapp knapp--flat knapp--mini"
+            className="knapp knapp--standard knapp--mini"
             disabled={false}
             onClick={[Function]}
             type="submit"
@@ -738,14 +738,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
       <div
         className="c7"
       >
-        <button
-          className="knapp knapp--fare"
-          disabled={false}
-          onClick={[Function]}
-          type="submit"
-        >
-          Slett adresse
-        </button>
         <button
           className="knapp knapp--standard knapp--disabled"
           disabled={true}
@@ -760,6 +752,18 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           type="submit"
         >
           Endre adresse
+        </button>
+      </div>
+      <div
+        className="c7"
+      >
+        <button
+          className="knapp knapp--fare"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Slett adresse
         </button>
       </div>
     </fieldset>
@@ -820,13 +824,13 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c5 > *:not(:first-child) {
-  margin-bottom: .5rem;
   margin-left: .5rem;
 }
 
@@ -1168,7 +1172,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             </div>
           </div>
           <button
-            className="knapp knapp--flat knapp--mini"
+            className="knapp knapp--standard knapp--mini"
             disabled={false}
             onClick={[Function]}
             type="submit"
@@ -1180,14 +1184,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
       <div
         className="c6"
       >
-        <button
-          className="knapp knapp--fare"
-          disabled={false}
-          onClick={[Function]}
-          type="submit"
-        >
-          Slett adresse
-        </button>
         <button
           className="knapp knapp--standard knapp--disabled"
           disabled={true}
@@ -1202,6 +1198,18 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           type="submit"
         >
           Endre adresse
+        </button>
+      </div>
+      <div
+        className="c6"
+      >
+        <button
+          className="knapp knapp--fare"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Slett adresse
         </button>
       </div>
     </fieldset>
@@ -1262,13 +1270,13 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c6 > *:not(:first-child) {
-  margin-bottom: .5rem;
   margin-left: .5rem;
 }
 
@@ -1652,7 +1660,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             </div>
           </div>
           <button
-            className="knapp knapp--flat knapp--mini"
+            className="knapp knapp--standard knapp--mini"
             disabled={false}
             onClick={[Function]}
             type="submit"
@@ -1664,14 +1672,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
       <div
         className="c7"
       >
-        <button
-          className="knapp knapp--fare"
-          disabled={false}
-          onClick={[Function]}
-          type="submit"
-        >
-          Slett adresse
-        </button>
         <button
           className="knapp knapp--standard knapp--disabled"
           disabled={true}
@@ -1686,6 +1686,18 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           type="submit"
         >
           Endre adresse
+        </button>
+      </div>
+      <div
+        className="c7"
+      >
+        <button
+          className="knapp knapp--fare"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Slett adresse
         </button>
       </div>
     </fieldset>
@@ -1732,13 +1744,13 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c5 > *:not(:first-child) {
-  margin-bottom: .5rem;
   margin-left: .5rem;
 }
 
@@ -2177,7 +2189,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
             </div>
           </div>
           <button
-            className="knapp knapp--flat knapp--mini"
+            className="knapp knapp--standard knapp--mini"
             disabled={false}
             onClick={[Function]}
             type="submit"
@@ -2189,14 +2201,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
       <div
         className="c6"
       >
-        <button
-          className="knapp knapp--fare"
-          disabled={false}
-          onClick={[Function]}
-          type="submit"
-        >
-          Slett adresse
-        </button>
         <button
           className="knapp knapp--standard knapp--disabled"
           disabled={true}
@@ -2211,6 +2215,18 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           type="submit"
         >
           Endre adresse
+        </button>
+      </div>
+      <div
+        className="c6"
+      >
+        <button
+          className="knapp knapp--fare"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Slett adresse
         </button>
       </div>
     </fieldset>

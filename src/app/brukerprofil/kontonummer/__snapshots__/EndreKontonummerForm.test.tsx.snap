@@ -149,14 +149,6 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       className="c2"
     >
       <button
-        className="knapp knapp--fare"
-        disabled={false}
-        onClick={[Function]}
-        type="submit"
-      >
-        Slett kontonummer
-      </button>
-      <button
         className="knapp knapp--standard knapp--disabled"
         disabled={true}
         onClick={[Function]}
@@ -170,6 +162,18 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
         type="submit"
       >
         Endre kontonummer
+      </button>
+    </div>
+    <div
+      className="c2"
+    >
+      <button
+        className="knapp knapp--fare"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Slett kontonummer
       </button>
     </div>
   </fieldset>
@@ -647,14 +651,6 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       className="c2"
     >
       <button
-        className="knapp knapp--fare"
-        disabled={false}
-        onClick={[Function]}
-        type="submit"
-      >
-        Slett kontonummer
-      </button>
-      <button
         className="knapp knapp--standard knapp--disabled"
         disabled={true}
         onClick={[Function]}
@@ -668,6 +664,18 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         type="submit"
       >
         Endre kontonummer
+      </button>
+    </div>
+    <div
+      className="c2"
+    >
+      <button
+        className="knapp knapp--fare"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Slett kontonummer
       </button>
     </div>
   </fieldset>
