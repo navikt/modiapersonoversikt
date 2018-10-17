@@ -39,7 +39,7 @@ function Arenalenke(props: Props) {
         <ArenaLenkePanel>
             <Normaltekst>
                 <a className="lenke" href={arenaURL(props.fødselsnummer)} target={'_blank'}>
-                    Meldinger/utbetalinger i Arena
+                    Meldekort i Arena
                 </a>
             </Normaltekst>
         </ArenaLenkePanel>
