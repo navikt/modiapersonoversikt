@@ -21,6 +21,7 @@ import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -92,6 +93,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
             tilrettelagtKommunikasjon: this.hentValgtTilrettelagtKommunikasjon()
         } as EndreTilrettelagtKommunikasjonrequest);
         event.preventDefault();
+        loggEvent('brukerprofil.tilrettelagtkommunikasjon.endre.submit');
     }
 
     handleOnChange(event: React.SyntheticEvent<EventTarget>, value?: string) {
