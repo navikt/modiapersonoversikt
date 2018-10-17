@@ -40,9 +40,7 @@ const HeaderStyle = styled.section`
 const HeaderContent = styled.section`
   text-align: center;
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   > *:first-child {
     margin-right: 1.7rem;
   }
