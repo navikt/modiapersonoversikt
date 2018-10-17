@@ -73,7 +73,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
-        this.slettKontonummer = this.slettKontonummer.bind(this);
     }
 
     componentWillUnmount() {
@@ -148,12 +147,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankadresse: kontoInput.adresse
             });
         }
-    }
-
-    slettKontonummer() {
-        this.props.endreKontonummer(this.props.person.fødselsnummer, {
-            kontonummer: ''
-        });
     }
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -240,22 +233,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
             />);
-        const sletteKnapp = this.props.person.bankkonto && this.props.person.bankkonto.kontonummer !== ''
-            ? (
-                <FormKnapperWrapper>
-                    <KnappBase
-                        type="fare"
-                        onClick={this.slettKontonummer}
-                        autoDisableVedSpinner={true}
-                        spinner={this.requestIsPending()}
-                        disabled={this.requestIsPending()}
-                    >
-                        Slett kontonummer
-                    </KnappBase>
-                </FormKnapperWrapper>
-            )
-            : null;
-
         const knapper = (
             <FormKnapperWrapper>
                 <KnappBase
@@ -297,7 +274,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     {norskEllerUtenlandskKontoRadio}
                     {kontoInputs}
                     {knapper}
-                    {sletteKnapp}
                     {endreKontonummerRequestTilbakemelding}
                 </FormFieldSet>
             </form>
