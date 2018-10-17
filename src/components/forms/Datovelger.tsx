@@ -6,6 +6,7 @@ import { Feilmelding } from '../../utils/Feilmelding';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import * as moment from 'moment';
+import { loggEvent } from '../../utils/frontendLogger';
 
 interface Props {
     dato: Date | undefined;
@@ -44,6 +45,7 @@ export default function Datovelger({dato, id, onChange, feil, children, innenEt�
     function handleomEtÅrHurtigvalg(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
         onChange(omEtÅr);
+        loggEvent('datovelger.hurtigvalg.omEtÅr');
     }
 
     return (
