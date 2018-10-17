@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c13 {
+.c14 {
   border: none;
   background-color: transparent;
   padding: .1rem .2rem;
@@ -14,31 +14,31 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c13 svg {
+.c14 svg {
   margin-left: .5rem;
   height: 1.2rem;
   width: 1.2rem;
 }
 
-.c13:focus {
+.c14:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c13:hover {
+.c14:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c2 {
+.c3 {
   background-color: white;
   border-radius: .25rem;
   padding: 1.25rem;
   margin-bottom: .8rem;
 }
 
-.c3 {
+.c4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -49,11 +49,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin: 1.5rem 3rem 1.5rem 0;
 }
 
-.c3 > *:not(:first-child) {
+.c4 > *:not(:first-child) {
   margin-top: 1.5rem;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -63,33 +63,33 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c4 > *:first-child {
+.c5 > *:first-child {
   margin-bottom: .5rem;
 }
 
-.c4 > * {
+.c5 > * {
   margin-top: .5rem;
 }
 
-.c6 {
+.c7 {
   margin-top: 1rem;
 }
 
-.c5 {
+.c6 {
   border: none;
   margin: 0;
   padding: 0;
 }
 
-.c5 > *:first-child {
+.c6 > *:first-child {
   margin-bottom: .8rem;
 }
 
-.c5 > *:last-child {
+.c6 > *:last-child {
   margin-bottom: 0;
 }
 
-.c25 {
+.c26 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -100,7 +100,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c12 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,27 +111,27 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: flex-end;
 }
 
-.c22 {
+.c23 {
   text-transform: uppercase;
 }
 
-.c21 {
+.c22 {
   font-weight: bold;
-}
-
-.c14 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
 }
 
 .c15 {
   -webkit-transition: .5s;
   transition: .5s;
-  padding: 0 1.25rem;
+  padding: 0 1.25rem 1.25rem;
 }
 
 .c16 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
+}
+
+.c17 {
   border: none;
   padding: .1rem .2rem;
   border-radius: .35rem;
@@ -148,57 +148,57 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c16:focus {
+.c17:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c16:hover {
+.c17:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c17 {
+.c18 {
   margin-right: .5rem;
 }
 
-.c9 {
+.c10 {
   background-color: white;
   border-radius: .25rem;
   cursor: pointer;
 }
 
-.c10 {
+.c11 {
   padding: 1.25rem 1.25rem 0;
 }
 
-.c11 {
+.c12 {
   margin: 1rem 0;
 }
 
-.c11 th {
+.c12 th {
   font-weight: normal;
 }
 
-.c11 th {
+.c12 th {
   text-transform: uppercase;
 }
 
-.c11 td {
+.c12 td {
   font-weight: bold;
 }
 
-.c23 {
+.c24 {
   cursor: pointer;
 }
 
-.c23:focus {
+.c24:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c24 {
+.c25 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -212,71 +212,78 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c24 > *:nth-child(3) {
+.c25 > *:nth-child(3) {
   margin-bottom: .8rem;
 }
 
-.c24 .order-first {
+.c25 .order-first {
   -webkit-order: -1;
   -ms-flex-order: -1;
   order: -1;
 }
 
-.c20 > *:first-child {
+.c21 > *:first-child {
   background-color: #9bd0b0;
   padding: .2rem 1.25rem;
 }
 
-.c20 ol {
+.c21 ol {
   padding: 0;
   margin: 0;
 }
 
-.c20 ol > *:not(:first-child) {
+.c21 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #59514b;
 }
 
-.c18 {
+.c19 {
   background-color: white;
   border-radius: .25rem;
   margin-top: .8rem;
 }
 
-.c18 > *:first-child {
+.c19 > *:first-child {
   padding: 1.25rem;
 }
 
-.c19 {
+.c20 {
   padding: 0;
   margin: 0;
 }
 
-.c8 ol {
+.c9 ol {
   list-style: none;
 }
 
-.c8 table {
+.c9 table {
   width: 100%;
   text-align: right;
   border-spacing: 0;
 }
 
-.c8 table * {
+.c9 table * {
   padding: 0;
   margin: 0;
 }
 
-.c8 table tr > * {
+.c9 table tr > * {
   padding: 0.1rem;
   text-align: right;
 }
 
-.c8 table tr > *:first-child {
+.c9 table tr > *:first-child {
   text-align: left;
 }
 
-.c8 table tr > *:not(:first-child) {
+.c9 table tr > *:not(:first-child) {
   width: 6rem;
+}
+
+.c2 {
+  background-color: white;
+  border-radius: .25rem;
+  padding: 1.25rem;
+  margin-bottom: .8rem;
 }
 
 .c0 {
@@ -297,20 +304,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   flex-basis: 18rem;
 }
 
-.c7 {
+.c8 {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   min-width: 35rem;
-}
-
-.c26 {
-  text-align: right;
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
 }
 
 @media (max-width:80rem) {
@@ -320,7 +320,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media not all and (max-width:80rem) {
-  .c7 {
+  .c8 {
     margin-left: .8rem;
   }
 }
@@ -335,6 +335,21 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   >
     <nav
       className="c2"
+    >
+      <p
+        className="typo-normal"
+      >
+        <a
+          className="lenke"
+          href="http://arena.adeo.no/forms/arenaMod.html?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=10108000398"
+          target="_blank"
+        >
+          Meldekort i Arena
+        </a>
+      </p>
+    </nav>
+    <nav
+      className="c3"
       onClick={[Function]}
     >
       <h2
@@ -343,13 +358,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         Filtrering
       </h2>
       <div
-        className="c3"
+        className="c4"
       >
         <form
-          className="c4"
+          className="c5"
         >
           <fieldset
-            className="c5"
+            className="c6"
           >
             <legend
               className="typo-etikett-liten"
@@ -430,7 +445,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </div>
           </fieldset>
           <div
-            className="c6"
+            className="c7"
           >
             <button
               className="knapp knapp--standard"
@@ -444,10 +459,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </form>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <form
-          className="c4"
+          className="c5"
         >
           <p
             className="typo-etikett-liten"
@@ -477,7 +492,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </form>
         <form
-          className="c4"
+          className="c5"
         >
           <p
             className="typo-etikett-liten"
@@ -510,7 +525,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     </nav>
   </section>
   <section
-    className="c7"
+    className="c8"
   >
     <h2
       className="typo-undertittel visually-hidden"
@@ -518,14 +533,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       Filtrerte utbetalinger
     </h2>
     <div
-      className="c8"
+      className="c9"
     >
       <article
-        className="c9"
+        className="c10"
         onClick={[Function]}
       >
         <div
-          className="c10"
+          className="c11"
         >
           <h2
             className="typo-undertittel"
@@ -533,7 +548,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             Totalt utbetalt for perioden
           </h2>
           <section
-            className="c11"
+            className="c12"
           >
             <span
               className="typo-normal"
@@ -575,11 +590,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </span>
           </section>
           <div
-            className="c12"
+            className="c13"
           >
             <button
               aria-label="Skriv ut"
-              className="c13"
+              className="c14"
               onClick={[Function]}
             >
               <span
@@ -607,24 +622,24 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </div>
         <div
-          className="c14"
+          className="c15"
           open={false}
         >
           <div
-            className="c15"
+            className="c16"
             open={false}
           />
           <div
-            className="c12"
+            className="c13"
           >
             <button
               aria-expanded={false}
-              className="c16"
+              className="c17"
               onClick={[Function]}
               open={false}
             >
               <span
-                className="c17"
+                className="c18"
               >
                 <span
                   className="typo-normal"
@@ -641,7 +656,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         </div>
       </article>
       <article
-        className="c18"
+        className="c19"
       >
         <h2
           className="typo-undertittel"
@@ -649,21 +664,21 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           Utbetalinger
         </h2>
         <ol
-          className="c19"
+          className="c20"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <li
-            className="c20"
+            className="c21"
           >
             <h3
               className="typo-normal"
             >
               <span
-                className="c21"
+                className="c22"
               >
                 <span
-                  className="c22"
+                  className="c23"
                 >
                   Mars 2017
                 </span>
@@ -671,23 +686,23 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             </h3>
             <ol>
               <li
-                className="c23"
+                className="c24"
                 onBlur={[Function]}
                 onClick={[Function]}
                 onFocus={[Function]}
                 tabIndex={0}
               >
                 <div
-                  className="c24"
+                  className="c25"
                 >
                   <div
-                    className="c25"
+                    className="c26"
                   >
                     <h4
                       className="typo-normal"
                     >
                       <span
-                        className="c21"
+                        className="c22"
                       >
                         Sykepenger
                       </span>
@@ -696,7 +711,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                       className="typo-normal"
                     >
                       <span
-                        className="c21"
+                        className="c22"
                       >
                         11,386.00
                       </span>
@@ -708,13 +723,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     29. Mars 2017
                      / 
                     <span
-                      className="c21"
+                      className="c22"
                     >
                       Utbetalt
                     </span>
                   </p>
                   <div
-                    className="c25"
+                    className="c26"
                   >
                     <p
                       className="typo-normal"
@@ -728,7 +743,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <div
-                    className="c25"
+                    className="c26"
                   >
                     <p
                       className="typo-normal"
@@ -738,7 +753,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     </p>
                     <button
                       aria-label="Skriv ut"
-                      className="c13"
+                      className="c14"
                       onClick={[Function]}
                     >
                       <span
@@ -766,24 +781,24 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c14"
+                  className="c15"
                   open={false}
                 >
                   <div
-                    className="c15"
+                    className="c16"
                     open={false}
                   />
                   <div
-                    className="c12"
+                    className="c13"
                   >
                     <button
                       aria-expanded={false}
-                      className="c16"
+                      className="c17"
                       onClick={[Function]}
                       open={false}
                     >
                       <span
-                        className="c17"
+                        className="c18"
                       >
                         <span
                           className="typo-normal"
@@ -803,19 +818,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </li>
         </ol>
       </article>
-    </div>
-    <div
-      className="c26"
-    >
-      <p
-        className="typo-normal"
-      >
-        <a
-          className="lenke"
-        >
-          Meldinger/utbetalinger i Arena
-        </a>
-      </p>
     </div>
   </section>
 </article>
