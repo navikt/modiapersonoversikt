@@ -13,10 +13,9 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
-import { FokusProps } from '../Utbetalinger';
+import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import UtbetalingTabellStyling from '../Utbetalinger';
 import Printer from '../../../../../utils/Printer';
 
 interface UtbetalingComponentProps {
