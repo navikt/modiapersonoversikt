@@ -73,7 +73,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
-        this.slettKontonummer = this.slettKontonummer.bind(this);
     }
 
     componentWillUnmount() {
@@ -82,6 +81,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     componentDidUpdate(prevProps: Props) {
         this.reloadOnEndret(prevProps);
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
     reloadOnEndret(prevProps: Props) {
@@ -144,12 +147,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankadresse: kontoInput.adresse
             });
         }
-    }
-
-    slettKontonummer() {
-        this.props.endreKontonummer(this.props.person.fødselsnummer, {
-            kontonummer: ''
-        });
     }
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -236,23 +233,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
             />);
-        const sletteKnapp = this.props.person.bankkonto && this.props.person.bankkonto.kontonummer !== ''
-            ? (
-                <KnappBase
-                    type="fare"
-                    onClick={this.slettKontonummer}
-                    autoDisableVedSpinner={true}
-                    spinner={this.requestIsPending()}
-                    disabled={this.requestIsPending()}
-                >
-                    Slett kontonummer
-                </KnappBase>
-            )
-            : null;
-
         const knapper = (
             <FormKnapperWrapper>
-                {sletteKnapp}
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}

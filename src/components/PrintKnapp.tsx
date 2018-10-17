@@ -26,6 +26,7 @@ const PrintIkonStyle = styled.button`
   }
   &:hover {
     opacity: 0.8;
+    text-decoration: underline;
   }
 `;
 

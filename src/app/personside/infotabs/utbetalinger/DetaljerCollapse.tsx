@@ -40,6 +40,7 @@ const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
   }
   &:hover {
     opacity: 0.8;
+    text-decoration: underline;
   }
 `;
 

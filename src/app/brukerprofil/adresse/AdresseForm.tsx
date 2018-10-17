@@ -110,8 +110,12 @@ class AdresseForm extends React.Component<Props, State> {
         this.state = this.getInitialState();
     }
 
-    componentDidUpdate(prevPropps: Props) {
-        this.reloadOnEndret(prevPropps);
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
     reloadOnEndret(prevProps: Props) {
@@ -384,15 +388,17 @@ class AdresseForm extends React.Component<Props, State> {
         const aktivForm = this.getAktivForm();
         const sletteKnapp = this.props.person.alternativAdresse
             ? (
-                <KnappBase
-                    type="fare"
-                    onClick={this.slettMidlertidigAdresse}
-                    spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
-                    autoDisableVedSpinner={true}
-                    disabled={this.requestIsPending()}
-                >
-                    Slett adresse
-                </KnappBase>
+                <FormKnapperWrapper>
+                    <KnappBase
+                        type="standard"
+                        onClick={this.slettMidlertidigAdresse}
+                        spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
+                        autoDisableVedSpinner={true}
+                        disabled={this.requestIsPending()}
+                    >
+                        Slett adresse
+                    </KnappBase>
+                </FormKnapperWrapper>
             )
             : null;
 
@@ -417,7 +423,6 @@ class AdresseForm extends React.Component<Props, State> {
                         {aktivForm}
                     </Wrapper>
                     <FormKnapperWrapper>
-                        {sletteKnapp}
                         <KnappBase
                             type="standard"
                             onClick={this.onAvbryt}
@@ -437,6 +442,7 @@ class AdresseForm extends React.Component<Props, State> {
                             Endre adresse
                         </KnappBase>
                     </FormKnapperWrapper>
+                    {sletteKnapp}
                     <SubmitFeedback
                         visFeedback={!this.state.formErEndret}
                         status={this.props.endreAdresseReducer.status}
