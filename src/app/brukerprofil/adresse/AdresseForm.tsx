@@ -43,6 +43,7 @@ import { EndreAdresseInfomelding } from '../Infomelding';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
+import BekreftModal from './BekreftModal';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -77,6 +78,7 @@ interface State {
     midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs;
     selectedRadio: Valg;
     formErEndret: boolean;
+    visSlettModal: boolean;
 }
 
 function getInitialAdresseTypeValg(alternativAdresse: Personadresse) {
@@ -107,6 +109,8 @@ class AdresseForm extends React.Component<Props, State> {
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
         this.slettMidlertidigAdresse = this.slettMidlertidigAdresse.bind(this);
+        this.visSlettModal = this.visSlettModal.bind(this);
+        this.skjulSlettModal = this.skjulSlettModal.bind(this);
 
         this.state = this.getInitialState();
     }
@@ -132,7 +136,8 @@ class AdresseForm extends React.Component<Props, State> {
             midlertidigAdresseNorge: this.intialMidlertidigAdresseNorgeInput(alternativAdresse),
             midlertidigAdresseUtland: this.initialMidlertidigAdresseUtland(alternativAdresse),
             selectedRadio: this.initialRadioValg(),
-            formErEndret: false
+            formErEndret: false,
+            visSlettModal: false
         };
     }
 
@@ -386,20 +391,28 @@ class AdresseForm extends React.Component<Props, State> {
     slettMidlertidigAdresse() {
         this.submitSlettMidlertidigeAdresser();
         loggEvent('brukerprofil.adresse.slett.klikk');
+        this.skjulSlettModal();
+    }
+
+    visSlettModal() {
+        this.setState({visSlettModal: true});
+    }
+
+    skjulSlettModal() {
+        this.setState({visSlettModal: false});
     }
 
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
 
         const aktivForm = this.getAktivForm();
-        const sletteKnapp = this.props.person.alternativAdresse
+        const sletteKnapp = this.props.person.alternativAdresse && !this.requestIsPending()
             ? (
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
-                        onClick={this.slettMidlertidigAdresse}
-                        spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
-                        autoDisableVedSpinner={true}
+                        htmlType="button"
+                        onClick={this.visSlettModal}
                         disabled={this.requestIsPending()}
                     >
                         Slett adresse
@@ -454,6 +467,14 @@ class AdresseForm extends React.Component<Props, State> {
                         status={this.props.endreAdresseReducer.status}
                     />
                 </FormFieldSet>
+                <BekreftModal
+                    open={this.state.visSlettModal}
+                    onClose={this.skjulSlettModal}
+                    onBekreft={this.slettMidlertidigAdresse}
+                    knappTekst="Bekreft"
+                >
+                    Sikker på at du vil slette midlertidig addressse?
+                </BekreftModal>
             </form>
         );
     }
