@@ -16,6 +16,8 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { FokusProps } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
+import UtbetalingTabellStyling from '../Utbetalinger';
+import Printer from '../../../../../utils/Printer';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -50,14 +52,18 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
+    private buttonWrapperRef = React.createRef<HTMLDivElement>();
+    private print: () => void;
+
     private myRef = React.createRef<HTMLDivElement>();
 
     constructor(props: Props) {
         super(props);
         this.state = {
-            visDetaljer: false
+            visDetaljer: false,
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.handlePrint = this.handlePrint.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
         this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
         this.removeEnterListener = this.removeEnterListener.bind(this);
@@ -67,6 +73,27 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         this.setState({
             visDetaljer: !this.state.visDetaljer
         });
+    }
+
+    handlePrint() {
+        this.setState(
+            {
+                visDetaljer: true,
+            },
+            this.print
+        );
+    }
+
+    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
+        if (!this.buttonWrapperRef.current) {
+            return;
+        }
+
+        const buttonsClicked = (event.target instanceof Node) && this.buttonWrapperRef.current.contains(event.target);
+
+        if (!buttonsClicked) {
+            this.toggleVisDetaljer();
+        }
     }
 
     handleEnter(event: KeyboardEvent) {
@@ -119,38 +146,43 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             ? `Forfallsdato: ${dato}` : '';
 
         return (
-            <UtbetalingStyle
-                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                innerRef={this.myRef}
-                tabIndex={0}
-                onFocus={() => this.setTilYtelseIFokus(ytelse)}
-                onBlur={this.removeEnterListener}
-            >
-                <UtbetalingHeaderStyle>
-                    <SpaceBetween>
-                        <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
-                        <Normaltekst><Bold>{sum}</Bold></Normaltekst>
-                    </SpaceBetween>
-                    <Normaltekst className="order-first">
-                        {dato} / <Bold>{utbetaling.status}</Bold>
-                    </Normaltekst>
-                    <SpaceBetween>
-                        <Normaltekst>{periode}</Normaltekst>
-                        <Normaltekst>{forfallsInfo}</Normaltekst>
-                    </SpaceBetween>
-                    <SpaceBetween>
-                        <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                        <PrintKnapp onClick={() => alert('ikke implementert')}/>
-                    </SpaceBetween>
-                </UtbetalingHeaderStyle>
-                <UtbetalingsDetaljer
-                    open={this.state.visDetaljer}
-                    toggleVisDetaljer={this.toggleVisDetaljer}
-                    ytelse={ytelse}
-                    konto={utbetaling.konto}
-                    melding={utbetaling.melding}
-                />
-            </UtbetalingStyle>
+            <Printer getPrintFunc={(func: () => void) => (this.print = func)}>
+                <UtbetalingTabellStyling>
+                    <UtbetalingStyle
+                        onClick={(event: React.MouseEvent<HTMLElement>) =>
+                            cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
+                        innerRef={this.myRef}
+                        tabIndex={0}
+                        onFocus={() => this.setTilYtelseIFokus(ytelse)}
+                        onBlur={this.removeEnterListener}
+                    >
+                        <UtbetalingHeaderStyle>
+                            <SpaceBetween>
+                                <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
+                                <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+                            </SpaceBetween>
+                            <Normaltekst className="order-first">
+                                {dato} / <Bold>{utbetaling.status}</Bold>
+                            </Normaltekst>
+                            <SpaceBetween>
+                                <Normaltekst>{periode}</Normaltekst>
+                                <Normaltekst>{forfallsInfo}</Normaltekst>
+                            </SpaceBetween>
+                            <SpaceBetween innerRef={this.buttonWrapperRef}>
+                                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                                <PrintKnapp onClick={this.handlePrint}/>
+                            </SpaceBetween>
+                        </UtbetalingHeaderStyle>
+                        <UtbetalingsDetaljer
+                            open={this.state.visDetaljer}
+                            toggleVisDetaljer={this.toggleVisDetaljer}
+                            ytelse={ytelse}
+                            konto={utbetaling.konto}
+                            melding={utbetaling.melding}
+                        />
+                    </UtbetalingStyle>
+                </UtbetalingTabellStyling>
+            </Printer>
         );
     }
 }
