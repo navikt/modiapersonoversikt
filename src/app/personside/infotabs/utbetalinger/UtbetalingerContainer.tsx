@@ -12,10 +12,11 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import moment = require('moment');
 import { loggEvent } from '../../../../utils/frontendLogger';
+import Arenalenke from './Arenalenke/Arenalenke';
+import moment = require('moment');
 
 interface State {
     filter: FilterState;
@@ -75,23 +76,6 @@ const UtbetalingerSection = styled.section`
       margin-left: ${theme.margin.layout};
   }
 `;
-
-const ArenaLenkeStyle = styled.div`
-  text-align: right;
-  position: absolute;
-  top: ${theme.margin.px20}
-  right: ${theme.margin.px20}
-`;
-
-function ArenaLenke() {
-    return (
-        <ArenaLenkeStyle>
-            <Normaltekst>
-                <a className="lenke">Meldinger/utbetalinger i Arena</a>
-            </Normaltekst>
-        </ArenaLenkeStyle>
-    );
-}
 
 class UtbetalingerContainer extends React.Component<Props, State> {
 
@@ -165,6 +149,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
             <ErrorBoundary>
                 <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                     <FiltreringSection>
+                        <Arenalenke fødselsnummer={this.props.fødselsnummer}/>
                         <Filtrering
                             filterState={this.state.filter}
                             onChange={this.onFilterChange}
@@ -183,7 +168,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                                 updateYtelseIFokus={this.updateYtelseIFokus}
                             />
                         </Innholdslaster>
-                        <ArenaLenke/>
                     </UtbetalingerSection>
                 </UtbetalingerArticle>
             </ErrorBoundary>
