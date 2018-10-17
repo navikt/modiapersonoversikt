@@ -43,6 +43,7 @@ import { EndreAdresseInfomelding } from '../Infomelding';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
+import KnappMedBekreftPopup from './KnappMedBekreftPopup';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -107,7 +108,6 @@ class AdresseForm extends React.Component<Props, State> {
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
         this.slettMidlertidigAdresse = this.slettMidlertidigAdresse.bind(this);
-
         this.state = this.getInitialState();
     }
 
@@ -392,18 +392,15 @@ class AdresseForm extends React.Component<Props, State> {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
 
         const aktivForm = this.getAktivForm();
-        const sletteKnapp = this.props.person.alternativAdresse
+        const sletteKnapp = this.props.person.alternativAdresse && !this.requestIsPending()
             ? (
                 <FormKnapperWrapper>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.slettMidlertidigAdresse}
-                        spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
-                        autoDisableVedSpinner={true}
-                        disabled={this.requestIsPending()}
+                    <KnappMedBekreftPopup
+                        onBekreft={this.slettMidlertidigAdresse}
+                        popUpTekst="Sikker på at du vil slette midlertidig addressse?"
                     >
                         Slett adresse
-                    </KnappBase>
+                    </KnappMedBekreftPopup>
                 </FormKnapperWrapper>
             )
             : null;
