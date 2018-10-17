@@ -390,7 +390,7 @@ class AdresseForm extends React.Component<Props, State> {
             ? (
                 <FormKnapperWrapper>
                     <KnappBase
-                        type="fare"
+                        type="standard"
                         onClick={this.slettMidlertidigAdresse}
                         spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
                         autoDisableVedSpinner={true}

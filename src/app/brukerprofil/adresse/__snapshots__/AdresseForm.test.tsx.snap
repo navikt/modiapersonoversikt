@@ -758,7 +758,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
         className="c7"
       >
         <button
-          className="knapp knapp--fare"
+          className="knapp knapp--standard"
           disabled={false}
           onClick={[Function]}
           type="submit"
@@ -1204,7 +1204,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
         className="c6"
       >
         <button
-          className="knapp knapp--fare"
+          className="knapp knapp--standard"
           disabled={false}
           onClick={[Function]}
           type="submit"
@@ -1692,7 +1692,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
         className="c7"
       >
         <button
-          className="knapp knapp--fare"
+          className="knapp knapp--standard"
           disabled={false}
           onClick={[Function]}
           type="submit"
@@ -2221,7 +2221,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
         className="c6"
       >
         <button
-          className="knapp knapp--fare"
+          className="knapp knapp--standard"
           disabled={false}
           onClick={[Function]}
           type="submit"
