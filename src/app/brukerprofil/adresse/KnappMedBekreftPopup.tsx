@@ -76,6 +76,7 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
                             type="standard"
                             htmlType="button"
                             onClick={this.handleBekreft}
+                            autoFocus={true}
                         >
                             Bekreft
                         </KnappBase>
