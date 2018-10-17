@@ -28,6 +28,7 @@ import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -257,6 +258,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
             hjem: getTelefonHvisSatt(this.state.inputs.hjem)
         };
         this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
+        loggEvent('brukerprofil.kontaktinformasjon.endre.submit');
     }
 
     getValideringsResultat(): EndreKontaktinformasjonValidator {
