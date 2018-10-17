@@ -20,6 +20,7 @@ import { EndreNavnInfomeldingWrapper } from '../Infomelding';
 import { visEndringsinfo, ignoreEnter, InputState } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 interface NavnInputProps {
     label: string;
@@ -206,6 +207,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             mellomnavn: this.state.mellomnavn.input,
             etternavn: this.state.etternavn.input
         });
+        loggEvent('brukerprofil.navn.endre.submit');
     }
 
     render() {
