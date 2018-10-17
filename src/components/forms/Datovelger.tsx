@@ -6,6 +6,7 @@ import { Feilmelding } from '../../utils/Feilmelding';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import * as moment from 'moment';
+import { loggEvent } from '../../utils/frontendLogger';
 
 interface Props {
     dato: Date | undefined;
@@ -18,9 +19,8 @@ interface Props {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   > *:not(:first-child) {
-    margin-bottom: .5rem;
     margin-left: .5rem;
   }
 `;
@@ -42,11 +42,10 @@ const avgrensninger: Avgrensninger = {
 
 export default function Datovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
 
-    function handleomEtÅrHurtigvalg() {
-        return (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.preventDefault();
-            onChange(omEtÅr);
-        };
+    function handleomEtÅrHurtigvalg(event: React.MouseEvent<HTMLButtonElement>) {
+        event.preventDefault();
+        onChange(omEtÅr);
+        loggEvent('datovelger.hurtigvalg.omEtÅr');
     }
 
     return (
@@ -59,7 +58,7 @@ export default function Datovelger({dato, id, onChange, feil, children, innenEt�
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
                     onChange={onChange}
                 />
-                <KnappBase type="flat" mini={true} onClick={handleomEtÅrHurtigvalg}>Om et år</KnappBase>
+                <KnappBase type="standard" mini={true} onClick={handleomEtÅrHurtigvalg}>Om et år</KnappBase>
             </Wrapper>
             <Feilmelding feil={feil}/>
         </>

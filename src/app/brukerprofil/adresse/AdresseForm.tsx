@@ -42,6 +42,7 @@ import {
 import { EndreAdresseInfomelding } from '../Infomelding';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -110,8 +111,12 @@ class AdresseForm extends React.Component<Props, State> {
         this.state = this.getInitialState();
     }
 
-    componentDidUpdate(prevPropps: Props) {
-        this.reloadOnEndret(prevPropps);
+    componentDidUpdate(prevProps: Props) {
+        this.reloadOnEndret(prevProps);
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
     reloadOnEndret(prevProps: Props) {
@@ -281,10 +286,13 @@ class AdresseForm extends React.Component<Props, State> {
         this.setState({formErEndret: false});
         if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
             this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
+            loggEvent('brukerprofil.adresse.midlertidigNorge.submit');
         } else if (this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND) {
             this.submitMidlertidigUtenlandsadresse(this.state.midlertidigAdresseUtland);
+            loggEvent('brukerprofil.adresse.midlertidigUtland.submit');
         } else if (this.state.selectedRadio === Valg.FOLKEREGISTRERT) {
             this.submitSlettMidlertidigeAdresser();
+            loggEvent('brukerprofil.adresse.folkeregistrert.submit');
         } else {
             console.error('Not implemented');
         }
@@ -306,6 +314,7 @@ class AdresseForm extends React.Component<Props, State> {
 
     submitSlettMidlertidigeAdresser() {
         this.props.slettMidlertidigeAdresser(this.props.person.fødselsnummer);
+        loggEvent('brukerprofil.adresse.slett.submit');
     }
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
@@ -376,6 +385,7 @@ class AdresseForm extends React.Component<Props, State> {
 
     slettMidlertidigAdresse() {
         this.submitSlettMidlertidigeAdresser();
+        loggEvent('brukerprofil.adresse.slett.klikk');
     }
 
     render() {
@@ -384,15 +394,17 @@ class AdresseForm extends React.Component<Props, State> {
         const aktivForm = this.getAktivForm();
         const sletteKnapp = this.props.person.alternativAdresse
             ? (
-                <KnappBase
-                    type="fare"
-                    onClick={this.slettMidlertidigAdresse}
-                    spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
-                    autoDisableVedSpinner={true}
-                    disabled={this.requestIsPending()}
-                >
-                    Slett adresse
-                </KnappBase>
+                <FormKnapperWrapper>
+                    <KnappBase
+                        type="standard"
+                        onClick={this.slettMidlertidigAdresse}
+                        spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
+                        autoDisableVedSpinner={true}
+                        disabled={this.requestIsPending()}
+                    >
+                        Slett adresse
+                    </KnappBase>
+                </FormKnapperWrapper>
             )
             : null;
 
@@ -417,7 +429,6 @@ class AdresseForm extends React.Component<Props, State> {
                         {aktivForm}
                     </Wrapper>
                     <FormKnapperWrapper>
-                        {sletteKnapp}
                         <KnappBase
                             type="standard"
                             onClick={this.onAvbryt}
@@ -437,6 +448,7 @@ class AdresseForm extends React.Component<Props, State> {
                             Endre adresse
                         </KnappBase>
                     </FormKnapperWrapper>
+                    {sletteKnapp}
                     <SubmitFeedback
                         visFeedback={!this.state.formErEndret}
                         status={this.props.endreAdresseReducer.status}

@@ -18,7 +18,7 @@ import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 
 const BrukerprofilWrapper = styled.article`
@@ -31,7 +31,7 @@ const BrukerprofilWrapper = styled.article`
 const HeaderStyle = styled.section`
   display: flex;
   flex-shrink: 0;
-  padding: ${theme.margin.px10} ${theme.margin.px20};
+  padding: ${theme.margin.px20};
   background-color: white;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
   z-index: 100;
@@ -40,6 +40,12 @@ const HeaderStyle = styled.section`
 const HeaderContent = styled.section`
   text-align: center;
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > *:first-child {
+    margin-right: 1.7rem;
+  }
 `;
 
 const ContentWrapper = styled.section`
@@ -91,14 +97,14 @@ function getAlder(person: Person) {
 }
 
 function Navn({person}: { person: Person }) {
-    return <Normaltekst>{hentNavn(person)} ({getAlder(person)})</Normaltekst>;
+    return <Undertekst>{hentNavn(person)} ({getAlder(person)})</Undertekst>;
 }
 
 function Konto({person}: { person: Person }) {
     return (
-        <Normaltekst>
+        <Undertekst>
             Kontonummer: <FormatertKontonummer kontonummer={person.bankkonto && person.bankkonto.kontonummer || ''}/>
-        </Normaltekst>
+        </Undertekst>
     );
 }
 
@@ -120,9 +126,11 @@ function Header({person}: { person: Person }) {
         <HeaderStyle>
             <TilbakeLenke fnr={person.fødselsnummer}/>
             <HeaderContent>
-                <Innholdstittel>Administrer brukerprofil</Innholdstittel>
-                <Navn person={person}/>
-                <Konto person={person}/>
+                <Systemtittel>Administrer brukerprofil</Systemtittel>
+                <div>
+                    <Navn person={person}/>
+                    <Konto person={person}/>
+                </div>
             </HeaderContent>
         </HeaderStyle>
     );

@@ -34,6 +34,7 @@ import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles'
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -73,7 +74,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
-        this.slettKontonummer = this.slettKontonummer.bind(this);
     }
 
     componentWillUnmount() {
@@ -81,13 +81,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        this.reloadOnEndret(prevProps);
+        if (this.kontonummerBleEndret(prevProps)) {
+            this.props.reloadPerson(this.props.person.fødselsnummer);
+            loggEvent('brukerprofil.kontonummer.endre.success');
+        }
+        const nyeDataPåPerson = prevProps.person !== this.props.person;
+        if (nyeDataPåPerson) {
+            this.setState(this.getInitialState());
+        }
     }
 
-    reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
-            this.props.reloadPerson(this.props.person.fødselsnummer);
-        }
+    kontonummerBleEndret(prevProps: Props) {
+        return prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK;
     }
 
     getInitialState(): State {
@@ -144,12 +149,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankadresse: kontoInput.adresse
             });
         }
-    }
-
-    slettKontonummer() {
-        this.props.endreKontonummer(this.props.person.fødselsnummer, {
-            kontonummer: ''
-        });
+        loggEvent('brukerprofil.kontonummer.endre.submit');
     }
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -184,7 +184,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         });
     }
 
-    kontoErEndret() {
+    formErEndret() {
         return JSON.stringify(this.getBrukersBankkonto()) !== JSON.stringify(this.state.bankkontoInput);
     }
 
@@ -236,27 +236,12 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
             />);
-        const sletteKnapp = this.props.person.bankkonto && this.props.person.bankkonto.kontonummer !== ''
-            ? (
-                <KnappBase
-                    type="fare"
-                    onClick={this.slettKontonummer}
-                    autoDisableVedSpinner={true}
-                    spinner={this.requestIsPending()}
-                    disabled={this.requestIsPending()}
-                >
-                    Slett kontonummer
-                </KnappBase>
-            )
-            : null;
-
         const knapper = (
             <FormKnapperWrapper>
-                {sletteKnapp}
                 <KnappBase
                     type="standard"
                     onClick={this.tilbakestill}
-                    disabled={!this.kontoErEndret() || this.kontonummerBleLagret() || this.requestIsPending()}
+                    disabled={!this.formErEndret() || this.kontonummerBleLagret() || this.requestIsPending()}
                 >
                     Avbryt
                 </KnappBase>
@@ -265,7 +250,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     spinner={this.props.reducerStatus === STATUS.LOADING}
                     autoDisableVedSpinner={true}
                     disabled={
-                        !this.kontoErEndret()
+                        !this.formErEndret()
                         || !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)
                         || this.kontonummerBleLagret()
                     }

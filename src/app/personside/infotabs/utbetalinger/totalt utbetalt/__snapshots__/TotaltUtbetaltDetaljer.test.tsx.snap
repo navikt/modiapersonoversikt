@@ -55,6 +55,8 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 
 .c4:hover {
   opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c5 {
