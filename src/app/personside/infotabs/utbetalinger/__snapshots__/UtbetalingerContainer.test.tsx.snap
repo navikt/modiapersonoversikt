@@ -298,10 +298,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c1 {
-  min-width: 18rem;
-  -webkit-flex-basis: 18rem;
-  -ms-flex-preferred-size: 18rem;
-  flex-basis: 18rem;
+  min-width: 19rem;
+  -webkit-flex-basis: 19rem;
+  -ms-flex-preferred-size: 19rem;
+  flex-basis: 19rem;
 }
 
 .c8 {
