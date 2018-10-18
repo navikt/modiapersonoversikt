@@ -173,7 +173,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
                         <UtbetalingsDetaljer
-                            open={this.state.visDetaljer}
+                            visDetaljer={this.state.visDetaljer}
                             toggleVisDetaljer={this.toggleVisDetaljer}
                             ytelse={ytelse}
                             konto={utbetaling.konto}

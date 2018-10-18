@@ -15,12 +15,7 @@ import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstr
 import { Bold } from '../../../../../components/common-styled-components';
 import DetaljerCollapse from '../DetaljerCollapse';
 
-interface OwnProps {
-    open: boolean;
-    toggleVisDetaljer: () => void;
-}
-
-type Props = EnkeltYtelseProps & OwnProps;
+type Props = EnkeltYtelseProps;
 
 const Wrapper = styled.aside`
   th:not(:first-child) {
@@ -103,7 +98,7 @@ function UtbetalingsDetaljer(props: Props) {
         ]]
     );
     return (
-        <DetaljerCollapse open={props.open} toggle={props.toggleVisDetaljer}>
+        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
             <Wrapper>
                 <Normaltekst tag="span">
                     <OversiktStyle>

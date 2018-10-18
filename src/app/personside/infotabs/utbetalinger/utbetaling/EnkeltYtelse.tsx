@@ -13,13 +13,11 @@ export interface EnkeltYtelseProps {
     ytelse: Ytelse;
     konto: string | undefined;
     melding: string | undefined;
+    toggleVisDetaljer: () => void;
+    visDetaljer: boolean;
 }
 
 type Props = FokusProps & EnkeltYtelseProps;
-
-interface State {
-    visDetaljer: boolean;
-}
 
 const EnkeltYtelseStyle = styled.li`
   transition: 0.3s;
@@ -29,30 +27,20 @@ const EnkeltYtelseStyle = styled.li`
   }
 `;
 
-class EnkeltYtelse extends React.Component<Props, State> {
+class EnkeltYtelse extends React.Component<Props> {
 
     private myRef = React.createRef<HTMLDivElement>();
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            visDetaljer: false
-        };
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
         this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
         this.removeEnterListener = this.removeEnterListener.bind(this);
     }
 
-    toggleVisDetaljer() {
-        this.setState({
-            visDetaljer: !this.state.visDetaljer
-        });
-    }
-
     handleEnter(event: KeyboardEvent) {
         if (event.key === 'Enter') {
-            this.toggleVisDetaljer();
+            this.props.toggleVisDetaljer();
         }
     }
 
@@ -90,7 +78,7 @@ class EnkeltYtelse extends React.Component<Props, State> {
 
         return (
             <EnkeltYtelseStyle
-                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
+                onClick={() => cancelIfHighlighting(this.props.toggleVisDetaljer)}
                 innerRef={this.myRef}
                 tabIndex={0}
                 onFocus={this.setTilYtelseIFokus}
@@ -104,8 +92,8 @@ class EnkeltYtelse extends React.Component<Props, State> {
                     {periode}
                 </Normaltekst>
                 <UtbetalingsDetaljer
-                    open={this.state.visDetaljer}
-                    toggleVisDetaljer={this.toggleVisDetaljer}
+                    visDetaljer={this.props.visDetaljer}
+                    toggleVisDetaljer={this.props.toggleVisDetaljer}
                     ytelse={ytelse}
                     konto={this.props.konto}
                     melding={this.props.melding}
