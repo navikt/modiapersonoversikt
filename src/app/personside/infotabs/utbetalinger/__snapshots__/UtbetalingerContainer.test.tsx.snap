@@ -327,11 +327,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 <article
   aria-label="Utbetalinger"
-  className="c0"
+  className="utbetalingerarticle c0"
   role="region"
 >
   <section
-    className="c1"
+    className="filtreringsection c1"
   >
     <nav
       className="c2"
