@@ -147,8 +147,8 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     render() {
         return (
             <ErrorBoundary>
-                <UtbetalingerArticle role="region" aria-label="Utbetalinger">
-                    <FiltreringSection>
+                <UtbetalingerArticle className={'utbetalingerarticle'} role="region" aria-label="Utbetalinger">
+                    <FiltreringSection className={'filtreringsection'}>
                         <Arenalenke fødselsnummer={this.props.fødselsnummer}/>
                         <Filtrering
                             filterState={this.state.filter}
