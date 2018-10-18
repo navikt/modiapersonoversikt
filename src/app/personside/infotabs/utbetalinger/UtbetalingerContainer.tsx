@@ -64,8 +64,8 @@ const UtbetalingerArticle = styled.article`
 `;
 
 const FiltreringSection = styled.section`
-  min-width: 18rem;
-  flex-basis: 18rem;
+  min-width: 19rem;
+  flex-basis: 19rem;
 `;
 
 const UtbetalingerSection = styled.section`
