@@ -79,7 +79,10 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
     testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
     testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
-    testStore.dispatch({ type: utbetalingerActions.FINISHED, data: { utbetalinger: [statiskMockUtbetaling] } });
+    testStore.dispatch({ type: utbetalingerActions.FINISHED, data: {
+        utbetalinger: [statiskMockUtbetaling],
+        periode: {startDato: '1905-01-01', sluttDato: '1986-12-28'}
+    }});
     testStore.dispatch({
         type: featureToggleActionNames.FINISHED,
         data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')

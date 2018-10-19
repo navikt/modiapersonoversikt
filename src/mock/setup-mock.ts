@@ -73,7 +73,11 @@ function setupUtbetalingerMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/utbetaling/:fodselsnummer', withDelayedResponse(
         randomDelay(),
         fødselsNummerErGyldigStatus,
-        mockGeneratorMedFødselsnummer(fodselsnummer => getMockUtbetalinger(fodselsnummer))));
+        args =>  getMockUtbetalinger(
+            args.pathParams.fodselsnummer,
+            args.queryParams.startDato,
+            args.queryParams.sluttDato
+        )));
 }
 
 function setupSykepengerMock(mock: FetchMock) {
