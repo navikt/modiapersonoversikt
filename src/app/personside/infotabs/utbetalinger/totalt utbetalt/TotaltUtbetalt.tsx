@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Utbetaling } from '../../../../../models/utbetalinger';
-import { FilterState } from '../filter/Filter';
+import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -8,9 +7,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import {
     createTable,
     getBruttoSumYtelser,
-    getFraDateFromFilter,
     getNettoSumYtelser,
-    getTilDateFromFilter,
     getTrekkSumYtelser,
     summertBeløpStringFraUtbetalinger
 } from '../utils/utbetalingerUtils';
@@ -21,7 +18,7 @@ import { FlexEnd } from '../../../../../components/common-styled-components';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
-    filter: FilterState;
+    periode: UtbetalingerPeriode;
 }
 
 interface State {
@@ -67,9 +64,9 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
 
     render() {
         const periode: string =
-            formaterDato(getFraDateFromFilter(this.props.filter))
+            formaterDato(this.props.periode.startDato)
             + ' - '
-            + formaterDato(getTilDateFromFilter(this.props.filter));
+            + formaterDato(this.props.periode.sluttDato);
         const brutto: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
         const trekk: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
         const utbetalt: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);

@@ -1,5 +1,11 @@
+export interface UtbetalingerPeriode {
+    startDato: string;
+    sluttDato: string;
+}
+
 export interface UtbetalingerResponse {
     utbetalinger: Utbetaling[];
+    periode: UtbetalingerPeriode;
 }
 
 export interface Utbetaling {

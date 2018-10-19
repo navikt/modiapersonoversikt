@@ -162,6 +162,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
+                                utbetalingerPeriode={this.props.utbetalingerReducer.data.periode}
                                 ytelseIFokus={this.state.ytelseIFokus}
                                 filter={this.state.filter}
                                 handleShortcut={this.handlePilknapper}
