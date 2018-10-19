@@ -86,7 +86,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
         this.handlePilknapper = this.handlePilknapper.bind(this);
         this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
-        loggEvent('utbetalinger.sidevisning');
+        loggEvent('Sidevisning', 'Utbetalinger');
     }
 
     onFilterChange(change: Partial<FilterState>) {
