@@ -11,7 +11,6 @@ import Dokument from '../../../../svg/Dokument';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
 import DetaljerKnapp from '../utbetalinger/utils/DetaljerKnapp';
-import { SpaceBetween } from '../../../../components/common-styled-components';
 
 interface Props {
     dokument: DokumentInterface;
@@ -52,10 +51,16 @@ const EmbedWrapper = styled.div`
 
 const KnappWrapper = styled.div`
   display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
   padding-bottom: .2rem;
   > *:not(:first-child) {
     margin-left: .5rem;
   }
+`;
+
+const VedleggStyle = styled.div`
+  margin: 1rem 0;
 `;
 
 function formaterEntitet(fra: Entitet) {
@@ -88,6 +93,23 @@ function visDokument(harTilgang: boolean, url: string) {
     }
 }
 
+function visVedlegg(dokument: DokumentInterface) {
+    if (dokument.vedlegg && dokument.vedlegg.length > 0) {
+        const vedlegg = dokument.vedlegg.map((v) =>
+            <li key={v.tittel}><Normaltekst>{v.tittel}</Normaltekst></li>);
+        return (
+            <VedleggStyle>
+                <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
+                <ul>
+                    {vedlegg}
+                </ul>
+            </VedleggStyle>
+        );
+    } else {
+        return null;
+    }
+}
+
 class DokumentKomponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -110,18 +132,17 @@ class DokumentKomponent extends React.Component<Props, State> {
             <Wrapper åpen={this.state.åpnet} onClick={() => this.toggle()}>
                 <InfoWrapper>
                     {dokumentIkon(this.props.harTilgang)}
-                    <SpaceBetween>
                         <div>
                             <Normaltekst>
                                 {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                             </Normaltekst>
-                            <Element>{dokument.navn}</Element>
+                            <Element>{dokument.hoveddokument.tittel}</Element>
+                            {visVedlegg(dokument)}
                             <Normaltekst>Saksid: {saksid}</Normaltekst>
                         </div>
                         <KnappWrapper>
                             <DetaljerKnapp onClick={() => this.toggle()} open={this.state.åpnet}/>
                         </KnappWrapper>
-                    </SpaceBetween>
                 </InfoWrapper>
                 <UnmountClosed isOpened={this.state.åpnet}>
                     <EmbedWrapper>
