@@ -96,6 +96,8 @@ const DetaljerStyle = styled.aside`
         border-top: 2px solid ${theme.color.bakgrunn};
     }
   }
+  @media print {
+    pre, blockquote, ul {page-break-inside: avoid;}
 `;
 
 function getAlleYtelsesKomponenterFraYtelser(ytelser: Ytelse[]) {

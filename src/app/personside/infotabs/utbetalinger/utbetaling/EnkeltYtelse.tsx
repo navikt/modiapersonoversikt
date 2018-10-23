@@ -92,11 +92,9 @@ class EnkeltYtelse extends React.Component<Props> {
                     {periode}
                 </Normaltekst>
                 <UtbetalingsDetaljer
-                    visDetaljer={this.props.visDetaljer}
                     toggleVisDetaljer={this.props.toggleVisDetaljer}
                     ytelse={ytelse}
-                    konto={this.props.konto}
-                    melding={this.props.melding}
+                    {...this.props}
                 />
             </EnkeltYtelseStyle>
         );

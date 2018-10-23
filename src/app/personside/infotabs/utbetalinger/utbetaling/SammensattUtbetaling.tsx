@@ -11,7 +11,7 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { FokusProps } from '../Utbetalinger';
+import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import EnkeltYtelse from './EnkeltYtelse';
 import Printer from '../../../../../utils/Printer';
 
@@ -58,15 +58,23 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
         }
 
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.visDetaljerAndPrint = this.visDetaljerAndPrint.bind(this);
+    }
+
+    visDetaljerAndPrint() {
+        this.setState(
+            {
+                visYtelseDetaljer: this.state.visYtelseDetaljer.map(() => true)
+            },
+            this.print
+        );
     }
 
     toggleVisDetaljer(index: number) {
         this.setState({
-            visYtelseDetaljer:
-                Object.assign(
-                    [...this.state.visYtelseDetaljer],
-                    {[index]: !this.state.visYtelseDetaljer[index]}
-                )
+            visYtelseDetaljer: this.state.visYtelseDetaljer.map((ytelsedetalj, i) =>
+                i === index ? !ytelsedetalj : ytelsedetalj
+            )
         });
     }
 
@@ -87,34 +95,35 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
                 konto={utbetaling.konto}
                 melding={utbetaling.melding}
                 key={index}
-                ytelseIFokus={this.props.ytelseIFokus}
-                updateYtelseIFokus={this.props.updateYtelseIFokus}
                 toggleVisDetaljer={() => this.toggleVisDetaljer(index)}
                 visDetaljer={this.state.visYtelseDetaljer[index]}
+                {...this.props}
             />
         ));
 
         return (
             <Printer getPrintFunc={(func: () => void) => this.print = func}>
-                <SammensattUtbetalingStyle>
-                    <Normaltekst>
-                        {dato} / <Bold>{utbetaling.status}</Bold>
-                    </Normaltekst>
-                    <SpaceBetween>
-                        <Normaltekst tag={'h4'}><Bold>Diverse ytelser</Bold></Normaltekst>
-                        <Normaltekst><Bold>{sum}</Bold></Normaltekst>
-                    </SpaceBetween>
-                    <FlexEnd>
-                        <Normaltekst>{forfallsInfo}</Normaltekst>
-                    </FlexEnd>
-                    <SpaceBetween>
-                        <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                        <PrintKnapp onClick={() => alert('ikke implementert')}/>
-                    </SpaceBetween>
-                    <YtelsesListe>
-                        {ytelsesListe}
-                    </YtelsesListe>
-                </SammensattUtbetalingStyle>
+                <UtbetalingTabellStyling>
+                    <SammensattUtbetalingStyle>
+                        <Normaltekst>
+                            {dato} / <Bold>{utbetaling.status}</Bold>
+                        </Normaltekst>
+                        <SpaceBetween>
+                            <Normaltekst tag={'h4'}><Bold>Diverse ytelser</Bold></Normaltekst>
+                            <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+                        </SpaceBetween>
+                        <FlexEnd>
+                            <Normaltekst>{forfallsInfo}</Normaltekst>
+                        </FlexEnd>
+                        <SpaceBetween>
+                            <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                            <PrintKnapp onClick={this.visDetaljerAndPrint}/>
+                        </SpaceBetween>
+                        <YtelsesListe>
+                            {ytelsesListe}
+                        </YtelsesListe>
+                    </SammensattUtbetalingStyle>
+                </UtbetalingTabellStyling>
             </Printer>
         );
     }

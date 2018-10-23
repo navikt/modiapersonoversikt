@@ -79,6 +79,9 @@ export const UtbetalingTabellStyling = styled.div`
           }
         }
     }
+    @media print{
+      ol, ul { list-style-type: none; }
+    }
   `;
 
 interface MånedsgruppeUniqueProps {

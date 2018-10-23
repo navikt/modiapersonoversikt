@@ -27,10 +27,16 @@ const Wrapper = styled.div`
    @page {
         size: auto;
         margin: 0mm;
+        
     }
     @media print {
-      padding: 15mm;
+      margin: 15mm;
+      display: block;
     }
+    .visually-hidden {
+      display: none;
+    }
+  
 `;
 
 const Header = styled.div`

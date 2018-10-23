@@ -33,6 +33,9 @@ const UtbetalingStyle = styled.li`
   &:focus {
     ${theme.focus}
   }
+  @media print{
+    list-style-type: none;
+  }
 `;
 
 const UtbetalingHeaderStyle = styled.div`
@@ -52,9 +55,8 @@ const UtbetalingHeaderStyle = styled.div`
 class EnkelUtbetaling extends React.Component<Props, State> {
 
     private buttonWrapperRef = React.createRef<HTMLDivElement>();
+    private ownRef = React.createRef<HTMLDivElement>();
     private print: () => void;
-
-    private myRef = React.createRef<HTMLDivElement>();
 
     constructor(props: Props) {
         super(props);
@@ -102,8 +104,8 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.myRef.current) {
-            this.myRef.current.focus();
+        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.ownRef.current) {
+            this.ownRef.current.focus();
             this.addEnterListener();
         } else if (!this.erIFokus(this.props)) {
             this.removeEnterListener();
@@ -150,7 +152,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                     <UtbetalingStyle
                         onClick={(event: React.MouseEvent<HTMLElement>) =>
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
-                        innerRef={this.myRef}
+                        innerRef={this.ownRef}
                         tabIndex={0}
                         onFocus={() => this.setTilYtelseIFokus(ytelse)}
                         onBlur={this.removeEnterListener}
