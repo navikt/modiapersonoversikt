@@ -7,41 +7,41 @@ export interface ForeldrepengerResponse {
 
 export interface Foreldrepengerrettighet {
     forelder: string;
-    andreForeldersFnr?: string;
-    antallBarn?: number;
-    barnetsFødselsdato?: string;
+    andreForeldersFnr: string | null;
+    antallBarn: number | null;
+    barnetsFødselsdato: string | null;
     dekningsgrad: number;
-    fedrekvoteTom?: string;
-    mødrekvoteTom?: string;
-    foreldrepengetype?: string;
-    graderingsdager?: number;
+    fedrekvoteTom: string | null;
+    mødrekvoteTom: string | null;
+    foreldrepengetype: string | null;
+    graderingsdager: number | null;
     restDager: number;
-    rettighetFom?: string;
-    eldsteIdDato?: string;
-    foreldreAvSammeKjønn?: string;
+    rettighetFom: string | null;
+    eldsteIdDato: string | null;
+    foreldreAvSammeKjønn: string | null;
     periode?: Foreldrepengerperiode[];
 }
 
 export interface Foreldrepengerperiode {
     fødselsnummer: string;
-    harAleneomsorgFar?: boolean;
-    harAleneomsorgMor?: boolean;
-    arbeidsprosentMor?: number;
-    avslagsårsak?: string;
-    avslått?: string;
-    disponibelGradering?: number;
-    erFedrekvote?: boolean;
-    erMødrekvote?: boolean;
-    forskyvelsesårsak1?: string;
-    forskyvelsesperiode1?: Periode;
-    forskyvelsesårsak2?: string;
-    forskyvelsesperiode2?: Periode;
+    harAleneomsorgFar: boolean | null;
+    harAleneomsorgMor: boolean | null;
+    arbeidsprosentMor: number | null;
+    avslagsårsak: string | null;
+    avslått: string | null;
+    disponibelGradering: number | null;
+    erFedrekvote: boolean | null;
+    erMødrekvote: boolean | null;
+    forskyvelsesårsak1: string | null;
+    forskyvelsesperiode1: Periode | null;
+    forskyvelsesårsak2: string | null;
+    forskyvelsesperiode2: Periode | null;
     foreldrepengerFom: string;
-    midlertidigStansDato?: string;
-    morSituasjon?: string;
+    midlertidigStansDato: string | null;
+    morSituasjon: string | null;
     rettTilFedrekvote: string;
     rettTilMødrekvote: string;
-    stansårsak?: string;
-    historiskeUtbetalinger?: HistoriskUtbetaling[];
-    kommendeUtbetalinger?: KommendeUtbetaling[];
+    stansårsak: string | null;
+    historiskeUtbetalinger: HistoriskUtbetaling[] | null;
+    kommendeUtbetalinger: KommendeUtbetaling[] | null;
 }
