@@ -79,7 +79,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
 
     handlePrint() {
         const browser = detect();
-        if (browser && browser.name) {
+        if (browser && browser.name === 'ie') {
             alert('Denne funksjonen er ikke implementert i Internet Explorer');
             return;
         }
