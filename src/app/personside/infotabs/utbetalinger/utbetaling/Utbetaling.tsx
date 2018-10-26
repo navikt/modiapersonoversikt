@@ -13,9 +13,11 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import theme from '../../../../../styles/personOversiktTheme';
-import { FokusProps } from '../Utbetalinger';
+import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
+import Printer from '../../../../../utils/Printer';
+import { detect } from 'detect-browser';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -31,6 +33,9 @@ const UtbetalingStyle = styled.li`
   cursor: pointer;
   &:focus {
     ${theme.focus}
+  }
+  @media print{
+    list-style-type: none;
   }
 `;
 
@@ -50,7 +55,9 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
-    private myRef = React.createRef<HTMLDivElement>();
+    private buttonWrapperRef = React.createRef<HTMLDivElement>();
+    private utbetalingRef = React.createRef<HTMLDivElement>();
+    private print: () => void;
 
     constructor(props: Props) {
         super(props);
@@ -58,6 +65,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             visDetaljer: false
         };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.handlePrint = this.handlePrint.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
         this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
         this.removeEnterListener = this.removeEnterListener.bind(this);
@@ -69,6 +77,32 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         });
     }
 
+    handlePrint() {
+        const browser = detect();
+        if (browser && browser.name) {
+            alert('Denne funksjonen er ikke implementert i Internet Explorer');
+            return;
+        }
+        this.setState(
+            {
+                visDetaljer: true
+            },
+            this.print
+        );
+    }
+
+    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
+        if (this.buttonWrapperRef.current) {
+            const knappTrykket = (event.target instanceof Node)
+                && this.buttonWrapperRef.current.contains(event.target);
+
+            if (!knappTrykket) {
+                this.toggleVisDetaljer();
+            }
+
+        }
+    }
+
     handleEnter(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.toggleVisDetaljer();
@@ -76,8 +110,8 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.myRef.current) {
-            this.myRef.current.focus();
+        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.utbetalingRef.current) {
+            this.utbetalingRef.current.focus();
             this.addEnterListener();
         } else if (!this.erIFokus(this.props)) {
             this.removeEnterListener();
@@ -119,38 +153,43 @@ class EnkelUtbetaling extends React.Component<Props, State> {
             ? `Forfallsdato: ${dato}` : '';
 
         return (
-            <UtbetalingStyle
-                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                innerRef={this.myRef}
-                tabIndex={0}
-                onFocus={() => this.setTilYtelseIFokus(ytelse)}
-                onBlur={this.removeEnterListener}
-            >
-                <UtbetalingHeaderStyle>
-                    <SpaceBetween>
-                        <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
-                        <Normaltekst><Bold>{sum}</Bold></Normaltekst>
-                    </SpaceBetween>
-                    <Normaltekst className="order-first">
-                        {dato} / <Bold>{utbetaling.status}</Bold>
-                    </Normaltekst>
-                    <SpaceBetween>
-                        <Normaltekst>{periode}</Normaltekst>
-                        <Normaltekst>{forfallsInfo}</Normaltekst>
-                    </SpaceBetween>
-                    <SpaceBetween>
-                        <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                        <PrintKnapp onClick={() => alert('ikke implementert')}/>
-                    </SpaceBetween>
-                </UtbetalingHeaderStyle>
-                <UtbetalingsDetaljer
-                    open={this.state.visDetaljer}
-                    toggleVisDetaljer={this.toggleVisDetaljer}
-                    ytelse={ytelse}
-                    konto={utbetaling.konto}
-                    melding={utbetaling.melding}
-                />
-            </UtbetalingStyle>
+            <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
+                <UtbetalingTabellStyling>
+                    <UtbetalingStyle
+                        onClick={(event: React.MouseEvent<HTMLElement>) =>
+                            cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
+                        innerRef={this.utbetalingRef}
+                        tabIndex={0}
+                        onFocus={() => this.setTilYtelseIFokus(ytelse)}
+                        onBlur={this.removeEnterListener}
+                    >
+                        <UtbetalingHeaderStyle>
+                            <SpaceBetween>
+                                <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
+                                <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+                            </SpaceBetween>
+                            <Normaltekst className="order-first">
+                                {dato} / <Bold>{utbetaling.status}</Bold>
+                            </Normaltekst>
+                            <SpaceBetween>
+                                <Normaltekst>{periode}</Normaltekst>
+                                <Normaltekst>{forfallsInfo}</Normaltekst>
+                            </SpaceBetween>
+                            <SpaceBetween innerRef={this.buttonWrapperRef}>
+                                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                                <PrintKnapp onClick={this.handlePrint}/>
+                            </SpaceBetween>
+                        </UtbetalingHeaderStyle>
+                        <UtbetalingsDetaljer
+                            visDetaljer={this.state.visDetaljer}
+                            toggleVisDetaljer={this.toggleVisDetaljer}
+                            ytelse={ytelse}
+                            konto={utbetaling.konto}
+                            melding={utbetaling.melding}
+                        />
+                    </UtbetalingStyle>
+                </UtbetalingTabellStyling>
+            </Printer>
         );
     }
 }
