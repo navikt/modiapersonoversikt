@@ -69,7 +69,7 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
     visDetaljerAndPrint() {
         const browser = detect();
         if (browser && browser.name === 'ie') {
-            alert('Denne funksjonen er ikke implementert i Internet Explorer');
+            alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
             return;
         }
         this.setState(
