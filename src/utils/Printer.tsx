@@ -115,10 +115,7 @@ class Printer extends React.Component<Props, State> {
 
     print(window: Window) {
         window.focus();
-        const printedInIE = window.document.execCommand('print', false, null); // IE fix
-        if (!printedInIE) {
-            window.print();
-        }
+        window.print();
     }
 
     render() {
