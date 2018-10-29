@@ -4,13 +4,12 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import * as moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { UnmountClosed } from 'react-collapse';
 import { getSaksdokument } from '../../../../utils/url-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import DetaljerKnapp from '../utbetalinger/utils/DetaljerKnapp';
+import ModalWrapper from 'nav-frontend-modal';
 
 interface Props {
     dokument: DokumentInterface;
@@ -34,28 +33,14 @@ const InfoWrapper = styled.div`
     width: auto;
   }
   cursor: pointer;
-  &:hover {
-    background-color: ${theme.color.objektlisteHover};
-  }
-  &:active {
-    background-color: ${theme.color.objektlisteActive};
-  }
 `;
 
 const EmbedWrapper = styled.div`
   padding: 1rem;
+  height: 90vh;
+  width: 90vw;
   object {
     box-shadow: 0 0 2rem #888;
-  }
-`;
-
-const KnappWrapper = styled.div`
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
-  padding-bottom: .2rem;
-  > *:not(:first-child) {
-    margin-left: .5rem;
   }
 `;
 
@@ -132,23 +117,24 @@ class DokumentKomponent extends React.Component<Props, State> {
             <Wrapper åpen={this.state.åpnet} onClick={() => this.toggle()}>
                 <InfoWrapper>
                     {dokumentIkon(this.props.harTilgang)}
-                        <div>
-                            <Normaltekst>
-                                {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
-                            </Normaltekst>
-                            <Element>{dokument.hoveddokument.tittel}</Element>
-                            {visVedlegg(dokument)}
-                            <Normaltekst>Saksid: {saksid}</Normaltekst>
-                        </div>
-                        <KnappWrapper>
-                            <DetaljerKnapp onClick={() => this.toggle()} open={this.state.åpnet}/>
-                        </KnappWrapper>
+                    <div>
+                        <Normaltekst>
+                            {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                        </Normaltekst>
+                        <Element>{dokument.hoveddokument.tittel}</Element>
+                        {visVedlegg(dokument)}
+                        <Normaltekst>Saksid: {saksid}</Normaltekst>
+                    </div>
                 </InfoWrapper>
-                <UnmountClosed isOpened={this.state.åpnet}>
+                <ModalWrapper
+                    isOpen={this.state.åpnet}
+                    contentLabel="Hei"
+                    onRequestClose={() => this.setState({åpnet: false})}
+                >
                     <EmbedWrapper>
                         {visDokument(this.props.harTilgang, dokUrl)}
                     </EmbedWrapper>
-                </UnmountClosed>
+                </ModalWrapper>
             </Wrapper>
         );
     }

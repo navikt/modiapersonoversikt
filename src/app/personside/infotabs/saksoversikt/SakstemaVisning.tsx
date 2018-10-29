@@ -145,7 +145,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
         return (
             <Wrapper>
                 <TittelWrapper>
-                    <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
+                    <TittelOgIkon tittel={<Undertittel>Tema</Undertittel>} ikon={<SaksIkon/>}/>
                 </TittelWrapper>
                 <SakstemaListe>
                     <GrupperteTema
