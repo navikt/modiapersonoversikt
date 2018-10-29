@@ -17,7 +17,6 @@ import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
-import { detect } from 'detect-browser';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -78,11 +77,6 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     handlePrint() {
-        const browser = detect();
-        if (browser && browser.name === 'ie') {
-            alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
-            return;
-        }
         this.setState(
             {
                 visDetaljer: true

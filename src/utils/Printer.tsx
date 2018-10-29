@@ -1,4 +1,4 @@
-import { copyStyles } from './cssUtils';
+import { copyCSSStyles } from './cssUtils';
 import * as React from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -8,13 +8,14 @@ import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbet
 import { connect } from 'react-redux';
 import { AppState } from '../redux/reducers';
 import { Person } from '../models/person/person';
+import { detect } from 'detect-browser';
 
 interface StateProps {
     person: Person;
 }
 
 interface OwnProps {
-    getPrintTrigger: (func: Function) => void;
+    getPrintTrigger: (func: () => void) => void;
 }
 
 type Props = StateProps & OwnProps;
@@ -28,7 +29,7 @@ const Wrapper = styled.div`
         size: auto;        
     }
     @media print {
-      margin: 15mm;
+      margin: 5mm;
       display: block;
     }
     .visually-hidden {
@@ -61,37 +62,44 @@ class Printer extends React.Component<Props, State> {
             printing: false
         };
 
-        this.preparePrint = this.preparePrint.bind(this);
-        this.props.getPrintTrigger(this.preparePrint);
+        this.initiatePrint = this.initiatePrint.bind(this);
+        this.props.getPrintTrigger(this.initiatePrint);
     }
 
     componentDidUpdate(prevProps: Props, prevState: State) {
-        if (this.state.printing && !prevState.printing) {
-            this.printElement();
+        const printBleStartet = this.state.printing && !prevState.printing;
+        if (printBleStartet) {
+            setTimeout(
+                () => this.printElement(),
+                0);
         }
     }
 
-    preparePrint() {
+    initiatePrint() {
+        const browser = detect();
+        if (browser && browser.name === 'ie') {
+            alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
+            return;
+        }
+
         this.setState({
             printing: true
         });
     }
 
     printElement() {
-        const content = document.getElementById(this.contentId);
+        const contentToPrint = document.getElementById(this.contentId);
         const iFrame = document.getElementById(this.iFrameId) as HTMLIFrameElement;
-        let doc = iFrame.contentDocument as Document;
-        let window = iFrame.contentWindow as Window;
-        if (doc !== null && content !== null) {
-            setTimeout(
-                () => this.populateAndPrint(doc, content, window),
-                0);
+        const iFrameDocument = iFrame.contentDocument as Document;
+        const window = iFrame.contentWindow as Window;
+        if (iFrameDocument !== null && contentToPrint !== null) {
+            this.populateAndPrint(iFrameDocument, contentToPrint, window);
         }
     }
 
-    populateAndPrint(doc: Document, content: Element, window: Window) {
-        this.copyHTML(doc, content);
-        copyStyles(document, doc);
+    populateAndPrint(iFrameDocument: Document, contentToPrint: Element, window: Window) {
+        this.copyHTML(iFrameDocument, contentToPrint);
+        copyCSSStyles(document, iFrameDocument);
         this.print(window);
         this.setState({
             printing: false
@@ -107,8 +115,8 @@ class Printer extends React.Component<Props, State> {
 
     print(window: Window) {
         window.focus();
-        let res = window.document.execCommand('print', false, null); // IE fix
-        if (!res) {
+        const printedInIE = window.document.execCommand('print', false, null); // IE fix
+        if (!printedInIE) {
             window.print();
         }
     }

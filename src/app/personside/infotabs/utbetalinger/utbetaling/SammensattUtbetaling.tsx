@@ -14,7 +14,6 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import EnkeltYtelse from './EnkeltYtelse';
 import Printer from '../../../../../utils/Printer';
-import { detect } from 'detect-browser';
 
 interface OwnProps {
     utbetaling: Utbetaling;
@@ -56,22 +55,15 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        if (this.props.utbetaling.ytelser) {
-            this.state = {
-                åpnedeYtelser: []
-            };
-        }
+        this.state = {
+            åpnedeYtelser: []
+        };
 
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.visDetaljerAndPrint = this.visDetaljerAndPrint.bind(this);
     }
 
     visDetaljerAndPrint() {
-        const browser = detect();
-        if (browser && browser.name === 'ie') {
-            alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
-            return;
-        }
         this.setState(
             {
                 åpnedeYtelser: this.props.utbetaling.ytelser != null ? [ ...this.props.utbetaling.ytelser ] : []

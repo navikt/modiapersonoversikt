@@ -20,7 +20,6 @@ import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
 import { UtbetalingTabellStyling } from '../Utbetalinger';
 import Printer from '../../../../../utils/Printer';
-import { detect } from 'detect-browser';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -72,11 +71,6 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
     }
 
     handlePrint() {
-        const browser = detect();
-        if (browser && browser.name === 'ie') {
-            alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
-            return;
-        }
         this.setState(
             {
                 visDetaljer: true
@@ -110,7 +104,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Printer getPrintTrigger={(trigger: () => void) => this.print = trigger}>
+            <Printer getPrintTrigger={trigger => this.print = trigger}>
                 <Wrapper
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(
