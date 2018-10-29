@@ -10,6 +10,9 @@ export const LayoutWrapper = styled.div`
     > * {
       transition: width .3s ease-out;
       overflow-y: scroll;
+      @media print {
+        overflow-y: auto;
+      }
     }
 `;
 

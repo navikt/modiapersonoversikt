@@ -16,6 +16,9 @@ const UnderArbeidDiv = styled.div`
       font-family: cursive;
       pointer-events: none;
       z-index: 1000;
+      @media print {
+        display: none;
+      }
     `;
 
 function UnderArbeid() {
