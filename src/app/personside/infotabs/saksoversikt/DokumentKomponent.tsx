@@ -126,8 +126,9 @@ class DokumentKomponent extends React.Component<Props, State> {
                         <Normaltekst>Saksid: {saksid}</Normaltekst>
                     </div>
                 </InfoWrapper>
+                {this.state.åpnet &&
                 <ModalWrapper
-                    isOpen={this.state.åpnet}
+                    isOpen={true}
                     contentLabel="Hei"
                     onRequestClose={() => this.setState({åpnet: false})}
                 >
@@ -135,6 +136,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                         {visDokument(this.props.harTilgang, dokUrl)}
                     </EmbedWrapper>
                 </ModalWrapper>
+                }
             </Wrapper>
         );
     }

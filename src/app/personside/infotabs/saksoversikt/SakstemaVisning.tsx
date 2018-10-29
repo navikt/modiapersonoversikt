@@ -28,7 +28,7 @@ const GruppeStyle = styled.li`
     margin: 0;
   }
   ol > *:not(:first-child) {
-    border-top: solid 2px ${theme.color.bakgrunn};
+    border-top: ${theme.border.skille};
     padding: 20px 10px 20px 10px;
   }
 `;
