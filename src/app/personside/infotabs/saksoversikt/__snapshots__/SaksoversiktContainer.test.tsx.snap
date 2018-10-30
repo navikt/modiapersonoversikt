@@ -121,7 +121,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c7 ol > *:not(:first-child) {
-  border-top: solid 2px #efefef;
+  border-top: solid 0.0625rem #59514b;
   padding: 20px 10px 20px 10px;
 }
 
@@ -167,38 +167,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: auto;
 }
 
-.c25 {
-  border: none;
-  padding: .1rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.c25:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c23 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c21 {
-  text-transform: uppercase;
-}
-
-.c20 {
-  font-weight: bold;
-}
-
 .c22 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -218,20 +186,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   background-color: rgba(102,203,236,0.18);
 }
 
-.c22:active {
-  background-color: rgba(102,203,236,0.35);
+.c23 {
+  margin: 1rem 0;
 }
 
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding-bottom: .2rem;
+.c21 {
+  text-transform: uppercase;
 }
 
-.c24 > *:not(:first-child) {
-  margin-left: .5rem;
+.c20 {
+  font-weight: bold;
 }
 
 .c13 {
@@ -246,10 +210,18 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-justify-content: space-around;
   -ms-flex-pack: space-around;
   justify-content: space-around;
+  padding: 0px 0.625rem;
 }
 
 .c13 > * {
-  padding: 10px;
+  padding: 0.625rem;
+}
+
+.c13 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c17 {
@@ -258,18 +230,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-top: .8rem;
 }
 
-.c17 > *:first-child {
-  padding: 1.25rem;
-}
-
 .c18 {
-  padding: 0 0.625rem;
+  padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .c19 > *:first-child {
-  background-color: rgba(102,203,236,0.18);
+  background-color: #9bd0b0;
   padding: .2rem 0.625rem;
 }
 
@@ -279,7 +247,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c19 ol > *:not(:first-child) {
-  border-top: solid 2px #efefef;
+  border-top: solid 0.0625rem #59514b;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c14 > *:first-child {
@@ -398,7 +376,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           <h2
             className="typo-undertittel"
           >
-            Saker
+            Tema
           </h2>
         </div>
       </div>
@@ -556,6 +534,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         <div
           className="c14"
         >
+          <h2
+            className="typo-undertittel"
+          >
+            Saksdokumenter
+          </h2>
           <div
             className="c15"
           >
@@ -684,41 +667,45 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       strokeMiterlimit="10"
                     />
                   </svg>
-                  <div
-                    className="c23"
-                  >
-                    <div>
-                      <p
-                        className="typo-normal"
-                      >
-                        16.05.2018 / Fra andre
-                      </p>
-                      <p
-                        className="typo-element"
-                      >
-                        Dokument officiis sunt libero
-                      </p>
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        dxuyjwm0
-                      </p>
-                    </div>
-                    <div
-                      className="c24"
+                  <div>
+                    <p
+                      className="typo-normal"
                     >
-                      <button
-                        aria-expanded={false}
-                        aria-label="Detaljer"
-                        className="c25"
-                        onClick={[Function]}
+                      16.05.2018 / Fra andre
+                    </p>
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Dokumentnavn: omnis saepe et quia
+                    </a>
+                    <div
+                      className="c23"
+                    >
+                      <p
+                        className="typo-normal"
                       >
-                        <i
-                          className="nav-frontend-chevron chevronboks chevron--ned"
-                        />
-                      </button>
+                        Dokumentet har 
+                        1
+                         vedlegg:
+                      </p>
+                      <ul>
+                        <li>
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Dokumentnavn: repudiandae qui ipsam ad
+                          </a>
+                        </li>
+                      </ul>
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Saksid: 
+                      dxuyjwm0
+                    </p>
                   </div>
                 </div>
               </div>
@@ -761,41 +748,45 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       strokeMiterlimit="10"
                     />
                   </svg>
-                  <div
-                    className="c23"
-                  >
-                    <div>
-                      <p
-                        className="typo-normal"
-                      >
-                        09.02.2016 / Fra andre
-                      </p>
-                      <p
-                        className="typo-element"
-                      >
-                        Dokument voluptatibus non ea
-                      </p>
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        00aeiyc5
-                      </p>
-                    </div>
-                    <div
-                      className="c24"
+                  <div>
+                    <p
+                      className="typo-normal"
                     >
-                      <button
-                        aria-expanded={false}
-                        aria-label="Detaljer"
-                        className="c25"
-                        onClick={[Function]}
+                      09.02.2016 / Fra andre
+                    </p>
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Dokumentnavn: aliquid voluptas dicta quo
+                    </a>
+                    <div
+                      className="c23"
+                    >
+                      <p
+                        className="typo-normal"
                       >
-                        <i
-                          className="nav-frontend-chevron chevronboks chevron--ned"
-                        />
-                      </button>
+                        Dokumentet har 
+                        1
+                         vedlegg:
+                      </p>
+                      <ul>
+                        <li>
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Dokumentnavn: libero aliquid corrupti odio
+                          </a>
+                        </li>
+                      </ul>
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Saksid: 
+                      00aeiyc5
+                    </p>
                   </div>
                 </div>
               </div>
