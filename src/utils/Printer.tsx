@@ -69,7 +69,7 @@ class Printer extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props, prevState: State) {
         const printBleStartet = this.state.printing && !prevState.printing;
         if (printBleStartet) {
-            setTimeout( // SetTimetout for å gjøre kallet asynkront og tillate rendering av children
+            setTimeout( // SetTimetout for å gjøre kallet asynkront og tillate rendering av react-collapse
                 () => this.printElement(),
                 0);
         }
