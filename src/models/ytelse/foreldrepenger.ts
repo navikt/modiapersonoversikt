@@ -19,7 +19,7 @@ export interface Foreldrepengerrettighet {
     rettighetFom: string | null;
     eldsteIdDato: string | null;
     foreldreAvSammeKjønn: string | null;
-    periode?: Foreldrepengerperiode[];
+    periode: Foreldrepengerperiode[];
 }
 
 export interface Foreldrepengerperiode {
@@ -42,6 +42,6 @@ export interface Foreldrepengerperiode {
     rettTilFedrekvote: string;
     rettTilMødrekvote: string;
     stansårsak: string | null;
-    historiskeUtbetalinger: HistoriskUtbetaling[] | null;
-    kommendeUtbetalinger: KommendeUtbetaling[] | null;
+    historiskeUtbetalinger: HistoriskUtbetaling[];
+    kommendeUtbetalinger: KommendeUtbetaling[];
 }

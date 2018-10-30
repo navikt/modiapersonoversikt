@@ -6,15 +6,15 @@ import {
     KreditorTrekk,
     UtbetalingPåVent
 } from '../../models/ytelse/ytelse-utbetalinger';
-import { getPeriode } from '../person/periodeMock';
+import { getPeriodeRange } from '../person/periodeMock';
 import FakerStatic = Faker.FakerStatic;
-import { fyllRandomListe } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 
 export function getHistoriskUtbetaling(faker: FakerStatic): HistoriskUtbetaling {
     return {
-        vedtak: getPeriode(),
+        vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
-        utbetalingsdato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        utbetalingsdato: moment(faker.date.recent()).format(backendDatoformat),
         nettobeløp: Number(faker.commerce.price()),
         bruttobeløp: Number(faker.commerce.price()),
         skattetrekk: Number(faker.random.number(50)),
@@ -28,9 +28,9 @@ export function getHistoriskUtbetaling(faker: FakerStatic): HistoriskUtbetaling 
 
 export function getKommendeUtbetaling(faker: FakerStatic): KommendeUtbetaling {
     return {
-        vedtak: getPeriode(),
+        vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
-        utbetalingsdato: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        utbetalingsdato: moment(faker.date.recent()).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverOrgNr: '1234567890',
@@ -43,15 +43,15 @@ export function getKommendeUtbetaling(faker: FakerStatic): KommendeUtbetaling {
 
 export function getUtbetalingPåVent(faker: FakerStatic): UtbetalingPåVent {
     return {
-        vedtak: getPeriode(),
+        vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
         oppgjørstype: 'Oppgjørstype',
         arbeidskategori: 'Arbeidskategori',
         stansårsak: 'Stansårsak',
-        ferie1: getPeriode(),
-        ferie2: getPeriode(),
-        sanksjon: getPeriode(),
-        sykmeldt: getPeriode()
+        ferie1: getPeriodeRange(faker, 2),
+        ferie2: getPeriodeRange(faker, 2),
+        sanksjon: getPeriodeRange(faker, 2),
+        sykmeldt: getPeriodeRange(faker, 2)
     };
 }
 

@@ -9,11 +9,9 @@ import {
     Foreldrepengerrettighet
 } from '../../models/ytelse/foreldrepenger';
 import { getPeriode } from '../person/periodeMock';
-import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
-
-const backendDatoformat: string = 'YYYY-MM-DD';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -26,11 +24,11 @@ export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerRes
     }
 
     return {
-        foreldrepenger: getForeldrepengerrettighet(fødselsnummer)
+        foreldrepenger: getForeldrepengerrettighetMock(fødselsnummer)
     };
 }
 
-function getForeldrepengerrettighet(fødselsnummer: string): Foreldrepengerrettighet {
+export function getForeldrepengerrettighetMock(fødselsnummer: string): Foreldrepengerrettighet {
     return {
         forelder: fødselsnummer,
         andreForeldersFnr: navfaker.personIdentifikator.fødselsnummer(),
@@ -44,12 +42,12 @@ function getForeldrepengerrettighet(fødselsnummer: string): Foreldrepengerretti
         restDager: navfaker.random.integer(50),
         rettighetFom: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
         eldsteIdDato: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
-        periode: fyllRandomListe<Foreldrepengerperiode>(() => getForeldrepengerperiode(fødselsnummer), 5),
+        periode: fyllRandomListe<Foreldrepengerperiode>(() => getForeldrepengerperiodeMock(fødselsnummer), 5),
         foreldreAvSammeKjønn: vektetSjanse(faker, 0.5) ? 'Begge er pappaer' : null,
     };
 }
 
-function getForeldrepengerperiode(fødselsnummer: string): Foreldrepengerperiode {
+export function getForeldrepengerperiodeMock(fødselsnummer: string): Foreldrepengerperiode {
     return {
         fødselsnummer: fødselsnummer,
         harAleneomsorgFar: vektetSjanse(faker, 0.5) ? faker.random.boolean() : null,
@@ -64,7 +62,7 @@ function getForeldrepengerperiode(fødselsnummer: string): Foreldrepengerperiode
         forskyvelsesperiode1: vektetSjanse(faker, 0.5) ? getPeriode() : null,
         forskyvelsesårsak2: vektetSjanse(faker, 0.5) ? 'FÅRSAK2' : null,
         forskyvelsesperiode2: vektetSjanse(faker, 0.5) ? getPeriode() : null,
-        foreldrepengerFom: moment(faker.date.recent()).format(backendDatoformat),
+        foreldrepengerFom: moment(faker.date.past(5)).format(backendDatoformat),
         midlertidigStansDato: vektetSjanse(faker, 0.5) ?  moment(faker.date.recent()).format(backendDatoformat) : null,
         morSituasjon: vektetSjanse(faker, 0.5) ? faker.lorem.words(5) : null,
         rettTilFedrekvote: vektetSjanse(faker, 0.5) ? 'Rett til fedrekvote' : 'Ingen rett til fedrekvote',
