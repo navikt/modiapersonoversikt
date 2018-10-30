@@ -69,15 +69,14 @@ class Printer extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props, prevState: State) {
         const printBleStartet = this.state.printing && !prevState.printing;
         if (printBleStartet) {
-            setTimeout(
+            setTimeout( // SetTimetout for å gjøre kallet asynkront og tillate rendering av children
                 () => this.printElement(),
                 0);
         }
     }
 
     initiatePrint() {
-        const browser = detect();
-        if (browser && browser.name === 'ie') {
+        if (erIE()) {
             alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
             return;
         }
@@ -91,9 +90,9 @@ class Printer extends React.Component<Props, State> {
         const contentToPrint = document.getElementById(this.contentId);
         const iFrame = document.getElementById(this.iFrameId) as HTMLIFrameElement;
         const iFrameDocument = iFrame.contentDocument as Document;
-        const window = iFrame.contentWindow as Window;
+        const iFramWindow = iFrame.contentWindow as Window;
         if (iFrameDocument !== null && contentToPrint !== null) {
-            this.populateAndPrint(iFrameDocument, contentToPrint, window);
+            this.populateAndPrint(iFrameDocument, contentToPrint, iFramWindow);
         }
     }
 
@@ -139,6 +138,11 @@ class Printer extends React.Component<Props, State> {
             </>
         );
     }
+}
+
+function erIE() {
+    const browser = detect();
+    return browser && browser.name === 'ie';
 }
 
 function mapStateToProps(state: AppState): StateProps {
