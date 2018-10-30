@@ -6,7 +6,7 @@ const fadeIn = keyframes`
 
 const oneRemInPx = 16;
 
-function pxToRem(px: number): string {
+export function pxToRem(px: number): string {
     return px / oneRemInPx + 'rem';
 }
 
