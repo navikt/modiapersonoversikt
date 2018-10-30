@@ -34,17 +34,19 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     };
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].info(info);
+    console.info(info);
 }
 
-export function loggError(message: string, error: Error, ekstraFelter?: ValuePairs) {
+export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     if (!frontendLoggerIsInitialized()) {
         return;
     }
     const info = {
-        message: message,
+        message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
         error: error.stack,
         ...ekstraFelter
     };
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].error(info);
+    console.error(info);
 }
