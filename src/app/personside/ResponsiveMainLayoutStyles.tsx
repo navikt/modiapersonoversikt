@@ -28,6 +28,9 @@ const SideKnappContainer = styled<{ stickToRight: boolean }, 'nav'>('nav')`
   @media not all and (${theme.media.smallScreen}){
     display: none;
   }
+  @media print {
+    display: none;
+  }
   order: ${props => props.stickToRight ? 4 : 0};
   align-items: center;
   background-color: #7f7f7f;

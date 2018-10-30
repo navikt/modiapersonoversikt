@@ -15,6 +15,8 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
+import { UtbetalingTabellStyling } from '../Utbetalinger';
+import Printer from '../../../../../utils/Printer';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -49,17 +51,41 @@ const TotaltUtbetaltOversikt = styled.section`
 `;
 
 class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
+    private print: () => void;
+    private printerButtonRef = React.createRef<HTMLButtonElement>();
 
     constructor(props: TotaltUtbetaltProps) {
         super(props);
         this.state = {visDetaljer: false};
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.handlePrint = this.handlePrint.bind(this);
     }
 
     toggleVisDetaljer() {
         this.setState({
             visDetaljer: !this.state.visDetaljer
         });
+    }
+
+    handlePrint() {
+        this.setState(
+            {
+                visDetaljer: true
+            },
+            this.print
+        );
+    }
+
+    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
+        if (this.printerButtonRef.current) {
+            const printerButtonClicked = (event.target instanceof Node)
+                && this.printerButtonRef.current.contains(event.target);
+
+            if (!printerButtonClicked) {
+                this.toggleVisDetaljer();
+            }
+        }
+
     }
 
     render() {
@@ -75,24 +101,34 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
             [[periode, brutto, trekk, utbetalt]]);
 
         return (
-            <Wrapper onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}>
-                <Header>
-                    <Undertittel>Totalt utbetalt for perioden</Undertittel>
-                    <TotaltUtbetaltOversikt>
-                        <Normaltekst tag="span">
-                            {totaltUtbetaltTabell}
-                        </Normaltekst>
-                    </TotaltUtbetaltOversikt>
-                    <FlexEnd>
-                        <PrintKnapp onClick={() => console.log('ikke implementert')}/>
-                    </FlexEnd>
-                </Header>
-                <TotaltUtbetaltDetaljer
-                    visDetaljer={this.state.visDetaljer}
-                    toggleVisDetaljer={this.toggleVisDetaljer}
-                    {...this.props}
-                />
-            </Wrapper>
+            <Printer getPrintTrigger={trigger => this.print = trigger}>
+                <Wrapper
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(
+                            () => this.handleClickOnUtbetaling(event)
+                        )
+                    }
+                >
+                    <UtbetalingTabellStyling>
+                        <Header>
+                            <Undertittel>Totalt utbetalt for perioden</Undertittel>
+                            <TotaltUtbetaltOversikt>
+                                <Normaltekst tag="span">
+                                    {totaltUtbetaltTabell}
+                                </Normaltekst>
+                            </TotaltUtbetaltOversikt>
+                            <FlexEnd innerRef={this.printerButtonRef}>
+                                <PrintKnapp onClick={this.handlePrint}/>
+                            </FlexEnd>
+                        </Header>
+                        <TotaltUtbetaltDetaljer
+                            visDetaljer={this.state.visDetaljer}
+                            toggleVisDetaljer={this.toggleVisDetaljer}
+                            {...this.props}
+                        />
+                    </UtbetalingTabellStyling>
+                </Wrapper>
+            </Printer>
         );
     }
 }

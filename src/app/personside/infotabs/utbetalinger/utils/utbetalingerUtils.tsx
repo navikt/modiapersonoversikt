@@ -22,15 +22,18 @@ const månedTilNavnMapping = {
     11: 'Desember'
 };
 
-export function datoVerbose(dato: string | Date) {
-    const måned = månedTilNavnMapping[moment(dato).month()];
-    const år = moment(dato).year();
-    const dag = moment(dato).date();
+export function datoVerbose(dato?: string | Date) {
+    const datoMoment = dato ? moment(dato) : moment();
+    const måned = månedTilNavnMapping[datoMoment.month()];
+    const år = datoMoment.year();
+    const dag = datoMoment.date();
+    const klokkeslett = datoMoment.format('HH:mm');
     return {
         dag: dag,
         måned: måned,
         år: år,
-        sammensatt: `${dag}. ${måned} ${år}`
+        sammensatt: `${dag}. ${måned} ${år}`,
+        sammensattMedKlokke: `${dag}. ${måned} ${år} ${klokkeslett}`
     };
 }
 

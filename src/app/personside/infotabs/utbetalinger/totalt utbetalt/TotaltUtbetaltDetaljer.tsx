@@ -96,6 +96,10 @@ const DetaljerStyle = styled.aside`
         border-top: 2px solid ${theme.color.bakgrunn};
     }
   }
+  @media print {
+    table { page-break-inside: auto; }
+    tbody { page-break-inside: auto }
+  }
 `;
 
 function getAlleYtelsesKomponenterFraYtelser(ytelser: Ytelse[]) {
@@ -151,7 +155,8 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
             const periode = getPeriodeFromYtelser(ytelser);
             const ytelsesKomponentSammendragListe = getYtelsesKomponentSammendragListe(ytelser);
             return (
-                <tr key={ytelsesType}>
+                <tbody key={ytelsesType}>
+                <tr>
                     <th>{ytelsesType}</th>
                     <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
                     <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
@@ -159,6 +164,7 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
                     <td className="periodeForYtelse">{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
                     <td className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
                 </tr>
+                </tbody>
             );
         });
     return ytelsesSammendrag;
@@ -183,9 +189,7 @@ function TotaltUtbetaltDetaljer(props: Props) {
                                 <th className="visually-hidden">Detaljer</th>
                             </tr>
                             </thead>
-                            <tbody>
                             {ytelserSammendrag}
-                            </tbody>
                         </table>
                     </Normaltekst>
                 </DetaljerStyle>

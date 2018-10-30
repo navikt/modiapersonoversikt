@@ -28,6 +28,9 @@ const PrintIkonStyle = styled.button`
     opacity: 0.8;
     text-decoration: underline;
   }
+  @media print {
+    display: none;
+  }
 `;
 
 function PrintKnapp({onClick}: Props) {
