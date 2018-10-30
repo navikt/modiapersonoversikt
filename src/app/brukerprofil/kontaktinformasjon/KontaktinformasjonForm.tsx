@@ -258,7 +258,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
             hjem: getTelefonHvisSatt(this.state.inputs.hjem)
         };
         this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
-        loggEvent('brukerprofil.kontaktinformasjon.endre.submit');
+        loggEvent('Endre kontaktinformasjon', 'Brukerprofil');
     }
 
     getValideringsResultat(): EndreKontaktinformasjonValidator {

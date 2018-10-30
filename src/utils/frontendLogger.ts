@@ -1,6 +1,5 @@
-interface FieldsAndTags {
-    fields?: { [name: string]: string | number | boolean };
-    tags?: { [tagNavn: string]: string };
+interface ValuePairs {
+     [name: string]: string | number | boolean | object | undefined;
 }
 
 function frontendLoggerIsInitialized(): boolean {
@@ -12,20 +11,20 @@ function frontendLoggerIsInitialized(): boolean {
     return true;
 }
 
-export function loggEvent(eventName: string, fieldsAndTags?: FieldsAndTags) {
+export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
     if (!frontendLoggerIsInitialized()) {
         return;
     }
     const event = {
-        eventName: 'modiapersonoversikt.' + eventName,
-        fields: fieldsAndTags && fieldsAndTags.fields || {},
-        tags: fieldsAndTags && fieldsAndTags.tags || {}
+        table: 'modiapersonoversikt',
+        fields: fields || {},
+        tags: {action: action, location: location, ...extraTags}
     };
     // tslint:disable-next-line
-    window['frontendlogger'] && window['frontendlogger'].event(event.eventName, event.fields, event.tags);
+    window['frontendlogger'] && window['frontendlogger'].event(event.table, event.fields, event.tags);
 }
 
-export function loggInfo(message: string, ekstraFelter?: { [name: string]: string | number | boolean}) {
+export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     if (!frontendLoggerIsInitialized()) {
         return;
     }
@@ -35,4 +34,19 @@ export function loggInfo(message: string, ekstraFelter?: { [name: string]: strin
     };
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].info(info);
+    console.info(info);
+}
+
+export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    if (!frontendLoggerIsInitialized()) {
+        return;
+    }
+    const info = {
+        message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
+        error: error.stack,
+        ...ekstraFelter
+    };
+    // tslint:disable-next-line
+    window['frontendlogger'] && window['frontendlogger'].error(info);
+    console.error(info);
 }

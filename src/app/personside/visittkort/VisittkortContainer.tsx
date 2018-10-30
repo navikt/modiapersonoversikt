@@ -37,7 +37,7 @@ class VisittkortContainer extends React.Component<Props> {
         const visittkortetBleÅpnet = !prevProps.UI.visittkort.apent && this.props.UI.visittkort.apent;
         if (visittkortetBleÅpnet && this.detaljerRef.current) {
             this.detaljerRef.current.focus();
-            loggEvent('visittkort.ekspandert');
+            loggEvent('Åpne', 'Visittkort');
         }
     }
 

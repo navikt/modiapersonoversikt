@@ -9,6 +9,7 @@ import { paths } from '../../routes/routing';
 import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -57,22 +58,24 @@ class InfoTabs extends React.PureComponent<Props> {
         const basePath = paths.personUri + '/:fodselsnummer/';
 
         return (
-            <section role="region" aria-label="Info-tabs">
-                <TabKnapper
-                    onTabChange={this.onTabChange}
-                    openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
-                />
-                <OpenTab>
-                    <Switch location={this.props.history.location}>
-                        <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps}/>
-                        <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingWithProps}/>
-                        <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerWithProps}/>
-                        <Route path={basePath + INFOTABS.SAKER + '/'} component={SakerWithProps}/>
-                        <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserWithProps}/>
-                        <Route component={OversiktWithProps}/>
-                    </Switch>
-                </OpenTab>
-            </section>
+            <ErrorBoundary boundaryName="InfoTabs">
+                <section role="region" aria-label="Info-tabs">
+                    <TabKnapper
+                        onTabChange={this.onTabChange}
+                        openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
+                    />
+                    <OpenTab>
+                        <Switch location={this.props.history.location}>
+                            <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps}/>
+                            <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingWithProps}/>
+                            <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerWithProps}/>
+                            <Route path={basePath + INFOTABS.SAKER + '/'} component={SakerWithProps}/>
+                            <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserWithProps}/>
+                            <Route component={OversiktWithProps}/>
+                        </Switch>
+                    </OpenTab>
+                </section>
+            </ErrorBoundary>
         );
     }
 }

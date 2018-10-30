@@ -207,7 +207,7 @@ class EndreNavnForm extends React.Component<Props, State> {
             mellomnavn: this.state.mellomnavn.input,
             etternavn: this.state.etternavn.input
         });
-        loggEvent('brukerprofil.navn.endre.submit');
+        loggEvent('Endre navn', 'Brukerprofil');
     }
 
     render() {

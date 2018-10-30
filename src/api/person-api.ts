@@ -3,7 +3,7 @@ import { apiBaseUri } from './config';
 import { loggEvent } from '../utils/frontendLogger';
 
 export function getPerson(fodselsnummer: string): Promise<PersonRespons> {
-    loggEvent('fetch.person');
+    loggEvent('Fetch', 'Persondata');
     const uri = `${apiBaseUri}/person/${fodselsnummer}`;
     return fetch(uri, {credentials: 'include'})
         .then((response) => {

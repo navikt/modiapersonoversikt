@@ -81,6 +81,12 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   margin: .5rem 0;
 }
 
+@media print {
+  .c7 {
+    display: none;
+  }
+}
+
 <div
   className="c0"
   open={true}
