@@ -3,7 +3,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { loggInfo } from '../utils/frontendLogger';
 
 interface Props {
-    bounadaryName?: string;
+    boundaryName?: string;
 }
 
 interface State {
@@ -31,8 +31,8 @@ class ErrorBoundary extends React.Component<Props, State> {
     componentDidCatch(error: Error, info: React.ErrorInfo) {
         this.setState({ hasError: true });
         const message: string =
-            `ErrorBoundary fanget en feil${ this.props.bounadaryName && ' i ' + this.props.bounadaryName}`;
-        loggInfo(message, {error: error, reactInfo: info});
+            `ErrorBoundary fanget en feil${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
+        loggInfo(message, {errorInfo: error, reactInfo: info});
         console.error(error, info);
     }
 

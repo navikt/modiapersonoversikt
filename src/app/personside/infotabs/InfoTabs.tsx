@@ -58,7 +58,7 @@ class InfoTabs extends React.PureComponent<Props> {
         const basePath = paths.personUri + '/:fodselsnummer/';
 
         return (
-            <ErrorBoundary bounadaryName="InfoTabs">
+            <ErrorBoundary boundaryName="InfoTabs">
                 <section role="region" aria-label="Info-tabs">
                     <TabKnapper
                         onTabChange={this.onTabChange}
