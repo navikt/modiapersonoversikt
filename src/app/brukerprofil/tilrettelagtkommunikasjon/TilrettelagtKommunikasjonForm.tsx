@@ -93,7 +93,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
             tilrettelagtKommunikasjon: this.hentValgtTilrettelagtKommunikasjon()
         } as EndreTilrettelagtKommunikasjonrequest);
         event.preventDefault();
-        loggEvent('brukerprofil.tilrettelagtkommunikasjon.endre.submit');
+        loggEvent('Endre tilrettelagt kommunikasjon', 'Brukerprofil');
     }
 
     handleOnChange(event: React.SyntheticEvent<EventTarget>, value?: string) {

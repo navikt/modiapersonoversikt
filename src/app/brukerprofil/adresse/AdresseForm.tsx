@@ -43,6 +43,7 @@ import { EndreAdresseInfomelding } from '../Infomelding';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
+import KnappMedBekreftPopup from './KnappMedBekreftPopup';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -107,7 +108,6 @@ class AdresseForm extends React.Component<Props, State> {
         this.onSubmit = this.onSubmit.bind(this);
         this.onAvbryt = this.onAvbryt.bind(this);
         this.slettMidlertidigAdresse = this.slettMidlertidigAdresse.bind(this);
-
         this.state = this.getInitialState();
     }
 
@@ -286,13 +286,13 @@ class AdresseForm extends React.Component<Props, State> {
         this.setState({formErEndret: false});
         if (this.state.selectedRadio === Valg.MIDLERTIDIG_NORGE) {
             this.submitMidlertidigNorskAdresse(this.state.midlertidigAdresseNorge);
-            loggEvent('brukerprofil.adresse.midlertidigNorge.submit');
+            loggEvent('Endre adresse', 'Brukerprofil', {type: 'Midlertidig Norsk adresse'});
         } else if (this.state.selectedRadio === Valg.MIDLERTIDIG_UTLAND) {
             this.submitMidlertidigUtenlandsadresse(this.state.midlertidigAdresseUtland);
-            loggEvent('brukerprofil.adresse.midlertidigUtland.submit');
+            loggEvent('Endre adresse', 'Brukerprofil', {type: 'Midlertidig Utenlandsk adresse'});
         } else if (this.state.selectedRadio === Valg.FOLKEREGISTRERT) {
             this.submitSlettMidlertidigeAdresser();
-            loggEvent('brukerprofil.adresse.folkeregistrert.submit');
+            loggEvent('Endre adresse', 'Brukerprofil', {type: 'Folkeregistrert'});
         } else {
             console.error('Not implemented');
         }
@@ -314,7 +314,6 @@ class AdresseForm extends React.Component<Props, State> {
 
     submitSlettMidlertidigeAdresser() {
         this.props.slettMidlertidigeAdresser(this.props.person.fødselsnummer);
-        loggEvent('brukerprofil.adresse.slett.submit');
     }
 
     submitMidlertidigNorskAdresse(input: MidlertidigeAdresserNorgeInput) {
@@ -385,25 +384,22 @@ class AdresseForm extends React.Component<Props, State> {
 
     slettMidlertidigAdresse() {
         this.submitSlettMidlertidigeAdresser();
-        loggEvent('brukerprofil.adresse.slett.klikk');
+        loggEvent('Slett adresse', 'Brukerprofil', {type: 'klikk'});
     }
 
     render() {
         const kanEndreAdresse = veilederHarPåkrevdRolleForEndreAdresse(this.props.veilederRoller);
 
         const aktivForm = this.getAktivForm();
-        const sletteKnapp = this.props.person.alternativAdresse
+        const sletteKnapp = this.props.person.alternativAdresse && !this.requestIsPending()
             ? (
                 <FormKnapperWrapper>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.slettMidlertidigAdresse}
-                        spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
-                        autoDisableVedSpinner={true}
-                        disabled={this.requestIsPending()}
+                    <KnappMedBekreftPopup
+                        onBekreft={this.slettMidlertidigAdresse}
+                        popUpTekst="Sikker på at du vil slette midlertidig addressse?"
                     >
                         Slett adresse
-                    </KnappBase>
+                    </KnappMedBekreftPopup>
                 </FormKnapperWrapper>
             )
             : null;

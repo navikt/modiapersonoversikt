@@ -16,12 +16,16 @@ import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
 import { getBedriftsNavn, getMockNavn } from './person/personMock';
 
-export function getMockUtbetalinger(fødselsnummer: string): UtbetalingerResponse {
+export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 
     return {
-        utbetalinger: getUtbetalinger(fødselsnummer)
+        utbetalinger: getUtbetalinger(fødselsnummer),
+        periode: {
+            startDato: startDato,
+            sluttDato: sluttDato
+        }
     };
 }
 

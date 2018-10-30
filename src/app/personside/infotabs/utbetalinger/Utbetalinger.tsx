@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
+import { Utbetaling, UtbetalingerPeriode, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
@@ -139,6 +139,7 @@ function removePilknappListener(handleShortcut: (event: KeyboardEvent) => void) 
 
 interface UtbetalingerUniqueProps {
     utbetalinger: Utbetaling[];
+    utbetalingerPeriode: UtbetalingerPeriode;
     filter: FilterState;
     handleShortcut: (event: KeyboardEvent) => void;
 }
@@ -170,7 +171,7 @@ function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} filter={filter}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerPeriode}/>
             <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
                 <UtbetalingerListe

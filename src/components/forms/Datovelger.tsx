@@ -45,7 +45,7 @@ export default function Datovelger({dato, id, onChange, feil, children, innenEt�
     function handleomEtÅrHurtigvalg(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
         onChange(omEtÅr);
-        loggEvent('datovelger.hurtigvalg.omEtÅr');
+        loggEvent('Hurtigvalg', 'Datovelger', {type: 'Om et år'});
     }
 
     return (

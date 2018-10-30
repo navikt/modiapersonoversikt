@@ -1,11 +1,9 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../../mock/statiskMockUtbetaling';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import { FilterState, PeriodeValg } from '../filter/Filter';
-import { aremark } from '../../../../../mock/person/aremark';
-import { Utbetaling } from '../../../../../models/utbetalinger';
-import { ReactNode } from 'react';
+import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -16,16 +14,9 @@ jest.mock('react-collapse', () => {
     };
 });
 
-const filterState: FilterState = {
-    periode: {
-        radioValg: PeriodeValg.SISTE_30_DAGER,
-        egendefinertPeriode: {
-            fra: new Date(0),
-            til: new Date(0)
-        }
-    },
-    utbetaltTil: [aremark.navn.sammensatt],
-    ytelser: ['Sykepenger']
+const periode: UtbetalingerPeriode = {
+    startDato: '17-05-1905',
+    sluttDato: '17-05-1905'
 };
 
 const mockUtbetalingUtenUtbetaltDato: Utbetaling = {
@@ -43,7 +34,7 @@ test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbeta
         <TotaltUtbetaltDetaljer
             visDetaljer={true}
             toggleVisDetaljer={() => null}
-            filter={filterState}
+            periode={periode}
             utbetalinger={[
                 statiskMockUtbetaling,
                 statiskMockUtbetaling,

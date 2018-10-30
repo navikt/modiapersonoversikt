@@ -1,5 +1,10 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { loggError } from '../utils/frontendLogger';
+
+interface Props {
+    boundaryName?: string;
+}
 
 interface State {
     hasError: boolean;
@@ -17,15 +22,18 @@ interface State {
  * Prod, men er ikke verifisert enda.
  */
 
-class ErrorBoundary extends React.Component<{}, State> {
-    constructor(props: {}) {
+class ErrorBoundary extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = { hasError: false };
     }
 
     componentDidCatch(error: Error, info: React.ErrorInfo) {
         this.setState({ hasError: true });
-        console.error(info);
+        const message: string =
+            `ErrorBoundary fanget en feil${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
+        loggError(message, error, { reactInfo: info });
+        console.error(error, info);
     }
 
     render() {

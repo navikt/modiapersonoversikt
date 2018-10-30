@@ -12,10 +12,11 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import moment = require('moment');
 import { loggEvent } from '../../../../utils/frontendLogger';
+import Arenalenke from './Arenalenke/Arenalenke';
+import moment = require('moment');
 
 interface State {
     filter: FilterState;
@@ -63,8 +64,8 @@ const UtbetalingerArticle = styled.article`
 `;
 
 const FiltreringSection = styled.section`
-  min-width: 18rem;
-  flex-basis: 18rem;
+  min-width: 19rem;
+  flex-basis: 19rem;
 `;
 
 const UtbetalingerSection = styled.section`
@@ -76,23 +77,6 @@ const UtbetalingerSection = styled.section`
   }
 `;
 
-const ArenaLenkeStyle = styled.div`
-  text-align: right;
-  position: absolute;
-  top: ${theme.margin.px20}
-  right: ${theme.margin.px20}
-`;
-
-function ArenaLenke() {
-    return (
-        <ArenaLenkeStyle>
-            <Normaltekst>
-                <a className="lenke">Meldinger/utbetalinger i Arena</a>
-            </Normaltekst>
-        </ArenaLenkeStyle>
-    );
-}
-
 class UtbetalingerContainer extends React.Component<Props, State> {
 
     constructor(props: Props) {
@@ -102,7 +86,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
         this.handlePilknapper = this.handlePilknapper.bind(this);
         this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
-        loggEvent('utbetalinger.sidevisning');
+        loggEvent('Sidevisning', 'Utbetalinger');
     }
 
     onFilterChange(change: Partial<FilterState>) {
@@ -165,6 +149,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
             <ErrorBoundary>
                 <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                     <FiltreringSection>
+                        <Arenalenke fødselsnummer={this.props.fødselsnummer}/>
                         <Filtrering
                             filterState={this.state.filter}
                             onChange={this.onFilterChange}
@@ -177,13 +162,13 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
+                                utbetalingerPeriode={this.props.utbetalingerReducer.data.periode}
                                 ytelseIFokus={this.state.ytelseIFokus}
                                 filter={this.state.filter}
                                 handleShortcut={this.handlePilknapper}
                                 updateYtelseIFokus={this.updateYtelseIFokus}
                             />
                         </Innholdslaster>
-                        <ArenaLenke/>
                     </UtbetalingerSection>
                 </UtbetalingerArticle>
             </ErrorBoundary>
