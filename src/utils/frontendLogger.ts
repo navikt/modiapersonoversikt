@@ -1,5 +1,5 @@
 interface ValuePairs {
-     [name: string]: string | number | boolean | object;
+     [name: string]: string | number | boolean | object | undefined;
 }
 
 function frontendLoggerIsInitialized(): boolean {
