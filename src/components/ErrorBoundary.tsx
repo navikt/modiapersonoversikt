@@ -31,8 +31,8 @@ class ErrorBoundary extends React.Component<Props, State> {
     componentDidCatch(error: Error, info: React.ErrorInfo) {
         this.setState({ hasError: true });
         const message: string =
-            `ErrorBoundary fanget en feil${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
-        loggError(message, error, { reactInfo: info });
+            `ErrorBoundary${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
+        loggError(error, message, { reactInfo: info });
         console.error(error, info);
     }
 
