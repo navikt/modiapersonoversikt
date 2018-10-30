@@ -34,6 +34,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     };
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].info(info);
+    console.info(info);
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
@@ -47,4 +48,5 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
     };
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].error(info);
+    console.error(info);
 }

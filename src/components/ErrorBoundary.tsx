@@ -33,7 +33,6 @@ class ErrorBoundary extends React.Component<Props, State> {
         const message: string =
             `ErrorBoundary${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
         loggError(error, message, { reactInfo: info });
-        console.error(error, info);
     }
 
     render() {
