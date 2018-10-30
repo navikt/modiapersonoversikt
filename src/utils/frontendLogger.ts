@@ -35,3 +35,16 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].info(info);
 }
+
+export function loggError(message: string, error: Error, ekstraFelter?: ValuePairs) {
+    if (!frontendLoggerIsInitialized()) {
+        return;
+    }
+    const info = {
+        message: message,
+        error: error.stack,
+        ...ekstraFelter
+    };
+    // tslint:disable-next-line
+    window['frontendlogger'] && window['frontendlogger'].error(info);
+}
