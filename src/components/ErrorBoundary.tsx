@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { loggInfo } from '../utils/frontendLogger';
 
 interface State {
     hasError: boolean;
@@ -25,7 +26,8 @@ class ErrorBoundary extends React.Component<{}, State> {
 
     componentDidCatch(error: Error, info: React.ErrorInfo) {
         this.setState({ hasError: true });
-        console.error(info);
+        loggInfo(error.message, {error: error, reactInfo: info});
+        console.error(error, info);
     }
 
     render() {
