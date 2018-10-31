@@ -15,7 +15,7 @@ export const theme = {
         lenkeSelected: '#66CBEC',
         lenkeHover: '#C6C2BF',
         lenke: '#0067c5',
-        bakgrunn: '#efefef',
+        bakgrunn: '#e7e9e9',
         kategori: '#9bd0b0',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
