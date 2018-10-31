@@ -28,7 +28,7 @@ const GruppeStyle = styled.li`
     margin: 0;
   }
   ol > *:not(:first-child) {
-    border-top: solid 2px ${theme.color.bakgrunn};
+    border-top: ${theme.border.skille};
     padding: 20px 10px 20px 10px;
   }
 `;
@@ -145,7 +145,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
         return (
             <Wrapper>
                 <TittelWrapper>
-                    <TittelOgIkon tittel={<Undertittel>Saker</Undertittel>} ikon={<SaksIkon/>}/>
+                    <TittelOgIkon tittel={<Undertittel>Tema</Undertittel>} ikon={<SaksIkon/>}/>
                 </TittelWrapper>
                 <SakstemaListe>
                     <GrupperteTema
