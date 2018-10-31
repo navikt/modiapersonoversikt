@@ -11,7 +11,7 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import DokumentTabs from './DokumentTabs';
+import DokumentOgVedlegg from './DokumentOgVedlegg';
 import ModalWrapper from 'nav-frontend-modal';
 
 interface Props {
@@ -76,8 +76,8 @@ class DokumentKomponent extends React.Component<Props, State> {
             valgtDokument: this.props.dokument.hoveddokument
         };
         this.skjulModal = this.skjulModal.bind(this);
-        this.toggle = this.toggle.bind(this);
-        this.velgDokument = this.velgDokument.bind(this);
+        this.visModal = this.visModal.bind(this);
+        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
     }
 
     skjulModal() {
@@ -86,12 +86,12 @@ class DokumentKomponent extends React.Component<Props, State> {
         });
     }
 
-    toggle() {
+    visModal() {
         const åpnet = !this.state.åpnet;
         this.setState({åpnet: åpnet});
     }
 
-    velgDokument(dokument: EnkeltDokument) {
+    velgOgVisDokument(dokument: EnkeltDokument) {
         this.setState({
             valgtDokument: dokument,
             åpnet: true
@@ -106,22 +106,24 @@ class DokumentKomponent extends React.Component<Props, State> {
                 <VedleggStyle>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
-                        {dokument.vedlegg.map((v) =>
-                            <li key={v.tittel}><a href={'#'} onClick={() => this.velgDokument(v)}>{v.tittel}</a></li>)}
+                        {dokument.vedlegg.map(vlegg =>
+                            <li key={vlegg.tittel}>
+                                <a href={'#'} onClick={() => this.velgOgVisDokument(vlegg)}>{vlegg.tittel}</a>
+                            </li>)}
                     </ul>
                 </VedleggStyle>
             ) : null;
 
         return (
             <>
-                <Wrapper onClick={() => this.toggle()}>
+                <Wrapper onClick={() => this.visModal()}>
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
                             <Normaltekst>
                                 {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                             </Normaltekst>
-                            <a href={'#'} onClick={() => this.velgDokument(dokument.hoveddokument)}>
+                            <a href={'#'} onClick={() => this.velgOgVisDokument(dokument.hoveddokument)}>
                                 {dokument.hoveddokument.tittel}
                             </a>
                             {vedlegg}
@@ -132,14 +134,14 @@ class DokumentKomponent extends React.Component<Props, State> {
                 {this.state.åpnet &&
                 <ModalWrapper
                     isOpen={true}
-                    contentLabel="Hei"
+                    contentLabel="Dokumentvisning"
                     onRequestClose={this.skjulModal}
                 >
-                    <DokumentTabs
+                    <DokumentOgVedlegg
                         dokument={dokument}
                         harTilgang={this.props.harTilgang}
                         valgtTab={this.state.valgtDokument}
-                        onChange={this.velgDokument}
+                        onChange={this.velgOgVisDokument}
                     />
                 </ModalWrapper>}
             </>

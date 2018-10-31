@@ -15,11 +15,13 @@ interface Props {
 }
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
-  height: 90vh;
   width: 90vw;
+  height: 90vh;
   object {
-    box-shadow: 0 0 2rem #888;
+    flex-grow: 1;
   }
 `;
 
@@ -33,9 +35,7 @@ function visDokument(journalpostId: string, dokumentreferanse: string) {
     return <object data={dokUrl} width={'100%'}/>;
 }
 
-function DokumentTabs(props: Props) {
-    const currentDok = props.valgtTab;
-    const tabs = [props.dokument.hoveddokument, ...props.dokument.vedlegg];
+function DokumentOgVedlegg(props: Props) {
     if (!props.harTilgang) {
         return (
             <AlertWrapper>
@@ -43,12 +43,16 @@ function DokumentTabs(props: Props) {
             </AlertWrapper>
         );
     }
+
+    const currentDok = props.valgtTab;
+    const tabs = [props.dokument.hoveddokument, ...props.dokument.vedlegg];
     const tabProps: TabProps[] = tabs.map(tab => {
         return {
             label: tab.tittel,
             aktiv: tab === props.valgtTab
         };
     });
+
     return (
         <Content>
             <TabsPure
@@ -60,4 +64,4 @@ function DokumentTabs(props: Props) {
     );
 }
 
-export default DokumentTabs;
+export default DokumentOgVedlegg;
