@@ -29,7 +29,7 @@ const AlertWrapper = styled.div`
   padding: ${theme.margin.px40} ${theme.margin.px10};
 `;
 
-function visDokument(journalpostId: string, dokumentreferanse: string) {
+function VisDokument({journalpostId, dokumentreferanse}: {journalpostId: string, dokumentreferanse: string}) {
     const dokUrl = getSaksdokument(journalpostId, dokumentreferanse);
     console.log(`Prøver å laste ned ${dokUrl}`);
     return <object data={dokUrl} width={'100%'}/>;
@@ -59,7 +59,7 @@ function DokumentOgVedlegg(props: Props) {
                 tabs={tabProps}
                 onChange={(event, index) => props.onChange(tabs[index])}
             />
-            {visDokument(props.dokument.journalpostId, currentDok.dokumentreferanse)}
+            <VisDokument journalpostId={props.dokument.journalpostId} dokumentreferanse={currentDok.dokumentreferanse}/>
         </Content>
     );
 }
