@@ -11,6 +11,7 @@ import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 if (mockEnabled === 'true') {
     setupMock();
@@ -18,7 +19,9 @@ if (mockEnabled === 'true') {
 
 const store = createStore(
     reducers,
-    applyMiddleware(thunkMiddleware)
+    composeWithDevTools(
+        applyMiddleware(thunkMiddleware)
+    )
 );
 
 class App extends React.Component<{}> {
