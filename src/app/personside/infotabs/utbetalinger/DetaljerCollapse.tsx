@@ -42,6 +42,9 @@ const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
     opacity: 0.8;
     text-decoration: underline;
   }
+ @media print {
+    display: none;
+ }
 `;
 
 const Luft = styled.span`

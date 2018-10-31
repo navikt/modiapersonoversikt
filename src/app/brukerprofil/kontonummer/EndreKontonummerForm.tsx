@@ -83,7 +83,6 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props) {
         if (this.kontonummerBleEndret(prevProps)) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
-            loggEvent('brukerprofil.kontonummer.endre.success');
         }
         const nyeDataPåPerson = prevProps.person !== this.props.person;
         if (nyeDataPåPerson) {
@@ -149,7 +148,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 bankadresse: kontoInput.adresse
             });
         }
-        loggEvent('brukerprofil.kontonummer.endre.submit');
+        loggEvent('Endre kontonummer', 'Brukerprofil');
     }
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {

@@ -144,7 +144,7 @@ class BrukerprofilSide extends React.Component<Props> {
         if (this.props.veilederRollerReducer.status === STATUS.NOT_STARTED) {
             this.props.hentVeilederRoller();
         }
-        loggEvent('brukerprofil.sidevisning');
+        loggEvent('Sidevisning', 'Brukerprofil');
     }
 
     render() {

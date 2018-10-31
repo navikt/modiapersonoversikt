@@ -17,7 +17,7 @@ test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
             konto="123"
             melding="Dette er en melding"
             ytelse={statiskMockYtelse}
-            open={true}
+            visDetaljer={true}
             toggleVisDetaljer={() => null}
         />
     );

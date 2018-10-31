@@ -175,6 +175,22 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   border-top: 2px solid #efefef;
 }
 
+@media print {
+  .c4 {
+    display: none;
+  }
+}
+
+@media print {
+  .c2 table {
+    page-break-inside: auto;
+  }
+
+  .c2 tbody {
+    page-break-inside: auto;
+  }
+}
+
 <div
   className="c0"
   open={true}
