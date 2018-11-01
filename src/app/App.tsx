@@ -12,7 +12,7 @@ import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 
-if (mockEnabled === 'true') {
+if (mockEnabled) {
     setupMock();
 }
 
