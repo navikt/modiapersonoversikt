@@ -7,6 +7,7 @@ import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
+import { PersonContext } from '../../app/App';
 
 interface Props {
     fødselsnummer: string;
@@ -25,9 +26,11 @@ class SaksoversiktLamell extends React.Component<Props> {
     render() {
         return (
             <ErrorBoundary>
-                <Provider store={store}>
-                    <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer}/>
-                </Provider>
+                <PersonContext.Provider value={this.props.fødselsnummer}>
+                    <Provider store={store}>
+                        <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer}/>
+                    </Provider>
+                </PersonContext.Provider>
             </ErrorBoundary>
         );
     }
