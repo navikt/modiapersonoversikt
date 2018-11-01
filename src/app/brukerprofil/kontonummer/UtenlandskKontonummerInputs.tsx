@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Select from 'nav-frontend-skjema/lib/select';
@@ -18,6 +18,7 @@ import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;

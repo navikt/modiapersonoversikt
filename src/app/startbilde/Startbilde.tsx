@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 import { History } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
 
@@ -13,6 +14,7 @@ import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding'
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
 import { RestReducer } from '../../redux/restReducers/restReducer';
+import { Dispatch } from '../../redux/redux-thunk-fix';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -76,7 +78,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Oppgave[]>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         plukkOppgaver: () => dispatch(plukkOppgaver('')),
     };

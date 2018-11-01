@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Action } from 'redux';
 import styled from 'styled-components';
 
@@ -18,6 +18,7 @@ import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/re
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 const HentOppgaveLayout = styled.div`
   text-align: center;

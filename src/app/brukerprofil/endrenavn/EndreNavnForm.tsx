@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -21,6 +21,7 @@ import { visEndringsinfo, ignoreEnter, InputState } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 interface NavnInputProps {
     label: string;

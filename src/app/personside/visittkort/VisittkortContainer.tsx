@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -44,7 +45,8 @@ class VisittkortContainer extends React.Component<Props> {
     render() {
         const person = this.props.person;
         const erApnet = this.props.UI.visittkort.apent;
-        const tabIndexForFokus = erApnet ? -1 : undefined; /* undefided så fokus ikke skal bli hengende ved lukking */
+        const tabIndexForFokus = erApnet ? -1 : undefined;
+        /* undefided så fokus ikke skal bli hengende ved lukking */
         return (
             <ErrorBoundary>
                 <AriaNotification
@@ -80,7 +82,7 @@ function mapStateToProps(state: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
     };

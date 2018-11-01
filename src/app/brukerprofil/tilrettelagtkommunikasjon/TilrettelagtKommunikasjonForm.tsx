@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import KnappBase from 'nav-frontend-knapper';
 
@@ -22,6 +22,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 interface State {
     checkbokser: CheckboksProps[];

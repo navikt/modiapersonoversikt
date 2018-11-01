@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-
+import { Action } from 'redux';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-
 import { AppState } from '../../../redux/reducers';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { Person } from '../../../models/person/person';
@@ -13,6 +11,7 @@ import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retnin
 import KontaktinformasjonForm from './KontaktinformasjonForm';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;

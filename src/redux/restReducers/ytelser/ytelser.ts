@@ -1,4 +1,4 @@
-import { Dispatch } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Action } from 'redux';
 import { hentSykepenger } from './sykepenger';
 import { hentPleiepenger } from './pleiepenger';

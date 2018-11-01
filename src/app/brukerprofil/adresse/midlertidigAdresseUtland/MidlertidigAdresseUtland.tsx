@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import Datovelger, { tilPeriode } from '../../../../components/forms/Datovelger';
 import Input from 'nav-frontend-skjema/lib/input';
@@ -15,6 +15,7 @@ import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { visEndringsinfo } from '../../utils/formUtils';
+import { Dispatch } from '../../../../redux/redux-thunk-fix';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;

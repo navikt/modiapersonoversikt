@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { Action } from 'history';
 import { RouteComponentProps } from 'react-router';
+import { Action } from 'redux';
 
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
@@ -13,13 +13,13 @@ import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { Dispatch } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
+import { Dispatch } from '../../redux/redux-thunk-fix';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;

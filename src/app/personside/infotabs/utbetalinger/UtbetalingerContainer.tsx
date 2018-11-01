@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
@@ -17,6 +17,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import moment = require('moment');
+import { Dispatch } from '../../../../redux/redux-thunk-fix';
 
 interface State {
     filter: FilterState;

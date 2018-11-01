@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { Action } from 'history';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
@@ -12,6 +12,7 @@ import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../../../redux/redux-thunk-fix';
 
 interface DispatchProps {
     hentBaseUrls: () => void;

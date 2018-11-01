@@ -6,7 +6,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
@@ -15,6 +15,7 @@ import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
+import { Dispatch } from '../../../../redux/redux-thunk-fix';
 
 export interface AvsenderFilter {
     fraBruker: boolean;

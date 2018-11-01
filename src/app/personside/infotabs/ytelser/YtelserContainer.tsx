@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppState } from '../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
@@ -12,6 +12,7 @@ import { hentSykepenger } from '../../../../redux/restReducers/ytelser/sykepenge
 import { hentPleiepenger } from '../../../../redux/restReducers/ytelser/pleiepenger';
 import { hentForeldrepenger } from '../../../../redux/restReducers/ytelser/foreldrepenger';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import { Dispatch } from '../../../../redux/redux-thunk-fix';
 
 interface StateProps {
     sykepengerReducer: RestReducer<SykepengerResponse>;

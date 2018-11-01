@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
-
+import { connect } from 'react-redux';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
@@ -22,6 +20,8 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
+import { Action } from 'redux';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;

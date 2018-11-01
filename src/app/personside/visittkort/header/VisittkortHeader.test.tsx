@@ -30,7 +30,7 @@ test('setter fokus på brukerens navn on mount', () => {
 
     const focusedElement = document.activeElement;
 
-    expect(focusedElement.innerHTML.toLowerCase()).toContain(aremark.navn.sammensatt.toLowerCase());
+    expect(focusedElement!.innerHTML.toLowerCase()).toContain(aremark.navn.sammensatt.toLowerCase());
 });
 
 test('setter fokus på sikkerhetstiltak on mount', () => {
@@ -53,5 +53,5 @@ test('setter fokus på sikkerhetstiltak on mount', () => {
 
     const focusedElement = document.activeElement;
 
-    expect(focusedElement.innerHTML).toContain('Sikkerhetstiltak');
+    expect(focusedElement!.innerHTML).toContain('Sikkerhetstiltak');
 });

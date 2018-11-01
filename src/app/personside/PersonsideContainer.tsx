@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { connect, Dispatch } from 'react-redux';
-import { Action } from 'redux';
+import { connect } from 'react-redux';
+import { Action , Dispatch} from 'redux';
 
 import { AppState } from '../../redux/reducers';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';

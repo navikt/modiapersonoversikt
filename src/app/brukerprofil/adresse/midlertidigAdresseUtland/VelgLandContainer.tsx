@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { AppState } from '../../../../redux/reducers';
@@ -10,6 +10,7 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Dispatch } from '../../../../redux/redux-thunk-fix';
 
 interface DispatchProps {
     hentLand: () => void;

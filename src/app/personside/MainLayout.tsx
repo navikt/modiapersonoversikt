@@ -6,9 +6,11 @@ import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
 import Visittkort from './visittkort/VisittkortContainer';
 import { toggleDialogpanel, UIState } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { LayoutWrapper } from './MainLayoutStyles';
 import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
+import { Dispatch } from '../../redux/redux-thunk-fix';
+import { Action } from 'redux';
 
 interface StateProps {
     UI: UIState;
@@ -60,7 +62,7 @@ function mapStateToProps(state: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         toggleDialogpanel: () => dispatch(toggleDialogpanel())
     };

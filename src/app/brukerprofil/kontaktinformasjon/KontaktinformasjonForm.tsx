@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { Action } from 'redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
@@ -11,10 +11,7 @@ import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
-import {
-    formaterTelefonnummer,
-    sorterRetningsnummerMedNorgeFørst
-} from '../../../utils/telefon-utils';
+import { formaterTelefonnummer, sorterRetningsnummerMedNorgeFørst } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import {
@@ -29,6 +26,7 @@ import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
 
 export interface TelefonInput {
     retningsnummer: string;

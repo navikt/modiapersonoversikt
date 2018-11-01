@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
-
+import { connect } from 'react-redux';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { STATUS } from '../../../redux/restReducers/utils';
@@ -35,6 +33,8 @@ import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtil
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Dispatch } from '../../../redux/redux-thunk-fix';
+import { Action } from 'redux';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
