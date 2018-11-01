@@ -17,6 +17,7 @@ import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
+import DetaljerCollapse from '../DetaljerCollapse';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -174,13 +175,16 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                                 <PrintKnapp onClick={this.handlePrint}/>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
-                        <UtbetalingsDetaljer
-                            visDetaljer={this.state.visDetaljer}
-                            toggleVisDetaljer={this.toggleVisDetaljer}
-                            ytelse={ytelse}
-                            konto={utbetaling.konto}
-                            melding={utbetaling.melding}
-                        />
+                        <DetaljerCollapse
+                            open={this.state.visDetaljer}
+                            toggle={this.toggleVisDetaljer}
+                        >
+                            <UtbetalingsDetaljer
+                                ytelse={ytelse}
+                                konto={utbetaling.konto}
+                                melding={utbetaling.melding}
+                            />
+                        </DetaljerCollapse>
                     </UtbetalingStyle>
                 </UtbetalingTabellStyling>
             </Printer>

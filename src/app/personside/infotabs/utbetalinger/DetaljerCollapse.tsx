@@ -11,12 +11,14 @@ interface Props {
     open: boolean;
     toggle: () => void;
     children: ReactNode;
+    header?: ReactNode;
 }
 
-const Wrapper = styled<{ open: boolean }, 'div'>('div')`
+const Wrapper = styled<{ open: boolean; hasHeader: boolean }, 'div'>('div')`
   transition: .5s;
-  padding: 0 ${theme.margin.px20} ${theme.margin.px20};
+  padding: ${props => props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`};
   ${props => props.open && theme.ekspandert};
+  ${props => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
 `;
 
 const CollapseAnimasjon = styled<{ open: boolean }, 'div'>('div')`
@@ -75,7 +77,8 @@ function DetaljerKnapp(props: KnappProps) {
 
 function DetaljerCollapse(props: Props) {
     return (
-        <Wrapper open={props.open}>
+        <Wrapper open={props.open} hasHeader={props.header !== undefined}>
+            {props.header}
             <CollapseAnimasjon open={props.open}>
                 <UnmountClosed isOpened={props.open}>
                     {props.children}

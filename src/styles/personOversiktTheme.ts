@@ -25,7 +25,6 @@ export const theme = {
         background-color: #f4f4f4;
         box-shadow: inset 0 0 0 1px #59514b;
         padding: ${pxToRem(20)};
-        margin: ${pxToRem(20)} 0 0;
     `,
     media: {
         smallScreen: 'max-width: 35rem',

@@ -50,19 +50,6 @@ const YtelsesListe = styled.ul`
   > li:not(:first-child) {
     border-top: ${theme.border.skilleSvak};
   }
-  > li {
-    padding: ${theme.margin.px20};
-    padding-left: ${theme.margin.px40};
-    position: relative;
-  }
-  > li::before {
-    position: absolute;
-    left: .7rem;
-    content: '•';
-    font-size: 4rem;
-    line-height: 1.5rem;
-    color: ${theme.color.kategori};
-  }
 `;
 
 class SammensattUtbetaling extends React.PureComponent<Props, State> {
