@@ -121,7 +121,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c7 ol > *:not(:first-child) {
-  border-top: solid 2px #e7e9e9;
+  border-top: solid 0.0625rem #59514b;
   padding: 20px 10px 20px 10px;
 }
 
@@ -685,7 +685,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <p
                         className="typo-normal"
                       >
-                        Dokumentet har
+                        Dokumentet har 
                         1
                          vedlegg:
                       </p>
@@ -703,7 +703,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      Saksid:
+                      Saksid: 
                       dxuyjwm0
                     </p>
                   </div>
@@ -766,7 +766,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <p
                         className="typo-normal"
                       >
-                        Dokumentet har
+                        Dokumentet har 
                         1
                          vedlegg:
                       </p>
@@ -784,7 +784,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      Saksid:
+                      Saksid: 
                       00aeiyc5
                     </p>
                   </div>
