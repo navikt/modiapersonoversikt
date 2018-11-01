@@ -153,7 +153,7 @@ class Header extends React.PureComponent<{ person: Person }> {
     }
 }
 
-class BrukerprofilSide extends React.Component<Props> {
+class BrukerprofilSide extends React.PureComponent<Props> {
 
     componentDidMount() {
         if (this.props.personReducer.status === STATUS.NOT_STARTED) {

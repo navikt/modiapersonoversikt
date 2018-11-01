@@ -13,6 +13,7 @@ import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ModalWrapper from 'nav-frontend-modal';
+import { Person } from '../models/person/person';
 
 if (mockEnabled) {
     setupMock();
@@ -25,12 +26,16 @@ const store = createStore(
     )
 );
 
+export const PersonContext = React.createContext<string | undefined>(undefined);
+
 class App extends React.Component<{}> {
 
     private appRef = React.createRef<HTMLElement>();
 
     constructor(props: {}) {
         super(props);
+
+        store.subscribe(() => this.forceUpdate());
     }
 
     componentDidMount() {
@@ -41,18 +46,22 @@ class App extends React.Component<{}> {
 
     render() {
         return (
-            <Provider store={store}>
-                <AppWrapper innerRef={this.appRef}>
-                    <nav id="header"/>
-                    <BrowserRouter>
-                        <Content>
-                            <Eventlistener/>
-                            <Routing/>
-                        </Content>
-                    </BrowserRouter>
-                    <UnderArbeid/>
-                </AppWrapper>
-            </Provider>
+            <PersonContext.Provider
+                value={(store.getState().restEndepunkter.personinformasjon.data as Person).fødselsnummer || undefined}
+            >
+                <Provider store={store}>
+                    <AppWrapper innerRef={this.appRef}>
+                        <nav id="header"/>
+                        <BrowserRouter>
+                            <Content>
+                                <Eventlistener/>
+                                <Routing/>
+                            </Content>
+                        </BrowserRouter>
+                        <UnderArbeid/>
+                    </AppWrapper>
+                </Provider>
+            </PersonContext.Provider>
         );
     }
 }
