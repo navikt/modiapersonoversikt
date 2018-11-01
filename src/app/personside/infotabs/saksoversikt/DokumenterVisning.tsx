@@ -175,7 +175,7 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     if (filtrerteDokumenter.length === 0) {
         return (
             <AlertStripeInfo>
-                Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
+                Det finnes ingen saksdokumenter for valgte kombinasjon av avsender.
             </AlertStripeInfo>
         );
     }
