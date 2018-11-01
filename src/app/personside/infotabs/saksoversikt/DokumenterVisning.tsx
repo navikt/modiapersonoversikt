@@ -188,7 +188,7 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     const harTilgang = sakstema.harTilgang;
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
+        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category} />
     );
 
     return (

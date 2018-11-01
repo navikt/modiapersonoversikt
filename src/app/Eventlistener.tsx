@@ -12,7 +12,7 @@ interface StateProps {
 
 type Props = StateProps & RouteComponentProps<{}> ;
 
-class Eventlistener extends React.Component<Props> {
+class Eventlistener extends React.PureComponent<Props> {
 
     constructor(props: Props) {
         super(props);
