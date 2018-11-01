@@ -18,7 +18,7 @@ import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
-import { Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 
 const BrukerprofilWrapper = styled.article`
@@ -38,12 +38,11 @@ const HeaderStyle = styled.section`
 `;
 
 const HeaderContent = styled.section`
-  text-align: center;
   flex-grow: 1;
-  text-align: center;
-  > *:first-child {
-    margin-right: 1.7rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 `;
 
 const ContentWrapper = styled.section`
@@ -65,6 +64,12 @@ const ContentWrapper = styled.section`
 
 const LinkWrapper = styled.div`
   margin-bottom: 1em;
+`;
+
+const Fokus = styled.div`
+  &:focus {
+    ${theme.focus}
+  }
 `;
 
 interface RoutingProps {
@@ -95,7 +100,7 @@ function getAlder(person: Person) {
 }
 
 function Navn({person}: { person: Person }) {
-    return <Undertekst>{hentNavn(person)} ({getAlder(person)})</Undertekst>;
+    return <Normaltekst>{hentNavn(person)} ({getAlder(person)})</Normaltekst>;
 }
 
 function Konto({person}: { person: Person }) {
@@ -119,19 +124,33 @@ function TilbakeLenke({fnr}: { fnr: string }) {
     );
 }
 
-function Header({person}: { person: Person }) {
-    return (
-        <HeaderStyle>
-            <TilbakeLenke fnr={person.fødselsnummer}/>
-            <HeaderContent>
-                <Systemtittel>Administrer brukerprofil</Systemtittel>
-                <div>
-                    <Navn person={person}/>
-                    <Konto person={person}/>
-                </div>
-            </HeaderContent>
-        </HeaderStyle>
-    );
+class Header extends React.PureComponent<{ person: Person }> {
+
+    private ref = React.createRef<HTMLElement>();
+
+    componentDidMount() {
+        if (this.ref.current) {
+            this.ref.current.focus();
+        }
+    }
+
+    render() {
+        const person = this.props.person;
+        return (
+            <HeaderStyle>
+                <TilbakeLenke fnr={person.fødselsnummer}/>
+                <HeaderContent>
+                    <Fokus innerRef={this.ref} tabIndex={-1}>
+                        <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
+                    </Fokus>
+                    <div>
+                        <Navn person={person}/>
+                        <Konto person={person}/>
+                    </div>
+                </HeaderContent>
+            </HeaderStyle>
+        );
+    }
 }
 
 class BrukerprofilSide extends React.Component<Props> {
