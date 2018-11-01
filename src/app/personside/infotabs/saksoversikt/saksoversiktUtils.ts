@@ -3,17 +3,21 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import * as moment from 'moment';
 
-export function hentDatoForSisteHendelse(sakstema: Sakstema) {
+export function hentFormattertDatoForSisteHendelse(sakstema: Sakstema) {
+    return formatterDato(hentDatoForSisteHendelse(sakstema));
+}
+
+export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
     if (sakstema.behandlingskjeder.length > 0 && sakstema.dokumentMetadata.length === 0) {
-        return formatterDato(hentSenesteDatoForBehandling(sakstema.behandlingskjeder));
+        return hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
     }
     if (sakstema.behandlingskjeder.length === 0 && sakstema.dokumentMetadata.length > 0) {
-        return formatterDato(hentSenesteDatoForDokumenter(sakstema.dokumentMetadata));
+        return hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     }
 
     const dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
     const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
-    return formatterDato(dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter);
+    return dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter;
 }
 
 function hentSenesteDatoForDokumenter(dokumentmetadata: DokumentMetadata[]) {

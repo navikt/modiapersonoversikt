@@ -7,7 +7,7 @@ import SakstemaComponent from './SakstemaComponent';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertittel } from 'nav-frontend-typografi';
 import SaksIkon from '../../../../svg/SaksIkon';
-import { hentDatoForSisteHendelse } from './saksoversiktUtils';
+import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
 export interface SakstemaProps {
     sakstema: Sakstema[];
@@ -80,7 +80,7 @@ function GrupperteTema(props: SakstemaProps) {
                 erValgtSakstema={props.valgtSakstema === sakstema}
                 sakstema={sakstema}
                 oppdaterSakstema={props.oppdaterSakstema}
-                key={sakstema.temakode + hentDatoForSisteHendelse(sakstema)}
+                key={sakstema.temakode + hentFormattertDatoForSisteHendelse(sakstema)}
             />
         )
     );
@@ -131,7 +131,9 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
     }
 
     render () {
-        const sakstema = this.props.sakstema;
+        const sakstema = this.props.sakstema.sort((a, b) => {
+            return hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
+        });
         if (sakstema.length === 0) {
             return (
                 <AlertStripeInfo>

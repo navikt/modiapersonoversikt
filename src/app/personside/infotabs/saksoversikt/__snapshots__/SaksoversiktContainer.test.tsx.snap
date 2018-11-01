@@ -167,6 +167,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: auto;
 }
 
+.c21 {
+  text-transform: uppercase;
+}
+
+.c20 {
+  font-weight: bold;
+}
+
 .c22 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -188,14 +196,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23 {
   margin: 1rem 0;
-}
-
-.c21 {
-  text-transform: uppercase;
-}
-
-.c20 {
-  font-weight: bold;
 }
 
 .c13 {
@@ -424,22 +424,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  15.02.2016 kl. 05:05
+                  16.05.2018 kl. 04:59
                 </p>
                 <p
                   className="typo-element"
                 >
-                  Sykepenger
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  1
-                   
-                  søknad
-                   er 
-                  ferdig behandlet
-                  .
+                  Arbeidsavklaringspenger
                 </p>
               </div>
               <div
@@ -479,12 +469,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  16.05.2018 kl. 04:59
+                  15.02.2016 kl. 05:05
                 </p>
                 <p
                   className="typo-element"
                 >
-                  Arbeidsavklaringspenger
+                  Sykepenger
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  1
+                   
+                  søknad
+                   er 
+                  ferdig behandlet
+                  .
                 </p>
               </div>
               <div

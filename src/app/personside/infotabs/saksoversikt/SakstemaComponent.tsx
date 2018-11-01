@@ -6,7 +6,7 @@ import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
-import { hentDatoForSisteHendelse } from './saksoversiktUtils';
+import { hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
 interface Props {
     sakstema: Sakstema;
@@ -82,7 +82,7 @@ function SakstemaComponent(props: Props) {
     return (
         <Wrapper valgt={props.erValgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
             <div>
-                <Normaltekst>{hentDatoForSisteHendelse(props.sakstema)}</Normaltekst>
+                <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>
                 {sakerUnderBehandling}
                 {sakerFerdigBehandlet}
