@@ -16,17 +16,24 @@ class AriaNotification extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            render: this.props.dontShowOnFirstRender !== undefined ? !this.props.dontShowOnFirstRender : true
-        };
-        this.setTimeout();
+        this.state = {render: false};
+    }
+
+    componentDidMount() {
+        if (this.props.dontShowOnFirstRender === undefined || !this.props.dontShowOnFirstRender) {
+            this.notify();
+        }
     }
 
     componentWillUpdate(prevProps: Props) {
         if (prevProps.beskjed !== this.props.beskjed) {
-            this.setState({render: true});
-            this.setTimeout();
+            this.notify();
         }
+    }
+
+    notify() {
+        this.setState({render: true});
+        this.setTimeout();
     }
 
     setTimeout () {

@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { DokumentMetadata as DokumentInterface, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
+import {
+    Dokument as EnkeltDokument,
+    DokumentMetadata as DokumentInterface,
+    Entitet
+} from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import * as moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { UnmountClosed } from 'react-collapse';
-import { getSaksdokument } from '../../../../utils/url-utils';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import DetaljerKnapp from '../utbetalinger/utils/DetaljerKnapp';
-import { SpaceBetween } from '../../../../components/common-styled-components';
+import DokumentOgVedlegg from './DokumentOgVedlegg';
+import ModalWrapper from 'nav-frontend-modal';
 
 interface Props {
     dokument: DokumentInterface;
@@ -20,10 +21,11 @@ interface Props {
 
 interface State {
     åpnet: boolean;
+    valgtDokument: EnkeltDokument;
 }
 
-const Wrapper = styled<{ åpen: boolean }, 'div'>('div')`
-  ${props => props.åpen && 'background-color: rgba(0, 0, 0, 0.03);'}
+const Wrapper = styled.div`
+
 `;
 
 const InfoWrapper = styled.div`
@@ -36,26 +38,12 @@ const InfoWrapper = styled.div`
   }
   cursor: pointer;
   &:hover {
-    background-color: ${theme.color.objektlisteHover};
-  }
-  &:active {
-    background-color: ${theme.color.objektlisteActive};
-  }
+      background-color: ${theme.color.objektlisteHover};
+    }
 `;
 
-const EmbedWrapper = styled.div`
-  padding: 1rem;
-  object {
-    box-shadow: 0 0 2rem #888;
-  }
-`;
-
-const KnappWrapper = styled.div`
-  display: flex;
-  padding-bottom: .2rem;
-  > *:not(:first-child) {
-    margin-left: .5rem;
-  }
+const VedleggStyle = styled.div`
+  margin: 1rem 0;
 `;
 
 function formaterEntitet(fra: Entitet) {
@@ -80,55 +68,83 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-function visDokument(harTilgang: boolean, url: string) {
-    if (harTilgang) {
-        return <object data={url} width={'100%'} height={'500px'}/>;
-    } else {
-        return <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>;
-    }
-}
-
 class DokumentKomponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            åpnet: false
+            åpnet: false,
+            valgtDokument: this.props.dokument.hoveddokument
         };
+        this.skjulModal = this.skjulModal.bind(this);
+        this.visModal = this.visModal.bind(this);
+        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
     }
 
-    toggle() {
+    skjulModal() {
+        this.setState({
+            åpnet: false
+        });
+    }
+
+    visModal() {
         const åpnet = !this.state.åpnet;
         this.setState({åpnet: åpnet});
+    }
+
+    velgOgVisDokument(dokument: EnkeltDokument) {
+        this.setState({
+            valgtDokument: dokument,
+            åpnet: true
+        });
     }
 
     render() {
         const dokument = this.props.dokument;
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
-        const dokUrl = getSaksdokument(dokument.journalpostId, dokument.hoveddokument.dokumentreferanse);
+        const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
+            (
+                <VedleggStyle>
+                    <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
+                    <ul>
+                        {dokument.vedlegg.map(vlegg =>
+                            <li key={vlegg.tittel}>
+                                <a href={'#'} onClick={() => this.velgOgVisDokument(vlegg)}>{vlegg.tittel}</a>
+                            </li>)}
+                    </ul>
+                </VedleggStyle>
+            ) : null;
 
         return (
-            <Wrapper åpen={this.state.åpnet} onClick={() => this.toggle()}>
-                <InfoWrapper>
-                    {dokumentIkon(this.props.harTilgang)}
-                    <SpaceBetween>
+            <>
+                <Wrapper onClick={() => this.visModal()}>
+                    <InfoWrapper>
+                        {dokumentIkon(this.props.harTilgang)}
                         <div>
                             <Normaltekst>
                                 {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                             </Normaltekst>
-                            <Element>{dokument.navn}</Element>
+                            <a href={'#'} onClick={() => this.velgOgVisDokument(dokument.hoveddokument)}>
+                                {dokument.hoveddokument.tittel}
+                            </a>
+                            {vedlegg}
                             <Normaltekst>Saksid: {saksid}</Normaltekst>
                         </div>
-                        <KnappWrapper>
-                            <DetaljerKnapp onClick={() => this.toggle()} open={this.state.åpnet}/>
-                        </KnappWrapper>
-                    </SpaceBetween>
-                </InfoWrapper>
-                <UnmountClosed isOpened={this.state.åpnet}>
-                    <EmbedWrapper>
-                        {visDokument(this.props.harTilgang, dokUrl)}
-                    </EmbedWrapper>
-                </UnmountClosed>
-            </Wrapper>
+                    </InfoWrapper>
+                </Wrapper>
+                {this.state.åpnet &&
+                <ModalWrapper
+                    isOpen={true}
+                    contentLabel="Dokumentvisning"
+                    onRequestClose={this.skjulModal}
+                >
+                    <DokumentOgVedlegg
+                        dokument={dokument}
+                        harTilgang={this.props.harTilgang}
+                        valgtTab={this.state.valgtDokument}
+                        onChange={this.velgOgVisDokument}
+                    />
+                </ModalWrapper>}
+            </>
         );
     }
 }
