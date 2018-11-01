@@ -12,8 +12,9 @@ import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import ModalWrapper from 'nav-frontend-modal';
 
-if (mockEnabled === 'true') {
+if (mockEnabled) {
     setupMock();
 }
 
@@ -26,14 +27,22 @@ const store = createStore(
 
 class App extends React.Component<{}> {
 
+    private appRef = React.createRef<HTMLElement>();
+
     constructor(props: {}) {
         super(props);
+    }
+
+    componentDidMount() {
+        if (this.appRef.current) {
+            ModalWrapper.setAppElement(this.appRef.current);
+        }
     }
 
     render() {
         return (
             <Provider store={store}>
-                <AppWrapper>
+                <AppWrapper innerRef={this.appRef}>
                     <nav id="header"/>
                     <BrowserRouter>
                         <Content>

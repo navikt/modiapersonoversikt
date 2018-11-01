@@ -13,6 +13,7 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
 import { AvsenderFilter } from './SaksoversiktContainer';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 interface Props {
     sakstema?: Sakstema;
@@ -30,29 +31,30 @@ const Header = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 0px ${theme.margin.px10};
   > * {
-    padding: 10px;
+    padding: ${theme.margin.px10};
   }
+  > *:first-child {
+        flex-grow: 1;
+    }
 `;
 
 const DokumenterArticle = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
   margin-top: ${theme.margin.layout};
-  > *:first-child {
-    padding: ${theme.margin.px20};
-  }
 `;
 
 const DokumenterListe = styled.ol`
-  padding: 0 ${theme.margin.px10};
+  padding: 0;
   margin: 0;
   list-style: none;
 `;
 
 const ÅrsGruppeStyle = styled.li`
   > *:first-child {
-    background-color: rgba(102, 203, 236, 0.18);
+    background-color: ${theme.color.kategori};
     padding: .2rem ${theme.margin.px10};
   }
   ol {
@@ -60,11 +62,13 @@ const ÅrsGruppeStyle = styled.li`
     margin: 0;
   }
   ol > *:not(:first-child) {
-    border-top: solid 2px ${theme.color.bakgrunn};
+    border-top: ${theme.border.skille};
   }
 `;
 
 const LenkeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   > *:first-child {
     padding-bottom: 0.5rem;
   }
@@ -184,7 +188,7 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     const harTilgang = sakstema.harTilgang;
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
+        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category} />
     );
 
     return (
@@ -228,6 +232,7 @@ function DokumenterVisning(props: Props) {
         <div>
             <Header>
                 <LenkeWrapper>
+                    <Undertittel>Saksdokumenter</Undertittel>
                     {lenkeNorg(temakodeTilNorgoppslag, hentNorg2Url(props.baseUrlsResponse))}
                 </LenkeWrapper>
                 <Form>

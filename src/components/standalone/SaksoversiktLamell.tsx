@@ -17,7 +17,7 @@ const store = createStore(
     applyMiddleware(thunkMiddleware)
 );
 
-if (mockEnabled === 'true') {
+if (mockEnabled) {
     setupMock();
 }
 
