@@ -108,7 +108,7 @@ function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
         <DokumentKomponent
             dokument={dokument}
             harTilgang={harTilgang}
-            key={dokument.temakode + dokument.dato.år + dokument.dato.måned + dokument.dato.dag + dokument.dato.time}
+            key={dokument.hoveddokument.dokumentreferanse + dokument.journalpostId}
         />
     ));
 
