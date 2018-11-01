@@ -167,6 +167,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: auto;
 }
 
+.c21 {
+  text-transform: uppercase;
+}
+
+.c20 {
+  font-weight: bold;
+}
+
 .c22 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -188,14 +196,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23 {
   margin: 1rem 0;
-}
-
-.c21 {
-  text-transform: uppercase;
-}
-
-.c20 {
-  font-weight: bold;
 }
 
 .c13 {
@@ -793,6 +793,51 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </ol>
           </li>
         </ol>
+        <div
+          aria-live={undefined}
+          className="alertstripe alertstripe--info"
+        >
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-orange"
+              onClick={undefined}
+              style={undefined}
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <title>
+                Informasjon
+              </title>
+              <g
+                fill="#D87F0A"
+                fillRule="evenodd"
+              >
+                <path
+                  d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm0 22.957C5.958 22.957 1.043 18.042 1.043 12 1.043 5.958 5.958 1.043 12 1.043c6.042 0 10.957 4.915 10.957 10.957 0 6.042-4.915 10.957-10.957 10.957z"
+                />
+                <path
+                  d="M15.13 18.783h-2.608v-8.87A.522.522 0 0 0 12 9.391H9.913a.522.522 0 0 0 0 1.044h1.565v8.348H8.87a.522.522 0 0 0 0 1.043h6.26a.522.522 0 0 0 0-1.043z"
+                />
+                <ellipse
+                  cx="11.478"
+                  cy="5.739"
+                  rx="1.043"
+                  ry="1.043"
+                />
+              </g>
+            </svg>
+          </span>
+          <span
+            className="typo-normal alertstripe__tekst"
+          >
+            Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter som er journalført vises fra og med 4.juni 2016
+          </span>
+        </div>
       </article>
     </div>
   </section>
