@@ -121,7 +121,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c7 ol > *:not(:first-child) {
-  border-top: solid 2px #efefef;
+  border-top: solid 2px #e7e9e9;
   padding: 20px 10px 20px 10px;
 }
 
@@ -279,7 +279,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c19 ol > *:not(:first-child) {
-  border-top: solid 2px #efefef;
+  border-top: solid 2px #e7e9e9;
 }
 
 .c14 > *:first-child {

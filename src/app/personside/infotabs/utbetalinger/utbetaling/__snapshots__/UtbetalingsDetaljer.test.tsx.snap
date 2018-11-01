@@ -1,298 +1,196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c5 {
+.c3 {
   font-weight: bold;
 }
 
-.c0 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
-  border-radius: 0.25rem;
-  background-color: #f4f4f4;
-  box-shadow: inset 0 0 0 1px #59514b;
-  padding: 1.25rem;
-  margin: 1.25rem 0 0;
-}
-
-.c1 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem;
-  padding: 0;
-}
-
-.c7 {
-  border: none;
-  padding: .1rem .2rem;
-  margin-top: 1rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c7:hover {
-  opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c8 {
-  margin-right: .5rem;
-}
-
-.c2 th:not(:first-child) {
+.c0 th:not(:first-child) {
   font-weight: normal;
   font-style: italic;
 }
 
-.c3 td:not(:first-child) {
+.c1 td:not(:first-child) {
   font-weight: bold;
 }
 
-.c4 {
-  border-top: 2px solid #efefef;
+.c2 {
+  border-top: 2px solid #e7e9e9;
   margin: .5rem 0;
 }
 
-@media print {
-  .c7 {
-    display: none;
-  }
-}
-
-<div
+<aside
   className="c0"
-  open={true}
 >
-  <div
-    className="c1"
-    open={true}
+  <span
+    className="typo-normal"
   >
-    <aside
-      className="c2"
+    <div
+      className="c1"
     >
-      <span
-        className="typo-normal"
-      >
-        <div
-          className="c3"
-        >
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  Konto
-                </th>
-                <th>
-                  Brutto
-                </th>
-                <th>
-                  Trekk
-                </th>
-                <th>
-                  Utbetalt
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  123
-                </td>
-                <td>
-                  13,370.00
-                </td>
-                <td>
-                  -1,984.00
-                </td>
-                <td>
-                  11,386.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </span>
-      <div
-        className="c4"
-      />
-      <span
-        className="typo-normal"
-      >
-        <table>
-          <thead>
-            <tr>
-              <th>
-                Detaljer
-              </th>
-              <th>
-                Sats
-              </th>
-              <th>
-                Antall
-              </th>
-              <th>
-                Beløp
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Bacon
-              </td>
-              <td>
-                558.00
-              </td>
-              <td>
-                10
-              </td>
-              <td>
-                5,580.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Computer
-              </td>
-              <td>
-                1,310.00
-              </td>
-              <td>
-                3
-              </td>
-              <td>
-                3,930.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Mouse
-              </td>
-              <td>
-                1,930.00
-              </td>
-              <td>
-                2
-              </td>
-              <td>
-                3,860.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Skattetrekk
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                -730.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Prosenttrekk
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                -1,042.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Prosenttrekk
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                
-              </td>
-              <td>
-                -212.00
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </span>
-      <div
-        className="c4"
-      />
-      <h4
-        className="typo-normal"
-      >
-        <span
-          className="c5"
-        >
-          Melding
-        </span>
-      </h4>
-      <p
-        className="typo-normal"
-      >
-        Dette er en melding
-      </p>
-    </aside>
-  </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Konto
+            </th>
+            <th>
+              Brutto
+            </th>
+            <th>
+              Trekk
+            </th>
+            <th>
+              Utbetalt
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              123
+            </td>
+            <td>
+              13,370.00
+            </td>
+            <td>
+              -1,984.00
+            </td>
+            <td>
+              11,386.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </span>
   <div
-    className="c6"
+    className="c2"
+  />
+  <span
+    className="typo-normal"
   >
-    <button
-      aria-expanded={true}
-      className="c7"
-      onClick={[Function]}
-      open={true}
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Detaljer
+          </th>
+          <th>
+            Sats
+          </th>
+          <th>
+            Antall
+          </th>
+          <th>
+            Beløp
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Bacon
+          </td>
+          <td>
+            558.00
+          </td>
+          <td>
+            10
+          </td>
+          <td>
+            5,580.00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Computer
+          </td>
+          <td>
+            1,310.00
+          </td>
+          <td>
+            3
+          </td>
+          <td>
+            3,930.00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Mouse
+          </td>
+          <td>
+            1,930.00
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+            3,860.00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Skattetrekk
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            -730.00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Prosenttrekk
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            -1,042.00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Prosenttrekk
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            -212.00
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
+  <div
+    className="c2"
+  />
+  <h4
+    className="typo-normal"
+  >
+    <span
+      className="c3"
     >
-      <span
-        className="c8"
-      >
-        <span
-          className="typo-normal"
-        >
-          Skjul
-           detaljer
-        </span>
-      </span>
-      <i
-        className="nav-frontend-chevron chevronboks chevron--opp"
-      />
-    </button>
-  </div>
-</div>
+      Melding
+    </span>
+  </h4>
+  <p
+    className="typo-normal"
+  >
+    Dette er en melding
+  </p>
+</aside>
 `;
