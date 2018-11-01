@@ -39,12 +39,29 @@ const SammensattUtbetalingStyle = styled.li`
 `;
 
 const YtelsesListe = styled.ul`
-  padding: 0;
   margin-top: 2rem;
-  > li {
-    margin-left: 1.5rem;
+  padding: 0;
+  list-style: none;
+  border-radius: ${theme.borderRadius.layout};
+  border: ${theme.border.skilleSvak};
+  @media print {
+    border: none;
+  }
+  > li:not(:first-child) {
     border-top: ${theme.border.skilleSvak};
-    padding-top: 1rem;
+  }
+  > li {
+    padding: ${theme.margin.px20};
+    padding-left: ${theme.margin.px40};
+    position: relative;
+  }
+  > li::before {
+    position: absolute;
+    left: .7rem;
+    content: '•';
+    font-size: 4rem;
+    line-height: 1.5rem;
+    color: ${theme.color.kategori};
   }
 `;
 

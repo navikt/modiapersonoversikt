@@ -50,7 +50,7 @@ export const theme = {
     },
     border: {
         skille: `solid ${pxToRem(1)} #59514b;`,
-        skilleSvak: `solid ${pxToRem(1)} #dddddd;`
+        skilleSvak: `solid ${pxToRem(1)} #b7b1a9;`
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
