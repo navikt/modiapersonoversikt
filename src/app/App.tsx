@@ -13,7 +13,7 @@ import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 import ModalWrapper from 'nav-frontend-modal';
 
-if (mockEnabled === 'true') {
+if (mockEnabled) {
     setupMock();
 }
 

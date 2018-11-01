@@ -9,11 +9,11 @@ function getApiBaseUri() {
     }
 }
 
-function getMockEnabled() {
+function getMockEnabled(): boolean {
     if (typeof _mockEnabled === 'undefined') {
-        return 'false';
+        return false;
     } else {
-        return _mockEnabled;
+        return _mockEnabled === 'true';
     }
 }
 
