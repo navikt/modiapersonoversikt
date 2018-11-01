@@ -140,6 +140,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                                 baseUrlsResponse={this.props.baseUrlReducer.data}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
+                                fødselsnummer={this.props.fødselsnummer}
                             />
                         </DokumentListe>
                     </Innholdslaster>

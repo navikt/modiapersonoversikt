@@ -17,6 +17,7 @@ import ModalWrapper from 'nav-frontend-modal';
 interface Props {
     dokument: DokumentInterface;
     harTilgang: boolean;
+    fødselsnummer: string;
 }
 
 interface State {
@@ -142,6 +143,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                         harTilgang={this.props.harTilgang}
                         valgtTab={this.state.valgtDokument}
                         onChange={this.velgOgVisDokument}
+                        fødselsnummer={this.props.fødselsnummer}
                     />
                 </ModalWrapper>}
             </>

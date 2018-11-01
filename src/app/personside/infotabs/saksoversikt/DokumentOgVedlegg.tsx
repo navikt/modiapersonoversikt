@@ -12,6 +12,13 @@ interface Props {
     valgtTab: Dokument;
     harTilgang: boolean;
     onChange: (valgtDokument: Dokument) => void;
+    fødselsnummer: string;
+}
+
+interface VisDokumentProps {
+    fnr: string;
+    journalpostId: string;
+    dokumentreferanse: string;
 }
 
 const Content = styled.div`
@@ -29,8 +36,8 @@ const AlertWrapper = styled.div`
   padding: ${theme.margin.px40} ${theme.margin.px10};
 `;
 
-function VisDokument({journalpostId, dokumentreferanse}: {journalpostId: string, dokumentreferanse: string}) {
-    const dokUrl = getSaksdokument(journalpostId, dokumentreferanse);
+function VisDokument({fnr, journalpostId, dokumentreferanse}: VisDokumentProps) {
+    const dokUrl = getSaksdokument(fnr, journalpostId, dokumentreferanse);
     console.log(`Prøver å laste ned ${dokUrl}`);
     return <object data={dokUrl} width={'100%'}/>;
 }
@@ -59,7 +66,11 @@ function DokumentOgVedlegg(props: Props) {
                 tabs={tabProps}
                 onChange={(event, index) => props.onChange(tabs[index])}
             />
-            <VisDokument journalpostId={props.dokument.journalpostId} dokumentreferanse={currentDok.dokumentreferanse}/>
+            <VisDokument
+                journalpostId={props.dokument.journalpostId}
+                dokumentreferanse={currentDok.dokumentreferanse}
+                fnr={props.fødselsnummer}
+            />
         </Content>
     );
 }

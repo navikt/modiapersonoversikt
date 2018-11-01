@@ -20,11 +20,13 @@ interface Props {
     baseUrlsResponse: BaseUrlsResponse;
     avsenderFilter: AvsenderFilter;
     toggleFilter: (key: keyof AvsenderFilter) => void;
+    fødselsnummer: string;
 }
 
 interface DokumentGruppeProps {
     gruppe: ArrayGroup<DokumentMetadata>;
     harTilgang: boolean;
+    fødselsnummer: string;
 }
 
 const Header = styled.section`
@@ -103,12 +105,13 @@ function lenkeNorg(sakstema: string, norg2Url: string) {
     );
 }
 
-function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
+function Dokumentgruppe({fødselsnummer, gruppe, harTilgang}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
             dokument={dokument}
             harTilgang={harTilgang}
             key={dokument.temakode + dokument.dato.år + dokument.dato.måned + dokument.dato.dag + dokument.dato.time}
+            fødselsnummer={fødselsnummer}
         />
     ));
 
@@ -168,7 +171,7 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFil
     }
 }
 
-function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter) {
+function hentDokumentinnhold(fødselsnummer: string, sakstema: Sakstema, avsenderFilter: AvsenderFilter) {
     const filtrerteDokumenter = sakstema.dokumentMetadata.filter(metadata =>
         hentRiktigAvsenderfilter(metadata.avsender, avsenderFilter));
 
@@ -188,7 +191,7 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     const harTilgang = sakstema.harTilgang;
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category}/>
+        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category} fødselsnummer={fødselsnummer} />
     );
 
     return (
@@ -226,7 +229,7 @@ function DokumenterVisning(props: Props) {
     );
 
     const temakodeTilNorgoppslag = byggSøkestrengTilNorgTemaOppslag(props.sakstema);
-    const dokumentinnhold = hentDokumentinnhold(props.sakstema, props.avsenderFilter);
+    const dokumentinnhold = hentDokumentinnhold(props.fødselsnummer, props.sakstema, props.avsenderFilter);
 
     return (
         <div>
