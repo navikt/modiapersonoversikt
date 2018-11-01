@@ -55,7 +55,7 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
-    private buttonWrapperRef = React.createRef<HTMLDivElement>();
+    private buttonWrapperRef = React.createRef<HTMLElement>();
     private utbetalingRef = React.createRef<HTMLDivElement>();
     private print: () => void;
 
@@ -170,9 +170,11 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                                 <Normaltekst>{periode}</Normaltekst>
                                 <Normaltekst>{forfallsInfo}</Normaltekst>
                             </SpaceBetween>
-                            <SpaceBetween innerRef={this.buttonWrapperRef}>
+                            <SpaceBetween>
                                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <PrintKnapp onClick={this.handlePrint}/>
+                                <span ref={this.buttonWrapperRef}>
+                                    <PrintKnapp onClick={this.handlePrint}/>
+                                </span>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
                         <DetaljerCollapse
