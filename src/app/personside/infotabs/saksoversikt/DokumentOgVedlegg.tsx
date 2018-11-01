@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
-import { getSaksdokument } from '../../../../utils/url-utils';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
+import VisDokumentContainer from './VisDokumentContainer';
 
 interface Props {
     dokument: DokumentMetadata;
@@ -28,12 +28,6 @@ const Content = styled.div`
 const AlertWrapper = styled.div`
   padding: ${theme.margin.px40} ${theme.margin.px10};
 `;
-
-function VisDokument({journalpostId, dokumentreferanse}: {journalpostId: string, dokumentreferanse: string}) {
-    const dokUrl = getSaksdokument(journalpostId, dokumentreferanse);
-    console.log(`Prøver å laste ned ${dokUrl}`);
-    return <object data={dokUrl} width={'100%'}/>;
-}
 
 function DokumentOgVedlegg(props: Props) {
     if (!props.harTilgang) {
@@ -59,7 +53,10 @@ function DokumentOgVedlegg(props: Props) {
                 tabs={tabProps}
                 onChange={(event, index) => props.onChange(tabs[index])}
             />
-            <VisDokument journalpostId={props.dokument.journalpostId} dokumentreferanse={currentDok.dokumentreferanse}/>
+            <VisDokumentContainer
+                journalpostId={props.dokument.journalpostId}
+                dokumentreferanse={currentDok.dokumentreferanse}
+            />
         </Content>
     );
 }
