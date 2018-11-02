@@ -38,7 +38,6 @@ const Wrapper = styled.div`
     .visually-hidden {
       display: none;
     }
-  
 `;
 
 const Header = styled.div`
@@ -144,7 +143,7 @@ class Printer extends React.Component<Props, State> {
         return (
             <>
                 <div id={this.contentId}>
-                    <Wrapper>
+                    <Wrapper className="ikke-skjul-ved-print-i-gamlemodia">
                         <Header>
                             <NavLogo/>
                             <Normaltekst>Utskriftsdato: {datoVerbose().sammensattMedKlokke}</Normaltekst>
