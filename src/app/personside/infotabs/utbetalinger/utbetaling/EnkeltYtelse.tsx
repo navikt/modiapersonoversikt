@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
+import DetaljerCollapse from '../DetaljerCollapse';
 
 export interface EnkeltYtelseProps {
     ytelse: Ytelse;
@@ -24,6 +25,22 @@ const EnkeltYtelseStyle = styled.li`
   cursor: pointer;
   &:focus {
     ${theme.focus}
+  }
+`;
+
+const BulletPoint = styled<{show: boolean}, 'div'>('div')`
+  position: relative;
+  transition: .3s;
+  ${props => props.show && 'padding-left: 1.5rem;'}
+  &::before {
+    position: absolute;
+    left: -.5rem;
+    content: '•';
+    font-size: 4rem;
+    line-height: 1.5rem;
+    color: ${theme.color.kategori};
+    transition: .3s;
+    ${props => !props.show && 'opacity: 0'}
   }
 `;
 
@@ -75,6 +92,17 @@ class EnkeltYtelse extends React.Component<Props> {
     render() {
         const ytelse = this.props.ytelse;
         const periode = periodeStringFromYtelse(ytelse);
+        const header = (
+            <BulletPoint show={!this.props.visDetaljer}>
+                <SpaceBetween>
+                    <Normaltekst><Bold>{ytelse.type}</Bold></Normaltekst>
+                    <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>
+                </SpaceBetween>
+                <Normaltekst>
+                    {periode}
+                </Normaltekst>
+            </BulletPoint>
+        );
 
         return (
             <EnkeltYtelseStyle
@@ -84,18 +112,16 @@ class EnkeltYtelse extends React.Component<Props> {
                 onFocus={this.setTilYtelseIFokus}
                 onBlur={this.removeEnterListener}
             >
-                <SpaceBetween>
-                    <Normaltekst><Bold>{ytelse.type}</Bold></Normaltekst>
-                    <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>
-                </SpaceBetween>
-                <Normaltekst>
-                    {periode}
-                </Normaltekst>
-                <UtbetalingsDetaljer
-                    toggleVisDetaljer={this.props.toggleVisDetaljer}
-                    ytelse={ytelse}
-                    {...this.props}
-                />
+                <DetaljerCollapse
+                    open={this.props.visDetaljer}
+                    toggle={this.props.toggleVisDetaljer}
+                    header={header}
+                >
+                    <UtbetalingsDetaljer
+                        ytelse={ytelse}
+                        {...this.props}
+                    />
+                </DetaljerCollapse>
             </EnkeltYtelseStyle>
         );
     }
