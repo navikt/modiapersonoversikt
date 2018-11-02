@@ -424,22 +424,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  15.02.2016
+                  16.05.2018
                 </p>
                 <p
                   className="typo-element"
                 >
-                  Sykepenger
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  1
-                   
-                  søknad
-                   er 
-                  ferdig behandlet
-                  .
+                  Arbeidsavklaringspenger
                 </p>
               </div>
               <div
@@ -479,12 +469,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  16.05.2018
+                  15.02.2016
                 </p>
                 <p
                   className="typo-element"
                 >
-                  Arbeidsavklaringspenger
+                  Sykepenger
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  1
+                   
+                  søknad
+                   er 
+                  ferdig behandlet
+                  .
                 </p>
               </div>
               <div

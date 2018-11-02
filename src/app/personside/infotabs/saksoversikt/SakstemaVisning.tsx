@@ -131,10 +131,11 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
     }
 
     render () {
-        const sakstema = this.props.sakstema.sort((a, b) => {
-            return hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        });
-        if (sakstema.length === 0) {
+        const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
+            hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
+        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
+
+        if (sortertSakstema.length === 0) {
             return (
                 <AlertStripeInfo>
                     Det finnes ingen saker for bruker.
@@ -142,7 +143,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
             );
         }
 
-        const komplettListe = [this.state.aggregertSakstema, ...sakstema];
+        const komplettListe = [this.state.aggregertSakstema, ...sortertSakstema];
 
         return (
             <Wrapper>
