@@ -15,7 +15,7 @@ export const theme = {
         lenkeSelected: '#66CBEC',
         lenkeHover: '#C6C2BF',
         lenke: '#0067c5',
-        bakgrunn: '#efefef',
+        bakgrunn: '#e7e9e9',
         kategori: '#9bd0b0',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
@@ -25,7 +25,6 @@ export const theme = {
         background-color: #f4f4f4;
         box-shadow: inset 0 0 0 1px #59514b;
         padding: ${pxToRem(20)};
-        margin: ${pxToRem(20)} 0 0;
     `,
     media: {
         smallScreen: 'max-width: 35rem',
@@ -50,7 +49,7 @@ export const theme = {
     },
     border: {
         skille: `solid ${pxToRem(1)} #59514b;`,
-        skilleSvak: `solid ${pxToRem(1)} #dddddd;`
+        skilleSvak: `solid ${pxToRem(1)} #b7b1a9;`
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
