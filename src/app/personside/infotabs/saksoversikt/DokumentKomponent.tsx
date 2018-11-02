@@ -107,7 +107,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
-                            <li key={vlegg.dokumentreferanse}>
+                            <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
                                 <a href={'#'} onClick={() => this.velgOgVisDokument(vlegg)}>{vlegg.tittel}</a>
                             </li>)}
                     </ul>
