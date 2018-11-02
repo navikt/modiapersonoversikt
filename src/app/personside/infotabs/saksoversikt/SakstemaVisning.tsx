@@ -7,7 +7,7 @@ import SakstemaComponent from './SakstemaComponent';
 import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertittel } from 'nav-frontend-typografi';
 import SaksIkon from '../../../../svg/SaksIkon';
-import { hentDatoForSisteHendelse } from './saksoversiktUtils';
+import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
 export interface SakstemaProps {
     sakstema: Sakstema[];
@@ -80,7 +80,7 @@ function GrupperteTema(props: SakstemaProps) {
                 erValgtSakstema={props.valgtSakstema === sakstema}
                 sakstema={sakstema}
                 oppdaterSakstema={props.oppdaterSakstema}
-                key={sakstema.temakode + hentDatoForSisteHendelse(sakstema)}
+                key={sakstema.temakode + hentFormattertDatoForSisteHendelse(sakstema)}
             />
         )
     );
@@ -131,8 +131,11 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
     }
 
     render () {
-        const sakstema = this.props.sakstema;
-        if (sakstema.length === 0) {
+        const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
+            hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
+        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
+
+        if (sortertSakstema.length === 0) {
             return (
                 <AlertStripeInfo>
                     Det finnes ingen saker for bruker.
@@ -140,7 +143,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
             );
         }
 
-        const komplettListe = [this.state.aggregertSakstema, ...sakstema];
+        const komplettListe = [this.state.aggregertSakstema, ...sortertSakstema];
 
         return (
             <Wrapper>
