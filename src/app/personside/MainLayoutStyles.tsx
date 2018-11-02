@@ -27,7 +27,9 @@ export const VenstreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'sect
 
 export const HøyreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'section'>('section')`
     width: ${props => props.dialogPanelEkspandert ? '50%' : '30%' };
-    background-color: #d8d8d8;
+    background-color: white;
+    box-shadow: 0 0 1rem 0 ${theme.color.bakgrunn};
+    z-index: 1;
     display: flex;
     flex-flow: column nowrap;
     > * {

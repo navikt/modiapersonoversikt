@@ -10,12 +10,14 @@ import {
     ytelseBelopDescComparator
 } from '../utils/utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { EnkeltYtelseProps } from './EnkeltYtelse';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import { Bold } from '../../../../../components/common-styled-components';
-import DetaljerCollapse from '../DetaljerCollapse';
 
-type Props = EnkeltYtelseProps;
+type Props = {
+    ytelse: Ytelse;
+    konto: string | undefined;
+    melding: string | undefined;
+};
 
 const Wrapper = styled.aside`
   th:not(:first-child) {
@@ -98,22 +100,20 @@ function UtbetalingsDetaljer(props: Props) {
         ]]
     );
     return (
-        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
-            <Wrapper>
-                <Normaltekst tag="span">
-                    <OversiktStyle>
-                        {oversikt}
-                    </OversiktStyle>
-                </Normaltekst>
-                <Border/>
-                <Normaltekst tag="span">
-                    {detaljer}
-                </Normaltekst>
-                <Border/>
-                <Normaltekst tag={'h4'}><Bold>Melding</Bold></Normaltekst>
-                <Normaltekst>{props.melding || ''}</Normaltekst>
-            </Wrapper>
-        </DetaljerCollapse>
+        <Wrapper>
+            <Normaltekst tag="span">
+                <OversiktStyle>
+                    {oversikt}
+                </OversiktStyle>
+            </Normaltekst>
+            <Border/>
+            <Normaltekst tag="span">
+                {detaljer}
+            </Normaltekst>
+            <Border/>
+            <Normaltekst tag={'h4'}><Bold>Melding</Bold></Normaltekst>
+            <Normaltekst>{props.melding || ''}</Normaltekst>
+        </Wrapper>
     );
 }
 

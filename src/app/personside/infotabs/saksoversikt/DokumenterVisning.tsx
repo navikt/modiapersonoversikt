@@ -196,6 +196,10 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
             <DokumenterListe>
                 {årsgrupper}
             </DokumenterListe>
+            <AlertStripeInfo>
+                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
+                Dokumenter som er journalført vises fra og med 4.juni 2016
+            </AlertStripeInfo>
         </DokumenterArticle>
     );
 }
