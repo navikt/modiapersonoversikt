@@ -71,7 +71,7 @@ export interface RestEndepunkter {
     saksoversiktReducer: RestReducer<SakstemaWrapper>;
 }
 
-export default combineReducers<RestEndepunkter>({
+export default  combineReducers<RestEndepunkter>({
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,

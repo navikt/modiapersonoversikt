@@ -11,7 +11,7 @@ export interface ActionTypes {
 
 export interface RestReducer<T> {
     status: STATUS;
-    data: T;
+    data?: T;
     error?: String;
 }
 
@@ -42,7 +42,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
         action: actionFunction,
         reload,
         tilbakestillReducer: tilbakestillReducer,
-        reducer: (state = initialState, action: Action) => {
+        reducer: (state = initialState, action: Action): T => {
             switch (action.type) {
                 case actionTypes.STARTING:
                     return {

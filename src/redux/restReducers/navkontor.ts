@@ -1,8 +1,9 @@
 import { getNavkontor } from '../../api/navkontor';
 import { createActionsAndReducer } from './restReducer';
 import { Kodeverk } from '../../models/kodeverk';
+import { BrukersNavKontorResponse } from '../../models/navkontor';
 
-const { reducer, action, actionNames, tilbakestillReducer } = createActionsAndReducer('navkontor');
+const {reducer, action, actionNames, tilbakestillReducer} = createActionsAndReducer<BrukersNavKontorResponse>('brukersNavKontor');
 
 export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     if (!geografiskTilknytning && !diskresjonsKode) {

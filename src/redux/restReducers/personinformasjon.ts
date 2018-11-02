@@ -1,5 +1,4 @@
-import { Action, Dispatch } from 'redux';
-
+import { Action } from 'redux';
 import { getPerson } from '../../api/person-api';
 import { createActionsAndReducer } from './restReducer';
 import { hentKontaktinformasjon } from './kontaktinformasjon';
@@ -12,8 +11,9 @@ import { resetPleiepengerReducer } from './ytelser/pleiepenger';
 import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
 import { hentFeatureToggle } from './featuretoggle';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { Dispatch } from '../redux-thunk-fix';
 
-const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
+const {reducer, action, actionNames, reload} = createActionsAndReducer('personinformasjon');
 
 function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));
@@ -38,6 +38,7 @@ export function hentAllPersonData(dispatch: Dispatch<Action>, fødselsnummer: st
     dispatch(resetPleiepengerReducer());
     dispatch(resetForeldrepengerReducer());
 }
+
 export const personinformasjonActionNames = actionNames;
 
 export default reducer;

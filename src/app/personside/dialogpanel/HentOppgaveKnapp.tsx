@@ -148,7 +148,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
     return {
-        valgtTemagruppe: state.valgtTemagruppe,
+        valgtTemagruppe: state.valgtTemagruppe.temagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };

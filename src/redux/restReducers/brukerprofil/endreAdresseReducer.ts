@@ -7,12 +7,10 @@ import {
     postSlettMidlertidigeAdresser
 } from '../../../api/brukerprofil/adresse-api';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
-import { ThunkAction } from 'redux-thunk';
-import { Action, ActionCreator } from 'redux';
 
 const {reducer, action, tilbakestillReducer, actionNames} = createActionsAndReducer('endreadresse');
 
-export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse): ActionCreator<ThunkAction<Action, IState, void>> {
+export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
     return action(() => postEndreNorskGateadresse(fødselsnummer, gateadresse));
 }
 
