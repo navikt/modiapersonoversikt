@@ -62,6 +62,14 @@ const PrintPlaceholder = styled.div`
     align-items: center;
 `;
 
+const StyledIframe = styled.iframe`
+  display: none;
+  @media print {
+    display: block;
+  }
+  frame-border: 0;
+`;
+
 class Printer extends React.Component<Props, State> {
     private contentId = guid();
     private iFrameId = guid();
@@ -107,10 +115,10 @@ class Printer extends React.Component<Props, State> {
         }
     }
 
-    populateAndPrint(iFrameDocument: Document, contentToPrint: Element, window: Window) {
+    populateAndPrint(iFrameDocument: Document, contentToPrint: Element, iframeWindow: Window) {
         this.copyHTML(iFrameDocument, contentToPrint);
         copyCSSStyles(document, iFrameDocument);
-        this.print(window);
+        this.print(iframeWindow);
         this.setState({
             printing: false
         });
@@ -123,9 +131,9 @@ class Printer extends React.Component<Props, State> {
         doc.close();
     }
 
-    print(window: Window) {
-        window.focus();
-        window.print();
+    print(iframeWindow: Window) {
+        iframeWindow.focus();
+        iframeWindow.print();
     }
 
     render() {
@@ -151,7 +159,7 @@ class Printer extends React.Component<Props, State> {
                     onRequestClose={() => null}
                     closeButton={false}
                 >
-                    <iframe id={this.iFrameId} style={{display: 'none'}} frameBorder={'0'}/>
+                    <StyledIframe id={this.iFrameId}/>
                     <PrintPlaceholder>
                         <PrinterSVG/>
                         <Undertittel>Skriver ut</Undertittel>
