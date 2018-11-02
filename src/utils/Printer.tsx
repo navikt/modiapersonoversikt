@@ -1,7 +1,7 @@
 import { copyCSSStyles } from './cssUtils';
 import * as React from 'react';
 import { guid } from 'nav-frontend-js-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import NavLogo from '../svg/NavLogo';
 import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
@@ -9,6 +9,9 @@ import { connect } from 'react-redux';
 import { AppState } from '../redux/reducers';
 import { Person } from '../models/person/person';
 import { detect } from 'detect-browser';
+import ModalWrapper from 'nav-frontend-modal';
+import PrinterSVG from '../svg/PrinterSVG';
+import NavFrontendSpinner from 'nav-frontend-spinner';
 
 interface StateProps {
     person: Person;
@@ -49,6 +52,14 @@ const Header = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 0 2rem 3rem;
+`;
+
+const PrintPlaceholder = styled.div`
+    min-height: 20rem;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 class Printer extends React.Component<Props, State> {
@@ -134,7 +145,19 @@ class Printer extends React.Component<Props, State> {
                         {this.props.children}
                     </Wrapper>
                 </div>
-                <iframe id={this.iFrameId} style={{display: 'none'}} frameBorder={'0'}/>
+                <ModalWrapper
+                    isOpen={true}
+                    contentLabel="Printer Container"
+                    onRequestClose={() => null}
+                    closeButton={false}
+                >
+                    <iframe id={this.iFrameId} style={{display: 'none'}} frameBorder={'0'}/>
+                    <PrintPlaceholder>
+                        <PrinterSVG/>
+                        <Undertittel>Skriver ut</Undertittel>
+                        <NavFrontendSpinner type="S"/>
+                    </PrintPlaceholder>
+                </ModalWrapper>
             </>
         );
     }
