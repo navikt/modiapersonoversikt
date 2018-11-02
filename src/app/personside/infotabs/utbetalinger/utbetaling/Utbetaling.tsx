@@ -17,6 +17,7 @@ import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
+import DetaljerCollapse from '../DetaljerCollapse';
 
 interface UtbetalingComponentProps {
     utbetaling: UtbetalingInterface;
@@ -54,7 +55,7 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
-    private buttonWrapperRef = React.createRef<HTMLDivElement>();
+    private buttonWrapperRef = React.createRef<HTMLElement>();
     private utbetalingRef = React.createRef<HTMLDivElement>();
     private print: () => void;
 
@@ -169,18 +170,23 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                                 <Normaltekst>{periode}</Normaltekst>
                                 <Normaltekst>{forfallsInfo}</Normaltekst>
                             </SpaceBetween>
-                            <SpaceBetween innerRef={this.buttonWrapperRef}>
+                            <SpaceBetween>
                                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <PrintKnapp onClick={this.handlePrint}/>
+                                <span ref={this.buttonWrapperRef}>
+                                    <PrintKnapp onClick={this.handlePrint}/>
+                                </span>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
-                        <UtbetalingsDetaljer
-                            visDetaljer={this.state.visDetaljer}
-                            toggleVisDetaljer={this.toggleVisDetaljer}
-                            ytelse={ytelse}
-                            konto={utbetaling.konto}
-                            melding={utbetaling.melding}
-                        />
+                        <DetaljerCollapse
+                            open={this.state.visDetaljer}
+                            toggle={this.toggleVisDetaljer}
+                        >
+                            <UtbetalingsDetaljer
+                                ytelse={ytelse}
+                                konto={utbetaling.konto}
+                                melding={utbetaling.melding}
+                            />
+                        </DetaljerCollapse>
                     </UtbetalingStyle>
                 </UtbetalingTabellStyling>
             </Printer>
