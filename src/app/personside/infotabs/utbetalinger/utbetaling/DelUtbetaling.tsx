@@ -10,7 +10,7 @@ import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../DetaljerCollapse';
 
-export interface EnkeltYtelseProps {
+export interface DelUtbetalingProps {
     ytelse: Ytelse;
     konto: string | undefined;
     melding: string | undefined;
@@ -18,9 +18,9 @@ export interface EnkeltYtelseProps {
     visDetaljer: boolean;
 }
 
-type Props = FokusProps & EnkeltYtelseProps;
+type Props = FokusProps & DelUtbetalingProps;
 
-const EnkeltYtelseStyle = styled.li`
+const DelUtbetalingStyle = styled.li`
   transition: 0.3s;
   cursor: pointer;
   &:focus {
@@ -44,7 +44,7 @@ const BulletPoint = styled<{show: boolean}, 'div'>('div')`
   }
 `;
 
-class EnkeltYtelse extends React.Component<Props> {
+class DelUtbetaling extends React.Component<Props> {
 
     private ytelseRef = React.createRef<HTMLDivElement>();
 
@@ -105,7 +105,7 @@ class EnkeltYtelse extends React.Component<Props> {
         );
 
         return (
-            <EnkeltYtelseStyle
+            <DelUtbetalingStyle
                 onClick={() => cancelIfHighlighting(this.props.toggleVisDetaljer)}
                 innerRef={this.ytelseRef}
                 tabIndex={0}
@@ -122,9 +122,9 @@ class EnkeltYtelse extends React.Component<Props> {
                         {...this.props}
                     />
                 </DetaljerCollapse>
-            </EnkeltYtelseStyle>
+            </DelUtbetalingStyle>
         );
     }
 }
 
-export default EnkeltYtelse;
+export default DelUtbetaling;
