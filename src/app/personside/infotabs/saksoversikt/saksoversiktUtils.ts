@@ -35,5 +35,5 @@ function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
 }
 
 function formatterDato(date: Date) {
-    return moment(date).format('DD.MM.YYYY [kl.] hh:mm');
+    return moment(date).format('DD.MM.YYYY');
 }
