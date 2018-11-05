@@ -105,9 +105,10 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
                 konto={utbetaling.konto}
                 melding={utbetaling.melding}
                 key={index}
-                toggleVisDetaljer={() => this.toggleVisDetaljer(ytelse)}
+                toggleVisDetaljer={this.toggleVisDetaljer}
                 visDetaljer={this.state.åpnedeYtelser.includes(ytelse)}
-                {...this.props}
+                erIFokus={this.props.ytelseIFokus === ytelse}
+                updateYtelseIFokus={this.props.updateYtelseIFokus}
             />
         ));
 

@@ -3,22 +3,21 @@ import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
-import { FokusProps } from '../Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../DetaljerCollapse';
 
-export interface DelUtbetalingProps {
+export interface Props {
     ytelse: Ytelse;
     konto: string | undefined;
     melding: string | undefined;
-    toggleVisDetaljer: () => void;
+    toggleVisDetaljer: (ytelse: Ytelse) => void;
     visDetaljer: boolean;
+    erIFokus: boolean;
+    updateYtelseIFokus: (ytelse: Ytelse) => void;
 }
-
-type Props = FokusProps & DelUtbetalingProps;
 
 const DelUtbetalingStyle = styled.li`
   transition: 0.3s;
@@ -28,7 +27,7 @@ const DelUtbetalingStyle = styled.li`
   }
 `;
 
-const BulletPoint = styled<{show: boolean}, 'div'>('div')`
+const BulletPoint = styled<{ show: boolean }, 'div'>('div')`
   position: relative;
   transition: .3s;
   ${props => props.show && 'padding-left: 1.5rem;'}
@@ -44,7 +43,7 @@ const BulletPoint = styled<{show: boolean}, 'div'>('div')`
   }
 `;
 
-class DelUtbetaling extends React.Component<Props> {
+class DelUtbetaling extends React.PureComponent<Props> {
 
     private ytelseRef = React.createRef<HTMLDivElement>();
 
@@ -57,15 +56,17 @@ class DelUtbetaling extends React.Component<Props> {
 
     handleEnter(event: KeyboardEvent) {
         if (event.key === 'Enter') {
-            this.props.toggleVisDetaljer();
+            this.props.toggleVisDetaljer(this.props.ytelse);
         }
     }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.erIFokus(this.props) && !this.erIFokus(prevProps) && this.ytelseRef.current) {
+        const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
+        const mistetFokus = !this.props.erIFokus && prevProps.erIFokus;
+        if (fikkFokus && this.ytelseRef.current) {
             this.ytelseRef.current.focus();
             this.addEnterListener();
-        } else if (!this.erIFokus(this.props)) {
+        } else if (mistetFokus) {
             this.removeEnterListener();
         }
     }
@@ -76,13 +77,6 @@ class DelUtbetaling extends React.Component<Props> {
 
     addEnterListener() {
         window.addEventListener('keydown', this.handleEnter);
-    }
-
-    erIFokus(props: Props) {
-        if (props.ytelse) {
-            return props.ytelseIFokus === props.ytelse;
-        }
-        return false;
     }
 
     setTilYtelseIFokus() {
@@ -106,7 +100,7 @@ class DelUtbetaling extends React.Component<Props> {
 
         return (
             <DelUtbetalingStyle
-                onClick={() => cancelIfHighlighting(this.props.toggleVisDetaljer)}
+                onClick={() => cancelIfHighlighting(() => this.props.toggleVisDetaljer(this.props.ytelse))}
                 innerRef={this.ytelseRef}
                 tabIndex={0}
                 onFocus={this.setTilYtelseIFokus}
@@ -114,7 +108,7 @@ class DelUtbetaling extends React.Component<Props> {
             >
                 <DetaljerCollapse
                     open={this.props.visDetaljer}
-                    toggle={this.props.toggleVisDetaljer}
+                    toggle={() => this.props.toggleVisDetaljer(this.props.ytelse)}
                     header={header}
                 >
                     <UtbetalingsDetaljer
