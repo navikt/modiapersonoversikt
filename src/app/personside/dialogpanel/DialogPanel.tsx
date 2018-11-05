@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { theme } from '../../../styles/personOversiktTheme';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const border = 'rgba(0, 0, 0, 0.1) 1px solid';
 
@@ -20,7 +20,7 @@ function DialogPanel() {
     return (
         <DialogPanelWrapper role="region" aria-label="Dialogpanel">
             <Undertittel>Dialogpanel</Undertittel>
-            <Undertekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Undertekst>
+            <Normaltekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Normaltekst>
         </DialogPanelWrapper>
     );
 }

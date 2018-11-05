@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Printer from '../svg/Printer';
+import PrinterSVG from '../svg/PrinterSVG';
 import theme from '../styles/personOversiktTheme';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -36,7 +36,7 @@ const PrintIkonStyle = styled.button`
 function PrintKnapp({onClick}: Props) {
     return (
         <PrintIkonStyle onClick={onClick} aria-label="Skriv ut">
-            <Normaltekst tag="span">Skriv ut</Normaltekst> <Printer/>
+            <Normaltekst tag="span">Skriv ut</Normaltekst> <PrinterSVG/>
         </PrintIkonStyle>
     );
 }
