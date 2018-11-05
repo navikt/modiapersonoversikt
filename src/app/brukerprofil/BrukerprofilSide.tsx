@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
+import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -169,6 +170,7 @@ class BrukerprofilSide extends React.PureComponent<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
+                <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer}/>
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
