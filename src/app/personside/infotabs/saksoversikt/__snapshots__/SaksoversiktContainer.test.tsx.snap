@@ -618,7 +618,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="c19"
           >
             <h3
-              className="typo-undertekst"
+              className="typo-normal"
             >
               <span
                 className="c20"
@@ -705,7 +705,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="c19"
           >
             <h3
-              className="typo-undertekst"
+              className="typo-normal"
             >
               <span
                 className="c20"

@@ -26,7 +26,7 @@ exports[`viser dialogpanel 1`] = `
     Dialogpanel
   </h2>
   <p
-    className="typo-undertekst"
+    className="typo-normal"
   >
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?
   </p>

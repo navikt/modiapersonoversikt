@@ -12,7 +12,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
-import EnkeltYtelse from './EnkeltYtelse';
+import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
 
 interface OwnProps {
@@ -100,14 +100,15 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
         const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato
             ? `Forfallsdato: ${dato}` : '';
         const ytelsesListe = utbetaling.ytelser.map((ytelse, index) => (
-            <EnkeltYtelse
+            <DelUtbetaling
                 ytelse={ytelse}
                 konto={utbetaling.konto}
                 melding={utbetaling.melding}
                 key={index}
-                toggleVisDetaljer={() => this.toggleVisDetaljer(ytelse)}
+                toggleVisDetaljer={this.toggleVisDetaljer}
                 visDetaljer={this.state.åpnedeYtelser.includes(ytelse)}
-                {...this.props}
+                erIFokus={this.props.ytelseIFokus === ytelse}
+                updateYtelseIFokus={this.props.updateYtelseIFokus}
             />
         ));
 
