@@ -42,12 +42,12 @@ export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaWrap
             {
                 ...getSakstema(),
                 behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker)],
+                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
                 tilhorendeSaker: [getSak(tema[0])]
             }, {
                 ...getSakstema(),
                 behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker)],
+                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
                 tilhorendeSaker: [getSak(tema[0])]
             }
         ]
@@ -71,7 +71,7 @@ function getSakstema(): Sakstema {
         temanavn: tema[1],
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
-        dokumentMetadata: getDokumentMetadataListe(faker, navfaker),
+        dokumentMetadata: getDokumentMetadataListe(faker, navfaker, tema),
         tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 5),
         feilkoder: getFeilkoder()
     };

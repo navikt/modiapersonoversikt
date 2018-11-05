@@ -7,6 +7,7 @@ import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
 import { hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { sakstemakodeAlle } from './SakstemaVisning';
 
 interface Props {
     sakstema: Sakstema;
@@ -57,7 +58,7 @@ function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatu
         .filter(behandlingskjede => behandlingskjede.status === sjekkMotStatus).length;
 
     // Skal ikke vises på det aggregerte sakstemaet
-    if (antallUnderbehandling === 0 || sakstema.temakode === 'ALLE') {
+    if (antallUnderbehandling === 0 || sakstema.temakode === sakstemakodeAlle) {
         return null;
     }
 
