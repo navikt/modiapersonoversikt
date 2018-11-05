@@ -167,6 +167,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: auto;
 }
 
+.c21 {
+  text-transform: uppercase;
+}
+
+.c20 {
+  font-weight: bold;
+}
+
 .c22 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -188,14 +196,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23 {
   margin: 1rem 0;
-}
-
-.c21 {
-  text-transform: uppercase;
-}
-
-.c20 {
-  font-weight: bold;
 }
 
 .c13 {
