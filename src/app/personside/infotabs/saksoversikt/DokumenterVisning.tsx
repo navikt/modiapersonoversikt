@@ -8,7 +8,7 @@ import { DokumentMetadata, Entitet } from '../../../../models/saksoversikt/dokum
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import DokumentKomponent from './DokumentKomponent';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
@@ -114,7 +114,7 @@ function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
 
     return (
         <ÅrsGruppeStyle>
-            <Undertekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Undertekst>
+            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
             <ol>
                 {dokumentKomponenter}
             </ol>

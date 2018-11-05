@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { BegrensetTilgang } from '../../models/person/person';
-import Undertekst from 'nav-frontend-typografi/lib/undertekst';
 import { Periode } from '../../models/periode';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -8,6 +7,7 @@ import VisPeriode from '../../components/person/VisPeriode';
 import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface BegrensetTilgangProps {
     person: BegrensetTilgang;
@@ -32,7 +32,7 @@ function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak) {
         <>
             <Undertittel>Sikkerhetstiltak</Undertittel>
             {hentPeriode(sikkerhetstiltak.periode)}
-            <Undertekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Undertekst>
+            <Normaltekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Normaltekst>
         </>
     );
 }
