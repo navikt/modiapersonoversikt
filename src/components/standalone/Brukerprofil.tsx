@@ -4,10 +4,10 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import reducers from '../../redux/reducers';
-import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
+import BrukerprofilSide from '../../app/brukerprofil/BrukerprofilSide';
 
 interface Props {
     fødselsnummer: string;
@@ -28,7 +28,7 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>}/>
+                    <BrukerprofilSide/>
                 </Provider>
             </ErrorBoundary>
         );
