@@ -71,7 +71,7 @@ class Startbilde extends React.Component<StartbildeProps> {
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StartbildeStateProps {
     return {
         valgtEnhet: '4100',
-        valgtTemagruppe: state.valgtTemagruppe,
+        valgtTemagruppe: state.temagruppe.valgtTemagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
@@ -18,6 +18,7 @@ import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/re
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { ThunkDispatch } from 'redux-thunk';
 
 const HentOppgaveLayout = styled.div`
   text-align: center;
@@ -62,7 +63,7 @@ interface State {
 }
 
 interface StateProps {
-    valgtTemagruppe: string | null;
+    valgtTemagruppe: string;
     oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
@@ -84,7 +85,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
     }
 
     onPlukkOppgaver() {
-        if (!this.props.valgtTemagruppe) {
+        if (this.props.valgtTemagruppe === '') {
             this.setState({temagruppeFeilmelding: 'Du må velge temagruppe'});
             return;
         }
@@ -101,7 +102,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
     }
 
     render() {
-        const valgtTemagruppe = this.props.valgtTemagruppe || '';
+        const valgtTemagruppe = this.props.valgtTemagruppe;
         const tomtTilbakemelding = this.state.tomKø
             ? <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
             : null;
@@ -147,13 +148,13 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
     return {
-        valgtTemagruppe: state.valgtTemagruppe,
+        valgtTemagruppe: state.temagruppe.valgtTemagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         plukkOppgaver: (temagruppe) => dispatch(plukkOppgaver(temagruppe)),
         velgTemagruppe: (temagruppe) => dispatch(velgTemagruppe(temagruppe))
