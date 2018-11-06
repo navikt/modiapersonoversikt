@@ -22,7 +22,7 @@ if (mockEnabled) {
     setupMock();
 }
 
-class VisittkortStandAlone extends React.Component<Props> {
+class BrukerprofilStandalone extends React.Component<Props> {
 
     render() {
         return (
@@ -35,4 +35,4 @@ class VisittkortStandAlone extends React.Component<Props> {
     }
 }
 
-export default VisittkortStandAlone;
+export default BrukerprofilStandalone;
