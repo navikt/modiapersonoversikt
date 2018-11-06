@@ -13,10 +13,13 @@ import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import ModalWrapper from 'nav-frontend-modal';
+import { sakstemakodeAlle } from './SakstemaVisning';
 
 interface Props {
     dokument: DokumentInterface;
     harTilgang: boolean;
+    sakstemakode: string;
+    sakstemanavn: string;
 }
 
 interface State {
@@ -101,6 +104,14 @@ class DokumentKomponent extends React.Component<Props, State> {
     render() {
         const dokument = this.props.dokument;
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
+        const saksvisning = this.props.sakstemakode === sakstemakodeAlle ?
+            (
+                <Normaltekst>Saksid: {saksid} / Sakstema: {this.props.sakstemanavn}</Normaltekst>
+            ) :
+            (
+                <Normaltekst>Saksid: {saksid}</Normaltekst>
+            );
+
         const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
             (
                 <VedleggStyle>
@@ -127,7 +138,7 @@ class DokumentKomponent extends React.Component<Props, State> {
                                 {dokument.hoveddokument.tittel}
                             </a>
                             {vedlegg}
-                            <Normaltekst>Saksid: {saksid}</Normaltekst>
+                            <Normaltekst>{saksvisning}</Normaltekst>
                         </div>
                     </InfoWrapper>
                 </Wrapper>

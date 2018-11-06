@@ -12,15 +12,15 @@ import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import FakerStatic = Faker.FakerStatic;
 
-export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata[] {
+export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return Array(navfaker.random.integer(10, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker));
+    return Array(navfaker.random.integer(10, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker, tema));
 }
 
-export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): DokumentMetadata {
+export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
     return {
         retning: getKommunikasjonsretning(navfaker),
         dato: getSaksdato(navfaker),
@@ -33,8 +33,8 @@ export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker): Dok
         tilhørendeSaksid: faker.random.alphaNumeric(8),
         tilhørendeFagsaksid: faker.random.alphaNumeric(8),
         baksystem: fyllRandomListe(() => getBaksystem(navfaker), 3),
-        temakode: faker.random.alphaNumeric(5),
-        temakodeVisning: faker.random.alphaNumeric(5),
+        temakode: tema[0],
+        temakodeVisning: tema[1],
         ettersending: faker.random.boolean(),
         erJournalfort: faker.random.boolean(),
         feil: getFeilWrapper(faker, navfaker),

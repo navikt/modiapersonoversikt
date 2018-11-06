@@ -19,6 +19,8 @@ interface State {
     aggregertSakstema: Sakstema;
 }
 
+export const sakstemakodeAlle = 'ALLE';
+
 const GruppeStyle = styled.li`
   ol > *:first-child {
     padding: 20px 10px 20px 10px;
@@ -109,7 +111,7 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
 
     return {
         temanavn: 'Alle tema',
-        temakode: 'ALLE',
+        temakode: sakstemakodeAlle,
         harTilgang: true,
         behandlingskjeder: alleBehandlingskjeder,
         dokumentMetadata: alleDokumentmetadata,
