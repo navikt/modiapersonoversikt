@@ -10,6 +10,7 @@ import ModalWrapper from 'nav-frontend-modal';
 import PrinterSVG from '../svg/PrinterSVG';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { PersonContext } from '../app/App';
+import { loggEvent } from './frontendLogger';
 
 interface Props {
     getPrintTrigger: (func: () => void) => void;
@@ -87,8 +88,10 @@ class Printer extends React.Component<Props, State> {
     initiatePrint() {
         if (erIE()) {
             alert('Denne funksjonen er ikke implementert i Internet Explorer. Ta i bruk Chrome om du ønsker å printe.');
+            loggEvent('Forsøkte å skrive ut i IE', 'Printer');
             return;
         }
+        loggEvent('Utskrift', 'Printer');
 
         this.setState({
             printing: true
