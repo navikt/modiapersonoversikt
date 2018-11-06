@@ -1,18 +1,9 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
 
 interface Props {
     fødselsnummer: string;
 }
-
-const ArenaLenkePanel = styled.nav`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
-  padding: ${theme.margin.px20};
-  margin-bottom: ${theme.margin.layout};
-`;
 
 const utbetalingUrlPart = '?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=';
 
@@ -35,15 +26,8 @@ const arenaURL = (fnr: string) => {
 
 function Arenalenke(props: Props) {
 
-    return (
-        <ArenaLenkePanel>
-            <Normaltekst>
-                <a className="lenke" href={arenaURL(props.fødselsnummer)} target={'_blank'}>
-                    Meldekort i Arena
-                </a>
-            </Normaltekst>
-        </ArenaLenkePanel>
-    );
+    const url = arenaURL(props.fødselsnummer);
+    return <LenkepanelPersonoversikt url={url}>Meldekort i Arenda</LenkepanelPersonoversikt>;
 }
 
 export default Arenalenke;

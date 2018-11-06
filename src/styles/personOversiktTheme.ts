@@ -48,8 +48,8 @@ export const theme = {
         knapp: '.35rem;'
     },
     border: {
-        skille: `solid ${pxToRem(1)} #59514b;`,
-        skilleSvak: `solid ${pxToRem(1)} #b7b1a9;`
+        skille: `solid ${pxToRem(1)} #b7b1a9;`,
+        skilleSvak: `solid ${pxToRem(1)} #c6c2bf;`
     },
     animation: {
         fadeIn: `${fadeIn} .2s ease-out`
