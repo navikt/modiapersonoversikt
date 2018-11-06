@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -12,7 +12,7 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
-
+import { Dispatch } from 'redux';
 interface StateProps {
     UI: UIState;
     person: Person;
