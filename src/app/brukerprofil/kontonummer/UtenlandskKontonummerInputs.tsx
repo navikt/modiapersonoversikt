@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
@@ -18,6 +18,7 @@ import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
@@ -202,7 +203,7 @@ function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>)
         props.updateBankkontoInputsState({ valuta: valgtKodeverk });
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps => {
     return ({
         hentValutaKodeverk: () => dispatch(valutaKodeverkReducer.hentValutaer()),
         hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLandKodeverk())

@@ -7,7 +7,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
@@ -15,6 +15,7 @@ import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
+import { ThunkDispatch } from 'redux-thunk';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -156,7 +157,7 @@ function mapStateToProps(state: AppState): StateProps {
         });
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         hentBaseUrls: () =>
             dispatch(hentBaseUrls()),

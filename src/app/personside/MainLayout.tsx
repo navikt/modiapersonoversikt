@@ -9,7 +9,9 @@ import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
 import { LayoutWrapper } from './MainLayoutStyles';
 import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
-import { Dispatch } from 'redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+
 interface StateProps {
     UI: UIState;
 }
@@ -60,7 +62,7 @@ function mapStateToProps(state: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         toggleDialogpanel: () => dispatch(toggleDialogpanel())
     };

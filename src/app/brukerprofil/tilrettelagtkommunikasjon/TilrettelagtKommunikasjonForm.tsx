@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { connect } from 'react-redux';
 
 import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
-import { EndreTilrettelagtKommunikasjonrequest }
-    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreTilrettelagtKommunikasjonrequest } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import {
     endreTilrettelagtKommunikasjon,
     reset
@@ -22,6 +21,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -177,7 +177,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>

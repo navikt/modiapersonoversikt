@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import Datovelger, { tilPeriode } from '../../../../components/forms/Datovelger';
 import Input from 'nav-frontend-skjema/lib/input';
 
@@ -14,6 +14,7 @@ import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { visEndringsinfo } from '../../utils/formUtils';
+import { ThunkDispatch } from 'redux-thunk';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
@@ -153,7 +154,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         hentLandKodeverk: () => dispatch(hentLandKodeverk())
     };

@@ -11,7 +11,7 @@ import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
@@ -19,6 +19,7 @@ import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
+import { ThunkDispatch } from 'redux-thunk';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
 
 const BrukerprofilWrapper = styled.article`
@@ -200,7 +201,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         hentPersonData: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())

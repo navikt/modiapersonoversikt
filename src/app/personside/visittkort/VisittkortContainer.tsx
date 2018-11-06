@@ -12,7 +12,8 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { Dispatch } from 'redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
 interface StateProps {
@@ -82,7 +83,7 @@ function mapStateToProps(state: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
     };

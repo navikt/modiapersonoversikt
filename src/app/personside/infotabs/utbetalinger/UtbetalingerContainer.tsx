@@ -6,7 +6,7 @@ import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
@@ -16,6 +16,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
+import { ThunkDispatch } from 'redux-thunk';
 import moment = require('moment');
 
 interface State {
@@ -182,7 +183,7 @@ function mapStateToProps(state: AppState): StateProps {
     });
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         hentUtbetalinger: (fødselsnummer: string, fra: Date, til: Date) =>
             dispatch(hentUtbetalinger(fødselsnummer, fra, til)),

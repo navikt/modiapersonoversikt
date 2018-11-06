@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -26,6 +26,7 @@ import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { ThunkDispatch } from 'redux-thunk';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -363,7 +364,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
