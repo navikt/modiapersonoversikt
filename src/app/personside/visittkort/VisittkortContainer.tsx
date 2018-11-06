@@ -12,9 +12,9 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Dispatch } from 'redux';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
-import { Dispatch } from 'redux';
 interface StateProps {
     UI: UIState;
     person: Person;
