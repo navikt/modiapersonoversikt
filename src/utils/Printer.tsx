@@ -5,23 +5,15 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import NavLogo from '../svg/NavLogo';
 import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
-import { connect } from 'react-redux';
-import { AppState } from '../redux/reducers';
-import { Person } from '../models/person/person';
 import { detect } from 'detect-browser';
 import ModalWrapper from 'nav-frontend-modal';
 import PrinterSVG from '../svg/PrinterSVG';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { PersonContext } from '../app/App';
 
-interface StateProps {
-    person: Person;
-}
-
-interface OwnProps {
+interface Props {
     getPrintTrigger: (func: () => void) => void;
 }
-
-type Props = StateProps & OwnProps;
 
 interface State {
     printing: boolean;
@@ -54,8 +46,8 @@ const Header = styled.div`
 `;
 
 const PrintPlaceholder = styled.div`
-    min-height: 20rem;
-    min-width: 20rem;
+    min-height: 20vh;
+    min-width: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +58,6 @@ const StyledIframe = styled.iframe`
   @media print {
     display: block;
   }
-  frame-border: 0;
 `;
 
 class Printer extends React.Component<Props, State> {
@@ -147,7 +138,11 @@ class Printer extends React.Component<Props, State> {
                         <Header>
                             <NavLogo/>
                             <Normaltekst>Utskriftsdato: {datoVerbose().sammensattMedKlokke}</Normaltekst>
-                            <Normaltekst>Brukers Fødselsnummer: {this.props.person.fødselsnummer}</Normaltekst>
+                            <PersonContext.Consumer>
+                                {fødselsnummer =>
+                                    <Normaltekst>Brukers Fødselsnummer: {fødselsnummer}</Normaltekst>
+                                }
+                            </PersonContext.Consumer>
                         </Header>
                         {this.props.children}
                     </Wrapper>
@@ -158,10 +153,10 @@ class Printer extends React.Component<Props, State> {
                     onRequestClose={() => null}
                     closeButton={false}
                 >
-                    <StyledIframe id={this.iFrameId}/>
+                    <StyledIframe id={this.iFrameId} frameBorder={'0'}/>
                     <PrintPlaceholder>
                         <PrinterSVG/>
-                        <Undertittel>Skriver ut</Undertittel>
+                        <Undertittel>Forbereder utskrift</Undertittel>
                         <NavFrontendSpinner type="S"/>
                     </PrintPlaceholder>
                 </ModalWrapper>
@@ -175,10 +170,4 @@ function erIE() {
     return browser && browser.name === 'ie';
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return ({
-        person: state.restEndepunkter.personinformasjon.data && (state.restEndepunkter.personinformasjon.data as Person)
-    });
-}
-
-export default connect(mapStateToProps)(Printer);
+export default Printer;
