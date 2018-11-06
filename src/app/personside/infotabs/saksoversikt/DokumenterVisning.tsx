@@ -14,6 +14,7 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
 import { AvsenderFilter } from './SaksoversiktContainer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { sakstemakodeAlle } from './SakstemaVisning';
 
 interface Props {
     sakstema?: Sakstema;
@@ -25,6 +26,7 @@ interface Props {
 interface DokumentGruppeProps {
     gruppe: ArrayGroup<DokumentMetadata>;
     harTilgang: boolean;
+    sakstemakode: string;
 }
 
 const Header = styled.section`
@@ -103,11 +105,13 @@ function lenkeNorg(sakstema: string, norg2Url: string) {
     );
 }
 
-function Dokumentgruppe({gruppe, harTilgang}: DokumentGruppeProps) {
+function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
             dokument={dokument}
             harTilgang={harTilgang}
+            sakstemakode={sakstemakode}
+            sakstemanavn={dokument.temakodeVisning}
             key={dokument.hoveddokument.dokumentreferanse + dokument.journalpostId}
         />
     ));
@@ -126,8 +130,12 @@ function dokumentComparator(a: DokumentMetadata, b: DokumentMetadata) {
     const aDate = saksdatoSomDate(a.dato);
     const bDate = saksdatoSomDate(b.dato);
 
-    if (aDate > bDate) { return -1; }
-    if (aDate < bDate) { return 1; }
+    if (aDate > bDate) {
+        return -1;
+    }
+    if (aDate < bDate) {
+        return 1;
+    }
     return 0;
 }
 
@@ -140,7 +148,7 @@ function hentNorg2Url(baseUrlsResponse: BaseUrlsResponse) {
 }
 
 function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
-    if (sakstema.temakode !== 'ALLE') {
+    if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
     const temaArray: string[] = sakstema.dokumentMetadata.reduce(
@@ -188,7 +196,14 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     const harTilgang = sakstema.harTilgang;
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) =>
-        <Dokumentgruppe gruppe={gruppe} harTilgang={harTilgang} key={gruppe.category} />
+        (
+            <Dokumentgruppe
+                gruppe={gruppe}
+                harTilgang={harTilgang}
+                sakstemakode={sakstema.temakode}
+                key={gruppe.category}
+            />
+        )
     );
 
     return (
