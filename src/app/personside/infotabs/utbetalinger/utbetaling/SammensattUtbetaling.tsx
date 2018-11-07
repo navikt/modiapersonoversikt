@@ -14,6 +14,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface OwnProps {
     utbetaling: Utbetaling;
@@ -68,6 +69,7 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
     }
 
     visDetaljerAndPrint() {
+        loggEvent('SammensattUtbetaling', 'Printer');
         this.setState(
             {
                 åpnedeYtelser: this.props.utbetaling.ytelser != null ? [ ...this.props.utbetaling.ytelser ] : []
