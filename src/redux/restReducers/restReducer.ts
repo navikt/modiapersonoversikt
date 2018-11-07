@@ -9,11 +9,36 @@ export interface ActionTypes {
     INITIALIZE: string;
 }
 
-export interface RestReducer<T> {
-    status: STATUS;
+export type RestReducer<T> =
+    RestOk<T> |
+    RestNotStarted |
+    RestLoading |
+    RestReloading<T> |
+    RestError;
+
+export interface RestOk<T> {
+    status: STATUS.OK;
     data: T;
-    error?: String;
 }
+
+export interface RestNotStarted {
+    status: STATUS.NOT_STARTED;
+}
+
+export interface RestLoading {
+    status: STATUS.LOADING;
+}
+
+export interface RestReloading<T> {
+    status: STATUS.RELOADING;
+    data: T;
+}
+
+export interface RestError {
+    status: STATUS.ERROR;
+    error: string;
+}
+
 
 function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + ' / ';
@@ -34,36 +59,37 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
 
     const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZE}); };
 
-    const initialState = {
-        data: {},
+    const initialState : RestReducer<T> = {
         status: STATUS.NOT_STARTED
     };
     return {
         action: actionFunction,
         reload,
         tilbakestillReducer: tilbakestillReducer,
-        reducer: (state = initialState, action: Action) => {
+        reducer: (state : RestReducer<T> = initialState, action: Action) : RestReducer<T> => {
             switch (action.type) {
                 case actionTypes.STARTING:
                     return {
-                        data: {},
                         status: STATUS.LOADING
                     };
                 case actionTypes.RELOADING:
-                    return {
-                        ...state,
-                        status: state.status === STATUS.OK || state.status === STATUS.RELOADING
-                            ? STATUS.RELOADING : STATUS.LOADING
-                    };
+                    if(state.status === STATUS.OK || state.status === STATUS.RELOADING) {
+                        return {
+                            ...state,
+                            status: STATUS.RELOADING
+                        };
+                    }else {
+                        return {
+                            status: STATUS.LOADING
+                        };
+                    }
                 case actionTypes.FINISHED:
                     return {
-                        ...state,
                         status: STATUS.OK,
-                        data: (<FetchSuccess<object>> action).data
+                        data: (<FetchSuccess<T>> action).data
                     };
                 case actionTypes.FAILED:
                     return {
-                        ...state,
                         status: STATUS.ERROR,
                         error: (<FetchError> action).error
                     };
