@@ -15,7 +15,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 .c2 {
-  border-top: 2px solid #e7e9e9;
+  border-top: solid 0.0625rem #c6c2bf;
   margin: .5rem 0;
 }
 
