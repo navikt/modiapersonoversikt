@@ -55,7 +55,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
     }
 
     handleEnter(event: KeyboardEvent) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.repeat) {
             this.props.toggleVisDetaljer(this.props.ytelse);
         }
     }

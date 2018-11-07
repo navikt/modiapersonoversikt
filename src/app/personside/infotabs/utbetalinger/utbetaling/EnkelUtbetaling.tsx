@@ -100,16 +100,14 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         if (this.buttonWrapperRef.current) {
             const knappTrykket = (event.target instanceof Node)
                 && this.buttonWrapperRef.current.contains(event.target);
-
             if (!knappTrykket) {
                 this.toggleVisDetaljer();
             }
-
         }
     }
 
     handleEnter(event: KeyboardEvent) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.repeat) {
             this.toggleVisDetaljer();
         }
     }
