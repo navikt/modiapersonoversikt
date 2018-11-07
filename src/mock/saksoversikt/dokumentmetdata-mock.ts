@@ -26,8 +26,10 @@ export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema
         dato: getSaksdato(navfaker),
         navn: 'Dokument ' + faker.lorem.words(3),
         journalpostId: faker.random.alphaNumeric(8),
-        hoveddokument: getDokument(faker),
-        vedlegg: fyllRandomListe(() => getDokument(faker), 5),
+        hoveddokument: getDokument(faker, navfaker),
+        vedlegg: navfaker.random.vektetSjanse(.3)
+            ? fyllRandomListe(() => getDokument(faker, navfaker), 3)
+            : [],
         avsender: getEntitet(navfaker),
         mottaker: getEntitet(navfaker),
         tilhørendeSaksid: faker.random.alphaNumeric(8),
@@ -48,10 +50,19 @@ function getFeilWrapper(faker: FakerStatic, navfaker: NavFaker): FeilWrapper {
         feilmelding: getFeilmelding(navfaker)
     };
 }
-
-function getDokument(faker: FakerStatic): Dokument {
+const fakeDokumentNavn = [
+    'Referat fra samtale på telefon',
+    'Vedtak korrigert refusjon/u bet',
+    'Vurdering feilutbetaling/revurdering',
+    'A-inntekt',
+    'Inntektsopplysninger',
+    'Spørsmål via nav.no',
+    'Innhenting av opplysninger',
+    'Automatisk vedtak/nyfødt barn',
+];
+function getDokument(faker: FakerStatic, navFaker: NavFaker): Dokument {
     return {
-        tittel: 'Dokumentnavn: ' + faker.lorem.words(4),
+        tittel: navFaker.random.arrayElement(fakeDokumentNavn),
         dokumentreferanse: faker.random.alphaNumeric(8),
         kanVises: faker.random.boolean(),
         logiskDokument: faker.random.boolean()
