@@ -16,6 +16,7 @@ import DetaljerCollapse from '../DetaljerCollapse';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -86,6 +87,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     handlePrint() {
+        loggEvent('EnkeltUtbetaling', 'Printer');
         this.setState(
             {
                 visDetaljer: true

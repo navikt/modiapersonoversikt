@@ -72,6 +72,13 @@ const Fokus = styled.div`
   }
 `;
 
+const TilbakePil = styled.span`
+  &:before {
+    content: '<';
+    padding-right: .3rem;
+  }
+`;
+
 interface RoutingProps {
     fodselsnummer: string;
 }
@@ -118,7 +125,7 @@ function TilbakeLenke({fnr}: { fnr: string }) {
                 className={'lenke'}
                 to={`${paths.personUri}/${fnr}`}
             >
-                {'<'} Tilbake
+                <TilbakePil>Tilbake</TilbakePil>
             </Link>
         </LinkWrapper>
     );
