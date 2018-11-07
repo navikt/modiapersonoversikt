@@ -9,32 +9,29 @@ export interface ActionTypes {
     INITIALIZE: string;
 }
 
-export type RestReducer<T> =
-    RestOk<T> |
-    RestNotStarted |
-    RestLoading |
-    RestReloading<T> |
-    RestError;
+export interface RestReducer<T> {
+    status: STATUS
+}
 
-export interface RestOk<T> {
+export interface RestOk<T> extends RestReducer<T> {
     status: STATUS.OK;
     data: T;
 }
 
-export interface RestNotStarted {
+export interface RestNotStarted<T> extends RestReducer<T> {
     status: STATUS.NOT_STARTED;
 }
 
-export interface RestLoading {
+export interface RestLoading<T> extends RestReducer<T> {
     status: STATUS.LOADING;
 }
 
-export interface RestReloading<T> {
+export interface RestReloading<T> extends RestReducer<T> {
     status: STATUS.RELOADING;
     data: T;
 }
 
-export interface RestError {
+export interface RestError<T> extends RestReducer<T> {
     status: STATUS.ERROR;
     error: string;
 }
@@ -87,12 +84,12 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
                     return {
                         status: STATUS.OK,
                         data: (<FetchSuccess<T>> action).data
-                    };
+                    } as RestReducer<T> ;
                 case actionTypes.FAILED:
                     return {
                         status: STATUS.ERROR,
                         error: (<FetchError> action).error
-                    };
+                    } as RestReducer<T> ;
                 case actionTypes.INITIALIZE:
                     return initialState;
                 default:
