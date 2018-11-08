@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './app/App';
 import './index.css';
 import renderDecoratorHead from './decorator';
 import { parseUrlForPersonIKontekst } from './utils/urlUtils';
+import VisittkortStandAlone from './components/standalone/VisittKort';
 
 ReactDOM.render(
-    <App />,
+    <VisittkortStandAlone fødselsnummer={'10108000398'}/>,
     document.getElementById('root') as HTMLElement
 );
 
