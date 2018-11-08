@@ -17,7 +17,7 @@ const PlaceBottomRight = styled.div`
 `;
 
 function urlTilhørerNyModia(url: string): boolean {
-    return url.indexOf('modiapersonoversikt') >= 0;
+    return url.includes('modiapersonoversikt');
 }
 
 class LenkeBrukerprofilContainer extends React.Component<Props> {

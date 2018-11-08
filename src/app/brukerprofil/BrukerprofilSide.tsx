@@ -170,7 +170,6 @@ class BrukerprofilSide extends React.PureComponent<Props> {
             this.props.hentVeilederRoller();
         }
         loggEvent('Sidevisning', 'Brukerprofil');
-        console.log('hei på deg');
     }
 
     render() {
