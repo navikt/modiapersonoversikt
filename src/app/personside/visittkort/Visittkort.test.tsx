@@ -40,5 +40,9 @@ test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
     testStore.dispatch({type: actions.TOGGLE_VISITTKORT, erApen: true});
     const focusedElement = document.activeElement;
 
-    expect(focusedElement.innerHTML).toContain('Visittkortdetaljer');
+    if (focusedElement) {
+        expect(focusedElement.innerHTML).toContain('Visittkortdetaljer');
+    } else {
+        fail('Ingen activeElement på dokumentet');
+    }
 });

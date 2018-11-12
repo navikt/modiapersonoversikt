@@ -1,4 +1,3 @@
-
 export function copyCSSStyles(sourceDoc: Document, targetDoc: Document) {
 
     Array.from(sourceDoc.styleSheets).forEach(styleSheet => {
@@ -21,7 +20,9 @@ function copyCSSStyleSheet(sourceDoc: Document, styleSheet: CSSStyleSheet, targe
         appendCSSRule(cssRule, sourceDoc, newStyle);
     });
 
-    targetDoc.head.appendChild(newStyle);
+    if (targetDoc.head) {
+        targetDoc.head.appendChild(newStyle);
+    }
 }
 
 function appendCSSRule(cssRule: CSSRule, sourceDoc: Document, newStyleEl: HTMLElement) {
@@ -41,5 +42,7 @@ function copyLinkedStyleSheet(sourceDoc: Document, styleSheetRef: string, target
 
     newLinkEl.rel = 'stylesheet';
     newLinkEl.href = styleSheetRef;
-    targetDoc.head.appendChild(newLinkEl);
+    if (targetDoc.head) {
+        targetDoc.head.appendChild(newLinkEl);
+    }
 }
