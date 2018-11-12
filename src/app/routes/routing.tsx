@@ -15,11 +15,20 @@ export const paths = {
     legacyBrukerprofil: '#!brukerprofil'
 };
 
-function Routing(props: RouteComponentProps<{}> ) {
+interface RouterProps {
+    fodselsnummer: string;
+}
+
+type Props = RouteComponentProps<RouterProps>;
+
+function Routing(props: Props) {
     return (
         <Switch location={props.location}>
             <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
-            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside}/>
+            <Route
+                path={`${paths.brukerprofil}/:fodselsnummer/`}
+                render={routeProps => <Brukerprofilside fødselsnummer={routeProps.match.params.fodselsnummer}/>}
+            />
             <Route component={Startbilde}/>
         </Switch>
     );

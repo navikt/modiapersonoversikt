@@ -28,7 +28,7 @@ class BrukerprofilStandalone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <BrukerprofilSide/>
+                    <BrukerprofilSide fødselsnummer={this.props.fødselsnummer}/>
                 </Provider>
             </ErrorBoundary>
         );

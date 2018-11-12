@@ -4,8 +4,8 @@ import { paths } from '../../../../routes/routing';
 import { Link } from 'react-router-dom';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 
-function LenkeBrukerprofilVisning(props: { nyBrukerprofilToggle: boolean, person: Person }) {
-    if (props.nyBrukerprofilToggle) {
+function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean, person: Person }) {
+    if (props.nyModiaPersonoversikt) {
         return (
             <Link
                 className="lenke"
