@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-
+import { Dispatch, Action } from 'redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { BrukersNavKontorResponse, NavKontor } from '../../../../../models/navkontor';
 import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
-import { Action } from 'history';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';

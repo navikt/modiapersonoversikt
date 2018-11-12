@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Select from 'nav-frontend-skjema/lib/select';
