@@ -2,6 +2,7 @@ import * as React from 'react';
 import LenkeBrukerprofilVisning from './LenkeBrukerprofil';
 import { Person } from '../../../../../models/person/person';
 import styled from 'styled-components';
+import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 
 interface OwnProps {
     person: Person;
@@ -16,16 +17,12 @@ const PlaceBottomRight = styled.div`
     flex-grow: 1;
 `;
 
-function urlTilhørerNyModia(url: string): boolean {
-    return url.includes('modiapersonoversikt');
-}
-
 class LenkeBrukerprofilContainer extends React.Component<Props> {
     render() {
         return (
             <PlaceBottomRight>
                 <LenkeBrukerprofilVisning
-                    nyModiaPersonoversikt={urlTilhørerNyModia(window.location.href)}
+                    nyModiaPersonoversikt={erNyePersonoversikten()}
                     person={this.props.person}
                 />
             </PlaceBottomRight>
