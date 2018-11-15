@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Action } from 'history';
-import { RouteComponentProps } from 'react-router';
 
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
@@ -13,7 +11,7 @@ import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
@@ -80,8 +78,8 @@ const TilbakePil = styled.span`
   }
 `;
 
-interface RoutingProps {
-    fodselsnummer: string;
+interface OwnProps {
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -89,13 +87,12 @@ interface DispatchProps {
     hentVeilederRoller: () => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
+interface StateProps {
     personReducer: RestReducer<PersonRespons>;
     veilederRollerReducer: RestReducer<VeilederRoller>;
 }
 
-type Props = RouteComponentProps<RoutingProps> & OwnProps & DispatchProps ;
+type Props = StateProps & DispatchProps & OwnProps;
 
 function hentNavn({navn}: Person) {
     return navn.fornavn +
@@ -195,9 +192,8 @@ class BrukerprofilSide extends React.PureComponent<Props> {
 
 }
 
-const mapStateToProps = (state: AppState, ownProps: RouteComponentProps<RoutingProps>): OwnProps => {
+const mapStateToProps = (state: AppState): StateProps => {
     return ({
-        fødselsnummer: ownProps.match.params.fodselsnummer,
         personReducer: state.restEndepunkter.personinformasjon,
         veilederRollerReducer: state.restEndepunkter.veilederRoller
     });
@@ -210,4 +206,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrukerprofilSide));
+export default connect(mapStateToProps, mapDispatchToProps)(BrukerprofilSide);

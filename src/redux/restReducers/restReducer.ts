@@ -1,6 +1,5 @@
 import { doThenDispatch, FetchError, FetchSuccess, reloadThenDispatch, STATUS } from './utils';
-import { Action } from 'redux';
-import { Dispatch } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 
 export interface ActionTypes {
     STARTING: string;
