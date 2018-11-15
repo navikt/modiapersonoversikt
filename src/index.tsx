@@ -3,10 +3,10 @@ import * as ReactDOM from 'react-dom';
 import './index.css';
 import renderDecoratorHead from './decorator';
 import { parseUrlForPersonIKontekst } from './utils/urlUtils';
-import VisittkortStandAlone from './components/standalone/VisittKort';
+import App from './app/App';
 
 ReactDOM.render(
-    <VisittkortStandAlone fødselsnummer={'10108000398'}/>,
+    <App />,
     document.getElementById('root') as HTMLElement
 );
 

@@ -12,6 +12,7 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
 interface StateProps {
     UI: UIState;
@@ -51,7 +52,7 @@ class VisittkortContainer extends React.Component<Props> {
                     beskjed={`Visittkortet ble ${erApnet ? 'åpnet' : 'lukket'}`}
                     dontShowOnFirstRender={true}
                 />
-                <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>
+                {erNyePersonoversikten() && <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>}
                 <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
                     <VisittkortHeader
                         person={person}
