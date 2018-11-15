@@ -7,3 +7,5 @@ fasitResources:
       resourceType: loadbalancerconfig
     - alias: iadecorator-js
       resourceType: restservice
+alertProfiles:
+- basic
