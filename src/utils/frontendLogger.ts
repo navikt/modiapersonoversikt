@@ -1,3 +1,5 @@
+import { isProduction } from './environment';
+
 interface ValuePairs {
      [name: string]: string | number | boolean | object | undefined;
 }
@@ -11,8 +13,12 @@ function frontendLoggerIsInitialized(): boolean {
     return true;
 }
 
+function useLogger(): boolean {
+    return frontendLoggerIsInitialized() && isProduction();
+}
+
 export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
-    if (!frontendLoggerIsInitialized()) {
+    if (!useLogger()) {
         return;
     }
     const event = {
@@ -25,7 +31,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
-    if (!frontendLoggerIsInitialized()) {
+    if (!useLogger()) {
         return;
     }
     const info = {
@@ -38,7 +44,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
-    if (!frontendLoggerIsInitialized()) {
+    if (!useLogger()) {
         return;
     }
     const info = {

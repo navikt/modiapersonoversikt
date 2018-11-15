@@ -144,7 +144,7 @@ class Header extends React.PureComponent<{ person: Person }> {
         const person = this.props.person;
         return (
             <HeaderStyle>
-                <TilbakeLenke fnr={person.fødselsnummer}/>
+                {erNyePersonoversikten() && <TilbakeLenke fnr={person.fødselsnummer}/>}
                 <HeaderContent>
                     <Fokus innerRef={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
