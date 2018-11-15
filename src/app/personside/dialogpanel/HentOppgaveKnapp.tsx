@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { connect, Dispatch } from 'react-redux';
-import { Action } from 'redux';
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';

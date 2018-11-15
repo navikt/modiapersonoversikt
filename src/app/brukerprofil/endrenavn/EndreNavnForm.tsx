@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -17,7 +17,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
 import { EndreNavnInfomeldingWrapper } from '../Infomelding';
-import { visEndringsinfo, ignoreEnter, InputState } from '../utils/formUtils';
+import { ignoreEnter, InputState, visEndringsinfo } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';

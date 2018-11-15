@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
+import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';

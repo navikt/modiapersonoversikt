@@ -1,5 +1,4 @@
-import { Action } from 'redux';
-import { Dispatch } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import { ActionTypes } from './restReducer';
 
 export enum STATUS {

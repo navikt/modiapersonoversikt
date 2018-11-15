@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { History } from 'history';
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-
+import { History } from 'history';
 import KnappBase from 'nav-frontend-knapper';
 
 import { AppState } from '../../redux/reducers';
-import { selectFodselsnummerfraOppgaver, plukkOppgaver } from '../../redux/restReducers/oppgaver';
+import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restReducers/oppgaver';
 import { STATUS } from '../../redux/restReducers/utils';
 import StartBildeLayout from './StartBildeLayout';
 import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
@@ -76,7 +76,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Oppgave[]>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
         plukkOppgaver: () => dispatch(plukkOppgaver('')),
     };

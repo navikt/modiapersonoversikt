@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
-
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import Datovelger, { tilPeriode } from '../../../../components/forms/Datovelger';
 import Input from 'nav-frontend-skjema/lib/input';
 
