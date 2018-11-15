@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { Action } from 'history';
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -12,8 +12,8 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
-import * as tilrettelagtKommunikasjonKodeverkReducer from
-        '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
+import * as tilrettelagtKommunikasjonKodeverkReducer
+    from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
 

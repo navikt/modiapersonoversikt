@@ -1,5 +1,4 @@
-import { Dispatch } from 'react-redux';
-import { Action } from 'redux';
+import { Action, Dispatch } from 'redux';
 
 import { getPerson } from '../../api/person-api';
 import { createActionsAndReducer } from './restReducer';

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Action } from 'history';
-import { connect, Dispatch } from 'react-redux';
-
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { AppState } from '../../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';

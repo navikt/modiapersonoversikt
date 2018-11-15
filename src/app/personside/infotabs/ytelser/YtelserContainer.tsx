@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { AppState } from '../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import { Action } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { SykepengerResponse } from '../../../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../../../models/ytelse/foreldrepenger';

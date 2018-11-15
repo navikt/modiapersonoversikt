@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import { Action } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';

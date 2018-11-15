@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { Action } from 'history';
+import { connect } from 'react-redux';
+import { Action, Dispatch } from 'redux';
 
 import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';

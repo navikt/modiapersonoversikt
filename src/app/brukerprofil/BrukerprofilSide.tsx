@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Action } from 'history';
 
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
@@ -12,7 +11,7 @@ import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -14,6 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
+import { Dispatch } from 'redux';
 interface StateProps {
     UI: UIState;
     person: Person;
