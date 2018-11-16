@@ -2,8 +2,8 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
+import { isLoaded, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Utbetaling, UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { AnyAction } from 'redux';
@@ -126,21 +126,24 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     handlePilknapper(event: KeyboardEvent) {
+        if (!isLoaded(this.props.utbetalingerReducer)) {
+            return;
+        }
         if (event.key === 'ArrowDown') {
-            this.updateYtelseIFokus(this.finnNesteYtelse());
+            this.updateYtelseIFokus(this.finnNesteYtelse(this.props.utbetalingerReducer.data.utbetalinger));
         } else if (event.key === 'ArrowUp') {
-            this.updateYtelseIFokus(this.finnForrigeYtelse());
+            this.updateYtelseIFokus(this.finnForrigeYtelse(this.props.utbetalingerReducer.data.utbetalinger));
         }
     }
 
-    finnNesteYtelse() {
-        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
+    finnNesteYtelse(utbetalinger: Utbetaling[]) {
+        const ytelser: Ytelse[] = flatMapYtelser(utbetalinger);
         const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : -1;
         return ytelser[currentIndex + 1] || ytelser[0];
     }
 
-    finnForrigeYtelse() {
-        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
+    finnForrigeYtelse(utbetalinger: Utbetaling[]) {
+        const ytelser: Ytelse[] = flatMapYtelser(utbetalinger);
         const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : ytelser.length;
         return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
     }
@@ -162,8 +165,8 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
-                                utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                                utbetalingerPeriode={this.props.utbetalingerReducer.data.periode}
+                                utbetalingerData={
+                                    (this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
                                 ytelseIFokus={this.state.ytelseIFokus}
                                 filter={this.state.filter}
                                 handleShortcut={this.handlePilknapper}

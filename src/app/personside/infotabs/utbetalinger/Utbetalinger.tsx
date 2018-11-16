@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling, UtbetalingerPeriode, Ytelse } from '../../../../models/utbetalinger';
+import { Utbetaling, UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
@@ -138,8 +138,7 @@ function removePilknappListener(handleShortcut: (event: KeyboardEvent) => void) 
 }
 
 interface UtbetalingerUniqueProps {
-    utbetalinger: Utbetaling[];
-    utbetalingerPeriode: UtbetalingerPeriode;
+    utbetalingerData: UtbetalingerResponse;
     filter: FilterState;
     handleShortcut: (event: KeyboardEvent) => void;
 }
@@ -147,7 +146,7 @@ interface UtbetalingerUniqueProps {
 type UtbetalingerProps = UtbetalingerUniqueProps & FokusProps;
 
 function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
-    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, filter);
+    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
@@ -171,7 +170,7 @@ function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerPeriode}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode}/>
             <UtbetalingerArticle>
                 <Undertittel>Utbetalinger</Undertittel>
                 <UtbetalingerListe

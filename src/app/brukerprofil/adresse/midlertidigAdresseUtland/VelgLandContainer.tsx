@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import { AppState } from '../../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNoData, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
+import { STATUS } from '../../../../redux/restReducers/utils';
 
 interface DispatchProps {
     hentLand: () => void;
@@ -44,7 +44,7 @@ class VelgLandContainer extends React.Component<Props> {
                 <Innholdslaster avhengigheter={[this.props.landReducer]}>
                     <VelgLand
                         visFeilmeldinger={false}
-                        landKodeverk={this.props.landReducer.data}
+                        landKodeverk={(this.props.landReducer as Loaded<KodeverkResponse>).data}
                         midlertidigAdresseUtlandInputs={this.props.midlertidigAdresseUtlandInput}
                         onChange={this.props.landChanged}
                     />

@@ -17,16 +17,13 @@ import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittk
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
     bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
-}
-
-interface State {
 }
 
 interface DispatchProps {
@@ -39,11 +36,16 @@ interface StateProps {
     landKodeverkReducer: RestReducer<KodeverkResponse>;
 }
 
-type Props = OwnProps & DispatchProps & StateProps;
+interface LoadedProps {
+    valutaKodeverkReducer: Loaded<KodeverkResponse>;
+    landKodeverkReducer: Loaded<KodeverkResponse>;
+}
 
-class UtenlandskKontonrInputs extends React.Component<Props, State> {
+type Props = OwnProps & DispatchProps;
 
-    constructor(props: Props) {
+class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
+
+    constructor(props: Props & StateProps) {
         super(props);
 
         if (this.props.valutaKodeverkReducer.status === STATUS.NOT_STARTED) {
@@ -60,13 +62,17 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
             <Innholdslaster
                 avhengigheter={[this.props.valutaKodeverkReducer, this.props.landKodeverkReducer]}
             >
-                <Inputs {...this.props} />
+                <Inputs
+                    {...this.props}
+                    valutaKodeverkReducer={this.props.valutaKodeverkReducer as Loaded<KodeverkResponse>}
+                    landKodeverkReducer={this.props.landKodeverkReducer as Loaded<KodeverkResponse>}
+                />
             </Innholdslaster>
         );
     }
 }
 
-function Inputs(props: Props) {
+function Inputs(props: Props & LoadedProps) {
     const bankkonto = props.bankkonto;
     const validering = props.bankkontoValidering.felter;
     return (
@@ -76,7 +82,7 @@ function Inputs(props: Props) {
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({banknavn: event.target.value})}
                 feil={validering.banknavn.skjemafeil}
             />
             <Input
@@ -89,7 +95,7 @@ function Inputs(props: Props) {
                         linje1: event.target.value
                     }
                 })}
-                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
+                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
             />
             <Input
                 label=""
@@ -101,7 +107,7 @@ function Inputs(props: Props) {
                         linje2: event.target.value
                     }
                 })}
-                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
+                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
             />
             <Input
                 label=""
@@ -119,21 +125,21 @@ function Inputs(props: Props) {
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({swift: event.target.value})}
                 feil={validering.swift.skjemafeil}
             />
             <Input
                 label="Kontonummer eller IBAN"
                 value={bankkonto.kontonummer}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({kontonummer: event.target.value})}
                 feil={validering.kontonummer.skjemafeil}
             />
             <Input
                 label="Bankkode"
                 value={bankkonto.bankkode}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({bankkode: event.target.value})}
                 feil={validering.bankkode.skjemafeil}
             />
             <VelgValuta {...props} />
@@ -141,7 +147,7 @@ function Inputs(props: Props) {
     );
 }
 
-function VelgLand(props: Props) {
+function VelgLand(props: Props & LoadedProps) {
     const options = props.landKodeverkReducer.data.kodeverk
         .sort(alfabetiskKodeverkComparator)
         .map(landKodeverk => {
@@ -164,7 +170,7 @@ function VelgLand(props: Props) {
     );
 }
 
-function VelgValuta(props: Props) {
+function VelgValuta(props: Props & LoadedProps) {
     const options = props.valutaKodeverkReducer.data.kodeverk
         .sort(alfabetiskKodeverkComparator)
         .map((valutakodeverk: Kodeverk) => {
@@ -187,20 +193,20 @@ function VelgValuta(props: Props) {
     );
 }
 
-function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
-        const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
-                .find(kodeverk => kodeverk.kodeRef === event.target.value)
-            || { kodeRef: '', beskrivelse: '' };
+function handleLandChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
+    const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
+            .find(kodeverk => kodeverk.kodeRef === event.target.value)
+        || {kodeRef: '', beskrivelse: ''};
 
-        props.updateBankkontoInputsState({ landkode: valgtKodeverk });
+    props.updateBankkontoInputsState({landkode: valgtKodeverk});
 }
 
-function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
-        const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
-                .find(kodeverk => kodeverk.kodeRef === event.target.value)
-            || { kodeRef: '', beskrivelse: '' };
+function handleValutaChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
+    const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
+            .find(kodeverk => kodeverk.kodeRef === event.target.value)
+        || {kodeRef: '', beskrivelse: ''};
 
-        props.updateBankkontoInputsState({ valuta: valgtKodeverk });
+    props.updateBankkontoInputsState({valuta: valgtKodeverk});
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps => {

@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/restReducers/utils';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
-import { ReactNode } from 'react';
-import { RestReducer } from '../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../redux/restReducers/restReducer';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
@@ -19,7 +19,7 @@ interface InnholdslasterProps {
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
-const harGyldigResponse = ((reducer: RestReducer<object>) => reducer.data !== undefined);
+const harGyldigResponse = ((reducer: Loaded<object>) => reducer.data !== undefined);
 const alleLastet = (avhengigheter: RestReducer<object>[]) => (
     avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) &&
     avhengigheter.every(harGyldigResponse)
@@ -32,7 +32,7 @@ const noenHarFeil = (avhengigheter: RestReducer<object>[]) => {
     return noenHarStatusError || noenErLastetMedInvalidResponse;
 };
 
-function Feilvisning(props: {onError?: React.ReactChildren | React.ReactChild}) {
+function Feilvisning(props: { onError?: React.ReactChildren | React.ReactChild }) {
     if (props.onError) {
         return <>{props.onError}</>;
     }
@@ -43,13 +43,13 @@ function Feilvisning(props: {onError?: React.ReactChildren | React.ReactChild}) 
     );
 }
 
-function Pending(props: {onPending?: React.ReactChildren | React.ReactChild, spinnerSize?: SpinnerSize }) {
+function Pending(props: { onPending?: React.ReactChildren | React.ReactChild, spinnerSize?: SpinnerSize }) {
     if (props.onPending) {
         return <>{props.onPending}</>;
     }
     return (
         <FillCenterAndFadeIn>
-            <NavFrontendSpinner type={props.spinnerSize || 'XXL'} />
+            <NavFrontendSpinner type={props.spinnerSize || 'XXL'}/>
         </FillCenterAndFadeIn>
     );
 }

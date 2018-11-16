@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Person } from '../../../models/person/person';
+import { Person, PersonRespons } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
@@ -14,6 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
 interface StateProps {
@@ -79,7 +80,7 @@ class VisittkortContainer extends React.Component<Props> {
 function mapStateToProps(state: AppState) {
     return {
         UI: state.ui,
-        person: state.restEndepunkter.personinformasjon.data as Person
+        person: (state.restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person
     };
 }
 

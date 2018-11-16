@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
@@ -180,11 +180,11 @@ class BrukerprofilSide extends React.PureComponent<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    <Header person={this.props.personReducer.data as Person}/>
+                    <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>
                     <ContentWrapper>
                         <BrukerprofilForm
-                            person={this.props.personReducer.data as Person}
-                            veilderRoller={this.props.veilederRollerReducer.data}
+                            person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
+                            veilderRoller={(this.props.veilederRollerReducer as Loaded<VeilederRoller>).data}
                         />
                     </ContentWrapper>
                 </Innholdslaster>

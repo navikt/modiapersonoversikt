@@ -11,7 +11,7 @@ import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
 
 interface DispatchProps {
@@ -56,8 +56,8 @@ class NavKontorContainer extends React.Component<Props> {
         return (
             <Innholdslaster avhengigheter={[this.props.navKontorReducer, this.props.baseUrlReducer]} spinnerSize={'L'}>
                 <NavKontorVisning
-                    navKontor={this.props.navKontorReducer.data.navKontor}
-                    baseUrlsResponse={baseUrlResponse.data}
+                    brukersNavKontorResponse={(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data}
+                    baseUrlsResponse={(baseUrlResponse as Loaded<BaseUrlsResponse>).data}
                 />
             </Innholdslaster>
         );

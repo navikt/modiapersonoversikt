@@ -6,7 +6,7 @@ import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import * as moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -139,12 +139,11 @@ function egendefinertDatoInputs(props: Props) {
     );
 }
 
-function visCheckbokser(utbetalingReducer: RestReducer<UtbetalingerResponse>): boolean {
-    return utbetalingReducer.data.utbetalinger && utbetalingReducer.data.utbetalinger.length > 0;
+function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
+    return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
 function Filtrering(props: Props) {
-
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];
         const checked = props.filterState.periode.radioValg === label;
@@ -161,7 +160,7 @@ function Filtrering(props: Props) {
 
     const visSpinner = props.utbetalingReducer.status === STATUS.LOADING
         || props.utbetalingReducer.status === STATUS.RELOADING;
-    const checkBokser = visCheckbokser(props.utbetalingReducer) && (
+    const checkBokser = isLoaded(props.utbetalingReducer) && visCheckbokser(props.utbetalingReducer.data) && (
         <>
             <Blokk>
                 <InputPanel>

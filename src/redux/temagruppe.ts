@@ -4,7 +4,6 @@ export const enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE'
 }
 
-
 export function velgTemagruppe(temagruppe: string): TemagruppeAction {
     return {
         temagruppe: temagruppe,
@@ -18,7 +17,7 @@ interface TemagruppeAction extends Action {
 }
 
 export interface TemagruppeState {
-    valgtTemagruppe: string
+    valgtTemagruppe: string;
 }
 
 export const TemagruppeInitState = {

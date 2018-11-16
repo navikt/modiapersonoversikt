@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -106,7 +106,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     oppdaterSakstema(sakstema: Sakstema) {
-        this.setState({valgtSakstema: sakstema });
+        this.setState({valgtSakstema: sakstema});
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
         }
@@ -129,7 +129,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
                         <SakstemaListe>
                             <SakstemaVisning
-                                sakstema={this.props.saksoversiktReducer.data.resultat}
+                                sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data}
                                 oppdaterSakstema={this.oppdaterSakstema}
                                 valgtSakstema={this.state.valgtSakstema}
                             />
@@ -138,7 +138,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
-                                baseUrlsResponse={this.props.baseUrlReducer.data}
+                                baseUrlsResponse={(this.props.baseUrlReducer as Loaded<BaseUrlsResponse>).data}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
                             />
@@ -152,9 +152,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState): StateProps {
     return ({
-            baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-            saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
-        });
+        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
+        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
+    });
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {

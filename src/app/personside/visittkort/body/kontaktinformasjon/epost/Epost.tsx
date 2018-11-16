@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import VisittkortElement from '../../VisittkortElement';
-import { KRRKontaktinformasjon, KontaktinformasjonVerdi } from '../../../../../../models/kontaktinformasjon';
+import { KontaktinformasjonVerdi, KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/dateUtils';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../../../redux/restReducers/restReducer';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface EpostProps {
@@ -46,14 +46,14 @@ interface EpostWrapperProps {
     kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
 }
 
-function EpostWrapper ({kontaktinformasjonReducer}: EpostWrapperProps) {
+function EpostWrapper({kontaktinformasjonReducer}: EpostWrapperProps) {
     return (
         <VisittkortElement
             beskrivelse="E-post"
-            ikon={<EmailIkon />}
+            ikon={<EmailIkon/>}
         >
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
-                <EpostVisning kontaktinformasjon={kontaktinformasjonReducer.data}/>
+                <EpostVisning kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data}/>
             </Innholdslaster>
         </VisittkortElement>
     );

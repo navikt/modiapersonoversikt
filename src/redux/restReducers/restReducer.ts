@@ -35,14 +35,6 @@ export function isLoaded<T>(restReducer: RestReducer<T>): restReducer is Loaded<
     return restReducer.status === STATUS.SUCCESS || restReducer.status === STATUS.RELOADING;
 }
 
-export function isNoData<T>(restReducer: RestReducer<T>): restReducer is NoData<T> {
-    return restReducer.status === STATUS.NOT_STARTED;
-}
-
-export function isFailed<T>(restReducer: RestReducer<T>): restReducer is Failed<T> {
-    return restReducer.status === STATUS.FAILED;
-}
-
 function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + ' / ';
     return {

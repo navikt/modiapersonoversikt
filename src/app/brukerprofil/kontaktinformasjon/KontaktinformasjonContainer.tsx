@@ -12,7 +12,7 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
 import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
 
 interface DispatchProps {
@@ -53,7 +53,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
                     <NavKontaktinformasjonWrapper>
                         <KontaktinformasjonForm
                             person={this.props.person}
-                            retningsnummerKodeverk={this.props.retningsnummerReducer.data}
+                            retningsnummerKodeverk={(this.props.retningsnummerReducer as Loaded<KodeverkResponse>).data}
                         />
                     </NavKontaktinformasjonWrapper>
                 </Innholdslaster>
@@ -75,4 +75,4 @@ function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyActi
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (KontaktinformasjonFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonFormContainer);

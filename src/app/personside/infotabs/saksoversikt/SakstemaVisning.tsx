@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -9,8 +9,8 @@ import { Undertittel } from 'nav-frontend-typografi';
 import SaksIkon from '../../../../svg/SaksIkon';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
-export interface SakstemaProps {
-    sakstema: Sakstema[];
+export interface SakstemaVisninProps {
+    sakstemaWrapper: SakstemaWrapper;
     oppdaterSakstema: (sakstema: Sakstema) => void;
     valgtSakstema?: Sakstema;
 }
@@ -75,7 +75,13 @@ const TittelWrapper = styled.div`
   }
 `;
 
-function GrupperteTema(props: SakstemaProps) {
+export interface GrupperteTemaProps {
+    sakstema: Sakstema[];
+    oppdaterSakstema: (sakstema: Sakstema) => void;
+    valgtSakstema?: Sakstema;
+}
+
+function GrupperteTema(props: GrupperteTemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -121,11 +127,11 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-class SakstemaVisning extends React.Component<SakstemaProps, State> {
+class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
 
-    constructor(props: SakstemaProps) {
+    constructor(props: SakstemaVisninProps) {
         super(props);
-        const aggregert = aggregertSakstema(props.sakstema);
+        const aggregert = aggregertSakstema(props.sakstemaWrapper.resultat);
         this.state = {
             aggregertSakstema: aggregert
         };
@@ -135,7 +141,7 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
     render () {
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
             hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
+        const sortertSakstema = this.props.sakstemaWrapper.resultat.sort(sorterPåHendelse);
 
         if (sortertSakstema.length === 0) {
             return (

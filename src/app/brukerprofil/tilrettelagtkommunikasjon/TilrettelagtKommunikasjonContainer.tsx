@@ -15,7 +15,7 @@ import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import * as tilrettelagtKommunikasjonKodeverkReducer
     from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
 
 interface State {
@@ -64,7 +64,9 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
                 >
                     <TilrettelagtKommunikasjonsForm
                         person={this.props.person}
-                        tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
+                        tilrettelagtKommunikasjonKodeverk={
+                            (this.props.tilrettelagtKommunikasjonKodeverkReducer as Loaded<KodeverkResponse>).data
+                        }
                     />
                 </Innholdslaster>
             </div>

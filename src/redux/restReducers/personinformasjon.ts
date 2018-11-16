@@ -15,7 +15,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../reducers';
 
-const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
+const {reducer, action, actionNames, reload} = createActionsAndReducer('personinformasjon');
 
 function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));
@@ -40,6 +40,7 @@ export function hentAllPersonData(dispatch: ThunkDispatch<AppState, undefined, A
     dispatch(resetPleiepengerReducer());
     dispatch(resetForeldrepengerReducer());
 }
+
 export const personinformasjonActionNames = actionNames;
 
 export default reducer;

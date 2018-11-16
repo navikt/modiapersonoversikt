@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { AnyAction } from 'redux';
@@ -51,15 +51,15 @@ class YtelserContainer extends React.Component<Props> {
             <>
                 <Innholdstittel>Sykepenger</Innholdstittel>
                 <Innholdslaster avhengigheter={[this.props.sykepengerReducer]}>
-                    {JSON.stringify(this.props.sykepengerReducer.data)}
+                    {JSON.stringify((this.props.sykepengerReducer as Loaded<SykepengerResponse>).data)}
                 </Innholdslaster>
                 <Innholdstittel>Pleiepenger</Innholdstittel>
                 <Innholdslaster avhengigheter={[this.props.pleiepengerReducer]}>
-                    {JSON.stringify(this.props.pleiepengerReducer.data)}
+                    {JSON.stringify((this.props.pleiepengerReducer as Loaded<PleiepengerResponse>).data)}
                 </Innholdslaster>
                 <Innholdstittel>Foreldrepenger</Innholdstittel>
                 <Innholdslaster avhengigheter={[this.props.foreldrepengerReducer]}>
-                    {JSON.stringify(this.props.foreldrepengerReducer.data)}
+                    {JSON.stringify((this.props.foreldrepengerReducer as Loaded<ForeldrepengerResponse>).data)}
                 </Innholdslaster>
             </>
         );

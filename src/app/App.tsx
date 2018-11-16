@@ -12,7 +12,8 @@ import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
 import ModalWrapper from 'nav-frontend-modal';
-import { Person } from '../models/person/person';
+import { Person, PersonRespons } from '../models/person/person';
+import { isLoaded, Loaded } from '../redux/restReducers/restReducer';
 
 if (mockEnabled) {
     setupMock();
@@ -44,7 +45,16 @@ class App extends React.Component<{}> {
     render() {
         return (
             <PersonContext.Provider
-                value={(store.getState().restEndepunkter.personinformasjon.data as Person).fødselsnummer || undefined}
+                value={
+                    isLoaded((store.getState().restEndepunkter.personinformasjon))
+                    ?
+                    ((store.getState()
+                        .restEndepunkter.personinformasjon as Loaded<PersonRespons>)
+                        .data as Person)
+                        .fødselsnummer || undefined
+                    :
+                    undefined
+                }
             >
                 <Provider store={store}>
                     <AppWrapper innerRef={this.appRef}>

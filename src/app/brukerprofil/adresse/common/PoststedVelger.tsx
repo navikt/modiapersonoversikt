@@ -8,7 +8,7 @@ import { KodeverkResponse } from '../../../../models/kodeverk';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-import { RestOk } from '../../../../redux/restReducers/restReducer';
+import { Loaded } from '../../../../redux/restReducers/restReducer';
 
 export interface PoststedInformasjon {
     postnummer: string;
@@ -25,7 +25,7 @@ const PoststedInput = styled.div`
 `;
 
 interface StateProps {
-    postnummerReducer: RestOk<KodeverkResponse>;
+    postnummerReducer: Loaded<KodeverkResponse>;
 }
 
 interface OwnProps {
@@ -40,7 +40,7 @@ class Poststed extends React.Component<Props> {
 
     onPostnummerInput(input: string) {
         this.props.onChange({...this.props.poststedInformasjon, postnummer: input});
-        const {kodeverk} = (this.props.postnummerReducer).data;
+        const {kodeverk} = this.props.postnummerReducer.data;
         const postnummer = input.trim();
         if (postnummer.length === 4) {
             const poststed = kodeverk.find(({kodeRef}) => kodeRef === postnummer);
@@ -81,7 +81,7 @@ class Poststed extends React.Component<Props> {
 
 function mapStateToProps(appState: AppState) {
     return {
-        postnummerReducer: appState.restEndepunkter.postnummerReducer as RestOk<KodeverkResponse>
+        postnummerReducer: appState.restEndepunkter.postnummerReducer as Loaded<KodeverkResponse>
     };
 }
 
