@@ -7,7 +7,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { isNoData, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { ThunkDispatch } from 'redux-thunk';
 import { STATUS } from '../../../../redux/restReducers/utils';
 

@@ -40,7 +40,8 @@ class InfoTabs extends React.PureComponent<Props> {
     }
 
     updateRouterPath(newTab: INFOTABS) {
-        this.props.history.push(`${paths.personUri}/${(this.props.personRespons as Person).fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
+        const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
+        this.props.history.push(`${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
     }
 
     onTabChange(newTab: INFOTABS) {

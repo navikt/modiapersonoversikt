@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { AppState } from '../../../redux/reducers';
-import { Person, PersonRespons } from '../../../models/person/person';
+import { PersonRespons } from '../../../models/person/person';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import InfoTabs from './InfoTabs';
