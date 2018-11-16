@@ -35,6 +35,9 @@ import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtil
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Undertekst } from 'nav-frontend-typografi';
+import { FormatertKontonummer } from '../../../utils/FormatertKontonummer';
+import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -265,12 +268,20 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 onSuccess={`Kontonummer ble endret.`}
             />
         );
+        const konto = (
+            <Undertekst>
+                Gjeldende kontonummer: <FormatertKontonummer
+                    kontonummer={this.props.person.bankkonto && this.props.person.bankkonto.kontonummer || ''}
+                />
+            </Undertekst>
+        );
 
         const sistEndretInfo = <EtikettGrå>{hentEndringstekst(this.props.person.bankkonto)}</EtikettGrå>;
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)}>
                     <Undertittel>Kontonummer</Undertittel>
+                    {!erNyePersonoversikten() && konto}
                     {sistEndretInfo}
                     <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller}/>
                     {norskEllerUtenlandskKontoRadio}
