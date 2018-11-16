@@ -19,6 +19,7 @@ import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
+import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -45,7 +46,7 @@ const HeaderContent = styled.section`
 `;
 
 const ContentWrapper = styled.section`
-  overflow-y: scroll;
+  overflow-y: auto;
   flex-grow: 1;
   padding: 3rem;
   display: flex;
@@ -143,7 +144,7 @@ class Header extends React.PureComponent<{ person: Person }> {
         const person = this.props.person;
         return (
             <HeaderStyle>
-                <TilbakeLenke fnr={person.fødselsnummer}/>
+                {erNyePersonoversikten() && <TilbakeLenke fnr={person.fødselsnummer}/>}
                 <HeaderContent>
                     <Fokus innerRef={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
@@ -174,7 +175,7 @@ class BrukerprofilSide extends React.PureComponent<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer}/>
+                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer}/>}
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >

@@ -33,7 +33,7 @@ const OversiktStyle = styled.div`
 `;
 
 const Border = styled.div`
-  border-top: 2px solid ${theme.color.bakgrunn};
+  border-top: ${theme.border.skilleSvak};
   margin: .5rem 0;
 `;
 

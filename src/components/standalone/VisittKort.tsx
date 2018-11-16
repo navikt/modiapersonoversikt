@@ -28,7 +28,7 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>}/>
+                    <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
                 </Provider>
             </ErrorBoundary>
         );

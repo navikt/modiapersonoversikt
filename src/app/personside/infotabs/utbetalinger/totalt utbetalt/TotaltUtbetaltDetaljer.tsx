@@ -93,7 +93,7 @@ const DetaljerStyle = styled.aside`
     margin-top: .5rem;
     > *:nth-last-child(n+3) {
         padding-top: .5rem;
-        border-top: 2px solid ${theme.color.bakgrunn};
+        border-top: ${theme.border.skilleSvak};
     }
   }
   @media print {
