@@ -54,7 +54,7 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.Component<Props, State> {
 
-    private buttonWrapperRef = React.createRef<HTMLElement>();
+    private printButtonWrapperRef = React.createRef<HTMLElement>();
     private utbetalingRef = React.createRef<HTMLDivElement>();
     private print: () => void;
 
@@ -63,11 +63,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         this.state = {
             visDetaljer: false
         };
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
+        this.setVisDetaljer = this.setVisDetaljer.bind(this);
         this.handlePrint = this.handlePrint.bind(this);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
-        this.removeEnterListener = this.removeEnterListener.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     shouldComponentUpdate(prevProps: Props, prevState: State) {
@@ -80,9 +78,9 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         return false;
     }
 
-    toggleVisDetaljer() {
+    setVisDetaljer(vis: boolean) {
         this.setState({
-            visDetaljer: !this.state.visDetaljer
+            visDetaljer: vis
         });
     }
 
@@ -97,42 +95,20 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 
     handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        if (this.buttonWrapperRef.current) {
-            const knappTrykket = (event.target instanceof Node)
-                && this.buttonWrapperRef.current.contains(event.target);
-            if (!knappTrykket) {
-                this.toggleVisDetaljer();
-            }
+        if (!this.printButtonWrapperRef.current) {
+            return;
+        }
+        const printKnappTrykket = (event.target instanceof Node)
+            && this.printButtonWrapperRef.current.contains(event.target);
+        if (!printKnappTrykket) {
+            this.setVisDetaljer(!this.state.visDetaljer);
         }
     }
 
-    handleEnter(event: KeyboardEvent) {
+    handleKeyPress(event: React.KeyboardEvent) {
         if (event.key === 'Enter' && !event.repeat) {
-            this.toggleVisDetaljer();
+            this.setVisDetaljer(!this.state.visDetaljer);
         }
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
-        const mistetFokus = !this.props.erIFokus && prevProps.erIFokus;
-        if (fikkFokus && this.utbetalingRef.current) {
-            this.utbetalingRef.current.focus();
-            this.addEnterListener();
-        } else if (mistetFokus) {
-            this.removeEnterListener();
-        }
-    }
-
-    removeEnterListener() {
-        window.removeEventListener('keydown', this.handleEnter);
-    }
-
-    addEnterListener() {
-        window.addEventListener('keydown', this.handleEnter);
-    }
-
-    setTilYtelseIFokus(ytelse: Ytelse) {
-        this.props.updateYtelseIFokus(ytelse);
     }
 
     render() {
@@ -156,10 +132,10 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                     <UtbetalingStyle
                         onClick={(event: React.MouseEvent<HTMLElement>) =>
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
+                        onKeyPress={this.handleKeyPress}
                         innerRef={this.utbetalingRef}
                         tabIndex={0}
-                        onFocus={() => this.setTilYtelseIFokus(ytelse)}
-                        onBlur={this.removeEnterListener}
+                        onFocus={() => this.props.updateYtelseIFokus(ytelse)}
                     >
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
@@ -175,14 +151,14 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                             </SpaceBetween>
                             <SpaceBetween>
                                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <span ref={this.buttonWrapperRef}>
+                                <span ref={this.printButtonWrapperRef}>
                                     <PrintKnapp onClick={this.handlePrint}/>
                                 </span>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
                         <DetaljerCollapse
                             open={this.state.visDetaljer}
-                            toggle={this.toggleVisDetaljer}
+                            toggle={() => this.setVisDetaljer(!this.state.visDetaljer)}
                         >
                             <UtbetalingsDetaljer
                                 ytelse={ytelse}
