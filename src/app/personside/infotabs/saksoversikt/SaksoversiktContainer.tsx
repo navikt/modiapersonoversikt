@@ -15,6 +15,8 @@ import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
+import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
+import { lenkeNorg2Frontend } from './norgLenke';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -96,7 +98,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.baseUrlReducer.status ===  STATUS.NOT_STARTED) {
+        if (this.props.baseUrlReducer.status === STATUS.NOT_STARTED) {
             this.props.hentBaseUrls();
         }
         if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {
@@ -105,7 +107,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     oppdaterSakstema(sakstema: Sakstema) {
-        this.setState({valgtSakstema: sakstema });
+        this.setState({valgtSakstema: sakstema});
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
         }
@@ -121,23 +123,32 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     render() {
+        const norgUrl = this.props.baseUrlReducer.status === STATUS.OK
+            ? lenkeNorg2Frontend(this.props.baseUrlReducer.data, this.state.valgtSakstema)
+            : '';
         return (
             <ErrorBoundary>
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
-                        <SakstemaListe>
-                            <SakstemaVisning
-                                sakstema={this.props.saksoversiktReducer.data.resultat}
-                                oppdaterSakstema={this.oppdaterSakstema}
-                                valgtSakstema={this.state.valgtSakstema}
-                            />
-                        </SakstemaListe>
+                        <div>
+                            <LenkepanelPersonoversikt
+                                url={norgUrl}
+                            >
+                                Oversikt over enheter og tema
+                            </LenkepanelPersonoversikt>
+                            <SakstemaListe>
+                                <SakstemaVisning
+                                    sakstema={this.props.saksoversiktReducer.data.resultat}
+                                    oppdaterSakstema={this.oppdaterSakstema}
+                                    valgtSakstema={this.state.valgtSakstema}
+                                />
+                            </SakstemaListe>
+                        </div>
                         <DokumentListe>
                             <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
-                                baseUrlsResponse={this.props.baseUrlReducer.data}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
                             />
@@ -151,9 +162,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState): StateProps {
     return ({
-            baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-            saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
-        });
+        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
+        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
+    });
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {

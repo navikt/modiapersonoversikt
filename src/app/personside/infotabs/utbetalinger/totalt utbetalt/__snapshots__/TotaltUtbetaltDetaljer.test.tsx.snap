@@ -172,7 +172,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 
 .c2 tbody tr > *:nth-last-child(n+3) {
   padding-top: .5rem;
-  border-top: 2px solid #e7e9e9;
+  border-top: solid 0.0625rem #c6c2bf;
 }
 
 @media print {

@@ -38,7 +38,7 @@ const KnappWrapper = styled.div`
   }
 `;
 
-const Wrapper = styled<{valgt: boolean}, 'div'>('div')`
+const Wrapper = styled<{valgt: boolean}, 'li'>('li')`
     display: flex;
     cursor: pointer;
     ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.03);'}
