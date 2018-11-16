@@ -163,6 +163,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-right: .5rem;
 }
 
+.c1 {
+  font-weight: bold;
+}
+
+.c1 a {
+  padding: 1.25rem;
+}
+
 .c10 {
   background-color: white;
   border-radius: .25rem;
@@ -233,7 +241,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c22 ol > *:not(:first-child) {
-  border-top: solid 0.0625rem #59514b;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c20 {
@@ -279,13 +287,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   width: 6rem;
 }
 
-.c2 {
-  background-color: white;
-  border-radius: .25rem;
-  padding: 1.25rem;
-  margin-bottom: .8rem;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -297,7 +298,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   align-items: flex-start;
 }
 
-.c1 {
+.c2 {
   min-width: 19rem;
   -webkit-flex-basis: 19rem;
   -ms-flex-preferred-size: 19rem;
@@ -348,200 +349,200 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   className="c0"
   role="region"
 >
-  <section
-    className="c1"
-  >
+  <div>
     <nav
+      className="c1"
+    >
+      <a
+        className="lenkepanel"
+        href="http://arena.adeo.no/forms/arenaMod.html?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=10108000398"
+      >
+        Meldekort i Arenda
+        <span
+          className="lenkepanel__indikator"
+        />
+      </a>
+    </nav>
+    <section
       className="c2"
     >
-      <p
-        className="typo-normal"
+      <nav
+        className="c3"
+        onClick={[Function]}
       >
-        <a
-          className="lenke"
-          href="http://arena.adeo.no/forms/arenaMod.html?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=10108000398"
-          target="_blank"
+        <h2
+          className="typo-undertittel"
         >
-          Meldekort i Arena
-        </a>
-      </p>
-    </nav>
-    <nav
-      className="c3"
-      onClick={[Function]}
-    >
-      <h2
-        className="typo-undertittel"
-      >
-        Filtrering
-      </h2>
-      <div
-        className="c4"
-      >
-        <form
-          className="c5"
+          Filtrering
+        </h2>
+        <div
+          className="c4"
         >
-          <fieldset
-            className="c6"
+          <form
+            className="c5"
           >
-            <legend
+            <fieldset
+              className="c6"
+            >
+              <legend
+                className="typo-etikett-liten"
+              >
+                Velg periode
+              </legend>
+              <div
+                className="skjemaelement skjemaelement--horisontal"
+              >
+                <input
+                  checked={true}
+                  className="skjemaelement__input radioknapp"
+                  id="Helt tilfeldig ID"
+                  name="FiltreringsvalgGruppe"
+                  onChange={[Function]}
+                  type="radio"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  Siste 30 dager
+                </label>
+              </div>
+              <div
+                className="skjemaelement skjemaelement--horisontal"
+              >
+                <input
+                  checked={false}
+                  className="skjemaelement__input radioknapp"
+                  id="Helt tilfeldig ID"
+                  name="FiltreringsvalgGruppe"
+                  onChange={[Function]}
+                  type="radio"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  Inneværende år
+                </label>
+              </div>
+              <div
+                className="skjemaelement skjemaelement--horisontal"
+              >
+                <input
+                  checked={false}
+                  className="skjemaelement__input radioknapp"
+                  id="Helt tilfeldig ID"
+                  name="FiltreringsvalgGruppe"
+                  onChange={[Function]}
+                  type="radio"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  I fjor
+                </label>
+              </div>
+              <div
+                className="skjemaelement skjemaelement--horisontal"
+              >
+                <input
+                  checked={false}
+                  className="skjemaelement__input radioknapp"
+                  id="Helt tilfeldig ID"
+                  name="FiltreringsvalgGruppe"
+                  onChange={[Function]}
+                  type="radio"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  Egendefinert
+                </label>
+              </div>
+            </fieldset>
+            <div
+              className="c7"
+            >
+              <button
+                className="knapp knapp--standard"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Hent utbetalinger
+              </button>
+            </div>
+          </form>
+        </div>
+        <div
+          className="c4"
+        >
+          <form
+            className="c5"
+          >
+            <p
               className="typo-etikett-liten"
             >
-              Velg periode
-            </legend>
+              Utbetaling til
+            </p>
             <div
               className="skjemaelement skjemaelement--horisontal"
             >
               <input
                 checked={true}
-                className="skjemaelement__input radioknapp"
+                className="skjemaelement__input checkboks"
                 id="Helt tilfeldig ID"
-                name="FiltreringsvalgGruppe"
                 onChange={[Function]}
-                type="radio"
+                type="checkbox"
               />
               <label
                 className="skjemaelement__label"
                 htmlFor="Helt tilfeldig ID"
               >
-                Siste 30 dager
+                Bruker
               </label>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
             </div>
+          </form>
+          <form
+            className="c5"
+          >
+            <p
+              className="typo-etikett-liten"
+            >
+              Velg ytelse
+            </p>
             <div
               className="skjemaelement skjemaelement--horisontal"
             >
               <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
+                checked={true}
+                className="skjemaelement__input checkboks"
                 id="Helt tilfeldig ID"
-                name="FiltreringsvalgGruppe"
                 onChange={[Function]}
-                type="radio"
+                type="checkbox"
               />
               <label
                 className="skjemaelement__label"
                 htmlFor="Helt tilfeldig ID"
               >
-                Inneværende år
+                Sykepenger
               </label>
-            </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="FiltreringsvalgGruppe"
-                onChange={[Function]}
-                type="radio"
+              <div
+                aria-live="assertive"
+                role="alert"
               />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                I fjor
-              </label>
             </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="FiltreringsvalgGruppe"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Egendefinert
-              </label>
-            </div>
-          </fieldset>
-          <div
-            className="c7"
-          >
-            <button
-              className="knapp knapp--standard"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Hent utbetalinger
-            </button>
-          </div>
-        </form>
-      </div>
-      <div
-        className="c4"
-      >
-        <form
-          className="c5"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            Utbetaling til
-          </p>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={true}
-              className="skjemaelement__input checkboks"
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Bruker
-            </label>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </form>
-        <form
-          className="c5"
-        >
-          <p
-            className="typo-etikett-liten"
-          >
-            Velg ytelse
-          </p>
-          <div
-            className="skjemaelement skjemaelement--horisontal"
-          >
-            <input
-              checked={true}
-              className="skjemaelement__input checkboks"
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Sykepenger
-            </label>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-        </form>
-      </div>
-    </nav>
-  </section>
+          </form>
+        </div>
+      </nav>
+    </section>
+  </div>
   <section
     className="c8"
   >

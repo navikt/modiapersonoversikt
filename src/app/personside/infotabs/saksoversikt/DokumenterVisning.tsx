@@ -10,15 +10,11 @@ import DokumentKomponent from './DokumentKomponent';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { BaseUrlsResponse } from '../../../../models/baseurls';
-import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
 import { AvsenderFilter } from './SaksoversiktContainer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import { sakstemakodeAlle } from './SakstemaVisning';
 
 interface Props {
     sakstema?: Sakstema;
-    baseUrlsResponse: BaseUrlsResponse;
     avsenderFilter: AvsenderFilter;
     toggleFilter: (key: keyof AvsenderFilter) => void;
 }
@@ -32,11 +28,9 @@ interface DokumentGruppeProps {
 const Header = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0px ${theme.margin.px10};
-  > * {
-    padding: ${theme.margin.px10};
-  }
+  justify-content: space-between;
+  padding: ${theme.margin.px20};
+  padding-bottom: ${theme.margin.px10};
   > *:first-child {
         flex-grow: 1;
     }
@@ -45,7 +39,6 @@ const Header = styled.section`
 const DokumenterArticle = styled.article`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
-  margin-top: ${theme.margin.layout};
 `;
 
 const DokumenterListe = styled.ol`
@@ -68,42 +61,12 @@ const ÅrsGruppeStyle = styled.li`
   }
 `;
 
-const LenkeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  > *:first-child {
-    padding-bottom: 0.5rem;
-  }
-`;
-
-const LenkeNorgStyle = styled.div`
-  flex-grow: 1;
-  white-space: nowrap;
-`;
-
 const Form = styled.form`
   display: flex;
   > *:not(:last-child) {
     padding-right: 1rem;
   }
 `;
-
-function lenkeNorg(sakstema: string, norg2Url: string) {
-    return (
-        <LenkeNorgStyle>
-            <a
-                href={`${norg2Url}/#/startsok?tema=${sakstema}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lenke"
-            >
-                <Normaltekst tag="span">
-                    Oversikt over enheter og tema de behandler
-                </Normaltekst>
-            </a>
-        </LenkeNorgStyle>
-    );
-}
 
 function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
@@ -141,28 +104,6 @@ function dokumentComparator(a: DokumentMetadata, b: DokumentMetadata) {
 
 function årForDokument(dok: DokumentMetadata) {
     return `${dok.dato.år}`;
-}
-
-function hentNorg2Url(baseUrlsResponse: BaseUrlsResponse) {
-    return hentBaseUrl(baseUrlsResponse, 'norg2-frontend');
-}
-
-function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
-    if (sakstema.temakode !== sakstemakodeAlle) {
-        return sakstema.temakode;
-    }
-    const temaArray: string[] = sakstema.dokumentMetadata.reduce(
-        (acc: string[], dok: DokumentMetadata) => {
-            const tema = dok.temakode;
-            if (acc.includes(tema)) {
-                return acc;
-            } else {
-                return [...acc, tema];
-            }
-        },
-        []
-    );
-    return temaArray.join();
 }
 
 function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFilter) {
@@ -225,7 +166,7 @@ function DokumenterVisning(props: Props) {
     }
 
     const checkboxer = (
-        <>
+        <Form>
             <Checkbox
                 label={'Bruker'}
                 checked={props.avsenderFilter.fraBruker}
@@ -241,22 +182,16 @@ function DokumenterVisning(props: Props) {
                 checked={props.avsenderFilter.fraAndre}
                 onChange={() => props.toggleFilter('fraAndre')}
             />
-        </>
+        </Form>
     );
 
-    const temakodeTilNorgoppslag = byggSøkestrengTilNorgTemaOppslag(props.sakstema);
     const dokumentinnhold = hentDokumentinnhold(props.sakstema, props.avsenderFilter);
 
     return (
         <div>
             <Header>
-                <LenkeWrapper>
-                    <Undertittel>Saksdokumenter</Undertittel>
-                    {lenkeNorg(temakodeTilNorgoppslag, hentNorg2Url(props.baseUrlsResponse))}
-                </LenkeWrapper>
-                <Form>
-                    {checkboxer}
-                </Form>
+                <Undertittel>{props.sakstema.temanavn}</Undertittel>
+                {checkboxer}
             </Header>
             {dokumentinnhold}
         </div>

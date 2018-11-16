@@ -152,15 +152,17 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         return (
             <ErrorBoundary>
                 <UtbetalingerArticle role="region" aria-label="Utbetalinger">
-                    <FiltreringSection>
+                    <div>
                         <Arenalenke fødselsnummer={this.props.fødselsnummer}/>
-                        <Filtrering
-                            filterState={this.state.filter}
-                            onChange={this.onFilterChange}
-                            hentUtbetalinger={this.reloadUtbetalinger}
-                            utbetalingReducer={this.props.utbetalingerReducer}
-                        />
-                    </FiltreringSection>
+                        <FiltreringSection>
+                            <Filtrering
+                                filterState={this.state.filter}
+                                onChange={this.onFilterChange}
+                                hentUtbetalinger={this.reloadUtbetalinger}
+                                utbetalingReducer={this.props.utbetalingerReducer}
+                            />
+                        </FiltreringSection>
+                    </div>
                     <UtbetalingerSection>
                         <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>

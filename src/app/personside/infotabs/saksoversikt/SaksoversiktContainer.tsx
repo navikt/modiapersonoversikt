@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -16,6 +16,8 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 import { ThunkDispatch } from 'redux-thunk';
+import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
+import { lenkeNorg2Frontend } from './norgLenke';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -122,23 +124,32 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     render() {
+        const norgUrl =  isLoaded(this.props.baseUrlReducer)
+            ? lenkeNorg2Frontend(this.props.baseUrlReducer.data, this.state.valgtSakstema)
+            : '';
         return (
             <ErrorBoundary>
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
-                        <SakstemaListe>
-                            <SakstemaVisning
-                                sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data}
-                                oppdaterSakstema={this.oppdaterSakstema}
-                                valgtSakstema={this.state.valgtSakstema}
-                            />
-                        </SakstemaListe>
+                        <div>
+                            <LenkepanelPersonoversikt
+                                url={norgUrl}
+                            >
+                                Oversikt over enheter og tema
+                            </LenkepanelPersonoversikt>
+                            <SakstemaListe>
+                                <SakstemaVisning
+                                    sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data}
+                                    oppdaterSakstema={this.oppdaterSakstema}
+                                    valgtSakstema={this.state.valgtSakstema}
+                                />
+                            </SakstemaListe>
+                        </div>
                         <DokumentListe>
                             <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
-                                baseUrlsResponse={(this.props.baseUrlReducer as Loaded<BaseUrlsResponse>).data}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
                             />

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
-import TittelOgIkon from '../../visittkort/body/IkonOgTittel';
 import { Undertittel } from 'nav-frontend-typografi';
-import SaksIkon from '../../../../svg/SaksIkon';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
 export interface SakstemaVisninProps {
@@ -21,23 +19,11 @@ interface State {
 
 export const sakstemakodeAlle = 'ALLE';
 
-const GruppeStyle = styled.li`
-  ol > *:first-child {
-    padding: 20px 10px 20px 10px;
-  }
-  ol {
-    padding: 0;
-    margin: 0;
-  }
-  ol > *:not(:first-child) {
-    border-top: ${theme.border.skille};
-    padding: 20px 10px 20px 10px;
-  }
-`;
-
 const SakstemaListe = styled.ol`
-  padding: .2rem ${theme.margin.px10};
-  margin: 0;
+  > * {
+    border-top: ${theme.border.skille};
+    padding: ${theme.margin.px20};
+  }
 `;
 
 const Wrapper = styled.div`
@@ -68,11 +54,7 @@ const Wrapper = styled.div`
 `;
 
 const TittelWrapper = styled.div`
-  padding: ${theme.margin.px20} ${theme.margin.px50};
-  svg {
-    height: ${theme.margin.px30};
-    width: auto;
-  }
+  padding: ${theme.margin.px20};
 `;
 
 export interface GrupperteTemaProps {
@@ -93,11 +75,9 @@ function GrupperteTema(props: GrupperteTemaProps) {
         )
     );
     return (
-        <GruppeStyle>
-            <ol>
-                {sakstemakomponenter}
-            </ol>
-        </GruppeStyle>
+        <SakstemaListe>
+            {sakstemakomponenter}
+        </SakstemaListe>
     );
 }
 
@@ -138,7 +118,7 @@ class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
         this.props.oppdaterSakstema(aggregert);
     }
 
-    render () {
+    render() {
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
             hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
         const sortertSakstema = this.props.sakstemaWrapper.resultat.sort(sorterPåHendelse);
@@ -156,15 +136,13 @@ class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
         return (
             <Wrapper>
                 <TittelWrapper>
-                    <TittelOgIkon tittel={<Undertittel>Tema</Undertittel>} ikon={<SaksIkon/>}/>
+                    <Undertittel>Tema</Undertittel>
                 </TittelWrapper>
-                <SakstemaListe>
-                    <GrupperteTema
-                        valgtSakstema={this.props.valgtSakstema}
-                        sakstema={komplettListe}
-                        oppdaterSakstema={this.props.oppdaterSakstema}
-                    />
-                </SakstemaListe>
+                <GrupperteTema
+                    valgtSakstema={this.props.valgtSakstema}
+                    sakstema={komplettListe}
+                    oppdaterSakstema={this.props.oppdaterSakstema}
+                />
             </Wrapper>
         );
     }
