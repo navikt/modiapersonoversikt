@@ -18,6 +18,7 @@ import { sakstemakodeAlle } from './SakstemaVisning';
 
 interface Props {
     sakstema?: Sakstema;
+    geografiskTilknytning?: string;
     baseUrlsResponse: BaseUrlsResponse;
     avsenderFilter: AvsenderFilter;
     toggleFilter: (key: keyof AvsenderFilter) => void;
@@ -88,11 +89,11 @@ const Form = styled.form`
   }
 `;
 
-function lenkeNorg(sakstema: string, norg2Url: string) {
+function lenkeNorg(sakstema: string, geografiskTilknytning: string, norg2Url: string) {
     return (
         <LenkeNorgStyle>
             <a
-                href={`${norg2Url}/#/startsok?tema=${sakstema}`}
+                href={`${norg2Url}/#/startsok?tema=${sakstema}&gt=${geografiskTilknytning}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="lenke"
@@ -252,7 +253,12 @@ function DokumenterVisning(props: Props) {
             <Header>
                 <LenkeWrapper>
                     <Undertittel>Saksdokumenter</Undertittel>
-                    {lenkeNorg(temakodeTilNorgoppslag, hentNorg2Url(props.baseUrlsResponse))}
+                    {
+                        lenkeNorg(
+                        temakodeTilNorgoppslag,
+                        props.geografiskTilknytning ? props.geografiskTilknytning : '',
+                        hentNorg2Url(props.baseUrlsResponse))
+                    }
                 </LenkeWrapper>
                 <Form>
                     {checkboxer}

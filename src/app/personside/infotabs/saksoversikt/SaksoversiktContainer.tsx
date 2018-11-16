@@ -15,6 +15,7 @@ import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
+import { Person } from '../../../../models/person/person';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -30,6 +31,7 @@ interface State {
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     saksoversiktReducer: RestReducer<SakstemaWrapper>;
+    person: Person;
 }
 
 interface DispatchProps {
@@ -137,6 +139,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
                                 sakstema={this.state.valgtSakstema}
+                                geografiskTilknytning={this.props.person.geografiskTilknytning}
                                 baseUrlsResponse={this.props.baseUrlReducer.data}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
@@ -152,7 +155,8 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 function mapStateToProps(state: AppState): StateProps {
     return ({
             baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-            saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
+            saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
+            person: state.restEndepunkter.personinformasjon.data as Person
         });
 }
 
