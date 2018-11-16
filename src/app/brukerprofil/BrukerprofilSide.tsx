@@ -46,7 +46,7 @@ const HeaderContent = styled.section`
 `;
 
 const ContentWrapper = styled.section`
-  overflow-y: scroll;
+  overflow-y: auto;
   flex-grow: 1;
   padding: 3rem;
   display: flex;
