@@ -62,7 +62,7 @@ interface State {
 }
 
 interface StateProps {
-    valgtTemagruppe: string;
+    valgtTemagruppe?: string;
     oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
@@ -84,7 +84,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
     }
 
     onPlukkOppgaver() {
-        if (this.props.valgtTemagruppe === '') {
+        if (!this.props.valgtTemagruppe) {
             this.setState({temagruppeFeilmelding: 'Du må velge temagruppe'});
             return;
         }
