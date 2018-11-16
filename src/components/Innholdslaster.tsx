@@ -21,13 +21,13 @@ const array = (value: object) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
 const harGyldigResponse = ((reducer: RestReducer<object>) => reducer.data !== undefined);
 const alleLastet = (avhengigheter: RestReducer<object>[]) => (
-    avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING)) &&
+    avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) &&
     avhengigheter.every(harGyldigResponse)
 );
 const alleHarValidResponse = (avhengigheter: RestReducer<object>[]) =>
-    avhengigheter.filter(harStatus(STATUS.OK)).every(harGyldigResponse);
+    avhengigheter.filter(harStatus(STATUS.SUCCESS)).every(harGyldigResponse);
 const noenHarFeil = (avhengigheter: RestReducer<object>[]) => {
-    const noenHarStatusError = avhengigheter.some(harStatus(STATUS.ERROR));
+    const noenHarStatusError = avhengigheter.some(harStatus(STATUS.FAILED));
     const noenErLastetMedInvalidResponse = !alleHarValidResponse(avhengigheter);
     return noenHarStatusError || noenErLastetMedInvalidResponse;
 };

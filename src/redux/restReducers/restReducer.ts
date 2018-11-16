@@ -10,32 +10,38 @@ export interface ActionTypes {
 }
 
 export interface RestReducer<T> {
-    status: STATUS
+    status: STATUS;
 }
 
-export interface RestOk<T> extends RestReducer<T> {
-    status: STATUS.OK;
+export interface Loaded<T> extends RestReducer<T> {
+    status:
+        | STATUS.SUCCESS
+        | STATUS.RELOADING;
     data: T;
 }
 
-export interface RestNotStarted<T> extends RestReducer<T> {
-    status: STATUS.NOT_STARTED;
+export interface NoData<T> extends RestReducer<T> {
+    status:
+        | STATUS.NOT_STARTED
+        | STATUS.LOADING;
 }
 
-export interface RestLoading<T> extends RestReducer<T> {
-    status: STATUS.LOADING;
-}
-
-export interface RestReloading<T> extends RestReducer<T> {
-    status: STATUS.RELOADING;
-    data: T;
-}
-
-export interface RestError<T> extends RestReducer<T> {
-    status: STATUS.ERROR;
+export interface Failed<T> extends RestReducer<T> {
+    status: STATUS.FAILED;
     error: string;
 }
 
+export function isLoaded<T>(restReducer: RestReducer<T>): restReducer is Loaded<T> {
+    return restReducer.status === STATUS.SUCCESS || restReducer.status === STATUS.RELOADING;
+}
+
+export function isNoData<T>(restReducer: RestReducer<T>): restReducer is NoData<T> {
+    return restReducer.status === STATUS.NOT_STARTED;
+}
+
+export function isFailed<T>(restReducer: RestReducer<T>): restReducer is Failed<T> {
+    return restReducer.status === STATUS.FAILED;
+}
 
 function getActionTypes(reducerNavn: string): ActionTypes {
     const navnUppercase = reducerNavn.toUpperCase() + ' / ';
@@ -54,42 +60,44 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
     const actionFunction = (fn: () => Promise<T>) => doThenDispatch(fn, actionTypes);
     const reload = (fn: () => Promise<T>) => reloadThenDispatch(fn, actionTypes);
 
-    const tilbakestillReducer = (dispatch: Dispatch<Action>) => { dispatch({type: actionTypes.INITIALIZE}); };
+    const tilbakestillReducer = (dispatch: Dispatch<Action>) => {
+        dispatch({type: actionTypes.INITIALIZE});
+    };
 
-    const initialState : RestReducer<T> = {
+    const initialState: RestReducer<T> = {
         status: STATUS.NOT_STARTED
     };
     return {
         action: actionFunction,
         reload,
         tilbakestillReducer: tilbakestillReducer,
-        reducer: (state : RestReducer<T> = initialState, action: Action) : RestReducer<T> => {
+        reducer: (state: RestReducer<T> = initialState, action: Action): RestReducer<T> => {
             switch (action.type) {
                 case actionTypes.STARTING:
                     return {
                         status: STATUS.LOADING
                     };
                 case actionTypes.RELOADING:
-                    if(state.status === STATUS.OK || state.status === STATUS.RELOADING) {
+                    if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
                         return {
                             ...state,
                             status: STATUS.RELOADING
                         };
-                    }else {
+                    } else {
                         return {
                             status: STATUS.LOADING
                         };
                     }
                 case actionTypes.FINISHED:
                     return {
-                        status: STATUS.OK,
+                        status: STATUS.SUCCESS,
                         data: (<FetchSuccess<T>> action).data
-                    } as RestReducer<T> ;
+                    } as Loaded<T>;
                 case actionTypes.FAILED:
                     return {
-                        status: STATUS.ERROR,
+                        status: STATUS.FAILED,
                         error: (<FetchError> action).error
-                    } as RestReducer<T> ;
+                    } as Failed<T>;
                 case actionTypes.INITIALIZE:
                     return initialState;
                 default:

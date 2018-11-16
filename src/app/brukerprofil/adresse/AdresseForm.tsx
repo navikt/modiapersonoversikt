@@ -120,7 +120,8 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.endreAdresseReducer.status !== STATUS.OK && this.props.endreAdresseReducer.status === STATUS.OK) {
+        if (prevProps.endreAdresseReducer.status !== STATUS.SUCCESS
+            && this.props.endreAdresseReducer.status === STATUS.SUCCESS) {
             this.props.reloadPersonInfo(this.props.person.fødselsnummer);
         }
     }
@@ -429,7 +430,7 @@ class AdresseForm extends React.Component<Props, State> {
                             type="standard"
                             onClick={this.onAvbryt}
                             disabled={
-                                !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.ERROR
+                                !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.FAILED
                                 || this.requestIsPending()
                             }
                         >

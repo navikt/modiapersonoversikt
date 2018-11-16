@@ -7,7 +7,8 @@ import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
-import { EndreTilrettelagtKommunikasjonrequest } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreTilrettelagtKommunikasjonrequest }
+    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import {
     endreTilrettelagtKommunikasjon,
     reset
@@ -69,7 +70,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -99,7 +100,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     handleOnChange(event: React.SyntheticEvent<EventTarget>, value?: string) {
         const newCheckboksState = this.state.checkbokser.map((checkboks: CheckboksProps) => {
                 if (checkboks.value === value) {
-                    return { ...checkboks, checked: !checkboks.checked };
+                    return {...checkboks, checked: !checkboks.checked};
                 }
                 return checkboks;
             }
@@ -142,7 +143,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     legend={''}
                     onChange={this.handleOnChange}
                 />
-                <Luft />
+                <Luft/>
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"

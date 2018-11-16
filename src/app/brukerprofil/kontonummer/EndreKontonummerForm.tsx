@@ -92,7 +92,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     kontonummerBleEndret(prevProps: Props) {
-        return prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK;
+        return prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS;
     }
 
     getInitialState(): State {
@@ -214,7 +214,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     kontonummerBleLagret() {
-        return this.props.reducerStatus === STATUS.OK;
+        return this.props.reducerStatus === STATUS.SUCCESS;
     }
 
     requestIsPending() {

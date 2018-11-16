@@ -97,7 +97,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.baseUrlReducer.status ===  STATUS.NOT_STARTED) {
+        if (this.props.baseUrlReducer.status === STATUS.NOT_STARTED) {
             this.props.hentBaseUrls();
         }
         if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {

@@ -13,7 +13,7 @@ interface FeilmeldingProps {
 }
 
 function ReducerFeilmelding({reducer}: FeilmeldingProps) {
-    if (reducer.status === STATUS.ERROR) {
+    if (reducer.status === STATUS.FAILED) {
         return (
             <MarginWrapper>
                 <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>

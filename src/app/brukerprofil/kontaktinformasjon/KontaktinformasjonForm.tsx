@@ -146,7 +146,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -281,7 +281,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     kontaktInfoBleLagret() {
-        return this.props.reducerStatus === STATUS.OK;
+        return this.props.reducerStatus === STATUS.SUCCESS;
     }
 
     Tilbakemelding() {

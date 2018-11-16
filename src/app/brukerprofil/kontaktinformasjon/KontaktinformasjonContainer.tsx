@@ -40,7 +40,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.retningsnummerReducer.status ===  STATUS.NOT_STARTED) {
+        if (this.props.retningsnummerReducer.status === STATUS.NOT_STARTED) {
             this.props.hentRetningsnummer();
         }
     }
