@@ -16,7 +16,7 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
-import { lenkeNorgSak } from './norgLenke';
+import { lenkeNorg2Frontend } from './norgLenke';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -124,7 +124,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
     render() {
         const norgUrl = this.props.baseUrlReducer.status === STATUS.OK
-            ? lenkeNorgSak(this.props.baseUrlReducer.data, this.state.valgtSakstema)
+            ? lenkeNorg2Frontend(this.props.baseUrlReducer.data, this.state.valgtSakstema)
             : '';
         return (
             <ErrorBoundary>

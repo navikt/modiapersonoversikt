@@ -4,7 +4,7 @@ import { Sakstema } from '../../../../models/saksoversikt/sakstema';
 import { sakstemakodeAlle } from './SakstemaVisning';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 
-export function lenkeNorgSak(baseUrlsResponse: BaseUrlsResponse, sakstema?: Sakstema): string {
+export function lenkeNorg2Frontend(baseUrlsResponse: BaseUrlsResponse, sakstema?: Sakstema): string {
   const temakodeTilNorgoppslag = sakstema ? byggSøkestrengTilNorgTemaOppslag(sakstema) : '';
   const baseUrl = hentNorg2Url(baseUrlsResponse);
   return `${baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}`;
