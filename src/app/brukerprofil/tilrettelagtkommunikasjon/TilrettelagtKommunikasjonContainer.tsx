@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AnyAction } from 'redux';
 
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -16,7 +15,7 @@ import * as tilrettelagtKommunikasjonKodeverkReducer
     from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -74,7 +73,7 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps => {
+const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
     return ({
         hentTilrettelagtKommunikasjonKodeverk:
             () => dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())

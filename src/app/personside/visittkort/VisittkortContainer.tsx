@@ -12,10 +12,9 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
     UI: UIState;
@@ -48,7 +47,8 @@ class VisittkortContainer extends React.Component<Props> {
     render() {
         const person = this.props.person;
         const erApnet = this.props.UI.visittkort.apent;
-        const tabIndexForFokus = erApnet ? -1 : undefined; /* undefided så fokus ikke skal bli hengende ved lukking */
+        const tabIndexForFokus = erApnet ? -1 : undefined;
+        /* undefided så fokus ikke skal bli hengende ved lukking */
         return (
             <ErrorBoundary>
                 <AriaNotification
@@ -84,7 +84,7 @@ function mapStateToProps(state: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
     };

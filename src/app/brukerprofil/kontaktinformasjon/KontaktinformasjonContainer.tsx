@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { AnyAction } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -13,7 +12,7 @@ import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retnin
 import KontaktinformasjonForm from './KontaktinformasjonForm';
 import { STATUS } from '../../../redux/restReducers/utils';
 import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;
@@ -69,7 +68,7 @@ const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnP
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentRetningsnummer: () => dispatch(hentRetningsnummere())
     };

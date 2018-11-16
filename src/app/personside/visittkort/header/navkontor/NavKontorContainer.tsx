@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { AnyAction } from 'redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
@@ -12,7 +11,7 @@ import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { Bold } from '../../../../../components/common-styled-components';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface StateProps {
     navKontorReducer: RestReducer<BrukersNavKontorResponse>;
@@ -100,7 +99,7 @@ const mapStateToProps = (state: AppState) => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentNavKontor: (person: Person) => dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode))
     };

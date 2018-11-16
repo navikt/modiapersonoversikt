@@ -21,8 +21,7 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { RestReducer } from '../../../redux/restReducers/restReducer';
-import { AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -87,7 +86,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentPostnummerKodeverk: () => dispatch(hentPostnummere()),
         endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>

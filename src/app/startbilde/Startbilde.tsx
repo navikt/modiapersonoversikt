@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AnyAction } from 'redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { History } from 'history';
 import KnappBase from 'nav-frontend-knapper';
@@ -13,7 +12,7 @@ import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding'
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
 import { RestReducer } from '../../redux/restReducers/restReducer';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../redux/ThunkTypes';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -77,7 +76,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     };
 }
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         plukkOppgaver: () => dispatch(plukkOppgaver('')),
     };

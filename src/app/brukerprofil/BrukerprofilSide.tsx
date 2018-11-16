@@ -11,7 +11,6 @@ import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { AnyAction } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
@@ -19,8 +18,8 @@ import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
-import { ThunkDispatch } from 'redux-thunk';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
+import { AsyncDispatch } from '../../redux/ThunkTypes';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -201,7 +200,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentPersonData: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())

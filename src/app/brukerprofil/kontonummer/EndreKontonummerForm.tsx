@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
-import { AnyAction } from 'redux';
 import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
@@ -35,7 +34,7 @@ import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtil
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -290,7 +289,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>

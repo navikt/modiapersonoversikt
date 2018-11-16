@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
-import { AnyAction } from 'redux';
 import { SykepengerResponse } from '../../../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../../../models/ytelse/foreldrepenger';
@@ -12,7 +11,7 @@ import { hentSykepenger } from '../../../../redux/restReducers/ytelser/sykepenge
 import { hentPleiepenger } from '../../../../redux/restReducers/ytelser/pleiepenger';
 import { hentForeldrepenger } from '../../../../redux/restReducers/ytelser/foreldrepenger';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface StateProps {
     sykepengerReducer: RestReducer<SykepengerResponse>;
@@ -74,7 +73,7 @@ function mapStateToProps(state: AppState): StateProps {
     });
 }
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSykepenger: (fødselsnummer: string) => dispatch(hentSykepenger(fødselsnummer)),
         hentPleiepenger: (fødselsnummer: string) => dispatch(hentPleiepenger(fødselsnummer)),

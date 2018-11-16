@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AnyAction } from 'redux';
 import { AppState } from '../../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
@@ -8,8 +7,8 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
 import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { ThunkDispatch } from 'redux-thunk';
 import { STATUS } from '../../../../redux/restReducers/utils';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface DispatchProps {
     hentLand: () => void;
@@ -60,7 +59,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentLand: () => dispatch(hentLandKodeverk())
     };

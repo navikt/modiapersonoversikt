@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AnyAction } from 'redux';
 
 import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
@@ -12,7 +11,7 @@ import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
 import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
-import { ThunkDispatch } from 'redux-thunk';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface DispatchProps {
     hentBaseUrls: () => void;
@@ -71,7 +70,7 @@ const mapStateToProps = (state: AppState) => {
     });
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch<AppState, undefined, AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentNavKontor: (person: Person) => dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode))
