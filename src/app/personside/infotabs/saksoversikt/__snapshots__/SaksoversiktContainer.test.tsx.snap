@@ -286,7 +286,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     >
       <a
         className="lenkepanel"
-        href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK"
+        href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK&gt=0118"
       >
         Oversikt over enheter og tema
         <span
