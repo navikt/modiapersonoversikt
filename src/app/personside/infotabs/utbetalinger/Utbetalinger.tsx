@@ -1,41 +1,21 @@
 import * as React from 'react';
-import { Utbetaling, UtbetalingerPeriode, Ytelse } from '../../../../models/utbetalinger';
+import { Utbetaling, UtbetalingerPeriode } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
-import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
-    getGjeldendeDatoForUtbetaling,
     getTypeFromYtelse,
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
     utbetalingDatoComparator,
     utbetaltTilBruker
 } from './utils/utbetalingerUtils';
-import UtbetalingKomponent from './utbetaling/Utbetaling';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-
-export interface FokusProps {
-    ytelseIFokus: Ytelse | null;
-    updateYtelseIFokus: (ytelse: Ytelse) => void;
-}
-
-const MånedGruppeStyle = styled.li`
-  > *:first-child {
-    background-color: ${theme.color.kategori};
-    padding: .2rem ${theme.margin.px20};
-  }
-  ol {
-    padding: 0;
-    margin: 0;
-  }
-  ol > *:not(:first-child) {
-    border-top: ${theme.border.skille};
-  }
-`;
+import Månedsgruppe from './MånedsGruppe';
+import HandleUtbetalingerArrowKeys from './HandleUtbetalingerArrowKeys';
 
 const UtbetalingerArticle = styled.article`
   background-color: white;
@@ -81,30 +61,6 @@ export const UtbetalingTabellStyling = styled.div`
     }
   `;
 
-interface MånedsgruppeUniqueProps {
-    gruppe: ArrayGroup<Utbetaling>;
-}
-
-type MånedsgruppeProps = MånedsgruppeUniqueProps & FokusProps;
-
-function Månedsgruppe({gruppe, ...props}: MånedsgruppeProps) {
-    const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
-        <UtbetalingKomponent
-            key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
-            utbetaling={utbetaling}
-            {...props}
-        />
-    ));
-    return (
-        <MånedGruppeStyle>
-            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
-            <ol>
-                {utbetalingsKomponenter}
-            </ol>
-        </MånedGruppeStyle>
-    );
-}
-
 export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
     return utbetalinger
         .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter))
@@ -129,24 +85,13 @@ function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
     return utbetaling.ytelser && utbetaling.ytelser.length > 0;
 }
 
-function addPilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
-    return () => window.addEventListener('keydown', handleShortcut);
-}
-
-function removePilknappListener(handleShortcut: (event: KeyboardEvent) => void) {
-    return () => window.removeEventListener('keydown', handleShortcut);
-}
-
-interface UtbetalingerUniqueProps {
+interface UtbetalingerProps {
     utbetalinger: Utbetaling[];
     utbetalingerPeriode: UtbetalingerPeriode;
     filter: FilterState;
-    handleShortcut: (event: KeyboardEvent) => void;
 }
 
-type UtbetalingerProps = UtbetalingerUniqueProps & FokusProps;
-
-function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
+function Utbetalinger({filter, ...props}: UtbetalingerProps) {
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
@@ -172,15 +117,14 @@ function Utbetalinger({filter, handleShortcut, ...props}: UtbetalingerProps) {
     return (
         <Wrapper>
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerPeriode}/>
-            <UtbetalingerArticle>
-                <Undertittel>Utbetalinger</Undertittel>
-                <UtbetalingerListe
-                    onFocus={addPilknappListener(handleShortcut)}
-                    onBlur={removePilknappListener(handleShortcut)}
-                >
-                    {månedsGrupper}
-                </UtbetalingerListe>
-            </UtbetalingerArticle>
+            <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
+                <UtbetalingerArticle>
+                    <Undertittel>Utbetalinger</Undertittel>
+                    <UtbetalingerListe>
+                        {månedsGrupper}
+                    </UtbetalingerListe>
+                </UtbetalingerArticle>
+            </HandleUtbetalingerArrowKeys>
         </Wrapper>
     );
 }

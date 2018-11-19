@@ -52,7 +52,7 @@ const UtbetalingHeaderStyle = styled.div`
   }
 `;
 
-class EnkelUtbetaling extends React.Component<Props, State> {
+class EnkelUtbetaling extends React.PureComponent<Props, State> {
 
     private printButtonWrapperRef = React.createRef<HTMLElement>();
     private utbetalingRef = React.createRef<HTMLDivElement>();
@@ -68,14 +68,11 @@ class EnkelUtbetaling extends React.Component<Props, State> {
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    shouldComponentUpdate(prevProps: Props, prevState: State) {
-        if (
-            prevProps.erIFokus !== this.props.erIFokus ||
-            prevState !== this.state ||
-            JSON.stringify(prevProps.utbetaling) !== JSON.stringify(this.props.utbetaling)) {
-            return true;
+    componentDidUpdate(prevProps: Props) {
+        const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
+        if (fikkFokus && this.utbetalingRef.current) {
+            this.utbetalingRef.current.focus();
         }
-        return false;
     }
 
     setVisDetaljer(vis: boolean) {

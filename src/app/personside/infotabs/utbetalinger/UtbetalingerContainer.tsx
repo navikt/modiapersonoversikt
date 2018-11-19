@@ -3,13 +3,13 @@ import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
+import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import { Action, Dispatch } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
-import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
+import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -20,7 +20,6 @@ import moment = require('moment');
 
 interface State {
     filter: FilterState;
-    ytelseIFokus: Ytelse | null;
 }
 
 const initialState: State = {
@@ -34,8 +33,7 @@ const initialState: State = {
         },
         utbetaltTil: [],
         ytelser: []
-    },
-    ytelseIFokus: null
+    }
 };
 
 interface StateProps {
@@ -84,8 +82,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
-        this.handlePilknapper = this.handlePilknapper.bind(this);
-        this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
         loggEvent('Sidevisning', 'Utbetalinger');
     }
 
@@ -118,32 +114,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         }
     }
 
-    updateYtelseIFokus(nyYtelse: Ytelse | null) {
-        this.setState({
-            ytelseIFokus: nyYtelse
-        });
-    }
-
-    handlePilknapper(event: KeyboardEvent) {
-        if (event.key === 'ArrowDown') {
-            this.updateYtelseIFokus(this.finnNesteYtelse());
-        } else if (event.key === 'ArrowUp') {
-            this.updateYtelseIFokus(this.finnForrigeYtelse());
-        }
-    }
-
-    finnNesteYtelse() {
-        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
-        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : -1;
-        return ytelser[currentIndex + 1] || ytelser[0];
-    }
-
-    finnForrigeYtelse() {
-        const ytelser: Ytelse[] = flatMapYtelser(this.props.utbetalingerReducer.data.utbetalinger);
-        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : ytelser.length;
-        return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
-    }
-
     render() {
         return (
             <ErrorBoundary>
@@ -165,10 +135,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                             <Utbetalinger
                                 utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
                                 utbetalingerPeriode={this.props.utbetalingerReducer.data.periode}
-                                ytelseIFokus={this.state.ytelseIFokus}
                                 filter={this.state.filter}
-                                handleShortcut={this.handlePilknapper}
-                                updateYtelseIFokus={this.updateYtelseIFokus}
                             />
                         </Innholdslaster>
                     </UtbetalingerSection>

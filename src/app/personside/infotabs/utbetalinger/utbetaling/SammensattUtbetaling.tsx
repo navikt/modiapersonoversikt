@@ -11,16 +11,16 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
+import { UtbetalingTabellStyling } from '../Utbetalinger';
 import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 
-interface OwnProps {
+interface Props {
     utbetaling: Utbetaling;
+    ytelseIFokus: Ytelse | null;
+    updateYtelseIFokus: (ytelse: Ytelse) => void;
 }
-
-type Props = OwnProps & FokusProps;
 
 interface State {
     åpnedeYtelser: Ytelse[];
