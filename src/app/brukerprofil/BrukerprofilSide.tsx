@@ -143,7 +143,7 @@ class Header extends React.PureComponent<{ person: Person }> {
         const person = this.props.person;
         return (
             <HeaderStyle>
-                {erNyePersonoversikten() && <TilbakeLenke fnr={person.fødselsnummer}/>}
+                <TilbakeLenke fnr={person.fødselsnummer}/>
                 <HeaderContent>
                     <Fokus innerRef={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
@@ -178,7 +178,7 @@ class BrukerprofilSide extends React.PureComponent<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>
+                    {erNyePersonoversikten() &&  <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
                     <ContentWrapper>
                         <BrukerprofilForm
                             person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}

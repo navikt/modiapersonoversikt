@@ -16,6 +16,7 @@ import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { Person } from '../../../../models/person/person';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -31,6 +32,7 @@ interface State {
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
+    person: Person;
 }
 
 interface DispatchProps {
@@ -123,7 +125,10 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 
     render() {
         const norgUrl = isLoaded(this.props.baseUrlReducer)
-            ? lenkeNorg2Frontend(this.props.baseUrlReducer.data, this.state.valgtSakstema)
+            ? lenkeNorg2Frontend(
+                this.props.baseUrlReducer.data,
+                this.props.person.geografiskTilknytning,
+                this.state.valgtSakstema)
             : '';
         return (
             <ErrorBoundary>
@@ -162,7 +167,8 @@ class SaksoversiktContainer extends React.Component<Props, State> {
 function mapStateToProps(state: AppState): StateProps {
     return ({
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer
+        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
+        person: state.restEndepunkter.personinformasjon.data as Person
     });
 }
 
