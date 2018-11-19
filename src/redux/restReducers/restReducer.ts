@@ -13,17 +13,22 @@ export interface RestReducer<T> {
     status: STATUS;
 }
 
-export interface Loaded<T> extends RestReducer<T> {
-    status:
-        | STATUS.SUCCESS
-        | STATUS.RELOADING;
+export interface Success<T> extends RestReducer<T> {
+    status: STATUS.SUCCESS;
     data: T;
 }
 
-export interface NoData<T> extends RestReducer<T> {
-    status:
-        | STATUS.NOT_STARTED
-        | STATUS.LOADING;
+export interface Reloading<T> extends RestReducer<T> {
+    status: STATUS.RELOADING;
+    data: T;
+}
+
+export interface NotStarted<T> extends RestReducer<T> {
+    status: STATUS.NOT_STARTED;
+}
+
+export interface Loading<T> extends RestReducer<T> {
+    status: STATUS.LOADING;
 }
 
 export interface Failed<T> extends RestReducer<T> {
@@ -31,8 +36,30 @@ export interface Failed<T> extends RestReducer<T> {
     error: string;
 }
 
+export type Loaded<T> = Success<T> | Reloading<T>;
+
+export function isSuccess<T>(restReducer: RestReducer<T>): restReducer is Success<T> {
+    return restReducer.status === STATUS.SUCCESS;
+}
+
 export function isLoaded<T>(restReducer: RestReducer<T>): restReducer is Loaded<T> {
     return restReducer.status === STATUS.SUCCESS || restReducer.status === STATUS.RELOADING;
+}
+
+export function isReloading<T>(restReducer: RestReducer<T>): restReducer is Reloading<T> {
+    return restReducer.status === STATUS.RELOADING;
+}
+
+export function isNotStarted<T>(restReducer: RestReducer<T>): restReducer is NotStarted<T> {
+    return restReducer.status === STATUS.NOT_STARTED;
+}
+
+export function isLoading<T>(restReducer: RestReducer<T>): restReducer is Loading<T> {
+    return restReducer.status === STATUS.LOADING;
+}
+
+export function isFailed<T>(restReducer: RestReducer<T>): restReducer is Failed<T> {
+    return restReducer.status === STATUS.FAILED;
 }
 
 function getActionTypes(reducerNavn: string): ActionTypes {

@@ -1,7 +1,7 @@
 import * as faker from 'faker/locale/nb_NO';
 
 import navfaker from 'nav-faker/dist/index';
-import { Sakstema, SakstemaWrapper } from '../../models/saksoversikt/sakstema';
+import { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getBehandlingskjede, getBehandlingskjeder } from './behandlingskjeder-mock';
@@ -23,7 +23,7 @@ const temaarray = [
     ['SYK', 'Sykepenger']
 ];
 
-export function getMockSaksoversikt(fødselsnummer: string): SakstemaWrapper {
+export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 
@@ -32,7 +32,7 @@ export function getMockSaksoversikt(fødselsnummer: string): SakstemaWrapper {
     };
 }
 
-export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaWrapper {
+export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 

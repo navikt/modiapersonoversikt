@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { isLoaded, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
+import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -9,7 +9,6 @@ import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
@@ -31,7 +30,7 @@ interface State {
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    saksoversiktReducer: RestReducer<SakstemaWrapper>;
+    saksoversiktReducer: RestReducer<SakstemaResponse>;
 }
 
 interface DispatchProps {
@@ -98,10 +97,10 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.baseUrlReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
         }
-        if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
     }
@@ -139,7 +138,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             </LenkepanelPersonoversikt>
                             <SakstemaListe>
                                 <SakstemaVisning
-                                    sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data}
+                                    sakstemaResponse={(this.props.saksoversiktReducer as Loaded<SakstemaResponse>).data}
                                     oppdaterSakstema={this.oppdaterSakstema}
                                     valgtSakstema={this.state.valgtSakstema}
                                 />

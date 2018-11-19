@@ -2,10 +2,9 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { isLoaded, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Utbetaling, UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
 import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
@@ -109,7 +108,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.utbetalingerReducer)) {
             this.props.hentUtbetalinger(
                 this.props.fødselsnummer,
                 getFraDateFromFilter(this.state.filter),

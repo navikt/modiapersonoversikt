@@ -1,21 +1,11 @@
 import * as React from 'react';
-import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
-
-export interface SakstemaVisninProps {
-    sakstemaWrapper: SakstemaWrapper;
-    oppdaterSakstema: (sakstema: Sakstema) => void;
-    valgtSakstema?: Sakstema;
-}
-
-interface State {
-    aggregertSakstema: Sakstema;
-}
 
 export const sakstemakodeAlle = 'ALLE';
 
@@ -107,11 +97,21 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
+export interface SakstemaVisningProps {
+    sakstemaResponse: SakstemaResponse;
+    oppdaterSakstema: (sakstema: Sakstema) => void;
+    valgtSakstema?: Sakstema;
+}
 
-    constructor(props: SakstemaVisninProps) {
+interface State {
+    aggregertSakstema: Sakstema;
+}
+
+class SakstemaVisning extends React.Component<SakstemaVisningProps, State> {
+
+    constructor(props: SakstemaVisningProps) {
         super(props);
-        const aggregert = aggregertSakstema(props.sakstemaWrapper.resultat);
+        const aggregert = aggregertSakstema(props.sakstemaResponse.resultat);
         this.state = {
             aggregertSakstema: aggregert
         };
@@ -121,7 +121,7 @@ class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
     render() {
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
             hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        const sortertSakstema = this.props.sakstemaWrapper.resultat.sort(sorterPåHendelse);
+        const sortertSakstema = this.props.sakstemaResponse.resultat.sort(sorterPåHendelse);
 
         if (sortertSakstema.length === 0) {
             return (

@@ -41,7 +41,7 @@ import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { Oppfolging } from '../../models/oppfolging';
-import { SakstemaWrapper } from '../../models/saksoversikt/sakstema';
+import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -68,7 +68,7 @@ export interface RestEndepunkter {
     pleiepengerReducer: RestReducer<PleiepengerResponse>;
     foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
     oppfolgingReducer: RestReducer<Oppfolging>;
-    saksoversiktReducer: RestReducer<SakstemaWrapper>;
+    saksoversiktReducer: RestReducer<SakstemaResponse>;
 }
 
 export default combineReducers<RestEndepunkter>({

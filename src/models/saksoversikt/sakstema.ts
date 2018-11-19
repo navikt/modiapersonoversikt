@@ -2,7 +2,7 @@ import { DokumentMetadata } from './dokumentmetadata';
 import { Sak } from './sak';
 import { Saksdato } from './fellesSak';
 
-export interface SakstemaWrapper {
+export interface SakstemaResponse {
     resultat: Sakstema[];
 }
 

@@ -14,9 +14,8 @@ import { History } from 'history';
 import ReducerFeilmelding from '../../../components/feilmelding/ReducerFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
-import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoading, RestReducer } from '../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 const HentOppgaveLayout = styled.div`
@@ -44,7 +43,7 @@ const KnappLayout = styled.div`
   }
 `;
 
-const PLUKKBARE_TEMAGRUPPER = [
+const PLUKKBARE_TEMAGRUPPER  = [
     {kode: 'ARBD', beskrivelse: 'Arbeid'},
     {kode: 'FMLI', beskrivelse: 'Familie'},
     {kode: 'HJLPM', beskrivelse: 'Hjelpemidler'},
@@ -128,7 +127,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         id="hentoppgaveknapp"
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
-                        spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
+                        spinner={isLoading(this.props.oppgaveReducer)}
                     >
                         Hent
                     </KnappBase>

@@ -11,12 +11,11 @@ import * as valutaKodeverkReducer from '../../../redux/restReducers/kodeverk/val
 import * as landKodeverkReducer from '../../../redux/restReducers/kodeverk/landKodeverk';
 import { AppState } from '../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { STATUS } from '../../../redux/restReducers/utils';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface OwnProps {
@@ -47,11 +46,11 @@ class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
     constructor(props: Props & StateProps) {
         super(props);
 
-        if (this.props.valutaKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.valutaKodeverkReducer)) {
             this.props.hentValutaKodeverk();
         }
 
-        if (this.props.landKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.landKodeverkReducer)) {
             this.props.hentLandKodeverk();
         }
     }
