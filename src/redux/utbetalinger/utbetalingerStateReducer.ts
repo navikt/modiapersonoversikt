@@ -2,29 +2,46 @@ import { Ytelse } from '../../models/utbetalinger';
 
 export interface UtbetalingerReducerState {
     ytelseIFokus: Ytelse | null;
+    ekspanderteYtelser: Ytelse[];
 }
 
 const initialState: UtbetalingerReducerState = {
-    ytelseIFokus: null
+    ytelseIFokus: null,
+    ekspanderteYtelser: []
 };
 
 enum actionKeys {
-    SettYtelseIFokus = 'SettYtelseIFokus'
+    SettYtelseIFokus = 'SettYtelseIFokus',
+    SetEkspanderYtelse = 'SetEkspanderYtelse'
 }
 
-interface SettNyYtelseIFokus {
+interface SetNyYtelseIFokus {
     type: actionKeys.SettYtelseIFokus;
     ytelse: Ytelse | null;
 }
 
-export function settNyYtelseIFokus(ytelse: Ytelse): SettNyYtelseIFokus {
+interface SetEkspanderYtelse {
+    type: actionKeys.SetEkspanderYtelse;
+    ekspander: boolean;
+    ytelse: Ytelse;
+}
+
+export function setNyYtelseIFokus(ytelse: Ytelse): SetNyYtelseIFokus {
     return {
         type: actionKeys.SettYtelseIFokus,
         ytelse: ytelse
     };
 }
 
-export type Actions = SettNyYtelseIFokus;
+export function setEkspanderYtelse(ytelse: Ytelse, ekspander: boolean): SetEkspanderYtelse {
+    return {
+        type: actionKeys.SetEkspanderYtelse,
+        ekspander: ekspander,
+        ytelse: ytelse
+    };
+}
+
+export type Actions = SetNyYtelseIFokus | SetEkspanderYtelse;
 
 export function utbetalingerStateReducer(state: UtbetalingerReducerState = initialState, action: Actions)
     : UtbetalingerReducerState {
@@ -34,6 +51,18 @@ export function utbetalingerStateReducer(state: UtbetalingerReducerState = initi
                 ...state,
                 ytelseIFokus: action.ytelse
             };
+        case actionKeys.SetEkspanderYtelse:
+            if (action.ekspander) {
+                return {
+                    ...state,
+                    ekspanderteYtelser: [...state.ekspanderteYtelser, action.ytelse]
+                };
+            } else {
+                return {
+                    ...state,
+                    ekspanderteYtelser: state.ekspanderteYtelser.filter(y => y !== action.ytelse)
+                };
+            }
         default:
             return state;
     }

@@ -8,11 +8,11 @@ import { getGjeldendeDatoForUtbetaling } from './utils/utbetalingerUtils';
 import UtbetalingsKomponent from './utbetaling/Utbetaling';
 import { Utbetaling } from '../../../../models/utbetalinger';
 
-interface MånedsgruppeProps {
+interface Props {
     gruppe: ArrayGroup<Utbetaling>;
 }
 
-const MånedGruppeStyle = styled.li`
+const Wrapper = styled.li`
   > *:first-child {
     background-color: ${theme.color.kategori};
     padding: .2rem ${theme.margin.px20};
@@ -26,7 +26,7 @@ const MånedGruppeStyle = styled.li`
   }
 `;
 
-function Månedsgruppe({gruppe}: MånedsgruppeProps) {
+function Månedsgruppe({gruppe}: Props) {
     const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
         <UtbetalingsKomponent
             key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
@@ -34,12 +34,12 @@ function Månedsgruppe({gruppe}: MånedsgruppeProps) {
         />
     ));
     return (
-        <MånedGruppeStyle>
+        <Wrapper>
             <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
             <ol>
                 {utbetalingsKomponenter}
             </ol>
-        </MånedGruppeStyle>
+        </Wrapper>
     );
 }
 

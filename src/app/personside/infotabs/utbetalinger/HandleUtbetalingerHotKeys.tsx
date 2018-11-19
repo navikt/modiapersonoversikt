@@ -2,7 +2,10 @@ import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { flatMapYtelser } from './utils/utbetalingerUtils';
 import { Dispatch } from 'redux';
-import { settNyYtelseIFokus } from '../../../../redux/utbetalinger/utbetalingerStateReducer';
+import {
+    setEkspanderYtelse,
+    setNyYtelseIFokus
+} from '../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 
@@ -13,15 +16,17 @@ interface OwnProps {
 
 interface DispatchProps {
     settYtelseIFokus: (ytelse: Ytelse) => void;
+    ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => void;
 }
 
 interface StateProps {
     ytelseIFokus: Ytelse | null;
+    ekspanderteYtelser: Ytelse[];
 }
 
 type Props = DispatchProps & OwnProps & StateProps;
 
-class HandleUtbetalingerArrowKeys extends React.Component<Props, {}> {
+class HandleUtbetalingerHotKeys extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
@@ -29,6 +34,10 @@ class HandleUtbetalingerArrowKeys extends React.Component<Props, {}> {
     }
 
     handleKeyDown(event: React.KeyboardEvent) {
+        const eventTargetIsButton = event.target instanceof HTMLButtonElement;
+        if (eventTargetIsButton) {
+            return;
+        }
         this.handlePilknapper(event);
         this.handleEnter(event);
     }
@@ -55,8 +64,17 @@ class HandleUtbetalingerArrowKeys extends React.Component<Props, {}> {
 
     handleEnter(event: React.KeyboardEvent) {
         if (event.key === 'Enter') {
-            // TODO åpne og lukke yteslesdetaljer herfra med redux
+            this.toggleEkspanderYtelseIFokus();
         }
+    }
+
+    toggleEkspanderYtelseIFokus() {
+        const ytelseIFokus = this.props.ytelseIFokus;
+        if (!ytelseIFokus) {
+            return;
+        }
+        const erEkspandert = this.props.ekspanderteYtelser.includes(ytelseIFokus);
+        this.props.ekspanderYtelse(ytelseIFokus, !erEkspandert);
     }
 
     render() {
@@ -70,14 +88,16 @@ class HandleUtbetalingerArrowKeys extends React.Component<Props, {}> {
 
 function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
     return {
-        settYtelseIFokus: ytelse => dispatch(settNyYtelseIFokus(ytelse))
+        settYtelseIFokus: ytelse => dispatch(setNyYtelseIFokus(ytelse)),
+        ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander))
     };
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        ytelseIFokus: state.utbetalinger.ytelseIFokus
+        ytelseIFokus: state.utbetalinger.ytelseIFokus,
+        ekspanderteYtelser: state.utbetalinger.ekspanderteYtelser
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HandleUtbetalingerArrowKeys);
+export default connect(mapStateToProps, mapDispatchToProps)(HandleUtbetalingerHotKeys);
