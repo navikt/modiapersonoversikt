@@ -28,8 +28,8 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-    setYtelseIFokus: (ytelse: Ytelse) => void;
-    setEkspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => void;
+    setYtelseIFokus: () => void;
+    setEkspanderYtelse: (ekspander: boolean) => void;
 }
 
 interface StateProps {
@@ -84,12 +84,12 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 
     toggleVisDetaljer() {
-        this.props.setEkspanderYtelse(this.props.ytelse, !this.props.visDetaljer);
+        this.props.setEkspanderYtelse(!this.props.visDetaljer);
     }
 
     handlePrint() {
         loggEvent('EnkeltUtbetaling', 'Printer');
-        this.props.setEkspanderYtelse(this.props.ytelse, true);
+        this.props.setEkspanderYtelse(true);
         this.print();
     }
 
@@ -124,7 +124,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
                         innerRef={this.utbetalingRef}
                         tabIndex={0}
-                        onFocus={() => this.props.setYtelseIFokus(ytelse)}
+                        onFocus={this.props.setYtelseIFokus}
                     >
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
@@ -162,10 +162,10 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
     return {
-        setYtelseIFokus: ytelse => dispatch(setNyYtelseIFokus(ytelse)),
-        setEkspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander))
+        setYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
+        setEkspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))
     };
 }
 

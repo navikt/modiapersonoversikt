@@ -25,8 +25,8 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    settYtelseIFokus: (ytelse: Ytelse) => void;
-    ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => void;
+    settYtelseIFokus: () => void;
+    ekspanderYtelse: (ekspander: boolean) => void;
 }
 
 type Props = DispatchProps & OwnProps & StateProps;
@@ -72,7 +72,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
     }
 
     toggleVisDetaljer() {
-        this.props.ekspanderYtelse(this.props.ytelse, !this.props.erEkspandert);
+        this.props.ekspanderYtelse(!this.props.erEkspandert);
     }
 
     render() {
@@ -95,7 +95,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
                 onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
                 innerRef={this.ytelseRef}
                 tabIndex={0}
-                onFocus={() => this.props.settYtelseIFokus(this.props.ytelse)}
+                onFocus={this.props.settYtelseIFokus}
             >
                 <DetaljerCollapse
                     open={this.props.erEkspandert}
@@ -119,10 +119,10 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
     return {
-        settYtelseIFokus: ytelse => dispatch(setNyYtelseIFokus(ytelse)),
-        ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander))
+        settYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
+        ekspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))
     };
 }
 
