@@ -19,6 +19,8 @@ export const LayoutWrapper = styled.div`
 export const VenstreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'section'>('section')`
     width: ${props => props.dialogPanelEkspandert ? '50%' : '70%' };
     padding: ${theme.margin.layout};
+    display: flex;
+    flex-direction: column;
     > * {
       margin-bottom: ${theme.margin.layout};
       border-radius: ${theme.borderRadius.layout};

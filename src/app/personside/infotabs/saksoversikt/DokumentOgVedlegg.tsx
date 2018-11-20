@@ -7,20 +7,32 @@ import theme from '../../../../styles/personOversiktTheme';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { getSaksdokument } from '../../../../utils/url-utils';
 import { PersonContext } from '../../../App';
+import { AppState } from '../../../../redux/reducers';
+import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { settVisDokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import KnappBase from 'nav-frontend-knapper';
 
-interface Props {
-    dokument: DokumentMetadata;
-    valgtTab: Dokument;
+interface OwnProps {
     harTilgang: boolean;
-    onChange: (valgtDokument: Dokument) => void;
 }
 
+interface StateProps {
+    valgtDokument?: DokumentMetadata;
+    valgtTab?: Dokument;
+    visDokument: boolean;
+}
+
+interface DispatchProps {
+    lukkDokument: () => void;
+}
+
+type Props = DispatchProps & StateProps & OwnProps;
+
 const Content = styled.div`
+  flex-grow: 1;  
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  width: 90vw;
-  height: 90vh;
   object {
     flex-grow: 1;
   }
@@ -28,6 +40,17 @@ const Content = styled.div`
 
 const AlertWrapper = styled.div`
   padding: ${theme.margin.px40} ${theme.margin.px10};
+`;
+
+const Header = styled.div`
+  position: relative;
+  padding-right: 10rem;
+`;
+
+const KnappWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
@@ -45,8 +68,16 @@ function DokumentOgVedlegg(props: Props) {
         );
     }
 
-    const currentDok = props.valgtTab;
-    const tabs = [props.dokument.hoveddokument, ...props.dokument.vedlegg];
+    const {valgtDokument, valgtTab} = props;
+    if (!valgtDokument || !valgtTab) {
+        return (
+            <AlertWrapper>
+                <AlertStripeAdvarsel>Ingen dokument valgt.</AlertStripeAdvarsel>
+            </AlertWrapper>
+        );
+    }
+
+    const tabs = [valgtDokument.hoveddokument, ...valgtDokument.vedlegg];
     const tabProps: TabProps[] = tabs.map(tab => {
         return {
             label: tab.tittel,
@@ -56,27 +87,45 @@ function DokumentOgVedlegg(props: Props) {
 
     return (
         <Content>
-            <TabsPure
-                tabs={tabProps}
-                onChange={(event, index) => props.onChange(tabs[index])}
-            />
+            <Header>
+                <TabsPure
+                    tabs={tabProps}
+                    onChange={(event, index) => null}
+                />
+                <KnappWrapper>
+                    <KnappBase type="hoved" onClick={props.lukkDokument}>Lukk meg</KnappBase>
+                </KnappWrapper>
+            </Header>
             <PersonContext.Consumer>{fnr => {
-                console.log('Dette fant jeg i contextholder: ', fnr);
                 if (!fnr) {
                     return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
                 }
                 return (
                     <VisDokumentContainer
-                        journalpostId={props.dokument.journalpostId}
-                        dokumentreferanse={currentDok.dokumentreferanse}
+                        journalpostId={valgtDokument.journalpostId}
+                        dokumentreferanse={valgtTab.dokumentreferanse}
                         fødselsnummer={fnr}
                     />
                 );
-            }
-            }
+            }}
             </PersonContext.Consumer>
         </Content>
     );
 }
 
-export default DokumentOgVedlegg;
+function mapStateToProps(state: AppState): StateProps {
+    const valgtTab = state.saksoversikt.valgtDokument ? state.saksoversikt.valgtDokument.hoveddokument : undefined;
+    return ({
+        visDokument: state.saksoversikt.visDokument,
+        valgtDokument: state.saksoversikt.valgtDokument,
+        valgtTab: valgtTab
+    });
+}
+
+function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+    return {
+        lukkDokument: () => dispatch(settVisDokument(false))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DokumentOgVedlegg);
