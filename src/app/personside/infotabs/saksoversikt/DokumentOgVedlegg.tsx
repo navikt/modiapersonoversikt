@@ -15,6 +15,7 @@ import KnappBase from 'nav-frontend-knapper';
 
 interface OwnProps {
     harTilgang: boolean;
+    onChange: (valgtDokument: Dokument) => void;
 }
 
 interface StateProps {
@@ -30,9 +31,11 @@ interface DispatchProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 const Content = styled.div`
-  flex-grow: 1;  
+  flex-grow: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
   object {
     flex-grow: 1;
   }
@@ -55,7 +58,6 @@ const KnappWrapper = styled.div`
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
-    console.log(`Prøver å laste ned ${dokUrl}`);
     return <object data={dokUrl} width={'100%'}/>;
 }
 
@@ -90,7 +92,7 @@ function DokumentOgVedlegg(props: Props) {
             <Header>
                 <TabsPure
                     tabs={tabProps}
-                    onChange={(event, index) => null}
+                    onChange={(event, index) => props.onChange(tabs[index])}
                 />
                 <KnappWrapper>
                     <KnappBase type="hoved" onClick={props.lukkDokument}>Lukk meg</KnappBase>
@@ -114,11 +116,10 @@ function DokumentOgVedlegg(props: Props) {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    const valgtTab = state.saksoversikt.valgtDokument ? state.saksoversikt.valgtDokument.hoveddokument : undefined;
     return ({
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
-        valgtTab: valgtTab
+        valgtTab: state.saksoversikt.valgtEnkeltdokument
     });
 }
 

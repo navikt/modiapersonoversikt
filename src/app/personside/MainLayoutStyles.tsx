@@ -22,7 +22,6 @@ export const VenstreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'sect
     display: flex;
     flex-direction: column;
     > * {
-      margin-bottom: ${theme.margin.layout};
       border-radius: ${theme.borderRadius.layout};
     }
 `;

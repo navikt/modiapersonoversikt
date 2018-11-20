@@ -1,23 +1,31 @@
-import { DokumentMetadata } from '../../models/saksoversikt/dokumentmetadata';
+import { Dokument, DokumentMetadata } from '../../models/saksoversikt/dokumentmetadata';
 
 export interface SaksoversiktReduxState {
     valgtDokument?: DokumentMetadata;
+    valgtEnkeltdokument?: Dokument;
     visDokument: boolean;
 }
 
 const initialState: SaksoversiktReduxState = {
     valgtDokument: undefined,
+    valgtEnkeltdokument: undefined,
     visDokument: false
 };
 
 enum actionKeys {
     SetValgtDokument = 'SetValgtDokument',
+    SetValgtEnkeltdokument = 'SetValgtEnkeltdokument',
     SetVisDokument = 'SetVisDokument'
 }
 
 interface SetValgtDokument {
     type: actionKeys.SetValgtDokument;
     dokument: DokumentMetadata;
+}
+
+interface SetValgtEnkeltdokument {
+    type: actionKeys.SetValgtEnkeltdokument;
+    enkeltdokument: Dokument;
 }
 
 interface SetVisDokument {
@@ -32,6 +40,13 @@ export function settValgtDokument(dokument: DokumentMetadata): SetValgtDokument 
     };
 }
 
+export function settValgtEnkeltdokument(enkeltdokument: Dokument): SetValgtEnkeltdokument {
+    return {
+        type: actionKeys.SetValgtEnkeltdokument,
+        enkeltdokument: enkeltdokument
+    };
+}
+
 export function settVisDokument(vis: boolean): SetVisDokument {
     return {
         type: actionKeys.SetVisDokument,
@@ -39,7 +54,7 @@ export function settVisDokument(vis: boolean): SetVisDokument {
     };
 }
 
-type Actions = SetVisDokument | SetValgtDokument;
+type Actions = SetVisDokument | SetValgtDokument | SetValgtEnkeltdokument;
 
 export function saksoversiktStateReducer(state: SaksoversiktReduxState = initialState, action: Actions) {
     switch (action.type) {
@@ -52,6 +67,11 @@ export function saksoversiktStateReducer(state: SaksoversiktReduxState = initial
             return {
                 ...state,
                 valgtDokument: action.dokument
+            };
+        case actionKeys.SetValgtEnkeltdokument:
+            return {
+                ...state,
+                valgtEnkeltdokument: action.enkeltdokument
             };
         default:
             return state;

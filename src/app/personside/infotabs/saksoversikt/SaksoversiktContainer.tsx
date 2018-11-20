@@ -19,6 +19,7 @@ import { Person } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { connect } from 'react-redux';
+import { settValgtEnkeltdokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -37,12 +38,14 @@ interface StateProps {
     person: Person;
     visDokument: boolean;
     valgtDokument?: DokumentMetadata;
+    valgtEnkeltdokument?: Dokument;
 }
 
 interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
+    setEnkeltdokument: (enkeltdokument: Dokument) => void;
 }
 
 interface OwnProps {
@@ -129,7 +132,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     velgOgVisDokument(dokument: Dokument) {
-        console.log('Dokument valgt.', dokument);
+        this.props.setEnkeltdokument(dokument);
     }
 
     render() {
@@ -144,6 +147,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
             return (
                 <DokumentOgVedlegg
                     harTilgang={true}
+                    onChange={this.velgOgVisDokument}
                 />
             );
         } else {
@@ -186,7 +190,8 @@ function mapStateToProps(state: AppState): StateProps {
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
         person: state.restEndepunkter.personinformasjon.data as Person,
         visDokument: state.saksoversikt.visDokument,
-        valgtDokument: state.saksoversikt.valgtDokument
+        valgtDokument: state.saksoversikt.valgtDokument,
+        valgtEnkeltdokument: state.saksoversikt.valgtEnkeltdokument
     });
 }
 
@@ -197,7 +202,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         hentSaksoversikt: (fødselsnummer: string) =>
             dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) =>
-            dispatch(reloadSaksoversikt(fødselsnummer))
+            dispatch(reloadSaksoversikt(fødselsnummer)),
+        setEnkeltdokument: (enkeltdokument: Dokument) =>
+            dispatch(settValgtEnkeltdokument(enkeltdokument))
     };
 }
 
