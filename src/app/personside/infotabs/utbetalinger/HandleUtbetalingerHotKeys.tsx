@@ -63,7 +63,7 @@ class HandleUtbetalingerHotKeys extends React.Component<Props> {
     }
 
     handleEnter(event: React.KeyboardEvent) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.repeat) {
             this.toggleEkspanderYtelseIFokus();
         }
     }
