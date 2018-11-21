@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
-    Dokument as EnkeltDokument,
-    DokumentMetadata as DokumentInterface,
+    Dokument as Enkeltdokument,
+    DokumentMetadata,
     Entitet
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
@@ -11,21 +11,28 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
-import ModalWrapper from 'nav-frontend-modal';
 import { sakstemakodeAlle } from './SakstemaVisning';
+import { Dispatch } from 'redux';
+import {
+    settValgtDokument,
+    settValgtEnkeltdokument,
+    settVisDokument
+} from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { connect } from 'react-redux';
+import { cancelIfHighlighting } from '../../../../utils/functionUtils';
 
-interface Props {
-    dokument: DokumentInterface;
+interface OwnProps {
+    dokument: DokumentMetadata;
     harTilgang: boolean;
     sakstemakode: string;
     sakstemanavn: string;
 }
 
-interface State {
-    åpnet: boolean;
-    valgtDokument: EnkeltDokument;
+interface DispatchProps {
+    velgOgVisDokument: (dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) => void;
 }
+
+type Props = OwnProps & DispatchProps;
 
 const Wrapper = styled.div`
 
@@ -71,34 +78,23 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-class DokumentKomponent extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            åpnet: false,
-            valgtDokument: this.props.dokument.hoveddokument
-        };
-        this.skjulModal = this.skjulModal.bind(this);
-        this.visModal = this.visModal.bind(this);
-        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
-    }
+class DokumentKomponent extends React.Component<Props> {
+    private vedleggLinkRef = React.createRef<HTMLElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLElement>();
+    private dokumentRef = React.createRef<HTMLDivElement>();
 
-    skjulModal() {
-        this.setState({
-            åpnet: false
-        });
-    }
+    handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
+        if (!this.hoveddokumentLinkRef.current) {
+            return;
+        }
 
-    visModal() {
-        const åpnet = !this.state.åpnet;
-        this.setState({åpnet: åpnet});
-    }
+        const lenkeTrykket = (event.target instanceof Node)
+            && (this.hoveddokumentLinkRef.current.contains(event.target)
+                || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
 
-    velgOgVisDokument(dokument: EnkeltDokument) {
-        this.setState({
-            valgtDokument: dokument,
-            åpnet: true
-        });
+        if (!lenkeTrykket) {
+            this.props.velgOgVisDokument(this.props.dokument, this.props.dokument.hoveddokument);
+        }
     }
 
     render() {
@@ -119,7 +115,11 @@ class DokumentKomponent extends React.Component<Props, State> {
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
-                                <a href={'#'} onClick={() => this.velgOgVisDokument(vlegg)}>{vlegg.tittel}</a>
+                                <span ref={this.vedleggLinkRef}>
+                                    <a href={'#'} onClick={() => this.props.velgOgVisDokument(dokument, vlegg)}>
+                                        {vlegg.tittel}
+                                    </a>
+                                </span>
                             </li>)}
                     </ul>
                 </VedleggStyle>
@@ -127,37 +127,43 @@ class DokumentKomponent extends React.Component<Props, State> {
 
         return (
             <>
-                <Wrapper onClick={() => this.visModal()}>
+                <Wrapper
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
+                    innerRef={this.dokumentRef}
+                >
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
                             <Normaltekst>
                                 {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                             </Normaltekst>
-                            <a href={'#'} onClick={() => this.velgOgVisDokument(dokument.hoveddokument)}>
-                                {dokument.hoveddokument.tittel}
-                            </a>
+                            <span ref={this.hoveddokumentLinkRef}>
+                                <a
+                                    href={'#'}
+                                    onClick={() => this.props.velgOgVisDokument(dokument, dokument.hoveddokument)}
+                                >
+                                    {dokument.hoveddokument.tittel}
+                                </a>
+                            </span>
                             {vedlegg}
-                            <Normaltekst>{saksvisning}</Normaltekst>
+                            {saksvisning}
                         </div>
                     </InfoWrapper>
                 </Wrapper>
-                {this.state.åpnet &&
-                <ModalWrapper
-                    isOpen={true}
-                    contentLabel="Dokumentvisning"
-                    onRequestClose={this.skjulModal}
-                >
-                    <DokumentOgVedlegg
-                        dokument={dokument}
-                        harTilgang={this.props.harTilgang}
-                        valgtTab={this.state.valgtDokument}
-                        onChange={this.velgOgVisDokument}
-                    />
-                </ModalWrapper>}
             </>
         );
     }
 }
 
-export default DokumentKomponent;
+function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+    return {
+        velgOgVisDokument: (dokument, enkeltdokument) => {
+            dispatch(settValgtDokument(dokument));
+            dispatch(settVisDokument(true));
+            dispatch(settValgtEnkeltdokument(enkeltdokument));
+        }
+    };
+}
+
+export default connect(null, mapDispatchToProps)(DokumentKomponent);

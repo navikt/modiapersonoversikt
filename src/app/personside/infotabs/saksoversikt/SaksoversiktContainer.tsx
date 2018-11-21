@@ -3,10 +3,8 @@ import { RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
-import { connect } from 'react-redux';
 import { Action, Dispatch } from 'redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
@@ -18,6 +16,10 @@ import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
 import { Person } from '../../../../models/person/person';
+import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import DokumentOgVedlegg from './DokumentOgVedlegg';
+import { connect } from 'react-redux';
+import { settValgtEnkeltdokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -34,12 +36,16 @@ interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     saksoversiktReducer: RestReducer<SakstemaWrapper>;
     person: Person;
+    visDokument: boolean;
+    valgtDokument?: DokumentMetadata;
+    valgtEnkeltdokument?: Dokument;
 }
 
 interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
+    setEnkeltdokument: (enkeltdokument: Dokument) => void;
 }
 
 interface OwnProps {
@@ -97,6 +103,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         };
         this.oppdaterSakstema = this.oppdaterSakstema.bind(this);
         this.toggleAvsenderFilter = this.toggleAvsenderFilter.bind(this);
+        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
     }
 
     componentDidMount() {
@@ -124,6 +131,10 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         });
     }
 
+    velgOgVisDokument(dokument: Dokument) {
+        this.props.setEnkeltdokument(dokument);
+    }
+
     render() {
         const norgUrl = this.props.baseUrlReducer.status === STATUS.OK
             ? lenkeNorg2Frontend(
@@ -131,8 +142,16 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                 this.props.person.geografiskTilknytning,
                 this.state.valgtSakstema)
             : '';
-        return (
-            <ErrorBoundary>
+
+        if (this.props.visDokument && this.props.valgtDokument) {
+            return (
+                <DokumentOgVedlegg
+                    harTilgang={true}
+                    onChange={this.velgOgVisDokument}
+                />
+            );
+        } else {
+            return (
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
@@ -160,8 +179,8 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                         </DokumentListe>
                     </Innholdslaster>
                 </SaksoversiktArticle>
-            </ErrorBoundary>
-        );
+            );
+        }
     }
 }
 
@@ -169,7 +188,10 @@ function mapStateToProps(state: AppState): StateProps {
     return ({
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
-        person: state.restEndepunkter.personinformasjon.data as Person
+        person: state.restEndepunkter.personinformasjon.data as Person,
+        visDokument: state.saksoversikt.visDokument,
+        valgtDokument: state.saksoversikt.valgtDokument,
+        valgtEnkeltdokument: state.saksoversikt.valgtEnkeltdokument
     });
 }
 
@@ -180,7 +202,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         hentSaksoversikt: (fødselsnummer: string) =>
             dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) =>
-            dispatch(reloadSaksoversikt(fødselsnummer))
+            dispatch(reloadSaksoversikt(fødselsnummer)),
+        setEnkeltdokument: (enkeltdokument: Dokument) =>
+            dispatch(settValgtEnkeltdokument(enkeltdokument))
     };
 }
 
