@@ -32,7 +32,7 @@ type Props = DispatchProps & StateProps & OwnProps;
 
 const Content = styled.div`
   flex-grow: 1;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -95,7 +95,7 @@ function DokumentOgVedlegg(props: Props) {
                     onChange={(event, index) => props.onChange(tabs[index])}
                 />
                 <KnappWrapper>
-                    <KnappBase type="hoved" onClick={props.lukkDokument}>Lukk meg</KnappBase>
+                    <KnappBase type="hoved" onClick={props.lukkDokument}>Lukk</KnappBase>
                 </KnappWrapper>
             </Header>
             <PersonContext.Consumer>{fnr => {

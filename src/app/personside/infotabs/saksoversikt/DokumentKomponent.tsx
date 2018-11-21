@@ -84,13 +84,13 @@ class DokumentKomponent extends React.Component<Props> {
     private dokumentRef = React.createRef<HTMLDivElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
-        if (!this.hoveddokumentLinkRef.current || !this.vedleggLinkRef.current) {
+        if (!this.hoveddokumentLinkRef.current) {
             return;
         }
 
         const lenkeTrykket = (event.target instanceof Node)
             && (this.hoveddokumentLinkRef.current.contains(event.target)
-                || this.vedleggLinkRef.current.contains(event.target));
+                || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
 
         if (!lenkeTrykket) {
             this.props.velgOgVisDokument(this.props.dokument, this.props.dokument.hoveddokument);
@@ -147,7 +147,7 @@ class DokumentKomponent extends React.Component<Props> {
                                 </a>
                             </span>
                             {vedlegg}
-                            <Normaltekst>{saksvisning}</Normaltekst>
+                            {saksvisning}
                         </div>
                     </InfoWrapper>
                 </Wrapper>
