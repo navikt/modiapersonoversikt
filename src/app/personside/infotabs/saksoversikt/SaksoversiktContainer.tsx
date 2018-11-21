@@ -19,7 +19,7 @@ import { Person } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { connect } from 'react-redux';
-import { settValgtEnkeltdokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { settValgtEnkeltdokument, settValgtSakstema } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -28,7 +28,6 @@ export interface AvsenderFilter {
 }
 
 interface State {
-    valgtSakstema?: Sakstema;
     avsenderfilter: AvsenderFilter;
 }
 
@@ -39,6 +38,7 @@ interface StateProps {
     visDokument: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltdokument?: Dokument;
+    valgtSakstema?: Sakstema;
 }
 
 interface DispatchProps {
@@ -46,6 +46,7 @@ interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
     setEnkeltdokument: (enkeltdokument: Dokument) => void;
+    setSakstema: (sakstema: Sakstema) => void;
 }
 
 interface OwnProps {
@@ -94,7 +95,6 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            valgtSakstema: undefined,
             avsenderfilter: {
                 fraBruker: true,
                 fraNav: true,
@@ -103,7 +103,6 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         };
         this.oppdaterSakstema = this.oppdaterSakstema.bind(this);
         this.toggleAvsenderFilter = this.toggleAvsenderFilter.bind(this);
-        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
     }
 
     componentDidMount() {
@@ -116,7 +115,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     oppdaterSakstema(sakstema: Sakstema) {
-        this.setState({valgtSakstema: sakstema});
+        this.props.setSakstema(sakstema);
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
         }
@@ -131,23 +130,19 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         });
     }
 
-    velgOgVisDokument(dokument: Dokument) {
-        this.props.setEnkeltdokument(dokument);
-    }
-
     render() {
         const norgUrl = this.props.baseUrlReducer.status === STATUS.OK
             ? lenkeNorg2Frontend(
                 this.props.baseUrlReducer.data,
                 this.props.person.geografiskTilknytning,
-                this.state.valgtSakstema)
+                this.props.valgtSakstema)
             : '';
 
         if (this.props.visDokument && this.props.valgtDokument) {
             return (
                 <DokumentOgVedlegg
                     harTilgang={true}
-                    onChange={this.velgOgVisDokument}
+                    onChange={this.props.setEnkeltdokument}
                 />
             );
         } else {
@@ -165,14 +160,13 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                                 <SakstemaVisning
                                     sakstema={this.props.saksoversiktReducer.data.resultat}
                                     oppdaterSakstema={this.oppdaterSakstema}
-                                    valgtSakstema={this.state.valgtSakstema}
                                 />
                             </SakstemaListe>
                         </div>
                         <DokumentListe>
-                            <h1 ref={this.dokumentListeRef} tabIndex={-1}/>
+                            <span ref={this.dokumentListeRef} tabIndex={-1}/>
                             <DokumenterVisning
-                                sakstema={this.state.valgtSakstema}
+                                sakstema={this.props.valgtSakstema}
                                 avsenderFilter={this.state.avsenderfilter}
                                 toggleFilter={this.toggleAvsenderFilter}
                             />
@@ -191,7 +185,8 @@ function mapStateToProps(state: AppState): StateProps {
         person: state.restEndepunkter.personinformasjon.data as Person,
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
-        valgtEnkeltdokument: state.saksoversikt.valgtEnkeltdokument
+        valgtEnkeltdokument: state.saksoversikt.valgtEnkeltdokument,
+        valgtSakstema: state.saksoversikt.valgtSakstema
     });
 }
 
@@ -204,7 +199,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         reloadSaksoversikt: (fødselsnummer: string) =>
             dispatch(reloadSaksoversikt(fødselsnummer)),
         setEnkeltdokument: (enkeltdokument: Dokument) =>
-            dispatch(settValgtEnkeltdokument(enkeltdokument))
+            dispatch(settValgtEnkeltdokument(enkeltdokument)),
+        setSakstema: (sakstema: Sakstema) =>
+            dispatch(settValgtSakstema(sakstema))
     };
 }
 

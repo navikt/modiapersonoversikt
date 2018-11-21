@@ -432,7 +432,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   <section
     className="c10"
   >
-    <h1
+    <span
       tabIndex={-1}
     />
     <div>
@@ -561,14 +561,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       10.06.2017 / Fra bruker
                     </p>
-                    <span>
-                      <a
-                        href="#"
-                        onClick={[Function]}
-                      >
-                        Automatisk vedtak/nyfødt barn
-                      </a>
-                    </span>
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Automatisk vedtak/nyfødt barn
+                    </a>
                     <div
                       className="c19"
                     >
@@ -581,14 +579,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                       <ul>
                         <li>
-                          <span>
-                            <a
-                              href="#"
-                              onClick={[Function]}
-                            >
-                              Vurdering feilutbetaling/revurdering
-                            </a>
-                          </span>
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Vurdering feilutbetaling/revurdering
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -629,14 +625,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       22.04.2017 / Fra andre
                     </p>
-                    <span>
-                      <a
-                        href="#"
-                        onClick={[Function]}
-                      >
-                        Automatisk vedtak/nyfødt barn
-                      </a>
-                    </span>
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Automatisk vedtak/nyfødt barn
+                    </a>
                     <p
                       className="typo-normal"
                     >

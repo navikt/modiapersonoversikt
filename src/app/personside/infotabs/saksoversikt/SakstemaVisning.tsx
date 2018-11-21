@@ -6,12 +6,19 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { AppState } from '../../../../redux/reducers';
+import { connect } from 'react-redux';
 
-export interface SakstemaProps {
+interface OwnProps {
     sakstema: Sakstema[];
     oppdaterSakstema: (sakstema: Sakstema) => void;
+}
+
+interface StateProps {
     valgtSakstema?: Sakstema;
 }
+
+type Props = OwnProps & StateProps;
 
 interface State {
     aggregertSakstema: Sakstema;
@@ -57,7 +64,7 @@ const TittelWrapper = styled.div`
   padding: ${theme.margin.px20};
 `;
 
-function GrupperteTema(props: SakstemaProps) {
+function GrupperteTema(props: Props) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -101,15 +108,17 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-class SakstemaVisning extends React.Component<SakstemaProps, State> {
+class SakstemaVisning extends React.Component<Props, State> {
 
-    constructor(props: SakstemaProps) {
+    constructor(props: Props) {
         super(props);
         const aggregert = aggregertSakstema(props.sakstema);
         this.state = {
             aggregertSakstema: aggregert
         };
-        this.props.oppdaterSakstema(aggregert);
+        if (!this.props.valgtSakstema) {
+            this.props.oppdaterSakstema(aggregert);
+        }
     }
 
     render() {
@@ -142,4 +151,10 @@ class SakstemaVisning extends React.Component<SakstemaProps, State> {
     }
 }
 
-export default SakstemaVisning;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        valgtSakstema: state.saksoversikt.valgtSakstema
+    };
+}
+
+export default connect(mapStateToProps)(SakstemaVisning);

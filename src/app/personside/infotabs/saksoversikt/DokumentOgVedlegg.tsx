@@ -11,7 +11,7 @@ import { AppState } from '../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { settVisDokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
-import KnappBase from 'nav-frontend-knapper';
+import Lukknapp from 'nav-frontend-lukknapp';
 
 interface OwnProps {
     harTilgang: boolean;
@@ -54,6 +54,7 @@ const KnappWrapper = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+  padding-bottom: 0.1rem;
 `;
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
@@ -95,7 +96,9 @@ function DokumentOgVedlegg(props: Props) {
                     onChange={(event, index) => props.onChange(tabs[index])}
                 />
                 <KnappWrapper>
-                    <KnappBase type="hoved" onClick={props.lukkDokument}>Lukk</KnappBase>
+                    <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
+                        Lukk dokumentvisning
+                    </Lukknapp>
                 </KnappWrapper>
             </Header>
             <PersonContext.Consumer>{fnr => {

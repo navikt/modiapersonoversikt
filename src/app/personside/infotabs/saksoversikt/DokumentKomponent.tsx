@@ -29,7 +29,7 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-    velgOgVisDokument: (dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) => void;
+    velgOgVisDokument: (enkeltdokument: Enkeltdokument) => void;
 }
 
 type Props = OwnProps & DispatchProps;
@@ -79,11 +79,16 @@ function dokumentIkon(harTilgang: boolean) {
 }
 
 class DokumentKomponent extends React.Component<Props> {
-    private vedleggLinkRef = React.createRef<HTMLElement>();
-    private hoveddokumentLinkRef = React.createRef<HTMLElement>();
+    private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
 
-    handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
+    constructor(props: Props) {
+        super(props);
+
+    }
+
+    sjekkOmLenkeErTrykket(event: React.MouseEvent<HTMLElement>) {
         if (!this.hoveddokumentLinkRef.current) {
             return;
         }
@@ -93,7 +98,13 @@ class DokumentKomponent extends React.Component<Props> {
                 || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
 
         if (!lenkeTrykket) {
-            this.props.velgOgVisDokument(this.props.dokument, this.props.dokument.hoveddokument);
+            this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
+        }
+    }
+
+    visDokumentHvisTilgang(dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) {
+        if (this.props.harTilgang) {
+            this.props.velgOgVisDokument(enkeltdokument);
         }
     }
 
@@ -115,11 +126,13 @@ class DokumentKomponent extends React.Component<Props> {
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
-                                <span ref={this.vedleggLinkRef}>
-                                    <a href={'#'} onClick={() => this.props.velgOgVisDokument(dokument, vlegg)}>
-                                        {vlegg.tittel}
-                                    </a>
-                                </span>
+                                <a
+                                    href={'#'}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                    ref={this.vedleggLinkRef}
+                                >
+                                    {vlegg.tittel}
+                                </a>
                             </li>)}
                     </ul>
                 </VedleggStyle>
@@ -129,7 +142,7 @@ class DokumentKomponent extends React.Component<Props> {
             <>
                 <Wrapper
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
+                        cancelIfHighlighting(() => this.sjekkOmLenkeErTrykket(event))}
                     innerRef={this.dokumentRef}
                 >
                     <InfoWrapper>
@@ -138,14 +151,13 @@ class DokumentKomponent extends React.Component<Props> {
                             <Normaltekst>
                                 {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
                             </Normaltekst>
-                            <span ref={this.hoveddokumentLinkRef}>
-                                <a
-                                    href={'#'}
-                                    onClick={() => this.props.velgOgVisDokument(dokument, dokument.hoveddokument)}
-                                >
-                                    {dokument.hoveddokument.tittel}
-                                </a>
-                            </span>
+                            <a
+                                href={'#'}
+                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                ref={this.hoveddokumentLinkRef}
+                            >
+                                {dokument.hoveddokument.tittel}
+                            </a>
                             {vedlegg}
                             {saksvisning}
                         </div>
@@ -156,10 +168,10 @@ class DokumentKomponent extends React.Component<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
     return {
-        velgOgVisDokument: (dokument, enkeltdokument) => {
-            dispatch(settValgtDokument(dokument));
+        velgOgVisDokument: enkeltdokument => {
+            dispatch(settValgtDokument(ownProps.dokument));
             dispatch(settVisDokument(true));
             dispatch(settValgtEnkeltdokument(enkeltdokument));
         }
