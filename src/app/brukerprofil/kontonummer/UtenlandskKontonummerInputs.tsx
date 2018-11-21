@@ -75,7 +75,7 @@ function Inputs(props: Props) {
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({banknavn: event.target.value})}
                 feil={validering.banknavn.skjemafeil}
             />
             <Input
@@ -88,7 +88,7 @@ function Inputs(props: Props) {
                         linje1: event.target.value
                     }
                 })}
-                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
+                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
             />
             <Input
                 label=""
@@ -100,7 +100,7 @@ function Inputs(props: Props) {
                         linje2: event.target.value
                     }
                 })}
-                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
+                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
             />
             <Input
                 label=""
@@ -118,21 +118,21 @@ function Inputs(props: Props) {
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({swift: event.target.value})}
                 feil={validering.swift.skjemafeil}
             />
             <Input
                 label="Kontonummer eller IBAN"
-                value={bankkonto.kontonummer}
+                value={bankkonto.utenlandskKontonummer}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ kontonummer: event.target.value })}
-                feil={validering.kontonummer.skjemafeil}
+                onChange={event => props.updateBankkontoInputsState({utenlandskKontonummer: event.target.value})}
+                feil={validering.utenlandskKontonummer.skjemafeil}
             />
             <Input
                 label="Bankkode"
                 value={bankkonto.bankkode}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
+                onChange={event => props.updateBankkontoInputsState({bankkode: event.target.value})}
                 feil={validering.bankkode.skjemafeil}
             />
             <VelgValuta {...props} />
@@ -187,19 +187,19 @@ function VelgValuta(props: Props) {
 }
 
 function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
-        const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
-                .find(kodeverk => kodeverk.kodeRef === event.target.value)
-            || { kodeRef: '', beskrivelse: '' };
+    const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
+            .find(kodeverk => kodeverk.kodeRef === event.target.value)
+        || {kodeRef: '', beskrivelse: ''};
 
-        props.updateBankkontoInputsState({ landkode: valgtKodeverk });
+    props.updateBankkontoInputsState({landkode: valgtKodeverk});
 }
 
 function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
-        const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
-                .find(kodeverk => kodeverk.kodeRef === event.target.value)
-            || { kodeRef: '', beskrivelse: '' };
+    const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
+            .find(kodeverk => kodeverk.kodeRef === event.target.value)
+        || {kodeRef: '', beskrivelse: ''};
 
-        props.updateBankkontoInputsState({ valuta: valgtKodeverk });
+    props.updateBankkontoInputsState({valuta: valgtKodeverk});
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
