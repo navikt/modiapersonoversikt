@@ -117,22 +117,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: 1.25rem;
 }
 
-.c17 {
-  text-transform: uppercase;
-}
-
-.c16 {
-  font-weight: bold;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
-.c1 a {
-  padding: 1.25rem;
-}
-
 .c18 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -154,6 +138,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c19 {
   margin: 1rem 0;
+}
+
+.c17 {
+  text-transform: uppercase;
+}
+
+.c16 {
+  font-weight: bold;
 }
 
 .c11 {
@@ -213,6 +205,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c12 > *:not(:last-child) {
   padding-right: 1rem;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c1 a {
+  padding: 1.25rem;
 }
 
 .c0 {
@@ -561,12 +561,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       10.06.2017 / Fra bruker
                     </p>
-                    <a
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Automatisk vedtak/nyfødt barn
-                    </a>
+                    <span>
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Automatisk vedtak/nyfødt barn
+                      </a>
+                    </span>
                     <div
                       className="c19"
                     >
@@ -579,26 +581,24 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                       <ul>
                         <li>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            Vurdering feilutbetaling/revurdering
-                          </a>
+                          <span>
+                            <a
+                              href="#"
+                              onClick={[Function]}
+                            >
+                              Vurdering feilutbetaling/revurdering
+                            </a>
+                          </span>
                         </li>
                       </ul>
                     </div>
                     <p
                       className="typo-normal"
                     >
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        2q8yyw4x
-                         / Sakstema: 
-                        Sykepenger
-                      </p>
+                      Saksid: 
+                      2q8yyw4x
+                       / Sakstema: 
+                      Sykepenger
                     </p>
                   </div>
                 </div>
@@ -629,23 +629,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       22.04.2017 / Fra andre
                     </p>
-                    <a
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Automatisk vedtak/nyfødt barn
-                    </a>
+                    <span>
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Automatisk vedtak/nyfødt barn
+                      </a>
+                    </span>
                     <p
                       className="typo-normal"
                     >
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        cvbun0w6
-                         / Sakstema: 
-                        Sykepenger
-                      </p>
+                      Saksid: 
+                      cvbun0w6
+                       / Sakstema: 
+                      Sykepenger
                     </p>
                   </div>
                 </div>
