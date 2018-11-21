@@ -15,11 +15,12 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
-import { Person } from '../../../../models/person/person';
+import { Person, PersonRespons } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { connect } from 'react-redux';
 import { settValgtEnkeltdokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -35,6 +36,7 @@ interface State {
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     saksoversiktReducer: RestReducer<SakstemaWrapper>;
+    personReducer: RestReducer<PersonRespons>;
     person: Person;
     visDokument: boolean;
     valgtDokument?: DokumentMetadata;
@@ -46,6 +48,7 @@ interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
     setEnkeltdokument: (enkeltdokument: Dokument) => void;
+    hentPerson: (fødselsnummer: string) => void;
 }
 
 interface OwnProps {
@@ -112,6 +115,9 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         }
         if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
+        }
+        if (this.props.personReducer.status === STATUS.NOT_STARTED) {
+            this.props.hentPerson(this.props.fødselsnummer);
         }
     }
 
@@ -188,6 +194,7 @@ function mapStateToProps(state: AppState): StateProps {
     return ({
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
+        personReducer: state.restEndepunkter.personinformasjon,
         person: state.restEndepunkter.personinformasjon.data as Person,
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
@@ -204,7 +211,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         reloadSaksoversikt: (fødselsnummer: string) =>
             dispatch(reloadSaksoversikt(fødselsnummer)),
         setEnkeltdokument: (enkeltdokument: Dokument) =>
-            dispatch(settValgtEnkeltdokument(enkeltdokument))
+            dispatch(settValgtEnkeltdokument(enkeltdokument)),
+        hentPerson: fødselsnummer =>
+            hentAllPersonData(dispatch, fødselsnummer)
     };
 }
 
