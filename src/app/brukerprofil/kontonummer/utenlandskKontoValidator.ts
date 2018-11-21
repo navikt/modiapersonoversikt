@@ -17,14 +17,14 @@ const regler: Valideringsregel<EndreBankkontoState>[] = [{
     feilmelding: 'Du må velge en valuta',
     validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.valuta.kodeRef)
 }, {
-    felt: 'kontonummer',
+    felt: 'utenlandskKontonummer',
     feilmelding: 'Kontonummer må ikke være tom',
-    validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.kontonummer)
+    validator: (konto: EndreBankkontoState) => erIkkeTomStreng(konto.utenlandskKontonummer)
 }, {
-    felt: 'kontonummer',
+    felt: 'utenlandskKontonummer',
     feilmelding: 'Kontonummer må være 36 eller færre tegn',
     validator: (konto: EndreBankkontoState) =>
-        BANK_UTLAND_KONTONUMMER_REGEX.test(konto.kontonummer)
+        BANK_UTLAND_KONTONUMMER_REGEX.test(konto.utenlandskKontonummer)
 }, {
     felt: 'banknavn',
     feilmelding: 'Banknavn må være 36 eller færre tegn',

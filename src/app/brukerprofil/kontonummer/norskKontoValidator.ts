@@ -6,15 +6,15 @@ function erTomStreng(streng: string): boolean {
 }
 
 const regler: Valideringsregel<EndreBankkontoState>[] = [{
-    felt: 'kontonummer',
+    felt: 'norskKontonummer',
     feilmelding: 'Kontonummer må være elleve tall',
-    validator: (konto: EndreBankkontoState) => erTomStreng(konto.kontonummer)
-        || removeWhitespaceAndDot(konto.kontonummer).length === 11
+    validator: (konto: EndreBankkontoState) => erTomStreng(konto.norskKontonummer)
+        || removeWhitespaceAndDot(konto.norskKontonummer).length === 11
 }, {
-    felt: 'kontonummer',
+    felt: 'norskKontonummer',
     feilmelding: 'Kontonummer er ikke gyldig',
-    validator: (konto: EndreBankkontoState) => erTomStreng(konto.kontonummer)
-        || validerKontonummer(removeWhitespaceAndDot(konto.kontonummer))
+    validator: (konto: EndreBankkontoState) => erTomStreng(konto.norskKontonummer)
+        || validerKontonummer(removeWhitespaceAndDot(konto.norskKontonummer))
 }];
 
 export function validerNorskBankKonto(bankkonto: EndreBankkontoState) {
