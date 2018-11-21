@@ -83,12 +83,7 @@ class DokumentKomponent extends React.Component<Props> {
     private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
 
-    constructor(props: Props) {
-        super(props);
-
-    }
-
-    sjekkOmLenkeErTrykket(event: React.MouseEvent<HTMLElement>) {
+    handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
         if (!this.hoveddokumentLinkRef.current) {
             return;
         }
@@ -142,7 +137,7 @@ class DokumentKomponent extends React.Component<Props> {
             <>
                 <Wrapper
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.sjekkOmLenkeErTrykket(event))}
+                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
                     innerRef={this.dokumentRef}
                 >
                     <InfoWrapper>
