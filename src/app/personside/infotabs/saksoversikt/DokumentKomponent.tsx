@@ -2,7 +2,9 @@ import * as React from 'react';
 import {
     Dokument as Enkeltdokument,
     DokumentMetadata,
-    Entitet
+    Entitet,
+    KategoriNotat,
+    Kommunikasjonsretning
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -20,6 +22,8 @@ import {
 } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../utils/functionUtils';
+import { AppState } from '../../../../redux/reducers';
+import { Person } from '../../../../models/person/person';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -32,7 +36,11 @@ interface DispatchProps {
     velgOgVisDokument: (enkeltdokument: Enkeltdokument) => void;
 }
 
-type Props = OwnProps & DispatchProps;
+interface StateProps {
+    brukerNavn: string;
+}
+
+type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div`
 
@@ -56,18 +64,27 @@ const VedleggStyle = styled.div`
   margin: 1rem 0;
 `;
 
-function formaterEntitet(fra: Entitet) {
-    if (fra === Entitet.Nav) {
-        return 'NAV';
+function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
+    switch (dokument.retning) {
+        case Kommunikasjonsretning.Inn:
+            return dokument.avsender === Entitet.Sluttbruker ? `Fra ${brukernavn}` : `Fra ${dokument.navn}`;
+        case Kommunikasjonsretning.Ut:
+            return utgåendeTekst(dokument.mottaker, dokument.navn);
+        case Kommunikasjonsretning.Intern:
+            return dokument.kategoriNotat === KategoriNotat.Forvaltningsnotat ? 'Samtalereferat' : 'Notat';
+        default:
+            return 'Ukjent kommunikasjonsretning';
     }
-    if (fra === Entitet.Sluttbruker) {
-        return 'bruker';
-    }
-    return 'andre';
 }
 
-function formaterDatoOgAvsender(date: Date, fra: Entitet) {
-    return `${moment(date).format('DD.MM.YYYY')} / Fra ${formaterEntitet(fra)}`;
+function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
+    const dokumentmottaker = mottaker === Entitet.Sluttbruker ? '' : `(Sendt til ${mottakernavn})`;
+    return `Fra NAV ${dokumentmottaker}`;
+}
+
+function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
+    const dato = moment(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
+    return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
 function dokumentIkon(harTilgang: boolean) {
@@ -144,7 +161,7 @@ class DokumentKomponent extends React.Component<Props> {
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
                             <Normaltekst>
-                                {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                                {formaterDatoOgAvsender(this.props.brukerNavn, dokument)}
                             </Normaltekst>
                             <a
                                 href={'#'}
@@ -173,4 +190,10 @@ function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): Dispatc
     };
 }
 
-export default connect(null, mapDispatchToProps)(DokumentKomponent);
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        brukerNavn: (state.restEndepunkter.personinformasjon.data as Person).navn.sammensatt
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DokumentKomponent);
