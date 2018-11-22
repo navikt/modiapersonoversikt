@@ -24,7 +24,7 @@ export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema
     return {
         retning: getKommunikasjonsretning(navfaker),
         dato: getSaksdato(navfaker),
-        navn: 'Dokument ' + faker.lorem.words(3),
+        navn: navfaker.navn.fornavn(),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker, navfaker),
         vedlegg: navfaker.random.vektetSjanse(.3)
