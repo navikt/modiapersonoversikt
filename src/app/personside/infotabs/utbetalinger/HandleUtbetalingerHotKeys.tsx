@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -26,6 +27,12 @@ type Props = DispatchProps & OwnProps & StateProps;
 function eventTargetIsButton(event: React.KeyboardEvent) {
     return event.target instanceof HTMLButtonElement;
 }
+
+const Wrapper = styled.div`
+  &:focus {
+    outline: none;
+  }
+`;
 
 class HandleUtbetalingerHotKeys extends React.Component<Props> {
 
@@ -92,9 +99,9 @@ class HandleUtbetalingerHotKeys extends React.Component<Props> {
 
     render() {
         return (
-            <div onKeyDown={this.handleKeyDown}>
+            <Wrapper onKeyDown={this.handleKeyDown} tabIndex={-1}>
                 {this.props.children}
-            </div>
+            </Wrapper>
         );
     }
 }
