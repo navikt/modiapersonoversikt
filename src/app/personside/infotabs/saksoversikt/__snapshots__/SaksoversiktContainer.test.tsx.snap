@@ -454,7 +454,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   <section
     className="c10"
   >
-    <span
+    <h1
       tabIndex={-1}
     />
     <div>
@@ -583,12 +583,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       08.03.2018 / Fra Marie
                     </p>
-                    <a
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Vurdering feilutbetaling/revurdering
-                    </a>
+                    <span>
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Vurdering feilutbetaling/revurdering
+                      </a>
+                    </span>
                     <p
                       className="typo-normal"
                     >
@@ -645,12 +647,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       21.12.2017 / Samtalereferat
                     </p>
-                    <a
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Spørsmål via nav.no
-                    </a>
+                    <span>
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Spørsmål via nav.no
+                      </a>
+                    </span>
                     <p
                       className="typo-normal"
                     >
