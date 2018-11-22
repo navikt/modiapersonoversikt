@@ -4,7 +4,7 @@ export interface VisittkortAction extends Action {
     erApen: boolean;
 }
 
-export enum actions {
+export enum UIActionTypes {
     TOGGLE_VISITTKORT = 'TOGGLE_VISITTKORT',
     TOGGLE_DIALOGPANEL = 'TOGGLE_DIALOGPANEL'
 }
@@ -29,20 +29,20 @@ export const initialUIState: UIState = {
 
 export function toggleVisittkort(erApent?: boolean) {
     return {
-        type: actions.TOGGLE_VISITTKORT,
+        type: UIActionTypes.TOGGLE_VISITTKORT,
         erApen: erApent
     };
 }
 
 export function toggleDialogpanel() {
     return {
-        type: actions.TOGGLE_DIALOGPANEL
+        type: UIActionTypes.TOGGLE_DIALOGPANEL
     };
 }
 
-export default function reducer(state: UIState = initialUIState, action: Action) {
+function reducer(state: UIState = initialUIState, action: Action) {
     switch (action.type) {
-        case actions.TOGGLE_VISITTKORT:
+        case UIActionTypes.TOGGLE_VISITTKORT:
             const erApen = (action as VisittkortAction).erApen;
             const nesteVerdi = erApen !== undefined ? erApen : !state.visittkort.apent;
             return {
@@ -52,7 +52,7 @@ export default function reducer(state: UIState = initialUIState, action: Action)
                     apent: nesteVerdi
                 }
             };
-        case actions.TOGGLE_DIALOGPANEL:
+        case UIActionTypes.TOGGLE_DIALOGPANEL:
             return {
                 ...state,
                 dialogPanel: {
@@ -64,3 +64,5 @@ export default function reducer(state: UIState = initialUIState, action: Action)
             return state;
     }
 }
+
+export default reducer;
