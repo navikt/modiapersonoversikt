@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {
-    Dokument as EnkeltDokument,
-    DokumentMetadata as DokumentInterface,
-    Entitet
+    Dokument as Enkeltdokument,
+    DokumentMetadata,
+    Entitet,
+    KategoriNotat,
+    Kommunikasjonsretning
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -11,21 +13,34 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
-import ModalWrapper from 'nav-frontend-modal';
 import { sakstemakodeAlle } from './SakstemaVisning';
+import { Dispatch } from 'redux';
+import {
+    settValgtDokument,
+    settValgtEnkeltdokument,
+    settVisDokument
+} from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { connect } from 'react-redux';
+import { cancelIfHighlighting } from '../../../../utils/functionUtils';
+import { AppState } from '../../../../redux/reducers';
+import { Person } from '../../../../models/person/person';
 
-interface Props {
-    dokument: DokumentInterface;
+interface OwnProps {
+    dokument: DokumentMetadata;
     harTilgang: boolean;
     sakstemakode: string;
     sakstemanavn: string;
 }
 
-interface State {
-    åpnet: boolean;
-    valgtDokument: EnkeltDokument;
+interface DispatchProps {
+    velgOgVisDokument: (enkeltdokument: Enkeltdokument) => void;
 }
+
+interface StateProps {
+    brukerNavn: string;
+}
+
+type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div`
 
@@ -49,18 +64,27 @@ const VedleggStyle = styled.div`
   margin: 1rem 0;
 `;
 
-function formaterEntitet(fra: Entitet) {
-    if (fra === Entitet.Nav) {
-        return 'NAV';
+function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
+    switch (dokument.retning) {
+        case Kommunikasjonsretning.Inn:
+            return dokument.avsender === Entitet.Sluttbruker ? `Fra ${brukernavn}` : `Fra ${dokument.navn}`;
+        case Kommunikasjonsretning.Ut:
+            return utgåendeTekst(dokument.mottaker, dokument.navn);
+        case Kommunikasjonsretning.Intern:
+            return dokument.kategoriNotat === KategoriNotat.Forvaltningsnotat ? 'Samtalereferat' : 'Notat';
+        default:
+            return 'Ukjent kommunikasjonsretning';
     }
-    if (fra === Entitet.Sluttbruker) {
-        return 'bruker';
-    }
-    return 'andre';
 }
 
-function formaterDatoOgAvsender(date: Date, fra: Entitet) {
-    return `${moment(date).format('DD.MM.YYYY')} / Fra ${formaterEntitet(fra)}`;
+function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
+    const dokumentmottaker = mottaker === Entitet.Sluttbruker ? '' : `(Sendt til ${mottakernavn})`;
+    return `Fra NAV ${dokumentmottaker}`;
+}
+
+function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
+    const dato = moment(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
+    return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
 function dokumentIkon(harTilgang: boolean) {
@@ -71,34 +95,29 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-class DokumentKomponent extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            åpnet: false,
-            valgtDokument: this.props.dokument.hoveddokument
-        };
-        this.skjulModal = this.skjulModal.bind(this);
-        this.visModal = this.visModal.bind(this);
-        this.velgOgVisDokument = this.velgOgVisDokument.bind(this);
+class DokumentKomponent extends React.Component<Props> {
+    private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
+    private dokumentRef = React.createRef<HTMLDivElement>();
+
+    handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
+        if (!this.hoveddokumentLinkRef.current) {
+            return;
+        }
+
+        const lenkeTrykket = (event.target instanceof Node)
+            && (this.hoveddokumentLinkRef.current.contains(event.target)
+                || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
+
+        if (!lenkeTrykket) {
+            this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
+        }
     }
 
-    skjulModal() {
-        this.setState({
-            åpnet: false
-        });
-    }
-
-    visModal() {
-        const åpnet = !this.state.åpnet;
-        this.setState({åpnet: åpnet});
-    }
-
-    velgOgVisDokument(dokument: EnkeltDokument) {
-        this.setState({
-            valgtDokument: dokument,
-            åpnet: true
-        });
+    visDokumentHvisTilgang(dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) {
+        if (this.props.harTilgang) {
+            this.props.velgOgVisDokument(enkeltdokument);
+        }
     }
 
     render() {
@@ -119,7 +138,13 @@ class DokumentKomponent extends React.Component<Props, State> {
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
-                                <a href={'#'} onClick={() => this.velgOgVisDokument(vlegg)}>{vlegg.tittel}</a>
+                                <a
+                                    href={'#'}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                    ref={this.vedleggLinkRef}
+                                >
+                                    {vlegg.tittel}
+                                </a>
                             </li>)}
                     </ul>
                 </VedleggStyle>
@@ -127,37 +152,48 @@ class DokumentKomponent extends React.Component<Props, State> {
 
         return (
             <>
-                <Wrapper onClick={() => this.visModal()}>
+                <Wrapper
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
+                    innerRef={this.dokumentRef}
+                >
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
                             <Normaltekst>
-                                {formaterDatoOgAvsender(saksdatoSomDate(dokument.dato), dokument.avsender)}
+                                {formaterDatoOgAvsender(this.props.brukerNavn, dokument)}
                             </Normaltekst>
-                            <a href={'#'} onClick={() => this.velgOgVisDokument(dokument.hoveddokument)}>
+                            <a
+                                href={'#'}
+                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                ref={this.hoveddokumentLinkRef}
+                            >
                                 {dokument.hoveddokument.tittel}
                             </a>
                             {vedlegg}
-                            <Normaltekst>{saksvisning}</Normaltekst>
+                            {saksvisning}
                         </div>
                     </InfoWrapper>
                 </Wrapper>
-                {this.state.åpnet &&
-                <ModalWrapper
-                    isOpen={true}
-                    contentLabel="Dokumentvisning"
-                    onRequestClose={this.skjulModal}
-                >
-                    <DokumentOgVedlegg
-                        dokument={dokument}
-                        harTilgang={this.props.harTilgang}
-                        valgtTab={this.state.valgtDokument}
-                        onChange={this.velgOgVisDokument}
-                    />
-                </ModalWrapper>}
             </>
         );
     }
 }
 
-export default DokumentKomponent;
+function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
+    return {
+        velgOgVisDokument: enkeltdokument => {
+            dispatch(settValgtDokument(ownProps.dokument));
+            dispatch(settVisDokument(true));
+            dispatch(settValgtEnkeltdokument(enkeltdokument));
+        }
+    };
+}
+
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        brukerNavn: (state.restEndepunkter.personinformasjon.data as Person).navn.sammensatt
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DokumentKomponent);

@@ -363,7 +363,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         className="lenkepanel"
         href="http://arena.adeo.no/forms/arenaMod.html?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=10108000398"
       >
-        Meldekort i Arenda
+        Meldekort i Arena
         <span
           className="lenkepanel__indikator"
         />
