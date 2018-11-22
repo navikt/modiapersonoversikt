@@ -12,6 +12,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { AvsenderFilter } from './SaksoversiktContainer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import ViktigÅVite from './viktigavite/viktigavite';
 
 interface Props {
     sakstema?: Sakstema;
@@ -193,6 +194,7 @@ function DokumenterVisning(props: Props) {
                 <Undertittel>{props.sakstema.temanavn}</Undertittel>
                 {checkboxer}
             </Header>
+            <ViktigÅVite/>
             {dokumentinnhold}
         </div>
     );

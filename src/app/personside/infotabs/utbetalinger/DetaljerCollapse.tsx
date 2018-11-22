@@ -12,6 +12,7 @@ interface Props {
     toggle: () => void;
     children: ReactNode;
     header?: ReactNode;
+    tittel?: string;
 }
 
 const Wrapper = styled<{ open: boolean; hasHeader: boolean }, 'div'>('div')`
@@ -56,6 +57,7 @@ const Luft = styled.span`
 interface KnappProps {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     open: boolean;
+    tittel?: string;
 }
 
 function DetaljerKnapp(props: KnappProps) {
@@ -67,7 +69,7 @@ function DetaljerKnapp(props: KnappProps) {
         >
             <Luft>
                 <Normaltekst tag="span">
-                    {props.open ? 'Skjul' : 'Vis'} detaljer
+                    {props.open ? 'Skjul' : 'Vis'} {props.tittel ? props.tittel : 'detaljer'}
                 </Normaltekst>
             </Luft>
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
@@ -88,6 +90,7 @@ function DetaljerCollapse(props: Props) {
                 <DetaljerKnapp
                     onClick={props.toggle}
                     open={props.open}
+                    tittel={props.tittel}
                 />
             </FlexEnd>
         </Wrapper>

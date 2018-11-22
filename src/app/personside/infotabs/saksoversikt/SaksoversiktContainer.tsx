@@ -17,6 +17,8 @@ import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { isViktigÅViteTema, ViktigÅViteTema } from '../../../../redux/viktigAVite/types';
+import { setViktigÅViteTema } from '../../../../redux/viktigAVite/actions';
 
 export interface AvsenderFilter {
     fraBruker: boolean;
@@ -38,6 +40,7 @@ interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
+    setViktigÅVite: (tema?: ViktigÅViteTema) => void;
 }
 
 interface OwnProps {
@@ -111,6 +114,12 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
         }
+
+        if (isViktigÅViteTema(sakstema)) {
+            this.props.setViktigÅVite(sakstema);
+        } else {
+            this.props.setViktigÅVite(undefined);
+        }
     }
 
     toggleAvsenderFilter(key: keyof AvsenderFilter) {
@@ -174,7 +183,9 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         hentSaksoversikt: (fødselsnummer: string) =>
             dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) =>
-            dispatch(reloadSaksoversikt(fødselsnummer))
+            dispatch(reloadSaksoversikt(fødselsnummer)),
+        setViktigÅVite: (tema: ViktigÅViteTema) =>
+            dispatch(setViktigÅViteTema(tema))
     };
 }
 
