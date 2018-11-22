@@ -27,7 +27,7 @@ const arenaURL = (fnr: string) => {
 function Arenalenke(props: Props) {
 
     const url = arenaURL(props.fødselsnummer);
-    return <LenkepanelPersonoversikt url={url}>Meldekort i Arenda</LenkepanelPersonoversikt>;
+    return <LenkepanelPersonoversikt url={url}>Meldekort i Arena</LenkepanelPersonoversikt>;
 }
 
 export default Arenalenke;
