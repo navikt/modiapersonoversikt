@@ -20,7 +20,6 @@ import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/doku
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { connect } from 'react-redux';
 import { settValgtEnkeltdokument, settValgtSakstema } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
-import { settValgtEnkeltdokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 
 export interface AvsenderFilter {
@@ -167,7 +166,6 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                                 <SakstemaVisning
                                     sakstema={this.props.saksoversiktReducer.data.resultat}
                                     oppdaterSakstema={this.oppdaterSakstema}
-                                    valgtSakstema={this.state.valgtSakstema}
                                 />
                             </SakstemaListe>
                         </div>
@@ -210,8 +208,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
         setEnkeltdokument: (enkeltdokument: Dokument) =>
             dispatch(settValgtEnkeltdokument(enkeltdokument)),
         hentPerson: fødselsnummer =>
-            hentAllPersonData(dispatch, fødselsnummer)
-            dispatch(settValgtEnkeltdokument(enkeltdokument)),
+            hentAllPersonData(dispatch, fødselsnummer),
         setSakstema: (sakstema: Sakstema) =>
             dispatch(settValgtSakstema(sakstema))
     };
