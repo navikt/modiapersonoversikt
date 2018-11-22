@@ -3,7 +3,7 @@ import Visittkort from './VisittkortContainer';
 import { mount } from 'enzyme';
 import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../setupTests';
-import { actions } from '../../../redux/uiReducers/UIReducer';
+import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
 
 test('viser visittkortheader når visittkort først rendres', () => {
     const visittkort = mount((
@@ -37,7 +37,7 @@ test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
         </TestProvider>
     ));
 
-    testStore.dispatch({type: actions.TOGGLE_VISITTKORT, erApen: true});
+    testStore.dispatch({type: UIActionTypes.TOGGLE_VISITTKORT, erApen: true});
     const focusedElement = document.activeElement;
 
     if (focusedElement) {
