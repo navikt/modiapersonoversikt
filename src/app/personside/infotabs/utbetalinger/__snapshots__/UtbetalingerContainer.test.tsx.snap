@@ -667,7 +667,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     className="typo-normal"
                   >
                     Vis
-                     detaljer
+                     
+                    detaljer
                   </span>
                 </span>
                 <i
@@ -832,7 +833,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             className="typo-normal"
                           >
                             Vis
-                             detaljer
+                             
+                            detaljer
                           </span>
                         </span>
                         <i

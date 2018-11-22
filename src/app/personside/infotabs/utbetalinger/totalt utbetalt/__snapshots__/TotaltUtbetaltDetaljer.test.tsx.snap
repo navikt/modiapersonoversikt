@@ -314,7 +314,8 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
           className="typo-normal"
         >
           Skjul
-           detaljer
+           
+          detaljer
         </span>
       </span>
       <i
