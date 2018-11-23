@@ -9,7 +9,7 @@ import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoaded, RestReducer } from '../../redux/restReducers/restReducer';
 
 interface PersonsideStateProps {
     personReducer: RestReducer<PersonRespons>;
@@ -30,15 +30,15 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     }
 
     getSideinnhold() {
-        const data = this.props.personReducer.data;
+        const personReducer = this.props.personReducer;
 
-        if (erPersonResponsAvTypeBegrensetTilgang(data)) {
+        if (isLoaded(personReducer) && erPersonResponsAvTypeBegrensetTilgang(personReducer.data)) {
             return (
-                <BegrensetTilgangSide person={data as BegrensetTilgang}/>
+                <BegrensetTilgangSide person={personReducer.data as BegrensetTilgang}/>
             );
         } else {
             return (
-                <MainLayout />
+                <MainLayout/>
             );
         }
     }
@@ -62,4 +62,4 @@ function mapStateToProps(state: AppState): PersonsideStateProps {
     };
 }
 
-export default connect(mapStateToProps, null) (Personside);
+export default connect(mapStateToProps, null)(Personside);

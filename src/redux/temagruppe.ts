@@ -1,23 +1,37 @@
 import { Action } from 'redux';
 
-const VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE';
+export const enum actions {
+    VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE'
+}
 
 export function velgTemagruppe(temagruppe: string): TemagruppeAction {
     return {
         temagruppe: temagruppe,
-        type: VELG_TEMAGRUPPE
+        type: actions.VELG_TEMAGRUPPE
     };
 }
 
-type TemagruppeAction =  {
+interface TemagruppeAction extends Action {
+    type: actions.VELG_TEMAGRUPPE;
     temagruppe: string;
-} & Action;
+}
 
-export default function reducer(temagruppe: string | null = null, action: TemagruppeAction) {
+export interface TemagruppeState {
+    valgtTemagruppe?: string;
+}
+
+export const TemagruppeInitState = {
+    valgtTemagruppe: undefined
+};
+
+export default function reducer(state: TemagruppeState = TemagruppeInitState, action: TemagruppeAction) {
     switch (action.type) {
-        case VELG_TEMAGRUPPE:
-            return action.temagruppe;
+        case actions.VELG_TEMAGRUPPE:
+            return {
+                ...state,
+                valgtTemagruppe: action.temagruppe
+            };
         default:
-            return temagruppe;
+            return state;
     }
 }

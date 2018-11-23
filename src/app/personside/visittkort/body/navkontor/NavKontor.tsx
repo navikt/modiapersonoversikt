@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
+import { BrukersNavKontorResponse, NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import VisittkortElement from '../VisittkortElement';
@@ -135,18 +135,22 @@ function IngenNavKontor() {
     );
 }
 
-function NavKontorVisning(props: { navKontor: NavKontor | null, baseUrlsResponse: BaseUrlsResponse }) {
-    if (!props.navKontor) {
+function NavKontorVisning(props: {
+    brukersNavKontorResponse: BrukersNavKontorResponse,
+    baseUrlsResponse: BaseUrlsResponse
+}) {
+    const navKontor = props.brukersNavKontorResponse.navKontor;
+    if (!navKontor) {
         return <IngenNavKontor/>;
     }
 
-    const beskrivelse = `${props.navKontor.enhetId} ${props.navKontor.enhetNavn}`;
+    const beskrivelse = `${navKontor.enhetId} ${navKontor.enhetNavn}`;
 
     const norg2Url = hentNorg2Url(props.baseUrlsResponse);
 
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo/>}>
-            {navkontorInfo(props.navKontor, norg2Url)}
+            {navkontorInfo(navKontor, norg2Url)}
         </VisittkortElement>
     );
 }

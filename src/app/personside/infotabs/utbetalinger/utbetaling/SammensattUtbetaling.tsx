@@ -17,7 +17,7 @@ import { loggEvent } from '../../../../../utils/frontendLogger';
 import { connect } from 'react-redux';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 
 interface OwnProps {
     utbetaling: Utbetaling;
@@ -126,7 +126,7 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
 
 export default connect(
     null,
-    (dispatch: Dispatch<{}>): DispatchProps => {
+    (dispatch: Dispatch<AnyAction>): DispatchProps => {
         return {
             ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
         };

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -26,6 +25,7 @@ import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -145,7 +145,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -280,7 +280,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     kontaktInfoBleLagret() {
-        return this.props.reducerStatus === STATUS.OK;
+        return this.props.reducerStatus === STATUS.SUCCESS;
     }
 
     Tilbakemelding() {
@@ -363,7 +363,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>

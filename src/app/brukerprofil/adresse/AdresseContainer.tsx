@@ -6,7 +6,6 @@ import { AppState } from '../../../redux/reducers';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 import { hentPostnummere } from '../../../redux/restReducers/kodeverk/postnummerReducer';
-import { STATUS } from '../../../redux/restReducers/utils';
 import AdresseForm from './AdresseForm';
 import {
     endreMatrikkeladresse,
@@ -20,8 +19,8 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
-import { Action, Dispatch } from 'redux';
+import { isNotStarted, RestReducer } from '../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
     postnummerReducer: RestReducer<KodeverkResponse>;
@@ -47,7 +46,7 @@ interface OwnProps {
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & OwnProps> {
 
     componentDidMount() {
-        if (this.props.postnummerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.postnummerReducer)) {
             this.props.hentPostnummerKodeverk();
         }
     }
@@ -86,7 +85,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentPostnummerKodeverk: () => dispatch(hentPostnummere()),
         endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>

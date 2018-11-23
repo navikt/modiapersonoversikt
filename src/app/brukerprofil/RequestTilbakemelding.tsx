@@ -16,7 +16,7 @@ interface Props {
 }
 
 function RequestTilbakemelding({ status, onSuccess, onError }: Props) {
-    if (status === STATUS.OK) {
+    if (status === STATUS.SUCCESS) {
         return (
             <TilbakemeldingWrapper>
                 <AlertStripe type={'suksess'}>
@@ -24,7 +24,7 @@ function RequestTilbakemelding({ status, onSuccess, onError }: Props) {
                 </AlertStripe>
             </TilbakemeldingWrapper>
         );
-    } else if (status === STATUS.ERROR) {
+    } else if (status === STATUS.FAILED) {
         return (
             <TilbakemeldingWrapper>
                 <AlertStripe type={'advarsel'}>

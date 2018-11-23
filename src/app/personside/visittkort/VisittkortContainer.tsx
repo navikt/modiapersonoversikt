@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Person } from '../../../models/person/person';
+import { Person, PersonRespons } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
@@ -12,9 +12,9 @@ import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
-
-import { Dispatch } from 'redux';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 
 interface StateProps {
@@ -84,11 +84,11 @@ class VisittkortContainer extends React.Component<Props> {
 function mapStateToProps(state: AppState) {
     return {
         UI: state.ui,
-        person: state.restEndepunkter.personinformasjon.data as Person
+        person: (state.restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
     };

@@ -16,7 +16,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
@@ -162,7 +162,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
     return {
         setYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
         setEkspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))

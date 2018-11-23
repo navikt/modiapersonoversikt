@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
 import Routing from './routes/routing';
@@ -11,9 +11,9 @@ import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
 import AppWrapper, { Content } from './AppWrapper';
 import Eventlistener from './Eventlistener';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import ModalWrapper from 'nav-frontend-modal';
-import { Person } from '../models/person/person';
+import { Person, PersonRespons } from '../models/person/person';
+import { isLoaded, Loaded } from '../redux/restReducers/restReducer';
 
 if (mockEnabled) {
     setupMock();
@@ -21,9 +21,7 @@ if (mockEnabled) {
 
 const store = createStore(
     reducers,
-    composeWithDevTools(
-        applyMiddleware(thunkMiddleware)
-    )
+    applyMiddleware(thunk)
 );
 
 export const PersonContext = React.createContext<string | undefined>(undefined);
@@ -47,7 +45,16 @@ class App extends React.Component<{}> {
     render() {
         return (
             <PersonContext.Provider
-                value={(store.getState().restEndepunkter.personinformasjon.data as Person).fødselsnummer || undefined}
+                value={
+                    isLoaded((store.getState().restEndepunkter.personinformasjon))
+                    ?
+                    ((store.getState()
+                        .restEndepunkter.personinformasjon as Loaded<PersonRespons>)
+                        .data as Person)
+                        .fødselsnummer || undefined
+                    :
+                    undefined
+                }
             >
                 <Provider store={store}>
                     <AppWrapper innerRef={this.appRef}>

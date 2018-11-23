@@ -14,7 +14,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
 import { sakstemakodeAlle } from './SakstemaVisning';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import {
     settValgtDokument,
     settValgtEnkeltdokument,
@@ -23,7 +23,9 @@ import {
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../utils/functionUtils';
 import { AppState } from '../../../../redux/reducers';
-import { Person } from '../../../../models/person/person';
+import { Person, PersonRespons } from '../../../../models/person/person';
+import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../components/Innholdslaster';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -37,7 +39,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    brukerNavn: string;
+    bruker: RestReducer<PersonRespons>;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
@@ -122,6 +124,10 @@ class DokumentKomponent extends React.Component<Props> {
 
     render() {
         const dokument = this.props.dokument;
+        const brukersNavn = isLoaded(this.props.bruker)
+            ? (this.props.bruker.data as Person).navn.sammensatt
+            : '';
+
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
         const saksvisning = this.props.sakstemakode === sakstemakodeAlle ?
             (
@@ -160,9 +166,11 @@ class DokumentKomponent extends React.Component<Props> {
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
-                            <Normaltekst>
-                                {formaterDatoOgAvsender(this.props.brukerNavn, dokument)}
-                            </Normaltekst>
+                            <Innholdslaster avhengigheter={[this.props.bruker]}>
+                                <Normaltekst>
+                                    {formaterDatoOgAvsender(brukersNavn, dokument)}
+                                </Normaltekst>
+                            </Innholdslaster>
                             <a
                                 href={'#'}
                                 onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
@@ -180,7 +188,7 @@ class DokumentKomponent extends React.Component<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
     return {
         velgOgVisDokument: enkeltdokument => {
             dispatch(settValgtDokument(ownProps.dokument));
@@ -192,7 +200,7 @@ function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): Dispatc
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        brukerNavn: (state.restEndepunkter.personinformasjon.data as Person).navn.sammensatt
+        bruker: state.restEndepunkter.personinformasjon
     };
 }
 

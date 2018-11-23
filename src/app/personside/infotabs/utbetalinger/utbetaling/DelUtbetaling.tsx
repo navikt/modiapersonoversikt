@@ -8,7 +8,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../DetaljerCollapse';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
@@ -119,7 +119,7 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
     return {
         settYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
         ekspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))

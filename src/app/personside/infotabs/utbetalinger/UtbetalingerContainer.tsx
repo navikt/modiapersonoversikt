@@ -2,11 +2,9 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
-import { Action, Dispatch } from 'redux';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
@@ -16,6 +14,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import moment = require('moment');
 
 interface State {
@@ -105,7 +104,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.utbetalingerReducer)) {
             this.props.hentUtbetalinger(
                 this.props.fødselsnummer,
                 getFraDateFromFilter(this.state.filter),
@@ -133,8 +132,7 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
-                                utbetalinger={this.props.utbetalingerReducer.data.utbetalinger}
-                                utbetalingerPeriode={this.props.utbetalingerReducer.data.periode}
+                                utbetalingerData={(this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
                                 filter={this.state.filter}
                             />
                         </Innholdslaster>
@@ -151,7 +149,7 @@ function mapStateToProps(state: AppState): StateProps {
     });
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentUtbetalinger: (fødselsnummer: string, fra: Date, til: Date) =>
             dispatch(hentUtbetalinger(fødselsnummer, fra, til)),

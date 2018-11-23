@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import KnappBase from 'nav-frontend-knapper';
@@ -22,6 +21,7 @@ import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -69,7 +69,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.OK && this.props.reducerStatus === STATUS.OK) {
+        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -99,7 +99,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     handleOnChange(event: React.SyntheticEvent<EventTarget>, value?: string) {
         const newCheckboksState = this.state.checkbokser.map((checkboks: CheckboksProps) => {
                 if (checkboks.value === value) {
-                    return { ...checkboks, checked: !checkboks.checked };
+                    return {...checkboks, checked: !checkboks.checked};
                 }
                 return checkboks;
             }
@@ -142,7 +142,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     legend={''}
                     onChange={this.handleOnChange}
                 />
-                <Luft />
+                <Luft/>
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
@@ -177,7 +177,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>

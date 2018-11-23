@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
@@ -21,6 +20,7 @@ import { ignoreEnter, InputState, visEndringsinfo } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface NavnInputProps {
     label: string;
@@ -272,7 +272,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         endreNavn: (request: EndreNavnRequest) => dispatch(endreNavn(request)),
         resetEndreNavnReducer: () => dispatch(reset())

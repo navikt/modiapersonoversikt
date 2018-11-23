@@ -7,13 +7,12 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { AppState } from '../../redux/reducers';
-import { BegrensetTilgang, PersonRespons } from '../../models/person/person';
+import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoaded, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
 
 interface OwnProps {
@@ -60,16 +59,14 @@ class Personside extends React.PureComponent<Props> {
         this.props.hentPerson(this.props.fødselsnummer);
     }
 
-    getSideinnhold() {
-        const data = this.props.personReducer.data;
-
+    getSideinnhold(data: PersonRespons) {
         if (erPersonResponsAvTypeBegrensetTilgang(data)) {
             return (
                 <BegrensetTilgangSide person={data as BegrensetTilgang}/>
             );
         } else {
             return (
-                <Visittkort />
+                <Visittkort/>
             );
         }
     }
@@ -81,7 +78,9 @@ class Personside extends React.PureComponent<Props> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                {this.getSideinnhold()}
+                {isLoaded(this.props.personReducer)
+                    ? this.getSideinnhold((this.props.personReducer as Loaded<PersonRespons>).data)
+                    : null}
             </Innholdslaster>
         );
     }
@@ -99,4 +98,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Personside);
+export default connect(mapStateToProps, mapDispatchToProps)(Personside);

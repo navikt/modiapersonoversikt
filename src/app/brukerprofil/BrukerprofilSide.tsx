@@ -5,13 +5,11 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
-import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
-import { Action, Dispatch } from 'redux';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
@@ -20,6 +18,7 @@ import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
+import { AsyncDispatch } from '../../redux/ThunkTypes';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -162,11 +161,11 @@ class Header extends React.PureComponent<{ person: Person }> {
 class BrukerprofilSide extends React.PureComponent<Props> {
 
     componentDidMount() {
-        if (this.props.personReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.personReducer)) {
             this.props.hentPersonData(this.props.fødselsnummer);
         }
 
-        if (this.props.veilederRollerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.veilederRollerReducer)) {
             this.props.hentVeilederRoller();
         }
         loggEvent('Sidevisning', 'Brukerprofil');
@@ -179,11 +178,12 @@ class BrukerprofilSide extends React.PureComponent<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    {erNyePersonoversikten() &&  <Header person={this.props.personReducer.data as Person}/>}
+                    {erNyePersonoversikten()
+                        && <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
                     <ContentWrapper>
                         <BrukerprofilForm
-                            person={this.props.personReducer.data as Person}
-                            veilderRoller={this.props.veilederRollerReducer.data}
+                            person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
+                            veilderRoller={(this.props.veilederRollerReducer as Loaded<VeilederRoller>).data}
                         />
                     </ContentWrapper>
                 </Innholdslaster>
@@ -200,7 +200,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentPersonData: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())

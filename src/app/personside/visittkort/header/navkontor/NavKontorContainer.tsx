@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Dispatch, Action } from 'redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { BrukersNavKontorResponse, NavKontor } from '../../../../../models/navkontor';
+import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
 import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { STATUS } from '../../../../../redux/restReducers/utils';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { Bold } from '../../../../../components/common-styled-components';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface StateProps {
     navKontorReducer: RestReducer<BrukersNavKontorResponse>;
@@ -49,7 +48,7 @@ const onError = (
     <em>Problemer med å hente nav-enhet</em>
 );
 
-function NavKontorVisning(props: { navKontor: NavKontor | null }) {
+function NavKontorVisning(props: BrukersNavKontorResponse) {
     if (!props.navKontor) {
         return <Normaltekst><Bold>Ingen enhet</Bold></Normaltekst>;
     }
@@ -64,7 +63,7 @@ function NavKontorVisning(props: { navKontor: NavKontor | null }) {
 class NavKontorContainer extends React.Component<Props> {
 
     componentDidMount() {
-        if (this.props.navKontorReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.navKontorReducer)) {
             this.props.hentNavKontor(this.props.person);
         }
     }
@@ -84,7 +83,9 @@ class NavKontorContainer extends React.Component<Props> {
                     spinnerSize={'S'}
                     returnOnError={onError}
                 >
-                    <NavKontorVisning navKontor={this.props.navKontorReducer.data.navKontor}/>
+                    <NavKontorVisning
+                        {...(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data}
+                    />
                 </Innholdslaster>
             </NavKontorSection>
         );
@@ -97,7 +98,7 @@ const mapStateToProps = (state: AppState) => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentNavKontor: (person: Person) => dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode))
     };
