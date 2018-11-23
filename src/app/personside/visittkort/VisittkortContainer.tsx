@@ -15,6 +15,7 @@ import { loggEvent } from '../../../utils/frontendLogger';
 import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 
 interface StateProps {
     UI: UIState;
@@ -49,13 +50,16 @@ class VisittkortContainer extends React.Component<Props> {
         const erApnet = this.props.UI.visittkort.apent;
         const tabIndexForFokus = erApnet ? -1 : undefined;
         /* undefided så fokus ikke skal bli hengende ved lukking */
+        const visittkortHotkeys = erNyePersonoversikten()
+            ? <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>
+            : <HandleVisittkortHotkeysGamlemodia/>;
         return (
             <ErrorBoundary>
                 <AriaNotification
                     beskjed={`Visittkortet ble ${erApnet ? 'åpnet' : 'lukket'}`}
                     dontShowOnFirstRender={true}
                 />
-                {erNyePersonoversikten() && <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>}
+                {visittkortHotkeys}
                 <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
                     <VisittkortHeader
                         person={person}
