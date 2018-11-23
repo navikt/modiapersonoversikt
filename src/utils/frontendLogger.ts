@@ -1,4 +1,4 @@
-import { isProduction } from './environment';
+import { isDevelopment } from './environment';
 
 interface ValuePairs {
      [name: string]: string | number | boolean | object | undefined;
@@ -14,7 +14,7 @@ function frontendLoggerIsInitialized(): boolean {
 }
 
 function useLogger(): boolean {
-    return frontendLoggerIsInitialized() && isProduction();
+    return frontendLoggerIsInitialized() && !isDevelopment();
 }
 
 export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
