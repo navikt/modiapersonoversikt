@@ -119,8 +119,10 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
                                     {totaltUtbetaltTabell}
                                 </Normaltekst>
                             </TotaltUtbetaltOversikt>
-                            <FlexEnd innerRef={this.printerButtonRef}>
-                                <PrintKnapp onClick={this.handlePrint}/>
+                            <FlexEnd>
+                                <span ref={this.printerButtonRef}>
+                                    <PrintKnapp onClick={this.handlePrint}/>
+                                </span>
                             </FlexEnd>
                         </Header>
                         <TotaltUtbetaltDetaljer

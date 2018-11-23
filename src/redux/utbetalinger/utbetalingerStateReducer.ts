@@ -26,7 +26,7 @@ interface SetEkspanderYtelse {
     ytelse: Ytelse;
 }
 
-export function setNyYtelseIFokus(ytelse: Ytelse): SetNyYtelseIFokus {
+export function setNyYtelseIFokus(ytelse: Ytelse | null): SetNyYtelseIFokus {
     return {
         type: actionKeys.SettYtelseIFokus,
         ytelse: ytelse
