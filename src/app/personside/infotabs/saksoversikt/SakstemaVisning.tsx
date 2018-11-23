@@ -6,6 +6,16 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { AppState } from '../../../../redux/reducers';
+import { connect } from 'react-redux';
+
+interface StateProps {
+    valgtSakstema?: Sakstema;
+}
+
+interface State {
+    aggregertSakstema: Sakstema;
+}
 
 export const sakstemakodeAlle = 'ALLE';
 
@@ -47,13 +57,12 @@ const TittelWrapper = styled.div`
   padding: ${theme.margin.px20};
 `;
 
-export interface GrupperteTemaProps {
+interface GrupperteTemaProps {
     sakstema: Sakstema[];
     oppdaterSakstema: (sakstema: Sakstema) => void;
-    valgtSakstema?: Sakstema;
 }
 
-function GrupperteTema(props: GrupperteTemaProps) {
+function GrupperteTema(props: StateProps & GrupperteTemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -97,25 +106,22 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-export interface SakstemaVisningProps {
+interface SakstemaVisningProps {
     sakstemaResponse: SakstemaResponse;
     oppdaterSakstema: (sakstema: Sakstema) => void;
-    valgtSakstema?: Sakstema;
 }
 
-interface State {
-    aggregertSakstema: Sakstema;
-}
+class SakstemaVisning extends React.Component<StateProps & SakstemaVisningProps, State> {
 
-class SakstemaVisning extends React.Component<SakstemaVisningProps, State> {
-
-    constructor(props: SakstemaVisningProps) {
+    constructor(props: StateProps & SakstemaVisningProps) {
         super(props);
         const aggregert = aggregertSakstema(props.sakstemaResponse.resultat);
         this.state = {
             aggregertSakstema: aggregert
         };
-        this.props.oppdaterSakstema(aggregert);
+        if (!this.props.valgtSakstema) {
+            this.props.oppdaterSakstema(aggregert);
+        }
     }
 
     render() {
@@ -148,4 +154,10 @@ class SakstemaVisning extends React.Component<SakstemaVisningProps, State> {
     }
 }
 
-export default SakstemaVisning;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        valgtSakstema: state.saksoversikt.valgtSakstema
+    };
+}
+
+export default connect(mapStateToProps)(SakstemaVisning);

@@ -15,9 +15,9 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
-import { UtbetalingTabellStyling } from '../Utbetalinger';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];

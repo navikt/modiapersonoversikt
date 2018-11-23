@@ -53,7 +53,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
     <p
       className="typo-undertekst"
     >
-      Gjeldende kontonummer: 
+      Gjeldende kontonummer:
       <span
         className="c1"
       >
@@ -243,7 +243,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
     <p
       className="typo-undertekst"
     >
-      Gjeldende kontonummer: 
+      Gjeldende kontonummer:
       <span
         className="c1"
       >

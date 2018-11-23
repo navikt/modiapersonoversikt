@@ -115,9 +115,12 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return {
             ...tomBankkonto,
             ...person.bankkonto,
-            kontonummer: erBrukersKontonummerUtenlandsk(person)
+            norskKontonummer: erBrukersKontonummerUtenlandsk(person)
+                ? ''
+                : formaterNorskKontonummer(person.bankkonto.kontonummer),
+            utenlandskKontonummer: erBrukersKontonummerUtenlandsk(person)
                 ? person.bankkonto.kontonummer
-                : formaterNorskKontonummer(person.bankkonto.kontonummer)
+                : ''
         };
     }
 
@@ -138,11 +141,11 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         const fnr = this.props.person.fødselsnummer;
         if (this.state.norskKontoRadio) {
             this.props.endreKontonummer(fnr, {
-                kontonummer: removeWhitespaceAndDot(kontoInput.kontonummer)
+                kontonummer: removeWhitespaceAndDot(kontoInput.norskKontonummer)
             });
         } else {
             this.props.endreKontonummer(fnr, {
-                kontonummer: removeWhitespaceAndDot(kontoInput.kontonummer),
+                kontonummer: removeWhitespaceAndDot(kontoInput.utenlandskKontonummer),
                 landkode: kontoInput.landkode.kodeRef,
                 valuta: kontoInput.valuta.kodeRef,
                 swift: kontoInput.swift,
@@ -156,15 +159,15 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     handleNorskKontonummerInputChange(event: ChangeEvent<HTMLInputElement>) {
         this.updateBankkontoInputsState({
-            kontonummer: formaterNorskKontonummer(event.target.value)
+            norskKontonummer: formaterNorskKontonummer(event.target.value)
         });
     }
 
     updateBankkontoInputsState(partial: Partial<EndreBankkontoState>) {
-        const gyldingValidering = this.state.norskKontoRadio
+        const gyldigValidering = this.state.norskKontoRadio
             ? getValidNorskBankKontoForm() : getValidUtenlandskKontoForm();
         this.setState({
-            bankkontoValidering: gyldingValidering,
+            bankkontoValidering: gyldigValidering,
             bankkontoInput: {
                 ...this.state.bankkontoInput,
                 ...partial
@@ -194,10 +197,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         return (
             <Input
                 label="Kontonummer"
-                value={this.state.bankkontoInput.kontonummer}
+                value={this.state.bankkontoInput.norskKontonummer}
                 onChange={this.handleNorskKontonummerInputChange}
                 onKeyPress={ignoreEnter}
-                feil={this.state.bankkontoValidering.felter.kontonummer.skjemafeil}
+                feil={this.state.bankkontoValidering.felter.norskKontonummer.skjemafeil}
             />
         );
     }
@@ -270,7 +273,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         );
         const konto = (
             <Undertekst>
-                Gjeldende kontonummer: <FormatertKontonummer
+                Gjeldende kontonummer:
+                <FormatertKontonummer
                     kontonummer={this.props.person.bankkonto && this.props.person.bankkonto.kontonummer || ''}
                 />
             </Undertekst>

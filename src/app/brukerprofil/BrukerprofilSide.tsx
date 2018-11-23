@@ -178,7 +178,8 @@ class BrukerprofilSide extends React.PureComponent<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    {erNyePersonoversikten() &&  <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
+                    {erNyePersonoversikten()
+                        && <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
                     <ContentWrapper>
                         <BrukerprofilForm
                             person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}

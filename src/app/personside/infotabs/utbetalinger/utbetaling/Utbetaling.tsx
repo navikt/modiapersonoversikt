@@ -4,13 +4,10 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SammensattUtbetaling from './SammensattUtbetaling';
 
 import EnkelUtbetaling from './EnkelUtbetaling';
-import { FokusProps } from '../Utbetalinger';
 
-interface OwnProps {
+interface Props {
     utbetaling: UtbetalingInterface;
 }
-
-type Props = OwnProps & FokusProps;
 
 function Utbetaling(props: Props) {
     const utbetaling = props.utbetaling;
@@ -21,14 +18,20 @@ function Utbetaling(props: Props) {
 
     const enkeltYtelse = utbetaling.ytelser.length === 1;
 
-    return enkeltYtelse
-        ? (
+    if (enkeltYtelse) {
+        const ytelse = utbetaling.ytelser[0];
+        return (
             <EnkelUtbetaling
                 utbetaling={utbetaling}
-                updateYtelseIFokus={props.updateYtelseIFokus}
-                erIFokus={props.ytelseIFokus === utbetaling.ytelser[0]}
-            />)
-        : <SammensattUtbetaling {...props}/>;
+                ytelse={ytelse}
+            />);
+    } else {
+        return (
+            <SammensattUtbetaling
+                utbetaling={utbetaling}
+            />
+        );
+    }
 }
 
 export default Utbetaling;

@@ -9,7 +9,6 @@ import {
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { UtbetalingTabellStyling } from '../Utbetalinger';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
 import DetaljerCollapse from '../DetaljerCollapse';
@@ -17,19 +16,32 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { AnyAction, Dispatch } from 'redux';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
+import { connect } from 'react-redux';
+import { AppState } from '../../../../../redux/reducers';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 
-interface Props {
+interface OwnProps {
     utbetaling: UtbetalingInterface;
-    updateYtelseIFokus: (ytelse: Ytelse) => void;
-    erIFokus: boolean;
+    ytelse: Ytelse;
 }
 
-interface State {
+interface DispatchProps {
+    setYtelseIFokus: () => void;
+    setEkspanderYtelse: (ekspander: boolean) => void;
+}
+
+interface StateProps {
+    erIFokus: boolean;
     visDetaljer: boolean;
 }
 
+type Props = DispatchProps & OwnProps & StateProps;
+
 const UtbetalingStyle = styled.li`
   cursor: pointer;
+  transition: .3s;
   &:focus {
     ${theme.focus}
   }
@@ -52,98 +64,50 @@ const UtbetalingHeaderStyle = styled.div`
   }
 `;
 
-class EnkelUtbetaling extends React.Component<Props, State> {
+class EnkelUtbetaling extends React.PureComponent<Props> {
 
-    private buttonWrapperRef = React.createRef<HTMLElement>();
+    private printButtonWrapperRef = React.createRef<HTMLElement>();
     private utbetalingRef = React.createRef<HTMLDivElement>();
     private print: () => void;
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            visDetaljer: false
-        };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handlePrint = this.handlePrint.bind(this);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
-        this.removeEnterListener = this.removeEnterListener.bind(this);
-    }
-
-    shouldComponentUpdate(prevProps: Props, prevState: State) {
-        if (
-            prevProps.erIFokus !== this.props.erIFokus ||
-            prevState !== this.state ||
-            JSON.stringify(prevProps.utbetaling) !== JSON.stringify(this.props.utbetaling)) {
-            return true;
-        }
-        return false;
-    }
-
-    toggleVisDetaljer() {
-        this.setState({
-            visDetaljer: !this.state.visDetaljer
-        });
-    }
-
-    handlePrint() {
-        loggEvent('EnkeltUtbetaling', 'Printer');
-        this.setState(
-            {
-                visDetaljer: true
-            },
-            this.print
-        );
-    }
-
-    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        if (this.buttonWrapperRef.current) {
-            const knappTrykket = (event.target instanceof Node)
-                && this.buttonWrapperRef.current.contains(event.target);
-
-            if (!knappTrykket) {
-                this.toggleVisDetaljer();
-            }
-
-        }
-    }
-
-    handleEnter(event: KeyboardEvent) {
-        if (event.key === 'Enter') {
-            this.toggleVisDetaljer();
-        }
     }
 
     componentDidUpdate(prevProps: Props) {
         const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
-        const mistetFokus = !this.props.erIFokus && prevProps.erIFokus;
         if (fikkFokus && this.utbetalingRef.current) {
             this.utbetalingRef.current.focus();
-            this.addEnterListener();
-        } else if (mistetFokus) {
-            this.removeEnterListener();
         }
     }
 
-    removeEnterListener() {
-        window.removeEventListener('keydown', this.handleEnter);
+    toggleVisDetaljer() {
+        this.props.setEkspanderYtelse(!this.props.visDetaljer);
     }
 
-    addEnterListener() {
-        window.addEventListener('keydown', this.handleEnter);
+    handlePrint() {
+        loggEvent('EnkeltUtbetaling', 'Printer');
+        this.props.setEkspanderYtelse(true);
+        this.print();
     }
 
-    setTilYtelseIFokus(ytelse: Ytelse) {
-        this.props.updateYtelseIFokus(ytelse);
+    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
+        if (!this.printButtonWrapperRef.current) {
+            return;
+        }
+        const printKnappTrykket = (event.target instanceof Node)
+            && this.printButtonWrapperRef.current.contains(event.target);
+        if (!printKnappTrykket) {
+            this.toggleVisDetaljer();
+        }
     }
 
     render() {
         const utbetaling = this.props.utbetaling;
-        if (!utbetaling.ytelser) {
-            return 'Manglende data i utbetaling.';
-        }
 
-        const ytelse = utbetaling.ytelser[0];
+        const ytelse = this.props.ytelse;
 
         const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
         const tittel = ytelse.type;
@@ -160,8 +124,7 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
                         innerRef={this.utbetalingRef}
                         tabIndex={0}
-                        onFocus={() => this.setTilYtelseIFokus(ytelse)}
-                        onBlur={this.removeEnterListener}
+                        onFocus={this.props.setYtelseIFokus}
                     >
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
@@ -177,13 +140,13 @@ class EnkelUtbetaling extends React.Component<Props, State> {
                             </SpaceBetween>
                             <SpaceBetween>
                                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <span ref={this.buttonWrapperRef}>
+                                <span ref={this.printButtonWrapperRef}>
                                     <PrintKnapp onClick={this.handlePrint}/>
                                 </span>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
                         <DetaljerCollapse
-                            open={this.state.visDetaljer}
+                            open={this.props.visDetaljer}
                             toggle={this.toggleVisDetaljer}
                         >
                             <UtbetalingsDetaljer
@@ -199,4 +162,18 @@ class EnkelUtbetaling extends React.Component<Props, State> {
     }
 }
 
-export default EnkelUtbetaling;
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
+    return {
+        setYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
+        setEkspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))
+    };
+}
+
+function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
+    return {
+        erIFokus: state.utbetalinger.ytelseIFokus === ownProps.ytelse,
+        visDetaljer: state.utbetalinger.ekspanderteYtelser.includes(ownProps.ytelse)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnkelUtbetaling);

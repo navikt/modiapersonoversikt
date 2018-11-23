@@ -128,10 +128,10 @@ function Inputs(props: Props & LoadedProps) {
             />
             <Input
                 label="Kontonummer eller IBAN"
-                value={bankkonto.kontonummer}
+                value={bankkonto.utenlandskKontonummer}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({kontonummer: event.target.value})}
-                feil={validering.kontonummer.skjemafeil}
+                onChange={event => props.updateBankkontoInputsState({utenlandskKontonummer: event.target.value})}
+                feil={validering.utenlandskKontonummer.skjemafeil}
             />
             <Input
                 label="Bankkode"
