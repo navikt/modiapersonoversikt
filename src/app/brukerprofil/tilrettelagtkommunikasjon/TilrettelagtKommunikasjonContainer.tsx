@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
 
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -14,8 +13,8 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import * as tilrettelagtKommunikasjonKodeverkReducer
     from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
-import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -48,7 +47,7 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     constructor(props: Props) {
         super(props);
 
-        if (this.props.tilrettelagtKommunikasjonKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.tilrettelagtKommunikasjonKodeverkReducer)) {
             this.props.hentTilrettelagtKommunikasjonKodeverk();
         }
     }
@@ -63,7 +62,9 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
                 >
                     <TilrettelagtKommunikasjonsForm
                         person={this.props.person}
-                        tilrettelagtKommunikasjonKodeverk={this.props.tilrettelagtKommunikasjonKodeverkReducer.data}
+                        tilrettelagtKommunikasjonKodeverk={
+                            (this.props.tilrettelagtKommunikasjonKodeverkReducer as Loaded<KodeverkResponse>).data
+                        }
                     />
                 </Innholdslaster>
             </div>
@@ -71,7 +72,7 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
     return ({
         hentTilrettelagtKommunikasjonKodeverk:
             () => dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -11,8 +10,8 @@ import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
-import { STATUS } from '../../../redux/restReducers/utils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface DispatchProps {
     hentRetningsnummer: () => void;
@@ -39,7 +38,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.retningsnummerReducer.status ===  STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.retningsnummerReducer)) {
             this.props.hentRetningsnummer();
         }
     }
@@ -52,7 +51,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
                     <NavKontaktinformasjonWrapper>
                         <KontaktinformasjonForm
                             person={this.props.person}
-                            retningsnummerKodeverk={this.props.retningsnummerReducer.data}
+                            retningsnummerKodeverk={(this.props.retningsnummerReducer as Loaded<KodeverkResponse>).data}
                         />
                     </NavKontaktinformasjonWrapper>
                 </Innholdslaster>
@@ -68,10 +67,10 @@ const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnP
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentRetningsnummer: () => dispatch(hentRetningsnummere())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (KontaktinformasjonFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonFormContainer);

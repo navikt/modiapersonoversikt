@@ -5,7 +5,7 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 
 interface Props {
     vergemalReducer: RestReducer<Vergemal>;
@@ -25,7 +25,7 @@ class VergemalContainer extends React.Component<Props> {
                 avhengigheter={[this.props.vergemalReducer]}
                 spinnerSize={'L'}
             >
-                <VergemalWrapper vergemal={this.props.vergemalReducer.data}/>
+                <VergemalWrapper vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data}/>
             </Innholdslaster>
         );
     }

@@ -4,7 +4,7 @@ import { Egenansatt } from '../../../../../models/egenansatt';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Etiketter from './Etiketter';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import styled from 'styled-components';
@@ -36,12 +36,13 @@ class EtiketterContainer extends React.Component<Props> {
                     ]}
                     returnOnPending={<LazySpinner type="S"/>}
                     returnOnError={<AlertStripeAdvarsel>Feil ved lasting av etiketter</AlertStripeAdvarsel>}
-                />
+                >
                 <Etiketter
-                    person={this.props.personReducer.data as Person}
-                    egenAnsatt={this.props.egenAnsattReducer.data}
-                    vergemal={this.props.vergemalReducer.data}
+                    person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
+                    egenAnsatt={(this.props.egenAnsattReducer as Loaded<Egenansatt>).data}
+                    vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data}
                 />
+                </Innholdslaster>
             </Wrapper>
         );
     }

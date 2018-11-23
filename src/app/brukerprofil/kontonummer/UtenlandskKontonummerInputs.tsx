@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import Input from 'nav-frontend-skjema/lib/input';
@@ -12,20 +11,17 @@ import * as valutaKodeverkReducer from '../../../redux/restReducers/kodeverk/val
 import * as landKodeverkReducer from '../../../redux/restReducers/kodeverk/landKodeverk';
 import { AppState } from '../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
-import { STATUS } from '../../../redux/restReducers/utils';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
     bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
-}
-
-interface State {
 }
 
 interface DispatchProps {
@@ -38,18 +34,23 @@ interface StateProps {
     landKodeverkReducer: RestReducer<KodeverkResponse>;
 }
 
-type Props = OwnProps & DispatchProps & StateProps;
+interface LoadedProps {
+    valutaKodeverkReducer: Loaded<KodeverkResponse>;
+    landKodeverkReducer: Loaded<KodeverkResponse>;
+}
 
-class UtenlandskKontonrInputs extends React.Component<Props, State> {
+type Props = OwnProps & DispatchProps;
 
-    constructor(props: Props) {
+class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
+
+    constructor(props: Props & StateProps) {
         super(props);
 
-        if (this.props.valutaKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.valutaKodeverkReducer)) {
             this.props.hentValutaKodeverk();
         }
 
-        if (this.props.landKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.landKodeverkReducer)) {
             this.props.hentLandKodeverk();
         }
     }
@@ -59,13 +60,17 @@ class UtenlandskKontonrInputs extends React.Component<Props, State> {
             <Innholdslaster
                 avhengigheter={[this.props.valutaKodeverkReducer, this.props.landKodeverkReducer]}
             >
-                <Inputs {...this.props} />
+                <Inputs
+                    {...this.props}
+                    valutaKodeverkReducer={this.props.valutaKodeverkReducer as Loaded<KodeverkResponse>}
+                    landKodeverkReducer={this.props.landKodeverkReducer as Loaded<KodeverkResponse>}
+                />
             </Innholdslaster>
         );
     }
 }
 
-function Inputs(props: Props) {
+function Inputs(props: Props & LoadedProps) {
     const bankkonto = props.bankkonto;
     const validering = props.bankkontoValidering.felter;
     return (
@@ -140,7 +145,7 @@ function Inputs(props: Props) {
     );
 }
 
-function VelgLand(props: Props) {
+function VelgLand(props: Props & LoadedProps) {
     const options = props.landKodeverkReducer.data.kodeverk
         .sort(alfabetiskKodeverkComparator)
         .map(landKodeverk => {
@@ -163,7 +168,7 @@ function VelgLand(props: Props) {
     );
 }
 
-function VelgValuta(props: Props) {
+function VelgValuta(props: Props & LoadedProps) {
     const options = props.valutaKodeverkReducer.data.kodeverk
         .sort(alfabetiskKodeverkComparator)
         .map((valutakodeverk: Kodeverk) => {
@@ -186,7 +191,7 @@ function VelgValuta(props: Props) {
     );
 }
 
-function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
+function handleLandChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
     const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
             .find(kodeverk => kodeverk.kodeRef === event.target.value)
         || {kodeRef: '', beskrivelse: ''};
@@ -194,7 +199,7 @@ function handleLandChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
     props.updateBankkontoInputsState({landkode: valgtKodeverk});
 }
 
-function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>) {
+function handleValutaChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
     const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
             .find(kodeverk => kodeverk.kodeRef === event.target.value)
         || {kodeRef: '', beskrivelse: ''};
@@ -202,7 +207,7 @@ function handleValutaChange(props: Props, event: ChangeEvent<HTMLSelectElement>)
     props.updateBankkontoInputsState({valuta: valgtKodeverk});
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
     return ({
         hentValutaKodeverk: () => dispatch(valutaKodeverkReducer.hentValutaer()),
         hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLandKodeverk())

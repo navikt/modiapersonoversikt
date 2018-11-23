@@ -10,9 +10,10 @@ import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import { Person, PersonRespons } from '../../../models/person/person';
 
 interface OwnProps {
-    fødselsnummer: string;
+    personRespons: PersonRespons;
 }
 
 type Props = RouteComponentProps<{}> & OwnProps;
@@ -48,7 +49,8 @@ class InfoTabs extends React.PureComponent<Props> {
     }
 
     updateRouterPath(newTab: INFOTABS) {
-        this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
+        const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
+        this.props.history.push(`${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
     }
 
     onTabChange(newTab: INFOTABS) {
@@ -57,12 +59,14 @@ class InfoTabs extends React.PureComponent<Props> {
     }
 
     render() {
-        const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>;
+        const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
+
+        const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={fødselsnummer}/>;
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0}/>;
         const OppfolgingWithProps = () => <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30}/>;
         const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150}/>;
-        const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer}/>;
-        const YtelserWithProps = () => <YtelserContainer fødselsnummer={this.props.fødselsnummer}/>;
+        const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer}/>;
+        const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer}/>;
 
         const basePath = paths.personUri + '/:fodselsnummer/';
 

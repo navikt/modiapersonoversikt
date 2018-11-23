@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
 import { flatMapYtelser } from './utils/utbetalingerUtils';
-import { Dispatch } from 'redux';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/utbetalingerStateReducer';
+import { AnyAction, Dispatch } from 'redux';
+import {
+    setEkspanderYtelse,
+    setNyYtelseIFokus
+} from '../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -106,7 +109,7 @@ class HandleUtbetalingerHotKeys extends React.Component<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<{}>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>): DispatchProps {
     return {
         settYtelseIFokus: ytelse => dispatch(setNyYtelseIFokus(ytelse)),
         ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander))

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { STATUS } from '../../redux/restReducers/utils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { isFailed, RestReducer } from '../../redux/restReducers/restReducer';
 
 const MarginWrapper = styled.div`
   margin: 15px;
@@ -13,7 +12,7 @@ interface FeilmeldingProps {
 }
 
 function ReducerFeilmelding({reducer}: FeilmeldingProps) {
-    if (reducer.status === STATUS.ERROR) {
+    if (isFailed(reducer)) {
         return (
             <MarginWrapper>
                 <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>

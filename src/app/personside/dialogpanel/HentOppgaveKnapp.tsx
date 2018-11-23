@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
@@ -15,9 +14,9 @@ import { History } from 'history';
 import ReducerFeilmelding from '../../../components/feilmelding/ReducerFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
-import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoading, RestReducer } from '../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 const HentOppgaveLayout = styled.div`
   text-align: center;
@@ -44,16 +43,16 @@ const KnappLayout = styled.div`
   }
 `;
 
-const PLUKKBARE_TEMAGRUPPER = [
-    {kode: 'ARBD',          beskrivelse: 'Arbeid'},
-    {kode: 'FMLI',          beskrivelse: 'Familie'},
-    {kode: 'HJLPM',         beskrivelse: 'Hjelpemidler'},
-    {kode: 'BIL',           beskrivelse: 'Hjelpemidler bil'},
-    {kode: 'ORT_HJE',       beskrivelse: 'Ortopediske hjelpemidler'},
-    {kode: 'PENS',          beskrivelse: 'Pensjon'},
+const PLUKKBARE_TEMAGRUPPER  = [
+    {kode: 'ARBD', beskrivelse: 'Arbeid'},
+    {kode: 'FMLI', beskrivelse: 'Familie'},
+    {kode: 'HJLPM', beskrivelse: 'Hjelpemidler'},
+    {kode: 'BIL', beskrivelse: 'Hjelpemidler bil'},
+    {kode: 'ORT_HJE', beskrivelse: 'Ortopediske hjelpemidler'},
+    {kode: 'PENS', beskrivelse: 'Pensjon'},
     {kode: 'PLEIEPENGERSY', beskrivelse: 'Pleiepenger sykt barn'},
-    {kode: 'UFRT',          beskrivelse: 'Uføretrygd'},
-    {kode: 'UTLAND',        beskrivelse: 'Utland'}
+    {kode: 'UFRT', beskrivelse: 'Uføretrygd'},
+    {kode: 'UTLAND', beskrivelse: 'Utland'}
 ];
 
 interface State {
@@ -62,7 +61,7 @@ interface State {
 }
 
 interface StateProps {
-    valgtTemagruppe: string | null;
+    valgtTemagruppe?: string;
     oppgaveReducer: RestReducer<Oppgave[]>;
     routeHistory: History;
 }
@@ -101,15 +100,15 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
     }
 
     render() {
-        const valgtTemagruppe = this.props.valgtTemagruppe || '';
+        const valgtTemagruppe = this.props.valgtTemagruppe;
         const tomtTilbakemelding = this.state.tomKø
             ? <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
             : null;
         const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map((temagruppe) => (
-                <option value={temagruppe.kode} key={temagruppe.kode}>
-                    {temagruppe.beskrivelse}
-                </option>
-            ));
+            <option value={temagruppe.kode} key={temagruppe.kode}>
+                {temagruppe.beskrivelse}
+            </option>
+        ));
         return (
             <HentOppgaveLayout>
                 <KnappLayout>
@@ -128,7 +127,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         id="hentoppgaveknapp"
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
-                        spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
+                        spinner={isLoading(this.props.oppgaveReducer)}
                     >
                         Hent
                     </KnappBase>
@@ -147,13 +146,13 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
     return {
-        valgtTemagruppe: state.valgtTemagruppe,
+        valgtTemagruppe: state.temagruppe.valgtTemagruppe,
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         plukkOppgaver: (temagruppe) => dispatch(plukkOppgaver(temagruppe)),
         velgTemagruppe: (temagruppe) => dispatch(velgTemagruppe(temagruppe))

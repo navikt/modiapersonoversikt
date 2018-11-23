@@ -1,24 +1,23 @@
 import * as React from 'react';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
-import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
+import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
-import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import SakstemaVisning from './SakstemaVisning';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
-import { connect } from 'react-redux';
 import { settValgtEnkeltdokument, settValgtSakstema } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 
@@ -34,9 +33,8 @@ interface State {
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    saksoversiktReducer: RestReducer<SakstemaWrapper>;
+    saksoversiktReducer: RestReducer<SakstemaResponse>;
     personReducer: RestReducer<PersonRespons>;
-    person: Person;
     visDokument: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltdokument?: Dokument;
@@ -109,13 +107,13 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.baseUrlReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
         }
-        if (this.props.saksoversiktReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
-        if (this.props.personReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.personReducer)) {
             this.props.hentPerson(this.props.fødselsnummer);
         }
     }
@@ -137,12 +135,14 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     }
 
     render() {
-        const norgUrl = this.props.baseUrlReducer.status === STATUS.OK
-            ? lenkeNorg2Frontend(
-                this.props.baseUrlReducer.data,
-                this.props.person.geografiskTilknytning,
-                this.props.valgtSakstema)
-            : '';
+        const norgUrl =
+            (isLoaded(this.props.baseUrlReducer)
+            && isLoaded(this.props.personReducer))
+                ? lenkeNorg2Frontend(
+                    this.props.baseUrlReducer.data,
+                    (this.props.personReducer.data as Person).geografiskTilknytning,
+                    this.props.valgtSakstema)
+                : '';
 
         if (this.props.visDokument && this.props.valgtDokument) {
             return (
@@ -164,7 +164,7 @@ class SaksoversiktContainer extends React.Component<Props, State> {
                             </LenkepanelPersonoversikt>
                             <SakstemaListe>
                                 <SakstemaVisning
-                                    sakstema={this.props.saksoversiktReducer.data.resultat}
+                                    sakstemaResponse={(this.props.saksoversiktReducer as Loaded<SakstemaResponse>).data}
                                     oppdaterSakstema={this.oppdaterSakstema}
                                 />
                             </SakstemaListe>
@@ -189,7 +189,6 @@ function mapStateToProps(state: AppState): StateProps {
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
         personReducer: state.restEndepunkter.personinformasjon,
-        person: state.restEndepunkter.personinformasjon.data as Person,
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
         valgtEnkeltdokument: state.saksoversikt.valgtEnkeltdokument,
@@ -197,7 +196,7 @@ function mapStateToProps(state: AppState): StateProps {
     });
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentBaseUrls: () =>
             dispatch(hentBaseUrls()),

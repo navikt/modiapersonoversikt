@@ -4,9 +4,9 @@ import { ActionTypes } from './restReducer';
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',
     LOADING = 'LOADING',
-    OK = 'OK',
+    SUCCESS = 'SUCCESS',
     RELOADING = 'RELOADING',
-    ERROR = 'ERROR'
+    FAILED = 'FAILED'
 }
 
 export interface FetchSuccess<T> {
@@ -15,7 +15,7 @@ export interface FetchSuccess<T> {
 }
 
 export interface FetchError {
-    type: STATUS.ERROR;
+    type: STATUS.FAILED;
     error: string;
 }
 

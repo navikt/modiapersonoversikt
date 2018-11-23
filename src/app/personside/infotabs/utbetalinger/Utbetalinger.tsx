@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Utbetaling, UtbetalingerPeriode } from '../../../../models/utbetalinger';
+import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -62,13 +62,12 @@ function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
 }
 
 interface UtbetalingerProps {
-    utbetalinger: Utbetaling[];
-    utbetalingerPeriode: UtbetalingerPeriode;
+    utbetalingerData: UtbetalingerResponse;
     filter: FilterState;
 }
 
 function Utbetalinger({filter, ...props}: UtbetalingerProps) {
-    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalinger, filter);
+    const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
@@ -92,7 +91,7 @@ function Utbetalinger({filter, ...props}: UtbetalingerProps) {
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerPeriode}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode}/>
             <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
                 <UtbetalingerArticle>
                     <Undertittel>Utbetalinger</Undertittel>

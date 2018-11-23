@@ -13,7 +13,6 @@ import {
     Utlandsadresse
 } from '../../../models/personadresse';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { STATUS } from '../../../redux/restReducers/utils';
 import {
     default as MidlertidigAdresseNorge,
     getInitialGateadresseInput,
@@ -34,7 +33,7 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { RestReducer } from '../../../redux/restReducers/restReducer';
+import { isFailed, isLoading, isNotStarted, isSuccess, RestReducer } from '../../../redux/restReducers/restReducer';
 import {
     getValidUtlandsadresseForm,
     validerUtenlandsAdresse
@@ -120,7 +119,8 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.endreAdresseReducer.status !== STATUS.OK && this.props.endreAdresseReducer.status === STATUS.OK) {
+        if (!isSuccess(prevProps.endreAdresseReducer)
+            && isSuccess(this.props.endreAdresseReducer)) {
             this.props.reloadPersonInfo(this.props.person.fødselsnummer);
         }
     }
@@ -373,13 +373,13 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     resetReducer() {
-        if (this.props.endreAdresseReducer.status !== STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.endreAdresseReducer)) {
             this.props.resetEndreAdresseReducer();
         }
     }
 
     requestIsPending() {
-        return this.props.endreAdresseReducer.status === STATUS.LOADING;
+        return isLoading(this.props.endreAdresseReducer);
     }
 
     slettMidlertidigAdresse() {
@@ -429,7 +429,7 @@ class AdresseForm extends React.Component<Props, State> {
                             type="standard"
                             onClick={this.onAvbryt}
                             disabled={
-                                !this.state.formErEndret && this.props.endreAdresseReducer.status !== STATUS.ERROR
+                                !this.state.formErEndret && !isFailed(this.props.endreAdresseReducer)
                                 || this.requestIsPending()
                             }
                         >
@@ -437,7 +437,7 @@ class AdresseForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.endreAdresseReducer.status === STATUS.LOADING}
+                            spinner={isLoading(this.props.endreAdresseReducer)}
                             autoDisableVedSpinner={true}
                             disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                         >

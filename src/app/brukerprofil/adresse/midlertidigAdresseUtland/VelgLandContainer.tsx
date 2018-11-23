@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import { AppState } from '../../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
 import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface DispatchProps {
     hentLand: () => void;
@@ -32,7 +31,7 @@ class VelgLandContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.landReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.landReducer)) {
             this.props.hentLand();
         }
     }
@@ -43,7 +42,7 @@ class VelgLandContainer extends React.Component<Props> {
                 <Innholdslaster avhengigheter={[this.props.landReducer]}>
                     <VelgLand
                         visFeilmeldinger={false}
-                        landKodeverk={this.props.landReducer.data}
+                        landKodeverk={(this.props.landReducer as Loaded<KodeverkResponse>).data}
                         midlertidigAdresseUtlandInputs={this.props.midlertidigAdresseUtlandInput}
                         onChange={this.props.landChanged}
                     />
@@ -59,7 +58,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     });
 };
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentLand: () => dispatch(hentLandKodeverk())
     };
