@@ -12,7 +12,7 @@ import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
-import { Loaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoaded, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
 
 interface OwnProps {
@@ -78,7 +78,9 @@ class Personside extends React.PureComponent<Props> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                {this.getSideinnhold((this.props.personReducer as Loaded<PersonRespons>).data)}
+                {isLoaded(this.props.personReducer)
+                    ? this.getSideinnhold((this.props.personReducer as Loaded<PersonRespons>).data)
+                    : null}
             </Innholdslaster>
         );
     }
