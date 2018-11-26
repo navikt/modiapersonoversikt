@@ -10,6 +10,9 @@ import { hentPleiepenger } from '../../../../redux/restReducers/ytelser/pleiepen
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import ForeldrePengerContainer from './foreldrepenger/ForeldrePengerContainer';
+import YtelseValgListe from './valg/YtelseValgListe';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface StateProps {
     sykepengerReducer: RestReducer<SykepengerResponse>;
@@ -27,6 +30,15 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
+const Styling = styled.section`
+  display: flex;
+  align-items: flex-start;
+  > *:last-child {
+    margin-left: ${theme.margin.layout};
+    flex-grow: 1;
+  }
+`;
+
 class YtelserContainer extends React.Component<Props> {
 
     componentDidMount() {
@@ -40,17 +52,20 @@ class YtelserContainer extends React.Component<Props> {
 
     render() {
         return (
-            <>
-                <ForeldrePengerContainer fødselsnummer={this.props.fødselsnummer}/>
-                <Innholdstittel>Sykepenger</Innholdstittel>
-                <Innholdslaster avhengigheter={[this.props.sykepengerReducer]}>
-                    {JSON.stringify((this.props.sykepengerReducer as Loaded<SykepengerResponse>).data)}
-                </Innholdslaster>
-                <Innholdstittel>Pleiepenger</Innholdstittel>
-                <Innholdslaster avhengigheter={[this.props.pleiepengerReducer]}>
-                    {JSON.stringify((this.props.pleiepengerReducer as Loaded<PleiepengerResponse>).data)}
-                </Innholdslaster>
-            </>
+            <Styling>
+                <YtelseValgListe/>
+                <div>
+                    <ForeldrePengerContainer fødselsnummer={this.props.fødselsnummer}/>
+                    <Innholdstittel>Sykepenger</Innholdstittel>
+                    <Innholdslaster avhengigheter={[this.props.sykepengerReducer]}>
+                        {JSON.stringify((this.props.sykepengerReducer as Loaded<SykepengerResponse>).data)}
+                    </Innholdslaster>
+                    <Innholdstittel>Pleiepenger</Innholdstittel>
+                    <Innholdslaster avhengigheter={[this.props.pleiepengerReducer]}>
+                        {JSON.stringify((this.props.pleiepengerReducer as Loaded<PleiepengerResponse>).data)}
+                    </Innholdslaster>
+                </div>
+            </Styling>
         );
     }
 }

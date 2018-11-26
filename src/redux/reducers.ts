@@ -4,6 +4,7 @@ import UiReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
 import { UtbetalingerReducerState, utbetalingerStateReducer } from './utbetalinger/utbetalingerStateReducer';
 import { SaksoversiktReduxState, saksoversiktStateReducer } from './saksoversikt/saksoversiktStateReducer';
+import { YtelserReducerState, ytelserStateReducer } from './ytelser/yteslerStateReducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -11,6 +12,7 @@ export interface AppState {
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerReducerState;
     saksoversikt: SaksoversiktReduxState;
+    ytelser: YtelserReducerState;
 }
 
 export default combineReducers<AppState>({
@@ -18,5 +20,6 @@ export default combineReducers<AppState>({
     ui: UiReducer,
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerStateReducer,
-    saksoversikt: saksoversiktStateReducer
+    saksoversikt: saksoversiktStateReducer,
+    ytelser: ytelserStateReducer
 });
