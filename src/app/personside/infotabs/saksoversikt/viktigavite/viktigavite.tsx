@@ -17,6 +17,14 @@ export interface StateProps {
     åpen: boolean;
 }
 
+// const Wrapper = styled.div`
+//   .ekspanderbartPanel__innhold{
+//     ${
+//     theme.ekspandert
+//     }
+//   }
+// `;
+
 interface DispatchProps {
     setÅpen: (åpen: boolean) => void;
 }
@@ -27,7 +35,7 @@ class ViktigÅVite extends React.PureComponent<Props> {
             return null;
         }
         let innhold;
-        const temanavn = this.props.åpentTema.temanavn;
+        // const temanavn = this.props.åpentTema.temanavn;
         switch (this.props.åpentTema.temakode) {
             case 'AAP':
                 innhold = ViktigÅViteAAPInnhold();
@@ -43,13 +51,14 @@ class ViktigÅVite extends React.PureComponent<Props> {
         }
 
         return (
-            <DetaljerCollapse
-                open={this.props.åpen}
-                toggle={() => this.props.setÅpen(!this.props.åpen)}
-                tittel={'viktig å vite om ' + temanavn}
+            <Ekspanderbartpanel
+                tittel={'Viktig å vite om Arbeidsavklaringspenger'}
+                tittelProps={'normaltekst'}
+                border={true}
             >
                 {innhold}
-            </DetaljerCollapse>
+            </Ekspanderbartpanel>
+
         );
     }
 }
