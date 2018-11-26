@@ -6,8 +6,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { STATUS } from '../../../../redux/restReducers/utils';
+import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -32,7 +31,7 @@ class VelgLandContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.landReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.landReducer)) {
             this.props.hentLand();
         }
     }

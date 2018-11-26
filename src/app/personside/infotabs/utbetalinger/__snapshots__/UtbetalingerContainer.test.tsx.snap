@@ -89,7 +89,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c27 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,27 +111,27 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: flex-end;
 }
 
-.c24 {
+.c26 {
   text-transform: uppercase;
 }
 
-.c23 {
+.c25 {
   font-weight: bold;
-}
-
-.c16 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
 }
 
 .c17 {
   -webkit-transition: .5s;
   transition: .5s;
-  padding: 0 1.25rem;
+  padding: 0 1.25rem 1.25rem;
 }
 
 .c18 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
+}
+
+.c19 {
   border: none;
   padding: .1rem .2rem;
   border-radius: .35rem;
@@ -148,19 +148,23 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c18:focus {
+.c19:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c18:hover {
+.c19:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c19 {
+.c20 {
   margin-right: .5rem;
+}
+
+.c16 {
+  margin-right: 1.25rem;
 }
 
 .c1 {
@@ -169,6 +173,30 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c1 a {
   padding: 1.25rem;
+}
+
+.c11 table {
+  width: 100%;
+  text-align: right;
+  border-spacing: 0;
+}
+
+.c11 table * {
+  padding: 0;
+  margin: 0;
+}
+
+.c11 table tr > * {
+  padding: 0.1rem;
+  text-align: right;
+}
+
+.c11 table tr > *:first-child {
+  text-align: left;
+}
+
+.c11 table tr > *:not(:first-child) {
+  width: 6rem;
 }
 
 .c10 {
@@ -197,16 +225,18 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c25 {
+.c27 {
   cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
-.c25:focus {
+.c27:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c26 {
+.c28 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -220,71 +250,51 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c26 > *:nth-child(3) {
+.c28 > *:nth-child(3) {
   margin-bottom: .8rem;
 }
 
-.c26 .order-first {
+.c28 .order-first {
   -webkit-order: -1;
   -ms-flex-order: -1;
   order: -1;
 }
 
-.c22 > *:first-child {
+.c24 > *:first-child {
   background-color: #9bd0b0;
   padding: .2rem 1.25rem;
 }
 
-.c22 ol {
+.c24 ol {
   padding: 0;
   margin: 0;
 }
 
-.c22 ol > *:not(:first-child) {
+.c24 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c20 {
+.c21:focus {
+  outline: none;
+}
+
+.c22 {
   background-color: white;
   border-radius: .25rem;
   margin-top: .8rem;
 }
 
-.c20 > *:first-child {
+.c22 > *:first-child {
   padding: 1.25rem;
 }
 
-.c21 {
+.c23 {
   padding: 0;
   margin: 0;
 }
 
 .c9 ol {
   list-style: none;
-}
-
-.c11 table {
-  width: 100%;
-  text-align: right;
-  border-spacing: 0;
-}
-
-.c11 table * {
-  padding: 0;
-  margin: 0;
-}
-
-.c11 table tr > * {
-  padding: 0.1rem;
-  text-align: right;
-}
-
-.c11 table tr > *:first-child {
-  text-align: left;
-}
-
-.c11 table tr > *:not(:first-child) {
-  width: 6rem;
 }
 
 .c0 {
@@ -321,13 +331,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media print {
-  .c18 {
+  .c19 {
     display: none;
   }
 }
 
 @media print {
-  .c25 {
+  .c27 {
     list-style-type: none;
   }
 }
@@ -357,7 +367,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         className="lenkepanel"
         href="http://arena.adeo.no/forms/arenaMod.html?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=10108000398"
       >
-        Meldekort i Arenda
+        Meldekort i Arena
         <span
           className="lenkepanel__indikator"
         />
@@ -614,41 +624,46 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             <div
               className="c14"
             >
-              <button
-                aria-label="Skriv ut"
-                className="c15"
-                onClick={[Function]}
-              >
-                <span
-                  className="typo-normal"
+              <span>
+                <button
+                  aria-label="Skriv ut"
+                  className="c15"
+                  onClick={[Function]}
                 >
-                  Skriv ut
-                </span>
-                 
-                <svg
-                  viewBox="0 0 17 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                >
-                  <path
-                    d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                    fill="#0067C5"
-                    fillRule="evenodd"
-                  />
-                  <path
-                    d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                    fill="#0067C5"
-                  />
-                </svg>
-              </button>
+                  <span
+                    className="typo-normal"
+                  >
+                    Skriv ut
+                  </span>
+                   
+                  <svg
+                    viewBox="0 0 17 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                      fill="#0067C5"
+                      fillRule="evenodd"
+                    />
+                    <path
+                      d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                      fill="#0067C5"
+                    />
+                  </svg>
+                </button>
+              </span>
             </div>
           </div>
           <div
             className="c16"
+          />
+          <div
+            className="c17"
             open={false}
           >
             <div
-              className="c17"
+              className="c18"
               open={false}
             />
             <div
@@ -656,12 +671,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             >
               <button
                 aria-expanded={false}
-                className="c18"
+                className="c19"
                 onClick={[Function]}
                 open={false}
               >
                 <span
-                  className="c19"
+                  className="c20"
                 >
                   <span
                     className="typo-normal"
@@ -679,176 +694,182 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
         </div>
       </article>
-      <article
-        className="c20"
+      <div
+        className="c21"
+        onKeyDown={[Function]}
+        tabIndex={-1}
       >
-        <h2
-          className="typo-undertittel"
+        <article
+          className="c22"
         >
-          Utbetalinger
-        </h2>
-        <ol
-          className="c21"
-          onBlur={[Function]}
-          onFocus={[Function]}
-        >
-          <li
-            className="c22"
+          <h2
+            className="typo-undertittel"
           >
-            <h3
-              className="typo-normal"
+            Utbetalinger
+          </h2>
+          <ol
+            className="c23"
+          >
+            <li
+              className="c24"
             >
-              <span
-                className="c23"
+              <h3
+                className="typo-normal"
               >
                 <span
-                  className="c24"
-                >
-                  Mars 2017
-                </span>
-              </span>
-            </h3>
-            <ol>
-              <div
-                className="c11"
-              >
-                <li
                   className="c25"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  tabIndex={0}
                 >
-                  <div
+                  <span
                     className="c26"
                   >
+                    Mars 2017
+                  </span>
+                </span>
+              </h3>
+              <ol>
+                <div
+                  className="c11"
+                >
+                  <li
+                    className="c27"
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    tabIndex={0}
+                  >
                     <div
-                      className="c27"
+                      className="c28"
                     >
-                      <h4
-                        className="typo-normal"
+                      <div
+                        className="c29"
                       >
-                        <span
-                          className="c23"
-                        >
-                          Sykepenger
-                        </span>
-                      </h4>
-                      <p
-                        className="typo-normal"
-                      >
-                        <span
-                          className="c23"
-                        >
-                          11,386.00
-                        </span>
-                      </p>
-                    </div>
-                    <p
-                      className="typo-normal order-first"
-                    >
-                      29. Mars 2017
-                       / 
-                      <span
-                        className="c23"
-                      >
-                        Utbetalt
-                      </span>
-                    </p>
-                    <div
-                      className="c27"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        09.11.2016 - 31.10.2017
-                      </p>
-                      <p
-                        className="typo-normal"
-                      >
-                        
-                      </p>
-                    </div>
-                    <div
-                      className="c27"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Utbetaling til: 
-                        AREMARK TESTFAMILIEN
-                      </p>
-                      <span>
-                        <button
-                          aria-label="Skriv ut"
-                          className="c15"
-                          onClick={[Function]}
+                        <h4
+                          className="typo-normal"
                         >
                           <span
-                            className="typo-normal"
+                            className="c25"
                           >
-                            Skriv ut
+                            Sykepenger
                           </span>
-                           
-                          <svg
-                            viewBox="0 0 17 16"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                        </h4>
+                        <p
+                          className="typo-normal"
+                        >
+                          <span
+                            className="c25"
                           >
-                            <path
-                              d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                              fill="#0067C5"
-                              fillRule="evenodd"
-                            />
-                            <path
-                              d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                              fill="#0067C5"
-                            />
-                          </svg>
-                        </button>
-                      </span>
+                            11,386.00
+                          </span>
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        29. Mars 2017
+                         / 
+                        <span
+                          className="c25"
+                        >
+                          Utbetalt
+                        </span>
+                      </p>
+                      <div
+                        className="c29"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          09.11.2016 - 31.10.2017
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          
+                        </p>
+                      </div>
+                      <div
+                        className="c29"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Utbetaling til: 
+                          AREMARK TESTFAMILIEN
+                        </p>
+                        <span>
+                          <button
+                            aria-label="Skriv ut"
+                            className="c15"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="typo-normal"
+                            >
+                              Skriv ut
+                            </span>
+                             
+                            <svg
+                              viewBox="0 0 17 16"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlnsXlink="http://www.w3.org/1999/xlink"
+                            >
+                              <path
+                                d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                                fill="#0067C5"
+                                fillRule="evenodd"
+                              />
+                              <path
+                                d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                                fill="#0067C5"
+                              />
+                            </svg>
+                          </button>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className="c16"
-                    open={false}
-                  >
+                    <div
+                      className="c16"
+                    />
                     <div
                       className="c17"
                       open={false}
-                    />
-                    <div
-                      className="c14"
                     >
-                      <button
-                        aria-expanded={false}
+                      <div
                         className="c18"
-                        onClick={[Function]}
                         open={false}
+                      />
+                      <div
+                        className="c14"
                       >
-                        <span
+                        <button
+                          aria-expanded={false}
                           className="c19"
+                          onClick={[Function]}
+                          open={false}
                         >
                           <span
-                            className="typo-normal"
+                            className="c20"
                           >
-                            Vis
-                             
-                            detaljer
+                            <span
+                              className="typo-normal"
+                            >
+                              Vis
+                               
+                              detaljer
+                            </span>
                           </span>
-                        </span>
-                        <i
-                          className="nav-frontend-chevron chevronboks chevron--ned"
-                        />
-                      </button>
+                          <i
+                            className="nav-frontend-chevron chevronboks chevron--ned"
+                          />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </div>
-            </ol>
-          </li>
-        </ol>
-      </article>
+                  </li>
+                </div>
+              </ol>
+            </li>
+          </ol>
+        </article>
+      </div>
     </div>
   </section>
 </article>

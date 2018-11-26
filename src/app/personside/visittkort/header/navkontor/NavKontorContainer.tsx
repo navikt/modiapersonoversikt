@@ -8,8 +8,7 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { STATUS } from '../../../../../redux/restReducers/utils';
-import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { Bold } from '../../../../../components/common-styled-components';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
@@ -64,7 +63,7 @@ function NavKontorVisning(props: BrukersNavKontorResponse) {
 class NavKontorContainer extends React.Component<Props> {
 
     componentDidMount() {
-        if (this.props.navKontorReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.navKontorReducer)) {
             this.props.hentNavKontor(this.props.person);
         }
     }

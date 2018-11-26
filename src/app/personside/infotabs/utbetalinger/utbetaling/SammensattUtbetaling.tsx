@@ -11,20 +11,23 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { FokusProps, UtbetalingTabellStyling } from '../Utbetalinger';
 import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { connect } from 'react-redux';
+import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
+import { AnyAction, Dispatch } from 'redux';
 
 interface OwnProps {
     utbetaling: Utbetaling;
 }
 
-type Props = OwnProps & FokusProps;
-
-interface State {
-    åpnedeYtelser: Ytelse[];
+interface DispatchProps {
+    ekspanderYtelse: (ytelse: Ytelse) => void;
 }
+
+type Props = DispatchProps & OwnProps;
 
 const SammensattUtbetalingStyle = styled.li`
   padding: ${theme.margin.px20};
@@ -53,41 +56,24 @@ const YtelsesListe = styled.ul`
   }
 `;
 
-class SammensattUtbetaling extends React.PureComponent<Props, State> {
+class SammensattUtbetaling extends React.PureComponent<Props> {
 
     private print: () => void;
 
     constructor(props: Props) {
         super(props);
-
-        this.state = {
-            åpnedeYtelser: []
-        };
-
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.visDetaljerAndPrint = this.visDetaljerAndPrint.bind(this);
     }
 
     visDetaljerAndPrint() {
-        loggEvent('SammensattUtbetaling', 'Printer');
-        this.setState(
-            {
-                åpnedeYtelser: this.props.utbetaling.ytelser != null ? [ ...this.props.utbetaling.ytelser ] : []
-            },
-            this.print
-        );
-    }
+        const ytelser = this.props.utbetaling.ytelser;
 
-    toggleVisDetaljer(ytelse: Ytelse) {
-        if (this.state.åpnedeYtelser.includes(ytelse)) {
-            this.setState({
-                åpnedeYtelser: this.state.åpnedeYtelser.filter((y: Ytelse) => ytelse !== y)
-            });
-        } else {
-            this.setState({
-                åpnedeYtelser: [ ...this.state.åpnedeYtelser, ytelse ]
-            });
+        if (!ytelser) {
+            return;
         }
+        ytelser.forEach(ytelse => this.props.ekspanderYtelse(ytelse));
+        this.print();
+        loggEvent('SammensattUtbetaling', 'Printer');
     }
 
     render() {
@@ -107,10 +93,6 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
                 konto={utbetaling.konto}
                 melding={utbetaling.melding}
                 key={index}
-                toggleVisDetaljer={this.toggleVisDetaljer}
-                visDetaljer={this.state.åpnedeYtelser.includes(ytelse)}
-                erIFokus={this.props.ytelseIFokus === ytelse}
-                updateYtelseIFokus={this.props.updateYtelseIFokus}
             />
         ));
 
@@ -142,4 +124,11 @@ class SammensattUtbetaling extends React.PureComponent<Props, State> {
     }
 }
 
-export default SammensattUtbetaling;
+export default connect(
+    null,
+    (dispatch: Dispatch<AnyAction>): DispatchProps => {
+        return {
+            ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
+        };
+    }
+)(SammensattUtbetaling);

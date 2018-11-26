@@ -7,10 +7,9 @@ import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
 import NavKontorVisning from './NavKontor';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
-import { STATUS } from '../../../../../redux/restReducers/utils';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -36,10 +35,10 @@ class NavKontorContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.baseUrlReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
         }
-        if (this.props.navKontorReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.navKontorReducer)) {
             this.props.hentNavKontor(this.props.person);
         }
     }

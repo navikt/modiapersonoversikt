@@ -20,6 +20,15 @@ type Props = RouteComponentProps<{}> & OwnProps;
 
 const OpenTab = styled.div`
   margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+const Section = styled.section`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
@@ -63,7 +72,7 @@ class InfoTabs extends React.PureComponent<Props> {
 
         return (
             <ErrorBoundary boundaryName="InfoTabs">
-                <section role="region" aria-label="Info-tabs">
+                <Section role="region" aria-label="Info-tabs">
                     <TabKnapper
                         onTabChange={this.onTabChange}
                         openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
@@ -78,7 +87,7 @@ class InfoTabs extends React.PureComponent<Props> {
                             <Route component={OversiktWithProps}/>
                         </Switch>
                     </OpenTab>
-                </section>
+                </Section>
             </ErrorBoundary>
         );
     }

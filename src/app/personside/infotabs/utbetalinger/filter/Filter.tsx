@@ -6,13 +6,12 @@ import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import * as moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, isLoading, isReloading, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import theme from '../../../../../styles/personOversiktTheme';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
-import { STATUS } from '../../../../../redux/restReducers/utils';
 
 export interface FilterState {
     periode: PeriodeOptions;
@@ -158,8 +157,8 @@ function Filtrering(props: Props) {
         );
     });
 
-    const visSpinner = props.utbetalingReducer.status === STATUS.LOADING
-        || props.utbetalingReducer.status === STATUS.RELOADING;
+    const visSpinner = isLoading(props.utbetalingReducer)
+        || isReloading(props.utbetalingReducer);
     const checkBokser = isLoaded(props.utbetalingReducer) && visCheckbokser(props.utbetalingReducer.data) && (
         <>
             <Blokk>

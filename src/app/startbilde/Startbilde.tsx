@@ -6,12 +6,11 @@ import KnappBase from 'nav-frontend-knapper';
 
 import { AppState } from '../../redux/reducers';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restReducers/oppgaver';
-import { STATUS } from '../../redux/restReducers/utils';
 import StartBildeLayout from './StartBildeLayout';
 import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { settPersonIKontekst } from '../routes/routing';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoading, RestReducer } from '../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 
 interface StartbildeStateProps {
@@ -57,7 +56,7 @@ class Startbilde extends React.Component<StartbildeProps> {
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
-                    spinner={this.props.oppgaveReducer.status === STATUS.LOADING}
+                    spinner={isLoading(this.props.oppgaveReducer)}
                 >
                     Hent oppgave
                 </KnappBase>
@@ -70,7 +69,7 @@ class Startbilde extends React.Component<StartbildeProps> {
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StartbildeStateProps {
     return {
         valgtEnhet: '4100',
-        valgtTemagruppe: state.temagruppe.valgtTemagruppe,
+        valgtTemagruppe: '',
         oppgaveReducer: state.restEndepunkter.oppgaver,
         routeHistory: routeProps.history
     };

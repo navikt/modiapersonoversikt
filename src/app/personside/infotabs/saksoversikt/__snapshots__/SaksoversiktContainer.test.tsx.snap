@@ -117,23 +117,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: 1.25rem;
 }
 
-.c17 {
-  text-transform: uppercase;
-}
-
-.c16 {
-  font-weight: bold;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
-.c1 a {
-  padding: 1.25rem;
-}
-
-.c18 {
+.c19 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -142,18 +126,26 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c18 svg {
+.c19 svg {
   padding-right: 1rem;
   height: 1.875rem;
   width: auto;
 }
 
-.c18:hover {
+.c19:hover {
   background-color: rgba(102,203,236,0.18);
 }
 
-.c19 {
-  margin: 1rem 0;
+.c18 {
+  text-transform: uppercase;
+}
+
+.c17 {
+  font-weight: bold;
+}
+
+.c13 {
+  margin-top: 0.625rem;
 }
 
 .c11 {
@@ -169,7 +161,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 1.25rem;
-  padding-bottom: 0.625rem;
+  padding-bottom: 0;
 }
 
 .c11 > *:first-child {
@@ -179,28 +171,28 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c13 {
+.c14 {
   background-color: white;
   border-radius: .25rem;
 }
 
-.c14 {
+.c15 {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.c15 > *:first-child {
+.c16 > *:first-child {
   background-color: #9bd0b0;
   padding: .2rem 0.625rem;
 }
 
-.c15 ol {
+.c16 ol {
   padding: 0;
   margin: 0;
 }
 
-.c15 ol > *:not(:first-child) {
+.c16 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -213,6 +205,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c12 > *:not(:last-child) {
   padding-right: 1rem;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c1 a {
+  padding: 1.25rem;
 }
 
 .c0 {
@@ -286,7 +286,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     >
       <a
         className="lenkepanel"
-        href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK"
+        href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK&gt=0118"
       >
         Oversikt over enheter og tema
         <span
@@ -320,7 +320,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                16.01.2018
+                08.03.2018
               </p>
               <p
                 className="typo-element"
@@ -349,12 +349,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                16.01.2018
+                08.03.2018
               </p>
               <p
                 className="typo-element"
               >
                 Sykepenger
+              </p>
+              <p
+                className="typo-normal"
+              >
+                1
+                 
+                søknad
+                 er 
+                under behandling
+                .
               </p>
             </div>
             <div
@@ -394,12 +404,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                22.04.2017
+                21.12.2017
               </p>
               <p
                 className="typo-element"
               >
-                Enslig forsørger
+                Tilleggsstønad arbeidssøkere
               </p>
               <p
                 className="typo-normal"
@@ -408,13 +418,29 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                  
                 søknad
                  er 
-                ferdig behandlet
+                under behandling
                 .
               </p>
             </div>
             <div
               className="c7"
             >
+              <svg
+                contentScriptType="text/ecmascript"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  fill="#C6C2BF"
+                >
+                  <path
+                    d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                  />
+                  <path
+                    d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                  />
+                </g>
+              </svg>
               <button
                 className="c8"
                 onClick={[Function]}
@@ -432,7 +458,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   <section
     className="c10"
   >
-    <h1
+    <span
       tabIndex={-1}
     />
     <div>
@@ -512,23 +538,88 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </form>
       </section>
-      <article
+      <div
         className="c13"
+      />
+      <article
+        className="c14"
       >
         <ol
-          className="c14"
+          className="c15"
         >
           <li
-            className="c15"
+            className="c16"
           >
             <h3
               className="typo-normal"
             >
               <span
-                className="c16"
+                className="c17"
               >
                 <span
-                  className="c17"
+                  className="c18"
+                >
+                  2018
+                </span>
+              </span>
+            </h3>
+            <ol>
+              <div
+                className=""
+                onClick={[Function]}
+              >
+                <div
+                  className="c19"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
+                      fill="none"
+                      stroke="#C6C2BF"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      08.03.2018 / Fra Marie
+                    </p>
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Vurdering feilutbetaling/revurdering
+                    </a>
+                    <p
+                      className="typo-normal"
+                    >
+                      Saksid: 
+                      yg0ll4se
+                       / Sakstema: 
+                      Sykepenger
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ol>
+          </li>
+          <li
+            className="c16"
+          >
+            <h3
+              className="typo-normal"
+            >
+              <span
+                className="c17"
+              >
+                <span
+                  className="c18"
                 >
                   2017
                 </span>
@@ -540,7 +631,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 onClick={[Function]}
               >
                 <div
-                  className="c18"
+                  className="c19"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -559,93 +650,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      10.06.2017 / Fra bruker
+                      21.12.2017 / Samtalereferat
                     </p>
                     <a
                       href="#"
                       onClick={[Function]}
                     >
-                      Automatisk vedtak/nyfødt barn
-                    </a>
-                    <div
-                      className="c19"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Dokumentet har 
-                        1
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            Vurdering feilutbetaling/revurdering
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        2q8yyw4x
-                         / Sakstema: 
-                        Sykepenger
-                      </p>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                className=""
-                onClick={[Function]}
-              >
-                <div
-                  className="c18"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
-                      fill="none"
-                      stroke="#C6C2BF"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    />
-                  </svg>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      22.04.2017 / Fra andre
-                    </p>
-                    <a
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Automatisk vedtak/nyfødt barn
+                      Spørsmål via nav.no
                     </a>
                     <p
                       className="typo-normal"
                     >
-                      <p
-                        className="typo-normal"
-                      >
-                        Saksid: 
-                        cvbun0w6
-                         / Sakstema: 
-                        Sykepenger
-                      </p>
+                      Saksid: 
+                      5ptdxt2v
+                       / Sakstema: 
+                      Sykepenger
                     </p>
                   </div>
                 </div>

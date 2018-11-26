@@ -17,11 +17,11 @@ interface TemagruppeAction extends Action {
 }
 
 export interface TemagruppeState {
-    valgtTemagruppe: string;
+    valgtTemagruppe?: string;
 }
 
 export const TemagruppeInitState = {
-    valgtTemagruppe: ''
+    valgtTemagruppe: undefined
 };
 
 export default function reducer(state: TemagruppeState = TemagruppeInitState, action: TemagruppeAction) {

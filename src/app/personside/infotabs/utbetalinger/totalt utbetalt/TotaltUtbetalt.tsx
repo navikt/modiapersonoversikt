@@ -15,9 +15,9 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
-import { UtbetalingTabellStyling } from '../Utbetalinger';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -119,8 +119,10 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
                                     {totaltUtbetaltTabell}
                                 </Normaltekst>
                             </TotaltUtbetaltOversikt>
-                            <FlexEnd innerRef={this.printerButtonRef}>
-                                <PrintKnapp onClick={this.handlePrint}/>
+                            <FlexEnd>
+                                <span ref={this.printerButtonRef}>
+                                    <PrintKnapp onClick={this.handlePrint}/>
+                                </span>
                             </FlexEnd>
                         </Header>
                         <TotaltUtbetaltDetaljer
