@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import { SykepengerResponse } from '../../../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../../../models/ytelse/foreldrepenger';
@@ -34,13 +33,13 @@ type Props = StateProps & DispatchProps & OwnProps;
 class YtelserContainer extends React.Component<Props> {
 
     componentDidMount() {
-        if (this.props.sykepengerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.sykepengerReducer)) {
             this.props.hentSykepenger(this.props.fødselsnummer);
         }
-        if (this.props.pleiepengerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.pleiepengerReducer)) {
             this.props.hentPleiepenger(this.props.fødselsnummer);
         }
-        if (this.props.foreldrepengerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.foreldrepengerReducer)) {
             this.props.hentForeldrepenger(this.props.fødselsnummer);
         }
     }

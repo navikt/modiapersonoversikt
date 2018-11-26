@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { Loaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
-import { STATUS } from '../../redux/restReducers/utils';
 import { AppState } from '../../redux/reducers';
 import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
@@ -144,7 +143,7 @@ class Header extends React.PureComponent<{ person: Person }> {
         const person = this.props.person;
         return (
             <HeaderStyle>
-                {erNyePersonoversikten() && <TilbakeLenke fnr={person.fødselsnummer}/>}
+                <TilbakeLenke fnr={person.fødselsnummer}/>
                 <HeaderContent>
                     <Fokus innerRef={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
@@ -162,11 +161,11 @@ class Header extends React.PureComponent<{ person: Person }> {
 class BrukerprofilSide extends React.PureComponent<Props> {
 
     componentDidMount() {
-        if (this.props.personReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.personReducer)) {
             this.props.hentPersonData(this.props.fødselsnummer);
         }
 
-        if (this.props.veilederRollerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.veilederRollerReducer)) {
             this.props.hentVeilederRoller();
         }
         loggEvent('Sidevisning', 'Brukerprofil');
@@ -179,7 +178,8 @@ class BrukerprofilSide extends React.PureComponent<Props> {
                 <Innholdslaster
                     avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
                 >
-                    <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>
+                    {erNyePersonoversikten()
+                        && <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
                     <ContentWrapper>
                         <BrukerprofilForm
                             person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}

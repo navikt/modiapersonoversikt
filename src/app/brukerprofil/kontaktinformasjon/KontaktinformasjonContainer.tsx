@@ -10,8 +10,7 @@ import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
-import { STATUS } from '../../../redux/restReducers/utils';
-import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -39,7 +38,7 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (this.props.retningsnummerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.retningsnummerReducer)) {
             this.props.hentRetningsnummer();
         }
     }

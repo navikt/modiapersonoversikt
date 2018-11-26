@@ -59,7 +59,8 @@ export function hentEndringstekst(konto: Bankkonto | null): string {
 }
 
 export interface EndreBankkontoState {
-    kontonummer: string;
+    norskKontonummer: string;
+    utenlandskKontonummer: string;
     banknavn: string | null;
     bankkode: string;
     swift: string;
@@ -71,7 +72,8 @@ export interface EndreBankkontoState {
 }
 
 export const tomBankkonto: EndreBankkontoState = {
-    kontonummer: '',
+    norskKontonummer: '',
+    utenlandskKontonummer: '',
     banknavn: '',
     bankkode: '',
     swift: '',

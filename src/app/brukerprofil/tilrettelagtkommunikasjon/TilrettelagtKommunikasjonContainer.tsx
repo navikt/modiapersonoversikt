@@ -13,8 +13,7 @@ import Innholdslaster from '../../../components/Innholdslaster';
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import * as tilrettelagtKommunikasjonKodeverkReducer
     from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
-import { STATUS } from '../../../redux/restReducers/utils';
-import { Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
@@ -48,7 +47,7 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
     constructor(props: Props) {
         super(props);
 
-        if (this.props.tilrettelagtKommunikasjonKodeverkReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.tilrettelagtKommunikasjonKodeverkReducer)) {
             this.props.hentTilrettelagtKommunikasjonKodeverk();
         }
     }

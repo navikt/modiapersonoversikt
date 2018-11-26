@@ -7,17 +7,33 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
+<<<<<<< HEAD
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+=======
+import DetaljerCollapse from '../DetaljerCollapse';
+import { AnyAction, Dispatch } from 'redux';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
+import { connect } from 'react-redux';
+import { AppState } from '../../../../../redux/reducers';
+>>>>>>> master
 
-export interface Props {
+export interface OwnProps {
     ytelse: Ytelse;
     konto: string | undefined;
     melding: string | undefined;
-    toggleVisDetaljer: (ytelse: Ytelse) => void;
-    visDetaljer: boolean;
-    erIFokus: boolean;
-    updateYtelseIFokus: (ytelse: Ytelse) => void;
 }
+
+interface StateProps {
+    erEkspandert: boolean;
+    erIFokus: boolean;
+}
+
+interface DispatchProps {
+    settYtelseIFokus: () => void;
+    ekspanderYtelse: (ekspander: boolean) => void;
+}
+
+type Props = DispatchProps & OwnProps & StateProps;
 
 const DelUtbetalingStyle = styled.li`
   transition: 0.3s;
@@ -49,47 +65,27 @@ class DelUtbetaling extends React.PureComponent<Props> {
 
     constructor(props: Props) {
         super(props);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.setTilYtelseIFokus = this.setTilYtelseIFokus.bind(this);
-        this.removeEnterListener = this.removeEnterListener.bind(this);
-    }
-
-    handleEnter(event: KeyboardEvent) {
-        if (event.key === 'Enter') {
-            this.props.toggleVisDetaljer(this.props.ytelse);
-        }
+        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
     }
 
     componentDidUpdate(prevProps: Props) {
         const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
-        const mistetFokus = !this.props.erIFokus && prevProps.erIFokus;
         if (fikkFokus && this.ytelseRef.current) {
             this.ytelseRef.current.focus();
-            this.addEnterListener();
-        } else if (mistetFokus) {
-            this.removeEnterListener();
         }
     }
 
-    removeEnterListener() {
-        window.removeEventListener('keydown', this.handleEnter);
-    }
-
-    addEnterListener() {
-        window.addEventListener('keydown', this.handleEnter);
-    }
-
-    setTilYtelseIFokus() {
-        this.props.updateYtelseIFokus(this.props.ytelse);
+    toggleVisDetaljer() {
+        this.props.ekspanderYtelse(!this.props.erEkspandert);
     }
 
     render() {
         const ytelse = this.props.ytelse;
         const periode = periodeStringFromYtelse(ytelse);
         const header = (
-            <BulletPoint show={!this.props.visDetaljer}>
+            <BulletPoint show={!this.props.erEkspandert}>
                 <SpaceBetween>
-                    <Normaltekst><Bold>{ytelse.type}</Bold></Normaltekst>
+                    <Normaltekst tag="h5"><Bold>{ytelse.type}</Bold></Normaltekst>
                     <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>
                 </SpaceBetween>
                 <Normaltekst>
@@ -100,15 +96,14 @@ class DelUtbetaling extends React.PureComponent<Props> {
 
         return (
             <DelUtbetalingStyle
-                onClick={() => cancelIfHighlighting(() => this.props.toggleVisDetaljer(this.props.ytelse))}
+                onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
                 innerRef={this.ytelseRef}
                 tabIndex={0}
-                onFocus={this.setTilYtelseIFokus}
-                onBlur={this.removeEnterListener}
+                onFocus={this.props.settYtelseIFokus}
             >
                 <DetaljerCollapse
-                    open={this.props.visDetaljer}
-                    toggle={() => this.props.toggleVisDetaljer(this.props.ytelse)}
+                    open={this.props.erEkspandert}
+                    toggle={this.toggleVisDetaljer}
                     header={header}
                 >
                     <UtbetalingsDetaljer
@@ -121,4 +116,18 @@ class DelUtbetaling extends React.PureComponent<Props> {
     }
 }
 
-export default DelUtbetaling;
+function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
+    return {
+        erEkspandert: state.utbetalinger.ekspanderteYtelser.includes(ownProps.ytelse),
+        erIFokus: state.utbetalinger.ytelseIFokus === ownProps.ytelse
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
+    return {
+        settYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
+        ekspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DelUtbetaling);

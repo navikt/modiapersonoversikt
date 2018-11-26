@@ -9,6 +9,7 @@ interface TabPanelProps {
 }
 
 const TabKnapperNav = styled.nav`
+      flex-shrink: 0;
       display: flex;
       flex-flow: row wrap;
       width: 100%;

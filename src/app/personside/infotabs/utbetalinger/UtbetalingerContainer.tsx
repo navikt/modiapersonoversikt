@@ -2,13 +2,12 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { isLoaded, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { Utbetaling, UtbetalingerResponse, Ytelse } from '../../../../models/utbetalinger';
+import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { STATUS } from '../../../../redux/restReducers/utils';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
-import { flatMapYtelser, getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
+import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -20,7 +19,6 @@ import moment = require('moment');
 
 interface State {
     filter: FilterState;
-    ytelseIFokus: Ytelse | null;
 }
 
 const initialState: State = {
@@ -34,8 +32,7 @@ const initialState: State = {
         },
         utbetaltTil: [],
         ytelser: []
-    },
-    ytelseIFokus: null
+    }
 };
 
 interface StateProps {
@@ -84,8 +81,6 @@ class UtbetalingerContainer extends React.Component<Props, State> {
         this.state = {...initialState};
         this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
-        this.handlePilknapper = this.handlePilknapper.bind(this);
-        this.updateYtelseIFokus = this.updateYtelseIFokus.bind(this);
         loggEvent('Sidevisning', 'Utbetalinger');
     }
 
@@ -109,42 +104,13 @@ class UtbetalingerContainer extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.utbetalingerReducer.status === STATUS.NOT_STARTED) {
+        if (isNotStarted(this.props.utbetalingerReducer)) {
             this.props.hentUtbetalinger(
                 this.props.fødselsnummer,
                 getFraDateFromFilter(this.state.filter),
                 getTilDateFromFilter(this.state.filter)
             );
         }
-    }
-
-    updateYtelseIFokus(nyYtelse: Ytelse | null) {
-        this.setState({
-            ytelseIFokus: nyYtelse
-        });
-    }
-
-    handlePilknapper(event: KeyboardEvent) {
-        if (!isLoaded(this.props.utbetalingerReducer)) {
-            return;
-        }
-        if (event.key === 'ArrowDown') {
-            this.updateYtelseIFokus(this.finnNesteYtelse(this.props.utbetalingerReducer.data.utbetalinger));
-        } else if (event.key === 'ArrowUp') {
-            this.updateYtelseIFokus(this.finnForrigeYtelse(this.props.utbetalingerReducer.data.utbetalinger));
-        }
-    }
-
-    finnNesteYtelse(utbetalinger: Utbetaling[]) {
-        const ytelser: Ytelse[] = flatMapYtelser(utbetalinger);
-        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : -1;
-        return ytelser[currentIndex + 1] || ytelser[0];
-    }
-
-    finnForrigeYtelse(utbetalinger: Utbetaling[]) {
-        const ytelser: Ytelse[] = flatMapYtelser(utbetalinger);
-        const currentIndex = this.state.ytelseIFokus ? ytelser.indexOf(this.state.ytelseIFokus) : ytelser.length;
-        return ytelser[currentIndex - 1] || ytelser[ytelser.length - 1];
     }
 
     render() {
@@ -166,12 +132,8 @@ class UtbetalingerContainer extends React.Component<Props, State> {
                         <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
-                                utbetalingerData={
-                                    (this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
-                                ytelseIFokus={this.state.ytelseIFokus}
+                                utbetalingerData={(this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
                                 filter={this.state.filter}
-                                handleShortcut={this.handlePilknapper}
-                                updateYtelseIFokus={this.updateYtelseIFokus}
                             />
                         </Innholdslaster>
                     </UtbetalingerSection>

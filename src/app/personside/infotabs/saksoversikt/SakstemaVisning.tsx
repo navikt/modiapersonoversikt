@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Sakstema, SakstemaWrapper } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { AppState } from '../../../../redux/reducers';
+import { connect } from 'react-redux';
 
-export interface SakstemaVisninProps {
-    sakstemaWrapper: SakstemaWrapper;
-    oppdaterSakstema: (sakstema: Sakstema) => void;
+interface StateProps {
     valgtSakstema?: Sakstema;
 }
 
@@ -57,13 +57,12 @@ const TittelWrapper = styled.div`
   padding: ${theme.margin.px20};
 `;
 
-export interface GrupperteTemaProps {
+interface GrupperteTemaProps {
     sakstema: Sakstema[];
     oppdaterSakstema: (sakstema: Sakstema) => void;
-    valgtSakstema?: Sakstema;
 }
 
-function GrupperteTema(props: GrupperteTemaProps) {
+function GrupperteTema(props: StateProps & GrupperteTemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -107,21 +106,28 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
+interface SakstemaVisningProps {
+    sakstemaResponse: SakstemaResponse;
+    oppdaterSakstema: (sakstema: Sakstema) => void;
+}
 
-    constructor(props: SakstemaVisninProps) {
+class SakstemaVisning extends React.Component<StateProps & SakstemaVisningProps, State> {
+
+    constructor(props: StateProps & SakstemaVisningProps) {
         super(props);
-        const aggregert = aggregertSakstema(props.sakstemaWrapper.resultat);
+        const aggregert = aggregertSakstema(props.sakstemaResponse.resultat);
         this.state = {
             aggregertSakstema: aggregert
         };
-        this.props.oppdaterSakstema(aggregert);
+        if (!this.props.valgtSakstema) {
+            this.props.oppdaterSakstema(aggregert);
+        }
     }
 
     render() {
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
             hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        const sortertSakstema = this.props.sakstemaWrapper.resultat.sort(sorterPåHendelse);
+        const sortertSakstema = this.props.sakstemaResponse.resultat.sort(sorterPåHendelse);
 
         if (sortertSakstema.length === 0) {
             return (
@@ -148,4 +154,10 @@ class SakstemaVisning extends React.Component<SakstemaVisninProps, State> {
     }
 }
 
-export default SakstemaVisning;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        valgtSakstema: state.saksoversikt.valgtSakstema
+    };
+}
+
+export default connect(mapStateToProps)(SakstemaVisning);
