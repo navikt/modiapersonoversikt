@@ -22,7 +22,6 @@ export const sakstemakodeAlle = 'ALLE';
 const SakstemaListe = styled.ol`
   > * {
     border-top: ${theme.border.skille};
-    padding: ${theme.margin.px20};
   }
 `;
 
