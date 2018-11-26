@@ -13,6 +13,7 @@ interface Props {
     children: ReactNode;
     header?: ReactNode;
     tittel?: string;
+    knappPaTopp?: boolean;
 }
 
 const Wrapper = styled<{ open: boolean; hasHeader: boolean }, 'div'>('div')`
@@ -31,7 +32,6 @@ const CollapseAnimasjon = styled<{ open: boolean }, 'div'>('div')`
 const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
   border: none;
   padding: .1rem .2rem;
-  margin-top: ${props => props.open && '1rem'};
   border-radius: ${theme.borderRadius.knapp};
   cursor: pointer;
   background-color: transparent;
@@ -52,6 +52,10 @@ const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
 
 const Luft = styled.span`
   margin-right: .5rem;
+`;
+
+const Padding = styled.div`
+  margin-right: ${theme.margin.px20};
 `;
 
 interface KnappProps {
@@ -78,22 +82,28 @@ function DetaljerKnapp(props: KnappProps) {
 }
 
 function DetaljerCollapse(props: Props) {
+    const knapp = (
+        <FlexEnd>
+            <DetaljerKnapp
+                onClick={props.toggle}
+                open={props.open}
+                tittel={props.tittel}
+            />
+        </FlexEnd>
+    );
     return (
-        <Wrapper open={props.open} hasHeader={props.header !== undefined}>
-            {props.header}
-            <CollapseAnimasjon open={props.open}>
-                <UnmountClosed isOpened={props.open}>
-                    {props.children}
-                </UnmountClosed>
-            </CollapseAnimasjon>
-            <FlexEnd>
-                <DetaljerKnapp
-                    onClick={props.toggle}
-                    open={props.open}
-                    tittel={props.tittel}
-                />
-            </FlexEnd>
-        </Wrapper>
+        <>
+            <Padding>{props.knappPaTopp && knapp}</Padding>
+            <Wrapper open={props.open} hasHeader={props.header !== undefined}>
+                {props.header}
+                <CollapseAnimasjon open={props.open}>
+                    <UnmountClosed isOpened={props.open}>
+                        {props.children}
+                    </UnmountClosed>
+                </CollapseAnimasjon>
+                {!props.knappPaTopp && knapp}
+            </Wrapper>
+        </>
     );
 }
 

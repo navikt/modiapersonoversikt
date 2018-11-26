@@ -31,7 +31,7 @@ const Header = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${theme.margin.px20};
-  padding-bottom: ${theme.margin.px10};
+  padding-bottom: 0;
   > *:first-child {
         flex-grow: 1;
     }
