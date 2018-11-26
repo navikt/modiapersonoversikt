@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
-import HoyreChevron from 'nav-frontend-chevron/lib/hoyre-chevron';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
 import { hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 import { sakstemakodeAlle } from './SakstemaVisning';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
 
 interface Props {
     sakstema: Sakstema;
@@ -15,41 +15,10 @@ interface Props {
     oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
-const Knapp = styled.button`
-  border: none;
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-  &:focus {
-    ${theme.focus}
-  }
-`;
-
-const KnappWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  svg {
-    margin-top: .3rem;
-    height: ${theme.margin.px30};
-    width: ${theme.margin.px30};
-  }
-`;
-
-const Wrapper = styled<{valgt: boolean}, 'li'>('li')`
-    display: flex;
-    cursor: pointer;
-    ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.03);'}
-    &:hover {
-      background-color: ${theme.color.objektlisteHover};
-    }
-    &:active {
-      background-color: ${theme.color.objektlisteActive};
-    }
-    > *:first-child {
-        flex-grow: 1;
+const SVGStyling = styled.span`
+    svg {
+      height: ${theme.margin.px30};
+      width: ${theme.margin.px30};
     }
 `;
 
@@ -81,20 +50,19 @@ function SakstemaComponent(props: Props) {
         props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet');
 
     return (
-        <Wrapper valgt={props.erValgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
-            <div>
-                <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
-                <Element>{props.sakstema.temanavn}</Element>
-                {sakerUnderBehandling}
-                {sakerFerdigBehandlet}
-            </div>
-            <KnappWrapper>
-                {saksikon(props.sakstema.harTilgang)}
-                <Knapp onClick={() => props.oppdaterSakstema(props.sakstema)}>
-                    <HoyreChevron stor={true}/>
-                </Knapp>
-            </KnappWrapper>
-        </Wrapper>
+        <li>
+            <VisMerKnapp valgt={props.erValgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
+                <div>
+                    <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
+                    <Element>{props.sakstema.temanavn}</Element>
+                    {sakerUnderBehandling}
+                    {sakerFerdigBehandlet}
+                </div>
+                <SVGStyling>
+                    {saksikon(props.sakstema.harTilgang)}
+                </SVGStyling>
+            </VisMerKnapp>
+        </li>
     );
 }
 
