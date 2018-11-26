@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
-import { FlexEnd } from '../../../../components/common-styled-components';
+import { FlexEnd } from './common-styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -69,7 +69,7 @@ function DetaljerKnapp(props: KnappProps) {
         >
             <Luft>
                 <Normaltekst tag="span">
-                    {props.open ? 'Skjul' : 'Vis'} {props.tittel ? props.tittel : 'detaljer'}
+                    {props.open ? 'Skjul' : 'Vis'} {props.tittel || 'detaljer'}
                 </Normaltekst>
             </Luft>
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>

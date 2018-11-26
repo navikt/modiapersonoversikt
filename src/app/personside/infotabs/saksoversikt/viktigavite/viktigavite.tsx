@@ -8,7 +8,7 @@ import { assertUnreachable } from '../../../../../utils/assertUnreachable';
 import { ViktigÅViteINDInnhold } from './INDInnhold';
 import { AnyAction } from 'redux';
 import { setViktigÅViteÅpen } from '../../../../../redux/viktigAVite/actions';
-import DetaljerCollapse from '../../utbetalinger/DetaljerCollapse';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 export type Props = StateProps & DispatchProps;
 
