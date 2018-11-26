@@ -10,7 +10,7 @@ import { PersonContext } from '../../../App';
 import { AppState } from '../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { settVisDokument } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import Lukknapp from 'nav-frontend-lukknapp';
 
 interface OwnProps {

@@ -16,16 +16,15 @@ import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket
 import { sakstemakodeAlle } from './SakstemaVisning';
 import { AnyAction, Dispatch } from 'redux';
 import {
-    settValgtDokument,
-    settValgtEnkeltdokument,
     settVisDokument
-} from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+} from '../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../utils/functionUtils';
 import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
+import { settValgtDokument, settValgtEnkeltdokument } from '../../../../redux/saksoversikt/actions';
 
 interface OwnProps {
     dokument: DokumentMetadata;
