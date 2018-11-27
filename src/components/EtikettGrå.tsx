@@ -2,8 +2,9 @@ import * as React from 'react';
 import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
+import { TypografiProps } from 'nav-frontend-typografi';
 
-interface Props {
+interface Props extends TypografiProps {
     children: ReactNode;
 }
 
@@ -16,10 +17,11 @@ const Wrapper = styled.div`
 `;
 
 function EtikettGrå(props: Props) {
+    const { children, ...resten } = props;
     return (
         <Wrapper>
-            <EtikettLiten>
-                    {props.children}
+            <EtikettLiten {...resten}>
+                    {children}
             </EtikettLiten>
         </Wrapper>
     );

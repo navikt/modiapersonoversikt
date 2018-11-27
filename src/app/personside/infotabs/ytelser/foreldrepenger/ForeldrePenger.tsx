@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { utledMaksDato, utledRettighetFraDato } from './utils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import { createDescriptionList } from '../../../../../utils/list';
+import { BulletPoint } from '../../../../../components/common-styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     foreldrePengerRespons: ForeldrepengerResponse;
@@ -15,9 +17,16 @@ const Wrapper = styled.div`
   dl {
       dd {
         font-weight: bold;
-        margin-bottom: .5rem;
+        margin-top: .3rem;
       }
       margin: 1rem 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      > div {
+        margin-bottom: ${theme.margin.px30};
+        padding-right: 2rem;
+        flex: 0 0 50%;
+      }
   }
 `;
 
@@ -55,9 +64,13 @@ function Foreldrepenger(props: Props) {
 
     return (
         <Wrapper>
-            <Undertittel>Om foreldrepengeretten</Undertittel>
+            <BulletPoint showBulletPoint={true} color={theme.color.ytelser}>
+                <Undertittel>Om foreldrepengeretten</Undertittel>
+            </BulletPoint>
             {foreldrePengeRetten}
-            <Undertittel>Barnet</Undertittel>
+            <BulletPoint showBulletPoint={true} color={theme.color.ytelser}>
+                <Undertittel>Barnet</Undertittel>
+            </BulletPoint>
             {barnet}
         </Wrapper>
     );

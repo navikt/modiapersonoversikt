@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
-import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
+import { Bold, BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
 import styled from 'styled-components';
@@ -39,22 +39,6 @@ const DelUtbetalingStyle = styled.li`
   }
 `;
 
-const BulletPoint = styled<{ show: boolean }, 'div'>('div')`
-  position: relative;
-  transition: .3s;
-  ${props => props.show && 'padding-left: 1.5rem;'}
-  &::before {
-    position: absolute;
-    left: -.5rem;
-    content: '•';
-    font-size: 4rem;
-    line-height: 1.5rem;
-    color: ${theme.color.kategori};
-    transition: .3s;
-    ${props => !props.show && 'opacity: 0'}
-  }
-`;
-
 class DelUtbetaling extends React.PureComponent<Props> {
 
     private ytelseRef = React.createRef<HTMLDivElement>();
@@ -79,7 +63,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
         const ytelse = this.props.ytelse;
         const periode = periodeStringFromYtelse(ytelse);
         const header = (
-            <BulletPoint show={!this.props.erEkspandert}>
+            <BulletPoint showBulletPoint={!this.props.erEkspandert} color={theme.color.kategori}>
                 <SpaceBetween>
                     <Normaltekst tag="h5"><Bold>{ytelse.type}</Bold></Normaltekst>
                     <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>

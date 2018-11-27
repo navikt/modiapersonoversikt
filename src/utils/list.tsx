@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Fragment } from 'react';
+import EtikettGrå from '../components/EtikettGrå';
 
 type DescriptionlistEntryType = string | number | null;
 
@@ -10,10 +10,10 @@ interface DescriptionListEntry {
 
 export function getDescriptionlistEntry(term: string, description: DescriptionlistEntryType) {
     return (
-        <Fragment key={term}>
-            <Normaltekst tag="dt">{term}</Normaltekst>
+        <div key={term}>
+            <EtikettGrå tag="dt">{term}</EtikettGrå>
             <Normaltekst tag="dd">{description}</Normaltekst>
-        </Fragment>
+        </div>
     );
 }
 

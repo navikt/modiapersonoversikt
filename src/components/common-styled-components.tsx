@@ -25,3 +25,19 @@ export const Uppercase = styled.span`
 export const Bold = styled.span`
   font-weight: bold;
 `;
+
+export const BulletPoint = styled<{ showBulletPoint: boolean, color: string }, 'div'>('div')`
+  position: relative;
+  transition: .3s;
+  ${props => props.showBulletPoint && 'padding-left: 1.5rem;'}
+  &::before {
+    position: absolute;
+    left: -.5rem;
+    content: '•';
+    font-size: 4rem;
+    line-height: 1.8rem;
+    color: ${props => props.color};
+    transition: .3s;
+    ${props => !props.showBulletPoint && 'opacity: 0'}
+  }
+`;
