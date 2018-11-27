@@ -1,12 +1,12 @@
 import * as React from 'react';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import EnkeltValg from './EnkeltValg';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { setVistYtelse, YtelseValg } from '../../../../../redux/ytelser/yteslerStateReducer';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { connect } from 'react-redux';
+import VisMerKnapp from '../../../../../components/VisMerKnapp';
 
 interface StateProps {
     valgtYtelse: YtelseValg;
@@ -34,18 +34,30 @@ const ListeStyle = styled.ul`
   }
 `;
 
+const ListeElementStyle = styled.li`
+  display: flex;
+  flex-direction: column;
+  .order_first {
+    order: -1;
+  }
+`;
+
 function YtelseValgListe(props: Props) {
 
     const liste = Object.keys(YtelseValg).map(ytelseKey => {
         const ytelse = YtelseValg[ytelseKey];
         return (
-            <EnkeltValg
-                valgt={ytelse === props.valgtYtelse}
-                onClick={() => props.setValgtYtelse(ytelse)}
+            <VisMerKnapp
                 key={ytelseKey}
+                onClick={() => props.setValgtYtelse(ytelse)}
+                valgt={ytelse === props.valgtYtelse}
+                ariaDescription={'Vis ' + ytelseKey}
             >
-                {ytelseKey}
-            </EnkeltValg>
+                <ListeElementStyle>
+                    <Element tag={'h3'}>{ytelseKey}</Element>
+                    <Normaltekst className="order_first">01.01.0001</Normaltekst>
+                </ListeElementStyle>
+            </VisMerKnapp>
         );
     });
 
