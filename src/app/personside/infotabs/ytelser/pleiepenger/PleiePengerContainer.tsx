@@ -3,12 +3,12 @@ import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleiepenger';
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
 import { Undertittel } from 'nav-frontend-typografi';
+import PlukkRestData from './PlukkRestData';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -42,9 +42,9 @@ class PleiePengerContainer extends React.PureComponent<Props> {
         return (
             <Wrapper>
                 <Undertittel>Pleiepenger</Undertittel>
-                <Innholdslaster avhengigheter={[this.props.pleiepengerReducer]}>
-                    {JSON.stringify((this.props.pleiepengerReducer as Loaded<PleiepengerResponse>).data)}
-                </Innholdslaster>
+                <PlukkRestData restReducer={this.props.pleiepengerReducer}>
+                    {data => <div>{JSON.stringify(data.pleiepenger)}</div>}
+                </PlukkRestData>
             </Wrapper>
         );
     }
