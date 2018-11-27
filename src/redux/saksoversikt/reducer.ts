@@ -1,27 +1,35 @@
-import { actionKeys, Actions, initialState, SaksoversiktReduxState } from './types';
+import { initialState, SaksoversikState, SaksoversiktActions, SaksoversiktActionTypes } from './types';
 
-export function saksoversiktReducer(state: SaksoversiktReduxState = initialState, action: Actions) {
+export function saksoversiktReducer(state: SaksoversikState = initialState, action: SaksoversiktActions)
+    : SaksoversikState {
+
     switch (action.type) {
-        case actionKeys.SetValgtSakstema:
+        case SaksoversiktActionTypes.SetValgtSakstema:
             return {
                 ...state,
                 valgtSakstema: action.sakstema
             };
-        case actionKeys.SetVisDokument:
+        case SaksoversiktActionTypes.SetVisDokument:
             return {
                 ...state,
                 visDokument: action.vis
             };
-        case actionKeys.SetValgtDokument:
+        case SaksoversiktActionTypes.SetValgtDokument:
             return {
                 ...state,
                 valgtDokument: action.dokument
             };
-        case actionKeys.SetValgtEnkeltdokument:
+        case SaksoversiktActionTypes.SetValgtEnkeltdokument:
             return {
                 ...state,
                 valgtEnkeltdokument: action.enkeltdokument
             };
+        case SaksoversiktActionTypes.SetViktigÅViteÅpen: {
+            return {
+                ...state,
+                viktigÅViteÅpen: action.åpen
+            };
+        }
         default:
             return state;
     }

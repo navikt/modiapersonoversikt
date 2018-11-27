@@ -15,8 +15,6 @@ import DokumenterVisning from './DokumenterVisning';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import { lenkeNorg2Frontend } from './norgLenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { isViktigÅViteTema, ViktigÅViteTema } from '../../../../redux/viktigAVite/types';
-import { setViktigÅViteTema } from '../../../../redux/viktigAVite/actions';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
@@ -47,7 +45,6 @@ interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
-    setViktigÅVite: (tema?: ViktigÅViteTema) => void;
     setEnkeltdokument: (enkeltdokument: Dokument) => void;
     setSakstema: (sakstema: Sakstema) => void;
     hentPerson: (fødselsnummer: string) => void;
@@ -125,12 +122,6 @@ class SaksoversiktContainer extends React.Component<Props, State> {
         this.props.setSakstema(sakstema);
         if (this.dokumentListeRef.current) {
             this.dokumentListeRef.current.focus();
-        }
-
-        if (isViktigÅViteTema(sakstema)) {
-            this.props.setViktigÅVite(sakstema);
-        } else {
-            this.props.setViktigÅVite(undefined);
         }
     }
 
@@ -213,8 +204,6 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
             dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) =>
             dispatch(reloadSaksoversikt(fødselsnummer)),
-        setViktigÅVite: (tema: ViktigÅViteTema) =>
-            dispatch(setViktigÅViteTema(tema)),
         setEnkeltdokument: (enkeltdokument: Dokument) =>
             dispatch(settValgtEnkeltdokument(enkeltdokument)),
         hentPerson: fødselsnummer =>

@@ -1,45 +1,59 @@
 import { Sakstema } from '../../models/saksoversikt/sakstema';
 import { Dokument, DokumentMetadata } from '../../models/saksoversikt/dokumentmetadata';
+import { Action } from 'redux';
 
-export interface SaksoversiktReduxState {
+export interface SaksoversikState {
     valgtSakstema?: Sakstema;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltdokument?: Dokument;
     visDokument: boolean;
+    viktigÅViteÅpen: boolean;
 }
 
-export const initialState: SaksoversiktReduxState = {
+export const initialState: SaksoversikState = {
     valgtSakstema: undefined,
     valgtDokument: undefined,
     valgtEnkeltdokument: undefined,
-    visDokument: false
+    visDokument: false,
+    viktigÅViteÅpen: false
 };
 
-export enum actionKeys {
+export enum SaksoversiktActionTypes {
     SetValgtSakstema = 'SetValgtSakstema',
     SetValgtDokument = 'SetValgtDokument',
     SetValgtEnkeltdokument = 'SetValgtEnkeltdokument',
-    SetVisDokument = 'SetVisDokument'
+    SetVisDokument = 'SetVisDokument',
+    SetViktigÅViteÅpen = 'SetViktigÅViteÅpen'
 }
 
 export interface SetValgtSakstema {
-    type: actionKeys.SetValgtSakstema;
+    type: SaksoversiktActionTypes.SetValgtSakstema;
     sakstema: Sakstema;
 }
 
 export interface SetValgtDokument {
-    type: actionKeys.SetValgtDokument;
+    type: SaksoversiktActionTypes.SetValgtDokument;
     dokument: DokumentMetadata;
 }
 
 export interface SetValgtEnkeltdokument {
-    type: actionKeys.SetValgtEnkeltdokument;
+    type: SaksoversiktActionTypes.SetValgtEnkeltdokument;
     enkeltdokument: Dokument;
 }
 
 export interface SetVisDokument {
-    type: actionKeys.SetVisDokument;
+    type: SaksoversiktActionTypes.SetVisDokument;
     vis: boolean;
 }
 
-export type Actions = SetVisDokument | SetValgtDokument | SetValgtEnkeltdokument | SetValgtSakstema;
+export interface SetViktigÅViteÅpen extends Action {
+    type: SaksoversiktActionTypes.SetViktigÅViteÅpen;
+    åpen: boolean;
+}
+
+export type SaksoversiktActions =
+    SetVisDokument |
+    SetValgtDokument |
+    SetValgtEnkeltdokument |
+    SetValgtSakstema|
+    SetViktigÅViteÅpen;
