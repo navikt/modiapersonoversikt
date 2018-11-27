@@ -12,6 +12,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { AvsenderFilter } from './SaksoversiktContainer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import ViktigÅVite from './viktigavite/viktigavite';
 
 interface Props {
     sakstema?: Sakstema;
@@ -30,7 +31,7 @@ const Header = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${theme.margin.px20};
-  padding-bottom: ${theme.margin.px10};
+  padding-bottom: 0;
   > *:first-child {
         flex-grow: 1;
     }
@@ -193,6 +194,7 @@ function DokumenterVisning(props: Props) {
                 <Undertittel>{props.sakstema.temanavn}</Undertittel>
                 {checkboxer}
             </Header>
+            <ViktigÅVite/>
             {dokumentinnhold}
         </div>
     );

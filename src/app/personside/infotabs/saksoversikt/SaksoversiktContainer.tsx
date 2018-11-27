@@ -18,7 +18,7 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
-import { settValgtEnkeltdokument, settValgtSakstema } from '../../../../redux/saksoversikt/saksoversiktStateReducer';
+import { settValgtEnkeltdokument, settValgtSakstema } from '../../../../redux/saksoversikt/actions';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 
 export interface AvsenderFilter {
@@ -137,11 +137,11 @@ class SaksoversiktContainer extends React.Component<Props, State> {
     render() {
         const norgUrl =
             (isLoaded(this.props.baseUrlReducer)
-            && isLoaded(this.props.personReducer))
+                && isLoaded(this.props.personReducer))
                 ? lenkeNorg2Frontend(
-                    this.props.baseUrlReducer.data,
-                    (this.props.personReducer.data as Person).geografiskTilknytning,
-                    this.props.valgtSakstema)
+                this.props.baseUrlReducer.data,
+                (this.props.personReducer.data as Person).geografiskTilknytning,
+                this.props.valgtSakstema)
                 : '';
 
         if (this.props.visDokument && this.props.valgtDokument) {

@@ -1,7 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
-.c3 {
+Array [
+  .c0 {
+  margin-right: 1.25rem;
+}
+
+<div
+    className="c0"
+/>,
+  .c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -33,7 +41,6 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 .c4 {
   border: none;
   padding: .1rem .2rem;
-  margin-top: 1rem;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -192,135 +199,137 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 <div
-  className="c0"
-  open={true}
->
-  <div
-    className="c1"
+    className="c0"
     open={true}
-  >
-    <aside
-      className="c2"
+>
+    <div
+        className="c1"
+        open={true}
     >
-      <span
-        className="typo-normal"
-      >
-        <h2>
-          Sammendrag
-        </h2>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                Ytelse
-              </th>
-              <th
-                className="sumBrutto"
-              >
-                Brutto
-              </th>
-              <th
-                className="sumTrekk"
-              >
-                Trekk
-              </th>
-              <th
-                className="sumNetto"
-              >
-                Utbetalt
-              </th>
-              <th
-                className="visually-hidden"
-              >
-                Periode
-              </th>
-              <th
-                className="visually-hidden"
-              >
-                Detaljer
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                Sykepenger 2017
-              </th>
-              <td
-                className="sumBrutto"
-              >
-                26,740.00
-              </td>
-              <td
-                className="sumTrekk"
-              >
-                -3,968.00
-              </td>
-              <td
-                className="sumNetto"
-              >
-                22,772.00
-              </td>
-              <td
-                className="periodeForYtelse"
-              >
-                09.11.2016
-                 - 
-                31.10.2017
-              </td>
-              <td
-                className="ytelseDetaljer"
-              >
-                <dl>
-                  <dt>
-                    Mouse
-                  </dt>
-                  <dd>
-                    7,720.00
-                  </dd>
-                  <dt>
-                    Computer
-                  </dt>
-                  <dd>
-                    7,860.00
-                  </dd>
-                  <dt>
-                    Bacon
-                  </dt>
-                  <dd>
-                    11,160.00
-                  </dd>
-                </dl>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </span>
-    </aside>
-  </div>
-  <div
-    className="c3"
-  >
-    <button
-      aria-expanded={true}
-      className="c4"
-      onClick={[Function]}
-      open={true}
-    >
-      <span
-        className="c5"
-      >
-        <span
-          className="typo-normal"
+        <aside
+            className="c2"
         >
-          Skjul
-           detaljer
-        </span>
-      </span>
-      <i
-        className="nav-frontend-chevron chevronboks chevron--opp"
-      />
-    </button>
-  </div>
-</div>
+            <span
+                className="typo-normal"
+            >
+                <h2>
+                    Sammendrag
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Ytelse
+                            </th>
+                            <th
+                                className="sumBrutto"
+                            >
+                                Brutto
+                            </th>
+                            <th
+                                className="sumTrekk"
+                            >
+                                Trekk
+                            </th>
+                            <th
+                                className="sumNetto"
+                            >
+                                Utbetalt
+                            </th>
+                            <th
+                                className="visually-hidden"
+                            >
+                                Periode
+                            </th>
+                            <th
+                                className="visually-hidden"
+                            >
+                                Detaljer
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                Sykepenger 2017
+                            </th>
+                            <td
+                                className="sumBrutto"
+                            >
+                                26,740.00
+                            </td>
+                            <td
+                                className="sumTrekk"
+                            >
+                                -3,968.00
+                            </td>
+                            <td
+                                className="sumNetto"
+                            >
+                                22,772.00
+                            </td>
+                            <td
+                                className="periodeForYtelse"
+                            >
+                                09.11.2016
+                                 - 
+                                31.10.2017
+                            </td>
+                            <td
+                                className="ytelseDetaljer"
+                            >
+                                <dl>
+                                    <dt>
+                                        Mouse
+                                    </dt>
+                                    <dd>
+                                        7,720.00
+                                    </dd>
+                                    <dt>
+                                        Computer
+                                    </dt>
+                                    <dd>
+                                        7,860.00
+                                    </dd>
+                                    <dt>
+                                        Bacon
+                                    </dt>
+                                    <dd>
+                                        11,160.00
+                                    </dd>
+                                </dl>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span>
+        </aside>
+    </div>
+    <div
+        className="c3"
+    >
+        <button
+            aria-expanded={true}
+            className="c4"
+            onClick={[Function]}
+            open={true}
+        >
+            <span
+                className="c5"
+            >
+                <span
+                    className="typo-normal"
+                >
+                    Skjul
+                     
+                    detaljer
+                </span>
+            </span>
+            <i
+                className="nav-frontend-chevron chevronboks chevron--opp"
+            />
+        </button>
+    </div>
+</div>,
+]
 `;

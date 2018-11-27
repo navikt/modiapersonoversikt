@@ -11,7 +11,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
-import DetaljerCollapse from '../DetaljerCollapse';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';

@@ -1,22 +1,23 @@
 import { combineReducers } from 'redux';
 import RestEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
-import UiReducer, { UIState } from './uiReducers/UIReducer';
+import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
 import { UtbetalingerReducerState, utbetalingerStateReducer } from './utbetalinger/utbetalingerStateReducer';
-import { SaksoversiktReduxState, saksoversiktStateReducer } from './saksoversikt/saksoversiktStateReducer';
+import { saksoversiktReducer } from './saksoversikt/reducer';
+import { SaksoversikState } from './saksoversikt/types';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
     ui: UIState;
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerReducerState;
-    saksoversikt: SaksoversiktReduxState;
+    saksoversikt: SaksoversikState;
 }
 
 export default combineReducers<AppState>({
     restEndepunkter: RestEndepunkterReducers,
-    ui: UiReducer,
+    ui: UIReducer,
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerStateReducer,
-    saksoversikt: saksoversiktStateReducer
+    saksoversikt: saksoversiktReducer,
 });
