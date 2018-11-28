@@ -27,6 +27,24 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   font-weight: bold;
 }
 
+.c9 {
+  position: relative;
+  -webkit-transition: .3s;
+  transition: .3s;
+  padding-left: 1.5rem;
+}
+
+.c9::before {
+  position: absolute;
+  left: -.5rem;
+  content: '•';
+  font-size: 4rem;
+  line-height: 1.8rem;
+  color: #9bd0b0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
 .c5 {
   border: none;
   background-color: transparent;
@@ -124,24 +142,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 .c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c9 {
-  position: relative;
-  -webkit-transition: .3s;
-  transition: .3s;
-  padding-left: 1.5rem;
-}
-
-.c9::before {
-  position: absolute;
-  left: -.5rem;
-  content: '•';
-  font-size: 4rem;
-  line-height: 1.5rem;
-  color: #9bd0b0;
-  -webkit-transition: .3s;
-  transition: .3s;
 }
 
 .c0 table {
@@ -316,6 +316,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         >
           <div
             className="c9"
+            color="#9bd0b0"
           >
             <div
               className="c3"
@@ -562,6 +563,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         >
           <div
             className="c9"
+            color="#9bd0b0"
           >
             <div
               className="c3"

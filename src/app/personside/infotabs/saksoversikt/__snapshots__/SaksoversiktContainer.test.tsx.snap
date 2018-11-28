@@ -1,22 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c8 {
-  border: none;
-  padding: 0;
-  height: 1.2rem;
-  width: 1.2rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.c8:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c7 {
+.c9 {
+  padding: 1.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25,24 +11,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c7 svg {
-  margin-top: .3rem;
-  height: 1.875rem;
-  width: 1.875rem;
-}
-
-.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   cursor: pointer;
 }
 
 .c9:hover {
   background-color: rgba(102,203,236,0.18);
+}
+
+.c9:hover > button:last-child {
+  padding-left: .5rem;
 }
 
 .c9:active {
@@ -57,16 +34,25 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c6 {
+  padding: 1.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   cursor: pointer;
   background-color: rgba(0,0,0,0.03);
 }
 
 .c6:hover {
   background-color: rgba(102,203,236,0.18);
+}
+
+.c6:hover > button:last-child {
+  padding-left: .5rem;
 }
 
 .c6:active {
@@ -80,9 +66,30 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
+.c8 {
+  border: none;
+  padding: 0;
+  height: 2rem;
+  width: 2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  -webkit-transition: padding-left .3s;
+  transition: padding-left .3s;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c7 svg {
+  height: 1.875rem;
+  width: 1.875rem;
+}
+
 .c5 > * {
   border-top: solid 0.0625rem #b7b1a9;
-  padding: 1.25rem;
 }
 
 .c3 ol {
@@ -308,26 +315,29 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         <ol
           className="c5"
         >
-          <li
-            className="c6"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                08.03.2018
-              </p>
-              <p
-                className="typo-element"
-              >
-                Alle tema
-              </p>
-            </div>
+          <li>
             <div
-              className="c7"
+              className="c6"
+              onClick={[Function]}
             >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  08.03.2018
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Alle tema
+                </p>
+              </div>
+              <span
+                className="c7"
+              />
               <button
+                aria-label="Vis Alle tema"
+                aria-selected={true}
                 className="c8"
                 onClick={[Function]}
               >
@@ -337,52 +347,56 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li
-            className="c9"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                08.03.2018
-              </p>
-              <p
-                className="typo-element"
-              >
-                Sykepenger
-              </p>
-              <p
-                className="typo-normal"
-              >
-                1
-                 
-                søknad
-                 er 
-                under behandling
-                .
-              </p>
-            </div>
+          <li>
             <div
-              className="c7"
+              className="c9"
+              onClick={[Function]}
             >
-              <svg
-                contentScriptType="text/ecmascript"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="#C6C2BF"
+              <div>
+                <p
+                  className="typo-normal"
                 >
-                  <path
-                    d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
-                  />
-                  <path
-                    d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                  />
-                </g>
-              </svg>
+                  08.03.2018
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Sykepenger
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  1
+                   
+                  søknad
+                   er 
+                  under behandling
+                  .
+                </p>
+              </div>
+              <span
+                className="c7"
+              >
+                <svg
+                  contentScriptType="text/ecmascript"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="#C6C2BF"
+                  >
+                    <path
+                      d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                    />
+                    <path
+                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                    />
+                  </g>
+                </svg>
+              </span>
               <button
+                aria-label="Vis Sykepenger"
+                aria-selected={false}
                 className="c8"
                 onClick={[Function]}
               >
@@ -392,52 +406,56 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li
-            className="c9"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                21.12.2017
-              </p>
-              <p
-                className="typo-element"
-              >
-                Tilleggsstønad arbeidssøkere
-              </p>
-              <p
-                className="typo-normal"
-              >
-                1
-                 
-                søknad
-                 er 
-                under behandling
-                .
-              </p>
-            </div>
+          <li>
             <div
-              className="c7"
+              className="c9"
+              onClick={[Function]}
             >
-              <svg
-                contentScriptType="text/ecmascript"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="#C6C2BF"
+              <div>
+                <p
+                  className="typo-normal"
                 >
-                  <path
-                    d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
-                  />
-                  <path
-                    d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                  />
-                </g>
-              </svg>
+                  21.12.2017
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Tilleggsstønad arbeidssøkere
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  1
+                   
+                  søknad
+                   er 
+                  under behandling
+                  .
+                </p>
+              </div>
+              <span
+                className="c7"
+              >
+                <svg
+                  contentScriptType="text/ecmascript"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="#C6C2BF"
+                  >
+                    <path
+                      d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                    />
+                    <path
+                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                    />
+                  </g>
+                </svg>
+              </span>
               <button
+                aria-label="Vis Tilleggsstønad arbeidssøkere"
+                aria-selected={false}
                 className="c8"
                 onClick={[Function]}
               >
