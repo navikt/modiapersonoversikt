@@ -31,28 +31,28 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
-    if (!useLogger()) {
-        return;
-    }
     const info = {
         message: message,
         ...ekstraFelter
     };
-    // tslint:disable-next-line
-    window['frontendlogger'] && window['frontendlogger'].info(info);
     console.info(info);
-}
-
-export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     if (!useLogger()) {
         return;
     }
+    // tslint:disable-next-line
+    window['frontendlogger'] && window['frontendlogger'].info(info);
+}
+
+export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
         error: error.stack,
         ...ekstraFelter
     };
+    console.error(info);
+    if (!useLogger()) {
+        return;
+    }
     // tslint:disable-next-line
     window['frontendlogger'] && window['frontendlogger'].error(info);
-    console.error(info);
 }
