@@ -10,14 +10,14 @@ export interface Pleiepengerettighet {
     forbrukteDagerTomIDag: number;
     pleiepengedager: number;
     restDagerAnvist: number;
-    perioder?: Pleiepengeperiode[];
+    perioder: Pleiepengeperiode[];
 }
 
 export interface Pleiepengeperiode {
     fom: string;
     antallPleiepengedager: number;
-    arbeidsforhold?: Arbeidsforhold[];
-    vedtak?: Vedtak[];
+    arbeidsforhold: Arbeidsforhold[];
+    vedtak: Vedtak[];
 }
 
 export interface Arbeidsforhold {
