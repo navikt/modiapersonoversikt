@@ -21,12 +21,16 @@ interface StateProps {
 type Props = OwnProps & StateProps;
 
 const Styling = styled.section`
-  display: flex;
-  align-items: flex-start;
-  > *:last-child {
+  @media(min-width: 65rem) {
+      display: flex;
+      align-items: flex-start;
+      > *:last-child {
+        flex-grow: 1;
+        margin-left: ${theme.margin.layout};
+      }
+  }
+  > * {
     margin-bottom: ${theme.margin.layout};
-    margin-left: ${theme.margin.layout};
-    flex-grow: 1;
   }
 `;
 

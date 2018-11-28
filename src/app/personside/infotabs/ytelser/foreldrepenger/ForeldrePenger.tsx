@@ -12,7 +12,7 @@ interface Props {
 }
 
 const TittelStyle = styled.div`
-  margin: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
+  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
 `;
 
 function Foreldrepenger(props: Props) {
