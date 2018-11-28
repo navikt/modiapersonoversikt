@@ -1,0 +1,56 @@
+import * as React from 'react';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
+import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+
+interface Props {
+    entries: DescriptionListEntry;
+}
+
+type DescriptionlistEntryType = string | number | null;
+
+export interface DescriptionListEntry {
+    [name: string]: DescriptionlistEntryType;
+}
+
+function getDescriptionlistEntry(term: string, description: DescriptionlistEntryType) {
+    return (
+        <div key={term}>
+            <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
+            <Normaltekst tag="dd">{description || ''}</Normaltekst>
+        </div>
+    );
+}
+
+function createDescriptionListEntries(valuePairs: DescriptionListEntry) {
+    return Object.keys(valuePairs).map(key =>
+        getDescriptionlistEntry(key, valuePairs[key])
+    );
+}
+
+const ListStyling = styled.dl`
+    display: flex;
+    flex-wrap: wrap;
+    dt {
+      color: ${theme.color.gråSkrift};
+    }
+    dd {
+        font-weight: bold;
+        margin-top: .3rem;
+    }
+    > div {
+        margin-top: ${theme.margin.px30};
+        padding-right: 2rem;
+        flex: 0 0 50%;
+    }
+`;
+
+function DescriptionList(props: Props) {
+    return (
+        <ListStyling>
+            {createDescriptionListEntries(props.entries)}
+        </ListStyling>
+    );
+}
+
+export default DescriptionList;

@@ -27,7 +27,6 @@ type Props = OwnProps & StateProps & DispatchProps;
 const Wrapper = styled.div`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
-  padding: ${theme.margin.px20};
 `;
 
 class ForeldrePengerContainer extends React.PureComponent<Props> {

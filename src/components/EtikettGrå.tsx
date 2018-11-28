@@ -3,13 +3,14 @@ import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { TypografiProps } from 'nav-frontend-typografi';
+import theme from '../styles/personOversiktTheme';
 
 interface Props extends TypografiProps {
     children: ReactNode;
 }
 
 const Wrapper = styled.div`
-    color: #78706a;
+    color: ${theme.color.gråSkrift};
     margin-top: 3px;
     .typo-etikett-liten {
       line-height: 1rem;
