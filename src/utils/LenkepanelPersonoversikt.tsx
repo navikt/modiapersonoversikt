@@ -20,7 +20,12 @@ function LenkepanelPersonoversikt(props: Props) {
         <CustomStyling>
             <LenkepanelBase
                 href={props.url}
-                linkCreator={(htmlProps: React.HTMLProps<HTMLAnchorElement>) => <a target={'_blank'} {...htmlProps}/>}
+                linkCreator={(htmlProps: React.HTMLProps<HTMLAnchorElement>) =>
+                    <a
+                        target={'_blank'}
+                        rel={'noopener noreferrer'}
+                        {...htmlProps}
+                    />}
             >
                 {props.children}
             </LenkepanelBase>
