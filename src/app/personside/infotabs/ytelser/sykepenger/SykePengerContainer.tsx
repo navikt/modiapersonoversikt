@@ -3,12 +3,12 @@ import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { Undertittel } from 'nav-frontend-typografi';
 import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
 import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepenger';
+import PlukkRestData from '../pleiepenger/PlukkRestData';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -42,9 +42,9 @@ class SykePengerContainer extends React.PureComponent<Props> {
         return (
             <Wrapper>
                 <Undertittel>Sykepenger</Undertittel>
-                <Innholdslaster avhengigheter={[this.props.sykepengerReducer]}>
-                    {JSON.stringify((this.props.sykepengerReducer as Loaded<SykepengerResponse>).data)}
-                </Innholdslaster>
+                <PlukkRestData restReducer={this.props.sykepengerReducer}>
+                    {data => JSON.stringify(data)}
+                </PlukkRestData>
             </Wrapper>
         );
     }

@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { hentForeldrepenger } from '../../../../../redux/restReducers/ytelser/foreldrepenger';
 import { AppState } from '../../../../../redux/reducers';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Foreldrepenger from './ForeldrePenger';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import PlukkRestData from '../pleiepenger/PlukkRestData';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -40,13 +40,9 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
     render() {
         return (
             <Wrapper>
-                <Innholdslaster avhengigheter={[this.props.foreldrepengerReducer]}>
-                    <Foreldrepenger
-                        foreldrePengerResponse={
-                            (this.props.foreldrepengerReducer as Loaded<ForeldrepengerResponse>).data
-                        }
-                    />
-                </Innholdslaster>
+                <PlukkRestData restReducer={this.props.foreldrepengerReducer}>
+                    {data => <Foreldrepenger foreldrePengerResponse={data}/>}
+                </PlukkRestData>
             </Wrapper>
         );
     }
