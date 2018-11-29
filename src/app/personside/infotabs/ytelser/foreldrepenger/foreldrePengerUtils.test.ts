@@ -5,7 +5,6 @@ import {
 import { aremark } from '../../../../../mock/person/aremark';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
-import { formaterDato } from '../../../../../utils/dateUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
 const randomForeldrepengerettighet = getForeldrepengerrettighetMock(aremark.fødselsnummer);
