@@ -4,7 +4,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import styled from 'styled-components';
-import DescriptionList, { DescriptionListEntry } from '../DescriptionList';
+import DescriptionList from '../DescriptionList';
 import YtelserBullet from '../YtelserBullet';
 
 interface Props {
@@ -20,24 +20,24 @@ const Wrapper = styled.div`
 
 function Oversikt({foreldrePenger}: Props) {
 
-    const foreldrePengeRetten: DescriptionListEntry = {
-        'Foreldrepengetype': foreldrePenger.foreldrepengetype,
-        'Dekningsgrad': foreldrePenger.dekningsgrad + '%',
-        'Dagsats': 'Ikke implementert',
-        'Graderingsdager': 'Ikke implementert',
+    const foreldrePengeRetten = {
+        Foreldrepengetype: foreldrePenger.foreldrepengetype,
+        Dekningsgrad: foreldrePenger.dekningsgrad + '%',
+        Dagsats: 'Ikke implementert',
+        Graderingsdager: 'Ikke implementert',
         'Fedrekvote tilogmed': 'Ikke implementert',
         'Mødrekvote tilogmed': 'Ikke implementert',
         'Rettighet fra dato': datoVerbose(utledRettighetFraDato(foreldrePenger)).sammensatt,
-        'Restdager': foreldrePenger.restDager,
-        'Maksdato': utledMaksDato(foreldrePenger),
-        'Arbeidskategori': 'Ikke implementert'
+        Restdager: foreldrePenger.restDager,
+        Maksdato: utledMaksDato(foreldrePenger),
+        Arbeidskategori: 'Ikke implementert'
     };
 
-    const barnet: DescriptionListEntry = {
-        'Termindato': foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt,
-        'Fødselsdato': foreldrePenger.barnetsFødselsdato && datoVerbose(foreldrePenger.barnetsFødselsdato).sammensatt,
+    const barnet = {
+        Termindato: foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt,
+        Fødselsdato: foreldrePenger.barnetsFødselsdato && datoVerbose(foreldrePenger.barnetsFødselsdato).sammensatt,
         'Annen forelder': foreldrePenger.andreForeldersFnr,
-        'Omsorgsovertakelse': 'Ikke implementert',
+        Omsorgsovertakelse: 'Ikke implementert',
         'Foreldre av samme kjønn': 'Ikke implementert',
         'Antall barn': foreldrePenger.antallBarn
     };
