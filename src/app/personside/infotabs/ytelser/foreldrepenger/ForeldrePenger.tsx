@@ -8,7 +8,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 
 interface Props {
-    foreldrePengerRespons: ForeldrepengerResponse;
+    foreldrePengerResponse: ForeldrepengerResponse;
 }
 
 const TittelStyle = styled.div`
@@ -17,7 +17,7 @@ const TittelStyle = styled.div`
 
 function Foreldrepenger(props: Props) {
 
-    const foreldrepenger = props.foreldrePengerRespons.foreldrepenger;
+    const foreldrepenger = props.foreldrePengerResponse.foreldrepenger;
 
     if (foreldrepenger === null) {
         return <AlertStripeInfo>Finner ingen foreldrepengerettigheter for bruker</AlertStripeInfo>;

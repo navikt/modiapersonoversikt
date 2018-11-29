@@ -42,7 +42,7 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
             <Wrapper>
                 <Innholdslaster avhengigheter={[this.props.foreldrepengerReducer]}>
                     <Foreldrepenger
-                        foreldrePengerRespons={
+                        foreldrePengerResponse={
                             (this.props.foreldrepengerReducer as Loaded<ForeldrepengerResponse>).data
                         }
                     />
