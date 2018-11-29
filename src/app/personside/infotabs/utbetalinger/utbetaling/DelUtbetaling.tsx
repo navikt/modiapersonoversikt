@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import DetaljerCollapse from '../DetaljerCollapse';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerStateReducer';
 import { connect } from 'react-redux';

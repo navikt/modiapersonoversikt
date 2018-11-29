@@ -20,7 +20,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import * as moment from 'moment';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
-import DetaljerCollapse from '../DetaljerCollapse';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 
 interface OwnProps {
     visDetaljer: boolean;
