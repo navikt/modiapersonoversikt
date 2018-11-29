@@ -4,8 +4,9 @@ import {
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
 import { aremark } from '../../../../../mock/person/aremark';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { utledMaksDato, utledRettighetFraDato } from './utils';
+import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
 const randomForeldrepengerettighet = getForeldrepengerrettighetMock(aremark.fødselsnummer);
 const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.fødselsnummer);
@@ -51,11 +52,11 @@ test('Finn maksdato fra foreldrepengerettighet', () => {
 
     const resultat: string = utledMaksDato(foreldrepengerettighet);
 
-    expect(resultat).toEqual(formaterDato('2012-01-01'));
+    expect(resultat).toEqual(datoVerbose('2012-01-01').sammensatt);
 });
 
 test('Kaster feil og returnerer null hvis kommende utbetaling er uten vedtak', () => {
-    console.info = jest.fn(() => null);
+    console.error = jest.fn(() => null);
     const foreldrepengerettighet: Foreldrepengerrettighet = {
         ...randomForeldrepengerettighet,
         periode: [{

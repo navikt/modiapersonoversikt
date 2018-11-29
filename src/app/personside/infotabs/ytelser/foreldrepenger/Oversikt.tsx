@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { utledMaksDato, utledRettighetFraDato } from './utils';
+import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import styled from 'styled-components';
 import DescriptionList, { DescriptionListEntry } from '../DescriptionList';
