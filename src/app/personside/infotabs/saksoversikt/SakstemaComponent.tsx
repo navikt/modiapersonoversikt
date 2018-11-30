@@ -51,7 +51,11 @@ function SakstemaComponent(props: Props) {
 
     return (
         <li>
-            <VisMerKnapp valgt={props.erValgtSakstema} onClick={() => props.oppdaterSakstema(props.sakstema)}>
+            <VisMerKnapp
+                valgt={props.erValgtSakstema}
+                onClick={() => props.oppdaterSakstema(props.sakstema)}
+                ariaDescription={'Vis ' + props.sakstema.temanavn}
+            >
                 <div>
                     <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
                     <Element>{props.sakstema.temanavn}</Element>

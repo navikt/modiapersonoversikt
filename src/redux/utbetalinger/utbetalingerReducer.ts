@@ -1,11 +1,11 @@
 import { Ytelse } from '../../models/utbetalinger';
 
-export interface UtbetalingerReducerState {
+export interface UtbetalingerState {
     ytelseIFokus: Ytelse | null;
     ekspanderteYtelser: Ytelse[];
 }
 
-const initialState: UtbetalingerReducerState = {
+const initialState: UtbetalingerState = {
     ytelseIFokus: null,
     ekspanderteYtelser: []
 };
@@ -43,8 +43,8 @@ export function setEkspanderYtelse(ytelse: Ytelse, ekspander: boolean): SetEkspa
 
 export type Actions = SetNyYtelseIFokus | SetEkspanderYtelse;
 
-export function utbetalingerStateReducer(state: UtbetalingerReducerState = initialState, action: Actions)
-    : UtbetalingerReducerState {
+export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions)
+    : UtbetalingerState {
     switch (action.type) {
         case actionKeys.SettYtelseIFokus:
             return {

@@ -65,7 +65,8 @@ function getSykmelding(): Sykmelding {
         behandlet: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
-        gjelderYrkesskade: getYrkesskade()
+        gjelderYrkesskade: getYrkesskade(),
+        gradAvSykmeldingListe: []
     };
 }
 

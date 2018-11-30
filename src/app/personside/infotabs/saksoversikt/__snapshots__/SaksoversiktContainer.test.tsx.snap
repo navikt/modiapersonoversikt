@@ -340,6 +340,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c7"
               />
               <button
+                aria-label="Vis Alle tema"
                 aria-selected={true}
                 className="c8"
                 onClick={[Function]}
@@ -398,6 +399,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </svg>
               </span>
               <button
+                aria-label="Vis Sykepenger"
                 aria-selected={false}
                 className="c8"
                 onClick={[Function]}
@@ -456,6 +458,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </svg>
               </span>
               <button
+                aria-label="Vis Tilleggsstønad arbeidssøkere"
                 aria-selected={false}
                 className="c8"
                 onClick={[Function]}
