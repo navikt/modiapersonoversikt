@@ -4,11 +4,11 @@ export enum YtelseValg {
     Pleiepenger = 'Pleiepenger'
 }
 
-export interface YtelserReducerState {
+export interface YtelserState {
     valgtYtelse: YtelseValg;
 }
 
-const initialState: YtelserReducerState = {
+const initialState: YtelserState = {
     valgtYtelse: YtelseValg.Foreldrepenger
 };
 
@@ -30,7 +30,7 @@ export function setVistYtelse(ytelse: YtelseValg): VelgNyYtelse {
     };
 }
 
-export function ytelserStateReducer(state: YtelserReducerState = initialState, action: Actions): YtelserReducerState {
+export function ytelserReducer(state: YtelserState = initialState, action: Actions): YtelserState {
     switch (action.type) {
         case actionKeys.SetValgtYtelse:
             return {
