@@ -9,6 +9,7 @@ import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleie
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
 import { Undertittel } from 'nav-frontend-typografi';
 import PlukkRestData from './PlukkRestData';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -33,6 +34,7 @@ const Wrapper = styled.div`
 class PleiePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
+        loggEvent('Sidevisning', 'Pleiepenger');
         if (isNotStarted(this.props.pleiepengerReducer)) {
             this.props.hentPleiepenger(this.props.fødselsnummer);
         }

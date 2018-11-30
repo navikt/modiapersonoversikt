@@ -9,6 +9,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
 import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepenger';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -33,6 +34,7 @@ const Wrapper = styled.div`
 class SykePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
+        loggEvent('Sidevisning', 'Sykepenger');
         if (isNotStarted(this.props.sykepengerReducer)) {
             this.props.hentSykepenger(this.props.fødselsnummer);
         }

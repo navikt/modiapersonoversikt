@@ -9,6 +9,7 @@ import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/res
 import Foreldrepenger from './ForeldrePenger';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
 class ForeldrePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
+        loggEvent('Sidevisning', 'Foreldrepenger');
         if (isNotStarted(this.props.foreldrepengerReducer)) {
             this.props.hentForeldrepenger(this.props.fødselsnummer);
         }

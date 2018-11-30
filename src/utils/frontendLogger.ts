@@ -1,7 +1,7 @@
 import { isDevelopment } from './environment';
 
 interface ValuePairs {
-     [name: string]: string | number | boolean | object | undefined;
+    [name: string]: string | number | boolean | object | undefined;
 }
 
 function frontendLoggerIsInitialized(): boolean {
@@ -14,7 +14,7 @@ function frontendLoggerIsInitialized(): boolean {
 }
 
 function useLogger(): boolean {
-    return frontendLoggerIsInitialized() && !isDevelopment();
+    return !isDevelopment() && frontendLoggerIsInitialized();
 }
 
 export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
@@ -27,7 +27,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
         tags: {action: action, location: location, ...extraTags}
     };
     // tslint:disable-next-line
-    window['frontendlogger'] && window['frontendlogger'].event(event.table, event.fields, event.tags);
+    window['frontendlogger'].event(event.table, event.fields, event.tags);
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
@@ -35,12 +35,12 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
         message: message,
         ...ekstraFelter
     };
-    console.info(info);
-    if (!useLogger()) {
-        return;
+    if (useLogger()) {
+        // tslint:disable-next-line
+        window['frontendlogger'].info(info);
+    } else {
+        console.info(info);
     }
-    // tslint:disable-next-line
-    window['frontendlogger'] && window['frontendlogger'].info(info);
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
@@ -49,10 +49,10 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         error: error.stack,
         ...ekstraFelter
     };
-    console.error(info);
-    if (!useLogger()) {
-        return;
+    if (useLogger()) {
+        // tslint:disable-next-line
+        window['frontendlogger'].error(info);
+    } else {
+        console.error(info);
     }
-    // tslint:disable-next-line
-    window['frontendlogger'] && window['frontendlogger'].error(info);
 }
