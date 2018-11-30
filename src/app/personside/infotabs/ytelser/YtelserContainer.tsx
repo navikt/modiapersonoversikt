@@ -8,7 +8,7 @@ import SykePengerContainer from './sykepenger/SykePengerContainer';
 import { YtelseValg } from '../../../../redux/ytelser/yteslerStateReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { assertUnreachable } from '../../../../utils/assertUnreachable';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -43,7 +43,7 @@ function getValgtTab(valgtTab: YtelseValg, fnr: string) {
         case YtelseValg.Sykepenger:
             return <SykePengerContainer fødselsnummer={fnr}/>;
         default:
-            return <AlertStripeAdvarsel>Ikke implementert</AlertStripeAdvarsel>;
+            return assertUnreachable();
     }
 }
 
