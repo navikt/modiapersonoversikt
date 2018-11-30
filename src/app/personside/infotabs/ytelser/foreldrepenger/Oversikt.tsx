@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
+import { utledMaksDato, utledFraDatoForRettighet } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import styled from 'styled-components';
 import DescriptionList from '../DescriptionList';
@@ -27,7 +27,7 @@ function Oversikt({foreldrePenger}: Props) {
         Graderingsdager: 'Ikke implementert',
         'Fedrekvote tilogmed': 'Ikke implementert',
         'Mødrekvote tilogmed': 'Ikke implementert',
-        'Rettighet fra dato': datoVerbose(utledRettighetFraDato(foreldrePenger)).sammensatt,
+        'Rettighet fra dato': datoVerbose(utledFraDatoForRettighet(foreldrePenger)).sammensatt,
         Restdager: foreldrePenger.restDager,
         Maksdato: utledMaksDato(foreldrePenger),
         Arbeidskategori: 'Ikke implementert'

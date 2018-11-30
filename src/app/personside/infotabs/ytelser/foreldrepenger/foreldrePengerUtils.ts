@@ -5,7 +5,7 @@ import { dateComparator } from '../../../../../utils/dateUtils';
 import { loggError } from '../../../../../utils/frontendLogger';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
-export function utledRettighetFraDato(foreldrepenger: Foreldrepengerrettighet): Date {
+export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerrettighet): Date {
     return foreldrepenger.periode
         .map(periode => new Date(periode.foreldrepengerFom))
         .sort(dateComparator)[0];

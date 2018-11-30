@@ -4,7 +4,7 @@ import {
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
 import { aremark } from '../../../../../mock/person/aremark';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { utledMaksDato, utledRettighetFraDato } from './foreldrePengerUtils';
+import { utledMaksDato, utledFraDatoForRettighet } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
 const randomForeldrepengerettighet = getForeldrepengerrettighetMock(aremark.fødselsnummer);
@@ -23,7 +23,7 @@ test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
         }]
     };
 
-    const resultat = utledRettighetFraDato(foreldrepengeRettighet);
+    const resultat = utledFraDatoForRettighet(foreldrepengeRettighet);
 
     expect(resultat.toString()).toEqual(new Date('2010-01-01').toString());
 });
