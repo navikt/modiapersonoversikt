@@ -9,7 +9,7 @@ import { Loaded, RestReducer } from '../redux/restReducers/restReducer';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
-interface InnholdslasterProps {
+export interface InnholdslasterProps {
     children?: ReactNode;
     avhengigheter: RestReducer<object>[];
     spinnerSize?: SpinnerSize;

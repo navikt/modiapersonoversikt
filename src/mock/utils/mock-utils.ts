@@ -23,3 +23,5 @@ export function fyllRandomListe<T>(dataGen: () => T, max: number): Array<T> {
     }
     return liste;
 }
+
+export const backendDatoformat: string = 'YYYY-MM-DD';
