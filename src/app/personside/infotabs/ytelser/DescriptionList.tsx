@@ -4,16 +4,16 @@ import theme from '../../../../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
-    entries: DescriptionListEntry;
+    entries: DescriptionListEntries;
 }
 
-type DescriptionlistEntryType = string | number | null;
+type DescriptionlistEntry = string | number | null;
 
-export interface DescriptionListEntry {
-    [name: string]: DescriptionlistEntryType;
+export interface DescriptionListEntries {
+    [name: string]: DescriptionlistEntry;
 }
 
-function getDescriptionlistEntry(term: string, description: DescriptionlistEntryType) {
+function getDescriptionlistEntry(term: string, description: DescriptionlistEntry) {
     return (
         <div key={term}>
             <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
@@ -22,7 +22,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
     );
 }
 
-function createDescriptionListEntries(valuePairs: DescriptionListEntry) {
+function createDescriptionListEntries(valuePairs: DescriptionListEntries) {
     return Object.keys(valuePairs).map(key =>
         getDescriptionlistEntry(key, valuePairs[key])
     );
