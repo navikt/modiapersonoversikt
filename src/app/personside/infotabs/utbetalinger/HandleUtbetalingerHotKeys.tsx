@@ -5,10 +5,11 @@ import { AnyAction, Dispatch } from 'redux';
 import {
     setEkspanderYtelse,
     setNyYtelseIFokus
-} from '../../../../redux/utbetalinger/utbetalingerStateReducer';
+} from '../../../../redux/utbetalinger/utbetalingerReducer';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -47,15 +48,19 @@ class HandleUtbetalingerHotKeys extends React.Component<Props> {
     handleKeyDown(event: React.KeyboardEvent) {
         switch (event.which) {
             case 13:
+                loggEvent('Hurtigtast', 'Utbetalinger', {type: 'Enter'});
                 this.handleEnter(event);
                 break;
             case 32:
+                loggEvent('Hurtigtast', 'Utbetalinger', {type: 'Space'});
                 this.handleSpace(event);
                 break;
             case 38:
+                loggEvent('Hurtigtast', 'Utbetalinger', {type: 'Pil Opp'});
                 this.settForrigeYtelseIFokus();
                 break;
             case 40:
+                loggEvent('Hurtigtast', 'Utbetalinger', {type: 'Pil Ned'});
                 this.settNesteYtelseIFokus();
                 break;
             default:

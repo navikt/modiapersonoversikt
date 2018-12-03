@@ -1,6 +1,7 @@
 import { RouteComponentProps, withRouter } from 'react-router';
 import * as React from 'react';
 import { paths } from '../routes/routing';
+import { loggEvent } from '../../utils/frontendLogger';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -35,6 +36,7 @@ class HandleBrukerprofilHotkeys extends React.Component<Props> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'b') {
+            loggEvent('Hurtigtast', 'Brukerprofil', {type: 'Alt + B'});
             this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}`);
         }
     }

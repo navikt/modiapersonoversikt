@@ -19,7 +19,7 @@ interface Props {
 const Wrapper = styled<{ open: boolean; hasHeader: boolean }, 'div'>('div')`
   transition: .5s;
   padding: ${props => props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`};
-  ${props => props.open && theme.ekspandert};
+  ${props => props.open && theme.gråttPanel};
   ${props => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
 `;
 

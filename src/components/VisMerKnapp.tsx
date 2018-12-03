@@ -41,13 +41,14 @@ interface Props {
     onClick: (event: React.MouseEvent) => void;
     valgt: boolean;
     children: React.ReactNode;
+    ariaDescription: string;
 }
 
 function VisMerKnapp(props: Props) {
     return (
         <Wrapper valgt={props.valgt} onClick={props.onClick}>
             {props.children}
-            <Knapp onClick={props.onClick} aria-selected={props.valgt}>
+            <Knapp onClick={props.onClick} aria-selected={props.valgt} aria-label={props.ariaDescription}>
                 <HoyreChevron stor={true}/>
             </Knapp>
         </Wrapper>

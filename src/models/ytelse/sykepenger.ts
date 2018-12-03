@@ -16,9 +16,9 @@ export interface Sykmeldingsperiode {
     unntakAktivitet?: string;
     forsikring?: Forsikring;
     sykmeldinger: Sykmelding[];
-    historiskeUtbetalinger?: HistoriskUtbetaling[];
-    kommendeUtbetalinger?: KommendeUtbetaling[];
-    utbetalingerPåVent?: UtbetalingPåVent[];
+    historiskeUtbetalinger: HistoriskUtbetaling[];
+    kommendeUtbetalinger: KommendeUtbetaling[];
+    utbetalingerPåVent: UtbetalingPåVent[];
     bruker: string;
     midlertidigStanset?: string;
 }
@@ -36,7 +36,7 @@ export interface Sykmelding {
     sykmeldt: Periode;
     sykmeldingsgrad: number;
     gjelderYrkesskade?: Yrkesskade;
-    gradAvSykmeldingListe?: Gradering[];
+    gradAvSykmeldingListe: Gradering[];
 }
 
 export interface Yrkesskade {
