@@ -18,7 +18,15 @@ const CustomStyling = styled.nav`
 function LenkepanelPersonoversikt(props: Props) {
     return (
         <CustomStyling>
-            <LenkepanelBase href={props.url}>
+            <LenkepanelBase
+                href={props.url}
+                linkCreator={(htmlProps: React.HTMLProps<HTMLAnchorElement>) =>
+                    <a
+                        target={'_blank'}
+                        rel={'noopener noreferrer'}
+                        {...htmlProps}
+                    />}
+            >
                 {props.children}
             </LenkepanelBase>
         </CustomStyling>
