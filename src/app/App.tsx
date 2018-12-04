@@ -14,6 +14,7 @@ import Eventlistener from './Eventlistener';
 import ModalWrapper from 'nav-frontend-modal';
 import { Person, PersonRespons } from '../models/person/person';
 import { isLoaded, Loaded } from '../redux/restReducers/restReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 if (mockEnabled) {
     setupMock();
@@ -21,7 +22,7 @@ if (mockEnabled) {
 
 const store = createStore(
     reducers,
-    applyMiddleware(thunk)
+    composeWithDevTools(applyMiddleware(thunk))
 );
 
 export const PersonContext = React.createContext<string | undefined>(undefined);
