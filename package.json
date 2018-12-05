@@ -107,7 +107,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "jest-enzyme": "^6.0.2",
     "jest-fetch-mock": "^1.6.5",
-    "jest-styled-components": "^5.0.1",
+    "jest-styled-components": "7.0.0-2",
     "less": "^3.7.1",
     "less-plugin-npm-import": "^2.1.0",
     "react-redux": "^5.0.7",
