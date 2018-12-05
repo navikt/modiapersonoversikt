@@ -4,7 +4,7 @@ import { theme } from '../../styles/personOversiktTheme';
 export const LayoutWrapper = styled.div`
     width: 100vw;
     flex-grow: 1;
-    animation: ${theme.animation.fadeIn};
+    ${theme.animation.fadeIn};
     display: flex;
     flex-flow: row nowrap;
     > * {
@@ -16,7 +16,10 @@ export const LayoutWrapper = styled.div`
     }
 `;
 
-export const VenstreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'section'>('section')`
+interface StyleProps {
+    dialogPanelEkspandert?: boolean;
+}
+export const VenstreKolonne = styled.section<StyleProps>`
     width: ${props => props.dialogPanelEkspandert ? '50%' : '70%' };
     padding: ${theme.margin.layout};
     display: flex;
@@ -26,7 +29,7 @@ export const VenstreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'sect
     }
 `;
 
-export const HøyreKolonne = styled<{ dialogPanelEkspandert?: boolean; }, 'section'>('section')`
+export const HøyreKolonne = styled.section<StyleProps>`
     width: ${props => props.dialogPanelEkspandert ? '50%' : '30%' };
     background-color: white;
     box-shadow: 0 0 1rem 0 ${theme.color.bakgrunn};

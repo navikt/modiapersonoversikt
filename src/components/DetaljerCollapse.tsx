@@ -16,20 +16,20 @@ interface Props {
     knappPaTopp?: boolean;
 }
 
-const Wrapper = styled<{ open: boolean; hasHeader: boolean }, 'div'>('div')`
+const Wrapper = styled.div<{ open: boolean; hasHeader: boolean }>`
   transition: .5s;
   padding: ${props => props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`};
   ${props => props.open && theme.gråttPanel};
   ${props => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
 `;
 
-const CollapseAnimasjon = styled<{ open: boolean }, 'div'>('div')`
+const CollapseAnimasjon = styled.div<{ open: boolean }>`
   transition: .5s;
   padding: 0 ${theme.margin.px20};
   ${props => props.open && 'padding: 0'};
 `;
 
-const KnappWrapper = styled<{ open: boolean }, 'button'>('button')`
+const KnappWrapper = styled.button<{ open: boolean }>`
   border: none;
   padding: .1rem .2rem;
   border-radius: ${theme.borderRadius.knapp};

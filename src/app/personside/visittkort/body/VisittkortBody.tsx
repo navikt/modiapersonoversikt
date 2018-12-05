@@ -78,7 +78,7 @@ function ThreeColumnLayout(person: Person) {
 
 class VisittkortBody extends Component<VisittkortBodyProps> {
 
-    private visittKortBodyRef: HTMLDivElement;
+    private visittKortBodyRef = React.createRef<HTMLDivElement>();
 
     constructor(props: VisittkortBodyProps) {
         super(props);
@@ -95,7 +95,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
         this.forceUpdate();
     }
     getComponentWidth() {
-        return this.visittKortBodyRef ? this.visittKortBodyRef.clientWidth : 0;
+        return this.visittKortBodyRef.current ? this.visittKortBodyRef.current.clientWidth : 0;
     }
     getColumnLayout(numberOfColumns: number) {
         switch (numberOfColumns) {
@@ -120,7 +120,7 @@ class VisittkortBody extends Component<VisittkortBodyProps> {
                 <VisittkortBodyWrapper
                     role="region"
                     aria-label="Visittkortdetaljer"
-                    innerRef={ref => this.visittKortBodyRef = ref}
+                    ref={this.visittKortBodyRef}
                 >
                     {columnLayOut}
                 </VisittkortBodyWrapper>

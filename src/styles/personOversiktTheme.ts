@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
     from { opacity: 0 }
@@ -55,7 +55,7 @@ export const theme = {
         skilleSvak: `solid ${pxToRem(1)} #c6c2bf;`
     },
     animation: {
-        fadeIn: `${fadeIn} .2s ease-out`
+        fadeIn: css`animation: ${fadeIn} .3s ease-out`
     },
     focus: 'outline: none; box-shadow: 0 0 0 0.1875rem #FFBD66;',
     visuallyHidden: `

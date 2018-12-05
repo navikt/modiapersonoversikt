@@ -69,7 +69,7 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
         `;
 
         return (
-            <PlaceholderDiv innerRef={(ref: HTMLDivElement) => this.node = ref}>
+            <PlaceholderDiv ref={(ref: HTMLDivElement) => this.node = ref}>
                 <VerticalTitle>{this.props.name}</VerticalTitle>
             </PlaceholderDiv>
         );

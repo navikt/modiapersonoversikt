@@ -3,7 +3,7 @@ import { theme } from '../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 
-const Wrapper = styled<{ valgt: boolean }, 'div'>('div')`
+const Wrapper = styled.div<{ valgt: boolean }>`
     padding: ${theme.margin.px20};
     display: flex;
     align-items: center;

@@ -7,7 +7,7 @@ const StartBildeLayout = styled.div`
     flex-grow: 1;
     flex-flow: column wrap;
     align-items: center;
-    animation: ${theme.animation.fadeIn};
+    ${theme.animation.fadeIn};
     > * {
         margin-bottom: 2em;
         min-width: 20em;

@@ -6,7 +6,7 @@ const FillCenterAndFadeIn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: ${theme.animation.fadeIn};
+    ${theme.animation.fadeIn};
     > * { flex: 0 1 25rem; display: flex; justify-content: center; } /* IE-11 fix */
 `;
 

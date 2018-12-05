@@ -83,7 +83,7 @@ function hentNavn(navn: Navn) {
 
 class VisittkortHeader extends React.Component<Props> {
 
-    private navneLinjeRef = React.createRef<HTMLElement>();
+    private navneLinjeRef = React.createRef<HTMLSpanElement>();
 
     componentDidMount() {
         if (this.navneLinjeRef.current && !this.props.person.sikkerhetstiltak) {
