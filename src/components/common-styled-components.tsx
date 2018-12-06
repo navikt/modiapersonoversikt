@@ -26,7 +26,7 @@ export const Bold = styled.span`
   font-weight: bold;
 `;
 
-export const BulletPoint = styled<{ showBulletPoint: boolean, color: string }, 'div'>('div')`
+export const BulletPoint = styled.div<{ showBulletPoint: boolean, color: string }>`
   position: relative;
   transition: .3s;
   ${props => props.showBulletPoint && 'padding-left: 1.5rem;'}

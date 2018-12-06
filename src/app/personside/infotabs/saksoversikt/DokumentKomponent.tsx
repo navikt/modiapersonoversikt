@@ -160,7 +160,7 @@ class DokumentKomponent extends React.Component<Props> {
                 <Wrapper
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(() => this.handleClickOnDokument(event))}
-                    innerRef={this.dokumentRef}
+                    ref={this.dokumentRef}
                 >
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}

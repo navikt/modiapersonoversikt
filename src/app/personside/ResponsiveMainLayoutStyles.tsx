@@ -23,7 +23,7 @@ export const HøyreKolonne = styled(HøyreKolonneBase)`
     order: 2;
 `;
 
-const SideKnappContainer = styled<{ stickToRight: boolean }, 'nav'>('nav')`
+const SideKnappContainer = styled.nav<{ stickToRight: boolean }>`
   display: flex;
   @media not all and (${theme.media.smallScreen}){
     display: none;

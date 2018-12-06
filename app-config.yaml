@@ -1,11 +1,22 @@
 image: navikt/modiapersonoversikt
+replicas:
+  min: 2
+  max: 4
+  cpuThresholdPercentage: 50
 port: 80
-team: oppfolging
+healthcheck:
+  liveness:
+    path: isAlive
+    initialDelay: 10
+  readiness:
+    path: isReady
+    initialDelay: 10
 fasitResources:
   used:
     - alias: loadbalancer:modiapersonoversikt
       resourceType: loadbalancerconfig
     - alias: iadecorator-js
       resourceType: restservice
+team: oppfolging
 alertProfiles:
 - basic

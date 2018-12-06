@@ -29,7 +29,7 @@ class SikkerhetstiltakEtikett extends React.Component<{}> {
         return (
             <Styling
                 tabIndex={-1}
-                innerRef={this.etikettRef}
+                ref={this.etikettRef}
                 role="alert"
                 aria-live="assertive"
             >

@@ -24,7 +24,7 @@ const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  animation: ${theme.animation.fadeIn};
+  ${theme.animation.fadeIn};
 `;
 
 const HeaderStyle = styled.section`
@@ -131,7 +131,7 @@ function TilbakeLenke({fnr}: { fnr: string }) {
 
 class Header extends React.PureComponent<{ person: Person }> {
 
-    private ref = React.createRef<HTMLElement>();
+    private ref = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
         if (this.ref.current) {
@@ -145,7 +145,7 @@ class Header extends React.PureComponent<{ person: Person }> {
             <HeaderStyle>
                 <TilbakeLenke fnr={person.fødselsnummer}/>
                 <HeaderContent>
-                    <Fokus innerRef={this.ref} tabIndex={-1}>
+                    <Fokus ref={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
                     </Fokus>
                     <div>

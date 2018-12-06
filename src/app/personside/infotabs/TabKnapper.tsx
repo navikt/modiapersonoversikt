@@ -30,7 +30,7 @@ interface TabKnappProps {
     valgt: boolean;
 }
 
-const TabKnapp = styled<TabKnappProps, 'button'>('button')`
+const TabKnapp = styled.button<TabKnappProps>`
     width: 100%;
     box-sizing: border-box;
     background-color: transparent;
