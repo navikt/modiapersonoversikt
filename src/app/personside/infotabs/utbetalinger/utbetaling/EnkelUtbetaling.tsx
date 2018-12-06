@@ -66,8 +66,8 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.PureComponent<Props> {
 
-    private printButtonWrapperRef = React.createRef<HTMLElement>();
-    private utbetalingRef = React.createRef<HTMLDivElement>();
+    private printButtonWrapperRef = React.createRef<HTMLSpanElement>();
+    private utbetalingRef = React.createRef<HTMLLIElement>();
     private print: () => void;
 
     constructor(props: Props) {
@@ -122,7 +122,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                     <UtbetalingStyle
                         onClick={(event: React.MouseEvent<HTMLElement>) =>
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
-                        innerRef={this.utbetalingRef}
+                        ref={this.utbetalingRef}
                         tabIndex={0}
                         onFocus={this.props.setYtelseIFokus}
                     >

@@ -7,7 +7,7 @@ interface StyleProps {
     direction?: 'left' | 'right' | 'up' | 'down';
 }
 
-const KnappWrapper = styled<StyleProps, 'button'>('button')`
+const KnappWrapper = styled.button<StyleProps>`
   width:  ${props => props.width || '10%'};
   height:  ${props => props.width || '10%'};
   border: none;

@@ -41,7 +41,7 @@ const DelUtbetalingStyle = styled.li`
 
 class DelUtbetaling extends React.PureComponent<Props> {
 
-    private ytelseRef = React.createRef<HTMLDivElement>();
+    private ytelseRef = React.createRef<HTMLLIElement>();
 
     constructor(props: Props) {
         super(props);
@@ -77,7 +77,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
         return (
             <DelUtbetalingStyle
                 onClick={() => cancelIfHighlighting(this.toggleVisDetaljer)}
-                innerRef={this.ytelseRef}
+                ref={this.ytelseRef}
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >

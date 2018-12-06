@@ -68,7 +68,7 @@ class VisittkortContainer extends React.Component<Props> {
                     />
                     <VisittkortBodyWrapper
                         tabIndex={tabIndexForFokus}
-                        innerRef={this.detaljerRef}
+                        ref={this.detaljerRef}
                         className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper"
                     >
                         <UnmountClosed isOpened={erApnet}>

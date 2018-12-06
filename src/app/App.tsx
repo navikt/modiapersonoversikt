@@ -28,7 +28,7 @@ export const PersonContext = React.createContext<string | undefined>(undefined);
 
 class App extends React.Component<{}> {
 
-    private appRef = React.createRef<HTMLElement>();
+    private appRef = React.createRef<HTMLDivElement>();
 
     constructor(props: {}) {
         super(props);
@@ -57,7 +57,7 @@ class App extends React.Component<{}> {
                 }
             >
                 <Provider store={store}>
-                    <AppWrapper innerRef={this.appRef}>
+                    <AppWrapper ref={this.appRef}>
                         <nav id="header"/>
                         <BrowserRouter>
                             <Content>
