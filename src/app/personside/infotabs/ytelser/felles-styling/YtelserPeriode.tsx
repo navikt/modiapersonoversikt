@@ -2,8 +2,8 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
-import { Bold, Uppercase } from '../../../../components/common-styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
+import { Bold, Uppercase } from '../../../../../components/common-styled-components';
 
 interface Props {
     tittel: string;

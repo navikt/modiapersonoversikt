@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledFraDatoForRettighet, utledMaksDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
-import DescriptionList from '../DescriptionList';
-import YtelserBullet from '../YtelserBullet';
-import { OversiktStyling } from '../CommonStylingYtelser';
+import DescriptionList from '../felles-styling/DescriptionList';
+import YtelserBullet from '../felles-styling/YtelserBullet';
+import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 
 interface Props {
     foreldrePenger: Foreldrepengerrettighet;

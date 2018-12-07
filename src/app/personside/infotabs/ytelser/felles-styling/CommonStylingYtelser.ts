@@ -1,4 +1,4 @@
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 
 export const OversiktStyling = styled.div`

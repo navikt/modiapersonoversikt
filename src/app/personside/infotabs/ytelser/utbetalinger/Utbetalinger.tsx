@@ -3,7 +3,7 @@ import { HistoriskUtbetaling, KommendeUtbetaling } from '../../../../../models/y
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import DescriptionList from '../DescriptionList';
+import DescriptionList from '../felles-styling/DescriptionList';
 import { GråttPanel } from '../../../../../components/common-styled-components';
 
 interface Props {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import theme from '../../../../styles/personOversiktTheme';
-import { BulletPoint } from '../../../../components/common-styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
+import { BulletPoint } from '../../../../../components/common-styled-components';
 import { Ingress } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 

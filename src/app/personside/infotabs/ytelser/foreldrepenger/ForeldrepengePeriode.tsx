@@ -3,8 +3,8 @@ import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepeng
 import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList from '../DescriptionList';
-import YtelserPeriode from '../YtelserPeriode';
+import DescriptionList from '../felles-styling/DescriptionList';
+import YtelserPeriode from '../felles-styling/YtelserPeriode';
 
 interface Props {
     periode: Foreldrepengerperiode;
