@@ -10,6 +10,7 @@ import Foreldrepenger from './ForeldrePenger';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -30,6 +31,10 @@ const Wrapper = styled.div`
   border-radius: ${theme.borderRadius.layout};
 `;
 
+const TittelStyle = styled.div`
+  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
+`;
+
 class ForeldrePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
@@ -42,6 +47,7 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
     render() {
         return (
             <Wrapper>
+                <TittelStyle><Undertittel>Foreldrepenger</Undertittel></TittelStyle>
                 <PlukkRestData restReducer={this.props.foreldrepengerReducer}>
                     {data => <Foreldrepenger foreldrePengerResponse={data}/>}
                 </PlukkRestData>
