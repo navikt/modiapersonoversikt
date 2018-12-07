@@ -13,5 +13,5 @@ ENTRYPOINT ["/entrypoint"]
 
 # using bash over sh for better signal-handling
 SHELL ["/bin/bash", "-c"]
-ADD run.sh /run.sh
+ADD run_docker.sh /run_docker.sh
 CMD /run_docker.sh
