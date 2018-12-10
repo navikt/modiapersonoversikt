@@ -11,7 +11,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY entrypoint.sh /entrypoint
 ENTRYPOINT ["/entrypoint"]
 
-# using bash over sh for better signal-handling
 SHELL ["/bin/ash", "-c"]
 ADD run.sh /run.sh
 RUN ["chmod", "+x", "/run.sh"]
