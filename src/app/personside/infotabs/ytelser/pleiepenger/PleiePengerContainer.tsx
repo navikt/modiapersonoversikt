@@ -10,6 +10,8 @@ import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
 import { Undertittel } from 'nav-frontend-typografi';
 import PlukkRestData from './PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import Pleiepenger from './Pleiepenger';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -48,7 +50,14 @@ class PleiePengerContainer extends React.PureComponent<Props> {
             <Wrapper>
                 <TittelStyle><Undertittel>Pleiepenger</Undertittel></TittelStyle>
                 <PlukkRestData restReducer={this.props.pleiepengerReducer}>
-                    {data => <div>{JSON.stringify(data.pleiepenger)}</div>}
+                    {data => {
+                        if (!data.pleiepenger[0]) {
+                            return <AlertStripeInfo>Ingen pleiepenger funnet for brukeren.</AlertStripeInfo>;
+                        }
+                        return data.pleiepenger.map((pleiepengeRettighet, index) => (
+                            <Pleiepenger key={index} pleiepenger={pleiepengeRettighet}/>
+                        ));
+                    }}
                 </PlukkRestData>
             </Wrapper>
         );
