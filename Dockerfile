@@ -12,6 +12,7 @@ COPY entrypoint.sh /entrypoint
 ENTRYPOINT ["/entrypoint"]
 
 # using bash over sh for better signal-handling
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/ash", "-c"]
 ADD run.sh /run.sh
+RUN ["chmod", "+x", "/run.sh"]
 CMD /run.sh

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
  _shutdown_() {
   # https://github.com/kubernetes/contrib/issues/1140
