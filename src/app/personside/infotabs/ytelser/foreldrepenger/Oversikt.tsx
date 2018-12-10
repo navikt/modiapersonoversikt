@@ -1,22 +1,14 @@
 import * as React from 'react';
 import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
-import theme from '../../../../../styles/personOversiktTheme';
-import { utledMaksDato, utledFraDatoForRettighet } from './foreldrePengerUtils';
+import { utledFraDatoForRettighet, utledMaksDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
-import styled from 'styled-components';
-import DescriptionList from '../DescriptionList';
-import YtelserBullet from '../YtelserBullet';
+import DescriptionList from '../felles-styling/DescriptionList';
+import YtelserBullet from '../felles-styling/YtelserBullet';
+import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 
 interface Props {
     foreldrePenger: Foreldrepengerrettighet;
 }
-
-const Wrapper = styled.div`
-    margin: 0 ${theme.margin.px20} ${theme.margin.px20};
-  > *:not(:first-child) {
-    border-top: ${theme.border.skilleDashed};
-  }
-`;
 
 function Oversikt({foreldrePenger}: Props) {
 
@@ -43,14 +35,14 @@ function Oversikt({foreldrePenger}: Props) {
     };
 
     return (
-        <Wrapper>
+        <OversiktStyling>
             <YtelserBullet tittel="Om foreldrepengeretten">
                 <DescriptionList entries={foreldrePengeRetten}/>
             </YtelserBullet>
             <YtelserBullet tittel="Om barnet">
                 <DescriptionList entries={barnet}/>
             </YtelserBullet>
-        </Wrapper>
+        </OversiktStyling>
     );
 }
 

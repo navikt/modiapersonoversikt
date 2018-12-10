@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
@@ -40,8 +40,8 @@ const ListStyling = styled.dl`
     }
     > div {
         margin-top: ${theme.margin.px30};
-        padding-right: 2rem;
-        flex: 0 0 50%;
+        padding-right: 1rem;
+        min-width: 13rem;
     }
 `;
 

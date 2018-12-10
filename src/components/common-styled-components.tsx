@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../styles/personOversiktTheme';
 
 export const AlignTextRight = styled.div`
   text-align: right;
@@ -40,4 +41,8 @@ export const BulletPoint = styled.div<{ showBulletPoint: boolean, color: string 
     transition: .3s;
     ${props => !props.showBulletPoint && 'opacity: 0'}
   }
+`;
+
+export const GråttPanel = styled.div`
+  ${theme.gråttPanel};
 `;
