@@ -26,14 +26,17 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
 }
 
 function getPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
+    const pleiepengeDager = 1300;
+    const forbrukteDager = navfaker.random.integer(pleiepengeDager);
+    const restDager = pleiepengeDager - forbrukteDager;
     return {
         barnet: navfaker.personIdentifikator.fødselsnummer(),
         omsorgsperson: fødselsnummer,
         andreOmsorgsperson: navfaker.personIdentifikator.fødselsnummer(),
-        restDagerFomIMorgen: navfaker.random.integer(100),
-        forbrukteDagerTomIDag: navfaker.random.integer(20),
-        pleiepengedager: navfaker.random.integer(200),
-        restDagerAnvist: navfaker.random.integer(50),
+        restDagerFomIMorgen: restDager,
+        forbrukteDagerTomIDag: forbrukteDager,
+        pleiepengedager: pleiepengeDager,
+        restDagerAnvist: restDager,
         perioder: fyllRandomListe<Pleiepengeperiode>(() => getPleiepengeperiode(), 10)
     };
 }

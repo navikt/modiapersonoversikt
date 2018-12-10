@@ -38,15 +38,16 @@ const LoadingBar = styled.div<{progress0_100: number}>`
   }
 `;
 
-function FrobrukteDager(props: Props) {
+function FrobrukteDager({pleiepenger}: Props) {
+    const progress = (pleiepenger.forbrukteDagerTomIDag / pleiepenger.pleiepengedager) * 100;
     return (
         <Wrapper>
             <Top>
                 <EtikettGrå tag="h3">Barnets dagkonto</EtikettGrå>
-                <Normaltekst><Bold>1300 dager</Bold></Normaltekst>
+                <Normaltekst><Bold>{pleiepenger.pleiepengedager} dager</Bold></Normaltekst>
             </Top>
-            <LoadingBar progress0_100={10}/>
-            <Normaltekst><Bold>35 forbrukte dager per i dag</Bold></Normaltekst>
+            <LoadingBar progress0_100={progress}/>
+            <Normaltekst><Bold>{pleiepenger.forbrukteDagerTomIDag} forbrukte dager per i dag</Bold></Normaltekst>
         </Wrapper>
     );
 }
