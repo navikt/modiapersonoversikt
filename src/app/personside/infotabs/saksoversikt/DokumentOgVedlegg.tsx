@@ -59,7 +59,11 @@ const KnappWrapper = styled.div`
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
-    return <object data={dokUrl} width={'100%'}/>;
+    return (
+        <object data={dokUrl} width={'100%'}>
+            <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>
+        </object>
+    );
 }
 
 function DokumentOgVedlegg(props: Props) {
