@@ -28,7 +28,10 @@ type Props = OwnProps & StateProps & DispatchProps;
 const Wrapper = styled.div`
   background-color: white;
   border-radius: ${theme.borderRadius.layout};
-  padding: ${theme.margin.px20};
+`;
+
+const TittelStyle = styled.div`
+  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
 `;
 
 class PleiePengerContainer extends React.PureComponent<Props> {
@@ -43,7 +46,7 @@ class PleiePengerContainer extends React.PureComponent<Props> {
     render() {
         return (
             <Wrapper>
-                <Undertittel>Pleiepenger</Undertittel>
+                <TittelStyle><Undertittel>Pleiepenger</Undertittel></TittelStyle>
                 <PlukkRestData restReducer={this.props.pleiepengerReducer}>
                     {data => <div>{JSON.stringify(data.pleiepenger)}</div>}
                 </PlukkRestData>
