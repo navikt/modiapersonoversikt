@@ -3,7 +3,8 @@ import { HistoriskUtbetaling, KommendeUtbetaling } from '../../../../../models/y
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import DescriptionList from '../DescriptionList';
+import DescriptionList from '../felles-styling/DescriptionList';
+import { GråttPanel } from '../../../../../components/common-styled-components';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -16,10 +17,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Panel = styled.div`
-  ${theme.gråttPanel};
-`;
-
 function Utbetalinger(props: Props) {
 
     const dummyEntries  = {
@@ -30,14 +27,14 @@ function Utbetalinger(props: Props) {
 
     return (
         <Wrapper>
-            <Panel>
+            <GråttPanel>
                 <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
                 <DescriptionList entries={dummyEntries}/>
-            </Panel>
-            <Panel>
+            </GråttPanel>
+            <GråttPanel>
                 <Undertittel tag="h4">Histortiske utbetalinger</Undertittel>
                 <DescriptionList entries={dummyEntries}/>
-            </Panel>
+            </GråttPanel>
         </Wrapper>
     );
 }

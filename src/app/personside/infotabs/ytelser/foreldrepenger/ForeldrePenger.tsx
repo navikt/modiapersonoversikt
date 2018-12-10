@@ -3,17 +3,10 @@ import { ForeldrepengerResponse } from '../../../../../models/ytelse/foreldrepen
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
-import { Undertittel } from 'nav-frontend-typografi';
-import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
 
 interface Props {
     foreldrePengerResponse: ForeldrepengerResponse;
 }
-
-const TittelStyle = styled.div`
-  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
-`;
 
 function Foreldrepenger(props: Props) {
 
@@ -29,7 +22,6 @@ function Foreldrepenger(props: Props) {
 
     return (
         <>
-            <TittelStyle><Undertittel>Foreldrepenger</Undertittel></TittelStyle>
             <Oversikt foreldrePenger={foreldrepenger}/>
             <ul>
                 {perioder}
