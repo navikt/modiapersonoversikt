@@ -1,14 +1,14 @@
 import { Foreldrepengerperiode, Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
 import { Periode } from '../../../../../models/periode';
-import { dateComparator } from '../../../../../utils/dateUtils';
+import { ascendingDateComparator } from '../../../../../utils/dateUtils';
 import { loggError } from '../../../../../utils/frontendLogger';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
 export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerrettighet): Date {
     return foreldrepenger.periode
         .map(periode => new Date(periode.foreldrepengerFom))
-        .sort(dateComparator)[0];
+        .sort(ascendingDateComparator)[0];
 }
 
 function getAlleKommendeUtbetalinger(foreldrePenger: Foreldrepengerrettighet) {
@@ -35,7 +35,7 @@ export function utledMaksDato(foreldrePenger: Foreldrepengerrettighet): string {
         const alleVedtaksPerioder: Array<Periode> = getAlleVedtaksPerioder(alleKommendeUtbetalinger);
         const alleTilDatoerDecending =  alleVedtaksPerioder
             .map(periode => new Date(periode.til))
-            .sort(dateComparator)
+            .sort(ascendingDateComparator)
             .reverse();
         return datoVerbose(alleTilDatoerDecending[0]).sammensatt;
     } catch (error) {

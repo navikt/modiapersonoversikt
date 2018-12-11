@@ -7,7 +7,6 @@ import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/res
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleiepenger';
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
-import { Undertittel } from 'nav-frontend-typografi';
 import PlukkRestData from './PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import Pleiepenger from './Pleiepenger';
@@ -32,10 +31,6 @@ const Wrapper = styled.div`
   border-radius: ${theme.borderRadius.layout};
 `;
 
-const TittelStyle = styled.div`
-  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
-`;
-
 class PleiePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
@@ -48,7 +43,6 @@ class PleiePengerContainer extends React.PureComponent<Props> {
     render() {
         return (
             <Wrapper>
-                <TittelStyle><Undertittel>Pleiepenger</Undertittel></TittelStyle>
                 <PlukkRestData restReducer={this.props.pleiepengerReducer}>
                     {data => {
                         if (!data.pleiepenger[0]) {
