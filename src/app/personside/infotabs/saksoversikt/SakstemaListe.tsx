@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
-import { AppState } from '../../../../redux/reducers';
-import { connect } from 'react-redux';
 
-interface StateProps {
+interface Props {
+    sakstema: Sakstema[];
+    oppdaterSakstema: (sakstema: Sakstema) => void;
     valgtSakstema?: Sakstema;
 }
 
@@ -19,13 +19,17 @@ interface State {
 
 export const sakstemakodeAlle = 'ALLE';
 
-const SakstemaListe = styled.ol`
+const SakstemaListeStyle = styled.ol`
   > * {
     border-top: ${theme.border.skille};
   }
 `;
 
 const Wrapper = styled.div`
+  border-radius: ${theme.borderRadius.layout};
+  background-color: white;
+  min-width: 24rem;
+  flex-basis: 24rem;
   ol {
     list-style: none;
   }
@@ -56,12 +60,9 @@ const TittelWrapper = styled.div`
   padding: ${theme.margin.px20};
 `;
 
-interface GrupperteTemaProps {
-    sakstema: Sakstema[];
-    oppdaterSakstema: (sakstema: Sakstema) => void;
-}
+type GrupperteTemaProps = Props;
 
-function GrupperteTema(props: StateProps & GrupperteTemaProps) {
+function GrupperteTema(props: GrupperteTemaProps) {
     const sakstemakomponenter = props.sakstema.filter(sakstema => (
         sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
             <SakstemaComponent
@@ -73,9 +74,9 @@ function GrupperteTema(props: StateProps & GrupperteTemaProps) {
         )
     );
     return (
-        <SakstemaListe>
+        <SakstemaListeStyle>
             {sakstemakomponenter}
-        </SakstemaListe>
+        </SakstemaListeStyle>
     );
 }
 
@@ -105,16 +106,11 @@ function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     };
 }
 
-interface SakstemaVisningProps {
-    sakstemaResponse: SakstemaResponse;
-    oppdaterSakstema: (sakstema: Sakstema) => void;
-}
+class SakstemaListe extends React.Component<Props, State> {
 
-class SakstemaVisning extends React.Component<StateProps & SakstemaVisningProps, State> {
-
-    constructor(props: StateProps & SakstemaVisningProps) {
+    constructor(props: Props) {
         super(props);
-        const aggregert = aggregertSakstema(props.sakstemaResponse.resultat);
+        const aggregert = aggregertSakstema(props.sakstema);
         this.state = {
             aggregertSakstema: aggregert
         };
@@ -126,7 +122,7 @@ class SakstemaVisning extends React.Component<StateProps & SakstemaVisningProps,
     render() {
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
             hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        const sortertSakstema = this.props.sakstemaResponse.resultat.sort(sorterPåHendelse);
+        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
 
         if (sortertSakstema.length === 0) {
             return (
@@ -153,10 +149,4 @@ class SakstemaVisning extends React.Component<StateProps & SakstemaVisningProps,
     }
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        valgtSakstema: state.saksoversikt.valgtSakstema
-    };
-}
-
-export default connect(mapStateToProps)(SakstemaVisning);
+export default SakstemaListe;

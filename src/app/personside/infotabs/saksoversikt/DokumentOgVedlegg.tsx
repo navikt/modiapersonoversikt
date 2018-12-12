@@ -10,13 +10,8 @@ import { PersonContext } from '../../../App';
 import { AppState } from '../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import Lukknapp from 'nav-frontend-lukknapp';
-
-interface OwnProps {
-    harTilgang: boolean;
-    onChange: (valgtDokument: Dokument) => void;
-}
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -25,10 +20,11 @@ interface StateProps {
 }
 
 interface DispatchProps {
+    setEnkeltDokument: (valgtDokument: Dokument) => void;
     lukkDokument: () => void;
 }
 
-type Props = DispatchProps & StateProps & OwnProps;
+type Props = DispatchProps & StateProps;
 
 const Content = styled.div`
   flex-grow: 1;
@@ -67,14 +63,6 @@ function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: st
 }
 
 function DokumentOgVedlegg(props: Props) {
-    if (!props.harTilgang) {
-        return (
-            <AlertWrapper>
-                <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>
-            </AlertWrapper>
-        );
-    }
-
     const {valgtDokument, valgtTab} = props;
     if (!valgtDokument || !valgtTab) {
         return (
@@ -97,7 +85,7 @@ function DokumentOgVedlegg(props: Props) {
             <Header>
                 <TabsPure
                     tabs={tabProps}
-                    onChange={(event, index) => props.onChange(tabs[index])}
+                    onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
                 />
                 <KnappWrapper>
                     <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
@@ -132,7 +120,8 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        lukkDokument: () => dispatch(settVisDokument(false))
+        lukkDokument: () => dispatch(settVisDokument(false)),
+        setEnkeltDokument: (enkeltdokument: Dokument) => dispatch(settValgtEnkeltdokument(enkeltdokument))
     };
 }
 

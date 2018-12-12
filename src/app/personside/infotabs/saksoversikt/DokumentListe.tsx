@@ -10,14 +10,14 @@ import DokumentKomponent from './DokumentKomponent';
 import { Bold, Uppercase } from '../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
-import { AvsenderFilter } from './SaksoversiktContainer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import ViktigÅVite from './viktigavite/viktigavite';
+import { DokumentAvsenderFilter } from '../../../../redux/saksoversikt/types';
 
 interface Props {
-    sakstema?: Sakstema;
-    avsenderFilter: AvsenderFilter;
-    toggleFilter: (key: keyof AvsenderFilter) => void;
+    valgtSakstema?: Sakstema;
+    avsenderFilter: DokumentAvsenderFilter;
+    oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
 }
 
 interface DokumentGruppeProps {
@@ -25,6 +25,13 @@ interface DokumentGruppeProps {
     harTilgang: boolean;
     sakstemakode: string;
 }
+
+const DokumentListeStyling = styled.section`
+  border-radius: ${theme.borderRadius.layout};
+  background-color: white;
+  position: relative;
+  flex-grow: 1;
+`;
 
 const Header = styled.section`
   display: flex;
@@ -107,7 +114,7 @@ function årForDokument(dok: DokumentMetadata) {
     return `${dok.dato.år}`;
 }
 
-function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFilter) {
+function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvsenderFilter) {
     switch (avsender) {
         case Entitet.Sluttbruker:
             return avsenderfilter.fraBruker;
@@ -118,7 +125,7 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: AvsenderFil
     }
 }
 
-function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter) {
+function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: DokumentAvsenderFilter) {
     const filtrerteDokumenter = sakstema.dokumentMetadata.filter(metadata =>
         hentRiktigAvsenderfilter(metadata.avsender, avsenderFilter));
 
@@ -161,8 +168,8 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: AvsenderFilter)
     );
 }
 
-function DokumenterVisning(props: Props) {
-    if (!props.sakstema) {
+function DokumentListe(props: Props) {
+    if (!props.valgtSakstema) {
         return null;
     }
 
@@ -171,33 +178,33 @@ function DokumenterVisning(props: Props) {
             <Checkbox
                 label={'Bruker'}
                 checked={props.avsenderFilter.fraBruker}
-                onChange={() => props.toggleFilter('fraBruker')}
+                onChange={() => props.oppdaterAvsenderfilter({fraBruker: !props.avsenderFilter.fraBruker})}
             />
             <Checkbox
                 label={'NAV'}
                 checked={props.avsenderFilter.fraNav}
-                onChange={() => props.toggleFilter('fraNav')}
+                onChange={() => props.oppdaterAvsenderfilter({fraNav: !props.avsenderFilter.fraNav})}
             />
             <Checkbox
                 label={'Andre'}
                 checked={props.avsenderFilter.fraAndre}
-                onChange={() => props.toggleFilter('fraAndre')}
+                onChange={() => props.oppdaterAvsenderfilter({fraAndre: !props.avsenderFilter.fraAndre})}
             />
         </Form>
     );
 
-    const dokumentinnhold = hentDokumentinnhold(props.sakstema, props.avsenderFilter);
+    const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
 
     return (
-        <div>
+        <DokumentListeStyling>
             <Header>
-                <Undertittel>{props.sakstema.temanavn}</Undertittel>
+                <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
                 {checkboxer}
             </Header>
             <ViktigÅVite/>
             {dokumentinnhold}
-        </div>
+        </DokumentListeStyling>
     );
 }
 
-export default DokumenterVisning;
+export default DokumentListe;

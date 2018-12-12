@@ -13,7 +13,7 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import { sakstemakodeAlle } from './SakstemaVisning';
+import { sakstemakodeAlle } from './SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
 import {
     settVisDokument
