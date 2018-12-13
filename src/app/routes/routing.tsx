@@ -6,9 +6,11 @@ import { History } from 'history';
 import PersonsideContainer from '../personside/PersonsideContainer';
 import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
+import SaksoversiktStandalone from '../personside/infotabs/saksoversikt/SaksoversiktStandalone';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
+    saksoversikt: '/modiapersonoversikt/saksoversikt',
     brukerprofil: '/modiapersonoversikt/brukerprofil',
     basePath: '/modiapersonoversikt',
     legacyPersonPath: '/modiabrukerdialog/person',
@@ -25,6 +27,10 @@ function Routing(props: Props) {
     return (
         <Switch location={props.location}>
             <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
+            <Route
+                path={`${paths.saksoversikt}/:fodselsnummer/`}
+                render={routeProps => <SaksoversiktStandalone fødselsnummer={routeProps.match.params.fodselsnummer}/>}
+            />
             <Route
                 path={`${paths.brukerprofil}/:fodselsnummer/`}
                 render={routeProps => <Brukerprofilside fødselsnummer={routeProps.match.params.fodselsnummer}/>}

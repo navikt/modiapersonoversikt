@@ -165,7 +165,7 @@ class DokumentKomponent extends React.Component<Props> {
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
                         <div>
-                            <Innholdslaster avhengigheter={[this.props.bruker]}>
+                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
                                 <Normaltekst>
                                     {formaterDatoOgAvsender(brukersNavn, dokument)}
                                 </Normaltekst>
