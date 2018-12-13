@@ -1,11 +1,11 @@
 export interface PleiepengerResponse {
-    pleiepenger: Pleiepengerettighet[] | null;
+    pleiepenger: Pleiepengerettighet[];
 }
 
 export interface Pleiepengerettighet {
     barnet: string;
     omsorgsperson: string;
-    andreOmsorgsperson?: string;
+    andreOmsorgsperson: string | null;
     restDagerFomIMorgen: number;
     forbrukteDagerTomIDag: number;
     pleiepengedager: number;
@@ -22,23 +22,23 @@ export interface Pleiepengeperiode {
 
 export interface Arbeidsforhold {
     arbeidsgiverNavn: string;
-    arbeidsgiverKontonr?: string;
-    inntektsperiode?: string;
-    inntektForPerioden?: number;
-    refusjonTom?: string;
-    refusjonstype?: string;
+    arbeidsgiverKontonr: string | null;
+    inntektsperiode: string | null;
+    inntektForPerioden: number | null;
+    refusjonTom: string | null;
+    refusjonstype: string | null;
     arbeidsgiverOrgnr: string;
     arbeidskategori: string;
 }
 
 export interface Vedtak {
     periode: Periode;
-    kompensasjonsgrad?: number;
+    kompensasjonsgrad: number | null;
     utbetalingsgrad: number;
     anvistUtbetaling: string;
     bruttobeløp: number;
     dagsats: number;
-    pleiepengegrad?: number;
+    pleiepengegrad: number | null;
 }
 
 export interface Periode {
