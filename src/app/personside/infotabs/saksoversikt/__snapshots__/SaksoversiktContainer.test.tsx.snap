@@ -190,7 +190,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c16 > *:first-child {
-  background-color: #9bd0b0;
+  background-color: #cce1f3;
   padding: .2rem 0.625rem;
 }
 
