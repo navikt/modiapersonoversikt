@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { Person, PersonRespons } from '../../../models/person/person';
+import theme from '../../../styles/personOversiktTheme';
 
 interface OwnProps {
     personRespons: PersonRespons;
@@ -19,13 +20,14 @@ interface OwnProps {
 type Props = RouteComponentProps<{}> & OwnProps;
 
 const OpenTab = styled.div`
-  margin-top: 0.5em;
+  margin-top: ${theme.margin.px20};
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 `;
 
 const Section = styled.section`
+  margin-top: ${theme.margin.layout};
   flex-grow: 1;
   display: flex;
   flex-direction: column;
