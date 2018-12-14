@@ -12,11 +12,11 @@ export function pxToRem(px: number): string {
 
 export const theme = {
     color: {
-        lenkeSelected: '#66CBEC',
+        lenkeSelected: '#005b82',
         lenkeHover: '#C6C2BF',
         lenke: '#0067c5',
-        bakgrunn: '#e7e9e9',
-        kategori: '#9bd0b0',
+        bakgrunn: '#e9e7e7',
+        kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#78706a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
