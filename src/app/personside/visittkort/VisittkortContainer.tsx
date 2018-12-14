@@ -16,6 +16,7 @@ import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
+import { loggSkjermInfo } from '../../../utils/loggSkjermInfo';
 
 interface StateProps {
     UI: UIState;
@@ -36,6 +37,10 @@ type Props = StateProps & DispatchProps;
 class VisittkortContainer extends React.Component<Props> {
 
     private detaljerRef = React.createRef<HTMLDivElement>();
+
+    componentDidMount() {
+        loggSkjermInfo();
+    }
 
     componentDidUpdate(prevProps: Props) {
         const visittkortetBleÅpnet = !prevProps.UI.visittkort.apent && this.props.UI.visittkort.apent;
