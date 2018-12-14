@@ -16,7 +16,7 @@ import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { loggSkjermInfo } from '../../../utils/loggSkjermInfo';
+import { loggSkjermInfoDaglig } from '../../../utils/loggSkjermInfoDaglig';
 
 interface StateProps {
     UI: UIState;
@@ -39,7 +39,7 @@ class VisittkortContainer extends React.Component<Props> {
     private detaljerRef = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
-        loggSkjermInfo();
+        loggSkjermInfoDaglig();
     }
 
     componentDidUpdate(prevProps: Props) {
