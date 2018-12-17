@@ -1,6 +1,8 @@
 import { emptyStringToUndefined } from './frontendLogger';
 
-test('stipper ut felter som er tomme strings fordi kibana ikke håndterer det så bra', () => {
+test(
+    'mapper tomme strenger til undefined fordi grafana/influxdb/frontendlogger ikke ser ut til å håndtere det så bra',
+    () => {
     const testVerdier = {
         skalBli: 'Hei',
         skalVekk: ''
