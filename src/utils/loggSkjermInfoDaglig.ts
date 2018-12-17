@@ -1,8 +1,8 @@
 import { loggEvent } from './frontendLogger';
-import { default as Cookies } from 'universal-cookie';
+import Cookies from 'universal-cookie';
 import * as moment from 'moment';
 
-const cookies = new Cookies();
+const cookies = new Cookies({});
 const cookieNavn = 'loggScreenResolutionCookie';
 
 export function loggSkjermInfoDaglig() {
