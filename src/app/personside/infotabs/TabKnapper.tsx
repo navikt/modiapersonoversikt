@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/personOversiktTheme';
 
 interface TabPanelProps {
@@ -35,9 +35,9 @@ const TabKnapp = styled.button<TabKnappProps>`
     box-sizing: border-box;
     background-color: transparent;
     padding-top: 0.5em;
-    margin-top: 0.5em;
     border: none;
     border-bottom: 4px solid ${props => props.valgt ? theme.color.lenkeSelected : 'transparent'};
+    ${props => props.valgt && css`color: ${theme.color.lenkeSelected}`};
     text-align: center;
     cursor: pointer;
     transition: border 0.3s;

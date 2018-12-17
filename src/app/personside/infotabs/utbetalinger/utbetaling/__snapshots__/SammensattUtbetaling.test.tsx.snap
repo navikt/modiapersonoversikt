@@ -40,7 +40,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   content: '•';
   font-size: 4rem;
   line-height: 1.8rem;
-  color: #9bd0b0;
+  color: #cce1f3;
   -webkit-transition: .3s;
   transition: .3s;
 }
@@ -323,7 +323,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         >
           <div
             className="c10"
-            color="#9bd0b0"
+            color="#cce1f3"
           >
             <div
               className="c3"
@@ -574,7 +574,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         >
           <div
             className="c10"
-            color="#9bd0b0"
+            color="#cce1f3"
           >
             <div
               className="c3"

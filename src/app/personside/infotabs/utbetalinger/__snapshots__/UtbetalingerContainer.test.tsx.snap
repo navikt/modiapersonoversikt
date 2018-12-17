@@ -232,8 +232,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c27:focus {
+  position: relative;
   outline: none;
+}
+
+.c27:focus::after {
+  position: absolute;
+  top: 0;
+  content: '';
   box-shadow: 0 0 0 0.1875rem #FFBD66;
+  height: 100%;
+  width: 100%;
 }
 
 .c28 {
@@ -261,7 +270,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c24 > *:first-child {
-  background-color: #9bd0b0;
+  background-color: #cce1f3;
   padding: .2rem 1.25rem;
 }
 
