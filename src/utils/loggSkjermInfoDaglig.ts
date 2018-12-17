@@ -42,7 +42,8 @@ function loggInfo() {
         vindu: resolutionWindow,
         erKontaktsenter: erKontaktsenter(),
         enhet: getSaksbehandlerEnhet(),
-        browser: browser && `${browser.name}-${browser.version}` || undefined,
+        browser: browser && browser.name || undefined,
+        browserVersion: browser && browser.version || undefined,
         os: browser && browser.os || undefined
     };
 
