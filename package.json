@@ -26,12 +26,6 @@
     "build:svg": "cd src/svg/ && svgtoreact dir --force"
   },
   "dependencies": {
-    "@types/detect-browser": "^2.0.1",
-    "@types/faker": "^4.1.2",
-    "@types/fetch-mock": "^6.0.3",
-    "@types/prop-types": "^15.5.3",
-    "@types/react-modal": "^3.2.0",
-    "@types/styled-components": "^4.1.3",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "core-js": "^2.5.7",
@@ -89,9 +83,17 @@
     "redux-devtools-extension": "^2.13.7",
     "redux-thunk": "^2.3.0",
     "styled-components": "4.1.2",
+    "universal-cookie": "^3.0.7",
     "yet-another-fetch-mock": "^2.3.3"
   },
   "devDependencies": {
+    "@types/detect-browser": "^2.0.1",
+    "@types/faker": "^4.1.2",
+    "@types/fetch-mock": "^6.0.3",
+    "@types/prop-types": "^15.5.3",
+    "@types/react-modal": "^3.2.0",
+    "@types/styled-components": "^4.1.3",
+    "@types/universal-cookie": "^2.2.0",
     "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.11",
     "@types/enzyme-adapter-react-16": "^1.0.2",
