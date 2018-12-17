@@ -43,7 +43,7 @@ const UtbetalingStyle = styled.li`
   cursor: pointer;
   transition: .3s;
   &:focus {
-    ${theme.focus}
+    ${theme.focusOverlay}
   }
   @media print{
     list-style-type: none;
