@@ -1,10 +1,9 @@
 import { loggEvent } from './frontendLogger';
-import Cookies from 'universal-cookie';
 import * as moment from 'moment';
 import { detect } from 'detect-browser';
+import * as Cookies from 'js-cookie';
 
-const cookies = new Cookies({});
-const cookieNavn = 'loggScreenResolutionCookie';
+const cookieNavn = 'logResolution';
 
 export function loggSkjermInfoDaglig() {
     if (checkIfLoggedToday()) {
@@ -15,7 +14,7 @@ export function loggSkjermInfoDaglig() {
 }
 
 function checkIfLoggedToday() {
-    const cookie = cookies.get(cookieNavn);
+    const cookie = Cookies.get(cookieNavn);
     if (cookie) {
         return true;
     }
@@ -24,9 +23,9 @@ function checkIfLoggedToday() {
 
 function setLoggedTodayCookie() {
     const tomorrow = moment().add(1, 'day').hour(10).startOf('hour').toDate();
-    cookies.set(
+    Cookies.set(
         cookieNavn,
-        'Screen resolution was logged today',
+        'Screen resolution was reported ' + new Date().toDateString(),
         {
             expires: tomorrow
         });
@@ -43,7 +42,8 @@ function loggInfo() {
         vindu: resolutionWindow,
         erKontaktsenter: erKontaktsenter(),
         enhet: getSaksbehandlerEnhet(),
-        browser: browser && `${browser.name}-${browser.version}` || undefined
+        browser: browser && `${browser.name}-${browser.version}` || undefined,
+        os: browser && browser.os || undefined
     };
 
     loggEvent('LoggOppløsning', 'Maskinvare', tags);
@@ -66,7 +66,7 @@ function erKontaktsenter(): boolean | undefined {
 }
 
 function getSaksbehandlerEnhet(): string | undefined {
-    const allCookies: Cookie = cookies.getAll();
+    const allCookies: Cookie = Cookies.get();
     const cookienavn = Object.keys(allCookies).find(key => key.includes('saksbehandlerinnstillinger'));
     if (cookienavn) {
         return allCookies[cookienavn];
