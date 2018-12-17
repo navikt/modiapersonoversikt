@@ -1,6 +1,7 @@
 import { loggEvent } from './frontendLogger';
 import Cookies from 'universal-cookie';
 import * as moment from 'moment';
+import { detect } from 'detect-browser';
 
 const cookies = new Cookies({});
 const cookieNavn = 'loggScreenResolutionCookie';
@@ -36,11 +37,13 @@ function loggInfo() {
 
     const resolutionScreen = `${screen.width} x ${screen.height}`;
     const resolutionWindow = `${window.innerWidth} x ${window.innerHeight}`;
+    const browser = detect();
     const tags = {
         skjerm: resolutionScreen,
         vindu: resolutionWindow,
         erKontaktsenter: erKontaktsenter(),
-        enhet: getSaksbehandlerEnhet()
+        enhet: getSaksbehandlerEnhet(),
+        browser: browser && `${browser.name}-${browser.version}` || undefined
     };
 
     loggEvent('LoggOppløsning', 'Maskinvare', tags);
