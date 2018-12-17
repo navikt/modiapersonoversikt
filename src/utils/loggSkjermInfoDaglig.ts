@@ -36,7 +36,37 @@ function loggInfo() {
 
     const resolutionScreen = `${screen.width} x ${screen.height}`;
     const resolutionWindow = `${window.innerWidth} x ${window.innerHeight}`;
+    const tags = {
+        skjerm: resolutionScreen,
+        vindu: resolutionWindow,
+        erKontaktsenter: erKontaktsenter(),
+        enhet: getSaksbehandlerEnhet()
+    };
 
-    loggEvent(resolutionScreen, 'SkjermOppløsning');
-    loggEvent(resolutionWindow, 'VinduStørrelse');
+    loggEvent('LoggOppløsning', 'Maskinvare', tags);
+}
+
+interface Cookie {
+    [name: string]: string;
+}
+
+function erKontaktsenter(): boolean | undefined {
+    const enhet = getSaksbehandlerEnhet();
+    if (enhet) {
+        if (enhet.slice(0, 2) === '41') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return undefined;
+}
+
+function getSaksbehandlerEnhet(): string | undefined {
+    const allCookies: Cookie = cookies.getAll();
+    const cookienavn = Object.keys(allCookies).find(key => key.includes('saksbehandlerinnstillinger'));
+    if (cookienavn) {
+        return allCookies[cookienavn];
+    }
+    return undefined;
 }
