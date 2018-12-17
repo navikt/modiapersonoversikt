@@ -22,7 +22,7 @@ function checkIfLoggedToday() {
 }
 
 function setLoggedTodayCookie() {
-    const tomorrow = moment().add(1, 'day').startOf('day').toDate();
+    const tomorrow = moment().add(1, 'day').hour(10).startOf('hour').toDate();
     cookies.set(
         cookieNavn,
         'Screen resolution was logged today',
