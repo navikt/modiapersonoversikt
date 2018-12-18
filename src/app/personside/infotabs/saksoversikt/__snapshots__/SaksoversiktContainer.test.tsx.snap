@@ -241,10 +241,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding-right: 1rem;
 }
 
-.c0 {
-  display: block;
-}
-
 .c0 .visually-hidden {
   position: absolute !important;
   height: 1px;

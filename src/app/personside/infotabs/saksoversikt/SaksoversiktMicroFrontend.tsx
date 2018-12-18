@@ -53,7 +53,7 @@ const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
     }
 `;
 
-class SaksoversiktStandalone extends React.PureComponent<Props> {
+class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     componentDidMount() {
         if (isNotStarted(this.props.saksoversiktReducer)) {
@@ -92,4 +92,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SaksoversiktStandalone);
+export default connect(mapStateToProps, mapDispatchToProps)(SaksoversiktMicroFrontend);

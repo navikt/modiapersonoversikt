@@ -120,17 +120,17 @@ class SakstemaListe extends React.Component<Props, State> {
     }
 
     render() {
-        const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
-            hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
-        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
-
-        if (sortertSakstema.length === 0) {
+        if (this.props.sakstema.length === 0) {
             return (
                 <AlertStripeInfo>
                     Det finnes ingen saker for bruker.
                 </AlertStripeInfo>
             );
         }
+
+        const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>
+            hentDatoForSisteHendelse(b).getTime() - hentDatoForSisteHendelse(a).getTime();
+        const sortertSakstema = this.props.sakstema.sort(sorterPåHendelse);
 
         const komplettListe = [this.state.aggregertSakstema, ...sortertSakstema];
 

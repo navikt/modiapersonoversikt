@@ -6,7 +6,7 @@ import { History } from 'history';
 import PersonsideContainer from '../personside/PersonsideContainer';
 import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
-import SaksoversiktStandalone from '../personside/infotabs/saksoversikt/SaksoversiktStandalone';
+import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
@@ -29,7 +29,7 @@ function Routing(props: Props) {
             <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
             <Route
                 path={`${paths.saksoversikt}/:fodselsnummer/`}
-                render={routeProps => <SaksoversiktStandalone fødselsnummer={routeProps.match.params.fodselsnummer}/>}
+                render={routeProps => <SaksoversiktMicroFrontend fødselsnummer={routeProps.match.params.fodselsnummer}/>}
             />
             <Route
                 path={`${paths.brukerprofil}/:fodselsnummer/`}

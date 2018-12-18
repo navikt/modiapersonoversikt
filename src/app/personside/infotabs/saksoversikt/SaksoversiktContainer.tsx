@@ -43,7 +43,6 @@ type Props = StateProps & DispatchProps & OwnProps;
 export const saksoversiktMediaTreshold = '80rem';
 
 const SaksoversiktArticle = styled.article`
-  display: block;
   @media(min-width: ${saksoversiktMediaTreshold}) {
     display: flex;
     align-items: flex-start;
