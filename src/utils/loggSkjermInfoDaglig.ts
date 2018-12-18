@@ -33,13 +33,15 @@ function setLoggedTodayCookie() {
 
 function loggInfo() {
     const screen: Screen = window.screen;
-
-    const resolutionScreen = `${screen.width} x ${screen.height}`;
-    const resolutionWindow = `${window.innerWidth} x ${window.innerHeight}`;
     const browser = detect();
+
     const tags = {
-        skjerm: resolutionScreen,
-        vindu: resolutionWindow,
+        screen: `${screen.width} x ${screen.height}`,
+        window: `${window.innerWidth} x ${window.innerHeight}`,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
         erKontaktsenter: erKontaktsenter(),
         enhet: getSaksbehandlerEnhet(),
         browser: browser && browser.name || undefined,
@@ -47,7 +49,7 @@ function loggInfo() {
         os: browser && browser.os || undefined
     };
 
-    loggEvent('LoggOppløsning', 'Maskinvare', tags);
+    loggEvent('LoggSkjerminfo', 'Maskinvare', tags);
 }
 
 interface Cookie {
