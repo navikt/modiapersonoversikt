@@ -10,12 +10,21 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
 import theme from '../../../../styles/personOversiktTheme';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { settNyttTooltip } from '../../../../redux/uiReducers/toolTipReducer';
+import { connect } from 'react-redux';
 
-interface Props {
+interface OwnProps {
     person: Person;
     toggleVisittkort: (erApen?: boolean) => void;
     visittkortApent: boolean;
 }
+
+interface DispatchProps {
+    setTooltip: (tooltip: string) => void;
+}
+
+type Props = OwnProps & DispatchProps;
 
 const VisittkortHeaderDiv = styled.section`
   background-color: white;
@@ -85,14 +94,24 @@ class VisittkortHeader extends React.Component<Props> {
 
     private navneLinjeRef = React.createRef<HTMLSpanElement>();
 
+    constructor(props: Props) {
+        super(props);
+        this.toggleVisittkort = this.toggleVisittkort.bind(this);
+    }
+
     componentDidMount() {
         if (this.navneLinjeRef.current && !this.props.person.sikkerhetstiltak) {
             this.navneLinjeRef.current.focus();
         }
     }
 
+    toggleVisittkort() {
+        this.props.toggleVisittkort(!this.props.visittkortApent);
+        this.props.setTooltip('Hurtigtast åpne/lukke visittkort: Alt + N');
+    }
+
     render() {
-        const {person, toggleVisittkort, visittkortApent} = this.props;
+        const {person, visittkortApent} = this.props;
         const ikon = {
             ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
         };
@@ -101,7 +120,7 @@ class VisittkortHeader extends React.Component<Props> {
             <VisittkortHeaderDiv
                 role="region"
                 aria-label="Visittkort-hode"
-                onClick={() => toggleVisittkort(!visittkortApent)}
+                onClick={this.toggleVisittkort}
             >
 
                 <VenstreFelt>
@@ -127,7 +146,7 @@ class VisittkortHeader extends React.Component<Props> {
                 </HøyreFelt>
 
                 <ChevronStyling>
-                    <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
+                    <DetaljerKnapp onClick={this.toggleVisittkort} open={visittkortApent}>
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
@@ -138,4 +157,10 @@ class VisittkortHeader extends React.Component<Props> {
     }
 }
 
-export default VisittkortHeader;
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        setTooltip: (tooltip: string) => dispatch(settNyttTooltip(tooltip))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(VisittkortHeader);

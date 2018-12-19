@@ -10,7 +10,7 @@ interface Props {
 
 const Style = styled.div`
   position: fixed;
-  top: 5rem;
+  top: 20vh;
   left: 50vw;
   transform: translateX(-50%);
   background-color: #333;
@@ -20,14 +20,18 @@ const Style = styled.div`
   color: white;
   box-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.5);
   opacity: .8;
+  pointer-events: none;
   z-index: 1000;
 `;
 
 function ToolTip(props: Props) {
+    if (props.children === '' || !props.children) {
+        return null;
+    }
     return (
         <ShowThenHide>
             <Style>
-                <Normaltekst><Bold>{props.children || ''}</Bold></Normaltekst>
+                <Normaltekst><Bold>{props.children}</Bold></Normaltekst>
             </Style>
         </ShowThenHide>
     );

@@ -53,7 +53,7 @@ class ShowThenHide extends React.PureComponent<Props, State> {
 
     render() {
         if (this.state.show) {
-            return this.props.children;
+            return <div aria-live="polite">{this.props.children}</div>;
         }
         return null;
     }
