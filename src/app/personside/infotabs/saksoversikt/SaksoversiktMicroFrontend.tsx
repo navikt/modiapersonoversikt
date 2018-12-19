@@ -4,8 +4,8 @@ import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeContainer from './SakstemaListeContainer';
 import DokumentListeContainer from './DokumentListeContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
+import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
@@ -13,9 +13,18 @@ import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
+import { parseQueryParams } from '../../../../utils/url-utils';
+import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import {
+    settValgtDokument,
+    settValgtEnkeltdokument,
+    settValgtSakstema,
+    settVisDokument
+} from '../../../../redux/saksoversikt/actions';
 
 interface OwnProps {
     fødselsnummer: string;
+    queryParamString?: string;
 }
 
 interface StateProps {
@@ -27,6 +36,7 @@ interface StateProps {
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
+    velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -53,6 +63,22 @@ const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
     }
 `;
 
+function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string): Sakstema | undefined {
+    const funnetSakstemaListe = sakstemaListe.filter(sakstema => sakstema.temakode === sakstemaKode);
+    return funnetSakstemaListe.length > 0 ? funnetSakstemaListe[0] : undefined;
+}
+
+function hentUtDokumentMetadata(sakstema: Sakstema, journalpostId: string): DokumentMetadata | undefined {
+    return sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId);
+}
+
+function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: string): Dokument | undefined {
+    if (dokumentMetadata.hoveddokument.dokumentreferanse === dokumentId) {
+        return dokumentMetadata.hoveddokument;
+    }
+    return dokumentMetadata.vedlegg.find(vedlegg => vedlegg.dokumentreferanse === dokumentId);
+}
+
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     componentDidMount() {
@@ -61,6 +87,39 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
         }
         if (isNotStarted(this.props.personReducer)) {
             this.props.hentPerson(this.props.fødselsnummer);
+        }
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        const førsteUpdateEtterLasting =
+            isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
+        if (førsteUpdateEtterLasting && this.props.queryParamString) {
+            const queryParams = parseQueryParams(this.props.queryParamString);
+            const sakstemaKode = queryParams.sakstemaKode;
+            const journalId = queryParams.journalpostId;
+            const dokumentId = queryParams.dokumentId;
+
+            if (!(sakstemaKode && journalId && dokumentId)) {
+                return;
+            }
+
+            const sakstemaListe = (this.props.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat;
+            const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode);
+            if (!sakstema) {
+                return;
+            }
+
+            const dokumentMetadata = hentUtDokumentMetadata(sakstema, journalId);
+            if (!dokumentMetadata) {
+                return;
+            }
+
+            const dokument = hentUtValgtDokument(dokumentMetadata, dokumentId);
+            if (!dokument) {
+                return;
+            }
+
+            this.props.velgOgVis(sakstema, dokumentMetadata, dokument);
         }
     }
 
@@ -88,7 +147,13 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer)
+        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
+            dispatch(settValgtSakstema(sakstema));
+            dispatch(settValgtDokument(dokument));
+            dispatch(settVisDokument(true));
+            dispatch(settValgtEnkeltdokument(enkeltdokument));
+        }
     };
 }
 

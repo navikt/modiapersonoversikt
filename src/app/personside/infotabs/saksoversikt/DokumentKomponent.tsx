@@ -15,16 +15,15 @@ import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
 import { sakstemakodeAlle } from './SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
-import {
-    settVisDokument
-} from '../../../../redux/saksoversikt/actions';
+import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../utils/functionUtils';
 import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { settValgtDokument, settValgtEnkeltdokument } from '../../../../redux/saksoversikt/actions';
+import { Link } from 'react-router-dom';
+import { paths } from '../../../routes/routing';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -59,6 +58,10 @@ const InfoWrapper = styled.div`
   &:hover {
       background-color: ${theme.color.objektlisteHover};
     }
+`;
+
+const InnholdWrapper = styled.div`
+  flex-grow: 1;
 `;
 
 const VedleggStyle = styled.div`
@@ -96,10 +99,21 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
+function lagSaksoversiktLenke(props: Props) {
+    const brukersFnr = isLoaded(props.bruker)
+        ? (props.bruker.data as Person).fødselsnummer
+        : '';
+    const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
+    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
+    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
+}
+
 class DokumentKomponent extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
+    private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
         if (!this.hoveddokumentLinkRef.current) {
@@ -108,7 +122,8 @@ class DokumentKomponent extends React.Component<Props> {
 
         const lenkeTrykket = (event.target instanceof Node)
             && (this.hoveddokumentLinkRef.current.contains(event.target)
-                || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
+                || (this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target))
+                || (this.nyttVinduLinkRef.current && this.nyttVinduLinkRef.current.contains(event.target)));
 
         if (!lenkeTrykket) {
             this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
@@ -164,7 +179,7 @@ class DokumentKomponent extends React.Component<Props> {
                 >
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
-                        <div>
+                        <InnholdWrapper>
                             <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
                                 <Normaltekst>
                                     {formaterDatoOgAvsender(brukersNavn, dokument)}
@@ -179,7 +194,12 @@ class DokumentKomponent extends React.Component<Props> {
                             </a>
                             {vedlegg}
                             {saksvisning}
-                        </div>
+                        </InnholdWrapper>
+                        <span ref={this.nyttVinduLinkRef}>
+                            <Link to={lagSaksoversiktLenke(this.props)} target={'_blank'}>
+                                Åpne i eget vindu
+                            </Link>
+                        </span>
                     </InfoWrapper>
                 </Wrapper>
             </>
