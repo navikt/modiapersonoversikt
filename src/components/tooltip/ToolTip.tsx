@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Bold } from './common-styled-components';
-import ShowThenHide from './ShowThenHide';
+import { Bold } from '../common-styled-components';
+import ShowThenHide from '../ShowThenHide';
 
 interface Props {
     children: string;
