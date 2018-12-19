@@ -1,16 +1,16 @@
 import { copyCSSStyles } from './cssUtils';
 import * as React from 'react';
 import { guid } from 'nav-frontend-js-utils';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import NavLogo from '../svg/NavLogo';
 import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
 import { detect } from 'detect-browser';
 import ModalWrapper from 'nav-frontend-modal';
-import PrinterSVG from '../svg/PrinterSVG';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { PersonContext } from '../app/App';
 import { loggEvent } from './frontendLogger';
+import { Bold } from '../components/common-styled-components';
 
 interface Props {
     getPrintTrigger: (func: () => void) => void;
@@ -47,8 +47,10 @@ const Header = styled.div`
 `;
 
 const PrintPlaceholder = styled.div`
-    min-height: 20vh;
-    min-width: 20vw;
+    > *:first-child {
+      margin-bottom: 1rem;
+    }
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,8 +160,7 @@ class Printer extends React.Component<Props, State> {
                 >
                     <StyledIframe id={this.iFrameId} frameBorder={'0'}/>
                     <PrintPlaceholder>
-                        <PrinterSVG/>
-                        <Undertittel>Forbereder utskrift</Undertittel>
+                        <Normaltekst><Bold>Forbereder utskrift</Bold></Normaltekst>
                         <NavFrontendSpinner type="S"/>
                     </PrintPlaceholder>
                 </ModalWrapper>
