@@ -2,6 +2,7 @@ import { loggEvent } from './frontendLogger';
 import * as moment from 'moment';
 import { detect } from 'detect-browser';
 import * as Cookies from 'js-cookie';
+import { roundToNearest20 } from './math';
 
 const cookieNavn = 'logResolution';
 
@@ -36,20 +37,23 @@ function loggInfo() {
     const browser = detect();
 
     const tags = {
-        screen: `${screen.width} x ${screen.height}`,
-        window: `${window.innerWidth} x ${window.innerHeight}`,
+        screen: `${roundToNearest20(screen.width)} x ${roundToNearest20(screen.height)}`,
+        window: `${roundToNearest20(window.innerWidth)} x ${roundToNearest20(window.innerHeight)}`,
+        erKontaktsenter: erKontaktsenter(),
+        browser: browser && browser.name || undefined
+    };
+    
+    const fields = {
+        enhet: getSaksbehandlerEnhet(),
+        browserVersion: browser && browser.version || undefined,
+        os: browser && browser.os || undefined,
         screenWidth: screen.width,
         screenHeight: screen.height,
         windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight,
-        erKontaktsenter: erKontaktsenter(),
-        enhet: getSaksbehandlerEnhet(),
-        browser: browser && browser.name || undefined,
-        browserVersion: browser && browser.version || undefined,
-        os: browser && browser.os || undefined
+        windowHeight: window.innerHeight
     };
 
-    loggEvent('LoggSkjerminfo', 'Maskinvare', tags);
+    loggEvent('LoggSkjerminfo', 'Maskinvare', tags, fields);
 }
 
 interface Cookie {
