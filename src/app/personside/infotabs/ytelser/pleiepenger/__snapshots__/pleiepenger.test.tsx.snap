@@ -9,6 +9,17 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
   border-top: dashed 0.0625rem #b7b1a9;
 }
 
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .c6 {
   font-weight: bold;
 }
@@ -94,7 +105,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
 .c7 {
   position: relative;
   width: 100%;
-  background-color: #e7e9e9;
+  background-color: #e9e7e7;
   height: 1.5rem;
 }
 
@@ -104,6 +115,64 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
   height: 100%;
   width: 12.538461538461537%;
   background-color: #38a161;
+}
+
+.c9 span:not(:last-child):after {
+  content: '.';
+}
+
+.c11 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.c12 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
+}
+
+.c14 {
+  border: none;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c14:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c14:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c15 {
+  margin-right: .5rem;
+}
+
+.c10 {
+  margin-right: 1.25rem;
+}
+
+@media print {
+  .c14 {
+    display: none;
+  }
 }
 
 <div
@@ -174,7 +243,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          08.07.2018
+          09.12.2017
         </dd>
       </div>
       <div>
@@ -186,7 +255,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          10.08.2018
+          17.12.2017
         </dd>
       </div>
       <div>
@@ -198,7 +267,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          54%
+          100%
         </dd>
       </div>
       <div>
@@ -210,7 +279,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          52%
+          30%
         </dd>
       </div>
       <div>
@@ -234,7 +303,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          21082528102
+          23082527982
         </dd>
       </div>
       <div>
@@ -246,7 +315,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          05039440115
+          12039439539
         </dd>
       </div>
     </dl>
@@ -276,7 +345,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          Aas, Østli and Arnesen
         </dd>
       </div>
       <div>
@@ -288,7 +357,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          Arbeidstaker
         </dd>
       </div>
       <div>
@@ -300,7 +369,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          Månedssats
         </dd>
       </div>
       <div>
@@ -312,7 +381,19 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          <span
+            className="c9"
+          >
+            <span>
+              1099
+            </span>
+            <span>
+              27
+            </span>
+            <span>
+              28225
+            </span>
+          </span>
         </dd>
       </div>
       <div>
@@ -324,7 +405,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          Ikke refusjon
         </dd>
       </div>
       <div>
@@ -336,7 +417,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          NOK 25,261.93
         </dd>
       </div>
       <div>
@@ -348,10 +429,47 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          
+          22.10.2018
         </dd>
       </div>
     </dl>
+    <div
+      className="c10"
+    />
+    <div
+      className="c11"
+      open={false}
+    >
+      <div
+        className="c12"
+        open={false}
+      />
+      <div
+        className="c13"
+      >
+        <button
+          aria-expanded={false}
+          className="c14"
+          onClick={[Function]}
+          open={false}
+        >
+          <span
+            className="c15"
+          >
+            <span
+              className="typo-normal"
+            >
+              Vis
+               
+              alle arbeidsforhold
+            </span>
+          </span>
+          <i
+            className="nav-frontend-chevron chevronboks chevron--ned"
+          />
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;

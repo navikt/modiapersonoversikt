@@ -17,7 +17,8 @@ interface Props {
     pleiepenger: Pleiepengerettighet;
 }
 
-const ArbeidsForholdListeStyle = styled.div`
+const ArbeidsForholdListeStyle = styled.ol`
+  list-style: none;
   > *:not(:first-child) {
     border-top: ${theme.border.skilleSvak};
   }
@@ -64,7 +65,7 @@ function Oversikt({pleiepenger}: Props) {
             </YtelserBullet>
             <YtelserBullet tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
-                <DetaljerCollapse open={true} toggle={() => null} tittel="alle arbeidsforhold">
+                <DetaljerCollapse open={false} toggle={() => null} tittel="alle arbeidsforhold">
                     <ArbeidsForholdListeStyle>
                         {tidligereArbeidsforhold.map((arbForhold, index) =>
                             <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
