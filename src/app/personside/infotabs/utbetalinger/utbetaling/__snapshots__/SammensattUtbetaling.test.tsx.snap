@@ -280,7 +280,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       <button
         aria-label="Skriv ut"
         className="c5"
-        onClick={[Function]}
+        onMouseDown={[Function]}
       >
         <span
           className="typo-normal"

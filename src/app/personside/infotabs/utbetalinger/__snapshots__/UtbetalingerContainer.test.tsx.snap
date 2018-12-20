@@ -647,7 +647,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 <button
                   aria-label="Skriv ut"
                   className="c15"
-                  onClick={[Function]}
+                  onMouseDown={[Function]}
                 >
                   <span
                     className="typo-normal"
@@ -818,7 +818,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <button
                             aria-label="Skriv ut"
                             className="c15"
-                            onClick={[Function]}
+                            onMouseDown={[Function]}
                           >
                             <span
                               className="typo-normal"
