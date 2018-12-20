@@ -168,6 +168,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   background-color: rgba(102,203,236,0.18);
 }
 
+.c19 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
 .c12 {
   margin-top: 0.625rem;
 }
@@ -471,11 +478,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     <section
       className="c10"
     >
-      <h2
-        className="typo-undertittel"
-      >
-        Alle tema
-      </h2>
+      <div>
+        <h2
+          className="typo-undertittel"
+        >
+          Alle tema
+        </h2>
+      </div>
       <form
         className="c11"
       >
@@ -590,7 +599,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     strokeMiterlimit="10"
                   />
                 </svg>
-                <div>
+                <div
+                  className="c19"
+                >
                   <p
                     className="typo-normal"
                   >
@@ -602,6 +613,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   >
                     Vurdering feilutbetaling/revurdering
                   </a>
+                  
                   <p
                     className="typo-normal"
                   >
@@ -611,6 +623,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     Sykepenger
                   </p>
                 </div>
+                <span>
+                  <a
+                    href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=3fmounyc&dokumentId=mlub095n"
+                    onClick={[Function]}
+                    target="_blank"
+                  >
+                    Åpne i eget vindu
+                  </a>
+                </span>
               </div>
             </div>
           </ol>
@@ -652,7 +673,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     strokeMiterlimit="10"
                   />
                 </svg>
-                <div>
+                <div
+                  className="c19"
+                >
                   <p
                     className="typo-normal"
                   >
@@ -664,6 +687,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   >
                     Spørsmål via nav.no
                   </a>
+                  
                   <p
                     className="typo-normal"
                   >
@@ -673,6 +697,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     Sykepenger
                   </p>
                 </div>
+                <span>
+                  <a
+                    href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=n4asiwin&dokumentId=33428dwf"
+                    onClick={[Function]}
+                    target="_blank"
+                  >
+                    Åpne i eget vindu
+                  </a>
+                </span>
               </div>
             </div>
           </ol>
