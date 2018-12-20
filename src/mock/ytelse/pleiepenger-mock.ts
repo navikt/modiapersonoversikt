@@ -73,7 +73,7 @@ function getVedtak(): Vedtak {
         periode: getPeriode(),
         kompensasjonsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
         utbetalingsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
-        anvistUtbetaling: 'ANVIST',
+        anvistUtbetaling: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
         pleiepengegrad: navfaker.random.integer(60)
