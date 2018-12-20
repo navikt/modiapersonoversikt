@@ -46,3 +46,24 @@ export const BulletPoint = styled.div<{ showBulletPoint: boolean, color: string 
 export const GråttPanel = styled.div`
   ${theme.gråttPanel};
 `;
+
+export const LenkeKnapp = styled.button`
+  border: none;
+  padding: .1rem .2rem;
+  border-radius: ${theme.borderRadius.knapp};
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: ${theme.color.lenke};
+  &:focus {
+    ${theme.focus}
+  }
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+ @media print {
+    display: none;
+ }
+`;
