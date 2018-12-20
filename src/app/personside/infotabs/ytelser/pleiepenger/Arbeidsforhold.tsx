@@ -15,12 +15,12 @@ function ArbeidsForhold({arbeidsforhold}: {arbeidsforhold?: Arbeidsforhold}) {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
         Arbeidskategori: arbeidsforhold.arbeidskategori,
         Inntekstsperiode: arbeidsforhold.inntektsperiode,
-        Kontonummer: <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr || ''}/>,
+        Kontonummer: arbeidsforhold.arbeidsgiverKontonr
+        && <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr}/>,
         Refusjonstype: arbeidsforhold.refusjonstype,
         'Inntekt for perioden': arbeidsforhold.inntektForPerioden
-            ? 'NOK ' + formaterNOK(arbeidsforhold.inntektForPerioden)
-            : '',
-        'Refusjon til dato': formaterDato(arbeidsforhold.refusjonTom || '')
+            && 'NOK ' + formaterNOK(arbeidsforhold.inntektForPerioden),
+        'Refusjon til dato': arbeidsforhold.refusjonTom && formaterDato(arbeidsforhold.refusjonTom)
     };
 
     return <DescriptionList entries={arbeidsSitsuasjonEntries}/>;
