@@ -49,9 +49,9 @@ export function getMockPleiepengerettighet(fødselsnummer: string): Pleiepengere
 function getPleiepengeperiode(): Pleiepengeperiode {
     return {
         fom: moment(faker.date.past(2)).format(backendDatoformat),
-        antallPleiepengedager: navfaker.random.integer(100),
-        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 10),
-        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 10)
+        antallPleiepengedager: navfaker.random.integer(20),
+        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 2),
+        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 2)
     };
 }
 
@@ -60,7 +60,7 @@ function getArbeidsforhold(): Arbeidsforhold {
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
         inntektsperiode: 'Månedssats',
-        inntektForPerioden: Number(faker.finance.amount(5000, 50000)),
+        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
         refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
