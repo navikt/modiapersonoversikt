@@ -4,14 +4,27 @@ import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import YtelserBullet from '../felles-styling/YtelserBullet';
 import DescriptionList from '../felles-styling/DescriptionList';
 import ForbrukteDager from './ForbrukteDager';
-import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
+import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
+import ArbeidsForhold from './Arbeidsforhold';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
 }
+
+const ArbeidsForholdListeStyle = styled.div`
+  > *:not(:first-child) {
+    border-top: ${theme.border.skilleSvak};
+  }
+  > *:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+`;
 
 function getKjønnString(fnr: string): string {
     switch (utledKjønnFraFødselsnummer(fnr)) {
@@ -30,6 +43,8 @@ function Oversikt({pleiepenger}: Props) {
 
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
     const kjønn = getKjønnString(pleiepenger.barnet);
+    const arbeidsforhold = getAlleArbiedsforholdSortert(pleiepenger);
+    const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = arbeidsforhold;
 
     const omPleiepengerettenEntries = {
         'Fra og med': formaterDato(gjeldeneVedtak.periode.fom),
@@ -41,16 +56,6 @@ function Oversikt({pleiepenger}: Props) {
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 
-    const arbeidsSitsuasjonEntries = {
-        Arbeidsgiver: '',
-        Arbeidskategori: '',
-        Inntekstsperiode: '',
-        Kontonummer: '',
-        Refusjonstype: '',
-        'Inntekt for perioden': '',
-        'Refusjon til dato': ''
-    };
-
     return (
         <OversiktStyling>
             <YtelserBullet tittel="Om pleiepengeretten">
@@ -58,7 +63,13 @@ function Oversikt({pleiepenger}: Props) {
                 <DescriptionList entries={omPleiepengerettenEntries}/>
             </YtelserBullet>
             <YtelserBullet tittel="Arbeidssituasjon">
-                <DescriptionList entries={arbeidsSitsuasjonEntries}/>
+                <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
+                <DetaljerCollapse open={true} toggle={() => null} tittel="alle arbeidsforhold">
+                    <ArbeidsForholdListeStyle>
+                        {tidligereArbeidsforhold.map((arbForhold, index) =>
+                            <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
+                    </ArbeidsForholdListeStyle>
+                </DetaljerCollapse>
             </YtelserBullet>
         </OversiktStyling>);
 }

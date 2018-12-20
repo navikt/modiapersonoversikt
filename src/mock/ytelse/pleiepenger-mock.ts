@@ -58,13 +58,13 @@ function getPleiepengeperiode(): Pleiepengeperiode {
 function getArbeidsforhold(): Arbeidsforhold {
     return {
         arbeidsgiverNavn: faker.company.companyName(),
-        arbeidsgiverKontonr: Number(faker.finance.account(9)).toString(),
-        inntektsperiode: moment(faker.date.recent()).format(backendDatoformat),
-        inntektForPerioden: Number(faker.commerce.price()),
-        refusjonTom: moment(faker.date.recent()).format(backendDatoformat),
-        refusjonstype: 'REFUSJONTYPE',
+        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        inntektsperiode: 'Månedssats',
+        inntektForPerioden: Number(faker.finance.amount(5000, 50000)),
+        refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
+        refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
-        arbeidskategori: 'ARBKAT'
+        arbeidskategori: 'Arbeidstaker'
     };
 }
 

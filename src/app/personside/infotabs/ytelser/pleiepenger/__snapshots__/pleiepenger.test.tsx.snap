@@ -1,0 +1,357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Om pleiepengeretten matcher snapshot 1`] = `
+.c0 {
+  margin: 0 1.25rem 1.25rem;
+}
+
+.c0 > *:not(:first-child) {
+  border-top: dashed 0.0625rem #b7b1a9;
+}
+
+.c6 {
+  font-weight: bold;
+}
+
+.c2 {
+  position: relative;
+  -webkit-transition: .3s;
+  transition: .3s;
+  padding-left: 1.5rem;
+}
+
+.c2::before {
+  position: absolute;
+  left: -.5rem;
+  content: '•';
+  font-size: 4rem;
+  line-height: 1.8rem;
+  color: #d6897d;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.c1 {
+  padding: 1.875rem 0 2.5rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c8 dt {
+  color: #78706a;
+}
+
+.c8 dd {
+  font-weight: bold;
+  margin-top: .3rem;
+}
+
+.c8 > div {
+  margin-top: 1.875rem;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c5 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c3 {
+  margin-top: 2rem;
+}
+
+.c3 > *:not(:last-child) {
+  margin-top: .3rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c4 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c7 {
+  position: relative;
+  width: 100%;
+  background-color: #e7e9e9;
+  height: 1.5rem;
+}
+
+.c7::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 12.538461538461537%;
+  background-color: #38a161;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      color="#d6897d"
+    >
+      <p
+        className="typo-ingress"
+      >
+        Om pleiepengeretten
+      </p>
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <div
+          className="c5"
+        >
+          <h3
+            className="typo-etikett-liten"
+          >
+            Barnets dagkonto
+          </h3>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c6"
+          >
+            1300
+             dager
+          </span>
+        </p>
+      </div>
+      <div
+        className="c7"
+      />
+      <p
+        className="typo-normal"
+      >
+        <span
+          className="c6"
+        >
+          163
+           forbrukte dager per i dag
+        </span>
+      </p>
+    </div>
+    <dl
+      className="c8"
+    >
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Fra og med
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          08.07.2018
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Til og med
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          10.08.2018
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Kompensasjonsgrad
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          54%
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Pleiepengegrad
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          52%
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Totalt invilget
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          163 dager
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Barnet (gutt)
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          21082528102
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Annen forelder
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          05039440115
+        </dd>
+      </div>
+    </dl>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      color="#d6897d"
+    >
+      <p
+        className="typo-ingress"
+      >
+        Arbeidssituasjon
+      </p>
+    </div>
+    <dl
+      className="c8"
+    >
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Arbeidsgiver
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Arbeidskategori
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Inntekstsperiode
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Kontonummer
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Refusjonstype
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Inntekt for perioden
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Refusjon til dato
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+`;
