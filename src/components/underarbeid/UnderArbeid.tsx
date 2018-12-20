@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 const UnderArbeidDiv = styled.div`
       position: fixed;
-      width: 300px;
-      top: 32px;
-      left: -94px;
-      transform: rotate(-45deg);
+      width: 200px;
+      bottom: 0px;
+      right: 0px;
       opacity: 0.7;
       padding: 0.5em;
       background-color: red;

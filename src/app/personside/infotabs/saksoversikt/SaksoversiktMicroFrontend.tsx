@@ -16,6 +16,7 @@ import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import {
+    setErStandaloneVindu,
     settValgtDokument,
     settValgtEnkeltdokument,
     settValgtSakstema,
@@ -36,6 +37,7 @@ interface StateProps {
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
+    settAtStandaloneVinduErÅpnet: () => void;
     velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
 
@@ -82,6 +84,7 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     componentDidMount() {
+        this.props.settAtStandaloneVinduErÅpnet();
         if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
@@ -148,6 +151,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        settAtStandaloneVinduErÅpnet: () => dispatch(setErStandaloneVindu(true)),
         velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));
             dispatch(settValgtDokument(dokument));

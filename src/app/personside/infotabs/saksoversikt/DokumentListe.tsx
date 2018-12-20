@@ -17,7 +17,10 @@ import { DokumentAvsenderFilter } from '../../../../redux/saksoversikt/types';
 interface Props {
     valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
+    erStandaloneVindu: boolean;
+    visDokument: boolean;
     oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
+    lukkDokument: () => void;
 }
 
 interface DokumentGruppeProps {
@@ -193,10 +196,23 @@ function DokumentListe(props: Props) {
 
     const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
 
+    const tilbakeLenke = props.erStandaloneVindu && props.visDokument ?
+        (
+            <a
+                href={'#'}
+                onClick={props.lukkDokument}
+            >
+                Tilbake til saksoversikt
+            </a>
+        ) : null;
+
     return (
         <DokumentListeStyling>
             <Header>
-                <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
+                <div>
+                    {tilbakeLenke}
+                    <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
+                </div>
                 {checkboxer}
             </Header>
             <ViktigÅVite/>

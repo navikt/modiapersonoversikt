@@ -14,6 +14,7 @@ export interface SaksoversikState {
     valgtEnkeltdokument?: Dokument;
     visDokument: boolean;
     viktigÅViteÅpen: boolean;
+    erStandaloneVindu: boolean;
     avsenderFilter: DokumentAvsenderFilter;
 }
 
@@ -23,6 +24,7 @@ export const initialState: SaksoversikState = {
     valgtEnkeltdokument: undefined,
     visDokument: false,
     viktigÅViteÅpen: false,
+    erStandaloneVindu: false,
     avsenderFilter: {
         fraBruker: true,
         fraNav: true,
@@ -36,6 +38,7 @@ export enum SaksoversiktActionTypes {
     SetValgtEnkeltdokument = 'SetValgtEnkeltdokument',
     SetVisDokument = 'SetVisDokument',
     SetViktigÅViteÅpen = 'SetViktigÅViteÅpen',
+    SetErStandaloneVindu = 'SetErStandaloneVindu',
     SetDokumentAvsenderFilter = 'SetDokumentAvsenderFilter'
 }
 
@@ -64,6 +67,11 @@ export interface SetViktigÅViteÅpen extends Action {
     åpen: boolean;
 }
 
+export interface SetErStandaloneVindu {
+    type: SaksoversiktActionTypes.SetErStandaloneVindu;
+    standaloneVindu: boolean;
+}
+
 export interface SetDokumentAvsenderFilter {
     type: SaksoversiktActionTypes.SetDokumentAvsenderFilter;
     filterEndring: Partial<DokumentAvsenderFilter>;
@@ -75,4 +83,5 @@ export type SaksoversiktActions =
     SetValgtEnkeltdokument |
     SetValgtSakstema |
     SetViktigÅViteÅpen |
+    SetErStandaloneVindu |
     SetDokumentAvsenderFilter;

@@ -17,6 +17,7 @@ interface StateProps {
     valgtDokument?: DokumentMetadata;
     valgtTab?: Dokument;
     visDokument: boolean;
+    erStandaloneVindu: boolean;
 }
 
 interface DispatchProps {
@@ -81,8 +82,9 @@ function DokumentOgVedlegg(props: Props) {
         };
     });
 
-    return (
-        <Content>
+    const tabsHeader = props.erStandaloneVindu ?
+        null :
+        (
             <Header>
                 <TabsPure
                     tabs={tabProps}
@@ -94,6 +96,11 @@ function DokumentOgVedlegg(props: Props) {
                     </Lukknapp>
                 </KnappWrapper>
             </Header>
+        );
+
+    return (
+        <Content>
+            {tabsHeader}
             <PersonContext.Consumer>{fnr => {
                 if (!fnr) {
                     return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
@@ -115,7 +122,8 @@ function mapStateToProps(state: AppState): StateProps {
     return ({
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
-        valgtTab: state.saksoversikt.valgtEnkeltdokument
+        valgtTab: state.saksoversikt.valgtEnkeltdokument,
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu
     });
 }
 

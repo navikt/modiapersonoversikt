@@ -15,7 +15,7 @@ interface ValuePairs {
 
 export function parseQueryParams(queryString: string): ValuePairs {
     return queryString
-        .replace(/[?]/g, '')
+        .replace(/[?#]/g, '')
         .split('&')
         .reduce((acc, value: string) => ({...acc, [value.split('=')[0]]: value.split('=')[1]}), {});
 }

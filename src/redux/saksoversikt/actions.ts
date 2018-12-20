@@ -4,6 +4,7 @@ import {
     DokumentAvsenderFilter,
     SaksoversiktActionTypes,
     SetDokumentAvsenderFilter,
+    SetErStandaloneVindu,
     SetValgtDokument,
     SetValgtEnkeltdokument,
     SetValgtSakstema,
@@ -43,6 +44,13 @@ export function setViktigÅViteÅpen(åpen: boolean): SetViktigÅViteÅpen {
     return {
         type: SaksoversiktActionTypes.SetViktigÅViteÅpen,
         åpen: åpen
+    };
+}
+
+export function setErStandaloneVindu(standaloneVindu: boolean): SetErStandaloneVindu {
+    return {
+        type: SaksoversiktActionTypes.SetErStandaloneVindu,
+        standaloneVindu: standaloneVindu
     };
 }
 

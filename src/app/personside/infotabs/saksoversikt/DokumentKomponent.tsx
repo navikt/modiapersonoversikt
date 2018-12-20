@@ -38,12 +38,16 @@ interface DispatchProps {
 
 interface StateProps {
     bruker: RestReducer<PersonRespons>;
+    erStandaloneVindu: boolean;
+    valgtDokument?: DokumentMetadata;
+    valgtEnkeltDokument?: Enkeltdokument;
+    visDokument: boolean;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div`
-
+const Wrapper = styled.div<{ valgt: boolean }>`
+  ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.09);'}
 `;
 
 const InfoWrapper = styled.div`
@@ -109,6 +113,10 @@ function lagSaksoversiktLenke(props: Props) {
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
+function dokumentValgtTekst(visTekst: boolean) {
+    return visTekst ? ' (Dokumentet vises til høyre)' : '';
+}
+
 class DokumentKomponent extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
@@ -165,10 +173,23 @@ class DokumentKomponent extends React.Component<Props> {
                                 >
                                     {vlegg.tittel}
                                 </a>
+                                {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
                 </VedleggStyle>
             ) : null;
+
+        const egetVinduLenke = this.props.erStandaloneVindu ?
+            null :
+            (
+                <span ref={this.nyttVinduLinkRef}>
+                    <Link to={lagSaksoversiktLenke(this.props)} target={'_blank'}>
+                        Åpne i eget vindu
+                    </Link>
+                </span>
+            );
+
+        const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
             <>
@@ -176,6 +197,7 @@ class DokumentKomponent extends React.Component<Props> {
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(() => this.handleClickOnDokument(event))}
                     ref={this.dokumentRef}
+                    valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
                 >
                     <InfoWrapper>
                         {dokumentIkon(this.props.harTilgang)}
@@ -192,14 +214,11 @@ class DokumentKomponent extends React.Component<Props> {
                             >
                                 {dokument.hoveddokument.tittel}
                             </a>
+                            {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                             {vedlegg}
                             {saksvisning}
                         </InnholdWrapper>
-                        <span ref={this.nyttVinduLinkRef}>
-                            <Link to={lagSaksoversiktLenke(this.props)} target={'_blank'}>
-                                Åpne i eget vindu
-                            </Link>
-                        </span>
+                        {egetVinduLenke}
                     </InfoWrapper>
                 </Wrapper>
             </>
@@ -219,7 +238,11 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        bruker: state.restEndepunkter.personinformasjon
+        bruker: state.restEndepunkter.personinformasjon,
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
+        valgtDokument: state.saksoversikt.valgtDokument,
+        valgtEnkeltDokument: state.saksoversikt.valgtEnkeltdokument,
+        visDokument: state.saksoversikt.visDokument
     };
 }
 
