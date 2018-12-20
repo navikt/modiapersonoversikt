@@ -12,10 +12,24 @@ import ArbeidsForhold from './Arbeidsforhold';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { AppState } from '../../../../../redux/reducers';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../redux/ytelser/pleiepengerReducer';
+import { connect } from 'react-redux';
 
-interface Props {
+interface OwnProps {
     pleiepenger: Pleiepengerettighet;
 }
+
+interface StateProps {
+    visAlleArbeidsforhold: boolean;
+}
+
+interface DispatchProps {
+    toggleVisAlleArbeidsforhold: () => void;
+}
+
+type Props = DispatchProps & OwnProps & StateProps;
 
 const ArbeidsForholdListeStyle = styled.ol`
   list-style: none;
@@ -40,7 +54,7 @@ function getKjønnString(fnr: string): string {
     }
 }
 
-function Oversikt({pleiepenger}: Props) {
+function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforhold}: Props) {
 
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
     const kjønn = getKjønnString(pleiepenger.barnet);
@@ -65,7 +79,11 @@ function Oversikt({pleiepenger}: Props) {
             </YtelserBullet>
             <YtelserBullet tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
-                <DetaljerCollapse open={false} toggle={() => null} tittel="alle arbeidsforhold">
+                <DetaljerCollapse
+                    open={visAlleArbeidsforhold}
+                    toggle={toggleVisAlleArbeidsforhold}
+                    tittel="alle arbeidsforhold"
+                >
                     <ArbeidsForholdListeStyle>
                         {tidligereArbeidsforhold.map((arbForhold, index) =>
                             <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
@@ -75,4 +93,16 @@ function Oversikt({pleiepenger}: Props) {
         </OversiktStyling>);
 }
 
-export default Oversikt;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        visAlleArbeidsforhold: state.pleiepenger.visAlleArbeidsforhold
+    };
+}
+
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        toggleVisAlleArbeidsforhold: () => dispatch(toggleVisAlleArbeidsforholdActionCreator())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Oversikt);

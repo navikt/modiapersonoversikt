@@ -6,6 +6,7 @@ import { UtbetalingerState, utbetalingerReducer } from './utbetalinger/utbetalin
 import { YtelserState, ytelserReducer } from './ytelser/yteslerStateReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
+import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -14,6 +15,7 @@ export interface AppState {
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     ytelser: YtelserState;
+    pleiepenger: PleiepengerState;
 }
 
 export default combineReducers<AppState>({
@@ -22,5 +24,6 @@ export default combineReducers<AppState>({
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
-    ytelser: ytelserReducer
+    ytelser: ytelserReducer,
+    pleiepenger: pleiepengerReducer
 });
