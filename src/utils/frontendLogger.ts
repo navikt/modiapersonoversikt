@@ -27,7 +27,11 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
         tags: {action: action, location: location, ...extraTags}
     };
     // tslint:disable-next-line
-    window['frontendlogger'].event(event.table, event.fields, event.tags);
+    window['frontendlogger'].event(
+        event.table,
+        emptyStringToUndefined(event.fields),
+        emptyStringToUndefined(event.tags)
+    );
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
@@ -55,4 +59,14 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
     } else {
         console.error(info);
     }
+}
+
+export function emptyStringToUndefined(valuePairs: ValuePairs) {
+    return Object.keys(valuePairs).reduce(
+        (acc: ValuePairs, key: string) => ({
+            ...acc,
+            [key]: valuePairs[key] === '' ? undefined : valuePairs[key]
+        }),
+        {}
+    );
 }

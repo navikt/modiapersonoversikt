@@ -3,12 +3,14 @@ import * as moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 import {
-    Arbeidsforhold, Periode,
+    Arbeidsforhold,
+    Periode,
     Pleiepengeperiode,
     Pleiepengerettighet,
-    PleiepengerResponse, Vedtak
+    PleiepengerResponse,
+    Vedtak
 } from '../../models/ytelse/pleiepenger';
-import { fyllRandomListe } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -16,31 +18,37 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
-            pleiepenger: null
+            pleiepenger: []
         };
     }
 
     return {
-        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getPleiepengerettighet(fødselsnummer), 10)
+        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getMockPleiepengerettighet(fødselsnummer), 3)
     };
 }
 
-function getPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
+export function getMockPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
+    faker.seed(Number(fødselsnummer));
+    navfaker.seed(fødselsnummer + 'pleiepenger');
+
+    const pleiepengeDager = 1300;
+    const forbrukteDager = navfaker.random.integer(pleiepengeDager);
+    const restDager = pleiepengeDager - forbrukteDager;
     return {
         barnet: navfaker.personIdentifikator.fødselsnummer(),
         omsorgsperson: fødselsnummer,
         andreOmsorgsperson: navfaker.personIdentifikator.fødselsnummer(),
-        restDagerFomIMorgen: navfaker.random.integer(100),
-        forbrukteDagerTomIDag: navfaker.random.integer(20),
-        pleiepengedager: navfaker.random.integer(200),
-        restDagerAnvist: navfaker.random.integer(50),
+        restDagerFomIMorgen: restDager,
+        forbrukteDagerTomIDag: forbrukteDager,
+        pleiepengedager: pleiepengeDager,
+        restDagerAnvist: restDager,
         perioder: fyllRandomListe<Pleiepengeperiode>(() => getPleiepengeperiode(), 10)
     };
 }
 
 function getPleiepengeperiode(): Pleiepengeperiode {
     return {
-        fom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        fom: moment(faker.date.past(2)).format(backendDatoformat),
         antallPleiepengedager: navfaker.random.integer(100),
         arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 10),
         vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 10)
@@ -51,9 +59,9 @@ function getArbeidsforhold(): Arbeidsforhold {
     return {
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverKontonr: Number(faker.finance.account(9)).toString(),
-        inntektsperiode: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        inntektsperiode: moment(faker.date.recent()).format(backendDatoformat),
         inntektForPerioden: Number(faker.commerce.price()),
-        refusjonTom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        refusjonTom: moment(faker.date.recent()).format(backendDatoformat),
         refusjonstype: 'REFUSJONTYPE',
         arbeidsgiverOrgnr: '1234567890',
         arbeidskategori: 'ARBKAT'
@@ -63,8 +71,8 @@ function getArbeidsforhold(): Arbeidsforhold {
 function getVedtak(): Vedtak {
     return {
         periode: getPeriode(),
-        kompensasjonsgrad: navfaker.random.integer(90),
-        utbetalingsgrad: navfaker.random.integer(90),
+        kompensasjonsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
+        utbetalingsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
         anvistUtbetaling: 'ANVIST',
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
@@ -73,8 +81,10 @@ function getVedtak(): Vedtak {
 }
 
 function getPeriode(): Periode {
+    const fom = moment(faker.date.past(2));
+    const tom = moment(fom).add(faker.random.number(40), 'days');
     return {
-        fom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        tom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand)
+        fom: fom.format(backendDatoformat),
+        tom: tom.format(backendDatoformat)
     };
 }

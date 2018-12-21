@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-    padding: ${theme.margin.px30} 0;
+    padding: ${theme.margin.px30} 0 ${theme.margin.px40};
 `;
 
 function YtelserBullet(props: Props) {

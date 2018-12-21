@@ -50,18 +50,10 @@ const FiltreringsPanel = styled.nav`
   margin-bottom: ${theme.margin.layout};
 `;
 
-const Blokk = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  margin: 1.5rem 3rem 1.5rem 0;
-  > *:not(:first-child) {
-    margin-top: 1.5rem;
-  }
-`;
-
 const InputPanel = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: 1.5rem;
   > *:first-child {
     margin-bottom: .5rem;
   }
@@ -83,6 +75,20 @@ const FieldSet = styled.fieldset`
   }
   > *:last-child {
     margin-bottom: 0;
+  }
+`;
+
+const WrapOnSmallScreen = styled.div`
+ @media(max-width: ${theme.media.utbetalinger}) {
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+      flex-grow: 1;
+      flex-basis: 30%;
+    }
+    > *:not(:last-child) {
+      margin-right: 1rem;
+    }
   }
 `;
 
@@ -161,51 +167,51 @@ function Filtrering(props: Props) {
         || isReloading(props.utbetalingReducer);
     const checkBokser = isLoaded(props.utbetalingReducer) && visCheckbokser(props.utbetalingReducer.data) && (
         <>
-            <Blokk>
-                <InputPanel>
-                    <EtikettLiten>Utbetaling til</EtikettLiten>
-                    <UtbetaltTilValg
-                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
-                        onChange={props.onChange}
-                        filterState={props.filterState}
-                    />
-                </InputPanel>
-                <InputPanel>
-                    <EtikettLiten>Velg ytelse</EtikettLiten>
-                    <YtelseValg
-                        onChange={props.onChange}
-                        filterState={props.filterState}
-                        utbetalinger={props.utbetalingReducer.data.utbetalinger}
-                    />
-                </InputPanel>
-            </Blokk>
+            <InputPanel>
+                <EtikettLiten>Utbetaling til</EtikettLiten>
+                <UtbetaltTilValg
+                    utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                    onChange={props.onChange}
+                    filterState={props.filterState}
+                />
+            </InputPanel>
+            <InputPanel>
+                <EtikettLiten>Velg ytelse</EtikettLiten>
+                <YtelseValg
+                    onChange={props.onChange}
+                    filterState={props.filterState}
+                    utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                />
+            </InputPanel>
         </>
+    );
+    const hentUtbetalinger = (
+        <InputPanel>
+            <FieldSet>
+                <EtikettLiten tag="legend">Velg periode</EtikettLiten>
+                {radios}
+            </FieldSet>
+            {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
+            <KnappWrapper>
+                <Knapp
+                    onClick={props.hentUtbetalinger}
+                    spinner={visSpinner}
+                    autoDisableVedSpinner={true}
+                    htmlType="button"
+                >
+                    Hent utbetalinger
+                </Knapp>
+            </KnappWrapper>
+        </InputPanel>
     );
     return (
         <FiltreringsPanel onClick={restoreScroll}>
             <Undertittel>Filtrering</Undertittel>
 
-            <Blokk>
-                <InputPanel>
-                    <FieldSet>
-                        <EtikettLiten tag="legend">Velg periode</EtikettLiten>
-                        {radios}
-                    </FieldSet>
-                    {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
-                    <KnappWrapper>
-                        <Knapp
-                            onClick={props.hentUtbetalinger}
-                            spinner={visSpinner}
-                            autoDisableVedSpinner={true}
-                            htmlType="button"
-                        >
-                            Hent utbetalinger
-                        </Knapp>
-                    </KnappWrapper>
-                </InputPanel>
-            </Blokk>
-
-            {checkBokser}
+            <WrapOnSmallScreen>
+                {hentUtbetalinger}
+                {checkBokser}
+            </WrapOnSmallScreen>
 
         </FiltreringsPanel>
     );

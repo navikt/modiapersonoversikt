@@ -35,7 +35,7 @@ const PrintIkonStyle = styled.button`
 
 function PrintKnapp({onClick}: Props) {
     return (
-        <PrintIkonStyle onClick={onClick} aria-label="Skriv ut">
+        <PrintIkonStyle onMouseDown={onClick} aria-label="Skriv ut">
             <Normaltekst tag="span">Skriv ut</Normaltekst> <PrinterSVG/>
         </PrintIkonStyle>
     );
