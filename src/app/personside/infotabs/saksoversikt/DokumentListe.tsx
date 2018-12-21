@@ -83,7 +83,7 @@ function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps)
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
             dokument={dokument}
-            harTilgang={harTilgang}
+            harTilgangTilSakstema={harTilgang}
             sakstemakode={sakstemakode}
             sakstemanavn={dokument.temakodeVisning}
             key={dokument.hoveddokument.dokumentreferanse + dokument.journalpostId}

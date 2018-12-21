@@ -22,6 +22,8 @@ import {
     settValgtSakstema,
     settVisDokument
 } from '../../../../redux/saksoversikt/actions';
+import { sakstemakodeAlle } from './SakstemaListe';
+import { aggregertSakstema } from './saksoversiktUtils';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -60,14 +62,18 @@ const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
       overflow-y: scroll;
     }
     > * {
-      margin-bottom: ${theme.margin.layout};
       height: 100%;
     }
 `;
 
-function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string): Sakstema | undefined {
-    const funnetSakstemaListe = sakstemaListe.filter(sakstema => sakstema.temakode === sakstemaKode);
-    return funnetSakstemaListe.length > 0 ? funnetSakstemaListe[0] : undefined;
+function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string, journalpostId: string): Sakstema | undefined {
+    if (sakstemaKode === sakstemakodeAlle) {
+        return aggregertSakstema(sakstemaListe);
+    }
+
+    return sakstemaListe.find(sakstema =>
+        sakstema.temakode === sakstemaKode &&
+        (sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId) !== undefined));
 }
 
 function hentUtDokumentMetadata(sakstema: Sakstema, journalpostId: string): DokumentMetadata | undefined {
@@ -107,7 +113,7 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
             }
 
             const sakstemaListe = (this.props.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat;
-            const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode);
+            const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
             if (!sakstema) {
                 return;
             }

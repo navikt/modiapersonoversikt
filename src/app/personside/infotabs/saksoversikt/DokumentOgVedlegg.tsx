@@ -32,7 +32,6 @@ const Content = styled.div`
   min-height: 70vh;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
   object {
     flex-grow: 1;
   }

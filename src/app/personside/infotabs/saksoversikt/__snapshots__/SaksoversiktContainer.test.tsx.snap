@@ -149,6 +149,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
+.c21 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c21 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c18 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
@@ -173,6 +182,34 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c19 > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.c20 {
+  border: none;
+  background-color: transparent;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c20:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c20:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c12 {
@@ -607,21 +644,32 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   >
                     08.03.2018 / Fra Marie
                   </p>
-                  <a
-                    href="#"
-                    onClick={[Function]}
-                  >
-                    Vurdering feilutbetaling/revurdering
-                  </a>
+                  <div>
+                    <button
+                      aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
+                      className="c20"
+                      onClick={[Function]}
+                    >
+                      <p
+                        className="typo-element"
+                      >
+                        Vurdering feilutbetaling/revurdering
+                      </p>
+                    </button>
+                  </div>
                   
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="c21"
                   >
-                    Saksid: 
-                    yg0ll4se
-                     / Sakstema: 
-                    Sykepenger
-                  </p>
+                    <p
+                      className="typo-etikett-liten"
+                    >
+                      Saksid: 
+                      yg0ll4se
+                       / Sakstema: 
+                      Sykepenger
+                    </p>
+                  </div>
                 </div>
                 <span>
                   <a
@@ -664,14 +712,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
-                    fill="none"
-                    stroke="#C6C2BF"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
-                  />
+                  <g
+                    fill="#C6C2BF"
+                  >
+                    <path
+                      d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                    />
+                    <path
+                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                    />
+                  </g>
                 </svg>
                 <div
                   className="c19"
@@ -681,31 +731,33 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   >
                     21.12.2017 / Samtalereferat
                   </p>
-                  <a
-                    href="#"
-                    onClick={[Function]}
-                  >
-                    Spørsmål via nav.no
-                  </a>
+                  <div>
+                    <button
+                      aria-label="Vis hoveddokument - Spørsmål via nav.no"
+                      className="c20"
+                      onClick={[Function]}
+                    >
+                      <p
+                        className="typo-element"
+                      >
+                        Spørsmål via nav.no
+                      </p>
+                    </button>
+                  </div>
                   
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="c21"
                   >
-                    Saksid: 
-                    5ptdxt2v
-                     / Sakstema: 
-                    Sykepenger
-                  </p>
+                    <p
+                      className="typo-etikett-liten"
+                    >
+                      Saksid: 
+                      5ptdxt2v
+                       / Sakstema: 
+                      Sykepenger
+                    </p>
+                  </div>
                 </div>
-                <span>
-                  <a
-                    href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=n4asiwin&dokumentId=33428dwf"
-                    onClick={[Function]}
-                    target="_blank"
-                  >
-                    Åpne i eget vindu
-                  </a>
-                </span>
               </div>
             </div>
           </ol>

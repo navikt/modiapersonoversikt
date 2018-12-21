@@ -5,7 +5,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaComponent from './SakstemaComponent';
 import { Undertittel } from 'nav-frontend-typografi';
-import { hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { aggregertSakstema, hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
 
 interface Props {
     sakstema: Sakstema[];
@@ -78,32 +78,6 @@ function GrupperteTema(props: GrupperteTemaProps) {
             {sakstemakomponenter}
         </SakstemaListeStyle>
     );
-}
-
-function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
-    return alleSakstema.reduce(
-        (acc: T[], sakstema: Sakstema) => {
-            return [...acc, ...getGeneriskElement(sakstema)];
-        },
-        []
-    );
-}
-
-function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
-    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.behandlingskjeder));
-    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.dokumentMetadata));
-    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.tilhorendeSaker));
-
-    return {
-        temanavn: 'Alle tema',
-        temakode: sakstemakodeAlle,
-        harTilgang: true,
-        behandlingskjeder: alleBehandlingskjeder,
-        dokumentMetadata: alleDokumentmetadata,
-        tilhorendeSaker: alleTilhørendeSaker,
-        erGruppert: false,
-        feilkoder: []
-    };
 }
 
 class SakstemaListe extends React.Component<Props, State> {
