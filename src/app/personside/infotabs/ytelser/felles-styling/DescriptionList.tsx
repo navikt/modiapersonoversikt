@@ -2,12 +2,13 @@ import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { ReactNode } from 'react';
 
 interface Props {
     entries: DescriptionListEntries;
 }
 
-type DescriptionlistEntry = string | number | null;
+type DescriptionlistEntry = string | number | null | ReactNode;
 
 export interface DescriptionListEntries {
     [name: string]: DescriptionlistEntry;
@@ -17,7 +18,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
     return (
         <div key={term}>
             <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
-            <Normaltekst tag="dd">{description || ''}</Normaltekst>
+            <Normaltekst tag="dd">{description || '\u2014'}</Normaltekst>
         </div>
     );
 }

@@ -49,22 +49,22 @@ export function getMockPleiepengerettighet(fødselsnummer: string): Pleiepengere
 function getPleiepengeperiode(): Pleiepengeperiode {
     return {
         fom: moment(faker.date.past(2)).format(backendDatoformat),
-        antallPleiepengedager: navfaker.random.integer(100),
-        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 10),
-        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 10)
+        antallPleiepengedager: navfaker.random.integer(20),
+        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 2),
+        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 2)
     };
 }
 
 function getArbeidsforhold(): Arbeidsforhold {
     return {
         arbeidsgiverNavn: faker.company.companyName(),
-        arbeidsgiverKontonr: Number(faker.finance.account(9)).toString(),
-        inntektsperiode: moment(faker.date.recent()).format(backendDatoformat),
-        inntektForPerioden: Number(faker.commerce.price()),
-        refusjonTom: moment(faker.date.recent()).format(backendDatoformat),
-        refusjonstype: 'REFUSJONTYPE',
+        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        inntektsperiode: 'Månedssats',
+        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
+        refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
+        refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
-        arbeidskategori: 'ARBKAT'
+        arbeidskategori: 'Arbeidstaker'
     };
 }
 
@@ -73,7 +73,7 @@ function getVedtak(): Vedtak {
         periode: getPeriode(),
         kompensasjonsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
         utbetalingsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
-        anvistUtbetaling: 'ANVIST',
+        anvistUtbetaling: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
         pleiepengegrad: navfaker.random.integer(60)

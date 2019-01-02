@@ -1,0 +1,1467 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
+.c0 {
+  margin: 0 1.25rem 1.25rem;
+}
+
+.c0 > *:not(:first-child) {
+  border-top: dashed 0.0625rem #b7b1a9;
+}
+
+.c6 {
+  font-weight: bold;
+}
+
+.c2 {
+  position: relative;
+  -webkit-transition: .3s;
+  transition: .3s;
+  padding-left: 1.5rem;
+}
+
+.c2::before {
+  position: absolute;
+  left: -.5rem;
+  content: '•';
+  font-size: 4rem;
+  line-height: 1.8rem;
+  color: #d6897d;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.c12 {
+  border: none;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c12:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c12:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c1 {
+  padding: 1.875rem 0 2.5rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c8 dt {
+  color: #78706a;
+}
+
+.c8 dd {
+  font-weight: bold;
+  margin-top: .3rem;
+}
+
+.c8 > div {
+  margin-top: 1.875rem;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c5 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c3 {
+  margin-top: 2rem;
+}
+
+.c3 > *:not(:last-child) {
+  margin-top: .3rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c4 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c7 {
+  position: relative;
+  width: 100%;
+  background-color: #e9e7e7;
+  height: 1.5rem;
+}
+
+.c7::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 12.538461538461537%;
+  background-color: #38a161;
+}
+
+.c10 span:not(:last-child):after {
+  content: '.';
+}
+
+.c9 {
+  list-style: none;
+}
+
+.c9 > *:not(:first-child) {
+  border-top: solid 0.0625rem #c6c2bf;
+}
+
+.c9 > *:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.c11 {
+  margin-top: 1rem;
+}
+
+@media print {
+  .c12 {
+    display: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      color="#d6897d"
+    >
+      <p
+        className="typo-ingress"
+      >
+        Om pleiepengeretten
+      </p>
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <div
+          className="c5"
+        >
+          <h3
+            className="typo-etikett-liten"
+          >
+            Barnets dagkonto
+          </h3>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c6"
+          >
+            1300
+             dager
+          </span>
+        </p>
+      </div>
+      <div
+        className="c7"
+      />
+      <p
+        className="typo-normal"
+      >
+        <span
+          className="c6"
+        >
+          163
+           forbrukte dager per i dag
+        </span>
+      </p>
+    </div>
+    <dl
+      className="c8"
+    >
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Fra og med
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          09.12.2017
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Til og med
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          17.12.2017
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Kompensasjonsgrad
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          100%
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Pleiepengegrad
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          30%
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Totalt invilget
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          163 dager
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Barnet (gutt)
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          23082527982
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Annen forelder
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          12039439539
+        </dd>
+      </div>
+    </dl>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      color="#d6897d"
+    >
+      <p
+        className="typo-ingress"
+      >
+        Arbeidssituasjon
+      </p>
+    </div>
+    <ol
+      className="c9"
+    >
+      <li>
+        <dl
+          className="c8"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Arbeidsgiver
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Tangen AS
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Arbeidskategori
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Arbeidstaker
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Inntekstsperiode
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Månedssats
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Kontonummer
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              <span
+                className="c10"
+              >
+                <span>
+                  4398
+                </span>
+                <span>
+                  78
+                </span>
+                <span>
+                  96203
+                </span>
+              </span>
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Refusjonstype
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Ikke refusjon
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Inntekt for perioden
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              NOK 31,750.00
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Refusjon til dato
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              22.07.2017
+            </dd>
+          </div>
+        </dl>
+      </li>
+    </ol>
+    <div
+      className="c11"
+    />
+    <button
+      className="c12"
+      onClick={[Function]}
+    >
+      Vis alle arbeidsforhold
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
+.c2 {
+  text-transform: uppercase;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c5 {
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  box-shadow: inset 0 0 0 1px #59514b;
+  padding: 1.25rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c4 dt {
+  color: #78706a;
+}
+
+.c4 dd {
+  font-weight: bold;
+  margin-top: .3rem;
+}
+
+.c4 > div {
+  margin-top: 1.875rem;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c0 > *:first-child {
+  background-color: #cce1f3;
+  padding: .2rem 1.25rem;
+}
+
+.c0 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c0 ol > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c3 {
+  margin: 0.625rem 1.25rem 2.5rem;
+}
+
+.c7 {
+  padding-bottom: 1rem;
+}
+
+.c6 {
+  list-style: none;
+}
+
+.c6 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #c6c2bf;
+  padding-bottom: 1rem;
+}
+
+<li
+  className="c0"
+>
+  <h3
+    className="typo-normal"
+  >
+    <span
+      className="c1"
+    >
+      <span
+        className="c2"
+      >
+        Periode 1 - 14.09.2018
+      </span>
+    </span>
+  </h3>
+  <div
+    className="c3"
+  >
+    <dl
+      className="c4"
+    >
+      <div>
+        <dt
+          className="typo-etikett-liten"
+        >
+          Pleiedager
+        </dt>
+        <dd
+          className="typo-normal"
+        >
+          3
+        </dd>
+      </div>
+    </dl>
+  </div>
+  <div
+    className="c5"
+  >
+    <h2
+      className="typo-undertittel"
+    >
+      Anviste utbetalinger
+    </h2>
+    <ul
+      className="c6"
+    >
+      <li>
+        <dl
+          className="c4"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Fra og med dato
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              09.12.2017
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Til og med dato
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              17.12.2017
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Bruttobeløp
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              NOK 812.00
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Anvist Utbetaling
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              17.07.2018
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Dagsats
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              NOK 51.00
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Kompensasjonsgrad
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              100%
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Pleiepengegrad
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              30%
+            </dd>
+          </div>
+        </dl>
+        <div
+          className="c7"
+        />
+      </li>
+    </ul>
+  </div>
+</li>
+`;
+
+exports[`Om pleiepengeretten matcher snapshot 1`] = `
+Array [
+  .c0 {
+  padding: 1.25rem 1.25rem 0.625rem;
+}
+
+<div
+    className="c0"
+>
+    <h2
+        className="typo-undertittel"
+    >
+        Pleiepenger sykt barn - 
+        14.09.2018
+    </h2>
+</div>,
+  .c0 {
+  margin: 0 1.25rem 1.25rem;
+}
+
+.c0 > *:not(:first-child) {
+  border-top: dashed 0.0625rem #b7b1a9;
+}
+
+.c6 {
+  font-weight: bold;
+}
+
+.c2 {
+  position: relative;
+  -webkit-transition: .3s;
+  transition: .3s;
+  padding-left: 1.5rem;
+}
+
+.c2::before {
+  position: absolute;
+  left: -.5rem;
+  content: '•';
+  font-size: 4rem;
+  line-height: 1.8rem;
+  color: #d6897d;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.c12 {
+  border: none;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c12:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c12:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c1 {
+  padding: 1.875rem 0 2.5rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c8 dt {
+  color: #78706a;
+}
+
+.c8 dd {
+  font-weight: bold;
+  margin-top: .3rem;
+}
+
+.c8 > div {
+  margin-top: 1.875rem;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c5 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c3 {
+  margin-top: 2rem;
+}
+
+.c3 > *:not(:last-child) {
+  margin-top: .3rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c4 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c7 {
+  position: relative;
+  width: 100%;
+  background-color: #e9e7e7;
+  height: 1.5rem;
+}
+
+.c7::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 12.538461538461537%;
+  background-color: #38a161;
+}
+
+.c10 span:not(:last-child):after {
+  content: '.';
+}
+
+.c9 {
+  list-style: none;
+}
+
+.c9 > *:not(:first-child) {
+  border-top: solid 0.0625rem #c6c2bf;
+}
+
+.c9 > *:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.c11 {
+  margin-top: 1rem;
+}
+
+@media print {
+  .c12 {
+    display: none;
+  }
+}
+
+<div
+    className="c0"
+>
+    <div
+        className="c1"
+    >
+        <div
+            className="c2"
+            color="#d6897d"
+        >
+            <p
+                className="typo-ingress"
+            >
+                Om pleiepengeretten
+            </p>
+        </div>
+        <div
+            className="c3"
+        >
+            <div
+                className="c4"
+            >
+                <div
+                    className="c5"
+                >
+                    <h3
+                        className="typo-etikett-liten"
+                    >
+                        Barnets dagkonto
+                    </h3>
+                </div>
+                <p
+                    className="typo-normal"
+                >
+                    <span
+                        className="c6"
+                    >
+                        1300
+                         dager
+                    </span>
+                </p>
+            </div>
+            <div
+                className="c7"
+            />
+            <p
+                className="typo-normal"
+            >
+                <span
+                    className="c6"
+                >
+                    163
+                     forbrukte dager per i dag
+                </span>
+            </p>
+        </div>
+        <dl
+            className="c8"
+        >
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Fra og med
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    09.12.2017
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Til og med
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    17.12.2017
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Kompensasjonsgrad
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    100%
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Pleiepengegrad
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    30%
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Totalt invilget
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    163 dager
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Barnet (gutt)
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    23082527982
+                </dd>
+            </div>
+            <div>
+                <dt
+                    className="typo-etikett-liten"
+                >
+                    Annen forelder
+                </dt>
+                <dd
+                    className="typo-normal"
+                >
+                    12039439539
+                </dd>
+            </div>
+        </dl>
+    </div>
+    <div
+        className="c1"
+    >
+        <div
+            className="c2"
+            color="#d6897d"
+        >
+            <p
+                className="typo-ingress"
+            >
+                Arbeidssituasjon
+            </p>
+        </div>
+        <ol
+            className="c9"
+        >
+            <li>
+                <dl
+                    className="c8"
+                >
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Arbeidsgiver
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            Tangen AS
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Arbeidskategori
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            Arbeidstaker
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Inntekstsperiode
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            Månedssats
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Kontonummer
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            <span
+                                className="c10"
+                            >
+                                <span>
+                                    4398
+                                </span>
+                                <span>
+                                    78
+                                </span>
+                                <span>
+                                    96203
+                                </span>
+                            </span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Refusjonstype
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            Ikke refusjon
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Inntekt for perioden
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            NOK 31,750.00
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            className="typo-etikett-liten"
+                        >
+                            Refusjon til dato
+                        </dt>
+                        <dd
+                            className="typo-normal"
+                        >
+                            22.07.2017
+                        </dd>
+                    </div>
+                </dl>
+            </li>
+        </ol>
+        <div
+            className="c11"
+        />
+        <button
+            className="c12"
+            onClick={[Function]}
+        >
+            Vis alle arbeidsforhold
+        </button>
+    </div>
+</div>,
+  .c2 {
+  text-transform: uppercase;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c5 {
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  box-shadow: inset 0 0 0 1px #59514b;
+  padding: 1.25rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c4 dt {
+  color: #78706a;
+}
+
+.c4 dd {
+  font-weight: bold;
+  margin-top: .3rem;
+}
+
+.c4 > div {
+  margin-top: 1.875rem;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c0 > *:first-child {
+  background-color: #cce1f3;
+  padding: .2rem 1.25rem;
+}
+
+.c0 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c0 ol > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c3 {
+  margin: 0.625rem 1.25rem 2.5rem;
+}
+
+.c7 {
+  padding-bottom: 1rem;
+}
+
+.c6 {
+  list-style: none;
+}
+
+.c6 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #c6c2bf;
+  padding-bottom: 1rem;
+}
+
+<ol>
+    <li
+        className="c0"
+    >
+        <h3
+            className="typo-normal"
+        >
+            <span
+                className="c1"
+            >
+                <span
+                    className="c2"
+                >
+                    Periode 2 - 14.09.2018
+                </span>
+            </span>
+        </h3>
+        <div
+            className="c3"
+        >
+            <dl
+                className="c4"
+            >
+                <div>
+                    <dt
+                        className="typo-etikett-liten"
+                    >
+                        Pleiedager
+                    </dt>
+                    <dd
+                        className="typo-normal"
+                    >
+                        3
+                    </dd>
+                </div>
+            </dl>
+        </div>
+        <div
+            className="c5"
+        >
+            <h2
+                className="typo-undertittel"
+            >
+                Anviste utbetalinger
+            </h2>
+            <ul
+                className="c6"
+            >
+                <li>
+                    <dl
+                        className="c4"
+                    >
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Fra og med dato
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                09.12.2017
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Til og med dato
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                17.12.2017
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Bruttobeløp
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                NOK 812.00
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Anvist Utbetaling
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                17.07.2018
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Dagsats
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                NOK 51.00
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Kompensasjonsgrad
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                100%
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Pleiepengegrad
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                30%
+                            </dd>
+                        </div>
+                    </dl>
+                    <div
+                        className="c7"
+                    />
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li
+        className="c0"
+    >
+        <h3
+            className="typo-normal"
+        >
+            <span
+                className="c1"
+            >
+                <span
+                    className="c2"
+                >
+                    Periode 1 - 28.08.2017
+                </span>
+            </span>
+        </h3>
+        <div
+            className="c3"
+        >
+            <dl
+                className="c4"
+            >
+                <div>
+                    <dt
+                        className="typo-etikett-liten"
+                    >
+                        Pleiedager
+                    </dt>
+                    <dd
+                        className="typo-normal"
+                    >
+                        16
+                    </dd>
+                </div>
+            </dl>
+        </div>
+        <div
+            className="c5"
+        >
+            <h2
+                className="typo-undertittel"
+            >
+                Anviste utbetalinger
+            </h2>
+            <ul
+                className="c6"
+            >
+                <li>
+                    <dl
+                        className="c4"
+                    >
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Fra og med dato
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                03.06.2018
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Til og med dato
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                25.06.2018
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Bruttobeløp
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                NOK 745.00
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Anvist Utbetaling
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                24.08.2018
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Dagsats
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                NOK 69.00
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Kompensasjonsgrad
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                100%
+                            </dd>
+                        </div>
+                        <div>
+                            <dt
+                                className="typo-etikett-liten"
+                            >
+                                Pleiepengegrad
+                            </dt>
+                            <dd
+                                className="typo-normal"
+                            >
+                                11%
+                            </dd>
+                        </div>
+                    </dl>
+                    <div
+                        className="c7"
+                    />
+                </li>
+            </ul>
+        </div>
+    </li>
+</ol>,
+]
+`;

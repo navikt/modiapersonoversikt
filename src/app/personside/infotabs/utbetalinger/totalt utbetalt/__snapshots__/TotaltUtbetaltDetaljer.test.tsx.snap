@@ -20,24 +20,6 @@ Array [
   justify-content: flex-end;
 }
 
-.c0 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
-  border-radius: 0.25rem;
-  background-color: #f4f4f4;
-  box-shadow: inset 0 0 0 1px #59514b;
-  padding: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-.c1 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem;
-  padding: 0;
-}
-
 .c4 {
   border: none;
   padding: .1rem .2rem;
@@ -64,6 +46,24 @@ Array [
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c0 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem 1.25rem;
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  box-shadow: inset 0 0 0 1px #59514b;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.c1 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
+  padding: 0;
 }
 
 .c5 {
@@ -312,7 +312,6 @@ Array [
             aria-expanded={true}
             className="c4"
             onClick={[Function]}
-            open={true}
         >
             <span
                 className="c5"

@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
-import { FlexEnd } from './common-styled-components';
+import { FlexEnd, LenkeKnapp } from './common-styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -29,27 +29,6 @@ const CollapseAnimasjon = styled.div<{ open: boolean }>`
   ${props => props.open && 'padding: 0'};
 `;
 
-const KnappWrapper = styled.button<{ open: boolean }>`
-  border: none;
-  padding: .1rem .2rem;
-  border-radius: ${theme.borderRadius.knapp};
-  cursor: pointer;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  color: ${theme.color.lenke};
-  &:focus {
-    ${theme.focus}
-  }
-  &:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
- @media print {
-    display: none;
- }
-`;
-
 const Luft = styled.span`
   margin-right: .5rem;
 `;
@@ -66,10 +45,9 @@ interface KnappProps {
 
 function DetaljerKnapp(props: KnappProps) {
     return (
-        <KnappWrapper
+        <LenkeKnapp
             onClick={props.onClick}
             aria-expanded={props.open}
-            open={props.open}
         >
             <Luft>
                 <Normaltekst tag="span">
@@ -77,7 +55,7 @@ function DetaljerKnapp(props: KnappProps) {
                 </Normaltekst>
             </Luft>
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
-        </KnappWrapper>
+        </LenkeKnapp>
     );
 }
 

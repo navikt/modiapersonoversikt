@@ -105,18 +105,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c17 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
-}
-
-.c18 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem;
-}
-
 .c19 {
   border: none;
   padding: .1rem .2rem;
@@ -143,6 +131,18 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c17 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.c18 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
 }
 
 .c20 {
@@ -692,7 +692,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 aria-expanded={false}
                 className="c19"
                 onClick={[Function]}
-                open={false}
               >
                 <span
                   className="c20"
@@ -863,7 +862,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           aria-expanded={false}
                           className="c19"
                           onClick={[Function]}
-                          open={false}
                         >
                           <span
                             className="c20"

@@ -6,7 +6,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { getSistePeriodeForPleiepengerettighet } from './pleiepengerUtils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato, genericAscendingDateComparator } from '../../../../../utils/dateUtils';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -19,16 +19,17 @@ export const TittelStyle = styled.div`
 function Pleiepenger(props: Props) {
 
     const gjeldendePeriode = getSistePeriodeForPleiepengerettighet(props.pleiepenger);
+    const sortertePerioder = props.pleiepenger.perioder.sort(genericAscendingDateComparator(p => p.fom)).reverse();
 
     return (
         <>
             <TittelStyle><Undertittel>
-                Pleiepenger sykt barn - ID-dato - {formaterDato(gjeldendePeriode.fom)}
+                Pleiepenger sykt barn - {formaterDato(gjeldendePeriode.fom)}
             </Undertittel></TittelStyle>
             <Oversikt pleiepenger={props.pleiepenger}/>
             <ol>
-                {props.pleiepenger.perioder.map((periode, index) =>
-                    <Pleiepengerperiode key={index} periode={periode}/>
+                {sortertePerioder.map((periode, index) =>
+                    <Pleiepengerperiode periodeNummer={sortertePerioder.length - index} key={index} periode={periode}/>
                 )}
             </ol>
         </>
