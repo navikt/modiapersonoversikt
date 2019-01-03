@@ -9,10 +9,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   border-top: dashed 0.0625rem #b7b1a9;
 }
 
-.c6 {
-  font-weight: bold;
-}
-
 .c2 {
   position: relative;
   -webkit-transition: .3s;
@@ -31,7 +27,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   transition: .3s;
 }
 
-.c12 {
+.c7 {
   border: none;
   padding: .1rem .2rem;
   border-radius: .35rem;
@@ -48,12 +44,12 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   color: #0067c5;
 }
 
-.c12:focus {
+.c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c12:hover {
+.c7:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -63,7 +59,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   padding: 1.875rem 0 2.5rem;
 }
 
-.c8 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -73,89 +69,43 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c8 dt {
+.c3 dt {
   color: #78706a;
 }
 
-.c8 dd {
+.c3 dd {
   font-weight: bold;
   margin-top: .3rem;
 }
 
-.c8 > div {
+.c3 > div {
   margin-top: 1.875rem;
   padding-right: 1rem;
   min-width: 13rem;
 }
 
-.c5 {
-  color: #78706a;
-  margin-top: 3px;
-}
-
-.c5 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c3 {
-  margin-top: 2rem;
-}
-
-.c3 > *:not(:last-child) {
-  margin-top: .3rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c4 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c7 {
-  position: relative;
-  width: 100%;
-  background-color: #e9e7e7;
-  height: 1.5rem;
-}
-
-.c7::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 12.538461538461537%;
-  background-color: #38a161;
-}
-
-.c10 span:not(:last-child):after {
+.c5 span:not(:last-child):after {
   content: '.';
 }
 
-.c9 {
+.c4 {
   list-style: none;
 }
 
-.c9 > *:not(:first-child) {
+.c4 > *:not(:first-child) {
   border-top: solid 0.0625rem #c6c2bf;
 }
 
-.c9 > *:not(:last-child) {
+.c4 > *:not(:last-child) {
   margin-bottom: 2rem;
 }
 
-.c11 {
+.c6 {
   margin-top: 1rem;
 }
 
 @media print {
-  .c12 {
+  .c7 {
     display: none;
   }
 }
@@ -176,48 +126,8 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         Om pleiepengeretten
       </p>
     </div>
-    <div
-      className="c3"
-    >
-      <div
-        className="c4"
-      >
-        <div
-          className="c5"
-        >
-          <h3
-            className="typo-etikett-liten"
-          >
-            Barnets dagkonto
-          </h3>
-        </div>
-        <p
-          className="typo-normal"
-        >
-          <span
-            className="c6"
-          >
-            1300
-             dager
-          </span>
-        </p>
-      </div>
-      <div
-        className="c7"
-      />
-      <p
-        className="typo-normal"
-      >
-        <span
-          className="c6"
-        >
-          163
-           forbrukte dager per i dag
-        </span>
-      </p>
-    </div>
     <dl
-      className="c8"
+      className="c3"
     >
       <div>
         <dt
@@ -247,36 +157,12 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dt
           className="typo-etikett-liten"
         >
-          Kompensasjonsgrad
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          100%
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
           Pleiepengegrad
         </dt>
         <dd
           className="typo-normal"
         >
           30%
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Totalt invilget
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          163 dager
         </dd>
       </div>
       <div>
@@ -319,11 +205,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </p>
     </div>
     <ol
-      className="c9"
+      className="c4"
     >
       <li>
         <dl
-          className="c8"
+          className="c3"
         >
           <div>
             <dt
@@ -371,7 +257,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
               className="typo-normal"
             >
               <span
-                className="c10"
+                className="c5"
               >
                 <span>
                   4398
@@ -425,10 +311,10 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </li>
     </ol>
     <div
-      className="c11"
+      className="c6"
     />
     <button
-      className="c12"
+      className="c7"
       onClick={[Function]}
     >
       Vis alle arbeidsforhold
@@ -624,18 +510,6 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Kompensasjonsgrad
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              100%
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
               Pleiepengegrad
             </dt>
             <dd
@@ -678,10 +552,6 @@ Array [
   border-top: dashed 0.0625rem #b7b1a9;
 }
 
-.c6 {
-  font-weight: bold;
-}
-
 .c2 {
   position: relative;
   -webkit-transition: .3s;
@@ -700,7 +570,7 @@ Array [
   transition: .3s;
 }
 
-.c12 {
+.c7 {
   border: none;
   padding: .1rem .2rem;
   border-radius: .35rem;
@@ -717,12 +587,12 @@ Array [
   color: #0067c5;
 }
 
-.c12:focus {
+.c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c12:hover {
+.c7:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -732,7 +602,7 @@ Array [
   padding: 1.875rem 0 2.5rem;
 }
 
-.c8 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -742,89 +612,43 @@ Array [
   flex-wrap: wrap;
 }
 
-.c8 dt {
+.c3 dt {
   color: #78706a;
 }
 
-.c8 dd {
+.c3 dd {
   font-weight: bold;
   margin-top: .3rem;
 }
 
-.c8 > div {
+.c3 > div {
   margin-top: 1.875rem;
   padding-right: 1rem;
   min-width: 13rem;
 }
 
-.c5 {
-  color: #78706a;
-  margin-top: 3px;
-}
-
-.c5 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c3 {
-  margin-top: 2rem;
-}
-
-.c3 > *:not(:last-child) {
-  margin-top: .3rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c4 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c7 {
-  position: relative;
-  width: 100%;
-  background-color: #e9e7e7;
-  height: 1.5rem;
-}
-
-.c7::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 12.538461538461537%;
-  background-color: #38a161;
-}
-
-.c10 span:not(:last-child):after {
+.c5 span:not(:last-child):after {
   content: '.';
 }
 
-.c9 {
+.c4 {
   list-style: none;
 }
 
-.c9 > *:not(:first-child) {
+.c4 > *:not(:first-child) {
   border-top: solid 0.0625rem #c6c2bf;
 }
 
-.c9 > *:not(:last-child) {
+.c4 > *:not(:last-child) {
   margin-bottom: 2rem;
 }
 
-.c11 {
+.c6 {
   margin-top: 1rem;
 }
 
 @media print {
-  .c12 {
+  .c7 {
     display: none;
   }
 }
@@ -845,48 +669,8 @@ Array [
                 Om pleiepengeretten
             </p>
         </div>
-        <div
-            className="c3"
-        >
-            <div
-                className="c4"
-            >
-                <div
-                    className="c5"
-                >
-                    <h3
-                        className="typo-etikett-liten"
-                    >
-                        Barnets dagkonto
-                    </h3>
-                </div>
-                <p
-                    className="typo-normal"
-                >
-                    <span
-                        className="c6"
-                    >
-                        1300
-                         dager
-                    </span>
-                </p>
-            </div>
-            <div
-                className="c7"
-            />
-            <p
-                className="typo-normal"
-            >
-                <span
-                    className="c6"
-                >
-                    163
-                     forbrukte dager per i dag
-                </span>
-            </p>
-        </div>
         <dl
-            className="c8"
+            className="c3"
         >
             <div>
                 <dt
@@ -916,36 +700,12 @@ Array [
                 <dt
                     className="typo-etikett-liten"
                 >
-                    Kompensasjonsgrad
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    100%
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
                     Pleiepengegrad
                 </dt>
                 <dd
                     className="typo-normal"
                 >
                     30%
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Totalt invilget
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    163 dager
                 </dd>
             </div>
             <div>
@@ -988,11 +748,11 @@ Array [
             </p>
         </div>
         <ol
-            className="c9"
+            className="c4"
         >
             <li>
                 <dl
-                    className="c8"
+                    className="c3"
                 >
                     <div>
                         <dt
@@ -1040,7 +800,7 @@ Array [
                             className="typo-normal"
                         >
                             <span
-                                className="c10"
+                                className="c5"
                             >
                                 <span>
                                     4398
@@ -1094,10 +854,10 @@ Array [
             </li>
         </ol>
         <div
-            className="c11"
+            className="c6"
         />
         <button
-            className="c12"
+            className="c7"
             onClick={[Function]}
         >
             Vis alle arbeidsforhold
@@ -1291,18 +1051,6 @@ Array [
                             <dt
                                 className="typo-etikett-liten"
                             >
-                                Kompensasjonsgrad
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                100%
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
                                 Pleiepengegrad
                             </dt>
                             <dd
@@ -1428,18 +1176,6 @@ Array [
                                 className="typo-normal"
                             >
                                 NOK 69.00
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Kompensasjonsgrad
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                100%
                             </dd>
                         </div>
                         <div>

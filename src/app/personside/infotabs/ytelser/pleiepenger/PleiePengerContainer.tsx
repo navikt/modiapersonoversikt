@@ -45,7 +45,7 @@ class PleiePengerContainer extends React.PureComponent<Props> {
             <Wrapper>
                 <PlukkRestData restReducer={this.props.pleiepengerReducer}>
                     {data => {
-                        if (!data.pleiepenger[0]) {
+                        if (!data.pleiepenger || !data.pleiepenger[0]) {
                             return <AlertStripeInfo>Ingen pleiepenger funnet for brukeren.</AlertStripeInfo>;
                         }
                         return data.pleiepenger.map((pleiepengeRettighet, index) => (
