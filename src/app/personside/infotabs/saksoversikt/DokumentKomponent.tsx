@@ -133,8 +133,8 @@ function dokumentValgtTekst(visTekst: boolean) {
 }
 
 class DokumentKomponent extends React.Component<Props> {
-    private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
-    private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
+    private vedleggLinkRef = React.createRef<HTMLButtonElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLButtonElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
@@ -177,14 +177,13 @@ class DokumentKomponent extends React.Component<Props> {
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
-                                <span ref={this.vedleggLinkRef}>
-                                    <DokumentLenkeStyle
-                                        aria-label={'Vis vedlegg - ' + vlegg.tittel}
-                                        onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
-                                    >
-                                        <Element>{vlegg.tittel}</Element>
-                                    </DokumentLenkeStyle>
-                                </span>
+                                <DokumentLenkeStyle
+                                    aria-label={'Vis vedlegg - ' + vlegg.tittel}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                    ref={this.vedleggLinkRef}
+                                >
+                                    <Element>{vlegg.tittel}</Element>
+                                </DokumentLenkeStyle>
                                 {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
@@ -195,7 +194,7 @@ class DokumentKomponent extends React.Component<Props> {
                 !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
             null :
             (
-                <span ref={this.nyttVinduLinkRef}>
+                <span>
                     <a href={lagÅpneSomStandaloneLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
                     </a>
@@ -220,14 +219,13 @@ class DokumentKomponent extends React.Component<Props> {
                                     {formaterDatoOgAvsender(brukersNavn, dokument)}
                                 </Normaltekst>
                             </Innholdslaster>
-                            <div ref={this.hoveddokumentLinkRef}>
-                                <DokumentLenkeStyle
-                                    aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                                >
-                                    <Element>{dokument.hoveddokument.tittel}</Element>
-                                </DokumentLenkeStyle>
-                            </div>
+                            <DokumentLenkeStyle
+                                aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
+                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                ref={this.hoveddokumentLinkRef}
+                            >
+                                <Element>{dokument.hoveddokument.tittel}</Element>
+                            </DokumentLenkeStyle>
                             {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                             {vedlegg}
                             {saksvisning}
