@@ -2,12 +2,20 @@ import { Sakstema } from '../../models/saksoversikt/sakstema';
 import { Dokument, DokumentMetadata } from '../../models/saksoversikt/dokumentmetadata';
 import { Action } from 'redux';
 
+export interface DokumentAvsenderFilter {
+    fraBruker: boolean;
+    fraNav: boolean;
+    fraAndre: boolean;
+}
+
 export interface SaksoversikState {
     valgtSakstema?: Sakstema;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltdokument?: Dokument;
     visDokument: boolean;
     viktigÅViteÅpen: boolean;
+    erStandaloneVindu: boolean;
+    avsenderFilter: DokumentAvsenderFilter;
 }
 
 export const initialState: SaksoversikState = {
@@ -15,7 +23,13 @@ export const initialState: SaksoversikState = {
     valgtDokument: undefined,
     valgtEnkeltdokument: undefined,
     visDokument: false,
-    viktigÅViteÅpen: false
+    viktigÅViteÅpen: false,
+    erStandaloneVindu: false,
+    avsenderFilter: {
+        fraBruker: true,
+        fraNav: true,
+        fraAndre: true
+    }
 };
 
 export enum SaksoversiktActionTypes {
@@ -23,7 +37,9 @@ export enum SaksoversiktActionTypes {
     SetValgtDokument = 'SetValgtDokument',
     SetValgtEnkeltdokument = 'SetValgtEnkeltdokument',
     SetVisDokument = 'SetVisDokument',
-    SetViktigÅViteÅpen = 'SetViktigÅViteÅpen'
+    SetViktigÅViteÅpen = 'SetViktigÅViteÅpen',
+    SetErStandaloneVindu = 'SetErStandaloneVindu',
+    SetDokumentAvsenderFilter = 'SetDokumentAvsenderFilter'
 }
 
 export interface SetValgtSakstema {
@@ -51,9 +67,21 @@ export interface SetViktigÅViteÅpen extends Action {
     åpen: boolean;
 }
 
+export interface SetErStandaloneVindu {
+    type: SaksoversiktActionTypes.SetErStandaloneVindu;
+    standaloneVindu: boolean;
+}
+
+export interface SetDokumentAvsenderFilter {
+    type: SaksoversiktActionTypes.SetDokumentAvsenderFilter;
+    filterEndring: Partial<DokumentAvsenderFilter>;
+}
+
 export type SaksoversiktActions =
     SetVisDokument |
     SetValgtDokument |
     SetValgtEnkeltdokument |
-    SetValgtSakstema|
-    SetViktigÅViteÅpen;
+    SetValgtSakstema |
+    SetViktigÅViteÅpen |
+    SetErStandaloneVindu |
+    SetDokumentAvsenderFilter;

@@ -1,7 +1,10 @@
 import { Sakstema } from '../../models/saksoversikt/sakstema';
 import { Dokument, DokumentMetadata } from '../../models/saksoversikt/dokumentmetadata';
 import {
+    DokumentAvsenderFilter,
     SaksoversiktActionTypes,
+    SetDokumentAvsenderFilter,
+    SetErStandaloneVindu,
     SetValgtDokument,
     SetValgtEnkeltdokument,
     SetValgtSakstema,
@@ -41,5 +44,19 @@ export function setViktigÅViteÅpen(åpen: boolean): SetViktigÅViteÅpen {
     return {
         type: SaksoversiktActionTypes.SetViktigÅViteÅpen,
         åpen: åpen
+    };
+}
+
+export function setErStandaloneVindu(standaloneVindu: boolean): SetErStandaloneVindu {
+    return {
+        type: SaksoversiktActionTypes.SetErStandaloneVindu,
+        standaloneVindu: standaloneVindu
+    };
+}
+
+export function oppdaterAvsenderfilter(filter: Partial<DokumentAvsenderFilter>): SetDokumentAvsenderFilter {
+    return {
+        type: SaksoversiktActionTypes.SetDokumentAvsenderFilter,
+        filterEndring: filter
     };
 }
