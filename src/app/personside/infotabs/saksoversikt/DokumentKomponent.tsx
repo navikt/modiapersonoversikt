@@ -22,7 +22,6 @@ import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { Link } from 'react-router-dom';
 import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
@@ -203,9 +202,9 @@ class DokumentKomponent extends React.Component<Props> {
             null :
             (
                 <span ref={this.nyttVinduLinkRef}>
-                    <Link to={lagSaksoversiktLenke(this.props)} target={'_blank'}>
+                    <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
-                    </Link>
+                    </a>
                 </span>
             );
 

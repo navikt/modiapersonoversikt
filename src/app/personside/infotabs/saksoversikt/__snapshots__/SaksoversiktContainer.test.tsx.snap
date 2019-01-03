@@ -673,8 +673,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
                 <span>
                   <a
+                    className="lenke"
                     href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=3fmounyc&dokumentId=mlub095n"
-                    onClick={[Function]}
                     target="_blank"
                   >
                     Åpne i eget vindu
