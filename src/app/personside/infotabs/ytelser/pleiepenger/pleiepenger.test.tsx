@@ -9,6 +9,8 @@ import Pleiepengerperiode from './Pleiepengerperiode';
 
 const mockPleiepenger = getMockPleiepengerettighet(aremark.fødselsnummer);
 
+Date.prototype.getTime = jest.fn(() => 0);
+
 test('Om pleiepengeretten matcher snapshot', () => {
     const resultat = renderer.create(
         <TestProvider><Pleiepenger pleiepenger={mockPleiepenger}/></TestProvider>
