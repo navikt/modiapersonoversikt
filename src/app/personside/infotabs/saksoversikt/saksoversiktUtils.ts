@@ -2,6 +2,33 @@ import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetada
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import * as moment from 'moment';
+import { sakstemakodeAlle } from './SakstemaListe';
+
+export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
+    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.behandlingskjeder));
+    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.dokumentMetadata));
+    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.tilhorendeSaker));
+
+    return {
+        temanavn: 'Alle tema',
+        temakode: sakstemakodeAlle,
+        harTilgang: true,
+        behandlingskjeder: alleBehandlingskjeder,
+        dokumentMetadata: alleDokumentmetadata,
+        tilhorendeSaker: alleTilhørendeSaker,
+        erGruppert: false,
+        feilkoder: []
+    };
+}
+
+function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
+    return alleSakstema.reduce(
+        (acc: T[], sakstema: Sakstema) => {
+            return [...acc, ...getGeneriskElement(sakstema)];
+        },
+        []
+    );
+}
 
 export function hentFormattertDatoForSisteHendelse(sakstema: Sakstema) {
     return formatterDato(hentDatoForSisteHendelse(sakstema));

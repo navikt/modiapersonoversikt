@@ -1,7 +1,7 @@
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
 import { Sakstema } from '../../../../models/saksoversikt/sakstema';
-import { sakstemakodeAlle } from './SakstemaVisning';
+import { sakstemakodeAlle } from './SakstemaListe';
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 
 export function lenkeNorg2Frontend(
