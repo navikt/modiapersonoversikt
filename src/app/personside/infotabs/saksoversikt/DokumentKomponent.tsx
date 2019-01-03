@@ -6,7 +6,7 @@ import {
     KategoriNotat,
     Kommunikasjonsretning
 } from '../../../../models/saksoversikt/dokumentmetadata';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import * as moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
@@ -48,7 +48,7 @@ interface StateProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div<{ valgt: boolean }>`
-  ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.09);'}
+  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
 `;
 
 const InfoWrapper = styled.div`
@@ -120,14 +120,12 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-function lagSaksoversiktLenke(props: Props) {
-    const brukersFnr = isLoaded(props.bruker)
-        ? (props.bruker.data as Person).fødselsnummer
-        : '';
-    const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
-    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
-    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
-    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
+function lagÅpneSomStandaloneLenke(props: Props) {
+    const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
+    const sakstemaQueryLenke = `sakstemaKode=${props.sakstemakode}`;
+    const journalpostQueryLenke = `journalpostId=${props.dokument.journalpostId}`;
+    const dokumentQueryLenke = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQueryLenke}&${journalpostQueryLenke}&${dokumentQueryLenke}`;
 }
 
 function dokumentValgtTekst(visTekst: boolean) {
@@ -141,12 +139,8 @@ class DokumentKomponent extends React.Component<Props> {
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
-        if (!this.hoveddokumentLinkRef.current) {
-            return;
-        }
-
         const lenkeTrykket = (event.target instanceof Node)
-            && (this.hoveddokumentLinkRef.current.contains(event.target)
+            && ((this.hoveddokumentLinkRef.current && this.hoveddokumentLinkRef.current.contains(event.target))
                 || (this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target))
                 || (this.nyttVinduLinkRef.current && this.nyttVinduLinkRef.current.contains(event.target)));
 
@@ -202,7 +196,7 @@ class DokumentKomponent extends React.Component<Props> {
             null :
             (
                 <span ref={this.nyttVinduLinkRef}>
-                    <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
+                    <a href={lagÅpneSomStandaloneLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
                     </a>
                 </span>
