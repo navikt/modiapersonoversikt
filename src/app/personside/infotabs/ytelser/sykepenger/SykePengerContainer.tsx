@@ -34,7 +34,7 @@ class SykePengerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restReducer={this.props.sykepengerReducer}>
+            <PlukkRestData spinnerSize="M" restReducer={this.props.sykepengerReducer}>
                 {data => {
                     if (!data.sykepenger) {
                         return null;

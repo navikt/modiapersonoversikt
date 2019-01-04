@@ -27,6 +27,12 @@ const TittelStyle = styled.div`
   }
 `;
 
+const FjernPadding = styled.div`
+  .ekspanderbartPanel__innhold {
+    padding: 0;
+  }
+`;
+
 function EkspanderbartYtelserPanel(props: Props) {
 
     const tillegsinfo = props.tittelTillegsInfo && props.tittelTillegsInfo
@@ -41,9 +47,11 @@ function EkspanderbartYtelserPanel(props: Props) {
     );
 
     return (
-        <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
-            {props.children}
-        </EkspanderbartpanelBase>
+        <FjernPadding>
+            <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
+                {props.children}
+            </EkspanderbartpanelBase>
+        </FjernPadding>
     );
 }
 
