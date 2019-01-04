@@ -23,7 +23,7 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
     }
 
     return {
-        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getMockPleiepengerettighet(fødselsnummer), 3)
+        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getMockPleiepengerettighet(fødselsnummer), 2)
     };
 }
 
