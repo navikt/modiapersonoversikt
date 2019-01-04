@@ -365,7 +365,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                08.03.2018
+                08.02.2018
               </p>
               <p
                 className="typo-element"
@@ -397,7 +397,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                08.03.2018
+                08.02.2018
               </p>
               <p
                 className="typo-element"
@@ -456,7 +456,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                21.12.2017
+                21.11.2017
               </p>
               <p
                 className="typo-element"
@@ -642,21 +642,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    08.03.2018 / Fra Marie
+                    08.02.2018 / Fra Marie
                   </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
-                      className="c20"
-                      onClick={[Function]}
+                  <button
+                    aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
+                    className="c20"
+                    onClick={[Function]}
+                  >
+                    <p
+                      className="typo-element"
                     >
-                      <p
-                        className="typo-element"
-                      >
-                        Vurdering feilutbetaling/revurdering
-                      </p>
-                    </button>
-                  </div>
+                      Vurdering feilutbetaling/revurdering
+                    </p>
+                  </button>
                   
                   <div
                     className="c21"
@@ -729,21 +727,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    21.12.2017 / Samtalereferat
+                    21.11.2017 / Samtalereferat
                   </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Spørsmål via nav.no"
-                      className="c20"
-                      onClick={[Function]}
+                  <button
+                    aria-label="Vis hoveddokument - Spørsmål via nav.no"
+                    className="c20"
+                    onClick={[Function]}
+                  >
+                    <p
+                      className="typo-element"
                     >
-                      <p
-                        className="typo-element"
-                      >
-                        Spørsmål via nav.no
-                      </p>
-                    </button>
-                  </div>
+                      Spørsmål via nav.no
+                    </p>
+                  </button>
                   
                   <div
                     className="c21"
