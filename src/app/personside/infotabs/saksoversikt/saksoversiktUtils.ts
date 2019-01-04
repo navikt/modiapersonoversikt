@@ -1,8 +1,8 @@
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
 import * as moment from 'moment';
 import { sakstemakodeAlle } from './SakstemaListe';
+import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.behandlingskjeder));

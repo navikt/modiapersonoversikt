@@ -8,8 +8,6 @@ import {
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import * as moment from 'moment';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
@@ -25,6 +23,7 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
+import { formaterDato } from '../../../../utils/dateUtils';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -108,7 +107,9 @@ function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
-    const dato = moment(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
+    const saksdato = dokument.dato;
+    const dato = formaterDato(`${saksdato.år}.${saksdato.måned}.${saksdato.dag}`);
+    console.log(dato, dokument.dato);
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
