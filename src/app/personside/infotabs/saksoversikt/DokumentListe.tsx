@@ -7,7 +7,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { DokumentMetadata, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import DokumentKomponent from './DokumentKomponent';
-import { Bold, Uppercase } from '../../../../components/common-styled-components';
+import { AlignTextCenter, Bold, Uppercase } from '../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -30,13 +30,12 @@ interface DokumentGruppeProps {
 }
 
 const DokumentListeStyling = styled.section`
-  border-radius: ${theme.borderRadius.layout};
-  background-color: white;
   position: relative;
   flex-grow: 1;
 `;
 
 const Header = styled.section`
+  ${theme.hvittPanel};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -48,8 +47,6 @@ const Header = styled.section`
 `;
 
 const DokumenterArticle = styled.article`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
 `;
 
 const DokumenterListe = styled.ol`
@@ -60,10 +57,10 @@ const DokumenterListe = styled.ol`
 
 const ÅrsGruppeStyle = styled.li`
   > *:first-child {
-    background-color: ${theme.color.kategori};
     padding: .2rem ${theme.margin.px10};
   }
   ol {
+    ${theme.hvittPanel};
     padding: 0;
     margin: 0;
   }
@@ -79,6 +76,10 @@ const Form = styled.form`
   }
 `;
 
+const Luft = styled.div`
+  margin-top: 2rem;
+`;
+
 function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
@@ -92,7 +93,9 @@ function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps)
 
     return (
         <ÅrsGruppeStyle>
-            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
+            <Normaltekst tag={'h3'}>
+                <AlignTextCenter><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></AlignTextCenter>
+            </Normaltekst>
             <ol>
                 {dokumentKomponenter}
             </ol>
@@ -161,6 +164,7 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: DokumentAvsende
             <DokumenterListe>
                 {årsgrupper}
             </DokumenterListe>
+            <Luft/>
             <AlertStripeInfo>
                 Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
                 Dokumenter som er journalført vises fra og med 4.juni 2016

@@ -61,8 +61,11 @@ const InfoWrapper = styled.div`
   }
   cursor: pointer;
   &:hover {
-      background-color: ${theme.color.objektlisteHover};
+      ${theme.hover}
     }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const InnholdWrapper = styled.div`

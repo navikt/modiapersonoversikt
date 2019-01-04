@@ -22,11 +22,15 @@ export const theme = {
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
-    gråttPanel: `
+    gråttPanel: css`
         border-radius: ${pxToRem(4)};
         background-color: #f4f4f4;
         box-shadow: inset 0 0 0 1px #59514b;
         padding: ${pxToRem(20)};
+    `,
+    hvittPanel: css`
+        border-radius: ${pxToRem(4)};
+        background-color: white;
     `,
     media: {
         smallScreen: 'max-width: 35rem',
@@ -71,6 +75,7 @@ export const theme = {
           width: 100%;
         }
     `,
+    hover: css`box-shadow: inset 0 0 0 0.05rem #0067c5;`,
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;

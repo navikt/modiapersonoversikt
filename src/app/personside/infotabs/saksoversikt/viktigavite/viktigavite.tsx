@@ -44,7 +44,7 @@ class ViktigÅVite extends React.PureComponent<Props> {
                 innhold = ViktigÅViteINDInnhold();
                 break;
             default:
-                return <Luft/>;
+                return null;
         }
 
         return (
