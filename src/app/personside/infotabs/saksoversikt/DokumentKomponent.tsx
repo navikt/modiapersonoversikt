@@ -25,6 +25,7 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
+import { LenkeKnapp } from '../../../../components/common-styled-components';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -72,23 +73,6 @@ const InnholdWrapper = styled.div`
   flex-grow: 1;
   > *:not(:last-child) {
     margin-bottom: 0.5rem;
-  }
-`;
-
-const DokumentLenkeStyle = styled.button`
-  border: none;
-  background-color: transparent;
-  padding: .1rem .2rem;
-  border-radius: ${theme.borderRadius.knapp};
-  cursor: pointer;
-  display: flex;
-  color: ${theme.color.lenke};
-  &:focus {
-    ${theme.focus}
-  }
-  &:hover {
-    opacity: 0.8;
-    text-decoration: underline;
   }
 `;
 
@@ -187,12 +171,12 @@ class DokumentKomponent extends React.Component<Props> {
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
                                 <span ref={this.vedleggLinkRef}>
-                                    <DokumentLenkeStyle
+                                    <LenkeKnapp
                                         aria-label={'Vis vedlegg - ' + vlegg.tittel}
                                         onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
                                     >
                                         <Element>{vlegg.tittel}</Element>
-                                    </DokumentLenkeStyle>
+                                    </LenkeKnapp>
                                 </span>
                                 {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
@@ -230,12 +214,12 @@ class DokumentKomponent extends React.Component<Props> {
                                 </Normaltekst>
                             </Innholdslaster>
                             <div ref={this.hoveddokumentLinkRef}>
-                                <DokumentLenkeStyle
+                                <LenkeKnapp
                                     aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
                                     onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
                                 >
                                     <Element>{dokument.hoveddokument.tittel}</Element>
-                                </DokumentLenkeStyle>
+                                </LenkeKnapp>
                             </div>
                             {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                             {vedlegg}

@@ -49,7 +49,7 @@ export const GråttPanel = styled.div`
 
 export const LenkeKnapp = styled.button`
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: ${theme.borderRadius.knapp};
   cursor: pointer;
   background-color: transparent;
@@ -63,7 +63,4 @@ export const LenkeKnapp = styled.button`
     opacity: 0.8;
     text-decoration: underline;
   }
- @media print {
-    display: none;
- }
 `;

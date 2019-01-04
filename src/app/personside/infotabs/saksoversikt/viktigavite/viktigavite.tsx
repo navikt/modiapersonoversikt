@@ -1,29 +1,27 @@
 import * as React from 'react';
 import { AppState } from '../../../../../redux/reducers';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { ViktigÅViteDAGInnhold } from './DAGInnhold';
 import { ViktigÅViteAAPInnhold } from './AAPInnhold';
 import { ViktigÅViteINDInnhold } from './INDInnhold';
-import { AnyAction } from 'redux';
-import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { setViktigÅViteÅpen } from '../../../../../redux/saksoversikt/actions';
+import { UnmountClosed } from 'react-collapse';
 
-export type Props = StateProps & DispatchProps;
+export type Props = StateProps;
 
 export interface StateProps {
     valgtSakstema?: Sakstema;
     åpen: boolean;
 }
 
-interface DispatchProps {
-    setÅpen: (åpen: boolean) => void;
-}
-
 const Luft = styled.div`
   margin-top: ${theme.margin.px10}
+`;
+
+const GråttPanel = styled.div`
+    ${theme.gråttPanel};
 `;
 
 class ViktigÅVite extends React.PureComponent<Props> {
@@ -44,18 +42,16 @@ class ViktigÅVite extends React.PureComponent<Props> {
                 innhold = ViktigÅViteINDInnhold();
                 break;
             default:
-                return null;
+                // return null;
+                innhold = ViktigÅViteINDInnhold();
         }
 
         return (
-            <DetaljerCollapse
-                open={this.props.åpen}
-                toggle={() => this.props.setÅpen(!this.props.åpen)}
-                tittel={'viktig å vite om ' + this.props.valgtSakstema.temanavn}
-                knappPaTopp={true}
-            >
-                {innhold}
-            </DetaljerCollapse>
+            <UnmountClosed isOpened={this.props.åpen}>
+                <GråttPanel>
+                    {innhold}
+                </GråttPanel>
+            </UnmountClosed>
         );
     }
 }
@@ -65,10 +61,5 @@ export default connect(
         return {
             valgtSakstema: state.saksoversikt.valgtSakstema,
             åpen: state.saksoversikt.viktigÅViteÅpen
-        };
-    },
-    (dispatch: Dispatch<AnyAction>): DispatchProps => {
-        return {
-            setÅpen: (åpen: boolean) => dispatch(setViktigÅViteÅpen(åpen))
         };
     })(ViktigÅVite);

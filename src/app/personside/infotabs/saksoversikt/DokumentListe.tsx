@@ -13,6 +13,8 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import ViktigÅVite from './viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../redux/saksoversikt/types';
+import LenkeNorg from './LenkeNorg';
+import ToggleViktigAaViteKnapp from './viktigavite/ToggleViktigAaViteKnapp';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -34,16 +36,26 @@ const DokumentListeStyling = styled.section`
   flex-grow: 1;
 `;
 
-const Header = styled.section`
+const InfoOgFilterPanel = styled.section`
   ${theme.hvittPanel};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: ${theme.margin.px20};
-  padding-bottom: 0;
   > *:first-child {
-        flex-grow: 1;
+    flex-grow: 1;
+  }
+  > div {
+    > * {
+      margin-bottom: .5rem;
     }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  > div:last-child {
+    align-content: flex-end;
+  }
 `;
 
 const DokumenterArticle = styled.article`
@@ -73,6 +85,9 @@ const Form = styled.form`
   display: flex;
   > *:not(:last-child) {
     padding-right: 1rem;
+  }
+  > * {
+    margin-bottom: 0;
   }
 `;
 
@@ -178,7 +193,7 @@ function DokumentListe(props: Props) {
         return null;
     }
 
-    const checkboxer = (
+    const filterCheckboxer = (
         <Form>
             <Checkbox
                 label={'Bruker'}
@@ -212,13 +227,17 @@ function DokumentListe(props: Props) {
 
     return (
         <DokumentListeStyling>
-            <Header>
+            <InfoOgFilterPanel>
                 <div>
                     {tilbakeLenke}
                     <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
+                    {filterCheckboxer}
                 </div>
-                {checkboxer}
-            </Header>
+                <div>
+                    <LenkeNorg/>
+                    <ToggleViktigAaViteKnapp/>
+                </div>
+            </InfoOgFilterPanel>
             <ViktigÅVite/>
             {dokumentinnhold}
         </DokumentListeStyling>
