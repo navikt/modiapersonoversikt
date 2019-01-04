@@ -186,7 +186,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          23039440199
+          24039440128
         </dd>
       </div>
     </dl>
@@ -531,20 +531,6 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 exports[`Om pleiepengeretten matcher snapshot 1`] = `
 Array [
   .c0 {
-  padding: 1.25rem 1.25rem 0.625rem;
-}
-
-<div
-    className="c0"
->
-    <h2
-        className="typo-undertittel"
-    >
-        Pleiepenger sykt barn - 
-        01.01.1970
-    </h2>
-</div>,
-  .c0 {
   margin: 0 1.25rem 1.25rem;
 }
 
@@ -729,7 +715,7 @@ Array [
                 <dd
                     className="typo-normal"
                 >
-                    23039440199
+                    24039440128
                 </dd>
             </div>
         </dl>
