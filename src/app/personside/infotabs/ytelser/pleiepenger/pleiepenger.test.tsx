@@ -6,10 +6,15 @@ import { aremark } from '../../../../../mock/person/aremark';
 import TestProvider from '../../../../../test/Testprovider';
 import Pleiepenger from './Pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
+import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 
-const mockPleiepenger = getMockPleiepengerettighet(aremark.fødselsnummer);
+let mockPleiepenger: Pleiepengerettighet;
 
-Date.prototype.getTime = jest.fn(() => 0);
+beforeEach(() => {
+    Date.prototype.getTime = jest.fn(() => 0);
+    Date.parse = jest.fn(() => 0);
+    mockPleiepenger = getMockPleiepengerettighet(aremark.fødselsnummer);
+});
 
 test('Om pleiepengeretten matcher snapshot', () => {
     const resultat = renderer.create(
