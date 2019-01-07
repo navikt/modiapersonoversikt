@@ -10,7 +10,7 @@ interface Props {
 function SykepengerEkspanderbartpanel({sykepenger}: Props) {
 
     const tittelTillegsInfo = [
-        formaterDato(sykepenger.sykmeldtFom)
+        'ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)
     ];
 
     return (

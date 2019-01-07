@@ -15,7 +15,7 @@ function ForeldrepengerEkspanderbartpanel({foreldrepenger}: Props) {
     }
 
     const tittelTillegsInfo = [
-        foreldrepenger.rettighetFom && formaterDato(foreldrepenger.rettighetFom),
+        `ID-dato: ${foreldrepenger.rettighetFom && formaterDato(foreldrepenger.rettighetFom)}`,
         foreldrepenger.foreldrepengetype
     ];
 
