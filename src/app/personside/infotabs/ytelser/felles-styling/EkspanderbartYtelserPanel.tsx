@@ -31,6 +31,9 @@ const FjernPadding = styled.div`
   .ekspanderbartPanel__innhold {
     padding: 0;
   }
+  .ekspanderbartPanel__hode:hover {
+    box-shadow: inset 0 0 0 .1rem #0067C5, 0 .1rem .1rem rgba(0, 0, 0, .2) !important;
+  }
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
