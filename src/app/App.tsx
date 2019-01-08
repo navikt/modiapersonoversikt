@@ -15,7 +15,6 @@ import ModalWrapper from 'nav-frontend-modal';
 import { Person, PersonRespons } from '../models/person/person';
 import { isLoaded, Loaded } from '../redux/restReducers/restReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import ToolTipContainer from '../components/tooltip/ToolTipContainer';
 
 if (mockEnabled) {
     setupMock();
@@ -68,7 +67,6 @@ class App extends React.Component<{}> {
                             </Content>
                         </BrowserRouter>
                         <UnderArbeid/>
-                        <ToolTipContainer/>
                     </AppWrapper>
                 </Provider>
             </PersonContext.Provider>
