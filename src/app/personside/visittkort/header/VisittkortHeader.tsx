@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-
 import { erDød, Navn, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './Etiketter/EtiketterContainer';
@@ -10,21 +9,12 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
 import theme from '../../../../styles/personOversiktTheme';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { settNyttTooltip } from '../../../../redux/uiReducers/toolTipReducer';
-import { connect } from 'react-redux';
 
-interface OwnProps {
+interface Props {
+    visittkortApent: boolean;
     person: Person;
     toggleVisittkort: (erApen?: boolean) => void;
-    visittkortApent: boolean;
 }
-
-interface DispatchProps {
-    setTooltip: (tooltip: string) => void;
-}
-
-type Props = OwnProps & DispatchProps;
 
 const VisittkortHeaderDiv = styled.section`
   background-color: white;
@@ -107,7 +97,6 @@ class VisittkortHeader extends React.Component<Props> {
 
     toggleVisittkort() {
         this.props.toggleVisittkort(!this.props.visittkortApent);
-        this.props.setTooltip('Hurtigtast åpne/lukke visittkort: Alt + N');
     }
 
     render() {
@@ -157,10 +146,4 @@ class VisittkortHeader extends React.Component<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        setTooltip: (tooltip: string) => dispatch(settNyttTooltip(tooltip))
-    };
-}
-
-export default connect(null, mapDispatchToProps)(VisittkortHeader);
+export default VisittkortHeader;
