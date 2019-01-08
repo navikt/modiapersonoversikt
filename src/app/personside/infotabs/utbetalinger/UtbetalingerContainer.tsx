@@ -50,12 +50,10 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-export const utbetalingerMediaTreshold = '80rem';
-
 const UtbetalingerArticle = styled.article`
   display: flex;
   align-items: flex-start;
-  @media(max-width: ${utbetalingerMediaTreshold}) {
+  @media(max-width: ${theme.media.utbetalinger}) {
     display: block;
   }
 `;
@@ -69,7 +67,7 @@ const UtbetalingerSection = styled.section`
   position: relative;
   flex-grow: 1;
   min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
-  @media not all and (max-width: ${utbetalingerMediaTreshold}) {
+  @media not all and (max-width: ${theme.media.utbetalinger}) {
       margin-left: ${theme.margin.layout};
   }
 `;

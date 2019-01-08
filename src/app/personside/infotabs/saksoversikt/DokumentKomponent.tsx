@@ -13,22 +13,22 @@ import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import { sakstemakodeAlle } from './SakstemaVisning';
+import { sakstemakodeAlle } from './SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
-import {
-    settVisDokument
-} from '../../../../redux/saksoversikt/actions';
+import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../utils/functionUtils';
 import { AppState } from '../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { settValgtDokument, settValgtEnkeltdokument } from '../../../../redux/saksoversikt/actions';
+import { paths } from '../../../routes/routing';
+import Element from 'nav-frontend-typografi/lib/element';
+import EtikettGrå from '../../../../components/EtikettGrå';
 
 interface OwnProps {
     dokument: DokumentMetadata;
-    harTilgang: boolean;
+    harTilgangTilSakstema: boolean;
     sakstemakode: string;
     sakstemanavn: string;
 }
@@ -39,12 +39,16 @@ interface DispatchProps {
 
 interface StateProps {
     bruker: RestReducer<PersonRespons>;
+    erStandaloneVindu: boolean;
+    valgtDokument?: DokumentMetadata;
+    valgtEnkeltDokument?: Enkeltdokument;
+    visDokument: boolean;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div`
-
+const Wrapper = styled.div<{ valgt: boolean }>`
+  ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.09);'}
 `;
 
 const InfoWrapper = styled.div`
@@ -61,8 +65,28 @@ const InfoWrapper = styled.div`
     }
 `;
 
-const VedleggStyle = styled.div`
-  margin: 1rem 0;
+const InnholdWrapper = styled.div`
+  flex-grow: 1;
+  > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+const DokumentLenkeStyle = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: .1rem .2rem;
+  border-radius: ${theme.borderRadius.knapp};
+  cursor: pointer;
+  display: flex;
+  color: ${theme.color.lenke};
+  &:focus {
+    ${theme.focus}
+  }
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
 `;
 
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
@@ -96,10 +120,25 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
+function lagSaksoversiktLenke(props: Props) {
+    const brukersFnr = isLoaded(props.bruker)
+        ? (props.bruker.data as Person).fødselsnummer
+        : '';
+    const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
+    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
+    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
+}
+
+function dokumentValgtTekst(visTekst: boolean) {
+    return visTekst ? ' (Dokumentet vises til høyre)' : '';
+}
+
 class DokumentKomponent extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
-    private hoveddokumentLinkRef = React.createRef<HTMLAnchorElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
+    private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
         if (!this.hoveddokumentLinkRef.current) {
@@ -108,7 +147,8 @@ class DokumentKomponent extends React.Component<Props> {
 
         const lenkeTrykket = (event.target instanceof Node)
             && (this.hoveddokumentLinkRef.current.contains(event.target)
-                || this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target));
+                || (this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target))
+                || (this.nyttVinduLinkRef.current && this.nyttVinduLinkRef.current.contains(event.target)));
 
         if (!lenkeTrykket) {
             this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
@@ -116,7 +156,7 @@ class DokumentKomponent extends React.Component<Props> {
     }
 
     visDokumentHvisTilgang(dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) {
-        if (this.props.harTilgang) {
+        if (this.props.harTilgangTilSakstema && enkeltdokument.kanVises) {
             this.props.velgOgVisDokument(enkeltdokument);
         }
     }
@@ -130,30 +170,45 @@ class DokumentKomponent extends React.Component<Props> {
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
         const saksvisning = this.props.sakstemakode === sakstemakodeAlle ?
             (
-                <Normaltekst>Saksid: {saksid} / Sakstema: {this.props.sakstemanavn}</Normaltekst>
+                <EtikettGrå>Saksid: {saksid} / Sakstema: {this.props.sakstemanavn}</EtikettGrå>
             ) :
             (
-                <Normaltekst>Saksid: {saksid}</Normaltekst>
+                <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
         const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
             (
-                <VedleggStyle>
+                <div>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
                         {dokument.vedlegg.map(vlegg =>
                             <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
-                                <a
-                                    href={'#'}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
-                                    ref={this.vedleggLinkRef}
-                                >
-                                    {vlegg.tittel}
-                                </a>
+                                <span ref={this.vedleggLinkRef}>
+                                    <DokumentLenkeStyle
+                                        aria-label={'Vis vedlegg - ' + vlegg.tittel}
+                                        onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                    >
+                                        <Element>{vlegg.tittel}</Element>
+                                    </DokumentLenkeStyle>
+                                </span>
+                                {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
-                </VedleggStyle>
+                </div>
             ) : null;
+
+        const egetVinduLenke = this.props.erStandaloneVindu ||
+                !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
+            null :
+            (
+                <span ref={this.nyttVinduLinkRef}>
+                    <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
+                        Åpne i eget vindu
+                    </a>
+                </span>
+            );
+
+        const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
             <>
@@ -161,25 +216,29 @@ class DokumentKomponent extends React.Component<Props> {
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(() => this.handleClickOnDokument(event))}
                     ref={this.dokumentRef}
+                    valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
                 >
                     <InfoWrapper>
-                        {dokumentIkon(this.props.harTilgang)}
-                        <div>
-                            <Innholdslaster avhengigheter={[this.props.bruker]}>
+                        {dokumentIkon(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises)}
+                        <InnholdWrapper>
+                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
                                 <Normaltekst>
                                     {formaterDatoOgAvsender(brukersNavn, dokument)}
                                 </Normaltekst>
                             </Innholdslaster>
-                            <a
-                                href={'#'}
-                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                                ref={this.hoveddokumentLinkRef}
-                            >
-                                {dokument.hoveddokument.tittel}
-                            </a>
+                            <div ref={this.hoveddokumentLinkRef}>
+                                <DokumentLenkeStyle
+                                    aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                >
+                                    <Element>{dokument.hoveddokument.tittel}</Element>
+                                </DokumentLenkeStyle>
+                            </div>
+                            {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                             {vedlegg}
                             {saksvisning}
-                        </div>
+                        </InnholdWrapper>
+                        {egetVinduLenke}
                     </InfoWrapper>
                 </Wrapper>
             </>
@@ -199,7 +258,11 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        bruker: state.restEndepunkter.personinformasjon
+        bruker: state.restEndepunkter.personinformasjon,
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
+        valgtDokument: state.saksoversikt.valgtDokument,
+        valgtEnkeltDokument: state.saksoversikt.valgtEnkeltdokument,
+        visDokument: state.saksoversikt.visDokument
     };
 }
 

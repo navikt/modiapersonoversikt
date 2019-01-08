@@ -38,21 +38,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: .8rem;
 }
 
-.c4 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 1.5rem 3rem 1.5rem 0;
-}
-
-.c4 > *:not(:first-child) {
-  margin-top: 1.5rem;
-}
-
 .c5 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -61,6 +46,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  margin-top: 1.5rem;
 }
 
 .c5 > *:first-child {
@@ -119,18 +105,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c17 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem 1.25rem;
-}
-
-.c18 {
-  -webkit-transition: .5s;
-  transition: .5s;
-  padding: 0 1.25rem;
-}
-
 .c19 {
   border: none;
   padding: .1rem .2rem;
@@ -157,6 +131,18 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c17 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.c18 {
+  -webkit-transition: .5s;
+  transition: .5s;
+  padding: 0 1.25rem;
 }
 
 .c20 {
@@ -339,6 +325,32 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
+@media (max-width:80rem) {
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .c4 > * {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 30%;
+    -ms-flex-preferred-size: 30%;
+    flex-basis: 30%;
+  }
+
+  .c4 > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
 @media print {
   .c19 {
     display: none;
@@ -496,10 +508,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               </button>
             </div>
           </form>
-        </div>
-        <div
-          className="c4"
-        >
           <form
             className="c5"
           >
@@ -639,7 +647,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 <button
                   aria-label="Skriv ut"
                   className="c15"
-                  onClick={[Function]}
+                  onMouseDown={[Function]}
                 >
                   <span
                     className="typo-normal"
@@ -684,7 +692,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 aria-expanded={false}
                 className="c19"
                 onClick={[Function]}
-                open={false}
               >
                 <span
                   className="c20"
@@ -810,7 +817,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <button
                             aria-label="Skriv ut"
                             className="c15"
-                            onClick={[Function]}
+                            onMouseDown={[Function]}
                           >
                             <span
                               className="typo-normal"
@@ -855,7 +862,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           aria-expanded={false}
                           className="c19"
                           onClick={[Function]}
-                          open={false}
                         >
                           <span
                             className="c20"

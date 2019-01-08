@@ -26,7 +26,7 @@ export function getMockSykepenger(fødselsnummer: string): SykepengerResponse {
     }
 
     return {
-        sykepenger: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 10)
+        sykepenger: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 3)
     };
 }
 

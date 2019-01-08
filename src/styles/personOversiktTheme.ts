@@ -30,7 +30,8 @@ export const theme = {
     `,
     media: {
         smallScreen: 'max-width: 35rem',
-        wideScreen: 'min-width: 35rem'
+        wideScreen: 'min-width: 35rem',
+        utbetalinger: '80rem'
     },
     margin: {
         layout: '.8rem',

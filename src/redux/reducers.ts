@@ -3,9 +3,9 @@ import RestEndepunkterReducers, { RestEndepunkter } from './restReducers/restRed
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
 import { UtbetalingerState, utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
-import { YtelserState, ytelserReducer } from './ytelser/yteslerStateReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
+import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
 import { default as tooltipReducer, TooltipState } from './uiReducers/toolTipReducer';
 
 export interface AppState {
@@ -14,7 +14,7 @@ export interface AppState {
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
-    ytelser: YtelserState;
+    pleiepenger: PleiepengerState;
     tooltip: TooltipState;
 }
 
@@ -24,6 +24,6 @@ export default combineReducers<AppState>({
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
-    ytelser: ytelserReducer,
+    pleiepenger: pleiepengerReducer,
     tooltip: tooltipReducer
 });

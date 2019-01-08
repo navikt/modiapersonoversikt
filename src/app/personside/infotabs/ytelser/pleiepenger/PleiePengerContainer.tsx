@@ -1,6 +1,4 @@
 import * as React from 'react';
-import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
@@ -9,8 +7,7 @@ import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleie
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
 import PlukkRestData from './PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-import Pleiepenger from './Pleiepenger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import PleiepengerEkspanderbartpanel from './PleiepengerEkspanderbartPanel';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -26,11 +23,6 @@ interface DispatchProps {
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-const Wrapper = styled.div`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
-`;
-
 class PleiePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
@@ -42,18 +34,16 @@ class PleiePengerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <Wrapper>
-                <PlukkRestData restReducer={this.props.pleiepengerReducer}>
-                    {data => {
-                        if (!data.pleiepenger[0]) {
-                            return <AlertStripeInfo>Ingen pleiepenger funnet for brukeren.</AlertStripeInfo>;
-                        }
-                        return data.pleiepenger.map((pleiepengeRettighet, index) => (
-                            <Pleiepenger key={index} pleiepenger={pleiepengeRettighet}/>
-                        ));
-                    }}
-                </PlukkRestData>
-            </Wrapper>
+            <PlukkRestData spinnerSize="M" restReducer={this.props.pleiepengerReducer}>
+                {data => {
+                    if (!data.pleiepenger || !data.pleiepenger[0]) {
+                        return null;
+                    }
+                    return data.pleiepenger.map((pleiepengeRettighet, index) => (
+                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet}/>
+                    ));
+                }}
+            </PlukkRestData>
         );
     }
 }

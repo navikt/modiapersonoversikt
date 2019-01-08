@@ -45,6 +45,34 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   transition: .3s;
 }
 
+.c15 {
+  border: none;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c15:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c15:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 .c5 {
   border: none;
   background-color: transparent;
@@ -99,34 +127,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
-}
-
-.c15 {
-  border: none;
-  padding: .1rem .2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c15:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c15:hover {
-  opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
 }
 
 .c16 {
@@ -193,13 +193,13 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 @media print {
-  .c5 {
+  .c15 {
     display: none;
   }
 }
 
 @media print {
-  .c15 {
+  .c5 {
     display: none;
   }
 }
@@ -280,7 +280,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       <button
         aria-label="Skriv ut"
         className="c5"
-        onClick={[Function]}
+        onMouseDown={[Function]}
       >
         <span
           className="typo-normal"
@@ -539,7 +539,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               aria-expanded={false}
               className="c15"
               onClick={[Function]}
-              open={false}
             >
               <span
                 className="c16"
@@ -790,7 +789,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               aria-expanded={false}
               className="c15"
               onClick={[Function]}
-              open={false}
             >
               <span
                 className="c16"

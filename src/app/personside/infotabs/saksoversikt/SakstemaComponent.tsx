@@ -6,7 +6,7 @@ import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
 import { hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
-import { sakstemakodeAlle } from './SakstemaVisning';
+import { sakstemakodeAlle } from './SakstemaListe';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 
 interface Props {

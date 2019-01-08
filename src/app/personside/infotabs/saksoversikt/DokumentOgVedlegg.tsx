@@ -10,32 +10,28 @@ import { PersonContext } from '../../../App';
 import { AppState } from '../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import Lukknapp from 'nav-frontend-lukknapp';
-
-interface OwnProps {
-    harTilgang: boolean;
-    onChange: (valgtDokument: Dokument) => void;
-}
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
     valgtTab?: Dokument;
     visDokument: boolean;
+    erStandaloneVindu: boolean;
 }
 
 interface DispatchProps {
+    setEnkeltDokument: (valgtDokument: Dokument) => void;
     lukkDokument: () => void;
 }
 
-type Props = DispatchProps & StateProps & OwnProps;
+type Props = DispatchProps & StateProps;
 
 const Content = styled.div`
   flex-grow: 1;
   min-height: 70vh;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
   object {
     flex-grow: 1;
   }
@@ -59,6 +55,7 @@ const KnappWrapper = styled.div`
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
+
     return (
         <object data={dokUrl} width={'100%'}>
             <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>
@@ -67,14 +64,6 @@ function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: st
 }
 
 function DokumentOgVedlegg(props: Props) {
-    if (!props.harTilgang) {
-        return (
-            <AlertWrapper>
-                <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>
-            </AlertWrapper>
-        );
-    }
-
     const {valgtDokument, valgtTab} = props;
     if (!valgtDokument || !valgtTab) {
         return (
@@ -92,12 +81,13 @@ function DokumentOgVedlegg(props: Props) {
         };
     });
 
-    return (
-        <Content>
+    const tabsHeader = props.erStandaloneVindu ?
+        null :
+        (
             <Header>
                 <TabsPure
                     tabs={tabProps}
-                    onChange={(event, index) => props.onChange(tabs[index])}
+                    onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
                 />
                 <KnappWrapper>
                     <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
@@ -105,6 +95,11 @@ function DokumentOgVedlegg(props: Props) {
                     </Lukknapp>
                 </KnappWrapper>
             </Header>
+        );
+
+    return (
+        <Content>
+            {tabsHeader}
             <PersonContext.Consumer>{fnr => {
                 if (!fnr) {
                     return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
@@ -126,13 +121,15 @@ function mapStateToProps(state: AppState): StateProps {
     return ({
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
-        valgtTab: state.saksoversikt.valgtEnkeltdokument
+        valgtTab: state.saksoversikt.valgtEnkeltdokument,
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu
     });
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        lukkDokument: () => dispatch(settVisDokument(false))
+        lukkDokument: () => dispatch(settVisDokument(false)),
+        setEnkeltDokument: (enkeltdokument: Dokument) => dispatch(settValgtEnkeltdokument(enkeltdokument))
     };
 }
 
