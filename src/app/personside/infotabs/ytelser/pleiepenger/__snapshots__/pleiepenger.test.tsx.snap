@@ -29,7 +29,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c7 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -104,12 +104,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   margin-top: 1rem;
 }
 
-@media print {
-  .c7 {
-    display: none;
-  }
-}
-
 <div
   className="c0"
 >
@@ -174,7 +168,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          26082527566
+          27082527767
         </dd>
       </div>
       <div>
@@ -186,7 +180,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          23039440199
+          27039440135
         </dd>
       </div>
     </dl>
@@ -572,7 +566,7 @@ Array [
 
 .c7 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -647,12 +641,6 @@ Array [
   margin-top: 1rem;
 }
 
-@media print {
-  .c7 {
-    display: none;
-  }
-}
-
 <div
     className="c0"
 >
@@ -717,7 +705,7 @@ Array [
                 <dd
                     className="typo-normal"
                 >
-                    26082527566
+                    27082527767
                 </dd>
             </div>
             <div>
@@ -729,7 +717,7 @@ Array [
                 <dd
                     className="typo-normal"
                 >
-                    23039440199
+                    27039440135
                 </dd>
             </div>
         </dl>
