@@ -9,11 +9,16 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
 import theme from '../../../../styles/personOversiktTheme';
+import ToolTip from '../../../../components/tooltip/ToolTip';
 
 interface Props {
     visittkortApent: boolean;
     person: Person;
     toggleVisittkort: (erApen?: boolean) => void;
+}
+
+interface State {
+    showTooltip: boolean;
 }
 
 const VisittkortHeaderDiv = styled.section`
@@ -80,12 +85,13 @@ function hentNavn(navn: Navn) {
         + navn.etternavn;
 }
 
-class VisittkortHeader extends React.Component<Props> {
+class VisittkortHeader extends React.Component<Props, State> {
 
     private navneLinjeRef = React.createRef<HTMLSpanElement>();
 
     constructor(props: Props) {
         super(props);
+        this.state = {showTooltip: false};
         this.toggleVisittkort = this.toggleVisittkort.bind(this);
     }
 
@@ -96,6 +102,7 @@ class VisittkortHeader extends React.Component<Props> {
     }
 
     toggleVisittkort() {
+        this.setState({showTooltip: true});
         this.props.toggleVisittkort(!this.props.visittkortApent);
     }
 
@@ -111,7 +118,6 @@ class VisittkortHeader extends React.Component<Props> {
                 aria-label="Visittkort-hode"
                 onClick={this.toggleVisittkort}
             >
-
                 <VenstreFelt>
                     <IkonDiv>
                         {ikon.ikon}
@@ -141,6 +147,7 @@ class VisittkortHeader extends React.Component<Props> {
                         </span>
                     </DetaljerKnapp>
                 </ChevronStyling>
+                {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
             </VisittkortHeaderDiv>
         );
     }
