@@ -34,7 +34,7 @@ const VisittkortBodyWrapper = styled.div`
   border-radius: ${theme.borderRadius.layout};
 `;
 
-class VisittkortContainer extends React.Component<Props> {
+class VisittkortContainer extends React.PureComponent<Props> {
 
     private detaljerRef = React.createRef<HTMLDivElement>();
 

@@ -41,7 +41,7 @@ const Button = styled.button`
   }
 `;
 
-class ToolTip extends React.Component<Props, State> {
+class ToolTip extends React.PureComponent<Props, State> {
 
     constructor(props: Props) {
         super(props);

@@ -85,7 +85,7 @@ function hentNavn(navn: Navn) {
         + navn.etternavn;
 }
 
-class VisittkortHeader extends React.Component<Props, State> {
+class VisittkortHeader extends React.PureComponent<Props, State> {
 
     private navneLinjeRef = React.createRef<HTMLSpanElement>();
 

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
-
 import { Person } from '../../../../models/person/person';
 import { Kolonne, VisittkortBodyWrapper, VisittkortGruppe } from './VisittkortStyles';
 import Familie from './familie/Familie';
@@ -76,7 +74,7 @@ function ThreeColumnLayout(person: Person) {
     );
 }
 
-class VisittkortBody extends Component<VisittkortBodyProps> {
+class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
 
     private visittKortBodyRef = React.createRef<HTMLDivElement>();
 
