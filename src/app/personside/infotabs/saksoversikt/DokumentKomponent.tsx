@@ -109,7 +109,6 @@ function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
 function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
     const saksdato = dokument.dato;
     const dato = formaterDato(`${saksdato.år}.${saksdato.måned}.${saksdato.dag}`);
-    console.log(dato, dokument.dato);
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
@@ -129,7 +128,7 @@ function lagÅpneSomStandaloneLenke(props: Props) {
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQueryLenke}&${journalpostQueryLenke}&${dokumentQueryLenke}`;
 }
 
-function dokumentValgtTekst(visTekst: boolean) {
+function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
@@ -171,21 +170,21 @@ class DokumentKomponent extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
+        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
             (
                 <div>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
-                        {dokument.vedlegg.map(vlegg =>
-                            <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
+                        {dokument.vedlegg.map(vedlegg =>
+                            <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
                                 <DokumentLenkeStyle
-                                    aria-label={'Vis vedlegg - ' + vlegg.tittel}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                    aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
                                     ref={this.vedleggLinkRef}
                                 >
-                                    <Element>{vlegg.tittel}</Element>
+                                    <Element>{vedlegg.tittel}</Element>
                                 </DokumentLenkeStyle>
-                                {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
+                                {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
                 </div>
@@ -227,8 +226,8 @@ class DokumentKomponent extends React.Component<Props> {
                             >
                                 <Element>{dokument.hoveddokument.tittel}</Element>
                             </DokumentLenkeStyle>
-                            {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
-                            {vedlegg}
+                            {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
+                            {dokumentVedlegg}
                             {saksvisning}
                         </InnholdWrapper>
                         {egetVinduLenke}
