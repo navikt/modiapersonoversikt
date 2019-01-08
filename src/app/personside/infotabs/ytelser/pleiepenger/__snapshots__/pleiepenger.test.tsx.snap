@@ -29,7 +29,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c7 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -102,12 +102,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c6 {
   margin-top: 1rem;
-}
-
-@media print {
-  .c7 {
-    display: none;
-  }
 }
 
 <div
@@ -558,7 +552,7 @@ Array [
 
 .c7 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -631,12 +625,6 @@ Array [
 
 .c6 {
   margin-top: 1rem;
-}
-
-@media print {
-  .c7 {
-    display: none;
-  }
 }
 
 <div
