@@ -47,17 +47,17 @@ class InfoTabs extends React.PureComponent<Props> {
 
     constructor(props: Props) {
         super(props);
-        this.onTabChange = this.onTabChange.bind(this);
+        this.updateRouterPath = this.updateRouterPath.bind(this);
     }
 
     updateRouterPath(newTab: INFOTABS) {
         const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
-        this.props.history.push(`${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`);
-    }
-
-    onTabChange(newTab: INFOTABS) {
-        this.updateRouterPath(newTab);
-        this.forceUpdate();
+        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
+        const newPath = this.props.history.location.pathname !== path;
+        if (newPath) {
+            this.props.history.push(path);
+            this.forceUpdate();
+        }
     }
 
     render() {
@@ -76,7 +76,7 @@ class InfoTabs extends React.PureComponent<Props> {
             <ErrorBoundary boundaryName="InfoTabs">
                 <Section role="region" aria-label="Info-tabs">
                     <TabKnapper
-                        onTabChange={this.onTabChange}
+                        onTabChange={this.updateRouterPath}
                         openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
                     />
                     <OpenTab>
