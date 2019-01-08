@@ -2,10 +2,10 @@ import { Periode } from '../periode';
 import { HistoriskUtbetaling, KommendeUtbetaling } from './ytelse-utbetalinger';
 
 export interface ForeldrepengerResponse {
-    foreldrepenger: Foreldrepengerrettighet | null;
+    foreldrepenger: Foreldrepengerettighet | null;
 }
 
-export interface Foreldrepengerrettighet {
+export interface Foreldrepengerettighet {
     forelder: string;
     andreForeldersFnr: string | null;
     antallBarn: number | null;
@@ -20,6 +20,18 @@ export interface Foreldrepengerrettighet {
     eldsteIdDato: string | null;
     foreldreAvSammeKjønn: string | null;
     periode: Foreldrepengerperiode[];
+    slutt: string | null;
+    arbeidsforhold: Arbeidsforhold[];
+    erArbeidsgiverperiode: boolean | null;
+    arbeidskategori: string | null;
+}
+
+export interface Foedsel extends Foreldrepengerettighet {
+    termin: String;
+}
+
+export interface Adopsjon extends Foreldrepengerettighet {
+    omsorgsovertakelse: String;
 }
 
 export interface Foreldrepengerperiode {
@@ -44,4 +56,22 @@ export interface Foreldrepengerperiode {
     stansårsak: string | null;
     historiskeUtbetalinger: HistoriskUtbetaling[];
     kommendeUtbetalinger: KommendeUtbetaling[];
+}
+
+export interface Arbeidsforhold {
+    navn: string;
+    kontonr: string | null;
+    inntektsperiode: string | null;
+    inntektForPerioden: number | null;
+    sykepengerFom: string | null;
+    refusjonTom: string | null;
+    refusjonstype: string | null;
+}
+
+export function isAdopsjon(foreldrepengerettighet:  Foreldrepengerettighet): foreldrepengerettighet is Adopsjon {
+    return 'termin' in foreldrepengerettighet;
+}
+
+export function isFoedsel(foreldrepengerettighet: Foreldrepengerettighet): foreldrepengerettighet is Foedsel {
+    return 'omsorgsovertakelse' in foreldrepengerettighet;
 }
