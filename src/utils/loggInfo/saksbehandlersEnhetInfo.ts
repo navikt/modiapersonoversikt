@@ -1,14 +1,10 @@
 import * as Cookies from 'js-cookie';
-
-interface Cookie {
-    [name: string]: string;
-}
+import { getSaksbehandlerInstillingerCookieNavn } from './getSaksbehandlerIdent';
 
 export  function getSaksbehandlerEnhet(): string | undefined {
-    const allCookies: Cookie = Cookies.get();
-    const cookienavn = Object.keys(allCookies).find(key => key.includes('saksbehandlerinnstillinger'));
+    const cookienavn = getSaksbehandlerInstillingerCookieNavn();
     if (cookienavn) {
-        return allCookies[cookienavn];
+        return Cookies.get()[cookienavn];
     }
     return undefined;
 }
