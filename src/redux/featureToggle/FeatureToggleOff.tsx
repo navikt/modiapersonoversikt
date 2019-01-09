@@ -8,7 +8,7 @@ interface Props {
 }
 
 function FeatureToggleOff(props: Props) {
-    return <FeatureToggle {...props} reverse={true}/>;
+    return <FeatureToggle {...props} displayWhenFeatureToggleOff={true}/>;
 }
 
 export default FeatureToggleOff;

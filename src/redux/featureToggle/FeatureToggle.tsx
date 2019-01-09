@@ -9,12 +9,11 @@ import LazySpinner from '../../components/LazySpinner';
 interface OwnProps {
     children: ReactNode;
     toggleID: string;
-    reverse?: boolean;
+    displayWhenFeatureToggleOff?: boolean;
 }
 
 interface StateProps {
-    turnedOn: boolean;
-    turnedOff: boolean;
+    isOn: boolean;
 }
 
 interface DispatchProps {
@@ -29,24 +28,23 @@ class FeatureToggle extends React.PureComponent<Props> {
     }
 
     render() {
-        if (this.props.reverse && this.props.turnedOff) {
-            return this.props.children;
-        }
-        if (!this.props.reverse && this.props.turnedOn) {
-            return this.props.children;
-        }
-        if (!this.props.turnedOn && !this.props.turnedOff) {
+        const pending = this.props.isOn === undefined;
+        if (pending) {
             return <LazySpinner type="S" delay={1000}/>;
         }
+        if (!this.props.displayWhenFeatureToggleOff && this.props.isOn) {
+            return this.props.children;
+        }
+        if (this.props.displayWhenFeatureToggleOff && !this.props.isOn) {
+            return this.props.children;
+        }
         return null;
-
     }
 }
 
 function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     return {
-        turnedOn: state.featureToggle.turnedOn.includes(ownProps.toggleID),
-        turnedOff: state.featureToggle.turnedOff.includes(ownProps.toggleID)
+        isOn: state.featureToggle[ownProps.toggleID]
     };
 }
 

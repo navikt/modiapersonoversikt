@@ -1,13 +1,10 @@
 import { Action } from 'redux';
 
 export interface FeatureToggleState {
-    turnedOn: Array<string>;
-    turnedOff: Array<string>;
+    [name: string]: boolean;
 }
 
 const initialState: FeatureToggleState = {
-    turnedOn: [],
-    turnedOff: []
 };
 
 enum actionKeys {
@@ -39,17 +36,13 @@ export function featureToggleReducer(state: FeatureToggleState = initialState, a
     switch (action.type) {
         case actionKeys.setFeatureToggleOn:
             return {
-                turnedOff: state.turnedOff.filter(entry => entry !== action.toggleId),
-                turnedOn: state.turnedOn.includes(action.toggleId)
-                    ? state.turnedOn
-                    : [...state.turnedOn, action.toggleId]
+                ...state,
+                [action.toggleId]: true
             };
         case actionKeys.setFeatureToggleOff:
             return {
-                turnedOff: state.turnedOff.includes(action.toggleId)
-                    ? state.turnedOff
-                    : [...state.turnedOff, action.toggleId],
-                turnedOn: state.turnedOn.filter(entry => entry !== action.toggleId)
+                ...state,
+                [action.toggleId]: false
             };
         default:
             return state;
