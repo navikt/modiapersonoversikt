@@ -1,35 +1,11 @@
 import { loggEvent } from './frontendLogger';
-import * as moment from 'moment';
 import { detect } from 'detect-browser';
 import * as Cookies from 'js-cookie';
 import { roundToNearest20 } from './math';
-
-const cookieNavn = 'logResolution';
+import { runOnceDaily } from './runOnceDaily';
 
 export function loggSkjermInfoDaglig() {
-    if (checkIfLoggedToday()) {
-        return;
-    }
-    loggInfo();
-    setLoggedTodayCookie();
-}
-
-function checkIfLoggedToday() {
-    const cookie = Cookies.get(cookieNavn);
-    if (cookie) {
-        return true;
-    }
-    return false;
-}
-
-function setLoggedTodayCookie() {
-    const tomorrow = moment().add(1, 'day').hour(10).startOf('hour').toDate();
-    Cookies.set(
-        cookieNavn,
-        'Screen resolution was reported ' + new Date().toDateString(),
-        {
-            expires: tomorrow
-        });
+    runOnceDaily('Skjerminfo', loggInfo);
 }
 
 function loggInfo() {

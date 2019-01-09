@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { Action, Dispatch } from 'redux';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { runOnceDaily } from '../../../utils/runOnceDaily';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -44,9 +45,15 @@ class HandleVisittkortHotkeys extends React.Component<Props> {
 
         if (key === 'b') {
             loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + B'});
+            runOnceDaily(
+                'hurtigtastAltB',
+                () => loggEvent('HurtigtastUnikBruker', 'Visittkort', {type: 'Alt + B'}));
             this.props.history.push(`${paths.brukerprofil}/${this.props.fødselsnummer}`);
         } else if (key === 'n') {
             loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + N'});
+            runOnceDaily(
+                'hurtigtastAltN',
+                () => loggEvent('HurtigtastUnikBruker', 'Visittkort', {type: 'Alt + N'}));
             this.props.toggleVisittkort();
         }
     }
