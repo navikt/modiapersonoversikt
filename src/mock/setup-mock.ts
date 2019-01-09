@@ -21,7 +21,7 @@ import navfaker from 'nav-faker';
 import { getMockSykepenger } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
-import { mockFeatureToggleAdminBrukerprofil } from './featureToggle-mock';
+import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
@@ -175,9 +175,9 @@ function setupBaseUrlsMock(mock: FetchMock) {
 
 function setupFeatureToggleMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/featuretoggle/:toggleId', withDelayedResponse(
-        200,
+        randomDelay(),
         STATUS_OK,
-        () => {return mockFeatureToggleAdminBrukerprofil('ny-brukerprofil'); }));
+        (args: HandlerArgument) => mockFeatureToggle(args.pathParams.toggleId)));
 }
 
 function setupVeilederRollerMock(mock: FetchMock) {
