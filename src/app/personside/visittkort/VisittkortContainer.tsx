@@ -16,7 +16,7 @@ import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { loggSkjermInfoDaglig } from '../../../utils/loggSkjermInfoDaglig';
+import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
 
 interface StateProps {
     UI: UIState;
