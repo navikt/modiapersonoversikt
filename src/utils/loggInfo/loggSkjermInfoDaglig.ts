@@ -1,8 +1,9 @@
-import { loggEvent } from './frontendLogger';
+import { loggEvent } from '../frontendLogger';
 import { detect } from 'detect-browser';
-import * as Cookies from 'js-cookie';
-import { roundToNearest20 } from './math';
-import { runOnceDaily } from './runOnceDaily';
+import { roundToNearest20 } from '../math';
+import { runOnceDaily } from '../runOnceDaily';
+import { erKontaktsenter, getSaksbehandlerEnhet } from './saksbehandlersEnhetInfo';
+import { getSaksbehandlerIdent } from './getSaksbehandlerIdent';
 
 export function loggSkjermInfoDaglig() {
     runOnceDaily('Skjerminfo', loggInfo);
@@ -26,33 +27,9 @@ function loggInfo() {
         screenWidth: screen.width,
         screenHeight: screen.height,
         windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight
+        windowHeight: window.innerHeight,
+        ident: getSaksbehandlerIdent()
     };
 
     loggEvent('LoggSkjerminfo', 'Maskinvare', tags, fields);
-}
-
-interface Cookie {
-    [name: string]: string;
-}
-
-function erKontaktsenter(): boolean | undefined {
-    const enhet = getSaksbehandlerEnhet();
-    if (enhet) {
-        if (enhet.slice(0, 2) === '41') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    return undefined;
-}
-
-function getSaksbehandlerEnhet(): string | undefined {
-    const allCookies: Cookie = Cookies.get();
-    const cookienavn = Object.keys(allCookies).find(key => key.includes('saksbehandlerinnstillinger'));
-    if (cookienavn) {
-        return allCookies[cookienavn];
-    }
-    return undefined;
 }
