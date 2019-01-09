@@ -28,7 +28,6 @@ import { tilrettelagtKommunikasjonActionNames } from './redux/restReducers/kodev
 import { mockTilrettelagtKommunikasjonKodeverk } from './mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { retningsnummerKodeverkActionNames } from './redux/restReducers/kodeverk/retningsnummereReducer';
 import { postnummerActionNames } from './redux/restReducers/kodeverk/postnummerReducer';
-import { actionNames as featureToggleActionNames } from './redux/restReducers/featuretoggle';
 import { mockRetningsnummereKodeverk } from './mock/kodeverk/retningsnummer-mock';
 import { mockPostnummere } from './mock/kodeverk/postnummer-kodeverk-mock';
 import thunkMiddleware from 'redux-thunk';
@@ -39,7 +38,6 @@ import { aremark } from './mock/person/aremark';
 import { valutaerActionNames } from './redux/restReducers/kodeverk/valutaKodeverk';
 import { utbetalingerActions } from './redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from './mock/statiskMockUtbetaling';
-import { mockFeatureToggleAdminBrukerprofil } from './mock/featureToggle-mock';
 import { saksoversiktActions } from './redux/restReducers/saksoversikt';
 import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
 
@@ -83,10 +81,6 @@ export function getTestStore(): Store<AppState> {
         utbetalinger: [statiskMockUtbetaling],
         periode: {startDato: '1905-01-01', sluttDato: '1986-12-28'}
     }});
-    testStore.dispatch({
-        type: featureToggleActionNames.FINISHED,
-        data: mockFeatureToggleAdminBrukerprofil('ny-brukerprofil')
-    });
     testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversiktForTest(aremarkFnr)});
 
     return testStore;

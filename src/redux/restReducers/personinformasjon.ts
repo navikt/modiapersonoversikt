@@ -8,7 +8,6 @@ import { resetUtbetalingerReducer } from './utbetalinger';
 import { resetSykepengerReducer } from './ytelser/sykepenger';
 import { resetPleiepengerReducer } from './ytelser/pleiepenger';
 import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
-import { hentFeatureToggle } from './featuretoggle';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { AsyncDispatch } from '../ThunkTypes';
 
@@ -30,7 +29,6 @@ export function hentAllPersonData(dispatch: AsyncDispatch, fødselsnummer: strin
     dispatch(hentKontaktinformasjon(fødselsnummer));
     dispatch(erEgenAnsatt(fødselsnummer));
     dispatch(hentVergemal(fødselsnummer));
-    dispatch(hentFeatureToggle('ny-brukerprofil'));
     dispatch(resetNavKontorReducer());
     dispatch(resetUtbetalingerReducer());
     dispatch(resetSykepengerReducer());

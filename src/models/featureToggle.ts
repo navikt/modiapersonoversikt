@@ -1,3 +1,3 @@
 export interface FeatureToggleResponse {
-    'modiabrukerdialog.ny-brukerprofil': boolean;
+    [name: string]: boolean;
 }

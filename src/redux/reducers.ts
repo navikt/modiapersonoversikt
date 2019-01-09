@@ -6,6 +6,7 @@ import { UtbetalingerState, utbetalingerReducer } from './utbetalinger/utbetalin
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
+import { featureToggleReducer, FeatureToggleState } from './featureToggle/featureToggleReducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -14,6 +15,7 @@ export interface AppState {
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     pleiepenger: PleiepengerState;
+    featureToggle: FeatureToggleState;
 }
 
 export default combineReducers<AppState>({
@@ -22,5 +24,6 @@ export default combineReducers<AppState>({
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
-    pleiepenger: pleiepengerReducer
+    pleiepenger: pleiepengerReducer,
+    featureToggle: featureToggleReducer
 });
