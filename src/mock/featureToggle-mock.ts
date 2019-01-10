@@ -1,7 +1,7 @@
 import { FeatureToggleResponse } from '../models/featureToggle';
 
-export function mockFeatureToggleAdminBrukerprofil(toggleId: string): FeatureToggleResponse {
+export function mockFeatureToggle(toggleId: string): FeatureToggleResponse {
     return {
-        'modiabrukerdialog.ny-brukerprofil': true
+        ['modiabrukerdialog.' + toggleId]: Math.random() > .5
     };
 }

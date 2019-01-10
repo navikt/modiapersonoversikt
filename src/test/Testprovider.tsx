@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { getTestStore } from '../setupTests';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
-import { ReactNode } from 'react';
 import { Store } from 'redux';
 import { AppState } from '../redux/reducers';
 
@@ -15,7 +15,9 @@ function TestProvider({children, customStore}: Props) {
     return (
         <Provider store={customStore || getTestStore()}>
             <StaticRouter context={{}}>
-                {children}
+                <>
+                    {children}
+                </>
             </StaticRouter>
         </Provider>
     );
