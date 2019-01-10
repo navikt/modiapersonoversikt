@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 import RestEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
-import { utbetalingerReducer, UtbetalingerState } from './utbetalinger/utbetalingerReducer';
+import { UtbetalingerState, utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
+import { featureToggleReducer, FeatureToggleState } from './featureToggle/featureToggleReducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -14,6 +15,7 @@ export interface AppState {
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     pleiepenger: PleiepengerState;
+    featureToggle: FeatureToggleState;
 }
 
 export default combineReducers<AppState>({
@@ -23,4 +25,5 @@ export default combineReducers<AppState>({
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
     pleiepenger: pleiepengerReducer,
+    featureToggle: featureToggleReducer
 });

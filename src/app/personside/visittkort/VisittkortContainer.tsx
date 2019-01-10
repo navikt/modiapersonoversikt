@@ -15,7 +15,7 @@ import { loggEvent } from '../../../utils/frontendLogger';
 import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { loggSkjermInfoDaglig } from '../../../utils/loggSkjermInfoDaglig';
+import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
