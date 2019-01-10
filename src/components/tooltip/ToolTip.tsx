@@ -14,11 +14,14 @@ interface State {
     show: boolean;
 }
 
-const Style = styled.div`
+const Position = styled.div`
   position: fixed;
   top: 20vh;
   left: 50vw;
   transform: translateX(-50%);
+`;
+
+const Style = styled.div`
   background-color: #333;
   border: .2rem white solid;
   border-radius: 1rem;
@@ -76,16 +79,18 @@ class ToolTip extends React.PureComponent<Props, State> {
         }
 
         return (
-            <ShowThenHide>
-                <Style>
-                    <Normaltekst><Bold>{this.props.children}</Bold></Normaltekst>
-                    <Button onClick={() => this.handleButton()}>
-                        <Undertekst>
-                            Ikke vis dette tipset igjen
-                        </Undertekst>
-                    </Button>
-                </Style>
-            </ShowThenHide>
+            <Position>
+                <ShowThenHide>
+                    <Style>
+                        <Normaltekst><Bold>{this.props.children}</Bold></Normaltekst>
+                        <Button onClick={() => this.handleButton()}>
+                            <Undertekst>
+                                Ikke vis dette tipset igjen
+                            </Undertekst>
+                        </Button>
+                    </Style>
+                </ShowThenHide>
+            </Position>
         );
     }
 }
