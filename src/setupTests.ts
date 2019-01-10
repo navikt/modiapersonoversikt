@@ -40,6 +40,7 @@ import { utbetalingerActions } from './redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from './mock/statiskMockUtbetaling';
 import { saksoversiktActions } from './redux/restReducers/saksoversikt';
 import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
+import FeatureToggle from './redux/featureToggle/FeatureToggle';
 
 configure({adapter: new EnzymeReactAdapter()});
 
@@ -52,6 +53,7 @@ globalAny._mockEnabled = 'true';
 Date.now = jest.fn(() => 0);
 const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
+FeatureToggle.prototype.render = function() { return this.props.children; };
 
 // tslint:disable-next-line
 window['frontendlogger'] = {info: () => null, warn: () => null, error: () => null, event: () => null};
