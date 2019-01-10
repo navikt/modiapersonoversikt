@@ -1,16 +1,13 @@
 import * as React from 'react';
 import { ForeldrepengerResponse } from '../../../../../models/ytelse/foreldrepenger';
-import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { hentForeldrepenger } from '../../../../../redux/restReducers/ytelser/foreldrepenger';
 import { AppState } from '../../../../../redux/reducers';
 import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
-import Foreldrepenger from './ForeldrePenger';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-import { Undertittel } from 'nav-frontend-typografi';
+import ForeldrepengerEkspanderbartpanel from './ForeldrepengerEkspanderbartPanel';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -26,15 +23,6 @@ interface DispatchProps {
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-const Wrapper = styled.div`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
-`;
-
-const TittelStyle = styled.div`
-  padding: ${theme.margin.px20} ${theme.margin.px20} ${theme.margin.px10};
-`;
-
 class ForeldrePengerContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
@@ -46,12 +34,9 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <Wrapper>
-                <TittelStyle><Undertittel>Foreldrepenger</Undertittel></TittelStyle>
-                <PlukkRestData restReducer={this.props.foreldrepengerReducer}>
-                    {data => <Foreldrepenger foreldrePengerResponse={data}/>}
-                </PlukkRestData>
-            </Wrapper>
+            <PlukkRestData spinnerSize="M" restReducer={this.props.foreldrepengerReducer}>
+                {data => <ForeldrepengerEkspanderbartpanel foreldrepenger={data.foreldrepenger}/>}
+            </PlukkRestData>
         );
     }
 }

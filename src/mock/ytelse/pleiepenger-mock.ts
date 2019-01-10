@@ -18,12 +18,12 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
-            pleiepenger: []
+            pleiepenger: null
         };
     }
 
     return {
-        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getMockPleiepengerettighet(fødselsnummer), 3)
+        pleiepenger: fyllRandomListe<Pleiepengerettighet>(() => getMockPleiepengerettighet(fødselsnummer), 2)
     };
 }
 

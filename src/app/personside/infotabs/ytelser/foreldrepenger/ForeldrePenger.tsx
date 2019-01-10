@@ -1,32 +1,29 @@
 import * as React from 'react';
-import { ForeldrepengerResponse } from '../../../../../models/ytelse/foreldrepenger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
-    foreldrePengerResponse: ForeldrepengerResponse;
+    foreldrepenger: Foreldrepengerrettighet | null;
 }
 
-function Foreldrepenger(props: Props) {
-
-    const foreldrepenger = props.foreldrePengerResponse.foreldrepenger;
+function Foreldrepenger({foreldrepenger}: Props) {
 
     if (foreldrepenger === null) {
-        return <AlertStripeInfo>Finner ingen foreldrepengerettigheter for bruker</AlertStripeInfo>;
+        return <AlertStripeAdvarsel>Finner ikke foreldrepengerettighet</AlertStripeAdvarsel>;
     }
 
-    const perioder = foreldrepenger.periode.map((periode, index) =>
-        <ForeldrepengePeriode key={index} periode={periode}/>
-    );
+    const perioder = foreldrepenger.periode
+        .map((periode, index) => <ForeldrepengePeriode key={index} periode={periode}/>);
 
     return (
-        <>
+        <article>
             <Oversikt foreldrePenger={foreldrepenger}/>
             <ul>
                 {perioder}
             </ul>
-        </>
+        </article>
     );
 }
 

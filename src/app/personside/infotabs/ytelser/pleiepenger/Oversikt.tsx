@@ -3,7 +3,6 @@ import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import YtelserBullet from '../felles-styling/YtelserBullet';
 import DescriptionList from '../felles-styling/DescriptionList';
-import ForbrukteDager from './ForbrukteDager';
 import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
@@ -69,9 +68,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
     const omPleiepengerettenEntries = {
         'Fra og med': formaterDato(gjeldeneVedtak.periode.fom),
         'Til og med': formaterDato(gjeldeneVedtak.periode.tom),
-        Kompensasjonsgrad: gjeldeneVedtak.kompensasjonsgrad + '%',
         Pleiepengegrad: gjeldeneVedtak.pleiepengegrad + '%',
-        'Totalt invilget': pleiepenger.pleiepengedager - pleiepenger.restDagerAnvist + ' dager',
         ['Barnet (' + kjønn + ')']: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
@@ -86,7 +83,6 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
     return (
         <OversiktStyling>
             <YtelserBullet tittel="Om pleiepengeretten">
-                <ForbrukteDager pleiepenger={pleiepenger}/>
                 <DescriptionList entries={omPleiepengerettenEntries}/>
             </YtelserBullet>
             <YtelserBullet tittel="Arbeidssituasjon">

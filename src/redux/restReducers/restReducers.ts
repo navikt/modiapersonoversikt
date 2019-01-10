@@ -18,7 +18,6 @@ import valutaKodeverkReducer from './kodeverk/valutaKodeverk';
 import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
-import featureToggleReducer from './featuretoggle';
 import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
@@ -34,7 +33,6 @@ import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
-import { FeatureToggleResponse } from '../../models/featureToggle';
 import { RestReducer } from './restReducer';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
@@ -62,7 +60,6 @@ export interface RestEndepunkter {
     endreAdresseReducer: RestReducer<{}>;
     valutaReducer: RestReducer<KodeverkResponse>;
     landReducer: RestReducer<KodeverkResponse>;
-    featureToggleNyBrukerprofilReducer: RestReducer<FeatureToggleResponse>;
     utbetalingerReducer: RestReducer<UtbetalingerResponse>;
     sykepengerReducer: RestReducer<SykepengerResponse>;
     pleiepengerReducer: RestReducer<PleiepengerResponse>;
@@ -90,7 +87,6 @@ export default combineReducers<RestEndepunkter>({
     endreAdresseReducer,
     valutaReducer: valutaKodeverkReducer,
     landReducer: landKodeverkReducer,
-    featureToggleNyBrukerprofilReducer: featureToggleReducer,
     utbetalingerReducer: utbetalingerReducer,
     sykepengerReducer: sykepengerReducer,
     pleiepengerReducer: pleiepengerReducer,

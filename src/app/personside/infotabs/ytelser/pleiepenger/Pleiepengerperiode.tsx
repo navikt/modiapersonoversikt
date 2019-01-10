@@ -37,7 +37,6 @@ function Vedtak({vedtak}: { vedtak: Vedtak }) {
         Bruttobeløp: 'NOK ' + formaterNOK(vedtak.bruttobeløp),
         'Anvist Utbetaling': formaterDato(vedtak.anvistUtbetaling),
         Dagsats: 'NOK ' + formaterNOK(vedtak.dagsats),
-        Kompensasjonsgrad: vedtak.kompensasjonsgrad + '%',
         Pleiepengegrad: vedtak.pleiepengegrad + '%'
     };
 
