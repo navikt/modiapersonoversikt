@@ -19,6 +19,7 @@ const Position = styled.div`
   top: 20vh;
   left: 50vw;
   transform: translateX(-50%);
+  z-index: 1000;
 `;
 
 const Style = styled.div`
@@ -30,7 +31,6 @@ const Style = styled.div`
   box-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.5);
   opacity: .8;
   pointer-events: none;
-  z-index: 1000;
   text-align: right;
 `;
 
