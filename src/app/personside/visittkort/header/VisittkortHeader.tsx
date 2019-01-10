@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-
 import { erDød, Navn, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './Etiketter/EtiketterContainer';
@@ -10,11 +9,17 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
 import theme from '../../../../styles/personOversiktTheme';
+import ToolTip from '../../../../components/tooltip/ToolTip';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface Props {
+    visittkortApent: boolean;
     person: Person;
     toggleVisittkort: (erApen?: boolean) => void;
-    visittkortApent: boolean;
+}
+
+interface State {
+    showTooltip: boolean;
 }
 
 const VisittkortHeaderDiv = styled.section`
@@ -81,9 +86,15 @@ function hentNavn(navn: Navn) {
         + navn.etternavn;
 }
 
-class VisittkortHeader extends React.Component<Props> {
+class VisittkortHeader extends React.PureComponent<Props, State> {
 
     private navneLinjeRef = React.createRef<HTMLSpanElement>();
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {showTooltip: false};
+        this.toggleVisittkort = this.toggleVisittkort.bind(this);
+    }
 
     componentDidMount() {
         if (this.navneLinjeRef.current && !this.props.person.sikkerhetstiltak) {
@@ -91,8 +102,13 @@ class VisittkortHeader extends React.Component<Props> {
         }
     }
 
+    toggleVisittkort() {
+        this.setState({showTooltip: true});
+        this.props.toggleVisittkort(!this.props.visittkortApent);
+    }
+
     render() {
-        const {person, toggleVisittkort, visittkortApent} = this.props;
+        const {person, visittkortApent} = this.props;
         const ikon = {
             ikon: person.kjønn === 'M' ? <Mann alt="Mann"/> : <Kvinne alt="Kvinne"/>,
         };
@@ -101,9 +117,8 @@ class VisittkortHeader extends React.Component<Props> {
             <VisittkortHeaderDiv
                 role="region"
                 aria-label="Visittkort-hode"
-                onClick={() => toggleVisittkort(!visittkortApent)}
+                onClick={this.toggleVisittkort}
             >
-
                 <VenstreFelt>
                     <IkonDiv>
                         {ikon.ikon}
@@ -127,12 +142,15 @@ class VisittkortHeader extends React.Component<Props> {
                 </HøyreFelt>
 
                 <ChevronStyling>
-                    <DetaljerKnapp onClick={() => toggleVisittkort(!visittkortApent)} open={visittkortApent}>
+                    <DetaljerKnapp onClick={this.toggleVisittkort} open={visittkortApent}>
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
                     </DetaljerKnapp>
                 </ChevronStyling>
+                <IfFeatureToggleOn toggleID="tooltip">
+                    {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
+                </IfFeatureToggleOn>
             </VisittkortHeaderDiv>
         );
     }
