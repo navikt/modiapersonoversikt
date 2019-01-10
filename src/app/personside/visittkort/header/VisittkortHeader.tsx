@@ -10,6 +10,7 @@ import Kvinne from '../../../../svg/Kvinne.js';
 import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
 import theme from '../../../../styles/personOversiktTheme';
 import ToolTip from '../../../../components/tooltip/ToolTip';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface Props {
     visittkortApent: boolean;
@@ -147,7 +148,9 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                         </span>
                     </DetaljerKnapp>
                 </ChevronStyling>
-                {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
+                <IfFeatureToggleOn toggleID="tooltip">
+                    {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
+                </IfFeatureToggleOn>
             </VisittkortHeaderDiv>
         );
     }
