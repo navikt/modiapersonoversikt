@@ -22,5 +22,9 @@ export interface Saksdato {
 }
 
 export function saksdatoSomDate(saksdato: Saksdato): Date {
-    return moment(`${saksdato.år}.${saksdato.måned}.${saksdato.dag}`).toDate();
+    return moment(`${saksdato.år}-${padZero(saksdato.måned)}-${padZero(saksdato.dag)}`).toDate();
+}
+
+function padZero(date: number): string {
+   return date > 9 ? `${date}` : `0${date}`;
 }

@@ -4,7 +4,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeContainer from './SakstemaListeContainer';
 import DokumentListeContainer from './DokumentListeContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -87,8 +87,8 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
     return dokumentMetadata.vedlegg.find(vedlegg => vedlegg.dokumentreferanse === dokumentId);
 }
 
-function hentQueryParametreFraUrlOgVisDokumentEtterLastingAvReducer(props: Props) {
-    if (props.queryParamString) {
+function hentQueryParametreFraUrlOgVis(props: Props) {
+    if (props.queryParamString && isLoaded(props.saksoversiktReducer)) {
         const queryParams = parseQueryParams(props.queryParamString);
         const sakstemaKode = queryParams.sakstemaKode;
         const journalId = queryParams.journalpostId;
@@ -98,7 +98,7 @@ function hentQueryParametreFraUrlOgVisDokumentEtterLastingAvReducer(props: Props
             return;
         }
 
-        const sakstemaListe = (props.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat;
+        const sakstemaListe = props.saksoversiktReducer.data.resultat;
         const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
         if (!sakstema) {
             return;
@@ -135,7 +135,7 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
             isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
 
         if (førsteUpdateEtterLasting) {
-            hentQueryParametreFraUrlOgVisDokumentEtterLastingAvReducer(this.props);
+            hentQueryParametreFraUrlOgVis(this.props);
         }
     }
 

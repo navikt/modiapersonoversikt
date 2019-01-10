@@ -24,6 +24,7 @@ import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { formaterDato } from '../../../../utils/dateUtils';
+import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -107,8 +108,7 @@ function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
-    const saksdato = dokument.dato;
-    const dato = formaterDato(`${saksdato.år}.${saksdato.måned}.${saksdato.dag}`);
+    const dato = formaterDato(saksdatoSomDate(dokument.dato));
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
@@ -120,7 +120,7 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-function lagÅpneSomStandaloneLenke(props: Props) {
+function lagÅpneSomStandaloneUrl(props: Props) {
     const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
     const sakstemaQueryLenke = `sakstemaKode=${props.sakstemakode}`;
     const journalpostQueryLenke = `journalpostId=${props.dokument.journalpostId}`;
@@ -195,7 +195,7 @@ class DokumentKomponent extends React.Component<Props> {
             null :
             (
                 <span>
-                    <a href={lagÅpneSomStandaloneLenke(this.props)} target={'_blank'} className={'lenke'}>
+                    <a href={lagÅpneSomStandaloneUrl(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
                     </a>
                 </span>
