@@ -22,7 +22,7 @@ Array [
 
 .c4 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -180,12 +180,6 @@ Array [
 .c2 tbody tr > *:nth-last-child(n+3) {
   padding-top: .5rem;
   border-top: solid 0.0625rem #c6c2bf;
-}
-
-@media print {
-  .c4 {
-    display: none;
-  }
 }
 
 @media print {
