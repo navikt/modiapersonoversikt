@@ -53,6 +53,7 @@ globalAny._mockEnabled = 'true';
 Date.now = jest.fn(() => 0);
 const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
+FeatureToggle.prototype.actualRender = FeatureToggle.prototype.render;
 FeatureToggle.prototype.render = function() { return this.props.children; };
 
 // tslint:disable-next-line
