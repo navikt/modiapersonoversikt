@@ -6,10 +6,15 @@ import { connect } from 'react-redux';
 import { getFetchFeatureToggleAndDispatchToRedux } from './getFeatureToggleAndDispatchToRedux';
 import LazySpinner from '../../components/LazySpinner';
 
+export enum DisplayWhenToggleIs {
+    ON,
+    OFF
+}
+
 interface OwnProps {
     children: ReactNode;
     toggleID: string;
-    displayWhenFeatureToggleOff?: boolean;
+    mode: DisplayWhenToggleIs;
 }
 
 interface StateProps {
@@ -27,17 +32,26 @@ class FeatureToggle extends React.PureComponent<Props> {
         this.props.fetchFeatureToggle();
     }
 
+    shouldDisplay() {
+        if (this.props.mode === DisplayWhenToggleIs.ON && this.props.isOn) {
+            return true;
+        }
+        if (this.props.mode === DisplayWhenToggleIs.OFF && !this.props.isOn) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const pending = this.props.isOn === undefined;
         if (pending) {
             return <LazySpinner type="S" delay={1000}/>;
         }
-        if (!this.props.displayWhenFeatureToggleOff && this.props.isOn) {
+
+        if (this.shouldDisplay()) {
             return this.props.children;
         }
-        if (this.props.displayWhenFeatureToggleOff && !this.props.isOn) {
-            return this.props.children;
-        }
+
         return null;
     }
 }
