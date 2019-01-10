@@ -8,6 +8,8 @@ import {
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import * as moment from 'moment';
+import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';
 import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
@@ -23,8 +25,7 @@ import Innholdslaster from '../../../../components/Innholdslaster';
 import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
-import { formaterDato } from '../../../../utils/dateUtils';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
+import { LenkeKnapp } from '../../../../components/common-styled-components';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -75,23 +76,6 @@ const InnholdWrapper = styled.div`
   }
 `;
 
-const DokumentLenkeStyle = styled.button`
-  border: none;
-  background-color: transparent;
-  padding: .1rem .2rem;
-  border-radius: ${theme.borderRadius.knapp};
-  cursor: pointer;
-  display: flex;
-  color: ${theme.color.lenke};
-  &:focus {
-    ${theme.focus}
-  }
-  &:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
-`;
-
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
@@ -111,7 +95,7 @@ function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) {
-    const dato = formaterDato(saksdatoSomDate(dokument.dato));
+    const dato = moment(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
@@ -123,12 +107,14 @@ function dokumentIkon(harTilgang: boolean) {
     }
 }
 
-function lagÅpneSomStandaloneUrl(props: Props) {
-    const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
-    const sakstemaQueryLenke = `sakstemaKode=${props.sakstemakode}`;
-    const journalpostQueryLenke = `journalpostId=${props.dokument.journalpostId}`;
-    const dokumentQueryLenke = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
-    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQueryLenke}&${journalpostQueryLenke}&${dokumentQueryLenke}`;
+function lagSaksoversiktLenke(props: Props) {
+    const brukersFnr = isLoaded(props.bruker)
+        ? (props.bruker.data as Person).fødselsnummer
+        : '';
+    const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
+    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
+    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
 function valgtTekst(visTekst: boolean) {
@@ -136,14 +122,18 @@ function valgtTekst(visTekst: boolean) {
 }
 
 class DokumentKomponent extends React.Component<Props> {
-    private vedleggLinkRef = React.createRef<HTMLButtonElement>();
-    private hoveddokumentLinkRef = React.createRef<HTMLButtonElement>();
+    private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
+    private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLDivElement>();
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
+        if (!this.hoveddokumentLinkRef.current) {
+            return;
+        }
+
         const lenkeTrykket = (event.target instanceof Node)
-            && ((this.hoveddokumentLinkRef.current && this.hoveddokumentLinkRef.current.contains(event.target))
+            && (this.hoveddokumentLinkRef.current.contains(event.target)
                 || (this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target))
                 || (this.nyttVinduLinkRef.current && this.nyttVinduLinkRef.current.contains(event.target)));
 
@@ -180,13 +170,14 @@ class DokumentKomponent extends React.Component<Props> {
                     <ul>
                         {dokument.vedlegg.map(vedlegg =>
                             <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
-                                <DokumentLenkeStyle
-                                    aria-label={'Vis vedlegg - ' + vedlegg.tittel}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
-                                    ref={this.vedleggLinkRef}
-                                >
-                                    <Element>{vedlegg.tittel}</Element>
-                                </DokumentLenkeStyle>
+                                <span ref={this.vedleggLinkRef}>
+                                    <LenkeKnapp
+                                        aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                        onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
+                                    >
+                                        <Element>{vedlegg.tittel}</Element>
+                                    </LenkeKnapp>
+                                </span>
                                 {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
@@ -197,8 +188,8 @@ class DokumentKomponent extends React.Component<Props> {
                 !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
             null :
             (
-                <span>
-                    <a href={lagÅpneSomStandaloneUrl(this.props)} target={'_blank'} className={'lenke'}>
+                <span ref={this.nyttVinduLinkRef}>
+                    <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
                     </a>
                 </span>
@@ -222,13 +213,14 @@ class DokumentKomponent extends React.Component<Props> {
                                     {formaterDatoOgAvsender(brukersNavn, dokument)}
                                 </Normaltekst>
                             </Innholdslaster>
-                            <DokumentLenkeStyle
-                                aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                                ref={this.hoveddokumentLinkRef}
-                            >
-                                <Element>{dokument.hoveddokument.tittel}</Element>
-                            </DokumentLenkeStyle>
+                            <div ref={this.hoveddokumentLinkRef}>
+                                <LenkeKnapp
+                                    aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
+                                    onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                >
+                                    <Element>{dokument.hoveddokument.tittel}</Element>
+                                </LenkeKnapp>
+                            </div>
                             {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                             {dokumentVedlegg}
                             {saksvisning}
