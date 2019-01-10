@@ -5,9 +5,9 @@ import navfaker from 'nav-faker/dist/index';
 
 import {
     Arbeidsforhold,
-    Foreldrepengerettighet,
     Foreldrepengerperiode,
-    ForeldrepengerResponse
+    ForeldrepengerResponse,
+    Foreldrepengerettighet
 } from '../../models/ytelse/foreldrepenger';
 import { getPeriode } from '../person/periodeMock';
 import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';

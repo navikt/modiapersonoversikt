@@ -18,7 +18,7 @@ function Oversikt({foreldrePenger}: Props) {
         'Rettighet fra dato': datoVerbose(utledFraDatoForRettighet(foreldrePenger)).sammensatt,
         Restdager: foreldrePenger.restDager,
         Maksdato: utledMaksDato(foreldrePenger),
-        Arbeidskategori: 'Ikke implementert'
+        Arbeidskategori: foreldrePenger.arbeidskategori
     };
 
     const barnet = {
