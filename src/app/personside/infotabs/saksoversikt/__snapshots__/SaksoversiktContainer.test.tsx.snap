@@ -41,12 +41,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   text-decoration: underline;
 }
 
-.c19 {
+.c20 {
   color: #78706a;
   margin-top: 3px;
 }
 
-.c19 .typo-etikett-liten {
+.c20 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -208,6 +208,30 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: 0.5rem;
 }
 
+.c19 {
+  border: none;
+  background-color: transparent;
+  padding: .1rem .2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c19:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c19:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 .c8 {
   position: relative;
   -webkit-box-flex: 1;
@@ -300,7 +324,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c20 {
+.c21 {
   margin-top: 2rem;
 }
 
@@ -368,7 +392,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              08.03.2018
+              08.02.2018
             </p>
             <p
               className="typo-element"
@@ -400,7 +424,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              08.03.2018
+              08.02.2018
             </p>
             <p
               className="typo-element"
@@ -459,7 +483,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              21.12.2017
+              21.11.2017
             </p>
             <p
               className="typo-element"
@@ -662,24 +686,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    08.03.2018 / Fra Marie
+                    08.02.2018 / Fra Marie
                   </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
-                      className="c11"
-                      onClick={[Function]}
+                  <button
+                    aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
+                    className="c19"
+                    onClick={[Function]}
+                  >
+                    <p
+                      className="typo-element"
                     >
-                      <p
-                        className="typo-element"
-                      >
-                        Vurdering feilutbetaling/revurdering
-                      </p>
-                    </button>
-                  </div>
+                      Vurdering feilutbetaling/revurdering
+                    </p>
+                  </button>
                   
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <p
                       className="typo-etikett-liten"
@@ -753,24 +775,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    21.12.2017 / Samtalereferat
+                    21.11.2017 / Samtalereferat
                   </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Spørsmål via nav.no"
-                      className="c11"
-                      onClick={[Function]}
+                  <button
+                    aria-label="Vis hoveddokument - Spørsmål via nav.no"
+                    className="c19"
+                    onClick={[Function]}
+                  >
+                    <p
+                      className="typo-element"
                     >
-                      <p
-                        className="typo-element"
-                      >
-                        Spørsmål via nav.no
-                      </p>
-                    </button>
-                  </div>
+                      Spørsmål via nav.no
+                    </p>
+                  </button>
                   
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <p
                       className="typo-etikett-liten"
@@ -788,7 +808,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         </li>
       </ol>
       <div
-        className="c20"
+        className="c21"
       />
       <div
         aria-live={undefined}
