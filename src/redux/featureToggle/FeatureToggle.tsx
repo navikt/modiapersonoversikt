@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { AppState } from '../reducers';
 import { AsyncDispatch } from '../ThunkTypes';
 import { connect } from 'react-redux';
-import { getFetchFeatureToggleAndDispatchToRedux } from './getFeatureToggleAndDispatchToRedux';
+import { fetchFeatureToggleAndDispatchToRedux } from './fetchFeatureToggleAndDispatchToRedux';
 import LazySpinner from '../../components/LazySpinner';
 
 export enum DisplayWhenToggleIs {
@@ -64,7 +64,7 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch, ownProps: OwnProps): DispatchProps {
     return {
-        fetchFeatureToggle: () => getFetchFeatureToggleAndDispatchToRedux(ownProps.toggleID, dispatch)
+        fetchFeatureToggle: () => fetchFeatureToggleAndDispatchToRedux(ownProps.toggleID, dispatch)
     };
 }
 

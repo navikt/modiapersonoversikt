@@ -3,7 +3,7 @@ import { getFeatureToggle } from '../../api/featuretoggle-api';
 import { setFeatureToggleOff, setFeatureToggleOn } from './featureToggleReducer';
 import { loggError } from '../../utils/frontendLogger';
 
-export function getFetchFeatureToggleAndDispatchToRedux(toggleID: string, dispatch: AsyncDispatch) {
+export function fetchFeatureToggleAndDispatchToRedux(toggleID: string, dispatch: AsyncDispatch) {
     getFeatureToggle(toggleID)
         .then(result => result['modiabrukerdialog.' + toggleID])
         .then(isOn =>
