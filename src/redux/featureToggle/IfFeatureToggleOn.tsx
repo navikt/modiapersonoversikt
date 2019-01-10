@@ -7,8 +7,8 @@ interface Props {
     toggleID: string;
 }
 
-function DisplayWhenFeatureToggleOff(props: Props) {
-    return <FeatureToggle {...props} mode={DisplayWhenToggleIs.OFF}/>;
+function IfFeatureToggleOn(props: Props) {
+    return <FeatureToggle {...props} mode={DisplayWhenToggleIs.ON}/>;
 }
 
-export default DisplayWhenFeatureToggleOff;
+export default IfFeatureToggleOn;
