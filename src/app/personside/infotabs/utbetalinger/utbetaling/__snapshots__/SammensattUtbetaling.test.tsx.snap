@@ -47,7 +47,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 
 .c15 {
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -190,12 +190,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 
 .c6 > li:not(:first-child) {
   border-top: solid 0.0625rem #c6c2bf;
-}
-
-@media print {
-  .c15 {
-    display: none;
-  }
 }
 
 @media print {
