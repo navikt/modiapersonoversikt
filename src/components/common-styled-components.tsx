@@ -47,20 +47,39 @@ export const GråttPanel = styled.div`
   ${theme.gråttPanel};
 `;
 
-export const LenkeKnapp = styled.button`
+export const LenkeKnapp = styled.button<{underline?: boolean}>`
+  position: relative;
   border: none;
-  padding: 0;
+  padding: .1rem 0;
   border-radius: ${theme.borderRadius.knapp};
   cursor: pointer;
   background-color: transparent;
   display: flex;
   align-items: center;
   color: ${theme.color.lenke};
+  &:after {
+    border-bottom: .05rem #B7B1A9 solid;
+    ${props => props.underline && `content: ''`};
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
   &:focus {
     ${theme.focus}
   }
   &:hover {
     opacity: 0.8;
-    text-decoration: underline;
+    &:after {
+      content: '';
+      border-color: #0067C5;
+    }
+  }
+`;
+
+export const TilbakePil = styled.span`
+  &:before {
+    content: '<';
+    padding-right: .3rem;
+    text-decoration: none !important;
   }
 `;

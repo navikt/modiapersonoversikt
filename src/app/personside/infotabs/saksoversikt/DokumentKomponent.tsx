@@ -48,11 +48,8 @@ interface StateProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div<{ valgt: boolean }>`
+const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
   ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
-`;
-
-const InfoWrapper = styled.div`
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
   svg {
@@ -60,12 +57,14 @@ const InfoWrapper = styled.div`
     height: ${theme.margin.px30};
     width: auto;
   }
-  cursor: pointer;
-  &:hover {
-      ${theme.hover}
-    }
-  &:active {
-    background-color: rgba(0, 0, 0, 0.1);
+  ${props => props.klikkbar && css`
+      cursor: pointer;
+      &:hover {
+          ${theme.hover};
+        }
+      &:active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }`
   }
 `;
 
@@ -184,10 +183,8 @@ class DokumentKomponent extends React.Component<Props> {
                 </div>
             );
 
-        const egetVinduLenke = this.props.erStandaloneVindu ||
-                !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
-            null :
-            (
+        const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
+        const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
                 <span ref={this.nyttVinduLinkRef}>
                     <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
@@ -198,37 +195,34 @@ class DokumentKomponent extends React.Component<Props> {
         const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
-            <>
-                <Wrapper
-                    onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
-                    ref={this.dokumentRef}
-                    valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
-                >
-                    <InfoWrapper>
-                        {dokumentIkon(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises)}
-                        <InnholdWrapper>
-                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                                <Normaltekst>
-                                    {formaterDatoOgAvsender(brukersNavn, dokument)}
-                                </Normaltekst>
-                            </Innholdslaster>
-                            <div ref={this.hoveddokumentLinkRef}>
-                                <LenkeKnapp
-                                    aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                                >
-                                    <Element>{dokument.hoveddokument.tittel}</Element>
-                                </LenkeKnapp>
-                            </div>
-                            {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
-                            {dokumentVedlegg}
-                            {saksvisning}
-                        </InnholdWrapper>
-                        {egetVinduLenke}
-                    </InfoWrapper>
-                </Wrapper>
-            </>
+            <Wrapper
+                onClick={(event: React.MouseEvent<HTMLElement>) =>
+                    cancelIfHighlighting(() => this.handleClickOnDokument(event))}
+                ref={this.dokumentRef}
+                valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
+                klikkbar={kanVises}
+            >
+                {dokumentIkon(kanVises)}
+                <InnholdWrapper>
+                    <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
+                        <Normaltekst>
+                            {formaterDatoOgAvsender(brukersNavn, dokument)}
+                        </Normaltekst>
+                    </Innholdslaster>
+                    <div ref={this.hoveddokumentLinkRef}>
+                        <LenkeKnapp
+                            aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
+                            onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                        >
+                            <Element>{dokument.hoveddokument.tittel}</Element>
+                        </LenkeKnapp>
+                    </div>
+                    {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
+                    {dokumentVedlegg}
+                    {saksvisning}
+                </InnholdWrapper>
+                {egetVinduLenke}
+            </Wrapper>
         );
     }
 }
