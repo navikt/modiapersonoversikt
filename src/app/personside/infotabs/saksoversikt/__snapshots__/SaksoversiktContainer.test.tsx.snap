@@ -14,8 +14,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c11 {
+  position: relative;
   border: none;
-  padding: 0;
+  padding: .1rem 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -30,6 +31,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
+.c11:after {
+  border-bottom: .05rem #B7B1A9 solid;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .c11:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
@@ -37,16 +46,58 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c11:hover {
   opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+}
+
+.c11:hover:after {
+  content: '';
+  border-color: #0067C5;
 }
 
 .c19 {
+  position: relative;
+  border: none;
+  padding: .1rem 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c19:after {
+  border-bottom: .05rem #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.c19:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c19:hover {
+  opacity: 0.8;
+}
+
+.c19:hover:after {
+  content: '';
+  border-color: #0067C5;
+}
+
+.c20 {
   color: #78706a;
   margin-top: 3px;
 }
 
-.c19 .typo-etikett-liten {
+.c20 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -64,7 +115,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c7:hover {
-  box-shadow: inset 0 0 0 0.05rem #0067c5;
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 .1rem .1rem rgba(0,0,0,.2);
 }
 
 .c7:hover > button:last-child {
@@ -93,7 +144,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c4:hover {
-  box-shadow: inset 0 0 0 0.05rem #0067c5;
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 .1rem .1rem rgba(0,0,0,.2);
 }
 
 .c4:hover > button:last-child {
@@ -134,7 +185,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c1 {
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   background-color: white;
   min-width: 24rem;
   -webkit-flex-basis: 24rem;
@@ -144,30 +195,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c1 ol {
   list-style: none;
-}
-
-.c1 table {
-  width: 100%;
-  text-align: right;
-  border-spacing: 0;
-}
-
-.c1 table * {
-  padding: 10px;
-  margin: 0;
-}
-
-.c1 table tr > * {
-  padding: 0.1rem;
-  text-align: right;
-}
-
-.c1 table tr > *:first-child {
-  text-align: left;
-}
-
-.c1 table tr > *:not(:first-child) {
-  width: 6rem;
 }
 
 .c2 {
@@ -190,11 +217,25 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c17:hover {
-  box-shadow: inset 0 0 0 0.05rem #0067c5;
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 .1rem .1rem rgba(0,0,0,.2);
 }
 
 .c17:active {
   background-color: rgba(0,0,0,0.1);
+}
+
+.c21 {
+  padding: 1.25rem 0.625rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c21 svg {
+  padding-right: 1rem;
+  height: 1.875rem;
+  width: auto;
 }
 
 .c18 {
@@ -300,7 +341,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c20 {
+.c22 {
   margin-top: 2rem;
 }
 
@@ -637,70 +678,66 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className=""
+              className="c17"
               onClick={[Function]}
             >
-              <div
-                className="c17"
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <path
+                  d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
+                  fill="none"
+                  stroke="#C6C2BF"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeMiterlimit="10"
+                />
+              </svg>
+              <div
+                className="c18"
+              >
+                <p
+                  className="typo-normal"
                 >
-                  <path
-                    d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
-                    fill="none"
-                    stroke="#C6C2BF"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
-                  />
-                </svg>
-                <div
-                  className="c18"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    08.03.2018 / Fra Marie
-                  </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
-                      className="c11"
-                      onClick={[Function]}
-                    >
-                      <p
-                        className="typo-element"
-                      >
-                        Vurdering feilutbetaling/revurdering
-                      </p>
-                    </button>
-                  </div>
-                  
-                  <div
+                  08.03.2018 / Fra Marie
+                </p>
+                <div>
+                  <button
+                    aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
                     className="c19"
+                    onClick={[Function]}
                   >
                     <p
-                      className="typo-etikett-liten"
+                      className="typo-element"
                     >
-                      Saksid: 
-                      yg0ll4se
-                       / Sakstema: 
-                      Sykepenger
+                      Vurdering feilutbetaling/revurdering
                     </p>
-                  </div>
+                  </button>
                 </div>
-                <span>
-                  <a
-                    className="lenke"
-                    href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=3fmounyc&dokumentId=mlub095n"
-                    target="_blank"
+                
+                <div
+                  className="c20"
+                >
+                  <p
+                    className="typo-etikett-liten"
                   >
-                    Åpne i eget vindu
-                  </a>
-                </span>
+                    Saksid: 
+                    yg0ll4se
+                     / Sakstema: 
+                    Sykepenger
+                  </p>
+                </div>
               </div>
+              <span>
+                <a
+                  className="lenke"
+                  href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=3fmounyc&dokumentId=mlub095n"
+                  target="_blank"
+                >
+                  Åpne i eget vindu
+                </a>
+              </span>
             </div>
           </ol>
         </li>
@@ -726,61 +763,57 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className=""
+              className="c21"
               onClick={[Function]}
             >
-              <div
-                className="c17"
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <g
+                  fill="#C6C2BF"
                 >
-                  <g
-                    fill="#C6C2BF"
-                  >
-                    <path
-                      d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
-                    />
-                    <path
-                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                    />
-                  </g>
-                </svg>
-                <div
-                  className="c18"
+                  <path
+                    d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                  />
+                  <path
+                    d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                  />
+                </g>
+              </svg>
+              <div
+                className="c18"
+              >
+                <p
+                  className="typo-normal"
                 >
-                  <p
-                    className="typo-normal"
-                  >
-                    21.12.2017 / Samtalereferat
-                  </p>
-                  <div>
-                    <button
-                      aria-label="Vis hoveddokument - Spørsmål via nav.no"
-                      className="c11"
-                      onClick={[Function]}
-                    >
-                      <p
-                        className="typo-element"
-                      >
-                        Spørsmål via nav.no
-                      </p>
-                    </button>
-                  </div>
-                  
-                  <div
+                  21.12.2017 / Samtalereferat
+                </p>
+                <div>
+                  <button
+                    aria-label="Vis hoveddokument - Spørsmål via nav.no"
                     className="c19"
+                    onClick={[Function]}
                   >
                     <p
-                      className="typo-etikett-liten"
+                      className="typo-element"
                     >
-                      Saksid: 
-                      5ptdxt2v
-                       / Sakstema: 
-                      Sykepenger
+                      Spørsmål via nav.no
                     </p>
-                  </div>
+                  </button>
+                </div>
+                
+                <div
+                  className="c20"
+                >
+                  <p
+                    className="typo-etikett-liten"
+                  >
+                    Saksid: 
+                    5ptdxt2v
+                     / Sakstema: 
+                    Sykepenger
+                  </p>
                 </div>
               </div>
             </div>
@@ -788,7 +821,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         </li>
       </ol>
       <div
-        className="c20"
+        className="c22"
       />
       <div
         aria-live={undefined}
