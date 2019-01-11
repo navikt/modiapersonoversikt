@@ -16,6 +16,7 @@ import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 import SakstemaListeContainer from './SakstemaListeContainer';
 import DokumentListeContainer from './DokumentListeContainer';
+import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -30,6 +31,7 @@ interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
+    skjulDokumentOgVisSaksoversikt: () => void;
 }
 
 interface OwnProps {
@@ -56,9 +58,10 @@ const SaksoversiktArticle = styled.article`
   }
 `;
 
-class SaksoversiktContainer extends React.Component<Props> {
+class SaksoversiktContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
+        this.props.skjulDokumentOgVisSaksoversikt();
         if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
         }
@@ -109,7 +112,9 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         reloadSaksoversikt: (fødselsnummer: string) =>
             dispatch(reloadSaksoversikt(fødselsnummer)),
         hentPerson: fødselsnummer =>
-            hentAllPersonData(dispatch, fødselsnummer)
+            hentAllPersonData(dispatch, fødselsnummer),
+        skjulDokumentOgVisSaksoversikt: () =>
+            dispatch(settVisDokument(false))
     };
 }
 
