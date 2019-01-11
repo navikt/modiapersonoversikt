@@ -19,6 +19,7 @@ import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { TilbakePil } from '../../components/common-styled-components';
 
 const BrukerprofilWrapper = styled.article`
   flex-grow: 1;
@@ -68,13 +69,6 @@ const LinkWrapper = styled.div`
 const Fokus = styled.div`
   &:focus {
     ${theme.focus}
-  }
-`;
-
-const TilbakePil = styled.span`
-  &:before {
-    content: '<';
-    padding-right: .3rem;
   }
 `;
 
