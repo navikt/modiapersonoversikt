@@ -26,33 +26,11 @@ const SakstemaListeStyle = styled.ol`
 `;
 
 const Wrapper = styled.div`
-  border-radius: ${theme.borderRadius.layout};
-  background-color: white;
+  ${theme.hvittPanel}
   min-width: 24rem;
   flex-basis: 24rem;
   ol {
     list-style: none;
-  }
-  table {
-    width: 100%;
-    text-align: right;
-    border-spacing: 0;
-    * {
-      padding: 10px;
-      margin: 0;
-    }
-    tr {
-      > * {
-        padding: 0.1rem;
-        text-align: right;
-      }
-      > *:first-child {
-        text-align: left;
-      }
-      > *:not(:first-child) {
-        width: 6rem;
-      }
-    }
   }
 `;
 

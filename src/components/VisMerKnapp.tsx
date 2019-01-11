@@ -10,7 +10,7 @@ const Wrapper = styled.div<{ valgt: boolean }>`
     cursor: pointer;
     ${props => props.valgt && css`background-color: ${theme.color.kategori};`}
     &:hover {
-      ${theme.hover}
+      ${theme.hover};
       > button:last-child {
         padding-left: .5rem;
       }
