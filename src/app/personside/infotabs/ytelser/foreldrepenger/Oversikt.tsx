@@ -22,7 +22,7 @@ function Oversikt({foreldrePenger}: Props) {
     };
 
     const barnet = {
-        Termindato: foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt, // Ovetakelse
+        Termindato: foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt,
         Fødselsdato: foreldrePenger.barnetsFødselsdato && datoVerbose(foreldrePenger.barnetsFødselsdato).sammensatt,
         'Annen forelder': foreldrePenger.andreForeldersFnr,
         Omsorgsovertakelse: 'Ikke implementert',
