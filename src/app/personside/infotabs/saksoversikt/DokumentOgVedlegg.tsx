@@ -34,6 +34,7 @@ const Content = styled.div`
   flex-direction: column;
   object {
     flex-grow: 1;
+    ${theme.hvittPanel}
   }
 `;
 
@@ -81,21 +82,19 @@ function DokumentOgVedlegg(props: Props) {
         };
     });
 
-    const tabsHeader = props.erStandaloneVindu ?
-        null :
-        (
-            <Header>
-                <TabsPure
-                    tabs={tabProps}
-                    onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
-                />
-                <KnappWrapper>
-                    <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
-                        Lukk dokumentvisning
-                    </Lukknapp>
-                </KnappWrapper>
-            </Header>
-        );
+    const tabsHeader = !props.erStandaloneVindu && (
+        <Header>
+            <TabsPure
+                tabs={tabProps}
+                onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
+            />
+            <KnappWrapper>
+                <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
+                    Lukk dokumentvisning
+                </Lukknapp>
+            </KnappWrapper>
+        </Header>
+    );
 
     return (
         <Content>
