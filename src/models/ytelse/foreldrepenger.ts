@@ -26,7 +26,7 @@ export interface Foreldrepengerettighet {
     arbeidskategori: string | null;
 }
 
-export interface Foedsel extends Foreldrepengerettighet {
+export interface Fødsel extends Foreldrepengerettighet {
     termin: String;
 }
 
@@ -69,9 +69,9 @@ export interface Arbeidsforhold {
 }
 
 export function isAdopsjon(foreldrepengerettighet:  Foreldrepengerettighet): foreldrepengerettighet is Adopsjon {
-    return 'termin' in foreldrepengerettighet;
+    return 'omsorgsovertakelse' in foreldrepengerettighet;
 }
 
-export function isFoedsel(foreldrepengerettighet: Foreldrepengerettighet): foreldrepengerettighet is Foedsel {
-    return 'omsorgsovertakelse' in foreldrepengerettighet;
+export function isFødsel(foreldrepengerettighet: Foreldrepengerettighet): foreldrepengerettighet is Fødsel {
+    return 'termin' in foreldrepengerettighet;
 }
