@@ -40,7 +40,7 @@ interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
     setErMicroFrontend: () => void;
-    velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
+    velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -87,7 +87,7 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
     return dokumentMetadata.vedlegg.find(vedlegg => vedlegg.dokumentreferanse === dokumentId);
 }
 
-function hentQueryParametreFraUrlOgVis(props: Props) {
+function hentQueryParametreFraUrlOgVisDokument(props: Props) {
     if (props.queryParamString && isLoaded(props.saksoversiktReducer)) {
         const queryParams = parseQueryParams(props.queryParamString);
         const sakstemaKode = queryParams.sakstemaKode;
@@ -114,7 +114,7 @@ function hentQueryParametreFraUrlOgVis(props: Props) {
             return;
         }
 
-        props.velgOgVis(sakstema, dokumentMetadata, dokument);
+        props.velgOgVisDokument(sakstema, dokumentMetadata, dokument);
     }
 }
 
@@ -135,7 +135,7 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
             isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
 
         if (førsteUpdateEtterLasting) {
-            hentQueryParametreFraUrlOgVis(this.props);
+            hentQueryParametreFraUrlOgVisDokument(this.props);
         }
     }
 
@@ -165,7 +165,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
-        velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
+        velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));
             dispatch(settValgtDokument(dokument));
             dispatch(settVisDokument(true));

@@ -163,7 +163,7 @@ class DokumentKomponent extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
+        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 &&
             (
                 <div>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
@@ -182,7 +182,7 @@ class DokumentKomponent extends React.Component<Props> {
                             </li>)}
                     </ul>
                 </div>
-            ) : null;
+            );
 
         const egetVinduLenke = this.props.erStandaloneVindu ||
                 !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
