@@ -187,6 +187,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   min-width: 24rem;
   -webkit-flex-basis: 24rem;
   -ms-flex-preferred-size: 24rem;
@@ -260,6 +261,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c9 {
   border-radius: 0.25rem;
   background-color: white;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -318,6 +320,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c13 ol {
   border-radius: 0.25rem;
   background-color: white;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   padding: 0;
   margin: 0;
 }
