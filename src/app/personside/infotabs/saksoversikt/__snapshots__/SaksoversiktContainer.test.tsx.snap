@@ -409,7 +409,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              08.03.2018
+              08.02.2018
             </p>
             <p
               className="typo-element"
@@ -441,7 +441,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              08.03.2018
+              08.02.2018
             </p>
             <p
               className="typo-element"
@@ -500,7 +500,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              21.12.2017
+              21.11.2017
             </p>
             <p
               className="typo-element"
@@ -700,7 +700,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  08.03.2018 / Fra Marie
+                  08.02.2018 / Fra Marie
                 </p>
                 <div>
                   <button
@@ -787,7 +787,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  21.12.2017 / Samtalereferat
+                  21.11.2017 / Samtalereferat
                 </p>
                 <div>
                   <button

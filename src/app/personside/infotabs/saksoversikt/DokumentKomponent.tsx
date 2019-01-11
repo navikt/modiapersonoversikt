@@ -49,7 +49,7 @@ interface StateProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
-  ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.09);'};
+  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
   svg {
@@ -116,7 +116,7 @@ function lagSaksoversiktLenke(props: Props) {
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
-function dokumentValgtTekst(visTekst: boolean) {
+function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
@@ -162,26 +162,26 @@ class DokumentKomponent extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
+        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 &&
             (
                 <div>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
-                        {dokument.vedlegg.map(vlegg =>
-                            <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
+                        {dokument.vedlegg.map(vedlegg =>
+                            <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
                                 <span ref={this.vedleggLinkRef}>
                                     <LenkeKnapp
-                                        aria-label={'Vis vedlegg - ' + vlegg.tittel}
-                                        onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                        aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                        onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
                                     >
-                                        <Element>{vlegg.tittel}</Element>
+                                        <Element>{vedlegg.tittel}</Element>
                                     </LenkeKnapp>
                                 </span>
-                                {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
+                                {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
                 </div>
-            ) : null;
+            );
 
         const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
         const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
@@ -217,8 +217,8 @@ class DokumentKomponent extends React.Component<Props> {
                             <Element>{dokument.hoveddokument.tittel}</Element>
                         </LenkeKnapp>
                     </div>
-                    {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
-                    {vedlegg}
+                    {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
+                    {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
                 {egetVinduLenke}
