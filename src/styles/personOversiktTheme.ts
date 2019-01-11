@@ -75,7 +75,7 @@ export const theme = {
           width: 100%;
         }
     `,
-    hover: css`box-shadow: inset 0 0 0 0.05rem #0067c5;`,
+    hover: css`box-shadow: inset 0 0 0 0.1rem #0067c5, 0 .1rem .1rem rgba(0, 0, 0, .2)`,
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;
