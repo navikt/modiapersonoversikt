@@ -23,8 +23,7 @@ interface State {
 }
 
 const VisittkortHeaderDiv = styled.section`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   padding: ${theme.margin.px20};
   padding-right: 3rem;
   margin-bottom: .2rem;

@@ -11,7 +11,7 @@ import { AppState } from '../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
-import Lukknapp from 'nav-frontend-lukknapp';
+import { LenkeKnapp, TilbakePil } from '../../../../components/common-styled-components';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -34,6 +34,7 @@ const Content = styled.div`
   flex-direction: column;
   object {
     flex-grow: 1;
+    ${theme.hvittPanel}
   }
 `;
 
@@ -48,9 +49,8 @@ const Header = styled.div`
 
 const KnappWrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
-  padding-bottom: 0.1rem;
+  bottom: .5rem;
+  right: .5rem;
 `;
 
 function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
@@ -81,21 +81,21 @@ function DokumentOgVedlegg(props: Props) {
         };
     });
 
-    const tabsHeader = props.erStandaloneVindu ?
-        null :
-        (
-            <Header>
-                <TabsPure
-                    tabs={tabProps}
-                    onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
-                />
-                <KnappWrapper>
-                    <Lukknapp ariaLabel={'Lukk dokumentvisning'} onClick={props.lukkDokument}>
-                        Lukk dokumentvisning
-                    </Lukknapp>
-                </KnappWrapper>
-            </Header>
-        );
+    const tabsHeader = !props.erStandaloneVindu && (
+        <Header>
+            <TabsPure
+                tabs={tabProps}
+                onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
+            />
+            <KnappWrapper>
+                <LenkeKnapp onClick={props.lukkDokument}>
+                    <TilbakePil>
+                        Tilbake til saker
+                    </TilbakePil>
+                </LenkeKnapp>
+            </KnappWrapper>
+        </Header>
+    );
 
     return (
         <Content>

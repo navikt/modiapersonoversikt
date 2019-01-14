@@ -32,8 +32,9 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c3 {
+  border-radius: 0.25rem;
   background-color: white;
-  border-radius: .25rem;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   padding: 1.25rem;
   margin-bottom: .8rem;
 }
@@ -106,8 +107,9 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c19 {
+  position: relative;
   border: none;
-  padding: 0;
+  padding: .1rem 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -122,6 +124,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
+.c19:after {
+  border-bottom: .05rem #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .c19:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
@@ -129,8 +138,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c19:hover {
   opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+}
+
+.c19:hover:after {
+  content: '';
+  border-color: #0067C5;
 }
 
 .c17 {
@@ -178,8 +190,9 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c10 {
+  border-radius: 0.25rem;
   background-color: white;
-  border-radius: .25rem;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   cursor: pointer;
 }
 
@@ -266,9 +279,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c22 {
+  border-radius: 0.25rem;
   background-color: white;
-  border-radius: .25rem;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   margin-top: .8rem;
+  margin-bottom: .8rem;
 }
 
 .c22 > *:first-child {
@@ -285,6 +300,9 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c1 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
   font-weight: bold;
 }
 

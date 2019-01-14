@@ -18,9 +18,9 @@ import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 
 const UtbetalingerArticle = styled.article`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   margin-top: ${theme.margin.layout};
+  margin-bottom: ${theme.margin.layout};
   > *:first-child {
     padding: ${theme.margin.px20};
   }

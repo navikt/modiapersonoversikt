@@ -49,6 +49,7 @@ class ToolTip extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {show: true};
+        this.handleButton = this.handleButton.bind(this);
     }
 
     getCookieNavn() {
@@ -59,7 +60,8 @@ class ToolTip extends React.PureComponent<Props, State> {
         Cookies.set(this.getCookieNavn(), 'dontShow');
     }
 
-    handleButton() {
+    handleButton(event: React.MouseEvent<HTMLButtonElement>) {
+        event.stopPropagation();
         this.dontShowAgain();
         this.setState({show: false});
     }
@@ -83,7 +85,7 @@ class ToolTip extends React.PureComponent<Props, State> {
                 <ShowThenHide>
                     <Style>
                         <Normaltekst><Bold>{this.props.children}</Bold></Normaltekst>
-                        <Button onClick={() => this.handleButton()}>
+                        <Button onClick={this.handleButton}>
                             <Undertekst>
                                 Ikke vis dette tipset igjen
                             </Undertekst>
