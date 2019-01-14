@@ -36,9 +36,7 @@ notifications:
     on_success: change
     on_failure: always
 before_install:
-- openssl aes-256-cbc -K $encrypted_8b3c826aa117_key -iv $encrypted_8b3c826aa117_iv
-  -in travis/personoversiktci.enc -out travis/personoversiktci.pem
-  -d
+- openssl aes-256-cbc -K $encrypted_8b3c826aa117_key -iv $encrypted_8b3c826aa117_iv -in travis/personoversiktci.enc -out travis/personoversiktci.pem -d
 - git clone https://github.com/navikt/github-apps-support.git
 - export PATH=`pwd`/github-apps-support/bin:$PATH
 - export GH_TOKEN=$(generate-installation-token.sh `generate-jwt.sh ./travis/personoversiktci.pem
