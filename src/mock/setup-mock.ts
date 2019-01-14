@@ -177,6 +177,7 @@ function setupFeatureToggleMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/featuretoggle/:toggleId', withDelayedResponse(
         randomDelay(),
         STATUS_OK,
+        // @ts-ignore
         (args: HandlerArgument) => mockFeatureToggle(args.pathParams.toggleId)));
 }
 

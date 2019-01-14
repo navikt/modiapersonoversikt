@@ -1,7 +1,5 @@
 import { FeatureToggleResponse } from '../models/featureToggle';
 
 export function mockFeatureToggle(toggleId: string): FeatureToggleResponse {
-    return {
-        ['modiabrukerdialog.' + toggleId]: Math.random() > .5
-    };
+    return Math.random() > .5;
 }
