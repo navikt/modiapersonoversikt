@@ -12,8 +12,7 @@ env:
   - CC_TEST_REPORTER_ID=c0aef07fc3e6e2daee28f0fbf3fdd1a56f6462e2edc3b655a184cf270e212efc
   - GITHUB_APP_ID=576333
 before_script:
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-  > ./cc-test-reporter
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
 script:
