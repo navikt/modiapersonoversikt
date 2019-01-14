@@ -34,7 +34,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c3 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
+  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
   padding: 1.25rem;
   margin-bottom: .8rem;
 }
@@ -192,7 +192,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c10 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
+  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
   cursor: pointer;
 }
 
@@ -281,7 +281,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c22 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
+  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
   margin-top: .8rem;
   margin-bottom: .8rem;
 }
@@ -302,7 +302,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 .5rem rgba(0,0,0,.05);
+  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
   font-weight: bold;
 }
 
