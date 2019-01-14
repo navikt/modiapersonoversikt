@@ -21,7 +21,7 @@ import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbe
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { eventTargetIsButton } from '../../../../../utils/eventUtils';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;
@@ -67,6 +67,7 @@ const UtbetalingHeaderStyle = styled.div`
 
 class EnkelUtbetaling extends React.PureComponent<Props> {
 
+    private printerButtonRef = React.createRef<HTMLSpanElement>();
     private utbetalingRef = React.createRef<HTMLLIElement>();
     private print: () => void;
 
@@ -74,7 +75,6 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
         super(props);
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handlePrint = this.handlePrint.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -96,17 +96,10 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 
     handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        if (eventTargetIsButton(event)) {
-            return;
+        const printKnappTrykket = eventTagetIsInsideRef(event, this.printerButtonRef);
+        if (!printKnappTrykket) {
+            this.toggleVisDetaljer();
         }
-        this.toggleVisDetaljer();
-    }
-
-    handleOnFocus(event: React.FocusEvent) {
-        if (eventTargetIsButton(event)) {
-            return;
-        }
-        this.props.setYtelseIFokus();
     }
 
     render() {
@@ -129,7 +122,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                             cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
                         ref={this.utbetalingRef}
                         tabIndex={0}
-                        onFocus={this.handleOnFocus}
+                        onFocus={this.props.setYtelseIFokus}
                     >
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
@@ -145,7 +138,9 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                             </SpaceBetween>
                             <SpaceBetween>
                                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <PrintKnapp onClick={this.handlePrint}/>
+                                <span ref={this.printerButtonRef}>
+                                    <PrintKnapp onClick={this.handlePrint}/>
+                                </span>
                             </SpaceBetween>
                         </UtbetalingHeaderStyle>
                         <DetaljerCollapse
