@@ -18,6 +18,7 @@ import { FlexEnd } from '../../../../../components/common-styled-components';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -78,15 +79,10 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
     }
 
     handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        if (this.printerButtonRef.current) {
-            const printerButtonClicked = (event.target instanceof Node)
-                && this.printerButtonRef.current.contains(event.target);
-
-            if (!printerButtonClicked) {
-                this.toggleVisDetaljer();
-            }
+        const printerButtonClicked = eventTagetIsInsideRef(event, this.printerButtonRef);
+        if (!printerButtonClicked) {
+            this.toggleVisDetaljer();
         }
-
     }
 
     render() {

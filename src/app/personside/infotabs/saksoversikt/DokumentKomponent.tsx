@@ -26,6 +26,7 @@ import { paths } from '../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { LenkeKnapp } from '../../../../components/common-styled-components';
+import { eventTagetIsInsideRef } from '../../../../utils/reactRefUtils';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -127,14 +128,8 @@ class DokumentKomponent extends React.Component<Props> {
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
-        if (!this.hoveddokumentLinkRef.current) {
-            return;
-        }
-
-        const lenkeTrykket = (event.target instanceof Node)
-            && (this.hoveddokumentLinkRef.current.contains(event.target)
-                || (this.vedleggLinkRef.current && this.vedleggLinkRef.current.contains(event.target))
-                || (this.nyttVinduLinkRef.current && this.nyttVinduLinkRef.current.contains(event.target)));
+        const lenkeTrykket =
+            eventTagetIsInsideRef(event, [this.hoveddokumentLinkRef, this.vedleggLinkRef, this.nyttVinduLinkRef]);
 
         if (!lenkeTrykket) {
             this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
