@@ -51,7 +51,7 @@ const TotaltUtbetaltOversikt = styled.section`
   }
 `;
 
-class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
+class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
     private print: () => void;
     private printerButtonRef = React.createRef<HTMLButtonElement>();
 
