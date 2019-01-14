@@ -5,7 +5,6 @@ import { loggError } from '../../utils/frontendLogger';
 
 export function fetchFeatureToggleAndDispatchToRedux(toggleID: string, dispatch: AsyncDispatch) {
     getFeatureToggle(toggleID)
-        .then(result => result['modiabrukerdialog.' + toggleID])
         .then(isOn =>
             dispatch(isOn ? setFeatureToggleOn(toggleID) : setFeatureToggleOff(toggleID)))
         .catch(error => {
