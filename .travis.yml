@@ -1,44 +1,42 @@
 language: node_js
 node_js:
-    - "9"
-
+- '9'
 services: docker
-
 branches:
-  except: /^[0-9]/
-
+  except: "/^[0-9]/"
 env:
   global:
-    - TZ='Europe/Oslo'
-    - RELEASE_VERSION="$(git fetch --unshallow || true && git rev-list --count $TRAVIS_COMMIT)"
-    - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
-    - CC_TEST_REPORTER_ID=c0aef07fc3e6e2daee28f0fbf3fdd1a56f6462e2edc3b655a184cf270e212efc
-
+  - TZ='Europe/Oslo'
+  - RELEASE_VERSION="$(git fetch --unshallow || true && git rev-list --count $TRAVIS_COMMIT)"
+  - DOCKER_IMAGE_FULL_NAME="$TRAVIS_REPO_SLUG:$RELEASE_VERSION"
+  - CC_TEST_REPORTER_ID=c0aef07fc3e6e2daee28f0fbf3fdd1a56f6462e2edc3b655a184cf270e212efc
+  - GITHUB_APP_ID=576333
 before_script:
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-    - chmod +x ./cc-test-reporter
-    - ./cc-test-reporter before-build
-
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-    - npm run test-coverage
-    - docker build -t "$DOCKER_IMAGE_FULL_NAME" .
-
+- npm run test-coverage
+- docker build -t "$DOCKER_IMAGE_FULL_NAME" .
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 deploy:
   provider: script
-  script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push "$DOCKER_IMAGE_FULL_NAME"
+  script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push
+    "$DOCKER_IMAGE_FULL_NAME"
   on:
     branch: master
-
 after_deploy:
-  - git remote add auth-origin "https://${GITHUB_ACCESS_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
-  - git tag $RELEASE_VERSION
-  - git push auth-origin --tags
-
+- git tag $RELEASE_VERSION
+- git push https://x-access-token:${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} --tags
 notifications:
   slack:
     secure: e28E3AlRM28ByukSj8KX1A+alKIxGVfsLsoQgLywC5H9UbGCSlXar4AE1Io1HlogytNW+o6vp2IYHlDPq3sgjDtEhThH5qQd5l3LXiJsmmG3HSw4YIdLv+OxWANBJdruDc19iReo53bB9bLbwpi+XFHVy6TAFuxtUX/f7dU3wVSPgp3K5ZhWglLjk1hH1apJJ1Gg2lgyiYnsK65zFgYDT1la053AWqh0hdc+AdyldGHXhlIX037Qj618Ci/m8dx3O77V5U+GAyAKY0QynVme3BG7Uw1r9lxPWdKp5A/U02n6s3RdPEw5IUJ+EbEDBjmd9NMT4A7Q3yBhZpQPUYB084wX8wwdeMDVvnGwImCZ7NYfg+iDR6D6+LqpD4z2yag8txcdoGuzxVot+JhhYJ9lcu7wsEX+KgF0+BGgIQsKoneZUyw0gVYFcAkDqU7oQg0DLE0VDMCIjbfwM0/juxoutRiwmslWRV/0MFDWSSWnQBEsBHKOhAEtqcYTaZ2tfk4rCFpVRWt1Q+APfEtySmTGd4CTOxvK399SA3Ovjb2MV96yRu3Y7jMg5mh31NxqeOjLrU9vu/8aBUo9EKgPuTsnr6m6AmIopnSrtXrBkMZja/+9L1cePFPa/6KSwOsJ4v+7oiBa+evDJmxWj3M3JLbH18xbf5iZFVRx8BpUVT+A+x8=
     on_success: change
     on_failure: always
+before_install:
+- openssl aes-256-cbc -K $encrypted_8b3c826aa117_key -iv $encrypted_8b3c826aa117_iv -in travis/personoversiktci.enc -out travis/personoversiktci.pem -d
+- git clone https://github.com/navikt/github-apps-support.git
+- export PATH=`pwd`/github-apps-support/bin:$PATH
+- export GH_TOKEN=$(generate-installation-token.sh `generate-jwt.sh ./travis/personoversiktci.pem $GITHUB_APP_ID`)
