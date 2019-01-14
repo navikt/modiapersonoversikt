@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c14 {
+.c15 {
   text-align: center;
 }
 
-.c16 {
+.c17 {
   text-transform: uppercase;
 }
 
-.c15 {
+.c16 {
   font-weight: bold;
 }
 
-.c11 {
+.c12 {
   position: relative;
   border: none;
   padding: .1rem 0;
@@ -31,7 +31,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c11:after {
+.c12:after {
   border-bottom: .05rem #B7B1A9 solid;
   content: '';
   position: absolute;
@@ -39,65 +39,65 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c11:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c11:hover {
+.c12:hover {
   opacity: 0.8;
 }
 
-.c11:hover:after {
-  content: '';
-  border-color: #0067C5;
-}
-
-.c19 {
-  position: relative;
-  border: none;
-  padding: .1rem 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c19:after {
-  border-bottom: .05rem #B7B1A9 solid;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.c19:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c19:hover {
-  opacity: 0.8;
-}
-
-.c19:hover:after {
+.c12:hover:after {
   content: '';
   border-color: #0067C5;
 }
 
 .c20 {
+  position: relative;
+  border: none;
+  padding: .1rem 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c20:after {
+  border-bottom: .05rem #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.c20:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c20:hover {
+  opacity: 0.8;
+}
+
+.c20:hover:after {
+  content: '';
+  border-color: #0067C5;
+}
+
+.c21 {
   color: #78706a;
   margin-top: 3px;
 }
 
-.c20 .typo-etikett-liten {
+.c21 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -202,7 +202,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: 1.25rem;
 }
 
-.c17 {
+.c18 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -211,21 +211,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c17 svg {
+.c18 svg {
   padding-right: 1rem;
   height: 1.875rem;
   width: auto;
 }
 
-.c17:hover {
+.c18:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 .1rem .1rem rgba(0,0,0,.2);
 }
 
-.c17:active {
+.c18:active {
   background-color: rgba(0,0,0,0.1);
 }
 
-.c21 {
+.c22 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -233,20 +233,20 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c21 svg {
+.c22 svg {
   padding-right: 1rem;
   height: 1.875rem;
   width: auto;
 }
 
-.c18 {
+.c19 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c18 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
@@ -307,17 +307,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   align-content: flex-end;
 }
 
-.c12 {
+.c13 {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.c13 > *:first-child {
+.c14 > *:first-child {
   padding: .2rem 0.625rem;
 }
 
-.c13 ol {
+.c14 ol {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 .5rem rgba(0,0,0,.1);
@@ -325,27 +325,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin: 0;
 }
 
-.c13 ol > *:not(:first-child) {
+.c14 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c10 > *:not(:last-child) {
+.c11 > *:not(:last-child) {
   padding-right: 1rem;
 }
 
-.c10 > * {
+.c11 > * {
   margin-bottom: 0;
 }
 
-.c22 {
+.c23 {
   margin-top: 2rem;
+}
+
+.c10:focus {
+  outline: none;
 }
 
 .c0 .visually-hidden {
@@ -562,13 +566,18 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       className="c9"
     >
       <div>
-        <h2
-          className="typo-undertittel"
-        >
-          Alle tema
-        </h2>
-        <form
+        <span
           className="c10"
+          tabIndex={-1}
+        >
+          <h2
+            className="typo-undertittel"
+          >
+            Alle tema
+          </h2>
+        </span>
+        <form
+          className="c11"
         >
           <div
             className="skjemaelement skjemaelement--horisontal"
@@ -645,7 +654,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           Oversikt over enheter og tema
         </a>
         <button
-          className="c11"
+          className="c12"
           onClick={[Function]}
         >
           Viktig å vite om 
@@ -657,22 +666,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       className=""
     >
       <ol
-        className="c12"
+        className="c13"
       >
         <li
-          className="c13"
+          className="c14"
         >
           <h3
             className="typo-normal"
           >
             <div
-              className="c14"
+              className="c15"
             >
               <span
-                className="c15"
+                className="c16"
               >
                 <span
-                  className="c16"
+                  className="c17"
                 >
                   2018
                 </span>
@@ -681,7 +690,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className="c17"
+              className="c18"
               onClick={[Function]}
             >
               <svg
@@ -698,7 +707,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 />
               </svg>
               <div
-                className="c18"
+                className="c19"
               >
                 <p
                   className="typo-normal"
@@ -708,7 +717,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <div>
                   <button
                     aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
-                    className="c19"
+                    className="c20"
                     onClick={[Function]}
                   >
                     <p
@@ -720,7 +729,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
                 
                 <div
-                  className="c20"
+                  className="c21"
                 >
                   <p
                     className="typo-etikett-liten"
@@ -745,19 +754,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </ol>
         </li>
         <li
-          className="c13"
+          className="c14"
         >
           <h3
             className="typo-normal"
           >
             <div
-              className="c14"
+              className="c15"
             >
               <span
-                className="c15"
+                className="c16"
               >
                 <span
-                  className="c16"
+                  className="c17"
                 >
                   2017
                 </span>
@@ -766,7 +775,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className="c21"
+              className="c22"
               onClick={[Function]}
             >
               <svg
@@ -785,7 +794,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </g>
               </svg>
               <div
-                className="c18"
+                className="c19"
               >
                 <p
                   className="typo-normal"
@@ -795,7 +804,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <div>
                   <button
                     aria-label="Vis hoveddokument - Spørsmål via nav.no"
-                    className="c19"
+                    className="c20"
                     onClick={[Function]}
                   >
                     <p
@@ -807,7 +816,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
                 
                 <div
-                  className="c20"
+                  className="c21"
                 >
                   <p
                     className="typo-etikett-liten"
@@ -824,7 +833,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         </li>
       </ol>
       <div
-        className="c22"
+        className="c23"
       />
       <div
         aria-live={undefined}
