@@ -55,8 +55,7 @@ const ContentWrapper = styled.section`
   > * {
     max-width: 720px;
     width: 90%;
-    background-color: white;
-    border-radius: ${theme.borderRadius.layout};
+    ${theme.hvittPanel};
     margin: 1em 0;
     padding: 2em;
   }

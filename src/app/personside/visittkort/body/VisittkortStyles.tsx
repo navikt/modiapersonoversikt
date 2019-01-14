@@ -6,8 +6,7 @@ import { theme } from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 export const VisittkortBodyWrapper = styled.section`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   padding: ${theme.margin.px20};
   display: flex;
   &:focus {

@@ -28,6 +28,10 @@ const TittelStyle = styled.div`
   }
 `;
 
+const CustomStyling = styled.div`
+  ${theme.hvittPanel};
+`;
+
 const FjernPadding = styled.div`
   .ekspanderbartPanel__innhold {
     padding: 0;
@@ -52,9 +56,11 @@ function EkspanderbartYtelserPanel(props: Props) {
 
     return (
         <FjernPadding>
-            <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
-                {props.children}
-            </EkspanderbartpanelBase>
+            <CustomStyling>
+                <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
+                    {props.children}
+                </EkspanderbartpanelBase>
+            </CustomStyling>
         </FjernPadding>
     );
 }
