@@ -31,6 +31,7 @@ export const theme = {
     hvittPanel: css`
         border-radius: ${pxToRem(4)};
         background-color: white;
+        box-shadow: 0 0 .5rem rgba(0, 0, 0, .05);
     `,
     media: {
         smallScreen: 'max-width: 35rem',
@@ -75,7 +76,7 @@ export const theme = {
           width: 100%;
         }
     `,
-    hover: css`box-shadow: inset 0 0 0 0.05rem #0067c5;`,
+    hover: css`box-shadow: inset 0 0 0 0.1rem #0067c5, 0 .1rem .1rem rgba(0, 0, 0, .2)`,
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;

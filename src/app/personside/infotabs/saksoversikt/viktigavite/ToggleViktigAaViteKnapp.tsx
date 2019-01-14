@@ -22,7 +22,7 @@ function ToggleViktigAaViteKnapp(props: Props) {
     const sakstemanavn = props.valgtSakstema && props.valgtSakstema.temanavn;
 
     return (
-        <LenkeKnapp onClick={() => props.setÅpen(!props.åpen)}>
+        <LenkeKnapp onClick={() => props.setÅpen(!props.åpen)} underline={true}>
             Viktig å vite om {sakstemanavn}
         </LenkeKnapp>
     );

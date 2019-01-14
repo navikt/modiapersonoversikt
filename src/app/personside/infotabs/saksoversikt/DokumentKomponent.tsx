@@ -6,7 +6,7 @@ import {
     KategoriNotat,
     Kommunikasjonsretning
 } from '../../../../models/saksoversikt/dokumentmetadata';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import * as moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
@@ -48,11 +48,8 @@ interface StateProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div<{ valgt: boolean }>`
-  ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.09);'}
-`;
-
-const InfoWrapper = styled.div`
+const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
+  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
   svg {
@@ -60,12 +57,14 @@ const InfoWrapper = styled.div`
     height: ${theme.margin.px30};
     width: auto;
   }
-  cursor: pointer;
-  &:hover {
-      ${theme.hover}
-    }
-  &:active {
-    background-color: rgba(0, 0, 0, 0.1);
+  ${props => props.klikkbar && css`
+      cursor: pointer;
+      &:hover {
+          ${theme.hover};
+        }
+      &:active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }`
   }
 `;
 
@@ -117,7 +116,7 @@ function lagSaksoversiktLenke(props: Props) {
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
-function dokumentValgtTekst(visTekst: boolean) {
+function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
@@ -163,31 +162,29 @@ class DokumentKomponent extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const vedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 ?
+        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 &&
             (
                 <div>
                     <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
                     <ul>
-                        {dokument.vedlegg.map(vlegg =>
-                            <li key={vlegg.dokumentreferanse + dokument.journalpostId}>
+                        {dokument.vedlegg.map(vedlegg =>
+                            <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
                                 <span ref={this.vedleggLinkRef}>
                                     <LenkeKnapp
-                                        aria-label={'Vis vedlegg - ' + vlegg.tittel}
-                                        onClick={() => this.visDokumentHvisTilgang(dokument, vlegg)}
+                                        aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                        onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
                                     >
-                                        <Element>{vlegg.tittel}</Element>
+                                        <Element>{vedlegg.tittel}</Element>
                                     </LenkeKnapp>
                                 </span>
-                                {dokumentValgtTekst(vlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
+                                {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                             </li>)}
                     </ul>
                 </div>
-            ) : null;
+            );
 
-        const egetVinduLenke = this.props.erStandaloneVindu ||
-                !(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises) ?
-            null :
-            (
+        const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
+        const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
                 <span ref={this.nyttVinduLinkRef}>
                     <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
@@ -198,37 +195,34 @@ class DokumentKomponent extends React.Component<Props> {
         const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
-            <>
-                <Wrapper
-                    onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.handleClickOnDokument(event))}
-                    ref={this.dokumentRef}
-                    valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
-                >
-                    <InfoWrapper>
-                        {dokumentIkon(this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises)}
-                        <InnholdWrapper>
-                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                                <Normaltekst>
-                                    {formaterDatoOgAvsender(brukersNavn, dokument)}
-                                </Normaltekst>
-                            </Innholdslaster>
-                            <div ref={this.hoveddokumentLinkRef}>
-                                <LenkeKnapp
-                                    aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                                >
-                                    <Element>{dokument.hoveddokument.tittel}</Element>
-                                </LenkeKnapp>
-                            </div>
-                            {dokumentValgtTekst(hoveddokumentErValgt && this.props.visDokument)}
-                            {vedlegg}
-                            {saksvisning}
-                        </InnholdWrapper>
-                        {egetVinduLenke}
-                    </InfoWrapper>
-                </Wrapper>
-            </>
+            <Wrapper
+                onClick={(event: React.MouseEvent<HTMLElement>) =>
+                    cancelIfHighlighting(() => this.handleClickOnDokument(event))}
+                ref={this.dokumentRef}
+                valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
+                klikkbar={kanVises}
+            >
+                {dokumentIkon(kanVises)}
+                <InnholdWrapper>
+                    <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
+                        <Normaltekst>
+                            {formaterDatoOgAvsender(brukersNavn, dokument)}
+                        </Normaltekst>
+                    </Innholdslaster>
+                    <div ref={this.hoveddokumentLinkRef}>
+                        <LenkeKnapp
+                            aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
+                            onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                        >
+                            <Element>{dokument.hoveddokument.tittel}</Element>
+                        </LenkeKnapp>
+                    </div>
+                    {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
+                    {dokumentVedlegg}
+                    {saksvisning}
+                </InnholdWrapper>
+                {egetVinduLenke}
+            </Wrapper>
         );
     }
 }

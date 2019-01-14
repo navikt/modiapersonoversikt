@@ -44,8 +44,7 @@ export enum PeriodeValg {
 }
 
 const FiltreringsPanel = styled.nav`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   padding: ${theme.margin.px20};
   margin-bottom: ${theme.margin.layout};
 `;
