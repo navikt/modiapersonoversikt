@@ -29,8 +29,7 @@ interface State {
 }
 
 const Wrapper = styled.article`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   cursor: pointer;
 `;
 

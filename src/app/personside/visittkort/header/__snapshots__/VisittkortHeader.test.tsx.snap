@@ -111,8 +111,9 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 }
 
 .c0 {
+  border-radius: 0.25rem;
   background-color: white;
-  border-radius: .25rem;
+  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
   padding: 1.25rem;
   padding-right: 3rem;
   margin-bottom: .2rem;
