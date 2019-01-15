@@ -1,3 +1,3 @@
-export function roundToNearest50(nummer: number) {
-    return Math.round(nummer / 50) * 50;
+export function roundToNearest100(nummer: number) {
+    return Math.round(nummer / 100) * 100;
 }

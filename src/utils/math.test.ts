@@ -1,22 +1,20 @@
-import { roundToNearest50 } from './math';
+import { roundToNearest100 } from './math';
 
-test('runder av til nærmeste 20', () => {
+test('runder av til nærmeste 100', () => {
     const numbers = [
-        19,
-        26,
+        49,
         51,
-        98,
-        149.99999
+        149.99999,
+        150.00001
     ];
 
-    const roundedNumbers = numbers.map(n => roundToNearest50(n));
+    const roundedNumbers = numbers.map(n => roundToNearest100(n));
 
     const expected = [
         0,
-        50,
-        50,
         100,
-        150
+        100,
+        200
     ];
 
     expect(roundedNumbers).toEqual(expected);
