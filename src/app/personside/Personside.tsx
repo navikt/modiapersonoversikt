@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { AppState } from '../../redux/reducers';
-import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
+import { erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
@@ -34,7 +34,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 
         if (isLoaded(personReducer) && erPersonResponsAvTypeBegrensetTilgang(personReducer.data)) {
             return (
-                <BegrensetTilgangSide person={personReducer.data as BegrensetTilgang}/>
+                <BegrensetTilgangSide person={personReducer.data}/>
             );
         } else {
             return (
