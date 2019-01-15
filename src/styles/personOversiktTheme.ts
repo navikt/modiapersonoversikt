@@ -74,6 +74,7 @@ export const theme = {
           box-shadow: 0 0 0 0.1875rem #FFBD66;
           height: 100%;
           width: 100%;
+          pointer-events: none;
         }
     `,
     hover: css`box-shadow: inset 0 0 0 0.1rem #0067c5, 0 .1rem .1rem rgba(0, 0, 0, .2)`,
