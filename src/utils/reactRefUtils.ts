@@ -10,5 +10,9 @@ export function eventTagetIsInsideRef(
         return ref.some(r => eventTagetIsInsideRef(event, r));
     }
 
-    return (event.target instanceof Node) && ref && ref.current && ref.current.contains(event.target) || false;
+    if ((event.target instanceof Node) && ref.current) {
+        return ref.current.contains(event.target);
+    } else {
+        return false;
+    }
 }
