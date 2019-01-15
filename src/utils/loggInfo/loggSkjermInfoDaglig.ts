@@ -3,7 +3,6 @@ import { detect } from 'detect-browser';
 import { roundToNearest20 } from '../math';
 import { runOnceDaily } from '../runOnceDaily';
 import { erKontaktsenter, getSaksbehandlerEnhet } from './saksbehandlersEnhetInfo';
-import { getSaksbehandlerIdent } from './getSaksbehandlerIdent';
 
 export function loggSkjermInfoDaglig() {
     runOnceDaily('Skjerminfo', loggInfo);
@@ -27,8 +26,7 @@ function loggInfo() {
         screenWidth: screen.width,
         screenHeight: screen.height,
         windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight,
-        ident: getSaksbehandlerIdent()
+        windowHeight: window.innerHeight
     };
 
     loggEvent('LoggSkjerminfo', 'Maskinvare', tags, fields);

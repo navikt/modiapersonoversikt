@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { Action, Dispatch } from 'redux';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
-import { runOnceDaily } from '../../../utils/runOnceDaily';
 
 interface DispatchProps {
     toggleVisittkort: () => void;
@@ -39,10 +37,7 @@ class HandleVisittkortHotkeysGamleModia extends React.Component<Props> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'n') {
-            loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + N'}, {ident: getSaksbehandlerIdent()});
-            runOnceDaily(
-                'hurtigtastAltN',
-                () => loggEvent('HurtigtastUnikBruker', 'Visittkort', {type: 'Alt + N'}));
+            loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + N'});
             this.props.toggleVisittkort();
         }
     }

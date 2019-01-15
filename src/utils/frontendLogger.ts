@@ -1,4 +1,5 @@
 import { isDevelopment } from './environment';
+import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
@@ -23,7 +24,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     }
     const event = {
         table: 'modiapersonoversikt',
-        fields: fields || {},
+        fields: {...fields, ident: getSaksbehandlerIdent()},
         tags: {action: action, location: location, ...extraTags}
     };
     // tslint:disable-next-line
