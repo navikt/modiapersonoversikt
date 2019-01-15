@@ -1,18 +1,18 @@
 import {
     getForeldrepengerperiodeMock,
-    getForeldrepengerrettighetMock
+    getForeldrepengerettighetMock
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
 import { aremark } from '../../../../../mock/person/aremark';
-import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledMaksDato, utledFraDatoForRettighet } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
-const randomForeldrepengerettighet = getForeldrepengerrettighetMock(aremark.fødselsnummer);
+const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.fødselsnummer);
 const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.fødselsnummer);
 
 test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
 
-    const foreldrepengeRettighet: Foreldrepengerrettighet = {
+    const foreldrepengeRettighet: Foreldrepengerettighet = {
         ...randomForeldrepengerettighet,
         periode: [{
             ...randomForeldrepengerettighetPeriode,
@@ -29,7 +29,7 @@ test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
 });
 
 test('Finn maksdato fra foreldrepengerettighet', () => {
-    const foreldrepengerettighet: Foreldrepengerrettighet = {
+    const foreldrepengerettighet: Foreldrepengerettighet = {
         ...randomForeldrepengerettighet,
         periode: [{
             ...randomForeldrepengerettighetPeriode,
@@ -56,7 +56,7 @@ test('Finn maksdato fra foreldrepengerettighet', () => {
 
 test('Kaster feil og returnerer null hvis kommende utbetaling er uten vedtak', () => {
     console.error = jest.fn(() => null);
-    const foreldrepengerettighet: Foreldrepengerrettighet = {
+    const foreldrepengerettighet: Foreldrepengerettighet = {
         ...randomForeldrepengerettighet,
         periode: [{
             ...randomForeldrepengerettighetPeriode,
