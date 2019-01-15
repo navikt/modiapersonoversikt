@@ -98,7 +98,7 @@ class ToolTip extends React.PureComponent<Props, State> {
 
         return (
             <Position ref={this.ref} onClick={event => event.stopPropagation()}>
-                <Style aria-live="polite" aria-description="Tips">
+                <Style aria-live="polite" aria-label="Tips">
                     <Normaltekst><Bold>{this.props.children}</Bold></Normaltekst>
                     <Button onClick={this.handleButton}>
                         <Undertekst>
