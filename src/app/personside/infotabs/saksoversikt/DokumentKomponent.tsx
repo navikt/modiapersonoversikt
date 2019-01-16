@@ -53,11 +53,6 @@ const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
   ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
-  svg {
-    padding-right: 1rem;
-    height: ${theme.margin.px30};
-    width: auto;
-  }
   ${props => props.klikkbar && css`
       cursor: pointer;
       &:hover {
@@ -74,6 +69,18 @@ const InnholdWrapper = styled.div`
   > *:not(:last-child) {
     margin-bottom: 0.5rem;
   }
+`;
+
+const IkonWrapper = styled.div`
+  svg {
+    height: ${theme.margin.px30};
+    width: ${theme.margin.px30};
+  }
+  padding-right: 1rem;
+`;
+
+const NyttVinduLenkeStyle = styled.span`
+  white-space: nowrap;
 `;
 
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
@@ -180,12 +187,12 @@ class DokumentKomponent extends React.Component<Props> {
 
         const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
         const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
-                <span ref={this.nyttVinduLinkRef}>
+                <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                     <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                         Åpne i eget vindu
                     </a>
-                </span>
-            );
+                </NyttVinduLenkeStyle>
+        );
 
         const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
@@ -197,7 +204,9 @@ class DokumentKomponent extends React.Component<Props> {
                 valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
                 klikkbar={kanVises}
             >
-                {dokumentIkon(kanVises)}
+                <IkonWrapper>
+                    {dokumentIkon(kanVises)}
+                </IkonWrapper>
                 <InnholdWrapper>
                     <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
                         <Normaltekst>
