@@ -1,4 +1,6 @@
 import { isDevelopment } from './environment';
+import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
+import md5 = require('md5');
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
@@ -21,9 +23,10 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     if (!useLogger()) {
         return;
     }
+    const identHash = md5(getSaksbehandlerIdent() || '');
     const event = {
         table: 'modiapersonoversikt',
-        fields: fields || {},
+        fields: {...fields, identHash: identHash},
         tags: {action: action, location: location, ...extraTags}
     };
     // tslint:disable-next-line
