@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
-    foreldrepenger: Foreldrepengerrettighet | null;
+    foreldrepenger: Foreldrepengerettighet | null;
 }
 
 function Foreldrepenger({foreldrepenger}: Props) {

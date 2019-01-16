@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledFraDatoForRettighet, utledMaksDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import DescriptionList from '../felles-styling/DescriptionList';
@@ -7,7 +7,7 @@ import YtelserBullet from '../felles-styling/YtelserBullet';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 
 interface Props {
-    foreldrePenger: Foreldrepengerrettighet;
+    foreldrePenger: Foreldrepengerettighet;
 }
 
 function Oversikt({foreldrePenger}: Props) {
@@ -15,14 +15,10 @@ function Oversikt({foreldrePenger}: Props) {
     const foreldrePengeRetten = {
         Foreldrepengetype: foreldrePenger.foreldrepengetype,
         Dekningsgrad: foreldrePenger.dekningsgrad + '%',
-        Dagsats: 'Ikke implementert',
-        Graderingsdager: 'Ikke implementert',
-        'Fedrekvote tilogmed': 'Ikke implementert',
-        'Mødrekvote tilogmed': 'Ikke implementert',
         'Rettighet fra dato': datoVerbose(utledFraDatoForRettighet(foreldrePenger)).sammensatt,
         Restdager: foreldrePenger.restDager,
         Maksdato: utledMaksDato(foreldrePenger),
-        Arbeidskategori: 'Ikke implementert'
+        Arbeidskategori: foreldrePenger.arbeidskategori
     };
 
     const barnet = {
