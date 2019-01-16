@@ -50,7 +50,7 @@ export const GråttPanel = styled.div`
 export const LenkeKnapp = styled.button<{underline?: boolean}>`
   position: relative;
   border: none;
-  padding: .1rem 0;
+  padding: 0;
   border-radius: ${theme.borderRadius.knapp};
   cursor: pointer;
   background-color: transparent;
@@ -58,7 +58,7 @@ export const LenkeKnapp = styled.button<{underline?: boolean}>`
   align-items: center;
   color: ${theme.color.lenke};
   &:after {
-    border-bottom: .05rem #B7B1A9 solid;
+    border-bottom: 1px #B7B1A9 solid;
     ${props => props.underline && `content: ''`};
     position: absolute;
     bottom: 0;

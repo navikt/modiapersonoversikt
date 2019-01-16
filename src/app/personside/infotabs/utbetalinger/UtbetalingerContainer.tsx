@@ -72,7 +72,7 @@ const UtbetalingerSection = styled.section`
   }
 `;
 
-class UtbetalingerContainer extends React.Component<Props, State> {
+class UtbetalingerContainer extends React.PureComponent<Props, State> {
 
     constructor(props: Props) {
         super(props);
