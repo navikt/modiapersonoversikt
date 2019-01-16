@@ -1,11 +1,12 @@
-import * as React from 'react';
 import { RefObject } from 'react';
 
-export function eventTagetIsInsideRef(
-    event: React.MouseEvent<HTMLElement>,
-    ref: RefObject<HTMLElement> | RefObject<HTMLElement>[]
-): boolean {
+interface EventWithTarget {
+    target: EventTarget | null;
+}
 
+type Ref = RefObject<HTMLElement> | RefObject<HTMLElement>[];
+
+export function eventTagetIsInsideRef(event: EventWithTarget, ref: Ref): boolean {
     if (ref instanceof Array) {
         return ref.some(r => eventTagetIsInsideRef(event, r));
     }
@@ -15,4 +16,12 @@ export function eventTagetIsInsideRef(
     } else {
         return false;
     }
+}
+
+export function runIfEventIsNotInsideRef(ref: Ref, fn: Function) {
+    return (event: EventWithTarget) => !eventTagetIsInsideRef(event, ref) && fn();
+}
+
+export function runIfEventIsInsideRef(ref: Ref, fn: Function) {
+    return (event: EventWithTarget) => eventTagetIsInsideRef(event, ref) && fn();
 }

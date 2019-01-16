@@ -95,6 +95,12 @@ const Luft = styled.div`
   margin-top: 2rem;
 `;
 
+const TittleWrapper = styled.span`
+  &:focus {
+    outline: none;
+  }
+`;
+
 function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentKomponent
@@ -188,60 +194,81 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: DokumentAvsende
     );
 }
 
-function DokumentListe(props: Props) {
-    if (!props.valgtSakstema) {
-        return null;
+class DokumentListe extends React.PureComponent<Props> {
+
+    private tittelRef = React.createRef<HTMLSpanElement>();
+
+    componentDidUpdate(prevProps: Props) {
+        if (!prevProps.valgtSakstema || !this.props.valgtSakstema) {
+            return;
+        }
+
+        if (prevProps.valgtSakstema.temanavn !== this.props.valgtSakstema.temanavn) {
+            if (this.tittelRef.current) {
+                this.tittelRef.current.focus();
+            }
+        }
     }
 
-    const filterCheckboxer = (
-        <Form>
-            <Checkbox
-                label={'Bruker'}
-                checked={props.avsenderFilter.fraBruker}
-                onChange={() => props.oppdaterAvsenderfilter({fraBruker: !props.avsenderFilter.fraBruker})}
-            />
-            <Checkbox
-                label={'NAV'}
-                checked={props.avsenderFilter.fraNav}
-                onChange={() => props.oppdaterAvsenderfilter({fraNav: !props.avsenderFilter.fraNav})}
-            />
-            <Checkbox
-                label={'Andre'}
-                checked={props.avsenderFilter.fraAndre}
-                onChange={() => props.oppdaterAvsenderfilter({fraAndre: !props.avsenderFilter.fraAndre})}
-            />
-        </Form>
-    );
+    render() {
+        const props = this.props;
 
-    const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
+        if (!props.valgtSakstema) {
+            return null;
+        }
 
-    const tilbakeLenke = props.erStandaloneVindu && props.visDokument ?
-        (
-            <a
-                href={'#'}
-                onClick={props.lukkDokument}
-            >
-                Tilbake til saksoversikt
-            </a>
-        ) : null;
+        const filterCheckboxer = (
+            <Form>
+                <Checkbox
+                    label={'Bruker'}
+                    checked={props.avsenderFilter.fraBruker}
+                    onChange={() => props.oppdaterAvsenderfilter({fraBruker: !props.avsenderFilter.fraBruker})}
+                />
+                <Checkbox
+                    label={'NAV'}
+                    checked={props.avsenderFilter.fraNav}
+                    onChange={() => props.oppdaterAvsenderfilter({fraNav: !props.avsenderFilter.fraNav})}
+                />
+                <Checkbox
+                    label={'Andre'}
+                    checked={props.avsenderFilter.fraAndre}
+                    onChange={() => props.oppdaterAvsenderfilter({fraAndre: !props.avsenderFilter.fraAndre})}
+                />
+            </Form>
+        );
 
-    return (
-        <DokumentListeStyling>
-            <InfoOgFilterPanel>
-                <div>
-                    {tilbakeLenke}
-                    <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
-                    {filterCheckboxer}
-                </div>
-                <div>
-                    <LenkeNorg/>
-                    <ToggleViktigAaViteKnapp/>
-                </div>
-            </InfoOgFilterPanel>
-            <ViktigÅVite/>
-            {dokumentinnhold}
-        </DokumentListeStyling>
-    );
+        const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
+
+        const tilbakeLenke = props.erStandaloneVindu && props.visDokument ?
+            (
+                <a
+                    href={'#'}
+                    onClick={props.lukkDokument}
+                >
+                    Tilbake til saksoversikt
+                </a>
+            ) : null;
+
+        return (
+            <DokumentListeStyling>
+                <InfoOgFilterPanel>
+                    <div>
+                        {tilbakeLenke}
+                        <TittleWrapper ref={this.tittelRef} tabIndex={-1}>
+                            <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
+                        </TittleWrapper>
+                        {filterCheckboxer}
+                    </div>
+                    <div>
+                        <LenkeNorg/>
+                        <ToggleViktigAaViteKnapp/>
+                    </div>
+                </InfoOgFilterPanel>
+                <ViktigÅVite/>
+                {dokumentinnhold}
+            </DokumentListeStyling>
+        );
+    }
 }
 
 export default DokumentListe;

@@ -1,6 +1,6 @@
 import { loggEvent } from '../frontendLogger';
 import { detect } from 'detect-browser';
-import { roundToNearest20 } from '../math';
+import { roundToNearest100 } from '../math';
 import { runOnceDaily } from '../runOnceDaily';
 import { erKontaktsenter, getSaksbehandlerEnhet } from './saksbehandlersEnhetInfo';
 
@@ -13,8 +13,8 @@ function loggInfo() {
     const browser = detect();
 
     const tags = {
-        screen: `${roundToNearest20(screen.width)} x ${roundToNearest20(screen.height)}`,
-        window: `${roundToNearest20(window.innerWidth)} x ${roundToNearest20(window.innerHeight)}`,
+        screen: `${roundToNearest100(screen.width)} x ${roundToNearest100(screen.height)}`,
+        window: `${roundToNearest100(window.innerWidth)} x ${roundToNearest100(window.innerHeight)}`,
         erKontaktsenter: erKontaktsenter(),
         browser: browser && browser.name || undefined
     };

@@ -11,7 +11,7 @@ function ArbeidsForhold({arbeidsforhold}: {arbeidsforhold?: Arbeidsforhold}) {
         return <AlertStripeInfo>Kunne ikke finne arbeidsforhold</AlertStripeInfo>;
     }
 
-    const arbeidsSitsuasjonEntries = {
+    const arbeidsSituasjonEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
         Arbeidskategori: arbeidsforhold.arbeidskategori,
         Inntekstsperiode: arbeidsforhold.inntektsperiode,
@@ -23,7 +23,7 @@ function ArbeidsForhold({arbeidsforhold}: {arbeidsforhold?: Arbeidsforhold}) {
         'Refusjon til dato': arbeidsforhold.refusjonTom && formaterDato(arbeidsforhold.refusjonTom)
     };
 
-    return <DescriptionList entries={arbeidsSitsuasjonEntries}/>;
+    return <DescriptionList entries={arbeidsSituasjonEntries}/>;
 }
 
 export default ArbeidsForhold;

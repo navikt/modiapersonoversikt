@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import Foreldrepenger from './ForeldrePenger';
 
 interface Props {
-    foreldrepenger: Foreldrepengerrettighet | null;
+    foreldrepenger: Foreldrepengerettighet | null;
 }
 
 function ForeldrepengerEkspanderbartpanel({foreldrepenger}: Props) {

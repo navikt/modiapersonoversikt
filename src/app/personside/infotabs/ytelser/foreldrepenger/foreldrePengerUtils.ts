@@ -1,17 +1,17 @@
-import { Foreldrepengerperiode, Foreldrepengerrettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerperiode, Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
 import { Periode } from '../../../../../models/periode';
 import { ascendingDateComparator } from '../../../../../utils/dateUtils';
 import { loggError } from '../../../../../utils/frontendLogger';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 
-export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerrettighet): Date {
+export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerettighet): Date {
     return foreldrepenger.periode
         .map(periode => new Date(periode.foreldrepengerFom))
         .sort(ascendingDateComparator)[0];
 }
 
-function getAlleKommendeUtbetalinger(foreldrePenger: Foreldrepengerrettighet) {
+function getAlleKommendeUtbetalinger(foreldrePenger: Foreldrepengerettighet) {
     return foreldrePenger.periode
         .reduce(
             (acc: KommendeUtbetaling[], periode: Foreldrepengerperiode) =>
@@ -29,7 +29,7 @@ function getAlleVedtaksPerioder(alleKommendeUtbetalinger: KommendeUtbetaling[]) 
     });
 }
 
-export function utledMaksDato(foreldrePenger: Foreldrepengerrettighet): string {
+export function utledMaksDato(foreldrePenger: Foreldrepengerettighet): string {
     const alleKommendeUtbetalinger: KommendeUtbetaling[] = getAlleKommendeUtbetalinger(foreldrePenger);
     try {
         const alleVedtaksPerioder: Array<Periode> = getAlleVedtaksPerioder(alleKommendeUtbetalinger);
