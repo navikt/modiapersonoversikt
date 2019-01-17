@@ -20,6 +20,7 @@ const Position = styled.div`
   left: 50vw;
   transform: translateX(-50%);
   z-index: 1000;
+  cursor: auto;
 `;
 
 const Style = styled.aside`
@@ -37,6 +38,7 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   color: white;
+  cursor: pointer;
   > *:hover {
     text-decoration: underline;
   }
