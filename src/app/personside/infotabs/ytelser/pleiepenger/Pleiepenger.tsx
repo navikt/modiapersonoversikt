@@ -13,14 +13,14 @@ function Pleiepenger(props: Props) {
     const sortertePerioder = props.pleiepenger.perioder.sort(genericAscendingDateComparator(p => p.fom)).reverse();
 
     return (
-        <>
+        <div>
             <Oversikt pleiepenger={props.pleiepenger}/>
             <ol>
                 {sortertePerioder.map((periode, index) =>
                     <Pleiepengerperiode periodeNummer={sortertePerioder.length - index} key={index} periode={periode}/>
                 )}
             </ol>
-        </>
+        </div>
     );
 }
 
