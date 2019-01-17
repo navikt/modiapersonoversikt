@@ -62,6 +62,7 @@ export const LenkeKnapp = styled.button<{underline?: boolean}>`
     ${props => props.underline && `content: ''`};
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
   }
   &:focus {

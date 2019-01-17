@@ -49,6 +49,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   border-bottom: 1px #B7B1A9 solid;
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
 }
 
@@ -597,6 +598,7 @@ exports[`Om pleiepengeretten matcher snapshot 1`] = `
   border-bottom: 1px #B7B1A9 solid;
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
 }
 

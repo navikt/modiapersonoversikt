@@ -37,9 +37,11 @@ function Feilvisning(props: { onError?: React.ReactChildren | React.ReactChild }
         return <>{props.onError}</>;
     }
     return (
-        <AlertStripe type="advarsel">
-            Feil ved lasting av data
-        </AlertStripe>
+        <FillCenterAndFadeIn>
+            <AlertStripe type="advarsel">
+                Feil ved lasting av data
+            </AlertStripe>
+        </FillCenterAndFadeIn>
     );
 }
 

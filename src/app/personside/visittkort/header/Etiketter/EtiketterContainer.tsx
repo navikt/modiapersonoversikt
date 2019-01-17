@@ -10,6 +10,7 @@ import Innholdslaster from '../../../../../components/Innholdslaster';
 import styled from 'styled-components';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import FillCenterAndFadeIn from '../../../../../components/FillCenterAndFadeIn';
 
 interface Props {
     egenAnsattReducer: RestReducer<Egenansatt>;
@@ -35,7 +36,11 @@ class EtiketterContainer extends React.Component<Props> {
                         this.props.vergemalReducer
                     ]}
                     returnOnPending={<LazySpinner type="S"/>}
-                    returnOnError={<AlertStripeAdvarsel>Feil ved lasting av etiketter</AlertStripeAdvarsel>}
+                    returnOnError={
+                        <FillCenterAndFadeIn>
+                            <AlertStripeAdvarsel>Feil ved lasting av etiketter</AlertStripeAdvarsel>
+                        </FillCenterAndFadeIn>
+                    }
                 >
                 <Etiketter
                     person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
