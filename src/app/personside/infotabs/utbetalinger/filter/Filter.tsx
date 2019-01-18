@@ -204,7 +204,7 @@ function Filtrering(props: Props) {
         </InputPanel>
     );
     return (
-        <FiltreringsPanel onClick={restoreScroll}>
+        <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
             <Undertittel>Filtrering</Undertittel>
 
             <WrapOnSmallScreen>
