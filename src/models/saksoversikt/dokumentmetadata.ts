@@ -1,6 +1,7 @@
 import { Baksystem, Saksdato } from './fellesSak';
 
 export interface DokumentMetadata {
+    id: string;
     retning: Kommunikasjonsretning;
     dato: Saksdato;
     navn: string;

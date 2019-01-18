@@ -50,7 +50,7 @@ interface StateProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
-  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
+  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`};
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
   ${props => props.klikkbar && css`
