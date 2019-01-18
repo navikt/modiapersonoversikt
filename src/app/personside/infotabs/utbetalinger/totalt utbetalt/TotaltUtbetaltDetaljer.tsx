@@ -184,7 +184,6 @@ function TotaltUtbetaltDetaljer(props: Props) {
             <ErrorBoundary>
                 <DetaljerStyle aria-label="Sammendrag utbetalinger">
                     <Normaltekst tag="div">
-                        <h2>Sammendrag</h2>
                         <table role="table">
                             <thead role="rowgroup">
                             <tr role="row">

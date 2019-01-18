@@ -33,8 +33,24 @@ const Luft = styled.span`
   margin-right: .5rem;
 `;
 
-const Padding = styled.div`
+const PaddingRight = styled.div`
   margin-right: ${theme.margin.px20};
+`;
+
+const PaddingBottom = styled.div`
+  margin-bottom: ${theme.margin.px20};
+`;
+
+const SkjulVedPrint = styled.div`
+  @media print {
+    display: none;
+  }
+`;
+
+const Focusable = styled.div`
+  &:focus {
+    
+  }
 `;
 
 interface KnappProps {
@@ -59,30 +75,53 @@ function DetaljerKnapp(props: KnappProps) {
     );
 }
 
-function DetaljerCollapse(props: Props) {
-    const knapp = (
-        <FlexEnd>
-            <DetaljerKnapp
-                onClick={props.toggle}
-                open={props.open}
-                tittel={props.tittel}
-            />
-        </FlexEnd>
-    );
-    return (
-        <>
-            <Padding>{props.knappPaTopp && knapp}</Padding>
-            <Wrapper open={props.open} hasHeader={props.header !== undefined}>
-                {props.header}
-                <CollapseAnimasjon open={props.open}>
-                    <UnmountClosed isOpened={props.open}>
-                        {props.children}
-                    </UnmountClosed>
-                </CollapseAnimasjon>
-                {!props.knappPaTopp && knapp}
-            </Wrapper>
-        </>
-    );
+/* Testet og testet for å funke med skjermleser. Gjør du endringer? Test med skjermleser! */
+class DetaljerCollapse extends React.PureComponent<Props> {
+    private ref = React.createRef<HTMLDivElement>();
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const bleLukket = prevProps.open && !this.props.open;
+        if (bleLukket && this.ref.current) {
+            this.ref.current.focus();
+        }
+    }
+
+    render() {
+        const props = this.props;
+        const knapp = (
+            <SkjulVedPrint>
+                <FlexEnd>
+                    <DetaljerKnapp
+                        onClick={props.toggle}
+                        open={props.open}
+                        tittel={props.tittel}
+                    />
+                </FlexEnd>
+            </SkjulVedPrint>
+        );
+
+        return (
+            <Focusable
+                tabIndex={-1}
+                ref={this.ref}
+            >
+                {!props.header && <PaddingRight>{knapp}</PaddingRight>}
+                <Wrapper
+                    open={props.open}
+                    hasHeader={props.header !== undefined}
+                >
+                    {props.header}
+                    {props.header && <PaddingBottom>{knapp}</PaddingBottom>}
+                    <CollapseAnimasjon open={props.open}>
+                        <UnmountClosed isOpened={props.open}>
+                            {props.children}
+                        </UnmountClosed>
+                    </CollapseAnimasjon>
+                    {props.open && knapp}
+                </Wrapper>
+            </Focusable>
+        );
+    }
 }
 
 export default DetaljerCollapse;

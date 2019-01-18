@@ -114,7 +114,7 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
                             <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
                             <PrintKnapp onClick={this.visDetaljerAndPrint}/>
                         </SpaceBetween>
-                        <YtelsesListe>
+                        <YtelsesListe aria-label={`Diverse ytelser`}>
                             {ytelsesListe}
                         </YtelsesListe>
                     </UtbetalingTabellStyling>
