@@ -116,14 +116,14 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
 
         return (
             <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
-                <UtbetalingTabellStyling>
-                    <UtbetalingStyle
-                        onClick={(event: React.MouseEvent<HTMLElement>) =>
-                            cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
-                        ref={this.utbetalingRef}
-                        tabIndex={0}
-                        onFocus={this.props.setYtelseIFokus}
-                    >
+                <UtbetalingStyle
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
+                    ref={this.utbetalingRef}
+                    tabIndex={0}
+                    onFocus={this.props.setYtelseIFokus}
+                >
+                    <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
                                 <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
@@ -153,8 +153,8 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                                 melding={utbetaling.melding}
                             />
                         </DetaljerCollapse>
-                    </UtbetalingStyle>
-                </UtbetalingTabellStyling>
+                    </UtbetalingTabellStyling>
+                </UtbetalingStyle>
             </Printer>
         );
     }

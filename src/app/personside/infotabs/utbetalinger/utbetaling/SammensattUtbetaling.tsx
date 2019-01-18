@@ -98,8 +98,8 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
 
         return (
             <Printer getPrintTrigger={(trigger: () => void) => this.print = trigger}>
-                <UtbetalingTabellStyling>
-                    <SammensattUtbetalingStyle>
+                <SammensattUtbetalingStyle>
+                    <UtbetalingTabellStyling>
                         <Normaltekst>
                             {dato} / <Bold>{utbetaling.status}</Bold>
                         </Normaltekst>
@@ -117,8 +117,8 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
                         <YtelsesListe>
                             {ytelsesListe}
                         </YtelsesListe>
-                    </SammensattUtbetalingStyle>
-                </UtbetalingTabellStyling>
+                    </UtbetalingTabellStyling>
+                </SammensattUtbetalingStyle>
             </Printer>
         );
     }

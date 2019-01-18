@@ -157,7 +157,7 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
             return (
                 <tbody key={ytelsesType}>
                 <tr>
-                    <th>{ytelsesType}</th>
+                    <th scope="row">{ytelsesType}</th>
                     <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
                     <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
                     <td className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
@@ -181,12 +181,12 @@ function TotaltUtbetaltDetaljer(props: Props) {
                         <table>
                             <thead>
                             <tr>
-                                <th>Ytelse</th>
-                                <th className="sumBrutto">Brutto</th>
-                                <th className="sumTrekk">Trekk</th>
-                                <th className="sumNetto">Utbetalt</th>
-                                <th className="visually-hidden">Periode</th>
-                                <th className="visually-hidden">Detaljer</th>
+                                <th scope="col">Ytelse</th>
+                                <th scope="col" className="sumBrutto">Brutto</th>
+                                <th scope="col" className="sumTrekk">Trekk</th>
+                                <th scope="col" className="sumNetto">Utbetalt</th>
+                                <th scope="col" className="visually-hidden">Periode</th>
+                                <th scope="col" className="visually-hidden">Detaljer</th>
                             </tr>
                             </thead>
                             {ytelserSammendrag}
