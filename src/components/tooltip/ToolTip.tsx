@@ -5,6 +5,8 @@ import { Bold } from '../common-styled-components';
 import { removeWhitespace } from '../../utils/string-utils';
 import * as Cookies from 'js-cookie';
 import { eventTagetIsInsideRef } from '../../utils/reactRefUtils';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 interface Props {
     children: string;
@@ -47,14 +49,14 @@ const Button = styled.button`
 class ToolTip extends React.PureComponent<Props, State> {
 
     private ref = React.createRef<HTMLDivElement>();
-    private mountTime: number;
+    private mountTime: Moment;
 
     constructor(props: Props) {
         super(props);
         this.state = {show: true};
         this.handleButton = this.handleButton.bind(this);
         this.handleClickEvent = this.handleClickEvent.bind(this);
-        this.mountTime = performance.now();
+        this.mountTime = moment();
     }
 
     componentDidMount() {
@@ -66,7 +68,7 @@ class ToolTip extends React.PureComponent<Props, State> {
     }
 
     handleClickEvent(event: MouseEvent) {
-        const atLeastOneSecondAfterMount = performance.now() > this.mountTime + 1000;
+        const atLeastOneSecondAfterMount = moment().isAfter(moment(this.mountTime).add(1, 'second'));
         const clickIsInsideTooltip = eventTagetIsInsideRef(event, this.ref);
         if (atLeastOneSecondAfterMount && !clickIsInsideTooltip) {
             this.setState({show: false});
