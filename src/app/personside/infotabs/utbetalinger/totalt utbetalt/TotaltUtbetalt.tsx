@@ -100,6 +100,7 @@ class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
         return (
             <Printer getPrintTrigger={trigger => this.print = trigger}>
                 <Wrapper
+                    aria-label="Totalt utbetalt"
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(
                             () => this.handleClickOnUtbetaling(event)

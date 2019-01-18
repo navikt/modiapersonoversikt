@@ -36,7 +36,7 @@ function Månedsgruppe({gruppe}: Props) {
     return (
         <Wrapper>
             <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
-            <ol>
+            <ol aria-label={`Utbetalinger fra ${gruppe.category}`}>
                 {utbetalingsKomponenter}
             </ol>
         </Wrapper>

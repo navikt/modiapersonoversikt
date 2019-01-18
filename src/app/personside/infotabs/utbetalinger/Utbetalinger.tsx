@@ -95,7 +95,7 @@ function Utbetalinger({filter, ...props}: UtbetalingerProps) {
             <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
                 <UtbetalingerArticle>
                     <Undertittel>Utbetalinger</Undertittel>
-                    <UtbetalingerListe>
+                    <UtbetalingerListe aria-label="Liste over utbetalinger">
                         {månedsGrupper}
                     </UtbetalingerListe>
                 </UtbetalingerArticle>

@@ -100,7 +100,7 @@ function UtbetalingsDetaljer(props: Props) {
         ]]
     );
     return (
-        <Wrapper>
+        <Wrapper aria-label="Utbetalingsdetaljer">
             <Normaltekst tag="span">
                 <OversiktStyle>
                     {oversikt}

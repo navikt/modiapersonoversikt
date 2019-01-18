@@ -175,9 +175,14 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
 function TotaltUtbetaltDetaljer(props: Props) {
     const ytelserSammendrag = getYtelserSammendrag(props.utbetalinger);
     return (
-        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
+        <DetaljerCollapse
+            open={props.visDetaljer}
+            toggle={props.toggleVisDetaljer}
+            knappPaTopp={true}
+            tittel="sammendrag"
+        >
             <ErrorBoundary>
-                <DetaljerStyle>
+                <DetaljerStyle aria-label="Sammendrag utbetalinger">
                     <Normaltekst tag="div">
                         <h2>Sammendrag</h2>
                         <table role="table">
