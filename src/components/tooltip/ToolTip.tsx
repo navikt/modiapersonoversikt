@@ -47,16 +47,18 @@ const Button = styled.button`
 class ToolTip extends React.PureComponent<Props, State> {
 
     private ref = React.createRef<HTMLDivElement>();
+    private mountTime: number;
 
     constructor(props: Props) {
         super(props);
         this.state = {show: true};
         this.handleButton = this.handleButton.bind(this);
         this.handleClickEvent = this.handleClickEvent.bind(this);
+        this.mountTime = performance.now();
     }
 
     componentDidMount() {
-        setTimeout(() => addEventListener('click', this.handleClickEvent), 100);
+        addEventListener('click', this.handleClickEvent);
     }
 
     componentWillUnmount() {
@@ -64,8 +66,9 @@ class ToolTip extends React.PureComponent<Props, State> {
     }
 
     handleClickEvent(event: MouseEvent) {
+        const atLeastOneSecondAfterMount = performance.now() > this.mountTime + 1000;
         const clickIsInsideTooltip = eventTagetIsInsideRef(event, this.ref);
-        if (!clickIsInsideTooltip) {
+        if (atLeastOneSecondAfterMount && !clickIsInsideTooltip) {
             this.setState({show: false});
         }
     }
