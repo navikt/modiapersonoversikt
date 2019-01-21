@@ -108,7 +108,7 @@ function Dokumentgruppe({gruppe, harTilgang, sakstemakode}: DokumentGruppeProps)
             harTilgangTilSakstema={harTilgang}
             sakstemakode={sakstemakode}
             sakstemanavn={dokument.temakodeVisning}
-            key={dokument.hoveddokument.dokumentreferanse + dokument.journalpostId}
+            key={dokument.id}
         />
     ));
 
