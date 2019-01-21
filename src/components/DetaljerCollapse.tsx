@@ -47,12 +47,6 @@ const SkjulVedPrint = styled.div`
   }
 `;
 
-const Focusable = styled.div`
-  &:focus {
-    
-  }
-`;
-
 interface KnappProps {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     open: boolean;
@@ -75,53 +69,38 @@ function DetaljerKnapp(props: KnappProps) {
     );
 }
 
-/* Testet og testet for å funke med skjermleser. Gjør du endringer? Test med skjermleser! */
-class DetaljerCollapse extends React.PureComponent<Props> {
-    private ref = React.createRef<HTMLDivElement>();
-
-    componentDidUpdate(prevProps: Readonly<Props>) {
-        const bleLukket = prevProps.open && !this.props.open;
-        if (bleLukket && this.ref.current) {
-            this.ref.current.focus();
-        }
-    }
-
-    render() {
-        const props = this.props;
-        const knapp = (
-            <SkjulVedPrint>
-                <FlexEnd>
-                    <DetaljerKnapp
-                        onClick={props.toggle}
-                        open={props.open}
-                        tittel={props.tittel}
-                    />
-                </FlexEnd>
-            </SkjulVedPrint>
-        );
-
-        return (
-            <Focusable
-                tabIndex={-1}
-                ref={this.ref}
-            >
-                {!props.header && <PaddingRight>{knapp}</PaddingRight>}
-                <Wrapper
+function DetaljerCollapse(props: Props) {
+    const knapp = (
+        <SkjulVedPrint>
+            <FlexEnd>
+                <DetaljerKnapp
+                    onClick={props.toggle}
                     open={props.open}
-                    hasHeader={props.header !== undefined}
-                >
-                    {props.header}
-                    {props.header && <PaddingBottom>{knapp}</PaddingBottom>}
-                    <CollapseAnimasjon open={props.open}>
-                        <UnmountClosed isOpened={props.open}>
-                            {props.children}
-                        </UnmountClosed>
-                    </CollapseAnimasjon>
-                    {props.open && knapp}
-                </Wrapper>
-            </Focusable>
-        );
-    }
+                    tittel={props.tittel}
+                />
+            </FlexEnd>
+        </SkjulVedPrint>
+    );
+
+    return (
+        <div>
+            {!props.header && <PaddingRight>{knapp}</PaddingRight>}
+            <Wrapper
+                open={props.open}
+                hasHeader={props.header !== undefined}
+            >
+                {props.header}
+                {props.header && <PaddingBottom>{knapp}</PaddingBottom>}
+                <CollapseAnimasjon open={props.open}>
+                    <UnmountClosed isOpened={props.open}>
+                        {props.children}
+                    </UnmountClosed>
+                </CollapseAnimasjon>
+                {props.open && <div aria-hidden={true}>{knapp}</div>}
+            </Wrapper>
+        </div>
+    );
 }
 
+/* Testet og testet for å funke med skjermleser. Gjør du endringer? Test nøye med skjermleser! */
 export default DetaljerCollapse;
