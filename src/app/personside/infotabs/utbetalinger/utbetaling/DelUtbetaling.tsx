@@ -81,16 +81,18 @@ class DelUtbetaling extends React.PureComponent<Props> {
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >
-                <DetaljerCollapse
-                    open={this.props.erEkspandert}
-                    toggle={this.toggleVisDetaljer}
-                    header={header}
-                >
-                    <UtbetalingsDetaljer
-                        ytelse={ytelse}
-                        {...this.props}
-                    />
-                </DetaljerCollapse>
+                <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
+                    <DetaljerCollapse
+                        open={this.props.erEkspandert}
+                        toggle={this.toggleVisDetaljer}
+                        header={header}
+                    >
+                        <UtbetalingsDetaljer
+                            ytelse={ytelse}
+                            {...this.props}
+                        />
+                    </DetaljerCollapse>
+                </article>
             </DelUtbetalingStyle>
         );
     }

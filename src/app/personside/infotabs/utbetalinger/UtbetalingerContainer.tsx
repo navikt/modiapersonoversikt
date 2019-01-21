@@ -10,7 +10,6 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
@@ -126,8 +125,7 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
                             />
                         </FiltreringSection>
                     </div>
-                    <UtbetalingerSection>
-                        <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
+                    <UtbetalingerSection aria-label="Filtrerte utbetalinger">
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalingerData={(this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
