@@ -27,6 +27,7 @@ import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { LenkeKnapp } from '../../../../components/common-styled-components';
 import { eventTagetIsInsideRef } from '../../../../utils/reactRefUtils';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -225,7 +226,9 @@ class DokumentKomponent extends React.Component<Props> {
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
-                {egetVinduLenke}
+                <IfFeatureToggleOn toggleID={'saksoversikt-nytt-vindu'}>
+                    {egetVinduLenke}
+                </IfFeatureToggleOn>
             </Wrapper>
         );
     }
