@@ -195,7 +195,6 @@ function Filtrering(props: Props) {
                 <Knapp
                     onClick={props.hentUtbetalinger}
                     spinner={visSpinner}
-                    autoDisableVedSpinner={true}
                     htmlType="button"
                 >
                     Hent utbetalinger
