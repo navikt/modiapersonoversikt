@@ -178,7 +178,6 @@ function TotaltUtbetaltDetaljer(props: Props) {
         <DetaljerCollapse
             open={props.visDetaljer}
             toggle={props.toggleVisDetaljer}
-            knappPaTopp={true}
             tittel="sammendrag"
         >
             <ErrorBoundary>

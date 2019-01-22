@@ -13,7 +13,6 @@ interface Props {
     children: ReactNode;
     header?: ReactNode;
     tittel?: string;
-    knappPaTopp?: boolean;
 }
 
 const Wrapper = styled.div<{ open: boolean; hasHeader: boolean }>`
@@ -83,7 +82,7 @@ function DetaljerCollapse(props: Props) {
     );
 
     return (
-        <div>
+        <>
             {!props.header && <PaddingRight>{knapp}</PaddingRight>}
             <Wrapper
                 open={props.open}
@@ -98,7 +97,7 @@ function DetaljerCollapse(props: Props) {
                 </CollapseAnimasjon>
                 {props.open && <div aria-hidden={true}>{knapp}</div>}
             </Wrapper>
-        </div>
+        </>
     );
 }
 
