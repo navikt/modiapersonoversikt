@@ -27,6 +27,7 @@ import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { LenkeKnapp } from '../../../../components/common-styled-components';
 import { eventTagetIsInsideRef } from '../../../../utils/reactRefUtils';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -50,7 +51,7 @@ interface StateProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean; }>`
-  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`}
+  ${props => props.valgt && css`background-color: rgba(0, 0, 0, 0.09);`};
   padding: ${theme.margin.px20} ${theme.margin.px10};
   display: flex;
   ${props => props.klikkbar && css`
@@ -225,7 +226,9 @@ class DokumentKomponent extends React.Component<Props> {
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
-                {egetVinduLenke}
+                <IfFeatureToggleOn toggleID={'saksoversikt-nytt-vindu'}>
+                    {egetVinduLenke}
+                </IfFeatureToggleOn>
             </Wrapper>
         );
     }

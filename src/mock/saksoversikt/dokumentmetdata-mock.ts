@@ -22,6 +22,7 @@ export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker,
 
 export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
     return {
+        id: faker.random.alphaNumeric(8),
         retning: getKommunikasjonsretning(navfaker),
         dato: getSaksdato(navfaker),
         navn: navfaker.navn.fornavn(),
