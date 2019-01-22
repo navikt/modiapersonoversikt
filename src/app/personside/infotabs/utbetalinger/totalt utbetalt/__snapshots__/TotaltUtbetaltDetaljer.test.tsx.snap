@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
-.c2 {
+Array [
+  .c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -52,7 +53,104 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   border-color: #0067C5;
 }
 
+.c4 {
+  margin-right: .5rem;
+}
+
+.c0 {
+  margin-right: 1.25rem;
+}
+
+@media print {
+  .c1 {
+    display: none;
+  }
+}
+
+<div
+    className="c0"
+>
+    <div
+        className="c1"
+    >
+        <div
+            className="c2"
+        >
+            <button
+                aria-expanded={true}
+                className="c3"
+                onClick={[Function]}
+            >
+                <span
+                    className="c4"
+                >
+                    <span
+                        className="typo-normal"
+                    >
+                        Skjul
+                         
+                        sammendrag
+                    </span>
+                </span>
+                <i
+                    className="nav-frontend-chevron chevronboks chevron--opp"
+                />
+            </button>
+        </div>
+    </div>
+</div>,
+  .c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .c5 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c5:after {
+  border-bottom: 1px #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c5:hover {
+  opacity: 0.8;
+}
+
+.c5:hover:after {
+  content: '';
+  border-color: #0067C5;
+}
+
+.c0 {
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem 1.25rem;
@@ -63,35 +161,31 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   margin-top: 1.25rem;
 }
 
-.c6 {
+.c1 {
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
   padding: 0;
 }
 
-.c4 {
+.c6 {
   margin-right: .5rem;
 }
 
-.c0 {
-  margin-right: 1.25rem;
-}
-
-.c7 h2 {
+.c2 h2 {
   margin: 0;
   padding: 1.25rem 0;
 }
 
-.c7 th:not(:first-child) {
+.c2 th:not(:first-child) {
   font-weight: normal;
 }
 
-.c7 th {
+.c2 th {
   text-transform: uppercase;
 }
 
-.c7 tr {
+.c2 tr {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -102,7 +196,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   position: relative;
 }
 
-.c7 tr > *:first-child {
+.c2 tr > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -110,41 +204,41 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   display: block;
 }
 
-.c7 tr .sumBrutto,
-.c7 tr .sumNetto,
-.c7 tr .sumTrekk {
+.c2 tr .sumBrutto,
+.c2 tr .sumNetto,
+.c2 tr .sumTrekk {
   position: absolute;
 }
 
-.c7 tr .sumBrutto {
+.c2 tr .sumBrutto {
   right: 12rem;
 }
 
-.c7 tr .sumTrekk {
+.c2 tr .sumTrekk {
   right: 6rem;
 }
 
-.c7 tr .sumNetto {
+.c2 tr .sumNetto {
   right: 0;
 }
 
-.c7 tr td.sumNetto {
+.c2 tr td.sumNetto {
   font-weight: bold;
 }
 
-.c7 tr .periodeForYtelse,
-.c7 tr .ytelseDetaljer {
+.c2 tr .periodeForYtelse,
+.c2 tr .ytelseDetaljer {
   -webkit-flex-basis: 100%;
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
 }
 
-.c7 tr .periodeForYtelse {
+.c2 tr .periodeForYtelse {
   display: block;
   text-align: left;
 }
 
-.c7 tr .ytelseDetaljer {
+.c2 tr .ytelseDetaljer {
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -154,7 +248,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   margin-right: 12rem;
 }
 
-.c7 tr .ytelseDetaljer dl {
+.c2 tr .ytelseDetaljer dl {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -164,7 +258,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   flex-flow: row wrap;
 }
 
-.c7 tr .ytelseDetaljer dl dt {
+.c2 tr .ytelseDetaljer dl dt {
   -webkit-flex-basis: 50%;
   -ms-flex-preferred-size: 50%;
   flex-basis: 50%;
@@ -174,239 +268,206 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   flex-grow: 1;
 }
 
-.c7 tr .ytelseDetaljer dl dd {
+.c2 tr .ytelseDetaljer dl dd {
   padding-left: 1rem;
   -webkit-flex-basis: 7rem;
   -ms-flex-preferred-size: 7rem;
   flex-basis: 7rem;
 }
 
-.c7 tbody tr {
+.c2 tbody tr {
   margin-top: .5rem;
 }
 
-.c7 tbody tr > *:nth-last-child(n+3) {
+.c2 tbody tr > *:nth-last-child(n+3) {
   padding-top: .5rem;
   border-top: solid 0.0625rem #c6c2bf;
 }
 
 @media print {
-  .c1 {
+  .c3 {
     display: none;
   }
 }
 
 @media print {
-  .c7 table {
+  .c2 table {
     page-break-inside: auto;
   }
 
-  .c7 tbody {
+  .c2 tbody {
     page-break-inside: auto;
   }
 }
 
-<div>
-  <div
+<div
     className="c0"
-  >
-    <div
-      className="c1"
-    >
-      <div
-        className="c2"
-      >
-        <button
-          aria-expanded={true}
-          className="c3"
-          onClick={[Function]}
-        >
-          <span
-            className="c4"
-          >
-            <span
-              className="typo-normal"
-            >
-              Skjul
-               
-              sammendrag
-            </span>
-          </span>
-          <i
-            className="nav-frontend-chevron chevronboks chevron--opp"
-          />
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    className="c5"
     open={true}
-  >
+>
     <div
-      className="c6"
-      open={true}
-    >
-      <aside
-        aria-label="Sammendrag utbetalinger"
-        className="c7"
-      >
-        <div
-          className="typo-normal"
-        >
-          <table
-            role="table"
-          >
-            <thead
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
-                <th
-                  role="columnheader"
-                  scope="col"
-                >
-                  Ytelse
-                </th>
-                <th
-                  className="sumBrutto"
-                  role="columnheader"
-                  scope="col"
-                >
-                  Brutto
-                </th>
-                <th
-                  className="sumTrekk"
-                  role="columnheader"
-                  scope="col"
-                >
-                  Trekk
-                </th>
-                <th
-                  className="sumNetto"
-                  role="columnheader"
-                  scope="col"
-                >
-                  Utbetalt
-                </th>
-                <th
-                  className="visually-hidden"
-                  role="columnheader"
-                  scope="col"
-                >
-                  Periode
-                </th>
-                <th
-                  className="visually-hidden"
-                  role="columnheader"
-                  scope="col"
-                >
-                  Detaljer
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
-                <th
-                  role="rowheader"
-                  scope="row"
-                >
-                  Sykepenger 2017
-                </th>
-                <td
-                  className="sumBrutto"
-                  role="cell"
-                >
-                  26,740.00
-                </td>
-                <td
-                  className="sumTrekk"
-                  role="cell"
-                >
-                  -3,968.00
-                </td>
-                <td
-                  className="sumNetto"
-                  role="cell"
-                >
-                  22,772.00
-                </td>
-                <td
-                  className="periodeForYtelse"
-                  role="cell"
-                >
-                  09.11.2016
-                   - 
-                  31.10.2017
-                </td>
-                <td
-                  className="ytelseDetaljer"
-                  role="cell"
-                >
-                  <dl>
-                    <dt>
-                      Mouse
-                    </dt>
-                    <dd>
-                      7,720.00
-                    </dd>
-                    <dt>
-                      Computer
-                    </dt>
-                    <dd>
-                      7,860.00
-                    </dd>
-                    <dt>
-                      Bacon
-                    </dt>
-                    <dd>
-                      11,160.00
-                    </dd>
-                  </dl>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </aside>
-    </div>
-    <div
-      aria-hidden={true}
-    >
-      <div
         className="c1"
-      >
-        <div
-          className="c2"
+        open={true}
+    >
+        <aside
+            aria-label="Sammendrag utbetalinger"
+            className="c2"
         >
-          <button
-            aria-expanded={true}
-            className="c3"
-            onClick={[Function]}
-          >
-            <span
-              className="c4"
-            >
-              <span
+            <div
                 className="typo-normal"
-              >
-                Skjul
-                 
-                sammendrag
-              </span>
-            </span>
-            <i
-              className="nav-frontend-chevron chevronboks chevron--opp"
-            />
-          </button>
-        </div>
-      </div>
+            >
+                <table
+                    role="table"
+                >
+                    <thead
+                        role="rowgroup"
+                    >
+                        <tr
+                            role="row"
+                        >
+                            <th
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Ytelse
+                            </th>
+                            <th
+                                className="sumBrutto"
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Brutto
+                            </th>
+                            <th
+                                className="sumTrekk"
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Trekk
+                            </th>
+                            <th
+                                className="sumNetto"
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Utbetalt
+                            </th>
+                            <th
+                                className="visually-hidden"
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Periode
+                            </th>
+                            <th
+                                className="visually-hidden"
+                                role="columnheader"
+                                scope="col"
+                            >
+                                Detaljer
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody
+                        role="rowgroup"
+                    >
+                        <tr
+                            role="row"
+                        >
+                            <th
+                                role="rowheader"
+                                scope="row"
+                            >
+                                Sykepenger 2017
+                            </th>
+                            <td
+                                className="sumBrutto"
+                                role="cell"
+                            >
+                                26,740.00
+                            </td>
+                            <td
+                                className="sumTrekk"
+                                role="cell"
+                            >
+                                -3,968.00
+                            </td>
+                            <td
+                                className="sumNetto"
+                                role="cell"
+                            >
+                                22,772.00
+                            </td>
+                            <td
+                                className="periodeForYtelse"
+                                role="cell"
+                            >
+                                09.11.2016
+                                 - 
+                                31.10.2017
+                            </td>
+                            <td
+                                className="ytelseDetaljer"
+                                role="cell"
+                            >
+                                <dl>
+                                    <dt>
+                                        Mouse
+                                    </dt>
+                                    <dd>
+                                        7,720.00
+                                    </dd>
+                                    <dt>
+                                        Computer
+                                    </dt>
+                                    <dd>
+                                        7,860.00
+                                    </dd>
+                                    <dt>
+                                        Bacon
+                                    </dt>
+                                    <dd>
+                                        11,160.00
+                                    </dd>
+                                </dl>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </aside>
     </div>
-  </div>
-</div>
+    <div
+        aria-hidden={true}
+    >
+        <div
+            className="c3"
+        >
+            <div
+                className="c4"
+            >
+                <button
+                    aria-expanded={true}
+                    className="c5"
+                    onClick={[Function]}
+                >
+                    <span
+                        className="c6"
+                    >
+                        <span
+                            className="typo-normal"
+                        >
+                            Skjul
+                             
+                            sammendrag
+                        </span>
+                    </span>
+                    <i
+                        className="nav-frontend-chevron chevronboks chevron--opp"
+                    />
+                </button>
+            </div>
+        </div>
+    </div>
+</div>,
+]
 `;

@@ -718,48 +718,46 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               </span>
             </div>
           </div>
-          <div>
+          <div
+            className="c16"
+          >
             <div
-              className="c16"
+              className="c17"
             >
               <div
-                className="c17"
+                className="c14"
               >
-                <div
-                  className="c14"
+                <button
+                  aria-expanded={false}
+                  className="c18"
+                  onClick={[Function]}
                 >
-                  <button
-                    aria-expanded={false}
-                    className="c18"
-                    onClick={[Function]}
+                  <span
+                    className="c19"
                   >
                     <span
-                      className="c19"
+                      className="typo-normal"
                     >
-                      <span
-                        className="typo-normal"
-                      >
-                        Vis
-                         
-                        sammendrag
-                      </span>
+                      Vis
+                       
+                      sammendrag
                     </span>
-                    <i
-                      className="nav-frontend-chevron chevronboks chevron--ned"
-                    />
-                  </button>
-                </div>
+                  </span>
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--ned"
+                  />
+                </button>
               </div>
             </div>
+          </div>
+          <div
+            className="c20"
+            open={false}
+          >
             <div
-              className="c20"
+              className="c21"
               open={false}
-            >
-              <div
-                className="c21"
-                open={false}
-              />
-            </div>
+            />
           </div>
         </div>
       </article>
@@ -903,48 +901,46 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           </span>
                         </div>
                       </div>
-                      <div>
+                      <div
+                        className="c16"
+                      >
                         <div
-                          className="c16"
+                          className="c17"
                         >
                           <div
-                            className="c17"
+                            className="c14"
                           >
-                            <div
-                              className="c14"
+                            <button
+                              aria-expanded={false}
+                              className="c18"
+                              onClick={[Function]}
                             >
-                              <button
-                                aria-expanded={false}
-                                className="c18"
-                                onClick={[Function]}
+                              <span
+                                className="c19"
                               >
                                 <span
-                                  className="c19"
+                                  className="typo-normal"
                                 >
-                                  <span
-                                    className="typo-normal"
-                                  >
-                                    Vis
-                                     
-                                    detaljer
-                                  </span>
+                                  Vis
+                                   
+                                  detaljer
                                 </span>
-                                <i
-                                  className="nav-frontend-chevron chevronboks chevron--ned"
-                                />
-                              </button>
-                            </div>
+                              </span>
+                              <i
+                                className="nav-frontend-chevron chevronboks chevron--ned"
+                              />
+                            </button>
                           </div>
                         </div>
+                      </div>
+                      <div
+                        className="c20"
+                        open={false}
+                      >
                         <div
-                          className="c20"
+                          className="c21"
                           open={false}
-                        >
-                          <div
-                            className="c21"
-                            open={false}
-                          />
-                        </div>
+                        />
                       </div>
                     </div>
                   </article>
