@@ -14,7 +14,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../redux/ytelser/pleiepengerReducer';
 import { connect } from 'react-redux';
-import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 
 interface OwnProps {
     pleiepenger: Pleiepengerettighet;
@@ -40,10 +40,6 @@ const ArbeidsForholdListeStyle = styled.ol`
   }
 `;
 
-const Luft = styled.div`
-  margin-top: 1rem;
-`;
-
 function getKjønnString(fnr: string): string {
     switch (utledKjønnFraFødselsnummer(fnr)) {
         case Kjønn.Mann:
@@ -61,9 +57,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
 
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
     const kjønn = getKjønnString(pleiepenger.barnet);
-    const arbeidsforhold = visAlleArbeidsforhold
-        ? getAlleArbiedsforholdSortert(pleiepenger)
-        : [getAlleArbiedsforholdSortert(pleiepenger)[0]];
+    const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = getAlleArbiedsforholdSortert(pleiepenger);
 
     const omPleiepengerettenEntries = {
         'Fra og med': formaterDato(gjeldeneVedtak.periode.fom),
@@ -73,24 +67,23 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 
-    const arbeidsForholdListe = (
-        <ArbeidsForholdListeStyle>
-            {arbeidsforhold.map((arbForhold, index) =>
-                <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
-        </ArbeidsForholdListeStyle>
-    );
-
     return (
         <OversiktStyling>
             <YtelserBullet tittel="Om pleiepengeretten">
                 <DescriptionList entries={omPleiepengerettenEntries}/>
             </YtelserBullet>
             <YtelserBullet tittel="Arbeidssituasjon">
-                {arbeidsForholdListe}
-                <Luft/>
-                <LenkeKnapp onClick={toggleVisAlleArbeidsforhold}>
-                    {(visAlleArbeidsforhold ? 'Skjul' : 'Vis') + ' alle arbeidsforhold'}
-                    </LenkeKnapp>
+                <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
+                <DetaljerCollapse
+                    open={visAlleArbeidsforhold}
+                    toggle={toggleVisAlleArbeidsforhold}
+                    tittel="alle arbeidsforhold"
+                >
+                    <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
+                        {tidligereArbeidsforhold.map((arbForhold, index) =>
+                            <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
+                    </ArbeidsForholdListeStyle>
+                </DetaljerCollapse>
             </YtelserBullet>
         </OversiktStyling>);
 }
