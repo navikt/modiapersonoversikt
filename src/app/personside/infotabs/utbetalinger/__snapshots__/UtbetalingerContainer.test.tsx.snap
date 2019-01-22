@@ -76,7 +76,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c29 {
+.c30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -98,15 +98,15 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: flex-end;
 }
 
-.c26 {
+.c27 {
   text-transform: uppercase;
 }
 
-.c25 {
+.c26 {
   font-weight: bold;
 }
 
-.c19 {
+.c18 {
   position: relative;
   border: none;
   padding: 0;
@@ -124,7 +124,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c19:after {
+.c18:after {
   border-bottom: 1px #B7B1A9 solid;
   position: absolute;
   bottom: 0;
@@ -132,33 +132,33 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c19:focus {
+.c18:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c19:hover {
+.c18:hover {
   opacity: 0.8;
 }
 
-.c19:hover:after {
+.c18:hover:after {
   content: '';
   border-color: #0067C5;
 }
 
-.c17 {
+.c20 {
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem 1.25rem;
 }
 
-.c18 {
+.c21 {
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
 }
 
-.c20 {
+.c19 {
   margin-right: .5rem;
 }
 
@@ -217,18 +217,18 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c27 {
+.c28 {
   cursor: pointer;
   -webkit-transition: .3s;
   transition: .3s;
 }
 
-.c27:focus {
+.c28:focus {
   position: relative;
   outline: none;
 }
 
-.c27:focus::after {
+.c28:focus::after {
   position: absolute;
   top: 0;
   content: '';
@@ -238,7 +238,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c28 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -252,35 +252,35 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c28 > *:nth-child(3) {
+.c29 > *:nth-child(3) {
   margin-bottom: .8rem;
 }
 
-.c28 .order-first {
+.c29 .order-first {
   -webkit-order: -1;
   -ms-flex-order: -1;
   order: -1;
 }
 
-.c24 > *:first-child {
+.c25 > *:first-child {
   background-color: #cce1f3;
   padding: .2rem 1.25rem;
 }
 
-.c24 ol {
+.c25 ol {
   padding: 0;
   margin: 0;
 }
 
-.c24 ol > *:not(:first-child) {
+.c25 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c21:focus {
+.c22:focus {
   outline: none;
 }
 
-.c22 {
+.c23 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 .5rem rgba(0,0,0,.1);
@@ -288,11 +288,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: .8rem;
 }
 
-.c22 > *:first-child {
+.c23 > *:first-child {
   padding: 1.25rem;
 }
 
-.c23 {
+.c24 {
   padding: 0;
   margin: 0;
 }
@@ -372,7 +372,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media print {
-  .c27 {
+  .c17 {
+    display: none;
+  }
+}
+
+@media print {
+  .c28 {
     list-style-type: none;
   }
 }
@@ -414,6 +420,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       className="c2"
     >
       <nav
+        aria-label="Filtrering utbetalinger"
         className="c3"
         onClick={[Function]}
       >
@@ -587,17 +594,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     </section>
   </div>
   <section
+    aria-label="Filtrerte utbetalinger"
     className="c8"
   >
-    <h2
-      className="typo-undertittel visually-hidden"
-    >
-      Filtrerte utbetalinger
-    </h2>
     <div
       className="c9"
     >
       <article
+        aria-label="Totalt utbetalt"
         className="c10"
         onClick={[Function]}
       >
@@ -618,35 +622,61 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               <span
                 className="typo-normal"
               >
-                <table>
-                  <thead>
-                    <tr>
-                      <th>
+                <table
+                  role="table"
+                >
+                  <thead
+                    role="rowgroup"
+                  >
+                    <tr
+                      role="row"
+                    >
+                      <th
+                        role="columnheader"
+                      >
                         Totalt Utbetalt
                       </th>
-                      <th>
+                      <th
+                        role="columnheader"
+                      >
                         Brutto
                       </th>
-                      <th>
+                      <th
+                        role="columnheader"
+                      >
                         Trekk
                       </th>
-                      <th>
+                      <th
+                        role="columnheader"
+                      >
                         Utbetalt
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>
+                  <tbody
+                    role="rowgroup"
+                  >
+                    <tr
+                      role="row"
+                    >
+                      <td
+                        role="cell"
+                      >
                         01.01.1905 - 28.12.1986
                       </td>
-                      <td>
+                      <td
+                        role="cell"
+                      >
                         13,370.00
                       </td>
-                      <td>
+                      <td
+                        role="cell"
+                      >
                         -1,984.00
                       </td>
-                      <td>
+                      <td
+                        role="cell"
+                      >
                         11,386.00
                       </td>
                     </tr>
@@ -690,49 +720,55 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
           <div
             className="c16"
-          />
+          >
+            <div
+              className="c17"
+            >
+              <div
+                className="c14"
+              >
+                <button
+                  aria-expanded={false}
+                  className="c18"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="c19"
+                  >
+                    <span
+                      className="typo-normal"
+                    >
+                      Vis
+                       
+                      sammendrag
+                    </span>
+                  </span>
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--ned"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
           <div
-            className="c17"
+            className="c20"
             open={false}
           >
             <div
-              className="c18"
+              className="c21"
               open={false}
             />
-            <div
-              className="c14"
-            >
-              <button
-                aria-expanded={false}
-                className="c19"
-                onClick={[Function]}
-              >
-                <span
-                  className="c20"
-                >
-                  <span
-                    className="typo-normal"
-                  >
-                    Vis
-                     
-                    detaljer
-                  </span>
-                </span>
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--ned"
-                />
-              </button>
-            </div>
           </div>
         </div>
       </article>
       <div
-        className="c21"
+        className="c22"
         onKeyDown={[Function]}
         tabIndex={-1}
       >
         <article
-          className="c22"
+          aria-label="Utbetalinger"
+          className="c23"
         >
           <h2
             className="typo-undertittel"
@@ -740,162 +776,175 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             Utbetalinger
           </h2>
           <ol
-            className="c23"
+            aria-label="Måneder"
+            className="c24"
           >
             <li
-              className="c24"
+              className="c25"
             >
               <h3
                 className="typo-normal"
               >
                 <span
-                  className="c25"
+                  className="c26"
                 >
                   <span
-                    className="c26"
+                    className="c27"
                   >
                     Mars 2017
                   </span>
                 </span>
               </h3>
-              <ol>
-                <div
-                  className="c11"
+              <ol
+                aria-label="Utbetalinger fra Mars 2017"
+              >
+                <li
+                  className="c28"
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  tabIndex={0}
                 >
-                  <li
-                    className="c27"
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    tabIndex={0}
+                  <article
+                    aria-expanded={false}
+                    aria-label="Utbetaling Sykepenger"
                   >
                     <div
-                      className="c28"
+                      className="c11"
                     >
                       <div
                         className="c29"
                       >
-                        <h4
-                          className="typo-normal"
+                        <div
+                          className="c30"
                         >
-                          <span
-                            className="c25"
-                          >
-                            Sykepenger
-                          </span>
-                        </h4>
-                        <p
-                          className="typo-normal"
-                        >
-                          <span
-                            className="c25"
-                          >
-                            11,386.00
-                          </span>
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        29. Mars 2017
-                         / 
-                        <span
-                          className="c25"
-                        >
-                          Utbetalt
-                        </span>
-                      </p>
-                      <div
-                        className="c29"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          09.11.2016 - 31.10.2017
-                        </p>
-                        <p
-                          className="typo-normal"
-                        >
-                          
-                        </p>
-                      </div>
-                      <div
-                        className="c29"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          Utbetaling til: 
-                          AREMARK TESTFAMILIEN
-                        </p>
-                        <span>
-                          <button
-                            aria-label="Skriv ut"
-                            className="c15"
-                            onClick={[Function]}
+                          <h4
+                            className="typo-normal"
                           >
                             <span
-                              className="typo-normal"
+                              className="c26"
                             >
-                              Skriv ut
+                              Sykepenger
                             </span>
-                             
-                            <svg
-                              viewBox="0 0 17 16"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlnsXlink="http://www.w3.org/1999/xlink"
-                            >
-                              <path
-                                d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                                fill="#0067C5"
-                                fillRule="evenodd"
-                              />
-                              <path
-                                d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                                fill="#0067C5"
-                              />
-                            </svg>
-                          </button>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="c16"
-                    />
-                    <div
-                      className="c17"
-                      open={false}
-                    >
-                      <div
-                        className="c18"
-                        open={false}
-                      />
-                      <div
-                        className="c14"
-                      >
-                        <button
-                          aria-expanded={false}
-                          className="c19"
-                          onClick={[Function]}
-                        >
-                          <span
-                            className="c20"
+                          </h4>
+                          <p
+                            className="typo-normal"
                           >
                             <span
-                              className="typo-normal"
+                              className="c26"
                             >
-                              Vis
+                              11,386.00
+                            </span>
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          29. Mars 2017
+                           / 
+                          <span
+                            className="c26"
+                          >
+                            Utbetalt
+                          </span>
+                        </p>
+                        <div
+                          className="c30"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            09.11.2016 - 31.10.2017
+                          </p>
+                          <p
+                            className="typo-normal"
+                          >
+                            
+                          </p>
+                        </div>
+                        <div
+                          className="c30"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            Utbetaling til: 
+                            AREMARK TESTFAMILIEN
+                          </p>
+                          <span>
+                            <button
+                              aria-label="Skriv ut"
+                              className="c15"
+                              onClick={[Function]}
+                            >
+                              <span
+                                className="typo-normal"
+                              >
+                                Skriv ut
+                              </span>
                                
-                              detaljer
-                            </span>
+                              <svg
+                                viewBox="0 0 17 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                              >
+                                <path
+                                  d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                                  fill="#0067C5"
+                                  fillRule="evenodd"
+                                />
+                                <path
+                                  d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                                  fill="#0067C5"
+                                />
+                              </svg>
+                            </button>
                           </span>
-                          <i
-                            className="nav-frontend-chevron chevronboks chevron--ned"
-                          />
-                        </button>
+                        </div>
+                      </div>
+                      <div
+                        className="c16"
+                      >
+                        <div
+                          className="c17"
+                        >
+                          <div
+                            className="c14"
+                          >
+                            <button
+                              aria-expanded={false}
+                              className="c18"
+                              onClick={[Function]}
+                            >
+                              <span
+                                className="c19"
+                              >
+                                <span
+                                  className="typo-normal"
+                                >
+                                  Vis
+                                   
+                                  detaljer
+                                </span>
+                              </span>
+                              <i
+                                className="nav-frontend-chevron chevronboks chevron--ned"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="c20"
+                        open={false}
+                      >
+                        <div
+                          className="c21"
+                          open={false}
+                        />
                       </div>
                     </div>
-                  </li>
-                </div>
+                  </article>
+                </li>
               </ol>
             </li>
           </ol>

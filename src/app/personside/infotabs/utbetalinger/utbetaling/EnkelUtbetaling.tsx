@@ -116,45 +116,47 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
 
         return (
             <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
-                <UtbetalingTabellStyling>
-                    <UtbetalingStyle
-                        onClick={(event: React.MouseEvent<HTMLElement>) =>
-                            cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
-                        ref={this.utbetalingRef}
-                        tabIndex={0}
-                        onFocus={this.props.setYtelseIFokus}
-                    >
-                        <UtbetalingHeaderStyle>
-                            <SpaceBetween>
-                                <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
-                                <Normaltekst><Bold>{sum}</Bold></Normaltekst>
-                            </SpaceBetween>
-                            <Normaltekst className="order-first">
-                                {dato} / <Bold>{utbetaling.status}</Bold>
-                            </Normaltekst>
-                            <SpaceBetween>
-                                <Normaltekst>{periode}</Normaltekst>
-                                <Normaltekst>{forfallsInfo}</Normaltekst>
-                            </SpaceBetween>
-                            <SpaceBetween>
-                                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                <span ref={this.printerButtonRef}>
+                <UtbetalingStyle
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))}
+                    ref={this.utbetalingRef}
+                    tabIndex={0}
+                    onFocus={this.props.setYtelseIFokus}
+                >
+                    <article aria-expanded={this.props.visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
+                        <UtbetalingTabellStyling>
+                            <UtbetalingHeaderStyle>
+                                <SpaceBetween>
+                                    <Normaltekst tag={'h4'}><Bold>{tittel}</Bold></Normaltekst>
+                                    <Normaltekst><Bold>{sum}</Bold></Normaltekst>
+                                </SpaceBetween>
+                                <Normaltekst className="order-first">
+                                    {dato} / <Bold>{utbetaling.status}</Bold>
+                                </Normaltekst>
+                                <SpaceBetween>
+                                    <Normaltekst>{periode}</Normaltekst>
+                                    <Normaltekst>{forfallsInfo}</Normaltekst>
+                                </SpaceBetween>
+                                <SpaceBetween>
+                                    <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                                    <span ref={this.printerButtonRef}>
                                     <PrintKnapp onClick={this.handlePrint}/>
                                 </span>
-                            </SpaceBetween>
-                        </UtbetalingHeaderStyle>
-                        <DetaljerCollapse
-                            open={this.props.visDetaljer}
-                            toggle={this.toggleVisDetaljer}
-                        >
-                            <UtbetalingsDetaljer
-                                ytelse={ytelse}
-                                konto={utbetaling.konto}
-                                melding={utbetaling.melding}
-                            />
-                        </DetaljerCollapse>
-                    </UtbetalingStyle>
-                </UtbetalingTabellStyling>
+                                </SpaceBetween>
+                            </UtbetalingHeaderStyle>
+                            <DetaljerCollapse
+                                open={this.props.visDetaljer}
+                                toggle={this.toggleVisDetaljer}
+                            >
+                                <UtbetalingsDetaljer
+                                    ytelse={ytelse}
+                                    konto={utbetaling.konto}
+                                    melding={utbetaling.melding}
+                                />
+                            </DetaljerCollapse>
+                        </UtbetalingTabellStyling>
+                    </article>
+                </UtbetalingStyle>
             </Printer>
         );
     }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoading, isNotStarted, isReloading, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
@@ -10,7 +10,6 @@ import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
@@ -96,6 +95,9 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
     }
 
     reloadUtbetalinger() {
+        if (isLoading(this.props.utbetalingerReducer) || isReloading(this.props.utbetalingerReducer)) {
+            return;
+        }
         const fra = getFraDateFromFilter(this.state.filter);
         const til = getTilDateFromFilter(this.state.filter);
         this.props.reloadUtbetalinger(this.props.fødselsnummer, fra, til);
@@ -126,8 +128,7 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
                             />
                         </FiltreringSection>
                     </div>
-                    <UtbetalingerSection>
-                        <Undertittel className="visually-hidden">Filtrerte utbetalinger</Undertittel>
+                    <UtbetalingerSection aria-label="Filtrerte utbetalinger">
                         <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
                             <Utbetalinger
                                 utbetalingerData={(this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}

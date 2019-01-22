@@ -195,7 +195,6 @@ function Filtrering(props: Props) {
                 <Knapp
                     onClick={props.hentUtbetalinger}
                     spinner={visSpinner}
-                    autoDisableVedSpinner={true}
                     htmlType="button"
                 >
                     Hent utbetalinger
@@ -204,7 +203,7 @@ function Filtrering(props: Props) {
         </InputPanel>
     );
     return (
-        <FiltreringsPanel onClick={restoreScroll}>
+        <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
             <Undertittel>Filtrering</Undertittel>
 
             <WrapOnSmallScreen>

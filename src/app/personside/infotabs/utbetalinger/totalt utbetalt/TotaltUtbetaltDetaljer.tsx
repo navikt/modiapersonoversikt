@@ -155,14 +155,16 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
             const periode = getPeriodeFromYtelser(ytelser);
             const ytelsesKomponentSammendragListe = getYtelsesKomponentSammendragListe(ytelser);
             return (
-                <tbody key={ytelsesType}>
-                <tr>
-                    <th>{ytelsesType}</th>
-                    <td className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
-                    <td className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
-                    <td className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
-                    <td className="periodeForYtelse">{formaterDato(periode.fra)} - {formaterDato(periode.til)}</td>
-                    <td className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
+                <tbody role="rowgroup" key={ytelsesType}>
+                <tr role="row">
+                    <th role="rowheader" scope="row">{ytelsesType}</th>
+                    <td role="cell" className="sumBrutto">{formaterNOK(getBruttoSumYtelser(ytelser))}</td>
+                    <td role="cell" className="sumTrekk">{formaterNOK(getTrekkSumYtelser(ytelser))}</td>
+                    <td role="cell" className="sumNetto">{formaterNOK(getNettoSumYtelser(ytelser))}</td>
+                    <td role="cell" className="periodeForYtelse">
+                        {formaterDato(periode.fra)} - {formaterDato(periode.til)}
+                    </td>
+                    <td role="cell" className="ytelseDetaljer">{ytelsesKomponentSammendragListe}</td>
                 </tr>
                 </tbody>
             );
@@ -173,20 +175,23 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
 function TotaltUtbetaltDetaljer(props: Props) {
     const ytelserSammendrag = getYtelserSammendrag(props.utbetalinger);
     return (
-        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer}>
+        <DetaljerCollapse
+            open={props.visDetaljer}
+            toggle={props.toggleVisDetaljer}
+            tittel="sammendrag"
+        >
             <ErrorBoundary>
-                <DetaljerStyle>
-                    <Normaltekst tag="span">
-                        <h2>Sammendrag</h2>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Ytelse</th>
-                                <th className="sumBrutto">Brutto</th>
-                                <th className="sumTrekk">Trekk</th>
-                                <th className="sumNetto">Utbetalt</th>
-                                <th className="visually-hidden">Periode</th>
-                                <th className="visually-hidden">Detaljer</th>
+                <DetaljerStyle aria-label="Sammendrag utbetalinger">
+                    <Normaltekst tag="div">
+                        <table role="table">
+                            <thead role="rowgroup">
+                            <tr role="row">
+                                <th role="columnheader" scope="col">Ytelse</th>
+                                <th role="columnheader" scope="col" className="sumBrutto">Brutto</th>
+                                <th role="columnheader" scope="col" className="sumTrekk">Trekk</th>
+                                <th role="columnheader" scope="col" className="sumNetto">Utbetalt</th>
+                                <th role="columnheader" scope="col" className="visually-hidden">Periode</th>
+                                <th role="columnheader" scope="col" className="visually-hidden">Detaljer</th>
                             </tr>
                             </thead>
                             {ytelserSammendrag}

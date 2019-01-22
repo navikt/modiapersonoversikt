@@ -2,14 +2,7 @@
 
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
 Array [
-  .c0 {
-  margin-right: 1.25rem;
-}
-
-<div
-    className="c0"
-/>,
-  .c3 {
+  .c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,7 +13,7 @@ Array [
   justify-content: flex-end;
 }
 
-.c4 {
+.c3 {
   position: relative;
   border: none;
   padding: 0;
@@ -38,7 +31,7 @@ Array [
   color: #0067c5;
 }
 
-.c4:after {
+.c3:after {
   border-bottom: 1px #B7B1A9 solid;
   position: absolute;
   bottom: 0;
@@ -46,16 +39,113 @@ Array [
   width: 100%;
 }
 
-.c4:focus {
+.c3:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c4:hover {
+.c3:hover {
   opacity: 0.8;
 }
 
-.c4:hover:after {
+.c3:hover:after {
+  content: '';
+  border-color: #0067C5;
+}
+
+.c4 {
+  margin-right: .5rem;
+}
+
+.c0 {
+  margin-right: 1.25rem;
+}
+
+@media print {
+  .c1 {
+    display: none;
+  }
+}
+
+<div
+    className="c0"
+>
+    <div
+        className="c1"
+    >
+        <div
+            className="c2"
+        >
+            <button
+                aria-expanded={true}
+                className="c3"
+                onClick={[Function]}
+            >
+                <span
+                    className="c4"
+                >
+                    <span
+                        className="typo-normal"
+                    >
+                        Skjul
+                         
+                        sammendrag
+                    </span>
+                </span>
+                <i
+                    className="nav-frontend-chevron chevronboks chevron--opp"
+                />
+            </button>
+        </div>
+    </div>
+</div>,
+  .c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c5 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c5:after {
+  border-bottom: 1px #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c5:hover {
+  opacity: 0.8;
+}
+
+.c5:hover:after {
   content: '';
   border-color: #0067C5;
 }
@@ -78,7 +168,7 @@ Array [
   padding: 0;
 }
 
-.c5 {
+.c6 {
   margin-right: .5rem;
 }
 
@@ -195,6 +285,12 @@ Array [
 }
 
 @media print {
+  .c3 {
+    display: none;
+  }
+}
+
+@media print {
   .c2 table {
     page-break-inside: auto;
   }
@@ -213,69 +309,97 @@ Array [
         open={true}
     >
         <aside
+            aria-label="Sammendrag utbetalinger"
             className="c2"
         >
-            <span
+            <div
                 className="typo-normal"
             >
-                <h2>
-                    Sammendrag
-                </h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
+                <table
+                    role="table"
+                >
+                    <thead
+                        role="rowgroup"
+                    >
+                        <tr
+                            role="row"
+                        >
+                            <th
+                                role="columnheader"
+                                scope="col"
+                            >
                                 Ytelse
                             </th>
                             <th
                                 className="sumBrutto"
+                                role="columnheader"
+                                scope="col"
                             >
                                 Brutto
                             </th>
                             <th
                                 className="sumTrekk"
+                                role="columnheader"
+                                scope="col"
                             >
                                 Trekk
                             </th>
                             <th
                                 className="sumNetto"
+                                role="columnheader"
+                                scope="col"
                             >
                                 Utbetalt
                             </th>
                             <th
                                 className="visually-hidden"
+                                role="columnheader"
+                                scope="col"
                             >
                                 Periode
                             </th>
                             <th
                                 className="visually-hidden"
+                                role="columnheader"
+                                scope="col"
                             >
                                 Detaljer
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th>
+                    <tbody
+                        role="rowgroup"
+                    >
+                        <tr
+                            role="row"
+                        >
+                            <th
+                                role="rowheader"
+                                scope="row"
+                            >
                                 Sykepenger 2017
                             </th>
                             <td
                                 className="sumBrutto"
+                                role="cell"
                             >
                                 26,740.00
                             </td>
                             <td
                                 className="sumTrekk"
+                                role="cell"
                             >
                                 -3,968.00
                             </td>
                             <td
                                 className="sumNetto"
+                                role="cell"
                             >
                                 22,772.00
                             </td>
                             <td
                                 className="periodeForYtelse"
+                                role="cell"
                             >
                                 09.11.2016
                                  - 
@@ -283,6 +407,7 @@ Array [
                             </td>
                             <td
                                 className="ytelseDetaljer"
+                                role="cell"
                             >
                                 <dl>
                                     <dt>
@@ -308,32 +433,40 @@ Array [
                         </tr>
                     </tbody>
                 </table>
-            </span>
+            </div>
         </aside>
     </div>
     <div
-        className="c3"
+        aria-hidden={true}
     >
-        <button
-            aria-expanded={true}
-            className="c4"
-            onClick={[Function]}
+        <div
+            className="c3"
         >
-            <span
-                className="c5"
+            <div
+                className="c4"
             >
-                <span
-                    className="typo-normal"
+                <button
+                    aria-expanded={true}
+                    className="c5"
+                    onClick={[Function]}
                 >
-                    Skjul
-                     
-                    detaljer
-                </span>
-            </span>
-            <i
-                className="nav-frontend-chevron chevronboks chevron--opp"
-            />
-        </button>
+                    <span
+                        className="c6"
+                    >
+                        <span
+                            className="typo-normal"
+                        >
+                            Skjul
+                             
+                            sammendrag
+                        </span>
+                    </span>
+                    <i
+                        className="nav-frontend-chevron chevronboks chevron--opp"
+                    />
+                </button>
+            </div>
+        </div>
     </div>
 </div>,
 ]
