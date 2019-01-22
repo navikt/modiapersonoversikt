@@ -60,11 +60,11 @@ class ToolTip extends React.PureComponent<Props, State> {
     }
 
     componentDidMount() {
-        addEventListener('click', this.handleClickEvent);
+        document.addEventListener('click', this.handleClickEvent);
     }
 
     componentWillUnmount() {
-        removeEventListener('click', this.handleClickEvent);
+        document.removeEventListener('click', this.handleClickEvent);
     }
 
     handleClickEvent(event: MouseEvent) {
