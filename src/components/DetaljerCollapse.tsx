@@ -13,7 +13,6 @@ interface Props {
     children: ReactNode;
     header?: ReactNode;
     tittel?: string;
-    knappPaTopp?: boolean;
 }
 
 const Wrapper = styled.div<{ open: boolean; hasHeader: boolean }>`
@@ -33,8 +32,18 @@ const Luft = styled.span`
   margin-right: .5rem;
 `;
 
-const Padding = styled.div`
+const PaddingRight = styled.div`
   margin-right: ${theme.margin.px20};
+`;
+
+const PaddingBottom = styled.div`
+  margin-bottom: ${theme.margin.px20};
+`;
+
+const SkjulVedPrint = styled.div`
+  @media print {
+    display: none;
+  }
 `;
 
 interface KnappProps {
@@ -61,28 +70,36 @@ function DetaljerKnapp(props: KnappProps) {
 
 function DetaljerCollapse(props: Props) {
     const knapp = (
-        <FlexEnd>
-            <DetaljerKnapp
-                onClick={props.toggle}
-                open={props.open}
-                tittel={props.tittel}
-            />
-        </FlexEnd>
+        <SkjulVedPrint>
+            <FlexEnd>
+                <DetaljerKnapp
+                    onClick={props.toggle}
+                    open={props.open}
+                    tittel={props.tittel}
+                />
+            </FlexEnd>
+        </SkjulVedPrint>
     );
+
     return (
         <>
-            <Padding>{props.knappPaTopp && knapp}</Padding>
-            <Wrapper open={props.open} hasHeader={props.header !== undefined}>
+            {!props.header && <PaddingRight>{knapp}</PaddingRight>}
+            <Wrapper
+                open={props.open}
+                hasHeader={props.header !== undefined}
+            >
                 {props.header}
+                {props.header && <PaddingBottom>{knapp}</PaddingBottom>}
                 <CollapseAnimasjon open={props.open}>
                     <UnmountClosed isOpened={props.open}>
                         {props.children}
                     </UnmountClosed>
                 </CollapseAnimasjon>
-                {!props.knappPaTopp && knapp}
+                {props.open && <div aria-hidden={true}>{knapp}</div>}
             </Wrapper>
         </>
     );
 }
 
+/* Testet og testet for å funke med skjermleser. Gjør du endringer? Test nøye med skjermleser! */
 export default DetaljerCollapse;

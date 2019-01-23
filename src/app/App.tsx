@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
 import Routing from './routes/routing';
-import UnderArbeid from '../components/underarbeid/UnderArbeid';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
@@ -66,7 +65,6 @@ class App extends React.Component<{}> {
                                 <Routing/>
                             </Content>
                         </BrowserRouter>
-                        <UnderArbeid/>
                     </AppWrapper>
                 </Provider>
             </PersonContext.Provider>

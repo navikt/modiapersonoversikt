@@ -4,6 +4,7 @@ import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';
 import { Bold } from '../../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     children: ReactNode;
@@ -27,12 +28,16 @@ const TittelStyle = styled.div`
   }
 `;
 
+const CustomStyling = styled.div`
+  ${theme.hvittPanel};
+`;
+
 const FjernPadding = styled.div`
   .ekspanderbartPanel__innhold {
     padding: 0;
   }
   .ekspanderbartPanel__hode:hover {
-    box-shadow: inset 0 0 0 .1rem #0067C5, 0 .1rem .1rem rgba(0, 0, 0, .2) !important;
+    ${theme.hover}
   }
 `;
 
@@ -51,9 +56,11 @@ function EkspanderbartYtelserPanel(props: Props) {
 
     return (
         <FjernPadding>
-            <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
-                {props.children}
-            </EkspanderbartpanelBase>
+            <CustomStyling>
+                <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
+                    {props.children}
+                </EkspanderbartpanelBase>
+            </CustomStyling>
         </FjernPadding>
     );
 }

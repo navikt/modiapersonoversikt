@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeContainer from './SakstemaListeContainer';
 import DokumentListeContainer from './DokumentListeContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isLoaded, isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -39,8 +39,8 @@ interface StateProps {
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
-    settAtStandaloneVinduErÅpnet: () => void;
-    velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
+    setErMicroFrontend: () => void;
+    velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -51,11 +51,11 @@ const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
     width: 100vw;
     > *:last-child {
       width: 70%;
-      ${props => !props.visDokument && 'display: none'}
+      ${props => !props.visDokument && css`display: none`};
       margin-left: ${theme.margin.layout};
     }
     > *:first-child {
-      ${props => props.visDokument && 'display: none'}
+      ${props => props.visDokument && css`display: none`};
       margin-right: ${theme.margin.layout};
     }
     > *:not(:last-child) {
@@ -87,10 +87,41 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
     return dokumentMetadata.vedlegg.find(vedlegg => vedlegg.dokumentreferanse === dokumentId);
 }
 
+function hentQueryParametreFraUrlOgVisDokument(props: Props) {
+    if (props.queryParamString && isLoaded(props.saksoversiktReducer)) {
+        const queryParams = parseQueryParams(props.queryParamString);
+        const sakstemaKode = queryParams.sakstemaKode;
+        const journalId = queryParams.journalpostId;
+        const dokumentId = queryParams.dokumentId;
+
+        if (!(sakstemaKode && journalId && dokumentId)) {
+            return;
+        }
+
+        const sakstemaListe = props.saksoversiktReducer.data.resultat;
+        const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
+        if (!sakstema) {
+            return;
+        }
+
+        const dokumentMetadata = hentUtDokumentMetadata(sakstema, journalId);
+        if (!dokumentMetadata) {
+            return;
+        }
+
+        const dokument = hentUtValgtDokument(dokumentMetadata, dokumentId);
+        if (!dokument) {
+            return;
+        }
+
+        props.velgOgVisDokument(sakstema, dokumentMetadata, dokument);
+    }
+}
+
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     componentDidMount() {
-        this.props.settAtStandaloneVinduErÅpnet();
+        this.props.setErMicroFrontend();
         if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
@@ -102,33 +133,9 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
     componentDidUpdate(prevProps: Props) {
         const førsteUpdateEtterLasting =
             isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
-        if (førsteUpdateEtterLasting && this.props.queryParamString) {
-            const queryParams = parseQueryParams(this.props.queryParamString);
-            const sakstemaKode = queryParams.sakstemaKode;
-            const journalId = queryParams.journalpostId;
-            const dokumentId = queryParams.dokumentId;
 
-            if (!(sakstemaKode && journalId && dokumentId)) {
-                return;
-            }
-
-            const sakstemaListe = (this.props.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat;
-            const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
-            if (!sakstema) {
-                return;
-            }
-
-            const dokumentMetadata = hentUtDokumentMetadata(sakstema, journalId);
-            if (!dokumentMetadata) {
-                return;
-            }
-
-            const dokument = hentUtValgtDokument(dokumentMetadata, dokumentId);
-            if (!dokument) {
-                return;
-            }
-
-            this.props.velgOgVis(sakstema, dokumentMetadata, dokument);
+        if (førsteUpdateEtterLasting) {
+            hentQueryParametreFraUrlOgVisDokument(this.props);
         }
     }
 
@@ -157,8 +164,8 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
-        settAtStandaloneVinduErÅpnet: () => dispatch(setErStandaloneVindu(true)),
-        velgOgVis: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
+        setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
+        velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));
             dispatch(settValgtDokument(dokument));
             dispatch(settVisDokument(true));

@@ -2,16 +2,19 @@ import * as React from 'react';
 import { createStore } from 'redux';
 import reducers from '../reducers';
 import { setFeatureToggleOff, setFeatureToggleOn } from './featureToggleReducer';
-import FeatureToggle from './FeatureToggle';
 import { mount } from 'enzyme';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
 import LazySpinner from '../../components/LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
+import FeatureToggle from './FeatureToggle';
 
 const toggleId = 'Min første feature-toggle';
 
-FeatureToggle.prototype.componentDidMount = () => null;
+beforeEach(() => {
+    FeatureToggle.prototype.render = FeatureToggle.prototype.actualRender;
+    FeatureToggle.prototype.componentDidMount = () => null;
+});
 
 test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
     const store = createStore(reducers);

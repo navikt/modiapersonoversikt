@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { theme } from '../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
@@ -8,15 +8,12 @@ const Wrapper = styled.div<{ valgt: boolean }>`
     display: flex;
     align-items: center;
     cursor: pointer;
-    ${props => props.valgt && 'background-color: rgba(0, 0, 0, 0.03);'}
+    ${props => props.valgt && css`background-color: ${theme.color.kategori};`}
     &:hover {
-      background-color: ${theme.color.objektlisteHover};
+      ${theme.hover};
       > button:last-child {
         padding-left: .5rem;
       }
-    }
-    &:active {
-      background-color: ${theme.color.objektlisteActive};
     }
     > *:first-child {
         flex-grow: 1;

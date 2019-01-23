@@ -6,7 +6,7 @@ import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import HandleVisittkortHotkeys from './HandleVisittkortHotkeys';
 import { AppState } from '../../../redux/reducers';
-import { toggleVisittkort, UIState } from '../../../redux/uiReducers/UIReducer';
+import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
@@ -14,12 +14,12 @@ import theme from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
-    UI: UIState;
+    visittkortErApent: boolean;
     person: Person;
 }
 
@@ -27,14 +27,14 @@ interface DispatchProps {
     toggleVisittkort: (erApen?: boolean) => void;
 }
 
+type Props = StateProps & DispatchProps;
+
 const VisittkortBodyWrapper = styled.div`
   &:focus{${theme.focus}}
   border-radius: ${theme.borderRadius.layout};
 `;
 
-type Props = StateProps & DispatchProps;
-
-class VisittkortContainer extends React.Component<Props> {
+class VisittkortContainer extends React.PureComponent<Props> {
 
     private detaljerRef = React.createRef<HTMLDivElement>();
 
@@ -43,7 +43,7 @@ class VisittkortContainer extends React.Component<Props> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        const visittkortetBleÅpnet = !prevProps.UI.visittkort.apent && this.props.UI.visittkort.apent;
+        const visittkortetBleÅpnet = !prevProps.visittkortErApent && this.props.visittkortErApent;
         if (visittkortetBleÅpnet && this.detaljerRef.current) {
             this.detaljerRef.current.focus();
             loggEvent('Åpne', 'Visittkort');
@@ -51,8 +51,7 @@ class VisittkortContainer extends React.Component<Props> {
     }
 
     render() {
-        const person = this.props.person;
-        const erApnet = this.props.UI.visittkort.apent;
+        const {person, visittkortErApent: erApnet, toggleVisittkort: toggle} = this.props;
         const tabIndexForFokus = erApnet ? -1 : undefined;
         /* undefided så fokus ikke skal bli hengende ved lukking */
         const visittkortHotkeys = erNyePersonoversikten()
@@ -66,11 +65,7 @@ class VisittkortContainer extends React.Component<Props> {
                 />
                 {visittkortHotkeys}
                 <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
-                    <VisittkortHeader
-                        person={person}
-                        toggleVisittkort={this.props.toggleVisittkort}
-                        visittkortApent={erApnet}
-                    />
+                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet}/>
                     <VisittkortBodyWrapper
                         tabIndex={tabIndexForFokus}
                         ref={this.detaljerRef}
@@ -86,9 +81,9 @@ class VisittkortContainer extends React.Component<Props> {
     }
 }
 
-function mapStateToProps(state: AppState) {
+function mapStateToProps(state: AppState): StateProps {
     return {
-        UI: state.ui,
+        visittkortErApent: state.ui.visittkort.apent,
         person: (state.restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person
     };
 }

@@ -20,6 +20,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 <aside
+  aria-label="Utbetalingsdetaljer"
   className="c0"
 >
   <span
@@ -28,35 +29,61 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     <div
       className="c1"
     >
-      <table>
-        <thead>
-          <tr>
-            <th>
+      <table
+        role="table"
+      >
+        <thead
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <th
+              role="columnheader"
+            >
               Konto
             </th>
-            <th>
+            <th
+              role="columnheader"
+            >
               Brutto
             </th>
-            <th>
+            <th
+              role="columnheader"
+            >
               Trekk
             </th>
-            <th>
+            <th
+              role="columnheader"
+            >
               Utbetalt
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
               123
             </td>
-            <td>
+            <td
+              role="cell"
+            >
               13,370.00
             </td>
-            <td>
+            <td
+              role="cell"
+            >
               -1,984.00
             </td>
-            <td>
+            <td
+              role="cell"
+            >
               11,386.00
             </td>
           </tr>
@@ -70,105 +97,181 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   <span
     className="typo-normal"
   >
-    <table>
-      <thead>
-        <tr>
-          <th>
+    <table
+      role="table"
+    >
+      <thead
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <th
+            role="columnheader"
+          >
             Detaljer
           </th>
-          <th>
+          <th
+            role="columnheader"
+          >
             Sats
           </th>
-          <th>
+          <th
+            role="columnheader"
+          >
             Antall
           </th>
-          <th>
+          <th
+            role="columnheader"
+          >
             Beløp
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Bacon
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             558.00
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             10
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             5,580.00
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Computer
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             1,310.00
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             3
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             3,930.00
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Mouse
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             1,930.00
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             2
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             3,860.00
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Skattetrekk
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             -730.00
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Prosenttrekk
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             -1,042.00
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
             Prosenttrekk
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             
           </td>
-          <td>
+          <td
+            role="cell"
+          >
             -212.00
           </td>
         </tr>

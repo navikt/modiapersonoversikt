@@ -18,6 +18,7 @@ import { FlexEnd } from '../../../../../components/common-styled-components';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -29,8 +30,7 @@ interface State {
 }
 
 const Wrapper = styled.article`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   cursor: pointer;
 `;
 
@@ -51,7 +51,7 @@ const TotaltUtbetaltOversikt = styled.section`
   }
 `;
 
-class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
+class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
     private print: () => void;
     private printerButtonRef = React.createRef<HTMLButtonElement>();
 
@@ -79,15 +79,10 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
     }
 
     handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        if (this.printerButtonRef.current) {
-            const printerButtonClicked = (event.target instanceof Node)
-                && this.printerButtonRef.current.contains(event.target);
-
-            if (!printerButtonClicked) {
-                this.toggleVisDetaljer();
-            }
+        const printerButtonClicked = eventTagetIsInsideRef(event, this.printerButtonRef);
+        if (!printerButtonClicked) {
+            this.toggleVisDetaljer();
         }
-
     }
 
     render() {
@@ -105,6 +100,7 @@ class TotaltUtbetalt extends React.Component<TotaltUtbetaltProps, State> {
         return (
             <Printer getPrintTrigger={trigger => this.print = trigger}>
                 <Wrapper
+                    aria-label="Totalt utbetalt"
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
                         cancelIfHighlighting(
                             () => this.handleClickOnUtbetaling(event)

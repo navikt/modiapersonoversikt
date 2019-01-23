@@ -28,8 +28,9 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c7 {
+  position: relative;
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -44,6 +45,14 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   color: #0067c5;
 }
 
+.c7:after {
+  border-bottom: 1px #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
@@ -51,8 +60,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c7:hover {
   opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+}
+
+.c7:hover:after {
+  content: '';
+  border-color: #0067C5;
 }
 
 .c1 {
@@ -102,12 +114,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c6 {
   margin-top: 1rem;
-}
-
-@media print {
-  .c7 {
-    display: none;
-  }
 }
 
 <div
@@ -529,13 +535,20 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 `;
 
 exports[`Om pleiepengeretten matcher snapshot 1`] = `
-Array [
-  .c0 {
+.c0 {
   margin: 0 1.25rem 1.25rem;
 }
 
 .c0 > *:not(:first-child) {
   border-top: dashed 0.0625rem #b7b1a9;
+}
+
+.c10 {
+  text-transform: uppercase;
+}
+
+.c9 {
+  font-weight: bold;
 }
 
 .c2 {
@@ -556,9 +569,17 @@ Array [
   transition: .3s;
 }
 
+.c12 {
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  box-shadow: inset 0 0 0 1px #59514b;
+  padding: 1.25rem;
+}
+
 .c7 {
+  position: relative;
   border: none;
-  padding: .1rem .2rem;
+  padding: 0;
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
@@ -573,6 +594,14 @@ Array [
   color: #0067c5;
 }
 
+.c7:after {
+  border-bottom: 1px #B7B1A9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
@@ -580,8 +609,11 @@ Array [
 
 .c7:hover {
   opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+}
+
+.c7:hover:after {
+  content: '';
+  border-color: #0067C5;
 }
 
 .c1 {
@@ -633,551 +665,506 @@ Array [
   margin-top: 1rem;
 }
 
-@media print {
-  .c7 {
-    display: none;
-  }
-}
-
-<div
-    className="c0"
->
-    <div
-        className="c1"
-    >
-        <div
-            className="c2"
-            color="#d6897d"
-        >
-            <p
-                className="typo-ingress"
-            >
-                Om pleiepengeretten
-            </p>
-        </div>
-        <dl
-            className="c3"
-        >
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Fra og med
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    01.01.1970
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Til og med
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    01.01.1970
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Pleiepengegrad
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    30%
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Barnet (gutt)
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    01017027979
-                </dd>
-            </div>
-            <div>
-                <dt
-                    className="typo-etikett-liten"
-                >
-                    Annen forelder
-                </dt>
-                <dd
-                    className="typo-normal"
-                >
-                    01017040169
-                </dd>
-            </div>
-        </dl>
-    </div>
-    <div
-        className="c1"
-    >
-        <div
-            className="c2"
-            color="#d6897d"
-        >
-            <p
-                className="typo-ingress"
-            >
-                Arbeidssituasjon
-            </p>
-        </div>
-        <ol
-            className="c4"
-        >
-            <li>
-                <dl
-                    className="c3"
-                >
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Arbeidsgiver
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            Aalerud RFH
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Arbeidskategori
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            Arbeidstaker
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Inntekstsperiode
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            Månedssats
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Kontonummer
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            <span
-                                className="c5"
-                            >
-                                <span>
-                                    3822381179
-                                </span>
-                            </span>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Refusjonstype
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            Ikke refusjon
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Inntekt for perioden
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            NOK 7,398.00
-                        </dd>
-                    </div>
-                    <div>
-                        <dt
-                            className="typo-etikett-liten"
-                        >
-                            Refusjon til dato
-                        </dt>
-                        <dd
-                            className="typo-normal"
-                        >
-                            01.01.1970
-                        </dd>
-                    </div>
-                </dl>
-            </li>
-        </ol>
-        <div
-            className="c6"
-        />
-        <button
-            className="c7"
-            onClick={[Function]}
-        >
-            Vis alle arbeidsforhold
-        </button>
-    </div>
-</div>,
-  .c2 {
-  text-transform: uppercase;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
-.c5 {
-  border-radius: 0.25rem;
-  background-color: #f4f4f4;
-  box-shadow: inset 0 0 0 1px #59514b;
-  padding: 1.25rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c4 dt {
-  color: #78706a;
-}
-
-.c4 dd {
-  font-weight: bold;
-  margin-top: .3rem;
-}
-
-.c4 > div {
-  margin-top: 1.875rem;
-  padding-right: 1rem;
-  min-width: 13rem;
-}
-
-.c0 > *:first-child {
+.c8 > *:first-child {
   background-color: #cce1f3;
   padding: .2rem 1.25rem;
 }
 
-.c0 ol {
+.c8 ol {
   padding: 0;
   margin: 0;
 }
 
-.c0 ol > *:not(:first-child) {
+.c8 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c3 {
+.c11 {
   margin: 0.625rem 1.25rem 2.5rem;
 }
 
-.c7 {
+.c14 {
   padding-bottom: 1rem;
 }
 
-.c6 {
+.c13 {
   list-style: none;
 }
 
-.c6 > *:not(:last-child) {
+.c13 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #c6c2bf;
   padding-bottom: 1rem;
 }
 
-<ol>
-    <li
-        className="c0"
+<div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
     >
-        <h3
+      <div
+        className="c2"
+        color="#d6897d"
+      >
+        <p
+          className="typo-ingress"
+        >
+          Om pleiepengeretten
+        </p>
+      </div>
+      <dl
+        className="c3"
+      >
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Fra og med
+          </dt>
+          <dd
             className="typo-normal"
+          >
+            01.01.1970
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Til og med
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01.01.1970
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Pleiepengegrad
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            30%
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Barnet (gutt)
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01017027979
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Annen forelder
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01017040169
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+        color="#d6897d"
+      >
+        <p
+          className="typo-ingress"
         >
-            <span
-                className="c1"
-            >
-                <span
-                    className="c2"
-                >
-                    Periode 2 - 01.01.1970
-                </span>
-            </span>
-        </h3>
-        <div
+          Arbeidssituasjon
+        </p>
+      </div>
+      <ol
+        className="c4"
+      >
+        <li>
+          <dl
             className="c3"
+          >
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Arbeidsgiver
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                Aalerud RFH
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Arbeidskategori
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                Arbeidstaker
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Inntekstsperiode
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                Månedssats
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Kontonummer
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                <span
+                  className="c5"
+                >
+                  <span>
+                    3822381179
+                  </span>
+                </span>
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Refusjonstype
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                Ikke refusjon
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Inntekt for perioden
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                NOK 7,398.00
+              </dd>
+            </div>
+            <div>
+              <dt
+                className="typo-etikett-liten"
+              >
+                Refusjon til dato
+              </dt>
+              <dd
+                className="typo-normal"
+              >
+                01.01.1970
+              </dd>
+            </div>
+          </dl>
+        </li>
+      </ol>
+      <div
+        className="c6"
+      />
+      <button
+        className="c7"
+        onClick={[Function]}
+      >
+        Vis alle arbeidsforhold
+      </button>
+    </div>
+  </div>
+  <ol>
+    <li
+      className="c8"
+    >
+      <h3
+        className="typo-normal"
+      >
+        <span
+          className="c9"
         >
+          <span
+            className="c10"
+          >
+            Periode 2 - 01.01.1970
+          </span>
+        </span>
+      </h3>
+      <div
+        className="c11"
+      >
+        <dl
+          className="c3"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Pleiedager
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              16
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <div
+        className="c12"
+      >
+        <h2
+          className="typo-undertittel"
+        >
+          Anviste utbetalinger
+        </h2>
+        <ul
+          className="c13"
+        >
+          <li>
             <dl
-                className="c4"
+              className="c3"
             >
-                <div>
-                    <dt
-                        className="typo-etikett-liten"
-                    >
-                        Pleiedager
-                    </dt>
-                    <dd
-                        className="typo-normal"
-                    >
-                        16
-                    </dd>
-                </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Fra og med dato
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Til og med dato
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Bruttobeløp
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  NOK 745.00
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Anvist Utbetaling
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Dagsats
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  NOK 69.00
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Pleiepengegrad
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  11%
+                </dd>
+              </div>
             </dl>
-        </div>
-        <div
-            className="c5"
-        >
-            <h2
-                className="typo-undertittel"
-            >
-                Anviste utbetalinger
-            </h2>
-            <ul
-                className="c6"
-            >
-                <li>
-                    <dl
-                        className="c4"
-                    >
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Fra og med dato
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Til og med dato
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Bruttobeløp
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                NOK 745.00
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Anvist Utbetaling
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Dagsats
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                NOK 69.00
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Pleiepengegrad
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                11%
-                            </dd>
-                        </div>
-                    </dl>
-                    <div
-                        className="c7"
-                    />
-                </li>
-            </ul>
-        </div>
+            <div
+              className="c14"
+            />
+          </li>
+        </ul>
+      </div>
     </li>
     <li
-        className="c0"
+      className="c8"
     >
-        <h3
-            className="typo-normal"
+      <h3
+        className="typo-normal"
+      >
+        <span
+          className="c9"
         >
-            <span
-                className="c1"
+          <span
+            className="c10"
+          >
+            Periode 1 - 01.01.1970
+          </span>
+        </span>
+      </h3>
+      <div
+        className="c11"
+      >
+        <dl
+          className="c3"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
             >
-                <span
-                    className="c2"
-                >
-                    Periode 1 - 01.01.1970
-                </span>
-            </span>
-        </h3>
-        <div
-            className="c3"
+              Pleiedager
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              3
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <div
+        className="c12"
+      >
+        <h2
+          className="typo-undertittel"
         >
+          Anviste utbetalinger
+        </h2>
+        <ul
+          className="c13"
+        >
+          <li>
             <dl
-                className="c4"
+              className="c3"
             >
-                <div>
-                    <dt
-                        className="typo-etikett-liten"
-                    >
-                        Pleiedager
-                    </dt>
-                    <dd
-                        className="typo-normal"
-                    >
-                        3
-                    </dd>
-                </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Fra og med dato
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Til og med dato
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Bruttobeløp
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  NOK 812.00
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Anvist Utbetaling
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  01.01.1970
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Dagsats
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  NOK 51.00
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Pleiepengegrad
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  30%
+                </dd>
+              </div>
             </dl>
-        </div>
-        <div
-            className="c5"
-        >
-            <h2
-                className="typo-undertittel"
-            >
-                Anviste utbetalinger
-            </h2>
-            <ul
-                className="c6"
-            >
-                <li>
-                    <dl
-                        className="c4"
-                    >
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Fra og med dato
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Til og med dato
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Bruttobeløp
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                NOK 812.00
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Anvist Utbetaling
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                01.01.1970
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Dagsats
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                NOK 51.00
-                            </dd>
-                        </div>
-                        <div>
-                            <dt
-                                className="typo-etikett-liten"
-                            >
-                                Pleiepengegrad
-                            </dt>
-                            <dd
-                                className="typo-normal"
-                            >
-                                30%
-                            </dd>
-                        </div>
-                    </dl>
-                    <div
-                        className="c7"
-                    />
-                </li>
-            </ul>
-        </div>
+            <div
+              className="c14"
+            />
+          </li>
+        </ul>
+      </div>
     </li>
-</ol>,
-]
+  </ol>
+</div>
 `;

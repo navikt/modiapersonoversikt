@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -10,14 +10,13 @@ import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restRedu
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
-import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
-import { lenkeNorg2Frontend } from './norgLenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { Person, PersonRespons } from '../../../../models/person/person';
+import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 import SakstemaListeContainer from './SakstemaListeContainer';
 import DokumentListeContainer from './DokumentListeContainer';
+import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -32,6 +31,7 @@ interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
     hentPerson: (fødselsnummer: string) => void;
+    skjulDokumentOgVisSaksoversikt: () => void;
 }
 
 interface OwnProps {
@@ -58,9 +58,10 @@ const SaksoversiktArticle = styled.article`
   }
 `;
 
-class SaksoversiktContainer extends React.Component<Props> {
+class SaksoversiktContainer extends React.PureComponent<Props> {
 
     componentDidMount() {
+        this.props.skjulDokumentOgVisSaksoversikt();
         if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
         }
@@ -73,14 +74,6 @@ class SaksoversiktContainer extends React.Component<Props> {
     }
 
     render() {
-        const norgUrl =
-            (isLoaded(this.props.baseUrlReducer)
-                && isLoaded(this.props.personReducer))
-                ? lenkeNorg2Frontend(
-                this.props.baseUrlReducer.data,
-                (this.props.personReducer.data as Person).geografiskTilknytning,
-                this.props.valgtSakstema)
-                : '';
 
         if (this.props.visDokument) {
             return (
@@ -91,14 +84,7 @@ class SaksoversiktContainer extends React.Component<Props> {
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
-                        <div>
-                            <LenkepanelPersonoversikt
-                                url={norgUrl}
-                            >
-                                Oversikt over enheter og tema
-                            </LenkepanelPersonoversikt>
-                            <SakstemaListeContainer/>
-                        </div>
+                        <SakstemaListeContainer/>
                         <DokumentListeContainer/>
                     </Innholdslaster>
                 </SaksoversiktArticle>
@@ -126,7 +112,9 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         reloadSaksoversikt: (fødselsnummer: string) =>
             dispatch(reloadSaksoversikt(fødselsnummer)),
         hentPerson: fødselsnummer =>
-            hentAllPersonData(dispatch, fødselsnummer)
+            hentAllPersonData(dispatch, fødselsnummer),
+        skjulDokumentOgVisSaksoversikt: () =>
+            dispatch(settVisDokument(false))
     };
 }
 
