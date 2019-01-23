@@ -25,7 +25,7 @@ export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerRes
     }
 
     return {
-        foreldrepenger: getForeldrepengerettighetMock(fødselsnummer)
+        foreldrepenger: fyllRandomListe<Foreldrepengerettighet>( () => getForeldrepengerettighetMock(fødselsnummer), 5)
     };
 }
 
@@ -41,8 +41,8 @@ export function getForeldrepengerettighetMock(fødselsnummer: string): Foreldrep
         foreldrepengetype: foreldrePengeType(),
         graderingsdager: navfaker.random.integer(100),
         restDager: navfaker.random.integer(50),
-        rettighetFom: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
-        eldsteIdDato: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
+        rettighetFom: moment(faker.date.recent()).format(backendDatoformat),
+        eldsteIdDato: moment(faker.date.recent()).format(backendDatoformat),
         foreldreAvSammeKjønn: vektetSjanse(faker, 0.5) ? 'Begge er pappaer' : null,
         periode: fyllRandomListe<Foreldrepengerperiode>(() => getForeldrepengerperiodeMock(fødselsnummer), 5),
         slutt: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
