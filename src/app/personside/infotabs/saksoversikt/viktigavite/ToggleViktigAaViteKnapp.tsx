@@ -18,6 +18,11 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 function ToggleViktigAaViteKnapp(props: Props) {
+    const temakoderMedTekst = ['AAP', 'DAG', 'IND'];
+
+    if (!props.valgtSakstema || temakoderMedTekst.indexOf(props.valgtSakstema.temakode) === -1) {
+        return null;
+    }
 
     const sakstemanavn = props.valgtSakstema && props.valgtSakstema.temanavn;
 
