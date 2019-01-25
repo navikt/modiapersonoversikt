@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c15 {
+.c14 {
   text-align: center;
 }
 
-.c17 {
+.c16 {
   text-transform: uppercase;
 }
 
-.c16 {
+.c15 {
   font-weight: bold;
 }
 
-.c12 {
+.c20 {
   position: relative;
   border: none;
   padding: 0;
@@ -31,75 +31,34 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c12:after {
+.c20:after {
   border-bottom: 1px #B7B1A9 solid;
-  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
 }
 
-.c12:focus {
+.c20:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c12:hover {
+.c20:hover {
   opacity: 0.8;
 }
 
-.c12:hover:after {
+.c20:hover:after {
   content: '';
   border-color: #0067C5;
 }
 
 .c21 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c21:after {
-  border-bottom: 1px #B7B1A9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c21:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c21:hover {
-  opacity: 0.8;
-}
-
-.c21:hover:after {
-  content: '';
-  border-color: #0067C5;
-}
-
-.c22 {
   color: #78706a;
   margin-top: 3px;
 }
 
-.c22 .typo-etikett-liten {
+.c21 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -204,7 +163,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: 1.25rem;
 }
 
-.c18 {
+.c17 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -212,22 +171,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c20 {
+.c19 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c20 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
-.c19 {
+.c18 {
   padding-right: 1rem;
 }
 
-.c19 svg {
+.c18 svg {
   height: 1.875rem;
   width: 1.875rem;
 }
@@ -289,17 +248,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   align-content: flex-end;
 }
 
-.c13 {
+.c12 {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.c14 > *:first-child {
+.c13 > *:first-child {
   padding: .2rem 0.625rem;
 }
 
-.c14 ol {
+.c13 ol {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 .5rem rgba(0,0,0,.1);
@@ -307,7 +266,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin: 0;
 }
 
-.c14 ol > *:not(:first-child) {
+.c13 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -326,7 +285,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c23 {
+.c22 {
   margin-top: 2rem;
 }
 
@@ -623,37 +582,30 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          Oversikt over enheter og tema
+          Oversikt over enheter og tema de behandler
         </a>
-        <button
-          className="c12"
-          onClick={[Function]}
-        >
-          Viktig å vite om 
-          Alle tema
-        </button>
       </div>
     </section>
     <article
       className=""
     >
       <ol
-        className="c13"
+        className="c12"
       >
         <li
-          className="c14"
+          className="c13"
         >
           <h3
             className="typo-normal"
           >
             <div
-              className="c15"
+              className="c14"
             >
               <span
-                className="c16"
+                className="c15"
               >
                 <span
-                  className="c17"
+                  className="c16"
                 >
                   2018
                 </span>
@@ -662,11 +614,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className="c18"
+              className="c17"
               onClick={[Function]}
             >
               <div
-                className="c19"
+                className="c18"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -685,7 +637,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </svg>
               </div>
               <div
-                className="c20"
+                className="c19"
               >
                 <p
                   className="typo-normal"
@@ -695,7 +647,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <div>
                   <button
                     aria-label="Vis hoveddokument - Vurdering feilutbetaling/revurdering"
-                    className="c21"
+                    className="c20"
                     onClick={[Function]}
                   >
                     <p
@@ -707,15 +659,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
                 
                 <div
-                  className="c22"
+                  className="c21"
                 >
                   <p
                     className="typo-etikett-liten"
                   >
-                    Saksid: 
-                    kv3uqgr5
-                     / Sakstema: 
                     Sykepenger
+                     / Saksid: 
+                    kv3uqgr5
                   </p>
                 </div>
               </div>
@@ -723,19 +674,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </ol>
         </li>
         <li
-          className="c14"
+          className="c13"
         >
           <h3
             className="typo-normal"
           >
             <div
-              className="c15"
+              className="c14"
             >
               <span
-                className="c16"
+                className="c15"
               >
                 <span
-                  className="c17"
+                  className="c16"
                 >
                   2017
                 </span>
@@ -744,11 +695,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </h3>
           <ol>
             <div
-              className="c18"
+              className="c17"
               onClick={[Function]}
             >
               <div
-                className="c19"
+                className="c18"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -767,7 +718,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </svg>
               </div>
               <div
-                className="c20"
+                className="c19"
               >
                 <p
                   className="typo-normal"
@@ -777,7 +728,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 <div>
                   <button
                     aria-label="Vis hoveddokument - Spørsmål via nav.no"
-                    className="c21"
+                    className="c20"
                     onClick={[Function]}
                   >
                     <p
@@ -789,15 +740,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
                 
                 <div
-                  className="c22"
+                  className="c21"
                 >
                   <p
                     className="typo-etikett-liten"
                   >
-                    Saksid: 
-                    8qj6vuv6
-                     / Sakstema: 
                     Sykepenger
+                     / Saksid: 
+                    8qj6vuv6
                   </p>
                 </div>
               </div>
@@ -806,7 +756,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         </li>
       </ol>
       <div
-        className="c23"
+        className="c22"
       />
       <div
         aria-live={undefined}

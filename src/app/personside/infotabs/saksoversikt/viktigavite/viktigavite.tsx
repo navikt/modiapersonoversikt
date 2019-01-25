@@ -42,8 +42,7 @@ class ViktigÅVite extends React.PureComponent<Props> {
                 innhold = ViktigÅViteINDInnhold();
                 break;
             default:
-                // return null;
-                innhold = ViktigÅViteINDInnhold();
+                return null;
         }
 
         return (
