@@ -9,7 +9,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const ChevronWrapper = styled.button`
+const ChevronKnappStyle = styled.button`
   border: none;
   padding: .1rem;
   border-radius: 0.5em;
@@ -22,10 +22,10 @@ const ChevronWrapper = styled.button`
 
 function VisMerChevron(props: Props) {
     return (
-        <ChevronWrapper onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer">
+        <ChevronKnappStyle onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer">
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
             {props.children}
-        </ChevronWrapper>
+        </ChevronKnappStyle>
     );
 }
 
