@@ -243,9 +243,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c9 > div:last-child {
-  -webkit-align-content: flex-end;
-  -ms-flex-line-pack: end;
-  align-content: flex-end;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
 }
 
 .c12 {
@@ -582,7 +583,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          Oversikt over enheter og tema de behandler
+          <p
+            className="typo-normal"
+          >
+            Oversikt over enheter og tema de behandler
+          </p>
         </a>
       </div>
     </section>

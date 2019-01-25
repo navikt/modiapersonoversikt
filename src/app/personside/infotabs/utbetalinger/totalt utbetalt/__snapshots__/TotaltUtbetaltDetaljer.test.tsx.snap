@@ -150,6 +150,10 @@ Array [
   border-color: #0067C5;
 }
 
+.c6 {
+  margin-right: .5rem;
+}
+
 .c0 {
   -webkit-transition: .5s;
   transition: .5s;
@@ -166,10 +170,6 @@ Array [
   transition: .5s;
   padding: 0 1.25rem;
   padding: 0;
-}
-
-.c6 {
-  margin-right: .5rem;
 }
 
 .c2 h2 {

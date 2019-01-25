@@ -8,6 +8,7 @@ import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReduce
 import { Person, PersonRespons } from '../../../../models/person/person';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 function lenkeNorg2Frontend(props: StateProps): string {
     const temakodeTilNorgoppslag = props.valgtSakstema ? byggSøkestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
@@ -56,7 +57,7 @@ function LenkeNorg(props: StateProps) {
             rel={'noopener noreferrer'}
             href={norgUrl}
         >
-            Oversikt over enheter og tema de behandler
+            <Normaltekst>Oversikt over enheter og tema de behandler</Normaltekst>
         </a>
 
     );

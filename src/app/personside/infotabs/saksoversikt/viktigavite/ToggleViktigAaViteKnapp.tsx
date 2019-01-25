@@ -4,7 +4,7 @@ import { AnyAction } from 'redux';
 import { setViktigÅViteÅpen } from '../../../../../redux/saksoversikt/actions';
 import { AppState } from '../../../../../redux/reducers';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 
 interface StateProps {
     valgtSakstema?: Sakstema;
@@ -27,9 +27,11 @@ function ToggleViktigAaViteKnapp(props: Props) {
     const sakstemanavn = props.valgtSakstema && props.valgtSakstema.temanavn;
 
     return (
-        <LenkeKnapp onClick={() => props.setÅpen(!props.åpen)} underline={true}>
-            Viktig å vite om {sakstemanavn}
-        </LenkeKnapp>
+        <EkspanderKnapp
+            open={props.åpen}
+            onClick={() => props.setÅpen(!props.åpen)}
+            tittel={'viktig å vite om ' + sakstemanavn}
+        />
     );
 }
 

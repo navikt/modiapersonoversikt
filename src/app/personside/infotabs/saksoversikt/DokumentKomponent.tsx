@@ -190,7 +190,7 @@ class DokumentKomponent extends React.Component<Props> {
         const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
                 <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                     <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
-                        Åpne i eget vindu
+                        <Normaltekst tag="span">Åpne i eget vindu</Normaltekst>
                     </a>
                 </NyttVinduLenkeStyle>
         );

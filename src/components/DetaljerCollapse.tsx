@@ -3,9 +3,8 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
-import { FlexEnd, LenkeKnapp } from './common-styled-components';
-import NavFrontendChevron from 'nav-frontend-chevron';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { FlexEnd } from './common-styled-components';
+import EkspanderKnapp from './EkspanderKnapp';
 
 interface Props {
     open: boolean;
@@ -28,10 +27,6 @@ const CollapseAnimasjon = styled.div<{ open: boolean }>`
   ${props => props.open && 'padding: 0'};
 `;
 
-const Luft = styled.span`
-  margin-right: .5rem;
-`;
-
 const PaddingRight = styled.div`
   margin-right: ${theme.margin.px20};
 `;
@@ -46,33 +41,11 @@ const SkjulVedPrint = styled.div`
   }
 `;
 
-interface KnappProps {
-    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-    open: boolean;
-    tittel?: string;
-}
-
-function DetaljerKnapp(props: KnappProps) {
-    return (
-        <LenkeKnapp
-            onClick={props.onClick}
-            aria-expanded={props.open}
-        >
-            <Luft>
-                <Normaltekst tag="span">
-                    {props.open ? 'Skjul' : 'Vis'} {props.tittel || 'detaljer'}
-                </Normaltekst>
-            </Luft>
-            <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
-        </LenkeKnapp>
-    );
-}
-
 function DetaljerCollapse(props: Props) {
     const knapp = (
         <SkjulVedPrint>
             <FlexEnd>
-                <DetaljerKnapp
+                <EkspanderKnapp
                     onClick={props.toggle}
                     open={props.open}
                     tittel={props.tittel}

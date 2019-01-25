@@ -7,7 +7,7 @@ import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
-import DetaljerKnapp from '../../infotabs/utbetalinger/utils/DetaljerKnapp';
+import VisMerChevron from '../../../../components/VisMerChevron';
 import theme from '../../../../styles/personOversiktTheme';
 import ToolTip from '../../../../components/tooltip/ToolTip';
 import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
@@ -141,11 +141,11 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                 </HøyreFelt>
 
                 <ChevronStyling>
-                    <DetaljerKnapp onClick={this.toggleVisittkort} open={visittkortApent}>
+                    <VisMerChevron onClick={this.toggleVisittkort} open={visittkortApent}>
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
-                    </DetaljerKnapp>
+                    </VisMerChevron>
                 </ChevronStyling>
                 <IfFeatureToggleOn toggleID="tooltip">
                     {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
