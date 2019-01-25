@@ -4,7 +4,6 @@ import Oversikt from './Oversikt';
 import { getMockPleiepengerettighet } from '../../../../../mock/ytelse/pleiepenger-mock';
 import { aremark } from '../../../../../mock/person/aremark';
 import TestProvider from '../../../../../test/Testprovider';
-import Pleiepenger from './Pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 
@@ -14,14 +13,6 @@ beforeEach(() => {
     Date.prototype.getTime = jest.fn(() => 0);
     Date.parse = jest.fn(() => 0);
     mockPleiepenger = getMockPleiepengerettighet(aremark.fødselsnummer);
-});
-
-test('Om pleiepengeretten matcher snapshot', () => {
-    const resultat = renderer.create(
-        <TestProvider><Pleiepenger pleiepenger={mockPleiepenger}/></TestProvider>
-    );
-
-    expect(resultat.toJSON()).toMatchSnapshot();
 });
 
 test('Om Oversikten i pleiepengeretten matcher snapshot', () => {
