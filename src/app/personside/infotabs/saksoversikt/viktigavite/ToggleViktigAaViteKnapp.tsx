@@ -20,7 +20,7 @@ type Props = StateProps & DispatchProps;
 function ToggleViktigAaViteKnapp(props: Props) {
     const temakoderMedTekst = ['AAP', 'DAG', 'IND'];
 
-    if (!props.valgtSakstema || temakoderMedTekst.indexOf(props.valgtSakstema.temakode) === -1) {
+    if (!props.valgtSakstema || !temakoderMedTekst.includes(props.valgtSakstema.temakode)) {
         return null;
     }
 
