@@ -7,7 +7,7 @@ interface Props {
     tittel: string;
 }
 
-function YtelserBullet(props: Props) {
+function YtelserInfoGruppe(props: Props) {
     return (
         <div>
             <Ingress>{props.tittel}</Ingress>
@@ -16,4 +16,4 @@ function YtelserBullet(props: Props) {
     );
 }
 
-export default YtelserBullet;
+export default YtelserInfoGruppe;

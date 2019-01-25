@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
-import YtelserBullet from '../felles-styling/YtelserBullet';
+import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../felles-styling/DescriptionList';
 import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
@@ -69,10 +69,10 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
 
     return (
         <OversiktStyling>
-            <YtelserBullet tittel="Om pleiepengeretten">
+            <YtelserInfoGruppe tittel="Om pleiepengeretten">
                 <DescriptionList entries={omPleiepengerettenEntries}/>
-            </YtelserBullet>
-            <YtelserBullet tittel="Arbeidssituasjon">
+            </YtelserInfoGruppe>
+            <YtelserInfoGruppe tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
                 <DetaljerCollapse
                     open={visAlleArbeidsforhold}
@@ -84,7 +84,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
                             <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
                     </ArbeidsForholdListeStyle>
                 </DetaljerCollapse>
-            </YtelserBullet>
+            </YtelserInfoGruppe>
         </OversiktStyling>);
 }
 
