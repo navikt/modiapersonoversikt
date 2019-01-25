@@ -23,9 +23,9 @@ export const theme = {
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
     gråttPanel: css`
-        border-radius: ${pxToRem(4)};
-        background-color: #f4f4f4;
-        box-shadow: inset 0 0 0 1px #59514b;
+        border-radius: ${pxToRem(8)};
+        background-color: #e9e7e7;
+        box-shadow: inset 0 0 0 .3rem white;
         padding: ${pxToRem(20)};
     `,
     hvittPanel: css`
@@ -56,7 +56,7 @@ export const theme = {
         knapp: '.35rem;'
     },
     border: {
-        skilleDashed: `dashed ${pxToRem(1)} #b7b1a9;`,
+        skilleDashed: `dotted ${pxToRem(1.5)} #b7b1a9;`,
         skille: `solid ${pxToRem(1)} #b7b1a9;`,
         skilleSvak: `solid ${pxToRem(1)} #c6c2bf;`
     },

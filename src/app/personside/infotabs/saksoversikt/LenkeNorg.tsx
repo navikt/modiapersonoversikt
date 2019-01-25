@@ -57,7 +57,7 @@ function LenkeNorg(props: StateProps) {
             rel={'noopener noreferrer'}
             href={norgUrl}
         >
-            <Normaltekst>Oversikt over enheter og tema</Normaltekst>
+            <Normaltekst>Oversikt over enheter og tema de behandler</Normaltekst>
         </a>
 
     );

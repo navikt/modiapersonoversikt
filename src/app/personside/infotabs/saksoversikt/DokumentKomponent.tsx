@@ -159,7 +159,7 @@ class DokumentKomponent extends React.Component<Props> {
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
         const saksvisning = this.props.sakstemakode === sakstemakodeAlle ?
             (
-                <EtikettGrå>Saksid: {saksid} / Sakstema: {this.props.sakstemanavn}</EtikettGrå>
+                <EtikettGrå>{this.props.sakstemanavn} / Saksid: {saksid}</EtikettGrå>
             ) :
             (
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>

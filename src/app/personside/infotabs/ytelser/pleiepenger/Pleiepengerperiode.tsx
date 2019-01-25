@@ -24,10 +24,18 @@ const PaddingBottom = styled.div`
 
 const VedtaksListe = styled.ul`
   list-style: none;
-  > *:not(:last-child) {
-    border-bottom: ${theme.border.skilleSvak};
-    padding-bottom: 1rem;
+  margin-right: 1rem;
+  li {
+    margin-bottom: ${theme.margin.px20};
   }
+`;
+
+const Flex = styled.div`
+  display: flex;
+`;
+
+const TittelStyling = styled.div`
+  padding: 1rem 0.3rem .5rem;
 `;
 
 function Vedtak({vedtak}: { vedtak: Vedtak }) {
@@ -42,8 +50,10 @@ function Vedtak({vedtak}: { vedtak: Vedtak }) {
 
     return (
         <li>
-            <DescriptionList entries={anvisteUtbetalingerEntries}/>
-            <PaddingBottom/>
+            <GråttPanel>
+                <DescriptionList entries={anvisteUtbetalingerEntries}/>
+                <PaddingBottom/>
+            </GråttPanel>
         </li>
     );
 }
@@ -58,15 +68,19 @@ function Pleiepengerperiode({periode, ...props}: Props) {
 
     return (
         <YtelserPeriode tittel={`Periode ${props.periodeNummer} - ${formaterDato(periode.fom)}`}>
-            <Padding>
-                <DescriptionList entries={entries}/>
-            </Padding>
-            <GråttPanel>
-                <Undertittel>Anviste utbetalinger</Undertittel>
-                <VedtaksListe>
-                    {vedtak}
-                </VedtaksListe>
-            </GråttPanel>
+            <Flex>
+                <Padding>
+                    <DescriptionList entries={entries}/>
+                </Padding>
+                <div>
+                    <TittelStyling>
+                        <Undertittel>Anviste utbetalinger</Undertittel>
+                    </TittelStyling>
+                    <VedtaksListe>
+                        {vedtak}
+                    </VedtaksListe>
+                </div>
+            </Flex>
         </YtelserPeriode>
     );
 }

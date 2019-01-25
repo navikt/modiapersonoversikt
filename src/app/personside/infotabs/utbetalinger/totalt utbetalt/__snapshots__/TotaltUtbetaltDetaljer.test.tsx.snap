@@ -158,9 +158,9 @@ Array [
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem 1.25rem;
-  border-radius: 0.25rem;
-  background-color: #f4f4f4;
-  box-shadow: inset 0 0 0 1px #59514b;
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 .3rem white;
   padding: 1.25rem;
   margin-top: 1.25rem;
 }
