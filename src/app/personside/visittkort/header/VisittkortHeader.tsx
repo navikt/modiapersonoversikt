@@ -141,7 +141,11 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                 </HøyreFelt>
 
                 <ChevronStyling>
-                    <DetaljerKnapp onClick={this.toggleVisittkort} open={visittkortApent}>
+                    <DetaljerKnapp
+                        onClick={this.toggleVisittkort}
+                        open={visittkortApent}
+                        title={(visittkortApent ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    >
                     <span className="visually-hidden">
                         {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
                         </span>
