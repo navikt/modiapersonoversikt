@@ -74,7 +74,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 10108000398
+        Endret 12.12.2005 z9910
       </p>
     </div>
     <div
@@ -186,6 +186,18 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
         Endre kontonummer
       </button>
     </div>
+    <div
+      className="c3"
+    >
+      <button
+        className="knapp knapp--standard"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Slett kontonummer
+      </button>
+    </div>
   </fieldset>
 </form>
 `;
@@ -264,7 +276,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
       <p
         className="typo-etikett-liten"
       >
-        Endret 12.12.2005 10108000398
+        Endret 12.12.2005 z9910
       </p>
     </div>
     <div
@@ -696,6 +708,18 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
         type="submit"
       >
         Endre kontonummer
+      </button>
+    </div>
+    <div
+      className="c3"
+    >
+      <button
+        className="knapp knapp--standard"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Slett kontonummer
       </button>
     </div>
   </fieldset>
