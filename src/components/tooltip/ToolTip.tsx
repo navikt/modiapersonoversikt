@@ -86,7 +86,8 @@ class ToolTip extends React.PureComponent<Props, State> {
     }
 
     dontShowAgain() {
-        Cookies.set(this.getCookieNavn(), 'dontShow');
+        const omEtÅr = moment().add(1, 'year').startOf('day').toDate();
+        Cookies.set(this.getCookieNavn(), 'dontShow', {expires: omEtÅr});
     }
 
     getCookieNavn() {

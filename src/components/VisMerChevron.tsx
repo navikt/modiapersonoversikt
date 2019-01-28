@@ -6,6 +6,7 @@ import NavFrontendChevron from 'nav-frontend-chevron';
 interface Props {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     open: boolean;
+    title?: string;
     children?: React.ReactNode;
 }
 
@@ -22,7 +23,7 @@ const ChevronKnappStyle = styled.button`
 
 function VisMerChevron(props: Props) {
     return (
-        <ChevronKnappStyle onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer">
+        <ChevronKnappStyle onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer" title={props.title}>
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
             {props.children}
         </ChevronKnappStyle>
