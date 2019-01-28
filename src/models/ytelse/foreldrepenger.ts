@@ -24,14 +24,8 @@ export interface Foreldrepengerettighet {
     arbeidsforhold: Arbeidsforhold[];
     erArbeidsgiverperiode: boolean | null;
     arbeidskategori: string | null;
-}
-
-export interface Fødsel extends Foreldrepengerettighet {
-    termin: String;
-}
-
-export interface Adopsjon extends Foreldrepengerettighet {
-    omsorgsovertakelse: String;
+    termin: string | null;
+    omsorgsovertakelse: string | null;
 }
 
 export interface Foreldrepengerperiode {
@@ -66,12 +60,4 @@ export interface Arbeidsforhold {
     sykepengerFom: string | null;
     refusjonTom: string | null;
     refusjonstype: string | null;
-}
-
-export function isAdopsjon(foreldrepengerettighet:  Foreldrepengerettighet): foreldrepengerettighet is Adopsjon {
-    return 'omsorgsovertakelse' in foreldrepengerettighet;
-}
-
-export function isFødsel(foreldrepengerettighet: Foreldrepengerettighet): foreldrepengerettighet is Fødsel {
-    return 'termin' in foreldrepengerettighet;
 }

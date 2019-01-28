@@ -25,8 +25,9 @@ function Oversikt({foreldrePenger}: Props) {
         Termindato: foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt,
         Fødselsdato: foreldrePenger.barnetsFødselsdato && datoVerbose(foreldrePenger.barnetsFødselsdato).sammensatt,
         'Annen forelder': foreldrePenger.andreForeldersFnr,
-        Omsorgsovertakelse: 'Ikke implementert',
-        'Foreldre av samme kjønn': 'Ikke implementert',
+        [foreldrePenger.termin && 'Termindato' || foreldrePenger.omsorgsovertakelse && 'Omsorgsovertagelse' || 'N/A']:
+        foreldrePenger.termin || foreldrePenger.omsorgsovertakelse || 'N/A',
+        'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn ,
         'Antall barn': foreldrePenger.antallBarn
     };
 

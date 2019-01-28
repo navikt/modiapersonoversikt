@@ -49,7 +49,9 @@ export function getForeldrepengerettighetMock(fødselsnummer: string): Foreldrep
         slutt: vektetSjanse(faker, 0.5) ? moment(faker.date.recent()).format(backendDatoformat) : null,
         arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforholdMock(fødselsnummer), 5),
         erArbeidsgiverperiode: vektetSjanse(faker, 0.5) ? faker.random.boolean() : null,
-        arbeidskategori: vektetSjanse(faker, 0.5) ? 'Arbeidstaker' : null
+        arbeidskategori: vektetSjanse(faker, 0.5) ? 'Arbeidstaker' : null,
+        omsorgsovertakelse: null,
+        termin: moment(faker.date.recent()).format(backendDatoformat)
     };
 }
 
