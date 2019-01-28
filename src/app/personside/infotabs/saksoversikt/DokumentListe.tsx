@@ -54,7 +54,7 @@ const InfoOgFilterPanel = styled.section`
     justify-content: space-between;
   }
   > div:last-child {
-    align-content: flex-end;
+    align-items: flex-end;
   }
 `;
 
