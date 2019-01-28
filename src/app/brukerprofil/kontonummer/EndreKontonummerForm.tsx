@@ -38,6 +38,7 @@ import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { Undertekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../utils/FormatertKontonummer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
+import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -77,6 +78,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.tilbakestill = this.tilbakestill.bind(this);
+        this.slettKontonummer = this.slettKontonummer.bind(this);
     }
 
     componentWillUnmount() {
@@ -122,6 +124,10 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 ? person.bankkonto.kontonummer
                 : ''
         };
+    }
+
+    slettKontonummer() {
+        this.props.endreKontonummer(this.props.person.fødselsnummer, {kontonummer: ''});
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -227,6 +233,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     render() {
+        const sletteKnapp =
+            this.props.person.bankkonto && this.props.person.bankkonto.kontonummer && !this.requestIsPending()
+            && (
+                <FormKnapperWrapper>
+                    <KnappMedBekreftPopup
+                        onBekreft={this.slettKontonummer}
+                        popUpTekst="Sikker på at du vil slette kontonummer?"
+                    >
+                        Slett kontonummer
+                    </KnappMedBekreftPopup>
+                </FormKnapperWrapper>
+            );
         const norskEllerUtenlandskKontoRadio = (
             <RadioPanelGruppe
                 radios={this.radioKnappProps()}
@@ -291,6 +309,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     {norskEllerUtenlandskKontoRadio}
                     {kontoInputs}
                     {knapper}
+                    {sletteKnapp}
                     {endreKontonummerRequestTilbakemelding}
                 </FormFieldSet>
             </form>
