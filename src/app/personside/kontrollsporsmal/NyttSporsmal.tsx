@@ -6,7 +6,6 @@ import theme from '../../../styles/personOversiktTheme';
 import { roterKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
 import KnappBase from 'nav-frontend-knapper';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
 
 export interface DispatchProps {
     nyttSpørsmål: () => void;
@@ -42,7 +41,7 @@ class NyttSporsmal extends React.PureComponent<DispatchProps> {
     }
 
     private handleClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Nytt'}, {ident: getSaksbehandlerIdent()});
+        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Nytt'});
         this.props.nyttSpørsmål();
     }
 

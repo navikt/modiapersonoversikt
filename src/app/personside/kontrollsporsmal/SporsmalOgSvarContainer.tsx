@@ -11,7 +11,6 @@ import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
 import { shuffle } from '../../../utils/list-utils';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
 
 interface StateProps {
     personinformasjon: RestReducer<PersonRespons>;
@@ -28,7 +27,7 @@ export type Props = StateProps & DispatchProps;
 class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.setSpørsmål(this.lagSpørsmål());
-        loggEvent('Visning', 'Kontrollsporsmal', undefined, {ident: getSaksbehandlerIdent()});
+        loggEvent('Visning', 'Kontrollsporsmal', undefined);
     }
 
     componentDidUpdate(nextProps: Readonly<Props>) {

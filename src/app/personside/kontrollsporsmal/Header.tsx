@@ -7,7 +7,6 @@ import theme from '../../../styles/personOversiktTheme';
 import { toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
 import Lukknapp from 'nav-frontend-lukknapp';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
 
 interface DispatchProps {
     toggleKontrollSpørsmål: () => void;
@@ -24,6 +23,7 @@ class Header extends React.PureComponent<DispatchProps> {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
     render() {
         return (
             <HeaderStyling>
@@ -40,7 +40,7 @@ class Header extends React.PureComponent<DispatchProps> {
     }
 
     private handleClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Lukk'}, {ident: getSaksbehandlerIdent()});
+        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Lukk'});
         this.props.toggleKontrollSpørsmål();
     }
 }
