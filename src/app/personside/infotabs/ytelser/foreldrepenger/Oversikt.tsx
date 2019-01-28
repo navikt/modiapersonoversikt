@@ -3,7 +3,7 @@ import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepen
 import { utledFraDatoForRettighet, utledMaksDato } from './foreldrePengerUtils';
 import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
 import DescriptionList from '../felles-styling/DescriptionList';
-import YtelserBullet from '../felles-styling/YtelserBullet';
+import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 
 interface Props {
@@ -33,12 +33,12 @@ function Oversikt({foreldrePenger}: Props) {
 
     return (
         <OversiktStyling>
-            <YtelserBullet tittel="Om foreldrepengeretten">
+            <YtelserInfoGruppe tittel="Om foreldrepengeretten">
                 <DescriptionList entries={foreldrePengeRetten}/>
-            </YtelserBullet>
-            <YtelserBullet tittel="Om barnet">
+            </YtelserInfoGruppe>
+            <YtelserInfoGruppe tittel="Om barnet">
                 <DescriptionList entries={barnet}/>
-            </YtelserBullet>
+            </YtelserInfoGruppe>
         </OversiktStyling>
     );
 }
