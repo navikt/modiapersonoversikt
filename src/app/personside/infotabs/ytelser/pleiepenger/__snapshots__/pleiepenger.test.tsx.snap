@@ -98,6 +98,10 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   border-color: #0067C5;
 }
 
+.c7 {
+  margin-right: .5rem;
+}
+
 .c8 {
   -webkit-transition: .5s;
   transition: .5s;
@@ -108,10 +112,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
-}
-
-.c7 {
-  margin-right: .5rem;
 }
 
 .c3 {
