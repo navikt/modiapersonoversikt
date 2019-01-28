@@ -42,7 +42,7 @@ import { EndreAdresseInfomelding } from '../Infomelding';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
-import KnappMedBekreftPopup from './KnappMedBekreftPopup';
+import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';
 
 interface Props {
     veilederRoller: VeilederRoller;

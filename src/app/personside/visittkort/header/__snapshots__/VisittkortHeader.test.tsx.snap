@@ -374,6 +374,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       aria-label="Detaljer"
       className="c13"
       onClick={[Function]}
+      title="Åpne visittkort (Alt + N)"
     >
       <i
         className="nav-frontend-chevron chevronboks chevron--ned"

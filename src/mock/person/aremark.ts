@@ -64,7 +64,7 @@ export const aremark: Person = {
         banknavn: 'Bien sparebank',
         kontonummer: '12345678911',
         sistEndret: '2005-12-12',
-        sistEndretAv: '10108000398',
+        sistEndretAv: 'z9910',
         landkode: {
             kodeRef: 'NOR',
             beskrivelse: 'Norge'
