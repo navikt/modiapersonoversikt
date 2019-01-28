@@ -129,6 +129,10 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   margin: .5rem 0;
 }
 
+.c13 {
+  margin-right: .5rem;
+}
+
 .c8 {
   -webkit-transition: .5s;
   transition: .5s;
@@ -139,10 +143,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
-}
-
-.c13 {
-  margin-right: .5rem;
 }
 
 .c10 {

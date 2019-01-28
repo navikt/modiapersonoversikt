@@ -159,7 +159,7 @@ class DokumentKomponent extends React.Component<Props> {
         const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
         const saksvisning = this.props.sakstemakode === sakstemakodeAlle ?
             (
-                <EtikettGrå>Saksid: {saksid} / Sakstema: {this.props.sakstemanavn}</EtikettGrå>
+                <EtikettGrå>{this.props.sakstemanavn} / Saksid: {saksid}</EtikettGrå>
             ) :
             (
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
@@ -190,7 +190,7 @@ class DokumentKomponent extends React.Component<Props> {
         const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
                 <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                     <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
-                        Åpne i eget vindu
+                        <Normaltekst tag="span">Åpne i eget vindu</Normaltekst>
                     </a>
                 </NyttVinduLenkeStyle>
         );

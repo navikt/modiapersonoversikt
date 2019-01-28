@@ -146,6 +146,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   border-color: #0067C5;
 }
 
+.c19 {
+  margin-right: .5rem;
+}
+
 .c20 {
   -webkit-transition: .5s;
   transition: .5s;
@@ -156,10 +160,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-transition: .5s;
   transition: .5s;
   padding: 0 1.25rem;
-}
-
-.c19 {
-  margin-right: .5rem;
 }
 
 .c16 {
