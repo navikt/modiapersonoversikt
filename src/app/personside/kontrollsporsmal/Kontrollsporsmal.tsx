@@ -7,6 +7,7 @@ import NesteSporsmal from './NyttSporsmal';
 import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
+import IfFeatureToggleOn from '../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -28,15 +29,17 @@ class Kontrollsporsmal extends React.PureComponent<StateProps> {
         }
 
         return (
-            <KontrollSporsmalStyling
-                role="region"
-                aria-label="Visittkort-hode"
-            >
-                <Header/>
-                <SpørsmålOgSvar/>
-                <NesteSporsmal/>
-                <HandleKontrollSporsmalHotkeys/>
-            </KontrollSporsmalStyling>
+            <IfFeatureToggleOn toggleID={'kontrollsporsmal'}>
+                <KontrollSporsmalStyling
+                    role="region"
+                    aria-label="Visittkort-hode"
+                >
+                    <Header/>
+                    <SpørsmålOgSvar/>
+                    <NesteSporsmal/>
+                    <HandleKontrollSporsmalHotkeys/>
+                </KontrollSporsmalStyling>
+            </IfFeatureToggleOn>
         );
     }
 
