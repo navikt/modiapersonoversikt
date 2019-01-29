@@ -67,6 +67,19 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 
+    const tidligereArbeidsforholdCollapse = tidligereArbeidsforhold.length > 0 && (
+        <DetaljerCollapse
+            open={visAlleArbeidsforhold}
+            toggle={toggleVisAlleArbeidsforhold}
+            tittel="alle arbeidsforhold"
+        >
+            <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
+                {tidligereArbeidsforhold.map((arbForhold, index) =>
+                    <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
+            </ArbeidsForholdListeStyle>
+        </DetaljerCollapse>
+    );
+
     return (
         <OversiktStyling>
             <YtelserInfoGruppe tittel="Om pleiepengeretten">
@@ -74,16 +87,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
-                <DetaljerCollapse
-                    open={visAlleArbeidsforhold}
-                    toggle={toggleVisAlleArbeidsforhold}
-                    tittel="alle arbeidsforhold"
-                >
-                    <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
-                        {tidligereArbeidsforhold.map((arbForhold, index) =>
-                            <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
-                    </ArbeidsForholdListeStyle>
-                </DetaljerCollapse>
+                {tidligereArbeidsforholdCollapse}
             </YtelserInfoGruppe>
         </OversiktStyling>);
 }
