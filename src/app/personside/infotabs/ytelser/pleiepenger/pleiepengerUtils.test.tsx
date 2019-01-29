@@ -9,7 +9,6 @@ import Pleiepenger from './Pleiepenger';
 import { mount } from 'enzyme';
 import * as React from 'react';
 import TestProvider from '../../../../../test/Testprovider';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 const mockpleiepengeRettighet = getMockPleiepengerettighet('10108000398');
 const mockPeriode = mockpleiepengeRettighet.perioder[0];
