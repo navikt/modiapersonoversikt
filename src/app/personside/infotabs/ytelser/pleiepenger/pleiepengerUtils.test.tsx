@@ -5,6 +5,11 @@ import {
     getSistePeriodeForPleiepengerettighet,
     getSisteVedtakForPleiepengerettighet, sorterArbeidsforholdEtterRefusjonTom
 } from './pleiepengerUtils';
+import Pleiepenger from './Pleiepenger';
+import { mount } from 'enzyme';
+import * as React from 'react';
+import TestProvider from '../../../../../test/Testprovider';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 const mockpleiepengeRettighet = getMockPleiepengerettighet('10108000398');
 const mockPeriode = mockpleiepengeRettighet.perioder[0];
@@ -47,16 +52,31 @@ const testRettighet: Pleiepengerettighet = {
     }],
 };
 
-test('get siste periode fra pleiepengerettighet', () => {
+test('get siste periode fra pleiepengerettighet returner', () => {
     const pleiepengePeriode = getSistePeriodeForPleiepengerettighet(testRettighet);
 
+    // @ts-ignore
     expect(pleiepengePeriode.fom).toEqual('2010-01-01');
 });
 
 test('get siste vedtak fra pleiepengerettighet', () => {
     const vedtak = getSisteVedtakForPleiepengerettighet(testRettighet);
 
+    // @ts-ignore
     expect(vedtak.periode).toEqual({fom: '2010-01-01', tom: '2011-01-01'});
+});
+
+test('get siste vedtak fra pleiepengerettighet returnerer undefined dersom ingen vedtak finnes', () => {
+    const testRettighetUtenVedtak: Pleiepengerettighet = {
+        ...testRettighet,
+        perioder: [{
+            ...testRettighet.perioder[0],
+            vedtak: []
+        }]
+    };
+    const vedtak = getSisteVedtakForPleiepengerettighet(testRettighetUtenVedtak);
+
+    expect(vedtak).toBe(undefined);
 });
 
 describe('arbeidsforhold i pleiepengerettighet', () => {
@@ -103,4 +123,18 @@ describe('arbeidsforhold i pleiepengerettighet', () => {
 
         expect(sortert[0].refusjonTom).toEqual('2012-01-01');
     });
+});
+
+test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
+    const testRettighetUtenArbeidsforhold: Pleiepengerettighet = {
+        ...testRettighet,
+        perioder: [{
+            ...testRettighet.perioder[0],
+            arbeidsforhold: []
+        }]
+    };
+
+    const result = mount(<TestProvider><Pleiepenger pleiepenger={testRettighetUtenArbeidsforhold}/></TestProvider>);
+
+    expect(result.html()).toContain('Kunne ikke finne arbeidsforhold');
 });

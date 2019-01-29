@@ -60,9 +60,9 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
     const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = getAlleArbiedsforholdSortert(pleiepenger);
 
     const omPleiepengerettenEntries = {
-        'Fra og med': formaterDato(gjeldeneVedtak.periode.fom),
-        'Til og med': formaterDato(gjeldeneVedtak.periode.tom),
-        Pleiepengegrad: gjeldeneVedtak.pleiepengegrad + '%',
+        'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
+        'Til og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.tom) : '',
+        Pleiepengegrad: gjeldeneVedtak ? gjeldeneVedtak.pleiepengegrad + '%' : '',
         ['Barnet (' + kjønn + ')']: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };

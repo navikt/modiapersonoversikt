@@ -6,14 +6,18 @@ import {
 } from '../../../../../models/ytelse/pleiepenger';
 import { genericAscendingDateComparator } from '../../../../../utils/dateUtils';
 
-export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode {
+export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode | undefined {
     return pleiepenger.perioder
         .sort(genericAscendingDateComparator(p => p.fom))
         .reverse()[0];
 }
 
-export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Vedtak {
-    return getSistePeriodeForPleiepengerettighet(pleiepenger).vedtak
+export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Vedtak | undefined {
+    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepenger);
+    if (!sistePeriodeForPleiepengerettighet) {
+        return undefined;
+    }
+    return sistePeriodeForPleiepengerettighet.vedtak
         .sort(genericAscendingDateComparator(vedtak => vedtak.periode.fom))
         .reverse()[0];
 }
