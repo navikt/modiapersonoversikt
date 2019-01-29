@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { LayoutWrapper } from './MainLayoutStyles';
 import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
+import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 
 interface StateProps {
     UI: UIState;
@@ -27,6 +28,7 @@ class MainLayout extends React.Component<Props> {
         return (
             <LayoutWrapper role="main">
                 <VenstreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
+                    <Kontrollsporsmal/>
                     <Visittkort/>
                     <InfoTabsContainer/>
                 </VenstreKolonne>

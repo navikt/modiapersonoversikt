@@ -7,6 +7,8 @@ import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
 import { featureToggleReducer, FeatureToggleState } from './featureToggle/featureToggleReducer';
+import { KontrollSpørsmålState } from './restReducers/kontrollSporsmal/types';
+import kontrollspørsmålReducer from './restReducers/kontrollSporsmal/reducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -16,6 +18,7 @@ export interface AppState {
     saksoversikt: SaksoversikState;
     pleiepenger: PleiepengerState;
     featureToggle: FeatureToggleState;
+    kontrollSpørsmål: KontrollSpørsmålState;
 }
 
 export default combineReducers<AppState>({
@@ -25,5 +28,6 @@ export default combineReducers<AppState>({
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
     pleiepenger: pleiepengerReducer,
-    featureToggle: featureToggleReducer
+    featureToggle: featureToggleReducer,
+    kontrollSpørsmål: kontrollspørsmålReducer
 });
