@@ -6,7 +6,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
 import { ValideringsResultat } from '../../../../../utils/forms/FormValidator';
-import { default as Datovelger, tilPeriode } from '../../../../../components/forms/Datovelger';
+import BrukerProfilDatovelger, { tilPeriode } from '../../../../../components/forms/BrukerProfilDatovelger';
 
 interface Props {
     onChange: (matrikkeladresse: Matrikkeladresse) => void;
@@ -48,7 +48,7 @@ function MatrikkeladresseForm(props: Props) {
                 onChange={onPostinformasjonChange(props)}
                 feil={props.validering.felter.postnummer.skjemafeil}
             />
-            <Datovelger
+            <BrukerProfilDatovelger
                 id={'postboksadresse-gyldig-til'}
                 onChange={(date: Date) => props.onChange({...matrikkeladresse, periode: tilPeriode(date)})}
                 dato={gyldigTil}
@@ -56,7 +56,7 @@ function MatrikkeladresseForm(props: Props) {
                 feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
             >
                 Gyldig til
-            </Datovelger>
+            </BrukerProfilDatovelger>
         </>
     );
 }

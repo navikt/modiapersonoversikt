@@ -7,7 +7,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { Postboksadresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';
 import { AdresseFormInput } from '../MidlertidigAdresseNorge';
-import Datovelger, { tilPeriode } from '../../../../../components/forms/Datovelger';
+import BrukerProfilDatovelger, { tilPeriode } from '../../../../../components/forms/BrukerProfilDatovelger';
 
 interface Props {
     onChange: (postboksadresse: Postboksadresse) => void;
@@ -63,7 +63,7 @@ function PostboksadresseForm(props: Props) {
                 feil={props.input.validering.felter.postnummer.skjemafeil}
             />
 
-            <Datovelger
+            <BrukerProfilDatovelger
                 id={'postboksadresse-gyldig-til'}
                 onChange={(date: Date) => props.onChange({...postboksadresse, periode: tilPeriode(date)})}
                 dato={gyldigTil}
@@ -72,7 +72,7 @@ function PostboksadresseForm(props: Props) {
                     props.input.validering.felter.periode.skjemafeil : undefined}
             >
                 Gyldig til
-            </Datovelger>
+            </BrukerProfilDatovelger>
         </>
     );
 }

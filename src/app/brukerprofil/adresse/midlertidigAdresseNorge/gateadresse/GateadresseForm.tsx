@@ -6,7 +6,7 @@ import Input from 'nav-frontend-skjema/lib/input';
 import { default as PoststedVelger, PoststedInformasjon } from '../../common/PoststedVelger';
 import { Gateadresse } from '../../../../../models/personadresse';
 import { AdresseFormInput } from '../MidlertidigAdresseNorge';
-import Datovelger, { tilPeriode } from '../../../../../components/forms/Datovelger';
+import BrukerProfilDatovelger, { tilPeriode } from '../../../../../components/forms/BrukerProfilDatovelger';
 
 interface Props {
     onChange: (gateadresse: Gateadresse) => void;
@@ -76,7 +76,7 @@ function GateadresseForm(props: Props) {
                 onChange={onPostinformasjonChange(props)}
                 feil={validering.felter.postnummer.skjemafeil}
             />
-            <Datovelger
+            <BrukerProfilDatovelger
                 dato={adresseGyldigTil}
                 id={'gateform-datovelger'}
                 innenEtÅr={true}
@@ -84,7 +84,7 @@ function GateadresseForm(props: Props) {
                 feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}
             >
                 Gyldig til
-            </Datovelger>
+            </BrukerProfilDatovelger>
         </>
     );
 }
