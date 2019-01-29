@@ -12,6 +12,8 @@ import { hentPleiepenger } from '../../../redux/restReducers/ytelser/pleiepenger
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pleiepenger';
+import { FlexCenter } from '../../common-styled-components';
+import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -30,6 +32,11 @@ type Props = OwnProps & StateProps & DispatchProps;
 
 const Margin = styled.div`
   margin: .5em;
+`;
+
+const Style = styled.div`
+  ${theme.hvittPanel};
+  max-width: ${pxToRem(900)};
 `;
 
 const onPending = (
@@ -72,7 +79,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne pleiepengerettighet for barnet</AlertStripeInfo>;
         }
 
-        return <Pleiepenger pleiepenger={aktuellRettighet}/>;
+        return <FlexCenter><Style><Pleiepenger pleiepenger={aktuellRettighet}/></Style></FlexCenter>;
     }
 
     render() {
