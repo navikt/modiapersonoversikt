@@ -13,20 +13,17 @@ interface Props {
 const SporsmalOgSvarStyling = styled.div`
   display: flex;
   margin: ${theme.margin.px10};
-  flex-flow: row wrap;
+  flex-wrap: wrap;
 `;
 
 const SpørsmålTekst = styled.div`
-  text-align: left;
   flex-flow: row;
   padding-left: ${theme.margin.px20};
-  flex: 1.5;
+  flex-grow: 1.5;
 `;
 
 const OpplysningTekstStyling = styled.div`
-  text-align: left;
   display: flex;
-  flex-flow: row;
   flex: 1 1;
   padding-right: ${theme.margin.px20};
   border-right: dashed 0.0625rem #b7b1a9;
@@ -49,7 +46,6 @@ const Feilmelding = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  flex-flow: row;
   svg {
     height: ${theme.margin.px30};
     width: auto;
@@ -60,18 +56,7 @@ const Feilmelding = styled.div`
 class SpørsmålOgSvar extends React.PureComponent<Props> {
 
     render() {
-        let svar;
-        if (this.props.spørsmål.svar instanceof Array) {
-            svar = this.props.spørsmål.svar.map(enkeltSvar => {
-                return (
-                    <Normaltekst key={enkeltSvar}>
-                        {enkeltSvar}
-                    </Normaltekst>
-                );
-            });
-        } else {
-            svar = <Normaltekst>{this.props.spørsmål.svar}</Normaltekst>;
-        }
+        const svar = getSvar(this.props.spørsmål);
 
         return (
             <SporsmalOgSvarStyling>
@@ -90,9 +75,23 @@ class SpørsmålOgSvar extends React.PureComponent<Props> {
             </SporsmalOgSvarStyling>
         );
     }
+
 }
 
-export function getFeilTekst() {
+function getSvar(spørsmål: Spørsmål) {
+    if (spørsmål.svar instanceof Array) {
+        return spørsmål.svar.map(enkeltSvar => {
+            return (
+                <Normaltekst key={enkeltSvar}>
+                    {enkeltSvar}
+                </Normaltekst>
+            );
+        });
+    }
+    return <Normaltekst>{spørsmål.svar}</Normaltekst>;
+}
+
+export function FeilTekst() {
     return (
         <Feilmelding>
             <UtropstegnPlain/>
@@ -104,12 +103,8 @@ export function getFeilTekst() {
 }
 
 function OpplysningsTekst() {
-    const tekst = (
-        <>
-            For din egen sikkerhet må jeg stille deg noen spørsmål slik
-            at jeg er sikker på at jeg snakker med riktig person.
-        </>
-    );
+    const tekst = 'For din egen sikkerhet må jeg stille deg noen spørsmål slik at jeg er sikker på at jeg snakker ' +
+        'med riktig person.';
     return (
         <OpplysningTekstStyling>
             <Normaltekst>

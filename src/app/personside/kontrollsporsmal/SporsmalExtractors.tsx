@@ -79,7 +79,7 @@ export function hentFødselsdatoBarn(person: Person) {
         .filter(barn => !barn.tilPerson.diskresjonskode)
         .filter(barn => !erDød(barn.tilPerson.personstatus))
         .map(barn => hentNavnOgFødselsdato(barn))
-        .reduce((prev, current) => prev + (prev !== '' ? '\n' : '') + current, '');
+        .reduce((acc, current) => acc + (acc !== '' ? '\n' : '') + current, '');
 }
 
 function hentNavnOgFødselsdato(barn: Familierelasjon): string {
@@ -209,7 +209,7 @@ export function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse)
 }
 
 function hentAdresselinjer(adresse: Utlandsadresse) {
-    return adresse.adresselinjer.reduce((prev, current) => prev + (prev !== '' ? '\n' : '')  + current, '');
+    return adresse.adresselinjer.reduce((acc, current) => acc + (acc !== '' ? '\n' : '')  + current, '');
 }
 
 export function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {

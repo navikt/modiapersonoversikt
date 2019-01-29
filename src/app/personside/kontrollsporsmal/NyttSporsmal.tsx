@@ -30,7 +30,6 @@ class NyttSporsmal extends React.PureComponent<DispatchProps> {
         return (
             <NyttSpørsmålStyling>
                 <KnappBase
-                    id="nyttKontrollsporsmalKnapp"
                     type="standard"
                     onClick={this.handleClick}
                 >

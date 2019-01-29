@@ -9,8 +9,7 @@ function reducer(state: KontrollSpørsmålState = initState, action: Actions): K
             };
         case ActionTypes.Roter:
             if (state.spørsmål) {
-                const nySpørsmål = state.spørsmål.slice(1, state.spørsmål.length);
-                nySpørsmål.push(state.spørsmål[0]);
+                const nySpørsmål = [...state.spørsmål.slice(1, state.spørsmål.length), state.spørsmål[0]];
                 return {
                     ...state,
                     spørsmål: nySpørsmål

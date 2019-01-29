@@ -21,7 +21,7 @@ import { Diskresjonskoder } from '../../../konstanter';
 
 describe('formaterGateAdresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
-            const gateAdresse = hentGateAdresse();
+            const gateAdresse = lagMockGateAdresse();
             const korrektFormattering =
                 '09.11.2016 - 31.10.2017\n' +
                 'tilleggsadresse\n' +
@@ -36,11 +36,14 @@ describe('formaterGateAdresse', () => {
     );
 
     it('Gir riktig formattert, mangler tilleggsadresse, bolignummer, periode og husbokstav', () => {
-        const gateAdresse = hentGateAdresse();
-        gateAdresse.tilleggsadresse = undefined;
-        gateAdresse.bolignummer = undefined;
-        gateAdresse.periode = undefined;
-        gateAdresse.husbokstav = undefined;
+        const gateAdresse = {
+            ...lagMockGateAdresse(),
+            tilleggsadresse: undefined,
+            bolignummer: undefined,
+            periode: undefined,
+            husbokstav: undefined
+        };
+
         const korrektFormattering =
             'gatenavn husnummer\n' +
             'postnummer poststed';
@@ -53,7 +56,7 @@ describe('formaterGateAdresse', () => {
 
 describe('formaterMatrikkeladresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
-        const matrikkelAdresse = hentMatrikkeladresse();
+        const matrikkelAdresse = lagMockMatrikkelAdresse();
         const korrektFormattering =
             '09.11.2016 - 31.10.2017\n' +
             'tilleggsadresse\n' +
@@ -66,7 +69,12 @@ describe('formaterMatrikkeladresse', () => {
     });
 
     it('Gir riktig formattert adresse, mangler tilleggsadresse, eiendomsnavn og periode', () => {
-        const matrikkeladresse = hentMatrikkeladresse();
+        const matrikkeladresse = {
+            ...lagMockMatrikkelAdresse(),
+            tilleggsadresse: undefined,
+            eiendomsnavn: undefined,
+            periode: undefined
+        };
         matrikkeladresse.tilleggsadresse = undefined;
         matrikkeladresse.eiendomsnavn = undefined;
         matrikkeladresse.periode = undefined;
@@ -81,7 +89,7 @@ describe('formaterMatrikkeladresse', () => {
 
 describe('formatterPostboksadresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
-        const postboksadresse = hentPostboksadresse();
+        const postboksadresse = lagMockPostboksAdresse();
         const korrektFormattering =
             '09.11.2016 - 31.10.2017\n' +
             'tilleggsadresse\n' +
@@ -94,10 +102,13 @@ describe('formatterPostboksadresse', () => {
     });
 
     it('Gir riktig formattert, mangler tilleggsadresse, postboksanlegg og periode', () => {
-        const postboksAdresse = hentPostboksadresse();
-        postboksAdresse.tilleggsadresse = undefined;
-        postboksAdresse.postboksanlegg = undefined;
-        postboksAdresse.periode = undefined;
+        const postboksAdresse = {
+            ...lagMockPostboksAdresse(),
+            tilleggsadresse: undefined,
+            postboksanlegg: undefined,
+            periode: undefined
+        };
+
         const korrektFormattering =
             'Postboksnummer postboksnummer\n' +
             'postnummer poststed';
@@ -110,7 +121,7 @@ describe('formatterPostboksadresse', () => {
 
 describe('formatterUtenlandsadresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
-        const utenlandsAdresse = hentUtenlandsadresse();
+        const utenlandsAdresse = lagMockUtenlandskadresse();
         const korrektFormattering =
             '09.11.2016 - 31.10.2017\n' +
             'linje 1\n' +
@@ -151,8 +162,13 @@ describe('hentGiftedato', () => {
     const GIFTEDATO = '11.11.2011';
 
     it('Gir tom hvis person ikke sivilstand gift', () => {
-        let person = hentGiftPerson();
-        person.sivilstand.kodeRef = SivilstandTyper.Enke;
+        let person = {
+            ...lagMockGiftPerson(),
+            sivilstand: {
+                ...lagMockGiftPerson().sivilstand,
+                kodeRef: SivilstandTyper.Enke
+            }
+        };
         const korrektTekst = '';
 
         const tekst = hentGiftedato(person);
@@ -161,8 +177,13 @@ describe('hentGiftedato', () => {
     });
 
     it('Gir tom dato hvis TPS nulldato', () => {
-        let person = hentGiftPerson();
-        person.sivilstand.fraOgMed = '9999-01-01';
+        let person = {
+            ...lagMockGiftPerson(),
+            sivilstand: {
+                ...lagMockGiftPerson().sivilstand,
+                fraOgMed: '9999-01-01'
+            }
+        };
         const korrektTekst = '';
 
         const tekst = hentGiftedato(person);
@@ -171,7 +192,7 @@ describe('hentGiftedato', () => {
     });
 
     it('Gir tomt navn hvis ikke partner navn', () => {
-        let person = hentGiftPerson();
+        let person = lagMockGiftPerson();
         person.familierelasjoner[0].tilPerson.navn = null;
         const korrektTekst = GIFTEDATO;
 
@@ -181,7 +202,7 @@ describe('hentGiftedato', () => {
     });
 
     it('Gir tom dato hvis partner har diskresjonskode', () => {
-        let person = hentGiftPerson();
+        let person = lagMockGiftPerson();
         person.familierelasjoner[0].tilPerson.diskresjonskode = {
             kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
             beskrivelse: 'ubrukt'
@@ -198,12 +219,12 @@ describe('hentFødselsdatoBarn', () => {
     it('Filtrerer ut: barn over 21, ikke samme bosted, har diskresjonskode og er død', () => {
         let person = aremark;
         person.familierelasjoner = [
-            hentBarn(),
-            hentBarn(),
-            hentBarnOver21(),
-            hentBarnAnnetBosted(),
-            hentBarnDiskresjonskode(),
-            hentBarnDød()
+            lagMockBarn(),
+            lagMockBarn(),
+            lagMockBarnOver21(),
+            lagMockBarnAnnetBosted(),
+            lagMockBarnDiskresjonskode(),
+            LagMockBarnDød()
         ];
 
         const tekst = hentFødselsdatoBarn(person);
@@ -222,7 +243,7 @@ describe('hentFødselsdatoBarn', () => {
     });
 });
 
-function hentGateAdresse(): Gateadresse {
+function lagMockGateAdresse(): Gateadresse {
     return {
         tilleggsadresse: 'tilleggsadresse',
         gatenavn: 'gatenavn',
@@ -238,7 +259,7 @@ function hentGateAdresse(): Gateadresse {
     };
 }
 
-function hentMatrikkeladresse(): Matrikkeladresse {
+function lagMockMatrikkelAdresse(): Matrikkeladresse {
     return {
         tilleggsadresse: 'tilleggsadresse',
         eiendomsnavn: 'eiendomsnavn',
@@ -252,7 +273,7 @@ function hentMatrikkeladresse(): Matrikkeladresse {
 
 }
 
-function hentPostboksadresse(): Postboksadresse {
+function lagMockPostboksAdresse(): Postboksadresse {
     return {
         postboksnummer: 'postboksnummer',
         postnummer: 'postnummer',
@@ -266,7 +287,7 @@ function hentPostboksadresse(): Postboksadresse {
     };
 }
 
-function hentUtenlandsadresse(): Utlandsadresse {
+function lagMockUtenlandskadresse(): Utlandsadresse {
     return {
         landkode: {
             kodeRef: 'landkodeRef',
@@ -284,7 +305,7 @@ function hentUtenlandsadresse(): Utlandsadresse {
     };
 }
 
-function hentGiftPerson(): Person {
+function lagMockGiftPerson(): Person {
     let person = aremark;
 
     person.sivilstand = {
@@ -310,7 +331,7 @@ function hentGiftPerson(): Person {
     return person;
 }
 
-function hentBarn(): Familierelasjon {
+function lagMockBarn(): Familierelasjon {
     return {
         rolle: Relasjonstype.Barn,
         harSammeBosted: true,
@@ -328,20 +349,20 @@ function hentBarn(): Familierelasjon {
     };
 }
 
-function hentBarnOver21(): Familierelasjon {
-    let barn = hentBarn();
+function lagMockBarnOver21(): Familierelasjon {
+    let barn = lagMockBarn();
     barn.tilPerson.alder = 22;
     return barn;
 }
 
-function hentBarnAnnetBosted() {
-    let barn = hentBarn();
+function lagMockBarnAnnetBosted() {
+    let barn = lagMockBarn();
     barn.harSammeBosted = false;
     return barn;
 }
 
-function hentBarnDiskresjonskode() {
-    let barn = hentBarn();
+function lagMockBarnDiskresjonskode() {
+    let barn = lagMockBarn();
     barn.tilPerson.diskresjonskode = {
         kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
         beskrivelse: 'Sperret adresse, fortrolig'
@@ -349,8 +370,8 @@ function hentBarnDiskresjonskode() {
     return barn;
 }
 
-function hentBarnDød() {
-    let barn = hentBarn();
+function LagMockBarnDød() {
+    let barn = lagMockBarn();
     barn.tilPerson.personstatus.dødsdato = '2001-01-01';
     return barn;
 }

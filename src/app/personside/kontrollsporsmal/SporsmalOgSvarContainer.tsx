@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { KontrollSpørsmålState, Spørsmål } from '../../../redux/restReducers/kontrollSporsmal/types';
 import { AppState } from '../../../redux/reducers';
-import SpørsmålOgSvar, { getFeilTekst } from './SporsmalOgSvar';
+import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { setKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
@@ -34,17 +34,7 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
         this.oppdaterSpørsmål();
     }
 
-    render() {
-        if (!this.props.kontrollSpørsmål.spørsmål || this.props.kontrollSpørsmål.spørsmål.length === 0) {
-            return getFeilTekst();
-        }
-
-        return (
-            <SpørsmålOgSvar spørsmål={this.props.kontrollSpørsmål.spørsmål[0]}/>
-        );
-    }
-
-    private oppdaterSpørsmål() {
+    oppdaterSpørsmål() {
         const spørsmål = this.lagSpørsmål();
         const nyeEllerEndredeSpørsmål = spørsmål.filter(spm => !this.spørsmålEksisterer(spm));
         if (nyeEllerEndredeSpørsmål.length > 0) {
@@ -53,7 +43,7 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
 
     }
 
-    private lagSpørsmål(): Spørsmål[] {
+    lagSpørsmål(): Spørsmål[] {
         let spørsmål: Spørsmål[] = [];
 
         spørsmål = spørsmål.concat(extractSpørsmål(this.props.personinformasjon, personInformasjonSpørsmål));
@@ -64,12 +54,20 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
         return spørsmål;
     }
 
-    private spørsmålEksisterer(spørsmål: Spørsmål) {
+    spørsmålEksisterer(spørsmål: Spørsmål) {
         if (this.props.kontrollSpørsmål.spørsmål) {
             return this.props.kontrollSpørsmål.spørsmål.some(stateSpm =>
                 erSpørsmålLike(stateSpm, spørsmål));
         }
         return false;
+    }
+
+    render() {
+        if (!this.props.kontrollSpørsmål.spørsmål || this.props.kontrollSpørsmål.spørsmål.length === 0) {
+            return <FeilTekst/>;
+        }
+
+        return <SpørsmålOgSvar spørsmål={this.props.kontrollSpørsmål.spørsmål[0]}/>;
     }
 }
 

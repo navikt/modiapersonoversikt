@@ -14,8 +14,7 @@ interface StateProps {
 }
 
 const KontrollSporsmalStyling = styled.section`
-  background-color: white;
-  border-radius: ${theme.borderRadius.layout};
+  ${theme.hvittPanel};
   padding: ${theme.margin.px10};
   margin-bottom: .5rem;
   position: relative;

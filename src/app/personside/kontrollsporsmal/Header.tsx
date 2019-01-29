@@ -16,6 +16,7 @@ const HeaderStyling = styled.div`
   display: flex;
   flex-flow: row wrap;
   margin: ${theme.margin.px10};
+  justify-content: space-between;
 `;
 
 class Header extends React.PureComponent<DispatchProps> {
@@ -31,7 +32,6 @@ class Header extends React.PureComponent<DispatchProps> {
                 <Lukknapp
                     ariaLabel={'Skjul kontrollspørsmål'}
                     onClick={this.handleClick}
-                    overstHjorne={true}
                 >
                     Skjul kontrollspørsmål
                 </Lukknapp>
