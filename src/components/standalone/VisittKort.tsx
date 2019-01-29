@@ -8,6 +8,7 @@ import VisittkortLaster from './VisittKortLaster';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
+import Kontrollsporsmal from '../../app/personside/kontrollsporsmal/Kontrollsporsmal';
 
 interface Props {
     fødselsnummer: string;
@@ -28,7 +29,10 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
+                    <>
+                        <Kontrollsporsmal/>
+                        <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
+                    </>
                 </Provider>
             </ErrorBoundary>
         );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavDatovelger, { Avgrensninger } from 'nav-datovelger';
+import { Avgrensninger } from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { formaterTilISO8601Date } from '../../utils/dateUtils';
 import { Feilmelding } from '../../utils/Feilmelding';
@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import * as moment from 'moment';
 import { loggEvent } from '../../utils/frontendLogger';
+import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 
 interface Props {
     dato: Date | undefined;
@@ -40,7 +41,7 @@ const avgrensninger: Avgrensninger = {
     maksDato: omEtÅr
 };
 
-export default function Datovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
+export default function BrukerProfilDatovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
 
     function handleomEtÅrHurtigvalg(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
@@ -52,11 +53,13 @@ export default function Datovelger({dato, id, onChange, feil, children, innenEt�
         <>
             <label htmlFor={id} className={'skjemaelement__label'}>{children}</label>
             <Wrapper>
-                <NavDatovelger
+                <Datovelger
+                    input={{id: id, name: 'Datovelger'}}
+                    visÅrVelger={true}
                     dato={dato}
+                    onChange={onChange}
                     id={id}
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
-                    onChange={onChange}
                 />
                 <KnappBase type="standard" mini={true} onClick={handleomEtÅrHurtigvalg}>Om et år</KnappBase>
             </Wrapper>
