@@ -27,15 +27,15 @@ const OpplysningTekstStyling = styled.div`
   flex: 1 1;
   padding-right: ${theme.margin.px20};
   border-right: dashed 0.0625rem #b7b1a9;
-
 `;
 
 const SvarKolonneStyling = styled.div`
   display: flex;
- > * {
-    margin-right: ${theme.margin.px50};
-    white-space: pre;
-  }
+`;
+
+const KolonneStyling = styled.div`
+  margin-right: ${theme.margin.px50};
+  white-space: pre;
 `;
 
 const Luft = styled.div`
@@ -82,9 +82,11 @@ function getSvar(spørsmål: Spørsmål) {
     if (spørsmål.svar instanceof Array) {
         return spørsmål.svar.map(enkeltSvar => {
             return (
-                <Normaltekst key={enkeltSvar}>
-                    {enkeltSvar}
-                </Normaltekst>
+                <KolonneStyling key={enkeltSvar}>
+                    <Normaltekst>
+                        {enkeltSvar}
+                    </Normaltekst>
+                </KolonneStyling>
             );
         });
     }
