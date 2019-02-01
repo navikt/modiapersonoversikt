@@ -36,14 +36,14 @@ test('Finn maksdato fra foreldrepengerettighet', () => {
             kommendeUtbetalinger: [{
                 ...randomForeldrepengerettighetPeriode.kommendeUtbetalinger[0],
                 vedtak: {
-                    fra: '2011-01-01',
-                    til: '2012-01-01'
+                    'fra': '2011-01-01',
+                    'til': '2012-01-01'
                 }
             }, {
                 ...randomForeldrepengerettighetPeriode.kommendeUtbetalinger[0],
                 vedtak: {
-                    fra: '2009-01-01',
-                    til: '2010-01-01'
+                    'fra': '2009-01-01',
+                    'til': '2010-01-01'
                 }
             }]
         }]

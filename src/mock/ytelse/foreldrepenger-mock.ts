@@ -25,7 +25,7 @@ export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerRes
     }
 
     return {
-        foreldrepenger: fyllRandomListe<Foreldrepengerettighet>( () => getForeldrepengerettighetMock(fødselsnummer), 5)
+        foreldrepenger: fyllRandomListe<Foreldrepengerettighet>( () => getForeldrepengerettighetMock(fødselsnummer), 2)
 
     };
 }
