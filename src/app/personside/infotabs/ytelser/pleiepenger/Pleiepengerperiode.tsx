@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Pleiepengeperiode, Vedtak } from '../../../../../models/ytelse/pleiepenger';
+import { Pleiepengeperiode, Vedtak as VedtakInterface } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { GråttPanel } from '../../../../../components/common-styled-components';
@@ -38,7 +38,7 @@ const TittelStyling = styled.div`
   padding: 1rem 0.3rem .5rem;
 `;
 
-function Vedtak({vedtak}: { vedtak: Vedtak }) {
+function Vedtak({vedtak}: { vedtak: VedtakInterface }) {
     const anvisteUtbetalingerEntries = {
         'Fra og med dato': formaterDato(vedtak.periode.fom),
         'Til og med dato': formaterDato(vedtak.periode.tom),

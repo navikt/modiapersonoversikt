@@ -44,7 +44,7 @@ import FeatureToggle from './redux/featureToggle/FeatureToggle';
 
 configure({adapter: new EnzymeReactAdapter()});
 
-// tslint:disable-next-line
+// @ts-ignore
 const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
@@ -56,7 +56,7 @@ JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 FeatureToggle.prototype.actualRender = FeatureToggle.prototype.render;
 FeatureToggle.prototype.render = function() { return this.props.children; };
 
-// tslint:disable-next-line
+// @ts-ignore
 window['frontendlogger'] = {info: () => null, warn: () => null, error: () => null, event: () => null};
 
 export function getTestStore(): Store<AppState> {

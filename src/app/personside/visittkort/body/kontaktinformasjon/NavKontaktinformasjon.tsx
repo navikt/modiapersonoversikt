@@ -1,9 +1,10 @@
 import * as React from 'react';
-
 import VisittkortElement from '../VisittkortElement';
 import EtikettGrå from '../../../../../components/EtikettGrå';
-
-import { NavKontaktinformasjon, Telefon } from '../../../../../models/person/NAVKontaktinformasjon';
+import {
+    NavKontaktinformasjon as NavKontaktinformasjonInterface,
+    Telefon as TelefonInterface
+} from '../../../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
@@ -11,7 +12,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 interface TelefonProps {
     nummerFormaterer: (nummer: string) => string;
-    telefon?: Telefon;
+    telefon?: TelefonInterface;
     beskrivelse: string;
 }
 
@@ -31,7 +32,7 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     );
 }
 
-export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjon}) {
+export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjonInterface}) {
     const {navKontaktinformasjon} = props;
     if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
         return null;
