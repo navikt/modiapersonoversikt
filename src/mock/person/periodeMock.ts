@@ -1,7 +1,7 @@
 import { Periode } from '../../models/periode';
 import { backendDatoformat, getSistOppdatert } from '../utils/mock-utils';
 import FakerStatic = Faker.FakerStatic;
-import moment = require('moment');
+import moment from 'moment';
 
 export function getPeriode(): Periode {
     return {

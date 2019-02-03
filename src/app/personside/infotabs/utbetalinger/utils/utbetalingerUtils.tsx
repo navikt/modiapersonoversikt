@@ -3,7 +3,7 @@ import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../
 import { FilterState, PeriodeValg } from '../filter/Filter';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Periode } from '../../../../../models/periode';
-import moment = require('moment');
+import moment from 'moment';
 
 export const utbetaltTilBruker = 'Bruker';
 
