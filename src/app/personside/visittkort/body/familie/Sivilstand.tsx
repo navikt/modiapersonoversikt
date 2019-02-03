@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';

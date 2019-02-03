@@ -10,9 +10,8 @@ import {
 import { fyllRandomListe } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import FakerStatic = Faker.FakerStatic;
 
-export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata[] {
+export function getDokumentMetadataListe(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
@@ -20,7 +19,7 @@ export function getDokumentMetadataListe(faker: FakerStatic, navfaker: NavFaker,
     return Array(navfaker.random.integer(10, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker, tema));
 }
 
-export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
+export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
     return {
         id: faker.random.alphaNumeric(8),
         retning: getKommunikasjonsretning(navfaker),
@@ -45,7 +44,7 @@ export function getDokumentMetadata(faker: FakerStatic, navfaker: NavFaker, tema
     };
 }
 
-function getFeilWrapper(faker: FakerStatic, navfaker: NavFaker): FeilWrapper {
+function getFeilWrapper(faker: Faker.FakerStatic, navfaker: NavFaker): FeilWrapper {
     return {
         inneholderFeil: faker.random.boolean(),
         feilmelding: getFeilmelding(navfaker)
@@ -61,7 +60,7 @@ const fakeDokumentNavn = [
     'Innhenting av opplysninger',
     'Automatisk vedtak/nyfødt barn',
 ];
-function getDokument(faker: FakerStatic, navFaker: NavFaker): Dokument {
+function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
     return {
         tittel: navFaker.random.arrayElement(fakeDokumentNavn),
         dokumentreferanse: faker.random.alphaNumeric(8),

@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import * as Cookies from 'js-cookie';
 import { formaterDato } from './dateUtils';
 

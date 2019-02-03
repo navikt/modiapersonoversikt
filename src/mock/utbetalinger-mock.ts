@@ -1,5 +1,5 @@
 import * as faker from 'faker/locale/nb_NO';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 
@@ -13,7 +13,6 @@ import {
     Ytelseskomponent
 } from '../models/utbetalinger';
 import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
-import FakerStatic = Faker.FakerStatic;
 import { getBedriftsNavn, getMockNavn } from './person/personMock';
 
 export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
@@ -37,7 +36,7 @@ function getUtbetalinger(fødselsnummer: string) {
     return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getMockUtbetaling(fødselsnummer));
 }
 
-function randomDato(seededFaker: FakerStatic) {
+function randomDato(seededFaker: Faker.FakerStatic) {
     return moment(seededFaker.date.past(2)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
 

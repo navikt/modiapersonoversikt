@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 import {
     HistoriskUtbetaling,
@@ -7,10 +7,9 @@ import {
     UtbetalingPåVent
 } from '../../models/ytelse/ytelse-utbetalinger';
 import { getPeriodeRange } from '../person/periodeMock';
-import FakerStatic = Faker.FakerStatic;
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 
-export function getHistoriskUtbetaling(faker: FakerStatic): HistoriskUtbetaling {
+export function getHistoriskUtbetaling(faker: Faker.FakerStatic): HistoriskUtbetaling {
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
@@ -26,7 +25,7 @@ export function getHistoriskUtbetaling(faker: FakerStatic): HistoriskUtbetaling 
     };
 }
 
-export function getKommendeUtbetaling(faker: FakerStatic): KommendeUtbetaling {
+export function getKommendeUtbetaling(faker: Faker.FakerStatic): KommendeUtbetaling {
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
@@ -41,7 +40,7 @@ export function getKommendeUtbetaling(faker: FakerStatic): KommendeUtbetaling {
     };
 }
 
-export function getUtbetalingPåVent(faker: FakerStatic): UtbetalingPåVent {
+export function getUtbetalingPåVent(faker: Faker.FakerStatic): UtbetalingPåVent {
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
@@ -55,7 +54,7 @@ export function getUtbetalingPåVent(faker: FakerStatic): UtbetalingPåVent {
     };
 }
 
-function getKreditortrekk(faker: FakerStatic): KreditorTrekk {
+function getKreditortrekk(faker: Faker.FakerStatic): KreditorTrekk {
     return {
         kreditorsNavn: faker.company.companyName(),
         beløp: Number(faker.commerce.price())
