@@ -60,12 +60,25 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
     const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = getAlleArbiedsforholdSortert(pleiepenger);
 
     const omPleiepengerettenEntries = {
-        'Fra og med': formaterDato(gjeldeneVedtak.periode.fom),
-        'Til og med': formaterDato(gjeldeneVedtak.periode.tom),
-        Pleiepengegrad: gjeldeneVedtak.pleiepengegrad + '%',
+        'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
+        'Til og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.tom) : '',
+        Pleiepengegrad: gjeldeneVedtak ? gjeldeneVedtak.pleiepengegrad + '%' : '',
         ['Barnet (' + kjønn + ')']: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
+
+    const tidligereArbeidsforholdCollapse = (
+        <DetaljerCollapse
+            open={visAlleArbeidsforhold}
+            toggle={toggleVisAlleArbeidsforhold}
+            tittel="alle arbeidsforhold"
+        >
+            <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
+                {tidligereArbeidsforhold.map((arbForhold, index) =>
+                    <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
+            </ArbeidsForholdListeStyle>
+        </DetaljerCollapse>
+    );
 
     return (
         <OversiktStyling>
@@ -74,16 +87,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
-                <DetaljerCollapse
-                    open={visAlleArbeidsforhold}
-                    toggle={toggleVisAlleArbeidsforhold}
-                    tittel="alle arbeidsforhold"
-                >
-                    <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
-                        {tidligereArbeidsforhold.map((arbForhold, index) =>
-                            <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
-                    </ArbeidsForholdListeStyle>
-                </DetaljerCollapse>
+                {tidligereArbeidsforhold.length > 0 && tidligereArbeidsforholdCollapse}
             </YtelserInfoGruppe>
         </OversiktStyling>);
 }

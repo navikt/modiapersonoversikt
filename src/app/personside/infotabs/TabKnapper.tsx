@@ -55,7 +55,7 @@ function TabKnapper(props: TabPanelProps) {
     const knapper = Object.keys(INFOTABS).map(key => {
         const erValgt = INFOTABS[key as keyof typeof INFOTABS] === props.openTab;
         return (
-            <KnappWrapper key={key} role="tablist">
+            <KnappWrapper key={key}>
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
                     {INFOTABS[key as any]}
                 </TabKnapp>
@@ -64,7 +64,7 @@ function TabKnapper(props: TabPanelProps) {
     });
 
     return (
-        <TabKnapperNav aria-label="Tabpanel">
+        <TabKnapperNav role="tablist" aria-label="Tabpanel">
             {knapper}
         </TabKnapperNav>
     );
