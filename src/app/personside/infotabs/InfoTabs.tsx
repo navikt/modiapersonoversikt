@@ -34,8 +34,7 @@ const Section = styled.section`
 `;
 
 export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
-    const infoTabs: INFOTABS[] = Object.keys(INFOTABS)
-        .map((key) => INFOTABS[key as keyof typeof INFOTABS] as INFOTABS);
+    const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
     const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
         currentPath
             .toUpperCase()
@@ -53,7 +52,7 @@ class InfoTabs extends React.PureComponent<Props> {
 
     updateRouterPath(newTab: INFOTABS) {
         const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
-        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab as keyof typeof INFOTABS].toLowerCase()}/`;
+        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
         const newPath = this.props.history.location.pathname !== path;
         if (newPath) {
             this.props.history.push(path);
