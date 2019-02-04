@@ -171,7 +171,6 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                 <input
                   className="skjemaelement__input input--xxl"
                   id="Helt tilfeldig ID"
-                  name={undefined}
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="text"
@@ -291,7 +290,6 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
                 <input
                   className="skjemaelement__input input--xxl"
                   id="Helt tilfeldig ID"
-                  name={undefined}
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="text"
@@ -396,7 +394,6 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
