@@ -67,7 +67,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 
-    const tidligereArbeidsforholdCollapse = tidligereArbeidsforhold.length > 0 && (
+    const tidligereArbeidsforholdCollapse = (
         <DetaljerCollapse
             open={visAlleArbeidsforhold}
             toggle={toggleVisAlleArbeidsforhold}
@@ -87,7 +87,7 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
                 <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
-                {tidligereArbeidsforholdCollapse}
+                {tidligereArbeidsforhold.length > 0 && tidligereArbeidsforholdCollapse}
             </YtelserInfoGruppe>
         </OversiktStyling>);
 }
