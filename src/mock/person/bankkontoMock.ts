@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 
 import { Bankkonto } from '../../models/person/person';
 import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';

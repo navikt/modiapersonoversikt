@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';

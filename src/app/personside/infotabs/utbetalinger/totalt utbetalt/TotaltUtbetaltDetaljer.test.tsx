@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
 import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../../mock/statiskMockUtbetaling';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
@@ -10,7 +9,8 @@ Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setup
 // Mock react collapse sin UnmountClosed
 jest.mock('react-collapse', () => {
     return {
-        UnmountClosed: (props: {children: ReactNode}) => props.children
+        // @ts-ignore
+        UnmountClosed: props => props.children
     };
 });
 
