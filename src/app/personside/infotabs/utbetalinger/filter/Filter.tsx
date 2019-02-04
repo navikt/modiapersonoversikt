@@ -153,14 +153,14 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
 
 function Filtrering(props: Props) {
     const radios = Object.keys(PeriodeValg).map(key => {
-        const label = PeriodeValg[key];
+        const label = PeriodeValg[key as keyof typeof PeriodeValg];
         const checked = props.filterState.periode.radioValg === label;
         return (
             <Radio
                 key={label}
                 label={label}
                 checked={checked}
-                onChange={() => onRadioChange(props, PeriodeValg[key])}
+                onChange={() => onRadioChange(props, PeriodeValg[key as keyof typeof PeriodeValg])}
                 name="FiltreringsvalgGruppe"
             />
         );

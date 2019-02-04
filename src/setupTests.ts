@@ -1,14 +1,9 @@
-/*
-* setupTests.ts må ligge i /src/ for å automatisk bli kjørt før alle tester
-*/
-
 import { configure } from 'enzyme';
-import * as EnzymeReactAdapter from 'enzyme-adapter-react-16';
+import EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import 'jest-enzyme';
 import 'babel-polyfill';
 import { getMockNavKontor } from './mock/navkontor-mock';
 import 'jest-styled-components';
-
 import reducers, { AppState } from './redux/reducers';
 import { applyMiddleware, createStore, Store } from 'redux';
 import { actionNames as navKontorActionNames } from './redux/restReducers/navkontor';
