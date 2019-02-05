@@ -1,10 +1,14 @@
 import * as React from 'react';
 import moment from 'moment';
-
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
-
-import { Familierelasjon, getPartner, Person, Sivilstand as SivilstandInterface, SivilstandTyper } from '../../../../../models/person/person';
+import {
+    Familierelasjon,
+    getPartner,
+    Person,
+    Sivilstand as SivilstandInterface,
+    SivilstandTyper
+} from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import HeartIkon from '../../../../../svg/Heart';

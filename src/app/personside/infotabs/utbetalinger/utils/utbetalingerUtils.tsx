@@ -4,7 +4,7 @@ import { FilterState, PeriodeValg } from '../filter/Filter';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Periode } from '../../../../../models/periode';
 import moment from 'moment';
-import { assertUnreachable } from '../../../../../utils/assertUnreachable';
+import { loggError } from '../../../../../utils/frontendLogger';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -143,7 +143,11 @@ export function summertBeløpStringFraUtbetalinger(
                 (acc: number, utbetaling: Utbetaling) => {
 
                     if (!utbetaling.ytelser) {
-                        console.error('"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser', utbetaling);
+                        loggError(
+                            new Error('Kunne ikke beregne sum på utbetaling'),
+                            '"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser',
+                            {utbetaling: utbetaling}
+                        );
                         throw new Error();
                     }
 

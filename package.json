@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "npm run build:less && react-scripts build",
     "test": "react-scripts test",
-    "test-coverage": "react-scripts test --env=jsdom --coverage",
+    "test-coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "build:less": "node node_modules/less/bin/lessc --npm-import=\"prefix=~\" src/index.less src/index.css",
     "compile": "tsc"

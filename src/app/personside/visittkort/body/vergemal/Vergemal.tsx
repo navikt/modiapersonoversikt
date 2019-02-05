@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import VisittkortElement from '../VisittkortElement';
-import { Periode, Verge as VergeInterface, Vergemal as VergemalInterface } from '../../../../../models/vergemal/vergemal';
+import {
+    Periode,
+    Verge as VergeInterface,
+    Vergemal as VergemalInterface
+} from '../../../../../models/vergemal/vergemal';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettGrå from '../../../../../components/EtikettGrå';
