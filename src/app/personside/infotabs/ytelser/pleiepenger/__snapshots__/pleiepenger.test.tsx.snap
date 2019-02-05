@@ -177,19 +177,19 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          30%
+          66%
         </dd>
       </div>
       <div>
         <dt
           className="typo-etikett-liten"
         >
-          Barnet (gutt)
+          Barnet (jente)
         </dt>
         <dd
           className="typo-normal"
         >
-          01017027979
+          08031815240
         </dd>
       </div>
       <div>
@@ -201,7 +201,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          01017040169
+          26087625779
         </dd>
       </div>
     </dl>
@@ -224,7 +224,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          Tangen AS
+          Ryan og Sønner
         </dd>
       </div>
       <div>
@@ -264,13 +264,13 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             className="c2"
           >
             <span>
-              4398
+              5493
             </span>
             <span>
-              78
+              85
             </span>
             <span>
-              96203
+              21445
             </span>
           </span>
         </dd>
@@ -296,7 +296,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          NOK 31,750.00
+          NOK 45,029.00
         </dd>
       </div>
       <div>
@@ -484,7 +484,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 812.00
+            NOK 120.00
           </dd>
         </div>
         <div>
@@ -508,7 +508,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 51.00
+            NOK 5.00
           </dd>
         </div>
         <div>
@@ -520,7 +520,88 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            30%
+            66%
+          </dd>
+        </div>
+      </dl>
+      <div
+        className="c5"
+      />
+    </li>
+    <li>
+      <dl
+        className="c4"
+      >
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Fra og med dato
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01.01.1970
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Til og med dato
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01.01.1970
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Bruttobeløp
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            NOK 596.00
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Anvist Utbetaling
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            01.01.1970
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Dagsats
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            NOK 27.00
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Pleiepengegrad
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            58%
           </dd>
         </div>
       </dl>
