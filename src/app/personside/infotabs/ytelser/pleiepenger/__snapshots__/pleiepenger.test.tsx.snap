@@ -169,7 +169,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          30%
+          50%
         </dd>
       </div>
       <div>
@@ -512,7 +512,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            30%
+            50%
           </dd>
         </div>
       </dl>

@@ -76,7 +76,7 @@ function getVedtak(): Vedtak {
         anvistUtbetaling: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
-        pleiepengegrad: navfaker.random.integer(60)
+        pleiepengegrad: navfaker.random.integer(100)
     };
 }
 
