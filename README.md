@@ -1,4 +1,4 @@
-# Modiapersonoversikt [![Build Status](https://travis-ci.org/navikt/modiapersonoversikt.svg?branch=master)](https://travis-ci.org/navikt/modiapersonoversikt) [![Maintainability](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/maintainability)](https://codeclimate.com/github/navikt/modiapersonoversikt/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/test_coverage)](https://codeclimate.com/github/navikt/modiapersonoversikt/test_coverage)
+# Modiapersonoversikt [![Build Status](https://travis-ci.org/navikt/modiapersonoversikt.svg?branch=master)](https://travis-ci.org/navikt/modiapersonoversikt) [![Maintainability](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/maintainability)](https://codeclimate.com/github/navikt/modiapersonoversikt/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/test_coverage)](https://codeclimate.com/github/navikt/modiapersonoversikt/test_coverage) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Modiapersonoversikt er en intern arbeidsflate som gir veiledere og
 saksbehandlere oversikt over brukeres forhold til NAV.
@@ -64,11 +64,11 @@ npm config set //repo.adeo.no/repository/npm-internal/:_authToken=
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot:
 
-* Daniel Winsvold, daniel.winsvold@nav.no
-* Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
-* Jørund Amsen, jorund.amsen@nav.no
-* Ketil S. Velle, ketil.s.velle@nav.no
-* Richard Borge, richard.borge@nav.no
+-   Daniel Winsvold, daniel.winsvold@nav.no
+-   Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
+-   Jørund Amsen, jorund.amsen@nav.no
+-   Ketil S. Velle, ketil.s.velle@nav.no
+-   Richard Borge, richard.borge@nav.no
 
 ### For NAV-ansatte
 
