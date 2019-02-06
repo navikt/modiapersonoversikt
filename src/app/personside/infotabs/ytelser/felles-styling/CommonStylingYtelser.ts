@@ -6,9 +6,12 @@ export const OversiktStyling = styled.div`
     display: flex;
     > * {
         margin: ${theme.margin.px20};
+        flex-basis: 45%;
+        flex-grow: 1;
     }
     > *:not(:first-child) {
         border-left: ${theme.border.skilleDashed};
         padding-left: ${theme.margin.px40};
+        margin-left: 0;
     }
 `;
