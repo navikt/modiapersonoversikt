@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import Timer = NodeJS.Timer;
 
 interface Props {
     children: ReactNode;
@@ -13,7 +12,7 @@ interface State {
 
 class ShowThenHide extends React.PureComponent<Props, State> {
 
-    private timeOut: Timer;
+    private timeOut?: number;
 
     constructor(props: Props) {
         super(props);
@@ -41,7 +40,7 @@ class ShowThenHide extends React.PureComponent<Props, State> {
         if (this.timeOut) {
             clearTimeout(this.timeOut);
         }
-        this.timeOut = setTimeout(
+        this.timeOut = window.setTimeout(
             () => this.setState({show: false}),
             this.props.duration || 5000
         );

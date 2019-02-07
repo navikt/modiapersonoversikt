@@ -11,7 +11,7 @@ import {
 }
     from './utbetalingerUtils';
 import { FilterState, PeriodeValg } from '../filter/Filter';
-import moment = require('moment');
+import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
 import * as React from 'react';
 import { shallow } from 'enzyme';

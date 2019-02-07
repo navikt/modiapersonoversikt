@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
@@ -21,12 +22,14 @@ function LenkepanelPersonoversikt(props: Props) {
         <CustomStyling>
             <LenkepanelBase
                 href={props.url}
-                linkCreator={(htmlProps: React.HTMLProps<HTMLAnchorElement>) =>
+                linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode =>
                     <a
                         target={'_blank'}
                         rel={'noopener noreferrer'}
-                        {...htmlProps}
-                    />}
+                        {...props as React.HTMLProps<HTMLAnchorElement>}
+                    />
+
+                }
             >
                 {props.children}
             </LenkepanelBase>

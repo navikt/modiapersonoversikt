@@ -6,7 +6,7 @@ import Ingress from 'nav-frontend-typografi/lib/ingress';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
-import { TelefonInput } from './KontaktinformasjonForm';
+import { TelefonInput as TelefonInputState } from './KontaktinformasjonForm';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { formaterDato } from '../../../utils/dateUtils';
@@ -26,8 +26,8 @@ const TelefonInputWrapper = styled.div`
 interface TelefonInputProps {
     children: string;
     retningsnummerKodeverk: KodeverkResponse;
-    inputValue: TelefonInput;
-    valideringsresultat: ValideringsResultat<TelefonInput>;
+    inputValue: TelefonInputState;
+    valideringsresultat: ValideringsResultat<TelefonInputState>;
     retningsnummerInputChange: (input: string) => void;
     telfonnummerInputChange: (input: string) => void;
 }

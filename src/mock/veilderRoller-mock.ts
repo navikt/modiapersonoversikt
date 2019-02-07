@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 
 import { VeilederRoller } from '../models/veilederRoller';
 import { vektetSjanse } from './utils/mock-utils';

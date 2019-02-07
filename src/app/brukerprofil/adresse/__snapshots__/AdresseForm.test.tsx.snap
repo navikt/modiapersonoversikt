@@ -77,7 +77,6 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
                 aria-checked={true}
                 checked={true}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -100,7 +99,6 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -123,7 +121,6 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -348,7 +345,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -371,7 +367,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                 aria-checked={true}
                 checked={true}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -394,7 +389,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -484,7 +478,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           <input
             className="skjemaelement__input input--xxl"
             id="Helt tilfeldig ID"
-            name={undefined}
             onChange={[Function]}
             type="text"
             value=""
@@ -517,7 +510,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 type="text"
                 value="Islandsgate"
@@ -540,7 +532,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value="49"
@@ -562,7 +553,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value=""
@@ -584,7 +574,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value=""
@@ -610,7 +599,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value="7693"
@@ -636,7 +624,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                 className="skjemaelement__input input--xxl"
                 disabled={true}
                 id="Helt tilfeldig ID"
-                name={undefined}
                 type="text"
                 value="Hovedøya"
               />
@@ -659,7 +646,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
           <div
             onBlur={[Function]}
             onKeyDown={[Function]}
-            tabIndex={undefined}
           >
             <div
               className="nav-datovelger"
@@ -668,13 +654,10 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                 className="nav-datovelger__inputContainer"
               >
                 <input
-                  aria-describedby={undefined}
                   aria-invalid={false}
-                  aria-label={undefined}
                   autoComplete="off"
                   autoCorrect="off"
                   className="nav-datovelger__input"
-                  disabled={undefined}
                   id="gateform-datovelger"
                   maxLength={10}
                   name="Datovelger"
@@ -689,7 +672,6 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
                   aria-expanded={false}
                   aria-label="Kalender"
                   className="nav-datovelger__kalenderknapp"
-                  disabled={undefined}
                   onClick={[Function]}
                   role="button"
                   type="button"
@@ -869,7 +851,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -892,7 +873,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                 aria-checked={true}
                 checked={true}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -915,7 +895,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1005,7 +984,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           <input
             className="skjemaelement__input input--xxl"
             id="Helt tilfeldig ID"
-            name={undefined}
             onChange={[Function]}
             type="text"
             value=""
@@ -1027,7 +1005,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           <input
             className="skjemaelement__input input--xxl"
             id="Helt tilfeldig ID"
-            name={undefined}
             onChange={[Function]}
             type="text"
             value=""
@@ -1052,7 +1029,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value="5468"
@@ -1078,7 +1054,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                 className="skjemaelement__input input--xxl"
                 disabled={true}
                 id="Helt tilfeldig ID"
-                name={undefined}
                 type="text"
                 value="Lillomarka"
               />
@@ -1101,7 +1076,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
           <div
             onBlur={[Function]}
             onKeyDown={[Function]}
-            tabIndex={undefined}
           >
             <div
               className="nav-datovelger"
@@ -1110,13 +1084,10 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                 className="nav-datovelger__inputContainer"
               >
                 <input
-                  aria-describedby={undefined}
                   aria-invalid={false}
-                  aria-label={undefined}
                   autoComplete="off"
                   autoCorrect="off"
                   className="nav-datovelger__input"
-                  disabled={undefined}
                   id="postboksadresse-gyldig-til"
                   maxLength={10}
                   name="Datovelger"
@@ -1131,7 +1102,6 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
                   aria-expanded={false}
                   aria-label="Kalender"
                   className="nav-datovelger__kalenderknapp"
-                  disabled={undefined}
                   onClick={[Function]}
                   role="button"
                   type="button"
@@ -1318,7 +1288,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1341,7 +1310,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                 aria-checked={true}
                 checked={true}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1364,7 +1332,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1454,7 +1421,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           <input
             className="skjemaelement__input input--xxl"
             id="Helt tilfeldig ID"
-            name={undefined}
             onChange={[Function]}
             type="text"
             value=""
@@ -1487,7 +1453,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 type="text"
                 value=""
@@ -1510,7 +1475,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value="9698"
@@ -1536,7 +1500,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
             <input
               className="skjemaelement__input input--s"
               id="Helt tilfeldig ID"
-              name={undefined}
               onChange={[Function]}
               type="text"
               value="7705"
@@ -1562,7 +1525,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                 className="skjemaelement__input input--xxl"
                 disabled={true}
                 id="Helt tilfeldig ID"
-                name={undefined}
                 type="text"
                 value="Færder fyr"
               />
@@ -1585,7 +1547,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
           <div
             onBlur={[Function]}
             onKeyDown={[Function]}
-            tabIndex={undefined}
           >
             <div
               className="nav-datovelger"
@@ -1594,13 +1555,10 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                 className="nav-datovelger__inputContainer"
               >
                 <input
-                  aria-describedby={undefined}
                   aria-invalid={false}
-                  aria-label={undefined}
                   autoComplete="off"
                   autoCorrect="off"
                   className="nav-datovelger__input"
-                  disabled={undefined}
                   id="postboksadresse-gyldig-til"
                   maxLength={10}
                   name="Datovelger"
@@ -1615,7 +1573,6 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
                   aria-expanded={false}
                   aria-label="Kalender"
                   className="nav-datovelger__kalenderknapp"
-                  disabled={undefined}
                   onClick={[Function]}
                   role="button"
                   type="button"
@@ -1792,7 +1749,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1815,7 +1771,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -1838,7 +1793,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
                 aria-checked={true}
                 checked={true}
                 className="inputPanel__field"
-                disabled={undefined}
                 id="Helt tilfeldig ID"
                 name="Velg adressetype"
                 onBlur={[Function]}
@@ -2016,7 +1970,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 type="text"
                 value="Ut av landet"
@@ -2051,7 +2004,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 type="text"
                 value="Rundt svingen"
@@ -2086,7 +2038,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
               <input
                 className="skjemaelement__input input--xxl"
                 id="Helt tilfeldig ID"
-                name={undefined}
                 onChange={[Function]}
                 type="text"
                 value=""
@@ -2110,7 +2061,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
           <div
             onBlur={[Function]}
             onKeyDown={[Function]}
-            tabIndex={undefined}
           >
             <div
               className="nav-datovelger"
@@ -2119,13 +2069,10 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
                 className="nav-datovelger__inputContainer"
               >
                 <input
-                  aria-describedby={undefined}
                   aria-invalid={false}
-                  aria-label={undefined}
                   autoComplete="off"
                   autoCorrect="off"
                   className="nav-datovelger__input"
-                  disabled={undefined}
                   id="utlandsadresse-datovelger"
                   maxLength={10}
                   name="Datovelger"
@@ -2140,7 +2087,6 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
                   aria-expanded={false}
                   aria-label="Kalender"
                   className="nav-datovelger__kalenderknapp"
-                  disabled={undefined}
                   onClick={[Function]}
                   role="button"
                   type="button"

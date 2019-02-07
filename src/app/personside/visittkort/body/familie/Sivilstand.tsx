@@ -1,10 +1,14 @@
 import * as React from 'react';
-import * as moment from 'moment';
-
+import moment from 'moment';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
-
-import { Familierelasjon, getPartner, Person, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
+import {
+    Familierelasjon,
+    getPartner,
+    Person,
+    Sivilstand as SivilstandInterface,
+    SivilstandTyper
+} from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import HeartIkon from '../../../../../svg/Heart';
@@ -16,10 +20,10 @@ interface Props {
 
 interface PartnerProps {
     relasjon: Familierelasjon;
-    sivilstand: Sivilstand;
+    sivilstand: SivilstandInterface;
 }
 
-function Sivilstand(props: {sivilstand: Sivilstand}) {
+function Sivilstand(props: {sivilstand: SivilstandInterface}) {
     if (props.sivilstand.kodeRef === SivilstandTyper.Ugift) {
         return <>{props.sivilstand.beskrivelse}</>;
     }

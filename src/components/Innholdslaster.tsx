@@ -19,7 +19,7 @@ export interface InnholdslasterProps {
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
-const harGyldigResponse = ((reducer: Loaded<object>) => reducer.data !== undefined);
+const harGyldigResponse = ((reducer: RestReducer<object>) => (reducer as Loaded<object>).data !== undefined);
 const alleLastet = (avhengigheter: RestReducer<object>[]) => (
     avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) &&
     avhengigheter.every(harGyldigResponse)

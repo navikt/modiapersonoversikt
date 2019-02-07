@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import navfaker from 'nav-faker';
 
 export function formaterDato(rawDate: string | Date): string {

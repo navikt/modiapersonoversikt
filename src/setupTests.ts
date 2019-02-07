@@ -1,14 +1,9 @@
-/*
-* setupTests.ts må ligge i /src/ for å automatisk bli kjørt før alle tester
-*/
-
 import { configure } from 'enzyme';
-import * as EnzymeReactAdapter from 'enzyme-adapter-react-16';
+import EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import 'jest-enzyme';
 import 'babel-polyfill';
 import { getMockNavKontor } from './mock/navkontor-mock';
 import 'jest-styled-components';
-
 import reducers, { AppState } from './redux/reducers';
 import { applyMiddleware, createStore, Store } from 'redux';
 import { actionNames as navKontorActionNames } from './redux/restReducers/navkontor';
@@ -44,7 +39,7 @@ import FeatureToggle from './redux/featureToggle/FeatureToggle';
 
 configure({adapter: new EnzymeReactAdapter()});
 
-// tslint:disable-next-line
+// @ts-ignore
 const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
@@ -56,7 +51,7 @@ JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 FeatureToggle.prototype.actualRender = FeatureToggle.prototype.render;
 FeatureToggle.prototype.render = function() { return this.props.children; };
 
-// tslint:disable-next-line
+// @ts-ignore
 window['frontendlogger'] = {info: () => null, warn: () => null, error: () => null, event: () => null};
 
 export function getTestStore(): Store<AppState> {

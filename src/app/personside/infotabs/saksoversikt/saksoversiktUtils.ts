@@ -1,6 +1,6 @@
 import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import { Behandlingskjede, Sakstema } from '../../../../models/saksoversikt/sakstema';
-import * as moment from 'moment';
+import moment from 'moment';
 import { sakstemakodeAlle } from './SakstemaListe';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 

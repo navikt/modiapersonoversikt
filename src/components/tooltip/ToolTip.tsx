@@ -5,7 +5,7 @@ import { Bold } from '../common-styled-components';
 import { removeWhitespace } from '../../utils/string-utils';
 import * as Cookies from 'js-cookie';
 import { eventTagetIsInsideRef } from '../../utils/reactRefUtils';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Moment } from 'moment';
 
 interface Props {

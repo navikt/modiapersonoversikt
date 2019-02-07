@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-export const enum actions {
+export enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE'
 }
 
