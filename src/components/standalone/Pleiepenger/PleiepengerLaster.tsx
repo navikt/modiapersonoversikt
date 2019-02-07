@@ -13,7 +13,7 @@ import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pleiepenger';
 import { FlexCenter } from '../../common-styled-components';
-import theme, { pxToRem } from '../../../styles/personOversiktTheme';
+import theme from '../../../styles/personOversiktTheme';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -36,7 +36,7 @@ const Margin = styled.div`
 
 const Style = styled.div`
   ${theme.hvittPanel};
-  max-width: ${pxToRem(900)};
+  max-width: ${theme.width.ytelser};
 `;
 
 const onPending = (
