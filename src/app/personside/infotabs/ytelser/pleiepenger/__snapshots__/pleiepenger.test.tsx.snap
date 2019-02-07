@@ -11,11 +11,19 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c0 > * {
   margin: 1.25rem;
+  -webkit-flex-basis: 45%;
+  -ms-flex-preferred-size: 45%;
+  flex-basis: 45%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c0 > *:not(:first-child) {
   border-left: dotted 0.09375rem #b7b1a9;
   padding-left: 2.5rem;
+  margin-left: 0;
 }
 
 .c1 {
