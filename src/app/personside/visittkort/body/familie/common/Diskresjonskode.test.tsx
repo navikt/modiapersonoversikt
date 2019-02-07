@@ -19,7 +19,7 @@ test('Viser diskresjonskode fortrolig adresse', () => {
     expect(result.html()).not.toBeNull();
 });
 
-test('Viser diskresjonskode fortrolig adresse', () => {
+test('Viser diskresjonskode strengt fortrolig adresse', () => {
     const strengtFortroligAdresse: Kodeverk = {
         kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
         beskrivelse: 'Strengt fortrolig adresse'
