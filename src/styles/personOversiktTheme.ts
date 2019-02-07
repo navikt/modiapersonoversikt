@@ -84,7 +84,10 @@ export const theme = {
         overflow: hidden;
         clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
         clip: rect(1px, 1px, 1px, 1px);
-    `
+    `,
+    width: {
+        ytelser: pxToRem(1020)
+    }
 };
 
 export default theme;
