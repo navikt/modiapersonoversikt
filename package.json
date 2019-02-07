@@ -86,10 +86,11 @@
     "yet-another-fetch-mock": "^2.3.3"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.3.1",
     "@types/classnames": "^2.2.4",
     "@types/detect-browser": "^2.0.1",
     "@types/enzyme": "^3.1.11",
-    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/faker": "^4.1.2",
     "@types/fetch-mock": "^6.0.3",
     "@types/jest": "^20.0.8",
