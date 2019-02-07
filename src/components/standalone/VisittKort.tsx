@@ -24,7 +24,7 @@ if (mockEnabled) {
     setupMock();
 }
 
-const VisittkortStyling = styled.div`
+const GamleModiaTilpasning = styled.div`
   display: flex;
   flex-flow: column;
   overflow-y: auto;
@@ -39,10 +39,10 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <VisittkortStyling>
+                    <GamleModiaTilpasning>
                         <Kontrollsporsmal/>
                         <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
-                    </VisittkortStyling>
+                    </GamleModiaTilpasning>
                 </Provider>
             </ErrorBoundary>
         );
