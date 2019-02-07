@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { HistoriskUtbetaling, KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
-import /()=
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -27,18 +26,18 @@ const VedtaksListe = styled.ul`
 `;
 
 function HistoriskeUtbetalinger({histUtbetal}: {histUtbetal: HistoriskUtbetaling}) {
+
     const utbetaltEntries  = {
         'Registeringsdato': histUtbetal.utbetalingsdato,
-        'periode': histUtbetal.vedtak.til,
+        'periode': histUtbetal.vedtak
+            ? `${histUtbetal.vedtak.fra} - ${histUtbetal.vedtak.til}`
+            : 'N/A',
         Type: histUtbetal.type,
         Utbetalingsgrad: histUtbetal.utbetalingsgrad,
         Dagsats: histUtbetal.dagsats,
         Bruttobeløp: histUtbetal.bruttobeløp,
         nettobeløp: histUtbetal.nettobeløp,
-        Arbeidsgiver: histUtbetal.arbeidsgiverNavn,
-
-        Fo: 'Bar',
-        Sneile: 'Smaker rart'
+        Arbeidsgiver: histUtbetal.arbeidsgiverNavn
     };
     return (
         <li>
@@ -52,9 +51,14 @@ function HistoriskeUtbetalinger({histUtbetal}: {histUtbetal: HistoriskUtbetaling
 function KommendeUtbetalinger({kommendeUtbetal}: {kommendeUtbetal: KommendeUtbetaling}) {
     const kommendeEntries = {
         'Registeringsdato': kommendeUtbetal.utbetalingsdato,
-        'Arbeidsgiver': kommendeUtbetal.arbeidsgiverNavn,
-
-        Sneile: 'Smaker rart'
+        'periode': kommendeUtbetal.vedtak
+            ? `${kommendeUtbetal.vedtak.fra} - ${kommendeUtbetal.vedtak.til}`
+            : 'N/A',
+        Type: kommendeUtbetal.type,
+        Utbetalingsgrad: kommendeUtbetal.utbetalingsgrad,
+        Dagsats: kommendeUtbetal.dagsats,
+        Bruttobeløp: kommendeUtbetal.bruttobeløp,
+        Arbeidsgiver: kommendeUtbetal.arbeidsgiverNavn
     };
     return (
         <li>
@@ -64,7 +68,6 @@ function KommendeUtbetalinger({kommendeUtbetal}: {kommendeUtbetal: KommendeUtbet
         </li>
     );
 }
-
 
 function Utbetalinger(props: Props) {
 
