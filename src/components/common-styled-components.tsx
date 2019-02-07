@@ -19,6 +19,11 @@ export const FlexEnd = styled.div`
   justify-content: flex-end;
 `;
 
+export const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Uppercase = styled.span`
   text-transform: uppercase;
 `;

@@ -15,8 +15,11 @@ function PleiepengerEkspanderbartpanel({pleiepenger}: Props) {
         return null;
     }
 
+    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepenger);
     const tittelTillegsInfo = [
-        'ID-dato: ' + formaterDato(getSistePeriodeForPleiepengerettighet(pleiepenger).fom),
+        'ID-dato: ' + (sistePeriodeForPleiepengerettighet
+            ? formaterDato(sistePeriodeForPleiepengerettighet.fom)
+            : 'N/A'),
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 

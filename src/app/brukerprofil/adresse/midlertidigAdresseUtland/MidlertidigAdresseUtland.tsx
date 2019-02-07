@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import Datovelger, { tilPeriode } from '../../../../components/forms/Datovelger';
+import BrukerProfilDatovelger, { tilPeriode } from '../../../../components/forms/BrukerProfilDatovelger';
 import Input from 'nav-frontend-skjema/lib/input';
 
 import { Endringsinfo, Utlandsadresse } from '../../../../models/personadresse';
@@ -133,7 +133,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                         />
                     </div>
                 </InputLinje>
-                <Datovelger
+                <BrukerProfilDatovelger
                     dato={gyldigTil}
                     innenEtÅr={true}
                     id={'utlandsadresse-datovelger'}
@@ -142,7 +142,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                     onChange={onGyldigTilChange(this.props)}
                 >
                     Gyldig til
-                </Datovelger>
+                </BrukerProfilDatovelger>
             </>);
     }
 }

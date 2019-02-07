@@ -64,7 +64,7 @@ export const aremark: Person = {
         banknavn: 'Bien sparebank',
         kontonummer: '12345678911',
         sistEndret: '2005-12-12',
-        sistEndretAv: '10108000398',
+        sistEndretAv: 'z9910',
         landkode: {
             kodeRef: 'NOR',
             beskrivelse: 'Norge'
@@ -141,12 +141,13 @@ export const aremark: Person = {
         tilPerson: {
             fødselsnummer: '10117100000',
             navn: {
-                sammensatt: '',
+                sammensatt: 'Siri Bellomnavn Aremark',
                 fornavn: 'Siri',
-                mellomnavn: null,
+                mellomnavn: 'Bellomnavn',
                 etternavn: 'Aremark'
             },
-            personstatus: {}
+            personstatus: {},
+            alder: 15
         }
     }, {
         harSammeBosted: false,
@@ -154,12 +155,13 @@ export const aremark: Person = {
         tilPerson: {
             fødselsnummer: '10117100100',
             navn: {
-                sammensatt: '',
+                sammensatt: 'Ola Ballomnavn Aremark',
                 fornavn: 'Ola',
-                mellomnavn: null,
+                mellomnavn: 'Ballomnavn',
                 etternavn: 'Aremark'
             },
-            personstatus: {}
+            personstatus: {},
+            alderMåneder: 5
         }
     }, {
         harSammeBosted: false,

@@ -547,7 +547,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Endret 
             12.12.2005
              
-            av bruker
+            z9910
           </p>
         </div>
       </div>
@@ -767,8 +767,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Siri Aremark
+          Siri Bellomnavn Aremark
            
+          (15)
            
         </p>
         <p
@@ -828,7 +829,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Ola Aremark
+          Ola Ballomnavn Aremark
            
            
         </p>
