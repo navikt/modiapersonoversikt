@@ -1,8 +1,13 @@
 import { Action } from 'redux';
 
+export interface Svar {
+    tekst: string;
+    beskrivelse?: string;
+}
+
 export interface Spørsmål {
     spørsmål: string;
-    svar: string | string[];
+    svar: Svar[];
 }
 
 export interface KontrollSpørsmålState {

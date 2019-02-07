@@ -13,11 +13,13 @@ import * as personadresse from '../../../models/personadresse';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { Periode } from '../../../models/periode';
 import { formaterDato } from '../../../utils/dateUtils';
+import { shuffle } from '../../../utils/list-utils';
+import { Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
 import moment = require('moment');
 
 export interface SpørsmålsExtractor<T> {
     spørsmål: string;
-    extractSvar: (data: T) => string | string[];
+    extractSvar: (data: T) => Svar[];
 }
 
 export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] = [
@@ -25,32 +27,38 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         spørsmål: 'Hva er bankkontonummeret ditt?',
         extractSvar: personinformasjon => {
             const bankkonto = (personinformasjon as Person).bankkonto;
-            return bankkonto
-                ? bankkonto.kontonummer
-                : '';
+            return [{
+                tekst: bankkonto
+                    ? bankkonto.kontonummer
+                    : ''
+            }];
+
         }
     },
     {
         spørsmål: 'Hva er mellomnavnet ditt?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return person.navn.mellomnavn
-                ? person.navn.mellomnavn
-                : '';
+            return [{
+                tekst: person.navn.mellomnavn
+                    ? person.navn.mellomnavn
+                    : ''
+            }];
         }
     },
     {
-        spørsmål: 'Hva er fødselsdatoen til ditt eldste/ yngste barn?',
+        spørsmål: 'Hva er fødselsdatoen til _______',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return hentFødselsdatoBarn(person);
+            return [hentFødselsdatoBarn(person)];
+
         }
     },
     {
-        spørsmål: 'Når ble du gift?',
+        spørsmål: 'Hvilken dato giftet du deg?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return hentGiftedato(person);
+            return [{tekst: hentGiftedato(person)}];
         }
     },
     {
@@ -66,26 +74,32 @@ export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinform
     {
         spørsmål: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
-            return kontaktinformasjon.epost
-                ? kontaktinformasjon.epost.value
-                : '';
+            return [{
+                tekst: kontaktinformasjon.epost
+                    ? kontaktinformasjon.epost.value
+                    : ''
+            }];
         }
     }
 ];
 
-export function hentFødselsdatoBarn(person: Person) {
-    return getBarnUnder21(person.familierelasjoner)
+export function hentFødselsdatoBarn(person: Person): Svar {
+    const gyldigeBarn = getBarnUnder21(person.familierelasjoner)
         .filter(barn => barn.harSammeBosted)
         .filter(barn => !barn.tilPerson.diskresjonskode)
-        .filter(barn => !erDød(barn.tilPerson.personstatus))
-        .map(barn => hentNavnOgFødselsdato(barn))
-        .reduce((acc, current) => acc + (acc !== '' ? '\n' : '') + current, '');
+        .filter(barn => !erDød(barn.tilPerson.personstatus));
+
+    const barnet = ettTilfeldigBarn(gyldigeBarn);
+
+    return {
+        tekst: hentFødselsdato(barnet),
+        beskrivelse: barnet.tilPerson.navn ? barnet.tilPerson.navn.sammensatt : undefined
+    };
 }
 
-function hentNavnOgFødselsdato(barn: Familierelasjon): string {
+function hentFødselsdato(barn: Familierelasjon): string {
     if (barn.tilPerson.fødselsnummer) {
-        const fødselsdato = utledFødselsdato(barn.tilPerson.fødselsnummer);
-        return barn.tilPerson.navn ? barn.tilPerson.navn.sammensatt + ':  ' + fødselsdato : '';
+        return utledFødselsdato(barn.tilPerson.fødselsnummer);
     }
     return '';
 }
@@ -93,6 +107,10 @@ function hentNavnOgFødselsdato(barn: Familierelasjon): string {
 function utledFødselsdato(fnr: string): string {
     const dato = fødselsnummerTilDato(fnr);
     return '' + dato.getDay() + '.' + dato.getMonth() + '.' + dato.getFullYear();
+}
+
+function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {
+    return shuffle(barn)[0];
 }
 
 export function hentGiftedato(person: Person) {
@@ -136,11 +154,29 @@ function hentPartnerNavn(person: Person) {
 }
 
 function hentAdresse(person: Person) {
-    return [
-        hentFolkeregistrertAdresse(person),
-        hentMidlertidigAdresse(person),
-        hentPostadresse(person)
-    ];
+    let adresser: Svar[] = [];
+
+    if (hentFolkeregistrertAdresse(person) !== '') {
+        adresser.push({
+            tekst: hentFolkeregistrertAdresse(person),
+            beskrivelse: 'Folkeregistrert adresse'
+        });
+    }
+
+    if (hentMidlertidigAdresse(person) !== '') {
+        adresser.push({
+            tekst: hentMidlertidigAdresse(person),
+            beskrivelse: 'Midlertidig adresse'
+        });
+    }
+
+    if (hentPostadresse(person) !== '') {
+        adresser.push({
+            tekst: hentPostadresse(person),
+            beskrivelse: 'Postadresse'
+        });
+    }
+    return adresser;
 }
 
 function hentFolkeregistrertAdresse(person: Person) {
@@ -209,7 +245,7 @@ export function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse)
 }
 
 function hentAdresselinjer(adresse: Utlandsadresse) {
-    return adresse.adresselinjer.reduce((acc, current) => acc + (acc !== '' ? '\n' : '')  + current, '');
+    return adresse.adresselinjer.reduce((acc, current) => acc + (acc !== '' ? '\n' : '') + current, '');
 }
 
 export function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {

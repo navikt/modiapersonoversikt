@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import Header from './Header';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
-import NesteSporsmal from './NyttSporsmal';
 import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
@@ -35,7 +34,6 @@ class Kontrollsporsmal extends React.PureComponent<StateProps> {
                 >
                     <Header/>
                     <SpørsmålOgSvar/>
-                    <NesteSporsmal/>
                     <HandleKontrollSporsmalHotkeys/>
                 </KontrollSporsmalStyling>
             </IfFeatureToggleOn>
