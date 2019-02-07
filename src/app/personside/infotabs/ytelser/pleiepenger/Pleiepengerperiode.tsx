@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Pleiepengeperiode, Vedtak } from '../../../../../models/ytelse/pleiepenger';
+import { Pleiepengeperiode, Vedtak as VedtakInterface } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
@@ -29,7 +29,7 @@ const VedtaksListe = styled.ul`
   }
 `;
 
-function Vedtak({vedtak}: { vedtak: Vedtak }) {
+function Vedtak({vedtak}: { vedtak: VedtakInterface }) {
     const anvisteUtbetalingerEntries = {
         'Fra og med dato': formaterDato(vedtak.periode.fom),
         'Til og med dato': formaterDato(vedtak.periode.tom),

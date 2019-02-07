@@ -69,36 +69,36 @@ Array [
 
 <div
     className="c0"
->
+  >
     <div
-        className="c1"
+      className="c1"
     >
-        <div
-            className="c2"
+      <div
+        className="c2"
+      >
+        <button
+          aria-expanded={true}
+          className="c3"
+          onClick={[Function]}
         >
-            <button
-                aria-expanded={true}
-                className="c3"
-                onClick={[Function]}
+          <span
+            className="c4"
+          >
+            <span
+              className="typo-normal"
             >
-                <span
-                    className="c4"
-                >
-                    <span
-                        className="typo-normal"
-                    >
-                        Skjul
-                         
-                        sammendrag
-                    </span>
-                </span>
-                <i
-                    className="nav-frontend-chevron chevronboks chevron--opp"
-                />
-            </button>
-        </div>
+              Skjul
+               
+              sammendrag
+            </span>
+          </span>
+          <i
+            className="nav-frontend-chevron chevronboks chevron--opp"
+          />
+        </button>
+      </div>
     </div>
-</div>,
+  </div>,
   .c4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -303,171 +303,171 @@ Array [
 <div
     className="c0"
     open={true}
->
+  >
     <div
-        className="c1"
-        open={true}
+      className="c1"
+      open={true}
     >
-        <aside
-            aria-label="Sammendrag utbetalinger"
-            className="c2"
-        >
-            <div
-                className="typo-normal"
-            >
-                <table
-                    role="table"
-                >
-                    <thead
-                        role="rowgroup"
-                    >
-                        <tr
-                            role="row"
-                        >
-                            <th
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Ytelse
-                            </th>
-                            <th
-                                className="sumBrutto"
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Brutto
-                            </th>
-                            <th
-                                className="sumTrekk"
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Trekk
-                            </th>
-                            <th
-                                className="sumNetto"
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Utbetalt
-                            </th>
-                            <th
-                                className="visually-hidden"
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Periode
-                            </th>
-                            <th
-                                className="visually-hidden"
-                                role="columnheader"
-                                scope="col"
-                            >
-                                Detaljer
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody
-                        role="rowgroup"
-                    >
-                        <tr
-                            role="row"
-                        >
-                            <th
-                                role="rowheader"
-                                scope="row"
-                            >
-                                Sykepenger 2017
-                            </th>
-                            <td
-                                className="sumBrutto"
-                                role="cell"
-                            >
-                                26,740.00
-                            </td>
-                            <td
-                                className="sumTrekk"
-                                role="cell"
-                            >
-                                -3,968.00
-                            </td>
-                            <td
-                                className="sumNetto"
-                                role="cell"
-                            >
-                                22,772.00
-                            </td>
-                            <td
-                                className="periodeForYtelse"
-                                role="cell"
-                            >
-                                09.11.2016
-                                 - 
-                                31.10.2017
-                            </td>
-                            <td
-                                className="ytelseDetaljer"
-                                role="cell"
-                            >
-                                <dl>
-                                    <dt>
-                                        Mouse
-                                    </dt>
-                                    <dd>
-                                        7,720.00
-                                    </dd>
-                                    <dt>
-                                        Computer
-                                    </dt>
-                                    <dd>
-                                        7,860.00
-                                    </dd>
-                                    <dt>
-                                        Bacon
-                                    </dt>
-                                    <dd>
-                                        11,160.00
-                                    </dd>
-                                </dl>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </aside>
-    </div>
-    <div
-        aria-hidden={true}
-    >
+      <aside
+        aria-label="Sammendrag utbetalinger"
+        className="c2"
+      >
         <div
-            className="c3"
+          className="typo-normal"
         >
-            <div
-                className="c4"
+          <table
+            role="table"
+          >
+            <thead
+              role="rowgroup"
             >
-                <button
-                    aria-expanded={true}
-                    className="c5"
-                    onClick={[Function]}
+              <tr
+                role="row"
+              >
+                <th
+                  role="columnheader"
+                  scope="col"
                 >
-                    <span
-                        className="c6"
-                    >
-                        <span
-                            className="typo-normal"
-                        >
-                            Skjul
-                             
-                            sammendrag
-                        </span>
-                    </span>
-                    <i
-                        className="nav-frontend-chevron chevronboks chevron--opp"
-                    />
-                </button>
-            </div>
+                  Ytelse
+                </th>
+                <th
+                  className="sumBrutto"
+                  role="columnheader"
+                  scope="col"
+                >
+                  Brutto
+                </th>
+                <th
+                  className="sumTrekk"
+                  role="columnheader"
+                  scope="col"
+                >
+                  Trekk
+                </th>
+                <th
+                  className="sumNetto"
+                  role="columnheader"
+                  scope="col"
+                >
+                  Utbetalt
+                </th>
+                <th
+                  className="visually-hidden"
+                  role="columnheader"
+                  scope="col"
+                >
+                  Periode
+                </th>
+                <th
+                  className="visually-hidden"
+                  role="columnheader"
+                  scope="col"
+                >
+                  Detaljer
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              role="rowgroup"
+            >
+              <tr
+                role="row"
+              >
+                <th
+                  role="rowheader"
+                  scope="row"
+                >
+                  Sykepenger 2017
+                </th>
+                <td
+                  className="sumBrutto"
+                  role="cell"
+                >
+                  26,740.00
+                </td>
+                <td
+                  className="sumTrekk"
+                  role="cell"
+                >
+                  -3,968.00
+                </td>
+                <td
+                  className="sumNetto"
+                  role="cell"
+                >
+                  22,772.00
+                </td>
+                <td
+                  className="periodeForYtelse"
+                  role="cell"
+                >
+                  09.11.2016
+                   - 
+                  31.10.2017
+                </td>
+                <td
+                  className="ytelseDetaljer"
+                  role="cell"
+                >
+                  <dl>
+                    <dt>
+                      Mouse
+                    </dt>
+                    <dd>
+                      7,720.00
+                    </dd>
+                    <dt>
+                      Computer
+                    </dt>
+                    <dd>
+                      7,860.00
+                    </dd>
+                    <dt>
+                      Bacon
+                    </dt>
+                    <dd>
+                      11,160.00
+                    </dd>
+                  </dl>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </aside>
     </div>
-</div>,
+    <div
+      aria-hidden={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <button
+            aria-expanded={true}
+            className="c5"
+            onClick={[Function]}
+          >
+            <span
+              className="c6"
+            >
+              <span
+                className="typo-normal"
+              >
+                Skjul
+                 
+                sammendrag
+              </span>
+            </span>
+            <i
+              className="nav-frontend-chevron chevronboks chevron--opp"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
 ]
 `;

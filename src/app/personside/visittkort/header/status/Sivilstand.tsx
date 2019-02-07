@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Kjønn, Sivilstand, SivilstandTyper } from '../../../../../models/person/person';
+import { Kjønn, Sivilstand as SivilstandInterface, SivilstandTyper } from '../../../../../models/person/person';
 
 interface Props {
-    sivilstand: Sivilstand;
+    sivilstand: SivilstandInterface;
     kjønn: Kjønn;
 }
 
-function getBeskrivelseForSivilstand(sivilstand: Sivilstand, kjønn: Kjønn) {
+function getBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjønn: Kjønn) {
     if (sivilstand.kodeRef === SivilstandTyper.Enke) {
         return kjønn === Kjønn.Mann ? 'Enkemann' : 'Enke';
     } else {

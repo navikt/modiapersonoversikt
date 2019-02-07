@@ -3,28 +3,45 @@ import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../
 import { FilterState, PeriodeValg } from '../filter/Filter';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { Periode } from '../../../../../models/periode';
-import moment = require('moment');
+import moment from 'moment';
+import { loggError } from '../../../../../utils/frontendLogger';
 
 export const utbetaltTilBruker = 'Bruker';
 
-const månedTilNavnMapping = {
-    0: 'Januar',
-    1: 'Februar',
-    2: 'Mars',
-    3: 'April',
-    4: 'Mai',
-    5: 'Juni',
-    6: 'Juli',
-    7: 'August',
-    8: 'September',
-    9: 'Oktober',
-    10: 'November',
-    11: 'Desember'
+const månedTilNavnMapping = (månednr: number) => {
+    switch (månednr) {
+        case 0:
+            return 'Januar';
+        case 1:
+            return 'Februar';
+        case 2:
+            return 'Mars';
+        case 3:
+            return 'April';
+        case 4:
+            return 'Mai';
+        case 5:
+            return 'Juni';
+        case 6:
+            return 'Juli';
+        case 7:
+            return 'August';
+        case 8:
+            return 'September';
+        case 9:
+            return 'Oktober';
+        case 10:
+            return 'November';
+        case 11:
+            return 'Desember';
+        default:
+            return 'N/A';
+    }
 };
 
 export function datoVerbose(dato?: string | Date) {
     const datoMoment = dato ? moment(dato) : moment();
-    const måned = månedTilNavnMapping[datoMoment.month()];
+    const måned = månedTilNavnMapping(datoMoment.month());
     const år = datoMoment.year();
     const dag = datoMoment.date();
     const klokkeslett = datoMoment.format('HH:mm');
@@ -123,16 +140,20 @@ export function summertBeløpStringFraUtbetalinger(
         const sum = utbetalinger
             .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
             .reduce(
-            (acc: number, utbetaling: Utbetaling) => {
+                (acc: number, utbetaling: Utbetaling) => {
 
-                if (!utbetaling.ytelser) {
-                    console.error('"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser', utbetaling);
-                    throw new Error();
-                }
+                    if (!utbetaling.ytelser) {
+                        loggError(
+                            new Error('Kunne ikke beregne sum på utbetaling'),
+                            '"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser',
+                            {utbetaling: utbetaling}
+                        );
+                        throw new Error();
+                    }
 
-                return acc + getSumFromYtelser(utbetaling.ytelser);
-            },
-            0);
+                    return acc + getSumFromYtelser(utbetaling.ytelser);
+                },
+                0);
 
         return formaterNOK(sum);
     } catch (e) {
@@ -148,13 +169,13 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
         const ytelser = utbetalinger
             .sort(utbetalingDatoComparator)
             .reduce(
-            (acc: Ytelse[], utbetaling: Utbetaling) => {
-                if (!utbetaling.ytelser) {
-                    throw new Error('"ytelser" er ikke definert på utbetaling');
-                }
-                return [...acc, ...utbetaling.ytelser] ;
-            },
-            []);
+                (acc: Ytelse[], utbetaling: Utbetaling) => {
+                    if (!utbetaling.ytelser) {
+                        throw new Error('"ytelser" er ikke definert på utbetaling');
+                    }
+                    return [...acc, ...utbetaling.ytelser];
+                },
+                []);
         return ytelser;
     } catch (e) {
         console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);

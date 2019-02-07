@@ -1,6 +1,6 @@
 import { UtbetalingerResponse } from '../models/utbetalinger';
 import { apiBaseUri } from './config';
-import moment = require('moment');
+import moment from 'moment';
 
 export function getUtbetalinger(
     fodselsnummer: string,

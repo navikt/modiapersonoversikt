@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
-import * as moment from 'moment';
+import moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import { isLoaded, isLoading, isReloading, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import UtbetaltTilValg from './UtbetaltTilValg';

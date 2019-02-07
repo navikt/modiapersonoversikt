@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
