@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import VisittkortElement from '../VisittkortElement';
-import { Periode, Verge, Vergemal } from '../../../../../models/vergemal/vergemal';
+import {
+    Periode,
+    Verge as VergeInterface,
+    Vergemal as VergemalInterface
+} from '../../../../../models/vergemal/vergemal';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettGrå from '../../../../../components/EtikettGrå';
@@ -24,7 +28,7 @@ const Vergeinformasjon = styled.div`
   margin-bottom: 5px;
 `;
 
-function Verge(props: { verge: Verge }) {
+function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
     return (
         <VisittkortElement beskrivelse={'Verge'}>
@@ -48,7 +52,7 @@ function Verge(props: { verge: Verge }) {
     );
 }
 
-function Vergemal(props: { vergemal: Vergemal }) {
+function Vergemal(props: { vergemal: VergemalInterface }) {
     const verger = props.vergemal.verger.map((verge, index) =>
         <Verge verge={verge} key={index}/>);
     return (
@@ -59,7 +63,7 @@ function Vergemal(props: { vergemal: Vergemal }) {
     );
 }
 
-function VergemalWrapper(props: { vergemal: Vergemal }) {
+function VergemalWrapper(props: { vergemal: VergemalInterface }) {
     if (props.vergemal.verger.length === 0) {
         return null;
     }

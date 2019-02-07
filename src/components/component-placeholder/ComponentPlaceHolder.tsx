@@ -16,6 +16,7 @@ interface ComponentPlaceholderState {
 class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, ComponentPlaceholderState> {
 
     static componentCount: number = 0;
+    // @ts-ignore
     private node: HTMLDivElement;
 
     constructor(props: ComponentPlaceholderProps, state: ComponentPlaceholderState) {

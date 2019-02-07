@@ -1,6 +1,5 @@
 import * as React from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Timer = NodeJS.Timer;
 
 interface Props {
     delay?: number;
@@ -13,12 +12,12 @@ interface State {
 
 class LazySpinner extends React.Component<Props, State> {
 
-    private timer: Timer;
+    private timer?: number;
 
     constructor(props: Props) {
         super(props);
         this.state = { showSpinner: false };
-        this.timer = setTimeout(
+        this.timer = window.setTimeout(
             () => this.setState({showSpinner: true}),
             this.props.delay || 300);
     }

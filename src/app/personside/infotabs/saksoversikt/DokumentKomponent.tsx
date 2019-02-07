@@ -8,7 +8,7 @@ import {
 } from '../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import * as moment from 'moment';
+import moment from 'moment';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokument from '../../../../svg/Dokument';

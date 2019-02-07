@@ -58,7 +58,7 @@ const YtelsesListe = styled.ul`
 
 class SammensattUtbetaling extends React.PureComponent<Props> {
 
-    private print: () => void;
+    private print?: () => void;
 
     constructor(props: Props) {
         super(props);
@@ -72,7 +72,7 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
             return;
         }
         ytelser.forEach(ytelse => this.props.ekspanderYtelse(ytelse));
-        this.print();
+        this.print && this.print();
         loggEvent('SammensattUtbetaling', 'Printer');
     }
 

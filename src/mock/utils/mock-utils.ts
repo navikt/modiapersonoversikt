@@ -1,12 +1,11 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import navfaker from 'nav-faker';
-import FakerStatic = Faker.FakerStatic;
 
 export function getSistOppdatert() {
     return moment(navfaker.dato.forÅrSiden(5)).toISOString();
 }
 
-export function vektetSjanse(seededFaker: FakerStatic, vekt: Number) {
+export function vektetSjanse(seededFaker: Faker.FakerStatic, vekt: Number) {
     const tilfeldigTall = seededFaker.random.number({
         max: 1,
         min: 0,

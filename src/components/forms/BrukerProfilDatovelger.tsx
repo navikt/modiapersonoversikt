@@ -5,7 +5,7 @@ import { formaterTilISO8601Date } from '../../utils/dateUtils';
 import { Feilmelding } from '../../utils/Feilmelding';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
-import * as moment from 'moment';
+import moment from 'moment';
 import { loggEvent } from '../../utils/frontendLogger';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 

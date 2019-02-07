@@ -69,7 +69,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
 
     private printerButtonRef = React.createRef<HTMLSpanElement>();
     private utbetalingRef = React.createRef<HTMLLIElement>();
-    private print: () => void;
+    private print?: () => void;
 
     constructor(props: Props) {
         super(props);
@@ -92,7 +92,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     handlePrint() {
         loggEvent('EnkeltUtbetaling', 'Printer');
         this.props.setEkspanderYtelse(true);
-        this.print();
+        this.print && this.print();
     }
 
     handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {

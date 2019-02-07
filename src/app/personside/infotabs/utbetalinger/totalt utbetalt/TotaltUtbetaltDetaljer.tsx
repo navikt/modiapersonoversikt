@@ -18,7 +18,7 @@ import {
 } from '../utils/utbetalingerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import * as moment from 'moment';
+import moment from 'moment';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 

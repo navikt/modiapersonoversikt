@@ -14,7 +14,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import moment = require('moment');
+import moment from 'moment';
 
 interface State {
     filter: FilterState;

@@ -1,5 +1,5 @@
-import * as faker from 'faker/locale/nb_NO';
-import * as moment from 'moment';
+import faker from 'faker/locale/nb_NO';
+import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 import {
@@ -76,7 +76,7 @@ function getVedtak(): Vedtak {
         anvistUtbetaling: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
-        pleiepengegrad: navfaker.random.integer(60)
+        pleiepengegrad: navfaker.random.integer(100)
     };
 }
 
