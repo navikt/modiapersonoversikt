@@ -9,7 +9,6 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
-import SafForm from "../../../brukerprofil/saf/SafForm";
 
 interface VisittkortBodyProps {
     person: Person;
@@ -70,7 +69,6 @@ function ThreeColumnLayout(person: Person) {
                 <NavKontorSeksjon person={person}/>
                 <Sikkerhetstiltak person={person}/>
                 <LenkeBrukerprofilContainer person={person}/>
-                <SafForm/>
             </Kolonne>
         </>
     );
