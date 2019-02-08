@@ -4,7 +4,13 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../felles-styling/DescriptionList';
-import { GråttPanel } from '../../../../../components/common-styled-components';
+import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterNOK } from '../../utbetalinger/utils/utbetalingerUtils';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import { useState } from 'react';
+import { AlignTextCenter } from '../../../../../components/common-styled-components';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { getFormatertKreditortrekkFraHistoriskUtbetaling } from './utbetalingerUtils';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -12,76 +18,116 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  > * {
-    margin-top: ${theme.margin.px20};
-  }
+    > * {
+        margin: ${theme.margin.px10} 0;
+    }
 `;
 
 const VedtaksListe = styled.ul`
-  list-style: none;
-  margin-right: 1rem;
-  li {
-    margin-bottom: ${theme.margin.px20};
-  }
+    list-style: none;
+    margin-right: 1rem;
+    li {
+        margin-bottom: ${theme.margin.px10};
+    }
 `;
 
-function HistoriskeUtbetalinger({histUtbetal}: {histUtbetal: HistoriskUtbetaling}) {
-
-    const utbetaltEntries  = {
-        'Registeringsdato': histUtbetal.utbetalingsdato,
-        'periode': histUtbetal.vedtak
-            ? `${histUtbetal.vedtak.fra} - ${histUtbetal.vedtak.til}`
-            : 'N/A',
-        Type: histUtbetal.type,
-        Utbetalingsgrad: histUtbetal.utbetalingsgrad,
-        Dagsats: histUtbetal.dagsats,
-        Bruttobeløp: histUtbetal.bruttobeløp,
-        nettobeløp: histUtbetal.nettobeløp,
-        Arbeidsgiver: histUtbetal.arbeidsgiverNavn
+function HistoriskUtbetalingKomponent({ historiskUtbetaling }: { historiskUtbetaling: HistoriskUtbetaling }) {
+    const utbetaltEntries = {
+        Dato: historiskUtbetaling.utbetalingsdato && formaterDato(historiskUtbetaling.utbetalingsdato),
+        Type: historiskUtbetaling.type,
+        Periode:
+            historiskUtbetaling.vedtak &&
+            `${formaterDato(historiskUtbetaling.vedtak.fra)} - ${formaterDato(historiskUtbetaling.vedtak.til)}`,
+        Utbetalingsgrad: historiskUtbetaling.utbetalingsgrad && historiskUtbetaling.utbetalingsgrad + '%',
+        Netto: historiskUtbetaling.nettobeløp && formaterNOK(historiskUtbetaling.nettobeløp) + ' NOK',
+        Registeringsdato: historiskUtbetaling.utbetalingsdato && formaterDato(historiskUtbetaling.utbetalingsdato),
     };
+    const utbetaltDetaljerEntries = {
+        Dagsats: historiskUtbetaling.dagsats && formaterNOK(historiskUtbetaling.dagsats),
+        Bruttobeløp: historiskUtbetaling.bruttobeløp && formaterNOK(historiskUtbetaling.bruttobeløp) + ' NOK',
+        Nettobeløp: historiskUtbetaling.nettobeløp && formaterNOK(historiskUtbetaling.nettobeløp) + ' NOK',
+        Arbeidsgiver: historiskUtbetaling.arbeidsgiverNavn,
+        Organisasjonsnummer: historiskUtbetaling.arbeidsgiverOrgNr,
+        Skattetrekk: historiskUtbetaling.skattetrekk,
+        Kreditortrekk: getFormatertKreditortrekkFraHistoriskUtbetaling(historiskUtbetaling),
+    };
+    const [visDetaljer, setVisDetaljer] = useState(false);
     return (
         <li>
-        <GråttPanel>
-            <DescriptionList entries={utbetaltEntries}/>
-        </GråttPanel>
+            <DetaljerCollapse
+                header={<DescriptionList entries={utbetaltEntries} />}
+                alwaysGrayBackground={true}
+                open={visDetaljer}
+                toggle={() => setVisDetaljer(!visDetaljer)}
+            >
+                <DescriptionList entries={utbetaltDetaljerEntries} />
+            </DetaljerCollapse>
         </li>
     );
 }
 
-function KommendeUtbetalinger({kommendeUtbetal}: {kommendeUtbetal: KommendeUtbetaling}) {
+function KommendeUtbetalingKomponent({ kommendeUtbetaling }: { kommendeUtbetaling: KommendeUtbetaling }) {
     const kommendeEntries = {
-        'Registeringsdato': kommendeUtbetal.utbetalingsdato,
-        'periode': kommendeUtbetal.vedtak
-            ? `${kommendeUtbetal.vedtak.fra} - ${kommendeUtbetal.vedtak.til}`
-            : 'N/A',
-        Type: kommendeUtbetal.type,
-        Utbetalingsgrad: kommendeUtbetal.utbetalingsgrad,
-        Dagsats: kommendeUtbetal.dagsats,
-        Bruttobeløp: kommendeUtbetal.bruttobeløp,
-        Arbeidsgiver: kommendeUtbetal.arbeidsgiverNavn
+        Registeringsdato: kommendeUtbetaling.utbetalingsdato && formaterDato(kommendeUtbetaling.utbetalingsdato),
+        Type: kommendeUtbetaling.type,
+        Periode:
+            kommendeUtbetaling.vedtak &&
+            `${formaterDato(kommendeUtbetaling.vedtak.fra)} - ${formaterDato(kommendeUtbetaling.vedtak.til)}`,
+        Utbetalingsgrad: kommendeUtbetaling.utbetalingsgrad && kommendeUtbetaling.utbetalingsgrad + '%',
     };
+
+    const kommendeDetaljerEntries = {
+        Dagsats: kommendeUtbetaling.dagsats && formaterNOK(kommendeUtbetaling.dagsats) + ' NOK',
+        Bruttobeløp: kommendeUtbetaling.bruttobeløp && formaterNOK(kommendeUtbetaling.bruttobeløp) + ' NOK',
+        Arbeidsgiver: kommendeUtbetaling.arbeidsgiverNavn,
+        Organisasjonsnummer: kommendeUtbetaling.arbeidsgiverOrgNr,
+        'Saksbehandlerident (Tryde-ident)': kommendeUtbetaling.saksbehandler,
+    };
+    const [visDetaljer, setVisDetaljer] = useState(false);
     return (
         <li>
-        <GråttPanel>
-            <DescriptionList entries={kommendeEntries}/>
-        </GråttPanel>
+            <DetaljerCollapse
+                header={<DescriptionList entries={kommendeEntries} />}
+                alwaysGrayBackground={true}
+                open={visDetaljer}
+                toggle={() => setVisDetaljer(!visDetaljer)}
+            >
+                <DescriptionList entries={kommendeDetaljerEntries} />
+            </DetaljerCollapse>
         </li>
     );
 }
 
 function Utbetalinger(props: Props) {
-
-    const histUtbetal = props.historiskeUtbetalinger
-        .map((v, index) => <HistoriskeUtbetalinger key={index} histUtbetal={v}/>);
-    const kommendeUtbetal = props.kommendeUtbetalinger
-        .map((v, index) =>  <KommendeUtbetalinger key={index} kommendeUtbetal={v}/>);
+    const utførteUtbetalinger = props.historiskeUtbetalinger.map(utbetaling => (
+        <HistoriskUtbetalingKomponent key={utbetaling.utbetalingsdato} historiskUtbetaling={utbetaling} />
+    ));
+    const kommendeUtbetalinger = props.kommendeUtbetalinger.map(utbetaling => (
+        <KommendeUtbetalingKomponent key={utbetaling.utbetalingsdato} kommendeUtbetaling={utbetaling} />
+    ));
 
     return (
         <Wrapper>
+            <AlignTextCenter>
                 <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
-                <VedtaksListe> {kommendeUtbetal} </VedtaksListe>
-                <Undertittel tag="h4">Histortiske utbetalinger</Undertittel>
-                <VedtaksListe> {histUtbetal} </VedtaksListe>
+            </AlignTextCenter>
+            <VedtaksListe>
+                {kommendeUtbetalinger.length > 0 ? (
+                    kommendeUtbetalinger
+                ) : (
+                    <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>
+                )}
+            </VedtaksListe>
+            <AlignTextCenter>
+                <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
+            </AlignTextCenter>
+            <VedtaksListe>
+                {utførteUtbetalinger.length > 0 ? (
+                    utførteUtbetalinger
+                ) : (
+                    <AlertStripeInfo>Ingen utførte utbetalinger funnet</AlertStripeInfo>
+                )}
+            </VedtaksListe>
         </Wrapper>
     );
 }

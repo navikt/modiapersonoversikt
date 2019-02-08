@@ -151,14 +151,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c20 {
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   padding: 0 1.25rem 1.25rem;
 }
 
 .c21 {
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   padding: 0 1.25rem;
 }
 

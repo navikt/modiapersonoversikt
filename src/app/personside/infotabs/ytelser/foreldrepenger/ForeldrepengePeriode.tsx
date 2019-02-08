@@ -12,41 +12,57 @@ interface Props {
 }
 
 const Padding = styled.div`
-  margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
+    margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
 `;
 
 const Flex = styled.div`
-  display: flex;
+    display: flex;
 `;
 
-const TittelStyling = styled.div`
-  padding: 1rem 0.3rem .5rem;
+const Big = styled.div`
+    flex-basis: 55%;
 `;
 
-function ForeldrepengePeriode({periode}: Props) {
+const Small = styled.div`
+    flex-basis: 45%;
+`;
+
+export function convertBoolTilJaNei(verdi: boolean | null): string | null {
+    switch (verdi) {
+        case true:
+            return 'Ja';
+        case false:
+            return 'Nei';
+        default:
+            return null;
+    }
+}
+
+function ForeldrepengePeriode({ periode }: Props) {
     const entries = {
         'Midlertidig stans': periode.midlertidigStansDato,
-        'Rett til Mødrekvote': periode.rettTilMødrekvote,
-        'Rett til Fedrekvote': periode.rettTilFedrekvote,
-        'Aleneomsorg Far': periode.harAleneomsorgFar,
-        'Aleneomsorg Mor' : periode.harAleneomsorgMor,
         Stansårsak: periode.stansårsak,
-        Fedrekvote: periode.erFedrekvote,
-        Mødrekvote: periode.erMødrekvote
-
+        Mødrekvote: convertBoolTilJaNei(periode.erMødrekvote),
+        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
+        'Rett til Mødrekvote': periode.rettTilMødrekvote,
+        Fedrekvote: convertBoolTilJaNei(periode.erFedrekvote),
+        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar),
+        'Rett til Fedrekvote': periode.rettTilFedrekvote,
     };
     return (
         <YtelserPeriode tittel={`Periode - ${formaterDato(periode.foreldrepengerFom)}`}>
             <Flex>
-            <Padding>
-                <DescriptionList entries={entries}/>
-            </Padding>
-                <TittelStyling>
-            <Utbetalinger
-                kommendeUtbetalinger={periode.kommendeUtbetalinger}
-                historiskeUtbetalinger={periode.historiskeUtbetalinger}
-            />
-                </TittelStyling>
+                <Small>
+                    <Padding>
+                        <DescriptionList entries={entries} />
+                    </Padding>
+                </Small>
+                <Big>
+                    <Utbetalinger
+                        kommendeUtbetalinger={periode.kommendeUtbetalinger}
+                        historiskeUtbetalinger={periode.historiskeUtbetalinger}
+                    />
+                </Big>
             </Flex>
         </YtelserPeriode>
     );

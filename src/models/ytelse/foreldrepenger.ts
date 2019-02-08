@@ -53,8 +53,8 @@ export interface Foreldrepengerperiode {
 }
 
 export interface Arbeidsforhold {
-    navn: string;
-    kontonr: string | null;
+    arbeidsgiverNavn: string;
+    arbeidsgiverKontonr: string | null;
     inntektsperiode: string | null;
     inntektForPerioden: number | null;
     sykepengerFom: string | null;
