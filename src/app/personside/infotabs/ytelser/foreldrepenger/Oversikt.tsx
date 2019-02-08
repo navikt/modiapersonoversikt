@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet, utledMaksDato } from './foreldrePengerUtils';
-import { datoVerbose } from '../../utbetalinger/utils/utbetalingerUtils';
-import DescriptionList from '../felles-styling/DescriptionList';
+import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet } from './foreldrePengerUtils';
+import DescriptionList, { DescriptionListEntries } from '../felles-styling/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import ArbeidsForhold from './Arbeidsforhold';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import { formaterDato } from '../../../../../utils/dateUtils';
 
 interface Props {
     foreldrePenger: Foreldrepengerettighet;
@@ -60,23 +60,36 @@ function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
     );
 }
 
+function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
+    if (foreldrePenger.termin) {
+        return {
+            Termindato: formaterDato(foreldrePenger.termin),
+        };
+    } else if (foreldrePenger.omsorgsovertakelse) {
+        return {
+            Omsorgsovertakelse: formaterDato(foreldrePenger.omsorgsovertakelse),
+        };
+    } else {
+        return {
+            Termindato: null,
+        };
+    }
+}
+
 function Oversikt({ foreldrePenger }: Props) {
-    const foreldrePengeRetten = {
+    const foreldrePengeRetten: DescriptionListEntries = {
         Foreldrepengetype: foreldrePenger.foreldrepengetype,
         Dekningsgrad: foreldrePenger.dekningsgrad + '%',
-        'Rettighet fra dato': datoVerbose(utledFraDatoForRettighet(foreldrePenger)).sammensatt,
+        'Rettighet fra dato': formaterDato(utledFraDatoForRettighet(foreldrePenger)),
         Restdager: foreldrePenger.restDager,
-        Maksdato: utledMaksDato(foreldrePenger),
+        Maksdato: foreldrePenger.slutt && formaterDato(foreldrePenger.slutt),
         Arbeidskategori: foreldrePenger.arbeidskategori,
     };
 
-    const barnet = {
-        Termindato: foreldrePenger.rettighetFom && datoVerbose(foreldrePenger.rettighetFom).sammensatt,
-        Fødselsdato: foreldrePenger.barnetsFødselsdato && datoVerbose(foreldrePenger.barnetsFødselsdato).sammensatt,
+    const barnet: DescriptionListEntries = {
+        ...omsorgsovertakelseEllerTermin(foreldrePenger),
+        Fødselsdato: foreldrePenger.barnetsFødselsdato && formaterDato(foreldrePenger.barnetsFødselsdato),
         'Annen forelder': foreldrePenger.andreForeldersFnr,
-        [(foreldrePenger.termin && 'Termindato') ||
-        (foreldrePenger.omsorgsovertakelse && 'Omsorgsovertagelse') ||
-        'N/A']: foreldrePenger.termin || foreldrePenger.omsorgsovertakelse,
         'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn,
         'Antall barn': foreldrePenger.antallBarn,
     };

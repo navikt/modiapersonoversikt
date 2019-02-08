@@ -21,14 +21,15 @@ const Wrapper = styled.div`
     > * {
         margin: ${theme.margin.px10} 0;
     }
+    margin-right: 1rem;
 `;
 
 const VedtaksListe = styled.ul`
     list-style: none;
-    margin-right: 1rem;
-    li {
-        margin-bottom: ${theme.margin.px10};
-    }
+`;
+
+const Padding = styled.div`
+    padding: 0.5rem;
 `;
 
 function HistoriskUtbetalingKomponent({ historiskUtbetaling }: { historiskUtbetaling: HistoriskUtbetaling }) {
@@ -99,18 +100,20 @@ function KommendeUtbetalingKomponent({ kommendeUtbetaling }: { kommendeUtbetalin
 }
 
 function Utbetalinger(props: Props) {
-    const utførteUtbetalinger = props.historiskeUtbetalinger.map(utbetaling => (
-        <HistoriskUtbetalingKomponent key={utbetaling.utbetalingsdato} historiskUtbetaling={utbetaling} />
+    const kommendeUtbetalinger = props.kommendeUtbetalinger.map((utbetaling, index) => (
+        <KommendeUtbetalingKomponent key={index} kommendeUtbetaling={utbetaling} />
     ));
-    const kommendeUtbetalinger = props.kommendeUtbetalinger.map(utbetaling => (
-        <KommendeUtbetalingKomponent key={utbetaling.utbetalingsdato} kommendeUtbetaling={utbetaling} />
+    const utførteUtbetalinger = props.historiskeUtbetalinger.map((utbetaling, index) => (
+        <HistoriskUtbetalingKomponent key={index} historiskUtbetaling={utbetaling} />
     ));
 
     return (
         <Wrapper>
-            <AlignTextCenter>
-                <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
-            </AlignTextCenter>
+            <Padding>
+                <AlignTextCenter>
+                    <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
+                </AlignTextCenter>
+            </Padding>
             <VedtaksListe>
                 {kommendeUtbetalinger.length > 0 ? (
                     kommendeUtbetalinger
@@ -118,9 +121,11 @@ function Utbetalinger(props: Props) {
                     <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>
                 )}
             </VedtaksListe>
-            <AlignTextCenter>
-                <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
-            </AlignTextCenter>
+            <Padding>
+                <AlignTextCenter>
+                    <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
+                </AlignTextCenter>
+            </Padding>
             <VedtaksListe>
                 {utførteUtbetalinger.length > 0 ? (
                     utførteUtbetalinger

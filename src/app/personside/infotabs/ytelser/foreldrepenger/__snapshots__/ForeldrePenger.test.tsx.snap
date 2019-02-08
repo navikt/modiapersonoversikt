@@ -26,7 +26,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   min-width: 13rem;
 }
 
-.c19 {
+.c20 {
   text-align: center;
 }
 
@@ -99,7 +99,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   padding: 0 1.25rem 1.25rem;
 }
 
-.c21 {
+.c22 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 1.25rem;
@@ -119,21 +119,24 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin-right: 1.25rem;
 }
 
-.c22 {
+.c23 {
   margin-bottom: 1.25rem;
+}
+
+.c18 {
+  margin-right: 1rem;
 }
 
 .c18 > * {
   margin: 0.625rem 0;
 }
 
-.c20 {
+.c21 {
   list-style: none;
-  margin-right: 1rem;
 }
 
-.c20 li {
-  margin-bottom: 0.625rem;
+.c19 {
+  padding: 0.5rem;
 }
 
 .c11 > *:first-child {
@@ -259,7 +262,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              26. April 2017
+              26.04.2017
             </dd>
           </div>
           <div>
@@ -283,7 +286,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              12. Juli 2017
+              —
             </dd>
           </div>
           <div>
@@ -321,7 +324,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              2019-02-08
+              08.02.2019
             </dd>
           </div>
           <div>
@@ -333,7 +336,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              8. Februar 2019
+              08.02.2019
             </dd>
           </div>
           <div>
@@ -525,7 +528,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           <span
             className="c13"
           >
-            Periode - 26.04.2017
+            Periode 1 - 26.04.2017
           </span>
         </span>
       </h3>
@@ -550,7 +553,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dd
                   className="typo-normal"
                 >
-                  2019-02-07
+                  2019-02-08
                 </dd>
               </div>
               <div>
@@ -649,18 +652,22 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <div
               className="c19"
             >
-              <h4
-                className="typo-undertittel"
+              <div
+                className="c20"
               >
-                Kommende utbetalinger
-              </h4>
+                <h4
+                  className="typo-undertittel"
+                >
+                  Kommende utbetalinger
+                </h4>
+              </div>
             </div>
             <ul
-              className="c20"
+              className="c21"
             >
               <li>
                 <div
-                  className="c21"
+                  className="c22"
                   open={false}
                 >
                   <dl
@@ -716,7 +723,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                     </div>
                   </dl>
                   <div
-                    className="c22"
+                    className="c23"
                   >
                     <div
                       className="c5"
@@ -757,18 +764,22 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <div
               className="c19"
             >
-              <h4
-                className="typo-undertittel"
+              <div
+                className="c20"
               >
-                Utførte utbetalinger
-              </h4>
+                <h4
+                  className="typo-undertittel"
+                >
+                  Utførte utbetalinger
+                </h4>
+              </div>
             </div>
             <ul
-              className="c20"
+              className="c21"
             >
               <li>
                 <div
-                  className="c21"
+                  className="c22"
                   open={false}
                 >
                   <dl
@@ -848,7 +859,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                     </div>
                   </dl>
                   <div
-                    className="c22"
+                    className="c23"
                   >
                     <div
                       className="c5"

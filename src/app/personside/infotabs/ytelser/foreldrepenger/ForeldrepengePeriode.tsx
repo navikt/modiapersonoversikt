@@ -9,6 +9,7 @@ import { formaterDato } from '../../../../../utils/dateUtils';
 
 interface Props {
     periode: Foreldrepengerperiode;
+    periodenr: number;
 }
 
 const Padding = styled.div`
@@ -38,7 +39,7 @@ export function convertBoolTilJaNei(verdi: boolean | null): string | null {
     }
 }
 
-function ForeldrepengePeriode({ periode }: Props) {
+function ForeldrepengePeriode({ periode, periodenr }: Props) {
     const entries = {
         'Midlertidig stans': periode.midlertidigStansDato,
         Stansårsak: periode.stansårsak,
@@ -50,7 +51,7 @@ function ForeldrepengePeriode({ periode }: Props) {
         'Rett til Fedrekvote': periode.rettTilFedrekvote,
     };
     return (
-        <YtelserPeriode tittel={`Periode - ${formaterDato(periode.foreldrepengerFom)}`}>
+        <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
             <Flex>
                 <Small>
                     <Padding>
