@@ -24,8 +24,13 @@ if (mockEnabled) {
     setupMock();
 }
 
-const KolonneStyling = styled.div`
+const GamleModiaTilpasning = styled.div`
+  display: flex;
   flex-flow: column;
+  overflow-y: auto;
+  > * {
+    flex-grow: 1;
+  }
 `;
 
 class VisittkortStandAlone extends React.Component<Props> {
@@ -34,10 +39,10 @@ class VisittkortStandAlone extends React.Component<Props> {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <KolonneStyling>
+                    <GamleModiaTilpasning>
                         <Kontrollsporsmal/>
                         <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
-                    </KolonneStyling>
+                    </GamleModiaTilpasning>
                 </Provider>
             </ErrorBoundary>
         );
