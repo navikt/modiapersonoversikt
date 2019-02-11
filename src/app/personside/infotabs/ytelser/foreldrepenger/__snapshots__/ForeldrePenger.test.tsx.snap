@@ -262,7 +262,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              01.01.1970
+              29.04.2017
             </dd>
           </div>
           <div>
@@ -324,7 +324,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              01.01.1970
+              11.02.2019
             </dd>
           </div>
           <div>
@@ -336,7 +336,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              01.01.1970
+              11.02.2019
             </dd>
           </div>
           <div>
@@ -468,7 +468,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            01.01.1970
+            11.02.2019
           </dd>
         </div>
       </dl>
@@ -528,7 +528,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           <span
             className="c13"
           >
-            Periode 1 - 01.01.1970
+            Periode 1 - 29.04.2017
           </span>
         </span>
       </h3>
@@ -553,7 +553,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dd
                   className="typo-normal"
                 >
-                  1970-01-01
+                  2019-02-10
                 </dd>
               </div>
               <div>
@@ -682,7 +682,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        25.06.2018
                       </dd>
                     </div>
                     <div>
@@ -706,7 +706,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970 - 01.01.1970
+                        14.01.2018 - 15.07.2017
                       </dd>
                     </div>
                     <div>
@@ -794,7 +794,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        26.01.2019
                       </dd>
                     </div>
                     <div>
@@ -818,7 +818,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970 - 01.01.1970
+                        09.02.2018 - 25.03.2018
                       </dd>
                     </div>
                     <div>
@@ -854,7 +854,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        26.01.2019
                       </dd>
                     </div>
                   </dl>
