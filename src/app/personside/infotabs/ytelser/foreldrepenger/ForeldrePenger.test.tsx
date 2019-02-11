@@ -4,6 +4,10 @@ import { getForeldrepengerettighetMock } from '../../../../../mock/ytelse/foreld
 import Foreldrepenger from './ForeldrePenger';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 
+beforeEach(() => {
+    Date.prototype.getTime = jest.fn(() => 0);
+});
+
 test('Foreldrepengeperiode matcher snapshot', () => {
     const testRettighet = getForeldrepengerettighetMock('10108000398', 1234);
     const redusertRettighet: Foreldrepengerettighet = {
