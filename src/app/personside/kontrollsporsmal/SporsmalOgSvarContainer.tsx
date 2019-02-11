@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { KontrollSpørsmålState, Spørsmål } from '../../../redux/restReducers/kontrollSporsmal/types';
+import { KontrollSpørsmålState, Spørsmål, Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
 import { AppState } from '../../../redux/reducers';
 import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
@@ -81,26 +81,30 @@ function extractSpørsmål<T>(restRessurs: RestReducer<T>, spørsmålExtractors:
                     svar: extractor.extractSvar(data)
                 };
             })
-            .filter(spm => spm.svar !== '');
+            .filter(spm => !erTom(spm));
     }
     return [];
 }
 
 function erSpørsmålLike(spørsmål1: Spørsmål, spørsmål2: Spørsmål): boolean {
     return spørsmål1.spørsmål === spørsmål2.spørsmål
-        && (spørsmål1.svar === spørsmål2.svar || erLikSvarListe(spørsmål1.svar, spørsmål2.svar));
+        && (erLikSvarListe(spørsmål1.svar, spørsmål2.svar));
 }
 
-function erLikSvarListe(svarListe1: string | string[], svarListe2: string | string[]): boolean {
-    if (!(svarListe1 instanceof Array && svarListe2 instanceof Array && svarListe1.length === svarListe2.length)) {
+function erLikSvarListe(svarListe1: Svar[], svarListe2: Svar[]): boolean {
+    if (svarListe1.length !== svarListe2.length) {
         return false;
     }
     for (let i = 0; i < svarListe1.length; i++) {
-        if (svarListe1[i] !== svarListe2[i]) {
+        if (svarListe1[i].tekst !== svarListe2[i].tekst) {
             return false;
         }
     }
     return true;
+}
+
+function erTom(spm: Spørsmål): boolean {
+    return spm.svar.every(enkeltSvar => enkeltSvar.tekst === '');
 }
 
 function mapStateToProps(state: AppState): StateProps {
