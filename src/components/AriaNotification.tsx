@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Timer = NodeJS.Timer;
 
 interface Props {
     beskjed: string;
@@ -12,7 +11,7 @@ interface State {
 
 class AriaNotification extends React.Component<Props, State> {
 
-    private timeOut: Timer;
+    private timeOut?: number;
 
     constructor(props: Props) {
         super(props);
@@ -40,7 +39,7 @@ class AriaNotification extends React.Component<Props, State> {
         if (this.timeOut) {
             clearTimeout(this.timeOut);
         }
-        this.timeOut = setTimeout(
+        this.timeOut = window.setTimeout(
             () => this.setState({render: false}),
             15000
         );

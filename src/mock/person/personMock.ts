@@ -1,5 +1,5 @@
-import * as faker from 'faker/locale/nb_NO';
-import * as moment from 'moment';
+import faker from 'faker/locale/nb_NO';
+import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 
@@ -23,7 +23,6 @@ import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } fro
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 import { getDiskresjonskode } from '../utils/diskresjonskode-util';
-import FakerStatic = Faker.FakerStatic;
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
@@ -183,7 +182,7 @@ function getTilrettelagtKommunikasjonsListe() {
     return liste;
 }
 
-function getFornavn(seededFaker: FakerStatic, fødselsnummer: string): string {
+function getFornavn(seededFaker: Faker.FakerStatic, fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0) {
         return seededFaker.name.firstName(1);
     } else {

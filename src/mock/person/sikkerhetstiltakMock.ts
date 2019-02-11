@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 import { Sikkerhetstiltak, SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { getPeriode } from './periodeMock';
 import { vektetSjanse } from '../utils/mock-utils';

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Pleiepengeperiode, Vedtak } from '../../../../../models/ytelse/pleiepenger';
+import { Pleiepengeperiode, Vedtak as VedtakInterface } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { GråttPanel } from '../../../../../components/common-styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import DescriptionList from '../felles-styling/DescriptionList';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -14,31 +13,23 @@ interface Props {
     periodeNummer: number;
 }
 
-const Padding = styled.div`
-  margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
-`;
-
 const PaddingBottom = styled.div`
   padding-bottom: 1rem;
 `;
 
 const VedtaksListe = styled.ul`
   list-style: none;
-  margin-right: 1rem;
+  padding: 2rem;
   li {
-    margin-bottom: ${theme.margin.px20};
+    margin-top: ${theme.margin.px10};
+    &:not(:last-child) {
+      padding-bottom: ${theme.margin.px20};
+      border-bottom: ${theme.border.skilleDashed};
+    }
   }
 `;
 
-const Flex = styled.div`
-  display: flex;
-`;
-
-const TittelStyling = styled.div`
-  padding: 1rem 0.3rem .5rem;
-`;
-
-function Vedtak({vedtak}: { vedtak: Vedtak }) {
+function Vedtak({vedtak}: { vedtak: VedtakInterface }) {
     const anvisteUtbetalingerEntries = {
         'Fra og med dato': formaterDato(vedtak.periode.fom),
         'Til og med dato': formaterDato(vedtak.periode.tom),
@@ -50,37 +41,22 @@ function Vedtak({vedtak}: { vedtak: Vedtak }) {
 
     return (
         <li>
-            <GråttPanel>
-                <DescriptionList entries={anvisteUtbetalingerEntries}/>
-                <PaddingBottom/>
-            </GråttPanel>
+            <DescriptionList entries={anvisteUtbetalingerEntries}/>
+            <PaddingBottom/>
         </li>
     );
 }
 
 function Pleiepengerperiode({periode, ...props}: Props) {
 
-    const entries = {
-        Pleiedager: periode.antallPleiepengedager
-    };
-
     const vedtak = periode.vedtak.map((v, index) => <Vedtak key={index} vedtak={v}/>);
 
     return (
         <YtelserPeriode tittel={`Periode ${props.periodeNummer} - ${formaterDato(periode.fom)}`}>
-            <Flex>
-                <Padding>
-                    <DescriptionList entries={entries}/>
-                </Padding>
-                <div>
-                    <TittelStyling>
-                        <Undertittel>Anviste utbetalinger</Undertittel>
-                    </TittelStyling>
-                    <VedtaksListe>
-                        {vedtak}
-                    </VedtaksListe>
-                </div>
-            </Flex>
+            <VedtaksListe>
+                <Undertittel>Anviste utbetalinger</Undertittel>
+                {vedtak}
+            </VedtaksListe>
         </YtelserPeriode>
     );
 }

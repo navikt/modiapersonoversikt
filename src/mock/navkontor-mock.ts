@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 
 import { ApningsTid, NavKontor, PublikumsMottak } from '../models/navkontor';
 import { tilfeldigGateadresse } from './person/adresseMock';

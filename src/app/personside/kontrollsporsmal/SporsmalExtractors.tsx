@@ -15,7 +15,7 @@ import { Periode } from '../../../models/periode';
 import { formaterDato } from '../../../utils/dateUtils';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
-import moment = require('moment');
+import moment from 'moment';
 
 export interface SpørsmålsExtractor<T> {
     spørsmål: string;

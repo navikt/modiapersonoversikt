@@ -1,4 +1,4 @@
-import * as faker from 'faker/locale/nb_NO';
+import faker from 'faker/locale/nb_NO';
 import { AnsattEnhet, Oppfolging, Saksbehandler } from '../models/oppfolging';
 
 export function getMockOppfølging(fødselsnummer: string): Oppfolging {

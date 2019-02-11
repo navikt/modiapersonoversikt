@@ -2,9 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
-import NavDatovelger from 'nav-datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
-import * as moment from 'moment';
+import moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import { isLoaded, isLoading, isReloading, RestReducer } from '../../../../../redux/restReducers/restReducer';
 import UtbetaltTilValg from './UtbetaltTilValg';
@@ -12,6 +11,7 @@ import YtelseValg from './YtelseValg';
 import theme from '../../../../../styles/personOversiktTheme';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
+import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 
 export interface FilterState {
     periode: PeriodeOptions;
@@ -127,16 +127,20 @@ function egendefinertDatoInputs(props: Props) {
     return (
         <>
             <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
-            <NavDatovelger
+            <Datovelger
+                input={{id: 'utbetalinger-datovelger-fra', name: 'Fra dato'}}
+                visÅrVelger={true}
                 dato={props.filterState.periode.egendefinertPeriode.fra}
-                id={'utbetalinger-datovelger-fra'}
                 onChange={dato => onDatoChange(props, {fra: dato})}
+                id="utbetalinger-datovelger-fra"
             />
             <label htmlFor="utbetalinger-datovelger-til">Til:</label>
-            <NavDatovelger
+            <Datovelger
+                input={{id: 'utbetalinger-datovelger-til', name: 'Til dato'}}
+                visÅrVelger={true}
                 dato={props.filterState.periode.egendefinertPeriode.til}
-                id={'utbetalinger-datovelger-til'}
                 onChange={dato => onDatoChange(props, {til: dato})}
+                id="utbetalinger-datovelger-til"
             />
             {periodeFeilmelding}
         </>

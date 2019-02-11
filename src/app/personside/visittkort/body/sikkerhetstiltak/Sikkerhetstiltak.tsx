@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Sikkerhetstiltak } from '../../../../../models/sikkerhetstiltak';
+import { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../../../../models/sikkerhetstiltak';
 import { Person } from '../../../../../models/person/person';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Periode } from '../../../../../models/periode';
@@ -26,7 +26,7 @@ function Sikkerhetstiltak({ person }: SikkerhetstiltakProps) {
     );
 }
 
-function tiltaksinfo(sikkerhetstiltak: Sikkerhetstiltak) {
+function tiltaksinfo(sikkerhetstiltak: SikkerhetstiltakInterface) {
     return (
         <VisittkortElement>
             {hentPeriode(sikkerhetstiltak.periode)}

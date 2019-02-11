@@ -1,13 +1,13 @@
 import { isDevelopment } from './environment';
 import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
-import md5 = require('md5');
+import md5 from 'md5';
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
 }
 
 function frontendLoggerIsInitialized(): boolean {
-    // tslint:disable-next-line
+    // @ts-ignore
     if (!window['frontendlogger']) {
         console.warn('frontend-logger er ikke satt opp riktig');
         return false;
@@ -29,7 +29,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
         fields: {...fields, identHash: identHash},
         tags: {action: action, location: location, ...extraTags}
     };
-    // tslint:disable-next-line
+    // @ts-ignore
     window['frontendlogger'].event(
         event.table,
         emptyStringToUndefined(event.fields),
@@ -43,7 +43,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
         ...ekstraFelter
     };
     if (useLogger()) {
-        // tslint:disable-next-line
+        // @ts-ignore
         window['frontendlogger'].info(info);
     } else {
         console.info(info);
@@ -57,7 +57,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         ...ekstraFelter
     };
     if (useLogger()) {
-        // tslint:disable-next-line
+        // @ts-ignore
         window['frontendlogger'].error(info);
     } else {
         console.error(info);
