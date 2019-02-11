@@ -220,7 +220,6 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [
             lagMockBarn(),
-            lagMockBarn(),
             lagMockBarnOver21(),
             lagMockBarnAnnetBosted(),
             lagMockBarnDiskresjonskode(),
@@ -229,17 +228,17 @@ describe('hentFødselsdatoBarn', () => {
 
         const tekst = hentFødselsdatoBarn(person);
 
-        expect(tekst).toEqual('Aremark Barn:  1.0.2001\nAremark Barn:  1.0.2001');
+        expect(tekst).toEqual({beskrivelse: 'Aremark Barn', tekst: '1.0.2001'});
     });
 
     it('Gir tom streng ved ingen barn', () => {
         let person = aremark;
         person.familierelasjoner = [];
-        const korrektTekst = '';
+        const korrektSvar = {tekst: ''};
 
         const tekst = hentFødselsdatoBarn(person);
 
-        expect(tekst).toBe(korrektTekst);
+        expect(tekst).toEqual(korrektSvar);
     });
 });
 

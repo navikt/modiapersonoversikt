@@ -47,7 +47,7 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er fødselsdatoen til _______',
+        spørsmål: 'Hva er fødselsdatoen til ditt barn _______',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return [hentFødselsdatoBarn(person)];
@@ -88,6 +88,10 @@ export function hentFødselsdatoBarn(person: Person): Svar {
         .filter(barn => barn.harSammeBosted)
         .filter(barn => !barn.tilPerson.diskresjonskode)
         .filter(barn => !erDød(barn.tilPerson.personstatus));
+
+    if (gyldigeBarn.length === 0) {
+        return {tekst: ''};
+    }
 
     const barnet = ettTilfeldigBarn(gyldigeBarn);
 
