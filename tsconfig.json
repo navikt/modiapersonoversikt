@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "outDir": "build/dist",
     "lib": [
       "dom",
       "dom.iterable",
@@ -26,6 +27,6 @@
     "jsx": "preserve"
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }
