@@ -4,12 +4,7 @@
     "noEmit": false,
     "outDir": "build/dist",
     "module": "commonjs",
-    "lib": ["es7", "dom", "es2017"],
-    "sourceMap": true,
-    "jsx": "react",
-    "rootDir": "src",
-    "baseUrl": "./src",
-    "typeRoots": ["./node_modules/@types", "./src/@types"]
+    "jsx": "react"
   },
   "include" : [
     "src/@types/*",
