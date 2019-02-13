@@ -24,6 +24,7 @@ import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
 import oppfolgingReducer from './oppfolging';
 import saksoversiktReducer from './saksoversikt';
+import safReducer from './saf/safReducer';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -66,6 +67,7 @@ export interface RestEndepunkter {
     foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
+    safReducer: RestReducer<String>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -92,5 +94,6 @@ export default combineReducers<RestEndepunkter>({
     pleiepengerReducer: pleiepengerReducer,
     foreldrepengerReducer: foreldrepengerReducer,
     oppfolgingReducer: oppfolgingReducer,
-    saksoversiktReducer: saksoversiktReducer
+    saksoversiktReducer: saksoversiktReducer,
+    safReducer: safReducer
 });
