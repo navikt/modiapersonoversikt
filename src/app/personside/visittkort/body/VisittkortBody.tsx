@@ -51,7 +51,7 @@ function TwoColumnLayout(person: Person) {
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person}/>
                 <LenkeBrukerprofilContainer person={person}/>
-                <IfFeatureToggleOn toggleID="saf">
+                <IfFeatureToggleOn toggleID='saf'>
                     <SafForm/>
                 </IfFeatureToggleOn>
             </Kolonne>
@@ -74,7 +74,7 @@ function ThreeColumnLayout(person: Person) {
                 <NavKontorSeksjon person={person}/>
                 <Sikkerhetstiltak person={person}/>
                 <LenkeBrukerprofilContainer person={person}/>
-                <IfFeatureToggleOn toggleID="saf">
+                <IfFeatureToggleOn toggleID='saf'>
                     <SafForm/>
                 </IfFeatureToggleOn>
             </Kolonne>
