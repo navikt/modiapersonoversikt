@@ -56,7 +56,7 @@ const Feilmelding = styled.div`
 class SpørsmålOgSvar extends React.PureComponent<Props> {
 
     render() {
-        const svar = getSvar(this.props.spørsmål);
+        const svar = lagSvar(this.props.spørsmål);
 
         return (
             <SporsmalOgSvarStyling>
@@ -78,19 +78,19 @@ class SpørsmålOgSvar extends React.PureComponent<Props> {
 
 }
 
-function getSvar(spørsmål: Spørsmål) {
-    if (spørsmål.svar instanceof Array) {
-        return spørsmål.svar.map(enkeltSvar => {
-            return (
-                <KolonneStyling key={enkeltSvar}>
-                    <Normaltekst>
-                        {enkeltSvar}
-                    </Normaltekst>
-                </KolonneStyling>
-            );
-        });
-    }
-    return <Normaltekst>{spørsmål.svar}</Normaltekst>;
+function lagSvar(spørsmål: Spørsmål) {
+    return spørsmål.svar.map(enkeltSvar => (
+        <KolonneStyling key={enkeltSvar.tekst}>
+            <Normaltekst>
+                <Bold>
+                    {enkeltSvar.beskrivelse}
+                </Bold>
+            </Normaltekst>
+            <Normaltekst>
+                {enkeltSvar.tekst}
+            </Normaltekst>
+        </KolonneStyling>
+    ));
 }
 
 export function FeilTekst() {

@@ -4,6 +4,8 @@ export function mockFeatureToggle(toggleId: string): FeatureToggleResponse {
     switch (toggleId) {
         case 'tooltip':
             return true;
+        case 'saf':
+            return true;
         case 'kontrollsporsmal':
             return true;
         default:

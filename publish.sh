@@ -8,7 +8,7 @@ echo ${AUTH_TOKEN}
 rm -rf lib/
 npm version --no-git-tag-version $@.0.0
 npm ci
-npm run compile
+npm run build-library
 
 npm config set '//repo.adeo.no/repository/npm-internal/:_authToken' ${AUTH_TOKEN}
 npm --verbose publish

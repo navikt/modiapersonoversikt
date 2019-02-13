@@ -22,7 +22,7 @@
     "test-coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "build:less": "node node_modules/less/bin/lessc --npm-import=\"prefix=~\" src/index.less src/index.css",
-    "compile": "tsc"
+    "build-library": "tsc -p ./tsconfig.library.json"
   },
   "dependencies": {
     "classnames": "^2.2.6",

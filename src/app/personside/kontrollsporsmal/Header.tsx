@@ -4,12 +4,13 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import theme from '../../../styles/personOversiktTheme';
-import { toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
-import Lukknapp from 'nav-frontend-lukknapp';
+import { roterKontrollSpørsmål, toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/frontendLogger';
+import KnappBase from 'nav-frontend-knapper';
 
 interface DispatchProps {
     toggleKontrollSpørsmål: () => void;
+    nyttSpørsmål: () => void;
 }
 
 const HeaderStyling = styled.div`
@@ -19,27 +20,49 @@ const HeaderStyling = styled.div`
   justify-content: space-between;
 `;
 
+const KnapperStyling = styled.div`
+  display: flex;
+  align-items: center;
+  > * {
+    margin-left: ${theme.margin.px20}
+  }  
+`;
+
 class Header extends React.PureComponent<DispatchProps> {
     constructor(props: DispatchProps) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleNyttSpørsmålClick = this.handleNyttSpørsmålClick.bind(this);
+        this.handleLukkClick = this.handleLukkClick.bind(this);
     }
 
     render() {
         return (
             <HeaderStyling>
                 <Undertittel tag="h1">Kontrollspørsmål</Undertittel>
-                <Lukknapp
-                    ariaLabel={'Skjul kontrollspørsmål'}
-                    onClick={this.handleClick}
-                >
-                    Skjul kontrollspørsmål
-                </Lukknapp>
+                <KnapperStyling>
+                    <KnappBase
+                        type="standard"
+                        onClick={this.handleNyttSpørsmålClick}
+                    >
+                        Nytt spørsmål
+                    </KnappBase>
+                    <KnappBase
+                        type="standard"
+                        onClick={this.handleLukkClick}
+                    >
+                        Verifisert
+                    </KnappBase>
+                </KnapperStyling>
             </HeaderStyling>
         );
     }
 
-    private handleClick() {
+    private handleNyttSpørsmålClick() {
+        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Nytt'});
+        this.props.nyttSpørsmål();
+    }
+
+    private handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Lukk'});
         this.props.toggleKontrollSpørsmål();
     }
@@ -47,7 +70,8 @@ class Header extends React.PureComponent<DispatchProps> {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        toggleKontrollSpørsmål: () => dispatch(toggleKontrollSpørsmål())
+        toggleKontrollSpørsmål: () => dispatch(toggleKontrollSpørsmål()),
+        nyttSpørsmål: () => dispatch(roterKontrollSpørsmål())
     };
 }
 
