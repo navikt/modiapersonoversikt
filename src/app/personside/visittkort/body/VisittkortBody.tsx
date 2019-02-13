@@ -9,8 +9,8 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
-import SafForm from "../../../brukerprofil/saf/SafForm";
-import IfFeatureToggleOn from "../../../../redux/featureToggle/IfFeatureToggleOn";
+import SafForm from '../../../brukerprofil/saf/SafForm';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface VisittkortBodyProps {
     person: Person;

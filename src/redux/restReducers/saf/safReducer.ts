@@ -1,6 +1,6 @@
 import { createActionsAndReducer } from '../restReducer';
-import { SafRequest } from "./safRequest";
-import { postSaf } from "../../../api/saf";
+import { SafRequest } from './safRequest';
+import { postSaf } from '../../../api/saf';
 
 const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('saf');
 

@@ -7,8 +7,8 @@ import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
 import { reset } from '../../../redux/restReducers/brukerprofil/endreNavn';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { SafRequest } from "../../../redux/restReducers/saf/safRequest";
-import { saf } from "../../../redux/restReducers/saf/safReducer";
+import { SafRequest } from '../../../redux/restReducers/saf/safRequest';
+import { saf } from '../../../redux/restReducers/saf/safReducer';
 
 interface State {
 }
