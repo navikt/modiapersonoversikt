@@ -42,10 +42,10 @@ class SafForm extends React.Component<Props, State> {
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-
         var request = '{"query": "query{ dokumentoversiktBruker(brukerId: {id: \"1000096233942\", type: AKTOERID}, foerste:5) {journalposter {journalpostId}}}"}'
+        var result = this.props.safPost(request);
 
-        this.props.safPost(request)
+        console.log(result);
     }
 
     render() {
