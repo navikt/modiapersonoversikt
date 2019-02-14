@@ -5,6 +5,22 @@ export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;
 }
 
+export interface Adopsjon extends Foreldrepengerettighet {
+    omsorgsovertakelse: string;
+}
+
+export function isAdopsjon(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Adopsjon {
+    return !!(<Adopsjon>foreldrepenger).omsorgsovertakelse;
+}
+
+export interface Fødsel extends Foreldrepengerettighet {
+    termin: string;
+}
+
+export function isFødsel(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Fødsel {
+    return !!(<Fødsel>foreldrepenger).termin;
+}
+
 export interface Foreldrepengerettighet {
     forelder: string;
     andreForeldersFnr: string | null;
@@ -24,8 +40,6 @@ export interface Foreldrepengerettighet {
     arbeidsforhold: Arbeidsforhold[];
     erArbeidsgiverperiode: boolean | null;
     arbeidskategori: string | null;
-    termin: string | null;
-    omsorgsovertakelse: string | null;
 }
 
 export interface Foreldrepengerperiode {

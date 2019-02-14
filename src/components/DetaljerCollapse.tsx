@@ -15,7 +15,7 @@ interface Props {
     tittel?: string;
 }
 
-const Wrapper = styled.div<{
+const Styling = styled.div<{
     open: boolean;
     hasHeader: boolean;
     alwaysGrayBackground: boolean;
@@ -58,7 +58,7 @@ function DetaljerCollapse(props: Props) {
     return (
         <>
             {!props.header && <PaddingRight>{knapp}</PaddingRight>}
-            <Wrapper
+            <Styling
                 open={props.open}
                 hasHeader={props.header !== undefined}
                 alwaysGrayBackground={props.alwaysGrayBackground === undefined ? false : props.alwaysGrayBackground}
@@ -69,7 +69,7 @@ function DetaljerCollapse(props: Props) {
                     <UnmountClosed isOpened={props.open}>{props.children}</UnmountClosed>
                 </CollapseAnimasjon>
                 {props.open && <div aria-hidden={true}>{knapp}</div>}
-            </Wrapper>
+            </Styling>
         </>
     );
 }

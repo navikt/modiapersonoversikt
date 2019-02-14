@@ -1,6 +1,6 @@
-import { Foreldrepengerettighet } from '../../models/ytelse/foreldrepenger';
+import { Fødsel } from '../../models/ytelse/foreldrepenger';
 
-export const statiskForeldrepengeMock: Foreldrepengerettighet = {
+export const statiskForeldrepengeMock: Fødsel = {
     forelder: '10108000398',
     andreForeldersFnr: '03063850003',
     antallBarn: 5,
@@ -50,11 +50,11 @@ export const statiskForeldrepengeMock: Foreldrepengerettighet = {
                     trekk: [
                         {
                             kreditorsNavn: 'Andresen, Finstad and Kristoffersen',
-                            beløp: 117,
+                            beløp: 117
                         },
-                        { kreditorsNavn: 'Aas, Berntsen and Jacobsen', beløp: 397 },
-                    ],
-                },
+                        { kreditorsNavn: 'Aas, Berntsen and Jacobsen', beløp: 397 }
+                    ]
+                }
             ],
             kommendeUtbetalinger: [
                 {
@@ -67,10 +67,10 @@ export const statiskForeldrepengeMock: Foreldrepengerettighet = {
                     arbeidsgiverKontonr: '549801574',
                     dagsats: 705,
                     saksbehandler: 'Mari Johannessen',
-                    type: 'KONTOØVERFØRING',
-                },
-            ],
-        },
+                    type: 'KONTOØVERFØRING'
+                }
+            ]
+        }
     ],
     slutt: null,
     arbeidsforhold: [
@@ -81,7 +81,7 @@ export const statiskForeldrepengeMock: Foreldrepengerettighet = {
             inntektForPerioden: 40062,
             sykepengerFom: '2019-02-10',
             refusjonTom: '2019-02-11',
-            refusjonstype: 'Ikke refusjon',
+            refusjonstype: 'Ikke refusjon'
         },
         {
             arbeidsgiverNavn: 'Bakke - Solheim',
@@ -90,11 +90,10 @@ export const statiskForeldrepengeMock: Foreldrepengerettighet = {
             inntektForPerioden: 40062,
             sykepengerFom: '2019-02-10',
             refusjonTom: '2019-02-11',
-            refusjonstype: 'Ikke refusjon',
-        },
+            refusjonstype: 'Ikke refusjon'
+        }
     ],
     erArbeidsgiverperiode: null,
     arbeidskategori: 'Arbeidstaker',
-    omsorgsovertakelse: null,
-    termin: '2019-02-11',
+    termin: '2019-02-11'
 };

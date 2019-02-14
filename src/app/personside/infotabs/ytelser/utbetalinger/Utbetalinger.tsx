@@ -3,7 +3,7 @@ import { HistoriskUtbetaling, KommendeUtbetaling } from '../../../../../models/y
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import DescriptionList from '../felles-styling/DescriptionList';
+import DescriptionList from '../../../../../components/DescriptionList';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { formaterNOK } from '../../utbetalinger/utils/utbetalingerUtils';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
@@ -41,7 +41,7 @@ function HistoriskUtbetalingKomponent({ historiskUtbetaling }: { historiskUtbeta
             `${formaterDato(historiskUtbetaling.vedtak.fra)} - ${formaterDato(historiskUtbetaling.vedtak.til)}`,
         Utbetalingsgrad: historiskUtbetaling.utbetalingsgrad && historiskUtbetaling.utbetalingsgrad + '%',
         Netto: historiskUtbetaling.nettobeløp && formaterNOK(historiskUtbetaling.nettobeløp) + ' NOK',
-        Registeringsdato: historiskUtbetaling.utbetalingsdato && formaterDato(historiskUtbetaling.utbetalingsdato),
+        Registeringsdato: historiskUtbetaling.utbetalingsdato && formaterDato(historiskUtbetaling.utbetalingsdato)
     };
     const utbetaltDetaljerEntries = {
         Dagsats: historiskUtbetaling.dagsats && formaterNOK(historiskUtbetaling.dagsats),
@@ -50,7 +50,7 @@ function HistoriskUtbetalingKomponent({ historiskUtbetaling }: { historiskUtbeta
         Arbeidsgiver: historiskUtbetaling.arbeidsgiverNavn,
         Organisasjonsnummer: historiskUtbetaling.arbeidsgiverOrgNr,
         Skattetrekk: historiskUtbetaling.skattetrekk,
-        Kreditortrekk: getFormatertKreditortrekkFraHistoriskUtbetaling(historiskUtbetaling),
+        Kreditortrekk: getFormatertKreditortrekkFraHistoriskUtbetaling(historiskUtbetaling)
     };
     const [visDetaljer, setVisDetaljer] = useState(false);
     return (
@@ -74,7 +74,7 @@ function KommendeUtbetalingKomponent({ kommendeUtbetaling }: { kommendeUtbetalin
         Periode:
             kommendeUtbetaling.vedtak &&
             `${formaterDato(kommendeUtbetaling.vedtak.fra)} - ${formaterDato(kommendeUtbetaling.vedtak.til)}`,
-        Utbetalingsgrad: kommendeUtbetaling.utbetalingsgrad && kommendeUtbetaling.utbetalingsgrad + '%',
+        Utbetalingsgrad: kommendeUtbetaling.utbetalingsgrad && kommendeUtbetaling.utbetalingsgrad + '%'
     };
 
     const kommendeDetaljerEntries = {
@@ -82,7 +82,7 @@ function KommendeUtbetalingKomponent({ kommendeUtbetaling }: { kommendeUtbetalin
         Bruttobeløp: kommendeUtbetaling.bruttobeløp && formaterNOK(kommendeUtbetaling.bruttobeløp) + ' NOK',
         Arbeidsgiver: kommendeUtbetaling.arbeidsgiverNavn,
         Organisasjonsnummer: kommendeUtbetaling.arbeidsgiverOrgNr,
-        'Saksbehandlerident (Tryde-ident)': kommendeUtbetaling.saksbehandler,
+        'Saksbehandlerident (Tryde-ident)': kommendeUtbetaling.saksbehandler
     };
     const [visDetaljer, setVisDetaljer] = useState(false);
     return (

@@ -3,7 +3,7 @@ import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepeng
 import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList from '../felles-styling/DescriptionList';
+import DescriptionList from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { formaterDato } from '../../../../../utils/dateUtils';
 
@@ -20,11 +20,11 @@ const Flex = styled.div`
     display: flex;
 `;
 
-const Big = styled.div`
+const Stor = styled.div`
     flex-basis: 55%;
 `;
 
-const Small = styled.div`
+const Liten = styled.div`
     flex-basis: 45%;
 `;
 
@@ -48,22 +48,22 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
         'Rett til Mødrekvote': periode.rettTilMødrekvote,
         Fedrekvote: convertBoolTilJaNei(periode.erFedrekvote),
         'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar),
-        'Rett til Fedrekvote': periode.rettTilFedrekvote,
+        'Rett til Fedrekvote': periode.rettTilFedrekvote
     };
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
             <Flex>
-                <Small>
+                <Liten>
                     <Padding>
                         <DescriptionList entries={entries} />
                     </Padding>
-                </Small>
-                <Big>
+                </Liten>
+                <Stor>
                     <Utbetalinger
                         kommendeUtbetalinger={periode.kommendeUtbetalinger}
                         historiskeUtbetalinger={periode.historiskeUtbetalinger}
                     />
-                </Big>
+                </Stor>
             </Flex>
         </YtelserPeriode>
     );

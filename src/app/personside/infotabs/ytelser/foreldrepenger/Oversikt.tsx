@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet, isAdopsjon, isFødsel } from '../../../../../models/ytelse/foreldrepenger';
 import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet } from './foreldrePengerUtils';
-import DescriptionList, { DescriptionListEntries } from '../felles-styling/DescriptionList';
+import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import ArbeidsForhold from './Arbeidsforhold';
@@ -61,19 +61,18 @@ function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
 }
 
 function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
-    if (foreldrePenger.termin) {
+    if (isFødsel(foreldrePenger)) {
         return {
-            Termindato: formaterDato(foreldrePenger.termin),
+            Termindato: foreldrePenger.termin && formaterDato(foreldrePenger.termin)
         };
-    } else if (foreldrePenger.omsorgsovertakelse) {
+    } else if (isAdopsjon(foreldrePenger)) {
         return {
-            Omsorgsovertakelse: formaterDato(foreldrePenger.omsorgsovertakelse),
-        };
-    } else {
-        return {
-            Termindato: null,
+            Omsorgsovertakelse: foreldrePenger.omsorgsovertakelse && formaterDato(foreldrePenger.omsorgsovertakelse)
         };
     }
+    return {
+        Termindato: null
+    };
 }
 
 function Oversikt({ foreldrePenger }: Props) {
@@ -83,7 +82,7 @@ function Oversikt({ foreldrePenger }: Props) {
         'Rettighet fra dato': formaterDato(utledFraDatoForRettighet(foreldrePenger)),
         Restdager: foreldrePenger.restDager,
         Maksdato: foreldrePenger.slutt && formaterDato(foreldrePenger.slutt),
-        Arbeidskategori: foreldrePenger.arbeidskategori,
+        Arbeidskategori: foreldrePenger.arbeidskategori
     };
 
     const barnet: DescriptionListEntries = {
@@ -91,7 +90,7 @@ function Oversikt({ foreldrePenger }: Props) {
         Fødselsdato: foreldrePenger.barnetsFødselsdato && formaterDato(foreldrePenger.barnetsFødselsdato),
         'Annen forelder': foreldrePenger.andreForeldersFnr,
         'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn,
-        'Antall barn': foreldrePenger.antallBarn,
+        'Antall barn': foreldrePenger.antallBarn
     };
 
     return (
