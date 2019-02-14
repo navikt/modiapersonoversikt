@@ -95,8 +95,12 @@ export function getTilDateFromFilter(filter: FilterState): Date {
             return moment().subtract(1, 'year').endOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.til;
+        case PeriodeValg.INNEVÆRENDE_ÅR:
+        case PeriodeValg.SISTE_30_DAGER:
         default:
-            return moment().endOf('day').toDate();
+            const datoSomInkludererFremtidigeUtbetalinger =
+                moment().add(100, 'day').endOf('day').toDate();
+            return datoSomInkludererFremtidigeUtbetalinger;
     }
 }
 
