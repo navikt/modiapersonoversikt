@@ -222,7 +222,7 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
     const tilDate: Date = getTilDateFromFilter(filter);
 
     expect(moment(fraDate).toString()).toEqual(moment().subtract(30, 'day').startOf('day').toString());
-    expect(moment(tilDate).toString()).toEqual(moment().endOf('day').toString());
+    expect(moment(tilDate).toString()).toEqual(moment().add(100, 'day').endOf('day').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
@@ -238,7 +238,7 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
     const tilDate: Date = getTilDateFromFilter(filter);
 
     expect(moment(fraDate).toString()).toEqual(moment().startOf('year').toString());
-    expect(moment(tilDate).toString()).toEqual(moment().endOf('day').toString());
+    expect(moment(tilDate).toString()).toEqual(moment().add(100, 'day').endOf('day').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
