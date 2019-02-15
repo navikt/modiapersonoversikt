@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { KontrollSpørsmålState, Spørsmål, Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
+import { KontrollSpørsmålState, Spørsmål } from '../../../redux/kontrollSporsmal/types';
 import { AppState } from '../../../redux/reducers';
 import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { setKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
+import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { PersonRespons } from '../../../models/person/person';

@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import theme from '../../../styles/personOversiktTheme';
-import { roterKontrollSpørsmål, toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
+import { roterKontrollSpørsmål, toggleKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 

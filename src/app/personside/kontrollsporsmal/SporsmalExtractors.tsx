@@ -14,7 +14,7 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { Periode } from '../../../models/periode';
 import { formaterDato } from '../../../utils/dateUtils';
 import { shuffle } from '../../../utils/list-utils';
-import { Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
+import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
 
 export interface SpørsmålsExtractor<T> {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
 import { Action, Dispatch } from 'redux';
-import { toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
+import { toggleKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 
 interface DispatchProps {
