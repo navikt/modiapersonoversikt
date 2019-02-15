@@ -1,7 +1,7 @@
 import {
     erDød,
     Familierelasjon,
-    getBarnUnder21,
+    getBarnUnder21, getNavn,
     getPartner,
     Person,
     PersonRespons,
@@ -109,8 +109,7 @@ function hentFødselsdato(barn: Familierelasjon): string {
 }
 
 function utledFødselsdato(fnr: string): string {
-    const dato = fødselsnummerTilDato(fnr);
-    return dato.toLocaleDateString();
+    return formaterDato(fødselsnummerTilDato(fnr));
 }
 
 function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {
