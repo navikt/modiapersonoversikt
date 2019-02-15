@@ -97,7 +97,7 @@ export function hentFødselsdatoBarn(person: Person): Svar {
 
     return {
         tekst: hentFødselsdato(barnet),
-        beskrivelse: barnet.tilPerson.navn ? barnet.tilPerson.navn.sammensatt : undefined
+        beskrivelse: barnet.tilPerson.navn ? getNavn(barnet.tilPerson.navn) : undefined
     };
 }
 
@@ -154,7 +154,7 @@ function hentPartnerNavn(person: Person) {
     if (!partner || !partner.tilPerson.navn) {
         return '';
     }
-    return '  (' + partner.tilPerson.navn.sammensatt + ')';
+    return ' (' + getNavn(partner.tilPerson.navn) + ')';
 }
 
 function hentAdresse(person: Person) {
