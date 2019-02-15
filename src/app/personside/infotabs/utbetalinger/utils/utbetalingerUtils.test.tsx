@@ -2,14 +2,22 @@ import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger-mock';
 import {
     createTable,
-    datoVerbose, filtrerBortUtbetalingerSomIkkeErUtbetalt,
-    getBruttoSumYtelser, getFraDateFromFilter,
+    datoVerbose,
+    filtrerBortUtbetalingerSomIkkeErUtbetalt,
+    getBruttoSumYtelser,
+    getFraDateFromFilter,
     getGjeldendeDatoForUtbetaling,
-    getNettoSumYtelser, getPeriodeFromYtelser, getTilDateFromFilter, getTrekkSumYtelser, getTypeFromYtelse,
-    månedOgÅrForUtbetaling, periodeStringFromYtelse, reduceUtbetlingerTilYtelser, summertBeløpStringFraUtbetalinger,
+    getNettoSumYtelser,
+    getPeriodeFromYtelser,
+    getTilDateFromFilter,
+    getTrekkSumYtelser,
+    getTypeFromYtelse,
+    månedOgÅrForUtbetaling,
+    periodeStringFromYtelse,
+    reduceUtbetlingerTilYtelser,
+    summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
-}
-    from './utbetalingerUtils';
+} from './utbetalingerUtils';
 import { FilterState, PeriodeValg } from '../filter/Filter';
 import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
@@ -78,15 +86,17 @@ test('sorterer utbetalinger etter dato', () => {
     const utbetalingerFør: Utbetaling[] = [
         {
             ...randomUtbetalingUtenDato,
-            posteringsdato: '1900-12-28',
-        }, {
+            posteringsdato: '1900-12-28'
+        },
+        {
             ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
-            utbetalingsdato: '1986-12-28',
-        }, {
+            utbetalingsdato: '1986-12-28'
+        },
+        {
             ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
-            forfallsdato: '1950-12-28',
+            forfallsdato: '1950-12-28'
         }
     ];
 
@@ -95,11 +105,13 @@ test('sorterer utbetalinger etter dato', () => {
             ...randomUtbetalingUtenDato,
             posteringsdato: '1930-12-28',
             utbetalingsdato: '1986-12-28'
-        }, {
+        },
+        {
             ...randomUtbetalingUtenDato,
             posteringsdato: '1800-12-28',
             forfallsdato: '1950-12-28'
-        }, {
+        },
+        {
             ...randomUtbetalingUtenDato,
             posteringsdato: '1900-12-28'
         }
@@ -111,13 +123,16 @@ test('sorterer utbetalinger etter dato', () => {
 });
 
 test('summerer netto utbetaling riktig', () => {
-    const ytelser: Ytelse[] = [{
-        ...randomYtelse,
-        nettobeløp: 100
-    }, {
-        ...randomYtelse,
-        nettobeløp: 200
-    }];
+    const ytelser: Ytelse[] = [
+        {
+            ...randomYtelse,
+            nettobeløp: 100
+        },
+        {
+            ...randomYtelse,
+            nettobeløp: 200
+        }
+    ];
 
     const sumForYtelser = getNettoSumYtelser(ytelser);
 
@@ -125,13 +140,16 @@ test('summerer netto utbetaling riktig', () => {
 });
 
 test('summerer brutto utbetaling riktig', () => {
-    const ytelser: Ytelse[] = [{
-        ...randomYtelse,
-        ytelseskomponentersum: 100
-    }, {
-        ...randomYtelse,
-        ytelseskomponentersum: 500
-    }];
+    const ytelser: Ytelse[] = [
+        {
+            ...randomYtelse,
+            ytelseskomponentersum: 100
+        },
+        {
+            ...randomYtelse,
+            ytelseskomponentersum: 500
+        }
+    ];
 
     const sumForYtelser = getBruttoSumYtelser(ytelser);
 
@@ -139,15 +157,18 @@ test('summerer brutto utbetaling riktig', () => {
 });
 
 test('summerer trekk riktig', () => {
-    const ytelser: Ytelse[] = [{
-        ...randomYtelse,
-        skattsum: -100,
-        trekksum: 0
-    }, {
-        ...randomYtelse,
-        skattsum: -200,
-        trekksum: -100
-    }];
+    const ytelser: Ytelse[] = [
+        {
+            ...randomYtelse,
+            skattsum: -100,
+            trekksum: 0
+        },
+        {
+            ...randomYtelse,
+            skattsum: -200,
+            trekksum: -100
+        }
+    ];
 
     const trekkForYtelser = getTrekkSumYtelser(ytelser);
 
@@ -161,36 +182,50 @@ test('summerer beløp på tvers av utbetalinger', () => {
         utbetalingsdato: '2010-01-01'
     };
 
-    const utbetalinger: Utbetaling [] = [{
-        ...randomTellendeUtbetaling,
-        ytelser: [{
-            ...randomYtelse,
-            nettobeløp: 200
-        }, {
-            ...randomYtelse,
-            nettobeløp: 200
-        }]
-    }, {
-        ...randomTellendeUtbetaling,
-        ytelser: [{
-            ...randomYtelse,
-            nettobeløp: 200
-        }]
-    }, {
-        ...randomUtbetaling,
-        status: 'Returnert til NAV',
-        ytelser: [{
-            ...randomYtelse,
-            nettobeløp: 10000
-        }]
-    }, {
-        ...randomUtbetaling,
-        utbetalingsdato: null,
-        ytelser: [{
-            ...randomYtelse,
-            nettobeløp: 10000
-        }]
-    }];
+    const utbetalinger: Utbetaling[] = [
+        {
+            ...randomTellendeUtbetaling,
+            ytelser: [
+                {
+                    ...randomYtelse,
+                    nettobeløp: 200
+                },
+                {
+                    ...randomYtelse,
+                    nettobeløp: 200
+                }
+            ]
+        },
+        {
+            ...randomTellendeUtbetaling,
+            ytelser: [
+                {
+                    ...randomYtelse,
+                    nettobeløp: 200
+                }
+            ]
+        },
+        {
+            ...randomUtbetaling,
+            status: 'Returnert til NAV',
+            ytelser: [
+                {
+                    ...randomYtelse,
+                    nettobeløp: 10000
+                }
+            ]
+        },
+        {
+            ...randomUtbetaling,
+            utbetalingsdato: null,
+            ytelser: [
+                {
+                    ...randomYtelse,
+                    nettobeløp: 10000
+                }
+            ]
+        }
+    ];
 
     const summert = summertBeløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
 
@@ -221,8 +256,18 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(moment().subtract(30, 'day').startOf('day').toString());
-    expect(moment(tilDate).toString()).toEqual(moment().endOf('day').toString());
+    expect(moment(fraDate).toString()).toEqual(
+        moment()
+            .subtract(30, 'day')
+            .startOf('day')
+            .toString()
+    );
+    expect(moment(tilDate).toString()).toEqual(
+        moment()
+            .add(100, 'day')
+            .endOf('day')
+            .toString()
+    );
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
@@ -237,8 +282,17 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(moment().startOf('year').toString());
-    expect(moment(tilDate).toString()).toEqual(moment().endOf('day').toString());
+    expect(moment(fraDate).toString()).toEqual(
+        moment()
+            .startOf('year')
+            .toString()
+    );
+    expect(moment(tilDate).toString()).toEqual(
+        moment()
+            .add(100, 'day')
+            .endOf('day')
+            .toString()
+    );
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
@@ -253,8 +307,18 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(moment().subtract(1, 'year').startOf('year').toString());
-    expect(moment(tilDate).toString()).toEqual(moment().subtract(1, 'year').endOf('year').toString());
+    expect(moment(fraDate).toString()).toEqual(
+        moment()
+            .subtract(1, 'year')
+            .startOf('year')
+            .toString()
+    );
+    expect(moment(tilDate).toString()).toEqual(
+        moment()
+            .subtract(1, 'year')
+            .endOf('year')
+            .toString()
+    );
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode', () => {
@@ -285,7 +349,6 @@ test('datoVerbose henter riktig dag, måned og år', () => {
 });
 
 test('filtrerer bort utbetalinger som ikke er utbetalt', () => {
-
     const mockUtbetalingUtenUtbetaltDato: Utbetaling = {
         ...statiskMockUtbetaling,
         utbetalingsdato: null
@@ -315,16 +378,16 @@ test('lager tabell basert på input', () => {
     const expectedResult = (
         <table>
             <thead>
-            <tr>
-                <th>kolonne 1</th>
-                <th>kolonne 2</th>
-            </tr>
+                <tr>
+                    <th>kolonne 1</th>
+                    <th>kolonne 2</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>rad1 kolonne 1</td>
-                <td>rad1 kolonne 2</td>
-            </tr>
+                <tr>
+                    <td>rad1 kolonne 1</td>
+                    <td>rad1 kolonne 2</td>
+                </tr>
             </tbody>
         </table>
     );
@@ -340,7 +403,8 @@ test('finner riktig periode fra ytelser', () => {
                 start: '2000-01-01',
                 slutt: '2010-01-01'
             }
-        }, {
+        },
+        {
             ...statiskMockYtelse,
             periode: {
                 start: '2005-12-12',
@@ -362,15 +426,11 @@ test('returnerer liste med ytelser fra liste med utbetalinger', () => {
     const utbetalinger: Utbetaling[] = [
         {
             ...statiskMockUtbetaling,
-            ytelser: [
-                statiskMockYtelse
-            ]
-        }, {
+            ytelser: [statiskMockYtelse]
+        },
+        {
             ...statiskMockUtbetaling,
-            ytelser: [
-                statiskMockYtelse,
-                statiskMockYtelse
-            ]
+            ytelser: [statiskMockYtelse, statiskMockYtelse]
         }
     ];
 

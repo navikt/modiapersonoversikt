@@ -9,6 +9,8 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
+import SafForm from '../../../brukerprofil/saf/SafForm';
+import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -17,7 +19,7 @@ interface VisittkortBodyProps {
 function NavKontorSeksjon({ person }: { person: Person }) {
     return (
         <VisittkortGruppe tittel={'NAV-kontor'}>
-            <NavKontorContainer person={person}/>
+            <NavKontorContainer person={person} />
         </VisittkortGruppe>
     );
 }
@@ -25,13 +27,13 @@ function NavKontorSeksjon({ person }: { person: Person }) {
 function OneColumnLayout(person: Person) {
     return (
         <Kolonne>
-            <Kontaktinformasjon person={person}/>
-            <Familie person={person}/>
-            <NavKontorSeksjon person={person}/>
-            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-            <VergemalContainer/>
-            <Sikkerhetstiltak person={person}/>
-            <LenkeBrukerprofilContainer person={person}/>
+            <Kontaktinformasjon person={person} />
+            <Familie person={person} />
+            <NavKontorSeksjon person={person} />
+            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
+            <VergemalContainer />
+            <Sikkerhetstiltak person={person} />
+            <LenkeBrukerprofilContainer person={person} />
         </Kolonne>
     );
 }
@@ -40,15 +42,18 @@ function TwoColumnLayout(person: Person) {
     return (
         <>
             <Kolonne>
-                <Kontaktinformasjon person={person}/>
-                <Familie person={person}/>
+                <Kontaktinformasjon person={person} />
+                <Familie person={person} />
             </Kolonne>
             <Kolonne>
-                <NavKontorSeksjon person={person}/>
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                <VergemalContainer/>
-                <Sikkerhetstiltak person={person}/>
-                <LenkeBrukerprofilContainer person={person}/>
+                <NavKontorSeksjon person={person} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
+                <VergemalContainer />
+                <Sikkerhetstiltak person={person} />
+                <LenkeBrukerprofilContainer person={person} />
+                <IfFeatureToggleOn toggleID="saf">
+                    <SafForm />
+                </IfFeatureToggleOn>
             </Kolonne>
         </>
     );
@@ -58,24 +63,26 @@ function ThreeColumnLayout(person: Person) {
     return (
         <>
             <Kolonne>
-                <Kontaktinformasjon person={person}/>
+                <Kontaktinformasjon person={person} />
             </Kolonne>
             <Kolonne>
-                <Familie person={person}/>
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe}/>
-                <VergemalContainer/>
+                <Familie person={person} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
+                <VergemalContainer />
             </Kolonne>
             <Kolonne>
-                <NavKontorSeksjon person={person}/>
-                <Sikkerhetstiltak person={person}/>
-                <LenkeBrukerprofilContainer person={person}/>
+                <NavKontorSeksjon person={person} />
+                <Sikkerhetstiltak person={person} />
+                <LenkeBrukerprofilContainer person={person} />
+                <IfFeatureToggleOn toggleID="saf">
+                    <SafForm />
+                </IfFeatureToggleOn>
             </Kolonne>
         </>
     );
 }
 
 class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
-
     private visittKortBodyRef = React.createRef<HTMLDivElement>();
 
     constructor(props: VisittkortBodyProps) {
@@ -115,11 +122,7 @@ class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
 
         return (
             <ErrorBoundary>
-                <VisittkortBodyWrapper
-                    role="region"
-                    aria-label="Visittkortdetaljer"
-                    ref={this.visittKortBodyRef}
-                >
+                <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer" ref={this.visittKortBodyRef}>
                     {columnLayOut}
                 </VisittkortBodyWrapper>
             </ErrorBoundary>

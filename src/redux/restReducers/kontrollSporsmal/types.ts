@@ -1,8 +1,13 @@
 import { Action } from 'redux';
 
+export interface Svar {
+    tekst: string;
+    beskrivelse?: string;
+}
+
 export interface Spørsmål {
     spørsmål: string;
-    svar: string | string[];
+    svar: Svar[];
 }
 
 export interface KontrollSpørsmålState {
@@ -21,10 +26,7 @@ export enum ActionTypes {
     ToggleSynlig = 'KONTROLLSPØRSMÅL / TOGGLESYNLIG'
 }
 
-export type Actions =
-    Roter |
-    SetSpørsmål |
-    ToggleSynlig;
+export type Actions = Roter | SetSpørsmål | ToggleSynlig;
 
 export interface Roter extends Action {
     type: ActionTypes.Roter;

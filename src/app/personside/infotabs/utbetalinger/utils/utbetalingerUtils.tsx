@@ -78,25 +78,42 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
 export function getFraDateFromFilter(filter: FilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
-            return moment().startOf('year').toDate();
+            return moment()
+                .startOf('year')
+                .toDate();
         case PeriodeValg.I_FJOR:
-            return moment().subtract(1, 'year').startOf('year').toDate();
+            return moment()
+                .subtract(1, 'year')
+                .startOf('year')
+                .toDate();
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.fra;
         case PeriodeValg.SISTE_30_DAGER:
         default:
-            return moment().subtract(30, 'day').startOf('day').toDate();
+            return moment()
+                .subtract(30, 'day')
+                .startOf('day')
+                .toDate();
     }
 }
 
 export function getTilDateFromFilter(filter: FilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
-            return moment().subtract(1, 'year').endOf('year').toDate();
+            return moment()
+                .subtract(1, 'year')
+                .endOf('year')
+                .toDate();
         case PeriodeValg.EGENDEFINERT:
             return filter.periode.egendefinertPeriode.til;
+        case PeriodeValg.INNEVÆRENDE_ÅR:
+        case PeriodeValg.SISTE_30_DAGER:
         default:
-            return moment().endOf('day').toDate();
+            const datoSomInkludererFremtidigeUtbetalinger = moment()
+                .add(100, 'day')
+                .endOf('day')
+                .toDate();
+            return datoSomInkludererFremtidigeUtbetalinger;
     }
 }
 
@@ -123,37 +140,36 @@ export function getTrekkSumYtelser(ytelser: Ytelse[]): number {
 }
 
 export function formaterNOK(beløp: number): string {
-    return beløp.toLocaleString('no', {minimumFractionDigits: 2});
+    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
 }
 
 export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
-    return utbetaling.utbetalingsdato !== null
+    return (
+        utbetaling.utbetalingsdato !== null &&
         // Utbetalinger kan feilaktig ha en utbetalingsdato selv om de er returnert til nav for saksbehandling
-        && !utbetaling.status.includes('Returnert til NAV');
+        !utbetaling.status.includes('Returnert til NAV')
+    );
 }
 
 export function summertBeløpStringFraUtbetalinger(
     utbetalinger: Utbetaling[],
-    getSumFromYtelser: (ytelser: Ytelse[]) => number): string {
-
+    getSumFromYtelser: (ytelser: Ytelse[]) => number
+): string {
     try {
         const sum = utbetalinger
             .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
-            .reduce(
-                (acc: number, utbetaling: Utbetaling) => {
+            .reduce((acc: number, utbetaling: Utbetaling) => {
+                if (!utbetaling.ytelser) {
+                    loggError(
+                        new Error('Kunne ikke beregne sum på utbetaling'),
+                        '"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser',
+                        { utbetaling: utbetaling }
+                    );
+                    throw new Error();
+                }
 
-                    if (!utbetaling.ytelser) {
-                        loggError(
-                            new Error('Kunne ikke beregne sum på utbetaling'),
-                            '"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser',
-                            {utbetaling: utbetaling}
-                        );
-                        throw new Error();
-                    }
-
-                    return acc + getSumFromYtelser(utbetaling.ytelser);
-                },
-                0);
+                return acc + getSumFromYtelser(utbetaling.ytelser);
+            }, 0);
 
         return formaterNOK(sum);
     } catch (e) {
@@ -166,16 +182,12 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
         return [];
     }
     try {
-        const ytelser = utbetalinger
-            .sort(utbetalingDatoComparator)
-            .reduce(
-                (acc: Ytelse[], utbetaling: Utbetaling) => {
-                    if (!utbetaling.ytelser) {
-                        throw new Error('"ytelser" er ikke definert på utbetaling');
-                    }
-                    return [...acc, ...utbetaling.ytelser];
-                },
-                []);
+        const ytelser = utbetalinger.sort(utbetalingDatoComparator).reduce((acc: Ytelse[], utbetaling: Utbetaling) => {
+            if (!utbetaling.ytelser) {
+                throw new Error('"ytelser" er ikke definert på utbetaling');
+            }
+            return [...acc, ...utbetaling.ytelser];
+        }, []);
         return ytelser;
     } catch (e) {
         console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
@@ -187,17 +199,24 @@ export function createTable(tittelrekke: string[], table: Array<Array<string | n
     return (
         <table role="table">
             <thead role="rowgroup">
-            <tr role="row">
-                {tittelrekke.map(tittel => <th role="columnheader" key={tittel}>{tittel}</th>)}
-            </tr>
+                <tr role="row">
+                    {tittelrekke.map(tittel => (
+                        <th role="columnheader" key={tittel}>
+                            {tittel}
+                        </th>
+                    ))}
+                </tr>
             </thead>
             <tbody role="rowgroup">
-            {table.map((row, index) =>
-                <tr role="row" key={index}>{row.map((entry, i) =>
-                    <td role="cell" key={i}>{entry}</td>
-                )}
-                </tr>
-            )}
+                {table.map((row, index) => (
+                    <tr role="row" key={index}>
+                        {row.map((entry, i) => (
+                            <td role="cell" key={i}>
+                                {entry}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
             </tbody>
         </table>
     );
@@ -217,18 +236,17 @@ export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
         {
             fra: moment().format(),
             til: moment(0).format()
-        });
+        }
+    );
 }
 
 export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[] {
-    return utbetalinger.reduce(
-        (acc: Ytelse[], utbetaling: Utbetaling) => {
-            if (!utbetaling.ytelser) {
-                throw new Error('Utbetaling mangler ytelser');
-            }
-            return [...acc, ...utbetaling.ytelser];
-        },
-        []);
+    return utbetalinger.reduce((acc: Ytelse[], utbetaling: Utbetaling) => {
+        if (!utbetaling.ytelser) {
+            throw new Error('Utbetaling mangler ytelser');
+        }
+        return [...acc, ...utbetaling.ytelser];
+    }, []);
 }
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';

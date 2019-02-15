@@ -4,6 +4,6 @@ set -e
 set -x
 
 rm -rf lib/
-npm run compile
+npm run build-library
 
 npm --verbose publish
