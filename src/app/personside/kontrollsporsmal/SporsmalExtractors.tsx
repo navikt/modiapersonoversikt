@@ -110,7 +110,7 @@ function hentFødselsdato(barn: Familierelasjon): string {
 
 function utledFødselsdato(fnr: string): string {
     const dato = fødselsnummerTilDato(fnr);
-    return '' + dato.getDay() + '.' + dato.getMonth() + '.' + dato.getFullYear();
+    return dato.toLocaleDateString();
 }
 
 function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {
