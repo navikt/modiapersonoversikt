@@ -13,22 +13,22 @@ class HandleKontrollSporsmalHotkeys extends React.Component<DispatchProps> {
 
     constructor(props: DispatchProps) {
         super(props);
-        this.handleKontrollSpørsmålHotkey = this.handleKontrollSpørsmålHotkey.bind(this);
+        this.handleHotkey = this.handleHotkey.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this.handleKontrollSpørsmålHotkey);
+        document.addEventListener('keydown', this.handleHotkey);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleKontrollSpørsmålHotkey);
+        document.removeEventListener('keydown', this.handleHotkey);
     }
 
     render() {
         return null;
     }
 
-    private handleKontrollSpørsmålHotkey(event: KeyboardEvent) {
+    private handleHotkey(event: KeyboardEvent) {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'l' && event.altKey) {
