@@ -1,4 +1,4 @@
-import { ActionTypes, Roter, SetSpørsmål, Spørsmål, ToggleSynlig } from './types';
+import { ActionTypes, Roter, SetSpørsmål, Spørsmål, Lukk } from './types';
 
 export function setKontrollSpørsmål(spørsmål: Spørsmål[]): SetSpørsmål {
     return {
@@ -13,8 +13,8 @@ export function roterKontrollSpørsmål(): Roter {
     };
 }
 
-export function toggleKontrollSpørsmål(): ToggleSynlig {
+export function lukkKontrollSpørsmål(): Lukk {
     return {
-        type: ActionTypes.ToggleSynlig
+        type: ActionTypes.Lukk
     };
 }

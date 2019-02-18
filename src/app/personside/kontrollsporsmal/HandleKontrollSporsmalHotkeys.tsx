@@ -2,11 +2,11 @@ import * as React from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { getSaksbehandlerIdent } from '../../../utils/loggInfo/getSaksbehandlerIdent';
 import { Action, Dispatch } from 'redux';
-import { toggleKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
+import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 
 interface DispatchProps {
-    toggleKontrollSpørsmål: () => void;
+    lukkKontrollSpørsmål: () => void;
 }
 
 class HandleKontrollSporsmalHotkeys extends React.Component<DispatchProps> {
@@ -35,14 +35,14 @@ class HandleKontrollSporsmalHotkeys extends React.Component<DispatchProps> {
 
         if (key === 'l' && event.altKey) {
             loggEvent('Hurtigtast', 'Kontrollsporsmal', {type: 'Alt + L'}, {ident: getSaksbehandlerIdent()});
-            this.props.toggleKontrollSpørsmål();
+            this.props.lukkKontrollSpørsmål();
         }
     }
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        toggleKontrollSpørsmål: () => dispatch(toggleKontrollSpørsmål())
+        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål())
     };
 }
 
