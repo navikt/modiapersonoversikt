@@ -115,6 +115,25 @@ export enum BegrensetTilgangTyper {
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 
+export function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
+    if (!fornavn && !etternavn) {
+        return sammensatt || 'Ukjent navn';
+    }
+
+    let navn = [];
+    if (fornavn) {
+        navn.push(fornavn);
+    }
+    if (mellomnavn) {
+        navn.push(mellomnavn);
+    }
+    if (etternavn) {
+        navn.push(etternavn);
+    }
+
+    return navn.join(' ');
+}
+
 export function erDød(personstatus: Bostatus) {
     return personstatus.dødsdato || (personstatus.bostatus && personstatus.bostatus.kodeRef === BostatusTyper.Død);
 }
