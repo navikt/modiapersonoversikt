@@ -12,5 +12,5 @@ export function shuffle<T>(array: T[]): T[] {
 }
 
 function randInRange(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.round(Math.random() * (max - min)) + min;
 }

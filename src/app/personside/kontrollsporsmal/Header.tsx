@@ -4,12 +4,12 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import theme from '../../../styles/personOversiktTheme';
-import { roterKontrollSpørsmål, toggleKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
+import { roterKontrollSpørsmål, lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 
 interface DispatchProps {
-    toggleKontrollSpørsmål: () => void;
+    lukkKontrollSpørsmål: () => void;
     nyttSpørsmål: () => void;
 }
 
@@ -64,13 +64,13 @@ class Header extends React.PureComponent<DispatchProps> {
 
     private handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Lukk'});
-        this.props.toggleKontrollSpørsmål();
+        this.props.lukkKontrollSpørsmål();
     }
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        toggleKontrollSpørsmål: () => dispatch(toggleKontrollSpørsmål()),
+        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål()),
         nyttSpørsmål: () => dispatch(roterKontrollSpørsmål())
     };
 }

@@ -8,8 +8,8 @@ const initialState: FeatureToggleState = {
 };
 
 enum actionKeys {
-    setFeatureToggleOn,
-    setFeatureToggleOff
+    setFeatureToggleOn = 'FEATURETOGGLE / SET_ON',
+    setFeatureToggleOff = 'FEATURETOGGLE / SET_OFF'
 }
 
 interface FeatureToggleAction extends Action {

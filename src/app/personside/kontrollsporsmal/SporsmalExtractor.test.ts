@@ -161,6 +161,15 @@ describe('formatterUstrukturertAdresse', () => {
 describe('hentGiftedato', () => {
     const GIFTEDATO = '11.11.2011';
 
+    it('Gir korrekt navn og dato', () => {
+        let person = lagMockGiftPerson();
+        const korrektTekst = GIFTEDATO + ' (Aremark Sin Ektefelle)';
+
+        const tekst = hentGiftedato(person);
+
+        expect(tekst).toBe(korrektTekst);
+    });
+
     it('Gir tom hvis person ikke sivilstand gift', () => {
         let person = {
             ...lagMockGiftPerson(),
@@ -228,7 +237,7 @@ describe('hentFødselsdatoBarn', () => {
 
         const tekst = hentFødselsdatoBarn(person);
 
-        expect(tekst).toEqual({beskrivelse: 'Aremark Barn', tekst: '1.0.2001'});
+        expect(tekst).toEqual({beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001'});
     });
 
     it('Gir tom streng ved ingen barn', () => {
@@ -316,10 +325,10 @@ function lagMockGiftPerson(): Person {
     person.familierelasjoner = [{
         tilPerson: {
             navn: {
-                sammensatt: 'Aremarks Ektefelle',
-                fornavn: null,
-                mellomnavn: null,
-                etternavn: null,
+                sammensatt: 'Aremark Ektefelle',
+                fornavn: 'Aremark',
+                mellomnavn: 'Sin',
+                etternavn: 'Ektefelle',
 
             },
             personstatus: getPersonstatus(65)
@@ -339,9 +348,9 @@ function lagMockBarn(): Familierelasjon {
             alder: 6,
             navn: {
                 sammensatt: 'Aremark Barn',
-                fornavn: null,
-                mellomnavn: null,
-                etternavn: null
+                fornavn: 'Aremark',
+                mellomnavn: 'Sitt',
+                etternavn: 'Barn'
             },
             personstatus: {}
         }

@@ -19,10 +19,10 @@ function reducer(state: KontrollSpørsmålState = initState, action: Actions): K
                     ...state
                 };
             }
-        case ActionTypes.ToggleSynlig:
+        case ActionTypes.Lukk:
             return {
                 ...state,
-                synlig: !state.synlig
+                synlig: false
             };
         default:
             return state;

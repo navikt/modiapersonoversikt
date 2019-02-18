@@ -1,7 +1,7 @@
 import {
     erDød,
     Familierelasjon,
-    getBarnUnder21,
+    getBarnUnder21, getNavn,
     getPartner,
     Person,
     PersonRespons,
@@ -14,7 +14,7 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { Periode } from '../../../models/periode';
 import { formaterDato } from '../../../utils/dateUtils';
 import { shuffle } from '../../../utils/list-utils';
-import { Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
+import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
 
 export interface SpørsmålsExtractor<T> {
@@ -97,7 +97,7 @@ export function hentFødselsdatoBarn(person: Person): Svar {
 
     return {
         tekst: hentFødselsdato(barnet),
-        beskrivelse: barnet.tilPerson.navn ? barnet.tilPerson.navn.sammensatt : undefined
+        beskrivelse: barnet.tilPerson.navn ? getNavn(barnet.tilPerson.navn) : undefined
     };
 }
 
@@ -109,8 +109,7 @@ function hentFødselsdato(barn: Familierelasjon): string {
 }
 
 function utledFødselsdato(fnr: string): string {
-    const dato = fødselsnummerTilDato(fnr);
-    return '' + dato.getDay() + '.' + dato.getMonth() + '.' + dato.getFullYear();
+    return formaterDato(fødselsnummerTilDato(fnr));
 }
 
 function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {
@@ -154,7 +153,7 @@ function hentPartnerNavn(person: Person) {
     if (!partner || !partner.tilPerson.navn) {
         return '';
     }
-    return '  (' + partner.tilPerson.navn.sammensatt + ')';
+    return ' (' + getNavn(partner.tilPerson.navn) + ')';
 }
 
 function hentAdresse(person: Person) {

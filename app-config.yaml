@@ -26,4 +26,4 @@ fasitResources:
     - alias: iadecorator-js
       resourceType: restservice
 alertProfiles:
-- basic
+- minimal
