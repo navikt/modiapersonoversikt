@@ -50,7 +50,7 @@ class Header extends React.PureComponent<DispatchProps> {
                         type="standard"
                         onClick={this.handleLukkClick}
                     >
-                        Verifisert
+                        Lukk
                     </KnappBase>
                 </KnapperStyling>
             </HeaderStyling>
