@@ -6,6 +6,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { YtelserKeys } from '../ytelserKeys';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -62,6 +63,7 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
                     <Utbetalinger
                         kommendeUtbetalinger={periode.kommendeUtbetalinger}
                         historiskeUtbetalinger={periode.historiskeUtbetalinger}
+                        ytelsesType={YtelserKeys.Foreldrepenger}
                     />
                 </Stor>
             </Flex>

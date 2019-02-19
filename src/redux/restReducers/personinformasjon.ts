@@ -10,8 +10,9 @@ import { resetPleiepengerReducer } from './ytelser/pleiepenger';
 import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { AsyncDispatch } from '../ThunkTypes';
+import { resetHistoriskeUtbetalingerReducer } from './ytelser/historiskeUtbetalinger';
 
-const {reducer, action, actionNames, reload} = createActionsAndReducer('personinformasjon');
+const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
 function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));
@@ -34,6 +35,7 @@ export function hentAllPersonData(dispatch: AsyncDispatch, fødselsnummer: strin
     dispatch(resetSykepengerReducer());
     dispatch(resetPleiepengerReducer());
     dispatch(resetForeldrepengerReducer());
+    dispatch(resetHistoriskeUtbetalingerReducer());
 }
 
 export const personinformasjonActionNames = actionNames;

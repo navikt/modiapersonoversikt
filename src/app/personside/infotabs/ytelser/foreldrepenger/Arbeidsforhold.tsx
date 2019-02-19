@@ -22,7 +22,7 @@ function ArbeidsForhold({ arbeidsforhold }: Props) {
         ),
         Inntekstsperiode: arbeidsforhold.inntektsperiode,
         'Inntekt for perioden':
-            arbeidsforhold.inntektForPerioden && 'NOK ' + formaterNOK(arbeidsforhold.inntektForPerioden),
+            arbeidsforhold.inntektForPerioden && formaterNOK(arbeidsforhold.inntektForPerioden) + ' NOK',
         Refusjonstype: arbeidsforhold.refusjonstype,
         'Refusjon til dato': arbeidsforhold.refusjonTom && formaterDato(arbeidsforhold.refusjonTom)
     };

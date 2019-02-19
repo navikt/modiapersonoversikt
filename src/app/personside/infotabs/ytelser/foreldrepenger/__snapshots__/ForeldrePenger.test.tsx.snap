@@ -1,31 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c1 dt {
-  color: #78706a;
-}
-
-.c1 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  min-width: 13rem;
-}
-
 .c20 {
   text-align: center;
 }
@@ -39,6 +14,17 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c13 {
@@ -89,6 +75,31 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   border-color: #0067C5;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c1 dt {
+  color: #78706a;
+}
+
+.c1 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c1 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
 .c8 {
   margin-right: .5rem;
 }
@@ -99,7 +110,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   padding: 0 1.25rem 1.25rem;
 }
 
-.c22 {
+.c21 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 1.25rem;
@@ -119,8 +130,16 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin-right: 1.25rem;
 }
 
-.c23 {
+.c22 {
   margin-bottom: 1.25rem;
+}
+
+.c19 {
+  padding: 0.5rem;
+}
+
+.c23 {
+  padding: 0.5rem;
 }
 
 .c18 {
@@ -131,26 +150,14 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin: 0.625rem 0;
 }
 
-.c21 {
-  list-style: none;
-}
-
-.c19 {
-  padding: 0.5rem;
-}
-
 .c11 > *:first-child {
   background-color: #cce1f3;
-  padding: .2rem 1.25rem;
+  padding: 0.2rem 1.25rem;
 }
 
 .c11 ol {
   padding: 0;
   margin: 0;
-}
-
-.c11 ol > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c16 {
@@ -444,7 +451,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 40,062.00
+            40,062.00 NOK
           </dd>
         </div>
         <div>
@@ -646,258 +653,263 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         <div
           className="c17"
         >
-          <div
+          <section
+            aria-label="Utbetalinger Foreldrepenger"
             className="c18"
           >
-            <div
-              className="c19"
-            >
+            <section>
               <div
-                className="c20"
+                className="c19"
               >
-                <h4
-                  className="typo-undertittel"
-                >
-                  Kommende utbetalinger
-                </h4>
-              </div>
-            </div>
-            <ul
-              className="c21"
-            >
-              <li>
                 <div
-                  className="c22"
-                  open={false}
+                  className="c20"
                 >
-                  <dl
-                    className="c1"
+                  <h4
+                    className="typo-undertittel"
                   >
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Registeringsdato
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        25.06.2018
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Type
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        KONTOØVERFØRING
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Periode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        14.01.2018 - 15.07.2017
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Utbetalingsgrad
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        79%
-                      </dd>
-                    </div>
-                  </dl>
+                    Kommende utbetalinger
+                  </h4>
+                </div>
+              </div>
+              <ol>
+                <li
+                  aria-label="Kommende utbetaling 25.06.2018"
+                >
                   <div
-                    className="c23"
+                    className="c21"
+                    open={false}
                   >
+                    <dl
+                      className="c1"
+                    >
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Registeringsdato
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          25.06.2018
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Type
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          KONTOØVERFØRING
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Periode
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          14.01.2018 - 15.07.2017
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Utbetalingsgrad
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          79%
+                        </dd>
+                      </div>
+                    </dl>
                     <div
-                      className="c5"
+                      className="c22"
                     >
                       <div
-                        className="c6"
+                        className="c5"
                       >
-                        <button
-                          aria-expanded={false}
-                          className="c7"
-                          onClick={[Function]}
+                        <div
+                          className="c6"
                         >
-                          <span
-                            className="c8"
+                          <button
+                            aria-expanded={false}
+                            className="c7"
+                            onClick={[Function]}
                           >
                             <span
-                              className="typo-normal"
+                              className="c8"
                             >
-                              Vis
-                               
-                              detaljer
+                              <span
+                                className="typo-normal"
+                              >
+                                Vis
+                                 
+                                detaljer
+                              </span>
                             </span>
-                          </span>
-                          <i
-                            className="nav-frontend-chevron chevronboks chevron--ned"
-                          />
-                        </button>
+                            <i
+                              className="nav-frontend-chevron chevronboks chevron--ned"
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    className="c10"
-                    open={false}
-                  />
-                </div>
-              </li>
-            </ul>
-            <div
-              className="c19"
-            >
-              <div
-                className="c20"
-              >
-                <h4
-                  className="typo-undertittel"
-                >
-                  Utførte utbetalinger
-                </h4>
-              </div>
-            </div>
-            <ul
-              className="c21"
-            >
-              <li>
-                <div
-                  className="c22"
-                  open={false}
-                >
-                  <dl
-                    className="c1"
-                  >
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Dato
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        26.01.2019
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Type
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        KONTOØVERFØRING
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Periode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        09.02.2018 - 25.03.2018
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Utbetalingsgrad
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        1%
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Netto
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        773.00 NOK
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-etikett-liten"
-                      >
-                        Registeringsdato
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        26.01.2019
-                      </dd>
-                    </div>
-                  </dl>
-                  <div
-                    className="c23"
-                  >
                     <div
-                      className="c5"
+                      className="c10"
+                      open={false}
+                    />
+                  </div>
+                </li>
+              </ol>
+            </section>
+            <section>
+              <div
+                className="c23"
+              >
+                <div
+                  className="c20"
+                >
+                  <h4
+                    className="typo-undertittel"
+                  >
+                    Utførte utbetalinger
+                  </h4>
+                </div>
+              </div>
+              <ol>
+                <li
+                  aria-label="Utført utbetaling 26.01.2019"
+                >
+                  <div
+                    className="c21"
+                    open={false}
+                  >
+                    <dl
+                      className="c1"
+                    >
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Type
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          KONTOØVERFØRING
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Netto
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          773.00 NOK
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Dato
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          26.01.2019
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Periode
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          09.02.2018 - 25.03.2018
+                        </dd>
+                      </div>
+                      <div>
+                        <dt
+                          className="typo-etikett-liten"
+                        >
+                          Utbetalingsgrad
+                        </dt>
+                        <dd
+                          className="typo-normal"
+                        >
+                          1%
+                        </dd>
+                      </div>
+                    </dl>
+                    <div
+                      className="c22"
                     >
                       <div
-                        className="c6"
+                        className="c5"
                       >
-                        <button
-                          aria-expanded={false}
-                          className="c7"
-                          onClick={[Function]}
+                        <div
+                          className="c6"
                         >
-                          <span
-                            className="c8"
+                          <button
+                            aria-expanded={false}
+                            className="c7"
+                            onClick={[Function]}
                           >
                             <span
-                              className="typo-normal"
+                              className="c8"
                             >
-                              Vis
-                               
-                              detaljer
+                              <span
+                                className="typo-normal"
+                              >
+                                Vis
+                                 
+                                detaljer
+                              </span>
                             </span>
-                          </span>
-                          <i
-                            className="nav-frontend-chevron chevronboks chevron--ned"
-                          />
-                        </button>
+                            <i
+                              className="nav-frontend-chevron chevronboks chevron--ned"
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
+                    <div
+                      className="c10"
+                      open={false}
+                    />
                   </div>
-                  <div
-                    className="c10"
-                    open={false}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
+                </li>
+              </ol>
+              <div
+                className="c24"
+              >
+                <button
+                  className="knapp knapp--standard"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="submit"
+                >
+                  Hent alle historiske utbetalinger
+                </button>
+              </div>
+            </section>
+          </section>
         </div>
       </div>
     </li>

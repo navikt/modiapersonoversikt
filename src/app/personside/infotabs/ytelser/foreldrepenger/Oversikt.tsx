@@ -52,10 +52,11 @@ function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
         </DetaljerCollapse>
     );
 
+    const flereArbeidsforhold = tidligereArbeidsforhold.length > 0;
     return (
         <>
             <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold} />
-            {tidligereArbeidsforhold.length > 0 && tidligereArbeidsforholdCollapse}
+            {flereArbeidsforhold && tidligereArbeidsforholdCollapse}
         </>
     );
 }
