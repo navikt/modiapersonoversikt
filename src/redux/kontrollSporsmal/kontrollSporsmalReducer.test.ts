@@ -1,6 +1,6 @@
 import { Action, createStore } from 'redux';
 import kontrollspørsmålReducer from './reducer';
-import { roterKontrollSpørsmål, setKontrollSpørsmål, toggleKontrollSpørsmål } from './actions';
+import { roterKontrollSpørsmål, setKontrollSpørsmål, lukkKontrollSpørsmål } from './actions';
 import { Spørsmål } from './types';
 
 const spm1: Spørsmål = {
@@ -69,13 +69,13 @@ describe('Kontrollspørsmål reducer', () => {
 
         expect(store.getState().synlig).toBe(true);
 
-        store.dispatch(toggleKontrollSpørsmål());
+        store.dispatch(lukkKontrollSpørsmål());
 
         expect(store.getState().synlig).toBe(false);
 
-        store.dispatch(toggleKontrollSpørsmål());
+        store.dispatch(lukkKontrollSpørsmål());
 
-        expect(store.getState().synlig).toBe(true);
+        expect(store.getState().synlig).toBe(false);
     });
 });
 

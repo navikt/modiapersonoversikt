@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { KontrollSpørsmålState, Spørsmål, Svar } from '../../../redux/restReducers/kontrollSporsmal/types';
+import { KontrollSpørsmålState, Spørsmål } from '../../../redux/kontrollSporsmal/types';
 import { AppState } from '../../../redux/reducers';
 import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { setKontrollSpørsmål } from '../../../redux/restReducers/kontrollSporsmal/actions';
+import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { PersonRespons } from '../../../models/person/person';
@@ -30,14 +30,14 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
         loggEvent('Visning', 'Kontrollsporsmal', undefined);
     }
 
-    componentDidUpdate(nextProps: Readonly<Props>) {
+    componentDidUpdate() {
         this.oppdaterSpørsmål();
     }
 
     oppdaterSpørsmål() {
         const spørsmål = this.lagSpørsmål();
-        const nyeEllerEndredeSpørsmål = spørsmål.filter(spm => !this.spørsmålEksisterer(spm));
-        if (nyeEllerEndredeSpørsmål.length > 0) {
+        const nyeSpørsmål = spørsmål.filter(spm => !this.spørsmålEksisterer(spm));
+        if (nyeSpørsmål.length > 0) {
             this.props.setSpørsmål(spørsmål);
         }
     }
@@ -85,19 +85,7 @@ function extractSpørsmål<T>(restRessurs: RestReducer<T>, spørsmålExtractors:
 }
 
 function erSpørsmålLike(spørsmål1: Spørsmål, spørsmål2: Spørsmål): boolean {
-    return spørsmål1.spørsmål === spørsmål2.spørsmål && erLikSvarListe(spørsmål1.svar, spørsmål2.svar);
-}
-
-function erLikSvarListe(svarListe1: Svar[], svarListe2: Svar[]): boolean {
-    if (svarListe1.length !== svarListe2.length) {
-        return false;
-    }
-    for (let i = 0; i < svarListe1.length; i++) {
-        if (svarListe1[i].tekst !== svarListe2[i].tekst) {
-            return false;
-        }
-    }
-    return true;
+    return spørsmål1.spørsmål === spørsmål2.spørsmål;
 }
 
 function erTom(spm: Spørsmål): boolean {

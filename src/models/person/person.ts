@@ -97,7 +97,7 @@ export enum SivilstandTyper {
     Gift = 'GIFT',
     Ugift = 'UGIF',
     Skilt = 'SKIL',
-    Samboer  = 'SAMB',
+    Samboer = 'SAMB',
     Enke = 'ENKE'
 }
 
@@ -115,13 +115,31 @@ export enum BegrensetTilgangTyper {
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 
+export function getNavn({ fornavn, mellomnavn, etternavn, sammensatt }: Navn) {
+    if (!fornavn && !etternavn) {
+        return sammensatt || 'Ukjent navn';
+    }
+
+    let navn = [];
+    if (fornavn) {
+        navn.push(fornavn);
+    }
+    if (mellomnavn) {
+        navn.push(mellomnavn);
+    }
+    if (etternavn) {
+        navn.push(etternavn);
+    }
+
+    return navn.join(' ');
+}
+
 export function erDød(personstatus: Bostatus) {
     return personstatus.dødsdato || (personstatus.bostatus && personstatus.bostatus.kodeRef === BostatusTyper.Død);
 }
 
 export function getBarn(familierelasjoner: Familierelasjon[]) {
-    return familierelasjoner
-        .filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
+    return familierelasjoner.filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
 }
 
 function getAlderOrDefault(relasjon: Familierelasjon) {

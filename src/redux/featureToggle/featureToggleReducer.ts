@@ -4,12 +4,11 @@ export interface FeatureToggleState {
     [name: string]: boolean;
 }
 
-const initialState: FeatureToggleState = {
-};
+const initialState: FeatureToggleState = {};
 
 enum actionKeys {
-    setFeatureToggleOn,
-    setFeatureToggleOff
+    setFeatureToggleOn = 'FEATURETOGGLE / SET_ON',
+    setFeatureToggleOff = 'FEATURETOGGLE / SET_OFF'
 }
 
 interface FeatureToggleAction extends Action {
@@ -31,8 +30,10 @@ export function setFeatureToggleOff(toggleID: string): FeatureToggleAction {
     };
 }
 
-export function featureToggleReducer(state: FeatureToggleState = initialState, action: FeatureToggleAction)
-    : FeatureToggleState {
+export function featureToggleReducer(
+    state: FeatureToggleState = initialState,
+    action: FeatureToggleAction
+): FeatureToggleState {
     switch (action.type) {
         case actionKeys.setFeatureToggleOn:
             return {
