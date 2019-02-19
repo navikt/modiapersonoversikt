@@ -3,7 +3,7 @@ import * as React from 'react';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { Bold } from '../../../components/common-styled-components';
 import { Spørsmål } from '../../../redux/kontrollSporsmal/types';
-import theme from '../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import UtropstegnPlain from '../../../svg/UtropstegnPlain';
 
 interface Props {
@@ -24,7 +24,7 @@ const SpørsmålTekst = styled.div`
 
 const OpplysningTekstStyling = styled.div`
   display: flex;
-  flex: 1 1;
+  flex: 0 1 ${pxToRem(350)};
   padding-right: ${theme.margin.px20};
   border-right: dashed 0.0625rem #b7b1a9;
 `;
