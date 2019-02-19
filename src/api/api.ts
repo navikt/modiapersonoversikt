@@ -1,19 +1,7 @@
-import { postConfig, postXSRFConfig } from './config';
+import { postConfig } from './config';
 
 export function post(uri: string, body: object) {
     return fetch(uri, postConfig(body))
-        .then((response) => {
-            if (response.ok) {
-                return parseResponse(response);
-            } else {
-                throw response.statusText;
-            }
-        });
-}
-
-
-export function postWithXsrfConfig(uri: string, body: object) {
-    return fetch(uri, postXSRFConfig(body))
         .then((response) => {
             if (response.ok) {
                 return parseResponse(response);

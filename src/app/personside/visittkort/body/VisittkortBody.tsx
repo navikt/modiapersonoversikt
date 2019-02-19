@@ -9,8 +9,6 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
-import SafForm from '../../../brukerprofil/saf/SafForm';
-import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -51,9 +49,6 @@ function TwoColumnLayout(person: Person) {
                 <VergemalContainer/>
                 <Sikkerhetstiltak person={person}/>
                 <LenkeBrukerprofilContainer person={person}/>
-                <IfFeatureToggleOn toggleID='saf'>
-                    <SafForm/>
-                </IfFeatureToggleOn>
             </Kolonne>
         </>
     );
@@ -74,9 +69,6 @@ function ThreeColumnLayout(person: Person) {
                 <NavKontorSeksjon person={person}/>
                 <Sikkerhetstiltak person={person}/>
                 <LenkeBrukerprofilContainer person={person}/>
-                <IfFeatureToggleOn toggleID='saf'>
-                    <SafForm/>
-                </IfFeatureToggleOn>
             </Kolonne>
         </>
     );
