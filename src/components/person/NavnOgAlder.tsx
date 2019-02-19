@@ -28,9 +28,13 @@ export function getAlderTekst(relasjon: Familierelasjon) {
     }
 }
 
-function NavnOgAlder({relasjon}: Props) {
+function NavnOgAlder({ relasjon }: Props) {
     const navn = relasjon.tilPerson.navn ? getNavn(relasjon.tilPerson.navn) : '';
-    return <>{navn} {getAlderTekst(relasjon)} </>;
+    return (
+        <>
+            {navn} {getAlderTekst(relasjon)}{' '}
+        </>
+    );
 }
 
 export default NavnOgAlder;

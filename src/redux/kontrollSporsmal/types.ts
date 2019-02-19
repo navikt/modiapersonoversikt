@@ -26,10 +26,7 @@ export enum ActionTypes {
     Lukk = 'KONTROLLSPØRSMÅL / LUKK'
 }
 
-export type Actions =
-    Roter |
-    SetSpørsmål |
-    Lukk;
+export type Actions = Roter | SetSpørsmål | Lukk;
 
 export interface Roter extends Action {
     type: ActionTypes.Roter;

@@ -42,11 +42,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c1 dd {
   font-weight: bold;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
 .c1 > div {
-  margin-top: 1.875rem;
+  margin: 0.9375rem 0;
   padding-right: 1rem;
   min-width: 13rem;
 }
@@ -111,14 +111,14 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c8 {
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   padding: 0 1.25rem 1.25rem;
 }
 
 .c9 {
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   padding: 0 1.25rem;
 }
 
@@ -374,11 +374,11 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 
 .c4 dd {
   font-weight: bold;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
 .c4 > div {
-  margin-top: 1.875rem;
+  margin: 0.9375rem 0;
   padding-right: 1rem;
   min-width: 13rem;
 }

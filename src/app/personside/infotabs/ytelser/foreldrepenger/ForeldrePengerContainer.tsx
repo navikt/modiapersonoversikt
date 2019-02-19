@@ -35,7 +35,15 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
     render() {
         return (
             <PlukkRestData spinnerSize="M" restReducer={this.props.foreldrepengerReducer}>
-                {data => <ForeldrepengerEkspanderbartpanel foreldrepenger={data.foreldrepenger}/>}
+                {data => {
+                    if (!data.foreldrepenger || !data.foreldrepenger[0]) {
+                        return null;
+                    }
+                    return data.foreldrepenger.map((foreldrepengerettighet, index) => (
+                        <ForeldrepengerEkspanderbartpanel key={index} foreldrepenger={foreldrepengerettighet}/>
+                    ));
+                }}
+
             </PlukkRestData>
         );
     }

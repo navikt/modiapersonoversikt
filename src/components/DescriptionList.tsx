@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import { ReactNode } from 'react';
 
@@ -15,6 +15,9 @@ export interface DescriptionListEntries {
 }
 
 function getDescriptionlistEntry(term: string, description: DescriptionlistEntry) {
+    if (typeof description === 'boolean') {
+        console.log('Vet ikke hvordan boolsk verdi skal vises for: ', term);
+    }
     return (
         <div key={term}>
             <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
@@ -24,34 +27,28 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
 }
 
 function createDescriptionListEntries(valuePairs: DescriptionListEntries) {
-    return Object.keys(valuePairs).map(key =>
-        getDescriptionlistEntry(key, valuePairs[key])
-    );
+    return Object.keys(valuePairs).map(key => getDescriptionlistEntry(key, valuePairs[key]));
 }
 
 const ListStyling = styled.dl`
     display: flex;
     flex-wrap: wrap;
     dt {
-      color: ${theme.color.gråSkrift};
+        color: ${theme.color.gråSkrift};
     }
     dd {
         font-weight: bold;
-        margin-top: .3rem;
+        margin-top: 0.3rem;
     }
     > div {
-        margin-top: ${theme.margin.px30};
+        margin: ${pxToRem(15)} 0;
         padding-right: 1rem;
         min-width: 13rem;
     }
 `;
 
 function DescriptionList(props: Props) {
-    return (
-        <ListStyling>
-            {createDescriptionListEntries(props.entries)}
-        </ListStyling>
-    );
+    return <ListStyling>{createDescriptionListEntries(props.entries)}</ListStyling>;
 }
 
 export default DescriptionList;

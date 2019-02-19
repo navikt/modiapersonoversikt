@@ -1,26 +1,29 @@
 import * as React from 'react';
-import { Arbeidsforhold } from '../../../../../models/ytelse/pleiepenger';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { formaterNOK } from '../../utbetalinger/utils/utbetalingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Arbeidsforhold } from '../../../../../models/ytelse/foreldrepenger';
 
-function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold?: Arbeidsforhold }) {
+interface Props {
+    arbeidsforhold?: Arbeidsforhold;
+}
+
+function ArbeidsForhold({ arbeidsforhold }: Props) {
     if (!arbeidsforhold) {
         return <AlertStripeInfo>Kunne ikke finne arbeidsforhold</AlertStripeInfo>;
     }
 
     const arbeidsSituasjonEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
-        Arbeidskategori: arbeidsforhold.arbeidskategori,
-        Inntekstsperiode: arbeidsforhold.inntektsperiode,
         Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
             <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
         ),
-        Refusjonstype: arbeidsforhold.refusjonstype,
+        Inntekstsperiode: arbeidsforhold.inntektsperiode,
         'Inntekt for perioden':
             arbeidsforhold.inntektForPerioden && 'NOK ' + formaterNOK(arbeidsforhold.inntektForPerioden),
+        Refusjonstype: arbeidsforhold.refusjonstype,
         'Refusjon til dato': arbeidsforhold.refusjonTom && formaterDato(arbeidsforhold.refusjonTom)
     };
 

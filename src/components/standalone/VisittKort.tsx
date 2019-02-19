@@ -14,24 +14,20 @@ interface Props {
     fødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
 class VisittkortStandAlone extends React.Component<Props> {
-
     render() {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
                     <>
-                        <Kontrollsporsmal/>
-                        <VisittkortLaster fødselsnummer={this.props.fødselsnummer}/>
+                        <Kontrollsporsmal />
+                        <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />
                     </>
                 </Provider>
             </ErrorBoundary>

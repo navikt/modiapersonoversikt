@@ -1,7 +1,8 @@
 import {
     erDød,
     Familierelasjon,
-    getBarnUnder21, getNavn,
+    getBarnUnder21,
+    getNavn,
     getPartner,
     Person,
     PersonRespons,
@@ -27,23 +28,22 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         spørsmål: 'Hva er bankkontonummeret ditt?',
         extractSvar: personinformasjon => {
             const bankkonto = (personinformasjon as Person).bankkonto;
-            return [{
-                tekst: bankkonto
-                    ? bankkonto.kontonummer
-                    : ''
-            }];
-
+            return [
+                {
+                    tekst: bankkonto ? bankkonto.kontonummer : ''
+                }
+            ];
         }
     },
     {
         spørsmål: 'Hva er mellomnavnet ditt?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return [{
-                tekst: person.navn.mellomnavn
-                    ? person.navn.mellomnavn
-                    : ''
-            }];
+            return [
+                {
+                    tekst: person.navn.mellomnavn ? person.navn.mellomnavn : ''
+                }
+            ];
         }
     },
     {
@@ -51,14 +51,13 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return [hentFødselsdatoBarn(person)];
-
         }
     },
     {
         spørsmål: 'Hvilken dato giftet du deg?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return [{tekst: hentGiftedato(person)}];
+            return [{ tekst: hentGiftedato(person) }];
         }
     },
     {
@@ -74,11 +73,11 @@ export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinform
     {
         spørsmål: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
-            return [{
-                tekst: kontaktinformasjon.epost
-                    ? kontaktinformasjon.epost.value
-                    : ''
-            }];
+            return [
+                {
+                    tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : ''
+                }
+            ];
         }
     }
 ];
@@ -90,7 +89,7 @@ export function hentFødselsdatoBarn(person: Person): Svar {
         .filter(barn => !erDød(barn.tilPerson.personstatus));
 
     if (gyldigeBarn.length === 0) {
-        return {tekst: ''};
+        return { tekst: '' };
     }
 
     const barnet = ettTilfeldigBarn(gyldigeBarn);
@@ -216,35 +215,36 @@ export function formatterGateadresse(adresse: personadresse.Gateadresse) {
     const gateadresse = adresse.gatenavn + ' ' + adresse.husnummer + (adresse.husbokstav || '') + '\n';
     const bolignummer = adresse.bolignummer ? adresse.bolignummer + '\n' : '';
 
-    return hentPeriode(adresse.periode) +
+    return (
+        hentPeriode(adresse.periode) +
         hentTilleggsadresse(adresse.tilleggsadresse) +
         gateadresse +
         bolignummer +
-        hentPoststed(adresse);
+        hentPoststed(adresse)
+    );
 }
 
 export function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
     const eiendom = adresse.eiendomsnavn ? adresse.eiendomsnavn + '\n' : '';
 
-    return hentPeriode(adresse.periode) +
-        hentTilleggsadresse(adresse.tilleggsadresse) +
-        eiendom +
-        hentPoststed(adresse);
+    return (
+        hentPeriode(adresse.periode) + hentTilleggsadresse(adresse.tilleggsadresse) + eiendom + hentPoststed(adresse)
+    );
 }
 
 export function formatterPostboksadresse(adresse: personadresse.Postboksadresse) {
-    return hentPeriode(adresse.periode) +
+    return (
+        hentPeriode(adresse.periode) +
         hentTilleggsadresse(adresse.tilleggsadresse) +
         hentPostboksTekst(adresse.postboksanlegg, adresse.postboksnummer) +
-        hentPoststed(adresse);
+        hentPoststed(adresse)
+    );
 }
 
 export function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse): string {
-    const landKode = adresse.landkode && ('\n' + adresse.landkode.beskrivelse) || '';
+    const landKode = (adresse.landkode && '\n' + adresse.landkode.beskrivelse) || '';
 
-    return hentPeriode(adresse.periode) +
-        hentAdresselinjer(adresse) +
-        landKode;
+    return hentPeriode(adresse.periode) + hentAdresselinjer(adresse) + landKode;
 }
 
 function hentAdresselinjer(adresse: Utlandsadresse) {

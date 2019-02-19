@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import DescriptionList from '../felles-styling/DescriptionList';
+import DescriptionList from '../../../../../components/DescriptionList';
 import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
@@ -31,13 +31,13 @@ interface DispatchProps {
 type Props = DispatchProps & OwnProps & StateProps;
 
 const ArbeidsForholdListeStyle = styled.ol`
-  list-style: none;
-  > *:not(:first-child) {
-    border-top: ${theme.border.skilleSvak};
-  }
-  > *:not(:last-child) {
-    margin-bottom: 2rem;
-  }
+    list-style: none;
+    > *:not(:first-child) {
+        border-top: ${theme.border.skilleSvak};
+    }
+    > *:not(:last-child) {
+        margin-bottom: 2rem;
+    }
 `;
 
 function getKjønnString(fnr: string): string {
@@ -53,8 +53,7 @@ function getKjønnString(fnr: string): string {
     }
 }
 
-function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforhold}: Props) {
-
+function Oversikt({ pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforhold }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
     const kjønn = getKjønnString(pleiepenger.barnet);
     const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = getAlleArbiedsforholdSortert(pleiepenger);
@@ -74,8 +73,11 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
             tittel="alle arbeidsforhold"
         >
             <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
-                {tidligereArbeidsforhold.map((arbForhold, index) =>
-                    <li key={index}><ArbeidsForhold arbeidsforhold={arbForhold}/></li>)}
+                {tidligereArbeidsforhold.map((arbForhold, index) => (
+                    <li key={index}>
+                        <ArbeidsForhold arbeidsforhold={arbForhold} />
+                    </li>
+                ))}
             </ArbeidsForholdListeStyle>
         </DetaljerCollapse>
     );
@@ -83,13 +85,14 @@ function Oversikt({pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforho
     return (
         <OversiktStyling>
             <YtelserInfoGruppe tittel="Om pleiepengeretten">
-                <DescriptionList entries={omPleiepengerettenEntries}/>
+                <DescriptionList entries={omPleiepengerettenEntries} />
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold}/>
+                <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold} />
                 {tidligereArbeidsforhold.length > 0 && tidligereArbeidsforholdCollapse}
             </YtelserInfoGruppe>
-        </OversiktStyling>);
+        </OversiktStyling>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
@@ -104,4 +107,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Oversikt);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Oversikt);
