@@ -19,12 +19,16 @@ function kontoNummerTilArray(kontonummer: string): Array<string> {
     }
 }
 
-export function FormatertKontonummer(props: {kontonummer: string}): JSX.Element {
+export function FormatertKontonummer(props: { kontonummer: string }): JSX.Element {
     return (
         <Kontonummer>
             {kontoNummerTilArray(props.kontonummer).map(
-            (delString, index) => <span key={index}>{delString}</span>
+                (delString, index) => <span key={index}>{delString}</span>
             )}
         </Kontonummer>
     );
+}
+
+export function formatertKontonummerString(kontonummer: string): string {
+    return kontoNummerTilArray(kontonummer).reduce((acc, current) => acc + '.' + current);
 }

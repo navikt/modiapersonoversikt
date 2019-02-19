@@ -1,7 +1,8 @@
 import {
     erDød,
     Familierelasjon,
-    getBarnUnder21, getNavn,
+    getBarnUnder21,
+    getNavn,
     getPartner,
     Person,
     PersonRespons,
@@ -16,6 +17,7 @@ import { formaterDato } from '../../../utils/dateUtils';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
+import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 
 export interface SpørsmålsExtractor<T> {
     spørsmål: string;
@@ -29,7 +31,7 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
             const bankkonto = (personinformasjon as Person).bankkonto;
             return [{
                 tekst: bankkonto
-                    ? bankkonto.kontonummer
+                    ? formatertKontonummerString(bankkonto.kontonummer)
                     : ''
             }];
 
