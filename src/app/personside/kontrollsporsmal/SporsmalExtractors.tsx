@@ -62,7 +62,7 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er din adresse?',
+        spørsmål: 'Hva er adressen din?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return hentAdresse(person);
