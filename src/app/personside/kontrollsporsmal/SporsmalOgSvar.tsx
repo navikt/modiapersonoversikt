@@ -105,7 +105,7 @@ export function FeilTekst() {
 }
 
 function OpplysningsTekst() {
-    const tekst = 'For din egen sikkerhet må jeg stille deg noen spørsmål slik at jeg er sikker på at jeg snakker ' +
+    const tekst = 'For din egen sikkerhet må jeg stille deg noen spørsmål, slik at jeg er sikker på at jeg snakker ' +
         'med riktig person.';
     return (
         <OpplysningTekstStyling>
