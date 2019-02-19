@@ -24,6 +24,7 @@ import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -99,6 +100,20 @@ function setupPleiepengerMock(mock: FetchMock) {
         randomDelay(),
         fødselsNummerErGyldigStatus,
         mockGeneratorMedFødselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))));
+}
+
+function setupOppfølgingMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/oppfolging/:fodselsnummer', withDelayedResponse(
+        randomDelay(),
+        fødselsNummerErGyldigStatus,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockOppfølging(fodselsnummer))));
+}
+
+function setupYtelserOgKontrakter(mock: FetchMock) {
+    mock.get(apiBaseUri + '/oppfolging/:fodselsnummer/ytelserogkontrakter', withDelayedResponse(
+        randomDelay(),
+        fødselsNummerErGyldigStatus,
+        mockGeneratorMedFødselsnummer(fodselsnummer => getMockYtelserOgKontrakter(fodselsnummer))));
 }
 
 function setupGeografiskTilknytningMock(mock: FetchMock) {
@@ -285,4 +300,6 @@ export function setupMock() {
     setupNavigasjonsmenyMock(mock);
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
+    setupOppfølgingMock(mock);
+    setupYtelserOgKontrakter(mock);
 }
