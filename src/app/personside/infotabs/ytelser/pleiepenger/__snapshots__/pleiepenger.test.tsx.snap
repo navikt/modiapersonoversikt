@@ -401,10 +401,6 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c0 ol > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
-}
-
 .c5 {
   padding-bottom: 1rem;
 }

@@ -19,9 +19,6 @@ const PeriodeStyling = styled.li`
         padding: 0;
         margin: 0;
     }
-    ol > *:not(:first-child) {
-        border-top: ${theme.border.skille};
-    }
 `;
 
 function YtelserPeriode(props: Props) {

@@ -7,6 +7,7 @@ import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
+    fjernTommeUtbetalinger,
     getTypeFromYtelse,
     månedOgÅrForUtbetaling,
     reduceUtbetlingerTilYtelser,
@@ -56,10 +57,6 @@ function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: Filter
         ...utbetaling,
         ytelser: ytelser
     };
-}
-
-function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
-    return utbetaling.ytelser && utbetaling.ytelser.length > 0;
 }
 
 interface UtbetalingerProps {
