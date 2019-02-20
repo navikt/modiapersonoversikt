@@ -10,7 +10,6 @@ interface StateProps {
     avsenderFilter: DokumentAvsenderFilter;
     valgtSakstema?: Sakstema;
     erStandaloneVindu: boolean;
-    visDokument: boolean;
 }
 
 interface DispatchProps {
@@ -22,8 +21,7 @@ function mapStateToProps(state: AppState): StateProps {
     return {
         valgtSakstema: state.saksoversikt.valgtSakstema,
         avsenderFilter: state.saksoversikt.avsenderFilter,
-        erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
-        visDokument: state.saksoversikt.visDokument
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu
     };
 }
 
