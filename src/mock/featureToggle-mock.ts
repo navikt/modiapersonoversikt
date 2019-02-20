@@ -9,6 +9,6 @@ export function mockFeatureToggle(toggleId: string): FeatureToggleResponse {
         case 'kontrollsporsmal':
             return true;
         default:
-            return Math.random() > .5;
+            return Math.random() > 0.5;
     }
 }

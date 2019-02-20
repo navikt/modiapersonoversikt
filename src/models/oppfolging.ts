@@ -30,7 +30,6 @@ export interface SyfoPunkt {
     fastOppfølgingspunkt: boolean;
     status: string;
     syfoHendelse: string;
-
 }
 
 export interface OppfolgingsYtelse {

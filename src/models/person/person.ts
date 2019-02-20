@@ -97,7 +97,7 @@ export enum SivilstandTyper {
     Gift = 'GIFT',
     Ugift = 'UGIF',
     Skilt = 'SKIL',
-    Samboer  = 'SAMB',
+    Samboer = 'SAMB',
     Enke = 'ENKE'
 }
 
@@ -115,7 +115,7 @@ export enum BegrensetTilgangTyper {
     DefaultFraBackEnd = 'sikkerhetsbegrensning.diskresjonskode'
 }
 
-export function getNavn({fornavn, mellomnavn, etternavn, sammensatt}: Navn) {
+export function getNavn({ fornavn, mellomnavn, etternavn, sammensatt }: Navn) {
     if (!fornavn && !etternavn) {
         return sammensatt || 'Ukjent navn';
     }
@@ -139,8 +139,7 @@ export function erDød(personstatus: Bostatus) {
 }
 
 export function getBarn(familierelasjoner: Familierelasjon[]) {
-    return familierelasjoner
-        .filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
+    return familierelasjoner.filter(relasjon => relasjon.rolle === Relasjonstype.Barn);
 }
 
 function getAlderOrDefault(relasjon: Familierelasjon) {

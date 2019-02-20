@@ -21,19 +21,18 @@ import { Diskresjonskoder } from '../../../konstanter';
 
 describe('formaterGateAdresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
-            const gateAdresse = lagMockGateAdresse();
-            const korrektFormattering =
-                '09.11.2016 - 31.10.2017\n' +
-                'tilleggsadresse\n' +
-                'gatenavn husnummerhusbokstav\n' +
-                'bolignummer\n' +
-                'postnummer poststed';
+        const gateAdresse = lagMockGateAdresse();
+        const korrektFormattering =
+            '09.11.2016 - 31.10.2017\n' +
+            'tilleggsadresse\n' +
+            'gatenavn husnummerhusbokstav\n' +
+            'bolignummer\n' +
+            'postnummer poststed';
 
-            const adresseTekst = formatterGateadresse(gateAdresse);
+        const adresseTekst = formatterGateadresse(gateAdresse);
 
-            expect(adresseTekst).toBe(korrektFormattering);
-        }
-    );
+        expect(adresseTekst).toBe(korrektFormattering);
+    });
 
     it('Gir riktig formattert, mangler tilleggsadresse, bolignummer, periode og husbokstav', () => {
         const gateAdresse = {
@@ -44,9 +43,7 @@ describe('formaterGateAdresse', () => {
             husbokstav: undefined
         };
 
-        const korrektFormattering =
-            'gatenavn husnummer\n' +
-            'postnummer poststed';
+        const korrektFormattering = 'gatenavn husnummer\n' + 'postnummer poststed';
 
         const adresseTekst = formatterGateadresse(gateAdresse);
 
@@ -58,10 +55,7 @@ describe('formaterMatrikkeladresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
         const matrikkelAdresse = lagMockMatrikkelAdresse();
         const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' +
-            'tilleggsadresse\n' +
-            'eiendomsnavn\n' +
-            'postnummer poststed';
+            '09.11.2016 - 31.10.2017\n' + 'tilleggsadresse\n' + 'eiendomsnavn\n' + 'postnummer poststed';
 
         const adresseTekst = formatterMatrikkeladresse(matrikkelAdresse);
 
@@ -78,8 +72,7 @@ describe('formaterMatrikkeladresse', () => {
         matrikkeladresse.tilleggsadresse = undefined;
         matrikkeladresse.eiendomsnavn = undefined;
         matrikkeladresse.periode = undefined;
-        const korrektFormattering =
-            'postnummer poststed';
+        const korrektFormattering = 'postnummer poststed';
 
         const adresseTekst = formatterMatrikkeladresse(matrikkeladresse);
 
@@ -109,9 +102,7 @@ describe('formatterPostboksadresse', () => {
             periode: undefined
         };
 
-        const korrektFormattering =
-            'Postboksnummer postboksnummer\n' +
-            'postnummer poststed';
+        const korrektFormattering = 'Postboksnummer postboksnummer\n' + 'postnummer poststed';
 
         const adresseTekst = formatterPostboksadresse(postboksAdresse);
 
@@ -123,11 +114,7 @@ describe('formatterUtenlandsadresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
         const utenlandsAdresse = lagMockUtenlandskadresse();
         const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' +
-            'linje 1\n' +
-            'linje 2\n' +
-            'linje 3\n' +
-            'landkodeBeskrivelse';
+            '09.11.2016 - 31.10.2017\n' + 'linje 1\n' + 'linje 2\n' + 'linje 3\n' + 'landkodeBeskrivelse';
 
         const adressetekst = formatterUtenlandsadresse(utenlandsAdresse);
 
@@ -138,8 +125,7 @@ describe('formatterUtenlandsadresse', () => {
         const utenlandsAdresse: Utlandsadresse = {
             adresselinjer: ['linje 1']
         };
-        const korrektFormattering =
-            'linje 1';
+        const korrektFormattering = 'linje 1';
 
         const adresseTekst = formatterUtenlandsadresse(utenlandsAdresse);
 
@@ -149,7 +135,7 @@ describe('formatterUtenlandsadresse', () => {
 
 describe('formatterUstrukturertAdresse', () => {
     it('Gir korrekt formattering', () => {
-        const ustrukturertAdresse: UstrukturertAdresse = {adresselinje: 'Adresselinje'};
+        const ustrukturertAdresse: UstrukturertAdresse = { adresselinje: 'Adresselinje' };
         const korrektFormattering = 'Adresselinje';
 
         const adresseTekst = formatterUstrukturertAdresse(ustrukturertAdresse);
@@ -237,13 +223,13 @@ describe('hentFødselsdatoBarn', () => {
 
         const tekst = hentFødselsdatoBarn(person);
 
-        expect(tekst).toEqual({beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001'});
+        expect(tekst).toEqual({ beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001' });
     });
 
     it('Gir tom streng ved ingen barn', () => {
         let person = aremark;
         person.familierelasjoner = [];
-        const korrektSvar = {tekst: ''};
+        const korrektSvar = { tekst: '' };
 
         const tekst = hentFødselsdatoBarn(person);
 
@@ -278,7 +264,6 @@ function lagMockMatrikkelAdresse(): Matrikkeladresse {
             til: '2017-10-31'
         }
     };
-
 }
 
 function lagMockPostboksAdresse(): Postboksadresse {
@@ -301,11 +286,7 @@ function lagMockUtenlandskadresse(): Utlandsadresse {
             kodeRef: 'landkodeRef',
             beskrivelse: 'landkodeBeskrivelse'
         },
-        adresselinjer: [
-            'linje 1',
-            'linje 2',
-            'linje 3'
-        ],
+        adresselinjer: ['linje 1', 'linje 2', 'linje 3'],
         periode: {
             fra: '2016-11-09',
             til: '2017-10-31'
@@ -322,19 +303,20 @@ function lagMockGiftPerson(): Person {
         beskrivelse: 'ubrukt'
     };
 
-    person.familierelasjoner = [{
-        tilPerson: {
-            navn: {
-                sammensatt: 'Aremark Ektefelle',
-                fornavn: 'Aremark',
-                mellomnavn: 'Sin',
-                etternavn: 'Ektefelle',
-
+    person.familierelasjoner = [
+        {
+            tilPerson: {
+                navn: {
+                    sammensatt: 'Aremark Ektefelle',
+                    fornavn: 'Aremark',
+                    mellomnavn: 'Sin',
+                    etternavn: 'Ektefelle'
+                },
+                personstatus: getPersonstatus(65)
             },
-            personstatus: getPersonstatus(65)
-        },
-        rolle: Relasjonstype.Gift
-    }];
+            rolle: Relasjonstype.Gift
+        }
+    ];
 
     return person;
 }

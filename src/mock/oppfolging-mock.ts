@@ -2,7 +2,8 @@ import faker from 'faker/locale/nb_NO';
 import {
     AnsattEnhet,
     DetaljertOppfolging,
-    Oppfolging, OppfolgingsVedtak,
+    Oppfolging,
+    OppfolgingsVedtak,
     OppfolgingsYtelse,
     Saksbehandler,
     SyfoPunkt
@@ -46,8 +47,12 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
         sykemeldtFra: moment(faker.date.recent(10)).format(backendDatoformat),
         rettighetsgruppe: 'RGRP' + faker.random.number(10),
         vedtaksdato: moment(faker.date.soon(10)).format(backendDatoformat),
-        sykefraværsoppfølging: Array(navfaker.random.integer(20, 1)).fill(null).map(() => getSyfoPunkt()),
-        ytelser: Array(navfaker.random.integer(20, 1)).fill(null).map(() => getYtelse())
+        sykefraværsoppfølging: Array(navfaker.random.integer(20, 1))
+            .fill(null)
+            .map(() => getSyfoPunkt()),
+        ytelser: Array(navfaker.random.integer(20, 1))
+            .fill(null)
+            .map(() => getYtelse())
     };
 }
 
@@ -69,7 +74,9 @@ function getYtelse(): OppfolgingsYtelse {
         tom: moment(faker.date.soon(10)).format(backendDatoformat),
         status: 'STATUS',
         type: 'TYPE',
-        vedtak: Array(navfaker.random.integer(20, 1)).fill(null).map(() => getVedtak())
+        vedtak: Array(navfaker.random.integer(20, 1))
+            .fill(null)
+            .map(() => getVedtak())
     };
 }
 

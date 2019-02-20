@@ -20,14 +20,14 @@ function getMockEnabled(): boolean {
 export function postConfig(body: object) {
     return {
         body: JSON.stringify(body),
-        cache: 'no-cache' as RequestCache ,
+        cache: 'no-cache' as RequestCache,
         credentials: 'include' as RequestCredentials,
         headers: {
             'content-type': 'application/json'
         },
         method: 'POST',
         mode: 'cors' as RequestMode,
-        redirect: 'follow' as RequestRedirect,
+        redirect: 'follow' as RequestRedirect
     };
 }
 

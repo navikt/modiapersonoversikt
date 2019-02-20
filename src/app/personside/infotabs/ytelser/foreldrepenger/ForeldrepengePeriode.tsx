@@ -3,33 +3,68 @@ import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepeng
 import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList from '../felles-styling/DescriptionList';
+import DescriptionList from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
+import { formaterDato } from '../../../../../utils/dateUtils';
 
 interface Props {
     periode: Foreldrepengerperiode;
+    periodenr: number;
 }
 
 const Padding = styled.div`
-  margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
+    margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
 `;
 
-function ForeldrepengePeriode(props: Props) {
+const Flex = styled.div`
+    display: flex;
+`;
+
+const Stor = styled.div`
+    flex-basis: 55%;
+`;
+
+const Liten = styled.div`
+    flex-basis: 45%;
+`;
+
+export function convertBoolTilJaNei(verdi: boolean | null): string | null {
+    switch (verdi) {
+        case true:
+            return 'Ja';
+        case false:
+            return 'Nei';
+        default:
+            return null;
+    }
+}
+
+function ForeldrepengePeriode({ periode, periodenr }: Props) {
     const entries = {
-        'Midlertidig stans': 'Hei',
-        Stansårsak: 'Avsluttet',
-        MerInfo: 'Hei',
-        TBA: ''
+        'Midlertidig stans': periode.midlertidigStansDato,
+        Stansårsak: periode.stansårsak,
+        Mødrekvote: convertBoolTilJaNei(periode.erMødrekvote),
+        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
+        'Rett til Mødrekvote': periode.rettTilMødrekvote,
+        Fedrekvote: convertBoolTilJaNei(periode.erFedrekvote),
+        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar),
+        'Rett til Fedrekvote': periode.rettTilFedrekvote
     };
     return (
-        <YtelserPeriode tittel="Periode DATO">
-            <Padding>
-                <DescriptionList entries={entries}/>
-            </Padding>
-            <Utbetalinger
-                kommendeUtbetalinger={props.periode.kommendeUtbetalinger}
-                historiskeUtbetalinger={props.periode.historiskeUtbetalinger}
-            />
+        <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
+            <Flex>
+                <Liten>
+                    <Padding>
+                        <DescriptionList entries={entries} />
+                    </Padding>
+                </Liten>
+                <Stor>
+                    <Utbetalinger
+                        kommendeUtbetalinger={periode.kommendeUtbetalinger}
+                        historiskeUtbetalinger={periode.historiskeUtbetalinger}
+                    />
+                </Stor>
+            </Flex>
         </YtelserPeriode>
     );
 }

@@ -14,18 +14,18 @@ interface DispatchProps {
 }
 
 const HeaderStyling = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin: ${theme.margin.px10};
-  justify-content: space-between;
+    display: flex;
+    flex-flow: row wrap;
+    margin: ${theme.margin.px10};
+    justify-content: space-between;
 `;
 
 const KnapperStyling = styled.div`
-  display: flex;
-  align-items: center;
-  > * {
-    margin-left: ${theme.margin.px20}
-  }  
+    display: flex;
+    align-items: center;
+    > * {
+        margin-left: ${theme.margin.px20};
+    }
 `;
 
 class Header extends React.PureComponent<DispatchProps> {
@@ -40,16 +40,10 @@ class Header extends React.PureComponent<DispatchProps> {
             <HeaderStyling>
                 <Undertittel tag="h1">Kontrollspørsmål</Undertittel>
                 <KnapperStyling>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.handleNyttSpørsmålClick}
-                    >
+                    <KnappBase type="standard" onClick={this.handleNyttSpørsmålClick}>
                         Nytt spørsmål
                     </KnappBase>
-                    <KnappBase
-                        type="standard"
-                        onClick={this.handleLukkClick}
-                    >
+                    <KnappBase type="standard" onClick={this.handleLukkClick}>
                         Lukk
                     </KnappBase>
                 </KnapperStyling>
@@ -58,12 +52,12 @@ class Header extends React.PureComponent<DispatchProps> {
     }
 
     private handleNyttSpørsmålClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Nytt'});
+        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
         this.props.nyttSpørsmål();
     }
 
     private handleLukkClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', {type: 'Lukk'});
+        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
         this.props.lukkKontrollSpørsmål();
     }
 }
@@ -75,4 +69,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(
+    null,
+    mapDispatchToProps
+)(Header);

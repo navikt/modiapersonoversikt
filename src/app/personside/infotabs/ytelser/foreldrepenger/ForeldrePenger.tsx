@@ -8,21 +8,19 @@ interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
-function Foreldrepenger({foreldrepenger}: Props) {
-
+function Foreldrepenger({ foreldrepenger }: Props) {
     if (foreldrepenger === null) {
         return <AlertStripeAdvarsel>Finner ikke foreldrepengerettighet</AlertStripeAdvarsel>;
     }
 
-    const perioder = foreldrepenger.periode
-        .map((periode, index) => <ForeldrepengePeriode key={index} periode={periode}/>);
+    const perioder = foreldrepenger.periode.map((periode, index) => (
+        <ForeldrepengePeriode key={index} periode={periode} periodenr={index + 1} />
+    ));
 
     return (
         <article>
-            <Oversikt foreldrePenger={foreldrepenger}/>
-            <ul>
-                {perioder}
-            </ul>
+            <Oversikt foreldrePenger={foreldrepenger} />
+            <ul>{perioder}</ul>
         </article>
     );
 }

@@ -40,7 +40,6 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
         if (nyeSpørsmål.length > 0) {
             this.props.setSpørsmål(spørsmål);
         }
-
     }
 
     lagSpørsmål(): Spørsmål[] {
@@ -56,18 +55,17 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
 
     spørsmålEksisterer(spørsmål: Spørsmål) {
         if (this.props.kontrollSpørsmål.spørsmål) {
-            return this.props.kontrollSpørsmål.spørsmål.some(stateSpm =>
-                erSpørsmålLike(stateSpm, spørsmål));
+            return this.props.kontrollSpørsmål.spørsmål.some(stateSpm => erSpørsmålLike(stateSpm, spørsmål));
         }
         return false;
     }
 
     render() {
         if (!this.props.kontrollSpørsmål.spørsmål || this.props.kontrollSpørsmål.spørsmål.length === 0) {
-            return <FeilTekst/>;
+            return <FeilTekst />;
         }
 
-        return <SpørsmålOgSvar spørsmål={this.props.kontrollSpørsmål.spørsmål[0]}/>;
+        return <SpørsmålOgSvar spørsmål={this.props.kontrollSpørsmål.spørsmål[0]} />;
     }
 }
 
@@ -108,4 +106,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpørsmålOgSvarContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SpørsmålOgSvarContainer);

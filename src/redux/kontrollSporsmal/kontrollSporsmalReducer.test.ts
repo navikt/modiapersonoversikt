@@ -5,17 +5,17 @@ import { Spørsmål } from './types';
 
 const spm1: Spørsmål = {
     spørsmål: 'Spørsmål 1',
-    svar: [{tekst: 'svar til spørsmål 1'}]
+    svar: [{ tekst: 'svar til spørsmål 1' }]
 };
 
 const spm2: Spørsmål = {
     spørsmål: 'Spørsmål 2',
-    svar: [{tekst: 'svar til spørsmål 2'}]
+    svar: [{ tekst: 'svar til spørsmål 2' }]
 };
 
 const spm3: Spørsmål = {
     spørsmål: 'Spørsmål 3',
-    svar: [{tekst: 'svar til spørsmål 3'}]
+    svar: [{ tekst: 'svar til spørsmål 3' }]
 };
 
 describe('Kontrollspørsmål reducer', () => {
@@ -80,10 +80,7 @@ describe('Kontrollspørsmål reducer', () => {
 });
 
 function lagSpørsmål(): Spørsmål[] {
-    return [
-        spm1,
-        spm2
-    ];
+    return [spm1, spm2];
 }
 
 function invalidAction(): Action {

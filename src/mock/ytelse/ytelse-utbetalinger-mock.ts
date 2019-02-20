@@ -4,7 +4,7 @@ import {
     HistoriskUtbetaling,
     KommendeUtbetaling,
     KreditorTrekk,
-    UtbetalingPåVent
+    UtbetalingPåVent,
 } from '../../models/ytelse/ytelse-utbetalinger';
 import { getPeriodeRange } from '../person/periodeMock';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
@@ -13,7 +13,7 @@ export function getHistoriskUtbetaling(faker: Faker.FakerStatic): HistoriskUtbet
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
-        utbetalingsdato: moment(faker.date.recent()).format(backendDatoformat),
+        utbetalingsdato: moment(faker.date.past(2)).format(backendDatoformat),
         nettobeløp: Number(faker.commerce.price()),
         bruttobeløp: Number(faker.commerce.price()),
         skattetrekk: Number(faker.random.number(50)),
@@ -21,7 +21,7 @@ export function getHistoriskUtbetaling(faker: Faker.FakerStatic): HistoriskUtbet
         arbeidsgiverOrgNr: '1234567890',
         dagsats: Number(faker.commerce.price()),
         type: 'KONTOØVERFØRING',
-        trekk: fyllRandomListe(() => getKreditortrekk(faker), 3)
+        trekk: fyllRandomListe(() => getKreditortrekk(faker), 3),
     };
 }
 
@@ -29,14 +29,14 @@ export function getKommendeUtbetaling(faker: Faker.FakerStatic): KommendeUtbetal
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
-        utbetalingsdato: moment(faker.date.recent()).format(backendDatoformat),
+        utbetalingsdato: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverOrgNr: '1234567890',
         arbeidsgiverKontonr: Number(faker.finance.account(9)).toString(),
         dagsats: Number(faker.commerce.price()),
         saksbehandler: faker.name.firstName() + ' ' + faker.name.lastName(),
-        type: 'KONTOØVERFØRING'
+        type: 'KONTOØVERFØRING',
     };
 }
 
@@ -50,13 +50,13 @@ export function getUtbetalingPåVent(faker: Faker.FakerStatic): UtbetalingPåVen
         ferie1: getPeriodeRange(faker, 2),
         ferie2: getPeriodeRange(faker, 2),
         sanksjon: getPeriodeRange(faker, 2),
-        sykmeldt: getPeriodeRange(faker, 2)
+        sykmeldt: getPeriodeRange(faker, 2),
     };
 }
 
 function getKreditortrekk(faker: Faker.FakerStatic): KreditorTrekk {
     return {
         kreditorsNavn: faker.company.companyName(),
-        beløp: Number(faker.commerce.price())
+        beløp: Number(faker.commerce.price()),
     };
 }
