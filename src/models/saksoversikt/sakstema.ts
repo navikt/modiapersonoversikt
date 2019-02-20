@@ -13,7 +13,7 @@ export interface Sakstema {
     erGruppert: boolean;
     behandlingskjeder: Behandlingskjede[];
     dokumentMetadata: DokumentMetadata[];
-    tilhorendeSaker: Sak[];
+    tilhørendeSaker: Sak[];
     feilkoder: number[];
 }
 
