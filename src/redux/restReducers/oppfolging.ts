@@ -1,7 +1,7 @@
 import { createActionsAndReducer } from './restReducer';
-import { getOppfolging } from '../../api/oppfolging-api';
+import { getDetaljertOppfolging, getOppfolging } from '../../api/oppfolging-api';
 
-const { reducer, action, reload, tilbakestillReducer } = createActionsAndReducer('utbetalinger');
+const { reducer, action, reload, tilbakestillReducer } = createActionsAndReducer('oppfolging');
 
 export function hentOppfolging(fødselsnummer: string) {
     return action(() => getOppfolging(fødselsnummer));
@@ -13,6 +13,10 @@ export function reloadOppfolging(fødselsnummer: string) {
 
 export function resetOppfolgingReducer() {
     return tilbakestillReducer;
+}
+
+export function hentDetaljertOppfolging(fødselsnummer: string) {
+    return action(() => getDetaljertOppfolging(fødselsnummer));
 }
 
 export default reducer;

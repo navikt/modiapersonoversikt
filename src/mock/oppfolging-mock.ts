@@ -41,12 +41,13 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
     navfaker.seed(fødselsnummer + 'oppf');
 
     return {
+        oppfølging: getMockOppfølging(fødselsnummer),
         meldeplikt: faker.random.boolean(),
         formidlingsgruppe: 'FMGRP' + faker.random.number(5),
         innsatsgruppe: 'INGRP' + faker.random.number(10),
         sykemeldtFra: moment(faker.date.recent(10)).format(backendDatoformat),
         rettighetsgruppe: 'RGRP' + faker.random.number(10),
-        vedtaksdato: moment(faker.date.soon(10)).format(backendDatoformat),
+        vedtaksdato: moment(faker.date.recent(10)).format(backendDatoformat),
         sykefraværsoppfølging: Array(navfaker.random.integer(20, 1))
             .fill(null)
             .map(() => getSyfoPunkt()),
@@ -71,7 +72,7 @@ function getYtelse(): OppfolgingsYtelse {
         ukerIgjenMedBortfall: faker.random.number(10),
         datoKravMottatt: moment(faker.date.recent(30)).format(backendDatoformat),
         fom: moment(faker.date.recent(20)).format(backendDatoformat),
-        tom: moment(faker.date.soon(10)).format(backendDatoformat),
+        tom: moment(faker.date.recent(10)).format(backendDatoformat),
         status: 'STATUS',
         type: 'TYPE',
         vedtak: Array(navfaker.random.integer(20, 1))
@@ -83,7 +84,7 @@ function getYtelse(): OppfolgingsYtelse {
 function getVedtak(): OppfolgingsVedtak {
     return {
         aktivFra: moment(faker.date.recent(40)).format(backendDatoformat),
-        aktivTil: moment(faker.date.soon(20)).format(backendDatoformat),
+        aktivTil: moment(faker.date.recent(20)).format(backendDatoformat),
         vedtaksdato: moment(faker.date.recent(20)).format(backendDatoformat),
         aktivitetsfase: 'FASE',
         vedtakstatus: 'VSTATUS',
