@@ -17,6 +17,7 @@ import { formaterDato } from '../../../utils/dateUtils';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
+import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 
 export interface SpørsmålsExtractor<T> {
     spørsmål: string;
@@ -30,7 +31,7 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
             const bankkonto = (personinformasjon as Person).bankkonto;
             return [
                 {
-                    tekst: bankkonto ? bankkonto.kontonummer : ''
+                    tekst: bankkonto ? formatertKontonummerString(bankkonto.kontonummer) : ''
                 }
             ];
         }
@@ -61,7 +62,7 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er din adresse?',
+        spørsmål: 'Hva er adressen din?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return hentAdresse(person);
