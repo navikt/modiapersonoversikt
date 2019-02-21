@@ -5,9 +5,9 @@ import { sakstemakodeAlle } from './SakstemaListe';
 import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
-    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.behandlingskjeder));
-    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.dokumentMetadata));
-    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, (sakstema => sakstema.tilhorendeSaker));
+    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
+    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.dokumentMetadata);
+    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.tilhørendeSaker);
 
     return {
         temanavn: 'Alle tema',
@@ -15,19 +15,16 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
         harTilgang: true,
         behandlingskjeder: alleBehandlingskjeder,
         dokumentMetadata: alleDokumentmetadata,
-        tilhorendeSaker: alleTilhørendeSaker,
+        tilhørendeSaker: alleTilhørendeSaker,
         erGruppert: false,
         feilkoder: []
     };
 }
 
 function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
-    return alleSakstema.reduce(
-        (acc: T[], sakstema: Sakstema) => {
-            return [...acc, ...getGeneriskElement(sakstema)];
-        },
-        []
-    );
+    return alleSakstema.reduce((acc: T[], sakstema: Sakstema) => {
+        return [...acc, ...getGeneriskElement(sakstema)];
+    }, []);
 }
 
 export function hentFormattertDatoForSisteHendelse(sakstema: Sakstema) {
@@ -48,21 +45,15 @@ export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
 }
 
 function hentSenesteDatoForDokumenter(dokumentmetadata: DokumentMetadata[]) {
-    return dokumentmetadata.reduce(
-        (acc: Date, dok: DokumentMetadata) => {
-            return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
-        },
-        new Date(0)
-    );
+    return dokumentmetadata.reduce((acc: Date, dok: DokumentMetadata) => {
+        return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
+    }, new Date(0));
 }
 
 function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
-    return behandlingskjede.reduce(
-        (acc: Date, kjede: Behandlingskjede) => {
-            return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
-        },
-        new Date(0)
-    );
+    return behandlingskjede.reduce((acc: Date, kjede: Behandlingskjede) => {
+        return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
+    }, new Date(0));
 }
 
 function formatterDato(date: Date) {
