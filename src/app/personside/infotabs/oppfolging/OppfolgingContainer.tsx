@@ -47,8 +47,6 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const OppfolgingArticle = styled.article``;
-
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -70,7 +68,7 @@ const EkspanderbartPanelWrapper = styled.div`
 
 function OppfolgingVisning(props: VisningProps) {
     return (
-        <OppfolgingArticle>
+        <>
             <Wrapper>
                 <LenkeOgDatoWrapper>
                     <ArenaLenkerPanel />
@@ -82,7 +80,7 @@ function OppfolgingVisning(props: VisningProps) {
                 <SykefravarsoppfolgingEkspanderbartPanel syfoPunkt={props.detaljertOppfølging.sykefraværsoppfølging} />
                 <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
             </EkspanderbartPanelWrapper>
-        </OppfolgingArticle>
+        </>
     );
 }
 
