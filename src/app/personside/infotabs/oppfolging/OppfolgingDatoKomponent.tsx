@@ -10,10 +10,11 @@ const Wrapper = styled.div`
     padding: ${theme.margin.px10} ${theme.margin.px10};
 `;
 
-const TittleWrapper = styled.span`
+const TittleWrapper = styled.div`
     &:focus {
         outline: none;
     }
+    margin-bottom: ${theme.margin.layout};
 `;
 
 const DatoVelgerWrapper = styled.div`
@@ -80,8 +81,8 @@ function OppfolgingDatoPanel() {
         <Wrapper>
             <TittleWrapper tabIndex={-1}>
                 <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
-                <DatoInputs />
             </TittleWrapper>
+            <DatoInputs />
         </Wrapper>
     );
 }
