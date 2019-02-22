@@ -44,7 +44,7 @@ class Header extends React.PureComponent<DispatchProps> {
                         Nytt spørsmål
                     </KnappBase>
                     <KnappBase type="standard" onClick={this.handleLukkClick}>
-                        Verifisert
+                        Lukk
                     </KnappBase>
                 </KnapperStyling>
             </HeaderStyling>

@@ -12,24 +12,22 @@ interface DispatchProps {
 class HandleKontrollSporsmalHotkeys extends React.Component<DispatchProps> {
     constructor(props: DispatchProps) {
         super(props);
+        this.handleHotkey = this.handleHotkey.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this);
+        document.addEventListener('keydown', this.handleHotkey);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this);
+        document.removeEventListener('keydown', this.handleHotkey);
     }
 
     render() {
         return null;
     }
 
-    handleEvent(event: Event) {
-        if (!(event instanceof KeyboardEvent)) {
-            return;
-        }
+    private handleHotkey(event: KeyboardEvent) {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'l' && event.altKey) {
