@@ -18,7 +18,7 @@ export function getFormatertKreditortrekkFraHistoriskUtbetaling(historiskUtbetal
     return formaterNOK(trekkSummert) + ' NOK';
 }
 
-export function mapUtbetlaingerTilHistoriskeUtbetalinger(utbetalinger: Utbetaling[]): HistoriskUtbetaling[] {
+export function mapUtbetalingerTilHistoriskeUtbetalinger(utbetalinger: Utbetaling[]): HistoriskUtbetaling[] {
     return utbetalinger.reduce(
         (acc: HistoriskUtbetaling[], utbetaling: Utbetaling) => [
             ...acc,

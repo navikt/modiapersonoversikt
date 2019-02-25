@@ -7,11 +7,11 @@ import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     fjernTommeUtbetalinger
 } from '../../utbetalinger/utils/utbetalingerUtils';
-import { genericAscendingDateComparator } from '../../../../../utils/dateUtils';
+import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { YtelserKeys } from '../ytelserKeys';
 import { AlignTextCenter, FlexCenter } from '../../../../../components/common-styled-components';
-import { fjernUrelevanteUtbetalinger, mapUtbetlaingerTilHistoriskeUtbetalinger } from './utbetalingerUtils';
+import { fjernUrelevanteUtbetalinger, mapUtbetalingerTilHistoriskeUtbetalinger } from './utbetalingerUtils';
 import { STATUS } from '../../../../../redux/restReducers/utils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { Utbetaling } from '../../../../../models/utbetalinger';
@@ -44,7 +44,7 @@ class HistoriskeUtbetalinger extends React.PureComponent<Props> {
                 .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
                 .filter(fjernTommeUtbetalinger);
 
-            const mappetTilHistoriskUtbetaling = mapUtbetlaingerTilHistoriskeUtbetalinger(
+            const mappetTilHistoriskUtbetaling = mapUtbetalingerTilHistoriskeUtbetalinger(
                 relevanteUtbetlaingerFraUtbetalingRestkonto
             );
 
@@ -53,9 +53,9 @@ class HistoriskeUtbetalinger extends React.PureComponent<Props> {
     }
 
     render() {
-        const sorterteSammenflettedeUtbetalinger = this.getSammenflettedeUtbetalinger()
-            .sort(genericAscendingDateComparator(utbetaling => utbetaling.utbetalingsdato || new Date()))
-            .reverse();
+        const sorterteSammenflettedeUtbetalinger = this.getSammenflettedeUtbetalinger().sort(
+            genericDescendingDateComparator(utbetaling => utbetaling.utbetalingsdato || new Date())
+        );
 
         if (this.props.reducerStatus === STATUS.SUCCESS && sorterteSammenflettedeUtbetalinger.length === 0) {
             return <AlertStripeInfo>Kunne ikke finne noen historiske utbetalinger</AlertStripeInfo>;
