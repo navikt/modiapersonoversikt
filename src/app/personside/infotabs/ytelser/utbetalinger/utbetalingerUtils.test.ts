@@ -3,7 +3,7 @@ import { getHistoriskUtbetaling } from '../../../../../mock/ytelse/ytelse-utbeta
 import faker from 'faker/locale/nb_NO';
 import {
     getFormatertKreditortrekkFraHistoriskUtbetaling,
-    mapUtbetlaingerTilHistoriskeUtbetalinger
+    mapUtbetalingerTilHistoriskeUtbetalinger
 } from './utbetalingerUtils';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
 
@@ -54,7 +54,7 @@ describe('Tomt kreditortrekk gir tom streng', () => {
 });
 
 test('Mapper utbetaling til historiske utbetalinger', () => {
-    const result = mapUtbetlaingerTilHistoriskeUtbetalinger([
+    const result = mapUtbetalingerTilHistoriskeUtbetalinger([
         {
             ...statiskMockUtbetaling,
             ytelser: [statiskMockYtelse, statiskMockYtelse]

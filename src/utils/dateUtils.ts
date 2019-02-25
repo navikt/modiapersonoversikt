@@ -34,3 +34,7 @@ export function ascendingDateComparator(a: Date, b: Date) {
 export function genericAscendingDateComparator<T>(getDate: (element: T) => Date | string) {
     return (a: T, b: T): number => ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
 }
+
+export function genericDescendingDateComparator<T>(getDate: (element: T) => Date | string) {
+    return (a: T, b: T): number => -ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
+}
