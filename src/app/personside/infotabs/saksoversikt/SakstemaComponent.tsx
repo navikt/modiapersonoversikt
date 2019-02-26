@@ -22,6 +22,17 @@ const SVGStyling = styled.span`
     }
 `;
 
+const UUcustomOrder = styled.div`
+    display: flex;
+    flex-direction: column;
+    .order-first {
+        order: 0;
+    }
+    .order-second {
+        order: 1;
+    }
+`;
+
 function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatus: Behandlingsstatus, status: string) {
     const antallUnderbehandling = sakstema.behandlingskjeder.filter(
         behandlingskjede => behandlingskjede.status === sjekkMotStatus
@@ -68,8 +79,12 @@ function SakstemaComponent(props: Props) {
                 ariaDescription={'Vis ' + props.sakstema.temanavn}
             >
                 <div>
-                    <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
-                    <Element>{props.sakstema.temanavn}</Element>
+                    <UUcustomOrder>
+                        <Element className="order-second">{props.sakstema.temanavn}</Element>
+                        <Normaltekst className="order-first">
+                            {hentFormattertDatoForSisteHendelse(props.sakstema)}
+                        </Normaltekst>
+                    </UUcustomOrder>
                     {sakerUnderBehandling}
                     {sakerFerdigBehandlet}
                 </div>

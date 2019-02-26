@@ -4,7 +4,7 @@ import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { oppdaterAvsenderfilter, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
-import DokumentListe from './DokumentListe';
+import SaksDokumenter from './SaksDokumenter';
 
 interface StateProps {
     avsenderFilter: DokumentAvsenderFilter;
@@ -37,4 +37,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DokumentListe);
+)(SaksDokumenter);

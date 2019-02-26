@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeContainer from './SakstemaListeContainer';
-import DokumentListeContainer from './DokumentListeContainer';
+import DokumentListeContainer from './SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';

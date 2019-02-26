@@ -82,11 +82,13 @@ class SakstemaListe extends React.Component<Props, State> {
                 <TittelWrapper>
                     <Undertittel>Tema</Undertittel>
                 </TittelWrapper>
-                <GrupperteTema
-                    valgtSakstema={this.props.valgtSakstema}
-                    sakstema={komplettListe}
-                    oppdaterSakstema={this.props.oppdaterSakstema}
-                />
+                <nav aria-label="Velg sakstema">
+                    <GrupperteTema
+                        valgtSakstema={this.props.valgtSakstema}
+                        sakstema={komplettListe}
+                        oppdaterSakstema={this.props.oppdaterSakstema}
+                    />
+                </nav>
             </Wrapper>
         );
     }

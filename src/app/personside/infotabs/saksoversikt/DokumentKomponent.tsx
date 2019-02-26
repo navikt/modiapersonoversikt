@@ -50,7 +50,7 @@ interface StateProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean }>`
+const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
     ${props =>
         props.valgt &&
         css`
@@ -90,6 +90,17 @@ const NyttVinduLenkeStyle = styled.span`
     white-space: nowrap;
 `;
 
+const UUcustomOrder = styled.div`
+    display: flex;
+    flex-direction: column;
+    .order-first {
+        order: 0;
+    }
+    .order-second {
+        order: 1;
+    }
+`;
+
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
@@ -117,7 +128,7 @@ function dokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
         return <Dokument />;
     } else {
-        return <DokumentIkkeTilgangMerket />;
+        return <DokumentIkkeTilgangMerket aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
 }
 
@@ -136,7 +147,7 @@ function valgtTekst(visTekst: boolean) {
 class DokumentKomponent extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
-    private dokumentRef = React.createRef<HTMLDivElement>();
+    private dokumentRef = React.createRef<HTMLLIElement>();
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
@@ -179,7 +190,7 @@ class DokumentKomponent extends React.Component<Props> {
                         <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
                             <span ref={this.vedleggLinkRef}>
                                 <LenkeKnapp
-                                    aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                    aria-disabled={!kanVises}
                                     onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
                                 >
                                     <Element>{vedlegg.tittel}</Element>
@@ -204,7 +215,7 @@ class DokumentKomponent extends React.Component<Props> {
         const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
-            <Wrapper
+            <ListeElementStyle
                 onClick={(event: React.MouseEvent<HTMLElement>) =>
                     cancelIfHighlighting(() => this.handleClickOnDokument(event))
                 }
@@ -214,23 +225,27 @@ class DokumentKomponent extends React.Component<Props> {
             >
                 <IkonWrapper>{dokumentIkon(kanVises)}</IkonWrapper>
                 <InnholdWrapper>
-                    <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                        <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
-                    </Innholdslaster>
-                    <div ref={this.hoveddokumentLinkRef}>
-                        <LenkeKnapp
-                            aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                            onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                        >
-                            <Element>{dokument.hoveddokument.tittel}</Element>
-                        </LenkeKnapp>
-                    </div>
+                    <UUcustomOrder>
+                        <div ref={this.hoveddokumentLinkRef} className="order-second">
+                            <LenkeKnapp
+                                aria-disabled={!kanVises}
+                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                            >
+                                <Element>{dokument.hoveddokument.tittel}</Element>
+                            </LenkeKnapp>
+                        </div>
+                        <div className="order-first">
+                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
+                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
+                            </Innholdslaster>
+                        </div>
+                    </UUcustomOrder>
                     {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
                 <IfFeatureToggleOn toggleID={'saksoversikt-nytt-vindu'}>{egetVinduLenke}</IfFeatureToggleOn>
-            </Wrapper>
+            </ListeElementStyle>
         );
     }
 }

@@ -106,7 +106,12 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
     render() {
         const { person, visittkortApent } = this.props;
         const ikon = {
-            ikon: person.kjønn === 'M' ? <Mann alt="Mann" /> : <Kvinne alt="Kvinne" />
+            ikon:
+                person.kjønn === 'M' ? (
+                    <Mann alt="Mann" aria-label="Mann" />
+                ) : (
+                    <Kvinne alt="Kvinne" aria-label="Kvinne" />
+                )
         };
         const alder = erDød(person.personstatus) ? 'Død' : person.alder;
         return (

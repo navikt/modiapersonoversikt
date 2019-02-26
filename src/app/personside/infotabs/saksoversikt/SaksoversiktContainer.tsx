@@ -3,7 +3,6 @@ import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restRe
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
@@ -15,8 +14,9 @@ import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './DokumentOgVedlegg';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
 import SakstemaListeContainer from './SakstemaListeContainer';
-import DokumentListeContainer from './DokumentListeContainer';
+import SaksDokumenterContainer from './SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { Innholdstittel } from 'nav-frontend-typografi';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -77,11 +77,11 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return <DokumentOgVedlegg />;
         } else {
             return (
-                <SaksoversiktArticle>
+                <SaksoversiktArticle aria-label="Brukerens saker">
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
                         <SakstemaListeContainer />
-                        <DokumentListeContainer />
+                        <SaksDokumenterContainer />
                     </Innholdslaster>
                 </SaksoversiktArticle>
             );

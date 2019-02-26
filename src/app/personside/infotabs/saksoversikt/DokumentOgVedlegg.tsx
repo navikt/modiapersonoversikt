@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
@@ -12,6 +13,7 @@ import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import { LenkeKnapp, TilbakePil } from '../../../../components/common-styled-components';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -64,6 +66,12 @@ function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: st
 }
 
 function DokumentOgVedlegg(props: Props) {
+    const ref = React.createRef<HTMLSpanElement>();
+
+    useEffect(() => {
+        ref.current && ref.current.focus();
+    }, []);
+
     const { valgtDokument, valgtTab } = props;
     if (!valgtDokument || !valgtTab) {
         return (
@@ -94,6 +102,11 @@ function DokumentOgVedlegg(props: Props) {
 
     return (
         <Content>
+            <span ref={ref} tabIndex={-1}>
+                <Undertittel className="visually-hidden">
+                    Dokument: {props.valgtTab && props.valgtTab.tittel}
+                </Undertittel>
+            </span>
             {tabsHeader}
             <PersonContext.Consumer>
                 {fnr => {

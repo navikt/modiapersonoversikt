@@ -31,7 +31,7 @@ interface DokumentGruppeProps {
     sakstemakode: string;
 }
 
-const DokumentListeStyling = styled.section`
+const SaksdokumenterStyling = styled.section`
     position: relative;
     flex-grow: 1;
 `;
@@ -57,8 +57,6 @@ const InfoOgFilterPanel = styled.section`
         align-items: flex-end;
     }
 `;
-
-const DokumenterArticle = styled.article``;
 
 const DokumenterListe = styled.ol`
     padding: 0;
@@ -153,9 +151,14 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvs
     }
 }
 
-function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: DokumentAvsenderFilter) {
-    const filtrerteDokumenter = sakstema.dokumentMetadata.filter(metadata =>
-        hentRiktigAvsenderfilter(metadata.avsender, avsenderFilter)
+interface SaksdokumenterProps {
+    sakstema: Sakstema;
+    avsenderFilter: DokumentAvsenderFilter;
+}
+
+function DokumentListe(props: SaksdokumenterProps) {
+    const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
+        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
     );
 
     if (filtrerteDokumenter.length === 0) {
@@ -170,25 +173,25 @@ function hentDokumentinnhold(sakstema: Sakstema, avsenderFilter: DokumentAvsende
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) => (
         <Dokumentgruppe
             gruppe={gruppe}
-            harTilgang={sakstema.harTilgang}
-            sakstemakode={sakstema.temakode}
+            harTilgang={props.sakstema.harTilgang}
+            sakstemakode={props.sakstema.temakode}
             key={gruppe.category}
         />
     ));
 
     return (
-        <DokumenterArticle>
-            <DokumenterListe>{årsgrupper}</DokumenterListe>
+        <>
+            <DokumenterListe aria-label="Dokumenter gruppert på årstall">{årsgrupper}</DokumenterListe>
             <Luft />
             <AlertStripeInfo>
                 Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
                 som er journalført vises fra og med 4.juni 2016
             </AlertStripeInfo>
-        </DokumenterArticle>
+        </>
     );
 }
 
-class DokumentListe extends React.PureComponent<Props> {
+class SaksDokumenter extends React.PureComponent<Props> {
     private tittelRef = React.createRef<HTMLSpanElement>();
 
     componentDidUpdate(prevProps: Props) {
@@ -211,7 +214,7 @@ class DokumentListe extends React.PureComponent<Props> {
         }
 
         const filterCheckboxer = (
-            <Form>
+            <Form aria-label="Filter">
                 <Checkbox
                     label={'Bruker'}
                     checked={props.avsenderFilter.fraBruker}
@@ -230,8 +233,6 @@ class DokumentListe extends React.PureComponent<Props> {
             </Form>
         );
 
-        const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
-
         const tilbakeLenke =
             props.erStandaloneVindu && props.visDokument ? (
                 <a href={'#'} onClick={props.lukkDokument}>
@@ -240,7 +241,7 @@ class DokumentListe extends React.PureComponent<Props> {
             ) : null;
 
         return (
-            <DokumentListeStyling>
+            <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
                 <InfoOgFilterPanel>
                     <div>
                         {tilbakeLenke}
@@ -255,10 +256,10 @@ class DokumentListe extends React.PureComponent<Props> {
                     </div>
                 </InfoOgFilterPanel>
                 <ViktigÅVite />
-                {dokumentinnhold}
-            </DokumentListeStyling>
+                <DokumentListe sakstema={props.valgtSakstema} avsenderFilter={props.avsenderFilter} />
+            </SaksdokumenterStyling>
         );
     }
 }
 
-export default DokumentListe;
+export default SaksDokumenter;
