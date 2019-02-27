@@ -35,8 +35,6 @@ const LenkeOgDatoWrapper = styled.div`
 `;
 
 const EkspanderbartPanelWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
     > * {
         margin-top: ${theme.margin.layout};
     }
@@ -44,7 +42,7 @@ const EkspanderbartPanelWrapper = styled.div`
 
 function OppfolgingVisning(props: VisningProps) {
     return (
-        <>
+        <article>
             <DetaljertInfoWrapper>
                 <LenkeOgDatoWrapper>
                     <ArenaLenkerPanel />
@@ -56,7 +54,7 @@ function OppfolgingVisning(props: VisningProps) {
                 <SykefravarsoppfolgingEkspanderbartPanel syfoPunkt={props.detaljertOppfølging.sykefraværsoppfølging} />
                 <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
             </EkspanderbartPanelWrapper>
-        </>
+        </article>
     );
 }
 

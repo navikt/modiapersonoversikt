@@ -7,7 +7,7 @@ import { Knapp } from 'nav-frontend-knapper';
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px10} ${theme.margin.px10};
+    padding: ${theme.margin.px20};
 `;
 
 const TittleWrapper = styled.div`
