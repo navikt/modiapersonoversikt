@@ -42,7 +42,7 @@ exports[`Viser form for endre kontaktinformasjon 1`] = `
 }
 
 .c7 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c1 {

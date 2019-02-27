@@ -31,7 +31,7 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
 }
 
 .c4 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c2 {
@@ -267,7 +267,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
 }
 
 .c7 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c4 {
@@ -296,7 +296,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
 }
 
 .c6 > *:not(:first-child) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .c3 {
@@ -780,7 +780,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
 }
 
 .c6 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c3 {
@@ -809,7 +809,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
 }
 
 .c5 > *:not(:first-child) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .c1 {
@@ -1210,7 +1210,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
 }
 
 .c7 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c4 {
@@ -1239,7 +1239,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
 }
 
 .c6 > *:not(:first-child) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .c3 {
@@ -1681,7 +1681,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
 }
 
 .c6 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c5 {
@@ -1696,7 +1696,7 @@ exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
 }
 
 .c5 > *:not(:first-child) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .c3 {

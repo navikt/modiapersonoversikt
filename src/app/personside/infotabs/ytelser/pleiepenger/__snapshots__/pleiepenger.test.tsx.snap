@@ -85,7 +85,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c6:after {
-  border-bottom: 1px #B7B1A9 solid;
+  border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -103,11 +103,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c6:hover:after {
   content: '';
-  border-color: #0067C5;
+  border-color: #0067c5;
 }
 
 .c7 {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .c8 {
@@ -393,7 +393,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 
 .c0 > *:first-child {
   background-color: #cce1f3;
-  padding: .2rem 1.25rem;
+  padding: 0.2rem 1.25rem;
 }
 
 .c0 ol {
