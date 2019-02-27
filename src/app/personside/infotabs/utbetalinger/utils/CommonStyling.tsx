@@ -6,20 +6,20 @@ export const UtbetalingTabellStyling = styled.div`
         text-align: right;
         border-spacing: 0;
         * {
-          padding: 0;
-          margin: 0;
+            padding: 0;
+            margin: 0;
         }
         tr {
-          > * {
-            padding: 0.1rem;
-            text-align: right;
-          }
-          > *:first-child {
-            text-align: left;
-          }
-          > *:not(:first-child) {
-            width: 6rem;
-          }
+            > * {
+                padding: 0.1rem;
+                text-align: right;
+            }
+            > *:first-child {
+                text-align: left;
+            }
+            > *:not(:first-child) {
+                width: 6rem;
+            }
         }
     }
 `;

@@ -16,13 +16,13 @@ function loggInfo() {
         screen: `${roundToNearest100(screen.width)} x ${roundToNearest100(screen.height)}`,
         window: `${roundToNearest100(window.innerWidth)} x ${roundToNearest100(window.innerHeight)}`,
         erKontaktsenter: erKontaktsenter(),
-        browser: browser && browser.name || undefined
+        browser: (browser && browser.name) || undefined
     };
-    
+
     const fields = {
         enhet: getSaksbehandlerEnhet(),
-        browserVersion: browser && browser.version || undefined,
-        os: browser && browser.os || undefined,
+        browserVersion: (browser && browser.version) || undefined,
+        os: (browser && browser.os) || undefined,
         screenWidth: screen.width,
         screenHeight: screen.height,
         windowWidth: window.innerWidth,

@@ -17,5 +17,3 @@ Visittkortet dras inn som en enkeltstående react-komponent inn til modiabrukerd
 ## Consequences
 
 Vi publiserer en npm-modul som eksponerer StandAloneVisittkort som kan rendres som en selvstendig react-komponent.
-
-

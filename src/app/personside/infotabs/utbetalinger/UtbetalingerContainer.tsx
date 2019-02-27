@@ -25,7 +25,9 @@ const initialState: State = {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
             egendefinertPeriode: {
-                fra: moment().subtract(1, 'month').toDate(),
+                fra: moment()
+                    .subtract(1, 'month')
+                    .toDate(),
                 til: new Date()
             }
         },
@@ -50,48 +52,46 @@ interface OwnProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const UtbetalingerArticle = styled.article`
-  display: flex;
-  align-items: flex-start;
-  @media(max-width: ${theme.media.utbetalinger}) {
-    display: block;
-  }
+    display: flex;
+    align-items: flex-start;
+    @media (max-width: ${theme.media.utbetalinger}) {
+        display: block;
+    }
 `;
 
 const FiltreringSection = styled.section`
-  min-width: 19rem;
-  flex-basis: 19rem;
+    min-width: 19rem;
+    flex-basis: 19rem;
 `;
 
 const UtbetalingerSection = styled.section`
-  position: relative;
-  flex-grow: 1;
-  min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
-  @media not all and (max-width: ${theme.media.utbetalinger}) {
-      margin-left: ${theme.margin.layout};
-  }
+    position: relative;
+    flex-grow: 1;
+    min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
+    @media not all and (max-width: ${theme.media.utbetalinger}) {
+        margin-left: ${theme.margin.layout};
+    }
 `;
 
 class UtbetalingerContainer extends React.PureComponent<Props, State> {
-
     constructor(props: Props) {
         super(props);
-        this.state = {...initialState};
+        this.state = { ...initialState };
         this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
         loggEvent('Sidevisning', 'Utbetalinger');
     }
 
     onFilterChange(change: Partial<FilterState>) {
-        this.setState(
-            (prevState) => { // Sender inn funksjon her for å motvirke race-conditions fra UtbetaltTilValg og YtelseValg
-                return {
-                    filter: {
-                        ...prevState.filter,
-                        ...change
-                    }
-                };
-            }
-        );
+        this.setState(prevState => {
+            // Sender inn funksjon her for å motvirke race-conditions fra UtbetaltTilValg og YtelseValg
+            return {
+                filter: {
+                    ...prevState.filter,
+                    ...change
+                }
+            };
+        });
     }
 
     reloadUtbetalinger() {
@@ -118,7 +118,7 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
             <ErrorBoundary>
                 <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                     <div>
-                        <Arenalenke fødselsnummer={this.props.fødselsnummer}/>
+                        <Arenalenke fødselsnummer={this.props.fødselsnummer} />
                         <FiltreringSection>
                             <Filtrering
                                 filterState={this.state.filter}
@@ -143,9 +143,9 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         utbetalingerReducer: state.restEndepunkter.utbetalingerReducer
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -157,4 +157,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UtbetalingerContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UtbetalingerContainer);

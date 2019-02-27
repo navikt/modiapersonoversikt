@@ -32,13 +32,15 @@ export function formaterTelefonnummer(telefonnummer: string) {
 
 export function sorterRetningsnummerMedNorgeFørst(retningsnummerKodeverk: KodeverkResponse) {
     const NORSK_RETNINGSNUMMER_PREFIX = '+47';
-    const retningsnummerNorge = retningsnummerKodeverk.kodeverk.find(retningsnummer =>
-        retningsnummer.kodeRef === NORSK_RETNINGSNUMMER_PREFIX);
+    const retningsnummerNorge = retningsnummerKodeverk.kodeverk.find(
+        retningsnummer => retningsnummer.kodeRef === NORSK_RETNINGSNUMMER_PREFIX
+    );
 
     sorterRetningsnummerListe(retningsnummerKodeverk);
 
     const utlandskeRetningsnummer = retningsnummerKodeverk.kodeverk.filter(
-        retningsnummer => retningsnummer.kodeRef !== NORSK_RETNINGSNUMMER_PREFIX);
+        retningsnummer => retningsnummer.kodeRef !== NORSK_RETNINGSNUMMER_PREFIX
+    );
 
     if (retningsnummerNorge && utlandskeRetningsnummer) {
         retningsnummerKodeverk.kodeverk = [retningsnummerNorge].concat(utlandskeRetningsnummer);
@@ -46,20 +48,18 @@ export function sorterRetningsnummerMedNorgeFørst(retningsnummerKodeverk: Kodev
     return retningsnummerKodeverk;
 }
 
-function sorterRetningsnummerListe(retningsnummerKodeverk: KodeverkResponse)  {
-     retningsnummerKodeverk.kodeverk.sort(
-        function (a: Kodeverk, b: Kodeverk) {
-            var x = a.beskrivelse.toLowerCase();
-            var y = b.beskrivelse.toLowerCase();
-            if (x < y) {
-                return -1;
-            }
-            if (x > y) {
-                return 1;
-            }
-            return 0;
-        });
-
+function sorterRetningsnummerListe(retningsnummerKodeverk: KodeverkResponse) {
+    retningsnummerKodeverk.kodeverk.sort(function(a: Kodeverk, b: Kodeverk) {
+        var x = a.beskrivelse.toLowerCase();
+        var y = b.beskrivelse.toLowerCase();
+        if (x < y) {
+            return -1;
+        }
+        if (x > y) {
+            return 1;
+        }
+        return 0;
+    });
 }
 
 export function gyldigTelefonnummer(telefonnummer: string): boolean {

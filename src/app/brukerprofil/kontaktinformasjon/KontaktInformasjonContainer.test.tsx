@@ -5,7 +5,6 @@ import { aremark } from '../../../mock/person/aremark';
 import KontaktinformasjonContainer from './KontaktinformasjonContainer';
 
 test('Viser form for endre kontaktinformasjon', () => {
-
     const endreKontaktInformasjon = renderer.create(
         <TestProvider>
             <KontaktinformasjonContainer person={aremark} />

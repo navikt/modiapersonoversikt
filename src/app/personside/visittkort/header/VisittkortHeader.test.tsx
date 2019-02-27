@@ -9,7 +9,7 @@ import { Person } from '../../../../models/person/person';
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
         <TestProvider>
-            <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null}/>
+            <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null} />
         </TestProvider>
     );
 
@@ -22,11 +22,11 @@ test('setter fokus på brukerens navn on mount', () => {
         ...aremark,
         sikkerhetstiltak: undefined
     };
-    mount((
+    mount(
         <TestProvider>
-            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false}/>
+            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
-    ));
+    );
 
     const focusedElement = document.activeElement;
 
@@ -49,11 +49,11 @@ test('setter fokus på sikkerhetstiltak on mount', () => {
             }
         }
     };
-    mount((
+    mount(
         <TestProvider>
-            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false}/>
+            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
-    ));
+    );
 
     const focusedElement = document.activeElement;
 

@@ -17,14 +17,15 @@ interface Props {
 
 const SVGStyling = styled.span`
     svg {
-      height: ${theme.margin.px30};
-      width: ${theme.margin.px30};
+        height: ${theme.margin.px30};
+        width: ${theme.margin.px30};
     }
 `;
 
 function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatus: Behandlingsstatus, status: string) {
-    const antallUnderbehandling = sakstema.behandlingskjeder
-        .filter(behandlingskjede => behandlingskjede.status === sjekkMotStatus).length;
+    const antallUnderbehandling = sakstema.behandlingskjeder.filter(
+        behandlingskjede => behandlingskjede.status === sjekkMotStatus
+    ).length;
 
     // Skal ikke vises på det aggregerte sakstemaet
     if (antallUnderbehandling === 0 || sakstema.temakode === sakstemakodeAlle) {
@@ -32,22 +33,32 @@ function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatu
     }
 
     const soknad = antallUnderbehandling === 1 ? 'søknad' : 'søknader';
-    return <Normaltekst>{antallUnderbehandling} {soknad} er {status}.</Normaltekst>;
+    return (
+        <Normaltekst>
+            {antallUnderbehandling} {soknad} er {status}.
+        </Normaltekst>
+    );
 }
 
 function saksikon(harTilgang: boolean) {
     if (harTilgang) {
         return null;
     } else {
-        return <SakIkkeTilgangIkon/>;
+        return <SakIkkeTilgangIkon />;
     }
 }
 
 function SakstemaComponent(props: Props) {
     const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
-        props.sakstema, Behandlingsstatus.UnderBehandling, 'under behandling');
+        props.sakstema,
+        Behandlingsstatus.UnderBehandling,
+        'under behandling'
+    );
     const sakerFerdigBehandlet = visAntallSakerSomHarBehandlingsstatus(
-        props.sakstema, Behandlingsstatus.FerdigBehandlet, 'ferdig behandlet');
+        props.sakstema,
+        Behandlingsstatus.FerdigBehandlet,
+        'ferdig behandlet'
+    );
 
     return (
         <li>
@@ -62,9 +73,7 @@ function SakstemaComponent(props: Props) {
                     {sakerUnderBehandling}
                     {sakerFerdigBehandlet}
                 </div>
-                <SVGStyling>
-                    {saksikon(props.sakstema.harTilgang)}
-                </SVGStyling>
+                <SVGStyling>{saksikon(props.sakstema.harTilgang)}</SVGStyling>
             </VisMerKnapp>
         </li>
     );

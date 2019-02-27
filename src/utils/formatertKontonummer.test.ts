@@ -17,5 +17,4 @@ describe('FormatertkontonummerString', () => {
     it('Setter ingen punktum om flere enn 11', () => {
         expect(formatertKontonummerString('123456789000')).toBe('123456789000');
     });
-
 });

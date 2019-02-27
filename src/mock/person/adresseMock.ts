@@ -27,7 +27,10 @@ export const tilfeldigGateadresse = (adresseSkalHaPeriode: boolean): Gateadresse
 };
 
 function tilfeldigGatenavn() {
-    return faker.address.streetName().replace(' ', '').toUpperCase();
+    return faker.address
+        .streetName()
+        .replace(' ', '')
+        .toUpperCase();
 }
 
 const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkeladresse => {
@@ -41,7 +44,7 @@ const tilfeldigMatrikkeladresse = (folkeregistrertAdresse: boolean): Matrikkelad
 
 function getRandomLand(): Kodeverk {
     const landKodeverk = mockLandKodeverk().kodeverk;
-    return landKodeverk[ faker.random.number(landKodeverk.length - 1) ];
+    return landKodeverk[faker.random.number(landKodeverk.length - 1)];
 }
 
 const tilfeldigUtlandsadresse = (folkeregistrertAdresse: boolean): Utlandsadresse => {

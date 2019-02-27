@@ -7,5 +7,5 @@ export function hentPostnummere() {
     return action(() => fetchKodeverk('Postnummer'));
 }
 
-export {actionNames as postnummerActionNames}   ;
+export { actionNames as postnummerActionNames };
 export default reducer;

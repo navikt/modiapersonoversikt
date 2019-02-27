@@ -6,18 +6,20 @@ interface Bil {
 }
 
 test('Grupperer liste på alder', () => {
-
     const listeFør: Bil[] = [
         {
             merke: 'Jaguar',
             alder: 15
-        }, {
+        },
+        {
             merke: 'Jaguar',
             alder: 10
-        }, {
+        },
+        {
             merke: 'Ford',
             alder: 15
-        }, {
+        },
+        {
             merke: 'Lada',
             alder: 10
         }
@@ -30,22 +32,25 @@ test('Grupperer liste på alder', () => {
                 {
                     merke: 'Jaguar',
                     alder: 15
-                }, {
+                },
+                {
                     merke: 'Ford',
                     alder: 15
                 }
-            ],
-        }, {
+            ]
+        },
+        {
             category: '10',
             array: [
                 {
                     merke: 'Jaguar',
                     alder: 10
-                }, {
+                },
+                {
                     merke: 'Lada',
                     alder: 10
                 }
-            ],
+            ]
         }
     ];
 

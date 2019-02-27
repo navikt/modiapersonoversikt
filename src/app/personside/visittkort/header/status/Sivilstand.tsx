@@ -17,9 +17,5 @@ function getBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjønn: Kj
 export function Sivilstand({ sivilstand, kjønn }: Props) {
     const sivilstandBeskrivelse = getBeskrivelseForSivilstand(sivilstand, kjønn);
 
-    return (
-        <li title="Sivilstand">
-            {sivilstandBeskrivelse}
-        </li>
-    );
+    return <li title="Sivilstand">{sivilstandBeskrivelse}</li>;
 }

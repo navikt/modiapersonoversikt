@@ -28,32 +28,32 @@ interface DispatchProps {
 type Props = DispatchProps & StateProps;
 
 const Content = styled.div`
-  flex-grow: 1;
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  object {
     flex-grow: 1;
-    ${theme.hvittPanel}
-  }
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    object {
+        flex-grow: 1;
+        ${theme.hvittPanel}
+    }
 `;
 
 const AlertWrapper = styled.div`
-  padding: ${theme.margin.px40} ${theme.margin.px10};
+    padding: ${theme.margin.px40} ${theme.margin.px10};
 `;
 
 const Header = styled.div`
-  position: relative;
-  padding-right: 10rem;
+    position: relative;
+    padding-right: 10rem;
 `;
 
 const KnappWrapper = styled.div`
-  position: absolute;
-  bottom: .5rem;
-  right: .5rem;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
 `;
 
-function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: string, dokumentreferanse: string }) {
+function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: string; dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
 
     return (
@@ -64,7 +64,7 @@ function VisDokumentContainer(props: { fødselsnummer: string, journalpostId: st
 }
 
 function DokumentOgVedlegg(props: Props) {
-    const {valgtDokument, valgtTab} = props;
+    const { valgtDokument, valgtTab } = props;
     if (!valgtDokument || !valgtTab) {
         return (
             <AlertWrapper>
@@ -83,15 +83,10 @@ function DokumentOgVedlegg(props: Props) {
 
     const tabsHeader = !props.erStandaloneVindu && (
         <Header>
-            <TabsPure
-                tabs={tabProps}
-                onChange={(event, index) => props.setEnkeltDokument(tabs[index])}
-            />
+            <TabsPure tabs={tabProps} onChange={(event, index) => props.setEnkeltDokument(tabs[index])} />
             <KnappWrapper>
                 <LenkeKnapp onClick={props.lukkDokument}>
-                    <TilbakePil>
-                        Tilbake til saker
-                    </TilbakePil>
+                    <TilbakePil>Tilbake til saker</TilbakePil>
                 </LenkeKnapp>
             </KnappWrapper>
         </Header>
@@ -100,30 +95,31 @@ function DokumentOgVedlegg(props: Props) {
     return (
         <Content>
             {tabsHeader}
-            <PersonContext.Consumer>{fnr => {
-                if (!fnr) {
-                    return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
-                }
-                return (
-                    <VisDokumentContainer
-                        journalpostId={valgtDokument.journalpostId}
-                        dokumentreferanse={valgtTab.dokumentreferanse}
-                        fødselsnummer={fnr}
-                    />
-                );
-            }}
+            <PersonContext.Consumer>
+                {fnr => {
+                    if (!fnr) {
+                        return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
+                    }
+                    return (
+                        <VisDokumentContainer
+                            journalpostId={valgtDokument.journalpostId}
+                            dokumentreferanse={valgtTab.dokumentreferanse}
+                            fødselsnummer={fnr}
+                        />
+                    );
+                }}
             </PersonContext.Consumer>
         </Content>
     );
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
         valgtTab: state.saksoversikt.valgtEnkeltdokument,
         erStandaloneVindu: state.saksoversikt.erStandaloneVindu
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
@@ -133,4 +129,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DokumentOgVedlegg);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DokumentOgVedlegg);

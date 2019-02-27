@@ -20,46 +20,41 @@ interface State {
 export const sakstemakodeAlle = 'ALLE';
 
 const SakstemaListeStyle = styled.ol`
-  > * {
-    border-top: ${theme.border.skille};
-  }
+    > * {
+        border-top: ${theme.border.skille};
+    }
 `;
 
 const Wrapper = styled.div`
-  ${theme.hvittPanel}
-  min-width: 24rem;
-  flex-basis: 24rem;
-  ol {
-    list-style: none;
-  }
+    ${theme.hvittPanel}
+    min-width: 24rem;
+    flex-basis: 24rem;
+    ol {
+        list-style: none;
+    }
 `;
 
 const TittelWrapper = styled.div`
-  padding: ${theme.margin.px20};
+    padding: ${theme.margin.px20};
 `;
 
 type GrupperteTemaProps = Props;
 
 function GrupperteTema(props: GrupperteTemaProps) {
-    const sakstemakomponenter = props.sakstema.filter(sakstema => (
-        sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)).map(sakstema => (
+    const sakstemakomponenter = props.sakstema
+        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+        .map(sakstema => (
             <SakstemaComponent
                 erValgtSakstema={props.valgtSakstema === sakstema}
                 sakstema={sakstema}
                 oppdaterSakstema={props.oppdaterSakstema}
                 key={sakstema.temakode + hentFormattertDatoForSisteHendelse(sakstema)}
             />
-        )
-    );
-    return (
-        <SakstemaListeStyle>
-            {sakstemakomponenter}
-        </SakstemaListeStyle>
-    );
+        ));
+    return <SakstemaListeStyle>{sakstemakomponenter}</SakstemaListeStyle>;
 }
 
 class SakstemaListe extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
         const aggregert = aggregertSakstema(props.sakstema);
@@ -73,11 +68,7 @@ class SakstemaListe extends React.Component<Props, State> {
 
     render() {
         if (this.props.sakstema.length === 0) {
-            return (
-                <AlertStripeInfo>
-                    Det finnes ingen saker for bruker.
-                </AlertStripeInfo>
-            );
+            return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
         }
 
         const sorterPåHendelse = (a: Sakstema, b: Sakstema) =>

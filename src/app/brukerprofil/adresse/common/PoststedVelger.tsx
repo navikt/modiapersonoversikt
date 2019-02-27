@@ -16,12 +16,12 @@ export interface PoststedInformasjon {
 }
 
 const InputLinje = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 const PoststedInput = styled.div`
-  flex: 4;
-  margin-left: 15px;
+    flex: 4;
+    margin-left: 15px;
 `;
 
 interface StateProps {
@@ -37,22 +37,20 @@ interface OwnProps {
 type Props = StateProps & OwnProps;
 
 class Poststed extends React.Component<Props> {
-
     onPostnummerInput(input: string) {
-        this.props.onChange({...this.props.poststedInformasjon, postnummer: input});
-        const {kodeverk} = this.props.postnummerReducer.data;
+        this.props.onChange({ ...this.props.poststedInformasjon, postnummer: input });
+        const { kodeverk } = this.props.postnummerReducer.data;
         const postnummer = input.trim();
         if (postnummer.length === 4) {
-            const poststed = kodeverk.find(({kodeRef}) => kodeRef === postnummer);
+            const poststed = kodeverk.find(({ kodeRef }) => kodeRef === postnummer);
             if (poststed) {
-                this.props.onChange({postnummer, poststed: poststed.beskrivelse});
+                this.props.onChange({ postnummer, poststed: poststed.beskrivelse });
             }
         }
-
     }
 
     render() {
-        const {poststedInformasjon, feil} = this.props;
+        const { poststedInformasjon, feil } = this.props;
 
         return (
             <InputLinje>
@@ -61,18 +59,13 @@ class Poststed extends React.Component<Props> {
                     label="Postnummer"
                     value={poststedInformasjon.postnummer || ''}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                        this.props.onChange({...poststedInformasjon, postnummer: event.target.value});
+                        this.props.onChange({ ...poststedInformasjon, postnummer: event.target.value });
                         this.onPostnummerInput(event.target.value);
                     }}
                     feil={feil}
                 />
                 <PoststedInput>
-                    <Input
-                        bredde={'XXL'}
-                        label="Poststed"
-                        disabled={true}
-                        value={poststedInformasjon.poststed}
-                    />
+                    <Input bredde={'XXL'} label="Poststed" disabled={true} value={poststedInformasjon.poststed} />
                 </PoststedInput>
             </InputLinje>
         );

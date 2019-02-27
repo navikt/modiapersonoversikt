@@ -12,15 +12,7 @@ export function AntallBarn({ familierelasjoner }: Props) {
         return null;
     }
     if (barnUnder21.length === 0) {
-        return (
-            <li title="Barn under 21 år">
-                Ingen barn under 21 år
-            </li>
-        );
+        return <li title="Barn under 21 år">Ingen barn under 21 år</li>;
     }
-    return (
-        <li title="Barn under 21 år">
-            {barnUnder21.length} barn under 21 år
-        </li>
-    );
+    return <li title="Barn under 21 år">{barnUnder21.length} barn under 21 år</li>;
 }

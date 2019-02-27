@@ -30,16 +30,13 @@ class ErrorBoundary extends React.Component<Props, State> {
 
     componentDidCatch(error: Error, info: React.ErrorInfo) {
         this.setState({ hasError: true });
-        const message: string =
-            `ErrorBoundary${ this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
+        const message: string = `ErrorBoundary${this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
         loggError(error, message, { reactInfo: info });
     }
 
     render() {
         if (this.state.hasError) {
-            return (
-                <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil.</AlertStripe>
-            );
+            return <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil.</AlertStripe>;
         }
         return this.props.children;
     }

@@ -21,10 +21,7 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
     render() {
         return (
             <PlaceBottomRight>
-                <LenkeBrukerprofilVisning
-                    nyModiaPersonoversikt={erNyePersonoversikten()}
-                    person={this.props.person}
-                />
+                <LenkeBrukerprofilVisning nyModiaPersonoversikt={erNyePersonoversikten()} person={this.props.person} />
             </PlaceBottomRight>
         );
     }

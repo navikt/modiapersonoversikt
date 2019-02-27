@@ -78,10 +78,10 @@ export interface SetDokumentAvsenderFilter {
 }
 
 export type SaksoversiktActions =
-    SetVisDokument |
-    SetValgtDokument |
-    SetValgtEnkeltdokument |
-    SetValgtSakstema |
-    SetViktigÅViteÅpen |
-    SetErStandaloneVindu |
-    SetDokumentAvsenderFilter;
+    | SetVisDokument
+    | SetValgtDokument
+    | SetValgtEnkeltdokument
+    | SetValgtSakstema
+    | SetViktigÅViteÅpen
+    | SetErStandaloneVindu
+    | SetDokumentAvsenderFilter;

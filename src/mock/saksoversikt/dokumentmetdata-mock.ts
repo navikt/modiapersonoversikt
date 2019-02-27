@@ -11,12 +11,18 @@ import { fyllRandomListe } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 
-export function getDokumentMetadataListe(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata[] {
+export function getDokumentMetadataListe(
+    faker: Faker.FakerStatic,
+    navfaker: NavFaker,
+    tema: string[]
+): DokumentMetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return Array(navfaker.random.integer(10, 1)).fill(null).map(() => getDokumentMetadata(faker, navfaker, tema));
+    return Array(navfaker.random.integer(10, 1))
+        .fill(null)
+        .map(() => getDokumentMetadata(faker, navfaker, tema));
 }
 
 export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
@@ -27,9 +33,7 @@ export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker
         navn: navfaker.navn.fornavn(),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker, navfaker),
-        vedlegg: navfaker.random.vektetSjanse(.3)
-            ? fyllRandomListe(() => getDokument(faker, navfaker), 3)
-            : [],
+        vedlegg: navfaker.random.vektetSjanse(0.3) ? fyllRandomListe(() => getDokument(faker, navfaker), 3) : [],
         avsender: getEntitet(navfaker),
         mottaker: getEntitet(navfaker),
         tilhørendeSaksid: faker.random.alphaNumeric(8),
@@ -58,7 +62,7 @@ const fakeDokumentNavn = [
     'Inntektsopplysninger',
     'Spørsmål via nav.no',
     'Innhenting av opplysninger',
-    'Automatisk vedtak/nyfødt barn',
+    'Automatisk vedtak/nyfødt barn'
 ];
 function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
     return {
@@ -78,12 +82,7 @@ function getKommunikasjonsretning(navfaker: NavFaker): Kommunikasjonsretning {
 }
 
 function getEntitet(navfaker: NavFaker): Entitet {
-    return navfaker.random.arrayElement([
-        Entitet.Nav,
-        Entitet.Sluttbruker,
-        Entitet.Ukjent,
-        Entitet.EksternPart
-    ]);
+    return navfaker.random.arrayElement([Entitet.Nav, Entitet.Sluttbruker, Entitet.Ukjent, Entitet.EksternPart]);
 }
 
 function getFeilmelding(navfaker: NavFaker): Feilmelding {

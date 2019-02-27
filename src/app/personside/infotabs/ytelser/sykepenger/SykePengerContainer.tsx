@@ -24,7 +24,6 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 class SykePengerContainer extends React.PureComponent<Props> {
-
     componentDidMount() {
         loggEvent('Sidevisning', 'Sykepenger');
         if (isNotStarted(this.props.sykepengerReducer)) {
@@ -39,8 +38,9 @@ class SykePengerContainer extends React.PureComponent<Props> {
                     if (!data.sykepenger) {
                         return null;
                     }
-                    return data.sykepenger.map((sykepengerettighet, index) =>
-                        <SykepengerEkspanderbartpanel key={index} sykepenger={sykepengerettighet}/>);
+                    return data.sykepenger.map((sykepengerettighet, index) => (
+                        <SykepengerEkspanderbartpanel key={index} sykepenger={sykepengerettighet} />
+                    ));
                 }}
             </PlukkRestData>
         );
@@ -48,9 +48,9 @@ class SykePengerContainer extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         sykepengerReducer: state.restEndepunkter.sykepengerReducer
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -59,4 +59,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SykePengerContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SykePengerContainer);

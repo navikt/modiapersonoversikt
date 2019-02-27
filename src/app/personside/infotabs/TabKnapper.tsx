@@ -9,21 +9,21 @@ interface TabPanelProps {
 }
 
 const TabKnapperNav = styled.nav`
-      flex-shrink: 0;
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      > *:not(:last-child){
-        margin-right: .2em;
-      }
-      > *:not(:first-child){
-        margin-left: .2em;
-      }
+    flex-shrink: 0;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    > *:not(:last-child) {
+        margin-right: 0.2em;
+    }
+    > *:not(:first-child) {
+        margin-left: 0.2em;
+    }
 `;
 
 const KnappWrapper = styled.div`
-  flex-grow: 1;
-  box-sizing: border-box;
+    flex-grow: 1;
+    box-sizing: border-box;
 `;
 
 interface TabKnappProps {
@@ -36,22 +36,25 @@ const TabKnapp = styled.button<TabKnappProps>`
     background-color: transparent;
     padding-top: 0.5em;
     border: none;
-    border-bottom: 4px solid ${props => props.valgt ? theme.color.lenkeSelected : 'transparent'};
-    ${props => props.valgt && css`color: ${theme.color.lenkeSelected}`};
+    border-bottom: 4px solid ${props => (props.valgt ? theme.color.lenkeSelected : 'transparent')};
+    ${props =>
+        props.valgt &&
+        css`
+            color: ${theme.color.lenkeSelected};
+        `};
     text-align: center;
     cursor: pointer;
     transition: border 0.3s;
     font-weight: bold;
     &:focus {
-      ${theme.focus}
+        ${theme.focus}
     }
     &:hover {
-      border-bottom: 4px solid ${theme.color.lenkeHover};
+        border-bottom: 4px solid ${theme.color.lenkeHover};
     }
 `;
 
 function TabKnapper(props: TabPanelProps) {
-
     const knapper = Object.keys(INFOTABS).map(key => {
         const erValgt = INFOTABS[key] === props.openTab;
         return (

@@ -16,32 +16,45 @@ interface Props {
 }
 
 const StyledEtikketter = styled.section`
-  > * {
-    margin: 6px 0 0 6px;
-    white-space: nowrap;
-  }
+    > * {
+        margin: 6px 0 0 6px;
+        white-space: nowrap;
+    }
 `;
 
 export function lagDiskresjonskodeEtikett(diskresjonskode: Kodeverk) {
     switch (diskresjonskode.kodeRef) {
         case Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>Kode 6</EtikettBase>;
+            return (
+                <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>
+                    Kode 6
+                </EtikettBase>
+            );
         case Diskresjonskoder.FORTROLIG_ADRESSE:
-            return <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>Kode 7</EtikettBase>;
+            return (
+                <EtikettBase key={diskresjonskode.kodeRef} type={'advarsel'}>
+                    Kode 7
+                </EtikettBase>
+            );
         default:
             return null;
     }
 }
 
 function lagEgenAnsattEtikett() {
-    return <EtikettBase key={'egenansatt'} type={'advarsel'}>Egen ansatt</EtikettBase>;
+    return (
+        <EtikettBase key={'egenansatt'} type={'advarsel'}>
+            Egen ansatt
+        </EtikettBase>
+    );
 }
 
 function lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon: Kodeverk) {
     return (
         <EtikettBase key={tilrettelagtKommunikasjon.kodeRef} type={'fokus'}>
             {tilrettelagtKommunikasjon.beskrivelse}
-        </EtikettBase>);
+        </EtikettBase>
+    );
 }
 
 function harVergemål(vergemal: Vergemal) {
@@ -60,21 +73,24 @@ function lagEtiketter(person: Person, egenAnsatt: Egenansatt, vergemal: Vergemal
         etiketter.push(lagEgenAnsattEtikett());
     }
     if (person.sikkerhetstiltak) {
-        etiketter.push(<SikkerhetstiltakEtikett key="sikkerhetstiltak"/>);
+        etiketter.push(<SikkerhetstiltakEtikett key="sikkerhetstiltak" />);
     }
     if (harVergemål(vergemal)) {
-        etiketter.push(<EtikettBase key="vergemal" type={'fokus'}>Vergemål</EtikettBase>);
+        etiketter.push(
+            <EtikettBase key="vergemal" type={'fokus'}>
+                Vergemål
+            </EtikettBase>
+        );
     }
 
     person.tilrettelagtKomunikasjonsListe.forEach(tilrettelagtKommunikasjon => {
-            etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon));
-        }
-    );
+        etiketter.push(lagTilrettelagtKommunikasjonEtikett(tilrettelagtKommunikasjon));
+    });
 
     return etiketter;
 }
 
-function Etiketter({person, egenAnsatt, vergemal}: Props) {
+function Etiketter({ person, egenAnsatt, vergemal }: Props) {
     const etiketter = lagEtiketter(person, egenAnsatt, vergemal);
     return (
         <StyledEtikketter role="region" aria-label="etiketter">

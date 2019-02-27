@@ -8,8 +8,9 @@ import { aremark } from '../../mock/person/aremark';
 test('Smoketeste brukerprofil', () => {
     const brukerprofil = mount(
         <TestProvider>
-            <BrukerprofilSide fødselsnummer={aremark.fødselsnummer}/>
-        </TestProvider>);
+            <BrukerprofilSide fødselsnummer={aremark.fødselsnummer} />
+        </TestProvider>
+    );
 
     expect(brukerprofil).toExist();
 });

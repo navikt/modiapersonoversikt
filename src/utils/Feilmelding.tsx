@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
-export function Feilmelding({feil}: { feil: SkjemaelementFeil | undefined }) {
+export function Feilmelding({ feil }: { feil: SkjemaelementFeil | undefined }) {
     if (!feil) {
         return null;
     }

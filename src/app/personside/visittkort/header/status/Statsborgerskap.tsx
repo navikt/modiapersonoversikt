@@ -9,27 +9,24 @@ function uppercaseFørsteBokstav(ord: string) {
 }
 
 export function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string {
-    return statsborgerskap.toLowerCase()
-        .split(' ').map(uppercaseFørsteBokstav).join(' ')
-        .split('-').map(uppercaseFørsteBokstav).join('-');
+    return statsborgerskap
+        .toLowerCase()
+        .split(' ')
+        .map(uppercaseFørsteBokstav)
+        .join(' ')
+        .split('-')
+        .map(uppercaseFørsteBokstav)
+        .join('-');
 }
 
 export function Statsborgerskap({ statsborgerskap }: Props) {
     if (!statsborgerskap) {
-        return (
-            <li title="Statsborgerskap">
-                Ingen statsborgerskap registrert i NAV
-            </li>
-        );
+        return <li title="Statsborgerskap">Ingen statsborgerskap registrert i NAV</li>;
     }
 
     const formatertStatsborgerskap = formaterStatsborgerskapMedRiktigCasing(statsborgerskap);
 
-    return (
-        <li title="Statsborgerskap">
-            {formatertStatsborgerskap}
-        </li>
-    );
+    return <li title="Statsborgerskap">{formatertStatsborgerskap}</li>;
 }
 
 export default Statsborgerskap;

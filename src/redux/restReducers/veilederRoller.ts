@@ -7,5 +7,5 @@ export function getVeilederRoller() {
     return action(() => fetchVeilederRoller());
 }
 
-export { actionNames as veilederRollerReducerActionNames};
+export { actionNames as veilederRollerReducerActionNames };
 export default reducer;

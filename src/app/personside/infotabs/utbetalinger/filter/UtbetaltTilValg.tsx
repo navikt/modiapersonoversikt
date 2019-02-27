@@ -12,7 +12,6 @@ interface Props {
 }
 
 class UtbetaltTilValg extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.props.onChange({
@@ -22,8 +21,9 @@ class UtbetaltTilValg extends React.Component<Props> {
 
     componentDidUpdate(prevProps: Props) {
         const tidligereMottakere = this.getUnikeMottakere(prevProps.utbetalinger);
-        const nyeMottakere = this.getUnikeMottakere(this.props.utbetalinger)
-            .filter((mottaker: string) => !tidligereMottakere.includes(mottaker));
+        const nyeMottakere = this.getUnikeMottakere(this.props.utbetalinger).filter(
+            (mottaker: string) => !tidligereMottakere.includes(mottaker)
+        );
         if (nyeMottakere.length > 0) {
             this.props.onChange({
                 utbetaltTil: [...this.props.filterState.utbetaltTil, ...nyeMottakere]
@@ -45,7 +45,7 @@ class UtbetaltTilValg extends React.Component<Props> {
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
         return utbetalinger
-            .map(utbetaling => utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil)
+            .map(utbetaling => (utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil))
             .filter(fjernDuplikater)
             .sort(sorterAlfabetisk);
     }

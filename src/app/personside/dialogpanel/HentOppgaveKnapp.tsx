@@ -19,40 +19,40 @@ import { isLoading, RestReducer } from '../../../redux/restReducers/restReducer'
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 const HentOppgaveLayout = styled.div`
-  text-align: center;
-  > *:not(:first-child) {
-    margin: .4em 0 0 0;
-  }
+    text-align: center;
+    > *:not(:first-child) {
+        margin: 0.4em 0 0 0;
+    }
 `;
 
 const KnappLayout = styled.div`
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  > * {
-    margin-right: .4em;
-    flex-grow: 1;
-  }
-  > *:first-child {
-    margin-bottom: 0;
-    white-space: nowrap;
-  }
-  > *:last-child {
-    margin-top: .4em;
-    text-transform: none;
-  }
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    > * {
+        margin-right: 0.4em;
+        flex-grow: 1;
+    }
+    > *:first-child {
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+    > *:last-child {
+        margin-top: 0.4em;
+        text-transform: none;
+    }
 `;
 
-const PLUKKBARE_TEMAGRUPPER  = [
-    {kode: 'ARBD', beskrivelse: 'Arbeid'},
-    {kode: 'FMLI', beskrivelse: 'Familie'},
-    {kode: 'HJLPM', beskrivelse: 'Hjelpemidler'},
-    {kode: 'BIL', beskrivelse: 'Hjelpemidler bil'},
-    {kode: 'ORT_HJE', beskrivelse: 'Ortopediske hjelpemidler'},
-    {kode: 'PENS', beskrivelse: 'Pensjon'},
-    {kode: 'PLEIEPENGERSY', beskrivelse: 'Pleiepenger sykt barn'},
-    {kode: 'UFRT', beskrivelse: 'Uføretrygd'},
-    {kode: 'UTLAND', beskrivelse: 'Utland'}
+const PLUKKBARE_TEMAGRUPPER = [
+    { kode: 'ARBD', beskrivelse: 'Arbeid' },
+    { kode: 'FMLI', beskrivelse: 'Familie' },
+    { kode: 'HJLPM', beskrivelse: 'Hjelpemidler' },
+    { kode: 'BIL', beskrivelse: 'Hjelpemidler bil' },
+    { kode: 'ORT_HJE', beskrivelse: 'Ortopediske hjelpemidler' },
+    { kode: 'PENS', beskrivelse: 'Pensjon' },
+    { kode: 'PLEIEPENGERSY', beskrivelse: 'Pleiepenger sykt barn' },
+    { kode: 'UFRT', beskrivelse: 'Uføretrygd' },
+    { kode: 'UTLAND', beskrivelse: 'Utland' }
 ];
 
 interface State {
@@ -74,37 +74,35 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & RouteComponentProps<{}>;
 
 class HentOppgaveKnapp extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
         this.onPlukkOppgaver = this.onPlukkOppgaver.bind(this);
         this.onTemagruppeChange = this.onTemagruppeChange.bind(this);
-        this.state = {tomKø: false};
+        this.state = { tomKø: false };
     }
 
     onPlukkOppgaver() {
         if (!this.props.valgtTemagruppe) {
-            this.setState({temagruppeFeilmelding: 'Du må velge temagruppe'});
+            this.setState({ temagruppeFeilmelding: 'Du må velge temagruppe' });
             return;
         }
-        this.setState({temagruppeFeilmelding: undefined, tomKø: false});
-        this.props.plukkOppgaver(this.props.valgtTemagruppe)
-            .then((oppgaver: Oppgave[]) => {
-                const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
-                if (!fødselsnummer) {
-                    this.setState({tomKø: true});
-                    return;
-                }
-                settPersonIKontekst(this.props.history, fødselsnummer);
-            });
+        this.setState({ temagruppeFeilmelding: undefined, tomKø: false });
+        this.props.plukkOppgaver(this.props.valgtTemagruppe).then((oppgaver: Oppgave[]) => {
+            const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
+            if (!fødselsnummer) {
+                this.setState({ tomKø: true });
+                return;
+            }
+            settPersonIKontekst(this.props.history, fødselsnummer);
+        });
     }
 
     render() {
         const valgtTemagruppe = this.props.valgtTemagruppe;
-        const tomtTilbakemelding = this.state.tomKø
-            ? <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
-            : null;
-        const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map((temagruppe) => (
+        const tomtTilbakemelding = this.state.tomKø ? (
+            <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
+        ) : null;
+        const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map(temagruppe => (
             <option value={temagruppe.kode} key={temagruppe.kode}>
                 {temagruppe.beskrivelse}
             </option>
@@ -116,11 +114,15 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         label="Hent oppgave fra temagruppe"
                         value={valgtTemagruppe}
                         onChange={this.onTemagruppeChange}
-                        feil={this.state.temagruppeFeilmelding
-                            ? {feilmelding: this.state.temagruppeFeilmelding}
-                            : undefined}
+                        feil={
+                            this.state.temagruppeFeilmelding
+                                ? { feilmelding: this.state.temagruppeFeilmelding }
+                                : undefined
+                        }
                     >
-                        <option disabled={true} value={''}>Velg temagruppe</option>
+                        <option disabled={true} value={''}>
+                            Velg temagruppe
+                        </option>
                         {temagruppeOptions}
                     </Select>
                     <KnappBase
@@ -132,7 +134,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         Hent
                     </KnappBase>
                 </KnappLayout>
-                <ReducerFeilmelding reducer={this.props.oppgaveReducer}/>
+                <ReducerFeilmelding reducer={this.props.oppgaveReducer} />
                 {tomtTilbakemelding}
             </HentOppgaveLayout>
         );
@@ -140,7 +142,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 
     private onTemagruppeChange(event: ChangeEvent<HTMLSelectElement>) {
         this.props.velgTemagruppe(event.target.value);
-        this.setState({temagruppeFeilmelding: undefined});
+        this.setState({ temagruppeFeilmelding: undefined });
     }
 }
 
@@ -154,10 +156,14 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        plukkOppgaver: (temagruppe) => dispatch(plukkOppgaver(temagruppe)),
-        velgTemagruppe: (temagruppe) => dispatch(velgTemagruppe(temagruppe))
+        plukkOppgaver: temagruppe => dispatch(plukkOppgaver(temagruppe)),
+        velgTemagruppe: temagruppe => dispatch(velgTemagruppe(temagruppe))
     };
-
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HentOppgaveKnapp));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(HentOppgaveKnapp)
+);

@@ -17,10 +17,7 @@ function Sikkerhetstiltak({ person }: SikkerhetstiltakProps) {
         return null;
     }
     return (
-        <VisittkortGruppe
-            tittel="Sikkerhetstiltak"
-            ikon={<SikkerhetsTiltakIkon/>}
-        >
+        <VisittkortGruppe tittel="Sikkerhetstiltak" ikon={<SikkerhetsTiltakIkon />}>
             {tiltaksinfo(person.sikkerhetstiltak)}
         </VisittkortGruppe>
     );
@@ -37,9 +34,7 @@ function tiltaksinfo(sikkerhetstiltak: SikkerhetstiltakInterface) {
 
 function hentPeriode(periode?: Periode) {
     if (periode != null) {
-        return (
-            <VisPeriode periode={periode}/>
-        );
+        return <VisPeriode periode={periode} />;
     }
     return null;
 }

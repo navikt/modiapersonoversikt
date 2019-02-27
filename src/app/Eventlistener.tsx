@@ -10,10 +10,9 @@ interface StateProps {
     history: History;
 }
 
-type Props = StateProps & RouteComponentProps<{}> ;
+type Props = StateProps & RouteComponentProps<{}>;
 
 class Eventlistener extends React.PureComponent<Props> {
-
     constructor(props: Props) {
         super(props);
 
@@ -51,4 +50,9 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     };
 }
 
-export default withRouter(connect(mapStateToProps, null) (Eventlistener));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        null
+    )(Eventlistener)
+);

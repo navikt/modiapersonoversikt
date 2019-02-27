@@ -1,8 +1,6 @@
 import { emptyStringToUndefined } from './frontendLogger';
 
-test(
-    'mapper tomme strenger til undefined fordi grafana/influxdb/frontendlogger ikke ser ut til å håndtere det så bra',
-    () => {
+test('mapper tomme strenger til undefined fordi grafana/influxdb/frontendlogger ikke ser ut til å håndtere det så bra', () => {
     const testVerdier = {
         skalBli: 'Hei',
         skalVekk: ''

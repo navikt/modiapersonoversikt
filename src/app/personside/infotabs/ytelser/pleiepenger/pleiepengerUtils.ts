@@ -7,9 +7,7 @@ import {
 import { genericAscendingDateComparator } from '../../../../../utils/dateUtils';
 
 export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode | undefined {
-    return pleiepenger.perioder
-        .sort(genericAscendingDateComparator(p => p.fom))
-        .reverse()[0];
+    return pleiepenger.perioder.sort(genericAscendingDateComparator(p => p.fom)).reverse()[0];
 }
 
 export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Vedtak | undefined {
@@ -23,18 +21,13 @@ export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerett
 }
 
 export function getAlleArbiedsforholdSortert(pleiepenger: Pleiepengerettighet): Arbeidsforhold[] {
-    const arbeidsforhold =  pleiepenger.perioder.reduce(
-        (acc: Arbeidsforhold[], periode) => [
-            ...acc,
-            ...periode.arbeidsforhold
-        ],
+    const arbeidsforhold = pleiepenger.perioder.reduce(
+        (acc: Arbeidsforhold[], periode) => [...acc, ...periode.arbeidsforhold],
         []
     );
     return sorterArbeidsforholdEtterRefusjonTom(arbeidsforhold);
 }
 
 export function sorterArbeidsforholdEtterRefusjonTom(arbeidsforhold: Arbeidsforhold[]): Arbeidsforhold[] {
-    return arbeidsforhold
-        .sort(genericAscendingDateComparator(a => a.refusjonTom || new Date(0)))
-        .reverse();
+    return arbeidsforhold.sort(genericAscendingDateComparator(a => a.refusjonTom || new Date(0))).reverse();
 }

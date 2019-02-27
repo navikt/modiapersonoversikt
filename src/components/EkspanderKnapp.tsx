@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
 
 const Luft = styled.span`
-  margin-right: .5rem;
+    margin-right: 0.5rem;
 `;
 
 interface KnappProps {
@@ -16,16 +16,13 @@ interface KnappProps {
 
 function EkspanderKnapp(props: KnappProps) {
     return (
-        <LenkeKnapp
-            onClick={props.onClick}
-            aria-expanded={props.open}
-        >
+        <LenkeKnapp onClick={props.onClick} aria-expanded={props.open}>
             <Luft>
                 <Normaltekst tag="span">
                     {props.open ? 'Skjul' : 'Vis'} {props.tittel || 'detaljer'}
                 </Normaltekst>
             </Luft>
-            <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
+            <NavFrontendChevron type={props.open ? 'opp' : 'ned'} />
         </LenkeKnapp>
     );
 }

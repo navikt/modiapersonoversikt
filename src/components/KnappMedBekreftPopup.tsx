@@ -15,22 +15,21 @@ interface State {
 }
 
 const ModalStyling = styled.div`
-  padding: .5rem;
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  min-width: 20rem;
-  max-width: 30rem;
-  > *:not(:first-child) {
-    margin-top: 1rem;
-  }
-  > *:last-child {
-    align-self: flex-end;
-  }
+    padding: 0.5rem;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 20rem;
+    max-width: 30rem;
+    > *:not(:first-child) {
+        margin-top: 1rem;
+    }
+    > *:last-child {
+        align-self: flex-end;
+    }
 `;
 
 class KnappMedBekreftPopup extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -42,11 +41,11 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
     }
 
     skjulModal() {
-        this.setState({visModal: false});
+        this.setState({ visModal: false });
     }
 
     visModal() {
-        this.setState({visModal: true});
+        this.setState({ visModal: true });
     }
 
     handleBekreft() {
@@ -57,27 +56,13 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
     render() {
         return (
             <>
-                <KnappBase
-                    type="standard"
-                    htmlType="button"
-                    onClick={this.visModal}
-                >
+                <KnappBase type="standard" htmlType="button" onClick={this.visModal}>
                     {this.props.children}
                 </KnappBase>
-                <ModalWrapper
-                    isOpen={this.state.visModal}
-                    contentLabel="Bekreft valg"
-                    onRequestClose={this.skjulModal}
-
-                >
+                <ModalWrapper isOpen={this.state.visModal} contentLabel="Bekreft valg" onRequestClose={this.skjulModal}>
                     <ModalStyling>
                         <Normaltekst>{this.props.popUpTekst || 'Er du sikker?'}</Normaltekst>
-                        <KnappBase
-                            type="standard"
-                            htmlType="button"
-                            onClick={this.handleBekreft}
-                            autoFocus={true}
-                        >
+                        <KnappBase type="standard" htmlType="button" onClick={this.handleBekreft} autoFocus={true}>
                             Bekreft
                         </KnappBase>
                     </ModalStyling>

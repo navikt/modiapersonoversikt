@@ -9,23 +9,21 @@ interface Props {
     pleiepenger: Pleiepengerettighet | null;
 }
 
-function PleiepengerEkspanderbartpanel({pleiepenger}: Props) {
-
+function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
     if (pleiepenger === null) {
         return null;
     }
 
     const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepenger);
     const tittelTillegsInfo = [
-        'ID-dato: ' + (sistePeriodeForPleiepengerettighet
-            ? formaterDato(sistePeriodeForPleiepengerettighet.fom)
-            : 'N/A'),
+        'ID-dato: ' +
+            (sistePeriodeForPleiepengerettighet ? formaterDato(sistePeriodeForPleiepengerettighet.fom) : 'N/A'),
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 
     return (
         <EkspanderbartYtelserPanel tittel="Pleiepenger sykt barn" tittelTillegsInfo={tittelTillegsInfo}>
-            <Pleiepenger pleiepenger={pleiepenger}/>
+            <Pleiepenger pleiepenger={pleiepenger} />
         </EkspanderbartYtelserPanel>
     );
 }

@@ -5,11 +5,12 @@ import { aremark } from '../../../../mock/person/aremark';
 import SaksoversiktContainer from './SaksoversiktContainer';
 
 test('Viser saksoversiktcontainer med alt innhold', () => {
-        const container = renderer.create(
-            <TestProvider><SaksoversiktContainer fødselsnummer={aremark.fødselsnummer}/></TestProvider>
-        );
+    const container = renderer.create(
+        <TestProvider>
+            <SaksoversiktContainer fødselsnummer={aremark.fødselsnummer} />
+        </TestProvider>
+    );
 
-        const json = container.toJSON();
-        expect(json).toMatchSnapshot();
-    }
-);
+    const json = container.toJSON();
+    expect(json).toMatchSnapshot();
+});

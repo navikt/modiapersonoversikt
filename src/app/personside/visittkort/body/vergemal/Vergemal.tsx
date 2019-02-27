@@ -25,14 +25,13 @@ function getPeriodeTekst(periode: Periode) {
 }
 
 const Vergeinformasjon = styled.div`
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 `;
 
 function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
     return (
         <VisittkortElement beskrivelse={'Verge'}>
-
             <Vergeinformasjon>
                 <Normaltekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Normaltekst>
                 <Normaltekst>{verge.ident || ''}</Normaltekst>
@@ -47,17 +46,15 @@ function Verge(props: { verge: VergeInterface }) {
                 {verge.embete ? <br /> : ''}
                 {getPeriodeTekst(verge.virkningsperiode)}
             </EtikettGrå>
-
         </VisittkortElement>
     );
 }
 
 function Vergemal(props: { vergemal: VergemalInterface }) {
-    const verger = props.vergemal.verger.map((verge, index) =>
-        <Verge verge={verge} key={index}/>);
+    const verger = props.vergemal.verger.map((verge, index) => <Verge verge={verge} key={index} />);
     return (
         <VisittkortGruppe ikon={<VergemålLogo />} tittel="Bruker er under vergemål">
-            <Vergesakstype verger={props.vergemal.verger}/>
+            <Vergesakstype verger={props.vergemal.verger} />
             {verger}
         </VisittkortGruppe>
     );
@@ -68,10 +65,7 @@ function VergemalWrapper(props: { vergemal: VergemalInterface }) {
         return null;
     }
 
-    return (
-        <Vergemal vergemal={props.vergemal}/>
-    );
-
+    return <Vergemal vergemal={props.vergemal} />;
 }
 
 export default VergemalWrapper;

@@ -33,7 +33,9 @@ function getUtbetalinger(fødselsnummer: string) {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getMockUtbetaling(fødselsnummer));
+    return Array(navfaker.random.integer(20, 1))
+        .fill(null)
+        .map(() => getMockUtbetaling(fødselsnummer));
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
@@ -43,7 +45,7 @@ function randomDato(seededFaker: Faker.FakerStatic) {
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
     const status = randomStatus();
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
-    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
+    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse(0.7) ? 1 : 3);
     const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
 
     const utbetaltTilPerson = vektetSjanse(faker, 0.9);
@@ -58,7 +60,7 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
         nettobeløp: netto,
         posteringsdato: randomDato(faker),
         utbetalingsdato: utbetalingsDato,
-        forfallsdato: navfaker.random.vektetSjanse( 0.5) ? randomDato(faker) : null,
+        forfallsdato: navfaker.random.vektetSjanse(0.5) ? randomDato(faker) : null,
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: status,
@@ -122,9 +124,5 @@ function getPeriode(): YtelsePeriode {
 }
 
 function randomStatus() {
-    return navfaker.random.arrayElement([
-        'Ligger hos banken',
-        'Utbetalt',
-        'Returnert til NAV for saksbehandling'
-    ]);
+    return navfaker.random.arrayElement(['Ligger hos banken', 'Utbetalt', 'Returnert til NAV for saksbehandling']);
 }

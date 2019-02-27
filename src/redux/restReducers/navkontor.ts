@@ -6,11 +6,10 @@ const { reducer, action, actionNames, tilbakestillReducer } = createActionsAndRe
 
 export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     if (!geografiskTilknytning && !diskresjonsKode) {
-        return action(() => new Promise(resolve => resolve({navKontor: null})));
+        return action(() => new Promise(resolve => resolve({ navKontor: null })));
     }
 
-    return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode ?
-        diskresjonsKode.kodeRef : undefined));
+    return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode ? diskresjonsKode.kodeRef : undefined));
 }
 
 export function resetNavKontorReducer() {

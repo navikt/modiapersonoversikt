@@ -18,29 +18,32 @@ interface ForelderProps {
     relasjon: Familierelasjon;
 }
 
-export function Forelder({relasjon}: ForelderProps) {
+export function Forelder({ relasjon }: ForelderProps) {
     const beskrivelse = relasjon.rolle === Relasjonstype.Mor ? 'Mor' : 'Far';
     const ikon = getKjønnIkon(relasjon.tilPerson.fødselsnummer);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
-            <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
-            <Normaltekst><NavnOgAlder relasjon={relasjon}/></Normaltekst>
+            <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode} />
+            <Normaltekst>
+                <NavnOgAlder relasjon={relasjon} />
+            </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
-            <Normaltekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Normaltekst>
+            <Normaltekst>
+                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} />
+            </Normaltekst>
         </VisittkortElement>
     );
 }
 
-function Foreldre({familierelasjoner}: Props) {
+function Foreldre({ familierelasjoner }: Props) {
     const foreldre = getMorOgFar(familierelasjoner);
 
     const listeAvForeldre = foreldre.map((relasjon, index) => (
-            <Forelder
-                relasjon={relasjon}
-                key={relasjon.tilPerson.fødselsnummer ? relasjon.tilPerson.fødselsnummer : index}
-            />
-        )
-    );
+        <Forelder
+            relasjon={relasjon}
+            key={relasjon.tilPerson.fødselsnummer ? relasjon.tilPerson.fødselsnummer : index}
+        />
+    ));
     return <>{listeAvForeldre}</>;
 }
 

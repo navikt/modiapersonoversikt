@@ -27,7 +27,7 @@ export function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
 }
 
 export function visEndringsinfo(endringsinfo?: Endringsinfo) {
-    return endringsinfo && endretAvVisning(endringsinfo.sistEndret, endringsinfo.sistEndretAv) || null;
+    return (endringsinfo && endretAvVisning(endringsinfo.sistEndret, endringsinfo.sistEndretAv)) || null;
 }
 
 export function endretAvVisning(sistEndret: string, sistEndretAv: string) {

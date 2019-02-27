@@ -1,8 +1,9 @@
 import { initialState, SaksoversikState, SaksoversiktActions, SaksoversiktActionTypes } from './types';
 
-export function saksoversiktReducer(state: SaksoversikState = initialState, action: SaksoversiktActions)
-    : SaksoversikState {
-
+export function saksoversiktReducer(
+    state: SaksoversikState = initialState,
+    action: SaksoversiktActions
+): SaksoversikState {
     switch (action.type) {
         case SaksoversiktActionTypes.SetValgtSakstema:
             return {

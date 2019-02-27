@@ -3,10 +3,12 @@ export const FOLKEREGISTERET = 'SKD';
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
-    } else if (endretIFagsystem(rawString)
-            || endretIPesys(rawString)
-            || endretIArena(rawString)
-            || endretAvKonvertItSystem(rawString)) {
+    } else if (
+        endretIFagsystem(rawString) ||
+        endretIPesys(rawString) ||
+        endretIArena(rawString) ||
+        endretAvKonvertItSystem(rawString)
+    ) {
         return 'av NAV';
     } else if (rawString.match('AAA2101, SKD')) {
         return 'av Skatteetaten';

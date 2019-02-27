@@ -7,13 +7,13 @@ import { Normaltekst } from 'nav-frontend-typografi';
 const border = 'rgba(0, 0, 0, 0.1) 1px solid';
 
 const DialogPanelWrapper = styled.div`
-  margin: 0 1em;
-  border-top: ${border};
-  border-bottom: ${border};
-  flex-grow: 1;
-  > *:not(:last-child) {
-    margin-bottom: ${theme.margin.layout};
-  }
+    margin: 0 1em;
+    border-top: ${border};
+    border-bottom: ${border};
+    flex-grow: 1;
+    > *:not(:last-child) {
+        margin-bottom: ${theme.margin.layout};
+    }
 `;
 
 function DialogPanel() {

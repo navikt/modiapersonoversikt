@@ -13,43 +13,46 @@ interface Props {
 }
 
 const TittelStyle = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  > *:first-child {
-    flex-basis: 10em;
-    flex-shrink: 0;
-  }
-  > * {
-    white-space: nowrap;
-  }
-  > *:not(:last-child) {
-    margin-right: 2rem;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    > *:first-child {
+        flex-basis: 10em;
+        flex-shrink: 0;
+    }
+    > * {
+        white-space: nowrap;
+    }
+    > *:not(:last-child) {
+        margin-right: 2rem;
+    }
 `;
 
 const CustomStyling = styled.div`
-  ${theme.hvittPanel};
+    ${theme.hvittPanel};
 `;
 
 const FjernPadding = styled.div`
-  .ekspanderbartPanel__innhold {
-    padding: 0;
-  }
-  .ekspanderbartPanel__hode:hover {
-    ${theme.hover}
-  }
+    .ekspanderbartPanel__innhold {
+        padding: 0;
+    }
+    .ekspanderbartPanel__hode:hover {
+        ${theme.hover}
+    }
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
-
-    const tillegsinfo = props.tittelTillegsInfo && props.tittelTillegsInfo
-        .filter(info => info) // filtrerer bort tomme entries
-        .map(((info, index) => <Normaltekst key={index}>{info}</Normaltekst>));
+    const tillegsinfo =
+        props.tittelTillegsInfo &&
+        props.tittelTillegsInfo
+            .filter(info => info) // filtrerer bort tomme entries
+            .map((info, index) => <Normaltekst key={index}>{info}</Normaltekst>);
 
     const tittel = (
         <TittelStyle>
-            <Normaltekst><Bold>{props.tittel}</Bold></Normaltekst>
+            <Normaltekst>
+                <Bold>{props.tittel}</Bold>
+            </Normaltekst>
             {tillegsinfo}
         </TittelStyle>
     );

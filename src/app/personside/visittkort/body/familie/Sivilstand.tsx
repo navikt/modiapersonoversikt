@@ -23,7 +23,7 @@ interface PartnerProps {
     sivilstand: SivilstandInterface;
 }
 
-function Sivilstand(props: {sivilstand: SivilstandInterface}) {
+function Sivilstand(props: { sivilstand: SivilstandInterface }) {
     if (props.sivilstand.kodeRef === SivilstandTyper.Ugift) {
         return <>{props.sivilstand.beskrivelse}</>;
     }
@@ -32,44 +32,52 @@ function Sivilstand(props: {sivilstand: SivilstandInterface}) {
 
     if (relasjonFraOgMed !== nullDatoFraTPS) {
         return (
-            <>{props.sivilstand.beskrivelse} ({relasjonFraOgMed})</>
+            <>
+                {props.sivilstand.beskrivelse} ({relasjonFraOgMed})
+            </>
         );
     } else {
-        return (
-            <>{props.sivilstand.beskrivelse}</>
-        );
+        return <>{props.sivilstand.beskrivelse}</>;
     }
 }
 
-function Partner({relasjon, sivilstand}: PartnerProps) {
+function Partner({ relasjon, sivilstand }: PartnerProps) {
     return (
         <>
-            <Normaltekst><Sivilstand sivilstand={sivilstand}/></Normaltekst>
-            <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode}/>
-            <Normaltekst><NavnOgAlder relasjon={relasjon}/></Normaltekst>
+            <Normaltekst>
+                <Sivilstand sivilstand={sivilstand} />
+            </Normaltekst>
+            <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode} />
+            <Normaltekst>
+                <NavnOgAlder relasjon={relasjon} />
+            </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
-            <Normaltekst><BorMedBruker harSammeBosted={relasjon.harSammeBosted}/></Normaltekst>
+            <Normaltekst>
+                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} />
+            </Normaltekst>
         </>
     );
 }
 
-function SivilstandVisning({person}: Props) {
+function SivilstandVisning({ person }: Props) {
     const partner = getPartner(person);
-    const {sivilstand} = person;
+    const { sivilstand } = person;
 
     if (!partner) {
-        return <Normaltekst><Sivilstand sivilstand={sivilstand}/></Normaltekst>;
+        return (
+            <Normaltekst>
+                <Sivilstand sivilstand={sivilstand} />
+            </Normaltekst>
+        );
     }
 
-    return (
-        <Partner relasjon={partner} sivilstand={sivilstand}/>
-    );
+    return <Partner relasjon={partner} sivilstand={sivilstand} />;
 }
 
-function SivilstandWrapper({person}: Props) {
+function SivilstandWrapper({ person }: Props) {
     return (
         <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
-            <SivilstandVisning person={person}/>
+            <SivilstandVisning person={person} />
         </VisittkortElement>
     );
 }

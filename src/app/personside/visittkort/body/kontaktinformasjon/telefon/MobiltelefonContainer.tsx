@@ -10,17 +10,17 @@ interface Props {
 }
 
 class MobiltelefonContainer extends React.Component<Props> {
-
     render() {
-        return (
-            <Mobiltelefon kontaktinformasjonReducer={this.props.kontaktinformasjon} />
-        );
+        return <Mobiltelefon kontaktinformasjonReducer={this.props.kontaktinformasjon} />;
     }
 }
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         kontaktinformasjon: state.restEndepunkter.kontaktinformasjon
-    });
+    };
 };
 
-export default connect(mapStateToProps, null)(MobiltelefonContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(MobiltelefonContainer);

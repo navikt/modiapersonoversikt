@@ -31,32 +31,29 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 const Margin = styled.div`
-  margin: .5em;
+    margin: 0.5em;
 `;
 
 const Style = styled.div`
-  ${theme.hvittPanel};
-  max-width: ${theme.width.ytelser};
+    ${theme.hvittPanel};
+    max-width: ${theme.width.ytelser};
 `;
 
 const onPending = (
     <FillCenterAndFadeIn>
         <Margin>
-            <NavFrontendSpinner type={'XL'}/>
+            <NavFrontendSpinner type={'XL'} />
         </Margin>
     </FillCenterAndFadeIn>
 );
 
 const onError = (
     <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av pleiepenger.
-        </AlertStripe>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av pleiepenger.</AlertStripe>
     </FillCenterAndFadeIn>
 );
 
 class PleiepengerLaster extends React.PureComponent<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -72,14 +69,21 @@ class PleiepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne noen pleiepengerettigheter for bruker</AlertStripeInfo>;
         }
 
-        const aktuellRettighet = pleiepengeRettighet
-            .find(rettighet => rettighet.barnet === this.props.barnetsFødselsnummer);
+        const aktuellRettighet = pleiepengeRettighet.find(
+            rettighet => rettighet.barnet === this.props.barnetsFødselsnummer
+        );
 
         if (!aktuellRettighet) {
             return <AlertStripeInfo>Kunne ikke finne pleiepengerettighet for barnet</AlertStripeInfo>;
         }
 
-        return <FlexCenter><Style><Pleiepenger pleiepenger={aktuellRettighet}/></Style></FlexCenter>;
+        return (
+            <FlexCenter>
+                <Style>
+                    <Pleiepenger pleiepenger={aktuellRettighet} />
+                </Style>
+            </FlexCenter>
+        );
     }
 
     render() {
@@ -89,7 +93,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                    {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}
+                {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}
             </PlukkRestData>
         );
     }
@@ -107,4 +111,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PleiepengerLaster);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PleiepengerLaster);

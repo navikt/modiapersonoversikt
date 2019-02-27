@@ -7,7 +7,7 @@ export const bankkontoNorsk: Bankkonto = {
     banknavn: 'Nordea ASA',
     kontonummer: Number(faker.finance.account(11)).toString(),
     sistEndretAv: '1010800 BD03',
-    sistEndret: getSistOppdatert(),
+    sistEndret: getSistOppdatert()
 };
 
 export const bankkontoUtland: Bankkonto = {
@@ -22,7 +22,7 @@ export const bankkontoUtland: Bankkonto = {
         linje3: ''
     },
     sistEndretAv: '1010800 BD03',
-    sistEndret: getSistOppdatert(),
+    sistEndret: getSistOppdatert()
 };
 
 export function getBankKonto(): Bankkonto | null {

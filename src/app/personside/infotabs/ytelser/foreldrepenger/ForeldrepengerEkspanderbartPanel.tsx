@@ -8,8 +8,7 @@ interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
-function ForeldrepengerEkspanderbartpanel({foreldrepenger}: Props) {
-
+function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
     if (foreldrepenger === null) {
         return null;
     }
@@ -21,7 +20,7 @@ function ForeldrepengerEkspanderbartpanel({foreldrepenger}: Props) {
 
     return (
         <EkspanderbartYtelserPanel tittel="Foreldrepenger" tittelTillegsInfo={tittelTillegsInfo}>
-            <Foreldrepenger foreldrepenger={foreldrepenger}/>
+            <Foreldrepenger foreldrepenger={foreldrepenger} />
         </EkspanderbartYtelserPanel>
     );
 }

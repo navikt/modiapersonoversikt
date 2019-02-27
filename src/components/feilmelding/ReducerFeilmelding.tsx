@@ -4,14 +4,14 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { isFailed, RestReducer } from '../../redux/restReducers/restReducer';
 
 const MarginWrapper = styled.div`
-  margin: 15px;
+    margin: 15px;
 `;
 
 interface FeilmeldingProps {
     reducer: RestReducer<object>;
 }
 
-function ReducerFeilmelding({reducer}: FeilmeldingProps) {
+function ReducerFeilmelding({ reducer }: FeilmeldingProps) {
     if (isFailed(reducer)) {
         return (
             <MarginWrapper>

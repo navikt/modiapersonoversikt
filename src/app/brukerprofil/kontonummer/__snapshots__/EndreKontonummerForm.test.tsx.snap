@@ -31,7 +31,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 }
 
 .c3 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c1 span:not(:last-child):after {
@@ -230,7 +230,7 @@ exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
 }
 
 .c3 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c1 span:not(:last-child):after {

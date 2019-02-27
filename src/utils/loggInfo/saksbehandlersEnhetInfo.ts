@@ -1,7 +1,7 @@
 import * as Cookies from 'js-cookie';
 import { getSaksbehandlerInstillingerCookieNavn } from './getSaksbehandlerIdent';
 
-export  function getSaksbehandlerEnhet(): string | undefined {
+export function getSaksbehandlerEnhet(): string | undefined {
     const cookienavn = getSaksbehandlerInstillingerCookieNavn();
     if (cookienavn) {
         return Cookies.get()[cookienavn];

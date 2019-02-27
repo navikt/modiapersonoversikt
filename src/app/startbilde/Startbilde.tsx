@@ -27,7 +27,6 @@ interface DispatchProps {
 type StartbildeProps = StartbildeStateProps & DispatchProps & RouteComponentProps<{}>;
 
 class Startbilde extends React.Component<StartbildeProps> {
-
     constructor(props: StartbildeProps) {
         super(props);
         this.onPlukkOppgaveKlikk = this.onPlukkOppgaveKlikk.bind(this);
@@ -60,7 +59,7 @@ class Startbilde extends React.Component<StartbildeProps> {
                 >
                     Hent oppgave
                 </KnappBase>
-                <ReducerFeilmelding reducer={this.props.oppgaveReducer}/>
+                <ReducerFeilmelding reducer={this.props.oppgaveReducer} />
             </StartBildeLayout>
         );
     }
@@ -77,8 +76,13 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        plukkOppgaver: () => dispatch(plukkOppgaver('')),
+        plukkOppgaver: () => dispatch(plukkOppgaver(''))
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Startbilde));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Startbilde)
+);

@@ -19,15 +19,11 @@ if (mockEnabled) {
     setupMock();
 }
 
-const store = createStore(
-    reducers,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 export const PersonContext = React.createContext<string | undefined>(undefined);
 
 class App extends React.Component<{}> {
-
     private appRef = React.createRef<HTMLDivElement>();
 
     constructor(props: {}) {
@@ -46,23 +42,19 @@ class App extends React.Component<{}> {
         return (
             <PersonContext.Provider
                 value={
-                    isLoaded((store.getState().restEndepunkter.personinformasjon))
-                    ?
-                    ((store.getState()
-                        .restEndepunkter.personinformasjon as Loaded<PersonRespons>)
-                        .data as Person)
-                        .fødselsnummer || undefined
-                    :
-                    undefined
+                    isLoaded(store.getState().restEndepunkter.personinformasjon)
+                        ? ((store.getState().restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person)
+                              .fødselsnummer || undefined
+                        : undefined
                 }
             >
                 <Provider store={store}>
                     <AppWrapper ref={this.appRef}>
-                        <nav id="header"/>
+                        <nav id="header" />
                         <BrowserRouter>
                             <Content>
-                                <Eventlistener/>
-                                <Routing/>
+                                <Eventlistener />
+                                <Routing />
                             </Content>
                         </BrowserRouter>
                     </AppWrapper>

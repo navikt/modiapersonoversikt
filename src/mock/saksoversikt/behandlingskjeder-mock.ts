@@ -8,7 +8,7 @@ export function getBehandlingskjeder(faker: Faker.FakerStatic, navfaker: NavFake
         return [];
     }
 
-    return fyllRandomListe(() => getBehandlingskjede(faker, navfaker), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
+    return fyllRandomListe(() => getBehandlingskjede(faker, navfaker), navfaker.random.vektetSjanse(0.7) ? 1 : 3);
 }
 
 export function getBehandlingskjede(faker: Faker.FakerStatic, navfaker: NavFaker): Behandlingskjede {

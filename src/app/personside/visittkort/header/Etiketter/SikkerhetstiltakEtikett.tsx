@@ -8,15 +8,14 @@ const bump = keyframes`
 `;
 
 const Styling = styled.div`
-  display: inline-block;
-  animation: ${bump} .3s 1s 6 alternate;
-  &:focus {
-    ${theme.focus}
-  }
+    display: inline-block;
+    animation: ${bump} 0.3s 1s 6 alternate;
+    &:focus {
+        ${theme.focus}
+    }
 `;
 
 class SikkerhetstiltakEtikett extends React.Component<{}> {
-
     private etikettRef = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
@@ -27,15 +26,8 @@ class SikkerhetstiltakEtikett extends React.Component<{}> {
 
     render() {
         return (
-            <Styling
-                tabIndex={-1}
-                ref={this.etikettRef}
-                role="alert"
-                aria-live="assertive"
-            >
-                <EtikettBase type={'advarsel'}>
-                    Sikkerhetstiltak
-                </EtikettBase>
+            <Styling tabIndex={-1} ref={this.etikettRef} role="alert" aria-live="assertive">
+                <EtikettBase type={'advarsel'}>Sikkerhetstiltak</EtikettBase>
             </Styling>
         );
     }

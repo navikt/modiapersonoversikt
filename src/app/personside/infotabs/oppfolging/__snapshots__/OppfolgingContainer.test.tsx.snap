@@ -18,8 +18,8 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-animation: fYGRJE .3s ease-out;
-  animation: fYGRJE .3s ease-out;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
 }
 
 .c0 > * {

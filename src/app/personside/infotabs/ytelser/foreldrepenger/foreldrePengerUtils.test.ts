@@ -1,6 +1,6 @@
 import {
     getForeldrepengerperiodeMock,
-    getForeldrepengerettighetMock,
+    getForeldrepengerettighetMock
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
 import { aremark } from '../../../../../mock/person/aremark';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
@@ -15,13 +15,13 @@ test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
         periode: [
             {
                 ...randomForeldrepengerettighetPeriode,
-                foreldrepengerFom: '2010-01-01',
+                foreldrepengerFom: '2010-01-01'
             },
             {
                 ...randomForeldrepengerettighetPeriode,
-                foreldrepengerFom: '2011-01-01',
-            },
-        ],
+                foreldrepengerFom: '2011-01-01'
+            }
+        ]
     };
 
     const resultat = utledFraDatoForRettighet(foreldrepengeRettighet);
@@ -35,13 +35,13 @@ test('sorterer arbeidsforhold etter refusjonTom', () => {
         arbeidsforhold: [
             {
                 ...randomForeldrepengerettighet.arbeidsforhold[0],
-                refusjonTom: '2010-01-01',
+                refusjonTom: '2010-01-01'
             },
             {
                 ...randomForeldrepengerettighet.arbeidsforhold[0],
-                refusjonTom: '2012-01-01',
-            },
-        ],
+                refusjonTom: '2012-01-01'
+            }
+        ]
     };
 
     const result = sorterArbeidsforholdEtterRefusjonTom(foreldrepengeRettighet);

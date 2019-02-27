@@ -26,21 +26,21 @@ type Props = RouteComponentProps<RouterProps>;
 function Routing(props: Props) {
     return (
         <Switch location={props.location}>
-            <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer}/>
+            <Route path={`${paths.personUri}/:fodselsnummer/`} component={PersonsideContainer} />
             <Route
                 path={`${paths.saksoversikt}/:fodselsnummer/`}
-                render={routeProps =>
+                render={routeProps => (
                     <SaksoversiktMicroFrontend
                         fødselsnummer={routeProps.match.params.fodselsnummer}
                         queryParamString={routeProps.location.search}
                     />
-                }
+                )}
             />
             <Route
                 path={`${paths.brukerprofil}/:fodselsnummer/`}
-                render={routeProps => <Brukerprofilside fødselsnummer={routeProps.match.params.fodselsnummer}/>}
+                render={routeProps => <Brukerprofilside fødselsnummer={routeProps.match.params.fodselsnummer} />}
             />
-            <Route component={Startbilde}/>
+            <Route component={Startbilde} />
         </Switch>
     );
 }

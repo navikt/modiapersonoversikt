@@ -27,41 +27,44 @@ interface OwnProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const NavKontorSection = styled.section`
-  margin: .5rem 0 0 0;
-  display: flex;
-  justify-content: flex-end;
-  > * {
-    white-space: nowrap;
-  }
-  > *:first-child:after {
-    content: '/';
-    margin: 0 0.2em;
-  }
-  > *:last-child {
+    margin: 0.5rem 0 0 0;
     display: flex;
-    align-items: center;
-    margin: 0;
-  }
+    justify-content: flex-end;
+    > * {
+        white-space: nowrap;
+    }
+    > *:first-child:after {
+        content: '/';
+        margin: 0 0.2em;
+    }
+    > *:last-child {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
 `;
 
-const onError = (
-    <em>Problemer med å hente nav-enhet</em>
-);
+const onError = <em>Problemer med å hente nav-enhet</em>;
 
 function NavKontorVisning(props: BrukersNavKontorResponse) {
     if (!props.navKontor) {
-        return <Normaltekst><Bold>Ingen enhet</Bold></Normaltekst>;
+        return (
+            <Normaltekst>
+                <Bold>Ingen enhet</Bold>
+            </Normaltekst>
+        );
     }
 
     return (
         <Normaltekst>
-            <Bold>{props.navKontor.enhetId} {props.navKontor.enhetNavn}</Bold>
+            <Bold>
+                {props.navKontor.enhetId} {props.navKontor.enhetNavn}
+            </Bold>
         </Normaltekst>
     );
 }
 
 class NavKontorContainer extends React.Component<Props> {
-
     componentDidMount() {
         if (isNotStarted(this.props.navKontorReducer)) {
             this.props.hentNavKontor(this.props.person);
@@ -77,15 +80,11 @@ class NavKontorContainer extends React.Component<Props> {
     render() {
         return (
             <NavKontorSection aria-label="Nav kontor">
-                <Normaltekst tag="h2"><Bold>NAV-kontor</Bold></Normaltekst>
-                <Innholdslaster
-                    avhengigheter={[this.props.navKontorReducer]}
-                    spinnerSize={'S'}
-                    returnOnError={onError}
-                >
-                    <NavKontorVisning
-                        {...(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data}
-                    />
+                <Normaltekst tag="h2">
+                    <Bold>NAV-kontor</Bold>
+                </Normaltekst>
+                <Innholdslaster avhengigheter={[this.props.navKontorReducer]} spinnerSize={'S'} returnOnError={onError}>
+                    <NavKontorVisning {...(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data} />
                 </Innholdslaster>
             </NavKontorSection>
         );
@@ -93,9 +92,9 @@ class NavKontorContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         navKontorReducer: state.restEndepunkter.brukersNavKontor
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -104,4 +103,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavKontorContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NavKontorContainer);

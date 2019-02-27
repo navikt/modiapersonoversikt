@@ -8,24 +8,25 @@ import {
     aremark,
     gateAdresseAremark,
     matrikkelAdresseAremark,
-    postboksAdresseAremark, utlandsAdresseAremark
+    postboksAdresseAremark,
+    utlandsAdresseAremark
 } from '../../../mock/person/aremark';
 import AdresseForm from './AdresseForm';
 import { Person } from '../../../models/person/person';
 
-const endreAdresseRolle = {roller: ['0000-GA-BD06_EndreKontaktAdresse']};
+const endreAdresseRolle = { roller: ['0000-GA-BD06_EndreKontaktAdresse'] };
 
 test('Rendrer adresseform når postnummere er lastet', () => {
     const adresseContainer = mount(
         <TestProvider>
-            <AdresseContainer person={aremark} veilederRoller={endreAdresseRolle}/>
-        </TestProvider>);
+            <AdresseContainer person={aremark} veilederRoller={endreAdresseRolle} />
+        </TestProvider>
+    );
 
     expect(adresseContainer.find(AdresseForm)).toHaveLength(1);
 });
 
 test('Rendrer adresseform riktig ved folkeregistrert bostedsadresse', () => {
-
     const aremarkFolkeregistrert: Person = {
         ...aremark,
         postadresse: gateAdresseAremark,
@@ -38,7 +39,6 @@ test('Rendrer adresseform riktig ved folkeregistrert bostedsadresse', () => {
 });
 
 test('Rendrer adresseform riktig ved midlertidig gateadresse', () => {
-
     const aremarkGateadresse: Person = {
         ...aremark,
         alternativAdresse: gateAdresseAremark
@@ -50,7 +50,6 @@ test('Rendrer adresseform riktig ved midlertidig gateadresse', () => {
 });
 
 test('Rendrer adresseform riktig ved midlertidig postboksadresse', () => {
-
     const aremarkPostboksadresse: Person = {
         ...aremark,
         alternativAdresse: postboksAdresseAremark
@@ -62,7 +61,6 @@ test('Rendrer adresseform riktig ved midlertidig postboksadresse', () => {
 });
 
 test('Rendrer adresseform riktig ved midlertidig matrikkeladresse', () => {
-
     const aremarkmatrikkeladresse: Person = {
         ...aremark,
         alternativAdresse: matrikkelAdresseAremark
@@ -74,7 +72,6 @@ test('Rendrer adresseform riktig ved midlertidig matrikkeladresse', () => {
 });
 
 test('Rendrer adresseform riktig ved midlertidig utenlandsadresse', () => {
-
     const aremarkUtlandsadresse: Person = {
         ...aremark,
         alternativAdresse: utlandsAdresseAremark
@@ -88,6 +85,7 @@ test('Rendrer adresseform riktig ved midlertidig utenlandsadresse', () => {
 function renderEndreAdresseForm(person: Person) {
     return renderer.create(
         <TestProvider>
-            <AdresseContainer person={person} veilederRoller={endreAdresseRolle}/>
-        </TestProvider>);
+            <AdresseContainer person={person} veilederRoller={endreAdresseRolle} />
+        </TestProvider>
+    );
 }

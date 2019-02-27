@@ -44,7 +44,6 @@ interface OwnProps {
 }
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & OwnProps> {
-
     componentDidMount() {
         if (isNotStarted(this.props.postnummerReducer)) {
             this.props.hentPostnummerKodeverk();
@@ -79,10 +78,10 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         postnummerReducer: state.restEndepunkter.postnummerReducer,
         endreAdresseReducer: state.restEndepunkter.endreAdresseReducer
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -102,4 +101,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdresseFormContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AdresseFormContainer);

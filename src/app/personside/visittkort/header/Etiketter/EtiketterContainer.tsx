@@ -19,34 +19,29 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 `;
 
 class EtiketterContainer extends React.Component<Props> {
-
     render() {
         return (
             <Wrapper>
                 <Innholdslaster
-                    avhengigheter={[
-                        this.props.personReducer,
-                        this.props.egenAnsattReducer,
-                        this.props.vergemalReducer
-                    ]}
-                    returnOnPending={<LazySpinner type="S"/>}
+                    avhengigheter={[this.props.personReducer, this.props.egenAnsattReducer, this.props.vergemalReducer]}
+                    returnOnPending={<LazySpinner type="S" />}
                     returnOnError={
                         <FillCenterAndFadeIn>
                             <AlertStripeAdvarsel>Feil ved lasting av etiketter</AlertStripeAdvarsel>
                         </FillCenterAndFadeIn>
                     }
                 >
-                <Etiketter
-                    person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
-                    egenAnsatt={(this.props.egenAnsattReducer as Loaded<Egenansatt>).data}
-                    vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data}
-                />
+                    <Etiketter
+                        person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
+                        egenAnsatt={(this.props.egenAnsattReducer as Loaded<Egenansatt>).data}
+                        vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data}
+                    />
                 </Innholdslaster>
             </Wrapper>
         );
@@ -54,11 +49,14 @@ class EtiketterContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         egenAnsattReducer: state.restEndepunkter.egenAnsatt,
         personReducer: state.restEndepunkter.personinformasjon,
         vergemalReducer: state.restEndepunkter.vergemal
-    });
+    };
 };
 
-export default connect(mapStateToProps, null)(EtiketterContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(EtiketterContainer);

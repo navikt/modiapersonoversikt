@@ -8,12 +8,16 @@ const Wrapper = styled.div<{ valgt: boolean }>`
     display: flex;
     align-items: center;
     cursor: pointer;
-    ${props => props.valgt && css`background-color: ${theme.color.kategori};`}
+    ${props =>
+        props.valgt &&
+        css`
+            background-color: ${theme.color.kategori};
+        `}
     &:hover {
-      ${theme.hover};
-      > button:last-child {
-        padding-left: .5rem;
-      }
+        ${theme.hover};
+        > button:last-child {
+            padding-left: 0.5rem;
+        }
     }
     > *:first-child {
         flex-grow: 1;
@@ -21,17 +25,17 @@ const Wrapper = styled.div<{ valgt: boolean }>`
 `;
 
 const Knapp = styled.button`
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: ${theme.borderRadius.knapp};
-  cursor: pointer;
-  background-color: transparent;
-  transition: padding-left .3s;
-  &:focus {
-    ${theme.focus}
-  }
+    border: none;
+    padding: 0;
+    height: 2rem;
+    width: 2rem;
+    border-radius: ${theme.borderRadius.knapp};
+    cursor: pointer;
+    background-color: transparent;
+    transition: padding-left 0.3s;
+    &:focus {
+        ${theme.focus}
+    }
 `;
 
 interface Props {
@@ -46,7 +50,7 @@ function VisMerKnapp(props: Props) {
         <Wrapper valgt={props.valgt} onClick={props.onClick}>
             {props.children}
             <Knapp onClick={props.onClick} aria-selected={props.valgt} aria-label={props.ariaDescription}>
-                <HoyreChevron stor={true}/>
+                <HoyreChevron stor={true} />
             </Knapp>
         </Wrapper>
     );

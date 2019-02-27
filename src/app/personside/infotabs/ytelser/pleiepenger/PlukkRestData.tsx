@@ -12,9 +12,9 @@ type Props<T> = OwnProps<T> & Pick<InnholdslasterProps, 'spinnerSize' | 'returnO
 
 class PlukkRestData<T> extends React.Component<Props<T>> {
     render() {
-        const {children, restReducer, ...innholdsLasterProps } = this.props;
+        const { children, restReducer, ...innholdsLasterProps } = this.props;
         if (!isLoaded(restReducer)) {
-            return <Innholdslaster avhengigheter={[this.props.restReducer]} {...innholdsLasterProps}/>;
+            return <Innholdslaster avhengigheter={[this.props.restReducer]} {...innholdsLasterProps} />;
         }
         return children((restReducer as Loaded<T>).data);
     }

@@ -16,10 +16,10 @@ interface DispatchProps {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         valgtSakstema: state.saksoversikt.valgtSakstema,
         sakstema: (state.restEndepunkter.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -28,4 +28,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SakstemaListe);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SakstemaListe);

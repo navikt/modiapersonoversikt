@@ -13,17 +13,13 @@ interface Props {
     barnetsFødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
 class PleiepengerLamell extends React.PureComponent<Props> {
-
     render() {
         return (
             <ErrorBoundary boundaryName="PleiepengeLamell">
@@ -33,7 +29,8 @@ class PleiepengerLamell extends React.PureComponent<Props> {
                         barnetsFødselsnummer={this.props.barnetsFødselsnummer}
                     />
                 </Provider>
-            </ErrorBoundary>);
+            </ErrorBoundary>
+        );
     }
 }
 
