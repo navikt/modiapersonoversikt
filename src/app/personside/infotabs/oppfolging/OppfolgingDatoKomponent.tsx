@@ -5,12 +5,12 @@ import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
 
-const Wrapper = styled.div`
+const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
     padding: ${theme.margin.px20};
 `;
 
-const TittleWrapper = styled.div`
+const TittelWrapper = styled.div`
     &:focus {
         outline: none;
     }
@@ -78,12 +78,12 @@ function DatoInputs(props: Props) {
 
 function OppfolgingDatoPanel() {
     return (
-        <Wrapper>
-            <TittleWrapper tabIndex={-1}>
+        <DatoKomponentWrapper>
+            <TittelWrapper tabIndex={-1}>
                 <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
-            </TittleWrapper>
+            </TittelWrapper>
             <DatoInputs />
-        </Wrapper>
+        </DatoKomponentWrapper>
     );
 }
 
