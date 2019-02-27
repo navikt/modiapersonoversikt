@@ -30,25 +30,25 @@ interface State {
 }
 
 const Wrapper = styled.article`
-  ${theme.hvittPanel};
-  cursor: pointer;
+    ${theme.hvittPanel};
+    cursor: pointer;
 `;
 
 const Header = styled.div`
-  padding: ${theme.margin.px20} ${theme.margin.px20} 0;
+    padding: ${theme.margin.px20} ${theme.margin.px20} 0;
 `;
 
 const TotaltUtbetaltOversikt = styled.section`
-  margin: 1rem 0;
-  th {
-    font-weight: normal;
-  }
-  th {
-    text-transform: uppercase;
-  }
-  td {
-    font-weight: bold;
-  }
+    margin: 1rem 0;
+    th {
+        font-weight: normal;
+    }
+    th {
+        text-transform: uppercase;
+    }
+    td {
+        font-weight: bold;
+    }
 `;
 
 class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
@@ -57,7 +57,7 @@ class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
 
     constructor(props: TotaltUtbetaltProps) {
         super(props);
-        this.state = {visDetaljer: false};
+        this.state = { visDetaljer: false };
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handlePrint = this.handlePrint.bind(this);
     }
@@ -86,38 +86,34 @@ class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
     }
 
     render() {
-        const periode: string =
-            formaterDato(this.props.periode.startDato)
-            + ' - '
-            + formaterDato(this.props.periode.sluttDato);
+        const sluttDato =
+            new Date(this.props.periode.sluttDato) > new Date() ? new Date() : this.props.periode.sluttDato;
+        const periode: string = formaterDato(this.props.periode.startDato) + ' - ' + formaterDato(sluttDato);
         const brutto: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
         const trekk: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
         const utbetalt: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);
         const totaltUtbetaltTabell = createTable(
             ['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt'],
-            [[periode, brutto, trekk, utbetalt]]);
+            [[periode, brutto, trekk, utbetalt]]
+        );
 
         return (
-            <Printer getPrintTrigger={trigger => this.print = trigger}>
+            <Printer getPrintTrigger={trigger => (this.print = trigger)}>
                 <Wrapper
                     aria-label="Totalt utbetalt"
                     onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(
-                            () => this.handleClickOnUtbetaling(event)
-                        )
+                        cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))
                     }
                 >
                     <UtbetalingTabellStyling>
                         <Header>
                             <Undertittel>Totalt utbetalt for perioden</Undertittel>
                             <TotaltUtbetaltOversikt>
-                                <Normaltekst tag="span">
-                                    {totaltUtbetaltTabell}
-                                </Normaltekst>
+                                <Normaltekst tag="span">{totaltUtbetaltTabell}</Normaltekst>
                             </TotaltUtbetaltOversikt>
                             <FlexEnd>
                                 <span ref={this.printerButtonRef}>
-                                    <PrintKnapp onClick={this.handlePrint}/>
+                                    <PrintKnapp onClick={this.handlePrint} />
                                 </span>
                             </FlexEnd>
                         </Header>

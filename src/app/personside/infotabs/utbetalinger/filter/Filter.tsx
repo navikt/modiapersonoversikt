@@ -12,6 +12,9 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
+import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../api/utbetaling-api';
+import { formaterDato } from '../../../../../utils/dateUtils';
+import { Avgrensninger } from 'nav-datovelger';
 
 export interface FilterState {
     periode: PeriodeOptions;
@@ -44,51 +47,51 @@ export enum PeriodeValg {
 }
 
 const FiltreringsPanel = styled.nav`
-  ${theme.hvittPanel};
-  padding: ${theme.margin.px20};
-  margin-bottom: ${theme.margin.layout};
+    ${theme.hvittPanel};
+    padding: ${theme.margin.px20};
+    margin-bottom: ${theme.margin.layout};
 `;
 
 const InputPanel = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-  > *:first-child {
-    margin-bottom: .5rem;
-  }
-  > * {
-    margin-top: .5rem;
-  }
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    > *:first-child {
+        margin-bottom: 0.5rem;
+    }
+    > * {
+        margin-top: 0.5rem;
+    }
 `;
 
 const KnappWrapper = styled.div`
-  margin-top: 1rem;
+    margin-top: 1rem;
 `;
 
 const FieldSet = styled.fieldset`
-  border: none;
-  margin: 0;
-  padding: 0;
-  > *:first-child {
-    margin-bottom: .8rem;
-  }
-  > *:last-child {
-    margin-bottom: 0;
-  }
+    border: none;
+    margin: 0;
+    padding: 0;
+    > *:first-child {
+        margin-bottom: 0.8rem;
+    }
+    > *:last-child {
+        margin-bottom: 0;
+    }
 `;
 
 const WrapOnSmallScreen = styled.div`
- @media(max-width: ${theme.media.utbetalinger}) {
-    display: flex;
-    flex-wrap: wrap;
-    > * {
-      flex-grow: 1;
-      flex-basis: 30%;
+    @media (max-width: ${theme.media.utbetalinger}) {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+            flex-grow: 1;
+            flex-basis: 30%;
+        }
+        > *:not(:last-child) {
+            margin-right: 1rem;
+        }
     }
-    > *:not(:last-child) {
-      margin-right: 1rem;
-    }
-  }
 `;
 
 function onRadioChange(props: Props, key: PeriodeValg) {
@@ -102,12 +105,14 @@ function onRadioChange(props: Props, key: PeriodeValg) {
 
 function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
     const newPeriode: FraTilDato = {
-        fra: dato.fra && moment(dato.fra).isValid()
-            ? dato.fra
-            : new Date(props.filterState.periode.egendefinertPeriode.fra),
-        til: dato.til && moment(dato.til).isValid()
-            ? dato.til
-            : new Date(props.filterState.periode.egendefinertPeriode.til)
+        fra:
+            dato.fra && moment(dato.fra).isValid()
+                ? dato.fra
+                : new Date(props.filterState.periode.egendefinertPeriode.fra),
+        til:
+            dato.til && moment(dato.til).isValid()
+                ? dato.til
+                : new Date(props.filterState.periode.egendefinertPeriode.til)
     };
     props.onChange({
         periode: {
@@ -117,30 +122,55 @@ function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
     });
 }
 
-function egendefinertDatoInputs(props: Props) {
+function getDatoFeilmelding(fra: Date, til: Date) {
+    if (fra > til) {
+        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
+    }
+    if (til > new Date()) {
+        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato frem i tid' }} />;
+    }
+    if (fra < tidligsteTilgjengeligeDatoUtbetalingerRestkonto) {
+        return (
+            <Feilmelding
+                feil={{
+                    feilmelding: `Du kan ikke velge en dato før ${formaterDato(
+                        tidligsteTilgjengeligeDatoUtbetalingerRestkonto
+                    )}`
+                }}
+            />
+        );
+    }
+    return null;
+}
 
+function egendefinertDatoInputs(props: Props) {
     const fra = props.filterState.periode.egendefinertPeriode.fra;
     const til = props.filterState.periode.egendefinertPeriode.til;
-    const periodeFeilmelding = fra && til && fra > til ?
-        <Feilmelding feil={{feilmelding: 'Fra-dato kan ikke være senere enn til-dato'}}/> : null;
+    const periodeFeilmelding = getDatoFeilmelding(fra, til);
+    const avgrensninger: Avgrensninger = {
+        minDato: tidligsteTilgjengeligeDatoUtbetalingerRestkonto,
+        maksDato: new Date()
+    };
 
     return (
         <>
             <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
             <Datovelger
-                input={{id: 'utbetalinger-datovelger-fra', name: 'Fra dato'}}
+                input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
                 dato={props.filterState.periode.egendefinertPeriode.fra}
-                onChange={dato => onDatoChange(props, {fra: dato})}
+                onChange={dato => onDatoChange(props, { fra: dato })}
                 id="utbetalinger-datovelger-fra"
+                avgrensninger={avgrensninger}
             />
             <label htmlFor="utbetalinger-datovelger-til">Til:</label>
             <Datovelger
-                input={{id: 'utbetalinger-datovelger-til', name: 'Til dato'}}
+                input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
                 dato={props.filterState.periode.egendefinertPeriode.til}
-                onChange={dato => onDatoChange(props, {til: dato})}
+                onChange={dato => onDatoChange(props, { til: dato })}
                 id="utbetalinger-datovelger-til"
+                avgrensninger={avgrensninger}
             />
             {periodeFeilmelding}
         </>
@@ -166,8 +196,7 @@ function Filtrering(props: Props) {
         );
     });
 
-    const visSpinner = isLoading(props.utbetalingReducer)
-        || isReloading(props.utbetalingReducer);
+    const visSpinner = isLoading(props.utbetalingReducer) || isReloading(props.utbetalingReducer);
     const checkBokser = isLoaded(props.utbetalingReducer) && visCheckbokser(props.utbetalingReducer.data) && (
         <>
             <InputPanel>
@@ -196,11 +225,7 @@ function Filtrering(props: Props) {
             </FieldSet>
             {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
             <KnappWrapper>
-                <Knapp
-                    onClick={props.hentUtbetalinger}
-                    spinner={visSpinner}
-                    htmlType="button"
-                >
+                <Knapp onClick={props.hentUtbetalinger} spinner={visSpinner} htmlType="button">
                     Hent utbetalinger
                 </Knapp>
             </KnappWrapper>
@@ -214,7 +239,6 @@ function Filtrering(props: Props) {
                 {hentUtbetalinger}
                 {checkBokser}
             </WrapOnSmallScreen>
-
         </FiltreringsPanel>
     );
 }
