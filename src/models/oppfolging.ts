@@ -15,6 +15,7 @@ export interface AnsattEnhet {
 }
 
 export interface DetaljertOppfolging {
+    oppfølging: Oppfolging;
     meldeplikt: boolean;
     formidlingsgruppe: string;
     innsatsgruppe: string;

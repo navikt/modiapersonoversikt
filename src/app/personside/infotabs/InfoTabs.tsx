@@ -12,6 +12,7 @@ import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { Person, PersonRespons } from '../../../models/person/person';
 import theme from '../../../styles/personOversiktTheme';
+import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 
 interface OwnProps {
     personRespons: PersonRespons;
@@ -65,7 +66,7 @@ class InfoTabs extends React.PureComponent<Props> {
 
         const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={fødselsnummer} />;
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
-        const OppfolgingWithProps = () => <ComponentPlaceholder height={'600px'} name={'Oppfølging'} hue={30} />;
+        const OppfolgingWithProps = () => <OppfolgingContainer fødselsnummer={fødselsnummer} />;
         const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150} />;
         const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer} />;
         const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer} />;
