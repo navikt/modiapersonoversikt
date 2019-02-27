@@ -51,11 +51,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c5 > *:first-child {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .c5 > * {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .c7 {
@@ -69,7 +69,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c6 > *:first-child {
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
 .c6 > *:last-child {
