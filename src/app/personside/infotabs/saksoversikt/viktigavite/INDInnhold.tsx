@@ -16,7 +16,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     Les mer om meldekort
                 </a>
             </Normaltekst>
-            <br/>
+            <br />
             <Undertittel>Meld fra om endringer</Undertittel>
             <Normaltekst>
                 Hvis du får endringer i inntekt, familiesituasjon og/eller jobbsituasjon, eller planlegger opphold i
@@ -29,11 +29,11 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     straks melde fra til NAV.
                 </a>
             </Normaltekst>
-            <br/>
+            <br />
             <Undertittel>Jobbsøkertips</Undertittel>
             <Normaltekst>
-                Her finner du en oversikt med nyttige tips og råd til deg som skal søke jobb. Målet er å hjelpe deg
-                til å bli en god jobbsøker slik at du har større sjanser til å få en jobb du trives med.&nbsp;
+                Her finner du en oversikt med nyttige tips og råd til deg som skal søke jobb. Målet er å hjelpe deg til
+                å bli en god jobbsøker slik at du har større sjanser til å få en jobb du trives med.&nbsp;
                 <a
                     href="https://www-q1.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips"
                     target="_blank"
@@ -41,7 +41,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     Les mer om jobbsøkertips
                 </a>
             </Normaltekst>
-            <br/>
+            <br />
             <Undertittel>Om stønader ved tiltak</Undertittel>
             <Normaltekst>
                 Arbeidsrettede tiltak er et virkemiddel for å styrke tiltaksdeltakerens muligheter til å få eller
@@ -54,7 +54,6 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     Les mer om stønader ved tiltak
                 </a>
             </Normaltekst>
-
         </div>
     );
 }

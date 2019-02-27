@@ -23,7 +23,6 @@ interface DispatchProps {
 type PersonsideProps = RouteComponentProps<RouteProps> & StateProps & DispatchProps;
 
 class PersonsideContainer extends React.PureComponent<PersonsideProps> {
-
     constructor(props: PersonsideProps) {
         super(props);
     }
@@ -45,9 +44,7 @@ class PersonsideContainer extends React.PureComponent<PersonsideProps> {
     }
 
     render() {
-        return (
-            <Personside/>
-        );
+        return <Personside />;
     }
 }
 
@@ -64,4 +61,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (PersonsideContainer));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(PersonsideContainer)
+);

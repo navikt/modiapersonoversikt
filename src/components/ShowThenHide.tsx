@@ -11,12 +11,11 @@ interface State {
 }
 
 class ShowThenHide extends React.PureComponent<Props, State> {
-
     private timeOut?: number;
 
     constructor(props: Props) {
         super(props);
-        this.state = {show: false};
+        this.state = { show: false };
         this.show();
     }
 
@@ -27,23 +26,17 @@ class ShowThenHide extends React.PureComponent<Props, State> {
     }
 
     show() {
-        setTimeout(
-            () => {
-                this.setState({show: true});
-                this.setHideTimeout();
-            },
-            200
-        );
+        setTimeout(() => {
+            this.setState({ show: true });
+            this.setHideTimeout();
+        }, 200);
     }
 
     setHideTimeout() {
         if (this.timeOut) {
             clearTimeout(this.timeOut);
         }
-        this.timeOut = window.setTimeout(
-            () => this.setState({show: false}),
-            this.props.duration || 5000
-        );
+        this.timeOut = window.setTimeout(() => this.setState({ show: false }), this.props.duration || 5000);
     }
 
     componentWillUnmount() {

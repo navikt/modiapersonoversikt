@@ -30,27 +30,24 @@ interface DispatchProps {
 type Props = OwnProps & PersonsideStateProps & DispatchProps;
 
 const Margin = styled.div`
-  margin: .5em;
+    margin: 0.5em;
 `;
 
 const onPending = (
     <FillCenterAndFadeIn>
         <Margin>
-            <NavFrontendSpinner type={'XL'}/>
+            <NavFrontendSpinner type={'XL'} />
         </Margin>
     </FillCenterAndFadeIn>
 );
 
 const onError = (
     <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av persondata.
-        </AlertStripe>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av persondata.</AlertStripe>
     </FillCenterAndFadeIn>
 );
 
 class Personside extends React.PureComponent<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -61,13 +58,9 @@ class Personside extends React.PureComponent<Props> {
 
     getSideinnhold(data: PersonRespons) {
         if (erPersonResponsAvTypeBegrensetTilgang(data)) {
-            return (
-                <BegrensetTilgangSide person={data as BegrensetTilgang}/>
-            );
+            return <BegrensetTilgangSide person={data as BegrensetTilgang} />;
         } else {
-            return (
-                <Visittkort/>
-            );
+            return <Visittkort />;
         }
     }
 
@@ -98,4 +91,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Personside);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Personside);

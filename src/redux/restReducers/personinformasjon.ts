@@ -11,7 +11,7 @@ import { resetForeldrepengerReducer } from './ytelser/foreldrepenger';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { AsyncDispatch } from '../ThunkTypes';
 
-const {reducer, action, actionNames, reload} = createActionsAndReducer('personinformasjon');
+const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
 function hentPerson(fødselsnummer: string) {
     return action(() => getPerson(fødselsnummer));

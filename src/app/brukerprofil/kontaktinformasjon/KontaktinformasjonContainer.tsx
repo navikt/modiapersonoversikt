@@ -28,11 +28,10 @@ interface OwnProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const NavKontaktinformasjonWrapper = styled.div`
-  margin-top: 2em;
+    margin-top: 2em;
 `;
 
 class KontaktinformasjonFormContainer extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -61,10 +60,10 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
-    return ({
+    return {
         retningsnummerReducer: state.restEndepunkter.retningsnummerReducer,
         person: ownProps.person
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -73,4 +72,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonFormContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(KontaktinformasjonFormContainer);

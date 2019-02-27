@@ -43,8 +43,7 @@ export function setEkspanderYtelse(ytelse: Ytelse, ekspander: boolean): SetEkspa
 
 export type Actions = SetNyYtelseIFokus | SetEkspanderYtelse;
 
-export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions)
-    : UtbetalingerState {
+export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions): UtbetalingerState {
     switch (action.type) {
         case actionKeys.SettYtelseIFokus:
             return {

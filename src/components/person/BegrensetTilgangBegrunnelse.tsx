@@ -5,7 +5,7 @@ interface Props {
     begrunnelseType: BegrensetTilgangTyper;
 }
 
-function BegrensetTilgangBegrunnelse({begrunnelseType}: Props) {
+function BegrensetTilgangBegrunnelse({ begrunnelseType }: Props) {
     switch (begrunnelseType) {
         case BegrensetTilgangTyper.Kode6:
             return <>Bruker har diskresjonskode 6, du har ikke tilgang til å se informasjon om bruker.</>;

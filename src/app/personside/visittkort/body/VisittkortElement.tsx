@@ -11,18 +11,17 @@ interface ElementProps {
 }
 
 const VisittkortElementStyle = styled.div`
-  margin: 10px 0 20px 0;
-  &:last-child {
-    margin: 10px 0 0 0;
-  }
+    margin: 10px 0 20px 0;
+    &:last-child {
+        margin: 10px 0 0 0;
+    }
 `;
 
 function VisittkortElement(props: ElementProps) {
-    const tittel = props.beskrivelse
-        ? <Element tag="h4">{props.beskrivelse}</Element> : null;
+    const tittel = props.beskrivelse ? <Element tag="h4">{props.beskrivelse}</Element> : null;
     return (
         <VisittkortElementStyle>
-            <TittelOgIkon tittel={tittel} ikon={props.ikon}/>
+            <TittelOgIkon tittel={tittel} ikon={props.ikon} />
             {props.children}
         </VisittkortElementStyle>
     );

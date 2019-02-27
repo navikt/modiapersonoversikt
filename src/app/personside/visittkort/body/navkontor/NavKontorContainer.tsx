@@ -29,7 +29,6 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 class NavKontorContainer extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -63,10 +62,10 @@ class NavKontorContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         navKontorReducer: state.restEndepunkter.brukersNavKontor,
         baseUrlReducer: state.restEndepunkter.baseUrlReducer
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -76,4 +75,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavKontorContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NavKontorContainer);

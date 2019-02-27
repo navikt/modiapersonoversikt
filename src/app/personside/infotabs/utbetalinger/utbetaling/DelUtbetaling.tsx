@@ -32,15 +32,14 @@ interface DispatchProps {
 type Props = DispatchProps & OwnProps & StateProps;
 
 const DelUtbetalingStyle = styled.li`
-  transition: 0.3s;
-  cursor: pointer;
-  &:focus {
-    ${theme.focus}
-  }
+    transition: 0.3s;
+    cursor: pointer;
+    &:focus {
+        ${theme.focus}
+    }
 `;
 
 class DelUtbetaling extends React.PureComponent<Props> {
-
     private ytelseRef = React.createRef<HTMLLIElement>();
 
     constructor(props: Props) {
@@ -65,12 +64,14 @@ class DelUtbetaling extends React.PureComponent<Props> {
         const header = (
             <BulletPoint showBulletPoint={!this.props.erEkspandert} color={theme.color.kategori}>
                 <SpaceBetween>
-                    <Normaltekst tag="h5"><Bold>{ytelse.type}</Bold></Normaltekst>
-                    <Normaltekst><Bold>{formaterNOK(ytelse.nettobeløp)}</Bold></Normaltekst>
+                    <Normaltekst tag="h5">
+                        <Bold>{ytelse.type}</Bold>
+                    </Normaltekst>
+                    <Normaltekst>
+                        <Bold>{formaterNOK(ytelse.nettobeløp)}</Bold>
+                    </Normaltekst>
                 </SpaceBetween>
-                <Normaltekst>
-                    {periode}
-                </Normaltekst>
+                <Normaltekst>{periode}</Normaltekst>
             </BulletPoint>
         );
 
@@ -82,15 +83,8 @@ class DelUtbetaling extends React.PureComponent<Props> {
                 onFocus={this.props.settYtelseIFokus}
             >
                 <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
-                    <DetaljerCollapse
-                        open={this.props.erEkspandert}
-                        toggle={this.toggleVisDetaljer}
-                        header={header}
-                    >
-                        <UtbetalingsDetaljer
-                            ytelse={ytelse}
-                            {...this.props}
-                        />
+                    <DetaljerCollapse open={this.props.erEkspandert} toggle={this.toggleVisDetaljer} header={header}>
+                        <UtbetalingsDetaljer ytelse={ytelse} {...this.props} />
                     </DetaljerCollapse>
                 </article>
             </DelUtbetalingStyle>
@@ -112,4 +106,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DelUtbetaling);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DelUtbetaling);

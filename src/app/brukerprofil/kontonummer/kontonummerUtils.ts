@@ -25,8 +25,7 @@ export function validerKontonummer(kontonummer?: string) {
         return false;
     }
 
-    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10)
-        === mod11FraTallMedKontrollsiffer(kontonummer);
+    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer);
 }
 
 export function removeWhitespaceAndDot(kontonummer: string): string {
@@ -44,7 +43,7 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
         }
     }
 
-    const result = (11 - sumForMod % 11);
+    const result = 11 - (sumForMod % 11);
     return result === 11 ? 0 : result;
 }
 

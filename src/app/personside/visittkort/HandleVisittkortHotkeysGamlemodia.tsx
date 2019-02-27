@@ -11,7 +11,6 @@ interface DispatchProps {
 type Props = DispatchProps;
 
 class HandleVisittkortHotkeysGamleModia extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.handleVisittkortHotkeys = this.handleVisittkortHotkeys.bind(this);
@@ -37,7 +36,7 @@ class HandleVisittkortHotkeysGamleModia extends React.Component<Props> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'n') {
-            loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + N'});
+            loggEvent('Hurtigtast', 'Visittkort', { type: 'Alt + N' });
             this.props.toggleVisittkort();
         }
     }
@@ -49,4 +48,7 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(null, mapDispatchToProps)(HandleVisittkortHotkeysGamleModia);
+export default connect(
+    null,
+    mapDispatchToProps
+)(HandleVisittkortHotkeysGamleModia);

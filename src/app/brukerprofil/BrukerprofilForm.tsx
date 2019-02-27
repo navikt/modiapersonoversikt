@@ -11,12 +11,12 @@ import AdresseForm from './adresse/AdresseContainer';
 import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
 
 export const FormKnapperWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  > * {
-    margin: .5rem 0 .5rem 1em;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    > * {
+        margin: 0.5rem 0 0.5rem 1em;
+    }
 `;
 
 interface Props {
@@ -27,11 +27,11 @@ interface Props {
 function BrukerprofilForm({ person, veilderRoller }: Props) {
     return (
         <ErrorBoundary>
-            <EndreKontonummerForm person={person} veilederRoller={veilderRoller}/>
-            <AdresseForm person={person} veilederRoller={veilderRoller}/>
+            <EndreKontonummerForm person={person} veilederRoller={veilderRoller} />
+            <AdresseForm person={person} veilederRoller={veilderRoller} />
             <Kontaktinformasjon person={person} />
             <TilrettelagtKommunikasjonContainer person={person} />
-            <EndreNavnForm person={person} veilederRoller={veilderRoller}/>
+            <EndreNavnForm person={person} veilederRoller={veilderRoller} />
         </ErrorBoundary>
     );
 }

@@ -24,7 +24,6 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 class ForeldrePengerContainer extends React.PureComponent<Props> {
-
     componentDidMount() {
         loggEvent('Sidevisning', 'Foreldrepenger');
         if (isNotStarted(this.props.foreldrepengerReducer)) {
@@ -40,19 +39,18 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
                         return null;
                     }
                     return data.foreldrepenger.map((foreldrepengerettighet, index) => (
-                        <ForeldrepengerEkspanderbartpanel key={index} foreldrepenger={foreldrepengerettighet}/>
+                        <ForeldrepengerEkspanderbartpanel key={index} foreldrepenger={foreldrepengerettighet} />
                     ));
                 }}
-
             </PlukkRestData>
         );
     }
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         foreldrepengerReducer: state.restEndepunkter.foreldrepengerReducer
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -61,4 +59,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForeldrePengerContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ForeldrePengerContainer);

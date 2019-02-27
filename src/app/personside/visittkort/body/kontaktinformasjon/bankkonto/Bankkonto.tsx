@@ -12,14 +12,14 @@ interface BankkontoProps {
     person: Person;
 }
 
-function Bankkonto({person}: BankkontoProps) {
+function Bankkonto({ person }: BankkontoProps) {
     let beskrivelse = 'Kontonummer';
     if (person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kodeRef !== 'NOR') {
         beskrivelse += ' utland';
     }
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon/>}>
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
             {kontoinfo(person)}
         </VisittkortElement>
     );
@@ -32,9 +32,11 @@ function kontoinfo(person: Person) {
         return (
             <>
                 <Normaltekst>
-                    <FormatertKontonummer kontonummer={person.bankkonto.kontonummer}/>
+                    <FormatertKontonummer kontonummer={person.bankkonto.kontonummer} />
                 </Normaltekst>
-                <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
+                <EtikettGrå>
+                    Endret {formatertDato} {endretAv}
+                </EtikettGrå>
             </>
         );
     }

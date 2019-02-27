@@ -1,7 +1,10 @@
 import { createActionsAndReducer } from '../restReducer';
 import {
-    postEndreMatrikkeladresse, postEndreNorskGateadresse,
-    postEndrePostboksadresse, postEndreUtenlandsadresse, postSlettMidlertidigeAdresser
+    postEndreMatrikkeladresse,
+    postEndreNorskGateadresse,
+    postEndrePostboksadresse,
+    postEndreUtenlandsadresse,
+    postSlettMidlertidigeAdresser
 } from '../../../api/brukerprofil/adresse-api';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 

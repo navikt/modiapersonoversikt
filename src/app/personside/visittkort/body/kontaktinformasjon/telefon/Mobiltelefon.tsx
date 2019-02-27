@@ -14,7 +14,7 @@ interface MobiltelefonProps {
     mobiltelefon: KontaktinformasjonVerdi;
 }
 
-function Mobiltelefon({mobiltelefon}: MobiltelefonProps) {
+function Mobiltelefon({ mobiltelefon }: MobiltelefonProps) {
     const formatertDato = formaterDato(mobiltelefon.sistOppdatert);
     const formatertTelefonnummer = formaterMobiltelefonnummer(mobiltelefon.value);
     return (
@@ -29,7 +29,7 @@ interface MobiltelefonVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function MobiltelefonVisning({kontaktinformasjon}: MobiltelefonVisningProps) {
+export function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>
@@ -38,7 +38,7 @@ export function MobiltelefonVisning({kontaktinformasjon}: MobiltelefonVisningPro
             </>
         );
     } else if (kontaktinformasjon.mobiltelefon) {
-        return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon}/>;
+        return <Mobiltelefon mobiltelefon={kontaktinformasjon.mobiltelefon} />;
     } else {
         return <Normaltekst>Ikke registrert</Normaltekst>;
     }
@@ -48,12 +48,9 @@ interface MobiltelefonWrapperProps {
     kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
 }
 
-function MobiltelefonWrapper({kontaktinformasjonReducer}: MobiltelefonWrapperProps) {
+function MobiltelefonWrapper({ kontaktinformasjonReducer }: MobiltelefonWrapperProps) {
     return (
-        <VisittkortElement
-            beskrivelse="Telefon"
-            ikon={<PhoneIkon/>}
-        >
+        <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
                 <MobiltelefonVisning
                     kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data}

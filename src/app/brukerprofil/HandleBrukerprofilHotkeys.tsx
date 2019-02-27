@@ -10,7 +10,6 @@ interface OwnProps {
 type Props = RouteComponentProps<{}> & OwnProps;
 
 class HandleBrukerprofilHotkeys extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.handleBrukerprofilHotkeys = this.handleBrukerprofilHotkeys.bind(this);
@@ -36,7 +35,7 @@ class HandleBrukerprofilHotkeys extends React.Component<Props> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'b') {
-            loggEvent('Hurtigtast', 'Brukerprofil', {type: 'Alt + B'});
+            loggEvent('Hurtigtast', 'Brukerprofil', { type: 'Alt + B' });
             this.props.history.push(`${paths.personUri}/${this.props.fødselsnummer}`);
         }
     }

@@ -21,27 +21,36 @@ test('filtrerer bort ytelser i utbetalinger som ikke er valgt i filter', () => {
         ytelser: ['Dagpenger']
     };
 
-    const utbetalinger: Utbetaling[] = [{
-        ...statiskMockUtbetaling,
-        erUtbetaltTilPerson: true,
-        ytelser: [{
-            ...statiskMockYtelse,
-            type: 'Dagpenger'
-        }, {
-            ...statiskMockYtelse,
-            type: 'Sykepenger'
-        }]
-    }];
+    const utbetalinger: Utbetaling[] = [
+        {
+            ...statiskMockUtbetaling,
+            erUtbetaltTilPerson: true,
+            ytelser: [
+                {
+                    ...statiskMockYtelse,
+                    type: 'Dagpenger'
+                },
+                {
+                    ...statiskMockYtelse,
+                    type: 'Sykepenger'
+                }
+            ]
+        }
+    ];
 
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(utbetalinger, filter);
-    const forventetResultat: Utbetaling[] = [{
-        ...statiskMockUtbetaling,
-        erUtbetaltTilPerson: true,
-        ytelser: [{
-            ...statiskMockYtelse,
-            type: 'Dagpenger'
-        }]
-    }];
+    const forventetResultat: Utbetaling[] = [
+        {
+            ...statiskMockUtbetaling,
+            erUtbetaltTilPerson: true,
+            ytelser: [
+                {
+                    ...statiskMockYtelse,
+                    type: 'Dagpenger'
+                }
+            ]
+        }
+    ];
 
     expect(filtrerteUtbetalinger).toEqual(forventetResultat);
 });
@@ -53,35 +62,46 @@ test('filtrerer bort utbetalinger som ikke er utbetalt til valgt mottaker i filt
         utbetaltTil: ['Berit AS']
     };
 
-    const utbetalinger: Utbetaling[] = [{
-        ...statiskMockUtbetaling,
-        erUtbetaltTilPerson: true,
-        ytelser: [{
-            ...statiskMockYtelse,
-            type: 'Dagpenger'
-        }]
-    }, {
-        ...statiskMockUtbetaling,
-        erUtbetaltTilPerson: false,
-        erUtbetaltTilOrganisasjon: true,
-        utbetaltTil: 'Berit AS',
-        ytelser: [{
-            ...statiskMockYtelse,
-            type: 'Dagpenger'
-        }]
-    }];
+    const utbetalinger: Utbetaling[] = [
+        {
+            ...statiskMockUtbetaling,
+            erUtbetaltTilPerson: true,
+            ytelser: [
+                {
+                    ...statiskMockYtelse,
+                    type: 'Dagpenger'
+                }
+            ]
+        },
+        {
+            ...statiskMockUtbetaling,
+            erUtbetaltTilPerson: false,
+            erUtbetaltTilOrganisasjon: true,
+            utbetaltTil: 'Berit AS',
+            ytelser: [
+                {
+                    ...statiskMockYtelse,
+                    type: 'Dagpenger'
+                }
+            ]
+        }
+    ];
 
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(utbetalinger, filter);
-    const forventetResultat: Utbetaling[] = [{
-        ...statiskMockUtbetaling,
-        erUtbetaltTilPerson: false,
-        erUtbetaltTilOrganisasjon: true,
-        utbetaltTil: 'Berit AS',
-        ytelser: [{
-            ...statiskMockYtelse,
-            type: 'Dagpenger'
-        }]
-    }];
+    const forventetResultat: Utbetaling[] = [
+        {
+            ...statiskMockUtbetaling,
+            erUtbetaltTilPerson: false,
+            erUtbetaltTilOrganisasjon: true,
+            utbetaltTil: 'Berit AS',
+            ytelser: [
+                {
+                    ...statiskMockYtelse,
+                    type: 'Dagpenger'
+                }
+            ]
+        }
+    ];
 
     expect(filtrerteUtbetalinger).toEqual(forventetResultat);
 });

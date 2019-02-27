@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     color: ${theme.color.gråSkrift};
     margin-top: 3px;
     .typo-etikett-liten {
-      line-height: 1rem;
+        line-height: 1rem;
     }
 `;
 
@@ -21,9 +21,7 @@ function EtikettGrå(props: Props) {
     const { children, ...resten } = props;
     return (
         <Wrapper>
-            <EtikettLiten {...resten}>
-                    {children}
-            </EtikettLiten>
+            <EtikettLiten {...resten}>{children}</EtikettLiten>
         </Wrapper>
     );
 }

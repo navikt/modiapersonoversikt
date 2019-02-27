@@ -7,11 +7,8 @@ interface Props {
     sykepenger: Sykmeldingsperiode;
 }
 
-function SykepengerEkspanderbartpanel({sykepenger}: Props) {
-
-    const tittelTillegsInfo = [
-        'ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)
-    ];
+function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
+    const tittelTillegsInfo = ['ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)];
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>

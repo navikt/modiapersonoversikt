@@ -16,7 +16,6 @@ it('Formaterer dato på backend-format til ønsket visningsformat', () => {
 });
 
 describe('dato erImorgenEllerSenere', () => {
-
     it('Dagens dato', () => {
         expect(erImorgenEllerSenere(new Date())).toEqual(false);
     });
@@ -26,11 +25,9 @@ describe('dato erImorgenEllerSenere', () => {
         date.setFullYear(3000);
         expect(erImorgenEllerSenere(date)).toEqual(true);
     });
-
 });
 
 describe('dato erMaksEttÅrFramITid', () => {
-
     it('Dagens dato', () => {
         expect(erMaksEttÅrFramITid(new Date())).toEqual(true);
     });
@@ -40,7 +37,6 @@ describe('dato erMaksEttÅrFramITid', () => {
         date.setFullYear(3000);
         expect(erMaksEttÅrFramITid(date)).toEqual(false);
     });
-
 });
 
 describe('Sorterer etter dato', () => {
@@ -56,8 +52,8 @@ describe('Sorterer etter dato', () => {
         interface MockObject {
             date: string | Date;
         }
-        const datoA: MockObject = {date: '2012-01-01'};
-        const datoB: MockObject = {date: new Date('2000-01-01')};
+        const datoA: MockObject = { date: '2012-01-01' };
+        const datoB: MockObject = { date: new Date('2000-01-01') };
         const sortedDates = [datoA, datoB].sort(genericAscendingDateComparator(object => object.date));
 
         expect(sortedDates[sortedDates.length - 1]).toEqual(datoA);

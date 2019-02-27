@@ -11,8 +11,7 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
-import * as tilrettelagtKommunikasjonKodeverkReducer
-    from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
+import * as tilrettelagtKommunikasjonKodeverkReducer from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
@@ -43,7 +42,6 @@ const onError = (
 );
 
 class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
 
@@ -73,16 +71,19 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
 }
 
 const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
-    return ({
-        hentTilrettelagtKommunikasjonKodeverk:
-            () => dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())
-    });
+    return {
+        hentTilrettelagtKommunikasjonKodeverk: () =>
+            dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())
+    };
 };
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         tilrettelagtKommunikasjonKodeverkReducer: state.restEndepunkter.tilrettelagtKommunikasjonKodeverk
-    });
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TilrettelagtKommunikasjonsContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TilrettelagtKommunikasjonsContainer);

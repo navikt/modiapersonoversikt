@@ -24,7 +24,6 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 class PleiePengerContainer extends React.PureComponent<Props> {
-
     componentDidMount() {
         loggEvent('Sidevisning', 'Pleiepenger');
         if (isNotStarted(this.props.pleiepengerReducer)) {
@@ -40,7 +39,7 @@ class PleiePengerContainer extends React.PureComponent<Props> {
                         return null;
                     }
                     return data.pleiepenger.map((pleiepengeRettighet, index) => (
-                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet}/>
+                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet} />
                     ));
                 }}
             </PlukkRestData>
@@ -49,9 +48,9 @@ class PleiePengerContainer extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         pleiepengerReducer: state.restEndepunkter.pleiepengerReducer
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -60,4 +59,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PleiePengerContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PleiePengerContainer);

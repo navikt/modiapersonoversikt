@@ -18,23 +18,23 @@ import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 
 const UtbetalingerArticle = styled.article`
-  ${theme.hvittPanel};
-  margin-top: ${theme.margin.layout};
-  margin-bottom: ${theme.margin.layout};
-  > *:first-child {
-    padding: ${theme.margin.px20};
-  }
+    ${theme.hvittPanel};
+    margin-top: ${theme.margin.layout};
+    margin-bottom: ${theme.margin.layout};
+    > *:first-child {
+        padding: ${theme.margin.px20};
+    }
 `;
 
 const UtbetalingerListe = styled.ol`
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 `;
 
 const Wrapper = styled.div`
-  ol {
-    list-style: none;
-  }
+    ol {
+        list-style: none;
+    }
 `;
 
 export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
@@ -49,8 +49,9 @@ function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
 }
 
 function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: FilterState): Utbetaling {
-    const ytelser = reduceUtbetlingerTilYtelser([utbetaling])
-        .filter(ytelse => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
+    const ytelser = reduceUtbetlingerTilYtelser([utbetaling]).filter(ytelse =>
+        filter.ytelser.includes(getTypeFromYtelse(ytelse))
+    );
     return {
         ...utbetaling,
         ytelser: ytelser
@@ -66,7 +67,7 @@ interface UtbetalingerProps {
     filter: FilterState;
 }
 
-function Utbetalinger({filter, ...props}: UtbetalingerProps) {
+function Utbetalinger({ filter, ...props }: UtbetalingerProps) {
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
@@ -82,22 +83,16 @@ function Utbetalinger({filter, ...props}: UtbetalingerProps) {
     );
 
     const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) => (
-        <Månedsgruppe
-            key={gruppe.category}
-            gruppe={gruppe}
-            {...props}
-        />
+        <Månedsgruppe key={gruppe.category} gruppe={gruppe} {...props} />
     ));
 
     return (
         <Wrapper>
-            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode}/>
+            <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode} />
             <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
                 <UtbetalingerArticle aria-label="Utbetalinger">
                     <Undertittel>Utbetalinger</Undertittel>
-                    <UtbetalingerListe aria-label="Måneder">
-                        {månedsGrupper}
-                    </UtbetalingerListe>
+                    <UtbetalingerListe aria-label="Måneder">{månedsGrupper}</UtbetalingerListe>
                 </UtbetalingerArticle>
             </HandleUtbetalingerArrowKeys>
         </Wrapper>

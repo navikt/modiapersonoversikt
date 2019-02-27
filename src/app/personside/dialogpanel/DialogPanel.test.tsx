@@ -4,7 +4,6 @@ import TestProvider from '../../../test/Testprovider';
 import DialogPanel from './DialogPanel';
 
 test('viser dialogpanel', () => {
-
     const dialogPanelBody = renderer.create(
         <TestProvider>
             <DialogPanel />

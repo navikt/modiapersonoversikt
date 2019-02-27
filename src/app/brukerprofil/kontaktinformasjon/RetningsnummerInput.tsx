@@ -9,7 +9,7 @@ import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { TelefonInput } from './KontaktinformasjonForm';
 
 const RetningsnummerWrapper = styled.div`
-  margin-right: 2em;
+    margin-right: 2em;
 `;
 
 interface RetningsnummerInputProps {
@@ -21,30 +21,23 @@ interface RetningsnummerInputProps {
 
 function DefaultRetningsnummer() {
     return (
-        <option
-            disabled={true}
-            value={''}
-            key={''}
-        >
+        <option disabled={true} value={''} key={''}>
             Velg retningsnummer
         </option>
     );
 }
 
 function getRetningsnummerSelectValg(retningsnummerKodeverk: KodeverkResponse) {
-    const retningsnummere = retningsnummerKodeverk.kodeverk.map(kodeverk =>
-        (
-            <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                {kodeverk.beskrivelse} ({kodeverk.kodeRef})
-            </option>
-        )
-    );
+    const retningsnummere = retningsnummerKodeverk.kodeverk.map(kodeverk => (
+        <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
+            {kodeverk.beskrivelse} ({kodeverk.kodeRef})
+        </option>
+    ));
     return [DefaultRetningsnummer()].concat(retningsnummere);
 }
 
 function getValgtRetningsnummer(retningsnummerKodeverk: KodeverkResponse, retningsnummerInput: string) {
-    const retningsnummer = retningsnummerKodeverk.kodeverk
-        .find(kodeverdi => kodeverdi.kodeRef === retningsnummerInput);
+    const retningsnummer = retningsnummerKodeverk.kodeverk.find(kodeverdi => kodeverdi.kodeRef === retningsnummerInput);
 
     if (!retningsnummer) {
         return '';
@@ -63,8 +56,7 @@ export function Retningsnummer(props: RetningsnummerInputProps) {
                 bredde={'m'}
                 value={valgtRetningsnummer}
                 feil={props.valideringsresultat.felter.retningsnummer.skjemafeil}
-                onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                    props.onChange(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLSelectElement>) => props.onChange(event.target.value)}
             >
                 {retningsnummerValg}
             </Select>

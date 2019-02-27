@@ -7,7 +7,9 @@ export function endreNavKontaktinformasjon(request: Request, fødselsnummer: str
     return action(() => postEndreNavKontaktinformasjon(request, fødselsnummer));
 }
 
-function dispatchTilbakestillReducer() { return tilbakestillReducer; }
+function dispatchTilbakestillReducer() {
+    return tilbakestillReducer;
+}
 
 export { actionNames, dispatchTilbakestillReducer as tilbakestillReducer };
 export default reducer;

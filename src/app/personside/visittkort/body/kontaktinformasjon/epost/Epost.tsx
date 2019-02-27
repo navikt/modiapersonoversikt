@@ -13,7 +13,7 @@ interface EpostProps {
     epost: KontaktinformasjonVerdi;
 }
 
-function Epost({epost}: EpostProps) {
+function Epost({ epost }: EpostProps) {
     const formatertDato = formaterDato(epost.sistOppdatert);
     return (
         <>
@@ -27,7 +27,7 @@ interface EpostVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
+export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>
@@ -36,7 +36,7 @@ export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
             </>
         );
     } else if (kontaktinformasjon.epost) {
-        return <Epost epost={kontaktinformasjon.epost}/>;
+        return <Epost epost={kontaktinformasjon.epost} />;
     } else {
         return <Normaltekst>Ikke registrert</Normaltekst>;
     }
@@ -46,14 +46,11 @@ interface EpostWrapperProps {
     kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
 }
 
-function EpostWrapper({kontaktinformasjonReducer}: EpostWrapperProps) {
+function EpostWrapper({ kontaktinformasjonReducer }: EpostWrapperProps) {
     return (
-        <VisittkortElement
-            beskrivelse="E-post"
-            ikon={<EmailIkon/>}
-        >
+        <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
             <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
-                <EpostVisning kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data}/>
+                <EpostVisning kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data} />
             </Innholdslaster>
         </VisittkortElement>
     );

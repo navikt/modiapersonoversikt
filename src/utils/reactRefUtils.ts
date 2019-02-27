@@ -11,7 +11,7 @@ export function eventTagetIsInsideRef(event: EventWithTarget, ref: Ref): boolean
         return ref.some(r => eventTagetIsInsideRef(event, r));
     }
 
-    if ((event.target instanceof Node) && ref.current) {
+    if (event.target instanceof Node && ref.current) {
         return ref.current.contains(event.target);
     } else {
         return false;

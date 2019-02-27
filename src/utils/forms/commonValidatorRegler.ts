@@ -2,7 +2,7 @@ import { Valideringsregel } from './FormValidator';
 import { erIkkeTomStreng, erTall } from '../string-utils';
 import { erImorgenEllerSenere, erMaksEttÅrFramITid, isValidDate } from '../dateUtils';
 
-export function lagPostnummerRegel<T>(key: keyof T, getPostnummer: (t: T) => string ): Valideringsregel<T>  {
+export function lagPostnummerRegel<T>(key: keyof T, getPostnummer: (t: T) => string): Valideringsregel<T> {
     return {
         felt: key,
         feilmelding: 'Postnummer må ha fire tall',
@@ -10,7 +10,7 @@ export function lagPostnummerRegel<T>(key: keyof T, getPostnummer: (t: T) => str
     };
 }
 
-export function lagPostboksnummerRegel<T>(key: keyof T, getPostboksnummer: (t: T) => string ): Valideringsregel<T>  {
+export function lagPostboksnummerRegel<T>(key: keyof T, getPostboksnummer: (t: T) => string): Valideringsregel<T> {
     return {
         felt: key,
         feilmelding: 'Postboksnummer kan maks ha 4 tall',
@@ -18,8 +18,11 @@ export function lagPostboksnummerRegel<T>(key: keyof T, getPostboksnummer: (t: T
     };
 }
 
-export function lagErIkkeTomtFeltRegel<T>(key: keyof T, getFelt: (t: T) => string, feilmelding: string)
-: Valideringsregel<T>  {
+export function lagErIkkeTomtFeltRegel<T>(
+    key: keyof T,
+    getFelt: (t: T) => string,
+    feilmelding: string
+): Valideringsregel<T> {
     return {
         felt: key,
         feilmelding: feilmelding,
@@ -27,7 +30,7 @@ export function lagErIkkeTomtFeltRegel<T>(key: keyof T, getFelt: (t: T) => strin
     };
 }
 
-export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
+export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T) => string): Valideringsregel<T> {
     return {
         felt: key,
         feilmelding: 'Ugyldig dato',
@@ -35,7 +38,7 @@ export function datoErGyldigValidatorRegel<T>(key: keyof T, getGyldigTil: (t: T)
     };
 }
 
-export function lagDatoErInnenEtÅrRegel<T>(key: keyof T, getGyldigTil: (t: T) => string ): Valideringsregel<T>  {
+export function lagDatoErInnenEtÅrRegel<T>(key: keyof T, getGyldigTil: (t: T) => string): Valideringsregel<T> {
     return {
         felt: key,
         feilmelding: 'Sluttdato kan ikke være mer enn ett år frem i tid',

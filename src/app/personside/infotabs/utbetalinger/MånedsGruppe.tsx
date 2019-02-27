@@ -13,20 +13,20 @@ interface Props {
 }
 
 const Wrapper = styled.li`
-  > *:first-child {
-    background-color: ${theme.color.kategori};
-    padding: .2rem ${theme.margin.px20};
-  }
-  ol {
-    padding: 0;
-    margin: 0;
-  }
-  ol > *:not(:first-child) {
-    border-top: ${theme.border.skille};
-  }
+    > *:first-child {
+        background-color: ${theme.color.kategori};
+        padding: 0.2rem ${theme.margin.px20};
+    }
+    ol {
+        padding: 0;
+        margin: 0;
+    }
+    ol > *:not(:first-child) {
+        border-top: ${theme.border.skille};
+    }
 `;
 
-function Månedsgruppe({gruppe}: Props) {
+function Månedsgruppe({ gruppe }: Props) {
     const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
         <UtbetalingsKomponent
             key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
@@ -35,10 +35,12 @@ function Månedsgruppe({gruppe}: Props) {
     ));
     return (
         <Wrapper>
-            <Normaltekst tag={'h3'}><Bold><Uppercase>{gruppe.category}</Uppercase></Bold></Normaltekst>
-            <ol aria-label={`Utbetalinger fra ${gruppe.category}`}>
-                {utbetalingsKomponenter}
-            </ol>
+            <Normaltekst tag={'h3'}>
+                <Bold>
+                    <Uppercase>{gruppe.category}</Uppercase>
+                </Bold>
+            </Normaltekst>
+            <ol aria-label={`Utbetalinger fra ${gruppe.category}`}>{utbetalingsKomponenter}</ol>
         </Wrapper>
     );
 }

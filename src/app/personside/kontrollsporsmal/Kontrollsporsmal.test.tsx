@@ -6,8 +6,9 @@ import TestProvider from '../../../test/Testprovider';
 test('Smoketest kontrollspørsmål', () => {
     const kontrollspørsmål = mount(
         <TestProvider>
-            <Kontrollsporsmal/>
-        </TestProvider>);
+            <Kontrollsporsmal />
+        </TestProvider>
+    );
 
     expect(kontrollspørsmål).toExist();
 });

@@ -21,7 +21,7 @@ const relasjon: Familierelasjon = {
 };
 
 test('Fornavn, etternavn og alder vises', () => {
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Baruch Spinoza (15) ');
 });
@@ -33,7 +33,7 @@ test('Fornavn, mellomnavn, etternavn og alder vises', () => {
         sammensatt: 'Sammensatt',
         mellomnavn: 'de'
     };
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Baruch de Spinoza (15) ');
 });
@@ -46,7 +46,7 @@ test('Navn og alder uten fornavn og etternavn defaulter til sammensatt navn', ()
         mellomnavn: ''
     };
 
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Sammensatt (15) ');
 });
@@ -59,7 +59,7 @@ test('Uten navn returnerer ukjent navn', () => {
         mellomnavn: ''
     };
 
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Ukjent navn (15) ');
 });
@@ -72,7 +72,7 @@ test('Uten fornavn, men med etternavn', () => {
         mellomnavn: ''
     };
 
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
 
     expect(NavnOgAlderWrapper.text()).toEqual('Sokrates (15) ');
 });
@@ -81,7 +81,7 @@ test('barn under 1 år', () => {
     relasjon.tilPerson.alder = 0;
     relasjon.tilPerson.alderMåneder = 3;
 
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
     expect(NavnOgAlderWrapper.text()).toEqual('Sokrates (3 mnd) ');
 });
 
@@ -89,6 +89,6 @@ test('ingen registrert alder', () => {
     relasjon.tilPerson.alder = undefined;
     relasjon.tilPerson.alderMåneder = undefined;
 
-    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon}/>);
+    const NavnOgAlderWrapper = shallow(<NavnOgAlder relasjon={relasjon} />);
     expect(NavnOgAlderWrapper.text()).toEqual('Sokrates  ');
 });

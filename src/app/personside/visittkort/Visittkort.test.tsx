@@ -6,22 +6,22 @@ import { getTestStore } from '../../../setupTests';
 import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
 
 test('viser visittkortheader når visittkort først rendres', () => {
-    const visittkort = mount((
+    const visittkort = mount(
         <TestProvider>
-            <Visittkort/>
+            <Visittkort />
         </TestProvider>
-    ));
+    );
 
     expect(visittkort.find('section[aria-label="Visittkort-hode"]')).toHaveLength(1);
     expect(visittkort.find('section[aria-label="Visittkortdetaljer"]')).toHaveLength(0);
 });
 
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
-    const visittkort = mount((
+    const visittkort = mount(
         <TestProvider>
-            <Visittkort/>
+            <Visittkort />
         </TestProvider>
-    ));
+    );
 
     visittkort.find('button[aria-label="Detaljer"]').simulate('click');
 
@@ -31,13 +31,13 @@ test('viser visittkortheader og visitkortbody når visittkort åpnes med musekli
 
 test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
     const testStore = getTestStore();
-    mount((
+    mount(
         <TestProvider customStore={testStore}>
-            <Visittkort/>
+            <Visittkort />
         </TestProvider>
-    ));
+    );
 
-    testStore.dispatch({type: UIActionTypes.TOGGLE_VISITTKORT, erApen: true});
+    testStore.dispatch({ type: UIActionTypes.TOGGLE_VISITTKORT, erApen: true });
     const focusedElement = document.activeElement;
 
     if (focusedElement) {

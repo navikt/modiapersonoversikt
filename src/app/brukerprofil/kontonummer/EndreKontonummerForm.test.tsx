@@ -9,10 +9,9 @@ import { Bankkonto, Person } from '../../../models/person/person';
 const veilerRoller: VeilederRoller = { roller: ['0000-GA-BD06_EndreKontonummer'] };
 
 test('Viser riktig form for å endre norsk kontonummer', () => {
-
     const endrekontonummerForm = renderer.create(
         <TestProvider>
-            <EndreKontonummerForm person={aremark} veilederRoller={veilerRoller}/>
+            <EndreKontonummerForm person={aremark} veilederRoller={veilerRoller} />
         </TestProvider>
     );
 
@@ -24,7 +23,7 @@ test('Viser riktig form for å endre utenlandsk kontonummer', () => {
     const person: Person = {
         ...aremark,
         bankkonto: {
-            ...aremark.bankkonto as Bankkonto,
+            ...(aremark.bankkonto as Bankkonto),
             landkode: {
                 kodeRef: 'NRN',
                 beskrivelse: 'Narnia'
@@ -38,7 +37,7 @@ test('Viser riktig form for å endre utenlandsk kontonummer', () => {
 
     const endrekontonummerForm = renderer.create(
         <TestProvider>
-            <EndreKontonummerForm person={person} veilederRoller={veilerRoller}/>
+            <EndreKontonummerForm person={person} veilederRoller={veilerRoller} />
         </TestProvider>
     );
 

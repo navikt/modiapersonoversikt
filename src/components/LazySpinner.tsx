@@ -11,15 +11,12 @@ interface State {
 }
 
 class LazySpinner extends React.Component<Props, State> {
-
     private timer?: number;
 
     constructor(props: Props) {
         super(props);
         this.state = { showSpinner: false };
-        this.timer = window.setTimeout(
-            () => this.setState({showSpinner: true}),
-            this.props.delay || 300);
+        this.timer = window.setTimeout(() => this.setState({ showSpinner: true }), this.props.delay || 300);
     }
 
     componentWillUnmount() {
@@ -28,9 +25,7 @@ class LazySpinner extends React.Component<Props, State> {
 
     render() {
         if (this.state.showSpinner) {
-            return (
-                <NavFrontendSpinner type={this.props.type || 'XL'}/>
-            );
+            return <NavFrontendSpinner type={this.props.type || 'XL'} />;
         }
         return null;
     }

@@ -1,7 +1,7 @@
 declare module 'fnr-generator' {
-    export default function fnr (date: Date): Generator;
+    export default function fnr(date: Date): Generator;
 
     interface Generator {
-         next(): {value: string};
+        next(): { value: string };
     }
 }

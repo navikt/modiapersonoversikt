@@ -12,22 +12,22 @@ interface VisittkortContainerProps {
 }
 
 class InfoTabsContainer extends React.Component<VisittkortContainerProps> {
-
     render() {
         return (
             <Innholdslaster avhengigheter={[this.props.personReducer]}>
-                <InfoTabs
-                    personRespons={((this.props.personReducer as Loaded<PersonRespons>).data)}
-                />
+                <InfoTabs personRespons={(this.props.personReducer as Loaded<PersonRespons>).data} />
             </Innholdslaster>
         );
     }
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         personReducer: state.restEndepunkter.personinformasjon
-    });
+    };
 };
 
-export default connect(mapStateToProps, null)(InfoTabsContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(InfoTabsContainer);

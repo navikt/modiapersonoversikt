@@ -80,7 +80,7 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
     const reload = (fn: () => Promise<T>) => reloadThenDispatch(fn, actionTypes);
 
     const tilbakestillReducer = (dispatch: Dispatch<Action>) => {
-        dispatch({type: actionTypes.INITIALIZE});
+        dispatch({ type: actionTypes.INITIALIZE });
     };
 
     const initialState: RestReducer<T> = {
@@ -110,12 +110,12 @@ export function createActionsAndReducer<T>(reducerNavn: string) {
                 case actionTypes.FINISHED:
                     return {
                         status: STATUS.SUCCESS,
-                        data: (<FetchSuccess<T>> action).data
+                        data: (<FetchSuccess<T>>action).data
                     } as Loaded<T>;
                 case actionTypes.FAILED:
                     return {
                         status: STATUS.FAILED,
-                        error: (<FetchError> action).error
+                        error: (<FetchError>action).error
                     } as Failed<T>;
                 case actionTypes.INITIALIZE:
                     return initialState;

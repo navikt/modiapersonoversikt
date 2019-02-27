@@ -6,8 +6,7 @@ import KnappBase from 'nav-frontend-knapper';
 
 import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
-import { EndreTilrettelagtKommunikasjonrequest }
-    from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreTilrettelagtKommunikasjonrequest } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import {
     endreTilrettelagtKommunikasjon,
     reset
@@ -45,11 +44,10 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 const Luft = styled.div`
-  margin-top: 0.5em;
+    margin-top: 0.5em;
 `;
 
 class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -76,13 +74,14 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     lagKnapper() {
         const tilrettelagtKommunikasjonKodeverk = this.props.tilrettelagtKommunikasjonKodeverk.kodeverk;
-        return tilrettelagtKommunikasjonKodeverk.map((kommunikasjonsmetode) => {
+        return tilrettelagtKommunikasjonKodeverk.map(kommunikasjonsmetode => {
             return {
                 label: kommunikasjonsmetode.beskrivelse,
                 value: kommunikasjonsmetode.kodeRef,
                 id: kommunikasjonsmetode.kodeRef,
-                checked: this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
-                    tk.kodeRef === kommunikasjonsmetode.kodeRef),
+                checked: this.props.person.tilrettelagtKomunikasjonsListe.some(
+                    tk => tk.kodeRef === kommunikasjonsmetode.kodeRef
+                )
             };
         });
     }
@@ -98,21 +97,20 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     handleOnChange(event: React.SyntheticEvent<EventTarget>, value?: string) {
         const newCheckboksState = this.state.checkbokser.map((checkboks: CheckboksProps) => {
-                if (checkboks.value === value) {
-                    return {...checkboks, checked: !checkboks.checked};
-                }
-                return checkboks;
+            if (checkboks.value === value) {
+                return { ...checkboks, checked: !checkboks.checked };
             }
-        );
+            return checkboks;
+        });
         this.setState({
             checkbokser: newCheckboksState
         });
     }
 
     erEndret() {
-        return this.state.checkbokser.some((checkboks) => {
-            const erTilrettelagt = this.props.person.tilrettelagtKomunikasjonsListe.some((tk) =>
-                checkboks.id === tk.kodeRef
+        return this.state.checkbokser.some(checkboks => {
+            const erTilrettelagt = this.props.person.tilrettelagtKomunikasjonsListe.some(
+                tk => checkboks.id === tk.kodeRef
             );
             const fjernet = !checkboks.checked && erTilrettelagt;
             const lagtTil = checkboks.checked && !erTilrettelagt;
@@ -129,20 +127,14 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     hentValgtTilrettelagtKommunikasjon() {
-        return this.state.checkbokser
-            .filter(element => element.checked)
-            .map(element => element.value);
+        return this.state.checkbokser.filter(element => element.checked).map(element => element.value);
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <CheckboksPanelGruppe
-                    checkboxes={this.state.checkbokser}
-                    legend={''}
-                    onChange={this.handleOnChange}
-                />
-                <Luft/>
+                <CheckboksPanelGruppe checkboxes={this.state.checkbokser} legend={''} onChange={this.handleOnChange} />
+                <Luft />
                 <FormKnapperWrapper>
                     <KnappBase
                         type="standard"
@@ -172,9 +164,9 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         reducerStatus: state.restEndepunkter.endreTilrettelagtKommunikasjon.status
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -186,4 +178,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TilrettelagtKommunikasjonsForm);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TilrettelagtKommunikasjonsForm);

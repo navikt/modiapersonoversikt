@@ -5,10 +5,7 @@ import renderDecoratorHead from './decorator';
 import { parseUrlForPersonIKontekst } from './utils/urlUtils';
 import App from './app/App';
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
 
 const fodselsnummer = parseUrlForPersonIKontekst(window.location);
 renderDecoratorHead(fodselsnummer);

@@ -14,22 +14,22 @@ import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { ENDASH } from '../../../../../utils/string-utils';
 
 const NameCase = styled.span`
-  text-transform: capitalize;
+    text-transform: capitalize;
 `;
 
 const ApningsTiderListe = styled.dl`
-  margin: initial;
-  padding: initial;
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  dt {
-    flex: 1 1 50%;
-  }
-  dd {
-    flex: 2 2 50%;
-    margin: 0;
-  }
+    margin: initial;
+    padding: initial;
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    dt {
+        flex: 1 1 50%;
+    }
+    dd {
+        flex: 2 2 50%;
+        margin: 0;
+    }
 `;
 
 function padMedNull(streng: string) {
@@ -41,13 +41,11 @@ function klokkeslettToString(klokkeslett: Klokkeslett) {
 }
 
 function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
-    const apningstider = publikumsMottak.apningstider.map((apningstid) => (
+    const apningstider = publikumsMottak.apningstider.map(apningstid => (
         <Fragment key={apningstid.ukedag}>
             <dt>
                 <Normaltekst>
-                    <NameCase>
-                        {apningstid.ukedag.toLowerCase()}
-                    </NameCase>
+                    <NameCase>{apningstid.ukedag.toLowerCase()}</NameCase>
                 </Normaltekst>
             </dt>
             <dd>
@@ -62,22 +60,20 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
 
     const adresse = besoksadresse
         ? `
-            ${besoksadresse.gatenavn} ${besoksadresse.husnummer || '' }${besoksadresse.husbokstav || ''}`
+            ${besoksadresse.gatenavn} ${besoksadresse.husnummer || ''}${besoksadresse.husbokstav || ''}`
         : 'Adresse ikke funnet';
     const postSted = besoksadresse ? `${besoksadresse.postnummer} ${besoksadresse.poststed}` : '';
 
     return (
         <div key={adresse}>
-            <br/>
+            <br />
             <EtikettGrå>Besøksadresse</EtikettGrå>
             <Normaltekst>{adresse}</Normaltekst>
             <Normaltekst>{postSted}</Normaltekst>
-            <br/>
+            <br />
             <EtikettGrå>Åpningstider</EtikettGrå>
-            <ApningsTiderListe>
-                {apningstider}
-            </ApningsTiderListe>
-            <br/>
+            <ApningsTiderListe>{apningstider}</ApningsTiderListe>
+            <br />
         </div>
     );
 }
@@ -87,7 +83,7 @@ function flerePublikumsmottak(antallMottak: number) {
         return (
             <>
                 <Normaltekst>Det finnes flere publikumsmottak</Normaltekst>
-                <br/>
+                <br />
             </>
         );
     }
@@ -112,16 +108,14 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsMottak[] }) {
 function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
     return (
         <>
-            <Publikumsmottak publikumsmottak={navKontor.publikumsmottak}/>
+            <Publikumsmottak publikumsmottak={navKontor.publikumsmottak} />
             <a
                 href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="lenke"
             >
-                <Normaltekst tag="span">
-                    Mer informasjon om kontoret
-                </Normaltekst>
+                <Normaltekst tag="span">Mer informasjon om kontoret</Normaltekst>
             </a>
         </>
     );
@@ -129,19 +123,19 @@ function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
 
 function IngenNavKontor() {
     return (
-        <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo/>}>
-            <br/>
+        <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
+            <br />
         </VisittkortElement>
     );
 }
 
 function NavKontorVisning(props: {
-    brukersNavKontorResponse: BrukersNavKontorResponse,
-    baseUrlsResponse: BaseUrlsResponse
+    brukersNavKontorResponse: BrukersNavKontorResponse;
+    baseUrlsResponse: BaseUrlsResponse;
 }) {
     const navKontor = props.brukersNavKontorResponse.navKontor;
     if (!navKontor) {
-        return <IngenNavKontor/>;
+        return <IngenNavKontor />;
     }
 
     const beskrivelse = `${navKontor.enhetId} ${navKontor.enhetNavn}`;
@@ -149,7 +143,7 @@ function NavKontorVisning(props: {
     const norg2Url = hentNorg2Url(props.baseUrlsResponse);
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo/>}>
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
             {navkontorInfo(navKontor, norg2Url)}
         </VisittkortElement>
     );

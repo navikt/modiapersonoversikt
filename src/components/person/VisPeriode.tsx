@@ -7,11 +7,13 @@ interface Props {
     periode: Periode;
 }
 
-function VisPeriode({periode}: Props) {
+function VisPeriode({ periode }: Props) {
     const fra = formaterDato(periode.fra);
     const til = formaterDato(periode.til);
     return (
-        <EtikettGrå>Gyldig: {fra} - {til}</EtikettGrå>
+        <EtikettGrå>
+            Gyldig: {fra} - {til}
+        </EtikettGrå>
     );
 }
 

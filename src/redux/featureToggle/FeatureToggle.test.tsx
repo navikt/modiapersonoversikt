@@ -54,5 +54,5 @@ test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
         </TestProvider>
     );
 
-    expect(result.contains(<LazySpinner type="S" delay={1000}/>)).toBe(true);
+    expect(result.contains(<LazySpinner type="S" delay={1000} />)).toBe(true);
 });

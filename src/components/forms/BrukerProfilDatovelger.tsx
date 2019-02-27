@@ -19,11 +19,11 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  > *:not(:first-child) {
-    margin-left: .5rem;
-  }
+    display: flex;
+    align-items: center;
+    > *:not(:first-child) {
+        margin-left: 0.5rem;
+    }
 `;
 
 export function tilPeriode(gyldigTil: Date) {
@@ -33,37 +33,44 @@ export function tilPeriode(gyldigTil: Date) {
     };
 }
 
-const omEtÅr = moment().add(1, 'year').toDate();
-const iMorgen = moment().add(1, 'day').toDate();
+const omEtÅr = moment()
+    .add(1, 'year')
+    .toDate();
+const iMorgen = moment()
+    .add(1, 'day')
+    .toDate();
 
 const avgrensninger: Avgrensninger = {
     minDato: iMorgen,
     maksDato: omEtÅr
 };
 
-export default function BrukerProfilDatovelger({dato, id, onChange, feil, children, innenEtÅr}: Props) {
-
+export default function BrukerProfilDatovelger({ dato, id, onChange, feil, children, innenEtÅr }: Props) {
     function handleomEtÅrHurtigvalg(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
         onChange(omEtÅr);
-        loggEvent('Hurtigvalg', 'Datovelger', {type: 'Om et år'});
+        loggEvent('Hurtigvalg', 'Datovelger', { type: 'Om et år' });
     }
 
     return (
         <>
-            <label htmlFor={id} className={'skjemaelement__label'}>{children}</label>
+            <label htmlFor={id} className={'skjemaelement__label'}>
+                {children}
+            </label>
             <Wrapper>
                 <Datovelger
-                    input={{id: id, name: 'Datovelger'}}
+                    input={{ id: id, name: 'Datovelger' }}
                     visÅrVelger={true}
                     dato={dato}
                     onChange={onChange}
                     id={id}
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
                 />
-                <KnappBase type="standard" mini={true} onClick={handleomEtÅrHurtigvalg}>Om et år</KnappBase>
+                <KnappBase type="standard" mini={true} onClick={handleomEtÅrHurtigvalg}>
+                    Om et år
+                </KnappBase>
             </Wrapper>
-            <Feilmelding feil={feil}/>
+            <Feilmelding feil={feil} />
         </>
     );
 }

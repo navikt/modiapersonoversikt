@@ -6,7 +6,9 @@ import { aremark } from '../../../../mock/person/aremark';
 
 test('Viser utbetalingercontainer med alt innhold', () => {
     const visittkortheader = renderer.create(
-        <TestProvider><UtbetalingerContainer fødselsnummer={aremark.fødselsnummer}/></TestProvider>
+        <TestProvider>
+            <UtbetalingerContainer fødselsnummer={aremark.fødselsnummer} />
+        </TestProvider>
     );
 
     const json = visittkortheader.toJSON();

@@ -10,13 +10,13 @@ test('Beregner riktig kreditortrekk fra historisk utbetaling', () => {
         trekk: [
             {
                 kreditorsNavn: 'KnusOgKneskålAS',
-                beløp: 50,
+                beløp: 50
             },
             {
                 kreditorsNavn: 'iKreditt.no',
-                beløp: 100,
-            },
-        ],
+                beløp: 100
+            }
+        ]
     };
 
     const result = getFormatertKreditortrekkFraHistoriskUtbetaling(historiskUtbetaling);

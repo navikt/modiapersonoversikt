@@ -43,23 +43,22 @@ type Props = StateProps & DispatchProps & OwnProps;
 export const saksoversiktMediaTreshold = '80rem';
 
 const SaksoversiktArticle = styled.article`
-  @media(min-width: ${saksoversiktMediaTreshold}) {
-    display: flex;
-    align-items: flex-start;
-    > *:last-child {
-      margin-left: ${theme.margin.layout};
+    @media (min-width: ${saksoversiktMediaTreshold}) {
+        display: flex;
+        align-items: flex-start;
+        > *:last-child {
+            margin-left: ${theme.margin.layout};
+        }
     }
-  }
-  .visually-hidden {
-    ${theme.visuallyHidden}
-  }
-  > * {
-    margin-bottom: ${theme.margin.layout};
-  }
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+    > * {
+        margin-bottom: ${theme.margin.layout};
+    }
 `;
 
 class SaksoversiktContainer extends React.PureComponent<Props> {
-
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
         if (isNotStarted(this.props.baseUrlReducer)) {
@@ -74,18 +73,15 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
     }
 
     render() {
-
         if (this.props.visDokument) {
-            return (
-                <DokumentOgVedlegg/>
-            );
+            return <DokumentOgVedlegg />;
         } else {
             return (
                 <SaksoversiktArticle>
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
-                        <SakstemaListeContainer/>
-                        <DokumentListeContainer/>
+                        <SakstemaListeContainer />
+                        <DokumentListeContainer />
                     </Innholdslaster>
                 </SaksoversiktArticle>
             );
@@ -94,28 +90,26 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
         personReducer: state.restEndepunkter.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentBaseUrls: () =>
-            dispatch(hentBaseUrls()),
-        hentSaksoversikt: (fødselsnummer: string) =>
-            dispatch(hentSaksoversikt(fødselsnummer)),
-        reloadSaksoversikt: (fødselsnummer: string) =>
-            dispatch(reloadSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer =>
-            hentAllPersonData(dispatch, fødselsnummer),
-        skjulDokumentOgVisSaksoversikt: () =>
-            dispatch(settVisDokument(false))
+        hentBaseUrls: () => dispatch(hentBaseUrls()),
+        hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
+        reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
+        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SaksoversiktContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SaksoversiktContainer);

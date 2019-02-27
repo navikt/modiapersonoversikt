@@ -13,22 +13,18 @@ interface Props {
     fødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
 class BrukerprofilStandalone extends React.Component<Props> {
-
     render() {
         return (
             <ErrorBoundary>
                 <Provider store={store}>
-                    <BrukerprofilSide fødselsnummer={this.props.fødselsnummer}/>
+                    <BrukerprofilSide fødselsnummer={this.props.fødselsnummer} />
                 </Provider>
             </ErrorBoundary>
         );

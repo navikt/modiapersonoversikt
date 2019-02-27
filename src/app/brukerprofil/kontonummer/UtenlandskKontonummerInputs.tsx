@@ -42,7 +42,6 @@ interface LoadedProps {
 type Props = OwnProps & DispatchProps;
 
 class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
-
     constructor(props: Props & StateProps) {
         super(props);
 
@@ -57,9 +56,7 @@ class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
 
     render() {
         return (
-            <Innholdslaster
-                avhengigheter={[this.props.valutaKodeverkReducer, this.props.landKodeverkReducer]}
-            >
+            <Innholdslaster avhengigheter={[this.props.valutaKodeverkReducer, this.props.landKodeverkReducer]}>
                 <Inputs
                     {...this.props}
                     valutaKodeverkReducer={this.props.valutaKodeverkReducer as Loaded<KodeverkResponse>}
@@ -80,64 +77,70 @@ function Inputs(props: Props & LoadedProps) {
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({banknavn: event.target.value})}
+                onChange={event => props.updateBankkontoInputsState({ banknavn: event.target.value })}
                 feil={validering.banknavn.skjemafeil}
             />
             <Input
                 label="Bankens adresse"
                 value={bankkonto.adresse.linje1}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({
-                    adresse: {
-                        ...props.bankkonto.adresse,
-                        linje1: event.target.value
-                    }
-                })}
-                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
+                onChange={event =>
+                    props.updateBankkontoInputsState({
+                        adresse: {
+                            ...props.bankkonto.adresse,
+                            linje1: event.target.value
+                        }
+                    })
+                }
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
                 value={bankkonto.adresse.linje2}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({
-                    adresse: {
-                        ...props.bankkonto.adresse,
-                        linje2: event.target.value
-                    }
-                })}
-                feil={!validering.adresse.erGyldig ? {feilmelding: ''} : undefined}
+                onChange={event =>
+                    props.updateBankkontoInputsState({
+                        adresse: {
+                            ...props.bankkonto.adresse,
+                            linje2: event.target.value
+                        }
+                    })
+                }
+                feil={!validering.adresse.erGyldig ? { feilmelding: '' } : undefined}
             />
             <Input
                 label=""
                 value={bankkonto.adresse.linje3}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({
-                    adresse: {
-                        ...props.bankkonto.adresse,
-                        linje3: event.target.value
-                    }
-                })}
+                onChange={event =>
+                    props.updateBankkontoInputsState({
+                        adresse: {
+                            ...props.bankkonto.adresse,
+                            linje3: event.target.value
+                        }
+                    })
+                }
                 feil={validering.adresse.skjemafeil}
             />
             <Input
                 label="BC/SWIFT-kode"
                 value={bankkonto.swift}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({swift: event.target.value})}
+                onChange={event => props.updateBankkontoInputsState({ swift: event.target.value })}
                 feil={validering.swift.skjemafeil}
             />
             <Input
                 label="Kontonummer eller IBAN"
                 value={bankkonto.utenlandskKontonummer}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({utenlandskKontonummer: event.target.value})}
+                onChange={event => props.updateBankkontoInputsState({ utenlandskKontonummer: event.target.value })}
                 feil={validering.utenlandskKontonummer.skjemafeil}
             />
             <Input
                 label="Bankkode"
                 value={bankkonto.bankkode}
                 onKeyPress={ignoreEnter}
-                onChange={event => props.updateBankkontoInputsState({bankkode: event.target.value})}
+                onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
                 feil={validering.bankkode.skjemafeil}
             />
             <VelgValuta {...props} />
@@ -146,15 +149,13 @@ function Inputs(props: Props & LoadedProps) {
 }
 
 function VelgLand(props: Props & LoadedProps) {
-    const options = props.landKodeverkReducer.data.kodeverk
-        .sort(alfabetiskKodeverkComparator)
-        .map(landKodeverk => {
-            return (
-                <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
-                    {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)} ({landKodeverk.kodeRef})
-                </option>
-            );
-        });
+    const options = props.landKodeverkReducer.data.kodeverk.sort(alfabetiskKodeverkComparator).map(landKodeverk => {
+        return (
+            <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
+                {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)} ({landKodeverk.kodeRef})
+            </option>
+        );
+    });
     return (
         <Select
             label="Velg land"
@@ -162,7 +163,9 @@ function VelgLand(props: Props & LoadedProps) {
             feil={props.bankkontoValidering.felter.landkode.skjemafeil}
             onChange={event => handleLandChange(props, event)}
         >
-            <option key="default" disabled={true} value="">Velg Land</option>
+            <option key="default" disabled={true} value="">
+                Velg Land
+            </option>
             {options}
         </Select>
     );
@@ -185,40 +188,45 @@ function VelgValuta(props: Props & LoadedProps) {
             feil={props.bankkontoValidering.felter.valuta.skjemafeil}
             onChange={event => handleValutaChange(props, event)}
         >
-            <option key="default" disabled={true} value="">Velg valuta</option>
+            <option key="default" disabled={true} value="">
+                Velg valuta
+            </option>
             {options}
         </Select>
     );
 }
 
 function handleLandChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
-    const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk
-            .find(kodeverk => kodeverk.kodeRef === event.target.value)
-        || {kodeRef: '', beskrivelse: ''};
+    const valgtKodeverk: Kodeverk = props.landKodeverkReducer.data.kodeverk.find(
+        kodeverk => kodeverk.kodeRef === event.target.value
+    ) || { kodeRef: '', beskrivelse: '' };
 
-    props.updateBankkontoInputsState({landkode: valgtKodeverk});
+    props.updateBankkontoInputsState({ landkode: valgtKodeverk });
 }
 
 function handleValutaChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
-    const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk
-            .find(kodeverk => kodeverk.kodeRef === event.target.value)
-        || {kodeRef: '', beskrivelse: ''};
+    const valgtKodeverk: Kodeverk = props.valutaKodeverkReducer.data.kodeverk.find(
+        kodeverk => kodeverk.kodeRef === event.target.value
+    ) || { kodeRef: '', beskrivelse: '' };
 
-    props.updateBankkontoInputsState({valuta: valgtKodeverk});
+    props.updateBankkontoInputsState({ valuta: valgtKodeverk });
 }
 
 const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
-    return ({
+    return {
         hentValutaKodeverk: () => dispatch(valutaKodeverkReducer.hentValutaer()),
         hentLandKodeverk: () => dispatch(landKodeverkReducer.hentLandKodeverk())
-    });
+    };
 };
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         valutaKodeverkReducer: state.restEndepunkter.valutaReducer,
         landKodeverkReducer: state.restEndepunkter.landReducer
-    });
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UtenlandskKontonrInputs);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UtenlandskKontonrInputs);

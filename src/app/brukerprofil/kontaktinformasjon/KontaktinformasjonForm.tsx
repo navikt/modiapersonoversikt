@@ -68,11 +68,11 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 const InputWrapper = styled.div`
-  margin-top: 1em;
+    margin-top: 1em;
 `;
 
 const TelefonWrapper = styled.div`
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 `;
 
 function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
@@ -100,7 +100,6 @@ function getTelefonHvisSatt(telefon: TelefonInput) {
 }
 
 class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformasjonState> {
-
     constructor(props: Props) {
         super(props);
 
@@ -175,7 +174,6 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
             mobil: {
                 ...this.state.inputs.mobil,
                 retningsnummer: input
-
             }
         });
         this.resetReducer();
@@ -238,9 +236,9 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
 
         const validerinsResultat = this.getValideringsResultat();
         const formErGyldig =
-            validerinsResultat.mobil.formErGyldig
-            && validerinsResultat.jobb.formErGyldig
-            && validerinsResultat.hjem.formErGyldig;
+            validerinsResultat.mobil.formErGyldig &&
+            validerinsResultat.jobb.formErGyldig &&
+            validerinsResultat.hjem.formErGyldig;
 
         if (!formErGyldig) {
             this.setState({
@@ -308,7 +306,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                         >
                             Mobiltelefon
                         </TelefonInput>
-                        <TelefonMetadata telefon={this.props.person.kontaktinformasjon.mobil}/>
+                        <TelefonMetadata telefon={this.props.person.kontaktinformasjon.mobil} />
                     </TelefonWrapper>
                     <TelefonWrapper>
                         <TelefonInput
@@ -321,7 +319,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                             Hjemmenummer
                         </TelefonInput>
                     </TelefonWrapper>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon} />
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.inputs.jobb}
@@ -331,7 +329,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                     >
                         Jobbnummer
                     </TelefonInput>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon} />
                 </InputWrapper>
                 <FormKnapperWrapper>
                     <KnappBase
@@ -352,15 +350,14 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 </FormKnapperWrapper>
                 {this.Tilbakemelding()}
             </form>
-
         );
     }
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         reducerStatus: state.restEndepunkter.endreKontaktinformasjonReducer.status
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -372,4 +369,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonForm);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(KontaktinformasjonForm);

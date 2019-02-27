@@ -28,14 +28,14 @@ interface NavnInputProps {
     onChange: (input: string) => void;
 }
 
-function NavnInput({label, state, onChange}: NavnInputProps) {
-    const feilmelding = state.feilmelding ? {feilmelding: state.feilmelding} : undefined;
+function NavnInput({ label, state, onChange }: NavnInputProps) {
+    const feilmelding = state.feilmelding ? { feilmelding: state.feilmelding } : undefined;
     return (
         <Input
             label={label}
             name={label}
             value={state.input}
-            onChange={(event) => onChange(event.target.value.toUpperCase())}
+            onChange={event => onChange(event.target.value.toUpperCase())}
             onKeyPress={ignoreEnter}
             feil={feilmelding}
         />
@@ -66,7 +66,6 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 class EndreNavnForm extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
 
@@ -211,29 +210,17 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     render() {
-        const kanEndreNavn = veilederHarPåkrevdRolleForEndreNavn(this.props.veilederRoller) &&
-            brukersNavnKanEndres(this.props.person);
+        const kanEndreNavn =
+            veilederHarPåkrevdRolleForEndreNavn(this.props.veilederRoller) && brukersNavnKanEndres(this.props.person);
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormFieldSet disabled={!kanEndreNavn}>
                     <Undertittel>Navn</Undertittel>
                     {visEndringsinfo(this.props.person.navn.endringsinfo)}
-                    <EndreNavnInfomeldingWrapper person={this.props.person} veilderRoller={this.props.veilederRoller}/>
-                    <NavnInput
-                        label="Fornavn"
-                        state={this.state.fornavn}
-                        onChange={this.fornavnInputChange}
-                    />
-                    <NavnInput
-                        label="Mellomnavn"
-                        state={this.state.mellomnavn}
-                        onChange={this.mellomnavnInputChange}
-                    />
-                    <NavnInput
-                        label="Etternavn"
-                        state={this.state.etternavn}
-                        onChange={this.etternavnInputChange}
-                    />
+                    <EndreNavnInfomeldingWrapper person={this.props.person} veilderRoller={this.props.veilederRoller} />
+                    <NavnInput label="Fornavn" state={this.state.fornavn} onChange={this.fornavnInputChange} />
+                    <NavnInput label="Mellomnavn" state={this.state.mellomnavn} onChange={this.mellomnavnInputChange} />
+                    <NavnInput label="Etternavn" state={this.state.etternavn} onChange={this.etternavnInputChange} />
                     <FormKnapperWrapper>
                         <KnappBase
                             type="standard"
@@ -251,25 +238,23 @@ class EndreNavnForm extends React.Component<Props, State> {
                             Endre navn
                         </KnappBase>
                     </FormKnapperWrapper>
-                    {!this.state.formErEndret
-                        ? (<RequestTilbakemelding
+                    {!this.state.formErEndret ? (
+                        <RequestTilbakemelding
                             status={this.props.reducerStatus}
                             onSuccess={'Navnet ble endret. Det kan ta noe tid før endringen blir synlig'}
                             onError={'Det skjedde en feil ved endring av navn.'}
-                        />)
-                        : null
-                    }
+                        />
+                    ) : null}
                 </FormFieldSet>
             </form>
-
         );
     }
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         reducerStatus: state.restEndepunkter.endreNavn.status
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -279,4 +264,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EndreNavnForm);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EndreNavnForm);

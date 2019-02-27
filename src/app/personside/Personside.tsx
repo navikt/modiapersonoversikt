@@ -17,14 +17,11 @@ interface PersonsideStateProps {
 
 const onError = (
     <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av persondata.
-        </AlertStripe>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av persondata.</AlertStripe>
     </FillCenterAndFadeIn>
 );
 
 class Personside extends React.PureComponent<PersonsideStateProps> {
-
     constructor(props: PersonsideStateProps) {
         super(props);
     }
@@ -33,22 +30,15 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
         const personReducer = this.props.personReducer;
 
         if (isLoaded(personReducer) && erPersonResponsAvTypeBegrensetTilgang(personReducer.data)) {
-            return (
-                <BegrensetTilgangSide person={personReducer.data}/>
-            );
+            return <BegrensetTilgangSide person={personReducer.data} />;
         } else {
-            return (
-                <MainLayout/>
-            );
+            return <MainLayout />;
         }
     }
 
     render() {
         return (
-            <Innholdslaster
-                avhengigheter={[this.props.personReducer]}
-                returnOnError={onError}
-            >
+            <Innholdslaster avhengigheter={[this.props.personReducer]} returnOnError={onError}>
                 {this.getSideinnhold()}
             </Innholdslaster>
         );
@@ -56,10 +46,12 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 }
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
-
     return {
         personReducer: state.restEndepunkter.personinformasjon
     };
 }
 
-export default connect(mapStateToProps, null)(Personside);
+export default connect(
+    mapStateToProps,
+    null
+)(Personside);

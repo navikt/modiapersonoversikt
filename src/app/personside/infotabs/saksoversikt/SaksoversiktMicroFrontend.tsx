@@ -50,19 +50,27 @@ const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
     align-items: flex-start;
     width: 100vw;
     > *:last-child {
-      width: 70%;
-      ${props => !props.visDokument && css`display: none`};
-      margin-left: ${theme.margin.layout};
+        width: 70%;
+        ${props =>
+            !props.visDokument &&
+            css`
+                display: none;
+            `};
+        margin-left: ${theme.margin.layout};
     }
     > *:first-child {
-      ${props => props.visDokument && css`display: none`};
-      margin-right: ${theme.margin.layout};
+        ${props =>
+            props.visDokument &&
+            css`
+                display: none;
+            `};
+        margin-right: ${theme.margin.layout};
     }
     > *:not(:last-child) {
-      overflow-y: scroll;
+        overflow-y: scroll;
     }
     > * {
-      height: 100%;
+        height: 100%;
     }
 `;
 
@@ -71,9 +79,11 @@ function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string, journal
         return aggregertSakstema(sakstemaListe);
     }
 
-    return sakstemaListe.find(sakstema =>
-        sakstema.temakode === sakstemaKode &&
-        (sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId) !== undefined));
+    return sakstemaListe.find(
+        sakstema =>
+            sakstema.temakode === sakstemaKode &&
+            sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId) !== undefined
+    );
 }
 
 function hentUtDokumentMetadata(sakstema: Sakstema, journalpostId: string): DokumentMetadata | undefined {
@@ -119,7 +129,6 @@ function hentQueryParametreFraUrlOgVisDokument(props: Props) {
 }
 
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
-
     componentDidMount() {
         this.props.setErMicroFrontend();
         if (isNotStarted(this.props.saksoversiktReducer)) {
@@ -143,9 +152,9 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
         return (
             <SaksoversiktArticle visDokument={this.props.visDokument}>
                 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
-                    <SakstemaListeContainer/>
-                    <DokumentListeContainer/>
-                    <DokumentOgVedlegg/>
+                    <SakstemaListeContainer />
+                    <DokumentListeContainer />
+                    <DokumentOgVedlegg />
                 </Innholdslaster>
             </SaksoversiktArticle>
         );
@@ -153,11 +162,11 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
+    return {
         visDokument: state.saksoversikt.visDokument,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
         personReducer: state.restEndepunkter.personinformasjon
-    });
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -174,4 +183,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SaksoversiktMicroFrontend);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SaksoversiktMicroFrontend);

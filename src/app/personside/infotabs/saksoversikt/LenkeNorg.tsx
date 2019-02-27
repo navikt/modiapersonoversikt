@@ -19,17 +19,14 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
-    const temaArray: string[] = sakstema.dokumentMetadata.reduce(
-        (acc: string[], dok: DokumentMetadata) => {
-            const tema = dok.temakode;
-            if (acc.includes(tema)) {
-                return acc;
-            } else {
-                return [...acc, tema];
-            }
-        },
-        []
-    );
+    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: DokumentMetadata) => {
+        const tema = dok.temakode;
+        if (acc.includes(tema)) {
+            return acc;
+        } else {
+            return [...acc, tema];
+        }
+    }, []);
     return temaArray.join();
 }
 
@@ -51,15 +48,9 @@ function LenkeNorg(props: StateProps) {
     const norgUrl = lenkeNorg2Frontend(props);
 
     return (
-        <a
-            className="lenke"
-            target={'_blank'}
-            rel={'noopener noreferrer'}
-            href={norgUrl}
-        >
+        <a className="lenke" target={'_blank'} rel={'noopener noreferrer'} href={norgUrl}>
             <Normaltekst>Oversikt over enheter og tema de behandler</Normaltekst>
         </a>
-
     );
 }
 

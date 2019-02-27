@@ -10,17 +10,17 @@ interface Props {
 }
 
 class EpostContainer extends React.Component<Props> {
-
     render() {
-        return (
-            <Epost kontaktinformasjonReducer={this.props.kontaktinformasjon} />
-        );
+        return <Epost kontaktinformasjonReducer={this.props.kontaktinformasjon} />;
     }
 }
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         kontaktinformasjon: state.restEndepunkter.kontaktinformasjon
-    });
+    };
 };
 
-export default connect(mapStateToProps, null)(EpostContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(EpostContainer);

@@ -4,9 +4,9 @@ interface Props {
     harSammeBosted?: boolean;
 }
 
-function BorMedBruker({harSammeBosted}: Props) {
+function BorMedBruker({ harSammeBosted }: Props) {
     if (harSammeBosted === undefined) {
-       return null;
+        return null;
     } else if (harSammeBosted) {
         return <>Bor med bruker</>;
     } else {

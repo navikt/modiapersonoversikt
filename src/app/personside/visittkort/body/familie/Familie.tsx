@@ -10,13 +10,13 @@ interface Props {
     person: Person;
 }
 
-function Familie({person}: Props) {
-    const foreldre = person.alder <= 21 ? (<Foreldre familierelasjoner={person.familierelasjoner}/>) : <></>;
+function Familie({ person }: Props) {
+    const foreldre = person.alder <= 21 ? <Foreldre familierelasjoner={person.familierelasjoner} /> : <></>;
 
     return (
         <VisittkortGruppe tittel={'Familie'}>
-            <Sivilstand person={person}/>
-            <ListeAvBarn relasjoner={person.familierelasjoner}/>
+            <Sivilstand person={person} />
+            <ListeAvBarn relasjoner={person.familierelasjoner} />
             {foreldre}
         </VisittkortGruppe>
     );

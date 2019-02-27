@@ -25,7 +25,6 @@ interface OwnProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 class VelgLandContainer extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -53,9 +52,9 @@ class VelgLandContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
-        landReducer: state.restEndepunkter.landReducer,
-    });
+    return {
+        landReducer: state.restEndepunkter.landReducer
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -64,4 +63,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VelgLandContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VelgLandContainer);

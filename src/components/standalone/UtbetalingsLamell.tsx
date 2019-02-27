@@ -13,10 +13,7 @@ interface Props {
     fødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
@@ -28,7 +25,7 @@ class UtbetalingsLamell extends React.Component<Props> {
             <ErrorBoundary>
                 <PersonContext.Provider value={this.props.fødselsnummer}>
                     <Provider store={store}>
-                        <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer}/>
+                        <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer} />
                     </Provider>
                 </PersonContext.Provider>
             </ErrorBoundary>

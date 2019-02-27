@@ -21,25 +21,25 @@ interface State {
 }
 
 const Wrapper = styled.div`
-   @page {
-        size: auto;        
+    @page {
+        size: auto;
     }
     @media print {
-      margin: 5mm;
-      display: block;
+        margin: 5mm;
+        display: block;
     }
     .visually-hidden {
-      display: none;
+        display: none;
     }
 `;
 
 const Header = styled.div`
     > * {
-      margin-bottom: 1rem;
-    }    
+        margin-bottom: 1rem;
+    }
     display: none;
     @media print {
-      display: flex;
+        display: flex;
     }
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@ const Header = styled.div`
 
 const PrintPlaceholder = styled.div`
     > *:first-child {
-      margin-bottom: 1rem;
+        margin-bottom: 1rem;
     }
     padding: 1rem;
     display: flex;
@@ -57,10 +57,10 @@ const PrintPlaceholder = styled.div`
 `;
 
 const StyledIframe = styled.iframe`
-  display: none;
-  @media print {
-    display: block;
-  }
+    display: none;
+    @media print {
+        display: block;
+    }
 `;
 
 class Printer extends React.Component<Props, State> {
@@ -81,9 +81,11 @@ class Printer extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props, prevState: State) {
         const printBleStartet = this.state.printing && !prevState.printing;
         if (printBleStartet) {
-            setTimeout( // SetTimetout for å gjøre kallet asynkront og tillate rendering av react-collapse
+            setTimeout(
+                // SetTimetout for å gjøre kallet asynkront og tillate rendering av react-collapse
                 () => this.printElement(),
-                0);
+                0
+            );
         }
     }
 
@@ -141,12 +143,10 @@ class Printer extends React.Component<Props, State> {
                 <div id={this.contentId}>
                     <Wrapper className="ikke-skjul-ved-print-i-gamlemodia">
                         <Header>
-                            <NavLogo/>
+                            <NavLogo />
                             <Normaltekst>Utskriftsdato: {datoVerbose().sammensattMedKlokke}</Normaltekst>
                             <PersonContext.Consumer>
-                                {fødselsnummer =>
-                                    <Normaltekst>Brukers Fødselsnummer: {fødselsnummer}</Normaltekst>
-                                }
+                                {fødselsnummer => <Normaltekst>Brukers Fødselsnummer: {fødselsnummer}</Normaltekst>}
                             </PersonContext.Consumer>
                         </Header>
                         {this.props.children}
@@ -158,10 +158,12 @@ class Printer extends React.Component<Props, State> {
                     onRequestClose={() => null}
                     closeButton={false}
                 >
-                    <StyledIframe id={this.iFrameId} frameBorder={'0'}/>
+                    <StyledIframe id={this.iFrameId} frameBorder={'0'} />
                     <PrintPlaceholder>
-                        <Normaltekst><Bold>Forbereder utskrift</Bold></Normaltekst>
-                        <NavFrontendSpinner type="S"/>
+                        <Normaltekst>
+                            <Bold>Forbereder utskrift</Bold>
+                        </Normaltekst>
+                        <NavFrontendSpinner type="S" />
                     </PrintPlaceholder>
                 </ModalWrapper>
             </>

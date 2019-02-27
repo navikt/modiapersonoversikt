@@ -19,11 +19,9 @@ export interface InnholdslasterProps {
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: STATUS[]) => (element: RestReducer<object>) => array(status).includes(element.status);
-const harGyldigResponse = ((reducer: RestReducer<object>) => (reducer as Loaded<object>).data !== undefined);
-const alleLastet = (avhengigheter: RestReducer<object>[]) => (
-    avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) &&
-    avhengigheter.every(harGyldigResponse)
-);
+const harGyldigResponse = (reducer: RestReducer<object>) => (reducer as Loaded<object>).data !== undefined;
+const alleLastet = (avhengigheter: RestReducer<object>[]) =>
+    avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) && avhengigheter.every(harGyldigResponse);
 const alleHarValidResponse = (avhengigheter: RestReducer<object>[]) =>
     avhengigheter.filter(harStatus(STATUS.SUCCESS)).every(harGyldigResponse);
 const noenHarFeil = (avhengigheter: RestReducer<object>[]) => {
@@ -38,36 +36,33 @@ function Feilvisning(props: { onError?: React.ReactChildren | React.ReactChild }
     }
     return (
         <FillCenterAndFadeIn>
-            <AlertStripe type="advarsel">
-                Feil ved lasting av data
-            </AlertStripe>
+            <AlertStripe type="advarsel">Feil ved lasting av data</AlertStripe>
         </FillCenterAndFadeIn>
     );
 }
 
-function Pending(props: { onPending?: React.ReactChildren | React.ReactChild, spinnerSize?: SpinnerSize }) {
+function Pending(props: { onPending?: React.ReactChildren | React.ReactChild; spinnerSize?: SpinnerSize }) {
     if (props.onPending) {
         return <>{props.onPending}</>;
     }
     return (
         <FillCenterAndFadeIn>
-            <NavFrontendSpinner type={props.spinnerSize || 'XXL'}/>
+            <NavFrontendSpinner type={props.spinnerSize || 'XXL'} />
         </FillCenterAndFadeIn>
     );
 }
 
 class Innholdslaster extends React.Component<InnholdslasterProps> {
-
     render() {
-        const {avhengigheter, children, returnOnPending, returnOnError, spinnerSize} = this.props;
+        const { avhengigheter, children, returnOnPending, returnOnError, spinnerSize } = this.props;
         const alleAvhengigheterErLastetOK = alleLastet(avhengigheter) && alleHarValidResponse(avhengigheter);
 
         if (alleAvhengigheterErLastetOK) {
             return children || null;
         } else if (noenHarFeil(avhengigheter)) {
-            return <Feilvisning onError={returnOnError}/>;
+            return <Feilvisning onError={returnOnError} />;
         } else {
-            return <Pending onPending={returnOnPending} spinnerSize={spinnerSize}/>;
+            return <Pending onPending={returnOnPending} spinnerSize={spinnerSize} />;
         }
     }
 }

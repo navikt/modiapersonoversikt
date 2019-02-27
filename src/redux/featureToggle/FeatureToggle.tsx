@@ -45,7 +45,7 @@ class FeatureToggle extends React.PureComponent<Props> {
     render() {
         const pending = this.props.isOn === undefined;
         if (pending) {
-            return <LazySpinner type="S" delay={1000}/>;
+            return <LazySpinner type="S" delay={1000} />;
         }
 
         if (this.shouldDisplay()) {
@@ -68,4 +68,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch, ownProps: OwnProps): Dispat
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeatureToggle);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FeatureToggle);

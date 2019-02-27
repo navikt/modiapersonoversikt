@@ -26,8 +26,8 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     const identHash = md5(getSaksbehandlerIdent() || '');
     const event = {
         table: 'modiapersonoversikt',
-        fields: {...fields, identHash: identHash},
-        tags: {action: action, location: location, ...extraTags}
+        fields: { ...fields, identHash: identHash },
+        tags: { action: action, location: location, ...extraTags }
     };
     // @ts-ignore
     window['frontendlogger'].event(

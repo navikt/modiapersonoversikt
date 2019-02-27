@@ -3,7 +3,7 @@ import * as React from 'react';
 import { STATUS } from '../../../../redux/restReducers/utils';
 import RequestTilbakemelding from '../../RequestTilbakemelding';
 
-export default function SubmitFeedback(props: {visFeedback: boolean, status: STATUS}) {
+export default function SubmitFeedback(props: { visFeedback: boolean; status: STATUS }) {
     if (!props.visFeedback) {
         return null;
     }

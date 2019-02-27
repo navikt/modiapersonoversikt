@@ -30,12 +30,13 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 const VisittkortBodyWrapper = styled.div`
-  &:focus{${theme.focus}}
-  border-radius: ${theme.borderRadius.layout};
+    &:focus {
+        ${theme.focus}
+    }
+    border-radius: ${theme.borderRadius.layout};
 `;
 
 class VisittkortContainer extends React.PureComponent<Props> {
-
     private detaljerRef = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
@@ -51,12 +52,14 @@ class VisittkortContainer extends React.PureComponent<Props> {
     }
 
     render() {
-        const {person, visittkortErApent: erApnet, toggleVisittkort: toggle} = this.props;
+        const { person, visittkortErApent: erApnet, toggleVisittkort: toggle } = this.props;
         const tabIndexForFokus = erApnet ? -1 : undefined;
         /* undefided så fokus ikke skal bli hengende ved lukking */
-        const visittkortHotkeys = erNyePersonoversikten()
-            ? <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>
-            : <HandleVisittkortHotkeysGamlemodia/>;
+        const visittkortHotkeys = erNyePersonoversikten() ? (
+            <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer} />
+        ) : (
+            <HandleVisittkortHotkeysGamlemodia />
+        );
         return (
             <ErrorBoundary>
                 <AriaNotification
@@ -65,14 +68,14 @@ class VisittkortContainer extends React.PureComponent<Props> {
                 />
                 {visittkortHotkeys}
                 <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
-                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet}/>
+                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
                     <VisittkortBodyWrapper
                         tabIndex={tabIndexForFokus}
                         ref={this.detaljerRef}
                         className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper"
                     >
                         <UnmountClosed isOpened={erApnet}>
-                            <VisittkortBody person={person}/>
+                            <VisittkortBody person={person} />
                         </UnmountClosed>
                     </VisittkortBodyWrapper>
                 </article>
@@ -94,4 +97,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisittkortContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VisittkortContainer);

@@ -19,11 +19,11 @@ function checkIfLoggedToday(id: string) {
 }
 
 function setLoggedTodayCookie(id: string) {
-    const tomorrow = moment().add(1, 'day').startOf('day').toDate();
-    Cookies.set(
-        id,
-        id + ' was reported ' + formaterDato(new Date()),
-        {
-            expires: tomorrow
-        });
+    const tomorrow = moment()
+        .add(1, 'day')
+        .startOf('day')
+        .toDate();
+    Cookies.set(id, id + ' was reported ' + formaterDato(new Date()), {
+        expires: tomorrow
+    });
 }

@@ -11,11 +11,7 @@ interface Props {
     vergemalReducer: RestReducer<Vergemal>;
 }
 
-const feilmelding = () => (
-    <AlertStripe type="advarsel">
-        Feil ved lasting av vergemål
-    </AlertStripe>
-);
+const feilmelding = () => <AlertStripe type="advarsel">Feil ved lasting av vergemål</AlertStripe>;
 
 class VergemalContainer extends React.Component<Props> {
     render() {
@@ -25,16 +21,19 @@ class VergemalContainer extends React.Component<Props> {
                 avhengigheter={[this.props.vergemalReducer]}
                 spinnerSize={'L'}
             >
-                <VergemalWrapper vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data}/>
+                <VergemalWrapper vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data} />
             </Innholdslaster>
         );
     }
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
+    return {
         vergemalReducer: state.restEndepunkter.vergemal
-    });
+    };
 };
 
-export default connect(mapStateToProps, null)(VergemalContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(VergemalContainer);

@@ -13,11 +13,11 @@ interface BegrensetTilgangProps {
     person: BegrensetTilgang;
 }
 
-function BegrensetTilgangSide({person}: BegrensetTilgangProps) {
+function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>
             <AlertStripe type="advarsel">
-                <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse}/>
+                <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse} />
                 {visSikkerhetstiltak(person.sikkerhetstiltak)}
             </AlertStripe>
         </FillCenterAndFadeIn>
@@ -39,9 +39,7 @@ function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak) {
 
 function hentPeriode(periode?: Periode) {
     if (periode != null) {
-        return (
-            <VisPeriode periode={periode}/>
-        );
+        return <VisPeriode periode={periode} />;
     }
     return null;
 }

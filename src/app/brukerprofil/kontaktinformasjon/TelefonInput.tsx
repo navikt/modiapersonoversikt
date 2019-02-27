@@ -16,11 +16,11 @@ import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 
 const TelefonnummerWrapper = styled.div`
-  flex: auto;
+    flex: auto;
 `;
 
 const TelefonInputWrapper = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 interface TelefonInputProps {
@@ -32,20 +32,21 @@ interface TelefonInputProps {
     telfonnummerInputChange: (input: string) => void;
 }
 
-export function TelefonMetadata(props: {telefon: Telefon | undefined}) {
-    if (! props.telefon) {
+export function TelefonMetadata(props: { telefon: Telefon | undefined }) {
+    if (!props.telefon) {
         return null;
     }
 
     const formatertDato = formaterDato(props.telefon.sistEndret);
     const endretAv = endretAvTekst(props.telefon.sistEndretAv);
     return (
-        <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
+        <EtikettGrå>
+            Endret {formatertDato} {endretAv}
+        </EtikettGrå>
     );
 }
 
 export function TelefonInput(props: TelefonInputProps) {
-
     return (
         <>
             <Ingress>{props.children}</Ingress>
@@ -64,7 +65,8 @@ export function TelefonInput(props: TelefonInputProps) {
                         feil={props.valideringsresultat.felter.identifikator.skjemafeil}
                         onKeyPress={ignoreEnter}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.telfonnummerInputChange(event.target.value)}
+                            props.telfonnummerInputChange(event.target.value)
+                        }
                     />
                 </TelefonnummerWrapper>
             </TelefonInputWrapper>

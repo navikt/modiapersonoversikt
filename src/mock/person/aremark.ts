@@ -75,8 +75,8 @@ export const aremark: Person = {
         }
     },
     sikkerhetstiltak: {
-        sikkerhetstiltaksbeskrivelse: 'Får verken møte opp på NAV-kontor eller ringe på telefon ' +
-        'grunnet truende oppførsel og språk.',
+        sikkerhetstiltaksbeskrivelse:
+            'Får verken møte opp på NAV-kontor eller ringe på telefon ' + 'grunnet truende oppførsel og språk.',
         sikkerhetstiltakskode: SikkerhetstiltakTyper.FysiskOgTelefonUtestengelse,
         periode: {
             fra: '2005-12-12',
@@ -113,68 +113,72 @@ export const aremark: Person = {
         beskrivelse: 'Gift',
         fraOgMed: '2005-12-12'
     },
-    familierelasjoner: [{
-        rolle: Relasjonstype.Barn,
-        tilPerson: {
-            navn: null,
-            diskresjonskode: {
-                kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
-                beskrivelse: 'Sperret adresse, fortrolig'
-            },
-            personstatus: {}
+    familierelasjoner: [
+        {
+            rolle: Relasjonstype.Barn,
+            tilPerson: {
+                navn: null,
+                diskresjonskode: {
+                    kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE,
+                    beskrivelse: 'Sperret adresse, fortrolig'
+                },
+                personstatus: {}
+            }
+        },
+        {
+            rolle: Relasjonstype.Barn,
+            tilPerson: {
+                navn: null,
+                diskresjonskode: {
+                    kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                    beskrivelse: 'Sperret adresse, strengt fortrolig'
+                },
+                personstatus: {}
+            }
+        },
+        {
+            harSammeBosted: true,
+            rolle: Relasjonstype.Barn,
+            tilPerson: {
+                fødselsnummer: '10117100000',
+                navn: {
+                    sammensatt: 'Siri Bellomnavn Aremark',
+                    fornavn: 'Siri',
+                    mellomnavn: 'Bellomnavn',
+                    etternavn: 'Aremark'
+                },
+                personstatus: {},
+                alder: 15
+            }
+        },
+        {
+            harSammeBosted: false,
+            rolle: Relasjonstype.Barn,
+            tilPerson: {
+                fødselsnummer: '10117100100',
+                navn: {
+                    sammensatt: 'Ola Ballomnavn Aremark',
+                    fornavn: 'Ola',
+                    mellomnavn: 'Ballomnavn',
+                    etternavn: 'Aremark'
+                },
+                personstatus: {},
+                alderMåneder: 5
+            }
+        },
+        {
+            harSammeBosted: false,
+            rolle: Relasjonstype.Ektefelle,
+            tilPerson: {
+                navn: null,
+                diskresjonskode: {
+                    kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
+                    beskrivelse: 'Sperret adresse, strengt fortrolig'
+                },
+                personstatus: {}
+            }
         }
-
-    }, {
-        rolle: Relasjonstype.Barn,
-        tilPerson: {
-            navn: null,
-            diskresjonskode: {
-                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
-                beskrivelse: 'Sperret adresse, strengt fortrolig'
-            },
-            personstatus: {}
-        }
-
-    }, {
-        harSammeBosted: true,
-        rolle: Relasjonstype.Barn,
-        tilPerson: {
-            fødselsnummer: '10117100000',
-            navn: {
-                sammensatt: 'Siri Bellomnavn Aremark',
-                fornavn: 'Siri',
-                mellomnavn: 'Bellomnavn',
-                etternavn: 'Aremark'
-            },
-            personstatus: {},
-            alder: 15
-        }
-    }, {
-        harSammeBosted: false,
-        rolle: Relasjonstype.Barn,
-        tilPerson: {
-            fødselsnummer: '10117100100',
-            navn: {
-                sammensatt: 'Ola Ballomnavn Aremark',
-                fornavn: 'Ola',
-                mellomnavn: 'Ballomnavn',
-                etternavn: 'Aremark'
-            },
-            personstatus: {},
-            alderMåneder: 5
-        }
-    }, {
-        harSammeBosted: false,
-        rolle: Relasjonstype.Ektefelle,
-        tilPerson: {
-            navn: null,
-            diskresjonskode: {
-                kodeRef: Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE,
-                beskrivelse: 'Sperret adresse, strengt fortrolig'
-            },
-            personstatus: {}
-        }
-    }],
+    ],
     kontaktinformasjon: {
         mobil: {
             sistEndret: '2014-06-21T18:44:39+02:00',

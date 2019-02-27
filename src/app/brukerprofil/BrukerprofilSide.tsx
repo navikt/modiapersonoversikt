@@ -22,53 +22,52 @@ import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { TilbakePil } from '../../components/common-styled-components';
 
 const BrukerprofilWrapper = styled.article`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  ${theme.animation.fadeIn};
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    ${theme.animation.fadeIn};
 `;
 
 const HeaderStyle = styled.section`
-  display: flex;
-  flex-shrink: 0;
-  padding: ${theme.margin.px20};
-  background-color: white;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
-  z-index: 100;
+    display: flex;
+    flex-shrink: 0;
+    padding: ${theme.margin.px20};
+    background-color: white;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+    z-index: 100;
 `;
 
 const HeaderContent = styled.section`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const ContentWrapper = styled.section`
-  overflow-y: auto;
-  flex-grow: 1;
-  padding: 3rem;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  > * {
-    max-width: 720px;
-    width: 90%;
-    ${theme.hvittPanel};
-    margin: 1em 0;
-    padding: 2em;
-  }
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 3rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    > * {
+        max-width: 720px;
+        width: 90%;
+        ${theme.hvittPanel};
+        margin: 1em 0;
+        padding: 2em;
+    }
 `;
 
 const LinkWrapper = styled.div`
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 `;
 
 const Fokus = styled.div`
-  &:focus {
-    ${theme.focus}
-  }
+    &:focus {
+        ${theme.focus}
+    }
 `;
 
 interface OwnProps {
@@ -87,35 +86,34 @@ interface StateProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-function hentNavn({navn}: Person) {
-    return navn.fornavn +
-        (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ')
-        + navn.etternavn;
+function hentNavn({ navn }: Person) {
+    return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
 }
 
 function getAlder(person: Person) {
     return erDød(person.personstatus) ? 'Død' : person.alder;
 }
 
-function Navn({person}: { person: Person }) {
-    return <Normaltekst>{hentNavn(person)} ({getAlder(person)})</Normaltekst>;
+function Navn({ person }: { person: Person }) {
+    return (
+        <Normaltekst>
+            {hentNavn(person)} ({getAlder(person)})
+        </Normaltekst>
+    );
 }
 
-function Konto({person}: { person: Person }) {
+function Konto({ person }: { person: Person }) {
     return (
         <Undertekst>
-            Kontonummer: <FormatertKontonummer kontonummer={person.bankkonto && person.bankkonto.kontonummer || ''}/>
+            Kontonummer: <FormatertKontonummer kontonummer={(person.bankkonto && person.bankkonto.kontonummer) || ''} />
         </Undertekst>
     );
 }
 
-function TilbakeLenke({fnr}: { fnr: string }) {
+function TilbakeLenke({ fnr }: { fnr: string }) {
     return (
         <LinkWrapper>
-            <Link
-                className={'lenke'}
-                to={`${paths.personUri}/${fnr}`}
-            >
+            <Link className={'lenke'} to={`${paths.personUri}/${fnr}`}>
                 <TilbakePil>Tilbake</TilbakePil>
             </Link>
         </LinkWrapper>
@@ -123,7 +121,6 @@ function TilbakeLenke({fnr}: { fnr: string }) {
 }
 
 class Header extends React.PureComponent<{ person: Person }> {
-
     private ref = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
@@ -136,14 +133,14 @@ class Header extends React.PureComponent<{ person: Person }> {
         const person = this.props.person;
         return (
             <HeaderStyle>
-                <TilbakeLenke fnr={person.fødselsnummer}/>
+                <TilbakeLenke fnr={person.fødselsnummer} />
                 <HeaderContent>
                     <Fokus ref={this.ref} tabIndex={-1}>
                         <Systemtittel tag="h1">Administrer brukerprofil</Systemtittel>
                     </Fokus>
                     <div>
-                        <Navn person={person}/>
-                        <Konto person={person}/>
+                        <Navn person={person} />
+                        <Konto person={person} />
                     </div>
                 </HeaderContent>
             </HeaderStyle>
@@ -152,7 +149,6 @@ class Header extends React.PureComponent<{ person: Person }> {
 }
 
 class BrukerprofilSide extends React.PureComponent<Props> {
-
     componentDidMount() {
         if (isNotStarted(this.props.personReducer)) {
             this.props.hentPersonData(this.props.fødselsnummer);
@@ -167,12 +163,11 @@ class BrukerprofilSide extends React.PureComponent<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer}/>}
-                <Innholdslaster
-                    avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}
-                >
-                    {erNyePersonoversikten()
-                        && <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}/>}
+                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer} />}
+                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
+                    {erNyePersonoversikten() && (
+                        <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person} />
+                    )}
                     <ContentWrapper>
                         <BrukerprofilForm
                             person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
@@ -183,14 +178,13 @@ class BrukerprofilSide extends React.PureComponent<Props> {
             </BrukerprofilWrapper>
         );
     }
-
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         personReducer: state.restEndepunkter.personinformasjon,
         veilederRollerReducer: state.restEndepunkter.veilederRoller
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -200,4 +194,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrukerprofilSide);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BrukerprofilSide);

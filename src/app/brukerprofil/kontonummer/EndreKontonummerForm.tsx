@@ -69,7 +69,6 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 class EndreKontonummerForm extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
         this.state = this.getInitialState();
@@ -120,14 +119,12 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             norskKontonummer: erBrukersKontonummerUtenlandsk(person)
                 ? ''
                 : formaterNorskKontonummer(person.bankkonto.kontonummer),
-            utenlandskKontonummer: erBrukersKontonummerUtenlandsk(person)
-                ? person.bankkonto.kontonummer
-                : ''
+            utenlandskKontonummer: erBrukersKontonummerUtenlandsk(person) ? person.bankkonto.kontonummer : ''
         };
     }
 
     slettKontonummer() {
-        this.props.endreKontonummer(this.props.person.fødselsnummer, {kontonummer: ''});
+        this.props.endreKontonummer(this.props.person.fødselsnummer, { kontonummer: '' });
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -171,7 +168,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     updateBankkontoInputsState(partial: Partial<EndreBankkontoState>) {
         const gyldigValidering = this.state.norskKontoRadio
-            ? getValidNorskBankKontoForm() : getValidUtenlandskKontoForm();
+            ? getValidNorskBankKontoForm()
+            : getValidUtenlandskKontoForm();
         this.setState({
             bankkontoValidering: gyldigValidering,
             bankkontoInput: {
@@ -213,8 +211,8 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
     radioKnappProps() {
         return [
-            {label: bankEnum.erNorsk, id: bankEnum.erNorsk, value: bankEnum.erNorsk},
-            {label: bankEnum.erUtenlandsk, id: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk}
+            { label: bankEnum.erNorsk, id: bankEnum.erNorsk, value: bankEnum.erNorsk },
+            { label: bankEnum.erUtenlandsk, id: bankEnum.erUtenlandsk, value: bankEnum.erUtenlandsk }
         ];
     }
 
@@ -233,9 +231,9 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     render() {
-        const sletteKnapp =
-            this.props.person.bankkonto && this.props.person.bankkonto.kontonummer && !this.requestIsPending()
-            && (
+        const sletteKnapp = this.props.person.bankkonto &&
+            this.props.person.bankkonto.kontonummer &&
+            !this.requestIsPending() && (
                 <FormKnapperWrapper>
                     <KnappMedBekreftPopup
                         onBekreft={this.slettKontonummer}
@@ -252,13 +250,17 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 name={'Velg norsk eller utenlandsk konto'}
                 checked={this.state.norskKontoRadio ? bankEnum.erNorsk : bankEnum.erUtenlandsk}
                 onChange={this.handleRadioChange}
-            />);
-        const kontoInputs = this.state.norskKontoRadio ? this.getNorskKontonrInputs() : (
+            />
+        );
+        const kontoInputs = this.state.norskKontoRadio ? (
+            this.getNorskKontonrInputs()
+        ) : (
             <UtenlandskKontonrInputs
                 bankkonto={this.state.bankkontoInput}
                 bankkontoValidering={this.state.bankkontoValidering}
                 updateBankkontoInputsState={this.updateBankkontoInputsState}
-            />);
+            />
+        );
         const knapper = (
             <FormKnapperWrapper>
                 <KnappBase
@@ -273,9 +275,9 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     spinner={this.props.reducerStatus === STATUS.LOADING}
                     autoDisableVedSpinner={true}
                     disabled={
-                        !this.formErEndret()
-                        || !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller)
-                        || this.kontonummerBleLagret()
+                        !this.formErEndret() ||
+                        !veilederHarPåkrevdRolleForEndreKontonummer(this.props.veilederRoller) ||
+                        this.kontonummerBleLagret()
                     }
                 >
                     Endre kontonummer
@@ -293,7 +295,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
             <Undertekst>
                 Gjeldende kontonummer:
                 <FormatertKontonummer
-                    kontonummer={this.props.person.bankkonto && this.props.person.bankkonto.kontonummer || ''}
+                    kontonummer={(this.props.person.bankkonto && this.props.person.bankkonto.kontonummer) || ''}
                 />
             </Undertekst>
         );
@@ -305,7 +307,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                     <Undertittel>Kontonummer</Undertittel>
                     {!erNyePersonoversikten() && konto}
                     {sistEndretInfo}
-                    <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller}/>
+                    <EndreKontonummerInfomeldingWrapper veilderRoller={this.props.veilederRoller} />
                     {norskEllerUtenlandskKontoRadio}
                     {kontoInputs}
                     {knapper}
@@ -318,9 +320,9 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
+    return {
         reducerStatus: state.restEndepunkter.endreKontonummer.status
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -332,4 +334,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EndreKontonummerForm);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EndreKontonummerForm);

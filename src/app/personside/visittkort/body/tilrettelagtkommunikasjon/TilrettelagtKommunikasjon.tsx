@@ -13,30 +13,21 @@ interface TilrettelagtKommunikasjonProps {
 
 function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjonsListe }: TilrettelagtKommunikasjonProps) {
     const tilrettelagtKommunikasjonsTekst = tilrettelagtKommunikasjonsListe.map(tilrettelagtKommunikasjon =>
-        tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon));
+        tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon)
+    );
 
     if (tilrettelagtKommunikasjonsListe.length === 0) {
         return null;
     }
     return (
-        <VisittkortGruppe
-            tittel="Tilrettelagt kommunikasjon"
-            ikon={<UtropstegnIkon/>}
-        >
-            <VisittkortElement>
-                {tilrettelagtKommunikasjonsTekst}
-            </VisittkortElement>
+        <VisittkortGruppe tittel="Tilrettelagt kommunikasjon" ikon={<UtropstegnIkon />}>
+            <VisittkortElement>{tilrettelagtKommunikasjonsTekst}</VisittkortElement>
         </VisittkortGruppe>
-
     );
 }
 
 function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
-    return (
-        <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
-            {tilrettelagtKommunikasjon.beskrivelse}
-        </Normaltekst>
-    );
+    return <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>{tilrettelagtKommunikasjon.beskrivelse}</Normaltekst>;
 }
 
 export default TilrettelagtKommunikasjon;
