@@ -1,19 +1,14 @@
 import { createActionsAndReducer } from '../restReducer';
 import { getUtbetalinger } from '../../../api/utbetaling-api';
-import moment from 'moment';
 
-const { reducer, action, tilbakestillReducer } = createActionsAndReducer('historiskeUtbetalingerYtelser');
+const { reducer, action, reload, tilbakestillReducer } = createActionsAndReducer('historiskeUtbetalingerYtelser');
 
-export function hentHistoriskeUtbetalinger(fødselsnummer: string) {
-    return action(() =>
-        getUtbetalinger(
-            fødselsnummer,
-            moment()
-                .add(-2, 'year')
-                .toDate(),
-            new Date()
-        )
-    );
+export function hentHistoriskeUtbetalinger(fødselsnummer: string, fraOgMed: Date) {
+    return action(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
+}
+
+export function reloadHistoriskeUtbetalinger(fødselsnummer: string, fraOgMed: Date) {
+    return reload(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
 }
 
 export function resetHistoriskeUtbetalingerReducer() {

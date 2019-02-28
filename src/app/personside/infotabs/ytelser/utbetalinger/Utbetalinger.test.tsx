@@ -7,11 +7,7 @@ import { YtelserKeys } from '../ytelserKeys';
 test('Utbetalinger matcher snapshot', () => {
     const result = renderer.create(
         <TestProvider>
-            <Utbetalinger
-                kommendeUtbetalinger={[]}
-                historiskeUtbetalinger={[]}
-                ytelsesType={YtelserKeys.Foreldrepenger}
-            />
+            <Utbetalinger kommendeUtbetalinger={[]} ytelsesType={YtelserKeys.Foreldrepenger} />
         </TestProvider>
     );
 

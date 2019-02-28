@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { HistoriskUtbetaling, KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
+import { KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import KommendeUtbetalinger from './KommendeUtbetalinger';
 import { YtelserKeys } from '../ytelserKeys';
-import HistoriskeUtbetalingerContainer from './HistoriskeUtbetalingerContainer';
+import HistoriskeUtbetalingerContainer from './historiskeUtbetalinger/HistoriskeUtbetalingerContainer';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import { useContext } from 'react';
+import { PersonContext } from '../../../../App';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
-    historiskeUtbetalinger: HistoriskUtbetaling[];
     ytelsesType: YtelserKeys;
 }
 
@@ -21,14 +23,17 @@ const StyledSection = styled.section`
 `;
 
 function Utbetalinger(props: Props) {
+    const fødselsnummer = useContext(PersonContext);
+
+    if (!fødselsnummer) {
+        return <AlertStripeInfo>Ingen person i context</AlertStripeInfo>;
+    }
+
     return (
         <ErrorBoundary boundaryName="Utbetalinger Ytelser">
             <StyledSection aria-label={'Utbetalinger ' + props.ytelsesType}>
                 <KommendeUtbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
-                <HistoriskeUtbetalingerContainer
-                    historiskeUtbetalinger={props.historiskeUtbetalinger}
-                    ytelseType={props.ytelsesType}
-                />
+                <HistoriskeUtbetalingerContainer ytelseType={props.ytelsesType} fødselsnummer={fødselsnummer} />
             </StyledSection>
         </ErrorBoundary>
     );

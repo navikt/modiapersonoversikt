@@ -62,7 +62,6 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
                 <Stor>
                     <Utbetalinger
                         kommendeUtbetalinger={periode.kommendeUtbetalinger}
-                        historiskeUtbetalinger={periode.historiskeUtbetalinger}
                         ytelsesType={YtelserKeys.Foreldrepenger}
                     />
                 </Stor>

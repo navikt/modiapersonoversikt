@@ -5,10 +5,10 @@ import temagruppeReducer, { TemagruppeState } from './temagruppe';
 import { UtbetalingerState, utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
-import { default as pleiepengerReducer, PleiepengerState } from './ytelser/pleiepengerReducer';
 import { featureToggleReducer, FeatureToggleState } from './featureToggle/featureToggleReducer';
 import { KontrollSpørsmålState } from './kontrollSporsmal/types';
 import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
+import ytelserReducere, { YtelserState } from './ytelser/ytelserReducere';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -16,7 +16,7 @@ export interface AppState {
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
-    pleiepenger: PleiepengerState;
+    ytelser: YtelserState;
     featureToggle: FeatureToggleState;
     kontrollSpørsmål: KontrollSpørsmålState;
 }
@@ -27,7 +27,7 @@ export default combineReducers<AppState>({
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
-    pleiepenger: pleiepengerReducer,
+    ytelser: ytelserReducere,
     featureToggle: featureToggleReducer,
     kontrollSpørsmål: kontrollspørsmålReducer
 });
