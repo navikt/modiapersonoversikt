@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Behandlingsstatus, Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Behandlingsstatus, Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
-import { theme } from '../../../../styles/personOversiktTheme';
+import { theme } from '../../../../../styles/personOversiktTheme';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
-import SakIkkeTilgangIkon from '../../../../svg/SakIkkeTilgangIkon';
+import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import Element from 'nav-frontend-typografi/lib/element';
-import { hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
+import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
 
 interface Props {
     sakstema: Sakstema;
@@ -59,7 +59,7 @@ function saksikon(harTilgang: boolean) {
     }
 }
 
-function SakstemaComponent(props: Props) {
+function SakstemaListeElement(props: Props) {
     const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
         props.sakstema,
         Behandlingsstatus.UnderBehandling,
@@ -94,4 +94,4 @@ function SakstemaComponent(props: Props) {
     );
 }
 
-export default SakstemaComponent;
+export default SakstemaListeElement;

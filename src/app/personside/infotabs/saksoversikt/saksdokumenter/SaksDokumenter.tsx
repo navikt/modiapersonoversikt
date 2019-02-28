@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { DokumentMetadata, Entitet } from '../../../../models/saksoversikt/dokumentmetadata';
-import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
-import DokumentKomponent from './DokumentKomponent';
-import { AlignTextCenter, Bold, Uppercase } from '../../../../components/common-styled-components';
+import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
+import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
+import DokumentKomponent from './DokumentListeElement';
+import { AlignTextCenter, Bold, Uppercase } from '../../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
+import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import ViktigÅVite from './viktigavite/viktigavite';
-import { DokumentAvsenderFilter } from '../../../../redux/saksoversikt/types';
-import LenkeNorg from './LenkeNorg';
-import ToggleViktigAaViteKnapp from './viktigavite/ToggleViktigAaViteKnapp';
+import ViktigÅVite from '../viktigavite/viktigavite';
+import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
+import LenkeNorg from '../utils/LenkeNorg';
+import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -151,12 +151,12 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvs
     }
 }
 
-interface SaksdokumenterProps {
+interface DokumentListeProps {
     sakstema: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
 }
 
-function DokumentListe(props: SaksdokumenterProps) {
+function DokumentListe(props: DokumentListeProps) {
     const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
         hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
     );

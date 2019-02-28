@@ -1,12 +1,12 @@
-import { BaseUrlsResponse } from '../../../../models/baseurls';
-import { hentBaseUrl } from '../../../../redux/restReducers/baseurls';
-import { Sakstema } from '../../../../models/saksoversikt/sakstema';
-import { sakstemakodeAlle } from './SakstemaListe';
-import { DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import { BaseUrlsResponse } from '../../../../../models/baseurls';
+import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
+import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import * as React from 'react';
-import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { Person, PersonRespons } from '../../../../models/person/person';
-import { AppState } from '../../../../redux/reducers';
+import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Person, PersonRespons } from '../../../../../models/person/person';
+import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 

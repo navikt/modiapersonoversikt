@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import SakstemaListeContainer from './SakstemaListeContainer';
-import DokumentListeContainer from './SaksDokumenterContainer';
+import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
+import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
@@ -12,7 +12,7 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
+import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import {
@@ -22,8 +22,8 @@ import {
     settValgtSakstema,
     settVisDokument
 } from '../../../../redux/saksoversikt/actions';
-import { sakstemakodeAlle } from './SakstemaListe';
-import { aggregertSakstema } from './saksoversiktUtils';
+import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
+import { aggregertSakstema } from './utils/saksoversiktUtils';
 
 interface OwnProps {
     fødselsnummer: string;

@@ -5,29 +5,29 @@ import {
     Entitet,
     KategoriNotat,
     Kommunikasjonsretning
-} from '../../../../models/saksoversikt/dokumentmetadata';
+} from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
+import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import Dokument from '../../../../svg/Dokument';
-import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import { sakstemakodeAlle } from './SakstemaListe';
+import Dokument from '../../../../../svg/Dokument';
+import DokumentIkkeTilgangMerket from '../../../../../svg/DokumentIkkeTilgangMerket';
+import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
-import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
-import { cancelIfHighlighting } from '../../../../utils/functionUtils';
-import { AppState } from '../../../../redux/reducers';
-import { Person, PersonRespons } from '../../../../models/person/person';
-import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import Innholdslaster from '../../../../components/Innholdslaster';
-import { paths } from '../../../routes/routing';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { AppState } from '../../../../../redux/reducers';
+import { Person, PersonRespons } from '../../../../../models/person/person';
+import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../../components/Innholdslaster';
+import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
-import EtikettGrå from '../../../../components/EtikettGrå';
-import { LenkeKnapp } from '../../../../components/common-styled-components';
-import { eventTagetIsInsideRef } from '../../../../utils/reactRefUtils';
-import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
+import EtikettGrå from '../../../../../components/EtikettGrå';
+import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import IfFeatureToggleOn from '../../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -144,7 +144,7 @@ function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
-class DokumentKomponent extends React.Component<Props> {
+class DokumentListeElement extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLLIElement>();
@@ -273,4 +273,4 @@ function mapStateToProps(state: AppState): StateProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DokumentKomponent);
+)(DokumentListeElement);

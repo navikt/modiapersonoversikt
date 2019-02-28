@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import SakstemaComponent from './SakstemaComponent';
+import SakstemaListeElement from './SakstemaListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
-import { aggregertSakstema, hentDatoForSisteHendelse, hentFormattertDatoForSisteHendelse } from './saksoversiktUtils';
+import {
+    aggregertSakstema,
+    hentDatoForSisteHendelse,
+    hentFormattertDatoForSisteHendelse
+} from '../utils/saksoversiktUtils';
 
 interface Props {
     sakstema: Sakstema[];
@@ -44,7 +48,7 @@ function GrupperteTema(props: GrupperteTemaProps) {
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
         .map(sakstema => (
-            <SakstemaComponent
+            <SakstemaListeElement
                 erValgtSakstema={props.valgtSakstema === sakstema}
                 sakstema={sakstema}
                 oppdaterSakstema={props.oppdaterSakstema}

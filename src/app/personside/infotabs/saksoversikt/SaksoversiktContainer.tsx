@@ -11,10 +11,10 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
+import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
-import SakstemaListeContainer from './SakstemaListeContainer';
-import SaksDokumenterContainer from './SaksDokumenterContainer';
+import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
+import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
