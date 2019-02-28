@@ -1,10 +1,10 @@
-import { Loaded } from '../../../../redux/restReducers/restReducer';
-import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
-import { AppState } from '../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import SakstemaListe from './SakstemaListe';
+import { Loaded } from '../../../../../redux/restReducers/restReducer';
+import { Sakstema, SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
+import { AppState } from '../../../../../redux/reducers';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { connect } from 'react-redux';
-import { settValgtSakstema } from '../../../../redux/saksoversikt/actions';
+import { settValgtSakstema } from '../../../../../redux/saksoversikt/actions';
+import SakstemaListe from './SakstemaListe';
 
 interface StateProps {
     sakstema: Sakstema[];

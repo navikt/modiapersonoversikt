@@ -3,7 +3,6 @@ import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restRe
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
@@ -12,11 +11,12 @@ import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
+import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
-import SakstemaListeContainer from './SakstemaListeContainer';
-import DokumentListeContainer from './DokumentListeContainer';
+import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
+import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { Innholdstittel } from 'nav-frontend-typografi';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -77,11 +77,11 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return <DokumentOgVedlegg />;
         } else {
             return (
-                <SaksoversiktArticle>
+                <SaksoversiktArticle aria-label="Brukerens saker">
                     <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
                         <SakstemaListeContainer />
-                        <DokumentListeContainer />
+                        <SaksDokumenterContainer />
                     </Innholdslaster>
                 </SaksoversiktArticle>
             );

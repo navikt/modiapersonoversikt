@@ -5,29 +5,29 @@ import {
     Entitet,
     KategoriNotat,
     Kommunikasjonsretning
-} from '../../../../models/saksoversikt/dokumentmetadata';
+} from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
-import { saksdatoSomDate } from '../../../../models/saksoversikt/fellesSak';
+import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import Dokument from '../../../../svg/Dokument';
-import DokumentIkkeTilgangMerket from '../../../../svg/DokumentIkkeTilgangMerket';
-import { sakstemakodeAlle } from './SakstemaListe';
+import Dokument from '../../../../../svg/Dokument';
+import DokumentIkkeTilgangMerket from '../../../../../svg/DokumentIkkeTilgangMerket';
+import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
-import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
-import { cancelIfHighlighting } from '../../../../utils/functionUtils';
-import { AppState } from '../../../../redux/reducers';
-import { Person, PersonRespons } from '../../../../models/person/person';
-import { isLoaded, RestReducer } from '../../../../redux/restReducers/restReducer';
-import Innholdslaster from '../../../../components/Innholdslaster';
-import { paths } from '../../../routes/routing';
+import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { AppState } from '../../../../../redux/reducers';
+import { Person, PersonRespons } from '../../../../../models/person/person';
+import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import Innholdslaster from '../../../../../components/Innholdslaster';
+import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
-import EtikettGrå from '../../../../components/EtikettGrå';
-import { LenkeKnapp } from '../../../../components/common-styled-components';
-import { eventTagetIsInsideRef } from '../../../../utils/reactRefUtils';
-import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
+import EtikettGrå from '../../../../../components/EtikettGrå';
+import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import IfFeatureToggleOn from '../../../../../redux/featureToggle/IfFeatureToggleOn';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -50,7 +50,7 @@ interface StateProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-const Wrapper = styled.div<{ valgt: boolean; klikkbar: boolean }>`
+const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
     ${props =>
         props.valgt &&
         css`
@@ -90,6 +90,17 @@ const NyttVinduLenkeStyle = styled.span`
     white-space: nowrap;
 `;
 
+const UUcustomOrder = styled.div`
+    display: flex;
+    flex-direction: column;
+    .order-first {
+        order: 0;
+    }
+    .order-second {
+        order: 1;
+    }
+`;
+
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
@@ -117,7 +128,7 @@ function dokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
         return <Dokument />;
     } else {
-        return <DokumentIkkeTilgangMerket />;
+        return <DokumentIkkeTilgangMerket aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
 }
 
@@ -133,10 +144,10 @@ function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
-class DokumentKomponent extends React.Component<Props> {
+class DokumentListeElement extends React.Component<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
-    private dokumentRef = React.createRef<HTMLDivElement>();
+    private dokumentRef = React.createRef<HTMLLIElement>();
     private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
@@ -179,7 +190,7 @@ class DokumentKomponent extends React.Component<Props> {
                         <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
                             <span ref={this.vedleggLinkRef}>
                                 <LenkeKnapp
-                                    aria-label={'Vis vedlegg - ' + vedlegg.tittel}
+                                    aria-disabled={!kanVises}
                                     onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
                                 >
                                     <Element>{vedlegg.tittel}</Element>
@@ -204,7 +215,7 @@ class DokumentKomponent extends React.Component<Props> {
         const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
-            <Wrapper
+            <ListeElementStyle
                 onClick={(event: React.MouseEvent<HTMLElement>) =>
                     cancelIfHighlighting(() => this.handleClickOnDokument(event))
                 }
@@ -214,23 +225,27 @@ class DokumentKomponent extends React.Component<Props> {
             >
                 <IkonWrapper>{dokumentIkon(kanVises)}</IkonWrapper>
                 <InnholdWrapper>
-                    <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                        <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
-                    </Innholdslaster>
-                    <div ref={this.hoveddokumentLinkRef}>
-                        <LenkeKnapp
-                            aria-label={'Vis hoveddokument - ' + dokument.hoveddokument.tittel}
-                            onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
-                        >
-                            <Element>{dokument.hoveddokument.tittel}</Element>
-                        </LenkeKnapp>
-                    </div>
+                    <UUcustomOrder>
+                        <div ref={this.hoveddokumentLinkRef} className="order-second">
+                            <LenkeKnapp
+                                aria-disabled={!kanVises}
+                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                            >
+                                <Element>{dokument.hoveddokument.tittel}</Element>
+                            </LenkeKnapp>
+                        </div>
+                        <div className="order-first">
+                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
+                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
+                            </Innholdslaster>
+                        </div>
+                    </UUcustomOrder>
                     {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
                 <IfFeatureToggleOn toggleID={'saksoversikt-nytt-vindu'}>{egetVinduLenke}</IfFeatureToggleOn>
-            </Wrapper>
+            </ListeElementStyle>
         );
     }
 }
@@ -258,4 +273,4 @@ function mapStateToProps(state: AppState): StateProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DokumentKomponent);
+)(DokumentListeElement);

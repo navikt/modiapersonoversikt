@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
+import { Dokument, DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
-import { getSaksdokument } from '../../../../utils/url-utils';
-import { PersonContext } from '../../../App';
-import { AppState } from '../../../../redux/reducers';
+import { getSaksdokument } from '../../../../../utils/url-utils';
+import { PersonContext } from '../../../../App';
+import { AppState } from '../../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { settValgtEnkeltdokument, settVisDokument } from '../../../../redux/saksoversikt/actions';
-import { LenkeKnapp, TilbakePil } from '../../../../components/common-styled-components';
+import { settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
+import { LenkeKnapp, TilbakePil } from '../../../../../components/common-styled-components';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useFocusOnMount } from '../../../../../utils/customHooks';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -64,6 +66,10 @@ function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: st
 }
 
 function DokumentOgVedlegg(props: Props) {
+    const ref = React.createRef<HTMLSpanElement>();
+
+    useFocusOnMount(ref);
+
     const { valgtDokument, valgtTab } = props;
     if (!valgtDokument || !valgtTab) {
         return (
@@ -94,6 +100,11 @@ function DokumentOgVedlegg(props: Props) {
 
     return (
         <Content>
+            <span ref={ref} tabIndex={-1}>
+                <Undertittel className="visually-hidden">
+                    Dokument: {props.valgtTab && props.valgtTab.tittel}
+                </Undertittel>
+            </span>
             {tabsHeader}
             <PersonContext.Consumer>
                 {fnr => {

@@ -5,6 +5,9 @@ import { aremark } from '../../../../mock/person/aremark';
 import TestProvider from '../../../../test/Testprovider';
 import { mount } from 'enzyme';
 import { Person } from '../../../../models/person/person';
+import { personinformasjonActionNames } from '../../../../redux/restReducers/personinformasjon';
+import { getPerson } from '../../../../mock/person/personMock';
+import { getTestStore } from '../../../../setupTests';
 
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
@@ -22,8 +25,10 @@ test('setter fokus på brukerens navn on mount', () => {
         ...aremark,
         sikkerhetstiltak: undefined
     };
+    let customStore = getTestStore();
+    customStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: person });
     mount(
-        <TestProvider>
+        <TestProvider customStore={customStore}>
             <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
     );
@@ -49,8 +54,10 @@ test('setter fokus på sikkerhetstiltak on mount', () => {
             }
         }
     };
+    let customStore = getTestStore();
+    customStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: person });
     mount(
-        <TestProvider>
+        <TestProvider customStore={customStore}>
             <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
     );

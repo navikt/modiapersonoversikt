@@ -220,6 +220,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     >
       <svg
         alt="Mann"
+        aria-label="Mann"
         height={64}
         viewBox="0 0 64 64"
         width={64}

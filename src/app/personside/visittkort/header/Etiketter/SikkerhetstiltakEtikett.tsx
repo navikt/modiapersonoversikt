@@ -2,6 +2,7 @@ import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled, { keyframes } from 'styled-components';
+import { useFocusOnMount } from '../../../../../utils/customHooks';
 
 const bump = keyframes`
   to { transform: scale(1.1); }
@@ -15,22 +16,16 @@ const Styling = styled.div`
     }
 `;
 
-class SikkerhetstiltakEtikett extends React.Component<{}> {
-    private etikettRef = React.createRef<HTMLDivElement>();
+function SikkerhetstiltakEtikett() {
+    const etikettRef = React.createRef<HTMLDivElement>();
 
-    componentDidMount() {
-        if (this.etikettRef.current) {
-            this.etikettRef.current.focus();
-        }
-    }
+    useFocusOnMount(etikettRef);
 
-    render() {
-        return (
-            <Styling tabIndex={-1} ref={this.etikettRef} role="alert" aria-live="assertive">
-                <EtikettBase type={'advarsel'}>Sikkerhetstiltak</EtikettBase>
-            </Styling>
-        );
-    }
+    return (
+        <Styling tabIndex={-1} ref={etikettRef} role="alert" aria-live="assertive">
+            <EtikettBase type={'advarsel'}>Sikkerhetstiltak</EtikettBase>
+        </Styling>
+    );
 }
 
 export default SikkerhetstiltakEtikett;
