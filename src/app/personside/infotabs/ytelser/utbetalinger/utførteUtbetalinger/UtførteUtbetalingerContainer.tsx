@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { AppState } from '../../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
-import {
-    hentHistoriskeUtbetalinger,
-    reloadHistoriskeUtbetalinger
-} from '../../../../../../redux/restReducers/ytelser/historiskeUtbetalinger';
 import { connect } from 'react-redux';
 import { isLoading, isNotStarted, RestReducer } from '../../../../../../redux/restReducers/restReducer';
 import { UtbetalingerResponse } from '../../../../../../models/utbetalinger';
@@ -15,13 +11,17 @@ import {
     inneholderToÅrGamleUtbetalinger,
     nittiDagerTilbakeITid,
     toÅrTilbakeITid
-} from './historiskeUtbetalingerUtils';
+} from './utførteUtbetalingerUtils';
 import PlukkRestData from '../../pleiepenger/PlukkRestData';
 import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 import styled from 'styled-components';
-import HistoriskeUtbetalingerListe from './HistoriskeUtbetalingerListe';
+import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
+import {
+    hentUtførteUtbetalinger,
+    reloadUtførteUtbetalinger
+} from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
 
 export enum KnappStatus {
     Vis,
@@ -35,7 +35,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    historiskeUtbetalinger: RestReducer<UtbetalingerResponse>;
+    utførteUtbetalinger: RestReducer<UtbetalingerResponse>;
 }
 
 interface DispatchProps {
@@ -49,22 +49,22 @@ const Padding = styled.div`
     padding: 0.5rem;
 `;
 
-class HistoriskeUtbetalingerContainer extends React.PureComponent<Props> {
+class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
         this.hentToÅrGamleUtbetalinger = this.hentToÅrGamleUtbetalinger.bind(this);
     }
 
     componentDidMount() {
-        if (isNotStarted(this.props.historiskeUtbetalinger)) {
+        if (isNotStarted(this.props.utførteUtbetalinger)) {
             this.props.hentNyligeUtbetalinger(this.props.fødselsnummer);
         }
     }
 
     hentToÅrGamleUtbetalinger() {
         if (
-            isLoading(this.props.historiskeUtbetalinger) ||
-            inneholderToÅrGamleUtbetalinger(this.props.historiskeUtbetalinger)
+            isLoading(this.props.utførteUtbetalinger) ||
+            inneholderToÅrGamleUtbetalinger(this.props.utførteUtbetalinger)
         ) {
             return;
         }
@@ -73,19 +73,19 @@ class HistoriskeUtbetalingerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <ErrorBoundary boundaryName="Historiske utbetalinger">
+            <ErrorBoundary boundaryName="Utførte utbetalinger">
                 <section>
                     <Padding>
                         <AlignTextCenter>
                             <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
                         </AlignTextCenter>
                     </Padding>
-                    <PlukkRestData restReducer={this.props.historiskeUtbetalinger} spinnerSize="S">
+                    <PlukkRestData restReducer={this.props.utførteUtbetalinger} spinnerSize="S">
                         {data => (
-                            <HistoriskeUtbetalingerListe
+                            <UtførteUtbetalingerListe
                                 utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, this.props.ytelseType)}
                                 hentToÅrGamleUtbetalinger={this.hentToÅrGamleUtbetalinger}
-                                knappStatus={getKnappStatus(this.props.historiskeUtbetalinger)}
+                                knappStatus={getKnappStatus(this.props.utførteUtbetalinger)}
                             />
                         )}
                     </PlukkRestData>
@@ -97,18 +97,18 @@ class HistoriskeUtbetalingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProops(state: AppState): StateProps {
     return {
-        historiskeUtbetalinger: state.restEndepunkter.historiskeUtbetalingerYtelser
+        utførteUtbetalinger: state.restEndepunkter.utførteUtbetalingerYtelser
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentNyligeUtbetalinger: (fnr: string) => dispatch(hentHistoriskeUtbetalinger(fnr, nittiDagerTilbakeITid)),
-        hentAlleUtbetalinger: (fnr: string) => dispatch(reloadHistoriskeUtbetalinger(fnr, toÅrTilbakeITid))
+        hentNyligeUtbetalinger: (fnr: string) => dispatch(hentUtførteUtbetalinger(fnr, nittiDagerTilbakeITid)),
+        hentAlleUtbetalinger: (fnr: string) => dispatch(reloadUtførteUtbetalinger(fnr, toÅrTilbakeITid))
     };
 }
 
 export default connect(
     mapStateToProops,
     mapDispatchToProps
-)(HistoriskeUtbetalingerContainer);
+)(UtførteUtbetalingerContainer);

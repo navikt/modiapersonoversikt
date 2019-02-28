@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import HistoriskeUtbetalingerListe from './HistoriskeUtbetalingerListe';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../../mock/statiskMockUtbetaling';
 import { Utbetaling } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
-import { KnappStatus } from './HistoriskeUtbetalingerContainer';
+import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
+import { KnappStatus } from './UtførteUtbetalingerContainer';
 
 test('Historiskutbetaling matcher snapshot', () => {
     const utbetaling: Utbetaling = {
@@ -18,7 +18,7 @@ test('Historiskutbetaling matcher snapshot', () => {
     };
 
     const result = renderer.create(
-        <HistoriskeUtbetalingerListe
+        <UtførteUtbetalingerListe
             utbetalinger={[utbetaling]}
             knappStatus={KnappStatus.Vis}
             hentToÅrGamleUtbetalinger={() => null}

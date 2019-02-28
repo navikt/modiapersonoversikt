@@ -4,6 +4,7 @@ import moment from 'moment';
 import navfaker from 'nav-faker/dist/index';
 
 import {
+    Arbeidsgiver,
     Skatt,
     Trekk,
     Utbetaling,
@@ -86,7 +87,15 @@ export function getMockYtelse(): Ytelse {
         skattsum: skattsum,
         nettobeløp: brutto + trekksum + skattsum,
         periode: getPeriode(),
-        bilagsnummer: faker.finance.account(10)
+        bilagsnummer: faker.finance.account(10),
+        arbeidsgiver: navfaker.random.vektetSjanse(0.7) ? getArbeidsgiver() : null
+    };
+}
+
+function getArbeidsgiver(): Arbeidsgiver {
+    return {
+        navn: faker.company.companyName(),
+        orgnr: faker.finance.account(11)
     };
 }
 

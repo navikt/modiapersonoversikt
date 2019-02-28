@@ -1,25 +1,5 @@
 import { Fødsel } from '../../models/ytelse/foreldrepenger';
 
-export const statiskHistoriskUtbetaling = {
-    vedtak: { fra: '2018-02-09', til: '2018-03-25' },
-    utbetalingsgrad: 1,
-    utbetalingsdato: '2019-01-26',
-    nettobeløp: 773,
-    bruttobeløp: 291,
-    skattetrekk: 45,
-    arbeidsgiverNavn: 'Kristoffersen RFH',
-    arbeidsgiverOrgNr: '1234567890',
-    dagsats: 616,
-    type: 'KONTOØVERFØRING',
-    trekk: [
-        {
-            kreditorsNavn: 'Andresen, Finstad and Kristoffersen',
-            beløp: 117
-        },
-        { kreditorsNavn: 'Aas, Berntsen and Jacobsen', beløp: 397 }
-    ]
-};
-
 export const statiskKommendeUtbetaling = {
     vedtak: { fra: '2018-01-14', til: '2017-07-15' },
     utbetalingsgrad: 79,
@@ -68,7 +48,6 @@ export const statiskForeldrepengeMock: Fødsel = {
             rettTilFedrekvote: 'Rett til fedrekvote',
             rettTilMødrekvote: 'Ingen rett til mødrekvote',
             stansårsak: 'Avsluttet',
-            historiskeUtbetalinger: [statiskHistoriskUtbetaling],
             kommendeUtbetalinger: [statiskKommendeUtbetaling]
         }
     ],
