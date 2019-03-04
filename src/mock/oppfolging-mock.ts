@@ -61,8 +61,8 @@ function getSyfoPunkt(): SyfoPunkt {
     return {
         dato: moment(faker.date.recent(100)).format(backendDatoformat),
         fastOppfølgingspunkt: faker.random.boolean(),
-        status: 'SyfoStatus',
-        syfoHendelse: 'Hendelse'
+        status: 'Ferdig behandlet',
+        syfoHendelse: faker.lorem.words(6)
     };
 }
 
