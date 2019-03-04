@@ -1,10 +1,10 @@
-import { KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { formaterNOK } from '../../utbetalinger/utils/utbetalingerUtils';
+import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
+import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterNOK } from '../../../utbetalinger/utils/utbetalingerUtils';
 import * as React from 'react';
 import { useState } from 'react';
-import DescriptionList from '../../../../../components/DescriptionList';
-import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import DescriptionList from '../../../../../../components/DescriptionList';
+import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
 
 interface Props {
     kommendeUtbetaling: KommendeUtbetaling;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { KommendeUtbetaling } from '../../../../../models/ytelse/ytelse-utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import KommendeUtbetalinger from './KommendeUtbetalinger';
+import KommendeUtbetalinger from './kommendeUtbetalinger/KommendeUtbetalinger';
 import { YtelserKeys } from '../ytelserKeys';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { useContext } from 'react';
