@@ -6,7 +6,7 @@ import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { Undertittel } from 'nav-frontend-typografi';
 import { formaterDato } from '../../../../../utils/dateUtils';
-import { formaterNOK } from '../../utbetalinger/utils/utbetalingerUtils';
+import { NOKellerNull, prosentEllerNull } from '../../../../../components/descriptionListHelpers';
 
 interface Props {
     periode: Pleiepengeperiode;
@@ -33,10 +33,10 @@ function Vedtak({ vedtak }: { vedtak: VedtakInterface }) {
     const anvisteUtbetalingerEntries = {
         'Fra og med dato': formaterDato(vedtak.periode.fom),
         'Til og med dato': formaterDato(vedtak.periode.tom),
-        Bruttobeløp: 'NOK ' + formaterNOK(vedtak.bruttobeløp),
+        Bruttobeløp: NOKellerNull(vedtak.bruttobeløp),
         'Anvist Utbetaling': formaterDato(vedtak.anvistUtbetaling),
-        Dagsats: 'NOK ' + formaterNOK(vedtak.dagsats),
-        Pleiepengegrad: vedtak.pleiepengegrad + '%'
+        Dagsats: NOKellerNull(vedtak.dagsats),
+        Pleiepengegrad: prosentEllerNull(vedtak.pleiepengegrad)
     };
 
     return (

@@ -296,7 +296,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          NOK 45,029.00
+          45,029.00 NOK
         </dd>
       </div>
       <div>
@@ -480,7 +480,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 120.00
+            120.00 NOK
           </dd>
         </div>
         <div>
@@ -504,7 +504,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 5.00
+            5.00 NOK
           </dd>
         </div>
         <div>
@@ -561,7 +561,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 596.00
+            596.00 NOK
           </dd>
         </div>
         <div>
@@ -585,7 +585,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 27.00
+            27.00 NOK
           </dd>
         </div>
         <div>
