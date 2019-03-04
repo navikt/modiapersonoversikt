@@ -6,6 +6,7 @@ import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
 import DescriptionList from '../../../../../../components/DescriptionList';
 import { Trekk, Utbetaling, Ytelse } from '../../../../../../models/utbetalinger';
 import styled from 'styled-components';
+import { datoEllerNull, NOKellerNull } from '../../../../../../components/descriptionListHelpers';
 
 interface Props {
     ytelse: Ytelse;
@@ -46,12 +47,12 @@ function UtførtUtbetaling({ utbetaling, ytelse }: Props) {
     const bruttoSum = getBruttoSumYtelser([ytelse]);
     const utbetaltEntries = {
         Type: ytelse.type,
-        Netto: nettoSum && formaterNOK(nettoSum) + ' NOK',
-        Dato: utbetaling.utbetalingsdato && formaterDato(utbetaling.utbetalingsdato),
+        Netto: NOKellerNull(nettoSum),
+        Dato: datoEllerNull(utbetaling.utbetalingsdato),
         Periode: `${formaterDato(ytelse.periode.start)} - ${formaterDato(ytelse.periode.slutt)}`
     };
     const utbetaltDetaljerEntries = {
-        Bruttobeløp: bruttoSum && formaterNOK(bruttoSum) + ' NOK',
+        Bruttobeløp: NOKellerNull(bruttoSum),
         Arbeidsgiver: ytelse.arbeidsgiver && ytelse.arbeidsgiver.navn,
         Organisasjonsnummer: ytelse.arbeidsgiver && ytelse.arbeidsgiver.orgnr,
         Skattetrekk: ytelse.skattsum,

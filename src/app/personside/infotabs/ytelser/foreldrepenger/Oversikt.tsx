@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { formaterDato } from '../../../../../utils/dateUtils';
+import { datoEllerNull, prosentEllerNull } from '../../../../../components/descriptionListHelpers';
 
 interface Props {
     foreldrePenger: Foreldrepengerettighet;
@@ -64,11 +65,11 @@ function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
 function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
     if (isFødsel(foreldrePenger)) {
         return {
-            Termindato: foreldrePenger.termin && formaterDato(foreldrePenger.termin)
+            Termindato: datoEllerNull(foreldrePenger.termin)
         };
     } else if (isAdopsjon(foreldrePenger)) {
         return {
-            Omsorgsovertakelse: foreldrePenger.omsorgsovertakelse && formaterDato(foreldrePenger.omsorgsovertakelse)
+            Omsorgsovertakelse: datoEllerNull(foreldrePenger.omsorgsovertakelse)
         };
     }
     return {
@@ -79,16 +80,19 @@ function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
 function Oversikt({ foreldrePenger }: Props) {
     const foreldrePengeRetten: DescriptionListEntries = {
         Foreldrepengetype: foreldrePenger.foreldrepengetype,
-        Dekningsgrad: foreldrePenger.dekningsgrad + '%',
+        Dekningsgrad: prosentEllerNull(foreldrePenger.dekningsgrad),
         'Rettighet fra dato': formaterDato(utledFraDatoForRettighet(foreldrePenger)),
+        Graderingsdager: foreldrePenger.graderingsdager,
         Restdager: foreldrePenger.restDager,
         Maksdato: foreldrePenger.slutt && formaterDato(foreldrePenger.slutt),
+        'Mødrekvote til og med': datoEllerNull(foreldrePenger.mødrekvoteTom),
+        'Fedrekvote til og med': datoEllerNull(foreldrePenger.fedrekvoteTom),
         Arbeidskategori: foreldrePenger.arbeidskategori
     };
 
     const barnet: DescriptionListEntries = {
         ...omsorgsovertakelseEllerTermin(foreldrePenger),
-        Fødselsdato: foreldrePenger.barnetsFødselsdato && formaterDato(foreldrePenger.barnetsFødselsdato),
+        Fødselsdato: datoEllerNull(foreldrePenger.barnetsFødselsdato),
         'Annen forelder': foreldrePenger.andreForeldersFnr,
         'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn,
         'Antall barn': foreldrePenger.antallBarn
