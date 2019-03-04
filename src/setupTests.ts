@@ -35,7 +35,7 @@ import { utbetalingerActions } from './redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from './mock/statiskMockUtbetaling';
 import { saksoversiktActions } from './redux/restReducers/saksoversikt';
 import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
-import FeatureToggle from './redux/featureToggle/FeatureToggle';
+import FeatureToggle from './components/featureToggle/FeatureToggle';
 
 configure({ adapter: new EnzymeReactAdapter() });
 

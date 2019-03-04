@@ -1,27 +1,33 @@
 import * as React from 'react';
 import { createStore } from 'redux';
-import reducers from '../reducers';
-import { setFeatureToggleOff, setFeatureToggleOn } from './featureToggleReducer';
+import reducers from '../../redux/reducers';
 import { mount } from 'enzyme';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
-import LazySpinner from '../../components/LazySpinner';
+import LazySpinner from '../LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
 import FeatureToggle from './FeatureToggle';
+import { getTestStore } from '../../setupTests';
+import { featureToggleActionNames } from '../../redux/restReducers/featureToggles';
+import { FeatureToggles } from './toggleIDs';
 
-const toggleId = 'Min første feature-toggle';
+const toggleId = FeatureToggles.Tooltip;
+const testStore = getTestStore();
 
 beforeEach(() => {
     FeatureToggle.prototype.render = FeatureToggle.prototype.actualRender;
     FeatureToggle.prototype.componentDidMount = () => null;
 });
 
+function setToggleTo(value: boolean | undefined) {
+    testStore.dispatch({ type: featureToggleActionNames.FINISHED, data: { [toggleId]: value } });
+}
+
 test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
-    const store = createStore(reducers);
-    store.dispatch(setFeatureToggleOn(toggleId));
+    setToggleTo(true);
 
     const result = mount(
-        <TestProvider customStore={store}>
+        <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>
@@ -31,11 +37,10 @@ test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
 });
 
 test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
-    const store = createStore(reducers);
-    store.dispatch(setFeatureToggleOff(toggleId));
+    setToggleTo(false);
 
     const result = mount(
-        <TestProvider customStore={store}>
+        <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>
@@ -45,10 +50,10 @@ test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
 });
 
 test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
-    const store = createStore(reducers);
+    setToggleTo(undefined);
 
     const result = mount(
-        <TestProvider customStore={store}>
+        <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>

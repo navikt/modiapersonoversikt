@@ -7,6 +7,7 @@ export function getFeatureToggle(toggleId: string): Promise<FeatureToggleRespons
         if (response.ok) {
             return response.json();
         } else {
+            return false; // feature toggles default false
             throw response.statusText;
         }
     });
