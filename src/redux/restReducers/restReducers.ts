@@ -22,6 +22,7 @@ import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
+import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
 import saksoversiktReducer from './saksoversikt';
 import { PersonRespons } from '../../models/person/person';
@@ -63,6 +64,7 @@ export interface RestEndepunkter {
     utbetalingerReducer: RestReducer<UtbetalingerResponse>;
     sykepengerReducer: RestReducer<SykepengerResponse>;
     pleiepengerReducer: RestReducer<PleiepengerResponse>;
+    utførteUtbetalingerYtelser: RestReducer<UtbetalingerResponse>;
     foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
@@ -90,6 +92,7 @@ export default combineReducers<RestEndepunkter>({
     utbetalingerReducer: utbetalingerReducer,
     sykepengerReducer: sykepengerReducer,
     pleiepengerReducer: pleiepengerReducer,
+    utførteUtbetalingerYtelser: utførteUtbetalingerReducer,
     foreldrepengerReducer: foreldrepengerReducer,
     oppfolgingReducer: oppfolgingReducer,
     saksoversiktReducer: saksoversiktReducer

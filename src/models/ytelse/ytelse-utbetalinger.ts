@@ -1,42 +1,42 @@
 import { Periode } from '../periode';
 
 export interface HistoriskUtbetaling {
-    vedtak?: Periode;
-    utbetalingsgrad?: number;
-    utbetalingsdato?: string;
-    nettobeløp?: number;
-    bruttobeløp?: number;
-    skattetrekk?: number;
-    arbeidsgiverNavn?: string;
-    arbeidsgiverOrgNr?: string;
-    dagsats?: number;
-    type?: string;
-    trekk?: KreditorTrekk[];
+    vedtak: null | Periode;
+    utbetalingsgrad: null | number;
+    utbetalingsdato: null | string;
+    nettobeløp: null | number;
+    bruttobeløp: null | number;
+    skattetrekk: null | number;
+    arbeidsgiverNavn: null | string;
+    arbeidsgiverOrgNr: null | string;
+    dagsats: null | number;
+    type: null | string;
+    trekk: null | KreditorTrekk[];
 }
 
 export interface KommendeUtbetaling {
-    vedtak?: Periode;
-    utbetalingsgrad?: number;
-    utbetalingsdato?: string;
-    bruttobeløp?: number;
-    arbeidsgiverNavn?: string;
-    arbeidsgiverKontonr?: string;
-    arbeidsgiverOrgNr?: string;
-    dagsats?: number;
-    saksbehandler?: string;
-    type?: string;
+    vedtak: null | Periode;
+    utbetalingsgrad: null | number;
+    utbetalingsdato: null | string;
+    bruttobeløp: null | number;
+    arbeidsgiverNavn: null | string;
+    arbeidsgiverKontonr: null | string;
+    arbeidsgiverOrgNr: null | string;
+    dagsats: null | number;
+    saksbehandler: null | string;
+    type: null | string;
 }
 
 export interface UtbetalingPåVent {
-    vedtak?: Periode;
-    utbetalingsgrad?: number;
-    oppgjørstype?: string;
-    arbeidskategori?: string;
-    stansårsak?: string;
-    ferie1?: Periode;
-    ferie2?: Periode;
-    sanksjon?: Periode;
-    sykmeldt?: Periode;
+    vedtak: null | Periode;
+    utbetalingsgrad: null | number;
+    oppgjørstype: null | string;
+    arbeidskategori: null | string;
+    stansårsak: null | string;
+    ferie1: null | Periode;
+    ferie2: null | Periode;
+    sanksjon: null | Periode;
+    sykmeldt: null | Periode;
 }
 
 export interface KreditorTrekk {

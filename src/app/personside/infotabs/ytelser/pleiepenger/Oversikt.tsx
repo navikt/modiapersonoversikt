@@ -97,7 +97,7 @@ function Oversikt({ pleiepenger, visAlleArbeidsforhold, toggleVisAlleArbeidsforh
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visAlleArbeidsforhold: state.pleiepenger.visAlleArbeidsforhold
+        visAlleArbeidsforhold: state.ytelser.pleiepenger.visAlleArbeidsforhold
     };
 }
 

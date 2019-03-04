@@ -50,7 +50,11 @@ export const statiskMockYtelse: Ytelse = {
         start: '2016-11-09',
         slutt: '2017-10-31'
     },
-    bilagsnummer: '1107807621'
+    bilagsnummer: '1107807621',
+    arbeidsgiver: {
+        navn: 'Ensjø Bistro',
+        orgnr: '1234556678235'
+    }
 };
 
 export const statiskMockUtbetaling: Utbetaling = {

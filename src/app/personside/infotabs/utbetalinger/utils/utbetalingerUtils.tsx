@@ -250,3 +250,7 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
 }
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
+
+export function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
+    return utbetaling.ytelser && utbetaling.ytelser.length > 0;
+}
