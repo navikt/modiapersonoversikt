@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Foreldrepengeperiode matcher snapshot 1`] = `
+.c2 {
+  text-transform: uppercase;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c6 dt {
+  color: #78706a;
+}
+
+.c6 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c6 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c0 > *:first-child {
+  background-color: #cce1f3;
+  padding: 0.2rem 1.25rem;
+}
+
+.c0 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c5 {
+  margin: 0.625rem 1.25rem 2.5rem;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c7 {
+  -webkit-flex-basis: 55%;
+  -ms-flex-preferred-size: 55%;
+  flex-basis: 55%;
+}
+
+.c4 {
+  -webkit-flex-basis: 45%;
+  -ms-flex-preferred-size: 45%;
+  flex-basis: 45%;
+}
+
+<li
+  className="c0"
+>
+  <h3
+    className="typo-normal"
+  >
+    <span
+      className="c1"
+    >
+      <span
+        className="c2"
+      >
+        Periode 1 - 29.04.2017
+      </span>
+    </span>
+  </h3>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <dl
+          className="c6"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Arbeidsprosent mor
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              58%
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Mors situasjon
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              nobis sit quo et quis
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Disponibel gradering
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              9%
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Forskyvelsesperiode
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              08.10.2014 - 22.08.2014
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Forskyvelsesårsak
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Andre forskyvelsesperiode
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              09.12.2014 - 26.08.2014
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Andre forskyvelsesårsak
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Midlertidig stans
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              2019-02-10
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Stansårsak
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Avsluttet
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Avslått
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Avslått
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Mødrekvote
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Aleneomsorg Mor
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Rett til Mødrekvote
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Ingen rett til mødrekvote
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Fedrekvote
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Aleneomsorg Far
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Rett til Fedrekvote
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Rett til fedrekvote
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <div
+        className="alertstripe alertstripe--info"
+      >
+        <span
+          aria-label="info"
+          className="alertstripe__ikon"
+        >
+          <svg
+            focusable="false"
+            height="1.5em"
+            kind="info-sirkel-fyll"
+            viewBox="0 0 24 24"
+            width="1.5em"
+          >
+            <g
+              fill="none"
+              fillRule="evenodd"
+            >
+              <path
+                d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
+                fill="#FFA733"
+                fillRule="nonzero"
+              />
+              <path
+                d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
+                fill="#3E3832"
+              />
+              <path
+                d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
+                fill="#3E3832"
+                fillRule="nonzero"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="typo-normal alertstripe__tekst"
+        >
+          Ingen person i context
+        </span>
+      </div>
+    </div>
+  </div>
+</li>
+`;
