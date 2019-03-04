@@ -6,7 +6,7 @@ import { YtelserKeys } from '../../ytelserKeys';
 import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
 
-test('Historiskutbetaling matcher snapshot', () => {
+test('Kommende utbetalinger matcher snapshot', () => {
     const utbetaling: Utbetaling = {
         ...statiskMockUtbetaling,
         ytelser: [

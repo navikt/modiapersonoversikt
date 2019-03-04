@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Historiskutbetaling matcher snapshot 1`] = `
+exports[`Kommende utbetalinger matcher snapshot 1`] = `
 Array [
   .c4 {
   display: -webkit-box;
@@ -167,18 +167,6 @@ Array [
               09.11.2016 - 31.10.2017
             </dd>
           </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Utbetalingsgrad
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Ikke implementert
-            </dd>
-          </div>
         </dl>
         <div
           className="c2"
@@ -239,7 +227,7 @@ Array [
       onClick={[Function]}
       type="submit"
     >
-      Hent alle historiske utbetalinger
+      Hent alle utførte utbetalinger
     </button>
   </div>,
 ]
