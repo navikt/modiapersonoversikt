@@ -1,10 +1,14 @@
 import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
-import { formaterDato } from '../../../../../../utils/dateUtils';
-import { formaterNOK } from '../../../utbetalinger/utils/utbetalingerUtils';
 import * as React from 'react';
 import { useState } from 'react';
 import DescriptionList from '../../../../../../components/DescriptionList';
 import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
+import {
+    datoEllerNull,
+    NOKellerNull,
+    periodeEllerNull,
+    prosentEllerNull
+} from '../../../../../../components/descriptionListHelpers';
 
 interface Props {
     kommendeUtbetaling: KommendeUtbetaling;
@@ -12,17 +16,15 @@ interface Props {
 
 function KommendeUtbetalingKomponent({ kommendeUtbetaling }: Props) {
     const kommendeEntries = {
-        Registeringsdato: kommendeUtbetaling.utbetalingsdato && formaterDato(kommendeUtbetaling.utbetalingsdato),
+        Registeringsdato: datoEllerNull(kommendeUtbetaling.utbetalingsdato),
         Type: kommendeUtbetaling.type,
-        Periode:
-            kommendeUtbetaling.vedtak &&
-            `${formaterDato(kommendeUtbetaling.vedtak.fra)} - ${formaterDato(kommendeUtbetaling.vedtak.til)}`,
-        Utbetalingsgrad: kommendeUtbetaling.utbetalingsgrad && kommendeUtbetaling.utbetalingsgrad + '%'
+        Periode: periodeEllerNull(kommendeUtbetaling.vedtak),
+        Utbetalingsgrad: prosentEllerNull(kommendeUtbetaling.utbetalingsgrad)
     };
 
     const kommendeDetaljerEntries = {
-        Dagsats: kommendeUtbetaling.dagsats && formaterNOK(kommendeUtbetaling.dagsats) + ' NOK',
-        Bruttobeløp: kommendeUtbetaling.bruttobeløp && formaterNOK(kommendeUtbetaling.bruttobeløp) + ' NOK',
+        Dagsats: NOKellerNull(kommendeUtbetaling.dagsats),
+        Bruttobeløp: NOKellerNull(kommendeUtbetaling.bruttobeløp),
         Arbeidsgiver: kommendeUtbetaling.arbeidsgiverNavn,
         Organisasjonsnummer: kommendeUtbetaling.arbeidsgiverOrgNr,
         'Saksbehandlerident (Tryde-ident)': kommendeUtbetaling.saksbehandler
