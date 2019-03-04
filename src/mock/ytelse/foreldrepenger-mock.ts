@@ -11,8 +11,8 @@ import {
 } from '../../models/ytelse/foreldrepenger';
 import { getPeriode } from '../person/periodeMock';
 import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import { getHistoriskUtbetaling, getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
-import { HistoriskUtbetaling, KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
+import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
+import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -80,7 +80,6 @@ export function getForeldrepengerperiodeMock(fødselsnummer: string): Foreldrepe
         rettTilFedrekvote: vektetSjanse(faker, 0.5) ? 'Rett til fedrekvote' : 'Ingen rett til fedrekvote',
         rettTilMødrekvote: vektetSjanse(faker, 0.5) ? 'Rett til mødrekvote' : 'Ingen rett til mødrekvote',
         stansårsak: vektetSjanse(faker, 0.5) ? 'Avsluttet' : null,
-        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 3, true),
         kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 3, true)
     };
 }

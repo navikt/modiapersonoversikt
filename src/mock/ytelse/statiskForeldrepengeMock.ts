@@ -1,5 +1,18 @@
 import { Fødsel } from '../../models/ytelse/foreldrepenger';
 
+export const statiskKommendeUtbetaling = {
+    vedtak: { fra: '2018-01-14', til: '2017-07-15' },
+    utbetalingsgrad: 79,
+    utbetalingsdato: '2018-06-25',
+    bruttobeløp: 466,
+    arbeidsgiverNavn: 'Vedvik - Lunde',
+    arbeidsgiverOrgNr: '1234567890',
+    arbeidsgiverKontonr: '549801574',
+    dagsats: 705,
+    saksbehandler: 'Mari Johannessen',
+    type: 'KONTOØVERFØRING'
+};
+
 export const statiskForeldrepengeMock: Fødsel = {
     forelder: '10108000398',
     andreForeldersFnr: '03063850003',
@@ -35,41 +48,7 @@ export const statiskForeldrepengeMock: Fødsel = {
             rettTilFedrekvote: 'Rett til fedrekvote',
             rettTilMødrekvote: 'Ingen rett til mødrekvote',
             stansårsak: 'Avsluttet',
-            historiskeUtbetalinger: [
-                {
-                    vedtak: { fra: '2018-02-09', til: '2018-03-25' },
-                    utbetalingsgrad: 1,
-                    utbetalingsdato: '2019-01-26',
-                    nettobeløp: 773,
-                    bruttobeløp: 291,
-                    skattetrekk: 45,
-                    arbeidsgiverNavn: 'Kristoffersen RFH',
-                    arbeidsgiverOrgNr: '1234567890',
-                    dagsats: 616,
-                    type: 'KONTOØVERFØRING',
-                    trekk: [
-                        {
-                            kreditorsNavn: 'Andresen, Finstad and Kristoffersen',
-                            beløp: 117
-                        },
-                        { kreditorsNavn: 'Aas, Berntsen and Jacobsen', beløp: 397 }
-                    ]
-                }
-            ],
-            kommendeUtbetalinger: [
-                {
-                    vedtak: { fra: '2018-01-14', til: '2017-07-15' },
-                    utbetalingsgrad: 79,
-                    utbetalingsdato: '2018-06-25',
-                    bruttobeløp: 466,
-                    arbeidsgiverNavn: 'Vedvik - Lunde',
-                    arbeidsgiverOrgNr: '1234567890',
-                    arbeidsgiverKontonr: '549801574',
-                    dagsats: 705,
-                    saksbehandler: 'Mari Johannessen',
-                    type: 'KONTOØVERFØRING'
-                }
-            ]
+            kommendeUtbetalinger: [statiskKommendeUtbetaling]
         }
     ],
     slutt: null,
