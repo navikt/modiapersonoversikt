@@ -1,16 +1,11 @@
-import { convertBoolTilJaNei } from './ForeldrepengePeriode';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import { statiskForeldrepengeMock } from '../../../../../mock/ytelse/statiskForeldrepengeMock';
+import ForeldrepengePeriode from './ForeldrepengePeriode';
 
-test('convertBoolTilJaNei returnerer Ja ved true', () => {
-    const result = convertBoolTilJaNei(true);
-    expect(result).toEqual('Ja');
-});
+test('Foreldrepengeperiode matcher snapshot', () => {
+    const testRettighet = statiskForeldrepengeMock;
+    const result = renderer.create(<ForeldrepengePeriode periode={testRettighet.periode[0]} periodenr={1} />);
 
-test('convertBoolTilJaNei returnerer Nei ved false', () => {
-    const result = convertBoolTilJaNei(false);
-    expect(result).toEqual('Nei');
-});
-
-test('convertBoolTilJaNei returnerer null ved null', () => {
-    const result = convertBoolTilJaNei(null);
-    expect(result).toEqual(null);
+    expect(result).toMatchSnapshot();
 });

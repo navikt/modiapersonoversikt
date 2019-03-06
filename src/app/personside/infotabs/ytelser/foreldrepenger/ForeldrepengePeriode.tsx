@@ -3,10 +3,15 @@ import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepeng
 import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList from '../../../../../components/DescriptionList';
+import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { formaterDato } from '../../../../../utils/dateUtils';
 import { YtelserKeys } from '../ytelserKeys';
+import {
+    convertBoolTilJaNei,
+    periodeEllerNull,
+    prosentEllerNull
+} from '../../../../../components/descriptionListHelpers';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -29,21 +34,18 @@ const Liten = styled.div`
     flex-basis: 45%;
 `;
 
-export function convertBoolTilJaNei(verdi: boolean | null): string | null {
-    switch (verdi) {
-        case true:
-            return 'Ja';
-        case false:
-            return 'Nei';
-        default:
-            return null;
-    }
-}
-
 function ForeldrepengePeriode({ periode, periodenr }: Props) {
-    const entries = {
+    const entries: DescriptionListEntries = {
+        'Arbeidsprosent mor': prosentEllerNull(periode.arbeidsprosentMor),
+        'Mors situasjon': periode.morSituasjon,
+        'Disponibel gradering': prosentEllerNull(periode.disponibelGradering),
+        Forskyvelsesperiode: periodeEllerNull(periode.forskyvelsesperiode1),
+        Forskyvelsesårsak: periode.forskyvelsesårsak1,
+        'Andre forskyvelsesperiode': periodeEllerNull(periode.forskyvelsesperiode2),
+        'Andre forskyvelsesårsak': periode.forskyvelsesårsak2,
         'Midlertidig stans': periode.midlertidigStansDato,
         Stansårsak: periode.stansårsak,
+        Avslått: periode.avslått,
         Mødrekvote: convertBoolTilJaNei(periode.erMødrekvote),
         'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
         'Rett til Mødrekvote': periode.rettTilMødrekvote,
