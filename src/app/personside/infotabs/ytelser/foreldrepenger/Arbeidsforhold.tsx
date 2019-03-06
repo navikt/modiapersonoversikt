@@ -3,7 +3,7 @@ import DescriptionList from '../../../../../components/DescriptionList';
 import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Arbeidsforhold } from '../../../../../models/ytelse/foreldrepenger';
-import { datoEllerNull, NOKellerNull } from '../../../../../components/descriptionListHelpers';
+import { datoEllerNull, NOKellerNull } from '../../../../../utils/stringFormatting';
 
 interface Props {
     arbeidsforhold?: Arbeidsforhold;

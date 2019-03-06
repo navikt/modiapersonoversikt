@@ -3,7 +3,7 @@ import { Person } from '../../../../../../models/person/person';
 import VisittkortElement from '../../VisittkortElement';
 import * as personadresse from '../../../../../../models/personadresse';
 import { Personadresse } from '../../../../../../models/personadresse';
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import { Periode } from '../../../../../../models/periode';

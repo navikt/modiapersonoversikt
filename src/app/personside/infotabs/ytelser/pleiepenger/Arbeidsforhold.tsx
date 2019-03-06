@@ -3,7 +3,7 @@ import { Arbeidsforhold } from '../../../../../models/ytelse/pleiepenger';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoEllerNull, NOKellerNull } from '../../../../../components/descriptionListHelpers';
+import { datoEllerNull, NOKellerNull } from '../../../../../utils/stringFormatting';
 
 function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold?: Arbeidsforhold }) {
     if (!arbeidsforhold) {

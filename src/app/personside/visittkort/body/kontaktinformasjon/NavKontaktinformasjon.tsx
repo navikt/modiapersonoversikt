@@ -6,7 +6,7 @@ import {
     Telefon as TelefonInterface
 } from '../../../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 import { Normaltekst } from 'nav-frontend-typografi';
 

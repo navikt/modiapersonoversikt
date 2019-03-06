@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { Undertittel } from 'nav-frontend-typografi';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { NOKellerNull, prosentEllerNull } from '../../../../../components/descriptionListHelpers';
+import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/stringFormatting';
 
 interface Props {
     periode: Pleiepengeperiode;

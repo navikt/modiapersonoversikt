@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato } from '../../../utils/stringFormatting';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { Endringsinfo } from '../../../models/personadresse';
 

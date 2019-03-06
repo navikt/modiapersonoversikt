@@ -9,8 +9,7 @@ import ArbeidsForhold from './Arbeidsforhold';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { datoEllerNull, prosentEllerNull } from '../../../../../components/descriptionListHelpers';
+import { datoEllerNull, formaterDato, prosentEllerNull } from '../../../../../utils/stringFormatting';
 
 interface Props {
     foreldrePenger: Foreldrepengerettighet;

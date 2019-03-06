@@ -1,5 +1,6 @@
-import { formatNumber, removeWhitespace } from './string-utils';
+import { removeWhitespace } from './string-utils';
 import { Kodeverk, KodeverkResponse } from '../models/kodeverk';
+import { formatNumber } from './stringFormatting';
 
 export function formaterMobiltelefonnummer(telefonnummer: string) {
     if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {

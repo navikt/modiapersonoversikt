@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../../VisittkortElement';
 import { Person } from '../../../../../../models/person/person';
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import CoinsIkon from '../../../../../../svg/Coins';

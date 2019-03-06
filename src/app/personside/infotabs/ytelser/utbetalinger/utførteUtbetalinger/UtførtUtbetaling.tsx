@@ -1,4 +1,4 @@
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { datoEllerNull, formaterDato, NOKellerNull } from '../../../../../../utils/stringFormatting';
 import { formaterNOK, getBruttoSumYtelser, getNettoSumYtelser } from '../../../utbetalinger/utils/utbetalingerUtils';
 import * as React from 'react';
 import { useState } from 'react';
@@ -6,7 +6,6 @@ import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
 import DescriptionList from '../../../../../../components/DescriptionList';
 import { Trekk, Utbetaling, Ytelse } from '../../../../../../models/utbetalinger';
 import styled from 'styled-components';
-import { datoEllerNull, NOKellerNull } from '../../../../../../components/descriptionListHelpers';
 
 interface Props {
     ytelse: Ytelse;

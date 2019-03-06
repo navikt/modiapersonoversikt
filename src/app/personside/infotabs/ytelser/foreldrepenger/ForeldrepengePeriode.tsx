@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { YtelserKeys } from '../ytelserKeys';
 import {
     convertBoolTilJaNei,
+    formaterDato,
     periodeEllerNull,
     prosentEllerNull
-} from '../../../../../components/descriptionListHelpers';
+} from '../../../../../utils/stringFormatting';
+import { YtelserKeys } from '../ytelserKeys';
 
 interface Props {
     periode: Foreldrepengerperiode;
