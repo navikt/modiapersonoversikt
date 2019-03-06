@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import FeatureToggle, { DisplayWhenToggleIs } from './FeatureToggle';
+import { FeatureToggles } from './toggleIDs';
 
 interface Props {
     children: ReactNode;
-    toggleID: string;
+    toggleID: FeatureToggles;
 }
 
 function IfFeatureToggleOn(props: Props) {

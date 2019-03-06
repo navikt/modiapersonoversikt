@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { AppState } from '../reducers';
-import { AsyncDispatch } from '../ThunkTypes';
+import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
-import { fetchFeatureToggleAndDispatchToRedux } from './fetchFeatureToggleAndDispatchToRedux';
-import LazySpinner from '../../components/LazySpinner';
+import LazySpinner from '../LazySpinner';
+import { FeatureToggles } from './toggleIDs';
+import { isLoaded } from '../../redux/restReducers/restReducer';
 
 export enum DisplayWhenToggleIs {
     ON,
@@ -13,25 +13,17 @@ export enum DisplayWhenToggleIs {
 
 interface OwnProps {
     children: ReactNode;
-    toggleID: string;
+    toggleID: FeatureToggles;
     mode: DisplayWhenToggleIs;
 }
 
 interface StateProps {
-    isOn: boolean;
+    isOn: boolean | undefined;
 }
 
-interface DispatchProps {
-    fetchFeatureToggle: () => void;
-}
-
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = OwnProps & StateProps;
 
 class FeatureToggle extends React.PureComponent<Props> {
-    componentDidMount() {
-        this.props.fetchFeatureToggle();
-    }
-
     shouldDisplay() {
         if (this.props.mode === DisplayWhenToggleIs.ON && this.props.isOn) {
             return true;
@@ -57,18 +49,15 @@ class FeatureToggle extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
+    const reducer = state.restEndepunkter.featureToggles;
+    if (!isLoaded(reducer)) {
+        return {
+            isOn: undefined
+        };
+    }
     return {
-        isOn: state.featureToggle[ownProps.toggleID]
+        isOn: reducer.data[ownProps.toggleID]
     };
 }
 
-function mapDispatchToProps(dispatch: AsyncDispatch, ownProps: OwnProps): DispatchProps {
-    return {
-        fetchFeatureToggle: () => fetchFeatureToggleAndDispatchToRedux(ownProps.toggleID, dispatch)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FeatureToggle);
+export default connect(mapStateToProps)(FeatureToggle);
