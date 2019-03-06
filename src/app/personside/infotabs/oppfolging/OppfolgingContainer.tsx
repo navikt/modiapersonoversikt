@@ -1,14 +1,29 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoading, isNotStarted, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
-import { hentDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
+import { hentDetaljertOppfolging, reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { connect } from 'react-redux';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import OppfolgingVisning from './OppfolgingVisningKomponent';
+import { FraTilDato } from './OppfolgingDatoKomponent';
+import moment from 'moment';
+
+interface State {
+    valgtPeriode: FraTilDato;
+}
+
+const initialState: State = {
+    valgtPeriode: {
+        fra: moment()
+            .subtract(1, 'month')
+            .toDate(),
+        til: new Date()
+    }
+};
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -18,6 +33,7 @@ interface StateProps {
 interface DispatchProps {
     hentBaseUrls: () => void;
     hentDetaljertOppfølging: (fødselsnummer: string) => void;
+    reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
 }
 
 interface OwnProps {
@@ -26,7 +42,31 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class OppfolgingContainer extends React.PureComponent<Props> {
+class OppfolgingContainer extends React.PureComponent<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = { ...initialState };
+        this.onFilterChange = this.onFilterChange.bind(this);
+        this.reloadOppfolging = this.reloadOppfolging.bind(this);
+    }
+
+    onFilterChange(change: FraTilDato) {
+        this.setState({
+            valgtPeriode: change
+        });
+    }
+
+    reloadOppfolging() {
+        if (isLoading(this.props.oppfølgingReducer) || isReloading(this.props.oppfølgingReducer)) {
+            return;
+        }
+        this.props.reloadDetaljertOppfølging(
+            this.props.fødselsnummer,
+            this.state.valgtPeriode.fra,
+            this.state.valgtPeriode.til
+        );
+    }
+
     componentDidMount() {
         if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
@@ -39,7 +79,14 @@ class OppfolgingContainer extends React.PureComponent<Props> {
     render() {
         return (
             <PlukkRestData restReducer={this.props.oppfølgingReducer}>
-                {data => <OppfolgingVisning detaljertOppfølging={data} />}
+                {data => (
+                    <OppfolgingVisning
+                        detaljertOppfølging={data}
+                        onChange={this.onFilterChange}
+                        valgtPeriode={this.state.valgtPeriode}
+                        hentOppfølging={this.reloadOppfolging}
+                    />
+                )}
             </PlukkRestData>
         );
     }
@@ -55,7 +102,9 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
-        hentDetaljertOppfølging: (fødselsnummer: string) => dispatch(hentDetaljertOppfolging(fødselsnummer))
+        hentDetaljertOppfølging: (fødselsnummer: string) => dispatch(hentDetaljertOppfolging(fødselsnummer)),
+        reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
+            dispatch(reloadDetaljertOppfolging(fødselsnummer, startDato, sluttDato))
     };
 }
 

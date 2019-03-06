@@ -4,6 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
+import moment from 'moment';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -35,16 +36,22 @@ export interface FraTilDato {
     til: Date;
 }
 
-interface Props {}
+interface Props {
+    onChange: (change: FraTilDato) => void;
+    hentOppfølging: () => void;
+    valgtPeriode: FraTilDato;
+}
 
-function onDatoChange(props: Props, dato: Partial<FraTilDato>) {}
-
-function DatoInputs(props: Props) {
-    const periode: FraTilDato = {
-        fra: new Date(),
-        til: new Date()
+function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
+    const newPeriode: FraTilDato = {
+        fra: dato.fra && moment(dato.fra).isValid() ? dato.fra : new Date(props.valgtPeriode.fra),
+        til: dato.til && moment(dato.til).isValid() ? dato.til : new Date(props.valgtPeriode.til)
     };
 
+    props.onChange(newPeriode);
+}
+
+function datoInputs(props: Props) {
     return (
         <>
             <DatoVelgerWrapper>
@@ -53,7 +60,7 @@ function DatoInputs(props: Props) {
                     <Datovelger
                         input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                         visÅrVelger={true}
-                        dato={periode.fra}
+                        dato={props.valgtPeriode.fra}
                         onChange={dato => onDatoChange(props, { fra: dato })}
                         id="utbetalinger-datovelger-fra"
                     />
@@ -63,26 +70,28 @@ function DatoInputs(props: Props) {
                     <Datovelger
                         input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                         visÅrVelger={true}
-                        dato={periode.til}
+                        dato={props.valgtPeriode.til}
                         onChange={dato => onDatoChange(props, { til: dato })}
                         id="utbetalinger-datovelger-til"
                     />
                 </div>
             </DatoVelgerWrapper>
             <KnappWrapper>
-                <Knapp htmlType="button">Søk</Knapp>
+                <Knapp onClick={props.hentOppfølging} htmlType="button">
+                    Søk
+                </Knapp>
             </KnappWrapper>
         </>
     );
 }
 
-function OppfolgingDatoPanel() {
+function OppfolgingDatoPanel(props: Props) {
     return (
         <DatoKomponentWrapper>
             <TittelWrapper tabIndex={-1}>
                 <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>
-            <DatoInputs />
+            {datoInputs(props)}
         </DatoKomponentWrapper>
     );
 }
