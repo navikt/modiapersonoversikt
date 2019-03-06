@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { createStore } from 'redux';
-import reducers from '../../redux/reducers';
 import { mount } from 'enzyme';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
 import LazySpinner from '../LazySpinner';
