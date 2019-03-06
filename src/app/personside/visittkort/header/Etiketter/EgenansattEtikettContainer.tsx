@@ -12,7 +12,7 @@ interface StateProps {
     egenAnsattReducer: RestReducer<Egenansatt>;
 }
 
-function EgenansattEtikettContainer(props: { erEgenansatt: boolean }) {
+function EgenansattEtikett(props: { erEgenansatt: boolean }) {
     if (!props.erEgenansatt) {
         return null;
     }
@@ -26,7 +26,7 @@ function EgenAnsattEtikettContainer(props: StateProps) {
             returnOnPending={<LazySpinner type="S" />}
             returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
         >
-            {data => <EgenansattEtikettContainer erEgenansatt={data.erEgenAnsatt} />}
+            {data => <EgenansattEtikett erEgenansatt={data.erEgenAnsatt} />}
         </PlukkRestData>
     );
 }
