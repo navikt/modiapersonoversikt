@@ -6,7 +6,8 @@ import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import IfFeatureToggleOn from '../../../redux/featureToggle/IfFeatureToggleOn';
+import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -26,7 +27,7 @@ class Kontrollsporsmal extends React.PureComponent<StateProps> {
         }
 
         return (
-            <IfFeatureToggleOn toggleID={'kontrollsporsmal'}>
+            <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
                 <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
                     <Header />
                     <SpørsmålOgSvar />

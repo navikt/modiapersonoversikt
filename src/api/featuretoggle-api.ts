@@ -1,5 +1,6 @@
 import { apiBaseUri } from './config';
 import { FeatureToggleResponse } from '../models/featureToggle';
+import { loggError } from '../utils/frontendLogger';
 
 export function getFeatureToggle(toggleId: string): Promise<FeatureToggleResponse> {
     const uri = `${apiBaseUri}/featuretoggle/${toggleId}`;
@@ -7,7 +8,8 @@ export function getFeatureToggle(toggleId: string): Promise<FeatureToggleRespons
         if (response.ok) {
             return response.json();
         } else {
-            throw response.statusText;
+            loggError(new Error(response.statusText + ' Kunne ikke hente featuretoggle med ID: ' + toggleId));
+            return false; // feature toggles default false
         }
     });
 }
