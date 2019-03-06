@@ -48,10 +48,10 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
         sykemeldtFra: moment(faker.date.recent(10)).format(backendDatoformat),
         rettighetsgruppe: 'RGRP' + faker.random.number(10),
         vedtaksdato: moment(faker.date.recent(10)).format(backendDatoformat),
-        sykefraværsoppfølging: Array(navfaker.random.integer(20, 1))
+        sykefraværsoppfølging: Array(navfaker.random.integer(10, 1))
             .fill(null)
             .map(() => getSyfoPunkt()),
-        ytelser: Array(navfaker.random.integer(20, 1))
+        ytelser: Array(navfaker.random.integer(10, 1))
             .fill(null)
             .map(() => getYtelse())
     };
@@ -73,9 +73,9 @@ function getYtelse(): OppfolgingsYtelse {
         datoKravMottatt: moment(faker.date.recent(30)).format(backendDatoformat),
         fom: moment(faker.date.recent(20)).format(backendDatoformat),
         tom: moment(faker.date.recent(10)).format(backendDatoformat),
-        status: 'STATUS',
-        type: 'TYPE',
-        vedtak: Array(navfaker.random.integer(20, 1))
+        status: navfaker.random.arrayElement(['Aktiv', 'Avsluttet']),
+        type: 'Dagpenger',
+        vedtak: Array(navfaker.random.integer(5, 1))
             .fill(null)
             .map(() => getVedtak())
     };
@@ -86,8 +86,8 @@ function getVedtak(): OppfolgingsVedtak {
         aktivFra: moment(faker.date.recent(40)).format(backendDatoformat),
         aktivTil: moment(faker.date.recent(20)).format(backendDatoformat),
         vedtaksdato: moment(faker.date.recent(20)).format(backendDatoformat),
-        aktivitetsfase: 'FASE',
-        vedtakstatus: 'VSTATUS',
-        vedtakstype: 'VTYPE'
+        aktivitetsfase: 'Ikke spesif. aktivitetsfase',
+        vedtakstatus: navfaker.random.arrayElement(['Iverksatt', 'Avsluttet']),
+        vedtakstype: 'Vedtak: Ordinære dagpenger'
     };
 }
