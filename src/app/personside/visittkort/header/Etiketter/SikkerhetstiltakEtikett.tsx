@@ -3,6 +3,7 @@ import EtikettBase from 'nav-frontend-etiketter';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled, { keyframes } from 'styled-components';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
+import { Sikkerhetstiltak } from '../../../../../models/sikkerhetstiltak';
 
 const bump = keyframes`
   to { transform: scale(1.1); }
@@ -16,9 +17,12 @@ const Styling = styled.div`
     }
 `;
 
-function SikkerhetstiltakEtikett() {
-    const etikettRef = React.createRef<HTMLDivElement>();
+function SikkerhetstiltakEtikett(props: { sikkerhetstiltak?: Sikkerhetstiltak }) {
+    if (!props.sikkerhetstiltak) {
+        return null;
+    }
 
+    const etikettRef = React.createRef<HTMLDivElement>();
     useFocusOnMount(etikettRef);
 
     return (
