@@ -7,11 +7,20 @@ import theme from '../../../styles/personOversiktTheme';
 import { roterKontrollSpørsmål, lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
+import { AppState } from '../../../redux/reducers';
+import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
+import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './skjulPåTversAvVinduerUtils';
 
 interface DispatchProps {
     lukkKontrollSpørsmål: () => void;
     nyttSpørsmål: () => void;
 }
+
+interface StateProps {
+    fnr?: string;
+}
+
+type Props = StateProps & DispatchProps;
 
 const HeaderStyling = styled.div`
     display: flex;
@@ -28,11 +37,29 @@ const KnapperStyling = styled.div`
     }
 `;
 
-class Header extends React.PureComponent<DispatchProps> {
-    constructor(props: DispatchProps) {
+class Header extends React.PureComponent<Props> {
+    constructor(props: Props) {
         super(props);
         this.handleNyttSpørsmålClick = this.handleNyttSpørsmålClick.bind(this);
         this.handleLukkClick = this.handleLukkClick.bind(this);
+    }
+
+    handleNyttSpørsmålClick() {
+        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
+        this.props.nyttSpørsmål();
+    }
+
+    handleLukkClick() {
+        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
+        this.skjulPåTversAvVinduer();
+        this.props.lukkKontrollSpørsmål();
+    }
+
+    skjulPåTversAvVinduer() {
+        if (!this.props.fnr) {
+            return;
+        }
+        settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(this.props.fnr);
     }
 
     render() {
@@ -50,16 +77,12 @@ class Header extends React.PureComponent<DispatchProps> {
             </HeaderStyling>
         );
     }
+}
 
-    private handleNyttSpørsmålClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
-        this.props.nyttSpørsmål();
-    }
-
-    private handleLukkClick() {
-        loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.props.lukkKontrollSpørsmål();
-    }
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        fnr: getFnrFromPerson(state.restEndepunkter.personinformasjon)
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -70,6 +93,6 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Header);

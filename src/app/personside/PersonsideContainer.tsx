@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Action, Dispatch } from 'redux';
 
 import { AppState } from '../../redux/reducers';
-import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
 import renderDecoratorHead from '../../decorator';
 import Personside from './Personside';
 
@@ -57,7 +57,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<RouteP
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPerson: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer)
+        hentPerson: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer)
     };
 }
 

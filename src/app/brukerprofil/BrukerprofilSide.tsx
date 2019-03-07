@@ -10,7 +10,7 @@ import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { AppState } from '../../redux/reducers';
-import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
@@ -189,7 +189,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer),
+        hentPersonData: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

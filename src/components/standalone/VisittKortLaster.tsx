@@ -11,7 +11,7 @@ import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons 
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { hentAllPersonData } from '../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
 import { isLoaded, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
 
@@ -87,7 +87,7 @@ function mapStateToProps(state: AppState): PersonsideStateProps {
 
 function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     return {
-        hentPerson: (fødselsnummer: string) => hentAllPersonData(dispatch, fødselsnummer)
+        hentPerson: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer)
     };
 }
 
