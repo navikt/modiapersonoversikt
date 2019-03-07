@@ -10,7 +10,8 @@ import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme from '../../../../styles/personOversiktTheme';
 import ToolTip from '../../../../components/tooltip/ToolTip';
-import IfFeatureToggleOn from '../../../../redux/featureToggle/IfFeatureToggleOn';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     visittkortApent: boolean;
@@ -144,7 +145,7 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                         </span>
                     </VisMerChevron>
                 </ChevronStyling>
-                <IfFeatureToggleOn toggleID="tooltip">
+                <IfFeatureToggleOn toggleID={FeatureToggles.Tooltip}>
                     {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
                 </IfFeatureToggleOn>
             </VisittkortHeaderDiv>
