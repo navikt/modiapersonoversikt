@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Foreldrepengerettighet, isAdopsjon, isFødsel } from '../../../../../models/ytelse/foreldrepenger';
 import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet } from './foreldrePengerUtils';
-import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
+import DescriptionList, {
+    DescriptionListEntries,
+    fjernEntriesUtenVerdi
+} from '../../../../../components/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import ArbeidsForhold from './Arbeidsforhold';
@@ -81,20 +84,26 @@ function Oversikt({ foreldrePenger }: Props) {
         Foreldrepengetype: foreldrePenger.foreldrepengetype,
         Dekningsgrad: prosentEllerNull(foreldrePenger.dekningsgrad),
         'Rettighet fra dato': formaterDato(utledFraDatoForRettighet(foreldrePenger)),
-        Graderingsdager: foreldrePenger.graderingsdager,
+        ...fjernEntriesUtenVerdi({
+            Graderingsdager: foreldrePenger.graderingsdager
+        }),
         Restdager: foreldrePenger.restDager,
         Maksdato: foreldrePenger.slutt && formaterDato(foreldrePenger.slutt),
-        'Mødrekvote til og med': datoEllerNull(foreldrePenger.mødrekvoteTom),
-        'Fedrekvote til og med': datoEllerNull(foreldrePenger.fedrekvoteTom),
-        Arbeidskategori: foreldrePenger.arbeidskategori
+        Arbeidskategori: foreldrePenger.arbeidskategori,
+        ...fjernEntriesUtenVerdi({
+            'Mødrekvote til og med': datoEllerNull(foreldrePenger.mødrekvoteTom),
+            'Fedrekvote til og med': datoEllerNull(foreldrePenger.fedrekvoteTom)
+        })
     };
 
     const barnet: DescriptionListEntries = {
         ...omsorgsovertakelseEllerTermin(foreldrePenger),
         Fødselsdato: datoEllerNull(foreldrePenger.barnetsFødselsdato),
         'Annen forelder': foreldrePenger.andreForeldersFnr,
-        'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn,
-        'Antall barn': foreldrePenger.antallBarn
+        'Antall barn': foreldrePenger.antallBarn,
+        ...fjernEntriesUtenVerdi({
+            'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn
+        })
     };
 
     return (

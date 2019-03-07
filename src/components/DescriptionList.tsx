@@ -31,6 +31,19 @@ export interface DescriptionListEntries {
     [name: string]: DescriptionlistEntry;
 }
 
+export function fjernEntriesUtenVerdi(entries: DescriptionListEntries): DescriptionListEntries {
+    const keys = Object.keys(entries);
+    return keys.reduce((acc, key) => {
+        if (!entries[key]) {
+            return acc;
+        }
+        return {
+            ...acc,
+            [key]: entries[key]
+        };
+    }, {});
+}
+
 function getDescriptionlistEntry(term: string, description: DescriptionlistEntry) {
     if (typeof description === 'boolean') {
         console.log('Vet ikke hvordan boolsk verdi skal vises for: ', term);

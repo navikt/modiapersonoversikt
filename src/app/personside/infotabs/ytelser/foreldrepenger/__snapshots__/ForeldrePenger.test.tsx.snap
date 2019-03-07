@@ -273,12 +273,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Mødrekvote til og med
+              Arbeidskategori
             </dt>
             <dd
               className="typo-normal"
             >
-              —
+              Arbeidstaker
             </dd>
           </div>
           <div>
@@ -291,18 +291,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               className="typo-normal"
             >
               10.02.2019
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Arbeidskategori
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Arbeidstaker
             </dd>
           </div>
         </dl>
@@ -353,18 +341,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               className="typo-normal"
             >
               03063850003
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Foreldre av samme kjønn
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              —
             </dd>
           </div>
           <div>
@@ -600,36 +576,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dt
                   className="typo-etikett-liten"
                 >
-                  Forskyvelsesårsak
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
                   Andre forskyvelsesperiode
                 </dt>
                 <dd
                   className="typo-normal"
                 >
                   09.12.2014 - 26.08.2014
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
-                  Andre forskyvelsesårsak
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  —
                 </dd>
               </div>
               <div>
@@ -684,24 +636,24 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dt
                   className="typo-etikett-liten"
                 >
-                  Aleneomsorg Mor
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
                   Rett til Mødrekvote
                 </dt>
                 <dd
                   className="typo-normal"
                 >
                   Ingen rett til mødrekvote
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Aleneomsorg Mor
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  —
                 </dd>
               </div>
               <div>
@@ -720,24 +672,24 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dt
                   className="typo-etikett-liten"
                 >
-                  Aleneomsorg Far
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
                   Rett til Fedrekvote
                 </dt>
                 <dd
                   className="typo-normal"
                 >
                   Rett til fedrekvote
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Aleneomsorg Far
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  —
                 </dd>
               </div>
             </dl>
