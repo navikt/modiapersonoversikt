@@ -10,7 +10,7 @@ import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbar
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
-    onChange: (change: FraTilDato) => void;
+    onChange: (change: Partial<FraTilDato>) => void;
     hentOppfølging: () => void;
     valgtPeriode: FraTilDato;
 }

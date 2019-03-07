@@ -4,7 +4,6 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import moment from 'moment';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -37,18 +36,9 @@ export interface FraTilDato {
 }
 
 interface Props {
-    onChange: (change: FraTilDato) => void;
+    onChange: (change: Partial<FraTilDato>) => void;
     hentOppfølging: () => void;
     valgtPeriode: FraTilDato;
-}
-
-function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
-    const newPeriode: FraTilDato = {
-        fra: dato.fra && moment(dato.fra).isValid() ? dato.fra : new Date(props.valgtPeriode.fra),
-        til: dato.til && moment(dato.til).isValid() ? dato.til : new Date(props.valgtPeriode.til)
-    };
-
-    props.onChange(newPeriode);
 }
 
 function datoInputs(props: Props) {
@@ -61,7 +51,7 @@ function datoInputs(props: Props) {
                         input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                         visÅrVelger={true}
                         dato={props.valgtPeriode.fra}
-                        onChange={dato => onDatoChange(props, { fra: dato })}
+                        onChange={dato => props.onChange({ fra: dato })}
                         id="utbetalinger-datovelger-fra"
                     />
                 </div>
@@ -71,7 +61,7 @@ function datoInputs(props: Props) {
                         input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                         visÅrVelger={true}
                         dato={props.valgtPeriode.til}
-                        onChange={dato => onDatoChange(props, { til: dato })}
+                        onChange={dato => props.onChange({ til: dato })}
                         id="utbetalinger-datovelger-til"
                     />
                 </div>

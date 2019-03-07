@@ -52,9 +52,9 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
         this.reloadOppfolging = this.reloadOppfolging.bind(this);
     }
 
-    onFilterChange(change: FraTilDato) {
+    onFilterChange(change: Partial<FraTilDato>) {
         this.setState({
-            valgtPeriode: change
+            valgtPeriode: { ...this.state.valgtPeriode, ...change }
         });
     }
 
