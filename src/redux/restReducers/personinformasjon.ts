@@ -1,5 +1,5 @@
 import { getPerson } from '../../api/person-api';
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer, isLoaded, Loaded, RestReducer } from './restReducer';
 import { hentKontaktinformasjon } from './kontaktinformasjon';
 import { erEgenAnsatt } from './egenansatt';
 import { hentVergemal } from './vergemal';
@@ -13,6 +13,7 @@ import { AsyncDispatch } from '../ThunkTypes';
 import { resetUtførteUtbetalingerReducer } from './ytelser/utførteUtbetalinger';
 import { hentFeatureToggles } from './featureToggles';
 import { resetKontrollSpørsmål } from '../kontrollSporsmal/actions';
+import { Person, PersonRespons } from '../../models/person/person';
 
 const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
@@ -40,6 +41,14 @@ export function hentAllPersonData(dispatch: AsyncDispatch, fødselsnummer: strin
     dispatch(resetForeldrepengerReducer());
     dispatch(resetUtførteUtbetalingerReducer());
     dispatch(resetKontrollSpørsmål());
+}
+
+export function isLoadedPerson(person: RestReducer<PersonRespons>): person is Loaded<Person> {
+    return isLoaded(person) && person.data.hasOwnProperty('fødselsnummer');
+}
+
+export function getFnrFromPerson(person: RestReducer<PersonRespons>): string | undefined {
+    return isLoadedPerson(person) ? person.data.fødselsnummer : undefined;
 }
 
 export const personinformasjonActionNames = actionNames;
