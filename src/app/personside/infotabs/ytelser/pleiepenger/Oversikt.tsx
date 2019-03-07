@@ -4,7 +4,7 @@ import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
 import ArbeidsForhold from './Arbeidsforhold';

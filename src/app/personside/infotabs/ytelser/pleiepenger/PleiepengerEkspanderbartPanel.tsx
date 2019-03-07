@@ -3,7 +3,7 @@ import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPan
 import Pleiepenger from './Pleiepenger';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import { getSistePeriodeForPleiepengerettighet } from './pleiepengerUtils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 
 interface Props {
     pleiepenger: Pleiepengerettighet | null;

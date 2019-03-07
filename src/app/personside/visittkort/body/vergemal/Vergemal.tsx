@@ -9,7 +9,7 @@ import {
     Verge as VergeInterface,
     Vergemal as VergemalInterface
 } from '../../../../../models/vergemal/vergemal';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import { ENDASH } from '../../../../../utils/string-utils';

@@ -3,7 +3,7 @@ import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import { KontaktinformasjonVerdi, KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
 import { Loaded, RestReducer } from '../../../../../../redux/restReducers/restReducer';

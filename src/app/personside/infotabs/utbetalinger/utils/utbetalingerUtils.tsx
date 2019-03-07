@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { FilterState, PeriodeValg } from '../filter/Filter';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Periode } from '../../../../../models/periode';
 import moment from 'moment';
 import { loggError } from '../../../../../utils/frontendLogger';

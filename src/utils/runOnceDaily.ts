@@ -1,6 +1,6 @@
 import moment from 'moment';
 import * as Cookies from 'js-cookie';
-import { formaterDato } from './dateUtils';
+import { formaterDato } from './stringFormatting';
 
 export function runOnceDaily(id: string, fn: Function) {
     if (checkIfLoggedToday(id)) {
