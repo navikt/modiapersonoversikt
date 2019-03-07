@@ -16,8 +16,8 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
-import SakstemaListeContainer from './SakstemaListeContainer';
-import NavFrontendChevron from 'nav-frontend-chevron';
+import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
+import DropDownMenu from '../../../../../components/DropDownMenu';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -97,38 +97,6 @@ const Luft = styled.div`
 const TittleStyling = styled.span`
     &:focus {
         outline: none;
-    }
-`;
-
-const DropDownContainer = styled.div`
-    position: relative;
-    .dropdown {
-        display: none;
-    }
-    &:hover .dropdown {
-        display: block;
-    }
-    cursor: pointer;
-    align-self: flex-start;
-    > *:first-child {
-        padding: 0.2rem;
-    }
-`;
-
-const DropDownContent = styled.div`
-    position: absolute;
-    box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.5);
-    max-height: 70vh;
-    overflow-y: auto;
-    z-index: 1000;
-`;
-
-const OneLine = styled.div`
-    display: flex;
-    align-items: center;
-    > *:last-child {
-        margin-top: 0.2rem;
-        margin-left: 0.3rem;
     }
 `;
 
@@ -256,20 +224,13 @@ class SaksDokumenter extends React.PureComponent<Props> {
             </Form>
         );
 
-        const dokumentinnhold = hentDokumentinnhold(props.valgtSakstema, props.avsenderFilter);
-
+        const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
         const valgtSakstema = props.erStandaloneVindu ? (
-            <DropDownContainer>
-                <OneLine>
-                    <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
-                    <NavFrontendChevron type="ned" />
-                </OneLine>
-                <DropDownContent className="dropdown">
-                    <SakstemaListeContainer />
-                </DropDownContent>
-            </DropDownContainer>
+            <DropDownMenu header={tittel}>
+                <SakstemaListeContainer />
+            </DropDownMenu>
         ) : (
-            <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
+            tittel
         );
 
         return (

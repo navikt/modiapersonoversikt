@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';

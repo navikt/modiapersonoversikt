@@ -457,9 +457,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="typo-normal"
               >
                 1
-
+                 
                 søknad
-                 er
+                 er 
                 ferdig behandlet
                 .
               </p>
@@ -734,7 +734,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </p>
                 </div>
               </div>
-
+              
               <div
                 className="c23"
               >
@@ -742,7 +742,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   className="typo-etikett-liten"
                 >
                   Sykepenger
-                   / Saksid:
+                   / Saksid: 
                   kv3uqgr5
                 </p>
               </div>
@@ -826,7 +826,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </p>
                 </div>
               </div>
-
+              
               <div
                 className="c23"
               >
@@ -834,7 +834,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   className="typo-etikett-liten"
                 >
                   Sykepenger
-                   / Saksid:
+                   / Saksid: 
                   8qj6vuv6
                 </p>
               </div>
