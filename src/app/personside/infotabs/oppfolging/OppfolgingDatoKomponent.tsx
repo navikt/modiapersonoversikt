@@ -4,6 +4,8 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
+import { isLoading, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { DetaljertOppfolging } from '../../../../models/oppfolging';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -39,9 +41,12 @@ interface Props {
     onChange: (change: Partial<FraTilDato>) => void;
     hentOppfølging: () => void;
     valgtPeriode: FraTilDato;
+    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
 }
 
 function datoInputs(props: Props) {
+    const oppfølgingLastes = isLoading(props.oppfølgingReducer) || isReloading(props.oppfølgingReducer);
+
     return (
         <>
             <DatoVelgerWrapper>
@@ -53,6 +58,7 @@ function datoInputs(props: Props) {
                         dato={props.valgtPeriode.fra}
                         onChange={dato => props.onChange({ fra: dato })}
                         id="utbetalinger-datovelger-fra"
+                        disabled={oppfølgingLastes}
                     />
                 </div>
                 <div>
@@ -63,11 +69,17 @@ function datoInputs(props: Props) {
                         dato={props.valgtPeriode.til}
                         onChange={dato => props.onChange({ til: dato })}
                         id="utbetalinger-datovelger-til"
+                        disabled={oppfølgingLastes}
                     />
                 </div>
             </DatoVelgerWrapper>
             <KnappWrapper>
-                <Knapp onClick={props.hentOppfølging} htmlType="button">
+                <Knapp
+                    onClick={props.hentOppfølging}
+                    spinner={oppfølgingLastes}
+                    aria-disabled={oppfølgingLastes}
+                    htmlType="button"
+                >
                     Søk
                 </Knapp>
             </KnappWrapper>

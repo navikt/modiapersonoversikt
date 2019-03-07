@@ -91,6 +91,7 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
                         onChange={this.onFilterChange}
                         valgtPeriode={this.state.valgtPeriode}
                         hentOppfølging={this.reloadOppfolging}
+                        oppfølgingReducer={this.props.oppfølgingReducer}
                     />
                 )}
             </PlukkRestData>

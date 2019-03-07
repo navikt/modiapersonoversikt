@@ -7,12 +7,14 @@ import OppfolgingDatoPanel, { FraTilDato } from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
+import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
     onChange: (change: Partial<FraTilDato>) => void;
     hentOppfølging: () => void;
     valgtPeriode: FraTilDato;
+    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
 }
 
 const DetaljertInfoWrapper = styled.div`
@@ -53,6 +55,7 @@ function OppfolgingVisning(props: VisningProps) {
                         onChange={props.onChange}
                         valgtPeriode={props.valgtPeriode}
                         hentOppfølging={props.hentOppfølging}
+                        oppfølgingReducer={props.oppfølgingReducer}
                     />
                 </LenkeOgDatoWrapper>
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />
