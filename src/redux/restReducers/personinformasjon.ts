@@ -12,6 +12,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { AsyncDispatch } from '../ThunkTypes';
 import { resetUtførteUtbetalingerReducer } from './ytelser/utførteUtbetalinger';
 import { hentFeatureToggles } from './featureToggles';
+import { resetKontrollSpørsmål } from '../kontrollSporsmal/actions';
 
 const { reducer, action, actionNames, reload } = createActionsAndReducer('personinformasjon');
 
@@ -38,6 +39,7 @@ export function hentAllPersonData(dispatch: AsyncDispatch, fødselsnummer: strin
     dispatch(resetPleiepengerReducer());
     dispatch(resetForeldrepengerReducer());
     dispatch(resetUtførteUtbetalingerReducer());
+    dispatch(resetKontrollSpørsmål());
 }
 
 export const personinformasjonActionNames = actionNames;

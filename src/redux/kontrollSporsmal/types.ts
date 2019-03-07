@@ -23,10 +23,11 @@ export const initState: KontrollSpørsmålState = {
 export enum ActionTypes {
     Roter = 'KONTROLLSPØRSMAL / ROTER',
     SetSpørsmål = 'KONTROLLSPØRSMÅL / SETSPØRSMÅL',
-    Lukk = 'KONTROLLSPØRSMÅL / LUKK'
+    Lukk = 'KONTROLLSPØRSMÅL / LUKK',
+    Reset = 'KONTROLLSPØRSMÅL / RESET'
 }
 
-export type Actions = Roter | SetSpørsmål | Lukk;
+export type Actions = Roter | SetSpørsmål | Lukk | Reset;
 
 export interface Roter extends Action {
     type: ActionTypes.Roter;
@@ -39,4 +40,8 @@ export interface SetSpørsmål extends Action {
 
 export interface Lukk extends Action {
     type: ActionTypes.Lukk;
+}
+
+export interface Reset extends Action {
+    type: ActionTypes.Reset;
 }
