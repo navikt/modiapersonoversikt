@@ -12,7 +12,7 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
@@ -104,7 +104,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }

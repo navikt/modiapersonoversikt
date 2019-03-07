@@ -24,6 +24,8 @@ function reducer(state: KontrollSpørsmålState = initState, action: Actions): K
                 ...state,
                 synlig: false
             };
+        case ActionTypes.Reset:
+            return initState;
         default:
             return state;
     }

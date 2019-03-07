@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
-import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -172,7 +172,7 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
         velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));
