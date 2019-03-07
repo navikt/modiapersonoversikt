@@ -15,8 +15,8 @@ export function getOppfolging(fodselsnummer: string): Promise<Oppfolging> {
 
 export function getDetaljertOppfolging(
     fodselsnummer: string,
-    startDato?: Date,
-    sluttDato?: Date
+    startDato: Date,
+    sluttDato: Date
 ): Promise<DetaljertOppfolging> {
     const uri = `${apiBaseUri}/oppfolging/${fodselsnummer}/ytelserogkontrakter${lagQueryParametre(
         startDato,
@@ -31,10 +31,6 @@ export function getDetaljertOppfolging(
     });
 }
 
-function lagQueryParametre(startDato?: Date, sluttDato?: Date): string {
-    if (startDato && sluttDato) {
-        return `?startDato=${formaterTilISO8601Date(startDato)}&sluttDato=${formaterTilISO8601Date(sluttDato)}`;
-    } else {
-        return '';
-    }
+function lagQueryParametre(startDato: Date, sluttDato: Date): string {
+    return `?startDato=${formaterTilISO8601Date(startDato)}&sluttDato=${formaterTilISO8601Date(sluttDato)}`;
 }

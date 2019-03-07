@@ -19,9 +19,11 @@ interface State {
 const initialState: State = {
     valgtPeriode: {
         fra: moment()
-            .subtract(1, 'month')
+            .subtract(2, 'month')
             .toDate(),
-        til: new Date()
+        til: moment()
+            .add(1, 'month')
+            .toDate()
     }
 };
 
@@ -32,7 +34,7 @@ interface StateProps {
 
 interface DispatchProps {
     hentBaseUrls: () => void;
-    hentDetaljertOppfølging: (fødselsnummer: string) => void;
+    hentDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
     reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
 }
 
@@ -72,7 +74,11 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
             this.props.hentBaseUrls();
         }
         if (isNotStarted(this.props.oppfølgingReducer)) {
-            this.props.hentDetaljertOppfølging(this.props.fødselsnummer);
+            this.props.hentDetaljertOppfølging(
+                this.props.fødselsnummer,
+                this.state.valgtPeriode.fra,
+                this.state.valgtPeriode.til
+            );
         }
     }
 
@@ -102,7 +108,8 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
-        hentDetaljertOppfølging: (fødselsnummer: string) => dispatch(hentDetaljertOppfolging(fødselsnummer)),
+        hentDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
+            dispatch(hentDetaljertOppfolging(fødselsnummer, startDato, sluttDato)),
         reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
             dispatch(reloadDetaljertOppfolging(fødselsnummer, startDato, sluttDato))
     };

@@ -15,11 +15,11 @@ export function resetOppfolgingReducer() {
     return tilbakestillReducer;
 }
 
-export function hentDetaljertOppfolging(fødselsnummer: string, startDato?: Date, sluttDato?: Date) {
+export function hentDetaljertOppfolging(fødselsnummer: string, startDato: Date, sluttDato: Date) {
     return action(() => getDetaljertOppfolging(fødselsnummer, startDato, sluttDato));
 }
 
-export function reloadDetaljertOppfolging(fødselsnummer: string, startDato?: Date, sluttDato?: Date) {
+export function reloadDetaljertOppfolging(fødselsnummer: string, startDato: Date, sluttDato: Date) {
     return reload(() => getDetaljertOppfolging(fødselsnummer, startDato, sluttDato));
 }
 
