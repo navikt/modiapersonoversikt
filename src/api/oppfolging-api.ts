@@ -1,6 +1,6 @@
 import { apiBaseUri } from './config';
 import { DetaljertOppfolging, Oppfolging } from '../models/oppfolging';
-import { formaterTilISO8601Date } from '../utils/dateUtils';
+import { formaterTilISO8601Date } from '../utils/stringFormatting';
 
 export function getOppfolging(fodselsnummer: string): Promise<Oppfolging> {
     const uri = `${apiBaseUri}/oppfolging/${fodselsnummer}`;

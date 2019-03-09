@@ -3,18 +3,13 @@ import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import ArenaLenkerPanel from './ArenaLenkerKomponent';
-import OppfolgingDatoPanel, { FraTilDato } from './OppfolgingDatoKomponent';
+import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
-    onChange: (change: Partial<FraTilDato>) => void;
-    hentOppfølging: () => void;
-    valgtPeriode: FraTilDato;
-    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
 }
 
 const DetaljertInfoWrapper = styled.div`
@@ -51,12 +46,7 @@ function OppfolgingVisning(props: VisningProps) {
             <DetaljertInfoWrapper>
                 <LenkeOgDatoWrapper>
                     <ArenaLenkerPanel />
-                    <OppfolgingDatoPanel
-                        onChange={props.onChange}
-                        valgtPeriode={props.valgtPeriode}
-                        hentOppfølging={props.hentOppfølging}
-                        oppfølgingReducer={props.oppfølgingReducer}
-                    />
+                    <OppfolgingDatoPanel />
                 </LenkeOgDatoWrapper>
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />
             </DetaljertInfoWrapper>

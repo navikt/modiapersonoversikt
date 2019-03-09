@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isLoading, isNotStarted, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { AppState } from '../../../../redux/reducers';
@@ -9,27 +9,12 @@ import { hentDetaljertOppfolging, reloadDetaljertOppfolging } from '../../../../
 import { connect } from 'react-redux';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import OppfolgingVisning from './OppfolgingVisningKomponent';
-import { FraTilDato } from './OppfolgingDatoKomponent';
-import moment from 'moment';
-
-interface State {
-    valgtPeriode: FraTilDato;
-}
-
-const initialState: State = {
-    valgtPeriode: {
-        fra: moment()
-            .subtract(2, 'month')
-            .toDate(),
-        til: moment()
-            .add(1, 'month')
-            .toDate()
-    }
-};
+import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    valgtPeriode: VisOppfolgingFraTilDato;
 }
 
 interface DispatchProps {
@@ -44,31 +29,7 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class OppfolgingContainer extends React.PureComponent<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = { ...initialState };
-        this.onFilterChange = this.onFilterChange.bind(this);
-        this.reloadOppfolging = this.reloadOppfolging.bind(this);
-    }
-
-    onFilterChange(change: Partial<FraTilDato>) {
-        this.setState({
-            valgtPeriode: { ...this.state.valgtPeriode, ...change }
-        });
-    }
-
-    reloadOppfolging() {
-        if (isLoading(this.props.oppfølgingReducer) || isReloading(this.props.oppfølgingReducer)) {
-            return;
-        }
-        this.props.reloadDetaljertOppfølging(
-            this.props.fødselsnummer,
-            this.state.valgtPeriode.fra,
-            this.state.valgtPeriode.til
-        );
-    }
-
+class OppfolgingContainer extends React.PureComponent<Props> {
     componentDidMount() {
         if (isNotStarted(this.props.baseUrlReducer)) {
             this.props.hentBaseUrls();
@@ -76,8 +37,8 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
         if (isNotStarted(this.props.oppfølgingReducer)) {
             this.props.hentDetaljertOppfølging(
                 this.props.fødselsnummer,
-                this.state.valgtPeriode.fra,
-                this.state.valgtPeriode.til
+                this.props.valgtPeriode.fra,
+                this.props.valgtPeriode.til
             );
         }
     }
@@ -85,15 +46,7 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
     render() {
         return (
             <PlukkRestData restReducer={this.props.oppfølgingReducer}>
-                {data => (
-                    <OppfolgingVisning
-                        detaljertOppfølging={data}
-                        onChange={this.onFilterChange}
-                        valgtPeriode={this.state.valgtPeriode}
-                        hentOppfølging={this.reloadOppfolging}
-                        oppfølgingReducer={this.props.oppfølgingReducer}
-                    />
-                )}
+                {data => <OppfolgingVisning detaljertOppfølging={data} />}
             </PlukkRestData>
         );
     }
@@ -102,7 +55,8 @@ class OppfolgingContainer extends React.PureComponent<Props, State> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer
+        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        valgtPeriode: state.oppfolging.valgtPeriode
     };
 }
 

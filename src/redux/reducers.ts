@@ -8,6 +8,8 @@ import { SaksoversikState } from './saksoversikt/types';
 import { KontrollSpørsmålState } from './kontrollSporsmal/types';
 import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
 import ytelserReducere, { YtelserState } from './ytelser/ytelserReducere';
+import { OppfolgingState } from './oppfolging/types';
+import { oppfolgingReducer } from './oppfolging/reducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -17,6 +19,7 @@ export interface AppState {
     saksoversikt: SaksoversikState;
     ytelser: YtelserState;
     kontrollSpørsmål: KontrollSpørsmålState;
+    oppfolging: OppfolgingState;
 }
 
 export default combineReducers<AppState>({
@@ -26,5 +29,6 @@ export default combineReducers<AppState>({
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
     ytelser: ytelserReducere,
-    kontrollSpørsmål: kontrollspørsmålReducer
+    kontrollSpørsmål: kontrollspørsmålReducer,
+    oppfolging: oppfolgingReducer
 });
