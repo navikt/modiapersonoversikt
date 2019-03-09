@@ -16,7 +16,7 @@ import {
     getTypeFromYtelse,
     reduceUtbetlingerTilYtelser
 } from '../utils/utbetalingerUtils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import moment from 'moment';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';

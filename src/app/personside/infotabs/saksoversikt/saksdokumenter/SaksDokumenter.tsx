@@ -16,12 +16,13 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
+import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
+import DropDownMenu from '../../../../../components/DropDownMenu';
 
 interface Props {
     valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
-    visDokument: boolean;
     oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
     lukkDokument: () => void;
 }
@@ -93,7 +94,7 @@ const Luft = styled.div`
     margin-top: 2rem;
 `;
 
-const TittleWrapper = styled.span`
+const TittleStyling = styled.span`
     &:focus {
         outline: none;
     }
@@ -223,21 +224,22 @@ class SaksDokumenter extends React.PureComponent<Props> {
             </Form>
         );
 
-        const tilbakeLenke =
-            props.erStandaloneVindu && props.visDokument ? (
-                <a href={'#'} onClick={props.lukkDokument}>
-                    Tilbake til saksoversikt
-                </a>
-            ) : null;
+        const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
+        const valgtSakstema = props.erStandaloneVindu ? (
+            <DropDownMenu header={tittel}>
+                <SakstemaListeContainer />
+            </DropDownMenu>
+        ) : (
+            tittel
+        );
 
         return (
             <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
                 <InfoOgFilterPanel>
                     <div>
-                        {tilbakeLenke}
-                        <TittleWrapper ref={this.tittelRef} tabIndex={-1}>
-                            <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>
-                        </TittleWrapper>
+                        <TittleStyling ref={this.tittelRef} tabIndex={-1}>
+                            {valgtSakstema}
+                        </TittleStyling>
                         {filterCheckboxer}
                     </div>
                     <div>

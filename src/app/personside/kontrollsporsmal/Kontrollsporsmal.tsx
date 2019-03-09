@@ -8,10 +8,22 @@ import { AppState } from '../../../redux/reducers';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
+import { useEffect } from 'react';
+import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
+import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
+    fnr?: string;
 }
+
+interface DispatchProps {
+    lukkKontrollSpørsmål: () => void;
+}
+
+type Props = DispatchProps & StateProps;
 
 const KontrollSporsmalStyling = styled.section`
     ${theme.hvittPanel};
@@ -20,28 +32,42 @@ const KontrollSporsmalStyling = styled.section`
     position: relative;
 `;
 
-class Kontrollsporsmal extends React.PureComponent<StateProps> {
-    render() {
-        if (!this.props.visKontrollSpørsmål) {
-            return null;
+function Kontrollsporsmal(props: Props) {
+    useEffect(() => {
+        if (props.fnr && kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
+            props.lukkKontrollSpørsmål();
         }
+    }, []);
 
-        return (
-            <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
-                <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                    <Header />
-                    <SpørsmålOgSvar />
-                    <HandleKontrollSporsmalHotkeys />
-                </KontrollSporsmalStyling>
-            </IfFeatureToggleOn>
-        );
+    if (!props.visKontrollSpørsmål) {
+        return null;
     }
+
+    return (
+        <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
+            <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
+                <Header />
+                <SpørsmålOgSvar />
+                <HandleKontrollSporsmalHotkeys />
+            </KontrollSporsmalStyling>
+        </IfFeatureToggleOn>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visKontrollSpørsmål: state.kontrollSpørsmål.synlig
+        visKontrollSpørsmål: state.kontrollSpørsmål.synlig,
+        fnr: getFnrFromPerson(state.restEndepunkter.personinformasjon)
     };
 }
 
-export default connect(mapStateToProps)(Kontrollsporsmal);
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål())
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Kontrollsporsmal);

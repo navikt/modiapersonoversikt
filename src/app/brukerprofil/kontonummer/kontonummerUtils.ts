@@ -1,7 +1,6 @@
-import { formatNumber } from '../../../utils/string-utils';
 import { BankAdresse, Bankkonto, Person } from '../../../models/person/person';
 import { Kodeverk } from '../../../models/kodeverk';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato, formatNumber } from '../../../utils/stringFormatting';
 
 export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);

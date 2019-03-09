@@ -1,7 +1,7 @@
 import * as React from 'react';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import { Sykmeldingsperiode } from '../../../../../models/ytelse/sykepenger';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 
 interface Props {
     sykepenger: Sykmeldingsperiode;

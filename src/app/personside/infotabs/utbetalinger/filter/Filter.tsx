@@ -13,7 +13,7 @@ import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../api/utbetaling-api';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Avgrensninger } from 'nav-datovelger';
 
 export interface FilterState {

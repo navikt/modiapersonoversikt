@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import Foreldrepenger from './ForeldrePenger';
 

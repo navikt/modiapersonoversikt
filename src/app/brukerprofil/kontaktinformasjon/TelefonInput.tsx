@@ -9,7 +9,7 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import { TelefonInput as TelefonInputState } from './KontaktinformasjonForm';
 import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import EtikettGrå from '../../../components/EtikettGrå';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato } from '../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../utils/endretAvUtil';
 import { Retningsnummer } from './RetningsnummerInput';
 import { ignoreEnter } from '../utils/formUtils';

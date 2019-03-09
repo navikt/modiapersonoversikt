@@ -1,7 +1,6 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
@@ -11,7 +10,7 @@ import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
-import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
+import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -31,7 +30,6 @@ interface OwnProps {
 }
 
 interface StateProps {
-    visDokument: boolean;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
     personReducer: RestReducer<PersonRespons>;
 }
@@ -45,26 +43,13 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
+const SaksoversiktArticle = styled.article`
     display: flex;
     align-items: flex-start;
     width: 100vw;
     > *:last-child {
         width: 70%;
-        ${props =>
-            !props.visDokument &&
-            css`
-                display: none;
-            `};
         margin-left: ${theme.margin.layout};
-    }
-    > *:first-child {
-        ${props =>
-            props.visDokument &&
-            css`
-                display: none;
-            `};
-        margin-right: ${theme.margin.layout};
     }
     > *:not(:last-child) {
         overflow-y: scroll;
@@ -150,9 +135,8 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     render() {
         return (
-            <SaksoversiktArticle visDokument={this.props.visDokument}>
+            <SaksoversiktArticle>
                 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
-                    <SakstemaListeContainer />
                     <DokumentListeContainer />
                     <DokumentOgVedlegg />
                 </Innholdslaster>
@@ -163,7 +147,6 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visDokument: state.saksoversikt.visDokument,
         saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
         personReducer: state.restEndepunkter.personinformasjon
     };
@@ -172,7 +155,7 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
+        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
         velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));

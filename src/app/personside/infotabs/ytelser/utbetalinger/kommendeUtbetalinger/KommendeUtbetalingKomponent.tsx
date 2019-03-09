@@ -8,7 +8,7 @@ import {
     NOKellerNull,
     periodeEllerNull,
     prosentEllerNull
-} from '../../../../../../components/descriptionListHelpers';
+} from '../../../../../../utils/stringFormatting';
 
 interface Props {
     kommendeUtbetaling: KommendeUtbetaling;

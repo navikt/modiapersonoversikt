@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { BostatusTyper, Person } from '../../../../../models/person/person';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
 import { AntallBarn } from './Antallbarn';
