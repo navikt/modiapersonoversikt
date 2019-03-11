@@ -15,6 +15,7 @@ import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import moment from 'moment';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface State {
     filter: FilterState;
@@ -117,6 +118,7 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
         return (
             <ErrorBoundary>
                 <UtbetalingerArticle role="region" aria-label="Utbetalinger">
+                    <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />
                     <div>
                         <Arenalenke fødselsnummer={this.props.fødselsnummer} />
                         <FiltreringSection>

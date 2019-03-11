@@ -3,6 +3,7 @@ import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepen
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
@@ -19,6 +20,7 @@ function Foreldrepenger({ foreldrepenger }: Props) {
 
     return (
         <article>
+            <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />
             <Oversikt foreldrePenger={foreldrepenger} />
             <ul>{perioder}</ul>
         </article>

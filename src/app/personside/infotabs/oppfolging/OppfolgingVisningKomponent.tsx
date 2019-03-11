@@ -7,6 +7,7 @@ import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
@@ -43,6 +44,7 @@ const EkspanderbartPanelWrapper = styled.div`
 function OppfolgingVisning(props: VisningProps) {
     return (
         <article>
+            <VisuallyHiddenAutoFokusHeader tittel="Oppfølging" />
             <DetaljertInfoWrapper>
                 <LenkeOgDatoWrapper>
                     <ArenaLenkerPanel />
