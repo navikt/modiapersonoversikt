@@ -7,6 +7,7 @@ import EtikettBase from 'nav-frontend-etiketter';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
     egenAnsattReducer: RestReducer<Egenansatt>;
@@ -21,13 +22,15 @@ function EgenansattEtikett(props: { erEgenansatt: boolean }) {
 
 function EgenAnsattEtikettContainer(props: StateProps) {
     return (
-        <PlukkRestData
-            restReducer={props.egenAnsattReducer}
-            returnOnPending={<LazySpinner type="S" />}
-            returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
-        >
-            {data => <EgenansattEtikett erEgenansatt={data.erEgenAnsatt} />}
-        </PlukkRestData>
+        <ErrorBoundary boundaryName="EgenansattEtikett">
+            <PlukkRestData
+                restReducer={props.egenAnsattReducer}
+                returnOnPending={<LazySpinner type="S" />}
+                returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
+            >
+                {data => <EgenansattEtikett erEgenansatt={data.erEgenAnsatt} />}
+            </PlukkRestData>
+        </ErrorBoundary>
     );
 }
 
