@@ -37,7 +37,7 @@ function Kontrollsporsmal(props: Props) {
         if (props.fnr && kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
             props.lukkKontrollSpørsmål();
         }
-    }, []);
+    }, [props.fnr]);
 
     if (!props.visKontrollSpørsmål) {
         return null;

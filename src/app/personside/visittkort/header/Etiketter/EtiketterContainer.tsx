@@ -6,6 +6,7 @@ import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Etiketter from './Etiketter';
 import styled from 'styled-components';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
     personReducer: RestReducer<PersonRespons>;
@@ -19,11 +20,13 @@ const Wrapper = styled.div`
 
 function EtiketterContainer(props: Props) {
     return (
-        <Wrapper>
-            <PlukkRestData restReducer={props.personReducer}>
-                {data => <Etiketter person={data as Person} />}
-            </PlukkRestData>
-        </Wrapper>
+        <ErrorBoundary boundaryName="Etiketter">
+            <Wrapper>
+                <PlukkRestData restReducer={props.personReducer}>
+                    {data => <Etiketter person={data as Person} />}
+                </PlukkRestData>
+            </Wrapper>
+        </ErrorBoundary>
     );
 }
 

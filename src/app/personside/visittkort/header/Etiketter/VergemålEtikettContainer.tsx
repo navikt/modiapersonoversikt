@@ -7,6 +7,7 @@ import EtikettBase from 'nav-frontend-etiketter';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
     vergemalReducer: RestReducer<Vergemal>;
@@ -24,13 +25,15 @@ function VergemålsEtikett(props: { vergemål: Vergemal }) {
 
 function VergemålEtikettContainer(props: StateProps) {
     return (
-        <PlukkRestData
-            restReducer={props.vergemalReducer}
-            returnOnPending={<LazySpinner type="S" />}
-            returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker har verge</AlertStripeAdvarsel>}
-        >
-            {data => <VergemålsEtikett vergemål={data} />}
-        </PlukkRestData>
+        <ErrorBoundary boundaryName="Vergemålsetikett">
+            <PlukkRestData
+                restReducer={props.vergemalReducer}
+                returnOnPending={<LazySpinner type="S" />}
+                returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker har verge</AlertStripeAdvarsel>}
+            >
+                {data => <VergemålsEtikett vergemål={data} />}
+            </PlukkRestData>
+        </ErrorBoundary>
     );
 }
 
