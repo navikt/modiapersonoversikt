@@ -12,11 +12,11 @@ export interface Varsel {
 export interface Varselmelding {
     kanal: string;
     innhold: string;
-    mottakerInformasjon: string;
+    mottakerInformasjon?: string;
     utsendingsTidspunkt: string;
     feilbeskrivelse: string;
-    epostemne: string;
-    url: string;
+    epostemne?: string;
+    url?: string;
     erRevarsel: boolean;
 }
 
