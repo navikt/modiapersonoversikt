@@ -334,6 +334,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-top: 2rem;
 }
 
+.c11 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c11 > *:last-child {
+  margin-left: 1rem;
+}
+
 .c11:focus {
   outline: none;
 }
@@ -374,11 +389,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   aria-label="Brukerens saker"
   className="c0"
 >
-  <h1
-    className="typo-innholdstittel visually-hidden"
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
   >
     Brukerens saker
-  </h1>
+  </h2>
   <div
     className="c1"
   >
@@ -560,7 +576,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       className="c10"
     >
       <div>
-        <span
+        <div
           className="c11"
           tabIndex={-1}
         >
@@ -569,7 +585,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           >
             Alle tema
           </h2>
-        </span>
+          <p
+            className="typo-normal"
+          >
+            (
+            2
+             journalposter)
+          </p>
+        </div>
         <form
           aria-label="Filter"
           className="c12"
