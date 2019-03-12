@@ -26,6 +26,7 @@ import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
+import varselReducer from './varsel';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -43,6 +44,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { Oppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { VarselResponse } from '../../models/varsel';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -71,6 +73,7 @@ export interface RestEndepunkter {
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
     featureToggles: RestReducer<FeatureToggles>;
+    varselReducer: RestReducer<VarselResponse>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -99,5 +102,6 @@ export default combineReducers<RestEndepunkter>({
     foreldrepengerReducer: foreldrepengerReducer,
     oppfolgingReducer: oppfolgingReducer,
     saksoversiktReducer: saksoversiktReducer,
-    featureToggles: featureToggleReducer
+    featureToggles: featureToggleReducer,
+    varselReducer: varselReducer
 });
