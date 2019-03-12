@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import Header from './Header';
+import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
@@ -10,9 +11,9 @@ import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggle
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
-import { useEffect } from 'react';
 import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -27,9 +28,30 @@ type Props = DispatchProps & StateProps;
 
 const KontrollSporsmalStyling = styled.section`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px10};
+    padding: ${theme.margin.px20};
     margin-bottom: 0.5rem;
-    position: relative;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-areas:
+        'tittel knapper'
+        'innhold innhold';
+    .innhold {
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        grid-area: innhold;
+    }
+    .tittel {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        grid-area: tittel;
+    }
+    .knapper {
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;
+        grid-area: knapper;
+    }
 `;
 
 function Kontrollsporsmal(props: Props) {
@@ -46,10 +68,17 @@ function Kontrollsporsmal(props: Props) {
     return (
         <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                <Header />
-                <SpørsmålOgSvar />
-                <HandleKontrollSporsmalHotkeys />
+                <div className="tittel">
+                    <Undertittel>Kontrollspørsmål</Undertittel>
+                </div>
+                <div className="innhold">
+                    <SpørsmålOgSvar />
+                </div>
+                <div className="knapper">
+                    <KontrollSpørsmålKnapper />
+                </div>
             </KontrollSporsmalStyling>
+            <HandleKontrollSporsmalHotkeys />
         </IfFeatureToggleOn>
     );
 }
