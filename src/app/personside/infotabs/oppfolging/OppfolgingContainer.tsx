@@ -5,19 +5,22 @@ import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
-import { hentDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
+import { hentDetaljertOppfolging, reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { connect } from 'react-redux';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import OppfolgingVisning from './OppfolgingVisningKomponent';
+import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
     oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    valgtPeriode: VisOppfolgingFraTilDato;
 }
 
 interface DispatchProps {
     hentBaseUrls: () => void;
-    hentDetaljertOppfølging: (fødselsnummer: string) => void;
+    hentDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
+    reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
 }
 
 interface OwnProps {
@@ -32,7 +35,11 @@ class OppfolgingContainer extends React.PureComponent<Props> {
             this.props.hentBaseUrls();
         }
         if (isNotStarted(this.props.oppfølgingReducer)) {
-            this.props.hentDetaljertOppfølging(this.props.fødselsnummer);
+            this.props.hentDetaljertOppfølging(
+                this.props.fødselsnummer,
+                this.props.valgtPeriode.fra,
+                this.props.valgtPeriode.til
+            );
         }
     }
 
@@ -48,14 +55,18 @@ class OppfolgingContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer
+        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        valgtPeriode: state.oppfolging.valgtPeriode
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
-        hentDetaljertOppfølging: (fødselsnummer: string) => dispatch(hentDetaljertOppfolging(fødselsnummer))
+        hentDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
+            dispatch(hentDetaljertOppfolging(fødselsnummer, startDato, sluttDato)),
+        reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
+            dispatch(reloadDetaljertOppfolging(fødselsnummer, startDato, sluttDato))
     };
 }
 

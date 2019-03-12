@@ -4,6 +4,16 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
+import { isLoading, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { DetaljertOppfolging } from '../../../../models/oppfolging';
+import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
+import { AppState } from '../../../../redux/reducers';
+import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
+import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
+import { connect } from 'react-redux';
+import { PersonContext } from '../../../App';
+import AlertStripeAdvarsel from '../saksoversikt/dokumentvisning/DokumentOgVedlegg';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -30,20 +40,20 @@ const KnappWrapper = styled.div`
     margin-top: 1rem;
 `;
 
-export interface FraTilDato {
-    fra: Date;
-    til: Date;
+interface StateProps {
+    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    valgtPeriode: VisOppfolgingFraTilDato;
 }
 
-interface Props {}
+interface DispatchProps {
+    settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => void;
+    reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
+}
 
-function onDatoChange(props: Props, dato: Partial<FraTilDato>) {}
+type Props = DispatchProps & StateProps;
 
 function DatoInputs(props: Props) {
-    const periode: FraTilDato = {
-        fra: new Date(),
-        til: new Date()
-    };
+    const oppfølgingLastes = isLoading(props.oppfølgingReducer) || isReloading(props.oppfølgingReducer);
 
     return (
         <>
@@ -53,9 +63,10 @@ function DatoInputs(props: Props) {
                     <Datovelger
                         input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                         visÅrVelger={true}
-                        dato={periode.fra}
-                        onChange={dato => onDatoChange(props, { fra: dato })}
+                        dato={props.valgtPeriode.fra}
+                        onChange={dato => props.settValgtPeriode({ fra: dato })}
                         id="utbetalinger-datovelger-fra"
+                        disabled={oppfølgingLastes}
                     />
                 </div>
                 <div>
@@ -63,28 +74,65 @@ function DatoInputs(props: Props) {
                     <Datovelger
                         input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                         visÅrVelger={true}
-                        dato={periode.til}
-                        onChange={dato => onDatoChange(props, { til: dato })}
+                        dato={props.valgtPeriode.til}
+                        onChange={dato => props.settValgtPeriode({ til: dato })}
                         id="utbetalinger-datovelger-til"
+                        disabled={oppfølgingLastes}
                     />
                 </div>
             </DatoVelgerWrapper>
             <KnappWrapper>
-                <Knapp htmlType="button">Søk</Knapp>
+                <PersonContext.Consumer>
+                    {fnr => {
+                        if (!fnr) {
+                            return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
+                        }
+                        return (
+                            <Knapp
+                                onClick={() =>
+                                    props.reloadDetaljertOppfølging(fnr, props.valgtPeriode.fra, props.valgtPeriode.til)
+                                }
+                                spinner={oppfølgingLastes}
+                                aria-disabled={oppfølgingLastes}
+                                htmlType="button"
+                            >
+                                Søk
+                            </Knapp>
+                        );
+                    }}
+                </PersonContext.Consumer>
             </KnappWrapper>
         </>
     );
 }
 
-function OppfolgingDatoPanel() {
+function OppfolgingDatoPanel(props: Props) {
     return (
         <DatoKomponentWrapper>
-            <TittelWrapper tabIndex={-1}>
+            <TittelWrapper>
                 <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>
-            <DatoInputs />
+            <DatoInputs {...props} />
         </DatoKomponentWrapper>
     );
 }
 
-export default OppfolgingDatoPanel;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        valgtPeriode: state.oppfolging.valgtPeriode
+    };
+}
+
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => dispatch(settValgtPeriode(change)),
+        reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
+            dispatch(reloadDetaljertOppfolging(fødselsnummer, startDato, sluttDato))
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OppfolgingDatoPanel);

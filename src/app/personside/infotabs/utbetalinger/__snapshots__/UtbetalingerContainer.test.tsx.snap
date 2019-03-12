@@ -1,36 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c15 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  color: #0067c5;
-}
-
-.c15 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c15:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c15:hover {
-  opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 .c3 {
   border-radius: 0.25rem;
   background-color: white;
@@ -74,6 +44,36 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c6 > *:last-child {
   margin-bottom: 0;
+}
+
+.c15 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c15 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c15:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c15:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c30 {
@@ -339,12 +339,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   min-width: 35rem;
 }
 
-@media print {
-  .c15 {
-    display: none;
-  }
-}
-
 @media (max-width:80rem) {
   .c4 {
     display: -webkit-box;
@@ -368,6 +362,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
   .c4 > *:not(:last-child) {
     margin-right: 1rem;
+  }
+}
+
+@media print {
+  .c15 {
+    display: none;
   }
 }
 
