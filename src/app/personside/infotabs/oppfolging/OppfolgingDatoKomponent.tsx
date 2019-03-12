@@ -106,17 +106,15 @@ function DatoInputs(props: Props) {
     );
 }
 
-class OppfolgingDatoPanel extends React.PureComponent<Props> {
-    render() {
-        return (
-            <DatoKomponentWrapper>
-                <TittelWrapper tabIndex={-1}>
-                    <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
-                </TittelWrapper>
-                <DatoInputs {...this.props} />
-            </DatoKomponentWrapper>
-        );
-    }
+function OppfolgingDatoPanel(props: Props) {
+    return (
+        <DatoKomponentWrapper>
+            <TittelWrapper>
+                <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
+            </TittelWrapper>
+            <DatoInputs {...props} />
+        </DatoKomponentWrapper>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
