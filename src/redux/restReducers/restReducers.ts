@@ -44,7 +44,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { Oppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import { VarselResponse } from '../../models/varsel';
+import { Varsel } from '../../models/varsel';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -73,7 +73,7 @@ export interface RestEndepunkter {
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
     featureToggles: RestReducer<FeatureToggles>;
-    varselReducer: RestReducer<VarselResponse>;
+    varselReducer: RestReducer<Varsel[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
