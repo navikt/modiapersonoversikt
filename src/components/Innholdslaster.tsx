@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import AlertStripe from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/restReducers/utils';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
@@ -36,7 +36,7 @@ function Feilvisning(props: { onError?: React.ReactChildren | React.ReactChild }
     }
     return (
         <FillCenterAndFadeIn>
-            <AlertStripe type="advarsel">Feil ved lasting av data</AlertStripe>
+            <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>
         </FillCenterAndFadeIn>
     );
 }

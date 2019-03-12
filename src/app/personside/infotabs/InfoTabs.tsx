@@ -76,6 +76,7 @@ class InfoTabs extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName="InfoTabs">
                 <Section role="region" aria-label="Info-tabs">
+                    <h2 className="visually-hidden">Tab-panel</h2>
                     <TabKnapper
                         onTabChange={this.updateRouterPath}
                         openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}

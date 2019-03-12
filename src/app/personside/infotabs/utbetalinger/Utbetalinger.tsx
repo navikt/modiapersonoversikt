@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
@@ -17,6 +17,7 @@ import {
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
+import AriaNotification from '../../../../components/AriaNotification';
 
 const UtbetalingerArticle = styled.article`
     ${theme.hvittPanel};
@@ -35,6 +36,14 @@ const UtbetalingerListe = styled.ol`
 const Wrapper = styled.div`
     ol {
         list-style: none;
+    }
+`;
+
+const OnOneLine = styled.div`
+    display: inline-flex;
+    align-items: center;
+    > *:last-child {
+        margin-left: 1rem;
     }
 `;
 
@@ -68,9 +77,11 @@ function Utbetalinger({ filter, ...props }: UtbetalingerProps) {
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (
-            <AlertStripeInfo>
-                Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
-            </AlertStripeInfo>
+            <div role="alert">
+                <AlertStripeInfo>
+                    Det finnes ingen utbetalinger for valgte kombinasjon av periode og filtrering.
+                </AlertStripeInfo>
+            </div>
         );
     }
 
@@ -85,10 +96,16 @@ function Utbetalinger({ filter, ...props }: UtbetalingerProps) {
 
     return (
         <Wrapper>
+            <AriaNotification
+                beskjed={`Det finnes ${filtrerteUtbetalinger.length} utbetalinger for valgt periode og filtrering`}
+            />
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode} />
             <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
                 <UtbetalingerArticle aria-label="Utbetalinger">
-                    <Undertittel>Utbetalinger</Undertittel>
+                    <OnOneLine>
+                        <Undertittel>Utbetalinger</Undertittel>
+                        <Normaltekst>({filtrerteUtbetalinger.length} utbetalinger)</Normaltekst>
+                    </OnOneLine>
                     <UtbetalingerListe aria-label="Måneder">{månedsGrupper}</UtbetalingerListe>
                 </UtbetalingerArticle>
             </HandleUtbetalingerArrowKeys>
