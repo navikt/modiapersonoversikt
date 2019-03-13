@@ -1,7 +1,3 @@
-export interface VarselResponse {
-    data: Varsel[];
-}
-
 export interface Varsel {
     varselType: string;
     mottattTidspunkt: string;
