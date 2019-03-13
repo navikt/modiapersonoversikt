@@ -1,18 +1,16 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { Varsel, Varselmelding, VarselResponse } from '../models/varsel';
+import { Varsel, Varselmelding } from '../models/varsel';
 import { backendDatoformat } from './utils/mock-utils';
 import moment from 'moment';
 
-export function getMockVarsler(fødselsnummer: string): VarselResponse {
+export function getMockVarsler(fødselsnummer: string): Varsel[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'varsel');
 
-    return {
-        data: Array(navfaker.random.integer(10, 1))
-            .fill(null)
-            .map(() => getVarsel())
-    };
+    return Array(navfaker.random.integer(10, 1))
+        .fill(null)
+        .map(() => getVarsel());
 }
 
 function getVarsel(): Varsel {
