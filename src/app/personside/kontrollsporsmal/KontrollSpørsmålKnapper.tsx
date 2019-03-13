@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import * as React from 'react';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import theme from '../../../styles/personOversiktTheme';
-import { roterKontrollSpørsmål, lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
+import { lukkKontrollSpørsmål, roterKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
@@ -22,22 +21,15 @@ interface StateProps {
 
 type Props = StateProps & DispatchProps;
 
-const HeaderStyling = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    margin: ${theme.margin.px10};
-    justify-content: space-between;
-`;
-
 const KnapperStyling = styled.div`
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
     > * {
         margin-left: ${theme.margin.px20};
     }
 `;
 
-class Header extends React.PureComponent<Props> {
+class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
         this.handleNyttSpørsmålClick = this.handleNyttSpørsmålClick.bind(this);
@@ -64,17 +56,14 @@ class Header extends React.PureComponent<Props> {
 
     render() {
         return (
-            <HeaderStyling>
-                <Undertittel tag="h1">Kontrollspørsmål</Undertittel>
-                <KnapperStyling>
-                    <KnappBase type="standard" onClick={this.handleNyttSpørsmålClick}>
-                        Nytt spørsmål
-                    </KnappBase>
-                    <KnappBase type="standard" onClick={this.handleLukkClick}>
-                        Lukk
-                    </KnappBase>
-                </KnapperStyling>
-            </HeaderStyling>
+            <KnapperStyling>
+                <KnappBase type="standard" onClick={this.handleNyttSpørsmålClick}>
+                    Nytt spørsmål
+                </KnappBase>
+                <KnappBase type="standard" onClick={this.handleLukkClick}>
+                    Lukk
+                </KnappBase>
+            </KnapperStyling>
         );
     }
 }
@@ -95,4 +84,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header);
+)(KontrollSpørsmålKnapper);

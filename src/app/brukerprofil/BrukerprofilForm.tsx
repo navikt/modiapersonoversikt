@@ -9,6 +9,7 @@ import TilrettelagtKommunikasjonContainer from './tilrettelagtkommunikasjon/Tilr
 import ErrorBoundary from '../../components/ErrorBoundary';
 import AdresseForm from './adresse/AdresseContainer';
 import EndreKontonummerForm from './kontonummer/EndreKontonummerForm';
+import VisuallyHiddenAutoFokusHeader from '../../components/VisuallyHiddenAutoFokusHeader';
 
 export const FormKnapperWrapper = styled.div`
     display: flex;
@@ -27,6 +28,7 @@ interface Props {
 function BrukerprofilForm({ person, veilderRoller }: Props) {
     return (
         <ErrorBoundary>
+            <VisuallyHiddenAutoFokusHeader tittel="Brukerprofil" />
             <EndreKontonummerForm person={person} veilederRoller={veilderRoller} />
             <AdresseForm person={person} veilederRoller={veilderRoller} />
             <Kontaktinformasjon person={person} />

@@ -16,7 +16,7 @@ import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker'
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -78,7 +78,7 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
         } else {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
-                    <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
+                    <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
                     <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
                         <SakstemaListeContainer />
                         <SaksDokumenterContainer />

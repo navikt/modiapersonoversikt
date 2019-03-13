@@ -136,11 +136,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   className="c0"
 >
   <div>
-    <p
+    <h3
       className="typo-ingress"
     >
       Om pleiepengeretten
-    </p>
+    </h3>
     <dl
       className="c1"
     >
@@ -207,11 +207,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     </dl>
   </div>
   <div>
-    <p
+    <h3
       className="typo-ingress"
     >
       Arbeidssituasjon
-    </p>
+    </h3>
     <dl
       className="c1"
     >

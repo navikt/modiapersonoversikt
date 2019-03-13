@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
 import SykePengerContainer from './sykepenger/SykePengerContainer';
 import theme from '../../../../styles/personOversiktTheme';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface Props {
     fødselsnummer: string;
@@ -21,6 +22,7 @@ const Styling = styled.section`
 function YtelserContainer({ fødselsnummer }: Props) {
     return (
         <Styling>
+            <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />
             <ForeldrePengerContainer fødselsnummer={fødselsnummer} />
             <PleiePengerContainer fødselsnummer={fødselsnummer} />
             <SykePengerContainer fødselsnummer={fødselsnummer} />

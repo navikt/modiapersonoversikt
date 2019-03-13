@@ -178,16 +178,22 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 <article>
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
+  >
+    Foreldrepengerettighet
+  </h2>
   <div
     className="c0"
   >
     <div>
       <div>
-        <p
+        <h3
           className="typo-ingress"
         >
           Om foreldrepengeretten
-        </p>
+        </h3>
         <dl
           className="c1"
         >
@@ -305,11 +311,11 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         className="c2"
       />
       <div>
-        <p
+        <h3
           className="typo-ingress"
         >
           Om barnet
-        </p>
+        </h3>
         <dl
           className="c1"
         >
@@ -377,11 +383,11 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       </div>
     </div>
     <div>
-      <p
+      <h3
         className="typo-ingress"
       >
         Arbeidssituasjon
-      </p>
+      </h3>
       <dl
         className="c1"
       >
