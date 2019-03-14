@@ -11,6 +11,7 @@ import AppWrapper, { Content } from './AppWrapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
+import Decorator from './Decorator';
 
 if (mockEnabled) {
     setupMock();
@@ -34,7 +35,7 @@ class App extends React.Component<{}> {
                     <>
                         <PersonOppslagHandler />
                         <AppWrapper ref={this.appRef}>
-                            <nav id="header" />
+                            <Decorator />
                             <Content>
                                 <Routing />
                             </Content>
