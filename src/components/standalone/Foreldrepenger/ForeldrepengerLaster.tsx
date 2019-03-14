@@ -52,7 +52,7 @@ const onPending = (
 const onError = (
     <FillCenterAndFadeIn>
         <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av pleiepenger.
+            Beklager. Det skjedde en feil ved lasting av Foreldrepenger.
         </AlertStripe>
     </FillCenterAndFadeIn>
 );
@@ -91,7 +91,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                {data => this.getAktuellForeldreRettighet(data.pleiepenger)}
+                {data => this.getAktuellForeldreRettighet(data.foreldepenger)}
             </PlukkRestData>
         );
     }

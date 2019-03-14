@@ -22,19 +22,19 @@ if (mockEnabled) {
     setupMock();
 }
 
-class PleiepengerLamell extends React.PureComponent<Props> {
+class ForeldrepengerLamell extends React.PureComponent<Props> {
 
     render() {
         return (
-            <ErrorBoundary boundaryName="PleiepengeLamell">
+            <ErrorBoundary boundaryName="ForeldrepengeLamell">
                 <Provider store={store}>
                     <ForeldrepengerLaster
                         fødselsnummer={this.props.fødselsnummer}
-                        barnetsFødselsnummer={this.props.barnetsFødselsnummer}
+
                     />
                 </Provider>
             </ErrorBoundary>);
     }
 }
 
-export default PleiepengerLamell;
+export default ForeldrepengerLamell;
