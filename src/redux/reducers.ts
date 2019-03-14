@@ -10,6 +10,8 @@ import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
 import ytelserReducere, { YtelserState } from './ytelser/ytelserReducere';
 import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
+import { GjeldendeBrukerState } from './gjeldendeBruker/types';
+import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -20,6 +22,7 @@ export interface AppState {
     ytelser: YtelserState;
     kontrollSpørsmål: KontrollSpørsmålState;
     oppfolging: OppfolgingState;
+    gjeldendeBruker: GjeldendeBrukerState;
 }
 
 export default combineReducers<AppState>({
@@ -30,5 +33,6 @@ export default combineReducers<AppState>({
     saksoversikt: saksoversiktReducer,
     ytelser: ytelserReducere,
     kontrollSpørsmål: kontrollspørsmålReducer,
-    oppfolging: oppfolgingReducer
+    oppfolging: oppfolgingReducer,
+    gjeldendeBruker: gjeldendeBrukerReducer
 });

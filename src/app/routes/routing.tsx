@@ -36,17 +36,18 @@ function Routing(props: Props) {
                     />
                 )}
             />
-            <Route
-                path={`${paths.brukerprofil}/:fodselsnummer/`}
-                render={routeProps => <Brukerprofilside fødselsnummer={routeProps.match.params.fodselsnummer} />}
-            />
+            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside} />
             <Route component={Startbilde} />
         </Switch>
     );
 }
 
-export function settPersonIKontekst(history: History, fødselsnummer: string) {
+export function setNyBrukerIPath(history: History, fødselsnummer: string) {
     history.push(`${paths.personUri}/${fødselsnummer}`);
+}
+
+export function fjernBrukerFraPath(history: History) {
+    history.push(`${paths.basePath}`);
 }
 
 export default withRouter(Routing);

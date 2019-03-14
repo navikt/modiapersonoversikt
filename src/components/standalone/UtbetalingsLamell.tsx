@@ -7,7 +7,7 @@ import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import UtbetalingerContainer from '../../app/personside/infotabs/utbetalinger/UtbetalingerContainer';
-import { PersonContext } from '../../app/App';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
     fødselsnummer: string;
@@ -22,12 +22,11 @@ if (mockEnabled) {
 class UtbetalingsLamell extends React.Component<Props> {
     render() {
         return (
-            <ErrorBoundary>
-                <PersonContext.Provider value={this.props.fødselsnummer}>
-                    <Provider store={store}>
-                        <UtbetalingerContainer fødselsnummer={this.props.fødselsnummer} />
-                    </Provider>
-                </PersonContext.Provider>
+            <ErrorBoundary boundaryName="Utbetalinger">
+                <Provider store={store}>
+                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <UtbetalingerContainer />
+                </Provider>
             </ErrorBoundary>
         );
     }

@@ -8,6 +8,8 @@ import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import BrukerprofilSide from '../../app/brukerprofil/BrukerprofilSide';
+import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
     fødselsnummer: string;
@@ -22,9 +24,11 @@ if (mockEnabled) {
 class BrukerprofilStandalone extends React.Component<Props> {
     render() {
         return (
-            <ErrorBoundary>
+            <ErrorBoundary boundaryName="Brukerprofil">
                 <Provider store={store}>
-                    <BrukerprofilSide fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
+                    <BrukerprofilSide />
                 </Provider>
             </ErrorBoundary>
         );

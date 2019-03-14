@@ -9,7 +9,7 @@ import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restR
 import StartBildeLayout from './StartBildeLayout';
 import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
 import { Oppgave } from '../../models/oppgave';
-import { settPersonIKontekst } from '../routes/routing';
+import { setNyBrukerIPath } from '../routes/routing';
 import { isLoading, RestReducer } from '../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 
@@ -38,12 +38,12 @@ class Startbilde extends React.Component<StartbildeProps> {
             if (!fødselsnummer) {
                 throw new Error('Ingen oppgave ble returnert når oppgaver ble plukket');
             }
-            settPersonIKontekst(this.props.history, fødselsnummer);
+            setNyBrukerIPath(this.props.history, fødselsnummer);
         });
     }
 
     snarveiTilAremark() {
-        settPersonIKontekst(this.props.history, '10108000398');
+        setNyBrukerIPath(this.props.history, '10108000398');
     }
 
     render() {

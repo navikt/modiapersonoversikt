@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
-import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -36,7 +35,6 @@ interface StateProps {
 
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
-    hentPerson: (fødselsnummer: string) => void;
     setErMicroFrontend: () => void;
     velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
@@ -119,9 +117,6 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
         if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPerson(this.props.fødselsnummer);
-        }
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -155,7 +150,6 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
         velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));

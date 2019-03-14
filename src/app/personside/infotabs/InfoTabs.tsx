@@ -64,7 +64,7 @@ class InfoTabs extends React.PureComponent<Props> {
     render() {
         const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
 
-        const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={fødselsnummer} />;
+        const UtbetalingerWithProps = () => <UtbetalingerContainer />;
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
         const OppfolgingWithProps = () => <OppfolgingContainer fødselsnummer={fødselsnummer} />;
         const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150} />;

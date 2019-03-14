@@ -31,11 +31,11 @@ export enum KnappStatus {
 
 interface OwnProps {
     ytelseType: YtelserKeys;
-    fødselsnummer: string;
 }
 
 interface StateProps {
     utførteUtbetalinger: RestReducer<UtbetalingerResponse>;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -97,7 +97,8 @@ class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProops(state: AppState): StateProps {
     return {
-        utførteUtbetalinger: state.restEndepunkter.utførteUtbetalingerYtelser
+        utførteUtbetalinger: state.restEndepunkter.utførteUtbetalingerYtelser,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer
     };
 }
 

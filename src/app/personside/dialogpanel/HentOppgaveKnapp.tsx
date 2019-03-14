@@ -9,7 +9,7 @@ import Select from 'nav-frontend-skjema/lib/select';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 import { Oppgave } from '../../../models/oppgave';
-import { settPersonIKontekst } from '../../routes/routing';
+import { setNyBrukerIPath } from '../../routes/routing';
 import { History } from 'history';
 import ReducerFeilmelding from '../../../components/feilmelding/ReducerFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
@@ -93,7 +93,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                 this.setState({ tomKø: true });
                 return;
             }
-            settPersonIKontekst(this.props.history, fødselsnummer);
+            setNyBrukerIPath(this.props.history, fødselsnummer);
         });
     }
 

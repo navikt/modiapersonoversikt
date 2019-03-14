@@ -39,6 +39,7 @@ const initialState: State = {
 
 interface StateProps {
     utbetalingerReducer: RestReducer<UtbetalingerResponse>;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -46,11 +47,7 @@ interface DispatchProps {
     reloadUtbetalinger: (fødselsnummer: string, fra: Date, til: Date) => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 const UtbetalingerArticle = styled.article`
     display: flex;
@@ -146,7 +143,8 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        utbetalingerReducer: state.restEndepunkter.utbetalingerReducer
+        utbetalingerReducer: state.restEndepunkter.utbetalingerReducer,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer
     };
 }
 
