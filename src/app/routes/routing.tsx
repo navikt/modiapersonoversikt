@@ -12,6 +12,7 @@ export const paths = {
     saksoversikt: '/modiapersonoversikt/saker',
     brukerprofil: '/modiapersonoversikt/brukerprofil',
     basePath: '/modiapersonoversikt',
+    standaloneKomponenter: '/modiapersonoversikt/standalonekomponenter',
     legacyPersonPath: '/modiabrukerdialog/person',
     legacyBrukerprofil: '#!brukerprofil'
 };

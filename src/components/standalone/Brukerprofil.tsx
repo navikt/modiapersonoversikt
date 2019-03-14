@@ -10,6 +10,8 @@ import ErrorBoundary from '../ErrorBoundary';
 import BrukerprofilSide from '../../app/brukerprofil/BrukerprofilSide';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
 
 interface Props {
     fødselsnummer: string;
@@ -21,14 +23,23 @@ if (mockEnabled) {
     setupMock();
 }
 
+const Styles = styled.div`
+    overflow-y: auto;
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+`;
+
 class BrukerprofilStandalone extends React.Component<Props> {
     render() {
         return (
             <ErrorBoundary boundaryName="Brukerprofil">
                 <Provider store={store}>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                    <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-                    <BrukerprofilSide />
+                    <Styles>
+                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
+                        <BrukerprofilSide />
+                    </Styles>
                 </Provider>
             </ErrorBoundary>
         );

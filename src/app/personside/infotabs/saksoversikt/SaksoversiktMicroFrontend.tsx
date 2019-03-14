@@ -55,6 +55,9 @@ const SaksoversiktArticle = styled.article`
     > * {
         height: 100%;
     }
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
 `;
 
 function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string, journalpostId: string): Sakstema | undefined {

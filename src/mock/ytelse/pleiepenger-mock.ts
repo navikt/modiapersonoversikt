@@ -11,8 +11,21 @@ import {
     Vedtak
 } from '../../models/ytelse/pleiepenger';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { aremark } from '../person/aremark';
+import { moss } from '../person/moss';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            pleiepenger: [
+                {
+                    ...getMockPleiepengerettighet(aremark.fødselsnummer),
+                    barnet: moss.fødselsnummer
+                }
+            ]
+        };
+    }
+
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'pleiepenger');
 

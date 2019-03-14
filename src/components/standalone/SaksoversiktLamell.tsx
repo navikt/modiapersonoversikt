@@ -8,6 +8,8 @@ import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
 
 interface Props {
     fødselsnummer: string;
@@ -19,13 +21,22 @@ if (mockEnabled) {
     setupMock();
 }
 
+const Styles = styled.div`
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+    overflow-y: auto;
+`;
+
 class SaksoversiktLamell extends React.Component<Props> {
     render() {
         return (
             <ErrorBoundary boundaryName="Saksoversikt">
                 <Provider store={store}>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                    <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer} />
+                    <Styles>
+                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer} />
+                    </Styles>
                 </Provider>
             </ErrorBoundary>
         );
