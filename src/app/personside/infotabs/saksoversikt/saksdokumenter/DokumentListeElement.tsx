@@ -159,11 +159,11 @@ class DokumentListeElement extends React.Component<Props> {
         ]);
 
         if (!lenkeTrykket) {
-            this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
+            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument);
         }
     }
 
-    visDokumentHvisTilgang(dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) {
+    visDokumentHvisTilgang(enkeltdokument: Enkeltdokument) {
         if (this.props.harTilgangTilSakstema && enkeltdokument.kanVises) {
             this.props.velgOgVisDokument(enkeltdokument);
         }
@@ -189,14 +189,7 @@ class DokumentListeElement extends React.Component<Props> {
                 <ul>
                     {dokument.vedlegg.map(vedlegg => (
                         <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
-                            <span ref={this.vedleggLinkRef}>
-                                <LenkeKnapp
-                                    aria-disabled={!kanVises}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
-                                >
-                                    <Element>{vedlegg.tittel}</Element>
-                                </LenkeKnapp>
-                            </span>
+                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg)}</span>
                             {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                         </li>
                     ))}
@@ -230,7 +223,7 @@ class DokumentListeElement extends React.Component<Props> {
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
                             <LenkeKnapp
                                 aria-disabled={!kanVises}
-                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                onClick={() => this.visDokumentHvisTilgang(dokument.hoveddokument)}
                             >
                                 <Element>{dokument.hoveddokument.tittel}</Element>
                             </LenkeKnapp>
@@ -248,6 +241,18 @@ class DokumentListeElement extends React.Component<Props> {
                 <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>{egetVinduLenke}</IfFeatureToggleOn>
             </ListeElementStyle>
         );
+    }
+
+    private vedleggItem(vedlegg: Enkeltdokument) {
+        if (!vedlegg.logiskDokument) {
+            return (
+                <LenkeKnapp aria-disabled={vedlegg.kanVises} onClick={() => this.visDokumentHvisTilgang(vedlegg)}>
+                    <Element>{vedlegg.tittel}</Element>
+                </LenkeKnapp>
+            );
+        } else {
+            return vedlegg.tittel;
+        }
     }
 }
 
