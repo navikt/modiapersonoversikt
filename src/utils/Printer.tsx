@@ -8,9 +8,9 @@ import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbet
 import { detect } from 'detect-browser';
 import ModalWrapper from 'nav-frontend-modal';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { PersonContext } from '../app/App';
 import { loggEvent } from './frontendLogger';
 import { Bold } from '../components/common-styled-components';
+import Fødselsnummer from '../components/Fødselsnummer';
 
 interface Props {
     getPrintTrigger: (func: () => void) => void;
@@ -145,9 +145,9 @@ class Printer extends React.Component<Props, State> {
                         <Header>
                             <NavLogo />
                             <Normaltekst>Utskriftsdato: {datoVerbose().sammensattMedKlokke}</Normaltekst>
-                            <PersonContext.Consumer>
-                                {fødselsnummer => <Normaltekst>Brukers Fødselsnummer: {fødselsnummer}</Normaltekst>}
-                            </PersonContext.Consumer>
+                            <Normaltekst>
+                                Brukers Fødselsnummer: <Fødselsnummer />
+                            </Normaltekst>
                         </Header>
                         {this.props.children}
                     </Wrapper>

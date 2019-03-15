@@ -7,6 +7,8 @@ import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import PleiepengerLaster from './PleiepengerLaster';
+import styled from 'styled-components';
+import theme from '../../../styles/personOversiktTheme';
 
 interface Props {
     fødselsnummer: string;
@@ -19,15 +21,24 @@ if (mockEnabled) {
     setupMock();
 }
 
+const Styles = styled.div`
+    overflow-y: auto;
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+`;
+
 class PleiepengerLamell extends React.PureComponent<Props> {
     render() {
         return (
             <ErrorBoundary boundaryName="PleiepengeLamell">
                 <Provider store={store}>
-                    <PleiepengerLaster
-                        fødselsnummer={this.props.fødselsnummer}
-                        barnetsFødselsnummer={this.props.barnetsFødselsnummer}
-                    />
+                    <Styles>
+                        <PleiepengerLaster
+                            fødselsnummer={this.props.fødselsnummer}
+                            barnetsFødselsnummer={this.props.barnetsFødselsnummer}
+                        />
+                    </Styles>
                 </Provider>
             </ErrorBoundary>
         );

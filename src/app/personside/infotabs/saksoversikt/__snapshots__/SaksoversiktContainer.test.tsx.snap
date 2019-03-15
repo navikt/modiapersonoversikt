@@ -53,15 +53,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   border-color: #0067c5;
 }
 
-.c23 {
-  color: #78706a;
-  margin-top: 3px;
-}
-
-.c23 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
 .c8 {
   padding: 1.25rem;
   display: -webkit-box;
@@ -183,6 +174,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c2 {
   padding: 1.25rem;
+}
+
+.c23 {
+  color: #78706a;
+  margin-top: 3px;
+}
+
+.c23 .typo-etikett-liten {
+  line-height: 1rem;
 }
 
 .c18 {

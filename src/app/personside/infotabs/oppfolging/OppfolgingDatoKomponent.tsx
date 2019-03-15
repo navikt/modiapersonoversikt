@@ -12,8 +12,6 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
-import { PersonContext } from '../../../App';
-import AlertStripeAdvarsel from '../saksoversikt/dokumentvisning/DokumentOgVedlegg';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -43,6 +41,7 @@ const KnappWrapper = styled.div`
 interface StateProps {
     oppfølgingReducer: RestReducer<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -82,25 +81,20 @@ function DatoInputs(props: Props) {
                 </div>
             </DatoVelgerWrapper>
             <KnappWrapper>
-                <PersonContext.Consumer>
-                    {fnr => {
-                        if (!fnr) {
-                            return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
-                        }
-                        return (
-                            <Knapp
-                                onClick={() =>
-                                    props.reloadDetaljertOppfølging(fnr, props.valgtPeriode.fra, props.valgtPeriode.til)
-                                }
-                                spinner={oppfølgingLastes}
-                                aria-disabled={oppfølgingLastes}
-                                htmlType="button"
-                            >
-                                Søk
-                            </Knapp>
-                        );
-                    }}
-                </PersonContext.Consumer>
+                <Knapp
+                    onClick={() =>
+                        props.reloadDetaljertOppfølging(
+                            props.fødselsnummer,
+                            props.valgtPeriode.fra,
+                            props.valgtPeriode.til
+                        )
+                    }
+                    spinner={oppfølgingLastes}
+                    aria-disabled={oppfølgingLastes}
+                    htmlType="button"
+                >
+                    Søk
+                </Knapp>
             </KnappWrapper>
         </>
     );
@@ -119,6 +113,7 @@ function OppfolgingDatoPanel(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
         valgtPeriode: state.oppfolging.valgtPeriode
     };

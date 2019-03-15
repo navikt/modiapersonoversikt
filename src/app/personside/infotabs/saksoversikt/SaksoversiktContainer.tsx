@@ -12,7 +12,6 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
@@ -30,7 +29,6 @@ interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
-    hentPerson: (fødselsnummer: string) => void;
     skjulDokumentOgVisSaksoversikt: () => void;
 }
 
@@ -67,9 +65,6 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
         if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPerson(this.props.fødselsnummer);
-        }
     }
 
     render() {
@@ -104,7 +99,6 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }

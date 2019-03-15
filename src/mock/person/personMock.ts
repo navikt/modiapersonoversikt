@@ -24,10 +24,13 @@ import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 import { getDiskresjonskode } from '../utils/diskresjonskode-util';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { moss } from './moss';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
+    } else if (fødselsnummer === moss.fødselsnummer) {
+        return moss;
     } else if (!erGyldigFødselsnummer(fødselsnummer)) {
         return {};
     } else {
