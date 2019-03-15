@@ -10,6 +10,8 @@ import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/Sa
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
+import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 
 interface Props {
     fødselsnummer: string;
@@ -35,6 +37,8 @@ class SaksoversiktLamell extends React.Component<Props> {
                 <Provider store={store}>
                     <Styles>
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                        <FetchFeatureToggles />
                         <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer} />
                     </Styles>
                 </Provider>

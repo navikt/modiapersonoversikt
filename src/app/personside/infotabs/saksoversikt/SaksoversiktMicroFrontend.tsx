@@ -22,6 +22,9 @@ import {
 } from '../../../../redux/saksoversikt/actions';
 import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
 import { aggregertSakstema } from './utils/saksoversiktUtils';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
+import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
+import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -44,7 +47,8 @@ type Props = StateProps & DispatchProps & OwnProps;
 const SaksoversiktArticle = styled.article`
     display: flex;
     align-items: flex-start;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     > *:last-child {
         width: 70%;
         margin-left: ${theme.margin.layout};
@@ -134,6 +138,9 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
     render() {
         return (
             <SaksoversiktArticle>
+                <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                <FetchFeatureToggles />
                 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
                     <DokumentListeContainer />
                     <DokumentOgVedlegg />
