@@ -10,8 +10,8 @@ import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import { AppState } from '../../../redux/reducers';
 import { hentForeldrepenger } from '../../../redux/restReducers/ytelser/foreldrepenger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import PlukkRestData from '../../../app/personside/infotabs/ytelser/foreldrepenger/PlukkRestData';
-import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/Foreldrepenger';
+import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/ForeldrePenger';
+import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 
@@ -64,7 +64,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
     }
 
     componentDidMount() {
-        if (!isLoaded(this.props.ForeldrepengeReducer)) {
+        if (!isLoaded(this.props.pleiepengerReducer)) {
             this.props.hentForeldrepenger(this.props.fødselsnummer);
         }
     }
@@ -74,8 +74,8 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne noen Foreldrepengerettigheter for bruker</AlertStripeInfo>;
         }
 
-        const aktuellRettighet = foreldrepengeRettighet
-           // .find(rettighet => rettighet.barnet === this.props.barnetsFødselsnummer);
+        const aktuellRettighet = ForeldrepengeRettighet
+            .find(rettighet => rettighet.forelder === this.props.fødselsnummer);
 
         if (!aktuellRettighet) {
             return <AlertStripeInfo>Kunne ikke finne Foreldrepengerettighet</AlertStripeInfo>;
@@ -87,11 +87,11 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
     render() {
         return (
             <PlukkRestData
-                restReducer={this.props.foreldrepengerpengerReducer}
+                restReducer={this.props.pleiepengerReducer}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                {data => this.getAktuellForeldreRettighet(data.foreldepenger)}
+                {data => this.getAktuellForeldrepengeRettighet(data.foreldrepenger)}
             </PlukkRestData>
         );
     }
@@ -105,7 +105,7 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentforeldrepenger: (fødselsnummer: string) => dispatch(hentForeldrepenger(fødselsnummer))
+        hentForeldrepenger: (fødselsnummer: string) => dispatch(hentForeldrepenger(fødselsnummer))
     };
 }
 
