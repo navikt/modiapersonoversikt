@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { getSaksdokument } from '../../../../../utils/url-utils';
-import { PersonContext } from '../../../../App';
 import { AppState } from '../../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -20,6 +19,7 @@ interface StateProps {
     valgtTab?: Dokument;
     visDokument: boolean;
     erStandaloneVindu: boolean;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -106,20 +106,11 @@ function DokumentOgVedlegg(props: Props) {
                 </Undertittel>
             </span>
             {tabsHeader}
-            <PersonContext.Consumer>
-                {fnr => {
-                    if (!fnr) {
-                        return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
-                    }
-                    return (
-                        <VisDokumentContainer
-                            journalpostId={valgtDokument.journalpostId}
-                            dokumentreferanse={valgtTab.dokumentreferanse}
-                            fødselsnummer={fnr}
-                        />
-                    );
-                }}
-            </PersonContext.Consumer>
+            <VisDokumentContainer
+                journalpostId={valgtDokument.journalpostId}
+                dokumentreferanse={valgtTab.dokumentreferanse}
+                fødselsnummer={props.fødselsnummer}
+            />
         </Content>
     );
 }
@@ -129,7 +120,8 @@ function mapStateToProps(state: AppState): StateProps {
         visDokument: state.saksoversikt.visDokument,
         valgtDokument: state.saksoversikt.valgtDokument,
         valgtTab: state.saksoversikt.valgtEnkeltdokument,
-        erStandaloneVindu: state.saksoversikt.erStandaloneVindu
+        erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer
     };
 }
 

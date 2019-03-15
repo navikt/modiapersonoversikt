@@ -9,9 +9,11 @@ import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restR
 import StartBildeLayout from './StartBildeLayout';
 import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
 import { Oppgave } from '../../models/oppgave';
-import { settPersonIKontekst } from '../routes/routing';
+import { paths, setNyBrukerIPath } from '../routes/routing';
 import { isLoading, RestReducer } from '../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { aremark } from '../../mock/person/aremark';
+import { moss } from '../../mock/person/moss';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
@@ -38,12 +40,16 @@ class Startbilde extends React.Component<StartbildeProps> {
             if (!fødselsnummer) {
                 throw new Error('Ingen oppgave ble returnert når oppgaver ble plukket');
             }
-            settPersonIKontekst(this.props.history, fødselsnummer);
+            setNyBrukerIPath(this.props.history, fødselsnummer);
         });
     }
 
     snarveiTilAremark() {
-        settPersonIKontekst(this.props.history, '10108000398');
+        setNyBrukerIPath(this.props.history, aremark.fødselsnummer);
+    }
+
+    snarveiTilMoss() {
+        setNyBrukerIPath(this.props.history, moss.fødselsnummer);
     }
 
     render() {
@@ -51,6 +57,12 @@ class Startbilde extends React.Component<StartbildeProps> {
             <StartBildeLayout>
                 <KnappBase onClick={() => this.snarveiTilAremark()} type="hoved">
                     Snarvei til Aremark!
+                </KnappBase>
+                <KnappBase onClick={() => this.snarveiTilMoss()} type="hoved">
+                    Snarvei til Moss!
+                </KnappBase>
+                <KnappBase onClick={() => this.props.history.push(paths.standaloneKomponenter)} type="hoved">
+                    Snarvei til standalone-komponenter
                 </KnappBase>
                 <KnappBase
                     type="hoved"

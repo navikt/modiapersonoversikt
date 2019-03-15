@@ -10,7 +10,6 @@ import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { AppState } from '../../redux/reducers';
-import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
@@ -70,12 +69,7 @@ const Fokus = styled.div`
     }
 `;
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
 interface DispatchProps {
-    hentPersonData: (fødselsnummer: string) => void;
     hentVeilederRoller: () => void;
 }
 
@@ -84,7 +78,7 @@ interface StateProps {
     veilederRollerReducer: RestReducer<VeilederRoller>;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 function hentNavn({ navn }: Person) {
     return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
@@ -150,10 +144,6 @@ class Header extends React.PureComponent<{ person: Person }> {
 
 class BrukerprofilSide extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPersonData(this.props.fødselsnummer);
-        }
-
         if (isNotStarted(this.props.veilederRollerReducer)) {
             this.props.hentVeilederRoller();
         }
@@ -163,7 +153,7 @@ class BrukerprofilSide extends React.PureComponent<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer} />}
+                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
                 <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
                     {erNyePersonoversikten() && (
                         <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person} />
@@ -189,7 +179,6 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

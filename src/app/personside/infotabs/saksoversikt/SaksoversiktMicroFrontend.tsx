@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
-import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -23,6 +22,9 @@ import {
 } from '../../../../redux/saksoversikt/actions';
 import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
 import { aggregertSakstema } from './utils/saksoversiktUtils';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
+import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
+import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -36,7 +38,6 @@ interface StateProps {
 
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
-    hentPerson: (fødselsnummer: string) => void;
     setErMicroFrontend: () => void;
     velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
@@ -46,7 +47,8 @@ type Props = StateProps & DispatchProps & OwnProps;
 const SaksoversiktArticle = styled.article`
     display: flex;
     align-items: flex-start;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     > *:last-child {
         width: 70%;
         margin-left: ${theme.margin.layout};
@@ -56,6 +58,9 @@ const SaksoversiktArticle = styled.article`
     }
     > * {
         height: 100%;
+    }
+    .visually-hidden {
+        ${theme.visuallyHidden}
     }
 `;
 
@@ -119,9 +124,6 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
         if (isNotStarted(this.props.saksoversiktReducer)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPerson(this.props.fødselsnummer);
-        }
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -136,6 +138,9 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
     render() {
         return (
             <SaksoversiktArticle>
+                <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                <FetchFeatureToggles />
                 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
                     <DokumentListeContainer />
                     <DokumentOgVedlegg />
@@ -155,7 +160,6 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
         velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));

@@ -2,12 +2,14 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import * as React from 'react';
 import { paths } from '../routes/routing';
 import { loggEvent } from '../../utils/frontendLogger';
+import { AppState } from '../../redux/reducers';
+import { connect } from 'react-redux';
 
-interface OwnProps {
+interface StateProps {
     fødselsnummer: string;
 }
 
-type Props = RouteComponentProps<{}> & OwnProps;
+type Props = RouteComponentProps<{}> & StateProps;
 
 class HandleBrukerprofilHotkeys extends React.Component<Props> {
     constructor(props: Props) {
@@ -41,4 +43,10 @@ class HandleBrukerprofilHotkeys extends React.Component<Props> {
     }
 }
 
-export default withRouter(HandleBrukerprofilHotkeys);
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer
+    };
+}
+
+export default withRouter(connect(mapStateToProps)(HandleBrukerprofilHotkeys));

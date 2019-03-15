@@ -14,7 +14,7 @@ const AppWrapper = styled.div`
     }
 `;
 
-export const Content = styled.div`
+export const ContentStyle = styled.div`
     height: 0; // IE11-hack for at flex skal funke
     @media print {
         height: auto;
