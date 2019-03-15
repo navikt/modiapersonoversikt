@@ -21,7 +21,7 @@ if (mockEnabled) {
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-function Content() {
+function Personoveriskt() {
     const appRef = React.createRef<HTMLDivElement>();
 
     useEffect(() => {
@@ -29,28 +29,28 @@ function Content() {
     }, []);
 
     return (
-        <>
-            <PersonOppslagHandler />
-            <AppStyle ref={appRef}>
-                <Decorator />
-                <ContentStyle>
-                    <Routing />
-                </ContentStyle>
-            </AppStyle>
-        </>
+        <Provider store={store}>
+            <>
+                <PersonOppslagHandler />
+                <AppStyle ref={appRef}>
+                    <Decorator />
+                    <ContentStyle>
+                        <Routing />
+                    </ContentStyle>
+                </AppStyle>
+            </>
+        </Provider>
     );
 }
 
 function App() {
     return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <Switch>
-                    <Route path={`${paths.standaloneKomponenter}/:fnr?`} component={StandAloneKomponenter} />
-                    <Route path={'/'} component={Content} />
-                </Switch>
-            </BrowserRouter>
-        </Provider>
+        <BrowserRouter>
+            <Switch>
+                <Route path={`${paths.standaloneKomponenter}/:fnr?`} component={StandAloneKomponenter} />
+                <Route path={'/'} component={Personoveriskt} />
+            </Switch>
+        </BrowserRouter>
     );
 }
 

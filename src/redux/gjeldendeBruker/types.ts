@@ -5,7 +5,7 @@ export interface GjeldendeBrukerState {
 }
 
 export enum SetNyGjeldendeBrukerActionTypes {
-    SetNyPerson = 'SetNyPerson'
+    SetNyPerson = 'GJELDENDEBRUKER / SET'
 }
 
 export interface SetNyGjeldendeBrukerAction extends Action {

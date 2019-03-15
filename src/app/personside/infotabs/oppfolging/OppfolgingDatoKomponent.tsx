@@ -41,7 +41,7 @@ const KnappWrapper = styled.div`
 interface StateProps {
     oppfølgingReducer: RestReducer<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
-    fødselsdato: string;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -84,7 +84,7 @@ function DatoInputs(props: Props) {
                 <Knapp
                     onClick={() =>
                         props.reloadDetaljertOppfølging(
-                            props.fødselsdato,
+                            props.fødselsnummer,
                             props.valgtPeriode.fra,
                             props.valgtPeriode.til
                         )
@@ -113,7 +113,7 @@ function OppfolgingDatoPanel(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fødselsdato: state.gjeldendeBruker.fødselsnummer,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
         valgtPeriode: state.oppfolging.valgtPeriode
     };
