@@ -13,6 +13,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import { Person, PersonRespons } from '../../../models/person/person';
 import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
+import VarselContainer from './varsel/VarselContainer';
 
 interface OwnProps {
     personRespons: PersonRespons;
@@ -70,6 +71,7 @@ class InfoTabs extends React.PureComponent<Props> {
         const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150} />;
         const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer} />;
         const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer} />;
+        const VarselWithProps = () => <VarselContainer fødselsnummer={fødselsnummer} />;
 
         const basePath = paths.personUri + '/:fodselsnummer/';
 
@@ -87,6 +89,7 @@ class InfoTabs extends React.PureComponent<Props> {
                             <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerWithProps} />
                             <Route path={basePath + INFOTABS.SAKER + '/'} component={SakerWithProps} />
                             <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserWithProps} />
+                            <Route path={basePath + INFOTABS.VARSEL + '/'} component={VarselWithProps} />
                             <Route component={OversiktWithProps} />
                         </Switch>
                     </OpenTab>
