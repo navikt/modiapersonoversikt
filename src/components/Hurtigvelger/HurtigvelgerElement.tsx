@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { ITekst } from './tekster';
+import { Tekst } from './tekster';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import EtikettGrå from '../EtikettGrå';
 import { datoVerbose } from '../../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
+import Informasjon from '../../svg/Informasjon';
+import theme from '../../styles/personOversiktTheme';
 
 interface Props {
-    tekst: ITekst;
+    tekst: Tekst;
 }
 
 const ContainerStyle = styled.div`
@@ -16,27 +18,35 @@ const ContainerStyle = styled.div`
         background-color: lightgray;
     }
     position: relative;
-    &:hover {
-        .content {
-            display: block;
-        }
+    .visually-hidden {
+        ${theme.visuallyHidden}
     }
 `;
 
 const OneLine = styled.div`
     display: flex;
-    padding: 0.4rem;
+    padding: 0.7rem;
     align-items: center;
     justify-content: space-between;
+    svg {
+        height: 2rem;
+        width: 2rem;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
 `;
 
 const Preview = styled.div`
     position: absolute;
+    ${theme.animation.fadeIn};
     display: none;
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-    margin-left: 8rem;
+    left: 2rem;
+    width: 80%;
+    margin-top: 2rem;
     background-color: white;
-    box-shadow: 0 1rem 2rem 0 gray;
+    box-shadow: 0 1rem 4rem 0 black;
     z-index: 1000;
     > * {
         margin-bottom: 0.5rem;
@@ -51,23 +61,45 @@ const Preview = styled.div`
     }
 `;
 
+const PreviewContainer = styled.div`
+    &:hover,
+    &:focus-within {
+        .content {
+            display: block;
+        }
+    }
+    &:focus {
+        ${theme.focus};
+    }
+`;
+
+const KnappOgIkon = styled.div`
+    display: flex;
+    align-items: center;
+    > * {
+        margin-left: 0.5rem;
+    }
+`;
+
 function HurtigvelgerElement(props: Props) {
     return (
         <ContainerStyle>
             <OneLine>
                 <Undertittel>{props.tekst.tittel}</Undertittel>
-                <KnappBase type={'hoved'}>Send</KnappBase>
-            </OneLine>
-            <Preview className="content">
-                <Undertittel>{props.tekst.tittel}</Undertittel>
-                <EtikettGrå>{datoVerbose(new Date()).sammensattMedKlokke}</EtikettGrå>
-                <Normaltekst>{props.tekst.tekst}</Normaltekst>
-                <Normaltekst>Hilsen Nav</Normaltekst>
-                <div>
+                <KnappOgIkon>
+                    <PreviewContainer tabIndex={0}>
+                        <Informasjon />
+                        <div className="visually-hidden">Vis hurtigsvar</div>
+                        <Preview className="content">
+                            <Undertittel>{props.tekst.tittel}</Undertittel>
+                            <EtikettGrå>{datoVerbose(new Date()).sammensattMedKlokke}</EtikettGrå>
+                            <Normaltekst>{props.tekst.tekst}</Normaltekst>
+                            <Normaltekst>Hilsen Nav</Normaltekst>
+                        </Preview>
+                    </PreviewContainer>
                     <KnappBase type={'hoved'}>Send</KnappBase>
-                    <KnappBase type={'hoved'}>Kopier</KnappBase>
-                </div>
-            </Preview>
+                </KnappOgIkon>
+            </OneLine>
         </ContainerStyle>
     );
 }
