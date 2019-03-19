@@ -47,7 +47,7 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path={`${paths.standaloneKomponenter}/:fnr?`} component={StandAloneKomponenter} />
+                <Route path={`${paths.standaloneKomponenter}/:fnr?/:component?`} component={StandAloneKomponenter} />
                 <Route path={'/'} component={Personoveriskt} />
             </Switch>
         </BrowserRouter>
