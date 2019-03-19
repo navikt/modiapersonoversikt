@@ -21,6 +21,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
+import HurtigvelgerDropDown from '../Hurtigvelger/Hurtigvelger';
 
 enum Komponenter {
     Visittkort,
@@ -30,7 +31,8 @@ enum Komponenter {
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
-    HentOppgaveKnapp
+    HentOppgaveKnapp,
+    Hurtigvalg
 }
 
 function bareEnumNavn(enumKeys: { label: string }[]) {
@@ -95,6 +97,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
+        case Komponenter.Hurtigvalg:
+            return <HurtigvelgerDropDown />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
