@@ -79,7 +79,7 @@ function DokumentOgVedlegg(props: Props) {
         );
     }
 
-    const tabs = [valgtDokument.hoveddokument, ...valgtDokument.vedlegg];
+    const tabs = [valgtDokument.hoveddokument, ...valgtDokument.vedlegg.filter(vedlegg => !vedlegg.logiskDokument)];
     const tabProps: TabProps[] = tabs.map(tab => {
         return {
             label: tab.tittel,
