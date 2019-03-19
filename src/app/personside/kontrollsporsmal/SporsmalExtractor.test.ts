@@ -4,6 +4,7 @@ import {
     formatterPostboksadresse,
     formatterUstrukturertAdresse,
     formatterUtenlandsadresse,
+    hentEpost,
     hentFødselsdatoBarn,
     hentGiftedato
 } from './SporsmalExtractors';
@@ -18,6 +19,7 @@ import { Familierelasjon, Person, Relasjonstype, SivilstandTyper } from '../../.
 import { aremark } from '../../../mock/person/aremark';
 import { getPersonstatus } from '../../../mock/person/personMock';
 import { Diskresjonskoder } from '../../../konstanter';
+import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 
 describe('formaterGateAdresse', () => {
     it('Gir riktig formattert adresse med alle felter', () => {
@@ -232,6 +234,37 @@ describe('hentFødselsdatoBarn', () => {
         const korrektSvar = { tekst: '' };
 
         const tekst = hentFødselsdatoBarn(person);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+});
+
+describe('hentEpost', () => {
+    it('Gir korrekt e-post', () => {
+        const kontaktInformasjon: KRRKontaktinformasjon = {
+            epost: {
+                value: 'aremarksinmail@test.no',
+                sistOppdatert: ''
+            }
+        };
+        const korrektSvar = { tekst: 'aremarksinmail@test.no' };
+
+        const tekst = hentEpost(kontaktInformasjon);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+
+    it('Gir tom streng når reservert i KRR', () => {
+        const kontaktInformasjon: KRRKontaktinformasjon = {
+            epost: {
+                value: 'aremarksinmail@test.no',
+                sistOppdatert: ''
+            },
+            reservasjon: 'true'
+        };
+        const korrektSvar = { tekst: '' };
+
+        const tekst = hentEpost(kontaktInformasjon);
 
         expect(tekst).toEqual(korrektSvar);
     });
