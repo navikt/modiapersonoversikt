@@ -1,54 +1,57 @@
-export interface ITekst {
+export interface Tekst {
     tittel: string;
     tekst: string;
 }
 
-export type ITekster = ITekst[];
+export type ITekster = Tekst[];
 
 export const tekster: ITekster = [
     {
-        tittel: 'Pensjon',
-        tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+        tittel: 'Henvist www.nav.no',
+        tekst: 'Aremark Testfamilien er henvist til informasjon på www.nav.no'
     },
     {
-        tittel: 'Ytelser',
-        tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+        tittel: 'Veiledet www.nav.no (skjermdeling)',
+        tekst: 'Aremark Testfamilien er blitt veiledet i bruk av www.nav.no'
     },
     {
-        tittel: 'Nav.no',
+        tittel: 'Generell informasjon',
         tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+            'Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og er henvist til mer informasjon på www.nav.no.'
     },
     {
-        tittel: 'TullOgBall',
+        tittel: 'Utbetaling',
         tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+            'Aremark Testfamilien har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.'
     },
     {
-        tittel: 'Surdeig',
-        tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+        tittel: 'Skatt',
+        tekst: `Aremark Testfamilien har spørsmål om skattetrekk.
+Du har fått informasjon om at:
+- vi har brukt skattetrekket som vi har fått overført fra skatteetaten
+- hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
+Du har også fått informasjon om at du kan lese mer på http://www.nav.no/skatt`
     },
     {
-        tittel: 'Nemi',
-        tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+        tittel: 'Søknad',
+        tekst: 'Aremark Testfamilien har fått veiledning i å fylle ut søknaden på www.nav.no'
     },
     {
-        tittel: 'NullOgNiks',
+        tittel: 'Saksbehandlingstid',
         tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+            'Aremark Testfamilien fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.'
     },
     {
-        tittel: 'DesignHjelp',
+        tittel: 'Elektronisk innsending',
         tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+            'Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending'
     },
     {
-        tittel: 'Horoskop',
-        tekst:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci et magni minima quas. Ab asperiores incidunt laboriosam placeat repellat rerum?'
+        tittel: 'Vedtak',
+        tekst: 'Aremark Testfamilien har fått veiledning i vedtaket sitt.'
+    },
+    {
+        tittel: 'Annet',
+        tekst: 'Aremark Testfamilien har fått veiledning om TEMA.'
     }
 ];
