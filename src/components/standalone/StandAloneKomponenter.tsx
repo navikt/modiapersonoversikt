@@ -25,6 +25,8 @@ import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
+import HurtigvelgerDropDown from '../Hurtigvelger/Hurtigvelger';
+
 
 enum Komponenter {
     Visittkort,
@@ -37,7 +39,8 @@ enum Komponenter {
     HentOppgaveKnapp,
     Foreldrepenger,
     Sykepenger,
-    Varsler
+    Varsler,
+    Hurtigvalg
 }
 
 const Style = styled.div`
@@ -96,6 +99,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
             return <VarslerLamell fødselsnummer={aremark.fødselsnummer} />;
+        case Komponenter.Hurtigvalg:
+            return <HurtigvelgerDropDown />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
