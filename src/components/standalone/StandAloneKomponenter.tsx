@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import SaksoversiktLamell from './SaksoversiktLamell';
@@ -21,6 +20,7 @@ import reducers from '../../redux/reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import OppfolgingLamell from './OppfolgingLamell';
+import { paths } from '../../app/routes/routing';
 
 enum Komponenter {
     Visittkort,
@@ -47,9 +47,13 @@ const Style = styled.div`
     background-color: steelblue;
     display: flex;
     flex-direction: column;
+    > * {
+        flex-shrink: 0;
+    }
     > *:first-child {
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);
+        overflow-x: auto;
     }
 `;
 
@@ -96,15 +100,17 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
     }
 }
 
-function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string }>) {
+function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; component: string }>) {
     const routeFnr = props.match.params.fnr;
     const fnr = routeFnr || aremark.fødselsnummer;
-    const [tab, setTab] = useState(Komponenter.Visittkort);
+    const routeComponent = props.match.params.component;
+    const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
+    const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${fnr}/${komponent}`);
     return (
         <Style>
-            <TabsPure tabs={tabs} onChange={(event, index) => setTab(index)} />
+            <TabsPure tabs={tabs} onChange={(event, index) => updatePath(Komponenter[index])} />
             <KomponentStyle>
-                <GjeldendeKomponent valgtTab={tab} fnr={fnr} />
+                <GjeldendeKomponent valgtTab={valgtTab} fnr={fnr} />
             </KomponentStyle>
         </Style>
     );
