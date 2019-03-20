@@ -21,7 +21,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
-import HurtigvelgerDropDown from '../Hurtigvelger/Hurtigvelger';
+import FakeDialogPanel from '../Hurtigvelger/FakeDialogPanel';
 
 enum Komponenter {
     Visittkort,
@@ -49,10 +49,8 @@ const Style = styled.div`
     background-color: steelblue;
     display: flex;
     flex-direction: column;
-    > * {
-        flex-shrink: 0;
-    }
     > *:first-child {
+        flex-shrink: 0;
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);
         overflow-x: auto;
@@ -98,7 +96,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
         case Komponenter.Hurtigvalg:
-            return <HurtigvelgerDropDown />;
+            return <FakeDialogPanel />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

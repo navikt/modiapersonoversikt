@@ -1,33 +1,35 @@
 import * as React from 'react';
 import EkspanderbartpanelBase from 'nav-frontend-ekspanderbartpanel/lib/ekspanderbartpanel-base';
-import { tekster } from './tekster';
+import { Tekst, tekster } from './tekster';
 import HurtigvelgerElement from './HurtigvelgerElement';
 import styled from 'styled-components';
-import Systemtittel from 'nav-frontend-typografi/lib/systemtittel';
 import theme from '../../styles/personOversiktTheme';
+import { Undertittel } from 'nav-frontend-typografi';
+
+interface Props {
+    send: (tekst: Tekst) => void;
+}
 
 const Style = styled.div`
-    width: 35rem;
-    margin: 0 auto;
-    overflow-y: auto;
     .ekspanderbartPanel__innhold {
         padding: 0;
     }
     .ekspanderbartPanel__hode:hover {
         ${theme.hover}
     }
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
 `;
 
 const MarginBottom = styled.div`
-    margin-bottom: 12rem;
+    margin-bottom: 6rem;
 `;
 
-function HurtigvelgerDropDown() {
+function Hurtigvelger(props: Props) {
     return (
         <Style>
-            <EkspanderbartpanelBase heading={<Systemtittel>Hurtigvalg</Systemtittel>} ariaTittel={'tittel'}>
+            <EkspanderbartpanelBase heading={<Undertittel>SEND HURTIGSVAR</Undertittel>} ariaTittel={'hurtigsvar'}>
                 {tekster.map(tekst => (
-                    <HurtigvelgerElement key={tekst.tittel} tekst={tekst} />
+                    <HurtigvelgerElement key={tekst.tittel} tekst={tekst} sendTekst={() => props.send(tekst)} />
                 ))}
                 <MarginBottom />
             </EkspanderbartpanelBase>
@@ -35,4 +37,4 @@ function HurtigvelgerDropDown() {
     );
 }
 
-export default HurtigvelgerDropDown;
+export default Hurtigvelger;

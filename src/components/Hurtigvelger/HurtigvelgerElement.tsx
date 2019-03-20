@@ -1,33 +1,26 @@
 import * as React from 'react';
 import { Tekst } from './tekster';
 import styled from 'styled-components';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
-import EtikettGrå from '../EtikettGrå';
-import { datoVerbose } from '../../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
-import Informasjon from '../../svg/Informasjon';
+import InformasjonSVG from '../../svg/InformasjonSVG';
 import theme from '../../styles/personOversiktTheme';
+import Preview from './Preview';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     tekst: Tekst;
+    sendTekst: () => void;
 }
 
 const ContainerStyle = styled.div`
-    &:nth-child(odd) {
-        background-color: lightgray;
-    }
     position: relative;
-    .visually-hidden {
-        ${theme.visuallyHidden}
-    }
-`;
-
-const OneLine = styled.div`
     display: flex;
-    padding: 0.7rem;
     align-items: center;
     justify-content: space-between;
+    padding: 0.7rem;
+    &:nth-child(odd) {
+        background-color: #dedede;
+    }
     svg {
         height: 2rem;
         width: 2rem;
@@ -37,40 +30,24 @@ const OneLine = styled.div`
     }
 `;
 
-const Preview = styled.div`
-    position: absolute;
-    ${theme.animation.fadeIn};
-    display: none;
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-    left: 2rem;
-    width: 80%;
-    margin-top: 2rem;
-    background-color: white;
-    box-shadow: 0 1rem 4rem 0 black;
-    z-index: 1000;
-    > * {
-        margin-bottom: 0.5rem;
-    }
-    > *:last-child {
-        > * {
-            margin-top: 0.5rem;
-        }
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-`;
-
 const PreviewContainer = styled.div`
-    &:hover,
-    &:focus-within {
+    &:not(:hover):not(:focus-within) {
         .content {
-            display: block;
+            ${theme.visuallyHidden};
         }
     }
     &:focus {
         ${theme.focus};
     }
+`;
+
+const DropDown = styled.div`
+    position: absolute;
+    z-index: 1000;
+    left: 10%;
+    width: 80%;
+    padding-top: 0.5rem;
+    filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.7));
 `;
 
 const KnappOgIkon = styled.div`
@@ -84,22 +61,18 @@ const KnappOgIkon = styled.div`
 function HurtigvelgerElement(props: Props) {
     return (
         <ContainerStyle>
-            <OneLine>
-                <Undertittel>{props.tekst.tittel}</Undertittel>
-                <KnappOgIkon>
-                    <PreviewContainer tabIndex={0}>
-                        <Informasjon />
-                        <div className="visually-hidden">Vis hurtigsvar</div>
-                        <Preview className="content">
-                            <Undertittel>{props.tekst.tittel}</Undertittel>
-                            <EtikettGrå>{datoVerbose(new Date()).sammensattMedKlokke}</EtikettGrå>
-                            <Normaltekst>{props.tekst.tekst}</Normaltekst>
-                            <Normaltekst>Hilsen Nav</Normaltekst>
-                        </Preview>
-                    </PreviewContainer>
-                    <KnappBase type={'hoved'}>Send</KnappBase>
-                </KnappOgIkon>
-            </OneLine>
+            <Undertittel>{props.tekst.tittel}</Undertittel>
+            <KnappOgIkon>
+                <PreviewContainer tabIndex={0}>
+                    <InformasjonSVG alt="Vis hurtigsvar" />
+                    <DropDown className="content">
+                        <Preview tekst={props.tekst} />
+                    </DropDown>
+                </PreviewContainer>
+                <KnappBase type={'hoved'} onClick={() => props.sendTekst()}>
+                    Send
+                </KnappBase>
+            </KnappOgIkon>
         </ContainerStyle>
     );
 }
