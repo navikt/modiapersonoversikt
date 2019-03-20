@@ -65,10 +65,8 @@ function OppfolgingYtelserEkspanderbartPanel(props: Props) {
         return <AlertStripeInfo>Det finnes ikke ytelsesinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
-    const tittelTillegsInfo = ['Antall ytelser: ' + props.ytelser.length];
-
     return (
-        <EkspanderbartYtelserPanel tittel="Ytelser" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel tittel="Ytelser">
             <OppfolgingYtelserListe ytelser={props.ytelser} />
         </EkspanderbartYtelserPanel>
     );

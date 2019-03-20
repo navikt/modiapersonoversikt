@@ -31,7 +31,7 @@ function VisOppfolgingDetaljer(props: Props) {
     const oppfølgingsenhet = `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`;
     const meldeplikt = detaljer.meldeplikt ? 'Ja' : 'Nei';
     const descriptionListProps = {
-        oppfølging: arbeidsrettetOppfølging,
+        'er under oppfølging': arbeidsrettetOppfølging,
         oppfølgingsenhet: oppfølgingsenhet,
         rettighetsgruppe: detaljer.rettighetsgruppe,
         innsatsgruppe: detaljer.innsatsgruppe,

@@ -52,10 +52,8 @@ function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
         return <AlertStripeInfo>Det finnes ikke oppfølgingsinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
-    const tittelTillegsInfo = ['Antall punkter: ' + props.syfoPunkt.length];
-
     return (
-        <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging">
             <SykefravarsoppfolgingListe syfoPunkter={props.syfoPunkt} />
         </EkspanderbartYtelserPanel>
     );
