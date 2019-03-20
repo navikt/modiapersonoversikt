@@ -8,10 +8,10 @@ import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
-import SetFnrIRedux from './SaksoversiktLamell';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
 import OppfolgingContainer from '../../app/personside/infotabs/oppfolging/OppfolgingContainer';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
     fødselsnummer: string;
