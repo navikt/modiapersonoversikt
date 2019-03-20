@@ -43,11 +43,11 @@ function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
 function YtelseElement(props: { ytselse: OppfolgingsYtelse }) {
     const descriptionListProps = {
         status: props.ytselse.status,
-        'dato søknad mottatt': props.ytselse.datoKravMottatt,
-        'dato fra': props.ytselse.fom,
-        'dato til': props.ytselse.tom,
-        'dager igjen': props.ytselse.dagerIgjenMedBortfall,
-        'uker igjen': props.ytselse.ukerIgjenMedBortfall
+        'Dato søknad mottatt': props.ytselse.datoKravMottatt,
+        'Dato fra': props.ytselse.fom,
+        'Dato til': props.ytselse.tom,
+        'Dager igjen': props.ytselse.dagerIgjenMedBortfall,
+        'Uker igjen': props.ytselse.ukerIgjenMedBortfall
     };
     return (
         <ElementStyle>
@@ -65,10 +65,8 @@ function OppfolgingYtelserEkspanderbartPanel(props: Props) {
         return <AlertStripeInfo>Det finnes ikke ytelsesinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
-    const tittelTillegsInfo = ['Antall ytelser: ' + props.ytelser.length];
-
     return (
-        <EkspanderbartYtelserPanel tittel="Ytelser" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel tittel="Ytelser">
             <OppfolgingYtelserListe ytelser={props.ytelser} />
         </EkspanderbartYtelserPanel>
     );
