@@ -251,7 +251,7 @@ class DokumentListeElement extends React.Component<Props> {
                 </LenkeKnapp>
             );
         } else {
-            return vedlegg.tittel;
+            return <Element>{vedlegg.tittel}</Element>;
         }
     }
 }
