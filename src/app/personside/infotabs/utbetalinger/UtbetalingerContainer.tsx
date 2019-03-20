@@ -9,7 +9,7 @@ import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restRedu
 import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';

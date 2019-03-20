@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Bold, Uppercase } from '../../../../../components/common-styled-components';

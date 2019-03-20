@@ -9,7 +9,7 @@ import DescriptionList, {
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import ArbeidsForhold from './Arbeidsforhold';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { datoEllerNull, formaterDato, prosentEllerNull } from '../../../../../utils/stringFormatting';

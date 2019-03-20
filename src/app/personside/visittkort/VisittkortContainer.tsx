@@ -9,7 +9,7 @@ import { AppState } from '../../../redux/reducers';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
 import { Loaded } from '../../../redux/restReducers/restReducer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ForeldrePengerContainer from './foreldrepenger/ForeldrePengerContainer';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
 import SykePengerContainer from './sykepenger/SykePengerContainer';
 import theme from '../../../../styles/personOversiktTheme';

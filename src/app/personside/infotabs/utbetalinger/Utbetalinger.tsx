@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { FilterState } from './filter/Filter';

@@ -12,7 +12,7 @@ import Kontrollsporsmal from '../../app/personside/kontrollsporsmal/Kontrollspor
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import theme from '../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
     fødselsnummer: string;

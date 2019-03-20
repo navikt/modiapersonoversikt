@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import Input from 'nav-frontend-skjema/lib/input';
 import { default as PoststedVelger, PoststedInformasjon } from '../../common/PoststedVelger';

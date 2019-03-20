@@ -5,7 +5,7 @@ import { useState } from 'react';
 import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
 import DescriptionList from '../../../../../../components/DescriptionList';
 import { Trekk, Utbetaling, Ytelse } from '../../../../../../models/utbetalinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
     ytelse: Ytelse;
