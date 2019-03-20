@@ -19,10 +19,12 @@ import { applyMiddleware, createStore } from 'redux';
 import reducers from '../../redux/reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
 
 enum Komponenter {
     Visittkort,
+    Oppfølging,
     Saksoversikt,
     SaksoversiktMCF,
     Brukerprofil,
@@ -91,6 +93,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
+        case Komponenter.Oppfølging:
+            return <OppfolgingLamell fødselsnummer={props.fnr} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
