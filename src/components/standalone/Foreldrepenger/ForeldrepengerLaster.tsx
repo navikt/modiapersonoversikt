@@ -15,15 +15,12 @@ import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 
-
-
 interface OwnProps {
     fødselsnummer: string;
-
 }
 
 interface StateProps {
-    pleiepengerReducer: RestReducer<ForeldrepengerResponse>;
+    foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
 }
 
 interface DispatchProps {
@@ -33,38 +30,35 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 const Margin = styled.div`
-  margin: .5em;
+    margin: 0.5em;
 `;
 
 const Style = styled.div`
-  ${theme.hvittPanel};
-  max-width: ${theme.width.ytelser};
+    ${theme.hvittPanel};
+    max-width: ${theme.width.ytelser};
 `;
 
 const onPending = (
     <FillCenterAndFadeIn>
         <Margin>
-            <NavFrontendSpinner type={'XL'}/>
+            <NavFrontendSpinner type={'XL'} />
         </Margin>
     </FillCenterAndFadeIn>
 );
 
 const onError = (
     <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av Foreldrepenger.
-        </AlertStripe>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av Foreldrepenger.</AlertStripe>
     </FillCenterAndFadeIn>
 );
 
 class ForeldrepengerLaster extends React.PureComponent<Props> {
-
     constructor(props: Props) {
         super(props);
     }
 
     componentDidMount() {
-        if (!isLoaded(this.props.pleiepengerReducer)) {
+        if (!isLoaded(this.props.foreldrepengerReducer)) {
             this.props.hentForeldrepenger(this.props.fødselsnummer);
         }
     }
@@ -74,20 +68,27 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne noen Foreldrepengerettigheter for bruker</AlertStripeInfo>;
         }
 
-        const aktuellRettighet = ForeldrepengeRettighet
-            .find(rettighet => rettighet.forelder === this.props.fødselsnummer);
+        const aktuellRettighet = ForeldrepengeRettighet.find(
+            rettighet => rettighet.forelder === this.props.fødselsnummer
+        );
 
         if (!aktuellRettighet) {
             return <AlertStripeInfo>Kunne ikke finne Foreldrepengerettighet</AlertStripeInfo>;
         }
 
-        return <FlexCenter><Style><Foreldrepenger foreldrepenger={aktuellRettighet}/></Style></FlexCenter>;
+        return (
+            <FlexCenter>
+                <Style>
+                    <Foreldrepenger foreldrepenger={aktuellRettighet} />
+                </Style>
+            </FlexCenter>
+        );
     }
 
     render() {
         return (
             <PlukkRestData
-                restReducer={this.props.pleiepengerReducer}
+                restReducer={this.props.foreldrepengerReducer}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
@@ -99,7 +100,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        pleiepengerReducer: state.restEndepunkter.pleiepengerReducer
+        foreldrepengerReducer: state.restEndepunkter.foreldrepengerReducer
     };
 }
 
@@ -109,4 +110,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForeldrepengerLaster);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ForeldrepengerLaster);
