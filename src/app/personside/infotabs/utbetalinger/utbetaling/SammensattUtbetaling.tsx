@@ -5,7 +5,7 @@ import {
     getGjeldendeDatoForUtbetaling,
     getNettoSumYtelser
 } from '../utils/utbetalingerUtils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Normaltekst } from 'nav-frontend-typografi';

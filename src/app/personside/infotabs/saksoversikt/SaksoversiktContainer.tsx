@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';

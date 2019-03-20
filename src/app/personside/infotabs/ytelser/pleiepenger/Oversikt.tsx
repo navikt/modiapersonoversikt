@@ -8,7 +8,7 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
 import ArbeidsForhold from './Arbeidsforhold';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';

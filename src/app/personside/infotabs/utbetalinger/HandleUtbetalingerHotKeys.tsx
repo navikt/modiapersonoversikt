@@ -5,7 +5,7 @@ import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/utbetalingerReducer';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface OwnProps {

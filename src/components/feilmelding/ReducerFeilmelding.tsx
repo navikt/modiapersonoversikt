@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { isFailed, RestReducer } from '../../redux/restReducers/restReducer';
 

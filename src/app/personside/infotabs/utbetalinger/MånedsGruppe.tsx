@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { ArrayGroup } from '../../../../utils/groupArray';
 import { Normaltekst } from 'nav-frontend-typografi';

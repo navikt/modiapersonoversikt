@@ -8,7 +8,7 @@ import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
