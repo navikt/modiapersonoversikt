@@ -12,12 +12,13 @@ interface Props {
     sendTekst: () => void;
 }
 
-const ContainerStyle = styled.div`
+const ContainerStyle = styled.li`
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.7rem;
+    background-color: white;
     &:nth-child(odd) {
         background-color: #dedede;
     }
