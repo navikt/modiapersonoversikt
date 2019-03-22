@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components/macro';
 
 const fadeIn = keyframes`
     from { opacity: 0 }

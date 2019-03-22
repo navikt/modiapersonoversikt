@@ -6,7 +6,7 @@ import {
     KategoriNotat,
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
