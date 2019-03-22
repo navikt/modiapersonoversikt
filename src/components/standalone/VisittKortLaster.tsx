@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import NavFrontendSpinner from 'nav-frontend-spinner';

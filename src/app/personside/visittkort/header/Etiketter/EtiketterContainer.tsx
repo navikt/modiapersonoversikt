@@ -4,7 +4,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
 import { RestReducer } from '../../../../../redux/restReducers/restReducer';
 import Etiketter from './Etiketter';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 

@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import PleiepengerLaster from './PleiepengerLaster';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 
 interface Props {

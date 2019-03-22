@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dokument, DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { getSaksdokument } from '../../../../../utils/url-utils';

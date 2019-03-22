@@ -4,7 +4,7 @@ import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontakt
 import { Person } from '../../../models/person/person';
 import Element from 'nav-frontend-typografi/lib/element';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const AdresseWrapper = styled.div`
     padding-top: 1rem;

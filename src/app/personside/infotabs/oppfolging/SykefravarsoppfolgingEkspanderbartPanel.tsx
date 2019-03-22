@@ -3,7 +3,7 @@ import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
 import { formaterDato } from '../../../../utils/stringFormatting';

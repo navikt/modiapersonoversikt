@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pleiepengeperiode, Vedtak as VedtakInterface } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { Undertittel } from 'nav-frontend-typografi';

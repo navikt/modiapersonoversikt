@@ -2,7 +2,7 @@ import { copyCSSStyles } from './cssUtils';
 import * as React from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import NavLogo from '../svg/NavLogo';
 import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
 import { detect } from 'detect-browser';

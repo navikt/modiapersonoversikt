@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import EndreNavnForm from './endrenavn/EndreNavnForm';
 import { Person } from '../../models/person/person';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import { ReactNode } from 'react';

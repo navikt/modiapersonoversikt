@@ -3,7 +3,7 @@ import { Avgrensninger } from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { formaterTilISO8601Date } from '../../utils/stringFormatting';
 import { Feilmelding } from '../../utils/Feilmelding';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import moment from 'moment';
 import { loggEvent } from '../../utils/frontendLogger';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 interface Props {
     onBekreft: () => void;

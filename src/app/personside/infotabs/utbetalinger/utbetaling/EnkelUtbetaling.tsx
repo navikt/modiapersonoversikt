@@ -8,7 +8,7 @@ import {
 } from '../utils/utbetalingerUtils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import Printer from '../../../../../utils/Printer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';

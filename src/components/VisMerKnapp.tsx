@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { theme } from '../styles/personOversiktTheme';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 
 const Wrapper = styled.div<{ valgt: boolean }>`

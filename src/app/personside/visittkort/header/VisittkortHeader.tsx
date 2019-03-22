@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { erDød, Navn, Person } from '../../../../models/person/person';

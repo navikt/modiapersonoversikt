@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LenkeBrukerprofilVisning from './LenkeBrukerprofil';
 import { Person } from '../../../../../models/person/person';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 
 interface OwnProps {

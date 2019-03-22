@@ -8,7 +8,7 @@ import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import UtbetalingerContainer from '../../app/personside/infotabs/utbetalinger/UtbetalingerContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 
 interface Props {

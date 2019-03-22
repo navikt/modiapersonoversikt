@@ -3,7 +3,7 @@ import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils
 import { Bold, BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';

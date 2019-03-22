@@ -16,7 +16,7 @@ import PlukkRestData from '../../pleiepenger/PlukkRestData';
 import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
 import {
     hentUtførteUtbetalinger,

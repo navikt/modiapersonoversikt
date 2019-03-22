@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
 import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/personOversiktTheme';
 
 interface TabPanelProps {

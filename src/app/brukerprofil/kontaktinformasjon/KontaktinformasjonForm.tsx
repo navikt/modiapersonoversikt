@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
 import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';

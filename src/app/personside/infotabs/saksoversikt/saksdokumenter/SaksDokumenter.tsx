@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
