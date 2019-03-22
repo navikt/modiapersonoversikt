@@ -320,9 +320,14 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+let mockInitialised = false;
 export function setupMock() {
+    if (mockInitialised) {
+        return;
+    } else {
+        mockInitialised = true;
+    }
     console.log('### MOCK ENABLED! ###');
-    /* tslint:disable-next-line */
 
     const mock = FetchMock.configure({
         enableFallback: true,
