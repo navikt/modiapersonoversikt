@@ -15,9 +15,9 @@ import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { connect } from 'react-redux';
-import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/utbetalingerReducer';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { AnyAction, Dispatch } from 'redux';
+import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 
 interface OwnProps {
     utbetaling: Utbetaling;

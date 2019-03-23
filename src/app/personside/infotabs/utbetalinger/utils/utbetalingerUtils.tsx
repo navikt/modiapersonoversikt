@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { FilterState, PeriodeValg } from '../filter/Filter';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Periode } from '../../../../../models/periode';
 import moment from 'moment';
 import { loggError } from '../../../../../utils/frontendLogger';
+import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -75,7 +75,7 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbeløp - b.trekkbeløp;
 }
 
-export function getFraDateFromFilter(filter: FilterState): Date {
+export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
             return moment()
@@ -97,7 +97,7 @@ export function getFraDateFromFilter(filter: FilterState): Date {
     }
 }
 
-export function getTilDateFromFilter(filter: FilterState): Date {
+export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
             return moment()

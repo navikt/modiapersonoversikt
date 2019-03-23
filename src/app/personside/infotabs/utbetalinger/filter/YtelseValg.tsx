@@ -1,13 +1,13 @@
-import { FilterState } from './Filter';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
 import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalingerUtils';
+import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 interface Props {
-    onChange: (change: Partial<FilterState>) => void;
-    filterState: FilterState;
+    onChange: (change: Partial<UtbetalingFilterState>) => void;
+    filterState: UtbetalingFilterState;
     utbetalinger: Utbetaling[];
 }
 

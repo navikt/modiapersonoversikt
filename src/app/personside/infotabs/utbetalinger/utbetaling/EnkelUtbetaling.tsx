@@ -17,11 +17,11 @@ import { Bold, SpaceBetween } from '../../../../../components/common-styled-comp
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { AnyAction, Dispatch } from 'redux';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;

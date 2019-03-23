@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import RestEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
-import { utbetalingerReducer, UtbetalingerState } from './utbetalinger/utbetalingerReducer';
+import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { KontrollSpørsmålState } from './kontrollSporsmal/types';
@@ -12,6 +12,7 @@ import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
 import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
+import { UtbetalingerState } from './utbetalinger/types';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
