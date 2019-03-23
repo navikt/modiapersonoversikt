@@ -11,10 +11,19 @@ interface Props {
 
 const KomponentStyle = styled.div`
     padding: ${theme.margin.layout};
-    display: grid;
-    grid-template-columns: ${theme.width.varselStart} auto;
-    grid-template-rows: auto auto;
-    grid-row-gap: ${theme.margin.px10};
+    display: flex;
+    flex-direction: column;
+`;
+
+const RowStyle = styled.div`
+    display: flex;
+    align-items: flex-start;
+    > * {
+        flex-grow: 1;
+        :last-child {
+            flex-grow: 4;
+        }
+    }
 `;
 
 const MottakerInformasjonStyle = styled.div`
@@ -45,14 +54,18 @@ function Mottakerinformasjon(props: Props) {
 function Meldingskomponent(props: Props) {
     return (
         <KomponentStyle>
-            <Normaltekst>
-                <Bold>{props.melding.kanal}</Bold>
-            </Normaltekst>
-            <MeldingsInnhold melding={props.melding} />
-            <Normaltekst>{props.melding.utsendingsTidspunkt}</Normaltekst>
-            <MottakerInformasjonStyle>
-                <Mottakerinformasjon melding={props.melding} />
-            </MottakerInformasjonStyle>
+            <RowStyle>
+                <Normaltekst>
+                    <Bold>{props.melding.kanal}</Bold>
+                </Normaltekst>
+                <MeldingsInnhold melding={props.melding} />
+            </RowStyle>
+            <RowStyle>
+                <Normaltekst>{props.melding.utsendingsTidspunkt}</Normaltekst>
+                <MottakerInformasjonStyle>
+                    <Mottakerinformasjon melding={props.melding} />
+                </MottakerInformasjonStyle>
+            </RowStyle>
         </KomponentStyle>
     );
 }

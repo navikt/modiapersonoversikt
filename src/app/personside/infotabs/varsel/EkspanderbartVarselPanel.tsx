@@ -11,9 +11,13 @@ interface Props {
 }
 
 const TittelStyle = styled.div`
-    display: grid;
-    grid-template-columns: ${theme.width.varselStart} auto ${theme.width.varselStart};
-    grid-template-rows: auto;
+    display: flex;
+    > * {
+        flex-grow: 1;
+        :nth-child(2) {
+            flex-grow: 4;
+        }
+    }
     width: 100%;
 `;
 

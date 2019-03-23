@@ -22,9 +22,13 @@ const ListeStyle = styled.ol`
 `;
 
 const HeadingStyle = styled.div`
-    display: grid;
-    grid-template-columns: ${theme.width.varselStart} auto ${theme.width.varselSlutt};
-    grid-template-rows: auto;
+    display: flex;
+    > * {
+        flex-grow: 1;
+        :nth-child(2) {
+            flex-grow: 4;
+        }
+    }
     padding: 0px 1rem;
 `;
 
