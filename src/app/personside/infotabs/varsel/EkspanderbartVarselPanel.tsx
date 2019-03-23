@@ -11,15 +11,10 @@ interface Props {
 }
 
 const TittelStyle = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: ${theme.width.varselStart} auto ${theme.width.varselStart};
+    grid-template-rows: auto;
     width: 100%;
-    > * {
-        flex-grow: 1;
-        &:nth-child(2) {
-            flex-grow: 2;
-        }
-    }
 `;
 
 const CustomStyling = styled.div`
@@ -36,13 +31,13 @@ const FjernPadding = styled.div`
 `;
 
 function EkspanderbartVarselPanel(props: Props) {
-    const kanaler = props.varsel.meldingListe.map(melding => melding.kanal).join(', ');
+    const distinkteKanaler = Array.from(new Set(props.varsel.meldingListe.map(melding => melding.kanal))).join(', ');
     const varseltype = Varseltype[props.varsel.varselType];
     const tittel = (
         <TittelStyle>
             <Normaltekst>{props.varsel.mottattTidspunkt}</Normaltekst>
             <Normaltekst>{varseltype}</Normaltekst>
-            <Normaltekst>{kanaler}</Normaltekst>
+            <Normaltekst>{distinkteKanaler}</Normaltekst>
         </TittelStyle>
     );
     return (

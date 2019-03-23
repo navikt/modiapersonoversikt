@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import EkspanderbartVarselPanel from './EkspanderbartVarselPanel';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Bold } from '../../../../components/common-styled-components';
 
 interface VisningProps {
     varsler: Varsel[];
@@ -21,13 +22,10 @@ const ListeStyle = styled.ol`
 `;
 
 const HeadingStyle = styled.div`
-    display: flex;
-    > * {
-        flex-grow: 1;
-        &:nth-child(2) {
-            flex-grow: 2;
-        }
-    }
+    display: grid;
+    grid-template-columns: ${theme.width.varselStart} auto ${theme.width.varselSlutt};
+    grid-template-rows: auto;
+    padding: 0px 1rem;
 `;
 
 function VarselListe(props: { varsler: Varsel[] }) {
@@ -42,9 +40,15 @@ function VarselVisning(props: VisningProps) {
     return (
         <ArticleStyle>
             <HeadingStyle>
-                <Normaltekst>DATO</Normaltekst>
-                <Normaltekst>TYPE</Normaltekst>
-                <Normaltekst>SENDT I KANAL</Normaltekst>
+                <Normaltekst>
+                    <Bold>DATO</Bold>
+                </Normaltekst>
+                <Normaltekst>
+                    <Bold>TYPE</Bold>
+                </Normaltekst>
+                <Normaltekst>
+                    <Bold>SENDT I KANAL</Bold>
+                </Normaltekst>
             </HeadingStyle>
             <VarselListe varsler={props.varsler} />
         </ArticleStyle>

@@ -30,7 +30,7 @@ function getVarsel(): Varsel {
 
 function getVarselMelding(): Varselmelding {
     return {
-        kanal: navfaker.random.arrayElement(['SMS', 'NAV.NO']),
+        kanal: navfaker.random.arrayElement(['SMS', 'NAV.NO', 'EPOST']),
         innhold: 'Meldingsinnhold',
         mottakerInformasjon: 'mottakerinfo',
         utsendingsTidspunkt: moment(faker.date.recent(30)).format(backendDatoformat),
