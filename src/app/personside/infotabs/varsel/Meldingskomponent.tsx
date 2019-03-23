@@ -17,6 +17,10 @@ const KomponentStyle = styled.div`
     grid-row-gap: ${theme.margin.px10};
 `;
 
+const MottakerInformasjonStyle = styled.div`
+    color: ${theme.color.lenke};
+`;
+
 function MeldingsInnhold(props: Props) {
     return props.melding.kanal === 'EPOST' ? (
         <div>
@@ -30,6 +34,14 @@ function MeldingsInnhold(props: Props) {
     );
 }
 
+function Mottakerinformasjon(props: Props) {
+    return props.melding.kanal === 'NAV.NO' ? null : props.melding.kanal === 'EPOST' ? (
+        <Normaltekst>Epost: {props.melding.mottakerInformasjon}</Normaltekst>
+    ) : (
+        <Normaltekst>Tlf: {props.melding.mottakerInformasjon}</Normaltekst>
+    );
+}
+
 function Meldingskomponent(props: Props) {
     return (
         <KomponentStyle>
@@ -38,7 +50,9 @@ function Meldingskomponent(props: Props) {
             </Normaltekst>
             <MeldingsInnhold melding={props.melding} />
             <Normaltekst>{props.melding.utsendingsTidspunkt}</Normaltekst>
-            <Normaltekst>{props.melding.mottakerInformasjon}</Normaltekst>
+            <MottakerInformasjonStyle>
+                <Mottakerinformasjon melding={props.melding} />
+            </MottakerInformasjonStyle>
         </KomponentStyle>
     );
 }
