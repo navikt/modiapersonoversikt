@@ -75,6 +75,14 @@ export function getAlderFromFødselsnummer(fødselsnummer: string) {
     return moment().diff(navfaker.personIdentifikator.getFødselsdato(fødselsnummer), 'years');
 }
 
+export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
+    return new Date(date1) < new Date(date2) ? date1 : date2;
+}
+
+export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
+    return new Date(date1) > new Date(date2) ? date1 : date2;
+}
+
 export function ascendingDateComparator(a: Date, b: Date) {
     return a > b ? 1 : -1;
 }

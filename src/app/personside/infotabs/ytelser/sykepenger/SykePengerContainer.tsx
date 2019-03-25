@@ -38,9 +38,7 @@ class SykePengerContainer extends React.PureComponent<Props> {
                     if (!data.sykepenger) {
                         return null;
                     }
-                    return data.sykepenger.map((sykepengerettighet, index) => (
-                        <SykepengerEkspanderbartpanel key={index} sykepenger={sykepengerettighet} />
-                    ));
+                    return <SykepengerEkspanderbartpanel sykepenger={data.sykepenger} />;
                 }}
             </PlukkRestData>
         );

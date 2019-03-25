@@ -3,9 +3,13 @@ import {
     datoVerbose,
     erImorgenEllerSenere,
     erMaksEttÅrFramITid,
+    getNewestDate,
+    getOldestDate,
     datoStigende,
     datoSynkende
 } from './dateUtils';
+import moment from 'moment';
+import { backendDatoformat } from '../mock/utils/mock-utils';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -46,6 +50,7 @@ describe('Sorterer etter dato', () => {
         interface MockObject {
             date: string | Date;
         }
+
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
         const sortedDates = [datoA, datoB].sort(datoStigende(object => object.date));
@@ -57,6 +62,7 @@ describe('Sorterer etter dato', () => {
         interface MockObject {
             date: string | Date;
         }
+
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
         const sortedDates = [datoA, datoB].sort(datoSynkende(object => object.date));
@@ -71,4 +77,56 @@ test('datoVerbose henter riktig dag, måned og år', () => {
     const result = datoVerbose(dato);
 
     expect(result.sammensatt).toEqual('28. Desember 1986');
+});
+
+describe('getNewestDate', () => {
+    it('git den nyeste datoen', () => {
+        const oldDate = moment()
+            .subtract(1, 'year')
+            .toDate();
+        const newDate = moment().toDate();
+
+        const result = getNewestDate(newDate, oldDate);
+        const result2 = getNewestDate(oldDate, newDate);
+
+        expect(result).toEqual(newDate);
+        expect(result2).toEqual(newDate);
+    });
+
+    it('aksepterer strings og dates som argumenter', () => {
+        const oldDate = moment()
+            .subtract(1, 'year')
+            .toDate();
+        const newDate = moment().format(backendDatoformat);
+
+        const result = getNewestDate(newDate, oldDate);
+
+        expect(result).toEqual(newDate);
+    });
+});
+
+describe('getOldestDate', () => {
+    it('git den eldste datoen', () => {
+        const oldDate = moment()
+            .subtract(1, 'year')
+            .toDate();
+        const newDate = moment().toDate();
+
+        const result = getOldestDate(newDate, oldDate);
+        const result2 = getOldestDate(oldDate, newDate);
+
+        expect(result).toEqual(oldDate);
+        expect(result2).toEqual(oldDate);
+    });
+
+    it('aksepterer strings og dates som argumenter', () => {
+        const oldDate = moment()
+            .subtract(1, 'year')
+            .toDate();
+        const newDate = moment().format(backendDatoformat);
+
+        const result = getOldestDate(newDate, oldDate);
+
+        expect(result).toEqual(oldDate);
+    });
 });
