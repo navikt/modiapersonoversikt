@@ -9,7 +9,7 @@ import {
     periodeEllerNull
 } from '../../../../../utils/stringFormatting';
 import * as React from 'react';
-import { Forsikring, Sykepenger } from '../../../../../models/ytelse/sykepenger';
+import { Forsikring, Sykepenger, Sykmelding } from '../../../../../models/ytelse/sykepenger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 
 interface Props {
@@ -27,11 +27,16 @@ function getForsikringEntries(forsikring: Forsikring | null): DescriptionListEnt
     };
 }
 
-function getYrkesskadeEntries(): DescriptionListEntries {
+function getYrkesskadeEntries(sykeMeldinger: Sykmelding[]): DescriptionListEntries {
+    const sisteSykemelding = sykeMeldinger[0];
+    if (!sisteSykemelding || !sisteSykemelding.gjelderYrkesskade) {
+        return {};
+    }
+    const yrkesSkade = sisteSykemelding.gjelderYrkesskade;
     return {
-        Yrkesskade: '',
-        Yrkesskadedato: '',
-        Vedtaksdato: ''
+        Yrkesskade: yrkesSkade.yrkesskadeart,
+        Yrkesskadedato: datoEllerNull(yrkesSkade.skadet),
+        Vedtaksdato: datoEllerNull(yrkesSkade.vedtatt)
     };
 }
 
@@ -49,7 +54,7 @@ function Sykepengertilfellet({ sykepenger }: Props) {
         Ferieperioder: periodeEllerNull(sykepenger.ferie1),
         Ferieperioder2: periodeEllerNull(sykepenger.ferie2),
         ...getForsikringEntries(sykepenger.forsikring),
-        ...getYrkesskadeEntries()
+        ...getYrkesskadeEntries(sykepenger.sykmeldinger)
     };
 
     return (
