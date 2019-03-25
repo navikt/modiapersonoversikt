@@ -1,51 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c3 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
-  padding: 1.25rem;
-  margin-bottom: .8rem;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-top: 1.5rem;
-}
-
-.c5 > *:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.c5 > * {
-  margin-top: 0.5rem;
-}
-
-.c7 {
-  margin-top: 1rem;
-}
-
-.c6 {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.c6 > *:first-child {
-  margin-bottom: 0.8rem;
-}
-
-.c6 > *:last-child {
-  margin-bottom: 0;
-}
-
 .c15 {
   border: none;
   background-color: transparent;
@@ -316,6 +271,51 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-left: 1rem;
 }
 
+.c3 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  padding: 1.25rem;
+  margin-bottom: .8rem;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c5 > *:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c5 > * {
+  margin-top: 0.5rem;
+}
+
+.c7 {
+  margin-top: 1rem;
+}
+
+.c6 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c6 > *:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.c6 > *:last-child {
+  margin-bottom: 0;
+}
+
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
@@ -354,6 +354,24 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   min-width: 35rem;
 }
 
+@media print {
+  .c15 {
+    display: none;
+  }
+}
+
+@media print {
+  .c17 {
+    display: none;
+  }
+}
+
+@media print {
+  .c29 {
+    list-style-type: none;
+  }
+}
+
 @media (max-width:80rem) {
   .c4 {
     display: -webkit-box;
@@ -377,24 +395,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
   .c4 > *:not(:last-child) {
     margin-right: 1rem;
-  }
-}
-
-@media print {
-  .c15 {
-    display: none;
-  }
-}
-
-@media print {
-  .c17 {
-    display: none;
-  }
-}
-
-@media print {
-  .c29 {
-    list-style-type: none;
   }
 }
 
