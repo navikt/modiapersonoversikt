@@ -93,10 +93,10 @@ describe('getNewestDate', () => {
         expect(result2).toEqual(newDate);
     });
 
-    it('aksepterer strings og dates som argumenter', () => {
+    it('aksepterer strings som argumenter', () => {
         const oldDate = moment()
             .subtract(1, 'year')
-            .toDate();
+            .format(backendDatoformat);
         const newDate = moment().format(backendDatoformat);
 
         const result = getNewestDate(newDate, oldDate);
@@ -122,7 +122,7 @@ describe('getOldestDate', () => {
     it('aksepterer strings og dates som argumenter', () => {
         const oldDate = moment()
             .subtract(1, 'year')
-            .toDate();
+            .format(backendDatoformat);
         const newDate = moment().format(backendDatoformat);
 
         const result = getOldestDate(newDate, oldDate);

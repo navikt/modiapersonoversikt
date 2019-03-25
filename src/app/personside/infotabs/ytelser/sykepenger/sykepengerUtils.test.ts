@@ -1,11 +1,9 @@
-import { Sykepenger } from '../../../../../models/ytelse/sykepenger';
-import { getMockSykmelding, getMockSykmepenger } from '../../../../../mock/ytelse/sykepenger-mock';
+import { Sykmelding } from '../../../../../models/ytelse/sykepenger';
+import { getMockSykmelding } from '../../../../../mock/ytelse/sykepenger-mock';
 import { getSykemeldingPeriode } from './sykepengerUtils';
-import { aremark } from '../../../../../mock/person/aremark';
 
 test('Finner riktig periode for sykemeldinger', () => {
-    const sykepenger: Sykepenger = getMockSykmepenger(aremark.fødselsnummer);
-    sykepenger.sykmeldinger = [
+    const sykemeldinger: Sykmelding[] = [
         {
             ...getMockSykmelding(),
             sykmeldt: {
@@ -22,7 +20,7 @@ test('Finner riktig periode for sykemeldinger', () => {
         }
     ];
 
-    const result = getSykemeldingPeriode(sykepenger);
+    const result = getSykemeldingPeriode(sykemeldinger);
 
     expect(result).toEqual({ fra: '2010-10-10', til: '2018-10-10' });
 });

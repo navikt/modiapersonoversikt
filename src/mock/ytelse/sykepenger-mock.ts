@@ -3,7 +3,14 @@ import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 
-import { Forsikring, SykepengerResponse, Sykmelding, Sykepenger, Yrkesskade } from '../../models/ytelse/sykepenger';
+import {
+    Forsikring,
+    SykepengerResponse,
+    Sykmelding,
+    Sykepenger,
+    Yrkesskade,
+    Gradering
+} from '../../models/ytelse/sykepenger';
 import { getPeriode } from '../person/periodeMock';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
@@ -40,18 +47,20 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         fødselsnummer: fødselsnummer,
         sykmeldtFom: moment(faker.date.past(1)).format(backendDatoformat),
         forbrukteDager: navfaker.random.integer(100),
-        ferie1: getPeriode(),
-        ferie2: getPeriode(),
-        sanksjon: getPeriode(),
-        stansårsak: faker.lorem.words(5),
-        unntakAktivitet: faker.lorem.words(1),
-        forsikring: getForsikring(),
+        ferie1: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        ferie2: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        sanksjon: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        stansårsak: navfaker.random.vektetSjanse(0.3) ? 'Svindel og bedrag' : null,
+        unntakAktivitet: navfaker.random.vektetSjanse(0.3) ? 'Untatt aktivitet' : null,
+        forsikring: navfaker.random.vektetSjanse(0.3) ? getForsikring() : null,
         sykmeldinger: fyllRandomListe<Sykmelding>(() => getMockSykmelding(), 3),
         historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5),
         kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 5),
         utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 5),
         bruker: fødselsnummer,
-        midlertidigStanset: moment(faker.date.past(1)).format(backendDatoformat)
+        midlertidigStanset: navfaker.random.vektetSjanse(0.3)
+            ? moment(faker.date.past(1)).format(backendDatoformat)
+            : null
     };
 }
 
@@ -60,7 +69,7 @@ function getForsikring(): Forsikring {
         forsikringsordning: faker.lorem.words(1),
         premiegrunnlag: Number(faker.commerce.price()),
         erGyldig: faker.random.boolean(),
-        forsikret: getPeriode()
+        forsikret: navfaker.random.vektetSjanse(0.5) ? getPeriode() : null
     };
 }
 
@@ -70,8 +79,8 @@ export function getMockSykmelding(): Sykmelding {
         behandlet: moment(faker.date.past(1)).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
-        gjelderYrkesskade: getYrkesskade(),
-        gradAvSykmeldingListe: []
+        gjelderYrkesskade: navfaker.random.vektetSjanse(0.0) ? getYrkesskade() : null,
+        gradAvSykmeldingListe: fyllRandomListe(getGradering, 3)
     };
 }
 
@@ -80,5 +89,12 @@ function getYrkesskade(): Yrkesskade {
         yrkesskadeart: faker.lorem.words(3),
         skadet: moment(faker.date.past(1)).format(backendDatoformat),
         vedtatt: moment(faker.date.past(1)).format(backendDatoformat)
+    };
+}
+
+function getGradering(): Gradering {
+    return {
+        gradert: getPeriode(),
+        sykmeldingsgrad: navfaker.random.integer(100)
     };
 }

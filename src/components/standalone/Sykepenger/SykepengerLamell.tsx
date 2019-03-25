@@ -8,8 +8,8 @@ import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import SykePengerContainer from '../../../app/personside/infotabs/ytelser/sykepenger/SykePengerContainer';
 import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
+import SykePengerLaster from './SykepengerLaster';
 
 interface Props {
     fødselsnummer: string;
@@ -23,6 +23,7 @@ if (mockEnabled) {
 
 const Styles = styled.div`
     overflow-y: auto;
+    background-color: white;
     .visually-hidden {
         ${theme.visuallyHidden}
     }
@@ -34,7 +35,7 @@ function SykepengerLamell(props: Props) {
             <Provider store={store}>
                 <Styles>
                     <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                    <SykePengerContainer fødselsnummer={props.fødselsnummer} />
+                    <SykePengerLaster fødselsnummer={props.fødselsnummer} />
                 </Styles>
             </Provider>
         </ErrorBoundary>
