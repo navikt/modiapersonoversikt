@@ -1,11 +1,11 @@
 import * as React from 'react';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
-import { Sykepenger } from '../../../../../models/ytelse/sykepenger';
+import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import SykepengerKomponent from './SykepengerKomponent';
+import Sykepenger from './Sykepenger';
 
 interface Props {
-    sykepenger: Sykepenger[];
+    sykepenger: ISykepenger[];
 }
 
 function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
@@ -15,7 +15,7 @@ function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
             <ol>
                 {sykepenger.map((rettighet, index) => (
-                    <SykepengerKomponent key={index} sykepenger={rettighet} sykepengenr={index + 1} />
+                    <Sykepenger key={index} sykepenger={rettighet} sykepengenr={index + 1} />
                 ))}
             </ol>
         </EkspanderbartYtelserPanel>

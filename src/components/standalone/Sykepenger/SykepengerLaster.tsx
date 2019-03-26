@@ -7,7 +7,7 @@ import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/
 import { AppState } from '../../../redux/reducers';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { hentSykepenger } from '../../../redux/restReducers/ytelser/sykepenger';
-import SykepengerKomponent from '../../../app/personside/infotabs/ytelser/sykepenger/SykepengerKomponent';
+import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -41,7 +41,7 @@ class SykePengerLaster extends React.PureComponent<Props> {
                     return (
                         <ol>
                             {data.sykepenger.map((rettighet, index) => (
-                                <SykepengerKomponent key={index} sykepenger={rettighet} sykepengenr={index + 1} />
+                                <Sykepenger key={index} sykepenger={rettighet} sykepengenr={index + 1} />
                             ))}
                         </ol>
                     );

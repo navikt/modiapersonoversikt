@@ -16,6 +16,7 @@ import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { aremark } from '../person/aremark';
+import { Arbeidsforhold } from '../../models/ytelse/sykepenger';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -60,7 +61,11 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         bruker: fødselsnummer,
         midlertidigStanset: navfaker.random.vektetSjanse(0.3)
             ? moment(faker.date.past(1)).format(backendDatoformat)
-            : null
+            : null,
+        slutt: navfaker.random.vektetSjanse(0.7) ? null : moment(faker.date.past(1)).format(backendDatoformat),
+        arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
+        erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
+        arbeidsKategori: 'Ærlig arbeid'
     };
 }
 
@@ -96,5 +101,17 @@ function getGradering(): Gradering {
     return {
         gradert: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100)
+    };
+}
+
+function getArbeidsforhold(): Arbeidsforhold {
+    return {
+        arbeidsgiverNavn: faker.company.companyName(),
+        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        inntektsperiode: 'Månedssats',
+        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
+        refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
+        refusjonstype: 'Ikke refusjon',
+        sykepengerFom: moment(faker.date.past(2)).format(backendDatoformat)
     };
 }

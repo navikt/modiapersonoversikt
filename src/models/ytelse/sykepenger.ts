@@ -21,6 +21,10 @@ export interface Sykepenger {
     utbetalingerPåVent: UtbetalingPåVent[];
     bruker: string;
     midlertidigStanset: null | string;
+    slutt: null | string;
+    arbeidsforholdListe: Arbeidsforhold[];
+    erArbeidsgiverperiode: boolean;
+    arbeidsKategori: string;
 }
 
 export interface Forsikring {
@@ -48,4 +52,14 @@ export interface Yrkesskade {
 export interface Gradering {
     gradert: Periode;
     sykmeldingsgrad: number;
+}
+
+export interface Arbeidsforhold {
+    arbeidsgiverNavn: string;
+    arbeidsgiverKontonr: string | null;
+    inntektsperiode: string | null;
+    inntektForPerioden: number | null;
+    refusjonTom: string | null;
+    refusjonstype: string | null;
+    sykepengerFom: string;
 }

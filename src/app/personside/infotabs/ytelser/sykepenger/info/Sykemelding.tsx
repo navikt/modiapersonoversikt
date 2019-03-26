@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Periode } from '../../../../../models/periode';
-import { getSykemeldingPeriode } from './sykepengerUtils';
-import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
-import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../utils/stringFormatting';
-import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import { Sykmelding } from '../../../../../models/ytelse/sykepenger';
+import { Periode } from '../../../../../../models/periode';
+import { getSykemeldingPeriode } from '../utils/sykepengerUtils';
+import DescriptionList, { DescriptionListEntries } from '../../../../../../components/DescriptionList';
+import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
+import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
+import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 interface Props {
-    sykmeldinger: Sykmelding[];
+    sykmeldinger: ISykemelding[];
 }
 
 const ListeElementStyle = styled.li`
@@ -17,7 +17,7 @@ const ListeElementStyle = styled.li`
     padding: ${theme.margin.px20};
 `;
 
-function GraderingsListeElement({ sykmelding }: { sykmelding: Sykmelding }) {
+function GraderingsListeElement({ sykmelding }: { sykmelding: ISykemelding }) {
     const entries: DescriptionListEntries = {
         Periode: periodeEllerNull(sykmelding.sykmeldt),
         Gradering: prosentEllerNull(sykmelding.sykmeldingsgrad)
@@ -39,7 +39,7 @@ function GraderingsListe(props: Props) {
     );
 }
 
-function SykemeldingKomponent(props: Props) {
+function Sykemelding(props: Props) {
     const sykemeldingPeriode: Periode = getSykemeldingPeriode(props.sykmeldinger);
     const aktuellSykemelding = props.sykmeldinger[0];
     const sykemeldingEntries: DescriptionListEntries = {
@@ -56,4 +56,4 @@ function SykemeldingKomponent(props: Props) {
     );
 }
 
-export default SykemeldingKomponent;
+export default Sykemelding;
