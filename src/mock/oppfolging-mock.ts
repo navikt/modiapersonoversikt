@@ -42,7 +42,7 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
 
     return {
         oppfølging: getMockOppfølging(fødselsnummer),
-        meldeplikt: false,
+        meldeplikt: faker.random.boolean(),
         formidlingsgruppe: 'FMGRP' + faker.random.number(5),
         innsatsgruppe: 'INGRP' + faker.random.number(10),
         sykemeldtFra: moment(faker.date.recent(10)).format(backendDatoformat),
