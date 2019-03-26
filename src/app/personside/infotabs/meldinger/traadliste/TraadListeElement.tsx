@@ -9,7 +9,11 @@ interface Props {
 }
 
 function TraadListeElement(props: Props) {
-    return <Normaltekst>{props.traad.traadId}</Normaltekst>;
+    return (
+        <div onClick={() => props.oppdaterValgtTraad(props.traad)}>
+            <Normaltekst>{props.traad.traadId}</Normaltekst>
+        </div>
+    );
 }
 
 export default TraadListeElement;
