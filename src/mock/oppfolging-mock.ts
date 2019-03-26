@@ -42,7 +42,7 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
 
     return {
         oppfølging: getMockOppfølging(fødselsnummer),
-        meldeplikt: faker.random.boolean(),
+        meldeplikt: false,
         formidlingsgruppe: 'FMGRP' + faker.random.number(5),
         innsatsgruppe: 'INGRP' + faker.random.number(10),
         sykemeldtFra: moment(faker.date.recent(10)).format(backendDatoformat),
@@ -85,7 +85,6 @@ function getVedtak(): OppfolgingsVedtak {
     return {
         aktivFra: moment(faker.date.recent(40)).format(backendDatoformat),
         aktivTil: moment(faker.date.recent(20)).format(backendDatoformat),
-        vedtaksdato: moment(faker.date.recent(20)).format(backendDatoformat),
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
         vedtakstatus: navfaker.random.arrayElement(['Iverksatt', 'Avsluttet']),
         vedtakstype: 'Vedtak: Ordinære dagpenger'

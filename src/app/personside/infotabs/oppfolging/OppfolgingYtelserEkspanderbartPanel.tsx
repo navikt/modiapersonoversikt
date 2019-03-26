@@ -35,26 +35,26 @@ const ElementStyle = styled.div`
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
     const sortertPåDato = props.ytelser.sort(genericDescendingDateComparator(ytelse => ytelse.datoKravMottatt));
 
-    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytselse={ytelse} />);
+    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytelse={ytelse} />);
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }
 
-function YtelseElement(props: { ytselse: OppfolgingsYtelse }) {
+function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
     const descriptionListProps = {
-        status: props.ytselse.status,
-        'Dato søknad mottatt': props.ytselse.datoKravMottatt,
-        'Dato fra': props.ytselse.fom,
-        'Dato til': props.ytselse.tom,
-        'Dager igjen': props.ytselse.dagerIgjenMedBortfall,
-        'Uker igjen': props.ytselse.ukerIgjenMedBortfall
+        Status: props.ytelse.status,
+        'Dato søknad mottatt': props.ytelse.datoKravMottatt,
+        'Dato fra': props.ytelse.fom,
+        'Dato til': props.ytelse.tom,
+        'Dager igjen': props.ytelse.dagerIgjenMedBortfall,
+        'Uker igjen': props.ytelse.ukerIgjenMedBortfall
     };
     return (
         <ElementStyle>
-            <Undertittel>{props.ytselse.type}</Undertittel>
+            <Undertittel>{props.ytelse.type}</Undertittel>
             <YtelsePanelStyle>
                 <DescriptionList entries={descriptionListProps} />
-                <OppfolgingsVedtakListe ytelseVedtak={props.ytselse.vedtak} />
+                <OppfolgingsVedtakListe ytelseVedtak={props.ytelse.vedtak} />
             </YtelsePanelStyle>
         </ElementStyle>
     );
