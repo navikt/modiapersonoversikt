@@ -85,7 +85,6 @@ function getVedtak(): OppfolgingsVedtak {
     return {
         aktivFra: moment(faker.date.recent(40)).format(backendDatoformat),
         aktivTil: moment(faker.date.recent(20)).format(backendDatoformat),
-        vedtaksdato: moment(faker.date.recent(20)).format(backendDatoformat),
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
         vedtakstatus: navfaker.random.arrayElement(['Iverksatt', 'Avsluttet']),
         vedtakstype: 'Vedtak: Ordinære dagpenger'

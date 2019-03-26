@@ -37,8 +37,7 @@ function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
     const descriptionListItems = {
         [datoInterval]: props.vedtak.vedtakstype,
         Status: props.vedtak.vedtakstatus,
-        Aktivitetsfase: props.vedtak.aktivitetsfase,
-        Vedtaksdato: props.vedtak.vedtaksdato
+        Aktivitetsfase: props.vedtak.aktivitetsfase
     };
 
     return (

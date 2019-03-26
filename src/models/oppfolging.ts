@@ -47,7 +47,6 @@ export interface OppfolgingsYtelse {
 export interface OppfolgingsVedtak {
     aktivFra: string;
     aktivTil: string;
-    vedtaksdato: string;
     aktivitetsfase?: string;
     vedtakstatus: string;
     vedtakstype: string;
