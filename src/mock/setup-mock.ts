@@ -26,6 +26,7 @@ import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsel-mock';
+import { getMockTraader } from './meldinger/meldinger-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -155,6 +156,17 @@ function setupVarselMock(mock: FetchMock) {
             randomDelay(),
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
+        )
+    );
+}
+
+function setupMeldingerMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/meldinger/:fodselsnummer/traader',
+        withDelayedResponse(
+            randomDelay(),
+            fødselsNummerErGyldigStatus,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
         )
     );
 }
@@ -362,6 +374,7 @@ export function setupMock() {
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
+    setupMeldingerMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
 }
