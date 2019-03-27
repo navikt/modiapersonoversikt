@@ -1,5 +1,6 @@
 import {
     ascendingDateComparator,
+    datoVerbose,
     erImorgenEllerSenere,
     erMaksEttÅrFramITid,
     genericAscendingDateComparator,
@@ -62,4 +63,12 @@ describe('Sorterer etter dato', () => {
 
         expect(sortedDates[0]).toEqual(datoA);
     });
+});
+
+test('datoVerbose henter riktig dag, måned og år', () => {
+    const dato = '1986-12-28';
+
+    const result = datoVerbose(dato);
+
+    expect(result.sammensatt).toEqual('28. Desember 1986');
 });

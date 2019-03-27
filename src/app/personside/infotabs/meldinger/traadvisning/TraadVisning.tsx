@@ -9,6 +9,11 @@ interface Props {
     valgtTraad?: Traad;
 }
 
+const VisningStyle = styled.section`
+    position: relative;
+    flex-grow: 1;
+`;
+
 const PanelStyle = styled.div`
     ${theme.hvittPanel};
     min-width: 24rem;
@@ -39,9 +44,11 @@ class TraadVisning extends React.PureComponent<Props> {
         }
 
         return (
-            <PanelStyle>
-                <AlleMeldinger traad={this.props.valgtTraad} />
-            </PanelStyle>
+            <VisningStyle aria-label={'Meldinger for valgt tråd'}>
+                <PanelStyle>
+                    <AlleMeldinger traad={this.props.valgtTraad} />
+                </PanelStyle>
+            </VisningStyle>
         );
     }
 }
