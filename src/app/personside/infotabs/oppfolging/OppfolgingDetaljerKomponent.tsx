@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import DescriptionList from '../../../../components/DescriptionList';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
@@ -38,7 +39,7 @@ function VisOppfolgingDetaljer(props: Props) {
         Veileder: detaljer.oppfølging.veileder ? detaljer.oppfølging.veileder.ident : null,
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
-        Oppfølgingsvedtak: detaljer.vedtaksdato
+        Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
     };
 
     return (

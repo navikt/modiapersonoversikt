@@ -8,6 +8,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import DescriptionList from '../../../../components/DescriptionList';
 import OppfolgingsVedtakListe from './OppfolgingVedtakKomponent';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];
@@ -43,9 +44,9 @@ function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
 function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
     const descriptionListProps = {
         Status: props.ytelse.status,
-        'Dato søknad mottatt': props.ytelse.datoKravMottatt,
-        'Dato fra': props.ytelse.fom,
-        'Dato til': props.ytelse.tom,
+        'Dato søknad mottatt': datoEllerNull(props.ytelse.datoKravMottatt),
+        'Dato fra': datoEllerNull(props.ytelse.fom),
+        'Dato til': datoEllerNull(props.ytelse.tom),
         'Dager igjen': props.ytelse.dagerIgjenMedBortfall,
         'Uker igjen': props.ytelse.ukerIgjenMedBortfall
     };

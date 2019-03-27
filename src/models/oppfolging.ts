@@ -37,8 +37,8 @@ export interface OppfolgingsYtelse {
     dagerIgjenMedBortfall: number;
     ukerIgjenMedBortfall: number;
     datoKravMottatt: string;
-    fom?: string;
-    tom?: string;
+    fom: null | string;
+    tom: null | string;
     status: string;
     type: string;
     vedtak: OppfolgingsVedtak[];
