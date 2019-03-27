@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sykepengertilfellet matcher snapshot 1`] = `
+exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 .c1 span:not(:last-child):after {
   content: '.';
 }

@@ -27,8 +27,10 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
         expect(resultat).toEqual('Inntektsopplysninger mangler');
     });
     it('utbetaling har stansårsak', () => {
-        const utbetaling = utbetalingUtenPåventÅrsak;
-        utbetaling.stansårsak = 'Pga zombieapokalypse';
+        const utbetaling: UtbetalingPåVent = {
+            ...utbetalingUtenPåventÅrsak,
+            stansårsak: 'Pga zombieapokalypse'
+        };
 
         const resultat = utledUtbetalingPåVentÅrsak(utbetaling);
 
@@ -57,7 +59,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
             stansårsak: null,
             sanksjon: {
                 fra: '2010-01-01',
-                til: '2010-01-04'
+                til: '2010-01-02'
             },
             vedtak: {
                 fra: '2010-01-01',

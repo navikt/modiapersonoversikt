@@ -1,69 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c10 {
-  text-align: center;
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c2 {
-  text-transform: uppercase;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
-.c15 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c15:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c15:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c15:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
 .c6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -89,11 +26,84 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   min-width: 13rem;
 }
 
-.c16 {
+.c9 {
+  text-align: center;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2 {
+  text-transform: uppercase;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c14 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c14:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c14:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c14:hover {
+  opacity: 0.8;
+}
+
+.c14:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c0 > *:first-child {
+  background-color: #cce1f3;
+  padding: 0.2rem 1.25rem;
+}
+
+.c0 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c15 {
   margin-right: 0.5rem;
 }
 
-.c11 {
+.c10 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 1.25rem;
@@ -103,21 +113,21 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   padding: 1.25rem;
 }
 
-.c17 {
+.c16 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 0 1.25rem;
 }
 
-.c12 {
+.c11 {
   margin-bottom: 1.25rem;
 }
 
-.c9 {
+.c8 {
   padding: 0.5rem;
 }
 
-.c19 {
+.c18 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -138,7 +148,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   animation: fYGRJE 0.3s ease-out;
 }
 
-.c19 > * {
+.c18 > * {
   -webkit-flex: 0 1 25rem;
   -ms-flex: 0 1 25rem;
   flex: 0 1 25rem;
@@ -152,26 +162,8 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   justify-content: center;
 }
 
-.c18 {
+.c17 {
   padding: 0.5rem;
-}
-
-.c8 {
-  margin-right: 1rem;
-}
-
-.c8 > * {
-  margin: 0.625rem 0;
-}
-
-.c0 > *:first-child {
-  background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
-}
-
-.c0 ol {
-  padding: 0;
-  margin: 0;
 }
 
 .c5 {
@@ -183,6 +175,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  padding: .8rem;
 }
 
 .c7 {
@@ -198,7 +191,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 @media print {
-  .c13 {
+  .c12 {
     display: none;
   }
 }
@@ -402,181 +395,177 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         </dl>
       </div>
     </div>
-    <div
+    <section
+      aria-label="Utbetalinger foreldrepenger"
       className="c7"
     >
-      <section
-        aria-label="Utbetalinger Foreldrepenger"
-        className="c8"
-      >
-        <section>
+      <section>
+        <div
+          className="c8"
+        >
           <div
             className="c9"
           >
+            <h4
+              className="typo-undertittel"
+            >
+              Kommende utbetalinger
+            </h4>
+          </div>
+        </div>
+        <ol>
+          <li
+            aria-label="Kommende utbetaling 25.06.2018"
+          >
             <div
               className="c10"
+              open={false}
             >
-              <h4
-                className="typo-undertittel"
+              <dl
+                className="c6"
               >
-                Kommende utbetalinger
-              </h4>
-            </div>
-          </div>
-          <ol>
-            <li
-              aria-label="Kommende utbetaling 25.06.2018"
-            >
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Registeringsdato
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    25.06.2018
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Type
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    KONTOØVERFØRING
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Periode
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    14.01.2018 - 15.07.2017
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Utbetalingsgrad
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    79%
+                  </dd>
+                </div>
+              </dl>
               <div
                 className="c11"
-                open={false}
               >
-                <dl
-                  className="c6"
-                >
-                  <div>
-                    <dt
-                      className="typo-etikett-liten"
-                    >
-                      Registeringsdato
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      25.06.2018
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-etikett-liten"
-                    >
-                      Type
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      KONTOØVERFØRING
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-etikett-liten"
-                    >
-                      Periode
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      14.01.2018 - 15.07.2017
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-etikett-liten"
-                    >
-                      Utbetalingsgrad
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      79%
-                    </dd>
-                  </div>
-                </dl>
                 <div
                   className="c12"
                 >
                   <div
                     className="c13"
                   >
-                    <div
+                    <button
+                      aria-expanded={false}
                       className="c14"
+                      onClick={[Function]}
                     >
-                      <button
-                        aria-expanded={false}
+                      <span
                         className="c15"
-                        onClick={[Function]}
                       >
                         <span
-                          className="c16"
+                          className="typo-normal"
                         >
-                          <span
-                            className="typo-normal"
-                          >
-                            Vis
-                             
-                            detaljer
-                          </span>
+                          Vis
+                           
+                          detaljer
                         </span>
-                        <i
-                          className="nav-frontend-chevron chevronboks chevron--ned"
-                        />
-                      </button>
-                    </div>
+                      </span>
+                      <i
+                        className="nav-frontend-chevron chevronboks chevron--ned"
+                      />
+                    </button>
                   </div>
                 </div>
-                <div
-                  className="c17"
-                  open={false}
-                />
               </div>
-            </li>
-          </ol>
-        </section>
-        <section>
-          <div
-            className="c18"
-          >
-            <div
-              className="c10"
-            >
-              <h4
-                className="typo-undertittel"
-              >
-                Utførte utbetalinger
-              </h4>
+              <div
+                className="c16"
+                open={false}
+              />
             </div>
-          </div>
-          <div
-            className="c19"
-          >
-            <svg
-              aria-label="Laster innhold"
-              className="spinner spinner--s"
-              focusable="false"
-              height={32}
-              kind="spinner"
-              preserveAspectRatio="xMidYMid"
-              viewBox="0 0 50 50"
-              width={32}
-            >
-              <title>
-                Venter...
-              </title>
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#bdbab7"
-                strokeWidth="5"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#7f756c"
-                strokeDasharray="50 155"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-            </svg>
-          </div>
-        </section>
+          </li>
+        </ol>
       </section>
-    </div>
+      <section>
+        <div
+          className="c17"
+        >
+          <div
+            className="c9"
+          >
+            <h4
+              className="typo-undertittel"
+            >
+              Utførte utbetalinger
+            </h4>
+          </div>
+        </div>
+        <div
+          className="c18"
+        >
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--s"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width={32}
+          >
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#bdbab7"
+              strokeWidth="5"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="5"
+            />
+          </svg>
+        </div>
+      </section>
+    </section>
   </div>
 </li>
 `;
