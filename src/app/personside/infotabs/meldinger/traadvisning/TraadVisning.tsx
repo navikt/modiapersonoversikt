@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
 import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 
@@ -13,7 +12,7 @@ const VisningStyle = styled.section`
     position: relative;
     flex-grow: 1;
 `;
-
+/*
 const PanelStyle = styled.div`
     ${theme.hvittPanel};
     min-width: 24rem;
@@ -27,14 +26,14 @@ const TraadStyle = styled.ol`
     > * {
         border-top: ${theme.border.skille};
     }
-`;
+`;*/
 
 function AlleMeldinger(props: { traad: Traad }) {
     const sortertPåDato = props.traad.meldinger.sort(genericDescendingDateComparator(melding => melding.opprettetDato));
 
     const komponentListe = sortertPåDato.map(melding => <EnkeltMelding melding={melding} />);
 
-    return <TraadStyle>{komponentListe}</TraadStyle>;
+    return <div>{komponentListe}</div>;
 }
 
 class TraadVisning extends React.PureComponent<Props> {
@@ -45,9 +44,7 @@ class TraadVisning extends React.PureComponent<Props> {
 
         return (
             <VisningStyle aria-label={'Meldinger for valgt tråd'}>
-                <PanelStyle>
-                    <AlleMeldinger traad={this.props.valgtTraad} />
-                </PanelStyle>
+                <AlleMeldinger traad={this.props.valgtTraad} />
             </VisningStyle>
         );
     }
