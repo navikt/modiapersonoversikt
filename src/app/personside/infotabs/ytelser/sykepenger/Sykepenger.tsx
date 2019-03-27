@@ -1,8 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import YtelserPeriode from '../felles-styling/YtelserPeriode';
-import { formaterDato } from '../../../../../utils/stringFormatting';
 import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './info/Sykepengertilfellet';
@@ -11,10 +9,10 @@ import Arbeidsforhold from './arbeidsforhold/Arbeidsforhold';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVentListe';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
     sykepenger: ISykepenger;
-    sykepengenr: number;
 }
 
 const FlexOgPadding = styled.div`
@@ -34,9 +32,9 @@ const InfoStyle = styled.div`
     }
 `;
 
-function Sykepenger({ sykepenger, sykepengenr }: Props) {
+function Sykepenger({ sykepenger }: Props) {
     return (
-        <YtelserPeriode tittel={`Periode ${sykepengenr} - ${formaterDato(sykepenger.sykmeldtFom)}`}>
+        <ErrorBoundary boundaryName="Sykepenger">
             <FlexOgPadding>
                 <InfoStyle>
                     <Sykepengertilfellet sykepenger={sykepenger} />
@@ -49,7 +47,7 @@ function Sykepenger({ sykepenger, sykepengenr }: Props) {
                     <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
                 </UtbetalingerStyle>
             </FlexOgPadding>
-        </YtelserPeriode>
+        </ErrorBoundary>
     );
 }
 

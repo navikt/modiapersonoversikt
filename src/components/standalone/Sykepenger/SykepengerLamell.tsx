@@ -13,6 +13,7 @@ import SykePengerLaster from './SykepengerLaster';
 
 interface Props {
     fødselsnummer: string;
+    sykmeldtFraOgMed: string;
 }
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -35,7 +36,7 @@ function SykepengerLamell(props: Props) {
             <Provider store={store}>
                 <Styles>
                     <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                    <SykePengerLaster fødselsnummer={props.fødselsnummer} />
+                    <SykePengerLaster fødselsnummer={props.fødselsnummer} sykmeldtFraOgMed={props.sykmeldtFraOgMed} />
                 </Styles>
             </Provider>
         </ErrorBoundary>

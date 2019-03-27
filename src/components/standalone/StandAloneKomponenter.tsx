@@ -94,7 +94,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
         case Komponenter.Sykepenger:
-            return <SykepengerLamell fødselsnummer={props.fnr} />;
+            return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

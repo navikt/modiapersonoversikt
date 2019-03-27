@@ -5,18 +5,16 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import Sykepenger from './Sykepenger';
 
 interface Props {
-    sykepenger: ISykepenger[];
+    sykepenger: ISykepenger;
 }
 
 function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
-    const tittelTillegsInfo = ['ID-dato: ' + formaterDato('2010-01-01')];
+    const tittelTillegsInfo = ['ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)];
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
             <ol>
-                {sykepenger.map((rettighet, index) => (
-                    <Sykepenger key={index} sykepenger={rettighet} sykepengenr={index + 1} />
-                ))}
+                <Sykepenger sykepenger={sykepenger} />
             </ol>
         </EkspanderbartYtelserPanel>
     );

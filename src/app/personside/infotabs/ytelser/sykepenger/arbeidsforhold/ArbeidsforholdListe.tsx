@@ -1,13 +1,21 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Arbeidsforhold } from '../../../../../../models/ytelse/sykepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
-import { useState } from 'react';
+import styled from 'styled-components';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 interface Props {
     arbeidsforhold?: Arbeidsforhold[];
 }
+
+const StyledListe = styled.ol`
+    li:not(:first-child) {
+        border-top: ${theme.border.skilleDashed};
+    }
+`;
 
 function ArbeidsForholdListe({ arbeidsforhold }: Props) {
     const [open, setOpen] = useState(false);
@@ -16,23 +24,28 @@ function ArbeidsForholdListe({ arbeidsforhold }: Props) {
     }
 
     if (arbeidsforhold.length === 1) {
-        return <ArbeidsForholdListeElement arbeidsforhold={arbeidsforhold[0]} />;
+        return (
+            <ol>
+                <ArbeidsForholdListeElement arbeidsforhold={arbeidsforhold[0]} />
+            </ol>
+        );
     }
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;
     return (
-        <ol>
-            <li>
-                <ArbeidsForholdListeElement arbeidsforhold={førsteArbForhold} />
-            </li>
-            <DetaljerCollapse open={open} toggle={() => setOpen(!open)} tittel="Vis alle arbeidsforhold">
+        <StyledListe>
+            <DetaljerCollapse
+                alwaysGrayBackground={true}
+                open={open}
+                toggle={() => setOpen(!open)}
+                tittel="alle arbeidsforhold"
+                header={<ArbeidsForholdListeElement arbeidsforhold={førsteArbForhold} />}
+            >
                 {resten.map(element => (
-                    <li>
-                        <ArbeidsForholdListeElement arbeidsforhold={element} />
-                    </li>
+                    <ArbeidsForholdListeElement arbeidsforhold={element} />
                 ))}
             </DetaljerCollapse>
-        </ol>
+        </StyledListe>
     );
 }
 

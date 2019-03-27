@@ -2,15 +2,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
 import { isNotStarted, RestReducer } from '../../../redux/restReducers/restReducer';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../utils/frontendLogger';
 import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import { AppState } from '../../../redux/reducers';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { hentSykepenger } from '../../../redux/restReducers/ytelser/sykepenger';
 import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
+import moment from 'moment';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface OwnProps {
     fødselsnummer: string;
+    sykmeldtFraOgMed: string;
 }
 
 interface StateProps {
@@ -38,11 +41,19 @@ class SykePengerLaster extends React.PureComponent<Props> {
                     if (!data.sykepenger) {
                         return null;
                     }
+                    const aktuellRettighet = data.sykepenger.find(rettighet =>
+                        moment(rettighet.sykmeldtFom).isSame(moment(this.props.sykmeldtFraOgMed))
+                    );
+                    if (!aktuellRettighet) {
+                        loggError(new Error('Kunne ikke finne sykepengerettighet'), undefined, {
+                            fnr: this.props.fødselsnummer,
+                            sykmeldtFraOgMed: this.props.sykmeldtFraOgMed
+                        });
+                        return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet</AlertStripeAdvarsel>;
+                    }
                     return (
                         <ol>
-                            {data.sykepenger.map((rettighet, index) => (
-                                <Sykepenger key={index} sykepenger={rettighet} sykepengenr={index + 1} />
-                            ))}
+                            <Sykepenger sykepenger={aktuellRettighet} />
                         </ol>
                     );
                 }}

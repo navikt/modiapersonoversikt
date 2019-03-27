@@ -21,7 +21,11 @@ function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
         'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom)
     };
 
-    return <DescriptionList entries={arbeidsSituasjonEntries} />;
+    return (
+        <li>
+            <DescriptionList entries={arbeidsSituasjonEntries} />
+        </li>
+    );
 }
 
 export default ArbeidsForholdListeElement;
