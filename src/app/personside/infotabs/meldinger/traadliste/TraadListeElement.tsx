@@ -33,6 +33,13 @@ const UUcustomOrder = styled.div`
     }
 `;
 
+const PanelStyle = styled.div`
+    display: flex;
+    > *:first-child {
+        padding-right: ${theme.margin.layout};
+    }
+`;
+
 function TraadListeElement(props: Props) {
     const datoTekst = datoVerbose(props.traad.dato).meldingerFormat;
     const tittel = `${statusKlasseTekst(props.traad.statusKlasse)} - ${temagruppeTekst(props.traad.temagruppe)}`;
@@ -43,15 +50,17 @@ function TraadListeElement(props: Props) {
                 onClick={() => props.oppdaterValgtTraad(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
-                <SVGStyling>
-                    <SakIkkeTilgangIkon />
-                </SVGStyling>
-                <div>
-                    <UUcustomOrder>
-                        <Element className="order-second">{tittel}</Element>
-                        <Normaltekst className="order-first">{datoTekst}</Normaltekst>
-                    </UUcustomOrder>
-                </div>
+                <PanelStyle>
+                    <SVGStyling>
+                        <SakIkkeTilgangIkon />
+                    </SVGStyling>
+                    <div>
+                        <UUcustomOrder>
+                            <Element className="order-second">{tittel}</Element>
+                            <Normaltekst className="order-first">{datoTekst}</Normaltekst>
+                        </UUcustomOrder>
+                    </div>
+                </PanelStyle>
             </VisMerKnapp>
         </li>
     );
