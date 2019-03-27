@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { datoEllerNull, NOKellerNull } from '../../../../../../../utils/stringFormatting';
-import { FormatertKontonummer } from '../../../../../../../utils/FormatertKontonummer';
-import { Arbeidsforhold } from '../../../../../../../models/ytelse/sykepenger';
-import DescriptionList from '../../../../../../../components/DescriptionList';
+import { datoEllerNull, NOKellerNull } from '../../../../../../utils/stringFormatting';
+import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
+import { Arbeidsforhold } from '../../../../../../models/ytelse/sykepenger';
+import DescriptionList from '../../../../../../components/DescriptionList';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;

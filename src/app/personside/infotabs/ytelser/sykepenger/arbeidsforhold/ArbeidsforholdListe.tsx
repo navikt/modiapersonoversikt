@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Arbeidsforhold } from '../../../../../../../models/ytelse/sykepenger';
+import { Arbeidsforhold } from '../../../../../../models/ytelse/sykepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
-import DetaljerCollapse from '../../../../../../../components/DetaljerCollapse';
+import DetaljerCollapse from '../../../../../../components/DetaljerCollapse';
 import { useState } from 'react';
 
 interface Props {

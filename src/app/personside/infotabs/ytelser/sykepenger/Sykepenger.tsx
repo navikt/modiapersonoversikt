@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
@@ -8,50 +7,48 @@ import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './info/Sykepengertilfellet';
 import Sykemelding from './info/Sykemelding';
-import Arbeidsforhold from './info/arbeidsforhold/Arbeidsforhold';
+import Arbeidsforhold from './arbeidsforhold/Arbeidsforhold';
+import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
+import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
+import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVentListe';
 
 interface Props {
     sykepenger: ISykepenger;
     sykepengenr: number;
 }
 
-const Padding = styled.div`
-    margin: ${theme.margin.px30};
+const FlexOgPadding = styled.div`
+    display: flex;
+    padding: ${theme.margin.layout};
+`;
+
+const UtbetalingerStyle = styled.section`
+    flex-basis: 55%;
+`;
+
+const InfoStyle = styled.div`
+    flex-basis: 45%;
+    padding: ${theme.margin.layout};
     > * {
         margin-bottom: 3rem;
     }
 `;
 
-const Flex = styled.div`
-    display: flex;
-`;
-
-const Stor = styled.div`
-    flex-basis: 55%;
-`;
-
-const Liten = styled.div`
-    flex-basis: 45%;
-`;
-
 function Sykepenger({ sykepenger, sykepengenr }: Props) {
     return (
         <YtelserPeriode tittel={`Periode ${sykepengenr} - ${formaterDato(sykepenger.sykmeldtFom)}`}>
-            <Flex>
-                <Liten>
-                    <Padding>
-                        <Sykepengertilfellet sykepenger={sykepenger} />
-                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                        <Arbeidsforhold sykepenger={sykepenger} />
-                    </Padding>
-                </Liten>
-                <Stor>
-                    <Utbetalinger
-                        kommendeUtbetalinger={sykepenger.kommendeUtbetalinger}
-                        ytelsesType={YtelserKeys.Sykepenger}
-                    />
-                </Stor>
-            </Flex>
+            <FlexOgPadding>
+                <InfoStyle>
+                    <Sykepengertilfellet sykepenger={sykepenger} />
+                    <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                    <Arbeidsforhold sykepenger={sykepenger} />
+                </InfoStyle>
+                <UtbetalingerStyle aria-label="UTbetlainger sykepenger">
+                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
+                </UtbetalingerStyle>
+            </FlexOgPadding>
         </YtelserPeriode>
     );
 }
