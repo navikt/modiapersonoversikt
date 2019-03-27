@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
+import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 
 interface Props {
     utbetalingPåVent: UtbetalingPåVent;
@@ -15,7 +16,7 @@ const Style = styled.li`
 
 function UtbetalingPåVentElement(props: Props) {
     const entries: DescriptionListEntries = {
-        Årsak: 'Ikke implementert',
+        Årsak: utledUtbetalingPåVentÅrsak(props.utbetalingPåVent),
         Utbetalingsperiode: periodeEllerNull(props.utbetalingPåVent.vedtak),
         Utbetalingsgrad: prosentEllerNull(props.utbetalingPåVent.utbetalingsgrad)
     };

@@ -17,6 +17,7 @@ import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } f
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { aremark } from '../person/aremark';
 import { Arbeidsforhold } from '../../models/ytelse/sykepenger';
+import { statiskSykepengerMock } from './statiskSykepengerMock';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
@@ -24,11 +25,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 
     if (fødselsnummer === aremark.fødselsnummer) {
         return {
-            sykepenger: [
-                getMockSykmepenger(fødselsnummer),
-                getMockSykmepenger(fødselsnummer),
-                getMockSykmepenger(fødselsnummer)
-            ]
+            sykepenger: [statiskSykepengerMock, statiskSykepengerMock]
         };
     }
 
@@ -55,9 +52,9 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         unntakAktivitet: navfaker.random.vektetSjanse(0.3) ? 'Untatt aktivitet' : null,
         forsikring: navfaker.random.vektetSjanse(0.3) ? getForsikring() : null,
         sykmeldinger: fyllRandomListe<Sykmelding>(() => getMockSykmelding(), 3),
-        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5),
-        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 5),
-        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 5),
+        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5, true),
+        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 3, true),
+        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,
         midlertidigStanset: navfaker.random.vektetSjanse(0.3)
             ? moment(faker.date.past(1)).format(backendDatoformat)
