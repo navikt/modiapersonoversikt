@@ -31,16 +31,23 @@ function VisOppfolgingDetaljer(props: Props) {
     const arbeidsrettetOppfølging = detaljer.oppfølging.erUnderOppfølging ? 'Ja' : 'Nei';
     const oppfølgingsenhet = `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`;
     const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
+
     const descriptionListProps = {
         'Er under oppfølging': arbeidsrettetOppfølging,
         Oppfølgingsenhet: oppfølgingsenhet,
         Rettighetsgruppe: detaljer.rettighetsgruppe,
         Innsatsgruppe: detaljer.innsatsgruppe,
-        Veileder: detaljer.oppfølging.veileder ? detaljer.oppfølging.veileder.ident : null,
+        Veileder: getVeileder(),
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
         Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
     };
+
+    function getVeileder() {
+        return detaljer.oppfølging.veileder
+            ? detaljer.oppfølging.veileder.navn + ' (' + detaljer.oppfølging.veileder.ident + ')'
+            : null;
+    }
 
     return (
         <Wrapper>

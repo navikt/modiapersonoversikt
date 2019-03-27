@@ -6,6 +6,7 @@ export interface Oppfolging {
 
 export interface Saksbehandler {
     ident: string;
+    navn: string;
 }
 
 export interface AnsattEnhet {
