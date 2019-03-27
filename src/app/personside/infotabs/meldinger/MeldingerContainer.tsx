@@ -3,12 +3,15 @@ import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restRe
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
-import MeldingerVisning from './MeldingerHovedKomponent';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { hentMeldinger, reloadMeldinger } from '../../../../redux/restReducers/meldinger';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
+import TraadVisningContainer from './traadvisning/TraadVisningContainer';
+import TraadListeContainer from './traadliste/TraadListeContainer';
 
 interface StateProps {
     baseUrlReducer: RestReducer<BaseUrlsResponse>;
@@ -27,6 +30,24 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
+const meldingerMediaTreshold = '80rem';
+
+const MeldingerArticleStyle = styled.article`
+    @media (min-width: ${meldingerMediaTreshold}) {
+        display: flex;
+        align-items: flex-start;
+        > *:last-child {
+            margin-left: ${theme.margin.layout};
+        }
+    }
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+    > * {
+        margin-bottom: ${theme.margin.layout};
+    }
+`;
+
 class MeldingerContainer extends React.PureComponent<Props> {
     componentDidMount() {
         if (isNotStarted(this.props.baseUrlReducer)) {
@@ -38,7 +59,16 @@ class MeldingerContainer extends React.PureComponent<Props> {
     }
 
     render() {
-        return <PlukkRestData restReducer={this.props.meldingerReducer}>{() => <MeldingerVisning />}</PlukkRestData>;
+        return (
+            <PlukkRestData restReducer={this.props.meldingerReducer}>
+                {() => (
+                    <MeldingerArticleStyle>
+                        <TraadListeContainer />
+                        <TraadVisningContainer />
+                    </MeldingerArticleStyle>
+                )}
+            </PlukkRestData>
+        );
     }
 }
 
