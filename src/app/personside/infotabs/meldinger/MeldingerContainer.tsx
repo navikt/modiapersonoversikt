@@ -38,11 +38,7 @@ class MeldingerContainer extends React.PureComponent<Props> {
     }
 
     render() {
-        return (
-            <PlukkRestData restReducer={this.props.meldingerReducer}>
-                {data => <MeldingerVisning traader={data} />}
-            </PlukkRestData>
-        );
+        return <PlukkRestData restReducer={this.props.meldingerReducer}>{() => <MeldingerVisning />}</PlukkRestData>;
     }
 }
 
