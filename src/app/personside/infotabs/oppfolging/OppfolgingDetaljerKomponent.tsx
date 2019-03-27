@@ -35,7 +35,7 @@ function VisOppfolgingDetaljer(props: Props) {
         Oppfølgingsenhet: oppfølgingsenhet,
         Rettighetsgruppe: detaljer.rettighetsgruppe,
         Innsatsgruppe: detaljer.innsatsgruppe,
-        Veileder: detaljer.oppfølging.veileder.ident,
+        Veileder: detaljer.oppfølging.veileder ? detaljer.oppfølging.veileder.ident : null,
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
         Oppfølgingsvedtak: detaljer.vedtaksdato
