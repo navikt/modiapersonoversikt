@@ -24,7 +24,8 @@ export function getMockOppfølging(fødselsnummer: string): Oppfolging {
 
 function getSaksbehandler(): Saksbehandler {
     return {
-        ident: 'Z0000001'
+        ident: 'Z0000001',
+        navn: 'Testident Testidentesen'
     };
 }
 
