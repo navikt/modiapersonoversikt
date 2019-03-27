@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sykepengertilfellet matcher snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c0 dt {
+  color: #78706a;
+}
+
+.c0 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c0 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c1 {
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 0.3rem white;
+  padding: 1.25rem;
+  padding: 1.25rem;
+}
+
+<div>
+  <h3
+    className="typo-ingress"
+  >
+    Sykemelding
+  </h3>
+  <dl
+    className="c0"
+  >
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Periode
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        09.02.2014 - 11.05.2014
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Behandlingsdato
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        01.04.2018
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Sykmelder
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        Eline Moe
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Gradering
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        <ol>
+          <li
+            className="c1"
+          >
+            <dl
+              className="c0"
+            >
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Periode
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  09.02.2014 - 11.05.2014
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Gradering
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  97%
+                </dd>
+              </div>
+            </dl>
+          </li>
+          <li
+            className="c1"
+          >
+            <dl
+              className="c0"
+            >
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Periode
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  09.02.2014 - 11.05.2014
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-etikett-liten"
+                >
+                  Gradering
+                </dt>
+                <dd
+                  className="typo-normal"
+                >
+                  97%
+                </dd>
+              </div>
+            </dl>
+          </li>
+        </ol>
+      </dd>
+    </div>
+  </dl>
+</div>
+`;
