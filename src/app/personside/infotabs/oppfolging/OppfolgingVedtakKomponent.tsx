@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
@@ -32,13 +33,12 @@ const HeaderStyle = styled.div`
 `;
 
 function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
-    const datoInterval = props.vedtak.aktivFra + ' - ' + (props.vedtak.aktivTil || '');
+    const datoInterval = datoEllerNull(props.vedtak.aktivFra) + ' - ' + datoEllerNull(props.vedtak.aktivTil || '');
 
     const descriptionListItems = {
         [datoInterval]: props.vedtak.vedtakstype,
         Status: props.vedtak.vedtakstatus,
-        Aktivitetsfase: props.vedtak.aktivitetsfase,
-        Vedtaksdato: props.vedtak.vedtaksdato
+        Aktivitetsfase: props.vedtak.aktivitetsfase
     };
 
     return (

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import DescriptionList from '../../../../components/DescriptionList';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
@@ -29,17 +30,24 @@ function VisOppfolgingDetaljer(props: Props) {
     const detaljer = props.detaljertOppfølging;
     const arbeidsrettetOppfølging = detaljer.oppfølging.erUnderOppfølging ? 'Ja' : 'Nei';
     const oppfølgingsenhet = `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`;
-    const meldeplikt = detaljer.meldeplikt ? 'Ja' : 'Nei';
+    const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
+
     const descriptionListProps = {
         'Er under oppfølging': arbeidsrettetOppfølging,
         Oppfølgingsenhet: oppfølgingsenhet,
         Rettighetsgruppe: detaljer.rettighetsgruppe,
         Innsatsgruppe: detaljer.innsatsgruppe,
-        Veileder: detaljer.oppfølging.veileder.ident,
+        Veileder: getVeileder(),
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
-        Oppfølgingsvedtak: detaljer.vedtaksdato
+        Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
     };
+
+    function getVeileder() {
+        return detaljer.oppfølging.veileder
+            ? detaljer.oppfølging.veileder.navn + ' (' + detaljer.oppfølging.veileder.ident + ')'
+            : null;
+    }
 
     return (
         <Wrapper>
