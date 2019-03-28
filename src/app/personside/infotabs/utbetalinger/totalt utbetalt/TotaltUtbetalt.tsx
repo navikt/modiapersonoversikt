@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import {
-    createTable,
     getBruttoSumYtelser,
     getNettoSumYtelser,
     getTrekkSumYtelser,
@@ -19,6 +18,7 @@ import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import { createTable } from '../../../../../utils/tableUtils';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
