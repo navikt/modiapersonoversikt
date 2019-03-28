@@ -13,9 +13,7 @@ function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
-            <ol>
-                <Sykepenger sykepenger={sykepenger} />
-            </ol>
+            <Sykepenger sykepenger={sykepenger} />
         </EkspanderbartYtelserPanel>
     );
 }

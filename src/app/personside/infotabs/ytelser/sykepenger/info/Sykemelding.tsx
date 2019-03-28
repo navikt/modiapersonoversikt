@@ -5,6 +5,7 @@ import DescriptionList, { DescriptionListEntries } from '../../../../../../compo
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
+import { createTable } from '../../../utbetalinger/utils/utbetalingerUtils';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 
@@ -12,31 +13,36 @@ interface Props {
     sykmeldinger: ISykemelding[];
 }
 
-const ListeElementStyle = styled.li`
-    ${theme.gråttPanel};
-    padding: ${theme.margin.px20};
+const TableStyle = styled.div`
+    table {
+        text-align: right;
+        thead {
+            border-bottom: 0.2rem solid ${theme.color.kategori};
+            font-weight: bold;
+        }
+        th,
+        td {
+            padding: 0.7rem 0;
+            &:not(:first-child) {
+                padding-left: 1rem;
+            }
+        }
+        td {
+            font-weight: normal;
+        }
+        tbody tr {
+            border-bottom: 0.2rem solid ${theme.color.bakgrunn};
+        }
+    }
 `;
 
-function GraderingsListeElement({ sykmelding }: { sykmelding: ISykemelding }) {
-    const entries: DescriptionListEntries = {
-        Periode: periodeEllerNull(sykmelding.sykmeldt),
-        Gradering: prosentEllerNull(sykmelding.sykmeldingsgrad)
-    };
-    return (
-        <ListeElementStyle>
-            <DescriptionList entries={entries} />
-        </ListeElementStyle>
-    );
-}
-
-function GraderingsListe(props: Props) {
-    return (
-        <ol>
-            {props.sykmeldinger.map((sykmelding, index) => (
-                <GraderingsListeElement key={index} sykmelding={sykmelding} />
-            ))}
-        </ol>
-    );
+function GraderingsTabell(props: Props) {
+    const tittelRekke = ['Periode', 'Gradering'];
+    const tableEntries = props.sykmeldinger.map(sykmelding => [
+        periodeEllerNull(sykmelding.sykmeldt) || undefined,
+        prosentEllerNull(sykmelding.sykmeldingsgrad) || undefined
+    ]);
+    return <TableStyle>{createTable(tittelRekke, tableEntries)}</TableStyle>;
 }
 
 function Sykemelding(props: Props) {
@@ -46,7 +52,7 @@ function Sykemelding(props: Props) {
         Periode: periodeEllerNull(sykemeldingPeriode),
         Behandlingsdato: datoEllerNull(aktuellSykemelding.behandlet),
         Sykmelder: aktuellSykemelding.sykmelder,
-        Gradering: <GraderingsListe {...props} />
+        Gradering: <GraderingsTabell {...props} />
     };
 
     return (

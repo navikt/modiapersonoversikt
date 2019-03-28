@@ -10,6 +10,8 @@ import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeU
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVentListe';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 
 interface Props {
     sykepenger: ISykepenger;
@@ -35,6 +37,9 @@ const InfoStyle = styled.div`
 function Sykepenger({ sykepenger }: Props) {
     return (
         <ErrorBoundary boundaryName="Sykepenger">
+            <VisuallyHiddenAutoFokusHeader
+                tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
+            />
             <FlexOgPadding>
                 <InfoStyle>
                     <Sykepengertilfellet sykepenger={sykepenger} />

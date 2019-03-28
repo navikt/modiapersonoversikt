@@ -26,12 +26,31 @@ exports[`Sykemelding matcher snapshot 1`] = `
   min-width: 13rem;
 }
 
-.c1 {
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
-  padding: 1.25rem;
-  padding: 1.25rem;
+.c1 table {
+  text-align: right;
+}
+
+.c1 table thead {
+  border-bottom: 0.2rem solid #cce1f3;
+  font-weight: bold;
+}
+
+.c1 table th,
+.c1 table td {
+  padding: 0.7rem 0;
+}
+
+.c1 table th:not(:first-child),
+.c1 table td:not(:first-child) {
+  padding-left: 1rem;
+}
+
+.c1 table td {
+  font-weight: normal;
+}
+
+.c1 table tbody tr {
+  border-bottom: 0.2rem solid #e9e7e7;
 }
 
 <div>
@@ -88,72 +107,64 @@ exports[`Sykemelding matcher snapshot 1`] = `
       <dd
         className="typo-normal"
       >
-        <ol>
-          <li
-            className="c1"
+        <div
+          className="c1"
+        >
+          <table
+            role="table"
           >
-            <dl
-              className="c0"
+            <thead
+              role="rowgroup"
             >
-              <div>
-                <dt
-                  className="typo-etikett-liten"
+              <tr
+                role="row"
+              >
+                <th
+                  role="columnheader"
                 >
                   Periode
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  09.02.2014 - 11.05.2014
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
+                </th>
+                <th
+                  role="columnheader"
                 >
                   Gradering
-                </dt>
-                <dd
-                  className="typo-normal"
-                >
-                  97%
-                </dd>
-              </div>
-            </dl>
-          </li>
-          <li
-            className="c1"
-          >
-            <dl
-              className="c0"
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              role="rowgroup"
             >
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
-                  Periode
-                </dt>
-                <dd
-                  className="typo-normal"
+              <tr
+                role="row"
+              >
+                <td
+                  role="cell"
                 >
                   09.02.2014 - 11.05.2014
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-etikett-liten"
-                >
-                  Gradering
-                </dt>
-                <dd
-                  className="typo-normal"
+                </td>
+                <td
+                  role="cell"
                 >
                   97%
-                </dd>
-              </div>
-            </dl>
-          </li>
-        </ol>
+                </td>
+              </tr>
+              <tr
+                role="row"
+              >
+                <td
+                  role="cell"
+                >
+                  09.02.2014 - 11.05.2014
+                </td>
+                <td
+                  role="cell"
+                >
+                  97%
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </dd>
     </div>
   </dl>
