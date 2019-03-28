@@ -3,9 +3,10 @@ import { OppfolgingsVedtak } from '../../../../models/oppfolging';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import DescriptionList from '../../../../components/DescriptionList';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { createTable } from '../../../../utils/tableUtils';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
@@ -32,18 +33,34 @@ const HeaderStyle = styled.div`
     padding: ${theme.margin.layout};
 `;
 
+const TableStyle = styled.div`
+    table {
+        width: 100%;
+        text-align: left;
+        th,
+        td {
+            padding: 0.7rem 0;
+            &:not(:first-child) {
+                padding-left: 1rem;
+            }
+        }
+        td {
+            font-weight: bold;
+        }
+    }
+`;
+
 function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
     const datoInterval = datoEllerTomString(props.vedtak.aktivFra) + ' - ' + datoEllerTomString(props.vedtak.aktivTil);
 
-    const descriptionListItems = {
-        [datoInterval]: props.vedtak.vedtakstype,
-        Status: props.vedtak.vedtakstatus,
-        Aktivitetsfase: props.vedtak.aktivitetsfase
-    };
+    const tittelrekke = [datoInterval, 'STATUS', 'AKTIVITETSFASE'];
+    let tabellElementer: Array<Array<number | string | undefined>> = [];
+
+    tabellElementer.push([props.vedtak.vedtakstype, props.vedtak.vedtakstatus, props.vedtak.aktivitetsfase]);
 
     return (
         <ElementStyle>
-            <DescriptionList entries={descriptionListItems} />
+            <TableStyle>{createTable(tittelrekke, tabellElementer)}</TableStyle>
         </ElementStyle>
     );
 }
