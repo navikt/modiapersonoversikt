@@ -7,36 +7,23 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 import { createTable } from '../../../../utils/tableUtils';
+import { Normaltekst } from 'nav-frontend-typografi';
+import EtikettGrå from '../../../../components/EtikettGrå';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
 }
 
-const ListePanelStyle = styled.div`
+const Style = styled.div`
     border: ${theme.border.skille};
     border-radius: ${theme.borderRadius.layout};
 `;
 
-const ListeStyle = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-`;
-
-const ElementStyle = styled.div`
-    padding: ${theme.margin.layout};
-`;
-
-const HeaderStyle = styled.div`
-    background-color: ${theme.color.bakgrunn};
-    text-align: center;
-    padding: ${theme.margin.layout};
-`;
-
 const TableStyle = styled.div`
+    padding: ${theme.margin.px20};
     table {
         width: 100%;
-        text-align: left;
+        text-align: right;
         th,
         td {
             padding: 0.7rem 0;
@@ -45,38 +32,53 @@ const TableStyle = styled.div`
             }
         }
         td {
+            vertical-align: bottom;
+        }
+        td:first-child,
+        th:first-child {
+            text-align: left;
             font-weight: bold;
+        }
+        thead {
+            border-bottom: 0.2rem solid ${theme.color.bakgrunn};
+            text-transform: uppercase;
         }
     }
 `;
+const UUOrder = styled.div`
+    display: flex;
+    flex-direction: column;
+    .first {
+        order: 1;
+    }
+    .second {
+        order: 2;
+    }
+`;
 
-function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
-    const datoInterval = datoEllerTomString(props.vedtak.aktivFra) + ' - ' + datoEllerTomString(props.vedtak.aktivTil);
-
-    const tittelrekke = [datoInterval, 'STATUS', 'AKTIVITETSFASE'];
-    let tabellElementer: Array<Array<number | string | undefined>> = [];
-
-    tabellElementer.push([props.vedtak.vedtakstype, props.vedtak.vedtakstatus, props.vedtak.aktivitetsfase]);
-
-    return (
-        <ElementStyle>
-            <TableStyle>{createTable(tittelrekke, tabellElementer)}</TableStyle>
-        </ElementStyle>
-    );
+function formaterPeriode(vedtak: OppfolgingsVedtak) {
+    return datoEllerTomString(vedtak.aktivFra) + ' - ' + datoEllerTomString(vedtak.aktivTil);
 }
 
 function OppfolgingsVedtakListe(props: Props) {
     const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
-
-    const listekomponenter = sortertPåDato.map(vedtak => <VedtakElement vedtak={vedtak} />);
+    const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
+    const listekomponenter = sortertPåDato.map(vedtak => [
+        <UUOrder>
+            <h4 className="second">{vedtak.vedtakstype}</h4>
+            <EtikettGrå className="first">{formaterPeriode(vedtak)}</EtikettGrå>
+        </UUOrder>,
+        vedtak.vedtakstatus,
+        vedtak.aktivitetsfase
+    ]);
 
     return (
-        <ListePanelStyle>
-            <HeaderStyle>
-                <Undertittel>Vedtak</Undertittel>
-            </HeaderStyle>
-            <ListeStyle>{listekomponenter}</ListeStyle>
-        </ListePanelStyle>
+        <Style>
+            <Undertittel className="visually-hidden">Vedtak</Undertittel>
+            <TableStyle>
+                <Normaltekst tag="div">{createTable(tittelrekke, listekomponenter)}</Normaltekst>
+            </TableStyle>
+        </Style>
     );
 }
 

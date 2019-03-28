@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 
-export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined>>) {
+export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined | ReactNode>>) {
     return (
         <table role="table">
             <thead role="rowgroup">

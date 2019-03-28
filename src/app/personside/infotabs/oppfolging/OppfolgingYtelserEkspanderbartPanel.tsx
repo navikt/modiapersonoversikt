@@ -30,7 +30,7 @@ const YtelsePanelStyle = styled.div`
 `;
 
 const ElementStyle = styled.div`
-    padding: ${theme.margin.layout};
+    padding: ${theme.margin.px20};
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
