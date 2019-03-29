@@ -1,9 +1,10 @@
 import {
     ascendingDateComparator,
+    datoVerbose,
     erImorgenEllerSenere,
     erMaksEttÅrFramITid,
-    genericAscendingDateComparator,
-    genericDescendingDateComparator
+    datoStigende,
+    datoSynkende
 } from './dateUtils';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
@@ -47,7 +48,7 @@ describe('Sorterer etter dato', () => {
         }
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
-        const sortedDates = [datoA, datoB].sort(genericAscendingDateComparator(object => object.date));
+        const sortedDates = [datoA, datoB].sort(datoStigende(object => object.date));
 
         expect(sortedDates[0]).toEqual(datoB);
     });
@@ -58,8 +59,16 @@ describe('Sorterer etter dato', () => {
         }
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
-        const sortedDates = [datoA, datoB].sort(genericDescendingDateComparator(object => object.date));
+        const sortedDates = [datoA, datoB].sort(datoSynkende(object => object.date));
 
         expect(sortedDates[0]).toEqual(datoA);
     });
+});
+
+test('datoVerbose henter riktig dag, måned og år', () => {
+    const dato = '1986-12-28';
+
+    const result = datoVerbose(dato);
+
+    expect(result.sammensatt).toEqual('28. Desember 1986');
 });

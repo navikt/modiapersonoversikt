@@ -13,6 +13,8 @@ import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
 import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
 import { UtbetalingerState } from './utbetalinger/types';
+import { MeldingerState } from './restReducers/meldinger/types';
+import { meldingerReducer } from './restReducers/meldinger/reducer';
 
 export interface AppState {
     restEndepunkter: RestEndepunkter;
@@ -20,6 +22,7 @@ export interface AppState {
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
+    meldinger: MeldingerState;
     ytelser: YtelserState;
     kontrollSpørsmål: KontrollSpørsmålState;
     oppfolging: OppfolgingState;
@@ -32,6 +35,7 @@ export default combineReducers<AppState>({
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
+    meldinger: meldingerReducer,
     ytelser: ytelserReducere,
     kontrollSpørsmål: kontrollspørsmålReducer,
     oppfolging: oppfolgingReducer,

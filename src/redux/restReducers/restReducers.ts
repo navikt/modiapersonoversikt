@@ -27,6 +27,7 @@ import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
+import meldingerReducer from './meldinger';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -45,6 +46,7 @@ import { Oppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { Varsel } from '../../models/varsel';
+import { Traad } from '../../models/meldinger/meldinger';
 
 export interface RestEndepunkter {
     personinformasjon: RestReducer<PersonRespons>;
@@ -73,7 +75,8 @@ export interface RestEndepunkter {
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
     featureToggles: RestReducer<FeatureToggles>;
-    varselReducer: RestReducer<Varsel[]>;
+    brukersVarsler: RestReducer<Varsel[]>;
+    tråderOgMeldinger: RestReducer<Traad[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -103,5 +106,6 @@ export default combineReducers<RestEndepunkter>({
     oppfolgingReducer: oppfolgingReducer,
     saksoversiktReducer: saksoversiktReducer,
     featureToggles: featureToggleReducer,
-    varselReducer: varselReducer
+    brukersVarsler: varselReducer,
+    tråderOgMeldinger: meldingerReducer
 });
