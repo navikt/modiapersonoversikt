@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from '../restReducer';
+import { createActionsAndReducer } from '../restResource';
 import { fetchKodeverk } from '../../../api/kodeverk';
 
 const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-valuta');

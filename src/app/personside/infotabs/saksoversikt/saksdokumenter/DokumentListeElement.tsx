@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../../../redux/restReducers/restResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -42,7 +42,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    bruker: RestReducer<PersonRespons>;
+    bruker: RestResource<PersonRespons>;
     erStandaloneVindu: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltDokument?: Enkeltdokument;
@@ -268,7 +268,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        bruker: state.restEndepunkter.personinformasjon,
+        bruker: state.restResources.personinformasjon,
         erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
         valgtDokument: state.saksoversikt.valgtDokument,
         valgtEnkeltDokument: state.saksoversikt.valgtEnkeltdokument,

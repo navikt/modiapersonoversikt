@@ -11,7 +11,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../redux/restReducers/restResource';
 import { visEndringsinfo } from '../../utils/formUtils';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
@@ -44,7 +44,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    landReducer: RestReducer<KodeverkResponse>;
+    landResource: RestResource<KodeverkResponse>;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
@@ -154,7 +154,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        landReducer: state.restEndepunkter.landReducer
+        landResource: state.restResources.land
     };
 };
 

@@ -70,7 +70,7 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fnr: getFnrFromPerson(state.restEndepunkter.personinformasjon)
+        fnr: getFnrFromPerson(state.restResources.personinformasjon)
     };
 }
 

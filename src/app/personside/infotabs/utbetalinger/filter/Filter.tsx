@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { isLoaded, isLoading, isReloading, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, isLoading, isReloading, RestResource } from '../../../../../redux/restReducers/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
@@ -23,7 +23,7 @@ interface OwnProps {
 interface StateProps {
     filter: UtbetalingFilterState;
     fødselsnummer: string;
-    utbetalingerReducer: RestReducer<UtbetalingerResponse>;
+    utbetalingerResource: RestResource<UtbetalingerResponse>;
 }
 
 interface DispatchProps {
@@ -108,13 +108,13 @@ function Filtrering(props: Props) {
         );
     });
 
-    const visSpinner = isLoading(props.utbetalingerReducer) || isReloading(props.utbetalingerReducer);
-    const checkBokser = isLoaded(props.utbetalingerReducer) && visCheckbokser(props.utbetalingerReducer.data) && (
+    const visSpinner = isLoading(props.utbetalingerResource) || isReloading(props.utbetalingerResource);
+    const checkBokser = isLoaded(props.utbetalingerResource) && visCheckbokser(props.utbetalingerResource.data) && (
         <>
             <InputPanel>
                 <EtikettLiten>Utbetaling til</EtikettLiten>
                 <UtbetaltTilValg
-                    utbetalinger={props.utbetalingerReducer.data.utbetalinger}
+                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
                     onChange={props.updateFilter}
                     filterState={props.filter}
                 />
@@ -124,7 +124,7 @@ function Filtrering(props: Props) {
                 <YtelseValg
                     onChange={props.updateFilter}
                     filterState={props.filter}
-                    utbetalinger={props.utbetalingerReducer.data.utbetalinger}
+                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
                 />
             </InputPanel>
         </>
@@ -159,7 +159,7 @@ function Filtrering(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        utbetalingerReducer: state.restEndepunkter.utbetalingerReducer,
+        utbetalingerResource: state.restResources.utbetalinger,
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         filter: state.utbetalinger.filter
     };

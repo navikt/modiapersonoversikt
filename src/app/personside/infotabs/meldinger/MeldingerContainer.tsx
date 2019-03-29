@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import { AppState } from '../../../../redux/reducers';
@@ -11,9 +10,10 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import TraadListeContainer from './traadliste/TraadListeContainer';
+import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 
 interface StateProps {
-    meldingerReducer: RestReducer<Traad[]>;
+    meldingerResource: RestResource<Traad[]>;
 }
 
 interface DispatchProps {
@@ -45,14 +45,14 @@ const MeldingerArticleStyle = styled.article`
 
 class MeldingerContainer extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.meldingerReducer)) {
+        if (isNotStarted(this.props.meldingerResource)) {
             this.props.hentMeldinger(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData restReducer={this.props.meldingerReducer}>
+            <PlukkRestData restResource={this.props.meldingerResource}>
                 {() => (
                     <MeldingerArticleStyle>
                         <TraadListeContainer />
@@ -66,7 +66,7 @@ class MeldingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        meldingerReducer: state.restEndepunkter.tråderOgMeldinger
+        meldingerResource: state.restResources.tråderOgMeldinger
     };
 }
 

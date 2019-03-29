@@ -1,10 +1,10 @@
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../../redux/reducers';
-import { Loaded } from '../../../../../redux/restReducers/restReducer';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/restReducers/meldinger/actions';
 import { connect } from 'react-redux';
 import TraadListe from './TraadListe';
+import { Loaded } from '../../../../../redux/restReducers/restResource';
 
 interface StateProps {
     traader: Traad[];
@@ -18,7 +18,7 @@ interface DispatchProps {
 function mapStateToProps(state: AppState): StateProps {
     return {
         valgtTraad: state.meldinger.valgtTraad,
-        traader: (state.restEndepunkter.tråderOgMeldinger as Loaded<Traad[]>).data
+        traader: (state.restResources.tråderOgMeldinger as Loaded<Traad[]>).data
     };
 }
 

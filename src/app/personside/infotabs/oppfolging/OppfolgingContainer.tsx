@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { AppState } from '../../../../redux/reducers';
@@ -12,8 +12,8 @@ import OppfolgingVisning from './OppfolgingVisningKomponent';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
+    oppfølgingResource: RestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
 }
 
@@ -31,10 +31,10 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 class OppfolgingContainer extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.baseUrlReducer)) {
+        if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
         }
-        if (isNotStarted(this.props.oppfølgingReducer)) {
+        if (isNotStarted(this.props.oppfølgingResource)) {
             this.props.hentDetaljertOppfølging(
                 this.props.fødselsnummer,
                 this.props.valgtPeriode.fra,
@@ -45,7 +45,7 @@ class OppfolgingContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restReducer={this.props.oppfølgingReducer}>
+            <PlukkRestData restResource={this.props.oppfølgingResource}>
                 {data => <OppfolgingVisning detaljertOppfølging={data} />}
             </PlukkRestData>
         );
@@ -54,8 +54,8 @@ class OppfolgingContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        baseUrlResource: state.restResources.baseUrl,
+        oppfølgingResource: state.restResources.oppfolging,
         valgtPeriode: state.oppfolging.valgtPeriode
     };
 }
