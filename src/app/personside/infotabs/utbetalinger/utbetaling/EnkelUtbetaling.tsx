@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import {
-    datoVerbose,
-    formaterNOK,
-    getGjeldendeDatoForUtbetaling,
-    periodeStringFromYtelse
-} from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
@@ -22,6 +17,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
+import { datoVerbose } from '../../../../../utils/dateUtils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;

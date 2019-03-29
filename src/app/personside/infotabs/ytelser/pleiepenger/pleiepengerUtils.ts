@@ -4,10 +4,10 @@ import {
     Pleiepengerettighet,
     Vedtak
 } from '../../../../../models/ytelse/pleiepenger';
-import { genericAscendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoStigende } from '../../../../../utils/dateUtils';
 
 export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode | undefined {
-    return pleiepenger.perioder.sort(genericAscendingDateComparator(p => p.fom)).reverse()[0];
+    return pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse()[0];
 }
 
 export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Vedtak | undefined {
@@ -15,9 +15,7 @@ export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerett
     if (!sistePeriodeForPleiepengerettighet) {
         return undefined;
     }
-    return sistePeriodeForPleiepengerettighet.vedtak
-        .sort(genericAscendingDateComparator(vedtak => vedtak.periode.fom))
-        .reverse()[0];
+    return sistePeriodeForPleiepengerettighet.vedtak.sort(datoStigende(vedtak => vedtak.periode.fom)).reverse()[0];
 }
 
 export function getAlleArbiedsforholdSortert(pleiepenger: Pleiepengerettighet): Arbeidsforhold[] {
@@ -29,5 +27,5 @@ export function getAlleArbiedsforholdSortert(pleiepenger: Pleiepengerettighet): 
 }
 
 export function sorterArbeidsforholdEtterRefusjonTom(arbeidsforhold: Arbeidsforhold[]): Arbeidsforhold[] {
-    return arbeidsforhold.sort(genericAscendingDateComparator(a => a.refusjonTom || new Date(0))).reverse();
+    return arbeidsforhold.sort(datoStigende(a => a.refusjonTom || new Date(0))).reverse();
 }

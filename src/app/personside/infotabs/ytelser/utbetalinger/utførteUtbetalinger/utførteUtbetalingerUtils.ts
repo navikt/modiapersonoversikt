@@ -6,7 +6,7 @@ import {
 } from '../../../utbetalinger/utils/utbetalingerUtils';
 import { Utbetaling, UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
-import { genericDescendingDateComparator } from '../../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../../utils/dateUtils';
 import { isLoaded, isReloading, RestReducer } from '../../../../../../redux/restReducers/restReducer';
 import moment from 'moment';
 import { PersonRespons } from '../../../../../../models/person/person';
@@ -26,7 +26,7 @@ export function filtrerOgSorterUtbetalinger(utbetalinger: Utbetaling[], type: Yt
         .map(fjernIrelevanteUtbetalinger(type))
         .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
         .filter(fjernTommeUtbetalinger)
-        .sort(genericDescendingDateComparator(utbetaling => utbetaling.utbetalingsdato || new Date()));
+        .sort(datoSynkende(utbetaling => utbetaling.utbetalingsdato || new Date()));
 }
 
 export function fjernIrelevanteUtbetalinger(relevantYtelse: YtelserKeys) {
