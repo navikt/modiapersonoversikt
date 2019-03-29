@@ -44,7 +44,7 @@ function VisOppfolgingDetaljer(props: Props) {
     };
 
     function getVeileder() {
-        return detaljer.oppfølging.veileder
+        return detaljer.oppfølging.veileder && detaljer.oppfølging.veileder.ident
             ? detaljer.oppfølging.veileder.navn + ' (' + detaljer.oppfølging.veileder.ident + ')'
             : null;
     }
