@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { datoEllerTomString } from '../../../../utils/stringFormatting';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
@@ -33,7 +33,7 @@ const HeaderStyle = styled.div`
 `;
 
 function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
-    const datoInterval = datoEllerNull(props.vedtak.aktivFra) + ' - ' + datoEllerNull(props.vedtak.aktivTil || '');
+    const datoInterval = datoEllerTomString(props.vedtak.aktivFra) + ' - ' + datoEllerTomString(props.vedtak.aktivTil);
 
     const descriptionListItems = {
         [datoInterval]: props.vedtak.vedtakstype,

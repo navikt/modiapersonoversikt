@@ -56,6 +56,13 @@ export function datoEllerNull(dato: string | Date | null): string | null {
     return formaterDato(dato);
 }
 
+export function datoEllerTomString(dato: string | Date | null): string {
+    if (!dato) {
+        return '';
+    }
+    return formaterDato(dato);
+}
+
 export function periodeEllerNull(periode: Periode | null): string | null {
     if (!periode) {
         return null;
