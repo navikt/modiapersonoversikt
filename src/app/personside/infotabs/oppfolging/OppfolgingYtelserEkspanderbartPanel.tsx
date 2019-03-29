@@ -6,7 +6,7 @@ import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import DescriptionList from '../../../../components/DescriptionList';
+import DescriptionList, { DescriptionListEntries } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakListe from './OppfolgingVedtakKomponent';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 
@@ -47,9 +47,9 @@ function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
         'Dato søknad mottatt': datoEllerNull(props.ytelse.datoKravMottatt),
         'Dato fra': datoEllerNull(props.ytelse.fom),
         'Dato til': datoEllerNull(props.ytelse.tom),
-        'Dager igjen': props.ytelse.dagerIgjenMedBortfall,
-        'Uker igjen': props.ytelse.ukerIgjenMedBortfall
+        ...dersomDagpengerLeggTilFelter(props.ytelse)
     };
+
     return (
         <ElementStyle>
             <Undertittel>{props.ytelse.type}</Undertittel>
@@ -59,6 +59,17 @@ function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
             </YtelsePanelStyle>
         </ElementStyle>
     );
+}
+
+function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionListEntries {
+    if (ytelse.type === 'Dagpenger') {
+        return {
+            'Dager igjen': ytelse.dagerIgjen,
+            'Uker igjen': ytelse.ukerIgjen
+        };
+    }
+
+    return {};
 }
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
