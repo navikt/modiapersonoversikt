@@ -1,4 +1,12 @@
-import { LestStatus, Melding, Saksbehandler, StatusKlasse, Temagruppe, Traad } from '../../models/meldinger/meldinger';
+import {
+    LestStatus,
+    Melding,
+    Saksbehandler,
+    TypeKontakt,
+    Temagruppe,
+    Traad,
+    Meldingstype
+} from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
@@ -21,7 +29,7 @@ function getTraad(): Traad {
     return {
         traadId: faker.random.alphaNumeric(8),
         temagruppe: temagruppe,
-        statusKlasse: navfaker.random.arrayElement([StatusKlasse.Monolog, StatusKlasse.Oppmøte, StatusKlasse.Telefon]),
+        typeKontakt: navfaker.random.arrayElement([TypeKontakt.Monolog, TypeKontakt.Oppmøte, TypeKontakt.Telefon]),
         dato: moment(faker.date.recent(40)).format(backendDatoformat),
         meldinger: meldinger
     };
@@ -30,6 +38,12 @@ function getTraad(): Traad {
 function getMelding(temagruppe: Temagruppe): Melding {
     return {
         id: faker.random.alphaNumeric(8),
+        meldingstype: navfaker.random.arrayElement([
+            Meldingstype.DelvisSvarSkriftlig,
+            Meldingstype.SamtalereferatOppmøte,
+            Meldingstype.SpørsmålSkriftlig,
+            Meldingstype.SvarTelefon
+        ]),
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),
         journalfortAv: getSaksbehandler(),

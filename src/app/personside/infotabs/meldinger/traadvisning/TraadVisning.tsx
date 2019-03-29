@@ -1,45 +1,30 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
-import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 interface Props {
     valgtTraad?: Traad;
 }
 
 const VisningStyle = styled.section`
-    position: relative;
     flex-grow: 1;
 `;
-/*
-const PanelStyle = styled.div`
-    ${theme.hvittPanel};
-    min-width: 24rem;
-    flex-basis: 24rem;
-    ol {
-        list-style: none;
-    }
-`;
-
-const TraadStyle = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-`;*/
 
 function AlleMeldinger(props: { traad: Traad }) {
-    const sortertPåDato = props.traad.meldinger.sort(genericDescendingDateComparator(melding => melding.opprettetDato));
+    const meldingskomponenter = props.traad.meldinger
+        .sort(datoSynkende(melding => melding.opprettetDato))
+        .map(melding => <EnkeltMelding melding={melding} key={melding.id} />);
 
-    const komponentListe = sortertPåDato.map(melding => <EnkeltMelding melding={melding} />);
-
-    return <div>{komponentListe}</div>;
+    return <div>{meldingskomponenter}</div>;
 }
 
 class TraadVisning extends React.PureComponent<Props> {
     render() {
         if (!this.props.valgtTraad) {
-            return null;
+            return <AlertStripeInfo>Ingen tråd er valgt</AlertStripeInfo>;
         }
 
         return (

@@ -10,7 +10,7 @@ import {
     hentDatoForSisteHendelse,
     hentFormattertDatoForSisteHendelse
 } from '../utils/saksoversiktUtils';
-import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 interface Props {
     sakstema: Sakstema[];
@@ -76,9 +76,7 @@ class SakstemaListe extends React.Component<Props, State> {
             return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
         }
 
-        const sortertSakstema = this.props.sakstema.sort(
-            genericDescendingDateComparator(sakstema => hentDatoForSisteHendelse(sakstema))
-        );
+        const sortertSakstema = this.props.sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
 
         const komplettListe = [this.state.aggregertSakstema, ...sortertSakstema];
 

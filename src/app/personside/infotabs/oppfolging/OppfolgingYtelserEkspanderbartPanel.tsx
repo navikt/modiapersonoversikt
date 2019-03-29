@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OppfolgingsYtelse } from '../../../../models/oppfolging';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -34,7 +34,7 @@ const ElementStyle = styled.div`
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
-    const sortertPåDato = props.ytelser.sort(genericDescendingDateComparator(ytelse => ytelse.datoKravMottatt));
+    const sortertPåDato = props.ytelser.sort(datoSynkende(ytelse => ytelse.datoKravMottatt));
 
     const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytelse={ytelse} />);
 

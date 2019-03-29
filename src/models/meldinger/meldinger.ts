@@ -1,13 +1,14 @@
 export interface Traad {
     traadId: string;
     temagruppe: Temagruppe;
-    statusKlasse: StatusKlasse;
+    typeKontakt: TypeKontakt;
     dato: string;
     meldinger: Melding[];
 }
 
 export interface Melding {
     id: string;
+    meldingstype: Meldingstype;
     temagruppe: Temagruppe;
     skrevetAv: Saksbehandler;
     journalfortAv: Saksbehandler;
@@ -24,16 +25,44 @@ export interface Saksbehandler {
     ident: string;
 }
 
-export enum StatusKlasse {
+export enum TypeKontakt {
     Telefon = 'telefon',
     Oppmøte = 'oppmote',
-    Monolog = 'momolog'
+    Oppgave = 'oppgave',
+    Dokument = 'dokument',
+    Monolog = 'monolog',
+    MonologUbesvart = 'monlog ubesvart',
+    Dialog = 'dialog',
+    DialogBesvart = 'dialog besvart'
 }
 
 export enum Temagruppe {
     Uføretrygd = 'UFRT',
+    Familie = 'FMLI',
+    Hjelpemiddel = 'HJLPM',
+    Bil = 'BIL',
+    OrtopediskHjelpemiddel = 'ORT_HJE',
+    Øvrig = 'OVRG',
+    PleiepengerBarnsSykdom = 'PLEIEPENGERSY',
+    Utland = 'UTLAND',
     Pensjon = 'PENS',
-    Arbeid = 'ARBD'
+    Arbeid = 'ARBD',
+    AndreSosiale = 'ANSOS',
+    ØkonomiskSosial = 'OKSOS'
+}
+
+export enum Meldingstype {
+    DokumentVarsel = 'DOKUMENT_VARSEL',
+    OppgaveVarsel = 'OPPGAVE_VARSEL',
+    SpørsmålSkriftlig = 'SPORSMAL_SKRIFTLIG',
+    SvarSkriftlig = 'SVAR_SKRIFTLIG',
+    SvarOppmøte = 'SVAR_OPPMOTE',
+    SvarTelefon = 'SVAR_TELEFON',
+    DelvisSvarSkriftlig = 'DELVIS_SVAR_SKRIFTLIG',
+    SamtalereferatOppmøte = 'SAMTALEREFERAT_OPPMOTE',
+    SamtalereferatTelefon = 'SAMTALEREFERAT_TELEFON',
+    SpørsmålModiaUtgående = 'SPORSMAL_MODIA_UTGAAENDE',
+    SvarSblInngående = 'SVAR_SBL_INNGAAENDE'
 }
 
 export enum LestStatus {

@@ -12,19 +12,19 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    oppdaterValgtTraad: (traad: Traad) => void;
+    settValgtTraad: (traad: Traad) => void;
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
         valgtTraad: state.meldinger.valgtTraad,
-        traader: (state.restEndepunkter.meldingerReducer as Loaded<Traad[]>).data
+        traader: (state.restEndepunkter.tråderOgMeldinger as Loaded<Traad[]>).data
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        oppdaterValgtTraad: (traad: Traad) => dispatch(settValgtTraad(traad))
+        settValgtTraad: (traad: Traad) => dispatch(settValgtTraad(traad))
     };
 }
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
-import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import { AppState } from '../../../../redux/reducers';
@@ -14,7 +13,6 @@ import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import TraadListeContainer from './traadliste/TraadListeContainer';
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
     meldingerReducer: RestReducer<Traad[]>;
 }
 
@@ -40,9 +38,6 @@ const MeldingerArticleStyle = styled.article`
             margin-left: ${theme.margin.layout};
         }
     }
-    .visually-hidden {
-        ${theme.visuallyHidden}
-    }
     > * {
         margin-bottom: ${theme.margin.layout};
     }
@@ -50,9 +45,6 @@ const MeldingerArticleStyle = styled.article`
 
 class MeldingerContainer extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.baseUrlReducer)) {
-            this.props.hentBaseUrls();
-        }
         if (isNotStarted(this.props.meldingerReducer)) {
             this.props.hentMeldinger(this.props.fødselsnummer);
         }
@@ -74,8 +66,7 @@ class MeldingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        meldingerReducer: state.restEndepunkter.meldingerReducer
+        meldingerReducer: state.restEndepunkter.tråderOgMeldinger
     };
 }
 

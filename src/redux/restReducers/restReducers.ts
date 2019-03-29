@@ -75,8 +75,8 @@ export interface RestEndepunkter {
     oppfolgingReducer: RestReducer<Oppfolging>;
     saksoversiktReducer: RestReducer<SakstemaResponse>;
     featureToggles: RestReducer<FeatureToggles>;
-    varselReducer: RestReducer<Varsel[]>;
-    meldingerReducer: RestReducer<Traad[]>;
+    brukersVarsler: RestReducer<Varsel[]>;
+    tråderOgMeldinger: RestReducer<Traad[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -106,6 +106,6 @@ export default combineReducers<RestEndepunkter>({
     oppfolgingReducer: oppfolgingReducer,
     saksoversiktReducer: saksoversiktReducer,
     featureToggles: featureToggleReducer,
-    varselReducer: varselReducer,
-    meldingerReducer: meldingerReducer
+    brukersVarsler: varselReducer,
+    tråderOgMeldinger: meldingerReducer
 });
