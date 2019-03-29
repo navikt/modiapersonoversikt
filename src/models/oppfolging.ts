@@ -35,8 +35,8 @@ export interface SyfoPunkt {
 }
 
 export interface OppfolgingsYtelse {
-    dagerIgjenMedBortfall: number;
-    ukerIgjenMedBortfall: number;
+    dagerIgjen: number;
+    ukerIgjen: number;
     datoKravMottatt: string;
     fom: null | string;
     tom: null | string;

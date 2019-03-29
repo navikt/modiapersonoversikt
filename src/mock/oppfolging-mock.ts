@@ -69,13 +69,13 @@ function getSyfoPunkt(): SyfoPunkt {
 
 function getYtelse(): OppfolgingsYtelse {
     return {
-        dagerIgjenMedBortfall: faker.random.number(30),
-        ukerIgjenMedBortfall: faker.random.number(10),
+        dagerIgjen: faker.random.number(30),
+        ukerIgjen: faker.random.number(10),
         datoKravMottatt: moment(faker.date.recent(30)).format(backendDatoformat),
         fom: moment(faker.date.recent(20)).format(backendDatoformat),
         tom: moment(faker.date.recent(10)).format(backendDatoformat),
         status: navfaker.random.arrayElement(['Aktiv', 'Avsluttet']),
-        type: 'Dagpenger',
+        type: navfaker.random.arrayElement(['Dagpenger', 'Arbeidsavklaringspenger', 'Individstønad']),
         vedtak: Array(navfaker.random.integer(5, 1))
             .fill(null)
             .map(() => getVedtak())
