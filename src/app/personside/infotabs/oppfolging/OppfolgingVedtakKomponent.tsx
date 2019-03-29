@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
@@ -49,7 +49,7 @@ function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
 }
 
 function OppfolgingsVedtakListe(props: Props) {
-    const sortertPåDato = props.ytelseVedtak.sort(genericDescendingDateComparator(vedtak => vedtak.aktivFra));
+    const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
 
     const listekomponenter = sortertPåDato.map(vedtak => <VedtakElement vedtak={vedtak} />);
 

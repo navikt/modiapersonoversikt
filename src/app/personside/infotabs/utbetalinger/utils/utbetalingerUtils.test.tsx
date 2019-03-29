@@ -2,7 +2,6 @@ import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger-mock';
 import {
     createTable,
-    datoVerbose,
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     getBruttoSumYtelser,
     getFraDateFromFilter,
@@ -338,14 +337,6 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
 
     expect(moment(fraDate).toString()).toEqual(moment(0).toString());
     expect(moment(tilDate).toString()).toEqual(moment(0).toString());
-});
-
-test('datoVerbose henter riktig dag, måned og år', () => {
-    const dato = '1986-12-28';
-
-    const result = datoVerbose(dato);
-
-    expect(result.sammensatt).toEqual('28. Desember 1986');
 });
 
 test('filtrerer bort utbetalinger som ikke er utbetalt', () => {

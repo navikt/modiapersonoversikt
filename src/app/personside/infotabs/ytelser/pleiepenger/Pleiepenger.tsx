@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import Oversikt from './Oversikt';
-import { genericAscendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoStigende } from '../../../../../utils/dateUtils';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 function Pleiepenger(props: Props) {
-    const sortertePerioder = props.pleiepenger.perioder.sort(genericAscendingDateComparator(p => p.fom)).reverse();
+    const sortertePerioder = props.pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse();
 
     return (
         <article>

@@ -11,7 +11,7 @@ export function reloadVarsel(fødselsnummer: string) {
     return reload(() => getVarsel(fødselsnummer));
 }
 
-export function resetOppfolgingReducer() {
+export function resetVarselReducer() {
     return tilbakestillReducer;
 }
 
