@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DetaljertOppfolging } from '../../../../models/oppfolging';
+import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -37,17 +37,11 @@ function VisOppfolgingDetaljer(props: Props) {
         Oppfølgingsenhet: oppfølgingsenhet,
         Rettighetsgruppe: detaljer.rettighetsgruppe,
         Innsatsgruppe: detaljer.innsatsgruppe,
-        Veileder: getVeileder(),
+        Veileder: getVeileder(detaljer.oppfølging.veileder),
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
         Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
     };
-
-    function getVeileder() {
-        return detaljer.oppfølging.veileder && detaljer.oppfølging.veileder.ident
-            ? detaljer.oppfølging.veileder.navn + ' (' + detaljer.oppfølging.veileder.ident + ')'
-            : null;
-    }
 
     return (
         <Wrapper>
@@ -57,6 +51,10 @@ function VisOppfolgingDetaljer(props: Props) {
             </VisningWrapper>
         </Wrapper>
     );
+}
+
+export function getVeileder(veileder: Saksbehandler | null) {
+    return veileder && veileder.ident ? veileder.navn + ' (' + veileder.ident + ')' : null;
 }
 
 export default VisOppfolgingDetaljer;
