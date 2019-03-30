@@ -1,5 +1,16 @@
 import moment from 'moment';
+import 'moment/locale/nb';
 import navfaker from 'nav-faker';
+
+export const DATO_FORMAT_STANDARD = 'DD.MM.YYYY';
+export const DATO_TID_FORMAT_STANDARD = 'DD.MM.YYYY HH:mm';
+export const DATOFORMAT_TRAADER = 'DD. MMMM YYYY, [klokken] HH:mm';
+
+export function formatDate(dato: string | Date, format: string) {
+    const datoMoment = moment(dato);
+    datoMoment.locale('nb'); // TODO: Bør denne settes globalt et sted?
+    return datoMoment.format(format);
+}
 
 const månedTilNavnMapping = (månednr: number) => {
     switch (månednr) {
