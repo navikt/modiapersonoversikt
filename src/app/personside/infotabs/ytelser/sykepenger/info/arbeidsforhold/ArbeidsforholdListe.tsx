@@ -41,7 +41,9 @@ function ArbeidsForholdListe({ arbeidsforhold, visAlleArbeidsforhold, toggleVisA
             <StyledListe aria-label="Arbeidsgivere">
                 <ArbeidsForholdListeElement arbeidsforhold={førsteArbForhold} />
                 {visAlleArbeidsforhold &&
-                    resten.map((element, index) => <ArbeidsForholdListeElement key={index} arbeidsforhold={element} />)}
+                    resten.map((arbforhold, index) => (
+                        <ArbeidsForholdListeElement key={index} arbeidsforhold={arbforhold} />
+                    ))}
             </StyledListe>
             <KnappBase type={'hoved'} onClick={() => toggleVisAlleArbeidsforhold()}>
                 {arbeidsforhold.length > 1 && visAlleArbeidsforhold

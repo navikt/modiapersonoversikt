@@ -9,7 +9,7 @@ interface Props {
 }
 
 function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
-    const arbeidsSituasjonEntries = {
+    const arbeidsForholdEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
         Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
             <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
@@ -23,7 +23,7 @@ function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
 
     return (
         <li>
-            <DescriptionList entries={arbeidsSituasjonEntries} />
+            <DescriptionList entries={arbeidsForholdEntries} />
         </li>
     );
 }

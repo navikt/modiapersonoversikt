@@ -32,7 +32,7 @@ function utbetalingPåVentPgaSanksjon({ vedtak, sanksjon }: UtbetalingPåVent): 
 }
 
 function erPåVentFordiSykemeldingMangler({ vedtak, sykmeldt }: UtbetalingPåVent): boolean {
-    if (vedtak && sykmeldt) {
+    if (vedtak && sykmeldt && vedtak.til && sykmeldt.til) {
         return moment(vedtak.til).isSameOrAfter(moment(sykmeldt.til));
     }
     return false;
