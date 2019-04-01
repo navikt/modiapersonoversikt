@@ -2,14 +2,26 @@ import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
-export const DATO_FORMAT_STANDARD = 'DD.MM.YYYY';
-export const DATO_TID_FORMAT_STANDARD = 'DD.MM.YYYY HH:mm';
-export const DATOFORMAT_TRAADER = 'DD. MMMM YYYY, [klokken] HH:mm';
+const DATO_FORMAT_STANDARD = 'DD.MM.YYYY';
+const DATO_TID_FORMAT_STANDARD = 'DD.MM.YYYY HH:mm';
+const DATOFORMAT_TRAADER = 'DD. MMMM YYYY, [klokken] HH:mm';
 
-export function formatDate(dato: string | Date, format: string) {
+export function formatterDatoPåStandardFormat(dato: string | Date) {
+    return hentDatoSomMoment(dato).format(DATO_FORMAT_STANDARD);
+}
+
+export function formatterDatoTidPåStandardFormat(dato: string | Date) {
+    return hentDatoSomMoment(dato).format(DATO_TID_FORMAT_STANDARD);
+}
+
+export function formatterDatoForTrådvisning(dato: string | Date) {
+    return hentDatoSomMoment(dato).format(DATOFORMAT_TRAADER);
+}
+
+function hentDatoSomMoment(dato: string | Date) {
     const datoMoment = moment(dato);
-    datoMoment.locale('nb'); // TODO: Bør denne settes globalt et sted?
-    return datoMoment.format(format);
+    datoMoment.locale('nb');
+    return datoMoment;
 }
 
 const månedTilNavnMapping = (månednr: number) => {
