@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../../redux/restReducers/restResource';
 import { Egenansatt } from '../../../../../models/egenansatt';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
-    egenAnsattReducer: RestReducer<Egenansatt>;
+    egenAnsattResource: RestResource<Egenansatt>;
 }
 
 function EgenansattEtikett(props: { erEgenansatt: boolean }) {
@@ -24,7 +24,7 @@ function EgenAnsattEtikettContainer(props: StateProps) {
     return (
         <ErrorBoundary boundaryName="EgenansattEtikett">
             <PlukkRestData
-                restReducer={props.egenAnsattReducer}
+                restResource={props.egenAnsattResource}
                 returnOnPending={<LazySpinner type="S" />}
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
             >
@@ -36,7 +36,7 @@ function EgenAnsattEtikettContainer(props: StateProps) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        egenAnsattReducer: state.restEndepunkter.egenAnsatt
+        egenAnsattResource: state.restResources.egenAnsatt
     };
 }
 

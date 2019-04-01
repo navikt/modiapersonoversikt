@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { fetchVeilederRoller } from '../../api/veileder-roller-api';
 
 const { reducer, action, actionNames } = createActionsAndReducer('veileder_roller');

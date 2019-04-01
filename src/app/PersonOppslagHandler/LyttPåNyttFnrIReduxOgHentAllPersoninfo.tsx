@@ -2,12 +2,12 @@ import { hentKontaktinformasjon } from '../../redux/restReducers/kontaktinformas
 import { erEgenAnsatt } from '../../redux/restReducers/egenansatt';
 import { hentVergemal } from '../../redux/restReducers/vergemal';
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
-import { resetNavKontorReducer } from '../../redux/restReducers/navkontor';
-import { resetUtbetalingerReducer } from '../../redux/restReducers/utbetalinger';
-import { resetSykepengerReducer } from '../../redux/restReducers/ytelser/sykepenger';
-import { resetPleiepengerReducer } from '../../redux/restReducers/ytelser/pleiepenger';
-import { resetForeldrepengerReducer } from '../../redux/restReducers/ytelser/foreldrepenger';
-import { resetUtførteUtbetalingerReducer } from '../../redux/restReducers/ytelser/utførteUtbetalinger';
+import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
+import { resetUtbetalingerResource } from '../../redux/restReducers/utbetalinger';
+import { resetSykepengerResource } from '../../redux/restReducers/ytelser/sykepenger';
+import { resetPleiepengerResource } from '../../redux/restReducers/ytelser/pleiepenger';
+import { resetForeldrepengerResource } from '../../redux/restReducers/ytelser/foreldrepenger';
+import { resetUtførteUtbetalingerResource } from '../../redux/restReducers/ytelser/utførteUtbetalinger';
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
 import { hentPerson } from '../../redux/restReducers/personinformasjon';
 import { useEffect } from 'react';
@@ -49,12 +49,12 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
             dispatch(erEgenAnsatt(fnr));
             dispatch(hentVergemal(fnr));
             dispatch(hentFeatureToggles());
-            dispatch(resetNavKontorReducer());
-            dispatch(resetUtbetalingerReducer());
-            dispatch(resetSykepengerReducer());
-            dispatch(resetPleiepengerReducer());
-            dispatch(resetForeldrepengerReducer());
-            dispatch(resetUtførteUtbetalingerReducer());
+            dispatch(resetNavKontorResource());
+            dispatch(resetUtbetalingerResource());
+            dispatch(resetSykepengerResource());
+            dispatch(resetPleiepengerResource());
+            dispatch(resetForeldrepengerResource());
+            dispatch(resetUtførteUtbetalingerResource());
             dispatch(resetKontrollSpørsmål());
         }
     };

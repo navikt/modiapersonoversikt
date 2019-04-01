@@ -6,7 +6,7 @@ import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
-import { Loaded, RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Loaded, RestResource } from '../../../../../../redux/restReducers/restResource';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface EpostProps {
@@ -43,14 +43,14 @@ export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
+    kontaktinformasjonResource: RestResource<KRRKontaktinformasjon>;
 }
 
-function EpostWrapper({ kontaktinformasjonReducer }: EpostWrapperProps) {
+function EpostWrapper({ kontaktinformasjonResource }: EpostWrapperProps) {
     return (
         <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
-            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
-                <EpostVisning kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data} />
+            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonResource]}>
+                <EpostVisning kontaktinformasjon={(kontaktinformasjonResource as Loaded<KRRKontaktinformasjon>).data} />
             </Innholdslaster>
         </VisittkortElement>
     );

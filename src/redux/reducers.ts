@@ -17,7 +17,7 @@ import { MeldingerState } from './restReducers/meldinger/types';
 import { meldingerReducer } from './restReducers/meldinger/reducer';
 
 export interface AppState {
-    restEndepunkter: RestEndepunkter;
+    restResources: RestEndepunkter;
     ui: UIState;
     temagruppe: TemagruppeState;
     utbetalinger: UtbetalingerState;
@@ -30,7 +30,7 @@ export interface AppState {
 }
 
 export default combineReducers<AppState>({
-    restEndepunkter: RestEndepunkterReducers,
+    restResources: RestEndepunkterReducers,
     ui: UIReducer,
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,

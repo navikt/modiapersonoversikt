@@ -51,11 +51,11 @@ interface State {
 
 interface DispatchProps {
     endreNavn: (request: EndreNavnRequest) => void;
-    resetEndreNavnReducer: () => void;
+    resetEndreNavnResource: () => void;
 }
 
 interface StateProps {
-    reducerStatus: STATUS;
+    resourceStatus: STATUS;
 }
 
 interface OwnProps {
@@ -97,7 +97,7 @@ class EndreNavnForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.props.resetEndreNavnReducer();
+        this.props.resetEndreNavnResource();
     }
 
     fornavnInputChange(input: string) {
@@ -139,7 +139,7 @@ class EndreNavnForm extends React.Component<Props, State> {
 
     tilbakestillForm(event: React.MouseEvent<HTMLButtonElement>) {
         this.setState(this.initialState(this.props));
-        this.props.resetEndreNavnReducer();
+        this.props.resetEndreNavnResource();
         event.preventDefault();
     }
 
@@ -231,7 +231,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.reducerStatus === STATUS.LOADING}
+                            spinner={this.props.resourceStatus === STATUS.LOADING}
                             disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
                             autoDisableVedSpinner={true}
                         >
@@ -240,7 +240,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                     </FormKnapperWrapper>
                     {!this.state.formErEndret ? (
                         <RequestTilbakemelding
-                            status={this.props.reducerStatus}
+                            status={this.props.resourceStatus}
                             onSuccess={'Navnet ble endret. Det kan ta noe tid før endringen blir synlig'}
                             onError={'Det skjedde en feil ved endring av navn.'}
                         />
@@ -253,14 +253,14 @@ class EndreNavnForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        reducerStatus: state.restEndepunkter.endreNavn.status
+        resourceStatus: state.restResources.endreNavn.status
     };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         endreNavn: (request: EndreNavnRequest) => dispatch(endreNavn(request)),
-        resetEndreNavnReducer: () => dispatch(reset())
+        resetEndreNavnResource: () => dispatch(reset())
     };
 }
 
