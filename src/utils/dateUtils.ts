@@ -6,11 +6,11 @@ const DATO_FORMAT_STANDARD = 'DD.MM.YYYY';
 const DATO_TID_FORMAT_STANDARD = 'DD.MM.YYYY HH:mm';
 const DATOFORMAT_TRAADER = 'DD. MMMM YYYY, [klokken] HH:mm';
 
-export function formatterDatoPåStandardFormat(dato: string | Date) {
+export function formatterDato(dato: string | Date) {
     return hentDatoSomMoment(dato).format(DATO_FORMAT_STANDARD);
 }
 
-export function formatterDatoTidPåStandardFormat(dato: string | Date) {
+export function formatterDatoTid(dato: string | Date) {
     return hentDatoSomMoment(dato).format(DATO_TID_FORMAT_STANDARD);
 }
 
