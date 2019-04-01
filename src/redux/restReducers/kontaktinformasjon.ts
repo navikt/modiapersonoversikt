@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { getKontaktinformasjon } from '../../api/kontaktinformasjon-api';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 

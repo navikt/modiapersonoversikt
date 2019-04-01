@@ -4,7 +4,7 @@ import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';
-import { isLoaded } from '../../redux/restReducers/restReducer';
+import { isLoaded } from '../../redux/restReducers/restResource';
 
 export enum DisplayWhenToggleIs {
     ON,
@@ -49,14 +49,14 @@ class FeatureToggle extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
-    const reducer = state.restEndepunkter.featureToggles;
-    if (!isLoaded(reducer)) {
+    const toggleResource = state.restResources.featureToggles;
+    if (!isLoaded(toggleResource)) {
         return {
             isOn: undefined
         };
     }
     return {
-        isOn: reducer.data[ownProps.toggleID]
+        isOn: toggleResource.data[ownProps.toggleID]
     };
 }
 

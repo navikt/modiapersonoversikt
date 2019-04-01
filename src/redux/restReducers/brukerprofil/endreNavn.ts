@@ -1,15 +1,15 @@
-import { createActionsAndReducer } from '../restReducer';
+import { createActionsAndReducer } from '../restResource';
 import { EndreNavnRequest } from './endreNavnRequest';
 import { postEndreNavn } from '../../../api/brukerprofil/endrenavn-api';
 
-const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endrenavn');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('endrenavn');
 
 export function endreNavn(request: EndreNavnRequest) {
     return action(() => postEndreNavn(request));
 }
 
 export function reset() {
-    return tilbakestillReducer;
+    return tilbakestill;
 }
 
 export { actionNames };

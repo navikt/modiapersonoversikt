@@ -1,8 +1,8 @@
 import { getNavkontor } from '../../api/navkontor';
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { Kodeverk } from '../../models/kodeverk';
 
-const { reducer, action, actionNames, tilbakestillReducer } = createActionsAndReducer('navkontor');
+const { reducer, action, actionNames, tilbakestill } = createActionsAndReducer('navkontor');
 
 export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     if (!geografiskTilknytning && !diskresjonsKode) {
@@ -12,8 +12,8 @@ export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: 
     return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode ? diskresjonsKode.kodeRef : undefined));
 }
 
-export function resetNavKontorReducer() {
-    return tilbakestillReducer;
+export function resetNavKontorResource() {
+    return tilbakestill;
 }
 
 export { actionNames };

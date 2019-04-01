@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import { connect } from 'react-redux';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../../redux/restReducers/restResource';
 import { AppState } from '../../../../../redux/reducers';
 import EtikettBase from 'nav-frontend-etiketter';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
@@ -10,7 +10,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
-    vergemalReducer: RestReducer<Vergemal>;
+    vergemalResource: RestResource<Vergemal>;
 }
 
 function VergemålsEtikett(props: { vergemål: Vergemal }) {
@@ -27,7 +27,7 @@ function VergemålEtikettContainer(props: StateProps) {
     return (
         <ErrorBoundary boundaryName="Vergemålsetikett">
             <PlukkRestData
-                restReducer={props.vergemalReducer}
+                restResource={props.vergemalResource}
                 returnOnPending={<LazySpinner type="S" />}
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker har verge</AlertStripeAdvarsel>}
             >
@@ -39,7 +39,7 @@ function VergemålEtikettContainer(props: StateProps) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        vergemalReducer: state.restEndepunkter.vergemal
+        vergemalResource: state.restResources.vergemal
     };
 }
 
