@@ -7,10 +7,10 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../redux/reducers';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restReducers/oppgaver';
 import StartBildeLayout from './StartBildeLayout';
-import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
+import ResourceFeilmelding from '../../components/feilmelding/ResourceFeilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { paths, setNyBrukerIPath } from '../routes/routing';
-import { isLoading, RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoading, RestResource } from '../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { aremark } from '../../mock/person/aremark';
 import { moss } from '../../mock/person/moss';
@@ -18,7 +18,7 @@ import { moss } from '../../mock/person/moss';
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgaveReducer: RestReducer<Oppgave[]>;
+    oppgaveResource: RestResource<Oppgave[]>;
     routeHistory: History;
 }
 
@@ -67,11 +67,11 @@ class Startbilde extends React.Component<StartbildeProps> {
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
-                    spinner={isLoading(this.props.oppgaveReducer)}
+                    spinner={isLoading(this.props.oppgaveResource)}
                 >
                     Hent oppgave
                 </KnappBase>
-                <ReducerFeilmelding reducer={this.props.oppgaveReducer} />
+                <ResourceFeilmelding resource={this.props.oppgaveResource} />
             </StartBildeLayout>
         );
     }
@@ -81,7 +81,7 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     return {
         valgtEnhet: '4100',
         valgtTemagruppe: '',
-        oppgaveReducer: state.restEndepunkter.oppgaver,
+        oppgaveResource: state.restResources.oppgaver,
         routeHistory: routeProps.history
     };
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
 import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepenger';
@@ -14,7 +14,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    sykepengerReducer: RestReducer<SykepengerResponse>;
+    sykepengerResource: RestResource<SykepengerResponse>;
 }
 
 interface DispatchProps {
@@ -26,14 +26,14 @@ type Props = OwnProps & StateProps & DispatchProps;
 class SykePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
         loggEvent('Sidevisning', 'Sykepenger');
-        if (isNotStarted(this.props.sykepengerReducer)) {
+        if (isNotStarted(this.props.sykepengerResource)) {
             this.props.hentSykepenger(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData spinnerSize="M" restReducer={this.props.sykepengerReducer}>
+            <PlukkRestData spinnerSize="M" restResource={this.props.sykepengerResource}>
                 {data => {
                     if (!data.sykepenger) {
                         return null;
@@ -49,7 +49,7 @@ class SykePengerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        sykepengerReducer: state.restEndepunkter.sykepengerReducer
+        sykepengerResource: state.restResources.sykepenger
     };
 }
 

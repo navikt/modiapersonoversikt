@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { getBaseUrls } from '../../api/baseurls-api';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 

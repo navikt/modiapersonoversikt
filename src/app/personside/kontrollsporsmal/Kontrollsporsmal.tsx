@@ -86,7 +86,7 @@ function Kontrollsporsmal(props: Props) {
 function mapStateToProps(state: AppState): StateProps {
     return {
         visKontrollSpørsmål: state.kontrollSpørsmål.synlig,
-        fnr: getFnrFromPerson(state.restEndepunkter.personinformasjon)
+        fnr: getFnrFromPerson(state.restResources.personinformasjon)
     };
 }
 

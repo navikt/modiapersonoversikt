@@ -1,4 +1,4 @@
-import { Loaded } from '../../../../../redux/restReducers/restReducer';
+import { Loaded } from '../../../../../redux/restReducers/restResource';
 import { Sakstema, SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
@@ -18,7 +18,7 @@ interface DispatchProps {
 function mapStateToProps(state: AppState): StateProps {
     return {
         valgtSakstema: state.saksoversikt.valgtSakstema,
-        sakstema: (state.restEndepunkter.saksoversiktReducer as Loaded<SakstemaResponse>).data.resultat
+        sakstema: (state.restResources.sakstema as Loaded<SakstemaResponse>).data.resultat
     };
 }
 

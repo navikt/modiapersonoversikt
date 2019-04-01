@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restReducer';
+import { createActionsAndReducer } from '../restResource';
 import { getUtbetalinger } from '../../../api/utbetaling-api';
 
-const { reducer, action, reload, tilbakestillReducer } = createActionsAndReducer('utførteUtbetalingerYtelser');
+const { reducer, action, reload, tilbakestill } = createActionsAndReducer('utførteUtbetalingerYtelser');
 
 export function hentUtførteUtbetalinger(fødselsnummer: string, fraOgMed: Date) {
     return action(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
@@ -11,8 +11,8 @@ export function reloadUtførteUtbetalinger(fødselsnummer: string, fraOgMed: Dat
     return reload(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
 }
 
-export function resetUtførteUtbetalingerReducer() {
-    return tilbakestillReducer;
+export function resetUtførteUtbetalingerResource() {
+    return tilbakestill;
 }
 
 export default reducer;

@@ -6,7 +6,7 @@ import {
     getKnappStatus,
     inneholderToÅrGamleUtbetalinger
 } from './utførteUtbetalingerUtils';
-import { Loaded, NotStarted, Reloading } from '../../../../../../redux/restReducers/restReducer';
+import { Loaded, NotStarted, Reloading } from '../../../../../../redux/restReducers/restResource';
 import { STATUS } from '../../../../../../redux/restReducers/utils';
 import moment from 'moment';
 import { backendDatoformat } from '../../../../../../mock/utils/mock-utils';
@@ -41,9 +41,9 @@ test('filtrerer vekk urelevante ytelser', () => {
 });
 
 test('gjennkjenner at reducer inneholder to år gamle utbetalinger', () => {
-    const reducer: Loaded<UtbetalingerResponse> = loadedRestReducerMed2ÅrGamleUtbetalinger();
+    const resource: Loaded<UtbetalingerResponse> = loadedRestReducerMed2ÅrGamleUtbetalinger();
 
-    const resultat = inneholderToÅrGamleUtbetalinger(reducer);
+    const resultat = inneholderToÅrGamleUtbetalinger(resource);
     expect(resultat).toBe(true);
 });
 

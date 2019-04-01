@@ -1,9 +1,9 @@
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { getFeatureToggle } from '../../api/featuretoggle-api';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { FeatureToggleResponse } from '../../models/featureToggle';
 
-const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('featureToggles');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('featureToggles');
 
 export function hentFeatureToggles() {
     return action(() => getAllFeatureToggles());
@@ -31,7 +31,7 @@ async function getAllFeatureToggles() {
 }
 
 export function resetFeatureToggles() {
-    return tilbakestillReducer;
+    return tilbakestill;
 }
 
 export const featureToggleActionNames = actionNames;

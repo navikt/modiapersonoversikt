@@ -6,7 +6,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { isNotStarted, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -14,7 +14,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    landReducer: RestReducer<KodeverkResponse>;
+    landResource: RestResource<KodeverkResponse>;
 }
 
 interface OwnProps {
@@ -30,7 +30,7 @@ class VelgLandContainer extends React.Component<Props> {
     }
 
     componentDidMount() {
-        if (isNotStarted(this.props.landReducer)) {
+        if (isNotStarted(this.props.landResource)) {
             this.props.hentLand();
         }
     }
@@ -38,10 +38,10 @@ class VelgLandContainer extends React.Component<Props> {
     render() {
         return (
             <div>
-                <Innholdslaster avhengigheter={[this.props.landReducer]}>
+                <Innholdslaster avhengigheter={[this.props.landResource]}>
                     <VelgLand
                         visFeilmeldinger={false}
-                        landKodeverk={(this.props.landReducer as Loaded<KodeverkResponse>).data}
+                        landKodeverk={(this.props.landResource as Loaded<KodeverkResponse>).data}
                         midlertidigAdresseUtlandInputs={this.props.midlertidigAdresseUtlandInput}
                         onChange={this.props.landChanged}
                     />
@@ -53,7 +53,7 @@ class VelgLandContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        landReducer: state.restEndepunkter.landReducer
+        landResource: state.restResources.land
     };
 };
 

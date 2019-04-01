@@ -33,7 +33,7 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { isFailed, isLoading, isNotStarted, isSuccess, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isFailed, isLoading, isNotStarted, isSuccess, RestResource } from '../../../redux/restReducers/restResource';
 import {
     getValidUtlandsadresseForm,
     validerUtenlandsAdresse
@@ -52,8 +52,8 @@ interface Props {
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
-    resetEndreAdresseReducer: () => void;
-    endreAdresseReducer: RestReducer<{}>;
+    resetEndreAdresseResource: () => void;
+    endreAdresseResource: RestResource<{}>;
     reloadPersonInfo: (fødselsnummer: string) => void;
 }
 
@@ -118,7 +118,7 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (!isSuccess(prevProps.endreAdresseReducer) && isSuccess(this.props.endreAdresseReducer)) {
+        if (!isSuccess(prevProps.endreAdresseResource) && isSuccess(this.props.endreAdresseResource)) {
             this.props.reloadPersonInfo(this.props.person.fødselsnummer);
         }
     }
@@ -207,18 +207,18 @@ class AdresseForm extends React.Component<Props, State> {
     onMidlertidigAdresseUtlandFormChange(endring: Partial<Utlandsadresse>) {
         this.setState({ formErEndret: true });
         this.updateMidlertidigAdresseUtlandInputState(endring);
-        this.resetReducer();
+        this.resetResource();
     }
 
     onMidlertidigAdresseNorgeFormChange(adresse: Partial<MidlertidigeAdresserNorgeInput>) {
         this.updateMidlertidigAdresseNorgeInputState(adresse);
         this.setState({ formErEndret: true });
-        this.resetReducer();
+        this.resetResource();
     }
 
     onAdresseValgChange(event: React.SyntheticEvent<EventTarget>, value: string) {
         this.setState({ selectedRadio: getValg(value) });
-        this.resetReducer();
+        this.resetResource();
         this.resetStateToInitalAdresse();
     }
 
@@ -237,7 +237,7 @@ class AdresseForm extends React.Component<Props, State> {
 
     onAvbryt(event: React.MouseEvent<HTMLButtonElement>) {
         this.setState(this.getInitialState());
-        this.resetReducer();
+        this.resetResource();
         event.preventDefault();
     }
 
@@ -370,14 +370,14 @@ class AdresseForm extends React.Component<Props, State> {
         this.props.endrePostboksadresse(this.props.person.fødselsnummer, postboksadresse);
     }
 
-    resetReducer() {
-        if (isNotStarted(this.props.endreAdresseReducer)) {
-            this.props.resetEndreAdresseReducer();
+    resetResource() {
+        if (isNotStarted(this.props.endreAdresseResource)) {
+            this.props.resetEndreAdresseResource();
         }
     }
 
     requestIsPending() {
-        return isLoading(this.props.endreAdresseReducer);
+        return isLoading(this.props.endreAdresseResource);
     }
 
     slettMidlertidigAdresse() {
@@ -422,7 +422,7 @@ class AdresseForm extends React.Component<Props, State> {
                             type="standard"
                             onClick={this.onAvbryt}
                             disabled={
-                                (!this.state.formErEndret && !isFailed(this.props.endreAdresseReducer)) ||
+                                (!this.state.formErEndret && !isFailed(this.props.endreAdresseResource)) ||
                                 this.requestIsPending()
                             }
                         >
@@ -430,7 +430,7 @@ class AdresseForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={isLoading(this.props.endreAdresseReducer)}
+                            spinner={isLoading(this.props.endreAdresseResource)}
                             autoDisableVedSpinner={true}
                             disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                         >
@@ -440,7 +440,7 @@ class AdresseForm extends React.Component<Props, State> {
                     {sletteKnapp}
                     <SubmitFeedback
                         visFeedback={!this.state.formErEndret}
-                        status={this.props.endreAdresseReducer.status}
+                        status={this.props.endreAdresseResource.status}
                     />
                 </FormFieldSet>
             </form>
