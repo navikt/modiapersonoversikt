@@ -152,3 +152,258 @@ Array [
   </button>,
 ]
 `;
+
+exports[`ArbeidsforholdListe med alle vis alle arbeidsforhold matcher snapshot 1`] = `
+Array [
+  .c2 span:not(:last-child):after {
+  content: '.';
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c1 dt {
+  color: #78706a;
+}
+
+.c1 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c1 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+.c0 li:not(:first-child) {
+  border-top: solid 0.0625rem #c6c2bf;
+}
+
+<ol
+    aria-label="Arbeidsgivere"
+    className="c0"
+  >
+    <li>
+      <dl
+        className="c1"
+      >
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Arbeidsgiver
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Johnsen - Kristensen
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Kontonummer
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            <span
+              className="c2"
+            >
+              <span>
+                8786
+              </span>
+              <span>
+                52
+              </span>
+              <span>
+                75970
+              </span>
+            </span>
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Inntekstsperiode
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Månedssats
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Inntekt for perioden
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            39,691.00 NOK
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Refusjonstype
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Ikke refusjon
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Refusjon til dato
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            12.03.2018
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Sykepenger fra og med
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            18.02.2018
+          </dd>
+        </div>
+      </dl>
+    </li>
+    <li>
+      <dl
+        className="c1"
+      >
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Arbeidsgiver
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Johnsen - Kristensen
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Kontonummer
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            <span
+              className="c2"
+            >
+              <span>
+                8786
+              </span>
+              <span>
+                52
+              </span>
+              <span>
+                75970
+              </span>
+            </span>
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Inntekstsperiode
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Månedssats
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Inntekt for perioden
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            39,691.00 NOK
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Refusjonstype
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Ikke refusjon
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Refusjon til dato
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            12.03.2018
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Sykepenger fra og med
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            18.02.2018
+          </dd>
+        </div>
+      </dl>
+    </li>
+  </ol>,
+  <button
+    className="knapp knapp--hoved"
+    disabled={false}
+    onClick={[Function]}
+    type="submit"
+  >
+    Vis færre arbeidsforhold
+  </button>,
+]
+`;
