@@ -23,9 +23,10 @@ type Props = StateProps & DispatchProps;
 
 const KnapperStyling = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    > * {
-        margin-left: ${theme.margin.px20};
+    > *:last-child {
+        margin-top: ${theme.margin.px10};
     }
 `;
 
@@ -57,11 +58,11 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
     render() {
         return (
             <KnapperStyling>
-                <KnappBase type="standard" onClick={this.handleNyttSpørsmålClick}>
-                    Nytt spørsmål
-                </KnappBase>
-                <KnappBase type="standard" onClick={this.handleLukkClick}>
+                <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={this.handleLukkClick}>
                     Lukk
+                </KnappBase>
+                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
+                    Nytt
                 </KnappBase>
             </KnapperStyling>
         );
