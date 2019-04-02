@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import SaksoversiktLamell from './SaksoversiktLamell';
@@ -21,9 +20,13 @@ import { applyMiddleware, createStore } from 'redux';
 import reducers from '../../redux/reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import OppfolgingLamell from './OppfolgingLamell';
+import { paths } from '../../app/routes/routing';
+import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 
 enum Komponenter {
     Visittkort,
+    Oppfølging,
     Saksoversikt,
     SaksoversiktMCF,
     Brukerprofil,
@@ -33,14 +36,6 @@ enum Komponenter {
     Foreldrepenger
 }
 
-function bareEnumNavn(enumKeys: { label: string }[]) {
-    return enumKeys.slice(0, keys.length / 2);
-}
-
-const keys = Object.keys(Komponenter);
-
-const tabs: TabProps[] = bareEnumNavn(keys.map(key => ({ label: Komponenter[key] })));
-
 const Style = styled.div`
     width: 100vw;
     height: 100vh;
@@ -48,8 +43,11 @@ const Style = styled.div`
     display: flex;
     flex-direction: column;
     > *:first-child {
+        flex-shrink: 0;
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);
+        padding: 0.5rem 1rem 0.7rem;
+        overflow-x: auto;
     }
 `;
 
@@ -91,20 +89,25 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
+        case Komponenter.Oppfølging:
+            return <OppfolgingLamell fødselsnummer={props.fnr} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
 }
 
-function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string }>) {
+function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; component: string }>) {
     const routeFnr = props.match.params.fnr;
     const fnr = routeFnr || aremark.fødselsnummer;
-    const [tab, setTab] = useState(Komponenter.Visittkort);
+    const routeComponent = props.match.params.component;
+    const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
+    const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${komponent}/${fnr}`);
+    const tabs: TabProps[] = mapEnumToTabProps(Komponenter, valgtTab);
     return (
         <Style>
-            <TabsPure tabs={tabs} onChange={(event, index) => setTab(index)} />
+            <TabsPure kompakt={true} tabs={tabs} onChange={(event, index) => updatePath(Komponenter[index])} />
             <KomponentStyle>
-                <GjeldendeKomponent valgtTab={tab} fnr={fnr} />
+                <GjeldendeKomponent valgtTab={valgtTab} fnr={fnr} />
             </KomponentStyle>
         </Style>
     );

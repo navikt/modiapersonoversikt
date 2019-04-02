@@ -8,12 +8,12 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
 import { Bold } from '../../../../../components/common-styled-components';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface StateProps {
-    navKontorReducer: RestReducer<BrukersNavKontorResponse>;
+    navKontorResource: RestResource<BrukersNavKontorResponse>;
 }
 
 interface DispatchProps {
@@ -66,7 +66,7 @@ function NavKontorVisning(props: BrukersNavKontorResponse) {
 
 class NavKontorContainer extends React.Component<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.navKontorReducer)) {
+        if (isNotStarted(this.props.navKontorResource)) {
             this.props.hentNavKontor(this.props.person);
         }
     }
@@ -83,8 +83,12 @@ class NavKontorContainer extends React.Component<Props> {
                 <Normaltekst tag="h2">
                     <Bold>NAV-kontor</Bold>
                 </Normaltekst>
-                <Innholdslaster avhengigheter={[this.props.navKontorReducer]} spinnerSize={'S'} returnOnError={onError}>
-                    <NavKontorVisning {...(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data} />
+                <Innholdslaster
+                    avhengigheter={[this.props.navKontorResource]}
+                    spinnerSize={'S'}
+                    returnOnError={onError}
+                >
+                    <NavKontorVisning {...(this.props.navKontorResource as Loaded<BrukersNavKontorResponse>).data} />
                 </Innholdslaster>
             </NavKontorSection>
         );
@@ -93,7 +97,7 @@ class NavKontorContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return {
-        navKontorReducer: state.restEndepunkter.brukersNavKontor
+        navKontorResource: state.restResources.brukersNavKontor
     };
 };
 

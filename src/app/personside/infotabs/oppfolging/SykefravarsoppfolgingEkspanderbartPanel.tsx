@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
@@ -27,7 +27,7 @@ const ListeStyle = styled.ol`
 `;
 
 function SykefravarsoppfolgingListe(props: { syfoPunkter: SyfoPunkt[] }) {
-    const sortertPåDato = props.syfoPunkter.sort(genericDescendingDateComparator(syfoPunkt => syfoPunkt.dato));
+    const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
 
     const listekomponenter = sortertPåDato.map(syfopunkt => <SyfoPunktElement syfoPunkt={syfopunkt} />);
 
@@ -52,10 +52,8 @@ function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
         return <AlertStripeInfo>Det finnes ikke oppfølgingsinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
-    const tittelTillegsInfo = ['Antall punkter: ' + props.syfoPunkt.length];
-
     return (
-        <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging">
             <SykefravarsoppfolgingListe syfoPunkter={props.syfoPunkt} />
         </EkspanderbartYtelserPanel>
     );

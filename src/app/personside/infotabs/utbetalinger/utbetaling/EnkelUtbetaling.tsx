@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import {
-    datoVerbose,
-    formaterNOK,
-    getGjeldendeDatoForUtbetaling,
-    periodeStringFromYtelse
-} from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
@@ -17,11 +12,12 @@ import { Bold, SpaceBetween } from '../../../../../components/common-styled-comp
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { AnyAction, Dispatch } from 'redux';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
+import { datoVerbose } from '../../../../../utils/dateUtils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-    datoVerbose,
-    formaterNOK,
-    getGjeldendeDatoForUtbetaling,
-    getNettoSumYtelser
-} from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalingerUtils';
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -15,9 +10,10 @@ import DelUtbetaling from './DelUtbetaling';
 import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { connect } from 'react-redux';
-import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/utbetalingerReducer';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { AnyAction, Dispatch } from 'redux';
+import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
+import { datoVerbose } from '../../../../../utils/dateUtils';
 
 interface OwnProps {
     utbetaling: Utbetaling;

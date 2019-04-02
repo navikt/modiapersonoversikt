@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../../../redux/restReducers/restResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -42,7 +42,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    bruker: RestReducer<PersonRespons>;
+    bruker: RestResource<PersonRespons>;
     erStandaloneVindu: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltDokument?: Enkeltdokument;
@@ -159,11 +159,11 @@ class DokumentListeElement extends React.Component<Props> {
         ]);
 
         if (!lenkeTrykket) {
-            this.visDokumentHvisTilgang(this.props.dokument, this.props.dokument.hoveddokument);
+            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument);
         }
     }
 
-    visDokumentHvisTilgang(dokument: DokumentMetadata, enkeltdokument: Enkeltdokument) {
+    visDokumentHvisTilgang(enkeltdokument: Enkeltdokument) {
         if (this.props.harTilgangTilSakstema && enkeltdokument.kanVises) {
             this.props.velgOgVisDokument(enkeltdokument);
         }
@@ -189,14 +189,7 @@ class DokumentListeElement extends React.Component<Props> {
                 <ul>
                     {dokument.vedlegg.map(vedlegg => (
                         <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
-                            <span ref={this.vedleggLinkRef}>
-                                <LenkeKnapp
-                                    aria-disabled={!kanVises}
-                                    onClick={() => this.visDokumentHvisTilgang(dokument, vedlegg)}
-                                >
-                                    <Element>{vedlegg.tittel}</Element>
-                                </LenkeKnapp>
-                            </span>
+                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg)}</span>
                             {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                         </li>
                     ))}
@@ -230,7 +223,7 @@ class DokumentListeElement extends React.Component<Props> {
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
                             <LenkeKnapp
                                 aria-disabled={!kanVises}
-                                onClick={() => this.visDokumentHvisTilgang(dokument, dokument.hoveddokument)}
+                                onClick={() => this.visDokumentHvisTilgang(dokument.hoveddokument)}
                             >
                                 <Element>{dokument.hoveddokument.tittel}</Element>
                             </LenkeKnapp>
@@ -249,6 +242,18 @@ class DokumentListeElement extends React.Component<Props> {
             </ListeElementStyle>
         );
     }
+
+    private vedleggItem(vedlegg: Enkeltdokument) {
+        if (!vedlegg.logiskDokument) {
+            return (
+                <LenkeKnapp aria-disabled={vedlegg.kanVises} onClick={() => this.visDokumentHvisTilgang(vedlegg)}>
+                    <Element>{vedlegg.tittel}</Element>
+                </LenkeKnapp>
+            );
+        } else {
+            return <Element>{vedlegg.tittel}</Element>;
+        }
+    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
@@ -263,7 +268,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        bruker: state.restEndepunkter.personinformasjon,
+        bruker: state.restResources.personinformasjon,
         erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
         valgtDokument: state.saksoversikt.valgtDokument,
         valgtEnkeltDokument: state.saksoversikt.valgtEnkeltdokument,

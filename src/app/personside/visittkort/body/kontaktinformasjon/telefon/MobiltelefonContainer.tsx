@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import Mobiltelefon from './Mobiltelefon';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../../../redux/restReducers/restResource';
 
 interface Props {
-    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
+    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
 }
 
 class MobiltelefonContainer extends React.Component<Props> {
     render() {
-        return <Mobiltelefon kontaktinformasjonReducer={this.props.kontaktinformasjon} />;
+        return <Mobiltelefon kontaktinformasjonResource={this.props.kontaktinformasjon} />;
     }
 }
 const mapStateToProps = (state: AppState) => {
     return {
-        kontaktinformasjon: state.restEndepunkter.kontaktinformasjon
+        kontaktinformasjon: state.restResources.kontaktinformasjon
     };
 };
 

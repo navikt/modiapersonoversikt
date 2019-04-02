@@ -3,7 +3,6 @@ import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinge
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { FilterState } from './filter/Filter';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
@@ -18,6 +17,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 import AriaNotification from '../../../../components/AriaNotification';
+import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 
 const UtbetalingerArticle = styled.article`
     ${theme.hvittPanel};
@@ -47,18 +47,18 @@ const OnOneLine = styled.div`
     }
 `;
 
-export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: FilterState) {
+export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: UtbetalingFilterState) {
     return utbetalinger
         .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter))
         .map(utbetaling => filtrerBortYtelserSomIkkeErValgt(utbetaling, filter))
         .filter(fjernTommeUtbetalinger);
 }
 
-function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: FilterState) {
+function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: UtbetalingFilterState) {
     return filter.utbetaltTil.includes(utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil);
 }
 
-function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: FilterState): Utbetaling {
+function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: UtbetalingFilterState): Utbetaling {
     const ytelser = reduceUtbetlingerTilYtelser([utbetaling]).filter(ytelse =>
         filter.ytelser.includes(getTypeFromYtelse(ytelse))
     );
@@ -70,7 +70,7 @@ function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: Filter
 
 interface UtbetalingerProps {
     utbetalingerData: UtbetalingerResponse;
-    filter: FilterState;
+    filter: UtbetalingFilterState;
 }
 
 function Utbetalinger({ filter, ...props }: UtbetalingerProps) {

@@ -4,13 +4,13 @@ import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import NavLogo from '../svg/NavLogo';
-import { datoVerbose } from '../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
 import { detect } from 'detect-browser';
 import ModalWrapper from 'nav-frontend-modal';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { loggEvent } from './frontendLogger';
 import { Bold } from '../components/common-styled-components';
 import Fødselsnummer from '../components/Fødselsnummer';
+import { datoVerbose } from './dateUtils';
 
 interface Props {
     getPrintTrigger: (func: () => void) => void;

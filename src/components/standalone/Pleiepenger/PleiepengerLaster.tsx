@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet, PleiepengerResponse } from '../../../models/ytelse/pleiepenger';
-import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import { AppState } from '../../../redux/reducers';
 import { hentPleiepenger } from '../../../redux/restReducers/ytelser/pleiepenger';
@@ -21,7 +21,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    pleiepengerReducer: RestReducer<PleiepengerResponse>;
+    pleiepengerResource: RestResource<PleiepengerResponse>;
 }
 
 interface DispatchProps {
@@ -59,7 +59,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
     }
 
     componentDidMount() {
-        if (!isLoaded(this.props.pleiepengerReducer)) {
+        if (!isLoaded(this.props.pleiepengerResource)) {
             this.props.hentPleiepenger(this.props.fødselsnummer);
         }
     }
@@ -89,7 +89,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
     render() {
         return (
             <PlukkRestData
-                restReducer={this.props.pleiepengerReducer}
+                restResource={this.props.pleiepengerResource}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
@@ -101,7 +101,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        pleiepengerReducer: state.restEndepunkter.pleiepengerReducer
+        pleiepengerResource: state.restResources.pleiepenger
     };
 }
 

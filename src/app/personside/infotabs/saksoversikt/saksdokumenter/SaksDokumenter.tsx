@@ -15,7 +15,7 @@ import ViktigÅVite from '../viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
-import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 
@@ -162,9 +162,7 @@ function DokumentListe(props: DokumentListeProps) {
     }
 
     const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
-        props.filtrerteDokumenter.sort(
-            genericDescendingDateComparator(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))
-        ),
+        props.filtrerteDokumenter.sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))),
         årForDokument
     );
 

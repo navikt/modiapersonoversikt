@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DescriptionList from '../../../../components/DescriptionList';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { datoEllerTomString } from '../../../../utils/stringFormatting';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
@@ -32,13 +33,12 @@ const HeaderStyle = styled.div`
 `;
 
 function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
-    const datoInterval = props.vedtak.aktivFra + ' - ' + (props.vedtak.aktivTil || '');
+    const datoInterval = datoEllerTomString(props.vedtak.aktivFra) + ' - ' + datoEllerTomString(props.vedtak.aktivTil);
 
     const descriptionListItems = {
         [datoInterval]: props.vedtak.vedtakstype,
-        status: props.vedtak.vedtakstatus,
-        aktivitetsfase: props.vedtak.aktivitetsfase,
-        vedtaksdato: props.vedtak.vedtaksdato
+        Status: props.vedtak.vedtakstatus,
+        Aktivitetsfase: props.vedtak.aktivitetsfase
     };
 
     return (
@@ -49,7 +49,7 @@ function VedtakElement(props: { vedtak: OppfolgingsVedtak }) {
 }
 
 function OppfolgingsVedtakListe(props: Props) {
-    const sortertPåDato = props.ytelseVedtak.sort(genericDescendingDateComparator(vedtak => vedtak.aktivFra));
+    const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
 
     const listekomponenter = sortertPåDato.map(vedtak => <VedtakElement vedtak={vedtak} />);
 

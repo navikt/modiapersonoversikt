@@ -2,11 +2,17 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { isLoading, isNotStarted, isReloading, Loaded, RestReducer } from '../../../../redux/restReducers/restReducer';
+import {
+    isLoading,
+    isNotStarted,
+    isReloading,
+    Loaded,
+    RestResource
+} from '../../../../redux/restReducers/restResource';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
-import { default as Filtrering, FilterState, PeriodeValg } from './filter/Filter';
+import Filter from './filter/Filter';
 import { getFraDateFromFilter, getTilDateFromFilter } from './utils/utbetalingerUtils';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
@@ -14,32 +20,13 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import moment from 'moment';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-
-interface State {
-    filter: FilterState;
-}
-
-const initialState: State = {
-    filter: {
-        periode: {
-            radioValg: PeriodeValg.SISTE_30_DAGER,
-            egendefinertPeriode: {
-                fra: moment()
-                    .subtract(1, 'month')
-                    .toDate(),
-                til: new Date()
-            }
-        },
-        utbetaltTil: [],
-        ytelser: []
-    }
-};
+import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 
 interface StateProps {
-    utbetalingerReducer: RestReducer<UtbetalingerResponse>;
+    utbetalingerResource: RestResource<UtbetalingerResponse>;
     fødselsnummer: string;
+    filter: UtbetalingFilterState;
 }
 
 interface DispatchProps {
@@ -71,42 +58,28 @@ const UtbetalingerSection = styled.section`
     }
 `;
 
-class UtbetalingerContainer extends React.PureComponent<Props, State> {
+class UtbetalingerContainer extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
-        this.state = { ...initialState };
-        this.onFilterChange = this.onFilterChange.bind(this);
         this.reloadUtbetalinger = this.reloadUtbetalinger.bind(this);
         loggEvent('Sidevisning', 'Utbetalinger');
     }
 
-    onFilterChange(change: Partial<FilterState>) {
-        this.setState(prevState => {
-            // Sender inn funksjon her for å motvirke race-conditions fra UtbetaltTilValg og YtelseValg
-            return {
-                filter: {
-                    ...prevState.filter,
-                    ...change
-                }
-            };
-        });
-    }
-
     reloadUtbetalinger() {
-        if (isLoading(this.props.utbetalingerReducer) || isReloading(this.props.utbetalingerReducer)) {
+        if (isLoading(this.props.utbetalingerResource) || isReloading(this.props.utbetalingerResource)) {
             return;
         }
-        const fra = getFraDateFromFilter(this.state.filter);
-        const til = getTilDateFromFilter(this.state.filter);
+        const fra = getFraDateFromFilter(this.props.filter);
+        const til = getTilDateFromFilter(this.props.filter);
         this.props.reloadUtbetalinger(this.props.fødselsnummer, fra, til);
     }
 
     componentDidMount() {
-        if (isNotStarted(this.props.utbetalingerReducer)) {
+        if (isNotStarted(this.props.utbetalingerResource)) {
             this.props.hentUtbetalinger(
                 this.props.fødselsnummer,
-                getFraDateFromFilter(this.state.filter),
-                getTilDateFromFilter(this.state.filter)
+                getFraDateFromFilter(this.props.filter),
+                getTilDateFromFilter(this.props.filter)
             );
         }
     }
@@ -119,19 +92,16 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
                     <div>
                         <Arenalenke fødselsnummer={this.props.fødselsnummer} />
                         <FiltreringSection>
-                            <Filtrering
-                                filterState={this.state.filter}
-                                onChange={this.onFilterChange}
-                                hentUtbetalinger={this.reloadUtbetalinger}
-                                utbetalingReducer={this.props.utbetalingerReducer}
-                            />
+                            <Filter hentUtbetalinger={this.reloadUtbetalinger} />
                         </FiltreringSection>
                     </div>
                     <UtbetalingerSection aria-label="Filtrerte utbetalinger">
-                        <Innholdslaster avhengigheter={[this.props.utbetalingerReducer]}>
+                        <Innholdslaster avhengigheter={[this.props.utbetalingerResource]}>
                             <Utbetalinger
-                                utbetalingerData={(this.props.utbetalingerReducer as Loaded<UtbetalingerResponse>).data}
-                                filter={this.state.filter}
+                                utbetalingerData={
+                                    (this.props.utbetalingerResource as Loaded<UtbetalingerResponse>).data
+                                }
+                                filter={this.props.filter}
                             />
                         </Innholdslaster>
                     </UtbetalingerSection>
@@ -143,8 +113,9 @@ class UtbetalingerContainer extends React.PureComponent<Props, State> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        utbetalingerReducer: state.restEndepunkter.utbetalingerReducer,
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer
+        utbetalingerResource: state.restResources.utbetalinger,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
+        filter: state.utbetalinger.filter
     };
 }
 

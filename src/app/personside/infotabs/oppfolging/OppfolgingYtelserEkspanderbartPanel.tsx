@@ -2,12 +2,13 @@ import * as React from 'react';
 import { OppfolgingsYtelse } from '../../../../models/oppfolging';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import DescriptionList from '../../../../components/DescriptionList';
+import DescriptionList, { DescriptionListEntries } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakListe from './OppfolgingVedtakKomponent';
+import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];
@@ -33,31 +34,42 @@ const ElementStyle = styled.div`
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
-    const sortertPåDato = props.ytelser.sort(genericDescendingDateComparator(ytelse => ytelse.datoKravMottatt));
+    const sortertPåDato = props.ytelser.sort(datoSynkende(ytelse => ytelse.datoKravMottatt));
 
-    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytselse={ytelse} />);
+    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytelse={ytelse} />);
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }
 
-function YtelseElement(props: { ytselse: OppfolgingsYtelse }) {
+function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
     const descriptionListProps = {
-        status: props.ytselse.status,
-        'dato søknad mottatt': props.ytselse.datoKravMottatt,
-        'dato fra': props.ytselse.fom,
-        'dato til': props.ytselse.tom,
-        'dager igjen': props.ytselse.dagerIgjenMedBortfall,
-        'uker igjen': props.ytselse.ukerIgjenMedBortfall
+        Status: props.ytelse.status,
+        'Dato søknad mottatt': datoEllerNull(props.ytelse.datoKravMottatt),
+        'Dato fra': datoEllerNull(props.ytelse.fom),
+        'Dato til': datoEllerNull(props.ytelse.tom),
+        ...dersomDagpengerLeggTilFelter(props.ytelse)
     };
+
     return (
         <ElementStyle>
-            <Undertittel>{props.ytselse.type}</Undertittel>
+            <Undertittel>{props.ytelse.type}</Undertittel>
             <YtelsePanelStyle>
                 <DescriptionList entries={descriptionListProps} />
-                <OppfolgingsVedtakListe ytelseVedtak={props.ytselse.vedtak} />
+                <OppfolgingsVedtakListe ytelseVedtak={props.ytelse.vedtak} />
             </YtelsePanelStyle>
         </ElementStyle>
     );
+}
+
+function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionListEntries {
+    if (ytelse.type === 'Dagpenger') {
+        return {
+            'Dager igjen': ytelse.dagerIgjen,
+            'Uker igjen': ytelse.ukerIgjen
+        };
+    }
+
+    return {};
 }
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
@@ -65,10 +77,8 @@ function OppfolgingYtelserEkspanderbartPanel(props: Props) {
         return <AlertStripeInfo>Det finnes ikke ytelsesinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
-    const tittelTillegsInfo = ['Antall ytelser: ' + props.ytelser.length];
-
     return (
-        <EkspanderbartYtelserPanel tittel="Ytelser" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel tittel="Ytelser">
             <OppfolgingYtelserListe ytelser={props.ytelser} />
         </EkspanderbartYtelserPanel>
     );

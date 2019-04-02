@@ -7,7 +7,7 @@ import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import PhoneIkon from '../../../../../../svg/Phone';
-import { Loaded, RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Loaded, RestResource } from '../../../../../../redux/restReducers/restResource';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface MobiltelefonProps {
@@ -45,15 +45,15 @@ export function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningP
 }
 
 interface MobiltelefonWrapperProps {
-    kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
+    kontaktinformasjonResource: RestResource<KRRKontaktinformasjon>;
 }
 
-function MobiltelefonWrapper({ kontaktinformasjonReducer }: MobiltelefonWrapperProps) {
+function MobiltelefonWrapper({ kontaktinformasjonResource }: MobiltelefonWrapperProps) {
     return (
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
-            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
+            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonResource]}>
                 <MobiltelefonVisning
-                    kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data}
+                    kontaktinformasjon={(kontaktinformasjonResource as Loaded<KRRKontaktinformasjon>).data}
                 />
             </Innholdslaster>
         </VisittkortElement>

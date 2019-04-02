@@ -74,11 +74,7 @@ export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinform
     {
         spørsmål: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
-            return [
-                {
-                    tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : ''
-                }
-            ];
+            return [hentEpost(kontaktinformasjon)];
         }
     }
 ];
@@ -279,4 +275,11 @@ function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: s
     } else {
         return 'Postboksnummer ' + postboksnummer + '\n';
     }
+}
+
+export function hentEpost(kontaktinformasjon: KRRKontaktinformasjon) {
+    if (kontaktinformasjon.reservasjon === 'true') {
+        return { tekst: '' };
+    }
+    return { tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : '' };
 }

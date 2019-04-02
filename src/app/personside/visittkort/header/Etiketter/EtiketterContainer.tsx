@@ -2,14 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../../redux/restReducers/restResource';
 import Etiketter from './Etiketter';
 import styled from 'styled-components';
 import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
-    personReducer: RestReducer<PersonRespons>;
+    personResource: RestResource<PersonRespons>;
 }
 
 const Wrapper = styled.div`
@@ -22,7 +22,7 @@ function EtiketterContainer(props: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
             <Wrapper>
-                <PlukkRestData restReducer={props.personReducer}>
+                <PlukkRestData restResource={props.personResource}>
                     {data => <Etiketter person={data as Person} />}
                 </PlukkRestData>
             </Wrapper>
@@ -32,7 +32,7 @@ function EtiketterContainer(props: Props) {
 
 const mapStateToProps = (state: AppState) => {
     return {
-        personReducer: state.restEndepunkter.personinformasjon
+        personResource: state.restResources.personinformasjon
     };
 };
 

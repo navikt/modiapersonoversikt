@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoading, isReloading, RestResource } from '../../../../redux/restReducers/restResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
@@ -39,7 +39,7 @@ const KnappWrapper = styled.div`
 `;
 
 interface StateProps {
-    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    oppfølgingResource: RestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
     fødselsnummer: string;
 }
@@ -52,7 +52,7 @@ interface DispatchProps {
 type Props = DispatchProps & StateProps;
 
 function DatoInputs(props: Props) {
-    const oppfølgingLastes = isLoading(props.oppfølgingReducer) || isReloading(props.oppfølgingReducer);
+    const oppfølgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
 
     return (
         <>
@@ -114,7 +114,7 @@ function OppfolgingDatoPanel(props: Props) {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        oppfølgingResource: state.restResources.oppfolging,
         valgtPeriode: state.oppfolging.valgtPeriode
     };
 }

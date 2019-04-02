@@ -9,9 +9,9 @@ import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { AnyAction, Dispatch } from 'redux';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/utbetalingerReducer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 
 export interface OwnProps {
     ytelse: Ytelse;

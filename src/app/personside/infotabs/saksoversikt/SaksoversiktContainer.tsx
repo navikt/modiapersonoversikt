@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -18,9 +18,9 @@ import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    saksoversiktReducer: RestReducer<SakstemaResponse>;
-    personReducer: RestReducer<PersonRespons>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
+    saksoversiktResource: RestResource<SakstemaResponse>;
+    personResource: RestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
 }
@@ -59,10 +59,10 @@ const SaksoversiktArticle = styled.article`
 class SaksoversiktContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
-        if (isNotStarted(this.props.baseUrlReducer)) {
+        if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
         }
-        if (isNotStarted(this.props.saksoversiktReducer)) {
+        if (isNotStarted(this.props.saksoversiktResource)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
     }
@@ -74,7 +74,7 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
                     <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
-                    <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
+                    <Innholdslaster avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}>
                         <SakstemaListeContainer />
                         <SaksDokumenterContainer />
                     </Innholdslaster>
@@ -86,9 +86,9 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
-        personReducer: state.restEndepunkter.personinformasjon,
+        baseUrlResource: state.restResources.baseUrl,
+        saksoversiktResource: state.restResources.sakstema,
+        personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
     };
