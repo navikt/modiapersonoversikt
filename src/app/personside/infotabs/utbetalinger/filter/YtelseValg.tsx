@@ -1,18 +1,17 @@
-import { FilterState } from './Filter';
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
 import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalingerUtils';
+import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 interface Props {
-    onChange: (change: Partial<FilterState>) => void;
-    filterState: FilterState;
+    onChange: (change: Partial<UtbetalingFilterState>) => void;
+    filterState: UtbetalingFilterState;
     utbetalinger: Utbetaling[];
 }
 
 class YtelseValg extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.props.onChange({
@@ -22,8 +21,9 @@ class YtelseValg extends React.Component<Props> {
 
     componentDidUpdate(prevProps: Props) {
         const tidligereYtelser = this.getUnikeYtelser(prevProps.utbetalinger);
-        const nyeYtelser = this.getUnikeYtelser(this.props.utbetalinger)
-            .filter((ytelse: string) => !tidligereYtelser.includes(ytelse));
+        const nyeYtelser = this.getUnikeYtelser(this.props.utbetalinger).filter(
+            (ytelse: string) => !tidligereYtelser.includes(ytelse)
+        );
         if (nyeYtelser.length > 0) {
             this.props.onChange({
                 ytelser: [...this.props.filterState.ytelser, ...nyeYtelser]
@@ -42,8 +42,7 @@ class YtelseValg extends React.Component<Props> {
     }
 
     getUnikeYtelser(utbetalinger: Utbetaling[]): string[] {
-        const fjernDuplikater = (ytelse: string, index: number, self: Array<string>) =>
-            self.indexOf(ytelse) === index;
+        const fjernDuplikater = (ytelse: string, index: number, self: Array<string>) => self.indexOf(ytelse) === index;
         return reduceUtbetlingerTilYtelser(utbetalinger)
             .map(getTypeFromYtelse)
             .filter(fjernDuplikater)

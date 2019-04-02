@@ -1,5 +1,4 @@
 export function copyCSSStyles(sourceDoc: Document, targetDoc: Document) {
-
     Array.from(sourceDoc.styleSheets).forEach(styleSheet => {
         copySheet(styleSheet, sourceDoc, targetDoc);
     });
@@ -29,7 +28,6 @@ function appendCSSRule(cssRule: CSSRule, sourceDoc: Document, newStyleEl: HTMLEl
     let csstext = '';
     try {
         csstext = cssRule.cssText;
-
     } catch (err) {
         console.log(err);
     }

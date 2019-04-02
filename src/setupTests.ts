@@ -35,9 +35,10 @@ import { utbetalingerActions } from './redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from './mock/statiskMockUtbetaling';
 import { saksoversiktActions } from './redux/restReducers/saksoversikt';
 import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
-import FeatureToggle from './redux/featureToggle/FeatureToggle';
+import FeatureToggle from './components/featureToggle/FeatureToggle';
+import setNyGjeldendeBruker from './redux/gjeldendeBruker/actions';
 
-configure({adapter: new EnzymeReactAdapter()});
+configure({ adapter: new EnzymeReactAdapter() });
 
 // @ts-ignore
 const globalAny: any = global;
@@ -49,10 +50,12 @@ Date.now = jest.fn(() => 0);
 const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 FeatureToggle.prototype.actualRender = FeatureToggle.prototype.render;
-FeatureToggle.prototype.render = function() { return this.props.children; };
+FeatureToggle.prototype.render = function() {
+    return this.props.children;
+};
 
 // @ts-ignore
-window['frontendlogger'] = {info: () => null, warn: () => null, error: () => null, event: () => null};
+window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -69,17 +72,22 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
     testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
     testStore.dispatch({
-        type: tilrettelagtKommunikasjonActionNames.FINISHED, data: mockTilrettelagtKommunikasjonKodeverk()
+        type: tilrettelagtKommunikasjonActionNames.FINISHED,
+        data: mockTilrettelagtKommunikasjonKodeverk()
     });
     testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk() });
     testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
     testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
     testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
-    testStore.dispatch({ type: utbetalingerActions.FINISHED, data: {
-        utbetalinger: [statiskMockUtbetaling],
-        periode: {startDato: '1905-01-01', sluttDato: '1986-12-28'}
-    }});
-    testStore.dispatch({type: saksoversiktActions.FINISHED, data: getMockSaksoversiktForTest(aremarkFnr)});
+    testStore.dispatch({
+        type: utbetalingerActions.FINISHED,
+        data: {
+            utbetalinger: [statiskMockUtbetaling],
+            periode: { startDato: '1905-01-01', sluttDato: '1986-12-28' }
+        }
+    });
+    testStore.dispatch({ type: saksoversiktActions.FINISHED, data: getMockSaksoversiktForTest(aremarkFnr) });
+    testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
 
     return testStore;
 }

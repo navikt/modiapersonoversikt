@@ -1,7 +1,8 @@
-import { erTall, formatNumber } from './string-utils';
+import { formatNumber } from './stringFormatting';
+import { erTall } from './string-utils';
 
 it('Formaterer telefonnummer', () => {
-    const format  = '### ## ###';
+    const format = '### ## ###';
     const rawTelefonnummer = '94224466';
 
     const result = formatNumber(format, rawTelefonnummer);
@@ -10,7 +11,6 @@ it('Formaterer telefonnummer', () => {
 });
 
 describe('Streng er tall', () => {
-
     it('tall er tall', () => {
         expect(erTall('5')).toBe(true);
     });
@@ -18,5 +18,4 @@ describe('Streng er tall', () => {
     it('bokstav er ikke tall', () => {
         expect(erTall('a')).toBe(false);
     });
-
 });

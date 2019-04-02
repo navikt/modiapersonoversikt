@@ -5,36 +5,33 @@ import { PleiepengerResponse } from '../models/ytelse/pleiepenger';
 
 export function getSykepenger(fodselsnummer: string): Promise<SykepengerResponse> {
     const uri = `${apiBaseUri}/ytelse/sykepenger/${fodselsnummer}`;
-    return fetch(uri, {credentials: 'include'})
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw response.statusText;
-            }
-        });
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw response.statusText;
+        }
+    });
 }
 
 export function getForeldrepenger(fodselsnummer: string): Promise<ForeldrepengerResponse> {
     const uri = `${apiBaseUri}/ytelse/foreldrepenger/${fodselsnummer}`;
-    return fetch(uri, {credentials: 'include'})
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw response.statusText;
-            }
-        });
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw response.statusText;
+        }
+    });
 }
 
 export function getPleiepenger(fodselsnummer: string): Promise<PleiepengerResponse> {
     const uri = `${apiBaseUri}/ytelse/pleiepenger/${fodselsnummer}`;
-    return fetch(uri, {credentials: 'include'})
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw response.statusText;
-            }
-        });
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw response.statusText;
+        }
+    });
 }

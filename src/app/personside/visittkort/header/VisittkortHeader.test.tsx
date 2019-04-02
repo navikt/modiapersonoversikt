@@ -5,11 +5,13 @@ import { aremark } from '../../../../mock/person/aremark';
 import TestProvider from '../../../../test/Testprovider';
 import { mount } from 'enzyme';
 import { Person } from '../../../../models/person/person';
+import { personinformasjonActionNames } from '../../../../redux/restReducers/personinformasjon';
+import { getTestStore } from '../../../../setupTests';
 
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
         <TestProvider>
-            <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null}/>
+            <VisittkortHeader person={aremark} visittkortApent={false} toggleVisittkort={() => null} />
         </TestProvider>
     );
 
@@ -22,11 +24,13 @@ test('setter fokus på brukerens navn on mount', () => {
         ...aremark,
         sikkerhetstiltak: undefined
     };
-    mount((
-        <TestProvider>
-            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false}/>
+    let customStore = getTestStore();
+    customStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: person });
+    mount(
+        <TestProvider customStore={customStore}>
+            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
-    ));
+    );
 
     const focusedElement = document.activeElement;
 
@@ -49,11 +53,13 @@ test('setter fokus på sikkerhetstiltak on mount', () => {
             }
         }
     };
-    mount((
-        <TestProvider>
-            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false}/>
+    let customStore = getTestStore();
+    customStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: person });
+    mount(
+        <TestProvider customStore={customStore}>
+            <VisittkortHeader person={person} toggleVisittkort={() => null} visittkortApent={false} />
         </TestProvider>
-    ));
+    );
 
     const focusedElement = document.activeElement;
 

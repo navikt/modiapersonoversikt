@@ -9,6 +9,8 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
+import { loggEvent } from '../../../../utils/frontendLogger';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -84,6 +86,7 @@ class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
     componentDidMount() {
         this.handleResize();
         window.addEventListener('resize', this.handleResize);
+        loggEvent('Åpne', 'Visittkort');
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
@@ -115,6 +118,7 @@ class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
         return (
             <ErrorBoundary>
                 <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer" ref={this.visittKortBodyRef}>
+                    <VisuallyHiddenAutoFokusHeader tittel="Visittkortdetaljer" />
                     {columnLayOut}
                 </VisittkortBodyWrapper>
             </ErrorBoundary>

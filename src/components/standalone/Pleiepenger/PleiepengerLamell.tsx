@@ -7,33 +7,41 @@ import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import PleiepengerLaster from './PleiepengerLaster';
+import styled from 'styled-components';
+import theme from '../../../styles/personOversiktTheme';
 
 interface Props {
     fødselsnummer: string;
     barnetsFødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
-class PleiepengerLamell extends React.PureComponent<Props> {
+const Styles = styled.div`
+    overflow-y: auto;
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+`;
 
+class PleiepengerLamell extends React.PureComponent<Props> {
     render() {
         return (
             <ErrorBoundary boundaryName="PleiepengeLamell">
                 <Provider store={store}>
-                    <PleiepengerLaster
-                        fødselsnummer={this.props.fødselsnummer}
-                        barnetsFødselsnummer={this.props.barnetsFødselsnummer}
-                    />
+                    <Styles>
+                        <PleiepengerLaster
+                            fødselsnummer={this.props.fødselsnummer}
+                            barnetsFødselsnummer={this.props.barnetsFødselsnummer}
+                        />
+                    </Styles>
                 </Provider>
-            </ErrorBoundary>);
+            </ErrorBoundary>
+        );
     }
 }
 

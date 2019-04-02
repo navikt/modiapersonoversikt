@@ -48,4 +48,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ToggleViktigAaViteKnapp);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ToggleViktigAaViteKnapp);

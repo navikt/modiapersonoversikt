@@ -9,7 +9,7 @@ import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -18,8 +18,8 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    navKontorReducer: RestReducer<BrukersNavKontorResponse>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
+    navKontorResource: RestResource<BrukersNavKontorResponse>;
 }
 
 interface OwnProps {
@@ -29,16 +29,15 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 class NavKontorContainer extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
 
     componentDidMount() {
-        if (isNotStarted(this.props.baseUrlReducer)) {
+        if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
         }
-        if (isNotStarted(this.props.navKontorReducer)) {
+        if (isNotStarted(this.props.navKontorResource)) {
             this.props.hentNavKontor(this.props.person);
         }
     }
@@ -50,11 +49,14 @@ class NavKontorContainer extends React.Component<Props> {
     }
 
     render() {
-        const baseUrlResponse = this.props.baseUrlReducer;
+        const baseUrlResponse = this.props.baseUrlResource;
         return (
-            <Innholdslaster avhengigheter={[this.props.navKontorReducer, this.props.baseUrlReducer]} spinnerSize={'L'}>
+            <Innholdslaster
+                avhengigheter={[this.props.navKontorResource, this.props.baseUrlResource]}
+                spinnerSize={'L'}
+            >
                 <NavKontorVisning
-                    brukersNavKontorResponse={(this.props.navKontorReducer as Loaded<BrukersNavKontorResponse>).data}
+                    brukersNavKontorResponse={(this.props.navKontorResource as Loaded<BrukersNavKontorResponse>).data}
                     baseUrlsResponse={(baseUrlResponse as Loaded<BaseUrlsResponse>).data}
                 />
             </Innholdslaster>
@@ -63,10 +65,10 @@ class NavKontorContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState) => {
-    return ({
-        navKontorReducer: state.restEndepunkter.brukersNavKontor,
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer
-    });
+    return {
+        navKontorResource: state.restResources.brukersNavKontor,
+        baseUrlResource: state.restResources.baseUrl
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -76,4 +78,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavKontorContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NavKontorContainer);

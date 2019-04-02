@@ -6,7 +6,7 @@ import {
     Telefon as TelefonInterface
 } from '../../../../../models/person/NAVKontaktinformasjon';
 import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -16,7 +16,7 @@ interface TelefonProps {
     beskrivelse: string;
 }
 
-function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
+function Telefon({ telefon, nummerFormaterer, beskrivelse }: TelefonProps) {
     if (!telefon) {
         return null;
     }
@@ -26,14 +26,18 @@ function Telefon({telefon, nummerFormaterer, beskrivelse}: TelefonProps) {
     const retningsnummmer = telefon.retningsnummer ? telefon.retningsnummer.kodeRef : '';
     return (
         <>
-            <Normaltekst>{`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})</Normaltekst>
-            <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
+            <Normaltekst>
+                {`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})
+            </Normaltekst>
+            <EtikettGrå>
+                Endret {formatertDato} {endretAv}
+            </EtikettGrå>
         </>
     );
 }
 
-export default function NavKontaktinformasjon(props: {navKontaktinformasjon: NavKontaktinformasjonInterface}) {
-    const {navKontaktinformasjon} = props;
+export default function NavKontaktinformasjon(props: { navKontaktinformasjon: NavKontaktinformasjonInterface }) {
+    const { navKontaktinformasjon } = props;
     if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
         return null;
     }

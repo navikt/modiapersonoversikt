@@ -25,13 +25,13 @@ export const theme = {
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
         background-color: #e9e7e7;
-        box-shadow: inset 0 0 0 .3rem white;
+        box-shadow: inset 0 0 0 0.3rem white;
         padding: ${pxToRem(20)};
     `,
     hvittPanel: css`
         border-radius: ${pxToRem(4)};
         background-color: white;
-        box-shadow: 0 0 .5rem rgba(0, 0, 0, .1);
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
     `,
     media: {
         smallScreen: 'max-width: 35rem',
@@ -61,23 +61,27 @@ export const theme = {
         skilleSvak: `solid ${pxToRem(1)} #c6c2bf;`
     },
     animation: {
-        fadeIn: css`animation: ${fadeIn} .3s ease-out`
+        fadeIn: css`
+            animation: ${fadeIn} 0.3s ease-out;
+        `
     },
     focus: 'outline: none; box-shadow: 0 0 0 0.1875rem #FFBD66;',
     focusOverlay: css`
         position: relative;
         outline: none;
         &::after {
-          position: absolute;
-          top: 0;
-          content: '';
-          box-shadow: 0 0 0 0.1875rem #FFBD66;
-          height: 100%;
-          width: 100%;
-          pointer-events: none;
+            position: absolute;
+            top: 0;
+            content: '';
+            box-shadow: 0 0 0 0.1875rem #ffbd66;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
         }
     `,
-    hover: css`box-shadow: inset 0 0 0 0.1rem #0067c5, 0 .1rem .1rem rgba(0, 0, 0, .2)`,
+    hover: css`
+        box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    `,
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;

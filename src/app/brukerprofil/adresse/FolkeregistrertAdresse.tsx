@@ -10,13 +10,17 @@ const AdresseWrapper = styled.div`
     padding-top: 1rem;
 `;
 
-export default function FolkeregistrertAdresse({person}: {person: Person}) {
-    const adresse = person.folkeregistrertAdresse ?
+export default function FolkeregistrertAdresse({ person }: { person: Person }) {
+    const adresse = person.folkeregistrertAdresse ? (
         formatterRiktigAdresse(person.folkeregistrertAdresse)
-        : <Normaltekst>Ikke registrert.</Normaltekst>;
-    const post = person.postadresse ?
+    ) : (
+        <Normaltekst>Ikke registrert.</Normaltekst>
+    );
+    const post = person.postadresse ? (
         formatterRiktigAdresse(person.postadresse)
-        : <Normaltekst>Ikke registrert.</Normaltekst>;
+    ) : (
+        <Normaltekst>Ikke registrert.</Normaltekst>
+    );
 
     return (
         <>

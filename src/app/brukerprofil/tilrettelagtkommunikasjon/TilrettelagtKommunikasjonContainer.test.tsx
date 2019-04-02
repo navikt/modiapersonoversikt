@@ -5,7 +5,6 @@ import TestProvider from '../../../test/Testprovider';
 import { aremark } from '../../../mock/person/aremark';
 
 test('Viser form for endre tilrettelagt kommunikasjon', () => {
-
     const endreTilrettelagtKommunikasjonForm = renderer.create(
         <TestProvider>
             <TilrettelagtKommunikasjonContainer person={aremark} />

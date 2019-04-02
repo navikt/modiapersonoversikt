@@ -7,6 +7,7 @@ Date: 2018-08-11
 Accepted
 
 ## Context
+
 Etter bump av Redux og sterkere krav på typesikring på reducere har vi måttet omskrive måten vi aksesserer data fra REST i storen
 
 ## Løsning
@@ -37,6 +38,7 @@ export interface Failed<T> extends RestReducer<T> {
 ```
 
 Med en reducer på formen
+
 ```typescript
 reducer: (state : RestReducer<T> = initialState, action: Action) : RestReducer<T> => {
     .
@@ -55,23 +57,26 @@ reducer: (state : RestReducer<T> = initialState, action: Action) : RestReducer<T
     .
     .
     .
-}    
+}
 ```
 
 For å få tak i data/error-objektet må man nå teste på typen med en Typescrpt typeguard:
+
 ```typescript
-if(isSuccess(state.restEndepunkter.landReducer)) {
-    state.restEndepunkter.landReducer.data
+if (isSuccess(state.restEndepunkter.landReducer)) {
+    state.restEndepunkter.landReducer.data;
 }
 ```
-Som typesikrer objektet som et Success-objekt for resten av grenen. 
+
+Som typesikrer objektet som et Success-objekt for resten av grenen.
 
 I TSX-kode derimot tar vi i bruk Innholdslasteren:
+
 ```Typescript
 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
-    <SakstemaVisning 
+    <SakstemaVisning
         sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data}
-        oppdaterSakstema={this.oppdaterSakstema}    
+        oppdaterSakstema={this.oppdaterSakstema}
         valgtSakstema={this.state.valgtSakstema}
     />
 </Innholdslaster>
@@ -80,9 +85,10 @@ I TSX-kode derimot tar vi i bruk Innholdslasteren:
 Her er det viktig å vite at det er ditt eget ansvar å huske å wrappe alle komponenter som bruker restReducer-props i en Innholdslaster. Det er også viktig å forstå at "data" propertyen i dette tilfellet kan være undefined i de tilfellene hvor dataen ikke har ankommet og innholdslaster ikke rendrer children. Aksesser kun de propsene til data internt i komponenten som blir wrappet av Innholdslaster.
 
 ####Utrygg bruk:
+
 ```Typescript
 <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
-    <SakstemaVisning 
+    <SakstemaVisning
         sakstemaWrapper={(this.props.saksoversiktReducer as Loaded<SakstemaWrapper>).data.sakstema} //Kan kaste runtime feil!
         ...
     />

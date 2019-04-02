@@ -33,11 +33,11 @@ export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivi
 function kanskjeLeggTilDiskresjonskoder(relasjoner: Familierelasjon[]): Familierelasjon[] {
     const saksbehandlerHarTilgangTilDiskresjonskoder = harSaksbehandlerTilgangTilDiskresjonskode();
     return relasjoner.map(relasjon => {
-       if (navfaker.random.vektetSjanse(0.1)) {
-           return leggTilDiskresjonskode(relasjon, saksbehandlerHarTilgangTilDiskresjonskoder);
-       } else {
-           return relasjon;
-       }
+        if (navfaker.random.vektetSjanse(0.1)) {
+            return leggTilDiskresjonskode(relasjon, saksbehandlerHarTilgangTilDiskresjonskoder);
+        } else {
+            return relasjon;
+        }
     });
 }
 

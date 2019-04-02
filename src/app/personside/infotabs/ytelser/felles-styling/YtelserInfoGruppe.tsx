@@ -10,7 +10,7 @@ interface Props {
 function YtelserInfoGruppe(props: Props) {
     return (
         <div>
-            <Ingress>{props.tittel}</Ingress>
+            <Ingress tag="h3">{props.tittel}</Ingress>
             {props.children}
         </div>
     );

@@ -12,14 +12,14 @@ interface Props {
     person: Person;
 }
 
-export default function Kontaktinformasjon({person}: Props) {
+export default function Kontaktinformasjon({ person }: Props) {
     return (
         <VisittkortGruppe tittel={'Kontaktinformasjon'}>
-            <Adresse  person={person}/>
-            <EpostContainer/>
-            <MobiltelefonContainer/>
-            <NavKontaktinformasjon navKontaktinformasjon={person.kontaktinformasjon}/>
-            <Bankkonto person={person}/>
+            <Adresse person={person} />
+            <EpostContainer />
+            <MobiltelefonContainer />
+            <NavKontaktinformasjon navKontaktinformasjon={person.kontaktinformasjon} />
+            <Bankkonto person={person} />
         </VisittkortGruppe>
     );
 }

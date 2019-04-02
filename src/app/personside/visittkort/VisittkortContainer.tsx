@@ -11,8 +11,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import { loggEvent } from '../../../utils/frontendLogger';
-import { Loaded } from '../../../redux/restReducers/restReducer';
+import { Loaded } from '../../../redux/restReducers/restResource';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
@@ -30,33 +29,21 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 const VisittkortBodyWrapper = styled.div`
-  &:focus{${theme.focus}}
-  border-radius: ${theme.borderRadius.layout};
+    border-radius: ${theme.borderRadius.layout};
 `;
 
 class VisittkortContainer extends React.PureComponent<Props> {
-
-    private detaljerRef = React.createRef<HTMLDivElement>();
-
     componentDidMount() {
         loggSkjermInfoDaglig();
     }
 
-    componentDidUpdate(prevProps: Props) {
-        const visittkortetBleÅpnet = !prevProps.visittkortErApent && this.props.visittkortErApent;
-        if (visittkortetBleÅpnet && this.detaljerRef.current) {
-            this.detaljerRef.current.focus();
-            loggEvent('Åpne', 'Visittkort');
-        }
-    }
-
     render() {
-        const {person, visittkortErApent: erApnet, toggleVisittkort: toggle} = this.props;
-        const tabIndexForFokus = erApnet ? -1 : undefined;
-        /* undefided så fokus ikke skal bli hengende ved lukking */
-        const visittkortHotkeys = erNyePersonoversikten()
-            ? <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer}/>
-            : <HandleVisittkortHotkeysGamlemodia/>;
+        const { person, visittkortErApent: erApnet, toggleVisittkort: toggle } = this.props;
+        const visittkortHotkeys = erNyePersonoversikten() ? (
+            <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer} />
+        ) : (
+            <HandleVisittkortHotkeysGamlemodia />
+        );
         return (
             <ErrorBoundary>
                 <AriaNotification
@@ -65,14 +52,10 @@ class VisittkortContainer extends React.PureComponent<Props> {
                 />
                 {visittkortHotkeys}
                 <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
-                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet}/>
-                    <VisittkortBodyWrapper
-                        tabIndex={tabIndexForFokus}
-                        ref={this.detaljerRef}
-                        className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper"
-                    >
+                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
+                    <VisittkortBodyWrapper className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper">
                         <UnmountClosed isOpened={erApnet}>
-                            <VisittkortBody person={person}/>
+                            <VisittkortBody person={person} />
                         </UnmountClosed>
                     </VisittkortBodyWrapper>
                 </article>
@@ -84,7 +67,7 @@ class VisittkortContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         visittkortErApent: state.ui.visittkort.apent,
-        person: (state.restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person
+        person: (state.restResources.personinformasjon as Loaded<PersonRespons>).data as Person
     };
 }
 
@@ -94,4 +77,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisittkortContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VisittkortContainer);

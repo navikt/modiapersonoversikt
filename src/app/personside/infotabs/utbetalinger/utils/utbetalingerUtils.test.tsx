@@ -2,7 +2,6 @@ import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger-mock';
 import {
     createTable,
-    datoVerbose,
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     getBruttoSumYtelser,
     getFraDateFromFilter,
@@ -18,12 +17,12 @@ import {
     summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
 } from './utbetalingerUtils';
-import { FilterState, PeriodeValg } from '../filter/Filter';
 import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { Periode } from '../../../../../models/periode';
+import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -232,7 +231,7 @@ test('summerer beløp på tvers av utbetalinger', () => {
     expect(parseInt(summert, 10)).toEqual(600);
 });
 
-const mockFilter: FilterState = {
+const mockFilter: UtbetalingFilterState = {
     periode: {
         radioValg: PeriodeValg.SISTE_30_DAGER,
         egendefinertPeriode: {
@@ -245,7 +244,7 @@ const mockFilter: FilterState = {
 };
 
 test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', () => {
-    const filter: FilterState = {
+    const filter: UtbetalingFilterState = {
         ...mockFilter,
         periode: {
             ...mockFilter.periode,
@@ -271,7 +270,7 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
-    const filter: FilterState = {
+    const filter: UtbetalingFilterState = {
         ...mockFilter,
         periode: {
             ...mockFilter.periode,
@@ -296,7 +295,7 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
-    const filter: FilterState = {
+    const filter: UtbetalingFilterState = {
         ...mockFilter,
         periode: {
             ...mockFilter.periode,
@@ -322,7 +321,7 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode', () => {
-    const filter: FilterState = {
+    const filter: UtbetalingFilterState = {
         ...mockFilter,
         periode: {
             egendefinertPeriode: {
@@ -338,14 +337,6 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
 
     expect(moment(fraDate).toString()).toEqual(moment(0).toString());
     expect(moment(tilDate).toString()).toEqual(moment(0).toString());
-});
-
-test('datoVerbose henter riktig dag, måned og år', () => {
-    const dato = '1986-12-28';
-
-    const result = datoVerbose(dato);
-
-    expect(result.sammensatt).toEqual('28. Desember 1986');
 });
 
 test('filtrerer bort utbetalinger som ikke er utbetalt', () => {

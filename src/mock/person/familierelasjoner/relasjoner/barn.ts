@@ -15,7 +15,7 @@ export function mockBarn(foreldresFødselsnummer: string) {
     const antallBarn = kalkulerAntallBarn(alder);
 
     let barn = [];
-    for (let i =  0; i < antallBarn; i++) {
+    for (let i = 0; i < antallBarn; i++) {
         barn.push(lagBarn(alder));
     }
     return barn;
@@ -44,14 +44,12 @@ function lagBarn(foreldresAlder: number): Familierelasjon {
             alderMåneder: alder > 0 ? alder * 12 + 1 : 3,
             fødselsnummer: barnetsFødselsnummer,
             personstatus: getPersonstatus(alder)
-        },
+        }
     };
 }
 
 function getBarnetsAlder(foreldresAlder: number) {
     const maxAlder = foreldresAlder - 18;
     const minAlder = Math.max(foreldresAlder - 50, 0);
-    return navfaker.dato.mellom(
-        navfaker.dato.forÅrSiden(maxAlder),
-        navfaker.dato.forÅrSiden(minAlder));
+    return navfaker.dato.mellom(navfaker.dato.forÅrSiden(maxAlder), navfaker.dato.forÅrSiden(minAlder));
 }

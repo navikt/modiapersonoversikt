@@ -9,7 +9,7 @@ export function vektetSjanse(seededFaker: Faker.FakerStatic, vekt: Number) {
     const tilfeldigTall = seededFaker.random.number({
         max: 1,
         min: 0,
-        precision: 1e-8,
+        precision: 1e-8
     });
     return tilfeldigTall <= vekt;
 }

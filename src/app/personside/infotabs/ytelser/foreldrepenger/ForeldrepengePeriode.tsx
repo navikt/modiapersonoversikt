@@ -3,9 +3,18 @@ import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepeng
 import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList from '../../../../../components/DescriptionList';
+import DescriptionList, {
+    DescriptionListEntries,
+    fjernEntriesUtenVerdi
+} from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import {
+    convertBoolTilJaNei,
+    formaterDato,
+    periodeEllerNull,
+    prosentEllerNull
+} from '../../../../../utils/stringFormatting';
+import { YtelserKeys } from '../ytelserKeys';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -28,27 +37,28 @@ const Liten = styled.div`
     flex-basis: 45%;
 `;
 
-export function convertBoolTilJaNei(verdi: boolean | null): string | null {
-    switch (verdi) {
-        case true:
-            return 'Ja';
-        case false:
-            return 'Nei';
-        default:
-            return null;
-    }
-}
-
 function ForeldrepengePeriode({ periode, periodenr }: Props) {
-    const entries = {
+    const entries: DescriptionListEntries = {
+        ...fjernEntriesUtenVerdi({
+            'Arbeidsprosent mor': prosentEllerNull(periode.arbeidsprosentMor),
+            'Mors situasjon': periode.morSituasjon,
+            'Disponibel gradering': prosentEllerNull(periode.disponibelGradering),
+            Forskyvelsesperiode: periodeEllerNull(periode.forskyvelsesperiode1),
+            Forskyvelsesårsak: periode.forskyvelsesårsak1,
+            'Andre forskyvelsesperiode': periodeEllerNull(periode.forskyvelsesperiode2),
+            'Andre forskyvelsesårsak': periode.forskyvelsesårsak2
+        }),
         'Midlertidig stans': periode.midlertidigStansDato,
-        Stansårsak: periode.stansårsak,
+        ...fjernEntriesUtenVerdi({
+            Stansårsak: periode.stansårsak,
+            Avslått: periode.avslått
+        }),
         Mødrekvote: convertBoolTilJaNei(periode.erMødrekvote),
-        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
         'Rett til Mødrekvote': periode.rettTilMødrekvote,
+        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
         Fedrekvote: convertBoolTilJaNei(periode.erFedrekvote),
-        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar),
-        'Rett til Fedrekvote': periode.rettTilFedrekvote
+        'Rett til Fedrekvote': periode.rettTilFedrekvote,
+        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar)
     };
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
@@ -61,7 +71,7 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
                 <Stor>
                     <Utbetalinger
                         kommendeUtbetalinger={periode.kommendeUtbetalinger}
-                        historiskeUtbetalinger={periode.historiskeUtbetalinger}
+                        ytelsesType={YtelserKeys.Foreldrepenger}
                     />
                 </Stor>
             </Flex>

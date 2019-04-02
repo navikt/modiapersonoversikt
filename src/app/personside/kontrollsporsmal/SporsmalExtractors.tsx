@@ -13,7 +13,7 @@ import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import * as personadresse from '../../../models/personadresse';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { Periode } from '../../../models/periode';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato } from '../../../utils/stringFormatting';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
@@ -74,11 +74,7 @@ export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinform
     {
         spørsmål: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
-            return [
-                {
-                    tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : ''
-                }
-            ];
+            return [hentEpost(kontaktinformasjon)];
         }
     }
 ];
@@ -279,4 +275,11 @@ function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: s
     } else {
         return 'Postboksnummer ' + postboksnummer + '\n';
     }
+}
+
+export function hentEpost(kontaktinformasjon: KRRKontaktinformasjon) {
+    if (kontaktinformasjon.reservasjon === 'true') {
+        return { tekst: '' };
+    }
+    return { tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : '' };
 }

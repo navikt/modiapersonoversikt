@@ -13,10 +13,7 @@ import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterTelefonnummer, sorterRetningsnummerMedNorgeFørst } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import {
-    endreNavKontaktinformasjon,
-    tilbakestillReducer
-} from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
+import { endreNavKontaktinformasjon, tilbakestill } from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
 import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { STATUS } from '../../../redux/restReducers/utils';
@@ -53,11 +50,11 @@ export interface EndreKontaktinformasjonState {
 interface DispatchProps {
     reloadPerson: (fødselsnummer: string) => void;
     endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
-    tilbakestillReducer: () => void;
+    tilbakestill: () => void;
 }
 
 interface StateProps {
-    reducerStatus: STATUS;
+    resourceStatus: STATUS;
 }
 
 interface OwnProps {
@@ -68,11 +65,11 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 const InputWrapper = styled.div`
-  margin-top: 1em;
+    margin-top: 1em;
 `;
 
 const TelefonWrapper = styled.div`
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 `;
 
 function getInitialTelefonState(telefon: Telefon | undefined): TelefonInput {
@@ -100,7 +97,6 @@ function getTelefonHvisSatt(telefon: TelefonInput) {
 }
 
 class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformasjonState> {
-
     constructor(props: Props) {
         super(props);
 
@@ -118,7 +114,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     componentWillUnmount() {
-        this.resetReducer();
+        this.resetResource();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -145,7 +141,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
+        if (prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -167,7 +163,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 identifikator: formaterTelefonnummer(input)
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     mobilRetningsnummerInputChange(input: string) {
@@ -175,10 +171,9 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
             mobil: {
                 ...this.state.inputs.mobil,
                 retningsnummer: input
-
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     jobbTelefonnummerInputChange(input: string) {
@@ -188,7 +183,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 identifikator: formaterTelefonnummer(input)
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     jobbRetningsnummerInputChange(input: string) {
@@ -198,7 +193,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 retningsnummer: input
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     hjemTelefonnummerInputChange(input: string) {
@@ -208,7 +203,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 identifikator: formaterTelefonnummer(input)
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     hjemRetningsnummerInputChange(input: string) {
@@ -218,19 +213,19 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 retningsnummer: input
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
-    resetReducer() {
-        if (this.props.reducerStatus !== STATUS.NOT_STARTED) {
-            this.props.tilbakestillReducer();
+    resetResource() {
+        if (this.props.resourceStatus !== STATUS.NOT_STARTED) {
+            this.props.tilbakestill();
         }
     }
 
     avbryt(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
         this.setState(this.getInitialState());
-        this.resetReducer();
+        this.resetResource();
     }
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -238,9 +233,9 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
 
         const validerinsResultat = this.getValideringsResultat();
         const formErGyldig =
-            validerinsResultat.mobil.formErGyldig
-            && validerinsResultat.jobb.formErGyldig
-            && validerinsResultat.hjem.formErGyldig;
+            validerinsResultat.mobil.formErGyldig &&
+            validerinsResultat.jobb.formErGyldig &&
+            validerinsResultat.hjem.formErGyldig;
 
         if (!formErGyldig) {
             this.setState({
@@ -271,7 +266,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     requestIsPending() {
-        return this.props.reducerStatus === STATUS.LOADING;
+        return this.props.resourceStatus === STATUS.LOADING;
     }
 
     formErEndret() {
@@ -280,13 +275,13 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     kontaktInfoBleLagret() {
-        return this.props.reducerStatus === STATUS.SUCCESS;
+        return this.props.resourceStatus === STATUS.SUCCESS;
     }
 
     Tilbakemelding() {
         return (
             <RequestTilbakemelding
-                status={this.props.reducerStatus}
+                status={this.props.resourceStatus}
                 onSuccess={'Telefonnummer(e) ble endret.'}
                 onError={'Det skjedde en feil ved lagring av telefonnummer'}
             />
@@ -308,7 +303,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                         >
                             Mobiltelefon
                         </TelefonInput>
-                        <TelefonMetadata telefon={this.props.person.kontaktinformasjon.mobil}/>
+                        <TelefonMetadata telefon={this.props.person.kontaktinformasjon.mobil} />
                     </TelefonWrapper>
                     <TelefonWrapper>
                         <TelefonInput
@@ -321,7 +316,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                             Hjemmenummer
                         </TelefonInput>
                     </TelefonWrapper>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.hjemTelefon} />
                     <TelefonInput
                         retningsnummerKodeverk={this.props.retningsnummerKodeverk}
                         inputValue={this.state.inputs.jobb}
@@ -331,7 +326,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                     >
                         Jobbnummer
                     </TelefonInput>
-                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon}/>
+                    <TelefonMetadata telefon={this.props.person.kontaktinformasjon.jobbTelefon} />
                 </InputWrapper>
                 <FormKnapperWrapper>
                     <KnappBase
@@ -352,15 +347,14 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
                 </FormKnapperWrapper>
                 {this.Tilbakemelding()}
             </form>
-
         );
     }
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
-        reducerStatus: state.restEndepunkter.endreKontaktinformasjonReducer.status
-    });
+    return {
+        resourceStatus: state.restResources.endreKontaktinformasjon.status
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -368,8 +362,11 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
             dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
-        tilbakestillReducer: () => dispatch(tilbakestillReducer())
+        tilbakestill: () => dispatch(tilbakestill())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonForm);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(KontaktinformasjonForm);

@@ -35,7 +35,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 .c0 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 .5rem rgba(0,0,0,.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
   padding: 1.25rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -157,6 +157,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   className="c0"
   role="region"
 >
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
+  >
+    Visittkortdetaljer
+  </h2>
   <div
     className="c1"
   >

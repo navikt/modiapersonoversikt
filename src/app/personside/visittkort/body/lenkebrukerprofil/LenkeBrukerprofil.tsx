@@ -4,16 +4,11 @@ import { paths } from '../../../../routes/routing';
 import { Link } from 'react-router-dom';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 
-function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean, person: Person }) {
+function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; person: Person }) {
     if (props.nyModiaPersonoversikt) {
         return (
-            <Link
-                className="lenke"
-                to={`${paths.brukerprofil}/${props.person.fødselsnummer}`}
-            >
-                <Normaltekst tag="span">
-                    Administrer brukerprofil
-                </Normaltekst>
+            <Link className="lenke" to={`${paths.brukerprofil}/${props.person.fødselsnummer}`}>
+                <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
             </Link>
         );
     } else {
@@ -22,9 +17,7 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean, perso
                 className="lenke"
                 href={`${paths.legacyPersonPath}/${props.person.fødselsnummer}${paths.legacyBrukerprofil}`}
             >
-                <Normaltekst tag="span">
-                    Administrer brukerprofil
-                </Normaltekst>
+                <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
             </a>
         );
     }

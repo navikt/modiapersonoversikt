@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser meldingercontainer med alt innhold 1`] = `
+.c0 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
+}
+
+.c0 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="c0"
+>
+  <svg
+    aria-label="Laster innhold"
+    className="spinner spinner--xxl"
+    focusable="false"
+    height={32}
+    kind="spinner"
+    preserveAspectRatio="xMidYMid"
+    viewBox="0 0 50 50"
+    width={32}
+  >
+    <title>
+      Venter...
+    </title>
+    <circle
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+      stroke="#bdbab7"
+      strokeWidth="5"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+    <circle
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+      stroke="#7f756c"
+      strokeDasharray="50 155"
+      strokeLinecap="round"
+      strokeWidth="5"
+    />
+  </svg>
+</div>
+`;

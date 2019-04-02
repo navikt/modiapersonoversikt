@@ -1,7 +1,6 @@
-import { formatNumber } from '../../../utils/string-utils';
 import { BankAdresse, Bankkonto, Person } from '../../../models/person/person';
 import { Kodeverk } from '../../../models/kodeverk';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato, formatNumber } from '../../../utils/stringFormatting';
 
 export function formaterNorskKontonummer(kontonummer: string): string {
     const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
@@ -25,8 +24,7 @@ export function validerKontonummer(kontonummer?: string) {
         return false;
     }
 
-    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10)
-        === mod11FraTallMedKontrollsiffer(kontonummer);
+    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer);
 }
 
 export function removeWhitespaceAndDot(kontonummer: string): string {
@@ -44,7 +42,7 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
         }
     }
 
-    const result = (11 - sumForMod % 11);
+    const result = 11 - (sumForMod % 11);
     return result === 11 ? 0 : result;
 }
 

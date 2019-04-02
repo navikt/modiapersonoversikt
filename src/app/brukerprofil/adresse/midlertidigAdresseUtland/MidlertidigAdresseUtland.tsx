@@ -11,7 +11,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { RestReducer } from '../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../redux/restReducers/restResource';
 import { visEndringsinfo } from '../../utils/formUtils';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
@@ -44,13 +44,13 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    landReducer: RestReducer<KodeverkResponse>;
+    landResource: RestResource<KodeverkResponse>;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
 
 const InputLinje = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 function onGyldigTilChange(props: Props) {
@@ -77,7 +77,6 @@ function onLandChanged(input: Kodeverk, props: Props) {
 }
 
 class MidlertidigAdresseUtland extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
@@ -86,8 +85,10 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
         const utlandsadresseState = this.props.midlertidigAdresseUtland.value;
         const utlandsadresseValidering = this.props.midlertidigAdresseUtland.validering;
 
-        const gyldigTil = utlandsadresseState.periode && utlandsadresseState.periode.til ?
-            new Date(utlandsadresseState.periode.til) : undefined;
+        const gyldigTil =
+            utlandsadresseState.periode && utlandsadresseState.periode.til
+                ? new Date(utlandsadresseState.periode.til)
+                : undefined;
 
         return (
             <>
@@ -97,7 +98,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                     midlertidigAdresseUtlandInput={this.props.midlertidigAdresseUtland}
                 />
                 <InputLinje>
-                    <div style={{flex: 4, marginRight: 15}}>
+                    <div style={{ flex: 4, marginRight: 15 }}>
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 1"
@@ -110,7 +111,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                     </div>
                 </InputLinje>
                 <InputLinje>
-                    <div style={{flex: 4, marginRight: 15}}>
+                    <div style={{ flex: 4, marginRight: 15 }}>
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 2"
@@ -122,7 +123,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                     </div>
                 </InputLinje>
                 <InputLinje>
-                    <div style={{flex: 4, marginRight: 15}}>
+                    <div style={{ flex: 4, marginRight: 15 }}>
                         <Input
                             bredde={'XXL'}
                             label="Adresselinje 3"
@@ -137,20 +138,24 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
                     dato={gyldigTil}
                     innenEtÅr={true}
                     id={'utlandsadresse-datovelger'}
-                    feil={utlandsadresseValidering.felter.periode ?
-                        utlandsadresseValidering.felter.periode.skjemafeil : undefined}
+                    feil={
+                        utlandsadresseValidering.felter.periode
+                            ? utlandsadresseValidering.felter.periode.skjemafeil
+                            : undefined
+                    }
                     onChange={onGyldigTilChange(this.props)}
                 >
                     Gyldig til
                 </BrukerProfilDatovelger>
-            </>);
+            </>
+        );
     }
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
-        landReducer: state.restEndepunkter.landReducer
-    });
+    return {
+        landResource: state.restResources.land
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -159,4 +164,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MidlertidigAdresseUtland);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MidlertidigAdresseUtland);

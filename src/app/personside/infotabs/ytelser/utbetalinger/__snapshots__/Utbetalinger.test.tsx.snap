@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Utbetalinger matcher snapshot 1`] = `
+.c2 {
+  text-align: center;
+}
+
+.c1 {
+  padding: 0.5rem;
+}
+
+.c4 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
+}
+
+.c4 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c3 {
+  padding: 0.5rem;
+}
+
+.c0 {
+  margin-right: 1rem;
+}
+
+.c0 > * {
+  margin: 0.625rem 0;
+}
+
+<section
+  aria-label="Utbetalinger Foreldrepenger"
+  className="c0"
+>
+  <section>
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <h4
+          className="typo-undertittel"
+        >
+          Kommende utbetalinger
+        </h4>
+      </div>
+    </div>
+    <div
+      className="alertstripe alertstripe--info"
+    >
+      <span
+        aria-label="info"
+        className="alertstripe__ikon"
+      >
+        <svg
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-fyll"
+          viewBox="0 0 24 24"
+          width="1.5em"
+        >
+          <g
+            fill="none"
+            fillRule="evenodd"
+          >
+            <path
+              d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
+              fill="#FFA733"
+              fillRule="nonzero"
+            />
+            <path
+              d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
+              fill="#3E3832"
+            />
+            <path
+              d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
+              fill="#3E3832"
+              fillRule="nonzero"
+            />
+          </g>
+        </svg>
+      </span>
+      <span
+        className="typo-normal alertstripe__tekst"
+      >
+        Ingen kommende utbetalinger funnet
+      </span>
+    </div>
+  </section>
+  <section>
+    <div
+      className="c3"
+    >
+      <div
+        className="c2"
+      >
+        <h4
+          className="typo-undertittel"
+        >
+          Utførte utbetalinger
+        </h4>
+      </div>
+    </div>
+    <div
+      className="c4"
+    >
+      <svg
+        aria-label="Laster innhold"
+        className="spinner spinner--s"
+        focusable="false"
+        height={32}
+        kind="spinner"
+        preserveAspectRatio="xMidYMid"
+        viewBox="0 0 50 50"
+        width={32}
+      >
+        <title>
+          Venter...
+        </title>
+        <circle
+          cx="25"
+          cy="25"
+          fill="none"
+          r="20"
+          stroke="#bdbab7"
+          strokeWidth="5"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+        <circle
+          cx="25"
+          cy="25"
+          fill="none"
+          r="20"
+          stroke="#7f756c"
+          strokeDasharray="50 155"
+          strokeLinecap="round"
+          strokeWidth="5"
+        />
+      </svg>
+    </div>
+  </section>
+</section>
+`;

@@ -8,7 +8,7 @@ import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import baseUrlReducer from './baseurls';
 import endreNavnReducer from './brukerprofil/endreNavn';
-import endrekontonummer from './brukerprofil/endreKontonummer';
+import endrekontonummerReducer from './brukerprofil/endreKontonummer';
 import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettelagtKommunikasjon';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
@@ -22,8 +22,12 @@ import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
+import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
+import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
+import varselReducer from './varsel';
+import meldingerReducer from './meldinger';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -33,39 +37,46 @@ import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
-import { RestReducer } from './restReducer';
+import { RestResource } from './restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { Oppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { Varsel } from '../../models/varsel';
+import { Traad } from '../../models/meldinger/meldinger';
 
 export interface RestEndepunkter {
-    personinformasjon: RestReducer<PersonRespons>;
-    brukersNavKontor: RestReducer<BrukersNavKontorResponse>;
-    oppgaver: RestReducer<Oppgave[]>;
-    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
-    egenAnsatt: RestReducer<Egenansatt>;
-    vergemal: RestReducer<Vergemal>;
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    endreNavn: RestReducer<{}>;
-    endreKontonummer: RestReducer<{}>;
-    endreTilrettelagtKommunikasjon: RestReducer<{}>;
-    veilederRoller: RestReducer<VeilederRoller>;
-    retningsnummerReducer: RestReducer<KodeverkResponse>;
-    tilrettelagtKommunikasjonKodeverk: RestReducer<KodeverkResponse>;
-    endreKontaktinformasjonReducer: RestReducer<{}>;
-    postnummerReducer: RestReducer<KodeverkResponse>;
-    endreAdresseReducer: RestReducer<{}>;
-    valutaReducer: RestReducer<KodeverkResponse>;
-    landReducer: RestReducer<KodeverkResponse>;
-    utbetalingerReducer: RestReducer<UtbetalingerResponse>;
-    sykepengerReducer: RestReducer<SykepengerResponse>;
-    pleiepengerReducer: RestReducer<PleiepengerResponse>;
-    foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
-    oppfolgingReducer: RestReducer<Oppfolging>;
-    saksoversiktReducer: RestReducer<SakstemaResponse>;
+    personinformasjon: RestResource<PersonRespons>;
+    brukersNavKontor: RestResource<BrukersNavKontorResponse>;
+    oppgaver: RestResource<Oppgave[]>;
+    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
+    egenAnsatt: RestResource<Egenansatt>;
+    vergemal: RestResource<Vergemal>;
+    baseUrl: RestResource<BaseUrlsResponse>;
+    endreNavn: RestResource<{}>;
+    endreKontonummer: RestResource<{}>;
+    endreTilrettelagtKommunikasjon: RestResource<{}>;
+    veilederRoller: RestResource<VeilederRoller>;
+    retningsnummer: RestResource<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
+    endreKontaktinformasjon: RestResource<{}>;
+    postnummer: RestResource<KodeverkResponse>;
+    endreAdresse: RestResource<{}>;
+    valuta: RestResource<KodeverkResponse>;
+    land: RestResource<KodeverkResponse>;
+    utbetalinger: RestResource<UtbetalingerResponse>;
+    sykepenger: RestResource<SykepengerResponse>;
+    pleiepenger: RestResource<PleiepengerResponse>;
+    utførteUtbetalingerYtelser: RestResource<UtbetalingerResponse>;
+    foreldrepenger: RestResource<ForeldrepengerResponse>;
+    oppfolging: RestResource<Oppfolging>;
+    sakstema: RestResource<SakstemaResponse>;
+    featureToggles: RestResource<FeatureToggles>;
+    brukersVarsler: RestResource<Varsel[]>;
+    tråderOgMeldinger: RestResource<Traad[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -75,22 +86,26 @@ export default combineReducers<RestEndepunkter>({
     kontaktinformasjon: kontaktinformasjonReducer,
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
-    baseUrlReducer: baseUrlReducer,
-    endreKontonummer: endrekontonummer,
+    baseUrl: baseUrlReducer,
+    endreKontonummer: endrekontonummerReducer,
     endreNavn: endreNavnReducer,
     endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
     veilederRoller: veilederRollerReducer,
-    retningsnummerReducer: retningsnummereReducer,
+    retningsnummer: retningsnummereReducer,
     tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
-    endreKontaktinformasjonReducer: endreKontaktinformasjonReducer,
-    postnummerReducer: postnummerReducer,
-    endreAdresseReducer,
-    valutaReducer: valutaKodeverkReducer,
-    landReducer: landKodeverkReducer,
-    utbetalingerReducer: utbetalingerReducer,
-    sykepengerReducer: sykepengerReducer,
-    pleiepengerReducer: pleiepengerReducer,
-    foreldrepengerReducer: foreldrepengerReducer,
-    oppfolgingReducer: oppfolgingReducer,
-    saksoversiktReducer: saksoversiktReducer
+    endreKontaktinformasjon: endreKontaktinformasjonReducer,
+    postnummer: postnummerReducer,
+    endreAdresse: endreAdresseReducer,
+    valuta: valutaKodeverkReducer,
+    land: landKodeverkReducer,
+    utbetalinger: utbetalingerReducer,
+    sykepenger: sykepengerReducer,
+    pleiepenger: pleiepengerReducer,
+    utførteUtbetalingerYtelser: utførteUtbetalingerReducer,
+    foreldrepenger: foreldrepengerReducer,
+    oppfolging: oppfolgingReducer,
+    sakstema: saksoversiktReducer,
+    featureToggles: featureToggleReducer,
+    brukersVarsler: varselReducer,
+    tråderOgMeldinger: meldingerReducer
 });

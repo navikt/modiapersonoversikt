@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import Epost from './Epost';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
-import { RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { RestResource } from '../../../../../../redux/restReducers/restResource';
 
 interface Props {
-    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
+    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
 }
 
 class EpostContainer extends React.Component<Props> {
-
     render() {
-        return (
-            <Epost kontaktinformasjonReducer={this.props.kontaktinformasjon} />
-        );
+        return <Epost kontaktinformasjonResource={this.props.kontaktinformasjon} />;
     }
 }
 const mapStateToProps = (state: AppState) => {
-    return ({
-        kontaktinformasjon: state.restEndepunkter.kontaktinformasjon
-    });
+    return {
+        kontaktinformasjon: state.restResources.kontaktinformasjon
+    };
 };
 
-export default connect(mapStateToProps, null)(EpostContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(EpostContainer);

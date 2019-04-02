@@ -10,11 +10,11 @@ interface Props {
 }
 
 const CustomStyling = styled.nav`
-  ${theme.hvittPanel};
-  font-weight: bold;
-  a {
-    padding: ${theme.margin.px20};
-  }
+    ${theme.hvittPanel};
+    font-weight: bold;
+    a {
+        padding: ${theme.margin.px20};
+    }
 `;
 
 function LenkepanelPersonoversikt(props: Props) {
@@ -22,14 +22,9 @@ function LenkepanelPersonoversikt(props: Props) {
         <CustomStyling>
             <LenkepanelBase
                 href={props.url}
-                linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode =>
-                    <a
-                        target={'_blank'}
-                        rel={'noopener noreferrer'}
-                        {...props as React.HTMLProps<HTMLAnchorElement>}
-                    />
-
-                }
+                linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode => (
+                    <a target={'_blank'} rel={'noopener noreferrer'} {...props as React.HTMLProps<HTMLAnchorElement>} />
+                )}
             >
                 {props.children}
             </LenkepanelBase>

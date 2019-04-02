@@ -1,5 +1,5 @@
 import { plukkOppgaveFraServer } from '../../api/oppgave-api';
-import { createActionsAndReducer } from './restReducer';
+import { createActionsAndReducer } from './restResource';
 import { Oppgave } from '../../models/oppgave';
 
 const { reducer, action } = createActionsAndReducer<Oppgave[]>('oppgave');

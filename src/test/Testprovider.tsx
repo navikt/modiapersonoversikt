@@ -11,13 +11,11 @@ interface Props {
     customStore?: Store<AppState>;
 }
 
-function TestProvider({children, customStore}: Props) {
+function TestProvider({ children, customStore }: Props) {
     return (
         <Provider store={customStore || getTestStore()}>
             <StaticRouter context={{}}>
-                <>
-                    {children}
-                </>
+                <>{children}</>
             </StaticRouter>
         </Provider>
     );

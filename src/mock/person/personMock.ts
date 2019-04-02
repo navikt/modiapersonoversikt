@@ -24,10 +24,13 @@ import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
 import { getDiskresjonskode } from '../utils/diskresjonskode-util';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { moss } from './moss';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
         return aremark;
+    } else if (fødselsnummer === moss.fødselsnummer) {
+        return moss;
     } else if (!erGyldigFødselsnummer(fødselsnummer)) {
         return {};
     } else {
@@ -100,8 +103,10 @@ export function getBedriftsNavn(id: string): string {
 
 export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
-    const dødsdato = bostatus && bostatus.kodeRef === BostatusTyper.Død ? moment(faker.date.past(alder))
-        .format(moment.ISO_8601.__momentBuiltinFormatBrand) : undefined;
+    const dødsdato =
+        bostatus && bostatus.kodeRef === BostatusTyper.Død
+            ? moment(faker.date.past(alder)).format(moment.ISO_8601.__momentBuiltinFormatBrand)
+            : undefined;
     return {
         bostatus,
         dødsdato
@@ -110,9 +115,9 @@ export function getPersonstatus(alder: number): Bostatus {
 
 function getBostatus() {
     if (vektetSjanse(faker, 0.1)) {
-        return {kodeRef: BostatusTyper.Død, beskrivelse: 'Død'};
+        return { kodeRef: BostatusTyper.Død, beskrivelse: 'Død' };
     } else if (vektetSjanse(faker, 0.1)) {
-        return {kodeRef: BostatusTyper.Utvandret, beskrivelse: 'Utvandret'};
+        return { kodeRef: BostatusTyper.Utvandret, beskrivelse: 'Utvandret' };
     } else {
         return undefined;
     }
@@ -121,40 +126,30 @@ function getBostatus() {
 function getTilrettelagtKommunikasjonsListe() {
     var liste = [];
     if (vektetSjanse(faker, 0.1)) {
-        liste.push(
-            {
-                kodeRef: 'LESA',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
-            }
-        );
+        liste.push({
+            kodeRef: 'LESA',
+            beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+        });
     } else if (vektetSjanse(faker, 0.1)) {
-        liste.push(
-            {
-                kodeRef: 'KOSK',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
-            }
-        );
+        liste.push({
+            kodeRef: 'KOSK',
+            beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
+        });
     } else if (vektetSjanse(faker, 0.1)) {
-        liste.push(
-            {
-                kodeRef: 'KOMU',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
-            }
-        );
+        liste.push({
+            kodeRef: 'KOMU',
+            beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
+        });
     } else if (vektetSjanse(faker, 0.1)) {
-        liste.push(
-            {
-                kodeRef: 'TOHJ',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
-            }
-        );
+        liste.push({
+            kodeRef: 'TOHJ',
+            beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+        });
     } else if (vektetSjanse(faker, 0.1)) {
-        liste.push(
-            {
-                kodeRef: 'LESA',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
-            },
-        );
+        liste.push({
+            kodeRef: 'LESA',
+            beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+        });
     } else if (vektetSjanse(faker, 0.05)) {
         liste.push(
             {
@@ -192,7 +187,7 @@ function getFornavn(seededFaker: Faker.FakerStatic, fødselsnummer: string): str
 
 function getGeografiskTilknytning() {
     if (vektetSjanse(faker, 0.7)) {
-        return String(faker.random.number({min: 1000, max: 9999}));
+        return String(faker.random.number({ min: 1000, max: 9999 }));
     } else if (vektetSjanse(faker, 0.15)) {
         return faker.address.countryCode();
     } else {
@@ -202,7 +197,7 @@ function getGeografiskTilknytning() {
 
 function getStatsborgerskap() {
     if (vektetSjanse(faker, 0.7)) {
-        return {kodeRef: 'NOR', beskrivelse: 'NORGE'};
+        return { kodeRef: 'NOR', beskrivelse: 'NORGE' };
     }
     return {
         kodeRef: faker.address.countryCode(),

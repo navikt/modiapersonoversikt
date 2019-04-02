@@ -7,30 +7,41 @@ import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
-import { PersonContext } from '../../app/App';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
+import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 
 interface Props {
     fødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
+const Styles = styled.div`
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+    overflow-y: auto;
+`;
+
 class SaksoversiktLamell extends React.Component<Props> {
     render() {
         return (
-            <ErrorBoundary>
-                <PersonContext.Provider value={this.props.fødselsnummer}>
-                    <Provider store={store}>
-                        <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer}/>
-                    </Provider>
-                </PersonContext.Provider>
+            <ErrorBoundary boundaryName="Saksoversikt">
+                <Provider store={store}>
+                    <Styles>
+                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                        <FetchFeatureToggles />
+                        <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer} />
+                    </Styles>
+                </Provider>
             </ErrorBoundary>
         );
     }

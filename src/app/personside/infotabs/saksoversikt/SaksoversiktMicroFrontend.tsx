@@ -1,18 +1,16 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import SakstemaListeContainer from './SakstemaListeContainer';
-import DokumentListeContainer from './DokumentListeContainer';
+import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import { PersonRespons } from '../../../../models/person/person';
-import { hentAllPersonData } from '../../../../redux/restReducers/personinformasjon';
-import DokumentOgVedlegg from './DokumentOgVedlegg';
+import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
 import {
@@ -22,8 +20,11 @@ import {
     settValgtSakstema,
     settVisDokument
 } from '../../../../redux/saksoversikt/actions';
-import { sakstemakodeAlle } from './SakstemaListe';
-import { aggregertSakstema } from './saksoversiktUtils';
+import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
+import { aggregertSakstema } from './utils/saksoversiktUtils';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
+import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
+import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -31,38 +32,35 @@ interface OwnProps {
 }
 
 interface StateProps {
-    visDokument: boolean;
-    saksoversiktReducer: RestReducer<SakstemaResponse>;
-    personReducer: RestReducer<PersonRespons>;
+    saksoversiktResource: RestResource<SakstemaResponse>;
+    personResource: RestResource<PersonRespons>;
 }
 
 interface DispatchProps {
     hentSaksoversikt: (fødselsnummer: string) => void;
-    hentPerson: (fødselsnummer: string) => void;
     setErMicroFrontend: () => void;
     velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const SaksoversiktArticle = styled.article<{ visDokument: boolean }>`
+const SaksoversiktArticle = styled.article`
     display: flex;
     align-items: flex-start;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     > *:last-child {
-      width: 70%;
-      ${props => !props.visDokument && css`display: none`};
-      margin-left: ${theme.margin.layout};
-    }
-    > *:first-child {
-      ${props => props.visDokument && css`display: none`};
-      margin-right: ${theme.margin.layout};
+        width: 70%;
+        margin-left: ${theme.margin.layout};
     }
     > *:not(:last-child) {
-      overflow-y: scroll;
+        overflow-y: scroll;
     }
     > * {
-      height: 100%;
+        height: 100%;
+    }
+    .visually-hidden {
+        ${theme.visuallyHidden}
     }
 `;
 
@@ -71,9 +69,11 @@ function hentUtSakstema(sakstemaListe: Sakstema[], sakstemaKode: string, journal
         return aggregertSakstema(sakstemaListe);
     }
 
-    return sakstemaListe.find(sakstema =>
-        sakstema.temakode === sakstemaKode &&
-        (sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId) !== undefined));
+    return sakstemaListe.find(
+        sakstema =>
+            sakstema.temakode === sakstemaKode &&
+            sakstema.dokumentMetadata.find(metadata => metadata.journalpostId === journalpostId) !== undefined
+    );
 }
 
 function hentUtDokumentMetadata(sakstema: Sakstema, journalpostId: string): DokumentMetadata | undefined {
@@ -88,7 +88,7 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
 }
 
 function hentQueryParametreFraUrlOgVisDokument(props: Props) {
-    if (props.queryParamString && isLoaded(props.saksoversiktReducer)) {
+    if (props.queryParamString && isLoaded(props.saksoversiktResource)) {
         const queryParams = parseQueryParams(props.queryParamString);
         const sakstemaKode = queryParams.sakstemaKode;
         const journalId = queryParams.journalpostId;
@@ -98,7 +98,7 @@ function hentQueryParametreFraUrlOgVisDokument(props: Props) {
             return;
         }
 
-        const sakstemaListe = props.saksoversiktReducer.data.resultat;
+        const sakstemaListe = props.saksoversiktResource.data.resultat;
         const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
         if (!sakstema) {
             return;
@@ -119,20 +119,16 @@ function hentQueryParametreFraUrlOgVisDokument(props: Props) {
 }
 
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
-
     componentDidMount() {
         this.props.setErMicroFrontend();
-        if (isNotStarted(this.props.saksoversiktReducer)) {
+        if (isNotStarted(this.props.saksoversiktResource)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
-        }
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPerson(this.props.fødselsnummer);
         }
     }
 
     componentDidUpdate(prevProps: Props) {
         const førsteUpdateEtterLasting =
-            isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
+            isLoaded(this.props.saksoversiktResource) && !isLoaded(prevProps.saksoversiktResource);
 
         if (førsteUpdateEtterLasting) {
             hentQueryParametreFraUrlOgVisDokument(this.props);
@@ -141,11 +137,13 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
     render() {
         return (
-            <SaksoversiktArticle visDokument={this.props.visDokument}>
-                <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
-                    <SakstemaListeContainer/>
-                    <DokumentListeContainer/>
-                    <DokumentOgVedlegg/>
+            <SaksoversiktArticle>
+                <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                <FetchFeatureToggles />
+                <Innholdslaster avhengigheter={[this.props.saksoversiktResource]}>
+                    <DokumentListeContainer />
+                    <DokumentOgVedlegg />
                 </Innholdslaster>
             </SaksoversiktArticle>
         );
@@ -153,17 +151,15 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
-        visDokument: state.saksoversikt.visDokument,
-        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
-        personReducer: state.restEndepunkter.personinformasjon
-    });
+    return {
+        saksoversiktResource: state.restResources.sakstema,
+        personResource: state.restResources.personinformasjon
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => hentAllPersonData(dispatch, fødselsnummer),
         setErMicroFrontend: () => dispatch(setErStandaloneVindu(true)),
         velgOgVisDokument: (sakstema: Sakstema, dokument: DokumentMetadata, enkeltdokument: Dokument) => {
             dispatch(settValgtSakstema(sakstema));
@@ -174,4 +170,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SaksoversiktMicroFrontend);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SaksoversiktMicroFrontend);

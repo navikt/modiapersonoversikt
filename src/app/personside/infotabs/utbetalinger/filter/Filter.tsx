@@ -1,50 +1,36 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
-import { Feilmelding } from '../../../../../utils/Feilmelding';
-import moment from 'moment';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { isLoaded, isLoading, isReloading, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, isLoading, isReloading, RestResource } from '../../../../../redux/restReducers/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
-import theme from '../../../../../styles/personOversiktTheme';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
-import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
-import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../api/utbetaling-api';
-import { formaterDato } from '../../../../../utils/dateUtils';
-import { Avgrensninger } from 'nav-datovelger';
+import { AppState } from '../../../../../redux/reducers';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import { connect } from 'react-redux';
+import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
+import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
+import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 
-export interface FilterState {
-    periode: PeriodeOptions;
-    utbetaltTil: Array<string>;
-    ytelser: Array<string>;
-}
-
-interface PeriodeOptions {
-    radioValg: PeriodeValg;
-    egendefinertPeriode: FraTilDato;
-}
-
-export interface FraTilDato {
-    fra: Date;
-    til: Date;
-}
-
-interface Props {
-    onChange: (change: Partial<FilterState>) => void;
+interface OwnProps {
     hentUtbetalinger: () => void;
-    filterState: FilterState;
-    utbetalingReducer: RestReducer<UtbetalingerResponse>;
 }
 
-export enum PeriodeValg {
-    SISTE_30_DAGER = 'Siste 30 dager',
-    INNEVÆRENDE_ÅR = 'Inneværende år',
-    I_FJOR = 'I fjor',
-    EGENDEFINERT = 'Egendefinert'
+interface StateProps {
+    filter: UtbetalingFilterState;
+    fødselsnummer: string;
+    utbetalingerResource: RestResource<UtbetalingerResponse>;
 }
+
+interface DispatchProps {
+    updateFilter: (change: Partial<UtbetalingFilterState>) => void;
+}
+
+type Props = DispatchProps & StateProps & OwnProps;
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
@@ -95,86 +81,12 @@ const WrapOnSmallScreen = styled.div`
 `;
 
 function onRadioChange(props: Props, key: PeriodeValg) {
-    props.onChange({
+    props.updateFilter({
         periode: {
-            ...props.filterState.periode,
+            ...props.filter.periode,
             radioValg: key
         }
     });
-}
-
-function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
-    const newPeriode: FraTilDato = {
-        fra:
-            dato.fra && moment(dato.fra).isValid()
-                ? dato.fra
-                : new Date(props.filterState.periode.egendefinertPeriode.fra),
-        til:
-            dato.til && moment(dato.til).isValid()
-                ? dato.til
-                : new Date(props.filterState.periode.egendefinertPeriode.til)
-    };
-    props.onChange({
-        periode: {
-            ...props.filterState.periode,
-            egendefinertPeriode: newPeriode
-        }
-    });
-}
-
-function getDatoFeilmelding(fra: Date, til: Date) {
-    if (fra > til) {
-        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
-    }
-    if (til > new Date()) {
-        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato frem i tid' }} />;
-    }
-    if (fra < tidligsteTilgjengeligeDatoUtbetalingerRestkonto) {
-        return (
-            <Feilmelding
-                feil={{
-                    feilmelding: `Du kan ikke velge en dato før ${formaterDato(
-                        tidligsteTilgjengeligeDatoUtbetalingerRestkonto
-                    )}`
-                }}
-            />
-        );
-    }
-    return null;
-}
-
-function egendefinertDatoInputs(props: Props) {
-    const fra = props.filterState.periode.egendefinertPeriode.fra;
-    const til = props.filterState.periode.egendefinertPeriode.til;
-    const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger: Avgrensninger = {
-        minDato: tidligsteTilgjengeligeDatoUtbetalingerRestkonto,
-        maksDato: new Date()
-    };
-
-    return (
-        <>
-            <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
-            <Datovelger
-                input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
-                visÅrVelger={true}
-                dato={props.filterState.periode.egendefinertPeriode.fra}
-                onChange={dato => onDatoChange(props, { fra: dato })}
-                id="utbetalinger-datovelger-fra"
-                avgrensninger={avgrensninger}
-            />
-            <label htmlFor="utbetalinger-datovelger-til">Til:</label>
-            <Datovelger
-                input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
-                visÅrVelger={true}
-                dato={props.filterState.periode.egendefinertPeriode.til}
-                onChange={dato => onDatoChange(props, { til: dato })}
-                id="utbetalinger-datovelger-til"
-                avgrensninger={avgrensninger}
-            />
-            {periodeFeilmelding}
-        </>
-    );
 }
 
 function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
@@ -184,7 +96,7 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
 function Filtrering(props: Props) {
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];
-        const checked = props.filterState.periode.radioValg === label;
+        const checked = props.filter.periode.radioValg === label;
         return (
             <Radio
                 key={label}
@@ -196,34 +108,36 @@ function Filtrering(props: Props) {
         );
     });
 
-    const visSpinner = isLoading(props.utbetalingReducer) || isReloading(props.utbetalingReducer);
-    const checkBokser = isLoaded(props.utbetalingReducer) && visCheckbokser(props.utbetalingReducer.data) && (
+    const visSpinner = isLoading(props.utbetalingerResource) || isReloading(props.utbetalingerResource);
+    const checkBokser = isLoaded(props.utbetalingerResource) && visCheckbokser(props.utbetalingerResource.data) && (
         <>
             <InputPanel>
                 <EtikettLiten>Utbetaling til</EtikettLiten>
                 <UtbetaltTilValg
-                    utbetalinger={props.utbetalingReducer.data.utbetalinger}
-                    onChange={props.onChange}
-                    filterState={props.filterState}
+                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
+                    onChange={props.updateFilter}
+                    filterState={props.filter}
                 />
             </InputPanel>
             <InputPanel>
                 <EtikettLiten>Velg ytelse</EtikettLiten>
                 <YtelseValg
-                    onChange={props.onChange}
-                    filterState={props.filterState}
-                    utbetalinger={props.utbetalingReducer.data.utbetalinger}
+                    onChange={props.updateFilter}
+                    filterState={props.filter}
+                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
                 />
             </InputPanel>
         </>
     );
-    const hentUtbetalinger = (
+    const hentUtbetalingerPanel = (
         <InputPanel>
             <FieldSet>
                 <EtikettLiten tag="legend">Velg periode</EtikettLiten>
                 {radios}
             </FieldSet>
-            {props.filterState.periode.radioValg === PeriodeValg.EGENDEFINERT && egendefinertDatoInputs(props)}
+            {props.filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
+                <EgendefinertDatoInputs filter={props.filter} updateFilter={props.updateFilter} />
+            )}
             <KnappWrapper>
                 <Knapp onClick={props.hentUtbetalinger} spinner={visSpinner} htmlType="button">
                     Hent utbetalinger
@@ -236,11 +150,28 @@ function Filtrering(props: Props) {
             <Undertittel>Filtrering</Undertittel>
 
             <WrapOnSmallScreen>
-                {hentUtbetalinger}
+                {hentUtbetalingerPanel}
                 {checkBokser}
             </WrapOnSmallScreen>
         </FiltreringsPanel>
     );
 }
 
-export default Filtrering;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        utbetalingerResource: state.restResources.utbetalinger,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
+        filter: state.utbetalinger.filter
+    };
+}
+
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        updateFilter: (change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change))
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Filtrering);

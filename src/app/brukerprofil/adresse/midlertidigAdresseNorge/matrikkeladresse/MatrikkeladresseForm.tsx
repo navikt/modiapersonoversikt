@@ -15,14 +15,14 @@ interface Props {
 }
 
 function onPostinformasjonChange(props: Props) {
-    return ({poststed, postnummer}: PoststedInformasjon) => {
-        props.onChange({...props.matrikkeladresse, postnummer, poststed});
+    return ({ poststed, postnummer }: PoststedInformasjon) => {
+        props.onChange({ ...props.matrikkeladresse, postnummer, poststed });
     };
 }
 
 function MatrikkeladresseForm(props: Props) {
-    const {matrikkeladresse, validering} = props;
-    const {postnummer, poststed} = matrikkeladresse;
+    const { matrikkeladresse, validering } = props;
+    const { postnummer, poststed } = matrikkeladresse;
     const gyldigTil = props.matrikkeladresse.periode ? new Date(props.matrikkeladresse.periode.til) : undefined;
 
     return (
@@ -32,25 +32,26 @@ function MatrikkeladresseForm(props: Props) {
                 label="Merkes med C/O"
                 value={matrikkeladresse.tilleggsadresse || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...props.matrikkeladresse, tilleggsadresse: event.target.value})}
+                    props.onChange({ ...props.matrikkeladresse, tilleggsadresse: event.target.value })
+                }
             />
             <Input
                 bredde={'XXL'}
                 label="Områdeadresse"
                 value={props.matrikkeladresse.eiendomsnavn || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...props.matrikkeladresse, eiendomsnavn: event.target.value})}
+                    props.onChange({ ...props.matrikkeladresse, eiendomsnavn: event.target.value })
+                }
                 feil={validering.felter.eiendomsnavn ? validering.felter.eiendomsnavn.skjemafeil : undefined}
-
             />
             <PoststedVelger
-                poststedInformasjon={{postnummer, poststed}}
+                poststedInformasjon={{ postnummer, poststed }}
                 onChange={onPostinformasjonChange(props)}
                 feil={props.validering.felter.postnummer.skjemafeil}
             />
             <BrukerProfilDatovelger
                 id={'postboksadresse-gyldig-til'}
-                onChange={(date: Date) => props.onChange({...matrikkeladresse, periode: tilPeriode(date)})}
+                onChange={(date: Date) => props.onChange({ ...matrikkeladresse, periode: tilPeriode(date) })}
                 dato={gyldigTil}
                 innenEtÅr={true}
                 feil={validering.felter.periode ? validering.felter.periode.skjemafeil : undefined}

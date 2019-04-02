@@ -25,6 +25,8 @@ import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { getMockVarsler } from './varsel-mock';
+import { getMockTraader } from './meldinger/meldinger-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -143,6 +145,28 @@ function setupYtelserOgKontrakter(mock: FetchMock) {
             randomDelay(),
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockYtelserOgKontrakter(fodselsnummer))
+        )
+    );
+}
+
+function setupVarselMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/varsel/:fodselsnummer',
+        withDelayedResponse(
+            randomDelay(),
+            fødselsNummerErGyldigStatus,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
+        )
+    );
+}
+
+function setupMeldingerMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/meldinger/:fodselsnummer/traader',
+        withDelayedResponse(
+            randomDelay(),
+            fødselsNummerErGyldigStatus,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
         )
     );
 }
@@ -308,9 +332,14 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+let mockInitialised = false;
 export function setupMock() {
+    if (mockInitialised) {
+        return;
+    } else {
+        mockInitialised = true;
+    }
     console.log('### MOCK ENABLED! ###');
-    /* tslint:disable-next-line */
 
     const mock = FetchMock.configure({
         enableFallback: true,
@@ -345,5 +374,7 @@ export function setupMock() {
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
+    setupMeldingerMock(mock);
     setupYtelserOgKontrakter(mock);
+    setupVarselMock(mock);
 }

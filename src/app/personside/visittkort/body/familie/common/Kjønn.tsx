@@ -12,13 +12,13 @@ export function getKjønnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
         case Kjønn.Mann:
-            return <MannIkon/>;
+            return <MannIkon />;
         case Kjønn.Kvinne:
-            return <KvinneIkon/>;
+            return <KvinneIkon />;
         case Kjønn.Diskresjonskode:
-            return <DiskresjonskodeIkon/>;
+            return <DiskresjonskodeIkon />;
         default:
-            return <DiskresjonskodeIkon/>;
+            return <DiskresjonskodeIkon />;
     }
 }
 
@@ -26,13 +26,13 @@ export function getKjønnBarnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
         case Kjønn.Mann:
-            return <Guttebarn/>;
+            return <Guttebarn />;
         case Kjønn.Kvinne:
-            return <Jentebarn/>;
+            return <Jentebarn />;
         case Kjønn.Diskresjonskode:
-            return <DiskresjonskodeIkon/>;
+            return <DiskresjonskodeIkon />;
         default:
-            return <DiskresjonskodeIkon/>;
+            return <DiskresjonskodeIkon />;
     }
 }
 

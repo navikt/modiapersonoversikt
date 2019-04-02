@@ -45,7 +45,6 @@ test('sorterer retningsnummer med norge først', () => {
 
     expect(sorterteRetningsnummer.kodeverk[0].kodeRef).toBe('+47');
     expect(sorterteRetningsnummer.kodeverk[1].kodeRef).toBe('+54');
-
 });
 
 test('validerer et gyldig telefonnummer', () => {

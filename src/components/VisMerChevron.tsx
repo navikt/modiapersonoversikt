@@ -11,20 +11,20 @@ interface Props {
 }
 
 const ChevronKnappStyle = styled.button`
-  border: none;
-  padding: .1rem;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-  &:focus {
-    ${theme.focus}
-  }
+    border: none;
+    padding: 0.1rem;
+    border-radius: 0.5em;
+    cursor: pointer;
+    background-color: transparent;
+    &:focus {
+        ${theme.focus}
+    }
 `;
 
 function VisMerChevron(props: Props) {
     return (
         <ChevronKnappStyle onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer" title={props.title}>
-            <NavFrontendChevron type={props.open ? 'opp' : 'ned'}/>
+            <NavFrontendChevron type={props.open ? 'opp' : 'ned'} />
             {props.children}
         </ChevronKnappStyle>
     );

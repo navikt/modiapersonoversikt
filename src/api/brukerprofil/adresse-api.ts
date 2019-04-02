@@ -59,12 +59,13 @@ function getGyldigTil(periode?: Periode) {
 }
 
 export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
-    const {poststed, periode, ...mappedGateadresse} = gateadresse;
+    const { poststed, periode, ...mappedGateadresse } = gateadresse;
     const request: EndreAdresseRequest = {
         norskAdresse: {
             gateadresse: {
                 ...mappedGateadresse,
-                gyldigTil: getGyldigTil(gateadresse.periode)},
+                gyldigTil: getGyldigTil(gateadresse.periode)
+            },
             matrikkeladresse: null,
             postboksadresse: null
         },
@@ -75,14 +76,15 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
 }
 
 export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladresse: Matrikkeladresse) {
-    const {poststed, periode, ...mappedMatrikkeladresse} = matrikkeladresse;
+    const { poststed, periode, ...mappedMatrikkeladresse } = matrikkeladresse;
     const request: EndreAdresseRequest = {
         norskAdresse: {
             gateadresse: null,
             postboksadresse: null,
             matrikkeladresse: {
                 ...mappedMatrikkeladresse,
-                gyldigTil: getGyldigTil(matrikkeladresse.periode)},
+                gyldigTil: getGyldigTil(matrikkeladresse.periode)
+            }
         },
         utenlandskAdresse: null,
         folkeregistrertAdresse: false
@@ -91,7 +93,7 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
 }
 
 export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse: Postboksadresse) {
-    const {poststed, periode, ...mappedPostboksadresse} = postboksadresse;
+    const { poststed, periode, ...mappedPostboksadresse } = postboksadresse;
     const request: EndreAdresseRequest = {
         norskAdresse: {
             gateadresse: null,

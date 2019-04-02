@@ -7,16 +7,18 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../redux/reducers';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../redux/restReducers/oppgaver';
 import StartBildeLayout from './StartBildeLayout';
-import ReducerFeilmelding from '../../components/feilmelding/ReducerFeilmelding';
+import ResourceFeilmelding from '../../components/feilmelding/ResourceFeilmelding';
 import { Oppgave } from '../../models/oppgave';
-import { settPersonIKontekst } from '../routes/routing';
-import { isLoading, RestReducer } from '../../redux/restReducers/restReducer';
+import { paths, setNyBrukerIPath } from '../routes/routing';
+import { isLoading, RestResource } from '../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { aremark } from '../../mock/person/aremark';
+import { moss } from '../../mock/person/moss';
 
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgaveReducer: RestReducer<Oppgave[]>;
+    oppgaveResource: RestResource<Oppgave[]>;
     routeHistory: History;
 }
 
@@ -27,7 +29,6 @@ interface DispatchProps {
 type StartbildeProps = StartbildeStateProps & DispatchProps & RouteComponentProps<{}>;
 
 class Startbilde extends React.Component<StartbildeProps> {
-
     constructor(props: StartbildeProps) {
         super(props);
         this.onPlukkOppgaveKlikk = this.onPlukkOppgaveKlikk.bind(this);
@@ -39,12 +40,16 @@ class Startbilde extends React.Component<StartbildeProps> {
             if (!fødselsnummer) {
                 throw new Error('Ingen oppgave ble returnert når oppgaver ble plukket');
             }
-            settPersonIKontekst(this.props.history, fødselsnummer);
+            setNyBrukerIPath(this.props.history, fødselsnummer);
         });
     }
 
     snarveiTilAremark() {
-        settPersonIKontekst(this.props.history, '10108000398');
+        setNyBrukerIPath(this.props.history, aremark.fødselsnummer);
+    }
+
+    snarveiTilMoss() {
+        setNyBrukerIPath(this.props.history, moss.fødselsnummer);
     }
 
     render() {
@@ -53,14 +58,20 @@ class Startbilde extends React.Component<StartbildeProps> {
                 <KnappBase onClick={() => this.snarveiTilAremark()} type="hoved">
                     Snarvei til Aremark!
                 </KnappBase>
+                <KnappBase onClick={() => this.snarveiTilMoss()} type="hoved">
+                    Snarvei til Moss!
+                </KnappBase>
+                <KnappBase onClick={() => this.props.history.push(paths.standaloneKomponenter)} type="hoved">
+                    Snarvei til standalone-komponenter
+                </KnappBase>
                 <KnappBase
                     type="hoved"
                     onClick={this.onPlukkOppgaveKlikk}
-                    spinner={isLoading(this.props.oppgaveReducer)}
+                    spinner={isLoading(this.props.oppgaveResource)}
                 >
                     Hent oppgave
                 </KnappBase>
-                <ReducerFeilmelding reducer={this.props.oppgaveReducer}/>
+                <ResourceFeilmelding resource={this.props.oppgaveResource} />
             </StartBildeLayout>
         );
     }
@@ -70,15 +81,20 @@ function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): 
     return {
         valgtEnhet: '4100',
         valgtTemagruppe: '',
-        oppgaveReducer: state.restEndepunkter.oppgaver,
+        oppgaveResource: state.restResources.oppgaver,
         routeHistory: routeProps.history
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        plukkOppgaver: () => dispatch(plukkOppgaver('')),
+        plukkOppgaver: () => dispatch(plukkOppgaver(''))
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Startbilde));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Startbilde)
+);

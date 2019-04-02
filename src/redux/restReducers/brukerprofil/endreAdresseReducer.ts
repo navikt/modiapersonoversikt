@@ -1,11 +1,14 @@
-import { createActionsAndReducer } from '../restReducer';
+import { createActionsAndReducer } from '../restResource';
 import {
-    postEndreMatrikkeladresse, postEndreNorskGateadresse,
-    postEndrePostboksadresse, postEndreUtenlandsadresse, postSlettMidlertidigeAdresser
+    postEndreMatrikkeladresse,
+    postEndreNorskGateadresse,
+    postEndrePostboksadresse,
+    postEndreUtenlandsadresse,
+    postSlettMidlertidigeAdresser
 } from '../../../api/brukerprofil/adresse-api';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 
-const { reducer, action, tilbakestillReducer, actionNames } = createActionsAndReducer('endreadresse');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('endreadresse');
 
 export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
     return action(() => postEndreNorskGateadresse(fødselsnummer, gateadresse));
@@ -28,7 +31,7 @@ export function endreUtlandsadresse(fødselsnummer: string, utlandsadresse: Utla
 }
 
 export function reset() {
-    return tilbakestillReducer;
+    return tilbakestill;
 }
 
 export { actionNames };

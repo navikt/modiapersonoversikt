@@ -10,7 +10,7 @@ import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
-import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -18,7 +18,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    retningsnummerReducer: RestReducer<KodeverkResponse>;
+    retningsnummerResource: RestResource<KodeverkResponse>;
 }
 
 interface OwnProps {
@@ -28,17 +28,16 @@ interface OwnProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 const NavKontaktinformasjonWrapper = styled.div`
-  margin-top: 2em;
+    margin-top: 2em;
 `;
 
 class KontaktinformasjonFormContainer extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
     }
 
     componentDidMount() {
-        if (isNotStarted(this.props.retningsnummerReducer)) {
+        if (isNotStarted(this.props.retningsnummerResource)) {
             this.props.hentRetningsnummer();
         }
     }
@@ -47,11 +46,13 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
         return (
             <div>
                 <Undertittel>Kontaktinformasjon</Undertittel>
-                <Innholdslaster avhengigheter={[this.props.retningsnummerReducer]}>
+                <Innholdslaster avhengigheter={[this.props.retningsnummerResource]}>
                     <NavKontaktinformasjonWrapper>
                         <KontaktinformasjonForm
                             person={this.props.person}
-                            retningsnummerKodeverk={(this.props.retningsnummerReducer as Loaded<KodeverkResponse>).data}
+                            retningsnummerKodeverk={
+                                (this.props.retningsnummerResource as Loaded<KodeverkResponse>).data
+                            }
                         />
                     </NavKontaktinformasjonWrapper>
                 </Innholdslaster>
@@ -61,10 +62,10 @@ class KontaktinformasjonFormContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps & OwnProps => {
-    return ({
-        retningsnummerReducer: state.restEndepunkter.retningsnummerReducer,
+    return {
+        retningsnummerResource: state.restResources.retningsnummer,
         person: ownProps.person
-    });
+    };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -73,4 +74,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KontaktinformasjonFormContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(KontaktinformasjonFormContainer);

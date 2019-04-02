@@ -3,17 +3,17 @@ import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import { KontaktinformasjonVerdi, KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import Innholdslaster from '../../../../../../components/Innholdslaster';
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
-import { Loaded, RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { Loaded, RestResource } from '../../../../../../redux/restReducers/restResource';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface EpostProps {
     epost: KontaktinformasjonVerdi;
 }
 
-function Epost({epost}: EpostProps) {
+function Epost({ epost }: EpostProps) {
     const formatertDato = formaterDato(epost.sistOppdatert);
     return (
         <>
@@ -27,7 +27,7 @@ interface EpostVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
+export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>
@@ -36,24 +36,21 @@ export function EpostVisning({kontaktinformasjon}: EpostVisningProps) {
             </>
         );
     } else if (kontaktinformasjon.epost) {
-        return <Epost epost={kontaktinformasjon.epost}/>;
+        return <Epost epost={kontaktinformasjon.epost} />;
     } else {
         return <Normaltekst>Ikke registrert</Normaltekst>;
     }
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonReducer: RestReducer<KRRKontaktinformasjon>;
+    kontaktinformasjonResource: RestResource<KRRKontaktinformasjon>;
 }
 
-function EpostWrapper({kontaktinformasjonReducer}: EpostWrapperProps) {
+function EpostWrapper({ kontaktinformasjonResource }: EpostWrapperProps) {
     return (
-        <VisittkortElement
-            beskrivelse="E-post"
-            ikon={<EmailIkon/>}
-        >
-            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonReducer]}>
-                <EpostVisning kontaktinformasjon={(kontaktinformasjonReducer as Loaded<KRRKontaktinformasjon>).data}/>
+        <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
+            <Innholdslaster spinnerSize={'L'} avhengigheter={[kontaktinformasjonResource]}>
+                <EpostVisning kontaktinformasjon={(kontaktinformasjonResource as Loaded<KRRKontaktinformasjon>).data} />
             </Innholdslaster>
         </VisittkortElement>
     );

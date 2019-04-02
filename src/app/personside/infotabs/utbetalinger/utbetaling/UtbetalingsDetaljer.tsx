@@ -20,21 +20,21 @@ type Props = {
 };
 
 const Wrapper = styled.aside`
-  th:not(:first-child) {
-    font-weight: normal;
-    font-style: italic;
-  }
+    th:not(:first-child) {
+        font-weight: normal;
+        font-style: italic;
+    }
 `;
 
 const OversiktStyle = styled.div`
-  td:not(:first-child) {
-    font-weight: bold;
-  }
+    td:not(:first-child) {
+        font-weight: bold;
+    }
 `;
 
 const Border = styled.div`
-  border-top: ${theme.border.skilleSvak};
-  margin: .5rem 0;
+    border-top: ${theme.border.skilleSvak};
+    margin: 0.5rem 0;
 `;
 
 function utbetalingsDetaljerTable(ytelse: Ytelse) {
@@ -51,37 +51,27 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                         ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
                         ytelseskomponent.satsantall,
                         formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
-                    ]));
+                    ])
+                );
         }
 
         if (ytelse.skattListe) {
             ytelse.skattListe
                 .sort(skattBelopAscComparator)
                 .map(skattElement =>
-                    tabellElementer.push([
-                        'Skattetrekk',
-                        '',
-                        '',
-                        formaterNOK(skattElement.skattebeløp)
-                    ]));
+                    tabellElementer.push(['Skattetrekk', '', '', formaterNOK(skattElement.skattebeløp)])
+                );
         }
 
         if (ytelse.trekkListe) {
             ytelse.trekkListe
                 .sort(trekkBelopAscComparator)
                 .map(trekkElement =>
-                    tabellElementer.push([
-                        trekkElement.trekktype,
-                        '',
-                        '',
-                        formaterNOK(trekkElement.trekkbeløp)
-                    ]));
+                    tabellElementer.push([trekkElement.trekktype, '', '', formaterNOK(trekkElement.trekkbeløp)])
+                );
         }
 
-        return createTable(
-            tittelrekke,
-            tabellElementer
-        );
+        return createTable(tittelrekke, tabellElementer);
     } else {
         return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
     }
@@ -92,26 +82,26 @@ function UtbetalingsDetaljer(props: Props) {
     const detaljer = utbetalingsDetaljerTable(ytelse);
     const oversikt = createTable(
         ['Konto', 'Brutto', 'Trekk', 'Utbetalt'],
-        [[
-            props.konto,
-            formaterNOK(ytelse.ytelseskomponentersum),
-            formaterNOK(ytelse.skattsum + ytelse.trekksum),
-            formaterNOK(ytelse.nettobeløp)
-        ]]
+        [
+            [
+                props.konto,
+                formaterNOK(ytelse.ytelseskomponentersum),
+                formaterNOK(ytelse.skattsum + ytelse.trekksum),
+                formaterNOK(ytelse.nettobeløp)
+            ]
+        ]
     );
     return (
         <Wrapper aria-label="Utbetalingsdetaljer">
             <Normaltekst tag="span">
-                <OversiktStyle>
-                    {oversikt}
-                </OversiktStyle>
+                <OversiktStyle>{oversikt}</OversiktStyle>
             </Normaltekst>
-            <Border/>
-            <Normaltekst tag="span">
-                {detaljer}
+            <Border />
+            <Normaltekst tag="span">{detaljer}</Normaltekst>
+            <Border />
+            <Normaltekst tag={'h4'}>
+                <Bold>Melding</Bold>
             </Normaltekst>
-            <Border/>
-            <Normaltekst tag={'h4'}><Bold>Melding</Bold></Normaltekst>
             <Normaltekst>{props.melding || ''}</Normaltekst>
         </Wrapper>
     );

@@ -11,10 +11,10 @@ export enum UIActionTypes {
 
 export interface UIState {
     visittkort: {
-        apent: boolean
+        apent: boolean;
     };
     dialogPanel: {
-        ekspandert: boolean
+        ekspandert: boolean;
     };
 }
 

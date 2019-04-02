@@ -3,7 +3,7 @@ import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalin
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import {
     createTable,
     getBruttoSumYtelser,

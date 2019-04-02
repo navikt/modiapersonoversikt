@@ -1,5 +1,5 @@
 import { Periode } from '../periode';
-import { HistoriskUtbetaling, KommendeUtbetaling } from './ytelse-utbetalinger';
+import { KommendeUtbetaling } from './ytelse-utbetalinger';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;
@@ -62,7 +62,6 @@ export interface Foreldrepengerperiode {
     rettTilFedrekvote: string;
     rettTilMødrekvote: string;
     stansårsak: string | null;
-    historiskeUtbetalinger: HistoriskUtbetaling[];
     kommendeUtbetalinger: KommendeUtbetaling[];
 }
 

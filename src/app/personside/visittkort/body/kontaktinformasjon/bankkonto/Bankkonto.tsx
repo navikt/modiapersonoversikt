@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../../VisittkortElement';
 import { Person } from '../../../../../../models/person/person';
-import { formaterDato } from '../../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import CoinsIkon from '../../../../../../svg/Coins';
@@ -12,14 +12,14 @@ interface BankkontoProps {
     person: Person;
 }
 
-function Bankkonto({person}: BankkontoProps) {
+function Bankkonto({ person }: BankkontoProps) {
     let beskrivelse = 'Kontonummer';
     if (person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kodeRef !== 'NOR') {
         beskrivelse += ' utland';
     }
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon/>}>
+        <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
             {kontoinfo(person)}
         </VisittkortElement>
     );
@@ -32,9 +32,11 @@ function kontoinfo(person: Person) {
         return (
             <>
                 <Normaltekst>
-                    <FormatertKontonummer kontonummer={person.bankkonto.kontonummer}/>
+                    <FormatertKontonummer kontonummer={person.bankkonto.kontonummer} />
                 </Normaltekst>
-                <EtikettGrå>Endret {formatertDato} {endretAv}</EtikettGrå>
+                <EtikettGrå>
+                    Endret {formatertDato} {endretAv}
+                </EtikettGrå>
             </>
         );
     }

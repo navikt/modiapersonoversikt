@@ -2,7 +2,7 @@ import moment from 'moment';
 
 export enum Baksystem {
     Gsak = 'GSAK',
-    Pesys  = 'PESYS',
+    Pesys = 'PESYS',
     SakOgBehandling = 'SAK_OG_BEHANDLING',
     Joark = 'JOARK',
     JoarkSikkerhetsbegrensning = 'JOARK_SIKKERHETSBEGRENSNING',
@@ -26,5 +26,5 @@ export function saksdatoSomDate(saksdato: Saksdato): Date {
 }
 
 function padZero(date: number): string {
-   return date > 9 ? `${date}` : `0${date}`;
+    return date > 9 ? `${date}` : `0${date}`;
 }

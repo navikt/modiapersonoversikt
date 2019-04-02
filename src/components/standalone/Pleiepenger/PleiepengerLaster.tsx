@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet, PleiepengerResponse } from '../../../models/ytelse/pleiepenger';
-import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import { AppState } from '../../../redux/reducers';
 import { hentPleiepenger } from '../../../redux/restReducers/ytelser/pleiepenger';
@@ -21,7 +21,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    pleiepengerReducer: RestReducer<PleiepengerResponse>;
+    pleiepengerResource: RestResource<PleiepengerResponse>;
 }
 
 interface DispatchProps {
@@ -31,38 +31,35 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 const Margin = styled.div`
-  margin: .5em;
+    margin: 0.5em;
 `;
 
 const Style = styled.div`
-  ${theme.hvittPanel};
-  max-width: ${theme.width.ytelser};
+    ${theme.hvittPanel};
+    max-width: ${theme.width.ytelser};
 `;
 
 const onPending = (
     <FillCenterAndFadeIn>
         <Margin>
-            <NavFrontendSpinner type={'XL'}/>
+            <NavFrontendSpinner type={'XL'} />
         </Margin>
     </FillCenterAndFadeIn>
 );
 
 const onError = (
     <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">
-            Beklager. Det skjedde en feil ved lasting av pleiepenger.
-        </AlertStripe>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av pleiepenger.</AlertStripe>
     </FillCenterAndFadeIn>
 );
 
 class PleiepengerLaster extends React.PureComponent<Props> {
-
     constructor(props: Props) {
         super(props);
     }
 
     componentDidMount() {
-        if (!isLoaded(this.props.pleiepengerReducer)) {
+        if (!isLoaded(this.props.pleiepengerResource)) {
             this.props.hentPleiepenger(this.props.fødselsnummer);
         }
     }
@@ -72,24 +69,31 @@ class PleiepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne noen pleiepengerettigheter for bruker</AlertStripeInfo>;
         }
 
-        const aktuellRettighet = pleiepengeRettighet
-            .find(rettighet => rettighet.barnet === this.props.barnetsFødselsnummer);
+        const aktuellRettighet = pleiepengeRettighet.find(
+            rettighet => rettighet.barnet === this.props.barnetsFødselsnummer
+        );
 
         if (!aktuellRettighet) {
             return <AlertStripeInfo>Kunne ikke finne pleiepengerettighet for barnet</AlertStripeInfo>;
         }
 
-        return <FlexCenter><Style><Pleiepenger pleiepenger={aktuellRettighet}/></Style></FlexCenter>;
+        return (
+            <FlexCenter>
+                <Style>
+                    <Pleiepenger pleiepenger={aktuellRettighet} />
+                </Style>
+            </FlexCenter>
+        );
     }
 
     render() {
         return (
             <PlukkRestData
-                restReducer={this.props.pleiepengerReducer}
+                restResource={this.props.pleiepengerResource}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
-                    {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}
+                {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}
             </PlukkRestData>
         );
     }
@@ -97,7 +101,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        pleiepengerReducer: state.restEndepunkter.pleiepengerReducer
+        pleiepengerResource: state.restResources.pleiepenger
     };
 }
 
@@ -107,4 +111,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PleiepengerLaster);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PleiepengerLaster);

@@ -1,58 +1,13 @@
 import * as React from 'react';
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { FilterState, PeriodeValg } from '../filter/Filter';
-import { formaterDato } from '../../../../../utils/dateUtils';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Periode } from '../../../../../models/periode';
 import moment from 'moment';
 import { loggError } from '../../../../../utils/frontendLogger';
+import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
+import { datoVerbose } from '../../../../../utils/dateUtils';
 
 export const utbetaltTilBruker = 'Bruker';
-
-const månedTilNavnMapping = (månednr: number) => {
-    switch (månednr) {
-        case 0:
-            return 'Januar';
-        case 1:
-            return 'Februar';
-        case 2:
-            return 'Mars';
-        case 3:
-            return 'April';
-        case 4:
-            return 'Mai';
-        case 5:
-            return 'Juni';
-        case 6:
-            return 'Juli';
-        case 7:
-            return 'August';
-        case 8:
-            return 'September';
-        case 9:
-            return 'Oktober';
-        case 10:
-            return 'November';
-        case 11:
-            return 'Desember';
-        default:
-            return 'N/A';
-    }
-};
-
-export function datoVerbose(dato?: string | Date) {
-    const datoMoment = dato ? moment(dato) : moment();
-    const måned = månedTilNavnMapping(datoMoment.month());
-    const år = datoMoment.year();
-    const dag = datoMoment.date();
-    const klokkeslett = datoMoment.format('HH:mm');
-    return {
-        dag: dag,
-        måned: måned,
-        år: år,
-        sammensatt: `${dag}. ${måned} ${år}`,
-        sammensattMedKlokke: `${dag}. ${måned} ${år} ${klokkeslett}`
-    };
-}
 
 export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
     const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
@@ -75,7 +30,7 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbeløp - b.trekkbeløp;
 }
 
-export function getFraDateFromFilter(filter: FilterState): Date {
+export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
             return moment()
@@ -97,7 +52,7 @@ export function getFraDateFromFilter(filter: FilterState): Date {
     }
 }
 
-export function getTilDateFromFilter(filter: FilterState): Date {
+export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
             return moment()
@@ -250,3 +205,7 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
 }
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
+
+export function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
+    return utbetaling.ytelser && utbetaling.ytelser.length > 0;
+}

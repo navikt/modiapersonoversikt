@@ -8,11 +8,13 @@ import {
 
 const eiendomsnavnRegel = lagErIkkeTomtFeltRegel<Matrikkeladresse>(
     'eiendomsnavn',
-    (matrikkeladresse) => matrikkeladresse.eiendomsnavn ? matrikkeladresse.eiendomsnavn : '',
-    'Områdeadresse kan ikke være tom');
-const postnummerRegel = lagPostnummerRegel('postnummer', matrikkeladresse => matrikkeladresse.postnummer );
+    matrikkeladresse => (matrikkeladresse.eiendomsnavn ? matrikkeladresse.eiendomsnavn : ''),
+    'Områdeadresse kan ikke være tom'
+);
+const postnummerRegel = lagPostnummerRegel('postnummer', matrikkeladresse => matrikkeladresse.postnummer);
 const gyldigTilRegel = lagDatoErInnenEtÅrRegel<Matrikkeladresse>('periode', matrikkeladresse =>
-    matrikkeladresse.periode ? matrikkeladresse.periode.til : '');
+    matrikkeladresse.periode ? matrikkeladresse.periode.til : ''
+);
 
 export function validerMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
     const regler = [eiendomsnavnRegel, postnummerRegel, gyldigTilRegel];

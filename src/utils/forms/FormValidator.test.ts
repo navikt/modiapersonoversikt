@@ -53,8 +53,7 @@ test('Validerer felter som er satt til optional i modellen men har regler knytte
     const bolignummerRegel: Valideringsregel<Gateadresse> = {
         felt: 'bolignummer',
         feilmelding: 'Bolignummer kan ikke være tom',
-        validator: (gateadresse: Gateadresse) => erIkkeTomStreng(gateadresse.bolignummer ?
-            gateadresse.bolignummer : '')
+        validator: (gateadresse: Gateadresse) => erIkkeTomStreng(gateadresse.bolignummer ? gateadresse.bolignummer : '')
     };
 
     const gateadresseValidator = new FormValidator<Gateadresse>([bolignummerRegel]);
@@ -66,5 +65,4 @@ test('Validerer felter som er satt til optional i modellen men har regler knytte
     } else {
         expect(bolignummer.erGyldig).toEqual(false);
     }
-
 });

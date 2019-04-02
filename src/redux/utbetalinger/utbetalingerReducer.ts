@@ -1,50 +1,26 @@
-import { Ytelse } from '../../models/utbetalinger';
-
-export interface UtbetalingerState {
-    ytelseIFokus: Ytelse | null;
-    ekspanderteYtelser: Ytelse[];
-}
+import moment from 'moment';
+import { PeriodeValg, UtbetalingerState } from './types';
+import { actionKeys, Actions } from './actions';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,
-    ekspanderteYtelser: []
+    ekspanderteYtelser: [],
+    filter: {
+        periode: {
+            radioValg: PeriodeValg.SISTE_30_DAGER,
+            egendefinertPeriode: {
+                fra: moment()
+                    .subtract(1, 'month')
+                    .toDate(),
+                til: new Date()
+            }
+        },
+        utbetaltTil: [],
+        ytelser: []
+    }
 };
 
-enum actionKeys {
-    SettYtelseIFokus = 'SettYtelseIFokus',
-    SetEkspanderYtelse = 'SetEkspanderYtelse'
-}
-
-interface SetNyYtelseIFokus {
-    type: actionKeys.SettYtelseIFokus;
-    ytelse: Ytelse | null;
-}
-
-interface SetEkspanderYtelse {
-    type: actionKeys.SetEkspanderYtelse;
-    ekspander: boolean;
-    ytelse: Ytelse;
-}
-
-export function setNyYtelseIFokus(ytelse: Ytelse | null): SetNyYtelseIFokus {
-    return {
-        type: actionKeys.SettYtelseIFokus,
-        ytelse: ytelse
-    };
-}
-
-export function setEkspanderYtelse(ytelse: Ytelse, ekspander: boolean): SetEkspanderYtelse {
-    return {
-        type: actionKeys.SetEkspanderYtelse,
-        ekspander: ekspander,
-        ytelse: ytelse
-    };
-}
-
-export type Actions = SetNyYtelseIFokus | SetEkspanderYtelse;
-
-export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions)
-    : UtbetalingerState {
+export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions): UtbetalingerState {
     switch (action.type) {
         case actionKeys.SettYtelseIFokus:
             return {
@@ -63,6 +39,14 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
                     ekspanderteYtelser: state.ekspanderteYtelser.filter(y => y !== action.ytelse)
                 };
             }
+        case actionKeys.OppdaterFilter:
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    ...action.change
+                }
+            };
         default:
             return state;
     }

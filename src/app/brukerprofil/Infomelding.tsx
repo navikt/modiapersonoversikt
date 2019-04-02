@@ -13,34 +13,27 @@ import {
 } from './utils/RollerUtils';
 
 const Luft = styled.div`
-  margin-top: 1em;
-  margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 `;
 
-function Infomelding(props: {children: string}) {
+function Infomelding(props: { children: string }) {
     return (
         <Luft>
-            <AlertStripe
-                type={'info'}
-            >
-                {props.children}
-            </AlertStripe>
+            <AlertStripe type={'info'}>{props.children}</AlertStripe>
         </Luft>
     );
 }
 
-export function EndreNavnInfomeldingWrapper(props: {veilderRoller: VeilederRoller, person: Person}) {
-
+export function EndreNavnInfomeldingWrapper(props: { veilderRoller: VeilederRoller; person: Person }) {
     if (!veilederHarPåkrevdRolleForEndreNavn(props.veilderRoller)) {
-        return (
-            <Infomelding>Du har ikke nødvendig rolle for å endre navn</Infomelding>
-        );
+        return <Infomelding>Du har ikke nødvendig rolle for å endre navn</Infomelding>;
     }
 
     if (!brukersNavnKanEndres(props.person)) {
         return (
             <Infomelding>
-                    Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
+                Bruker har ikke D-nummer eller er ikke utvandret. Du kan derfor ikke endre navnet.
             </Infomelding>
         );
     }
@@ -48,23 +41,17 @@ export function EndreNavnInfomeldingWrapper(props: {veilderRoller: VeilederRolle
     return null;
 }
 
-export function EndreAdresseInfomelding(props: {veilderRoller: VeilederRoller}) {
-
+export function EndreAdresseInfomelding(props: { veilderRoller: VeilederRoller }) {
     if (!veilederHarPåkrevdRolleForEndreAdresse(props.veilderRoller)) {
-        return (
-            <Infomelding>Du har ikke nødvendig rolle for å endre adresse</Infomelding>
-        );
+        return <Infomelding>Du har ikke nødvendig rolle for å endre adresse</Infomelding>;
     }
 
     return null;
 }
 
-export function EndreKontonummerInfomeldingWrapper(props: {veilderRoller: VeilederRoller}) {
-
+export function EndreKontonummerInfomeldingWrapper(props: { veilderRoller: VeilederRoller }) {
     if (!veilederHarPåkrevdRolleForEndreKontonummer(props.veilderRoller)) {
-        return (
-            <Infomelding>Du har ikke nødvendig rolle for å endre brukers bankkonto</Infomelding>
-        );
+        return <Infomelding>Du har ikke nødvendig rolle for å endre brukers bankkonto</Infomelding>;
     }
 
     return null;

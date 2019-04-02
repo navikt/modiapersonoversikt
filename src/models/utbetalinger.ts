@@ -35,6 +35,7 @@ export interface Ytelse {
     nettobeløp: number;
     periode: YtelsePeriode;
     bilagsnummer?: string;
+    arbeidsgiver: null | Arbeidsgiver;
 }
 
 export interface Ytelseskomponent {
@@ -58,4 +59,9 @@ export interface Skatt {
 export interface YtelsePeriode {
     start: string;
     slutt: string;
+}
+
+export interface Arbeidsgiver {
+    orgnr: string;
+    navn: string;
 }

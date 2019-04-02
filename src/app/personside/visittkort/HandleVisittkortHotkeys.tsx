@@ -17,7 +17,6 @@ interface DispatchProps {
 type Props = OwnProps & RouteComponentProps<{}> & DispatchProps;
 
 class HandleVisittkortHotkeys extends React.Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.handleVisittkortHotkeys = this.handleVisittkortHotkeys.bind(this);
@@ -43,10 +42,10 @@ class HandleVisittkortHotkeys extends React.Component<Props> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'b') {
-            loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + B'});
+            loggEvent('Hurtigtast', 'Visittkort', { type: 'Alt + B' });
             this.props.history.push(`${paths.brukerprofil}/${this.props.fødselsnummer}`);
         } else if (key === 'n') {
-            loggEvent('Hurtigtast', 'Visittkort', {type: 'Alt + N'});
+            loggEvent('Hurtigtast', 'Visittkort', { type: 'Alt + N' });
             this.props.toggleVisittkort();
         }
     }
@@ -58,4 +57,9 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(HandleVisittkortHotkeys));
+export default withRouter(
+    connect(
+        null,
+        mapDispatchToProps
+    )(HandleVisittkortHotkeys)
+);

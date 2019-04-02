@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleiepenger';
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
@@ -14,7 +14,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    pleiepengerReducer: RestReducer<PleiepengerResponse>;
+    pleiepengerResource: RestResource<PleiepengerResponse>;
 }
 
 interface DispatchProps {
@@ -24,23 +24,22 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 class PleiePengerContainer extends React.PureComponent<Props> {
-
     componentDidMount() {
         loggEvent('Sidevisning', 'Pleiepenger');
-        if (isNotStarted(this.props.pleiepengerReducer)) {
+        if (isNotStarted(this.props.pleiepengerResource)) {
             this.props.hentPleiepenger(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData spinnerSize="M" restReducer={this.props.pleiepengerReducer}>
+            <PlukkRestData spinnerSize="M" restResource={this.props.pleiepengerResource}>
                 {data => {
                     if (!data.pleiepenger || !data.pleiepenger[0]) {
                         return null;
                     }
                     return data.pleiepenger.map((pleiepengeRettighet, index) => (
-                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet}/>
+                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet} />
                     ));
                 }}
             </PlukkRestData>
@@ -49,9 +48,9 @@ class PleiePengerContainer extends React.PureComponent<Props> {
 }
 
 function mapStateToProps(state: AppState): StateProps {
-    return ({
-        pleiepengerReducer: state.restEndepunkter.pleiepengerReducer
-    });
+    return {
+        pleiepengerResource: state.restResources.pleiepenger
+    };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
@@ -60,4 +59,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PleiePengerContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PleiePengerContainer);

@@ -8,5 +8,5 @@ export function erEgenAnsatt(fødselsnummer: string): Egenansatt {
         return { erEgenAnsatt: false };
     }
     navfaker.seed(fødselsnummer);
-    return { erEgenAnsatt : navfaker.random.vektetSjanse(0.1) };
+    return { erEgenAnsatt: navfaker.random.vektetSjanse(0.1) };
 }

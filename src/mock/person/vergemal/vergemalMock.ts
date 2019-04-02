@@ -28,8 +28,11 @@ const VERGESAKSTYPER = [
 ];
 
 const MANDATTYPER = [
-    lagKodeverksverdi('FOR', 'Ivareta personens interesser innenfor det personlige og økonomiske ' +
-        'området herunder utlendingssaken (kun for EMA)'),
+    lagKodeverksverdi(
+        'FOR',
+        'Ivareta personens interesser innenfor det personlige og økonomiske ' +
+            'området herunder utlendingssaken (kun for EMA)'
+    ),
     lagKodeverksverdi('CMB', 'Ivareta personens interesser innenfor det personlige og økonomiske området'),
     lagKodeverksverdi('FIN', 'Ivareta personens interesser innenfor det økonomiske området'),
     lagKodeverksverdi('PER', 'Ivareta personens interesser innenfor det personlige området'),
@@ -48,7 +51,6 @@ export function mockVergemal(fødselsnummer: string): Vergemal {
         };
     }
     return getVergemal();
-
 }
 
 function getVergemal() {
@@ -92,7 +94,7 @@ function getTilfeldigVergetype(): Kodeverk | undefined {
 function lagKodeverksverdi(kodeRef: string, beskrivelse: string): Kodeverk {
     return {
         kodeRef: kodeRef,
-        beskrivelse: beskrivelse,
+        beskrivelse: beskrivelse
     };
 }
 

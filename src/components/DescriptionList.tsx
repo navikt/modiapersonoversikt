@@ -4,6 +4,23 @@ import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import { ReactNode } from 'react';
 
+const ListStyling = styled.dl`
+    display: flex;
+    flex-wrap: wrap;
+    dt {
+        color: ${theme.color.gråSkrift};
+    }
+    dd {
+        font-weight: bold;
+        margin-top: 0.3rem;
+    }
+    > div {
+        margin: ${pxToRem(15)} 0;
+        padding-right: 1rem;
+        min-width: 13rem;
+    }
+`;
+
 interface Props {
     entries: DescriptionListEntries;
 }
@@ -12,6 +29,19 @@ type DescriptionlistEntry = string | number | null | ReactNode;
 
 export interface DescriptionListEntries {
     [name: string]: DescriptionlistEntry;
+}
+
+export function fjernEntriesUtenVerdi(entries: DescriptionListEntries): DescriptionListEntries {
+    const keys = Object.keys(entries);
+    return keys.reduce((acc, key) => {
+        if (!entries[key]) {
+            return acc;
+        }
+        return {
+            ...acc,
+            [key]: entries[key]
+        };
+    }, {});
 }
 
 function getDescriptionlistEntry(term: string, description: DescriptionlistEntry) {
@@ -29,23 +59,6 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
 function createDescriptionListEntries(valuePairs: DescriptionListEntries) {
     return Object.keys(valuePairs).map(key => getDescriptionlistEntry(key, valuePairs[key]));
 }
-
-const ListStyling = styled.dl`
-    display: flex;
-    flex-wrap: wrap;
-    dt {
-        color: ${theme.color.gråSkrift};
-    }
-    dd {
-        font-weight: bold;
-        margin-top: 0.3rem;
-    }
-    > div {
-        margin: ${pxToRem(15)} 0;
-        padding-right: 1rem;
-        min-width: 13rem;
-    }
-`;
 
 function DescriptionList(props: Props) {
     return <ListStyling>{createDescriptionListEntries(props.entries)}</ListStyling>;

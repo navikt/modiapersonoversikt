@@ -16,7 +16,7 @@ exports[`Viser form for endre tilrettelagt kommunikasjon 1`] = `
 }
 
 .c1 > * {
-  margin: .5rem 0 .5rem 1em;
+  margin: 0.5rem 0 0.5rem 1em;
 }
 
 .c0 {

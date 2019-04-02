@@ -85,7 +85,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c6:after {
-  border-bottom: 1px #B7B1A9 solid;
+  border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -103,11 +103,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 
 .c6:hover:after {
   content: '';
-  border-color: #0067C5;
+  border-color: #0067c5;
 }
 
 .c7 {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .c8 {
@@ -136,11 +136,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   className="c0"
 >
   <div>
-    <p
+    <h3
       className="typo-ingress"
     >
       Om pleiepengeretten
-    </p>
+    </h3>
     <dl
       className="c1"
     >
@@ -207,11 +207,11 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     </dl>
   </div>
   <div>
-    <p
+    <h3
       className="typo-ingress"
     >
       Arbeidssituasjon
-    </p>
+    </h3>
     <dl
       className="c1"
     >
@@ -296,7 +296,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          NOK 45,029.00
+          45,029.00 NOK
         </dd>
       </div>
       <div>
@@ -393,16 +393,12 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 
 .c0 > *:first-child {
   background-color: #cce1f3;
-  padding: .2rem 1.25rem;
+  padding: 0.2rem 1.25rem;
 }
 
 .c0 ol {
   padding: 0;
   margin: 0;
-}
-
-.c0 ol > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c5 {
@@ -484,7 +480,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 120.00
+            120.00 NOK
           </dd>
         </div>
         <div>
@@ -508,7 +504,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 5.00
+            5.00 NOK
           </dd>
         </div>
         <div>
@@ -565,7 +561,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 596.00
+            596.00 NOK
           </dd>
         </div>
         <div>
@@ -589,7 +585,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
           <dd
             className="typo-normal"
           >
-            NOK 27.00
+            27.00 NOK
           </dd>
         </div>
         <div>

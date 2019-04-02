@@ -23,35 +23,33 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 class MainLayout extends React.Component<Props> {
-
     render() {
         return (
             <LayoutWrapper role="main">
                 <VenstreKolonne dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}>
-                    <Kontrollsporsmal/>
-                    <Visittkort/>
-                    <InfoTabsContainer/>
+                    <Kontrollsporsmal />
+                    <Visittkort />
+                    <InfoTabsContainer />
                 </VenstreKolonne>
                 <HøyreKolonne
                     role="region"
                     aria-label="Oppgavepanel"
                     dialogPanelEkspandert={this.props.UI.dialogPanel.ekspandert}
                 >
-                    <HentOppgaveKnapp/>
-                    <DialogPanel/>
+                    <HentOppgaveKnapp />
+                    <DialogPanel />
                     <div>
                         <PilKnapp
                             width="30px"
-                            beskrivelse={this.props.UI.dialogPanel.ekspandert
-                                ? 'Minimer dialogpanel'
-                                : 'Ekspander dialogpanel'
+                            beskrivelse={
+                                this.props.UI.dialogPanel.ekspandert ? 'Minimer dialogpanel' : 'Ekspander dialogpanel'
                             }
                             direction={this.props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
                             onClick={() => this.props.toggleDialogpanel()}
                         />
                     </div>
                 </HøyreKolonne>
-                <SmallScreenToggleButton UI={this.props.UI} toggleDialogpanel={this.props.toggleDialogpanel}/>
+                <SmallScreenToggleButton UI={this.props.UI} toggleDialogpanel={this.props.toggleDialogpanel} />
             </LayoutWrapper>
         );
     }
@@ -59,7 +57,7 @@ class MainLayout extends React.Component<Props> {
 
 function mapStateToProps(state: AppState) {
     return {
-        UI: state.ui,
+        UI: state.ui
     };
 }
 
@@ -69,4 +67,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainLayout);

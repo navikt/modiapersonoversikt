@@ -20,17 +20,9 @@ function Utbetaling(props: Props) {
 
     if (enkeltYtelse) {
         const ytelse = utbetaling.ytelser[0];
-        return (
-            <EnkelUtbetaling
-                utbetaling={utbetaling}
-                ytelse={ytelse}
-            />);
+        return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} />;
     } else {
-        return (
-            <SammensattUtbetaling
-                utbetaling={utbetaling}
-            />
-        );
+        return <SammensattUtbetaling utbetaling={utbetaling} />;
     }
 }
 

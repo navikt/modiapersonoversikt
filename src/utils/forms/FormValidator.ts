@@ -17,12 +17,9 @@ export interface FeltValidering {
     skjemafeil: SkjemaelementFeil | undefined;
 }
 
-type FormValidering<T> = {
-    [P in keyof T]: FeltValidering;
-};
+type FormValidering<T> = { [P in keyof T]: FeltValidering };
 
 export default class FormValidator<T> {
-
     private regler: Valideringsregel<T>[];
 
     constructor(regler: Valideringsregel<T>[]) {
@@ -38,7 +35,6 @@ export default class FormValidator<T> {
         let result = this.settAlleFelterTilGyldig(obj);
 
         this.regler.forEach(regel => {
-
             // Hvis et optional-felt i interfacet er fraværende
             if (!result[regel.felt]) {
                 result[regel.felt] = {
@@ -93,7 +89,7 @@ export default class FormValidator<T> {
     }
 
     private getSkjemafeil(feilmeldinger: string[]) {
-        if (feilmeldinger.length === 0 ) {
+        if (feilmeldinger.length === 0) {
             return undefined;
         }
 

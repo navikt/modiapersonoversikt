@@ -13,11 +13,7 @@ jest.mock('react-collapse', () => {
 
 test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
     const visittkortheader = renderer.create(
-        <UtbetalingsDetaljer
-            konto="123"
-            melding="Dette er en melding"
-            ytelse={statiskMockYtelse}
-        />
+        <UtbetalingsDetaljer konto="123" melding="Dette er en melding" ytelse={statiskMockYtelse} />
     );
 
     const json = visittkortheader.toJSON();

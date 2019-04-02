@@ -11,9 +11,8 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
-import * as tilrettelagtKommunikasjonKodeverkReducer
-    from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
-import { isNotStarted, Loaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { hentTilrettelagtKommunikasjon } from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
+import { isNotStarted, Loaded, RestResource } from '../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
@@ -21,7 +20,7 @@ interface State {
 }
 
 interface StateProps {
-    tilrettelagtKommunikasjonKodeverkReducer: RestReducer<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverkResource: RestResource<KodeverkResponse>;
 }
 
 interface DispatchProps {
@@ -43,11 +42,10 @@ const onError = (
 );
 
 class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> {
-
     constructor(props: Props) {
         super(props);
 
-        if (isNotStarted(this.props.tilrettelagtKommunikasjonKodeverkReducer)) {
+        if (isNotStarted(this.props.tilrettelagtKommunikasjonKodeverkResource)) {
             this.props.hentTilrettelagtKommunikasjonKodeverk();
         }
     }
@@ -57,13 +55,13 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
             <div>
                 <Undertittel>Tilrettelagt Kommunikasjon</Undertittel>
                 <Innholdslaster
-                    avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkReducer]}
+                    avhengigheter={[this.props.tilrettelagtKommunikasjonKodeverkResource]}
                     returnOnError={onError}
                 >
                     <TilrettelagtKommunikasjonsForm
                         person={this.props.person}
                         tilrettelagtKommunikasjonKodeverk={
-                            (this.props.tilrettelagtKommunikasjonKodeverkReducer as Loaded<KodeverkResponse>).data
+                            (this.props.tilrettelagtKommunikasjonKodeverkResource as Loaded<KodeverkResponse>).data
                         }
                     />
                 </Innholdslaster>
@@ -73,16 +71,18 @@ class TilrettelagtKommunikasjonsContainer extends React.Component<Props, State> 
 }
 
 const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
-    return ({
-        hentTilrettelagtKommunikasjonKodeverk:
-            () => dispatch(tilrettelagtKommunikasjonKodeverkReducer.hentTilrettelagtKommunikasjon())
-    });
+    return {
+        hentTilrettelagtKommunikasjonKodeverk: () => dispatch(hentTilrettelagtKommunikasjon())
+    };
 };
 
 const mapStateToProps = (state: AppState): StateProps => {
-    return ({
-        tilrettelagtKommunikasjonKodeverkReducer: state.restEndepunkter.tilrettelagtKommunikasjonKodeverk
-    });
+    return {
+        tilrettelagtKommunikasjonKodeverkResource: state.restResources.tilrettelagtKommunikasjonKodeverk
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TilrettelagtKommunikasjonsContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TilrettelagtKommunikasjonsContainer);

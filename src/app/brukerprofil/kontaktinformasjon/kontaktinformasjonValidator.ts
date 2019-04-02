@@ -3,17 +3,18 @@ import { EndreKontaktinformasjonInputs, TelefonInput } from './Kontaktinformasjo
 import { erIkkeTomStreng, erTomStreng } from '../../../utils/string-utils';
 import { gyldigTelefonnummer } from '../../../utils/telefon-utils';
 
-const regler: Valideringsregel<TelefonInput>[] = [{
+const regler: Valideringsregel<TelefonInput>[] = [
+    {
         felt: 'retningsnummer',
         feilmelding: 'Mangler retningsnummer',
         validator: (input: TelefonInput) =>
             erTomStreng(input.identifikator) ||
-            erIkkeTomStreng(input.identifikator) && erIkkeTomStreng(input.retningsnummer)
-    }, {
+            (erIkkeTomStreng(input.identifikator) && erIkkeTomStreng(input.retningsnummer))
+    },
+    {
         felt: 'identifikator',
         feilmelding: 'Ugyldig telefonnummer',
-        validator: (input: TelefonInput) =>
-            input.identifikator.length === 0 || gyldigTelefonnummer(input.identifikator)
+        validator: (input: TelefonInput) => input.identifikator.length === 0 || gyldigTelefonnummer(input.identifikator)
     }
 ];
 

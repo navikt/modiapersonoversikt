@@ -4,6 +4,7 @@ import moment from 'moment';
 import navfaker from 'nav-faker/dist/index';
 
 import {
+    Arbeidsgiver,
     Skatt,
     Trekk,
     Utbetaling,
@@ -33,7 +34,9 @@ function getUtbetalinger(fødselsnummer: string) {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1)).fill(null).map(() => getMockUtbetaling(fødselsnummer));
+    return Array(navfaker.random.integer(20, 1))
+        .fill(null)
+        .map(() => getMockUtbetaling(fødselsnummer));
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
@@ -43,7 +46,7 @@ function randomDato(seededFaker: Faker.FakerStatic) {
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
     const status = randomStatus();
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
-    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse( 0.7) ? 1 : 3);
+    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse(0.7) ? 1 : 3);
     const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
 
     const utbetaltTilPerson = vektetSjanse(faker, 0.9);
@@ -58,7 +61,7 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
         nettobeløp: netto,
         posteringsdato: randomDato(faker),
         utbetalingsdato: utbetalingsDato,
-        forfallsdato: navfaker.random.vektetSjanse( 0.5) ? randomDato(faker) : null,
+        forfallsdato: navfaker.random.vektetSjanse(0.5) ? randomDato(faker) : null,
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: status,
@@ -84,7 +87,15 @@ export function getMockYtelse(): Ytelse {
         skattsum: skattsum,
         nettobeløp: brutto + trekksum + skattsum,
         periode: getPeriode(),
-        bilagsnummer: faker.finance.account(10)
+        bilagsnummer: faker.finance.account(10),
+        arbeidsgiver: navfaker.random.vektetSjanse(0.7) ? getArbeidsgiver() : null
+    };
+}
+
+function getArbeidsgiver(): Arbeidsgiver {
+    return {
+        navn: faker.company.companyName(),
+        orgnr: faker.finance.account(11)
     };
 }
 
@@ -122,9 +133,5 @@ function getPeriode(): YtelsePeriode {
 }
 
 function randomStatus() {
-    return navfaker.random.arrayElement([
-        'Ligger hos banken',
-        'Utbetalt',
-        'Returnert til NAV for saksbehandling'
-    ]);
+    return navfaker.random.arrayElement(['Ligger hos banken', 'Utbetalt', 'Returnert til NAV for saksbehandling']);
 }

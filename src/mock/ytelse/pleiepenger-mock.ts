@@ -11,8 +11,21 @@ import {
     Vedtak
 } from '../../models/ytelse/pleiepenger';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { aremark } from '../person/aremark';
+import { moss } from '../person/moss';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            pleiepenger: [
+                {
+                    ...getMockPleiepengerettighet(aremark.fødselsnummer),
+                    barnet: moss.fødselsnummer
+                }
+            ]
+        };
+    }
+
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'pleiepenger');
 
@@ -71,8 +84,8 @@ function getArbeidsforhold(): Arbeidsforhold {
 function getVedtak(): Vedtak {
     return {
         periode: getPeriode(),
-        kompensasjonsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
-        utbetalingsgrad: navfaker.random.vektetSjanse(.5) ? 100 : navfaker.random.integer(100),
+        kompensasjonsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
+        utbetalingsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
         anvistUtbetaling: moment(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),

@@ -14,7 +14,6 @@ interface ComponentPlaceholderState {
 }
 
 class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, ComponentPlaceholderState> {
-
     static componentCount: number = 0;
     // @ts-ignore
     private node: HTMLDivElement;
@@ -28,7 +27,7 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
         ComponentPlaceholder.componentCount++;
     }
 
-    setDynamicFontSize () {
+    setDynamicFontSize() {
         const componentHeight: number = this.node === null ? 0 : this.node.clientHeight;
         const fontSize: number = componentHeight / 15;
         this.setState({
@@ -51,8 +50,13 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
         const stripeColor = '#eee';
 
         const PlaceholderDiv = styled.div`
-            background:
-               repeating-linear-gradient(45deg, ${bgColor}, ${bgColor} 1.8em, ${stripeColor} 1.8em, ${stripeColor} 2em);
+            background: repeating-linear-gradient(
+                45deg,
+                ${bgColor},
+                ${bgColor} 1.8em,
+                ${stripeColor} 1.8em,
+                ${stripeColor} 2em
+            );
             height: ${this.props.height === undefined ? '100%' : this.props.height};
             width: ${this.props.width === undefined ? '100%' : this.props.width};
             display: flex;
@@ -70,7 +74,7 @@ class ComponentPlaceholder extends React.Component<ComponentPlaceholderProps, Co
         `;
 
         return (
-            <PlaceholderDiv ref={(ref: HTMLDivElement) => this.node = ref}>
+            <PlaceholderDiv ref={(ref: HTMLDivElement) => (this.node = ref)}>
                 <VerticalTitle>{this.props.name}</VerticalTitle>
             </PlaceholderDiv>
         );

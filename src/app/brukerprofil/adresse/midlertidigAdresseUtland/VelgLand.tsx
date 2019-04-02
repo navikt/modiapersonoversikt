@@ -9,7 +9,7 @@ import { alfabetiskKodeverkComparator } from '../../../../utils/kodeverkUtils';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
 
 const LandWrapper = styled.div`
-  margin-right: 2em;
+    margin-right: 2em;
 `;
 
 interface LandInputProps {
@@ -20,15 +20,11 @@ interface LandInputProps {
 }
 
 function getLandSelectValg(landKodeverk: KodeverkResponse) {
-    return landKodeverk.kodeverk
-        .sort(alfabetiskKodeverkComparator)
-        .map(kodeverk =>
-            (
-                <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
-                    {kodeverk.beskrivelse} ({kodeverk.kodeRef})
-                </option>
-            )
-        );
+    return landKodeverk.kodeverk.sort(alfabetiskKodeverkComparator).map(kodeverk => (
+        <option value={kodeverk.kodeRef} key={kodeverk.kodeRef}>
+            {kodeverk.beskrivelse} ({kodeverk.kodeRef})
+        </option>
+    ));
 }
 
 function getValgtLand(landKodeverk: KodeverkResponse, landInput?: Kodeverk) {
@@ -44,11 +40,10 @@ function getValgtLand(landKodeverk: KodeverkResponse, landInput?: Kodeverk) {
 }
 
 function getValgtLandKode(landKodeverk: KodeverkResponse, landInput: string) {
-    const land = landKodeverk.kodeverk
-        .find(kodeverdi => kodeverdi.kodeRef === landInput);
+    const land = landKodeverk.kodeverk.find(kodeverdi => kodeverdi.kodeRef === landInput);
 
     if (!land) {
-        return {kodeRef: '', beskrivelse: ''};
+        return { kodeRef: '', beskrivelse: '' };
     }
 
     return land;
@@ -65,13 +60,17 @@ export function VelgLand(props: LandInputProps) {
                 bredde={'m'}
                 value={valgtLand}
                 feil={
-                    props.midlertidigAdresseUtlandInputs.validering.felter.landkode ?
-                    props.midlertidigAdresseUtlandInputs.validering.felter.landkode.skjemafeil : undefined
+                    props.midlertidigAdresseUtlandInputs.validering.felter.landkode
+                        ? props.midlertidigAdresseUtlandInputs.validering.felter.landkode.skjemafeil
+                        : undefined
                 }
                 onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                    props.onChange(getValgtLandKode(props.landKodeverk, event.target.value))}
+                    props.onChange(getValgtLandKode(props.landKodeverk, event.target.value))
+                }
             >
-                <option disabled={true} value={''} key={''}>Velg land</option>
+                <option disabled={true} value={''} key={''}>
+                    Velg land
+                </option>
                 {landValg}
             </Select>
         </LandWrapper>

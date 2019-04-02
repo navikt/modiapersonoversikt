@@ -1,11 +1,12 @@
 export interface Oppfolging {
     erUnderOppfølging: boolean;
-    veileder: Saksbehandler;
+    veileder: null | Saksbehandler;
     enhet: AnsattEnhet;
 }
 
 export interface Saksbehandler {
     ident: string;
+    navn: string;
 }
 
 export interface AnsattEnhet {
@@ -15,6 +16,7 @@ export interface AnsattEnhet {
 }
 
 export interface DetaljertOppfolging {
+    oppfølging: Oppfolging;
     meldeplikt: boolean;
     formidlingsgruppe: string;
     innsatsgruppe: string;
@@ -33,11 +35,11 @@ export interface SyfoPunkt {
 }
 
 export interface OppfolgingsYtelse {
-    dagerIgjenMedBortfall: number;
-    ukerIgjenMedBortfall: number;
+    dagerIgjen: number;
+    ukerIgjen: number;
     datoKravMottatt: string;
-    fom?: string;
-    tom?: string;
+    fom: null | string;
+    tom: null | string;
     status: string;
     type: string;
     vedtak: OppfolgingsVedtak[];
@@ -46,7 +48,6 @@ export interface OppfolgingsYtelse {
 export interface OppfolgingsVedtak {
     aktivFra: string;
     aktivTil: string;
-    vedtaksdato: string;
     aktivitetsfase?: string;
     vedtakstatus: string;
     vedtakstype: string;

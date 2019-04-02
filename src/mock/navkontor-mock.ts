@@ -8,27 +8,33 @@ export const geografiskTilknytningAremark = '0118';
 const apentFra = { time: '9', minutt: '0', sekund: '0' };
 const apentTil = { time: '14', minutt: '30', sekund: '0' };
 
-const mockApningsTider: Array<ApningsTid> = [{
-    ukedag: 'MANDAG',
-    apentFra,
-    apentTil
-}, {
-    ukedag: 'TIRSDAG',
-    apentFra,
-    apentTil
-}, {
-    ukedag: 'ONSDAG',
-    apentFra,
-    apentTil
-}, {
-    ukedag: 'TORSDAG',
-    apentFra,
-    apentTil
-}, {
-    ukedag: 'FREDAG',
-    apentFra,
-    apentTil
-}];
+const mockApningsTider: Array<ApningsTid> = [
+    {
+        ukedag: 'MANDAG',
+        apentFra,
+        apentTil
+    },
+    {
+        ukedag: 'TIRSDAG',
+        apentFra,
+        apentTil
+    },
+    {
+        ukedag: 'ONSDAG',
+        apentFra,
+        apentTil
+    },
+    {
+        ukedag: 'TORSDAG',
+        apentFra,
+        apentTil
+    },
+    {
+        ukedag: 'FREDAG',
+        apentFra,
+        apentTil
+    }
+];
 
 const aremarkGateadresse: Gateadresse = {
     gatenavn: 'Rådhuset',
@@ -57,7 +63,7 @@ export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?
         return {
             enhetNavn: 'NAV Aremark',
             enhetId: geografiskTilknytning,
-            publikumsmottak: [ mockKontaktInfo ]
+            publikumsmottak: [mockKontaktInfo]
         };
     } else {
         const city = faker.address.city();

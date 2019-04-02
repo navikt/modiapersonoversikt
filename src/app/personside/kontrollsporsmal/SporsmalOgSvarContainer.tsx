@@ -5,7 +5,7 @@ import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
-import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
 import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
@@ -13,8 +13,8 @@ import { shuffle } from '../../../utils/list-utils';
 import { loggEvent } from '../../../utils/frontendLogger';
 
 interface StateProps {
-    personinformasjon: RestReducer<PersonRespons>;
-    kontaktinformasjon: RestReducer<KRRKontaktinformasjon>;
+    personinformasjon: RestResource<PersonRespons>;
+    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     kontrollSpørsmål: KontrollSpørsmålState;
 }
 
@@ -69,7 +69,7 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
     }
 }
 
-function extractSpørsmål<T>(restRessurs: RestReducer<T>, spørsmålExtractors: SpørsmålsExtractor<T>[]): Spørsmål[] {
+function extractSpørsmål<T>(restRessurs: RestResource<T>, spørsmålExtractors: SpørsmålsExtractor<T>[]): Spørsmål[] {
     if (isLoaded(restRessurs)) {
         const data = restRessurs.data;
         return spørsmålExtractors
@@ -95,8 +95,8 @@ function erTom(spm: Spørsmål): boolean {
 function mapStateToProps(state: AppState): StateProps {
     return {
         kontrollSpørsmål: state.kontrollSpørsmål,
-        kontaktinformasjon: state.restEndepunkter.kontaktinformasjon,
-        personinformasjon: state.restEndepunkter.personinformasjon
+        kontaktinformasjon: state.restResources.kontaktinformasjon,
+        personinformasjon: state.restResources.personinformasjon
     };
 }
 

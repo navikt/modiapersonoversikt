@@ -15,16 +15,13 @@ jest.mock('react-collapse', () => {
 
 const sammensattUtbetaling: Utbetaling = {
     ...statiskMockUtbetaling,
-    ytelser: [
-        statiskMockYtelse,
-        statiskMockYtelse
-    ]
+    ytelser: [statiskMockYtelse, statiskMockYtelse]
 };
 
 test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
     const visittkortheader = renderer.create(
         <TestProvider>
-            <SammensattUtbetaling utbetaling={sammensattUtbetaling}/>
+            <SammensattUtbetaling utbetaling={sammensattUtbetaling} />
         </TestProvider>
     );
 

@@ -1,75 +1,57 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router-dom';
-
-import Routing from './routes/routing';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Routing, { paths } from './routes/routing';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
-import AppWrapper, { Content } from './AppWrapper';
-import Eventlistener from './Eventlistener';
+import AppStyle, { ContentStyle } from './AppWrapper';
 import ModalWrapper from 'nav-frontend-modal';
-import { Person, PersonRespons } from '../models/person/person';
-import { isLoaded, Loaded } from '../redux/restReducers/restReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
+import Decorator from './Decorator';
+import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 
 if (mockEnabled) {
     setupMock();
 }
 
-const store = createStore(
-    reducers,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-export const PersonContext = React.createContext<string | undefined>(undefined);
+function Personoveriskt() {
+    const appRef = React.createRef<HTMLDivElement>();
 
-class App extends React.Component<{}> {
+    useEffect(() => {
+        ModalWrapper.setAppElement(appRef.current);
+    }, []);
 
-    private appRef = React.createRef<HTMLDivElement>();
+    return (
+        <Provider store={store}>
+            <>
+                <PersonOppslagHandler />
+                <AppStyle ref={appRef}>
+                    <Decorator />
+                    <ContentStyle>
+                        <Routing />
+                    </ContentStyle>
+                </AppStyle>
+            </>
+        </Provider>
+    );
+}
 
-    constructor(props: {}) {
-        super(props);
-
-        store.subscribe(() => this.forceUpdate());
-    }
-
-    componentDidMount() {
-        if (this.appRef.current) {
-            ModalWrapper.setAppElement(this.appRef.current);
-        }
-    }
-
-    render() {
-        return (
-            <PersonContext.Provider
-                value={
-                    isLoaded((store.getState().restEndepunkter.personinformasjon))
-                    ?
-                    ((store.getState()
-                        .restEndepunkter.personinformasjon as Loaded<PersonRespons>)
-                        .data as Person)
-                        .fødselsnummer || undefined
-                    :
-                    undefined
-                }
-            >
-                <Provider store={store}>
-                    <AppWrapper ref={this.appRef}>
-                        <nav id="header"/>
-                        <BrowserRouter>
-                            <Content>
-                                <Eventlistener/>
-                                <Routing/>
-                            </Content>
-                        </BrowserRouter>
-                    </AppWrapper>
-                </Provider>
-            </PersonContext.Provider>
-        );
-    }
+function App() {
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path={`${paths.standaloneKomponenter}/:component?/:fnr?`} component={StandAloneKomponenter} />
+                <Route path={'/'} component={Personoveriskt} />
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;

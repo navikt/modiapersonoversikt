@@ -15,17 +15,19 @@ interface MenyConfig {
         fnr: string;
         dataSources: {
             veileder: string;
-            enheter: string
-        }
+            enheter: string;
+        };
     };
 }
 
 declare global {
-    interface Window {renderDecoratorHead: (_: MenyConfig) => void; }
+    interface Window {
+        renderDecoratorHead: (_: MenyConfig) => void;
+    }
 }
 
 declare global {
-    type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & {fodselsnummer: string};
+    type DecoratorPersonsokEvent = EventListenerOrEventListenerObject & { fodselsnummer: string };
 }
 
 const config: MenyConfig = {
@@ -43,11 +45,10 @@ const config: MenyConfig = {
             veileder: `${apiBaseUri}/hode/me`,
             enheter: `${apiBaseUri}/hode/enheter`
         }
-
     }
 };
 
-export default function (fodselsnummer: string) {
+export default function(fodselsnummer: string) {
     config.config.fnr = fodselsnummer;
     if (window.renderDecoratorHead) {
         window.renderDecoratorHead(config);

@@ -15,12 +15,12 @@ interface Props {
 }
 
 const InputLinje = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 function onPostinformasjonChange(props: Props) {
-    return ({poststed, postnummer}: PoststedInformasjon) => {
-        props.onChange({...props.input.value, postnummer, poststed});
+    return ({ poststed, postnummer }: PoststedInformasjon) => {
+        props.onChange({ ...props.input.value, postnummer, poststed });
     };
 }
 
@@ -36,16 +36,18 @@ function PostboksadresseForm(props: Props) {
                 label="Merkes med C/O"
                 value={postboksadresse.tilleggsadresse || ''}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    props.onChange({...postboksadresse, tilleggsadresse: event.target.value})}
+                    props.onChange({ ...postboksadresse, tilleggsadresse: event.target.value })
+                }
             />
             <InputLinje>
-                <div style={{flex: 4, marginRight: 15}}>
+                <div style={{ flex: 4, marginRight: 15 }}>
                     <Input
                         bredde={'XXL'}
                         label="Postboksanlegg"
                         value={postboksadresse.postboksanlegg || ''}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.onChange({...postboksadresse, postboksanlegg: event.target.value})}
+                            props.onChange({ ...postboksadresse, postboksanlegg: event.target.value })
+                        }
                     />
                 </div>
                 <Input
@@ -53,23 +55,25 @@ function PostboksadresseForm(props: Props) {
                     label="Postboksnummer"
                     value={postboksadresse.postboksnummer}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        props.onChange({...postboksadresse, postboksnummer: event.target.value})}
+                        props.onChange({ ...postboksadresse, postboksnummer: event.target.value })
+                    }
                     feil={props.input.validering.felter.postboksnummer.skjemafeil}
                 />
             </InputLinje>
             <PoststedVelger
-                poststedInformasjon={{postnummer: postboksadresse.postnummer, poststed: postboksadresse.poststed}}
+                poststedInformasjon={{ postnummer: postboksadresse.postnummer, poststed: postboksadresse.poststed }}
                 onChange={onPostinformasjonChange(props)}
                 feil={props.input.validering.felter.postnummer.skjemafeil}
             />
 
             <BrukerProfilDatovelger
                 id={'postboksadresse-gyldig-til'}
-                onChange={(date: Date) => props.onChange({...postboksadresse, periode: tilPeriode(date)})}
+                onChange={(date: Date) => props.onChange({ ...postboksadresse, periode: tilPeriode(date) })}
                 dato={gyldigTil}
                 innenEtÅr={true}
-                feil={props.input.validering.felter.periode ?
-                    props.input.validering.felter.periode.skjemafeil : undefined}
+                feil={
+                    props.input.validering.felter.periode ? props.input.validering.felter.periode.skjemafeil : undefined
+                }
             >
                 Gyldig til
             </BrukerProfilDatovelger>

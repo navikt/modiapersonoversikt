@@ -8,27 +8,38 @@ import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import BrukerprofilSide from '../../app/brukerprofil/BrukerprofilSide';
+import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
 
 interface Props {
     fødselsnummer: string;
 }
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunkMiddleware)
-);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 if (mockEnabled) {
     setupMock();
 }
 
-class BrukerprofilStandalone extends React.Component<Props> {
+const Styles = styled.div`
+    overflow-y: auto;
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
+`;
 
+class BrukerprofilStandalone extends React.Component<Props> {
     render() {
         return (
-            <ErrorBoundary>
+            <ErrorBoundary boundaryName="Brukerprofil">
                 <Provider store={store}>
-                    <BrukerprofilSide fødselsnummer={this.props.fødselsnummer}/>
+                    <Styles>
+                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
+                        <BrukerprofilSide />
+                    </Styles>
                 </Provider>
             </ErrorBoundary>
         );

@@ -5,12 +5,11 @@ import { loggEvent } from '../utils/frontendLogger';
 export function getPerson(fodselsnummer: string): Promise<PersonRespons> {
     loggEvent('Fetch', 'Persondata');
     const uri = `${apiBaseUri}/person/${fodselsnummer}`;
-    return fetch(uri, {credentials: 'include'})
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw response.statusText;
-            }
-        });
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw response.statusText;
+        }
+    });
 }

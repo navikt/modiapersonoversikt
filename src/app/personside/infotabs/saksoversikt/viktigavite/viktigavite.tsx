@@ -17,7 +17,7 @@ export interface StateProps {
 }
 
 const Luft = styled.div`
-  margin-top: ${theme.margin.px10}
+    margin-top: ${theme.margin.px10};
 `;
 
 const GråttPanel = styled.div`
@@ -27,7 +27,7 @@ const GråttPanel = styled.div`
 class ViktigÅVite extends React.PureComponent<Props> {
     render() {
         if (!this.props.valgtSakstema) {
-            return <Luft/>;
+            return <Luft />;
         }
 
         let innhold;
@@ -47,9 +47,7 @@ class ViktigÅVite extends React.PureComponent<Props> {
 
         return (
             <UnmountClosed isOpened={this.props.åpen}>
-                <GråttPanel>
-                    {innhold}
-                </GråttPanel>
+                <GråttPanel>{innhold}</GråttPanel>
             </UnmountClosed>
         );
     }
@@ -61,4 +59,5 @@ export default connect(
             valgtSakstema: state.saksoversikt.valgtSakstema,
             åpen: state.saksoversikt.viktigÅViteÅpen
         };
-    })(ViktigÅVite);
+    }
+)(ViktigÅVite);

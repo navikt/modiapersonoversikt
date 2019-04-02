@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formaterDato } from '../../../utils/dateUtils';
+import { formaterDato } from '../../../utils/stringFormatting';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { Endringsinfo } from '../../../models/personadresse';
 
@@ -27,7 +27,7 @@ export function ignoreEnter(event: React.KeyboardEvent<HTMLInputElement>) {
 }
 
 export function visEndringsinfo(endringsinfo?: Endringsinfo) {
-    return endringsinfo && endretAvVisning(endringsinfo.sistEndret, endringsinfo.sistEndretAv) || null;
+    return (endringsinfo && endretAvVisning(endringsinfo.sistEndret, endringsinfo.sistEndretAv)) || null;
 }
 
 export function endretAvVisning(sistEndret: string, sistEndretAv: string) {
