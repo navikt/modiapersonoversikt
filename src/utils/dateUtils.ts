@@ -1,5 +1,20 @@
 import moment from 'moment';
+import 'moment/locale/nb';
 import navfaker from 'nav-faker';
+
+export function formatterDato(dato: string | Date) {
+    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY');
+}
+
+export function formatterDatoTid(dato: string | Date) {
+    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY HH:mm');
+}
+
+function getMomentMedNorskLocale(dato: string | Date) {
+    const datoMoment = moment(dato);
+    datoMoment.locale('nb');
+    return datoMoment;
+}
 
 const månedTilNavnMapping = (månednr: number) => {
     switch (månednr) {
