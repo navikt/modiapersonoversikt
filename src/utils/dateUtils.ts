@@ -10,10 +10,6 @@ export function formatterDatoTid(dato: string | Date) {
     return getMomentMedNorskLocale(dato).format('DD.MM.YYYY HH:mm');
 }
 
-export function formatterDatoForTrådvisning(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format('DD. MMMM YYYY, [klokken] HH:mm');
-}
-
 function getMomentMedNorskLocale(dato: string | Date) {
     const datoMoment = moment(dato);
     datoMoment.locale('nb');

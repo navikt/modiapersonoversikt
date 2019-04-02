@@ -7,7 +7,7 @@ import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
-import { formatterDatoForTrådvisning } from '../../../../../utils/dateUtils';
+import { formatterDatoTid } from '../../../../../utils/dateUtils';
 
 interface Props {
     traad: Traad;
@@ -45,7 +45,7 @@ function sisteSendteMelding(traad: Traad) {
 }
 
 function TraadListeElement(props: Props) {
-    const datoTekst = formatterDatoForTrådvisning(props.traad.dato);
+    const datoTekst = formatterDatoTid(props.traad.dato);
     const tittel = `${meldingstypeTekst(sisteSendteMelding(props.traad).meldingstype)} - ${temagruppeTekst(
         props.traad.temagruppe
     )}`;
