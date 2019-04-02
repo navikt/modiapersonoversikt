@@ -2,20 +2,16 @@ import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
-const DATO_FORMAT_STANDARD = 'DD.MM.YYYY';
-const DATO_TID_FORMAT_STANDARD = 'DD.MM.YYYY HH:mm';
-const DATOFORMAT_TRAADER = 'DD. MMMM YYYY, [klokken] HH:mm';
-
 export function formatterDato(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format(DATO_FORMAT_STANDARD);
+    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY');
 }
 
 export function formatterDatoTid(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format(DATO_TID_FORMAT_STANDARD);
+    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY HH:mm');
 }
 
 export function formatterDatoForTrådvisning(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format(DATOFORMAT_TRAADER);
+    return getMomentMedNorskLocale(dato).format('DD. MMMM YYYY, [klokken] HH:mm');
 }
 
 function getMomentMedNorskLocale(dato: string | Date) {
