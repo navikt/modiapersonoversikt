@@ -9,6 +9,7 @@ import BrukerprofilStandalone from './Brukerprofil';
 import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
+import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
 import HentOppgaveKnappStandalone from './HentOppgaveKnapp';
 import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import theme from '../../styles/personOversiktTheme';
@@ -31,7 +32,8 @@ enum Komponenter {
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
-    HentOppgaveKnapp
+    HentOppgaveKnapp,
+    Foreldrepenger
 }
 
 const Style = styled.div`
@@ -81,6 +83,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return (
                 <PleiepengerLamell fødselsnummer={aremark.fødselsnummer} barnetsFødselsnummer={moss.fødselsnummer} />
             );
+        case Komponenter.Foreldrepenger:
+            return <ForeldrepengerLamell fødselsnummer={aremark.fødselsnummer} />;
         case Komponenter.HentOppgaveKnapp:
             return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
