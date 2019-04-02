@@ -1,8 +1,8 @@
 import moment from 'moment';
 import * as Cookies from 'js-cookie';
 
-const skjulForCookieNavn = 'SkjulKontrollSpørsmålFor';
-const skjulVedPlukkCookieNavn = 'SkjulKontrollSpørsmålJobberMedPlukk';
+const skjulForCookieNavn = 'COOKIE_SkjulForBruker';
+const skjulVedPlukkCookieNavn = 'COOKIE_JobberMedSpmOgSvar';
 
 export function settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(fnr: string) {
     const omEnTime = moment()
