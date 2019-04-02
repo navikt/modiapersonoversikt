@@ -11,7 +11,7 @@ type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
 export interface InnholdslasterProps {
     children?: ReactNode;
-    avhengigheter: RestResource<object>[];
+    avhengigheter: RestResource<{}>[];
     spinnerSize?: SpinnerSize;
     returnOnPending?: React.ReactChildren | React.ReactChild;
     returnOnError?: React.ReactChildren | React.ReactChild;

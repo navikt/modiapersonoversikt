@@ -1,15 +1,4 @@
-import { hentKontaktinformasjon } from '../../redux/restReducers/kontaktinformasjon';
-import { erEgenAnsatt } from '../../redux/restReducers/egenansatt';
-import { hentVergemal } from '../../redux/restReducers/vergemal';
-import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
-import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
-import { resetUtbetalingerResource } from '../../redux/restReducers/utbetalinger';
-import { resetSykepengerResource } from '../../redux/restReducers/ytelser/sykepenger';
-import { resetPleiepengerResource } from '../../redux/restReducers/ytelser/pleiepenger';
-import { resetForeldrepengerResource } from '../../redux/restReducers/ytelser/foreldrepenger';
-import { resetUtførteUtbetalingerResource } from '../../redux/restReducers/ytelser/utførteUtbetalinger';
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
-import { hentPerson } from '../../redux/restReducers/personinformasjon';
 import { useEffect } from 'react';
 import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
@@ -43,20 +32,22 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        oppslagNyBruker: (fnr: string) => {
-            dispatch(hentPerson(fnr));
-            dispatch(hentKontaktinformasjon(fnr));
-            dispatch(erEgenAnsatt(fnr));
-            dispatch(hentVergemal(fnr));
-            dispatch(hentFeatureToggles());
-            dispatch(resetNavKontorResource());
-            dispatch(resetUtbetalingerResource());
-            dispatch(resetSykepengerResource());
-            dispatch(resetPleiepengerResource());
-            dispatch(resetForeldrepengerResource());
-            dispatch(resetUtførteUtbetalingerResource());
-            dispatch(resetKontrollSpørsmål());
-        }
+        oppslagNyBruker: () =>
+            dispatch((d: AsyncDispatch, getState: () => AppState) => {
+                const restResources = getState().restResources;
+                dispatch(restResources.personinformasjon.actions.fetch);
+                dispatch(restResources.kontaktinformasjon.actions.fetch);
+                dispatch(restResources.egenAnsatt.actions.fetch);
+                dispatch(restResources.vergemal.actions.fetch);
+                dispatch(restResources.featureToggles.actions.fetch);
+                dispatch(restResources.brukersNavKontor.actions.reset);
+                dispatch(restResources.utbetalinger.actions.reset);
+                dispatch(restResources.sykepenger.actions.reset);
+                dispatch(restResources.pleiepenger.actions.reset);
+                dispatch(restResources.foreldrepenger.actions.reset);
+                dispatch(restResources.utførteUtbetalingerYtelser.actions.reset);
+                dispatch(resetKontrollSpørsmål());
+            })
     };
 }
 

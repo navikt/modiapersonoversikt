@@ -1,5 +1,7 @@
 import { Action, Dispatch } from 'redux';
-import { ActionTypes } from './restResource';
+import { ActionTypes, FetchUriGenerator } from './restResource';
+import { AsyncDispatch } from '../ThunkTypes';
+import { AppState } from '../reducers';
 
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',
@@ -40,20 +42,28 @@ function handterFeil(dispatch: Dispatch<Action>, action: string) {
     };
 }
 
-export function doThenDispatch<T>(fn: () => Promise<T>, actionNames: ActionTypes) {
-    return (dispatch: Dispatch<Action>) => {
-        dispatch({ type: actionNames.STARTING });
-        return fn()
+function fetchData(uri: string) {
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw response.statusText;
+        }
+    });
+}
+
+export function doThenDispatch<T>(fetchUriGenerator: FetchUriGenerator, actionNames: ActionTypes, reload?: boolean) {
+    return (dispatch: AsyncDispatch, getState: () => AppState) => {
+        dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING });
+        const uri = fetchUriGenerator(getState());
+        return fetchData(uri)
             .then(sendResultatTilDispatch(dispatch, actionNames.FINISHED))
             .catch(handterFeil(dispatch, actionNames.FAILED));
     };
 }
 
-export function reloadThenDispatch<T>(fn: () => Promise<T>, actionNames: ActionTypes) {
+export function dispatchReset(actionNames: ActionTypes) {
     return (dispatch: Dispatch<Action>) => {
-        dispatch({ type: actionNames.RELOADING });
-        return fn()
-            .then(sendResultatTilDispatch(dispatch, actionNames.FINISHED))
-            .catch(handterFeil(dispatch, actionNames.FAILED));
+        dispatch({ type: actionNames.INITIALIZE });
     };
 }

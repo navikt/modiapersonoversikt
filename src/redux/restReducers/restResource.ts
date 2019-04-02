@@ -1,5 +1,7 @@
-import { doThenDispatch, FetchError, FetchSuccess, reloadThenDispatch, STATUS } from './utils';
-import { Action, Dispatch } from 'redux';
+import { dispatchReset, doThenDispatch, FetchError, FetchSuccess, STATUS } from './utils';
+import { Action } from 'redux';
+import { AppState } from '../reducers';
+import { AsyncDispatch } from '../ThunkTypes';
 
 export interface ActionTypes {
     STARTING: string;
@@ -11,6 +13,11 @@ export interface ActionTypes {
 
 export interface RestResource<T> {
     status: STATUS;
+    actions: {
+        fetch: (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
+        reload: (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
+        reset: (dispatch: AsyncDispatch) => void;
+    };
 }
 
 export interface Success<T> extends RestResource<T> {
@@ -73,30 +80,32 @@ function getActionTypes(resourceNavn: string): ActionTypes {
     };
 }
 
-export function createActionsAndReducer<T>(resourceNavn: string) {
-    const actionTypes = getActionTypes(resourceNavn);
+export type FetchUriGenerator = (state: AppState) => string;
 
-    const actionFunction = (fn: () => Promise<T>) => doThenDispatch(fn, actionTypes);
-    const reload = (fn: () => Promise<T>) => reloadThenDispatch(fn, actionTypes);
-
-    const tilbakestill = (dispatch: Dispatch<Action>) => {
-        dispatch({ type: actionTypes.INITIALIZE });
-    };
+export function createActionsAndReducer<T>(resourceNavn: string, fetchUriGenerator: FetchUriGenerator) {
+    const actionNames = getActionTypes(resourceNavn);
+    const fetch = doThenDispatch(fetchUriGenerator, actionNames);
+    const reload = doThenDispatch(fetchUriGenerator, actionNames, true);
+    const reset = dispatchReset(actionNames);
 
     const initialState: RestResource<T> = {
-        status: STATUS.NOT_STARTED
+        status: STATUS.NOT_STARTED,
+        actions: {
+            fetch,
+            reload,
+            reset
+        }
     };
+
     return {
-        action: actionFunction,
-        reload,
-        tilbakestill: tilbakestill,
         reducer: (state: RestResource<T> = initialState, action: Action): RestResource<T> => {
             switch (action.type) {
-                case actionTypes.STARTING:
+                case actionNames.STARTING:
                     return {
+                        ...state,
                         status: STATUS.LOADING
                     };
-                case actionTypes.RELOADING:
+                case actionNames.RELOADING:
                     if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
                         return {
                             ...state,
@@ -104,25 +113,28 @@ export function createActionsAndReducer<T>(resourceNavn: string) {
                         };
                     } else {
                         return {
+                            ...state,
                             status: STATUS.LOADING
                         };
                     }
-                case actionTypes.FINISHED:
+                case actionNames.FINISHED:
                     return {
+                        ...state,
                         status: STATUS.SUCCESS,
                         data: (<FetchSuccess<T>>action).data
                     } as Loaded<T>;
-                case actionTypes.FAILED:
+                case actionNames.FAILED:
                     return {
+                        ...state,
                         status: STATUS.FAILED,
                         error: (<FetchError>action).error
                     } as Failed<T>;
-                case actionTypes.INITIALIZE:
+                case actionNames.INITIALIZE:
                     return initialState;
                 default:
                     return state;
             }
         },
-        actionNames: actionTypes
+        actionNames: actionNames
     };
 }

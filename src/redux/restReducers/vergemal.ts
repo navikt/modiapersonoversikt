@@ -1,11 +1,13 @@
 import { createActionsAndReducer } from './restResource';
-import { getVergemal } from '../../api/vergemal-api';
+import { AppState } from '../reducers';
+import { apiBaseUri } from '../../api/config';
 
-const { reducer, action, actionNames } = createActionsAndReducer('vergemal');
-
-export function hentVergemal(fødselsnummer: string) {
-    return action(() => getVergemal(fødselsnummer));
+function generateVergemålFetchUri(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/person/${fnr}/vergemal`;
 }
+
+const { reducer, actionNames } = createActionsAndReducer('vergemal', generateVergemålFetchUri);
 
 export { actionNames };
 export default reducer;

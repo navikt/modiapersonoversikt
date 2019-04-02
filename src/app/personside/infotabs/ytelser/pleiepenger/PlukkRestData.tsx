@@ -1,23 +1,56 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { isLoaded, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isLoaded, isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
 import Innholdslaster, { InnholdslasterProps } from '../../../../../components/Innholdslaster';
+import { connect } from 'react-redux';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import { RestEndepunkter } from '../../../../../redux/restReducers/restReducers';
+import { AppState } from '../../../../../redux/reducers';
 
-interface OwnProps<T> {
-    restResource: RestResource<T>;
-    children: (data: T) => ReactNode;
+interface DispatchProps {
+    dispatch: AsyncDispatch;
 }
 
-type Props<T> = OwnProps<T> & Pick<InnholdslasterProps, 'spinnerSize' | 'returnOnPending' | 'returnOnError'>;
+export type BrukRestResourceDataOwnProps<T> = Pick<
+    InnholdslasterProps,
+    'spinnerSize' | 'returnOnPending' | 'returnOnError'
+> & {
+    getRestResource: (restResources: RestEndepunkter) => RestResource<T>;
+    children: (data: T) => ReactNode;
+};
 
-class PlukkRestData<T> extends React.Component<Props<T>> {
+interface StateProps<T> {
+    restResource: RestResource<T>;
+}
+
+type Props<T> = BrukRestResourceDataOwnProps<T> & DispatchProps & StateProps<T>;
+
+class BrukRestResourceData<T> extends React.Component<Props<T>> {
     render() {
-        const { children, restResource, ...innholdsLasterProps } = this.props;
-        if (!isLoaded(restResource)) {
-            return <Innholdslaster avhengigheter={[this.props.restResource]} {...innholdsLasterProps} />;
+        const { children, restResource, dispatch, ...innholdsLasterProps } = this.props;
+        if (isNotStarted(restResource)) {
+            dispatch(restResource.actions.fetch);
         }
-        return children((restResource as Loaded<T>).data);
+        if (!isLoaded(restResource)) {
+            return <Innholdslaster avhengigheter={[restResource]} {...innholdsLasterProps} />;
+        }
+        return children(restResource.data);
     }
 }
 
-export default PlukkRestData;
+function mapDispatchToProps<T>(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        dispatch: dispatch
+    };
+}
+
+function mapStateToProps<T>(state: AppState, ownProps: BrukRestResourceDataOwnProps<T>): StateProps<T> {
+    return {
+        restResource: ownProps.getRestResource(state.restResources)
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BrukRestResourceData);
