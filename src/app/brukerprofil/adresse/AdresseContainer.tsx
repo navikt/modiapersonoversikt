@@ -19,12 +19,12 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
-import { isNotStarted, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
-    postnummerReducer: RestReducer<KodeverkResponse>;
-    endreAdresseReducer: RestReducer<{}>;
+    postnummerResource: RestResource<KodeverkResponse>;
+    endreAdresseResource: RestResource<{}>;
 }
 
 interface DispatchProps {
@@ -34,7 +34,7 @@ interface DispatchProps {
     endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) => void;
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
-    resetEndreAdresseReducer: () => void;
+    resetEndreAdresseResource: () => void;
     reloadPerson: (fødselsnummer: string) => void;
 }
 
@@ -45,20 +45,20 @@ interface OwnProps {
 
 class AdresseFormContainer extends React.Component<StateProps & DispatchProps & OwnProps> {
     componentDidMount() {
-        if (isNotStarted(this.props.postnummerReducer)) {
+        if (isNotStarted(this.props.postnummerResource)) {
             this.props.hentPostnummerKodeverk();
         }
     }
 
     componentWillUnmount() {
-        this.props.resetEndreAdresseReducer();
+        this.props.resetEndreAdresseResource();
     }
 
     render() {
         return (
             <div>
                 <Undertittel>Adresse</Undertittel>
-                <Innholdslaster avhengigheter={[this.props.postnummerReducer]}>
+                <Innholdslaster avhengigheter={[this.props.postnummerResource]}>
                     <AdresseForm
                         veilederRoller={this.props.veilederRoller}
                         person={this.props.person}
@@ -67,8 +67,8 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
                         endrePostboksadresse={this.props.endrePostboksadresse}
                         endreUtlandsadresse={this.props.endreUtlandsadresse}
                         slettMidlertidigeAdresser={this.props.slettMidlertidigeAdresser}
-                        resetEndreAdresseReducer={this.props.resetEndreAdresseReducer}
-                        endreAdresseReducer={this.props.endreAdresseReducer}
+                        resetEndreAdresseResource={this.props.resetEndreAdresseResource}
+                        endreAdresseResource={this.props.endreAdresseResource}
                         reloadPersonInfo={this.props.reloadPerson}
                     />
                 </Innholdslaster>
@@ -79,8 +79,8 @@ class AdresseFormContainer extends React.Component<StateProps & DispatchProps & 
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        postnummerReducer: state.restEndepunkter.postnummerReducer,
-        endreAdresseReducer: state.restEndepunkter.endreAdresseReducer
+        postnummerResource: state.restResources.postnummer,
+        endreAdresseResource: state.restResources.endreAdresse
     };
 };
 
@@ -96,7 +96,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) =>
             dispatch(endreUtlandsadresse(fødselsnummer, utlandsadresse)),
         slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer)),
-        resetEndreAdresseReducer: () => dispatch(reset()),
+        resetEndreAdresseResource: () => dispatch(reset()),
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer))
     };
 }

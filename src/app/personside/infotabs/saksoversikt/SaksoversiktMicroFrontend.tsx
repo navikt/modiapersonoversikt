@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isLoaded, isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoaded, isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -32,8 +32,8 @@ interface OwnProps {
 }
 
 interface StateProps {
-    saksoversiktReducer: RestReducer<SakstemaResponse>;
-    personReducer: RestReducer<PersonRespons>;
+    saksoversiktResource: RestResource<SakstemaResponse>;
+    personResource: RestResource<PersonRespons>;
 }
 
 interface DispatchProps {
@@ -88,7 +88,7 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
 }
 
 function hentQueryParametreFraUrlOgVisDokument(props: Props) {
-    if (props.queryParamString && isLoaded(props.saksoversiktReducer)) {
+    if (props.queryParamString && isLoaded(props.saksoversiktResource)) {
         const queryParams = parseQueryParams(props.queryParamString);
         const sakstemaKode = queryParams.sakstemaKode;
         const journalId = queryParams.journalpostId;
@@ -98,7 +98,7 @@ function hentQueryParametreFraUrlOgVisDokument(props: Props) {
             return;
         }
 
-        const sakstemaListe = props.saksoversiktReducer.data.resultat;
+        const sakstemaListe = props.saksoversiktResource.data.resultat;
         const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
         if (!sakstema) {
             return;
@@ -121,14 +121,14 @@ function hentQueryParametreFraUrlOgVisDokument(props: Props) {
 class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.setErMicroFrontend();
-        if (isNotStarted(this.props.saksoversiktReducer)) {
+        if (isNotStarted(this.props.saksoversiktResource)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
     }
 
     componentDidUpdate(prevProps: Props) {
         const førsteUpdateEtterLasting =
-            isLoaded(this.props.saksoversiktReducer) && !isLoaded(prevProps.saksoversiktReducer);
+            isLoaded(this.props.saksoversiktResource) && !isLoaded(prevProps.saksoversiktResource);
 
         if (førsteUpdateEtterLasting) {
             hentQueryParametreFraUrlOgVisDokument(this.props);
@@ -141,7 +141,7 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
                 <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                 <LyttPåNyttFnrIReduxOgHentPersoninfo />
                 <FetchFeatureToggles />
-                <Innholdslaster avhengigheter={[this.props.saksoversiktReducer]}>
+                <Innholdslaster avhengigheter={[this.props.saksoversiktResource]}>
                     <DokumentListeContainer />
                     <DokumentOgVedlegg />
                 </Innholdslaster>
@@ -152,8 +152,8 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
-        personReducer: state.restEndepunkter.personinformasjon
+        saksoversiktResource: state.restResources.sakstema,
+        personResource: state.restResources.personinformasjon
     };
 }
 

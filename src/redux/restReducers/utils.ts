@@ -1,5 +1,5 @@
 import { Action, Dispatch } from 'redux';
-import { ActionTypes } from './restReducer';
+import { ActionTypes } from './restResource';
 
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',

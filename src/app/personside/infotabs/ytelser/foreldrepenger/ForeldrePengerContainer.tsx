@@ -3,7 +3,7 @@ import { ForeldrepengerResponse } from '../../../../../models/ytelse/foreldrepen
 import { connect } from 'react-redux';
 import { hentForeldrepenger } from '../../../../../redux/restReducers/ytelser/foreldrepenger';
 import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
@@ -14,7 +14,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
+    foreldrepengerResource: RestResource<ForeldrepengerResponse>;
 }
 
 interface DispatchProps {
@@ -26,14 +26,14 @@ type Props = OwnProps & StateProps & DispatchProps;
 class ForeldrePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
         loggEvent('Sidevisning', 'Foreldrepenger');
-        if (isNotStarted(this.props.foreldrepengerReducer)) {
+        if (isNotStarted(this.props.foreldrepengerResource)) {
             this.props.hentForeldrepenger(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData spinnerSize="M" restReducer={this.props.foreldrepengerReducer}>
+            <PlukkRestData spinnerSize="M" restResource={this.props.foreldrepengerResource}>
                 {data => {
                     if (!data.foreldrepenger || !data.foreldrepenger[0]) {
                         return null;
@@ -49,7 +49,7 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        foreldrepengerReducer: state.restEndepunkter.foreldrepengerReducer
+        foreldrepengerResource: state.restResources.foreldrepenger
     };
 }
 

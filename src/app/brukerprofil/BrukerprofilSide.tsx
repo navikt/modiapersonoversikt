@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { isNotStarted, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../redux/restReducers/restResource';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
@@ -74,8 +74,8 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    personReducer: RestReducer<PersonRespons>;
-    veilederRollerReducer: RestReducer<VeilederRoller>;
+    personResource: RestResource<PersonRespons>;
+    veilederRollerResource: RestResource<VeilederRoller>;
 }
 
 type Props = StateProps & DispatchProps;
@@ -144,7 +144,7 @@ class Header extends React.PureComponent<{ person: Person }> {
 
 class BrukerprofilSide extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.veilederRollerReducer)) {
+        if (isNotStarted(this.props.veilederRollerResource)) {
             this.props.hentVeilederRoller();
         }
         loggEvent('Sidevisning', 'Brukerprofil');
@@ -154,14 +154,14 @@ class BrukerprofilSide extends React.PureComponent<Props> {
         return (
             <BrukerprofilWrapper>
                 {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
-                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
+                <Innholdslaster avhengigheter={[this.props.personResource, this.props.veilederRollerResource]}>
                     {erNyePersonoversikten() && (
-                        <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person} />
+                        <Header person={(this.props.personResource as Loaded<PersonRespons>).data as Person} />
                     )}
                     <ContentWrapper>
                         <BrukerprofilForm
-                            person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
-                            veilderRoller={(this.props.veilederRollerReducer as Loaded<VeilederRoller>).data}
+                            person={(this.props.personResource as Loaded<PersonRespons>).data as Person}
+                            veilderRoller={(this.props.veilederRollerResource as Loaded<VeilederRoller>).data}
                         />
                     </ContentWrapper>
                 </Innholdslaster>
@@ -172,8 +172,8 @@ class BrukerprofilSide extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        personReducer: state.restEndepunkter.personinformasjon,
-        veilederRollerReducer: state.restEndepunkter.veilederRoller
+        personResource: state.restResources.personinformasjon,
+        veilederRollerResource: state.restResources.veilederRoller
     };
 };
 

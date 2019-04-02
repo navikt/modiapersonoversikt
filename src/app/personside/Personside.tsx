@@ -9,10 +9,10 @@ import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { isLoaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../redux/restReducers/restResource';
 
 interface PersonsideStateProps {
-    personReducer: RestReducer<PersonRespons>;
+    personResource: RestResource<PersonRespons>;
 }
 
 const onError = (
@@ -27,10 +27,10 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
     }
 
     getSideinnhold() {
-        const personReducer = this.props.personReducer;
+        const personResource = this.props.personResource;
 
-        if (isLoaded(personReducer) && erPersonResponsAvTypeBegrensetTilgang(personReducer.data)) {
-            return <BegrensetTilgangSide person={personReducer.data} />;
+        if (isLoaded(personResource) && erPersonResponsAvTypeBegrensetTilgang(personResource.data)) {
+            return <BegrensetTilgangSide person={personResource.data} />;
         } else {
             return <MainLayout />;
         }
@@ -38,7 +38,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.personReducer]} returnOnError={onError}>
+            <Innholdslaster avhengigheter={[this.props.personResource]} returnOnError={onError}>
                 {this.getSideinnhold()}
             </Innholdslaster>
         );
@@ -47,7 +47,7 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
     return {
-        personReducer: state.restEndepunkter.personinformasjon
+        personResource: state.restResources.personinformasjon
     };
 }
 

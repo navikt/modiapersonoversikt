@@ -9,7 +9,7 @@ import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { RestReducer } from '../../redux/restReducers/restReducer';
+import { RestResource } from '../../redux/restReducers/restResource';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
 import PlukkRestData from '../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 
@@ -18,7 +18,7 @@ interface OwnProps {
 }
 
 interface PersonsideStateProps {
-    personReducer: RestReducer<PersonRespons>;
+    personResource: RestResource<PersonRespons>;
 }
 
 type Props = OwnProps & PersonsideStateProps;
@@ -56,7 +56,7 @@ class Personside extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restReducer={this.props.personReducer} returnOnPending={onPending} returnOnError={onError}>
+            <PlukkRestData restResource={this.props.personResource} returnOnPending={onPending} returnOnError={onError}>
                 {data => this.getSideinnhold(data)}
             </PlukkRestData>
         );
@@ -65,7 +65,7 @@ class Personside extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
     return {
-        personReducer: state.restEndepunkter.personinformasjon
+        personResource: state.restResources.personinformasjon
     };
 }
 

@@ -11,7 +11,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import { Loaded } from '../../../redux/restReducers/restReducer';
+import { Loaded } from '../../../redux/restReducers/restResource';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
@@ -67,7 +67,7 @@ class VisittkortContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         visittkortErApent: state.ui.visittkort.apent,
-        person: (state.restEndepunkter.personinformasjon as Loaded<PersonRespons>).data as Person
+        person: (state.restResources.personinformasjon as Loaded<PersonRespons>).data as Person
     };
 }
 
