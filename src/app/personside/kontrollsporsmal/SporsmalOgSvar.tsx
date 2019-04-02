@@ -14,9 +14,6 @@ interface Props {
 const SporsmalOgSvarStyling = styled.div`
     display: flex;
     flex-wrap: wrap;
-    > * {
-        margin-top: ${theme.margin.px20};
-    }
 `;
 
 const SpørsmålTekstStyle = styled.div`

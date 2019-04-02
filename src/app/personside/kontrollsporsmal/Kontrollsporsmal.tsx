@@ -13,7 +13,7 @@ import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -32,25 +32,21 @@ const KontrollSporsmalStyling = styled.section`
     margin-bottom: 0.5rem;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-areas:
-        'tittel knapper'
-        'innhold innhold';
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'innhold innhold knapper';
     .innhold {
-        -ms-grid-row: 2;
+        -ms-grid-row: 1;
         -ms-grid-column: 1;
         -ms-grid-column-span: 2;
         grid-area: innhold;
-    }
-    .tittel {
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
-        grid-area: tittel;
     }
     .knapper {
         -ms-grid-row: 1;
         -ms-grid-column: 2;
         grid-area: knapper;
+    }
+    .visually-hidden {
+        ${theme.visuallyHidden}
     }
 `;
 
@@ -68,9 +64,7 @@ function Kontrollsporsmal(props: Props) {
     return (
         <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                <div className="tittel">
-                    <Undertittel>Kontrollspørsmål</Undertittel>
-                </div>
+                <VisuallyHiddenAutoFokusHeader tittel="Kontrollspørsmål" />
                 <div className="innhold">
                     <SpørsmålOgSvar />
                 </div>
