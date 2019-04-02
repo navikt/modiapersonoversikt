@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
-import { isLoaded, RestReducer } from '../../../redux/restReducers/restReducer';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import { AppState } from '../../../redux/reducers';
 import { hentForeldrepenger } from '../../../redux/restReducers/ytelser/foreldrepenger';
@@ -14,13 +13,14 @@ import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepen
 import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
+import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
 
 interface OwnProps {
     fødselsnummer: string;
 }
 
 interface StateProps {
-    foreldrepengerReducer: RestReducer<ForeldrepengerResponse>;
+    foreldrepengerReducer: RestResource<ForeldrepengerResponse>;
 }
 
 interface DispatchProps {
@@ -88,7 +88,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
     render() {
         return (
             <PlukkRestData
-                restReducer={this.props.foreldrepengerReducer}
+                restResource={this.props.foreldrepengerReducer}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
@@ -100,7 +100,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        foreldrepengerReducer: state.restEndepunkter.foreldrepengerReducer
+        foreldrepengerReducer: state.restResources.foreldrepenger
     };
 }
 
