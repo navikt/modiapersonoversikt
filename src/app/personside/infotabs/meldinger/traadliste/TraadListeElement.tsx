@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { datoVerbose } from '../../../../../utils/dateUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import Element from 'nav-frontend-typografi/lib/element';
 import styled from 'styled-components';
@@ -8,6 +7,7 @@ import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
+import { formatterDatoTid } from '../../../../../utils/dateUtils';
 
 interface Props {
     traad: Traad;
@@ -45,7 +45,7 @@ function sisteSendteMelding(traad: Traad) {
 }
 
 function TraadListeElement(props: Props) {
-    const datoTekst = datoVerbose(props.traad.dato).meldingerFormat;
+    const datoTekst = formatterDatoTid(props.traad.dato);
     const tittel = `${meldingstypeTekst(sisteSendteMelding(props.traad).meldingstype)} - ${temagruppeTekst(
         props.traad.temagruppe
     )}`;
