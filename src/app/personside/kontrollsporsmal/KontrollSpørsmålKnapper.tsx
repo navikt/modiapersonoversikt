@@ -58,11 +58,11 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
     render() {
         return (
             <KnapperStyling>
-                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
-                    Nytt
-                </KnappBase>
                 <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={this.handleLukkClick}>
                     Lukk
+                </KnappBase>
+                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
+                    Nytt
                 </KnappBase>
             </KnapperStyling>
         );
