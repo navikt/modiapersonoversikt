@@ -11,7 +11,7 @@ import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggle
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
-import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
+import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
@@ -61,7 +61,7 @@ function Kontrollsporsmal(props: Props) {
         }
     }, [props.fnr]);
 
-    if (!props.visKontrollSpørsmål) {
+    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar()) {
         return null;
     }
 
