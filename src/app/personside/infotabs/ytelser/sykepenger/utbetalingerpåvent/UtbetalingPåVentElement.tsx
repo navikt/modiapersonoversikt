@@ -23,7 +23,7 @@ function UtbetalingPåVentElement(props: Props) {
     };
     return (
         <ErrorBoundary boundaryName="Utbetaling på vent">
-            <Style aria-label={'Utbetaling på vent' + entries.Registeringsdato}>
+            <Style aria-label={'Utbetaling på vent'}>
                 <DescriptionList entries={entries} />
             </Style>
         </ErrorBoundary>

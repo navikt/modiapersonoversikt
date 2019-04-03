@@ -57,7 +57,7 @@ exports[`UtbetalingerPåVentListe matcher snapshot 1`] = `
   </div>
   <ol>
     <li
-      aria-label="Utbetaling på vventundefined"
+      aria-label="Utbetaling på vent"
       className="c2"
     >
       <dl
