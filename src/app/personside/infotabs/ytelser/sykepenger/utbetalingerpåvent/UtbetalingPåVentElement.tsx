@@ -5,6 +5,7 @@ import theme from '../../../../../../styles/personOversiktTheme';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
+import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 
 interface Props {
     utbetalingPåVent: UtbetalingPåVent;
@@ -21,9 +22,11 @@ function UtbetalingPåVentElement(props: Props) {
         Utbetalingsgrad: prosentEllerNull(props.utbetalingPåVent.utbetalingsgrad)
     };
     return (
-        <Style aria-label={'Utbetaling på vvent' + entries.Registeringsdato}>
-            <DescriptionList entries={entries} />
-        </Style>
+        <ErrorBoundary boundaryName="Utbetaling på vent">
+            <Style aria-label={'Utbetaling på vent' + entries.Registeringsdato}>
+                <DescriptionList entries={entries} />
+            </Style>
+        </ErrorBoundary>
     );
 }
 

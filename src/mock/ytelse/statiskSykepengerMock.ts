@@ -2,7 +2,7 @@ import { Sykepenger } from '../../models/ytelse/sykepenger';
 import { statiskKommendeUtbetaling } from './statiskForeldrepengeMock';
 
 const arbeidsforhold = {
-    arbeidsgiverNavn: 'Johnsen - Kristensen',
+    arbeidsgiverNavn: 'Bærlevåg Burger og Bitcoin',
     arbeidsgiverKontonr: '87865275970',
     inntektsperiode: 'Månedssats',
     inntektForPerioden: 39691,
@@ -14,8 +14,8 @@ const arbeidsforhold = {
 export const statiskUtbetalingPåVentMock = {
     vedtak: { fra: '2017-10-13', til: '2018-10-10' },
     utbetalingsgrad: 62,
-    oppgjørstype: 'Oppgjørstype',
-    arbeidskategori: 'Arbeidskategori',
+    oppgjørstype: 'Spesidaler i pung',
+    arbeidskategori: 'Omreisende skald',
     stansårsak: 'Pga mistenkelig oppførsel',
     ferie1: { fra: '2017-07-04', til: '2018-10-29' },
     ferie2: { fra: '2017-07-13', til: '2019-02-03' },
@@ -24,7 +24,7 @@ export const statiskUtbetalingPåVentMock = {
 };
 
 const sykmelding = {
-    sykmelder: 'Eline Moe',
+    sykmelder: 'Lommelegen AS',
     behandlet: '2018-04-01',
     sykmeldt: { fra: '2014-02-09T19:24:27.357Z', til: '2014-05-11T02:18:25.709Z' },
     sykmeldingsgrad: 97,
@@ -46,7 +46,12 @@ export const statiskSykepengerMock: Sykepenger = {
     sanksjon: { fra: '2014-01-19T01:31:21.521Z', til: '2014-09-05T11:21:25.288Z' },
     stansårsak: null,
     unntakAktivitet: null,
-    forsikring: { forsikringsordning: 'minima', premiegrunnlag: 837, erGyldig: false, forsikret: null },
+    forsikring: {
+        forsikringsordning: 'Betaler beskyttelsespenger til Mafia',
+        premiegrunnlag: 837,
+        erGyldig: false,
+        forsikret: null
+    },
     sykmeldinger: [sykmelding, sykmelding],
     historiskeUtbetalinger: [],
     kommendeUtbetalinger: [statiskKommendeUtbetaling, statiskKommendeUtbetaling],

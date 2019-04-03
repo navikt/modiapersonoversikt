@@ -13,7 +13,7 @@ interface Props {
     sykmeldinger: ISykemelding[];
 }
 
-const TableStyle = styled.div`
+const GraderingsTableStyle = styled.div`
     table {
         text-align: right;
         thead {
@@ -42,7 +42,7 @@ function GraderingsTabell(props: Props) {
         periodeEllerNull(sykmelding.sykmeldt) || undefined,
         prosentEllerNull(sykmelding.sykmeldingsgrad) || undefined
     ]);
-    return <TableStyle>{createTable(tittelRekke, tableEntries)}</TableStyle>;
+    return <GraderingsTableStyle>{createTable(tittelRekke, tableEntries)}</GraderingsTableStyle>;
 }
 
 function Sykemelding(props: Props) {

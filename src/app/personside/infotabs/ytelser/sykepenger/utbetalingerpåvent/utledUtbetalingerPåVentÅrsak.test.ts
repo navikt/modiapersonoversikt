@@ -13,12 +13,12 @@ const utbetalingUtenPåventÅrsak: UtbetalingPåVent = {
     sykmeldt: null
 };
 
-describe('utleder riktig årsak for utbetaling på vent dersom', () => {
-    it('det ikke finnes noen årsak', () => {
+describe('utledUtbetalingPåVentÅrsak()', () => {
+    it('returnerer tom streng dersom det ikke finnes noen årsak', () => {
         const resultat = utledUtbetalingPåVentÅrsak(utbetalingUtenPåventÅrsak);
         expect(resultat).toEqual('');
     });
-    it('arbeidskategori === 99', () => {
+    it('returnerer "Inntektsopplysninger mangler" dersom arbeidskategori === 99', () => {
         const utbetaling = {
             ...utbetalingUtenPåventÅrsak,
             arbeidskategori: '99'
@@ -26,7 +26,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
         const resultat = utledUtbetalingPåVentÅrsak(utbetaling);
         expect(resultat).toEqual('Inntektsopplysninger mangler');
     });
-    it('utbetaling har stansårsak', () => {
+    it('returnerer stansårsak dersom utbetaling har stansårsak', () => {
         const utbetaling: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             stansårsak: 'Pga zombieapokalypse'
@@ -36,7 +36,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('Pga zombieapokalypse');
     });
-    it('sanksjon varer lenger enn vedtak', () => {
+    it('returnerer "Sanksjon" dersom sanksjon varer lenger enn vedtak', () => {
         const utbetalingMedSanksjonUtoverPerioden: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             stansårsak: null,
@@ -53,7 +53,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('Sanksjon');
     });
-    it('sanksjon ikke varer lenger enn vedtak', () => {
+    it('returnerer tom streng dersom sanksjon ikke varer lenger enn vedtak', () => {
         const utbetalingMedSanksjonUtoverPerioden: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             stansårsak: null,
@@ -70,7 +70,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('');
     });
-    it('sanksjon er innenfor vedtaksperioden og ikke har slutt', () => {
+    it('returnerer "Sanksjon" dersom sanksjon er innenfor vedtaksperioden og ikke har slutt', () => {
         const utbetalingMedSanksjonUtoverPerioden: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             stansårsak: null,
@@ -87,7 +87,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('Sanksjon');
     });
-    it('sanksjon er etter vedtaksperioden og ikke har slutt', () => {
+    it('returnerer "Sanksjon" dersom sanksjon er etter vedtaksperioden og ikke har slutt', () => {
         const utbetalingMedSanksjonUtoverPerioden: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             stansårsak: null,
@@ -104,7 +104,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('');
     });
-    it('sykemelding finnes men sykmelding løper ut før vedtaksperioden', () => {
+    it('returnerer "Sykmelding mangler for perioden" dersom sykemelding finnes men sykmelding løper ut før vedtaksperioden', () => {
         const utbetalingMedManglendeSykmelding: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             vedtak: {
@@ -120,7 +120,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('Sykmelding mangler for perioden');
     });
-    it('bruker er på ferie utover vedtaksperioden', () => {
+    it('returnerer "Ferie" dersom bruker er på ferie utover vedtaksperioden', () => {
         const utbetalingMedManglendeSykmelding: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             vedtak: {
@@ -136,7 +136,7 @@ describe('utleder riktig årsak for utbetaling på vent dersom', () => {
 
         expect(resultat).toEqual('Ferie');
     });
-    it('bruker er på to ferier og en av de går utover vedtaksperioden', () => {
+    it('returnerer "Ferie" dersom bruker er på to ferier og en av de går utover vedtaksperioden', () => {
         const utbetalingMedManglendeSykmelding: UtbetalingPåVent = {
             ...utbetalingUtenPåventÅrsak,
             vedtak: {

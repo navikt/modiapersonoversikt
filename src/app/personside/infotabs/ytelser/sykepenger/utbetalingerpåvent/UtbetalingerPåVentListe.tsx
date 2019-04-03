@@ -18,10 +18,10 @@ function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
     if (utbetalingerpåVent.length === 0) {
         return <AlertStripeInfo>Ingen utbetalinger på vent funnet</AlertStripeInfo>;
     }
-    const kommendeUtbetalingerMarkup = utbetalingerpåVent.map((utbetaling, index) => (
+    const utbetalingerPåVent = utbetalingerpåVent.map((utbetaling, index) => (
         <UtbetalingPåVentElement key={index} utbetalingPåVent={utbetaling} />
     ));
-    return <ol>{kommendeUtbetalingerMarkup}</ol>;
+    return <ol>{utbetalingerPåVent}</ol>;
 }
 
 function UtbetalingerPåVentListe(props: Props) {

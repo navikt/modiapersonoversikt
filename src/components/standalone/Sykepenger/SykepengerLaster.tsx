@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
 import { isNotStarted, RestReducer } from '../../../redux/restReducers/restReducer';
@@ -26,40 +27,40 @@ interface DispatchProps {
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-class SykePengerLaster extends React.PureComponent<Props> {
-    componentDidMount() {
+function SykePengerLaster(props: Props) {
+    useEffect(() => {
         loggEvent('Sidevisning', 'Sykepenger');
-        if (isNotStarted(this.props.sykepengerReducer)) {
-            this.props.hentSykepenger(this.props.fødselsnummer);
+        if (isNotStarted(props.sykepengerReducer)) {
+            props.hentSykepenger(props.fødselsnummer);
         }
-    }
+    }, []);
 
-    render() {
+    function getInnhold(data: SykepengerResponse) {
+        if (!data.sykepenger) {
+            return null;
+        }
+        const aktuellRettighet = data.sykepenger.find(rettighet =>
+            moment(rettighet.sykmeldtFom).isSame(moment(props.sykmeldtFraOgMed))
+        );
+        if (!aktuellRettighet) {
+            loggError(new Error('Kunne ikke finne sykepengerettighet'), undefined, {
+                fnr: props.fødselsnummer,
+                sykmeldtFraOgMed: props.sykmeldtFraOgMed
+            });
+            return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet</AlertStripeAdvarsel>;
+        }
         return (
-            <PlukkRestData spinnerSize="M" restReducer={this.props.sykepengerReducer}>
-                {data => {
-                    if (!data.sykepenger) {
-                        return null;
-                    }
-                    const aktuellRettighet = data.sykepenger.find(rettighet =>
-                        moment(rettighet.sykmeldtFom).isSame(moment(this.props.sykmeldtFraOgMed))
-                    );
-                    if (!aktuellRettighet) {
-                        loggError(new Error('Kunne ikke finne sykepengerettighet'), undefined, {
-                            fnr: this.props.fødselsnummer,
-                            sykmeldtFraOgMed: this.props.sykmeldtFraOgMed
-                        });
-                        return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet</AlertStripeAdvarsel>;
-                    }
-                    return (
-                        <ol>
-                            <Sykepenger sykepenger={aktuellRettighet} />
-                        </ol>
-                    );
-                }}
-            </PlukkRestData>
+            <ol>
+                <Sykepenger sykepenger={aktuellRettighet} />
+            </ol>
         );
     }
+
+    return (
+        <PlukkRestData spinnerSize="M" restReducer={props.sykepengerReducer}>
+            {data => getInnhold(data)}
+        </PlukkRestData>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
