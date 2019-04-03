@@ -1,4 +1,4 @@
-import { Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldinger';
 
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return [
@@ -42,4 +42,30 @@ export function erPlukkbar(temagruppe: Temagruppe) {
 
 export function erKommunaleTjenester(temagruppe: Temagruppe) {
     return [Temagruppe.ØkonomiskSosial, Temagruppe.AndreSosiale].includes(temagruppe);
+}
+
+export function erMeldingFraBruker(meldingstype: Meldingstype) {
+    return [Meldingstype.SpørsmålSkriftlig, Meldingstype.SvarSblInngående].includes(meldingstype);
+}
+
+export function erMeldingFraNav(meldingstype: Meldingstype) {
+    return [
+        Meldingstype.SvarSkriftlig,
+        Meldingstype.SvarOppmøte,
+        Meldingstype.SvarTelefon,
+        Meldingstype.SamtalereferatTelefon,
+        Meldingstype.SamtalereferatOppmøte,
+        Meldingstype.SpørsmålModiaUtgående,
+        Meldingstype.DokumentVarsel,
+        Meldingstype.OppgaveVarsel,
+        Meldingstype.DelvisSvarSkriftlig
+    ].includes(meldingstype);
+}
+
+export function erMeldingVarsel(meldingstype: Meldingstype) {
+    return [Meldingstype.OppgaveVarsel, Meldingstype.DokumentVarsel].includes(meldingstype);
+}
+
+export function erMeldingSpørsmål(meldingstype: Meldingstype) {
+    return [Meldingstype.SpørsmålModiaUtgående, Meldingstype.SpørsmålSkriftlig].includes(meldingstype);
 }
