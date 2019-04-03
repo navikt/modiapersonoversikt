@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Arbeidsforhold } from '../../../../../../../models/ytelse/sykepenger';
+import { Arbeidsforhold } from '../../../../../../models/ytelse/sykepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import styled from 'styled-components';
-import theme from '../../../../../../../styles/personOversiktTheme';
+import theme from '../../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
 import { connect } from 'react-redux';
-import { AppState } from '../../../../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../../../../redux/ThunkTypes';
-import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../../redux/ytelser/sykepengerReducer';
+import { AppState } from '../../../../../../redux/reducers';
+import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
+import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../redux/ytelser/sykepengerReducer';
 
 interface OwnProps {
     arbeidsforhold?: Arbeidsforhold[];

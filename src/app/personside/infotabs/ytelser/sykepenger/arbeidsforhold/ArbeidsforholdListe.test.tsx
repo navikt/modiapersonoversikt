@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ArbeidsForholdListe from './ArbeidsforholdListe';
-import { statiskSykepengerMock } from '../../../../../../../mock/ytelse/statiskSykepengerMock';
-import TestProvider from '../../../../../../../test/Testprovider';
-import { getTestStore } from '../../../../../../../setupTests';
-import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../../redux/ytelser/sykepengerReducer';
+import { statiskSykepengerMock } from '../../../../../../mock/ytelse/statiskSykepengerMock';
+import TestProvider from '../../../../../../test/Testprovider';
+import { getTestStore } from '../../../../../../setupTests';
+import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../redux/ytelser/sykepengerReducer';
 
 test('ArbeidsforholdListe matcher snapshot', () => {
     const arbeidsforhold = statiskSykepengerMock.arbeidsforholdListe[0];
