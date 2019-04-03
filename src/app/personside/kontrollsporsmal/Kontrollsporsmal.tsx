@@ -13,7 +13,6 @@ import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -64,7 +63,7 @@ function Kontrollsporsmal(props: Props) {
     return (
         <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                <VisuallyHiddenAutoFokusHeader tittel="Kontrollspørsmål" />
+                <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
                 <div className="innhold">
                     <SpørsmålOgSvar />
                 </div>
