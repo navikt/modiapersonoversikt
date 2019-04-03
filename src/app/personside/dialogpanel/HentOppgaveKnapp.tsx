@@ -17,6 +17,7 @@ import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/re
 import { AppState } from '../../../redux/reducers';
 import { isLoading, RestResource } from '../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 
 const HentOppgaveLayout = styled.div`
     text-align: center;
@@ -87,6 +88,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
             return;
         }
         this.setState({ temagruppeFeilmelding: undefined, tomKø: false });
+        settJobberMedSpørsmålOgSvar();
         this.props.plukkOppgaver(this.props.valgtTemagruppe).then((oppgaver: Oppgave[]) => {
             const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
             if (!fødselsnummer) {

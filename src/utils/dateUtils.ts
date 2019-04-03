@@ -3,17 +3,11 @@ import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
 export function formatterDato(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY');
+    return moment(dato).format('DD.MM.YYYY');
 }
 
 export function formatterDatoTid(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY HH:mm');
-}
-
-function getMomentMedNorskLocale(dato: string | Date) {
-    const datoMoment = moment(dato);
-    datoMoment.locale('nb');
-    return datoMoment;
+    return moment(dato).format('DD.MM.YYYY HH:mm');
 }
 
 const månedTilNavnMapping = (månednr: number) => {

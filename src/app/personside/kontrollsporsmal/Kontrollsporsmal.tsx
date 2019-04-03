@@ -11,9 +11,8 @@ import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggle
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
-import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
+import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -57,14 +56,14 @@ function Kontrollsporsmal(props: Props) {
         }
     }, [props.fnr]);
 
-    if (!props.visKontrollSpørsmål) {
+    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar()) {
         return null;
     }
 
     return (
         <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                <VisuallyHiddenAutoFokusHeader tittel="Kontrollspørsmål" />
+                <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
                 <div className="innhold">
                     <SpørsmålOgSvar />
                 </div>
