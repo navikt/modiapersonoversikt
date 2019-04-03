@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
-import { datoEllerNull } from '../../../../utils/stringFormatting';
 import { createTable } from '../../../../utils/tableUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import EtikettGrå from '../../../../components/EtikettGrå';
@@ -63,8 +62,8 @@ function formaterPeriode(vedtak: OppfolgingsVedtak) {
 function OppfolgingsVedtakListe(props: Props) {
     const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
     const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
-    const listekomponenter = sortertPåDato.map(vedtak => [
-        <UUOrder>
+    const listekomponenter = sortertPåDato.map((vedtak, index) => [
+        <UUOrder key={index}>
             <h4 className="second">{vedtak.vedtakstype}</h4>
             <EtikettGrå className="first">{formaterPeriode(vedtak)}</EtikettGrå>
         </UUOrder>,

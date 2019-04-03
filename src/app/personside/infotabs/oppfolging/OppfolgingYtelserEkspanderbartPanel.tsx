@@ -36,7 +36,7 @@ const ElementStyle = styled.div`
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
     const sortertPåDato = props.ytelser.sort(datoSynkende(ytelse => ytelse.datoKravMottatt));
 
-    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytelse={ytelse} />);
+    const listekomponenter = sortertPåDato.map((ytelse, index) => <YtelseElement key={index} ytelse={ytelse} />);
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }
