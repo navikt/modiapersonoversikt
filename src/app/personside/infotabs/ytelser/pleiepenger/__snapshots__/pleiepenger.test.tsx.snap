@@ -48,7 +48,8 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 .c1 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c2 span:not(:last-child):after {
@@ -380,7 +381,8 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 .c4 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c2 {
