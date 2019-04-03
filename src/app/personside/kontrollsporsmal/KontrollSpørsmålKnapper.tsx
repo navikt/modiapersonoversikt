@@ -8,7 +8,7 @@ import { loggEvent } from '../../../utils/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './skjulPåTversAvVinduerUtils';
+import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './cookieUtils';
 
 interface DispatchProps {
     lukkKontrollSpørsmål: () => void;
