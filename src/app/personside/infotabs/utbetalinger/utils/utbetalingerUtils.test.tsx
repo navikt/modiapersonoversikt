@@ -18,8 +18,6 @@ import {
 } from './utbetalingerUtils';
 import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
-import * as React from 'react';
-import { shallow } from 'enzyme';
 import { Periode } from '../../../../../models/periode';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
