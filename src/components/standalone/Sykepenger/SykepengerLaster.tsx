@@ -2,15 +2,15 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
-import { isNotStarted, RestReducer } from '../../../redux/restReducers/restReducer';
 import { loggError, loggEvent } from '../../../utils/frontendLogger';
-import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import { AppState } from '../../../redux/reducers';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { hentSykepenger } from '../../../redux/restReducers/ytelser/sykepenger';
 import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
 import moment from 'moment';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { isNotStarted, RestResource } from '../../../redux/restReducers/restResource';
+import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -18,7 +18,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    sykepengerReducer: RestReducer<SykepengerResponse>;
+    sykepengerResource: RestResource<SykepengerResponse>;
 }
 
 interface DispatchProps {
@@ -30,7 +30,7 @@ type Props = OwnProps & StateProps & DispatchProps;
 function SykePengerLaster(props: Props) {
     useEffect(() => {
         loggEvent('Sidevisning', 'Sykepenger');
-        if (isNotStarted(props.sykepengerReducer)) {
+        if (isNotStarted(props.sykepengerResource)) {
             props.hentSykepenger(props.fødselsnummer);
         }
     }, []);
@@ -57,7 +57,7 @@ function SykePengerLaster(props: Props) {
     }
 
     return (
-        <PlukkRestData spinnerSize="M" restReducer={props.sykepengerReducer}>
+        <PlukkRestData spinnerSize="M" restResource={props.sykepengerResource}>
             {data => getInnhold(data)}
         </PlukkRestData>
     );
@@ -65,7 +65,7 @@ function SykePengerLaster(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        sykepengerReducer: state.restEndepunkter.sykepengerReducer
+        sykepengerResource: state.restResources.sykepenger
     };
 }
 
