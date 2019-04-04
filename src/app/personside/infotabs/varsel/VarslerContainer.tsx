@@ -12,6 +12,7 @@ import Varsler from './Varsler';
 import { RestResource } from '../../../../redux/restReducers/restResource';
 
 interface StateProps {
+    fødselsnummer: string;
     baseUrlResource: RestResource<BaseUrlsResponse>;
     varselResource: RestResource<Varsel[]>;
 }
@@ -21,11 +22,7 @@ interface DispatchProps {
     hentVarsel: (fødselsnummer: string) => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 class VarslerContainer extends React.PureComponent<Props> {
     componentDidMount() {
@@ -46,6 +43,7 @@ class VarslerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         baseUrlResource: state.restResources.baseUrl,
         varselResource: state.restResources.brukersVarsler
     };

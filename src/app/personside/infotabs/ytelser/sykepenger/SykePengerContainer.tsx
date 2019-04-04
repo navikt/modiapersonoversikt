@@ -10,11 +10,8 @@ import { loggEvent } from '../../../../../utils/frontendLogger';
 import SykepengerEkspanderbartpanel from './SykepengerEkspanderbartPanel';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
 interface StateProps {
+    fødselsnummer: string;
     sykepengerResource: RestResource<SykepengerResponse>;
 }
 
@@ -22,7 +19,7 @@ interface DispatchProps {
     hentSykepenger: (fødselsnummer: string) => void;
 }
 
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = StateProps & DispatchProps;
 
 class SykePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
@@ -52,6 +49,7 @@ class SykePengerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         sykepengerResource: state.restResources.sykepenger
     };
 }

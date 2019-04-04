@@ -9,11 +9,8 @@ import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import ForeldrepengerEkspanderbartpanel from './ForeldrepengerEkspanderbartPanel';
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
 interface StateProps {
+    fødselsnummer: string;
     foreldrepengerResource: RestResource<ForeldrepengerResponse>;
 }
 
@@ -21,7 +18,7 @@ interface DispatchProps {
     hentForeldrepenger: (fødselsnummer: string) => void;
 }
 
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = StateProps & DispatchProps;
 
 class ForeldrePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
@@ -49,6 +46,7 @@ class ForeldrePengerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         foreldrepengerResource: state.restResources.foreldrepenger
     };
 }

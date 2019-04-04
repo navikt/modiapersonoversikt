@@ -39,7 +39,7 @@ class SaksoversiktLamell extends React.Component<Props> {
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                         <LyttPåNyttFnrIReduxOgHentPersoninfo />
                         <FetchFeatureToggles />
-                        <SaksoversiktContainer fødselsnummer={this.props.fødselsnummer} />
+                        <SaksoversiktContainer />
                     </Styles>
                 </Provider>
             </ErrorBoundary>

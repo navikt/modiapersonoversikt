@@ -9,11 +9,8 @@ import PlukkRestData from './PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import PleiepengerEkspanderbartpanel from './PleiepengerEkspanderbartPanel';
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
 interface StateProps {
+    fødselsnummer: string;
     pleiepengerResource: RestResource<PleiepengerResponse>;
 }
 
@@ -21,7 +18,7 @@ interface DispatchProps {
     hentPleiepenger: (fødselsnummer: string) => void;
 }
 
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = StateProps & DispatchProps;
 
 class PleiePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
@@ -49,6 +46,7 @@ class PleiePengerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         pleiepengerResource: state.restResources.pleiepenger
     };
 }

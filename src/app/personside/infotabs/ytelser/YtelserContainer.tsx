@@ -6,10 +6,6 @@ import SykePengerContainer from './sykepenger/SykePengerContainer';
 import theme from '../../../../styles/personOversiktTheme';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
-interface Props {
-    fødselsnummer: string;
-}
-
 const Styling = styled.section`
     max-width: ${theme.width.ytelser};
     width: 100%;
@@ -19,13 +15,13 @@ const Styling = styled.section`
     }
 `;
 
-function YtelserContainer({ fødselsnummer }: Props) {
+function YtelserContainer() {
     return (
         <Styling>
             <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />
-            <ForeldrePengerContainer fødselsnummer={fødselsnummer} />
-            <PleiePengerContainer fødselsnummer={fødselsnummer} />
-            <SykePengerContainer fødselsnummer={fødselsnummer} />
+            <ForeldrePengerContainer />
+            <PleiePengerContainer />
+            <SykePengerContainer />
         </Styling>
     );
 }

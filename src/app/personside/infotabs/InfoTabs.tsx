@@ -64,15 +64,7 @@ class InfoTabs extends React.PureComponent<Props> {
     }
 
     render() {
-        const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
-
-        const UtbetalingerWithProps = () => <UtbetalingerContainer />;
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
-        const OppfolgingWithProps = () => <OppfolgingContainer fødselsnummer={fødselsnummer} />;
-        const MeldingerWithProps = () => <MeldingerContainer fødselsnummer={fødselsnummer} />;
-        const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer} />;
-        const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer} />;
-        const VarselWithProps = () => <VarslerContainer fødselsnummer={fødselsnummer} />;
 
         const basePath = paths.personUri + '/:fodselsnummer/';
 
@@ -86,12 +78,12 @@ class InfoTabs extends React.PureComponent<Props> {
                     />
                     <OpenTab>
                         <Switch location={this.props.history.location}>
-                            <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerWithProps} />
-                            <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingWithProps} />
-                            <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerWithProps} />
-                            <Route path={basePath + INFOTABS.SAKER + '/'} component={SakerWithProps} />
-                            <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserWithProps} />
-                            <Route path={basePath + INFOTABS.VARSEL + '/'} component={VarselWithProps} />
+                            <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerContainer} />
+                            <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingContainer} />
+                            <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerContainer} />
+                            <Route path={basePath + INFOTABS.SAKER + '/'} component={SaksoversiktContainer} />
+                            <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserContainer} />
+                            <Route path={basePath + INFOTABS.VARSEL + '/'} component={VarslerContainer} />
                             <Route component={OversiktWithProps} />
                         </Switch>
                     </OpenTab>
