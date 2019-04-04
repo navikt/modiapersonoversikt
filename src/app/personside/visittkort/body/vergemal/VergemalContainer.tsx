@@ -5,10 +5,10 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
-import { Loaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
 
 interface Props {
-    vergemalReducer: RestReducer<Vergemal>;
+    vergemalResource: RestResource<Vergemal>;
 }
 
 const feilmelding = () => <AlertStripe type="advarsel">Feil ved lasting av vergemål</AlertStripe>;
@@ -18,10 +18,10 @@ class VergemalContainer extends React.Component<Props> {
         return (
             <Innholdslaster
                 returnOnError={feilmelding()}
-                avhengigheter={[this.props.vergemalReducer]}
+                avhengigheter={[this.props.vergemalResource]}
                 spinnerSize={'L'}
             >
-                <VergemalWrapper vergemal={(this.props.vergemalReducer as Loaded<Vergemal>).data} />
+                <VergemalWrapper vergemal={(this.props.vergemalResource as Loaded<Vergemal>).data} />
             </Innholdslaster>
         );
     }
@@ -29,7 +29,7 @@ class VergemalContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState) => {
     return {
-        vergemalReducer: state.restEndepunkter.vergemal
+        vergemalResource: state.restResources.vergemal
     };
 };
 

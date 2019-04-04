@@ -1,33 +1,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
 
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
-import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
-import { isLoaded, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { RestResource } from '../../redux/restReducers/restResource';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
+import PlukkRestData from '../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 
 interface OwnProps {
     fødselsnummer: string;
 }
 
 interface PersonsideStateProps {
-    personReducer: RestReducer<PersonRespons>;
+    personResource: RestResource<PersonRespons>;
 }
 
-interface DispatchProps {
-    hentPerson: (fødelsnummer: string) => void;
-}
-
-type Props = OwnProps & PersonsideStateProps & DispatchProps;
+type Props = OwnProps & PersonsideStateProps;
 
 const Margin = styled.div`
     margin: 0.5em;
@@ -52,10 +46,6 @@ class Personside extends React.PureComponent<Props> {
         super(props);
     }
 
-    componentWillMount() {
-        this.props.hentPerson(this.props.fødselsnummer);
-    }
-
     getSideinnhold(data: PersonRespons) {
         if (erPersonResponsAvTypeBegrensetTilgang(data)) {
             return <BegrensetTilgangSide person={data as BegrensetTilgang} />;
@@ -66,32 +56,17 @@ class Personside extends React.PureComponent<Props> {
 
     render() {
         return (
-            <Innholdslaster
-                avhengigheter={[this.props.personReducer]}
-                returnOnPending={onPending}
-                returnOnError={onError}
-            >
-                {isLoaded(this.props.personReducer)
-                    ? this.getSideinnhold((this.props.personReducer as Loaded<PersonRespons>).data)
-                    : null}
-            </Innholdslaster>
+            <PlukkRestData restResource={this.props.personResource} returnOnPending={onPending} returnOnError={onError}>
+                {data => this.getSideinnhold(data)}
+            </PlukkRestData>
         );
     }
 }
 
 function mapStateToProps(state: AppState): PersonsideStateProps {
     return {
-        personReducer: state.restEndepunkter.personinformasjon
+        personResource: state.restResources.personinformasjon
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
-    return {
-        hentPerson: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Personside);
+export default connect(mapStateToProps)(Personside);

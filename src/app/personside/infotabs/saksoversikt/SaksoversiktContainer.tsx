@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -12,16 +12,15 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import { oppslagNyBruker } from '../../../../redux/restReducers/oppslagNyBruker';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    saksoversiktReducer: RestReducer<SakstemaResponse>;
-    personReducer: RestReducer<PersonRespons>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
+    saksoversiktResource: RestResource<SakstemaResponse>;
+    personResource: RestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
 }
@@ -30,7 +29,6 @@ interface DispatchProps {
     hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
-    hentPerson: (fødselsnummer: string) => void;
     skjulDokumentOgVisSaksoversikt: () => void;
 }
 
@@ -61,14 +59,11 @@ const SaksoversiktArticle = styled.article`
 class SaksoversiktContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
-        if (isNotStarted(this.props.baseUrlReducer)) {
+        if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
         }
-        if (isNotStarted(this.props.saksoversiktReducer)) {
+        if (isNotStarted(this.props.saksoversiktResource)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
-        }
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPerson(this.props.fødselsnummer);
         }
     }
 
@@ -78,8 +73,8 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
         } else {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
-                    <Innholdstittel className="visually-hidden">Brukerens saker</Innholdstittel>
-                    <Innholdslaster avhengigheter={[this.props.saksoversiktReducer, this.props.baseUrlReducer]}>
+                    <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
+                    <Innholdslaster avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}>
                         <SakstemaListeContainer />
                         <SaksDokumenterContainer />
                     </Innholdslaster>
@@ -91,9 +86,9 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        saksoversiktReducer: state.restEndepunkter.saksoversiktReducer,
-        personReducer: state.restEndepunkter.personinformasjon,
+        baseUrlResource: state.restResources.baseUrl,
+        saksoversiktResource: state.restResources.sakstema,
+        personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
     };
@@ -104,7 +99,6 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
-        hentPerson: fødselsnummer => oppslagNyBruker(dispatch, fødselsnummer),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }

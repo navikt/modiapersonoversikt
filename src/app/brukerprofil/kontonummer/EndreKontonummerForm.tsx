@@ -54,11 +54,11 @@ interface State {
 interface DispatchProps {
     reloadPerson: (fødselsnummer: string) => void;
     endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) => void;
-    resetEndreKontonummerReducer: () => void;
+    resetEndreKontonummerResource: () => void;
 }
 
 interface StateProps {
-    reducerStatus: STATUS;
+    resourceStatus: STATUS;
 }
 
 interface OwnProps {
@@ -81,7 +81,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.resetReducer();
+        this.resetResource();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -95,7 +95,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     kontonummerBleEndret(prevProps: Props) {
-        return prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS;
+        return prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS;
     }
 
     getInitialState(): State {
@@ -177,7 +177,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 ...partial
             }
         });
-        this.resetReducer();
+        this.resetResource();
     }
 
     handleRadioChange(event: React.SyntheticEvent<EventTarget>, value: string) {
@@ -187,7 +187,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     tilbakestill() {
-        this.props.resetEndreKontonummerReducer();
+        this.props.resetEndreKontonummerResource();
         this.setState({
             ...this.getInitialState()
         });
@@ -216,18 +216,18 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         ];
     }
 
-    resetReducer() {
-        if (this.props.reducerStatus !== STATUS.NOT_STARTED) {
-            this.props.resetEndreKontonummerReducer();
+    resetResource() {
+        if (this.props.resourceStatus !== STATUS.NOT_STARTED) {
+            this.props.resetEndreKontonummerResource();
         }
     }
 
     kontonummerBleLagret() {
-        return this.props.reducerStatus === STATUS.SUCCESS;
+        return this.props.resourceStatus === STATUS.SUCCESS;
     }
 
     requestIsPending() {
-        return this.props.reducerStatus === STATUS.LOADING;
+        return this.props.resourceStatus === STATUS.LOADING;
     }
 
     render() {
@@ -272,7 +272,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 </KnappBase>
                 <KnappBase
                     type="hoved"
-                    spinner={this.props.reducerStatus === STATUS.LOADING}
+                    spinner={this.props.resourceStatus === STATUS.LOADING}
                     autoDisableVedSpinner={true}
                     disabled={
                         !this.formErEndret() ||
@@ -286,7 +286,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
         );
         const endreKontonummerRequestTilbakemelding = (
             <RequestTilbakemelding
-                status={this.props.reducerStatus}
+                status={this.props.resourceStatus}
                 onError={'Det skjedde en feil ved endring av kontonummer.'}
                 onSuccess={`Kontonummer ble endret.`}
             />
@@ -321,7 +321,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        reducerStatus: state.restEndepunkter.endreKontonummer.status
+        resourceStatus: state.restResources.endreKontonummer.status
     };
 };
 
@@ -330,7 +330,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>
             dispatch(endreKontonummer(fødselsnummer, request)),
-        resetEndreKontonummerReducer: () => dispatch(reset())
+        resetEndreKontonummerResource: () => dispatch(reset())
     };
 }
 

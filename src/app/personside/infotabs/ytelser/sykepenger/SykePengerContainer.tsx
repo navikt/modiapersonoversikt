@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
 import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepenger';
 import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import SykepengerEkspanderbartpanel from './SykepengerEkspanderbartPanel';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface OwnProps {
     fødselsnummer: string;
 }
 
 interface StateProps {
-    sykepengerReducer: RestReducer<SykepengerResponse>;
+    sykepengerResource: RestResource<SykepengerResponse>;
 }
 
 interface DispatchProps {
@@ -26,30 +27,32 @@ type Props = OwnProps & StateProps & DispatchProps;
 class SykePengerContainer extends React.PureComponent<Props> {
     componentDidMount() {
         loggEvent('Sidevisning', 'Sykepenger');
-        if (isNotStarted(this.props.sykepengerReducer)) {
+        if (isNotStarted(this.props.sykepengerResource)) {
             this.props.hentSykepenger(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData spinnerSize="M" restReducer={this.props.sykepengerReducer}>
-                {data => {
-                    if (!data.sykepenger) {
-                        return null;
-                    }
-                    return data.sykepenger.map((sykepengerettighet, index) => (
-                        <SykepengerEkspanderbartpanel key={index} sykepenger={sykepengerettighet} />
-                    ));
-                }}
-            </PlukkRestData>
+            <ErrorBoundary boundaryName="SykepengerContainer">
+                <PlukkRestData spinnerSize="M" restResource={this.props.sykepengerResource}>
+                    {data => {
+                        if (!data.sykepenger) {
+                            return null;
+                        }
+                        return data.sykepenger.map(rettighet => (
+                            <SykepengerEkspanderbartpanel key={rettighet.sykmeldtFom} sykepenger={rettighet} />
+                        ));
+                    }}
+                </PlukkRestData>
+            </ErrorBoundary>
         );
     }
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        sykepengerReducer: state.restEndepunkter.sykepengerReducer
+        sykepengerResource: state.restResources.sykepenger
     };
 }
 

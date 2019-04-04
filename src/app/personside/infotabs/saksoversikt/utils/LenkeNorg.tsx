@@ -4,7 +4,7 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import * as React from 'react';
-import { isLoaded, RestReducer } from '../../../../../redux/restReducers/restReducer';
+import { isLoaded, RestResource } from '../../../../../redux/restReducers/restResource';
 import { Person, PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -30,12 +30,12 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     return temaArray.join();
 }
 
-function hentNorg2Url(baseUrlReducer: RestReducer<BaseUrlsResponse>) {
-    return isLoaded(baseUrlReducer) ? hentBaseUrl(baseUrlReducer.data, 'norg2-frontend') : '';
+function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
+    return isLoaded(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 }
 
-function hentGeografiskTilknytning(personReducer: RestReducer<PersonRespons>) {
-    return isLoaded(personReducer) ? (personReducer.data as Person).geografiskTilknytning : '';
+function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
+    return isLoaded(personResource) ? (personResource.data as Person).geografiskTilknytning : '';
 }
 
 interface StateProps {
@@ -57,8 +57,8 @@ function LenkeNorg(props: StateProps) {
 function mapStateToProps(state: AppState): StateProps {
     return {
         valgtSakstema: state.saksoversikt.valgtSakstema,
-        baseUrl: hentNorg2Url(state.restEndepunkter.baseUrlReducer),
-        geografistTilknytning: hentGeografiskTilknytning(state.restEndepunkter.personinformasjon)
+        baseUrl: hentNorg2Url(state.restResources.baseUrl),
+        geografistTilknytning: hentGeografiskTilknytning(state.restResources.personinformasjon)
     };
 }
 

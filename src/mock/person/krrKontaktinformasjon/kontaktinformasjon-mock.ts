@@ -8,8 +8,8 @@ import { erPersonResponsAvTypePerson, Person } from '../../../models/person/pers
 import { aremark } from '../aremark';
 import { getSistOppdatert } from '../../utils/mock-utils';
 
-const aremarkKontaktinformasjon = {
-    reservert: undefined,
+const aremarkKontaktinformasjon: KRRKontaktinformasjon = {
+    reservasjon: undefined,
     epost: {
         value: 'aremark@testfamilien.no',
         sistOppdatert: '2014-05-15T11:32:43+02:00'

@@ -5,12 +5,11 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { isNotStarted, Loaded, RestReducer } from '../../redux/restReducers/restReducer';
+import { isNotStarted, Loaded, RestResource } from '../../redux/restReducers/restResource';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
 import { AppState } from '../../redux/reducers';
-import { oppslagNyBruker } from '../../redux/restReducers/oppslagNyBruker';
 import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
 import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
@@ -70,21 +69,16 @@ const Fokus = styled.div`
     }
 `;
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
 interface DispatchProps {
-    hentPersonData: (fødselsnummer: string) => void;
     hentVeilederRoller: () => void;
 }
 
 interface StateProps {
-    personReducer: RestReducer<PersonRespons>;
-    veilederRollerReducer: RestReducer<VeilederRoller>;
+    personResource: RestResource<PersonRespons>;
+    veilederRollerResource: RestResource<VeilederRoller>;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 function hentNavn({ navn }: Person) {
     return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
@@ -150,11 +144,7 @@ class Header extends React.PureComponent<{ person: Person }> {
 
 class BrukerprofilSide extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.personReducer)) {
-            this.props.hentPersonData(this.props.fødselsnummer);
-        }
-
-        if (isNotStarted(this.props.veilederRollerReducer)) {
+        if (isNotStarted(this.props.veilederRollerResource)) {
             this.props.hentVeilederRoller();
         }
         loggEvent('Sidevisning', 'Brukerprofil');
@@ -163,15 +153,15 @@ class BrukerprofilSide extends React.PureComponent<Props> {
     render() {
         return (
             <BrukerprofilWrapper>
-                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys fødselsnummer={this.props.fødselsnummer} />}
-                <Innholdslaster avhengigheter={[this.props.personReducer, this.props.veilederRollerReducer]}>
+                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
+                <Innholdslaster avhengigheter={[this.props.personResource, this.props.veilederRollerResource]}>
                     {erNyePersonoversikten() && (
-                        <Header person={(this.props.personReducer as Loaded<PersonRespons>).data as Person} />
+                        <Header person={(this.props.personResource as Loaded<PersonRespons>).data as Person} />
                     )}
                     <ContentWrapper>
                         <BrukerprofilForm
-                            person={(this.props.personReducer as Loaded<PersonRespons>).data as Person}
-                            veilderRoller={(this.props.veilederRollerReducer as Loaded<VeilederRoller>).data}
+                            person={(this.props.personResource as Loaded<PersonRespons>).data as Person}
+                            veilderRoller={(this.props.veilederRollerResource as Loaded<VeilederRoller>).data}
                         />
                     </ContentWrapper>
                 </Innholdslaster>
@@ -182,14 +172,13 @@ class BrukerprofilSide extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        personReducer: state.restEndepunkter.personinformasjon,
-        veilederRollerReducer: state.restEndepunkter.veilederRoller
+        personResource: state.restResources.personinformasjon,
+        veilederRollerResource: state.restResources.veilederRoller
     };
 };
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentPersonData: (fødselsnummer: string) => oppslagNyBruker(dispatch, fødselsnummer),
         hentVeilederRoller: () => dispatch(getVeilederRoller())
     };
 }

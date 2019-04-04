@@ -7,17 +7,27 @@ import {
     Forsikring,
     SykepengerResponse,
     Sykmelding,
-    Sykmeldingsperiode,
-    Yrkesskade
+    Sykepenger,
+    Yrkesskade,
+    Gradering
 } from '../../models/ytelse/sykepenger';
 import { getPeriode } from '../person/periodeMock';
-import { fyllRandomListe } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
+import { aremark } from '../person/aremark';
+import { Arbeidsforhold } from '../../models/ytelse/sykepenger';
+import { statiskSykepengerMock } from './statiskSykepengerMock';
 
-export function getMockSykepenger(fødselsnummer: string): SykepengerResponse {
+export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'sykepenger');
+
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            sykepenger: [statiskSykepengerMock, statiskSykepengerMock]
+        };
+    }
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
@@ -26,27 +36,33 @@ export function getMockSykepenger(fødselsnummer: string): SykepengerResponse {
     }
 
     return {
-        sykepenger: fyllRandomListe<Sykmeldingsperiode>(() => getSykmeldingsperiode(fødselsnummer), 3)
+        sykepenger: fyllRandomListe<Sykepenger>(() => getMockSykmepenger(fødselsnummer), 3)
     };
 }
 
-function getSykmeldingsperiode(fødselsnummer: string): Sykmeldingsperiode {
+export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
     return {
         fødselsnummer: fødselsnummer,
-        sykmeldtFom: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        sykmeldtFom: moment(faker.date.past(1)).format(backendDatoformat),
         forbrukteDager: navfaker.random.integer(100),
-        ferie1: getPeriode(),
-        ferie2: getPeriode(),
-        sanksjon: getPeriode(),
-        stansårsak: faker.lorem.words(5),
-        unntakAktivitet: faker.lorem.words(1),
-        forsikring: getForsikring(),
-        sykmeldinger: fyllRandomListe<Sykmelding>(() => getSykmelding(), 3),
-        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5),
-        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 5),
-        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 5),
+        ferie1: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        ferie2: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        sanksjon: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
+        stansårsak: navfaker.random.vektetSjanse(0.3) ? 'Svindel og bedrag' : null,
+        unntakAktivitet: navfaker.random.vektetSjanse(0.3) ? 'Untatt aktivitet' : null,
+        forsikring: navfaker.random.vektetSjanse(0.3) ? getForsikring() : null,
+        sykmeldinger: fyllRandomListe<Sykmelding>(() => getMockSykmelding(), 3),
+        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5, true),
+        kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 3, true),
+        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,
-        midlertidigStanset: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand)
+        midlertidigStanset: navfaker.random.vektetSjanse(0.3)
+            ? moment(faker.date.past(1)).format(backendDatoformat)
+            : null,
+        slutt: navfaker.random.vektetSjanse(0.7) ? null : moment(faker.date.past(1)).format(backendDatoformat),
+        arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
+        erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
+        arbeidsKategori: 'Ærlig arbeid'
     };
 }
 
@@ -55,25 +71,44 @@ function getForsikring(): Forsikring {
         forsikringsordning: faker.lorem.words(1),
         premiegrunnlag: Number(faker.commerce.price()),
         erGyldig: faker.random.boolean(),
-        forsikret: getPeriode()
+        forsikret: navfaker.random.vektetSjanse(0.5) ? getPeriode() : null
     };
 }
 
-function getSykmelding(): Sykmelding {
+export function getMockSykmelding(): Sykmelding {
     return {
         sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
-        behandlet: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
+        behandlet: moment(faker.date.past(1)).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
-        gjelderYrkesskade: getYrkesskade(),
-        gradAvSykmeldingListe: []
+        gjelderYrkesskade: navfaker.random.vektetSjanse(0.0) ? getYrkesskade() : null,
+        gradAvSykmeldingListe: fyllRandomListe(getGradering, 3)
     };
 }
 
 function getYrkesskade(): Yrkesskade {
     return {
         yrkesskadeart: faker.lorem.words(3),
-        skadet: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand),
-        vedtatt: moment(faker.date.recent()).format(moment.ISO_8601.__momentBuiltinFormatBrand)
+        skadet: moment(faker.date.past(1)).format(backendDatoformat),
+        vedtatt: moment(faker.date.past(1)).format(backendDatoformat)
+    };
+}
+
+function getGradering(): Gradering {
+    return {
+        gradert: getPeriode(),
+        sykmeldingsgrad: navfaker.random.integer(100)
+    };
+}
+
+function getArbeidsforhold(): Arbeidsforhold {
+    return {
+        arbeidsgiverNavn: faker.company.companyName(),
+        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        inntektsperiode: 'Månedssats',
+        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
+        refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
+        refusjonstype: 'Ikke refusjon',
+        sykepengerFom: moment(faker.date.past(2)).format(backendDatoformat)
     };
 }

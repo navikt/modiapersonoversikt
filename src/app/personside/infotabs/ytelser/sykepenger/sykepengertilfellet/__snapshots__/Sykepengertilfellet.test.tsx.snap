@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sykepengertilfellet matcher snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c0 dt {
+  color: #78706a;
+}
+
+.c0 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c0 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  min-width: 13rem;
+}
+
+<div>
+  <h3
+    className="typo-ingress"
+  >
+    Sykepengetilfellet
+  </h3>
+  <dl
+    className="c0"
+  >
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Sykemeldt fra og med
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        06.02.2019
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Forbrukte dager
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        23
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Maksdato
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        2019-01-16
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Untatt aktivitet
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        —
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Midlertidig stans
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        —
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Sanksjonperiode
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        19.01.2014 - 05.09.2014
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Ferieperioder
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        19.01.2014 - 14.01.2014
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Ferieperioder2
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        —
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Forsikring
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        837.00 NOK
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Gyldig forsikring
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        Nei
+      </dd>
+    </div>
+    <div>
+      <dt
+        className="typo-etikett-liten"
+      >
+        Forsikringsperiode
+      </dt>
+      <dd
+        className="typo-normal"
+      >
+        —
+      </dd>
+    </div>
+  </dl>
+</div>
+`;

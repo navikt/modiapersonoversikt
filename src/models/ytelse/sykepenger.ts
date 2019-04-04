@@ -2,32 +2,36 @@ import { Periode } from '../periode';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 
 export interface SykepengerResponse {
-    sykepenger: Sykmeldingsperiode[] | null;
+    sykepenger: Sykepenger[] | null;
 }
 
-export interface Sykmeldingsperiode {
+export interface Sykepenger {
     fødselsnummer: string;
     sykmeldtFom: string;
     forbrukteDager: number;
-    ferie1?: Periode;
-    ferie2?: Periode;
-    sanksjon?: Periode;
-    stansårsak?: string;
-    unntakAktivitet?: string;
-    forsikring?: Forsikring;
+    ferie1: null | Periode;
+    ferie2: null | Periode;
+    sanksjon: null | Periode;
+    stansårsak: null | string;
+    unntakAktivitet: null | string;
+    forsikring: null | Forsikring;
     sykmeldinger: Sykmelding[];
     historiskeUtbetalinger: HistoriskUtbetaling[];
     kommendeUtbetalinger: KommendeUtbetaling[];
     utbetalingerPåVent: UtbetalingPåVent[];
     bruker: string;
-    midlertidigStanset?: string;
+    midlertidigStanset: null | string;
+    slutt: null | string;
+    arbeidsforholdListe: Arbeidsforhold[];
+    erArbeidsgiverperiode: boolean;
+    arbeidsKategori: string;
 }
 
 export interface Forsikring {
     forsikringsordning: string;
     premiegrunnlag: number;
     erGyldig: boolean;
-    forsikret?: Periode;
+    forsikret: null | Periode;
 }
 
 export interface Sykmelding {
@@ -35,7 +39,7 @@ export interface Sykmelding {
     behandlet: string;
     sykmeldt: Periode;
     sykmeldingsgrad: number;
-    gjelderYrkesskade?: Yrkesskade;
+    gjelderYrkesskade: null | Yrkesskade;
     gradAvSykmeldingListe: Gradering[];
 }
 
@@ -48,4 +52,14 @@ export interface Yrkesskade {
 export interface Gradering {
     gradert: Periode;
     sykmeldingsgrad: number;
+}
+
+export interface Arbeidsforhold {
+    arbeidsgiverNavn: string;
+    arbeidsgiverKontonr: string | null;
+    inntektsperiode: string | null;
+    inntektForPerioden: number | null;
+    refusjonTom: string | null;
+    refusjonstype: string | null;
+    sykepengerFom: string;
 }

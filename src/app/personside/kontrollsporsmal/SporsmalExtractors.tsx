@@ -10,9 +10,6 @@ import {
 } from '../../../models/person/person';
 import { fødselsnummerTilDato } from 'nav-faker/dist/personidentifikator/helpers/fodselsdato-beregner';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
-import * as personadresse from '../../../models/personadresse';
-import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
-import { Periode } from '../../../models/periode';
 import { formaterDato } from '../../../utils/stringFormatting';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
@@ -37,17 +34,6 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er mellomnavnet ditt?',
-        extractSvar: personinformasjon => {
-            const person = personinformasjon as Person;
-            return [
-                {
-                    tekst: person.navn.mellomnavn ? person.navn.mellomnavn : ''
-                }
-            ];
-        }
-    },
-    {
         spørsmål: 'Hva er fødselsdatoen til ditt barn _______',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
@@ -60,13 +46,6 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
             const person = personinformasjon as Person;
             return [{ tekst: hentGiftedato(person) }];
         }
-    },
-    {
-        spørsmål: 'Hva er adressen din?',
-        extractSvar: personinformasjon => {
-            const person = personinformasjon as Person;
-            return hentAdresse(person);
-        }
     }
 ];
 
@@ -74,11 +53,7 @@ export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinform
     {
         spørsmål: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
-            return [
-                {
-                    tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : ''
-                }
-            ];
+            return [hentEpost(kontaktinformasjon)];
         }
     }
 ];
@@ -156,127 +131,9 @@ function hentPartnerNavn(person: Person) {
     return ' (' + getNavn(partner.tilPerson.navn) + ')';
 }
 
-function hentAdresse(person: Person) {
-    let adresser: Svar[] = [];
-
-    if (hentFolkeregistrertAdresse(person) !== '') {
-        adresser.push({
-            tekst: hentFolkeregistrertAdresse(person),
-            beskrivelse: 'Folkeregistrert adresse'
-        });
+export function hentEpost(kontaktinformasjon: KRRKontaktinformasjon) {
+    if (kontaktinformasjon.reservasjon === 'true') {
+        return { tekst: '' };
     }
-
-    if (hentMidlertidigAdresse(person) !== '') {
-        adresser.push({
-            tekst: hentMidlertidigAdresse(person),
-            beskrivelse: 'Midlertidig adresse'
-        });
-    }
-
-    if (hentPostadresse(person) !== '') {
-        adresser.push({
-            tekst: hentPostadresse(person),
-            beskrivelse: 'Postadresse'
-        });
-    }
-    return adresser;
-}
-
-function hentFolkeregistrertAdresse(person: Person) {
-    return person.folkeregistrertAdresse != null ? formatterRiktigAdresse(person.folkeregistrertAdresse) : '';
-}
-
-function hentMidlertidigAdresse(person: Person) {
-    return person.alternativAdresse != null ? formatterRiktigAdresse(person.alternativAdresse) : '';
-}
-
-function hentPostadresse(person: Person) {
-    return person.postadresse != null ? formatterRiktigAdresse(person.postadresse) : '';
-}
-
-export function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
-    let adressetekst = '';
-
-    if (adresse.gateadresse != null) {
-        adressetekst = formatterGateadresse(adresse.gateadresse);
-    } else if (adresse.matrikkeladresse != null) {
-        adressetekst = formatterMatrikkeladresse(adresse.matrikkeladresse);
-    } else if (adresse.postboksadresse != null) {
-        adressetekst = formatterPostboksadresse(adresse.postboksadresse);
-    } else if (adresse.utlandsadresse != null) {
-        adressetekst = formatterUtenlandsadresse(adresse.utlandsadresse);
-    } else if (adresse.ustrukturert != null) {
-        adressetekst = formatterUstrukturertAdresse(adresse.ustrukturert);
-    }
-
-    return adressetekst;
-}
-
-export function formatterGateadresse(adresse: personadresse.Gateadresse) {
-    const gateadresse = adresse.gatenavn + ' ' + adresse.husnummer + (adresse.husbokstav || '') + '\n';
-    const bolignummer = adresse.bolignummer ? adresse.bolignummer + '\n' : '';
-
-    return (
-        hentPeriode(adresse.periode) +
-        hentTilleggsadresse(adresse.tilleggsadresse) +
-        gateadresse +
-        bolignummer +
-        hentPoststed(adresse)
-    );
-}
-
-export function formatterMatrikkeladresse(adresse: personadresse.Matrikkeladresse) {
-    const eiendom = adresse.eiendomsnavn ? adresse.eiendomsnavn + '\n' : '';
-
-    return (
-        hentPeriode(adresse.periode) + hentTilleggsadresse(adresse.tilleggsadresse) + eiendom + hentPoststed(adresse)
-    );
-}
-
-export function formatterPostboksadresse(adresse: personadresse.Postboksadresse) {
-    return (
-        hentPeriode(adresse.periode) +
-        hentTilleggsadresse(adresse.tilleggsadresse) +
-        hentPostboksTekst(adresse.postboksanlegg, adresse.postboksnummer) +
-        hentPoststed(adresse)
-    );
-}
-
-export function formatterUtenlandsadresse(adresse: personadresse.Utlandsadresse): string {
-    const landKode = (adresse.landkode && '\n' + adresse.landkode.beskrivelse) || '';
-
-    return hentPeriode(adresse.periode) + hentAdresselinjer(adresse) + landKode;
-}
-
-function hentAdresselinjer(adresse: Utlandsadresse) {
-    return adresse.adresselinjer.reduce((acc, current) => acc + (acc !== '' ? '\n' : '') + current, '');
-}
-
-export function formatterUstrukturertAdresse(adresse: personadresse.UstrukturertAdresse) {
-    return adresse.adresselinje;
-}
-
-function hentPoststed(adresse: Gateadresse | Matrikkeladresse | Postboksadresse) {
-    return adresse.postnummer + ' ' + adresse.poststed;
-}
-
-function hentPeriode(periode?: Periode) {
-    if (periode != null) {
-        const fra = formaterDato(periode.fra);
-        const til = formaterDato(periode.til);
-        return fra + ' - ' + til + '\n';
-    }
-    return '';
-}
-
-function hentTilleggsadresse(tilleggsadresse?: string) {
-    return tilleggsadresse ? tilleggsadresse + '\n' : '';
-}
-
-function hentPostboksTekst(postboksanlegg: string | undefined, postboksnummer: string) {
-    if (postboksanlegg) {
-        return postboksanlegg + ', postboksnummer ' + postboksnummer + '\n';
-    } else {
-        return 'Postboksnummer ' + postboksnummer + '\n';
-    }
+    return { tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : '' };
 }

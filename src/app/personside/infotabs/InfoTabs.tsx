@@ -14,6 +14,7 @@ import { Person, PersonRespons } from '../../../models/person/person';
 import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarselContainer from './varsel/VarselContainer';
+import MeldingerContainer from './meldinger/MeldingerContainer';
 
 interface OwnProps {
     personRespons: PersonRespons;
@@ -65,10 +66,10 @@ class InfoTabs extends React.PureComponent<Props> {
     render() {
         const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
 
-        const UtbetalingerWithProps = () => <UtbetalingerContainer fødselsnummer={fødselsnummer} />;
+        const UtbetalingerWithProps = () => <UtbetalingerContainer />;
         const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
         const OppfolgingWithProps = () => <OppfolgingContainer fødselsnummer={fødselsnummer} />;
-        const MeldingerWithProps = () => <ComponentPlaceholder height={'700px'} name={'Meldinger'} hue={150} />;
+        const MeldingerWithProps = () => <MeldingerContainer fødselsnummer={fødselsnummer} />;
         const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer} />;
         const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer} />;
         const VarselWithProps = () => <VarselContainer fødselsnummer={fødselsnummer} />;
@@ -78,6 +79,7 @@ class InfoTabs extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName="InfoTabs">
                 <Section role="region" aria-label="Info-tabs">
+                    <h2 className="visually-hidden">Tab-panel</h2>
                     <TabKnapper
                         onTabChange={this.updateRouterPath}
                         openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}

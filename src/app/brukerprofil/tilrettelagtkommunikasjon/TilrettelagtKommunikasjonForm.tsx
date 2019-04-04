@@ -29,11 +29,11 @@ interface State {
 interface DispatchProps {
     reloadPerson: (fødselsnummer: string) => void;
     endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) => void;
-    resetEndreTilrettelagtKommunikasjonReducer: () => void;
+    resetEndreTilrettelagtKommunikasjonResource: () => void;
 }
 
 interface StateProps {
-    reducerStatus: STATUS;
+    resourceStatus: STATUS;
 }
 
 interface OwnProps {
@@ -59,7 +59,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.props.resetEndreTilrettelagtKommunikasjonReducer();
+        this.props.resetEndreTilrettelagtKommunikasjonResource();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -67,7 +67,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.reducerStatus !== STATUS.SUCCESS && this.props.reducerStatus === STATUS.SUCCESS) {
+        if (prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -122,7 +122,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
         this.setState({
             checkbokser: this.lagKnapper()
         });
-        this.props.resetEndreTilrettelagtKommunikasjonReducer();
+        this.props.resetEndreTilrettelagtKommunikasjonResource();
         event.preventDefault();
     }
 
@@ -139,13 +139,13 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={!this.erEndret() || this.props.reducerStatus === STATUS.LOADING}
+                        disabled={!this.erEndret() || this.props.resourceStatus === STATUS.LOADING}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        spinner={this.props.reducerStatus === STATUS.LOADING}
+                        spinner={this.props.resourceStatus === STATUS.LOADING}
                         disabled={!this.erEndret()}
                         title={!this.erEndret() ? 'Ingen endringer' : ''}
                         autoDisableVedSpinner={true}
@@ -154,7 +154,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     </KnappBase>
                 </FormKnapperWrapper>
                 <RequestTilbakemelding
-                    status={this.props.reducerStatus}
+                    status={this.props.resourceStatus}
                     onError={'Det skjedde en feil ved endring av tilrettelagt kommunikasjon.'}
                     onSuccess={`Tilrettelagt kommunikasjon ble endret.`}
                 />
@@ -165,7 +165,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        reducerStatus: state.restEndepunkter.endreTilrettelagtKommunikasjon.status
+        resourceStatus: state.restResources.endreTilrettelagtKommunikasjon.status
     };
 };
 
@@ -174,7 +174,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
             dispatch(endreTilrettelagtKommunikasjon(request)),
-        resetEndreTilrettelagtKommunikasjonReducer: () => dispatch(reset())
+        resetEndreTilrettelagtKommunikasjonResource: () => dispatch(reset())
     };
 }
 

@@ -248,6 +248,11 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </span>
       </h1>
       <span
+        className="visually-hidden"
+      >
+        Mann
+      </span>
+      <span
         className="typo-normal"
       >
         <span

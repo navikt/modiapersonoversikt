@@ -15,7 +15,7 @@ import ViktigÅVite from '../viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
-import { genericDescendingDateComparator } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 
@@ -94,7 +94,12 @@ const Luft = styled.div`
     margin-top: 2rem;
 `;
 
-const TittleStyling = styled.span`
+const TittelWrapperStyling = styled.div`
+    display: inline-flex;
+    align-items: center;
+    > *:last-child {
+        margin-left: 1rem;
+    }
     &:focus {
         outline: none;
     }
@@ -142,22 +147,22 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvs
 
 interface DokumentListeProps {
     sakstema: Sakstema;
-    avsenderFilter: DokumentAvsenderFilter;
+    filtrerteDokumenter: DokumentMetadata[];
 }
 
 function DokumentListe(props: DokumentListeProps) {
-    const filtrerteDokumenter = props.sakstema.dokumentMetadata.filter(metadata =>
-        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
-    );
-
-    if (filtrerteDokumenter.length === 0) {
-        return <AlertStripeInfo>Det finnes ingen saksdokumenter for valgte avsender.</AlertStripeInfo>;
+    if (props.filtrerteDokumenter.length === 0) {
+        return (
+            <div aria-live="polite">
+                <AlertStripeInfo>
+                    Det finnes ingen saksdokumenter for valgte avsender og tema {props.sakstema.temanavn.toLowerCase()}.
+                </AlertStripeInfo>
+            </div>
+        );
     }
 
     const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
-        filtrerteDokumenter.sort(
-            genericDescendingDateComparator(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))
-        ),
+        props.filtrerteDokumenter.sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))),
         årForDokument
     );
 
@@ -183,7 +188,7 @@ function DokumentListe(props: DokumentListeProps) {
 }
 
 class SaksDokumenter extends React.PureComponent<Props> {
-    private tittelRef = React.createRef<HTMLSpanElement>();
+    private tittelRef = React.createRef<HTMLDivElement>();
 
     componentDidUpdate(prevProps: Props) {
         if (!prevProps.valgtSakstema || !this.props.valgtSakstema) {
@@ -225,21 +230,25 @@ class SaksDokumenter extends React.PureComponent<Props> {
         );
 
         const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
-        const valgtSakstema = props.erStandaloneVindu ? (
+        const valgtSakstemaTittel = props.erStandaloneVindu ? (
             <DropDownMenu header={tittel}>
                 <SakstemaListeContainer />
             </DropDownMenu>
         ) : (
             tittel
         );
+        const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
+            hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
+        );
 
         return (
             <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
                 <InfoOgFilterPanel>
                     <div>
-                        <TittleStyling ref={this.tittelRef} tabIndex={-1}>
-                            {valgtSakstema}
-                        </TittleStyling>
+                        <TittelWrapperStyling ref={this.tittelRef} tabIndex={-1}>
+                            {valgtSakstemaTittel}
+                            <Normaltekst>({filtrerteDokumenter.length} journalposter)</Normaltekst>
+                        </TittelWrapperStyling>
                         {filterCheckboxer}
                     </div>
                     <div>
@@ -248,7 +257,7 @@ class SaksDokumenter extends React.PureComponent<Props> {
                     </div>
                 </InfoOgFilterPanel>
                 <ViktigÅVite />
-                <DokumentListe sakstema={props.valgtSakstema} avsenderFilter={props.avsenderFilter} />
+                <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
             </SaksdokumenterStyling>
         );
     }

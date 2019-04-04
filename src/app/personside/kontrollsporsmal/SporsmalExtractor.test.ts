@@ -1,148 +1,9 @@
-import {
-    formatterGateadresse,
-    formatterMatrikkeladresse,
-    formatterPostboksadresse,
-    formatterUstrukturertAdresse,
-    formatterUtenlandsadresse,
-    hentFødselsdatoBarn,
-    hentGiftedato
-} from './SporsmalExtractors';
-import {
-    Gateadresse,
-    Matrikkeladresse,
-    Postboksadresse,
-    UstrukturertAdresse,
-    Utlandsadresse
-} from '../../../models/personadresse';
+import { hentEpost, hentFødselsdatoBarn, hentGiftedato } from './SporsmalExtractors';
 import { Familierelasjon, Person, Relasjonstype, SivilstandTyper } from '../../../models/person/person';
 import { aremark } from '../../../mock/person/aremark';
 import { getPersonstatus } from '../../../mock/person/personMock';
 import { Diskresjonskoder } from '../../../konstanter';
-
-describe('formaterGateAdresse', () => {
-    it('Gir riktig formattert adresse med alle felter', () => {
-        const gateAdresse = lagMockGateAdresse();
-        const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' +
-            'tilleggsadresse\n' +
-            'gatenavn husnummerhusbokstav\n' +
-            'bolignummer\n' +
-            'postnummer poststed';
-
-        const adresseTekst = formatterGateadresse(gateAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-
-    it('Gir riktig formattert, mangler tilleggsadresse, bolignummer, periode og husbokstav', () => {
-        const gateAdresse = {
-            ...lagMockGateAdresse(),
-            tilleggsadresse: undefined,
-            bolignummer: undefined,
-            periode: undefined,
-            husbokstav: undefined
-        };
-
-        const korrektFormattering = 'gatenavn husnummer\n' + 'postnummer poststed';
-
-        const adresseTekst = formatterGateadresse(gateAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-});
-
-describe('formaterMatrikkeladresse', () => {
-    it('Gir riktig formattert adresse med alle felter', () => {
-        const matrikkelAdresse = lagMockMatrikkelAdresse();
-        const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' + 'tilleggsadresse\n' + 'eiendomsnavn\n' + 'postnummer poststed';
-
-        const adresseTekst = formatterMatrikkeladresse(matrikkelAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-
-    it('Gir riktig formattert adresse, mangler tilleggsadresse, eiendomsnavn og periode', () => {
-        const matrikkeladresse = {
-            ...lagMockMatrikkelAdresse(),
-            tilleggsadresse: undefined,
-            eiendomsnavn: undefined,
-            periode: undefined
-        };
-        matrikkeladresse.tilleggsadresse = undefined;
-        matrikkeladresse.eiendomsnavn = undefined;
-        matrikkeladresse.periode = undefined;
-        const korrektFormattering = 'postnummer poststed';
-
-        const adresseTekst = formatterMatrikkeladresse(matrikkeladresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-});
-
-describe('formatterPostboksadresse', () => {
-    it('Gir riktig formattert adresse med alle felter', () => {
-        const postboksadresse = lagMockPostboksAdresse();
-        const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' +
-            'tilleggsadresse\n' +
-            'postboksanlegg, postboksnummer postboksnummer\n' +
-            'postnummer poststed';
-
-        const adresseTekst = formatterPostboksadresse(postboksadresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-
-    it('Gir riktig formattert, mangler tilleggsadresse, postboksanlegg og periode', () => {
-        const postboksAdresse = {
-            ...lagMockPostboksAdresse(),
-            tilleggsadresse: undefined,
-            postboksanlegg: undefined,
-            periode: undefined
-        };
-
-        const korrektFormattering = 'Postboksnummer postboksnummer\n' + 'postnummer poststed';
-
-        const adresseTekst = formatterPostboksadresse(postboksAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-});
-
-describe('formatterUtenlandsadresse', () => {
-    it('Gir riktig formattert adresse med alle felter', () => {
-        const utenlandsAdresse = lagMockUtenlandskadresse();
-        const korrektFormattering =
-            '09.11.2016 - 31.10.2017\n' + 'linje 1\n' + 'linje 2\n' + 'linje 3\n' + 'landkodeBeskrivelse';
-
-        const adressetekst = formatterUtenlandsadresse(utenlandsAdresse);
-
-        expect(adressetekst).toBe(korrektFormattering);
-    });
-
-    it('Gir riktig formattert, mangler periode, linje 2 og 3 og landkodebeskrivelse', () => {
-        const utenlandsAdresse: Utlandsadresse = {
-            adresselinjer: ['linje 1']
-        };
-        const korrektFormattering = 'linje 1';
-
-        const adresseTekst = formatterUtenlandsadresse(utenlandsAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-});
-
-describe('formatterUstrukturertAdresse', () => {
-    it('Gir korrekt formattering', () => {
-        const ustrukturertAdresse: UstrukturertAdresse = { adresselinje: 'Adresselinje' };
-        const korrektFormattering = 'Adresselinje';
-
-        const adresseTekst = formatterUstrukturertAdresse(ustrukturertAdresse);
-
-        expect(adresseTekst).toBe(korrektFormattering);
-    });
-});
+import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 
 describe('hentGiftedato', () => {
     const GIFTEDATO = '11.11.2011';
@@ -237,62 +98,36 @@ describe('hentFødselsdatoBarn', () => {
     });
 });
 
-function lagMockGateAdresse(): Gateadresse {
-    return {
-        tilleggsadresse: 'tilleggsadresse',
-        gatenavn: 'gatenavn',
-        husnummer: 'husnummer',
-        husbokstav: 'husbokstav',
-        postnummer: 'postnummer',
-        poststed: 'poststed',
-        bolignummer: 'bolignummer',
-        periode: {
-            fra: '2016-11-09',
-            til: '2017-10-31'
-        }
-    };
-}
+describe('hentEpost', () => {
+    it('Gir korrekt e-post', () => {
+        const kontaktInformasjon: KRRKontaktinformasjon = {
+            epost: {
+                value: 'aremarksinmail@test.no',
+                sistOppdatert: ''
+            }
+        };
+        const korrektSvar = { tekst: 'aremarksinmail@test.no' };
 
-function lagMockMatrikkelAdresse(): Matrikkeladresse {
-    return {
-        tilleggsadresse: 'tilleggsadresse',
-        eiendomsnavn: 'eiendomsnavn',
-        postnummer: 'postnummer',
-        poststed: 'poststed',
-        periode: {
-            fra: '2016-11-09',
-            til: '2017-10-31'
-        }
-    };
-}
+        const tekst = hentEpost(kontaktInformasjon);
 
-function lagMockPostboksAdresse(): Postboksadresse {
-    return {
-        postboksnummer: 'postboksnummer',
-        postnummer: 'postnummer',
-        poststed: 'poststed',
-        tilleggsadresse: 'tilleggsadresse',
-        postboksanlegg: 'postboksanlegg',
-        periode: {
-            fra: '2016-11-09',
-            til: '2017-10-31'
-        }
-    };
-}
+        expect(tekst).toEqual(korrektSvar);
+    });
 
-function lagMockUtenlandskadresse(): Utlandsadresse {
-    return {
-        landkode: {
-            kodeRef: 'landkodeRef',
-            beskrivelse: 'landkodeBeskrivelse'
-        },
-        adresselinjer: ['linje 1', 'linje 2', 'linje 3'],
-        periode: {
-            fra: '2016-11-09',
-            til: '2017-10-31'
-        }
-    };
-}
+    it('Gir tom streng når reservert i KRR', () => {
+        const kontaktInformasjon: KRRKontaktinformasjon = {
+            epost: {
+                value: 'aremarksinmail@test.no',
+                sistOppdatert: ''
+            },
+            reservasjon: 'true'
+        };
+        const korrektSvar = { tekst: '' };
+
+        const tekst = hentEpost(kontaktInformasjon);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+});
 
 function lagMockGiftPerson(): Person {
     let person = aremark;

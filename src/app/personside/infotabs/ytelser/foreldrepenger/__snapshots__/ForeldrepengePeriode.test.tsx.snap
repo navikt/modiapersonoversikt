@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c2 {
-  text-transform: uppercase;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
 .c6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -34,6 +26,69 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   min-width: 13rem;
 }
 
+.c9 {
+  text-align: center;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2 {
+  text-transform: uppercase;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c14 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c14:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c14:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c14:hover {
+  opacity: 0.8;
+}
+
+.c14:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
 .c0 > *:first-child {
   background-color: #cce1f3;
   padding: 0.2rem 1.25rem;
@@ -42,6 +97,73 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 .c0 ol {
   padding: 0;
   margin: 0;
+}
+
+.c15 {
+  margin-right: 0.5rem;
+}
+
+.c10 {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 0.3rem white;
+  padding: 1.25rem;
+}
+
+.c16 {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 0 1.25rem;
+}
+
+.c11 {
+  margin-bottom: 1.25rem;
+}
+
+.c8 {
+  padding: 0.5rem;
+}
+
+.c18 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
+}
+
+.c18 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c17 {
+  padding: 0.5rem;
 }
 
 .c5 {
@@ -53,6 +175,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  padding: .8rem;
 }
 
 .c7 {
@@ -65,6 +188,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   -webkit-flex-basis: 45%;
   -ms-flex-preferred-size: 45%;
   flex-basis: 45%;
+}
+
+@media print {
+  .c12 {
+    display: none;
+  }
 }
 
 <li
@@ -147,36 +276,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Forskyvelsesårsak
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              —
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
               Andre forskyvelsesperiode
             </dt>
             <dd
               className="typo-normal"
             >
               09.12.2014 - 26.08.2014
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Andre forskyvelsesårsak
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              —
             </dd>
           </div>
           <div>
@@ -231,18 +336,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Aleneomsorg Mor
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              —
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
               Rett til Mødrekvote
             </dt>
             <dd
@@ -255,7 +348,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Fedrekvote
+              Aleneomsorg Mor
             </dt>
             <dd
               className="typo-normal"
@@ -267,7 +360,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             <dt
               className="typo-etikett-liten"
             >
-              Aleneomsorg Far
+              Fedrekvote
             </dt>
             <dd
               className="typo-normal"
@@ -287,54 +380,192 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               Rett til fedrekvote
             </dd>
           </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Aleneomsorg Far
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              —
+            </dd>
+          </div>
         </dl>
       </div>
     </div>
-    <div
+    <section
+      aria-label="Utbetalinger foreldrepenger"
       className="c7"
     >
-      <div
-        className="alertstripe alertstripe--info"
-      >
-        <span
-          aria-label="info"
-          className="alertstripe__ikon"
+      <section>
+        <div
+          className="c8"
+        >
+          <div
+            className="c9"
+          >
+            <h4
+              className="typo-undertittel"
+            >
+              Kommende utbetalinger
+            </h4>
+          </div>
+        </div>
+        <ol>
+          <li
+            aria-label="Kommende utbetaling 25.06.2018"
+          >
+            <div
+              className="c10"
+              open={false}
+            >
+              <dl
+                className="c6"
+              >
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Registeringsdato
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    25.06.2018
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Type
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    KONTOØVERFØRING
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Periode
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    14.01.2018 - 15.07.2017
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-etikett-liten"
+                  >
+                    Utbetalingsgrad
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    79%
+                  </dd>
+                </div>
+              </dl>
+              <div
+                className="c11"
+              >
+                <div
+                  className="c12"
+                >
+                  <div
+                    className="c13"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="c14"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Vis
+                           
+                          detaljer
+                        </span>
+                      </span>
+                      <i
+                        className="nav-frontend-chevron chevronboks chevron--ned"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="c16"
+                open={false}
+              />
+            </div>
+          </li>
+        </ol>
+      </section>
+      <section>
+        <div
+          className="c17"
+        >
+          <div
+            className="c9"
+          >
+            <h4
+              className="typo-undertittel"
+            >
+              Utførte utbetalinger
+            </h4>
+          </div>
+        </div>
+        <div
+          className="c18"
         >
           <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--s"
             focusable="false"
-            height="1.5em"
-            kind="info-sirkel-fyll"
-            viewBox="0 0 24 24"
-            width="1.5em"
+            height={32}
+            kind="spinner"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width={32}
           >
-            <g
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
               fill="none"
-              fillRule="evenodd"
-            >
-              <path
-                d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-                fill="#FFA733"
-                fillRule="nonzero"
-              />
-              <path
-                d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-                fill="#3E3832"
-              />
-              <path
-                d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-                fill="#3E3832"
-                fillRule="nonzero"
-              />
-            </g>
+              r="20"
+              stroke="#bdbab7"
+              strokeWidth="5"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="5"
+            />
           </svg>
-        </span>
-        <span
-          className="typo-normal alertstripe__tekst"
-        >
-          Ingen person i context
-        </span>
-      </div>
-    </div>
+        </div>
+      </section>
+    </section>
   </div>
 </li>
 `;

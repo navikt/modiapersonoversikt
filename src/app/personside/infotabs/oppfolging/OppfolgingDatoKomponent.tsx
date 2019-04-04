@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isLoading, isReloading, RestResource } from '../../../../redux/restReducers/restResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
@@ -12,8 +12,6 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
-import { PersonContext } from '../../../App';
-import AlertStripeAdvarsel from '../saksoversikt/dokumentvisning/DokumentOgVedlegg';
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -41,8 +39,9 @@ const KnappWrapper = styled.div`
 `;
 
 interface StateProps {
-    oppfølgingReducer: RestReducer<DetaljertOppfolging>;
+    oppfølgingResource: RestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -53,7 +52,7 @@ interface DispatchProps {
 type Props = DispatchProps & StateProps;
 
 function DatoInputs(props: Props) {
-    const oppfølgingLastes = isLoading(props.oppfølgingReducer) || isReloading(props.oppfølgingReducer);
+    const oppfølgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
 
     return (
         <>
@@ -82,25 +81,20 @@ function DatoInputs(props: Props) {
                 </div>
             </DatoVelgerWrapper>
             <KnappWrapper>
-                <PersonContext.Consumer>
-                    {fnr => {
-                        if (!fnr) {
-                            return <AlertStripeAdvarsel>Fødselsnummer ikke satt i ContextProvider</AlertStripeAdvarsel>;
-                        }
-                        return (
-                            <Knapp
-                                onClick={() =>
-                                    props.reloadDetaljertOppfølging(fnr, props.valgtPeriode.fra, props.valgtPeriode.til)
-                                }
-                                spinner={oppfølgingLastes}
-                                aria-disabled={oppfølgingLastes}
-                                htmlType="button"
-                            >
-                                Søk
-                            </Knapp>
-                        );
-                    }}
-                </PersonContext.Consumer>
+                <Knapp
+                    onClick={() =>
+                        props.reloadDetaljertOppfølging(
+                            props.fødselsnummer,
+                            props.valgtPeriode.fra,
+                            props.valgtPeriode.til
+                        )
+                    }
+                    spinner={oppfølgingLastes}
+                    aria-disabled={oppfølgingLastes}
+                    htmlType="button"
+                >
+                    Søk
+                </Knapp>
             </KnappWrapper>
         </>
     );
@@ -119,7 +113,8 @@ function OppfolgingDatoPanel(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        oppfølgingReducer: state.restEndepunkter.oppfolgingReducer,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
+        oppfølgingResource: state.restResources.oppfolging,
         valgtPeriode: state.oppfolging.valgtPeriode
     };
 }

@@ -107,14 +107,10 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
     render() {
         const { person, visittkortApent } = this.props;
         const ikon = {
-            ikon:
-                person.kjønn === 'M' ? (
-                    <Mann alt="Mann" aria-label="Mann" />
-                ) : (
-                    <Kvinne alt="Kvinne" aria-label="Kvinne" />
-                )
+            ikon: person.kjønn === 'M' ? <Mann /> : <Kvinne />
         };
         const alder = erDød(person.personstatus) ? 'Død' : person.alder;
+        const kjønn = person.kjønn === 'M' ? 'Mann' : 'Kvinne';
         return (
             <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={this.toggleVisittkort}>
                 <VenstreFelt>
@@ -125,6 +121,7 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                                 {hentNavn(person.navn)} ({alder})
                             </span>
                         </Undertittel>
+                        <span className="visually-hidden">{kjønn}</span>
                         <PersonStatus person={person} />
                     </GrunninfoDiv>
                 </VenstreFelt>

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
-import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
+import DescriptionList, {
+    DescriptionListEntries,
+    fjernEntriesUtenVerdi
+} from '../../../../../components/DescriptionList';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import {
     convertBoolTilJaNei,
@@ -12,6 +14,8 @@ import {
     prosentEllerNull
 } from '../../../../../utils/stringFormatting';
 import { YtelserKeys } from '../ytelserKeys';
+import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
+import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -22,11 +26,12 @@ const Padding = styled.div`
     margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
 `;
 
-const Flex = styled.div`
+const FlexOgPadding = styled.div`
     display: flex;
+    padding: ${theme.margin.layout};
 `;
 
-const Stor = styled.div`
+const UtbetalingerStyle = styled.section`
     flex-basis: 55%;
 `;
 
@@ -36,38 +41,40 @@ const Liten = styled.div`
 
 function ForeldrepengePeriode({ periode, periodenr }: Props) {
     const entries: DescriptionListEntries = {
-        'Arbeidsprosent mor': prosentEllerNull(periode.arbeidsprosentMor),
-        'Mors situasjon': periode.morSituasjon,
-        'Disponibel gradering': prosentEllerNull(periode.disponibelGradering),
-        Forskyvelsesperiode: periodeEllerNull(periode.forskyvelsesperiode1),
-        Forskyvelsesårsak: periode.forskyvelsesårsak1,
-        'Andre forskyvelsesperiode': periodeEllerNull(periode.forskyvelsesperiode2),
-        'Andre forskyvelsesårsak': periode.forskyvelsesårsak2,
+        ...fjernEntriesUtenVerdi({
+            'Arbeidsprosent mor': prosentEllerNull(periode.arbeidsprosentMor),
+            'Mors situasjon': periode.morSituasjon,
+            'Disponibel gradering': prosentEllerNull(periode.disponibelGradering),
+            Forskyvelsesperiode: periodeEllerNull(periode.forskyvelsesperiode1),
+            Forskyvelsesårsak: periode.forskyvelsesårsak1,
+            'Andre forskyvelsesperiode': periodeEllerNull(periode.forskyvelsesperiode2),
+            'Andre forskyvelsesårsak': periode.forskyvelsesårsak2
+        }),
         'Midlertidig stans': periode.midlertidigStansDato,
-        Stansårsak: periode.stansårsak,
-        Avslått: periode.avslått,
+        ...fjernEntriesUtenVerdi({
+            Stansårsak: periode.stansårsak,
+            Avslått: periode.avslått
+        }),
         Mødrekvote: convertBoolTilJaNei(periode.erMødrekvote),
-        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
         'Rett til Mødrekvote': periode.rettTilMødrekvote,
+        'Aleneomsorg Mor': convertBoolTilJaNei(periode.harAleneomsorgMor),
         Fedrekvote: convertBoolTilJaNei(periode.erFedrekvote),
-        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar),
-        'Rett til Fedrekvote': periode.rettTilFedrekvote
+        'Rett til Fedrekvote': periode.rettTilFedrekvote,
+        'Aleneomsorg Far': convertBoolTilJaNei(periode.harAleneomsorgFar)
     };
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
-            <Flex>
+            <FlexOgPadding>
                 <Liten>
                     <Padding>
                         <DescriptionList entries={entries} />
                     </Padding>
                 </Liten>
-                <Stor>
-                    <Utbetalinger
-                        kommendeUtbetalinger={periode.kommendeUtbetalinger}
-                        ytelsesType={YtelserKeys.Foreldrepenger}
-                    />
-                </Stor>
-            </Flex>
+                <UtbetalingerStyle aria-label="Utbetalinger foreldrepenger">
+                    <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
+                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
+                </UtbetalingerStyle>
+            </FlexOgPadding>
         </YtelserPeriode>
     );
 }

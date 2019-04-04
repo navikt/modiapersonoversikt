@@ -9,14 +9,15 @@ import Select from 'nav-frontend-skjema/lib/select';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 import { Oppgave } from '../../../models/oppgave';
-import { settPersonIKontekst } from '../../routes/routing';
+import { setNyBrukerIPath } from '../../routes/routing';
 import { History } from 'history';
-import ReducerFeilmelding from '../../../components/feilmelding/ReducerFeilmelding';
+import ResourceFeilmelding from '../../../components/feilmelding/ResourceFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { AppState } from '../../../redux/reducers';
-import { isLoading, RestReducer } from '../../../redux/restReducers/restReducer';
+import { isLoading, RestResource } from '../../../redux/restReducers/restResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 
 const HentOppgaveLayout = styled.div`
     text-align: center;
@@ -62,7 +63,7 @@ interface State {
 
 interface StateProps {
     valgtTemagruppe?: string;
-    oppgaveReducer: RestReducer<Oppgave[]>;
+    oppgaveResource: RestResource<Oppgave[]>;
     routeHistory: History;
 }
 
@@ -87,13 +88,14 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
             return;
         }
         this.setState({ temagruppeFeilmelding: undefined, tomKø: false });
+        settJobberMedSpørsmålOgSvar();
         this.props.plukkOppgaver(this.props.valgtTemagruppe).then((oppgaver: Oppgave[]) => {
             const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
             if (!fødselsnummer) {
                 this.setState({ tomKø: true });
                 return;
             }
-            settPersonIKontekst(this.props.history, fødselsnummer);
+            setNyBrukerIPath(this.props.history, fødselsnummer);
         });
     }
 
@@ -129,12 +131,12 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                         id="hentoppgaveknapp"
                         type="hoved"
                         onClick={this.onPlukkOppgaver}
-                        spinner={isLoading(this.props.oppgaveReducer)}
+                        spinner={isLoading(this.props.oppgaveResource)}
                     >
                         Hent
                     </KnappBase>
                 </KnappLayout>
-                <ReducerFeilmelding reducer={this.props.oppgaveReducer} />
+                <ResourceFeilmelding resource={this.props.oppgaveResource} />
                 {tomtTilbakemelding}
             </HentOppgaveLayout>
         );
@@ -149,7 +151,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
 function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
     return {
         valgtTemagruppe: state.temagruppe.valgtTemagruppe,
-        oppgaveReducer: state.restEndepunkter.oppgaver,
+        oppgaveResource: state.restResources.oppgaver,
         routeHistory: routeProps.history
     };
 }

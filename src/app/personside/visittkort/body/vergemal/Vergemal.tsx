@@ -33,7 +33,7 @@ function Verge(props: { verge: VergeInterface }) {
     return (
         <VisittkortElement beskrivelse={'Verge'}>
             <Vergeinformasjon>
-                <Normaltekst>{verge.navn ? verge.navn.sammensatt : 'Fødselsnummer ikke oppgitt'}</Normaltekst>
+                <Normaltekst>{verge.navn ? verge.navn.sammensatt : 'Navn ikke tilgjengelig'}</Normaltekst>
                 <Normaltekst>{verge.ident || ''}</Normaltekst>
                 <Normaltekst>{verge.vergetype ? verge.vergetype.beskrivelse : ''}</Normaltekst>
             </Vergeinformasjon>

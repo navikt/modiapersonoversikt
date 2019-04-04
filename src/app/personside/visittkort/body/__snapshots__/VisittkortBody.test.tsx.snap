@@ -157,6 +157,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   className="c0"
   role="region"
 >
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
+  >
+    Visittkortdetaljer
+  </h2>
   <div
     className="c1"
   >

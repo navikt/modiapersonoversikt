@@ -5,6 +5,7 @@ import { Bold } from '../../../components/common-styled-components';
 import { Spørsmål } from '../../../redux/kontrollSporsmal/types';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import UtropstegnPlain from '../../../svg/UtropstegnPlain';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     spørsmål: Spørsmål;
@@ -12,13 +13,11 @@ interface Props {
 
 const SporsmalOgSvarStyling = styled.div`
     display: flex;
-    margin: ${theme.margin.px10};
     flex-wrap: wrap;
 `;
 
-const SpørsmålTekst = styled.div`
+const SpørsmålTekstStyle = styled.div`
     flex-flow: row;
-    padding-left: ${theme.margin.px20};
     flex-grow: 1.5;
 `;
 
@@ -26,6 +25,7 @@ const OpplysningTekstStyling = styled.div`
     display: flex;
     flex: 0 1 ${pxToRem(350)};
     padding-right: ${theme.margin.px20};
+    margin-right: ${theme.margin.px20};
     border-right: dashed 0.0625rem #b7b1a9;
 `;
 
@@ -60,13 +60,13 @@ class SpørsmålOgSvar extends React.PureComponent<Props> {
         return (
             <SporsmalOgSvarStyling>
                 <OpplysningsTekst />
-                <SpørsmålTekst>
-                    <Normaltekst>
-                        <Bold>{this.props.spørsmål.spørsmål}</Bold>
-                    </Normaltekst>
+                <SpørsmålTekstStyle>
+                    <Undertittel aria-live="polite" tag="h3">
+                        {this.props.spørsmål.spørsmål}
+                    </Undertittel>
                     <Luft />
                     <SvarKolonneStyling>{svar}</SvarKolonneStyling>
-                </SpørsmålTekst>
+                </SpørsmålTekstStyle>
             </SporsmalOgSvarStyling>
         );
     }

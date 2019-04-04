@@ -18,7 +18,7 @@ import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
 import { getMockUtbetalinger } from './utbetalinger-mock';
 import navfaker from 'nav-faker';
-import { getMockSykepenger } from './ytelse/sykepenger-mock';
+import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
@@ -26,6 +26,7 @@ import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsel-mock';
+import { getMockTraader } from './meldinger/meldinger-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -99,7 +100,7 @@ function setupSykepengerMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSykepenger(fodselsnummer))
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSykepengerRespons(fodselsnummer))
         )
     );
 }
@@ -155,6 +156,17 @@ function setupVarselMock(mock: FetchMock) {
             randomDelay(),
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
+        )
+    );
+}
+
+function setupMeldingerMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/meldinger/:fodselsnummer/traader',
+        withDelayedResponse(
+            randomDelay(),
+            fødselsNummerErGyldigStatus,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
         )
     );
 }
@@ -320,9 +332,14 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+let mockInitialised = false;
 export function setupMock() {
+    if (mockInitialised) {
+        return;
+    } else {
+        mockInitialised = true;
+    }
     console.log('### MOCK ENABLED! ###');
-    /* tslint:disable-next-line */
 
     const mock = FetchMock.configure({
         enableFallback: true,
@@ -357,6 +374,7 @@ export function setupMock() {
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
+    setupMeldingerMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
 }

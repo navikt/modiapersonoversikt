@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Varselmelding } from '../../../../models/varsel';
-import { genericDescendingDateComparator } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Meldingskomponent from './Meldingskomponent';
@@ -16,9 +16,7 @@ const ListeStyle = styled.ol`
 `;
 
 function MeldingsListeKomponent(props: Props) {
-    const sorterPåDato = props.meldingsliste.sort(
-        genericDescendingDateComparator(melding => melding.utsendingsTidspunkt)
-    );
+    const sorterPåDato = props.meldingsliste.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
 
     const listekomponenter = sorterPåDato.map(melding => <Meldingskomponent melding={melding} />);
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestReducer } from '../../../../redux/restReducers/restReducer';
+import { isNotStarted } from '../../../../redux/restReducers/restResource';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { Varsel } from '../../../../models/varsel';
 import { AppState } from '../../../../redux/reducers';
@@ -9,10 +9,11 @@ import { hentVarsel } from '../../../../redux/restReducers/varsel';
 import { connect } from 'react-redux';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import VarselVisning from './VarselVisningKomponent';
+import { RestResource } from '../../../../redux/restReducers/restResource';
 
 interface StateProps {
-    baseUrlReducer: RestReducer<BaseUrlsResponse>;
-    varselReducer: RestReducer<Varsel[]>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
+    varselResource: RestResource<Varsel[]>;
 }
 
 interface DispatchProps {
@@ -28,17 +29,17 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 class VarselContainer extends React.PureComponent<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.baseUrlReducer)) {
+        if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
         }
-        if (isNotStarted(this.props.varselReducer)) {
+        if (isNotStarted(this.props.varselResource)) {
             this.props.hentVarsel(this.props.fødselsnummer);
         }
     }
 
     render() {
         return (
-            <PlukkRestData restReducer={this.props.varselReducer}>
+            <PlukkRestData restResource={this.props.varselResource}>
                 {data => <VarselVisning varsler={data} />}
             </PlukkRestData>
         );
@@ -47,8 +48,8 @@ class VarselContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrlReducer: state.restEndepunkter.baseUrlReducer,
-        varselReducer: state.restEndepunkter.varselReducer
+        baseUrlResource: state.restResources.baseUrl,
+        varselResource: state.restResources.brukersVarsler
     };
 }
 

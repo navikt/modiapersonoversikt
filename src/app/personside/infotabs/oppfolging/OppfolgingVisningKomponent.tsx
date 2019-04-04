@@ -2,11 +2,11 @@ import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import ArenaLenkerPanel from './ArenaLenkerKomponent';
 import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
@@ -17,20 +17,7 @@ const DetaljertInfoWrapper = styled.div`
     flex-direction: row;
     > *:last-child {
         margin-left: ${theme.margin.layout};
-    }
-    > * {
-        flex-basis: 50%;
-    }
-`;
-
-const LenkeOgDatoWrapper = styled.div`
-    > *:first-child {
-        margin-bottom: ${theme.margin.layout};
-    }
-    display: flex;
-    flex-direction: column;
-    > * {
-        flex-grow: 1;
+        flex-basis: 75%;
     }
 `;
 
@@ -43,11 +30,9 @@ const EkspanderbartPanelWrapper = styled.div`
 function OppfolgingVisning(props: VisningProps) {
     return (
         <article>
+            <VisuallyHiddenAutoFokusHeader tittel="Oppfølging" />
             <DetaljertInfoWrapper>
-                <LenkeOgDatoWrapper>
-                    <ArenaLenkerPanel />
-                    <OppfolgingDatoPanel />
-                </LenkeOgDatoWrapper>
+                <OppfolgingDatoPanel />
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />
             </DetaljertInfoWrapper>
             <EkspanderbartPanelWrapper>

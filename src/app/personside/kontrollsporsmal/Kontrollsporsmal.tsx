@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import Header from './Header';
+import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
@@ -10,8 +11,7 @@ import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggle
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
-import { useEffect } from 'react';
-import { kontrollspørsmålHarBlittLukketForBruker } from './skjulPåTversAvVinduerUtils';
+import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 
 interface StateProps {
@@ -27,9 +27,26 @@ type Props = DispatchProps & StateProps;
 
 const KontrollSporsmalStyling = styled.section`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px10};
+    padding: ${theme.margin.px20};
     margin-bottom: 0.5rem;
-    position: relative;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'innhold innhold knapper';
+    .innhold {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        grid-area: innhold;
+    }
+    .knapper {
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;
+        grid-area: knapper;
+    }
+    .visually-hidden {
+        ${theme.visuallyHidden}
+    }
 `;
 
 function Kontrollsporsmal(props: Props) {
@@ -39,17 +56,22 @@ function Kontrollsporsmal(props: Props) {
         }
     }, [props.fnr]);
 
-    if (!props.visKontrollSpørsmål) {
+    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar()) {
         return null;
     }
 
     return (
         <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
-                <Header />
-                <SpørsmålOgSvar />
-                <HandleKontrollSporsmalHotkeys />
+                <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
+                <div className="innhold">
+                    <SpørsmålOgSvar />
+                </div>
+                <div className="knapper">
+                    <KontrollSpørsmålKnapper />
+                </div>
             </KontrollSporsmalStyling>
+            <HandleKontrollSporsmalHotkeys />
         </IfFeatureToggleOn>
     );
 }
@@ -57,7 +79,7 @@ function Kontrollsporsmal(props: Props) {
 function mapStateToProps(state: AppState): StateProps {
     return {
         visKontrollSpørsmål: state.kontrollSpørsmål.synlig,
-        fnr: getFnrFromPerson(state.restEndepunkter.personinformasjon)
+        fnr: getFnrFromPerson(state.restResources.personinformasjon)
     };
 }
 

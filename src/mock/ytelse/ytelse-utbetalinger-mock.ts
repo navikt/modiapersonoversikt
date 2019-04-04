@@ -46,7 +46,7 @@ export function getUtbetalingPåVent(faker: Faker.FakerStatic): UtbetalingPåVen
         utbetalingsgrad: faker.random.number(100),
         oppgjørstype: 'Oppgjørstype',
         arbeidskategori: 'Arbeidskategori',
-        stansårsak: 'Stansårsak',
+        stansårsak: faker.random.boolean() ? 'Pga mistenkelig oppførsel' : null,
         ferie1: getPeriodeRange(faker, 2),
         ferie2: getPeriodeRange(faker, 2),
         sanksjon: getPeriodeRange(faker, 2),

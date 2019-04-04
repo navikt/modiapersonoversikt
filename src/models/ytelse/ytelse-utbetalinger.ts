@@ -35,11 +35,16 @@ export interface UtbetalingPåVent {
     stansårsak: null | string;
     ferie1: null | Periode;
     ferie2: null | Periode;
-    sanksjon: null | Periode;
+    sanksjon: null | Sanksjonsperiode;
     sykmeldt: null | Periode;
 }
 
 export interface KreditorTrekk {
     kreditorsNavn: string;
     beløp: number;
+}
+
+export interface Sanksjonsperiode {
+    fra: string;
+    til: string | null;
 }

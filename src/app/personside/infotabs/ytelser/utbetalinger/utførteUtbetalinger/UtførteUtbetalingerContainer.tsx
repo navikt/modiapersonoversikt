@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppState } from '../../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
 import { connect } from 'react-redux';
-import { isLoading, isNotStarted, RestReducer } from '../../../../../../redux/restReducers/restReducer';
+import { isLoading, isNotStarted, RestResource } from '../../../../../../redux/restReducers/restResource';
 import { UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
 import {
@@ -31,11 +31,11 @@ export enum KnappStatus {
 
 interface OwnProps {
     ytelseType: YtelserKeys;
-    fødselsnummer: string;
 }
 
 interface StateProps {
-    utførteUtbetalinger: RestReducer<UtbetalingerResponse>;
+    utførteUtbetalinger: RestResource<UtbetalingerResponse>;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -80,7 +80,7 @@ class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
                             <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
                         </AlignTextCenter>
                     </Padding>
-                    <PlukkRestData restReducer={this.props.utførteUtbetalinger} spinnerSize="S">
+                    <PlukkRestData restResource={this.props.utførteUtbetalinger} spinnerSize="S">
                         {data => (
                             <UtførteUtbetalingerListe
                                 utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, this.props.ytelseType)}
@@ -97,7 +97,8 @@ class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProops(state: AppState): StateProps {
     return {
-        utførteUtbetalinger: state.restEndepunkter.utførteUtbetalingerYtelser
+        utførteUtbetalinger: state.restResources.utførteUtbetalingerYtelser,
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer
     };
 }
 

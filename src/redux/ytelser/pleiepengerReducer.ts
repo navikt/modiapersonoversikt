@@ -9,7 +9,7 @@ const initialState: PleiepengerState = {
 };
 
 enum actionKeys {
-    TOGGLE_VIS_ALLE_ARBEIDSFORHOLD = 'toggle vis alle arbeidsforhold'
+    TOGGLE_VIS_ALLE_ARBEIDSFORHOLD = 'TOGGLE / VIS ALLE ARBEIDSFORHOLD PLEIEPENGER'
 }
 
 interface ToggleVisAlleArbeidsforhold extends Action {
