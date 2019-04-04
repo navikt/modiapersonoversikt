@@ -23,7 +23,8 @@ exports[`Sykemelding matcher snapshot 1`] = `
 .c0 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c1 table {

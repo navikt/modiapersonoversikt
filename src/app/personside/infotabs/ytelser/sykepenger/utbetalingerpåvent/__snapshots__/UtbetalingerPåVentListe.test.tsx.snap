@@ -27,7 +27,8 @@ exports[`UtbetalingerPåVentListe matcher snapshot 1`] = `
 .c3 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c2 {

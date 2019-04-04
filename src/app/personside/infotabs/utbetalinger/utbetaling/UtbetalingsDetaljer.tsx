@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import {
-    createTable,
     formaterNOK,
     skattBelopAscComparator,
     trekkBelopAscComparator,
@@ -12,6 +11,7 @@ import {
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import { Bold } from '../../../../../components/common-styled-components';
+import { createTable } from '../../../../../utils/tableUtils';
 
 type Props = {
     ytelse: Ytelse;

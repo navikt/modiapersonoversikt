@@ -30,13 +30,13 @@ const YtelsePanelStyle = styled.div`
 `;
 
 const ElementStyle = styled.div`
-    padding: ${theme.margin.layout};
+    padding: ${theme.margin.px20};
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
     const sortertPåDato = props.ytelser.sort(datoSynkende(ytelse => ytelse.datoKravMottatt));
 
-    const listekomponenter = sortertPåDato.map(ytelse => <YtelseElement ytelse={ytelse} />);
+    const listekomponenter = sortertPåDato.map((ytelse, index) => <YtelseElement key={index} ytelse={ytelse} />);
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }

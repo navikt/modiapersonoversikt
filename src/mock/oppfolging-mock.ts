@@ -88,6 +88,6 @@ function getVedtak(): OppfolgingsVedtak {
         aktivTil: moment(faker.date.recent(20)).format(backendDatoformat),
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
         vedtakstatus: navfaker.random.arrayElement(['Iverksatt', 'Avsluttet']),
-        vedtakstype: 'Vedtak: Ordinære dagpenger'
+        vedtakstype: 'Ordinære dagpenger'
     };
 }
