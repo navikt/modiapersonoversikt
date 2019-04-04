@@ -3,17 +3,11 @@ import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
 export function formatterDato(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY');
+    return moment(dato).format('DD.MM.YYYY');
 }
 
 export function formatterDatoTid(dato: string | Date) {
-    return getMomentMedNorskLocale(dato).format('DD.MM.YYYY HH:mm');
-}
-
-function getMomentMedNorskLocale(dato: string | Date) {
-    const datoMoment = moment(dato);
-    datoMoment.locale('nb');
-    return datoMoment;
+    return moment(dato).format('DD.MM.YYYY HH:mm');
 }
 
 const månedTilNavnMapping = (månednr: number) => {
@@ -79,6 +73,14 @@ export function erMaksEttÅrFramITid(date: Date) {
 
 export function getAlderFromFødselsnummer(fødselsnummer: string) {
     return moment().diff(navfaker.personIdentifikator.getFødselsdato(fødselsnummer), 'years');
+}
+
+export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
+    return new Date(date1) < new Date(date2) ? date1 : date2;
+}
+
+export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
+    return new Date(date1) > new Date(date2) ? date1 : date2;
 }
 
 export function ascendingDateComparator(a: Date, b: Date) {

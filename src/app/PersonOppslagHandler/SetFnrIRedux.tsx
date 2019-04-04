@@ -7,19 +7,19 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-    setFnrIKontekst: (fnr: string) => void;
+    setFnrIRedux: (fnr: string) => void;
 }
 
 type Props = DispatchProps & OwnProps;
 
 function SetFnrIRedux(props: Props) {
-    props.setFnrIKontekst(props.fødselsnummer);
+    props.setFnrIRedux(props.fødselsnummer);
     return null;
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        setFnrIKontekst: (fnr: string) => dispatch(setNyGjeldendeBruker(fnr))
+        setFnrIRedux: (fnr: string) => dispatch(setNyGjeldendeBruker(fnr))
     };
 }
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
-import Utbetalinger from '../utbetalinger/Utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList, {
@@ -15,6 +14,8 @@ import {
     prosentEllerNull
 } from '../../../../../utils/stringFormatting';
 import { YtelserKeys } from '../ytelserKeys';
+import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
+import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -25,11 +26,12 @@ const Padding = styled.div`
     margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
 `;
 
-const Flex = styled.div`
+const FlexOgPadding = styled.div`
     display: flex;
+    padding: ${theme.margin.layout};
 `;
 
-const Stor = styled.div`
+const UtbetalingerStyle = styled.section`
     flex-basis: 55%;
 `;
 
@@ -62,19 +64,17 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
     };
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
-            <Flex>
+            <FlexOgPadding>
                 <Liten>
                     <Padding>
                         <DescriptionList entries={entries} />
                     </Padding>
                 </Liten>
-                <Stor>
-                    <Utbetalinger
-                        kommendeUtbetalinger={periode.kommendeUtbetalinger}
-                        ytelsesType={YtelserKeys.Foreldrepenger}
-                    />
-                </Stor>
-            </Flex>
+                <UtbetalingerStyle aria-label="Utbetalinger foreldrepenger">
+                    <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
+                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
+                </UtbetalingerStyle>
+            </FlexOgPadding>
         </YtelserPeriode>
     );
 }

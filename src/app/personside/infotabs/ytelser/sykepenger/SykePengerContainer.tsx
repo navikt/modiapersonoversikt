@@ -8,6 +8,7 @@ import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepe
 import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import SykepengerEkspanderbartpanel from './SykepengerEkspanderbartPanel';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -33,16 +34,18 @@ class SykePengerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData spinnerSize="M" restResource={this.props.sykepengerResource}>
-                {data => {
-                    if (!data.sykepenger) {
-                        return null;
-                    }
-                    return data.sykepenger.map((sykepengerettighet, index) => (
-                        <SykepengerEkspanderbartpanel key={index} sykepenger={sykepengerettighet} />
-                    ));
-                }}
-            </PlukkRestData>
+            <ErrorBoundary boundaryName="SykepengerContainer">
+                <PlukkRestData spinnerSize="M" restResource={this.props.sykepengerResource}>
+                    {data => {
+                        if (!data.sykepenger) {
+                            return null;
+                        }
+                        return data.sykepenger.map(rettighet => (
+                            <SykepengerEkspanderbartpanel key={rettighet.sykmeldtFom} sykepenger={rettighet} />
+                        ));
+                    }}
+                </PlukkRestData>
+            </ErrorBoundary>
         );
     }
 }
