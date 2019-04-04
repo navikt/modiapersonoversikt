@@ -13,7 +13,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import { Person, PersonRespons } from '../../../models/person/person';
 import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
-import VarselContainer from './varsel/VarselContainer';
+import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
 
 interface OwnProps {
@@ -72,7 +72,7 @@ class InfoTabs extends React.PureComponent<Props> {
         const MeldingerWithProps = () => <MeldingerContainer fødselsnummer={fødselsnummer} />;
         const SakerWithProps = () => <SaksoversiktContainer fødselsnummer={fødselsnummer} />;
         const YtelserWithProps = () => <YtelserContainer fødselsnummer={fødselsnummer} />;
-        const VarselWithProps = () => <VarselContainer fødselsnummer={fødselsnummer} />;
+        const VarselWithProps = () => <VarslerContainer fødselsnummer={fødselsnummer} />;
 
         const basePath = paths.personUri + '/:fodselsnummer/';
 

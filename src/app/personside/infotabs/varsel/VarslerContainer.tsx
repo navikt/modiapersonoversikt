@@ -8,7 +8,7 @@ import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { hentVarsel } from '../../../../redux/restReducers/varsel';
 import { connect } from 'react-redux';
 import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
-import VarselVisning from './VarselVisningKomponent';
+import Varsler from './Varsler';
 import { RestResource } from '../../../../redux/restReducers/restResource';
 
 interface StateProps {
@@ -27,7 +27,7 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class VarselContainer extends React.PureComponent<Props> {
+class VarslerContainer extends React.PureComponent<Props> {
     componentDidMount() {
         if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();
@@ -39,9 +39,7 @@ class VarselContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restResource={this.props.varselResource}>
-                {data => <VarselVisning varsler={data} />}
-            </PlukkRestData>
+            <PlukkRestData restResource={this.props.varselResource}>{data => <Varsler varsler={data} />}</PlukkRestData>
         );
     }
 }
@@ -63,4 +61,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(VarselContainer);
+)(VarslerContainer);

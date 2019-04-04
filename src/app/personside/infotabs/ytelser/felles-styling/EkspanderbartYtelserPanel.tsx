@@ -32,15 +32,6 @@ const CustomStyling = styled.div`
     ${theme.hvittPanel};
 `;
 
-const FjernPadding = styled.div`
-    .ekspanderbartPanel__innhold {
-        padding: 0;
-    }
-    .ekspanderbartPanel__hode:hover {
-        ${theme.hover}
-    }
-`;
-
 function EkspanderbartYtelserPanel(props: Props) {
     const tillegsinfo =
         props.tittelTillegsInfo &&
@@ -58,13 +49,11 @@ function EkspanderbartYtelserPanel(props: Props) {
     );
 
     return (
-        <FjernPadding>
-            <CustomStyling>
-                <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
-                    {props.children}
-                </EkspanderbartpanelBase>
-            </CustomStyling>
-        </FjernPadding>
+        <CustomStyling>
+            <EkspanderbartpanelBase heading={tittel} ariaTittel={props.tittel}>
+                {props.children}
+            </EkspanderbartpanelBase>
+        </CustomStyling>
     );
 }
 

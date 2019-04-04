@@ -1,27 +1,23 @@
 import * as React from 'react';
-import { Varselmelding } from '../../../../models/varsel';
+import { Varselmelding } from '../../../../../models/varsel';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import { Bold } from '../../../../components/common-styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
+import { Bold } from '../../../../../components/common-styled-components';
 
 interface Props {
     melding: Varselmelding;
 }
 
-const KomponentStyle = styled.div`
-    padding: ${theme.margin.layout};
-    display: flex;
-    flex-direction: column;
+const ListeElementStyle = styled.li`
+    padding: 1rem;
 `;
 
 const RowStyle = styled.div`
     display: flex;
-    align-items: flex-start;
     > * {
-        flex-grow: 1;
-        :last-child {
-            flex-grow: 4;
+        &:last-child {
+            flex-grow: 1;
         }
     }
 `;
@@ -51,9 +47,9 @@ function Mottakerinformasjon(props: Props) {
     );
 }
 
-function Meldingskomponent(props: Props) {
+function MeldingsListeElement(props: Props) {
     return (
-        <KomponentStyle>
+        <ListeElementStyle>
             <RowStyle>
                 <Normaltekst>
                     <Bold>{props.melding.kanal}</Bold>
@@ -66,8 +62,8 @@ function Meldingskomponent(props: Props) {
                     <Mottakerinformasjon melding={props.melding} />
                 </MottakerInformasjonStyle>
             </RowStyle>
-        </KomponentStyle>
+        </ListeElementStyle>
     );
 }
 
-export default Meldingskomponent;
+export default MeldingsListeElement;
