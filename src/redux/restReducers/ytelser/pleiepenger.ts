@@ -1,18 +1,12 @@
-import { createActionsAndReducer } from '../restResource';
-import { getPleiepenger } from '../../../api/ytelser-api';
+import { createActionsAndReducer } from '../../../restResources/generator/restResource';
+import { apiBaseUri } from '../../../api/config';
+import { AppState } from '../../reducers';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducer('pleiepenger');
-
-export function hentPleiepenger(fødselsnummer: string) {
-    return action(() => getPleiepenger(fødselsnummer));
+export function getPleiepengerFetchUri(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/ytelse/pleiepenger/${fnr}`;
 }
 
-export function reloadPleiepenger(fødselsnummer: string) {
-    return reload(() => getPleiepenger(fødselsnummer));
-}
-
-export function resetPleiepengerResource() {
-    return tilbakestill;
-}
+const { reducer } = createActionsAndReducer('pleiepenger', getPleiepengerFetchUri);
 
 export default reducer;

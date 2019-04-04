@@ -1,33 +1,18 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
-import { AppState } from '../../../redux/reducers';
-import { hentForeldrepenger } from '../../../redux/restReducers/ytelser/foreldrepenger';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/ForeldrePenger';
-import PlukkRestData from '../../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
+import RestResourceConsumerTyped from '../../../restResources/consumer/RestResourceConsumerTyped';
 
-interface OwnProps {
+interface Props {
     fødselsnummer: string;
 }
-
-interface StateProps {
-    foreldrepengerReducer: RestResource<ForeldrepengerResponse>;
-}
-
-interface DispatchProps {
-    hentForeldrepenger: (fødelsnummer: string) => void;
-}
-
-type Props = OwnProps & StateProps & DispatchProps;
 
 const Margin = styled.div`
     margin: 0.5em;
@@ -53,16 +38,6 @@ const onError = (
 );
 
 class ForeldrepengerLaster extends React.PureComponent<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        if (!isLoaded(this.props.foreldrepengerReducer)) {
-            this.props.hentForeldrepenger(this.props.fødselsnummer);
-        }
-    }
-
     getAktuellForeldrepengeRettighet(ForeldrepengeRettighet: Foreldrepengerettighet[] | null) {
         if (!ForeldrepengeRettighet) {
             return <AlertStripeInfo>Kunne ikke finne noen Foreldrepengerettigheter for bruker</AlertStripeInfo>;
@@ -87,30 +62,15 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData
-                restResource={this.props.foreldrepengerReducer}
+            <RestResourceConsumerTyped<ForeldrepengerResponse>
+                getRestResource={restResources => restResources.foreldrepenger}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
                 {data => this.getAktuellForeldrepengeRettighet(data.foreldrepenger)}
-            </PlukkRestData>
+            </RestResourceConsumerTyped>
         );
     }
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        foreldrepengerReducer: state.restResources.foreldrepenger
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentForeldrepenger: (fødselsnummer: string) => dispatch(hentForeldrepenger(fødselsnummer))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ForeldrepengerLaster);
+export default ForeldrepengerLaster;

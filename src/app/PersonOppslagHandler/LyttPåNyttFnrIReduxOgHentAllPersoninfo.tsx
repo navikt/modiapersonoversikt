@@ -4,9 +4,6 @@ import { hentVergemal } from '../../redux/restReducers/vergemal';
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
 import { resetUtbetalingerResource } from '../../redux/restReducers/utbetalinger';
-import { resetSykepengerResource } from '../../redux/restReducers/ytelser/sykepenger';
-import { resetPleiepengerResource } from '../../redux/restReducers/ytelser/pleiepenger';
-import { resetForeldrepengerResource } from '../../redux/restReducers/ytelser/foreldrepenger';
 import { resetUtførteUtbetalingerResource } from '../../redux/restReducers/ytelser/utførteUtbetalinger';
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
 import { hentPerson } from '../../redux/restReducers/personinformasjon';
@@ -20,7 +17,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    oppslagNyBruker: (fnr: string) => void;
+    oppslagNyBruker: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -28,7 +25,7 @@ type Props = StateProps & DispatchProps;
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: Props) {
     useEffect(() => {
         if (props.fnrIKontekst) {
-            props.oppslagNyBruker(props.fnrIKontekst);
+            props.oppslagNyBruker();
         }
     }, [props.fnrIKontekst]);
 
@@ -43,20 +40,23 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        oppslagNyBruker: (fnr: string) => {
-            dispatch(hentPerson(fnr));
-            dispatch(hentKontaktinformasjon(fnr));
-            dispatch(erEgenAnsatt(fnr));
-            dispatch(hentVergemal(fnr));
-            dispatch(hentFeatureToggles());
-            dispatch(resetNavKontorResource());
-            dispatch(resetUtbetalingerResource());
-            dispatch(resetSykepengerResource());
-            dispatch(resetPleiepengerResource());
-            dispatch(resetForeldrepengerResource());
-            dispatch(resetUtførteUtbetalingerResource());
-            dispatch(resetKontrollSpørsmål());
-        }
+        oppslagNyBruker: () =>
+            dispatch((d: AsyncDispatch, getState: () => AppState) => {
+                const fnr = getState().gjeldendeBruker.fødselsnummer;
+                const restResources = getState().restResources;
+                dispatch(hentPerson(fnr));
+                dispatch(hentKontaktinformasjon(fnr));
+                dispatch(erEgenAnsatt(fnr));
+                dispatch(hentVergemal(fnr));
+                dispatch(hentFeatureToggles());
+                dispatch(resetNavKontorResource());
+                dispatch(resetUtbetalingerResource());
+                dispatch(restResources.sykepenger.actions.reset);
+                dispatch(restResources.pleiepenger.actions.reset);
+                dispatch(restResources.foreldrepenger.actions.reset);
+                dispatch(resetUtførteUtbetalingerResource());
+                dispatch(resetKontrollSpørsmål());
+            })
     };
 }
 

@@ -1,68 +1,33 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
-import { hentSykepenger } from '../../../../../redux/restReducers/ytelser/sykepenger';
-import PlukkRestData from '../pleiepenger/PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import SykepengerEkspanderbartpanel from './SykepengerEkspanderbartPanel';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import RestResourceConsumerTyped from '../../../../../restResources/consumer/RestResourceConsumerTyped';
+import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
+import { useEffect } from 'react';
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-interface StateProps {
-    sykepengerResource: RestResource<SykepengerResponse>;
-}
-
-interface DispatchProps {
-    hentSykepenger: (fødselsnummer: string) => void;
-}
-
-type Props = OwnProps & StateProps & DispatchProps;
-
-class SykePengerContainer extends React.PureComponent<Props> {
-    componentDidMount() {
+function SykePengerContainer() {
+    useEffect(() => {
         loggEvent('Sidevisning', 'Sykepenger');
-        if (isNotStarted(this.props.sykepengerResource)) {
-            this.props.hentSykepenger(this.props.fødselsnummer);
-        }
-    }
+    }, []);
 
-    render() {
-        return (
-            <ErrorBoundary boundaryName="SykepengerContainer">
-                <PlukkRestData spinnerSize="M" restResource={this.props.sykepengerResource}>
-                    {data => {
-                        if (!data.sykepenger) {
-                            return null;
-                        }
-                        return data.sykepenger.map(rettighet => (
-                            <SykepengerEkspanderbartpanel key={rettighet.sykmeldtFom} sykepenger={rettighet} />
-                        ));
-                    }}
-                </PlukkRestData>
-            </ErrorBoundary>
-        );
-    }
+    return (
+        <ErrorBoundary boundaryName="SykepengerContainer">
+            <RestResourceConsumerTyped<SykepengerResponse>
+                spinnerSize="M"
+                getRestResource={restResources => restResources.sykepenger}
+            >
+                {data => {
+                    if (!data.sykepenger) {
+                        return null;
+                    }
+                    return data.sykepenger.map(rettighet => (
+                        <SykepengerEkspanderbartpanel key={rettighet.sykmeldtFom} sykepenger={rettighet} />
+                    ));
+                }}
+            </RestResourceConsumerTyped>
+        </ErrorBoundary>
+    );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        sykepengerResource: state.restResources.sykepenger
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentSykepenger: (fødselsnummer: string) => dispatch(hentSykepenger(fødselsnummer))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SykePengerContainer);
+export default SykePengerContainer;
