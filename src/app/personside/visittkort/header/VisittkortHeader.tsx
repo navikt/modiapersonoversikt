@@ -118,9 +118,10 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                     <GrunninfoDiv>
                         <Undertittel tag="h1">
                             <span ref={this.navneLinjeRef} tabIndex={-1} /* for at focus skal funke*/>
-                                {hentNavn(person.navn)} ({alder})<span className="visually-hidden">{kjønn}</span>
+                                {hentNavn(person.navn)} ({alder})
                             </span>
                         </Undertittel>
+                        <span className="visually-hidden">{kjønn}</span>
                         <PersonStatus person={person} />
                     </GrunninfoDiv>
                 </VenstreFelt>

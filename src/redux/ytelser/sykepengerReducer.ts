@@ -1,15 +1,15 @@
 import { Action } from 'redux';
 
-export interface PleiepengerState {
+export interface SykepengerState {
     visAlleArbeidsforhold: boolean;
 }
 
-const initialState: PleiepengerState = {
+const initialState: SykepengerState = {
     visAlleArbeidsforhold: false
 };
 
 enum actionKeys {
-    TOGGLE_VIS_ALLE_ARBEIDSFORHOLD = 'TOGGLE / VIS ALLE ARBEIDSFORHOLD PLEIEPENGER'
+    TOGGLE_VIS_ALLE_ARBEIDSFORHOLD = 'TOGGLE / VIS ALLE ARBEIDSFORHOLD SYKEPENGER'
 }
 
 interface ToggleVisAlleArbeidsforhold extends Action {
@@ -18,13 +18,13 @@ interface ToggleVisAlleArbeidsforhold extends Action {
 
 type Actions = ToggleVisAlleArbeidsforhold;
 
-export function toggleVisAlleArbeidsforholdActionCreator(): ToggleVisAlleArbeidsforhold {
+export function toggleVisAlleArbeidsforholdSykepengerActionCreator(): ToggleVisAlleArbeidsforhold {
     return {
         type: actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD
     };
 }
 
-export function pleiepengerReducer(state: PleiepengerState = initialState, action: Actions): PleiepengerState {
+export function sykepengerReducer(state: SykepengerState = initialState, action: Actions): SykepengerState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD:
             return {
@@ -36,4 +36,4 @@ export function pleiepengerReducer(state: PleiepengerState = initialState, actio
     }
 }
 
-export default pleiepengerReducer;
+export default sykepengerReducer;

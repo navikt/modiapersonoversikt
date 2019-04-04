@@ -23,6 +23,7 @@ import thunk from 'redux-thunk';
 import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
+import SykepengerLamell from './Sykepenger/SykepengerLamell';
 
 enum Komponenter {
     Visittkort,
@@ -33,7 +34,8 @@ enum Komponenter {
     Utbetalinger,
     Pleiepenger,
     HentOppgaveKnapp,
-    Foreldrepenger
+    Foreldrepenger,
+    Sykepenger
 }
 
 const Style = styled.div`
@@ -91,6 +93,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
+        case Komponenter.Sykepenger:
+            return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

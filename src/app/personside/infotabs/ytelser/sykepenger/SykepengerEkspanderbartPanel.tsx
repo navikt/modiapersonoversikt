@@ -1,10 +1,11 @@
 import * as React from 'react';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
-import { Sykmeldingsperiode } from '../../../../../models/ytelse/sykepenger';
+import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import Sykepenger from './Sykepenger';
 
 interface Props {
-    sykepenger: Sykmeldingsperiode;
+    sykepenger: ISykepenger;
 }
 
 function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
@@ -12,7 +13,7 @@ function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
-            {JSON.stringify(sykepenger)}
+            <Sykepenger sykepenger={sykepenger} />
         </EkspanderbartYtelserPanel>
     );
 }

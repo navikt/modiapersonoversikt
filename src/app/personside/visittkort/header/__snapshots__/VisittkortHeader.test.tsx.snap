@@ -245,13 +245,13 @@ exports[`viser info om bruker i visittkort-header 1`] = `
            (
           42
           )
-          <span
-            className="visually-hidden"
-          >
-            Mann
-          </span>
         </span>
       </h1>
+      <span
+        className="visually-hidden"
+      >
+        Mann
+      </span>
       <span
         className="typo-normal"
       >
