@@ -14,10 +14,6 @@ interface Props {
 
 const ElementStyle = styled.div`
     padding: ${theme.margin.layout};
-    dd,
-    dt {
-        width: 20rem;
-    }
 `;
 
 const ListeStyle = styled.ol`
@@ -29,7 +25,9 @@ const ListeStyle = styled.ol`
 function SykefravarsoppfolgingListe(props: { syfoPunkter: SyfoPunkt[] }) {
     const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
 
-    const listekomponenter = sortertPåDato.map(syfopunkt => <SyfoPunktElement syfoPunkt={syfopunkt} />);
+    const listekomponenter = sortertPåDato.map((syfopunkt, index) => (
+        <SyfoPunktElement key={index} syfoPunkt={syfopunkt} />
+    ));
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }

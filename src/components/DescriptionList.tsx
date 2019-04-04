@@ -17,7 +17,8 @@ const ListStyling = styled.dl`
     > div {
         margin: ${pxToRem(15)} 0;
         padding-right: 1rem;
-        min-width: 13rem;
+        width: 13rem;
+        overflow-wrap: break-word;
     }
 `;
 

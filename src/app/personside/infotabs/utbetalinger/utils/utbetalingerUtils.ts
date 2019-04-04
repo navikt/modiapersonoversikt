@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Periode } from '../../../../../models/periode';
@@ -148,33 +147,6 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
         console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
         return [];
     }
-}
-
-export function createTable(tittelrekke: string[], table: Array<Array<string | number | undefined>>) {
-    return (
-        <table role="table">
-            <thead role="rowgroup">
-                <tr role="row">
-                    {tittelrekke.map(tittel => (
-                        <th role="columnheader" key={tittel}>
-                            {tittel}
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody role="rowgroup">
-                {table.map((row, index) => (
-                    <tr role="row" key={index}>
-                        {row.map((entry, i) => (
-                            <td role="cell" key={i}>
-                                {entry}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
 }
 
 export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {

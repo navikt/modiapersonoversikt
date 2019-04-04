@@ -28,7 +28,8 @@ Array [
 .c1 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c0 li:not(:first-child) {
@@ -181,7 +182,8 @@ Array [
 .c1 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
-  min-width: 13rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c0 li:not(:first-child) {

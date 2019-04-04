@@ -5,9 +5,9 @@ import DescriptionList, { DescriptionListEntries } from '../../../../../../compo
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
-import { createTable } from '../../../utbetalinger/utils/utbetalingerUtils';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { createTable } from '../../../../../../utils/tableUtils';
 
 interface Props {
     sykmeldinger: ISykemelding[];
