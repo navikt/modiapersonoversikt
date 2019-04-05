@@ -2,7 +2,7 @@ import * as React from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import SykepengerEkspanderbartpanel from './SykepengerEkspanderbartPanel';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import RestResourceConsumerTyped from '../../../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 import { SykepengerResponse } from '../../../../../models/ytelse/sykepenger';
 import { useEffect } from 'react';
 
@@ -13,7 +13,7 @@ function SykePengerContainer() {
 
     return (
         <ErrorBoundary boundaryName="SykepengerContainer">
-            <RestResourceConsumerTyped<SykepengerResponse>
+            <RestResourceConsumer<SykepengerResponse>
                 spinnerSize="M"
                 getRestResource={restResources => restResources.sykepenger}
             >
@@ -25,7 +25,7 @@ function SykePengerContainer() {
                         <SykepengerEkspanderbartpanel key={rettighet.sykmeldtFom} sykepenger={rettighet} />
                     ));
                 }}
-            </RestResourceConsumerTyped>
+            </RestResourceConsumer>
         </ErrorBoundary>
     );
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import PleiepengerEkspanderbartpanel from './PleiepengerEkspanderbartPanel';
-import RestResourceConsumerTyped from '../../../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 import { useEffect } from 'react';
 
 function PleiePengerContainer() {
@@ -11,7 +11,7 @@ function PleiePengerContainer() {
     }, []);
 
     return (
-        <RestResourceConsumerTyped<PleiepengerResponse>
+        <RestResourceConsumer<PleiepengerResponse>
             spinnerSize="M"
             getRestResource={restResources => restResources.pleiepenger}
         >
@@ -23,7 +23,7 @@ function PleiePengerContainer() {
                     <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet} />
                 ));
             }}
-        </RestResourceConsumerTyped>
+        </RestResourceConsumer>
     );
 }
 

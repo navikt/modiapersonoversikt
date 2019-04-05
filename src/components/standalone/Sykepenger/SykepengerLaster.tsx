@@ -5,7 +5,7 @@ import { loggError, loggEvent } from '../../../utils/frontendLogger';
 import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
 import moment from 'moment';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import RestResourceConsumerTyped from '../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -41,12 +41,12 @@ function SykePengerLaster(props: Props) {
     }
 
     return (
-        <RestResourceConsumerTyped<SykepengerResponse>
+        <RestResourceConsumer<SykepengerResponse>
             spinnerSize="M"
             getRestResource={restResources => restResources.sykepenger}
         >
             {data => getInnhold(data)}
-        </RestResourceConsumerTyped>
+        </RestResourceConsumer>
     );
 }
 

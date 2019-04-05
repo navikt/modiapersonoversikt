@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import ForeldrepengerEkspanderbartpanel from './ForeldrepengerEkspanderbartPanel';
-import RestResourceConsumerTyped from '../../../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 import { ForeldrepengerResponse } from '../../../../../models/ytelse/foreldrepenger';
 
 function ForeldrePengerContainer() {
@@ -11,7 +11,7 @@ function ForeldrePengerContainer() {
     }, []);
 
     return (
-        <RestResourceConsumerTyped<ForeldrepengerResponse>
+        <RestResourceConsumer<ForeldrepengerResponse>
             spinnerSize="M"
             getRestResource={restResources => restResources.foreldrepenger}
         >
@@ -23,7 +23,7 @@ function ForeldrePengerContainer() {
                     <ForeldrepengerEkspanderbartpanel key={index} foreldrepenger={foreldrepengerettighet} />
                 ));
             }}
-        </RestResourceConsumerTyped>
+        </RestResourceConsumer>
     );
 }
 

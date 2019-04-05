@@ -60,7 +60,6 @@ export function fetchDataAndDispatchToRedux<T>(
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING });
         const uri = fetchUriGenerator(getState());
-        console.log('fetching using: ', uri);
         return fetchData(uri)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED))
             .catch(handterFeil(dispatch, actionNames.FAILED));

@@ -5,13 +5,13 @@ import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { AppState } from '../../redux/reducers';
 import Innholdslaster, { InnholdslasterProps } from '../../components/Innholdslaster';
-import { isLoaded, isNotStarted, RestResource } from '../generator/restResource';
+import { isLoaded, isNotStarted, RestResource } from '../utils/restResource';
 
 interface DispatchProps {
     dispatch: AsyncDispatch;
 }
 
-export type BrukRestResourceDataOwnProps<T> = Pick<
+export type RestResourceConsumerOwnProps<T> = Pick<
     InnholdslasterProps,
     'spinnerSize' | 'returnOnPending' | 'returnOnError'
 > & {
@@ -23,13 +23,12 @@ interface StateProps<T> {
     restResource: RestResource<T>;
 }
 
-type Props<T> = BrukRestResourceDataOwnProps<T> & DispatchProps & StateProps<T>;
+type Props<T> = RestResourceConsumerOwnProps<T> & DispatchProps & StateProps<T>;
 
-class RestResourceConsumer<T> extends React.Component<Props<T>> {
+class RestResourceConsumerUntyped<T> extends React.Component<Props<T>> {
     render() {
         const { children, restResource, dispatch, ...innholdsLasterProps } = this.props;
         if (isNotStarted(restResource)) {
-            console.log('autofetching');
             dispatch(restResource.actions.fetch);
         }
         if (!isLoaded(restResource)) {
@@ -45,7 +44,7 @@ function mapDispatchToProps<T>(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-function mapStateToProps<T>(state: AppState, ownProps: BrukRestResourceDataOwnProps<T>): StateProps<T> {
+function mapStateToProps<T>(state: AppState, ownProps: RestResourceConsumerOwnProps<T>): StateProps<T> {
     return {
         restResource: ownProps.getRestResource(state.restResources)
     };
@@ -54,4 +53,4 @@ function mapStateToProps<T>(state: AppState, ownProps: BrukRestResourceDataOwnPr
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RestResourceConsumer);
+)(RestResourceConsumerUntyped);

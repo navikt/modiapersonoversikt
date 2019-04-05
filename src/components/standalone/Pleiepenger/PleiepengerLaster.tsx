@@ -8,7 +8,7 @@ import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pleiepenger';
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import RestResourceConsumerTyped from '../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 
 interface Props {
     fødselsnummer: string;
@@ -63,13 +63,13 @@ class PleiepengerLaster extends React.PureComponent<Props> {
 
     render() {
         return (
-            <RestResourceConsumerTyped<PleiepengerResponse>
+            <RestResourceConsumer<PleiepengerResponse>
                 getRestResource={restResources => restResources.pleiepenger}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
                 {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}
-            </RestResourceConsumerTyped>
+            </RestResourceConsumer>
         );
     }
 }

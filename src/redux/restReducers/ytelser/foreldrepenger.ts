@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from '../../../restResources/generator/restResource';
+import { createRestResourceReducer } from '../../../rest/utils/restResource';
 import { apiBaseUri } from '../../../api/config';
 import { AppState } from '../../reducers';
 import { ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
@@ -8,6 +8,6 @@ export function getForeldrepengerFetchUri(state: AppState) {
     return `${apiBaseUri}/ytelse/foreldrepenger/${fnr}`;
 }
 
-const { reducer } = createActionsAndReducer<ForeldrepengerResponse>('foreldrepenger', getForeldrepengerFetchUri);
+const { reducer } = createRestResourceReducer<ForeldrepengerResponse>('foreldrepenger', getForeldrepengerFetchUri);
 
 export default reducer;

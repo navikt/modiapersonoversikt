@@ -38,7 +38,7 @@ import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
 import { RestResource } from './restResource';
-import { RestResource as NewRestResource } from './../../restResources/generator/restResource';
+import { RestResource as NewRestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';

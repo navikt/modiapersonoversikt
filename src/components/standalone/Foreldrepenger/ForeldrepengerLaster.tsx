@@ -8,7 +8,7 @@ import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/ForeldrePenger';
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import RestResourceConsumerTyped from '../../../restResources/consumer/RestResourceConsumerTyped';
+import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 
 interface Props {
     fødselsnummer: string;
@@ -62,13 +62,13 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
 
     render() {
         return (
-            <RestResourceConsumerTyped<ForeldrepengerResponse>
+            <RestResourceConsumer<ForeldrepengerResponse>
                 getRestResource={restResources => restResources.foreldrepenger}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >
                 {data => this.getAktuellForeldrepengeRettighet(data.foreldrepenger)}
-            </RestResourceConsumerTyped>
+            </RestResourceConsumer>
         );
     }
 }
