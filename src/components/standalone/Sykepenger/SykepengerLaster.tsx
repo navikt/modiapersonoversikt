@@ -21,7 +21,7 @@ function SykePengerLaster(props: Props) {
 
     function getInnhold(data: SykepengerResponse) {
         if (!data.sykepenger) {
-            return null;
+            return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet for bruker</AlertStripeAdvarsel>;
         }
         const aktuellRettighet = data.sykepenger.find(rettighet =>
             moment(rettighet.sykmeldtFom).isSame(moment(props.sykmeldtFraOgMed))
@@ -31,7 +31,7 @@ function SykePengerLaster(props: Props) {
                 fnr: props.fødselsnummer,
                 sykmeldtFraOgMed: props.sykmeldtFraOgMed
             });
-            return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet</AlertStripeAdvarsel>;
+            return <AlertStripeAdvarsel>Fant ikke riktig sykepengerettighet for bruker</AlertStripeAdvarsel>;
         }
         return (
             <ol>
@@ -42,7 +42,7 @@ function SykePengerLaster(props: Props) {
 
     return (
         <RestResourceConsumer<SykepengerResponse>
-            spinnerSize="M"
+            spinnerSize="XL"
             getRestResource={restResources => restResources.sykepenger}
         >
             {data => getInnhold(data)}
