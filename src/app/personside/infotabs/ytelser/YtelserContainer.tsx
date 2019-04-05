@@ -23,9 +23,9 @@ function YtelserContainer({ fødselsnummer }: Props) {
     return (
         <Styling>
             <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />
-            <ForeldrePengerContainer fødselsnummer={fødselsnummer} />
-            <PleiePengerContainer fødselsnummer={fødselsnummer} />
-            <SykePengerContainer fødselsnummer={fødselsnummer} />
+            <ForeldrePengerContainer />
+            <PleiePengerContainer />
+            <SykePengerContainer />
         </Styling>
     );
 }
