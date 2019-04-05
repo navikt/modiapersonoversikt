@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { fetchKodeverk } from '../../../api/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-valuta');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-valuta');
 
 export function hentValutaer() {
     return action(() => fetchKodeverk('Valutaer'));

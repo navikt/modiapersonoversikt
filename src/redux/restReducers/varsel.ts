@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getVarsel } from '../../api/varsel-api';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducer('varsel');
+const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('varsel');
 
 export function hentVarsel(fødselsnummer: string) {
     return action(() => getVarsel(fødselsnummer));

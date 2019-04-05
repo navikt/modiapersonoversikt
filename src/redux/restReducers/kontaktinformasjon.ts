@@ -1,8 +1,8 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getKontaktinformasjon } from '../../api/kontaktinformasjon-api';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 
-const { reducer, action, actionNames } = createActionsAndReducer('kontaktinformasjon');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kontaktinformasjon');
 
 export function hentKontaktinformasjon(fødselsnummer: string) {
     return action(() =>

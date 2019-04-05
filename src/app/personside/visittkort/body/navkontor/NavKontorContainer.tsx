@@ -9,7 +9,7 @@ import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -18,8 +18,8 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    baseUrlResource: RestResource<BaseUrlsResponse>;
-    navKontorResource: RestResource<BrukersNavKontorResponse>;
+    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
+    navKontorResource: DeprecatedRestResource<BrukersNavKontorResponse>;
 }
 
 interface OwnProps {

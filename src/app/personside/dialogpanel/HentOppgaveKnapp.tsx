@@ -15,7 +15,7 @@ import ResourceFeilmelding from '../../../components/feilmelding/ResourceFeilmel
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { AppState } from '../../../redux/reducers';
-import { isLoading, RestResource } from '../../../redux/restReducers/restResource';
+import { isLoading, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 
@@ -63,7 +63,7 @@ interface State {
 
 interface StateProps {
     valgtTemagruppe?: string;
-    oppgaveResource: RestResource<Oppgave[]>;
+    oppgaveResource: DeprecatedRestResource<Oppgave[]>;
     routeHistory: History;
 }
 

@@ -8,12 +8,12 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { Bold } from '../../../../../components/common-styled-components';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface StateProps {
-    navKontorResource: RestResource<BrukersNavKontorResponse>;
+    navKontorResource: DeprecatedRestResource<BrukersNavKontorResponse>;
 }
 
 interface DispatchProps {

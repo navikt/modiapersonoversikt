@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import { PersonRespons } from '../../../models/person/person';
 import Innholdslaster from '../../../components/Innholdslaster';
-import { Loaded, RestResource } from '../../../redux/restReducers/restResource';
+import { Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import InfoTabs from './InfoTabs';
 
 interface VisittkortContainerProps {
-    personResource: RestResource<PersonRespons>;
+    personResource: DeprecatedRestResource<PersonRespons>;
 }
 
 class InfoTabsContainer extends React.Component<VisittkortContainerProps> {

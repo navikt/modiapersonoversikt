@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getDetaljertOppfolging, getOppfolging } from '../../api/oppfolging-api';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducer('oppfolging');
+const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('oppfolging');
 
 export function hentOppfolging(fødselsnummer: string) {
     return action(() => getOppfolging(fødselsnummer));

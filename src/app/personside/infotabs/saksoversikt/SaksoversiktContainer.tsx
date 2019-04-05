@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
+import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -18,9 +18,9 @@ import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
-    baseUrlResource: RestResource<BaseUrlsResponse>;
-    saksoversiktResource: RestResource<SakstemaResponse>;
-    personResource: RestResource<PersonRespons>;
+    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
+    saksoversiktResource: DeprecatedRestResource<SakstemaResponse>;
+    personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
 }

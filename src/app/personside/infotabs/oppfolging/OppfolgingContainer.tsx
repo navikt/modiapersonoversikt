@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
+import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { AppState } from '../../../../redux/reducers';
@@ -7,13 +7,13 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { hentDetaljertOppfolging, reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { connect } from 'react-redux';
-import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../ytelser/pleiepenger/PlukkRestDataDeprecated';
 import OppfolgingVisning from './OppfolgingVisningKomponent';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 
 interface StateProps {
-    baseUrlResource: RestResource<BaseUrlsResponse>;
-    oppfølgingResource: RestResource<DetaljertOppfolging>;
+    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
+    oppfølgingResource: DeprecatedRestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
 }
 
@@ -45,9 +45,9 @@ class OppfolgingContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restResource={this.props.oppfølgingResource}>
+            <PlukkRestDataDeprecated restResource={this.props.oppfølgingResource}>
                 {data => <OppfolgingVisning detaljertOppfølging={data} />}
-            </PlukkRestData>
+            </PlukkRestDataDeprecated>
         );
     }
 }

@@ -1,9 +1,9 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getFeatureToggle } from '../../api/featuretoggle-api';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { FeatureToggleResponse } from '../../models/featureToggle';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('featureToggles');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('featureToggles');
 
 export function hentFeatureToggles() {
     return action(() => getAllFeatureToggles());

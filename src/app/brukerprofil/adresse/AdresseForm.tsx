@@ -33,7 +33,13 @@ import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
-import { isFailed, isLoading, isNotStarted, isSuccess, RestResource } from '../../../redux/restReducers/restResource';
+import {
+    isFailed,
+    isLoading,
+    isNotStarted,
+    isSuccess,
+    DeprecatedRestResource
+} from '../../../redux/restReducers/deprecatedRestResource';
 import {
     getValidUtlandsadresseForm,
     validerUtenlandsAdresse
@@ -53,7 +59,7 @@ interface Props {
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     resetEndreAdresseResource: () => void;
-    endreAdresseResource: RestResource<{}>;
+    endreAdresseResource: DeprecatedRestResource<{}>;
     reloadPersonInfo: (fødselsnummer: string) => void;
 }
 

@@ -6,7 +6,7 @@ import {
     getKnappStatus,
     inneholderToÅrGamleUtbetalinger
 } from './utførteUtbetalingerUtils';
-import { Loaded, NotStarted, Reloading } from '../../../../../../redux/restReducers/restResource';
+import { Loaded, NotStarted, Reloading } from '../../../../../../redux/restReducers/deprecatedRestResource';
 import { STATUS } from '../../../../../../redux/restReducers/utils';
 import moment from 'moment';
 import { backendDatoformat } from '../../../../../../mock/utils/mock-utils';

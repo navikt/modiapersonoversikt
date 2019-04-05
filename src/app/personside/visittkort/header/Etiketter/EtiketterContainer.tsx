@@ -2,14 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { RestResource } from '../../../../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Etiketter from './Etiketter';
 import styled from 'styled-components';
-import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../../../infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
-    personResource: RestResource<PersonRespons>;
+    personResource: DeprecatedRestResource<PersonRespons>;
 }
 
 const Wrapper = styled.div`
@@ -22,9 +22,9 @@ function EtiketterContainer(props: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
             <Wrapper>
-                <PlukkRestData restResource={props.personResource}>
+                <PlukkRestDataDeprecated restResource={props.personResource}>
                     {data => <Etiketter person={data as Person} />}
-                </PlukkRestData>
+                </PlukkRestDataDeprecated>
             </Wrapper>
         </ErrorBoundary>
     );

@@ -4,7 +4,7 @@ import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';
-import { isLoaded } from '../../redux/restReducers/restResource';
+import { isLoaded } from '../../redux/restReducers/deprecatedRestResource';
 
 export enum DisplayWhenToggleIs {
     ON,

@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { fetchKodeverk } from '../../../api/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-tilrettelagt-kommunikasjon');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-tilrettelagt-kommunikasjon');
 
 export function hentTilrettelagtKommunikasjon() {
     return action(() => fetchKodeverk('TilrettelagtKommunikasjon'));

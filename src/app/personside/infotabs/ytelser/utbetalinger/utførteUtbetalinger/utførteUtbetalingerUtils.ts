@@ -7,7 +7,11 @@ import {
 import { Utbetaling, UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
 import { datoSynkende } from '../../../../../../utils/dateUtils';
-import { isLoaded, isReloading, RestResource } from '../../../../../../redux/restReducers/restResource';
+import {
+    isLoaded,
+    isReloading,
+    DeprecatedRestResource
+} from '../../../../../../redux/restReducers/deprecatedRestResource';
 import moment from 'moment';
 import { PersonRespons } from '../../../../../../models/person/person';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
@@ -41,14 +45,14 @@ export function fjernIrelevanteUtbetalinger(relevantYtelse: YtelserKeys) {
     };
 }
 
-export function inneholderToÅrGamleUtbetalinger(resource: RestResource<UtbetalingerResponse>) {
+export function inneholderToÅrGamleUtbetalinger(resource: DeprecatedRestResource<UtbetalingerResponse>) {
     if (!isLoaded(resource)) {
         return false;
     }
     return moment(resource.data.periode.startDato).toDate() <= toÅrTilbakeITid;
 }
 
-export function getKnappStatus(resource: RestResource<PersonRespons>): KnappStatus {
+export function getKnappStatus(resource: DeprecatedRestResource<PersonRespons>): KnappStatus {
     if (inneholderToÅrGamleUtbetalinger(resource)) {
         return KnappStatus.Skjul;
     } else if (isReloading(resource)) {
