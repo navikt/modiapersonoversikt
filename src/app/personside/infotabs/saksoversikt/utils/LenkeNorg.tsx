@@ -4,7 +4,7 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import * as React from 'react';
-import { isLoaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isLoaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { Person, PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -30,11 +30,11 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     return temaArray.join();
 }
 
-function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
+function hentNorg2Url(baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>) {
     return isLoaded(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 }
 
-function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
+function hentGeografiskTilknytning(personResource: DeprecatedRestResource<PersonRespons>) {
     return isLoaded(personResource) ? (personResource.data as Person).geografiskTilknytning : '';
 }
 

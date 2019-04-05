@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import Mobiltelefon from './Mobiltelefon';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
-import { RestResource } from '../../../../../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../../../../../redux/restReducers/deprecatedRestResource';
 
 interface Props {
-    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
+    kontaktinformasjon: DeprecatedRestResource<KRRKontaktinformasjon>;
 }
 
 class MobiltelefonContainer extends React.Component<Props> {

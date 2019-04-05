@@ -1,7 +1,7 @@
 import { getEgenAnsatt } from '../../api/egenansatt';
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 
-const { reducer, action, actionNames } = createActionsAndReducer('egenansatt');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('egenansatt');
 
 export function erEgenAnsatt(fødselsnummer: string) {
     return action(() => getEgenAnsatt(fødselsnummer));

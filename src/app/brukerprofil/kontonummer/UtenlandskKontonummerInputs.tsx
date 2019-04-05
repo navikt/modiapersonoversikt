@@ -15,7 +15,7 @@ import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittk
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { isNotStarted, Loaded, RestResource } from '../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface OwnProps {
@@ -30,8 +30,8 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    valutaKodeverkResource: RestResource<KodeverkResponse>;
-    landKodeverkResource: RestResource<KodeverkResponse>;
+    valutaKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
+    landKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 interface LoadedProps {

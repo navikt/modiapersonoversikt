@@ -1,8 +1,8 @@
 import { plukkOppgaveFraServer } from '../../api/oppgave-api';
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { Oppgave } from '../../models/oppgave';
 
-const { reducer, action } = createActionsAndReducer<Oppgave[]>('oppgave');
+const { reducer, action } = createActionsAndReducerDeprecated<Oppgave[]>('oppgave');
 
 export function plukkOppgaver(temagruppe: string) {
     return action(() => plukkOppgaveFraServer(temagruppe));

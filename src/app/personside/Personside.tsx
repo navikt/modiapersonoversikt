@@ -9,10 +9,10 @@ import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { isLoaded, RestResource } from '../../redux/restReducers/restResource';
+import { isLoaded, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 
 interface PersonsideStateProps {
-    personResource: RestResource<PersonRespons>;
+    personResource: DeprecatedRestResource<PersonRespons>;
 }
 
 const onError = (

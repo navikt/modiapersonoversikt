@@ -1,65 +1,30 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
-import { isNotStarted, RestResource } from '../../../../../redux/restReducers/restResource';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { hentPleiepenger } from '../../../../../redux/restReducers/ytelser/pleiepenger';
 import { PleiepengerResponse } from '../../../../../models/ytelse/pleiepenger';
-import PlukkRestData from './PlukkRestData';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import PleiepengerEkspanderbartpanel from './PleiepengerEkspanderbartPanel';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
+import { useEffect } from 'react';
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-interface StateProps {
-    pleiepengerResource: RestResource<PleiepengerResponse>;
-}
-
-interface DispatchProps {
-    hentPleiepenger: (fødselsnummer: string) => void;
-}
-
-type Props = OwnProps & StateProps & DispatchProps;
-
-class PleiePengerContainer extends React.PureComponent<Props> {
-    componentDidMount() {
+function PleiePengerContainer() {
+    useEffect(() => {
         loggEvent('Sidevisning', 'Pleiepenger');
-        if (isNotStarted(this.props.pleiepengerResource)) {
-            this.props.hentPleiepenger(this.props.fødselsnummer);
-        }
-    }
+    }, []);
 
-    render() {
-        return (
-            <PlukkRestData spinnerSize="M" restResource={this.props.pleiepengerResource}>
-                {data => {
-                    if (!data.pleiepenger || !data.pleiepenger[0]) {
-                        return null;
-                    }
-                    return data.pleiepenger.map((pleiepengeRettighet, index) => (
-                        <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet} />
-                    ));
-                }}
-            </PlukkRestData>
-        );
-    }
+    return (
+        <RestResourceConsumer<PleiepengerResponse>
+            spinnerSize="M"
+            getRestResource={restResources => restResources.pleiepenger}
+        >
+            {data => {
+                if (!data.pleiepenger || !data.pleiepenger[0]) {
+                    return null;
+                }
+                return data.pleiepenger.map((pleiepengeRettighet, index) => (
+                    <PleiepengerEkspanderbartpanel key={index} pleiepenger={pleiepengeRettighet} />
+                ));
+            }}
+        </RestResourceConsumer>
+    );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        pleiepengerResource: state.restResources.pleiepenger
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentPleiepenger: (fødselsnummer: string) => dispatch(hentPleiepenger(fødselsnummer))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PleiePengerContainer);
+export default PleiePengerContainer;

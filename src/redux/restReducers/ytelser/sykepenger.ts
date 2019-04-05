@@ -1,18 +1,13 @@
-import { createActionsAndReducer } from '../restResource';
-import { getSykepenger } from '../../../api/ytelser-api';
+import { createRestResourceReducer } from '../../../rest/utils/restResource';
+import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
+import { apiBaseUri } from '../../../api/config';
+import { AppState } from '../../reducers';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducer('sykepenger');
-
-export function hentSykepenger(fødselsnummer: string) {
-    return action(() => getSykepenger(fødselsnummer));
+export function getSykepenger(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/ytelse/sykepenger/${fnr}`;
 }
 
-export function reloadSykepenger(fødselsnummer: string) {
-    return reload(() => getSykepenger(fødselsnummer));
-}
-
-export function resetSykepengerResource() {
-    return tilbakestill;
-}
+const { reducer } = createRestResourceReducer<SykepengerResponse>('sykepenger', getSykepenger);
 
 export default reducer;

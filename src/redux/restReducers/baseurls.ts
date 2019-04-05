@@ -1,8 +1,8 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getBaseUrls } from '../../api/baseurls-api';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 
-const { reducer, action, actionNames } = createActionsAndReducer('baseurls');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('baseurls');
 
 export function hentBaseUrls() {
     return action(() => getBaseUrls());

@@ -5,26 +5,27 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 import { STATUS } from '../redux/restReducers/utils';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
-import { Loaded, RestResource } from '../redux/restReducers/restResource';
+import { Loaded, DeprecatedRestResource } from '../redux/restReducers/deprecatedRestResource';
 
 type SpinnerSize = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
 export interface InnholdslasterProps {
     children?: ReactNode;
-    avhengigheter: RestResource<object>[];
+    avhengigheter: DeprecatedRestResource<object>[];
     spinnerSize?: SpinnerSize;
     returnOnPending?: React.ReactChildren | React.ReactChild;
     returnOnError?: React.ReactChildren | React.ReactChild;
 }
 
 const array = (value: object) => (Array.isArray(value) ? value : [value]);
-const harStatus = (...status: STATUS[]) => (element: RestResource<object>) => array(status).includes(element.status);
-const harGyldigResponse = (resource: RestResource<object>) => (resource as Loaded<object>).data !== undefined;
-const alleLastet = (avhengigheter: RestResource<object>[]) =>
+const harStatus = (...status: STATUS[]) => (element: DeprecatedRestResource<object>) =>
+    array(status).includes(element.status);
+const harGyldigResponse = (resource: DeprecatedRestResource<object>) => (resource as Loaded<object>).data !== undefined;
+const alleLastet = (avhengigheter: DeprecatedRestResource<object>[]) =>
     avhengigheter.every(harStatus(STATUS.SUCCESS, STATUS.RELOADING)) && avhengigheter.every(harGyldigResponse);
-const alleHarValidResponse = (avhengigheter: RestResource<object>[]) =>
+const alleHarValidResponse = (avhengigheter: DeprecatedRestResource<object>[]) =>
     avhengigheter.filter(harStatus(STATUS.SUCCESS)).every(harGyldigResponse);
-const noenHarFeil = (avhengigheter: RestResource<object>[]) => {
+const noenHarFeil = (avhengigheter: DeprecatedRestResource<object>[]) => {
     const noenHarStatusError = avhengigheter.some(harStatus(STATUS.FAILED));
     const noenErLastetMedInvalidResponse = !alleHarValidResponse(avhengigheter);
     return noenHarStatusError || noenErLastetMedInvalidResponse;

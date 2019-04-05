@@ -7,8 +7,8 @@ import {
     isNotStarted,
     isReloading,
     Loaded,
-    RestResource
-} from '../../../../redux/restReducers/restResource';
+    DeprecatedRestResource
+} from '../../../../redux/restReducers/deprecatedRestResource';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { hentUtbetalinger, reloadUtbetalinger } from '../../../../redux/restReducers/utbetalinger';
@@ -24,7 +24,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 
 interface StateProps {
-    utbetalingerResource: RestResource<UtbetalingerResponse>;
+    utbetalingerResource: DeprecatedRestResource<UtbetalingerResponse>;
     fødselsnummer: string;
     filter: UtbetalingFilterState;
 }

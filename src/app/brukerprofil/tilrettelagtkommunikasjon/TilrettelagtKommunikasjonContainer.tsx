@@ -12,7 +12,7 @@ import Innholdslaster from '../../../components/Innholdslaster';
 
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';
 import { hentTilrettelagtKommunikasjon } from '../../../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
-import { isNotStarted, Loaded, RestResource } from '../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface State {
@@ -20,7 +20,7 @@ interface State {
 }
 
 interface StateProps {
-    tilrettelagtKommunikasjonKodeverkResource: RestResource<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 interface DispatchProps {

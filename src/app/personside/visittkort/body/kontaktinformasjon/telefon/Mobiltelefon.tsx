@@ -7,7 +7,7 @@ import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import PhoneIkon from '../../../../../../svg/Phone';
-import { Loaded, RestResource } from '../../../../../../redux/restReducers/restResource';
+import { Loaded, DeprecatedRestResource } from '../../../../../../redux/restReducers/deprecatedRestResource';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface MobiltelefonProps {
@@ -45,7 +45,7 @@ export function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningP
 }
 
 interface MobiltelefonWrapperProps {
-    kontaktinformasjonResource: RestResource<KRRKontaktinformasjon>;
+    kontaktinformasjonResource: DeprecatedRestResource<KRRKontaktinformasjon>;
 }
 
 function MobiltelefonWrapper({ kontaktinformasjonResource }: MobiltelefonWrapperProps) {

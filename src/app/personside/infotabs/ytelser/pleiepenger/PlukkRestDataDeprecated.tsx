@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { isLoaded, Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isLoaded, Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Innholdslaster, { InnholdslasterProps } from '../../../../../components/Innholdslaster';
 
 interface OwnProps<T> {
-    restResource: RestResource<T>;
+    restResource: DeprecatedRestResource<T>;
     children: (data: T) => ReactNode;
 }
 
 type Props<T> = OwnProps<T> & Pick<InnholdslasterProps, 'spinnerSize' | 'returnOnPending' | 'returnOnError'>;
 
-class PlukkRestData<T> extends React.Component<Props<T>> {
+class PlukkRestDataDeprecated<T> extends React.Component<Props<T>> {
     render() {
         const { children, restResource, ...innholdsLasterProps } = this.props;
         if (!isLoaded(restResource)) {
@@ -20,4 +20,4 @@ class PlukkRestData<T> extends React.Component<Props<T>> {
     }
 }
 
-export default PlukkRestData;
+export default PlukkRestDataDeprecated;

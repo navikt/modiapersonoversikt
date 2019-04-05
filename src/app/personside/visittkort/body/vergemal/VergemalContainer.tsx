@@ -5,10 +5,10 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import VergemalWrapper from './Vergemal';
-import { Loaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 
 interface Props {
-    vergemalResource: RestResource<Vergemal>;
+    vergemalResource: DeprecatedRestResource<Vergemal>;
 }
 
 const feilmelding = () => <AlertStripe type="advarsel">Feil ved lasting av vergemål</AlertStripe>;

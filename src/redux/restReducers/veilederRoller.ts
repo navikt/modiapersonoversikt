@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { fetchVeilederRoller } from '../../api/veileder-roller-api';
 
-const { reducer, action, actionNames } = createActionsAndReducer('veileder_roller');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('veileder_roller');
 
 export function getVeilederRoller() {
     return action(() => fetchVeilederRoller());

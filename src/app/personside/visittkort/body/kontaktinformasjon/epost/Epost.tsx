@@ -6,7 +6,7 @@ import Innholdslaster from '../../../../../../components/Innholdslaster';
 import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import EmailIkon from '../../../../../../svg/Email';
-import { Loaded, RestResource } from '../../../../../../redux/restReducers/restResource';
+import { Loaded, DeprecatedRestResource } from '../../../../../../redux/restReducers/deprecatedRestResource';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface EpostProps {
@@ -43,7 +43,7 @@ export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
 }
 
 interface EpostWrapperProps {
-    kontaktinformasjonResource: RestResource<KRRKontaktinformasjon>;
+    kontaktinformasjonResource: DeprecatedRestResource<KRRKontaktinformasjon>;
 }
 
 function EpostWrapper({ kontaktinformasjonResource }: EpostWrapperProps) {

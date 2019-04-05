@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { postEndreNavKontaktinformasjon, Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('endre-kontaktinformasjon');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endre-kontaktinformasjon');
 
 export function endreNavKontaktinformasjon(request: Request, fødselsnummer: string) {
     return action(() => postEndreNavKontaktinformasjon(request, fødselsnummer));

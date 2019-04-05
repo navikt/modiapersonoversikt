@@ -2,7 +2,11 @@ import * as React from 'react';
 import { AppState } from '../../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
 import { connect } from 'react-redux';
-import { isLoading, isNotStarted, RestResource } from '../../../../../../redux/restReducers/restResource';
+import {
+    isLoading,
+    isNotStarted,
+    DeprecatedRestResource
+} from '../../../../../../redux/restReducers/deprecatedRestResource';
 import { UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
 import {
@@ -12,7 +16,7 @@ import {
     nittiDagerTilbakeITid,
     toÅrTilbakeITid
 } from './utførteUtbetalingerUtils';
-import PlukkRestData from '../../pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../../pleiepenger/PlukkRestDataDeprecated';
 import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
@@ -34,7 +38,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    utførteUtbetalinger: RestResource<UtbetalingerResponse>;
+    utførteUtbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
     fødselsnummer: string;
 }
 
@@ -80,7 +84,7 @@ class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
                             <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
                         </AlignTextCenter>
                     </Padding>
-                    <PlukkRestData restResource={this.props.utførteUtbetalinger} spinnerSize="S">
+                    <PlukkRestDataDeprecated restResource={this.props.utførteUtbetalinger} spinnerSize="S">
                         {data => (
                             <UtførteUtbetalingerListe
                                 utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, this.props.ytelseType)}
@@ -88,7 +92,7 @@ class UtførteUtbetalingerContainer extends React.PureComponent<Props> {
                                 knappStatus={getKnappStatus(this.props.utførteUtbetalinger)}
                             />
                         )}
-                    </PlukkRestData>
+                    </PlukkRestDataDeprecated>
                 </section>
             </ErrorBoundary>
         );
