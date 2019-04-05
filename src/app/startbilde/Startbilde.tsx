@@ -10,7 +10,7 @@ import StartBildeLayout from './StartBildeLayout';
 import ResourceFeilmelding from '../../components/feilmelding/ResourceFeilmelding';
 import { Oppgave } from '../../models/oppgave';
 import { paths, setNyBrukerIPath } from '../routes/routing';
-import { isLoading, RestResource } from '../../redux/restReducers/restResource';
+import { isLoading, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { aremark } from '../../mock/person/aremark';
 import { moss } from '../../mock/person/moss';
@@ -18,7 +18,7 @@ import { moss } from '../../mock/person/moss';
 interface StartbildeStateProps {
     valgtEnhet: string;
     valgtTemagruppe: string;
-    oppgaveResource: RestResource<Oppgave[]>;
+    oppgaveResource: DeprecatedRestResource<Oppgave[]>;
     routeHistory: History;
 }
 

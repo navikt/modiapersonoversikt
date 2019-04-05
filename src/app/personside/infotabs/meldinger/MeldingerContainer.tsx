@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../ytelser/pleiepenger/PlukkRestDataDeprecated';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
@@ -10,10 +10,10 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import TraadListeContainer from './traadliste/TraadListeContainer';
-import { isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
+import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 
 interface StateProps {
-    meldingerResource: RestResource<Traad[]>;
+    meldingerResource: DeprecatedRestResource<Traad[]>;
     fødselsnummer: string;
 }
 
@@ -49,14 +49,14 @@ class MeldingerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restResource={this.props.meldingerResource}>
+            <PlukkRestDataDeprecated restResource={this.props.meldingerResource}>
                 {() => (
                     <MeldingerArticleStyle>
                         <TraadListeContainer />
                         <TraadVisningContainer />
                     </MeldingerArticleStyle>
                 )}
-            </PlukkRestData>
+            </PlukkRestDataDeprecated>
         );
     }
 }

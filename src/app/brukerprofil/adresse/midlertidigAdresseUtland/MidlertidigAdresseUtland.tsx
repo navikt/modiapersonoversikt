@@ -11,7 +11,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import { AppState } from '../../../../redux/reducers';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { RestResource } from '../../../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { visEndringsinfo } from '../../utils/formUtils';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
@@ -44,7 +44,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    landResource: RestResource<KodeverkResponse>;
+    landResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 type Props = OwnProps & DispatchProps & StateProps;

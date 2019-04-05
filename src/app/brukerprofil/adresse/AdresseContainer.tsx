@@ -19,12 +19,12 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { Undertittel } from 'nav-frontend-typografi';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
-import { isNotStarted, RestResource } from '../../../redux/restReducers/restResource';
+import { isNotStarted, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
-    postnummerResource: RestResource<KodeverkResponse>;
-    endreAdresseResource: RestResource<{}>;
+    postnummerResource: DeprecatedRestResource<KodeverkResponse>;
+    endreAdresseResource: DeprecatedRestResource<{}>;
 }
 
 interface DispatchProps {

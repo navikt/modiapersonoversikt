@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { isLoaded, RestResource } from '../../../../../redux/restReducers/restResource';
+import { isLoaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -42,7 +42,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    bruker: RestResource<PersonRespons>;
+    bruker: DeprecatedRestResource<PersonRespons>;
     erStandaloneVindu: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltDokument?: Enkeltdokument;

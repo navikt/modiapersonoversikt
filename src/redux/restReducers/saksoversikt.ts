@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getSaksoversikt } from '../../api/saksoversikt-api';
 
-const { reducer, action, reload, tilbakestill, actionNames } = createActionsAndReducer('saksoversikt');
+const { reducer, action, reload, tilbakestill, actionNames } = createActionsAndReducerDeprecated('saksoversikt');
 
 export function hentSaksoversikt(fødselsnummer: string) {
     return action(() => getSaksoversikt(fødselsnummer));

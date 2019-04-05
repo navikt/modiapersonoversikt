@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { fetchKodeverk } from '../../../api/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-retningsnummer');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-retningsnummer');
 
 export function hentRetningsnummere() {
     return action(() => fetchKodeverk('Retningsnumre'));

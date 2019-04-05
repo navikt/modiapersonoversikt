@@ -1,4 +1,4 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import {
     postEndreMatrikkeladresse,
     postEndreNorskGateadresse,
@@ -8,7 +8,7 @@ import {
 } from '../../../api/brukerprofil/adresse-api';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('endreadresse');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endreadresse');
 
 export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
     return action(() => postEndreNorskGateadresse(fødselsnummer, gateadresse));

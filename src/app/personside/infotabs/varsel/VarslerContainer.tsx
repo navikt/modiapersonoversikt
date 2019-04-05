@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { isNotStarted } from '../../../../redux/restReducers/restResource';
 import { BaseUrlsResponse } from '../../../../models/baseurls';
 import { Varsel } from '../../../../models/varsel';
 import { AppState } from '../../../../redux/reducers';
@@ -7,14 +6,14 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { hentVarsel } from '../../../../redux/restReducers/varsel';
 import { connect } from 'react-redux';
-import PlukkRestData from '../ytelser/pleiepenger/PlukkRestData';
 import Varsler from './Varsler';
-import { RestResource } from '../../../../redux/restReducers/restResource';
+import PlukkRestDataDeprecated from '../ytelser/pleiepenger/PlukkRestDataDeprecated';
+import { DeprecatedRestResource, isNotStarted } from '../../../../redux/restReducers/deprecatedRestResource';
 
 interface StateProps {
     fødselsnummer: string;
-    baseUrlResource: RestResource<BaseUrlsResponse>;
-    varselResource: RestResource<Varsel[]>;
+    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
+    varselResource: DeprecatedRestResource<Varsel[]>;
 }
 
 interface DispatchProps {
@@ -36,7 +35,9 @@ class VarslerContainer extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restResource={this.props.varselResource}>{data => <Varsler varsler={data} />}</PlukkRestData>
+            <PlukkRestDataDeprecated restResource={this.props.varselResource}>
+                {data => <Varsler varsler={data} />}
+            </PlukkRestDataDeprecated>
         );
     }
 }

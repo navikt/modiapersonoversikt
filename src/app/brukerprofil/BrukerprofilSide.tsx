@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { isNotStarted, Loaded, RestResource } from '../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 import { theme } from '../../styles/personOversiktTheme';
 import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
@@ -74,8 +74,8 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    personResource: RestResource<PersonRespons>;
-    veilederRollerResource: RestResource<VeilederRoller>;
+    personResource: DeprecatedRestResource<PersonRespons>;
+    veilederRollerResource: DeprecatedRestResource<VeilederRoller>;
 }
 
 type Props = StateProps & DispatchProps;

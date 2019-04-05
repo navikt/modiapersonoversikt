@@ -1,7 +1,7 @@
 import { getMeldinger } from '../../api/meldinger-api';
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducer('meldinger');
+const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('meldinger');
 
 export function hentMeldinger(fødselsnummer: string) {
     return action(() => getMeldinger(fødselsnummer));

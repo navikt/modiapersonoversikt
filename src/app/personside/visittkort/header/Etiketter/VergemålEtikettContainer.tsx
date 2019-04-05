@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Vergemal } from '../../../../../models/vergemal/vergemal';
 import { connect } from 'react-redux';
-import { RestResource } from '../../../../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { AppState } from '../../../../../redux/reducers';
 import EtikettBase from 'nav-frontend-etiketter';
-import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../../../infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
-    vergemalResource: RestResource<Vergemal>;
+    vergemalResource: DeprecatedRestResource<Vergemal>;
 }
 
 function VergemålsEtikett(props: { vergemål: Vergemal }) {
@@ -26,13 +26,13 @@ function VergemålsEtikett(props: { vergemål: Vergemal }) {
 function VergemålEtikettContainer(props: StateProps) {
     return (
         <ErrorBoundary boundaryName="Vergemålsetikett">
-            <PlukkRestData
+            <PlukkRestDataDeprecated
                 restResource={props.vergemalResource}
                 returnOnPending={<LazySpinner type="S" />}
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker har verge</AlertStripeAdvarsel>}
             >
                 {data => <VergemålsEtikett vergemål={data} />}
-            </PlukkRestData>
+            </PlukkRestDataDeprecated>
         </ErrorBoundary>
     );
 }

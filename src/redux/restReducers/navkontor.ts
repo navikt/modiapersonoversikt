@@ -1,8 +1,8 @@
 import { getNavkontor } from '../../api/navkontor';
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { Kodeverk } from '../../models/kodeverk';
 
-const { reducer, action, actionNames, tilbakestill } = createActionsAndReducer('navkontor');
+const { reducer, action, actionNames, tilbakestill } = createActionsAndReducerDeprecated('navkontor');
 
 export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     if (!geografiskTilknytning && !diskresjonsKode) {

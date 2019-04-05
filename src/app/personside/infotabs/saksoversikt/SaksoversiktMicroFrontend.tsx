@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { isLoaded, isNotStarted, RestResource } from '../../../../redux/restReducers/restResource';
+import { isLoaded, isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
@@ -32,8 +32,8 @@ interface OwnProps {
 }
 
 interface StateProps {
-    saksoversiktResource: RestResource<SakstemaResponse>;
-    personResource: RestResource<PersonRespons>;
+    saksoversiktResource: DeprecatedRestResource<SakstemaResponse>;
+    personResource: DeprecatedRestResource<PersonRespons>;
 }
 
 interface DispatchProps {

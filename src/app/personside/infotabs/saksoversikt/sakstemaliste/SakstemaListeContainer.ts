@@ -1,4 +1,4 @@
-import { Loaded } from '../../../../../redux/restReducers/restResource';
+import { Loaded } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';

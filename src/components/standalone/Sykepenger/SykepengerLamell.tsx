@@ -24,7 +24,6 @@ if (mockEnabled) {
 
 const Styles = styled.div`
     overflow-y: auto;
-    background-color: white;
     .visually-hidden {
         ${theme.visuallyHidden}
     }

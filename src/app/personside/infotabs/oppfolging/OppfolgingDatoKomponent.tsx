@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading, RestResource } from '../../../../redux/restReducers/restResource';
+import { isLoading, isReloading, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
@@ -39,7 +39,7 @@ const KnappWrapper = styled.div`
 `;
 
 interface StateProps {
-    oppfølgingResource: RestResource<DetaljertOppfolging>;
+    oppfølgingResource: DeprecatedRestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
     fødselsnummer: string;
 }

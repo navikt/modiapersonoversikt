@@ -2,7 +2,12 @@ import * as React from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { isLoaded, isLoading, isReloading, RestResource } from '../../../../../redux/restReducers/restResource';
+import {
+    isLoaded,
+    isLoading,
+    isReloading,
+    DeprecatedRestResource
+} from '../../../../../redux/restReducers/deprecatedRestResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
@@ -23,7 +28,7 @@ interface OwnProps {
 interface StateProps {
     filter: UtbetalingFilterState;
     fødselsnummer: string;
-    utbetalingerResource: RestResource<UtbetalingerResponse>;
+    utbetalingerResource: DeprecatedRestResource<UtbetalingerResponse>;
 }
 
 interface DispatchProps {

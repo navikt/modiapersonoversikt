@@ -9,16 +9,16 @@ import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { RestResource } from '../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
-import PlukkRestData from '../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
 
 interface OwnProps {
     fødselsnummer: string;
 }
 
 interface PersonsideStateProps {
-    personResource: RestResource<PersonRespons>;
+    personResource: DeprecatedRestResource<PersonRespons>;
 }
 
 type Props = OwnProps & PersonsideStateProps;
@@ -56,9 +56,13 @@ class Personside extends React.PureComponent<Props> {
 
     render() {
         return (
-            <PlukkRestData restResource={this.props.personResource} returnOnPending={onPending} returnOnError={onError}>
+            <PlukkRestDataDeprecated
+                restResource={this.props.personResource}
+                returnOnPending={onPending}
+                returnOnError={onError}
+            >
                 {data => this.getSideinnhold(data)}
-            </PlukkRestData>
+            </PlukkRestDataDeprecated>
         );
     }
 }

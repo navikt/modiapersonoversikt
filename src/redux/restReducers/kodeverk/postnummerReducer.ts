@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { fetchKodeverk } from '../../../api/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducer('kodeverk-postnummer');
+const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-postnummer');
 
 export function hentPostnummere() {
     return action(() => fetchKodeverk('Postnummer'));

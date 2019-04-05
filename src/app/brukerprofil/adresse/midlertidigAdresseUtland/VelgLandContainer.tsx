@@ -6,7 +6,7 @@ import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKo
 import Innholdslaster from '../../../../components/Innholdslaster';
 import { VelgLand } from './VelgLand';
 import { MidlertidigAdresseUtlandInputs } from './MidlertidigAdresseUtland';
-import { isNotStarted, Loaded, RestResource } from '../../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -14,7 +14,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    landResource: RestResource<KodeverkResponse>;
+    landResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 interface OwnProps {

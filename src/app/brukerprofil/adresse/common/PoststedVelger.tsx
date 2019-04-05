@@ -8,7 +8,7 @@ import { KodeverkResponse } from '../../../../models/kodeverk';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-import { Loaded } from '../../../../redux/restReducers/restResource';
+import { Loaded } from '../../../../redux/restReducers/deprecatedRestResource';
 
 export interface PoststedInformasjon {
     postnummer: string;

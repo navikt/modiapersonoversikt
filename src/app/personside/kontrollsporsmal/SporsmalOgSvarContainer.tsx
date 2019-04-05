@@ -5,7 +5,7 @@ import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
-import { isLoaded, RestResource } from '../../../redux/restReducers/restResource';
+import { isLoaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
@@ -13,8 +13,8 @@ import { shuffle } from '../../../utils/list-utils';
 import { loggEvent } from '../../../utils/frontendLogger';
 
 interface StateProps {
-    personinformasjon: RestResource<PersonRespons>;
-    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
+    personinformasjon: DeprecatedRestResource<PersonRespons>;
+    kontaktinformasjon: DeprecatedRestResource<KRRKontaktinformasjon>;
     kontrollSpørsmål: KontrollSpørsmålState;
 }
 
@@ -69,7 +69,10 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
     }
 }
 
-function extractSpørsmål<T>(restRessurs: RestResource<T>, spørsmålExtractors: SpørsmålsExtractor<T>[]): Spørsmål[] {
+function extractSpørsmål<T>(
+    restRessurs: DeprecatedRestResource<T>,
+    spørsmålExtractors: SpørsmålsExtractor<T>[]
+): Spørsmål[] {
     if (isLoaded(restRessurs)) {
         const data = restRessurs.data;
         return spørsmålExtractors

@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { RestResource } from '../../../../../redux/restReducers/restResource';
+import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { Egenansatt } from '../../../../../models/egenansatt';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import EtikettBase from 'nav-frontend-etiketter';
-import PlukkRestData from '../../../infotabs/ytelser/pleiepenger/PlukkRestData';
+import PlukkRestDataDeprecated from '../../../infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
-    egenAnsattResource: RestResource<Egenansatt>;
+    egenAnsattResource: DeprecatedRestResource<Egenansatt>;
 }
 
 function EgenansattEtikett(props: { erEgenansatt: boolean }) {
@@ -23,13 +23,13 @@ function EgenansattEtikett(props: { erEgenansatt: boolean }) {
 function EgenAnsattEtikettContainer(props: StateProps) {
     return (
         <ErrorBoundary boundaryName="EgenansattEtikett">
-            <PlukkRestData
+            <PlukkRestDataDeprecated
                 restResource={props.egenAnsattResource}
                 returnOnPending={<LazySpinner type="S" />}
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
             >
                 {data => <EgenansattEtikett erEgenansatt={data.erEgenAnsatt} />}
-            </PlukkRestData>
+            </PlukkRestDataDeprecated>
         </ErrorBoundary>
     );
 }

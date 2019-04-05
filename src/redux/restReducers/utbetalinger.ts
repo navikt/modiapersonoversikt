@@ -1,7 +1,7 @@
-import { createActionsAndReducer } from './restResource';
+import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
 import { getUtbetalinger } from '../../api/utbetaling-api';
 
-const { reducer, action, reload, tilbakestill, actionNames } = createActionsAndReducer('utbetalinger');
+const { reducer, action, reload, tilbakestill, actionNames } = createActionsAndReducerDeprecated('utbetalinger');
 
 export function hentUtbetalinger(fødselsnummer: string, startDato: Date, sluttDato: Date) {
     return action(() => getUtbetalinger(fødselsnummer, startDato, sluttDato));

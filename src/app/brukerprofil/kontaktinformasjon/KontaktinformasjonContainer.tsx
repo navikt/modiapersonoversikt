@@ -10,7 +10,7 @@ import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { hentRetningsnummere } from '../../../redux/restReducers/kodeverk/retningsnummereReducer';
 import KontaktinformasjonForm from './KontaktinformasjonForm';
-import { isNotStarted, Loaded, RestResource } from '../../../redux/restReducers/restResource';
+import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface DispatchProps {
@@ -18,7 +18,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    retningsnummerResource: RestResource<KodeverkResponse>;
+    retningsnummerResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 interface OwnProps {

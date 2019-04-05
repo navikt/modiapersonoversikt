@@ -4,7 +4,7 @@ import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/restReducers/meldinger/actions';
 import { connect } from 'react-redux';
 import TraadListe from './TraadListe';
-import { Loaded } from '../../../../../redux/restReducers/restResource';
+import { Loaded } from '../../../../../redux/restReducers/deprecatedRestResource';
 
 interface StateProps {
     traader: Traad[];

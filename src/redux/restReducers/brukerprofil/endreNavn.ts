@@ -1,8 +1,8 @@
-import { createActionsAndReducer } from '../restResource';
+import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { EndreNavnRequest } from './endreNavnRequest';
 import { postEndreNavn } from '../../../api/brukerprofil/endrenavn-api';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducer('endrenavn');
+const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endrenavn');
 
 export function endreNavn(request: EndreNavnRequest) {
     return action(() => postEndreNavn(request));
