@@ -36,6 +36,13 @@ function ArbeidsForholdListe({ arbeidsforhold, visAlleArbeidsforhold, toggleVisA
     }
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;
+    const visAlleArbeidsforholdKnapp = (
+        <KnappBase type={'hoved'} onClick={() => toggleVisAlleArbeidsforhold()}>
+            {arbeidsforhold.length > 1 && visAlleArbeidsforhold
+                ? 'Vis færre arbeidsforhold'
+                : 'Vis alle arbeidsforhold'}
+        </KnappBase>
+    );
     return (
         <>
             <StyledListe aria-label="Arbeidsgivere">
@@ -45,11 +52,7 @@ function ArbeidsForholdListe({ arbeidsforhold, visAlleArbeidsforhold, toggleVisA
                         <ArbeidsForholdListeElement key={index} arbeidsforhold={arbforhold} />
                     ))}
             </StyledListe>
-            <KnappBase type={'hoved'} onClick={() => toggleVisAlleArbeidsforhold()}>
-                {arbeidsforhold.length > 1 && visAlleArbeidsforhold
-                    ? 'Vis færre arbeidsforhold'
-                    : 'Vis alle arbeidsforhold'}
-            </KnappBase>
+            {arbeidsforhold.length > 1 && visAlleArbeidsforholdKnapp}
         </>
     );
 }

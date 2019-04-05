@@ -6,11 +6,19 @@ import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Syke
 import moment from 'moment';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
+import styled from 'styled-components';
+import theme from '../../../styles/personOversiktTheme';
+import { FlexCenter } from '../../common-styled-components';
 
 interface OwnProps {
     fødselsnummer: string;
     sykmeldtFraOgMed: string;
 }
+
+const Style = styled.div`
+    ${theme.hvittPanel};
+    max-width: ${theme.width.ytelser};
+`;
 
 type Props = OwnProps;
 
@@ -31,12 +39,14 @@ function SykePengerLaster(props: Props) {
                 fnr: props.fødselsnummer,
                 sykmeldtFraOgMed: props.sykmeldtFraOgMed
             });
-            return <AlertStripeAdvarsel>Fant ikke riktig sykepengerettighet for bruker</AlertStripeAdvarsel>;
+            return <AlertStripeAdvarsel>Fant ikke aktuell sykepengerettighet for bruker</AlertStripeAdvarsel>;
         }
         return (
-            <ol>
-                <Sykepenger sykepenger={aktuellRettighet} />
-            </ol>
+            <FlexCenter>
+                <Style>
+                    <Sykepenger sykepenger={aktuellRettighet} />
+                </Style>
+            </FlexCenter>
         );
     }
 

@@ -37,21 +37,23 @@ const InfoStyle = styled.div`
 function Sykepenger({ sykepenger }: Props) {
     return (
         <ErrorBoundary boundaryName="Sykepenger">
-            <VisuallyHiddenAutoFokusHeader
-                tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
-            />
-            <FlexOgPadding>
-                <InfoStyle>
-                    <Sykepengertilfellet sykepenger={sykepenger} />
-                    <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                    <Arbeidsforhold sykepenger={sykepenger} />
-                </InfoStyle>
-                <UtbetalingerStyle aria-label="UTbetlainger sykepenger">
-                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
-                </UtbetalingerStyle>
-            </FlexOgPadding>
+            <article>
+                <VisuallyHiddenAutoFokusHeader
+                    tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
+                />
+                <FlexOgPadding>
+                    <InfoStyle>
+                        <Sykepengertilfellet sykepenger={sykepenger} />
+                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                        <Arbeidsforhold sykepenger={sykepenger} />
+                    </InfoStyle>
+                    <UtbetalingerStyle aria-label="UTbetlainger sykepenger">
+                        <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                        <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                        <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
+                    </UtbetalingerStyle>
+                </FlexOgPadding>
+            </article>
         </ErrorBoundary>
     );
 }
