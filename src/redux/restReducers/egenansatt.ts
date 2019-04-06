@@ -1,11 +1,14 @@
-import { getEgenAnsatt } from '../../api/egenansatt';
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
+import { Egenansatt } from '../../models/egenansatt';
+import { apiBaseUri } from '../../api/config';
+import { createRestResourceReducer } from '../../rest/utils/restResource';
+import { AppState } from '../reducers';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('egenansatt');
-
-export function erEgenAnsatt(fødselsnummer: string) {
-    return action(() => getEgenAnsatt(fødselsnummer));
+export function getEgenAnsattFetchUri(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/egenansatt/${fnr}`;
 }
+
+const { reducer, actionNames } = createRestResourceReducer<Egenansatt>('egenansatt', getEgenAnsattFetchUri);
 
 export { actionNames };
 export default reducer;
