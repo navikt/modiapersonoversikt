@@ -4,35 +4,39 @@ import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { AppState } from '../../redux/reducers';
-import Innholdslaster, { InnholdslasterProps } from '../../components/Innholdslaster';
-import { isLoaded, isNotStarted, RestResource } from '../utils/restResource';
+import { isFailed, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
+import { RestRestourceFeilmelding } from './utils';
+import LazySpinner from '../../components/LazySpinner';
 
-interface DispatchProps {
-    dispatch: AsyncDispatch;
-}
-
-export type RestResourceConsumerOwnProps<T> = Pick<
-    InnholdslasterProps,
-    'spinnerSize' | 'returnOnPending' | 'returnOnError'
-> & {
+export type RestResourceConsumerOwnProps<T> = {
     getRestResource: (restResources: RestEndepunkter) => RestResource<T>;
     children: (data: T) => ReactNode;
+    returnOnError?: ReactNode;
+    returnOnPending?: ReactNode;
+    spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
 interface StateProps<T> {
     restResource: RestResource<T>;
 }
 
+interface DispatchProps {
+    dispatch: AsyncDispatch;
+}
+
 type Props<T> = RestResourceConsumerOwnProps<T> & DispatchProps & StateProps<T>;
 
 class RestResourceConsumerUntyped<T> extends React.Component<Props<T>> {
     render() {
-        const { children, restResource, dispatch, ...innholdsLasterProps } = this.props;
+        const { restResource, dispatch, spinnerSize, returnOnPending, returnOnError, children } = this.props;
         if (isNotStarted(restResource)) {
             dispatch(restResource.actions.fetch);
         }
+        if (isFailed(restResource)) {
+            return returnOnError || <RestRestourceFeilmelding />;
+        }
         if (!isLoaded(restResource)) {
-            return <Innholdslaster avhengigheter={[restResource]} {...innholdsLasterProps} />;
+            return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
         }
         return children(restResource.data);
     }
