@@ -3,15 +3,16 @@ import VisittkortElement from '../../VisittkortElement';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
-import EmailIkon from '../../../../../../svg/Email';
+import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
+import PhoneIkon from '../../../../../../svg/Phone';
 import { Normaltekst } from 'nav-frontend-typografi';
 import RestResourceConsumer from '../../../../../../rest/consumer/RestResourceConsumer';
 
-interface EpostVisningProps {
+interface MobiltelefonVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
+export function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>
@@ -19,12 +20,13 @@ export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
                 <EtikettGrå>I Kontakt- og reservasjonsregisteret</EtikettGrå>
             </>
         );
-    } else if (kontaktinformasjon.epost) {
-        const formatertDato = formaterDato(kontaktinformasjon.epost.sistOppdatert);
+    } else if (kontaktinformasjon.mobiltelefon) {
+        const formatertDato = formaterDato(kontaktinformasjon.mobiltelefon.sistOppdatert);
+        const formatertTelefonnummer = formaterMobiltelefonnummer(kontaktinformasjon.mobiltelefon.value);
         return (
             <>
-                <Normaltekst>{kontaktinformasjon.epost.value}</Normaltekst>
-                <EtikettGrå>Endret {formatertDato} i Kontakt-og reservasjonsregisteret</EtikettGrå>
+                <Normaltekst>{formatertTelefonnummer}</Normaltekst>
+                <EtikettGrå>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGrå>
             </>
         );
     } else {
@@ -32,17 +34,17 @@ export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
     }
 }
 
-function Epost() {
+function Telefon() {
     return (
-        <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
+        <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <RestResourceConsumer<KRRKontaktinformasjon>
                 spinnerSize={'L'}
                 getRestResource={restResources => restResources.kontaktinformasjon}
             >
-                {data => <EpostVisning kontaktinformasjon={data} />}
+                {data => <MobiltelefonVisning kontaktinformasjon={data} />}
             </RestResourceConsumer>
         </VisittkortElement>
     );
 }
 
-export default Epost;
+export default Telefon;
