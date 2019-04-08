@@ -53,7 +53,7 @@ function SykePengerLaster(props: Props) {
     return (
         <RestResourceConsumer<SykepengerResponse>
             spinnerSize="XL"
-            getRestResource={restResources => restResources.sykepenger}
+            getResource={restResources => restResources.sykepenger}
         >
             {data => getInnhold(data)}
         </RestResourceConsumer>

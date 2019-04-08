@@ -13,7 +13,7 @@ function PleiePengerContainer() {
     return (
         <RestResourceConsumer<PleiepengerResponse>
             spinnerSize="M"
-            getRestResource={restResources => restResources.pleiepenger}
+            getResource={restResources => restResources.pleiepenger}
         >
             {data => {
                 if (!data.pleiepenger || !data.pleiepenger[0]) {

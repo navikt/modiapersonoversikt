@@ -1,16 +1,16 @@
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
-import { getKontaktinformasjon } from '../../api/kontaktinformasjon-api';
-import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { apiBaseUri } from '../../api/config';
+import { AppState } from '../reducers';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kontaktinformasjon');
-
-export function hentKontaktinformasjon(fødselsnummer: string) {
-    return action(() =>
-        getKontaktinformasjon(fødselsnummer).then((data: KRRKontaktinformasjon) => {
-            return data;
-        })
-    );
+export function getKontaktinformasjonFetchUri(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/person/${fnr}/kontaktinformasjon`;
 }
+
+const { reducer, actionNames } = createRestResourceReducerAndActions(
+    'kontaktinformasjon',
+    getKontaktinformasjonFetchUri
+);
 
 export const kontaktinformasjonActionNames = actionNames;
 

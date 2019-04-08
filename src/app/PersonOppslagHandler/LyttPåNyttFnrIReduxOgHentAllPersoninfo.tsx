@@ -1,6 +1,3 @@
-import { hentKontaktinformasjon } from '../../redux/restReducers/kontaktinformasjon';
-import { erEgenAnsatt } from '../../redux/restReducers/egenansatt';
-import { hentVergemal } from '../../redux/restReducers/vergemal';
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
 import { resetUtbetalingerResource } from '../../redux/restReducers/utbetalinger';
@@ -45,9 +42,9 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
                 const fnr = getState().gjeldendeBruker.fødselsnummer;
                 const restResources = getState().restResources;
                 dispatch(hentPerson(fnr));
-                dispatch(hentKontaktinformasjon(fnr));
-                dispatch(erEgenAnsatt(fnr));
-                dispatch(hentVergemal(fnr));
+                dispatch(restResources.kontaktinformasjon.actions.fetch);
+                dispatch(restResources.vergemal.actions.fetch);
+                dispatch(restResources.egenAnsatt.actions.fetch);
                 dispatch(hentFeatureToggles());
                 dispatch(resetNavKontorResource());
                 dispatch(resetUtbetalingerResource());

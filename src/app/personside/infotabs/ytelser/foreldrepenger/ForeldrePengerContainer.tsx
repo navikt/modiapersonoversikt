@@ -13,7 +13,7 @@ function ForeldrePengerContainer() {
     return (
         <RestResourceConsumer<ForeldrepengerResponse>
             spinnerSize="M"
-            getRestResource={restResources => restResources.foreldrepenger}
+            getResource={restResources => restResources.foreldrepenger}
         >
             {data => {
                 if (!data.foreldrepenger || !data.foreldrepenger[0]) {

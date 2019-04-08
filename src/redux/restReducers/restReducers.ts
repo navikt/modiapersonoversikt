@@ -53,9 +53,9 @@ export interface RestEndepunkter {
     personinformasjon: DeprecatedRestResource<PersonRespons>;
     brukersNavKontor: DeprecatedRestResource<BrukersNavKontorResponse>;
     oppgaver: DeprecatedRestResource<Oppgave[]>;
-    kontaktinformasjon: DeprecatedRestResource<KRRKontaktinformasjon>;
-    egenAnsatt: DeprecatedRestResource<Egenansatt>;
-    vergemal: DeprecatedRestResource<Vergemal>;
+    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
+    egenAnsatt: RestResource<Egenansatt>;
+    vergemal: RestResource<Vergemal>;
     baseUrl: DeprecatedRestResource<BaseUrlsResponse>;
     endreNavn: DeprecatedRestResource<{}>;
     endreKontonummer: DeprecatedRestResource<{}>;
