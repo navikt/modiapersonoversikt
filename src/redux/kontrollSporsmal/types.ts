@@ -12,12 +12,12 @@ export interface Spørsmål {
 
 export interface KontrollSpørsmålState {
     spørsmål?: Spørsmål[];
-    synlig: boolean;
+    open: boolean;
 }
 
 export const initState: KontrollSpørsmålState = {
     spørsmål: undefined,
-    synlig: true
+    open: true
 };
 
 export enum ActionTypes {
