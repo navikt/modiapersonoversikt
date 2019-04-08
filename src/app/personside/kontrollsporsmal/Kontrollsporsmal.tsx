@@ -12,11 +12,11 @@ import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
-import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
+import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
-    fnr?: string;
+    fnr: string;
 }
 
 interface DispatchProps {
@@ -51,12 +51,12 @@ const KontrollSporsmalStyling = styled.section`
 
 function Kontrollsporsmal(props: Props) {
     useEffect(() => {
-        if (props.fnr && kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
+        if (kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
             props.lukkKontrollSpørsmål();
         }
     }, [props.fnr]);
 
-    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar()) {
+    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar() || !erKontaktsenter()) {
         return null;
     }
 
@@ -78,8 +78,8 @@ function Kontrollsporsmal(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visKontrollSpørsmål: state.kontrollSpørsmål.synlig,
-        fnr: getFnrFromPerson(state.restResources.personinformasjon)
+        visKontrollSpørsmål: state.kontrollSpørsmål.open,
+        fnr: state.gjeldendeBruker.fødselsnummer
     };
 }
 
