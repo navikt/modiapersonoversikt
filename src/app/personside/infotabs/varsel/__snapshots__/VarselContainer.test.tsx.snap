@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser varselcontainer med alt innhold 1`] = `
+.c1 {
+  font-weight: bold;
+}
+
+.c0 table {
+  width: 100%;
+  text-align: right;
+}
+
+.c0 table thead {
+  text-transform: uppercase;
+}
+
+.c0 table thead th {
+  margin-bottom: 0.5rem;
+}
+
+.c0 table thead th:nth-child(3) ~ th {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c0 table tbody tr {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.c0 table tbody tr td:last-child {
+  width: 100%;
+}
+
+.c0 table th,
+.c0 table td {
+  display: inline-block;
+}
+
+.c0 table th:not(:last-child),
+.c0 table td:not(:last-child) {
+  vertical-align: bottom;
+  padding: 1rem 1rem 0;
+}
+
+.c0 table th:first-child,
+.c0 table td:first-child {
+  text-align: left;
+  width: 20%;
+}
+
+.c0 table th:nth-child(2),
+.c0 table td:nth-child(2) {
+  width: 50%;
+}
+
+.c0 table th:nth-child(3),
+.c0 table td:nth-child(3) {
+  width: 30%;
+}
+
+.c2 li {
+  display: inline-block;
+}
+
+.c2 li:not(:last-child):after {
+  content: ',';
+  margin-right: 0.5em;
+}
+
+<article>
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
+  >
+    Varsler
+  </h2>
+  <div
+    className="typo-normal"
+  >
+    <div
+      className="c0"
+    >
+      <table
+        role="table"
+      >
+        <thead
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <th
+              role="columnheader"
+            >
+              <p
+                className="typo-element"
+              >
+                Dato
+              </p>
+            </th>
+            <th
+              role="columnheader"
+            >
+              <p
+                className="typo-element"
+              >
+                Type
+              </p>
+            </th>
+            <th
+              role="columnheader"
+            >
+              <p
+                className="typo-element"
+              >
+                Sendt i kanal
+              </p>
+            </th>
+            <th
+              role="columnheader"
+            >
+              <p
+                className="typo-element"
+              >
+                Detaljer
+              </p>
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              27.03.2019
+            </td>
+            <td
+              role="cell"
+            >
+              <span
+                className="c1"
+              >
+                Påminnelse om å sende meldekort
+              </span>
+            </td>
+            <td
+              role="cell"
+            >
+              <ul
+                className="c2"
+              >
+                <li>
+                  SMS
+                </li>
+                <li>
+                  EPOST
+                </li>
+              </ul>
+            </td>
+            <td
+              role="cell"
+            >
+              <div
+                className="ekspanderbartPanel ekspanderbartPanel--lukket"
+              >
+                <button
+                  aria-controls="Helt tilfeldig ID"
+                  aria-expanded={false}
+                  className="ekspanderbartPanel__hode"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  type="button"
+                >
+                  <div
+                    className="ekspanderbartPanel__flex-wrapper"
+                  >
+                    <span
+                      className="typo-element ekspanderbartPanel__heading"
+                    >
+                      Vis detaljer
+                    </span>
+                    <span
+                      className="ekspanderbartPanel__indikator"
+                    />
+                  </div>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              09.01.2019
+            </td>
+            <td
+              role="cell"
+            >
+              <span
+                className="c1"
+              >
+                Påminnelse om å sende meldekort
+              </span>
+            </td>
+            <td
+              role="cell"
+            >
+              <ul
+                className="c2"
+              >
+                <li>
+                  EPOST
+                </li>
+              </ul>
+            </td>
+            <td
+              role="cell"
+            >
+              <div
+                className="ekspanderbartPanel ekspanderbartPanel--lukket"
+              >
+                <button
+                  aria-controls="Helt tilfeldig ID"
+                  aria-expanded={false}
+                  className="ekspanderbartPanel__hode"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  type="button"
+                >
+                  <div
+                    className="ekspanderbartPanel__flex-wrapper"
+                  >
+                    <span
+                      className="typo-element ekspanderbartPanel__heading"
+                    >
+                      Vis detaljer
+                    </span>
+                    <span
+                      className="ekspanderbartPanel__indikator"
+                    />
+                  </div>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</article>
+`;

@@ -14,6 +14,7 @@ import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restRedu
 
 interface StateProps {
     meldingerResource: DeprecatedRestResource<Traad[]>;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -22,11 +23,7 @@ interface DispatchProps {
     reloadMeldinger: (fødselsnummer: string) => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 const meldingerMediaTreshold = '80rem';
 
@@ -66,6 +63,7 @@ class MeldingerContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         meldingerResource: state.restResources.tråderOgMeldinger
     };
 }

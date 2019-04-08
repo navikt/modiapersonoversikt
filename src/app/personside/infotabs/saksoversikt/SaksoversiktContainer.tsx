@@ -23,6 +23,7 @@ interface StateProps {
     personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
+    fødselsnummer: string;
 }
 
 interface DispatchProps {
@@ -32,11 +33,7 @@ interface DispatchProps {
     skjulDokumentOgVisSaksoversikt: () => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 export const saksoversiktMediaTreshold = '80rem';
 
@@ -86,6 +83,7 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         baseUrlResource: state.restResources.baseUrl,
         saksoversiktResource: state.restResources.sakstema,
         personResource: state.restResources.personinformasjon,

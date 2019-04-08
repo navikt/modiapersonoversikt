@@ -12,6 +12,7 @@ import OppfolgingVisning from './OppfolgingVisningKomponent';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 
 interface StateProps {
+    fødselsnummer: string;
     baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
     oppfølgingResource: DeprecatedRestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
@@ -23,11 +24,7 @@ interface DispatchProps {
     reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
 }
 
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 class OppfolgingContainer extends React.PureComponent<Props> {
     componentDidMount() {
@@ -54,6 +51,7 @@ class OppfolgingContainer extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
+        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         baseUrlResource: state.restResources.baseUrl,
         oppfølgingResource: state.restResources.oppfolging,
         valgtPeriode: state.oppfolging.valgtPeriode

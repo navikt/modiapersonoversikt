@@ -6,7 +6,7 @@ export interface Varsel {
 }
 
 export interface Varselmelding {
-    kanal: string;
+    kanal: Kanal;
     innhold: string;
     mottakerInformasjon?: string;
     utsendingsTidspunkt: string;
@@ -14,6 +14,12 @@ export interface Varselmelding {
     epostemne?: string;
     url?: string;
     erRevarsel: boolean;
+}
+
+export enum Kanal {
+    EPOST = 'EPOST',
+    NAVNO = 'NAV.NO',
+    SMS = 'SMS'
 }
 
 export enum Varseltype {

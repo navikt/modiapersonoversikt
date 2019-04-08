@@ -35,7 +35,7 @@ class OppfolgingLamell extends React.PureComponent<Props> {
                 <Provider store={store}>
                     <Styles>
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                        <OppfolgingContainer fødselsnummer={this.props.fødselsnummer} />
+                        <OppfolgingContainer />
                     </Styles>
                 </Provider>
             </ErrorBoundary>

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
-import MeldingerContainer from './MeldingerContainer';
+import VarselContainer from './VarslerContainer';
 
-test('Viser meldingercontainer med alt innhold', () => {
+test('Viser varselcontainer med alt innhold', () => {
     const container = renderer.create(
         <TestProvider>
-            <MeldingerContainer />
+            <VarselContainer />
         </TestProvider>
     );
 
