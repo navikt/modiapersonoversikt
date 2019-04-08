@@ -84,7 +84,7 @@ function getActionTypes(resourceNavn: string): ActionTypes {
 
 export type FetchUriGenerator = (state: AppState) => string;
 
-export function createRestResourceReducer<T>(resourceNavn: string, fetchUriGenerator: FetchUriGenerator) {
+export function createRestResourceReducerAndActions<T>(resourceNavn: string, fetchUriGenerator: FetchUriGenerator) {
     const actionNames = getActionTypes(resourceNavn);
     const fetch = fetchDataAndDispatchToRedux(fetchUriGenerator, actionNames);
     const fetchWithCustomUri = (uri: string) => fetchDataAndDispatchToRedux(() => uri, actionNames);

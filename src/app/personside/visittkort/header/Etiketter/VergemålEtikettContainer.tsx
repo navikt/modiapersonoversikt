@@ -20,7 +20,7 @@ function VergemålEtikettContainer() {
     return (
         <ErrorBoundary boundaryName="Vergemålsetikett">
             <RestResourceConsumer<Vergemal>
-                getRestResource={restResources => restResources.vergemal}
+                getResource={restResources => restResources.vergemal}
                 returnOnPending={<LazySpinner type="S" />}
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker har verge</AlertStripeAdvarsel>}
             >

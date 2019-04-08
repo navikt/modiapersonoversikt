@@ -10,7 +10,7 @@ function VergemalContainer() {
     return (
         <RestResourceConsumer<Vergemal>
             returnOnError={feilmelding()}
-            getRestResource={restResources => restResources.vergemal}
+            getResource={restResources => restResources.vergemal}
             spinnerSize={'L'}
         >
             {data => <VergemalWrapper vergemal={data} />}

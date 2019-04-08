@@ -39,7 +39,7 @@ function Telefon() {
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <RestResourceConsumer<KRRKontaktinformasjon>
                 spinnerSize={'L'}
-                getRestResource={restResources => restResources.kontaktinformasjon}
+                getResource={restResources => restResources.kontaktinformasjon}
             >
                 {data => <MobiltelefonVisning kontaktinformasjon={data} />}
             </RestResourceConsumer>

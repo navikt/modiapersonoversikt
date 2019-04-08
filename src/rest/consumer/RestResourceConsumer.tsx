@@ -9,7 +9,7 @@ import { RestRestourceFeilmelding } from './utils';
 import LazySpinner from '../../components/LazySpinner';
 
 export type RestResourceConsumerOwnProps<T> = {
-    getRestResource: (restResources: RestEndepunkter) => RestResource<T>;
+    getResource: (restResources: RestEndepunkter) => RestResource<T>;
     children: (data: T) => ReactNode;
     returnOnError?: ReactNode;
     returnOnPending?: ReactNode;
@@ -50,7 +50,7 @@ function mapDispatchToProps<T>(dispatch: AsyncDispatch): DispatchProps {
 
 function mapStateToProps<T>(state: AppState, ownProps: RestResourceConsumerOwnProps<T>): StateProps<T> {
     return {
-        restResource: ownProps.getRestResource(state.restResources)
+        restResource: ownProps.getResource(state.restResources)
     };
 }
 

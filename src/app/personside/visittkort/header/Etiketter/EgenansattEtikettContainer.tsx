@@ -16,7 +16,7 @@ function EgenAnsattEtikettContainer() {
     return (
         <ErrorBoundary boundaryName="EgenansattEtikett">
             <RestResourceConsumer<Egenansatt>
-                getRestResource={restResources => restResources.egenAnsatt}
+                getResource={restResources => restResources.egenAnsatt}
                 spinnerSize="S"
                 returnOnError={<AlertStripeAdvarsel>Kunne ikke sjekke om bruker er egenansatt</AlertStripeAdvarsel>}
             >

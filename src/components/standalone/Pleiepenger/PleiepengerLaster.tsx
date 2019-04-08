@@ -64,7 +64,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
     render() {
         return (
             <RestResourceConsumer<PleiepengerResponse>
-                getRestResource={restResources => restResources.pleiepenger}
+                getResource={restResources => restResources.pleiepenger}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >

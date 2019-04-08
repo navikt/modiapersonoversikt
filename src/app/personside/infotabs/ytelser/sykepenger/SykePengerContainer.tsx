@@ -15,7 +15,7 @@ function SykePengerContainer() {
         <ErrorBoundary boundaryName="SykepengerContainer">
             <RestResourceConsumer<SykepengerResponse>
                 spinnerSize="M"
-                getRestResource={restResources => restResources.sykepenger}
+                getResource={restResources => restResources.sykepenger}
             >
                 {data => {
                     if (!data.sykepenger) {

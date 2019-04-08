@@ -63,7 +63,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
     render() {
         return (
             <RestResourceConsumer<ForeldrepengerResponse>
-                getRestResource={restResources => restResources.foreldrepenger}
+                getResource={restResources => restResources.foreldrepenger}
                 returnOnPending={onPending}
                 returnOnError={onError}
             >

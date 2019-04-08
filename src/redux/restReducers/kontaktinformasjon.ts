@@ -1,4 +1,4 @@
-import { createRestResourceReducer } from '../../rest/utils/restResource';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { apiBaseUri } from '../../api/config';
 import { AppState } from '../reducers';
 
@@ -7,7 +7,10 @@ export function getKontaktinformasjonFetchUri(state: AppState) {
     return `${apiBaseUri}/person/${fnr}/kontaktinformasjon`;
 }
 
-const { reducer, actionNames } = createRestResourceReducer('kontaktinformasjon', getKontaktinformasjonFetchUri);
+const { reducer, actionNames } = createRestResourceReducerAndActions(
+    'kontaktinformasjon',
+    getKontaktinformasjonFetchUri
+);
 
 export const kontaktinformasjonActionNames = actionNames;
 

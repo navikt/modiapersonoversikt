@@ -1,5 +1,5 @@
 import { apiBaseUri } from '../../api/config';
-import { createRestResourceReducer } from '../../rest/utils/restResource';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { AppState } from '../reducers';
 import { Vergemal } from '../../models/vergemal/vergemal';
 
@@ -8,7 +8,7 @@ export function getVergemal(state: AppState) {
     return `${apiBaseUri}/person/${fnr}/vergemal`;
 }
 
-const { reducer, actionNames } = createRestResourceReducer<Vergemal>('vergemal', getVergemal);
+const { reducer, actionNames } = createRestResourceReducerAndActions<Vergemal>('vergemal', getVergemal);
 
 export { actionNames };
 export default reducer;
