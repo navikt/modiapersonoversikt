@@ -90,9 +90,7 @@ export const theme = {
         clip: rect(1px, 1px, 1px, 1px);
     `,
     width: {
-        ytelser: pxToRem(1020),
-        varselStart: '10rem',
-        varselSlutt: '11rem'
+        ytelser: pxToRem(1020)
     }
 };
 

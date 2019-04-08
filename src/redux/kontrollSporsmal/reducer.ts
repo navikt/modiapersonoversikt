@@ -22,7 +22,7 @@ function reducer(state: KontrollSpørsmålState = initState, action: Actions): K
         case ActionTypes.Lukk:
             return {
                 ...state,
-                synlig: false
+                open: false
             };
         case ActionTypes.Reset:
             return initState;

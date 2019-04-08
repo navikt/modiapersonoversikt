@@ -59,13 +59,26 @@ const TableStyle = styled.div`
     }
 `;
 
+const Kommaliste = styled.ul`
+    li {
+        display: inline-block;
+    }
+    li:not(:last-child) {
+        &:after {
+            content: ',';
+            margin-right: 0.5em;
+        }
+    }
+`;
+
 function lagVarselTabellRow(varsel: Varsel) {
     const [åpen, setÅpen] = useState(false);
     const dato = formatterDato(varsel.mottattTidspunkt);
     const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
-    const distinkteKommunikasjonsKanaler = Array.from(new Set(varsel.meldingListe.map(melding => melding.kanal))).join(
-        ', '
+    const distinkteKommunikasjonsKanaler = new Set(
+        varsel.meldingListe.map(melding => <li key={melding.kanal}>{melding.kanal}</li>)
     );
+    const kommunikasjonskanaler = <Kommaliste>{distinkteKommunikasjonsKanaler}</Kommaliste>;
     const detaljer = (
         <Ekspanderbartpanel
             tittelProps="element"
@@ -76,7 +89,7 @@ function lagVarselTabellRow(varsel: Varsel) {
             <MeldingsListe meldingsliste={varsel.meldingListe} />
         </Ekspanderbartpanel>
     );
-    return [dato, varseltype, distinkteKommunikasjonsKanaler, detaljer];
+    return [dato, varseltype, kommunikasjonskanaler, detaljer];
 }
 
 function Varsler(props: VisningProps) {

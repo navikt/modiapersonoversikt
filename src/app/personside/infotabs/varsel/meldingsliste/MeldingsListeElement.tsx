@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Varselmelding } from '../../../../../models/varsel';
+import { Kanal, Varselmelding } from '../../../../../models/varsel';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -27,7 +27,7 @@ const MottakerInformasjonStyle = styled.div`
 `;
 
 function MeldingsInnhold(props: Props) {
-    return props.melding.kanal === 'EPOST' ? (
+    return props.melding.kanal === Kanal.EPOST ? (
         <div>
             <Normaltekst>
                 <Bold>{props.melding.epostemne}</Bold>
@@ -40,7 +40,7 @@ function MeldingsInnhold(props: Props) {
 }
 
 function Mottakerinformasjon(props: Props) {
-    return props.melding.kanal === 'NAV.NO' ? null : props.melding.kanal === 'EPOST' ? (
+    return props.melding.kanal === Kanal.NAVNO ? null : props.melding.kanal === Kanal.EPOST ? (
         <Normaltekst>Epost: {props.melding.mottakerInformasjon}</Normaltekst>
     ) : (
         <Normaltekst>Tlf: {props.melding.mottakerInformasjon}</Normaltekst>
