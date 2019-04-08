@@ -26,7 +26,7 @@ describe('Kontrollspørsmål reducer', () => {
         store.dispatch(action);
 
         expect(store.getState().spørsmål).toBeUndefined();
-        expect(store.getState().synlig).toBe(true);
+        expect(store.getState().open).toBe(true);
     });
 
     it('Setter nye spørsmål med SetSpørsmål', () => {
@@ -39,7 +39,7 @@ describe('Kontrollspørsmål reducer', () => {
         expect(store.getState().spørsmål).toContain(spm1);
         expect(store.getState().spørsmål).toContain(spm2);
         expect(store.getState().spørsmål).not.toContain(spm3);
-        expect(store.getState().synlig).toBe(true);
+        expect(store.getState().open).toBe(true);
     });
 
     it('Roterer array korrekt', () => {
@@ -67,15 +67,15 @@ describe('Kontrollspørsmål reducer', () => {
     it('Toggler synlig korrekt', () => {
         const store = createStore(kontrollspørsmålReducer);
 
-        expect(store.getState().synlig).toBe(true);
+        expect(store.getState().open).toBe(true);
 
         store.dispatch(lukkKontrollSpørsmål());
 
-        expect(store.getState().synlig).toBe(false);
+        expect(store.getState().open).toBe(false);
 
         store.dispatch(lukkKontrollSpørsmål());
 
-        expect(store.getState().synlig).toBe(false);
+        expect(store.getState().open).toBe(false);
     });
 });
 
