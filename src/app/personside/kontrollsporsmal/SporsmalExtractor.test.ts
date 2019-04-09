@@ -104,7 +104,9 @@ describe('hentEpost', () => {
             epost: {
                 value: 'aremarksinmail@test.no',
                 sistOppdatert: ''
-            }
+            },
+            mobiltelefon: null,
+            reservasjon: null
         };
         const korrektSvar = { tekst: 'aremarksinmail@test.no' };
 
@@ -119,6 +121,7 @@ describe('hentEpost', () => {
                 value: 'aremarksinmail@test.no',
                 sistOppdatert: ''
             },
+            mobiltelefon: null,
             reservasjon: 'true'
         };
         const korrektSvar = { tekst: '' };

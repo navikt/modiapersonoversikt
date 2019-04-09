@@ -7,6 +7,7 @@ import EgenAnsattEtikett from './EgenansattEtikettContainer';
 import VergemålEtikettContainer from './VergemålEtikettContainer';
 import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
+import ReservertIKRREtikett from './ReservertIKRREtikett';
 
 interface Props {
     person: Person;
@@ -25,6 +26,7 @@ function Etiketter({ person }: Props) {
             <DiskresjonskodeEtikett diskresjonskode={person.diskresjonskode} />
             <EgenAnsattEtikett />
             <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
+            <ReservertIKRREtikett />
             <VergemålEtikettContainer />
             <TilrettelagtKommunikasjonsEtiketter
                 tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}

@@ -31,21 +31,17 @@ const KontrollSporsmalStyling = styled.section`
     margin-bottom: 0.5rem;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'innhold innhold knapper';
+    -ms-grid-columns: 2fr 1fr;
+    grid-template-areas: 'innhold knapper';
     .innhold {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
         grid-area: innhold;
     }
     .knapper {
         -ms-grid-row: 1;
         -ms-grid-column: 2;
         grid-area: knapper;
-    }
-    .visually-hidden {
-        ${theme.visuallyHidden}
     }
 `;
 
