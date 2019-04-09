@@ -1,8 +1,8 @@
 // KRR = Kontakt- og reservasjonsregisteret
 export interface KRRKontaktinformasjon {
-    epost?: KontaktinformasjonVerdi;
-    mobiltelefon?: KontaktinformasjonVerdi;
-    reservasjon?: string;
+    epost: null | KontaktinformasjonVerdi;
+    mobiltelefon: null | KontaktinformasjonVerdi;
+    reservasjon: null | string;
 }
 
 export interface KontaktinformasjonVerdi {
