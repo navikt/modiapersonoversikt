@@ -164,10 +164,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 className="c2"
               >
                 <li>
-                  SMS
+                  EPOST
                 </li>
                 <li>
-                  EPOST
+                  SMS
                 </li>
               </ul>
             </td>

@@ -11,7 +11,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
 
-interface VisningProps {
+interface Props {
     varsler: Varsel[];
 }
 
@@ -75,10 +75,15 @@ function lagVarselTabellRow(varsel: Varsel) {
     const [åpen, setÅpen] = useState(false);
     const dato = formatterDato(varsel.mottattTidspunkt);
     const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
-    const distinkteKommunikasjonsKanaler = new Set(
-        varsel.meldingListe.map(melding => <li key={melding.kanal}>{melding.kanal}</li>)
+    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
+    const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));
+    const kommunikasjonskanaler = (
+        <Kommaliste>
+            {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
+                <li key={kanal}>{kanal}</li>
+            ))}
+        </Kommaliste>
     );
-    const kommunikasjonskanaler = <Kommaliste>{distinkteKommunikasjonsKanaler}</Kommaliste>;
     const detaljer = (
         <Ekspanderbartpanel
             tittelProps="element"
@@ -86,17 +91,17 @@ function lagVarselTabellRow(varsel: Varsel) {
             apen={åpen}
             onClick={() => setÅpen(!åpen)}
         >
-            <MeldingsListe meldingsliste={varsel.meldingListe} />
+            <MeldingsListe sortertMeldingsliste={sortertMeldingsliste} />
         </Ekspanderbartpanel>
     );
     return [dato, varseltype, kommunikasjonskanaler, detaljer];
 }
 
-function Varsler(props: VisningProps) {
+function Varsler(props: Props) {
+    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
     const tittelRekke = ['Dato', 'Type', 'Sendt i kanal', 'Detaljer'].map((text, index) => (
         <Element key={index}>{text}</Element>
     ));
-    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
     const tabellInnhold = sortertPåDato.map(varsel => lagVarselTabellRow(varsel));
     const table = createTable(tittelRekke, tabellInnhold);
 
