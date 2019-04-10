@@ -4,6 +4,7 @@ import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Bold } from '../../../../../components/common-styled-components';
+import { formatterDato } from '../../../../../utils/dateUtils';
 
 interface Props {
     melding: Varselmelding;
@@ -57,7 +58,7 @@ function MeldingsListeElement(props: Props) {
                 <MeldingsInnhold melding={props.melding} />
             </RowStyle>
             <RowStyle>
-                <Normaltekst>{props.melding.utsendingsTidspunkt}</Normaltekst>
+                <Normaltekst>{formatterDato(props.melding.utsendingsTidspunkt)}</Normaltekst>
                 <MottakerInformasjonStyle>
                     <Mottakerinformasjon melding={props.melding} />
                 </MottakerInformasjonStyle>

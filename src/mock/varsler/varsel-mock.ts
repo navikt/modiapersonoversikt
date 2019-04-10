@@ -1,15 +1,16 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { Varsel, Varselmelding } from '../models/varsel';
-import { backendDatoformat, fyllRandomListe } from './utils/mock-utils';
+import { Varsel, Varselmelding } from '../../models/varsel';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import moment from 'moment';
-import { aremark } from './person/aremark';
+import { aremark } from '../person/aremark';
+import { statiskVarselMock } from './statiskVarselMock';
 
 export function getMockVarsler(fødselsnummer: string): Varsel[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'varsel');
     if (fødselsnummer === aremark.fødselsnummer) {
-        return [getVarsel(), getVarsel()];
+        return statiskVarselMock;
     }
 
     return fyllRandomListe(getVarsel, 10, true);

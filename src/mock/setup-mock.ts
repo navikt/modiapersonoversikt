@@ -25,7 +25,7 @@ import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getMockVarsler } from './varsel-mock';
+import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
 
 const STATUS_OK = () => 200;

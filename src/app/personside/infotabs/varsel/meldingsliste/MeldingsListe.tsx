@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Varselmelding } from '../../../../../models/varsel';
-import { datoSynkende } from '../../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import MeldingsListeElement from './MeldingsListeElement';
 
 interface Props {
-    meldingsliste: Varselmelding[];
+    sortertMeldingsliste: Varselmelding[];
 }
 
 const ListeStyle = styled.ol`
@@ -16,9 +15,7 @@ const ListeStyle = styled.ol`
 `;
 
 function MeldingsListe(props: Props) {
-    const sorterPåDato = props.meldingsliste.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
-
-    const listekomponenter = sorterPåDato.map((melding, index) => (
+    const listekomponenter = props.sortertMeldingsliste.map((melding, index) => (
         <MeldingsListeElement key={index} melding={melding} />
     ));
 
