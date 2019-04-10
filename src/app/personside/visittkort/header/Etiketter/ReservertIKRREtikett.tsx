@@ -17,7 +17,7 @@ function getEtikett(data: KRRKontaktinformasjon) {
 
 function ReservertIKRREtikett() {
     return (
-        <ErrorBoundary boundaryName="EgenansattEtikett">
+        <ErrorBoundary boundaryName="ReservertIKRREtikett">
             <RestResourceConsumer<KRRKontaktinformasjon>
                 getResource={restResources => restResources.kontaktinformasjon}
                 spinnerSize="S"

@@ -8,6 +8,7 @@ import VergemålEtikettContainer from './VergemålEtikettContainer';
 import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
 import ReservertIKRREtikett from './ReservertIKRREtikett';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
     person: Person;
@@ -22,16 +23,18 @@ const StyledEtikketter = styled.section`
 
 function Etiketter({ person }: Props) {
     return (
-        <StyledEtikketter role="region" aria-label="etiketter">
-            <DiskresjonskodeEtikett diskresjonskode={person.diskresjonskode} />
-            <EgenAnsattEtikett />
-            <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
-            <ReservertIKRREtikett />
-            <VergemålEtikettContainer />
-            <TilrettelagtKommunikasjonsEtiketter
-                tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
-            />
-        </StyledEtikketter>
+        <ErrorBoundary boundaryName="Etiketter">
+            <StyledEtikketter role="region" aria-label="etiketter">
+                <DiskresjonskodeEtikett diskresjonskode={person.diskresjonskode} />
+                <EgenAnsattEtikett />
+                <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
+                <ReservertIKRREtikett />
+                <VergemålEtikettContainer />
+                <TilrettelagtKommunikasjonsEtiketter
+                    tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
+                />
+            </StyledEtikketter>
+        </ErrorBoundary>
     );
 }
 
