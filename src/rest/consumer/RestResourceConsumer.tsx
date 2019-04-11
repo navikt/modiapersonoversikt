@@ -62,6 +62,7 @@ const ConnectedRestResourceConsumerUntyped = connect(
 function RestResourceConsumer<T>(props: RestResourceConsumerOwnProps<T>) {
     const { children, ...resten } = props;
     return (
+        // @ts-ignore
         <ConnectedRestResourceConsumerUntyped {...resten}>
             {data => children(data as T)}
         </ConnectedRestResourceConsumerUntyped>

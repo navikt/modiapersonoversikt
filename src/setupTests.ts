@@ -8,9 +8,6 @@ import reducers, { AppState } from './redux/reducers';
 import { applyMiddleware, createStore, Store } from 'redux';
 import { actionNames as navKontorActionNames } from './redux/restReducers/navkontor';
 import { mockVergemal } from './mock/person/vergemal/vergemalMock';
-import { kontaktinformasjonActionNames } from './redux/restReducers/kontaktinformasjon';
-import { actionNames as egenAnsattActionNames } from './redux/restReducers/egenansatt';
-import { actionNames as vergeMålActionNames } from './redux/restReducers/vergemal';
 import { actionNames as baseUrlsActionNames } from './redux/restReducers/baseurls';
 import { getMockKontaktinformasjon } from './mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { personinformasjonActionNames } from './redux/restReducers/personinformasjon';
@@ -61,6 +58,7 @@ window['frontendlogger'] = { info: () => null, warn: () => null, error: () => nu
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
+    const ressources = testStore.getState().restResources;
     const aremarkFnr = aremark.fødselsnummer;
 
     testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
@@ -68,9 +66,9 @@ export function getTestStore(): Store<AppState> {
         type: navKontorActionNames.FINISHED,
         data: { navKontor: getMockNavKontor('0118', undefined) }
     });
-    testStore.dispatch({ type: kontaktinformasjonActionNames.FINISHED, data: getMockKontaktinformasjon(aremarkFnr) });
-    testStore.dispatch({ type: egenAnsattActionNames.FINISHED, data: erEgenAnsatt(aremarkFnr) });
-    testStore.dispatch({ type: vergeMålActionNames.FINISHED, data: mockVergemal(aremarkFnr) });
+    testStore.dispatch(ressources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
+    testStore.dispatch(ressources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
+    testStore.dispatch(ressources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
     testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
     testStore.dispatch({

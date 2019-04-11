@@ -8,6 +8,4 @@ export function getMeldingerFetchUri(state: AppState): string {
     return `${apiBaseUri}/meldinger/${fnr}/traader`;
 }
 
-const { reducer } = createRestResourceReducerAndActions<Traad[]>('meldinger', getMeldingerFetchUri);
-
-export default reducer;
+export default createRestResourceReducerAndActions<Traad[]>('meldinger', getMeldingerFetchUri);

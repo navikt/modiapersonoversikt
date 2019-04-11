@@ -8,6 +8,4 @@ export function getSykepenger(state: AppState) {
     return `${apiBaseUri}/ytelse/sykepenger/${fnr}`;
 }
 
-const { reducer } = createRestResourceReducerAndActions<SykepengerResponse>('sykepenger', getSykepenger);
-
-export default reducer;
+export default createRestResourceReducerAndActions<SykepengerResponse>('sykepenger', getSykepenger);

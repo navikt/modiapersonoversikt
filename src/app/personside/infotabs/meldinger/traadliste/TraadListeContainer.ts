@@ -1,7 +1,7 @@
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { settValgtTraad } from '../../../../../redux/restReducers/meldinger/actions';
+import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 import { connect } from 'react-redux';
 import TraadListe from './TraadListe';
 

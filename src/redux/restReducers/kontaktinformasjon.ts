@@ -8,11 +8,7 @@ export function getKontaktinformasjonFetchUri(state: AppState) {
     return `${apiBaseUri}/person/${fnr}/kontaktinformasjon`;
 }
 
-const { reducer, actionNames } = createRestResourceReducerAndActions<KRRKontaktinformasjon>(
+export default createRestResourceReducerAndActions<KRRKontaktinformasjon>(
     'kontaktinformasjon',
     getKontaktinformasjonFetchUri
 );
-
-export const kontaktinformasjonActionNames = actionNames;
-
-export default reducer;

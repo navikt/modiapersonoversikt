@@ -8,7 +8,4 @@ export function getVergemal(state: AppState) {
     return `${apiBaseUri}/person/${fnr}/vergemal`;
 }
 
-const { reducer, actionNames } = createRestResourceReducerAndActions<Vergemal>('vergemal', getVergemal);
-
-export { actionNames };
-export default reducer;
+export default createRestResourceReducerAndActions<Vergemal>('vergemal', getVergemal);

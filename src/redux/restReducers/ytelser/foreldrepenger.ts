@@ -8,9 +8,4 @@ export function getForeldrepengerFetchUri(state: AppState) {
     return `${apiBaseUri}/ytelse/foreldrepenger/${fnr}`;
 }
 
-const { reducer } = createRestResourceReducerAndActions<ForeldrepengerResponse>(
-    'foreldrepenger',
-    getForeldrepengerFetchUri
-);
-
-export default reducer;
+export default createRestResourceReducerAndActions<ForeldrepengerResponse>('foreldrepenger', getForeldrepengerFetchUri);

@@ -8,7 +8,4 @@ export function getEgenAnsattFetchUri(state: AppState) {
     return `${apiBaseUri}/egenansatt/${fnr}`;
 }
 
-const { reducer, actionNames } = createRestResourceReducerAndActions<Egenansatt>('egenansatt', getEgenAnsattFetchUri);
-
-export { actionNames };
-export default reducer;
+export default createRestResourceReducerAndActions<Egenansatt>('egenansatt', getEgenAnsattFetchUri);
