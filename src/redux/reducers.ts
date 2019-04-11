@@ -13,8 +13,8 @@ import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
 import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
 import { UtbetalingerState } from './utbetalinger/types';
-import { MeldingerState } from './restReducers/meldinger/types';
-import { meldingerReducer } from './restReducers/meldinger/reducer';
+import { MeldingerState } from './meldinger/types';
+import { meldingerReducer } from './meldinger/reducer';
 
 export interface AppState {
     restResources: RestEndepunkter;

@@ -76,8 +76,8 @@ export interface RestEndepunkter {
     oppfolging: DeprecatedRestResource<Oppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
     featureToggles: DeprecatedRestResource<FeatureToggles>;
-    brukersVarsler: DeprecatedRestResource<Varsel[]>;
-    tråderOgMeldinger: DeprecatedRestResource<Traad[]>;
+    brukersVarsler: RestResource<Varsel[]>;
+    tråderOgMeldinger: RestResource<Traad[]>;
 }
 
 export default combineReducers<RestEndepunkter>({

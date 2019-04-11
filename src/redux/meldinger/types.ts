@@ -1,4 +1,4 @@
-import { Traad } from '../../../models/meldinger/meldinger';
+import { Traad } from '../../models/meldinger/meldinger';
 
 export interface MeldingerState {
     valgtTraad?: Traad;

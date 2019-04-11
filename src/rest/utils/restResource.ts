@@ -17,6 +17,7 @@ export interface RestResource<T> {
     actions: {
         fetch: (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
         fetchWithCustomUri: (uri: string) => (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
+        setData: (data: T) => Action;
         reload: (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
         reset: (dispatch: AsyncDispatch) => void;
     };
@@ -88,6 +89,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, fet
     const actionNames = getActionTypes(resourceNavn);
     const fetch = fetchDataAndDispatchToRedux(fetchUriGenerator, actionNames);
     const fetchWithCustomUri = (uri: string) => fetchDataAndDispatchToRedux(() => uri, actionNames);
+    const setData = (data: T) => ({ type: actionNames.FINISHED, data: data });
     const reload = fetchDataAndDispatchToRedux(fetchUriGenerator, actionNames, true);
     const reset = dispatchReset(actionNames);
 
@@ -96,52 +98,50 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, fet
         actions: {
             fetch,
             fetchWithCustomUri,
+            setData,
             reload,
             reset
         }
     };
 
-    return {
-        reducer: (state: RestResource<T> = initialState, action: Action): RestResource<T> => {
-            switch (action.type) {
-                case actionNames.STARTING:
-                    loggEvent('Fetch', resourceNavn);
+    return (state: RestResource<T> = initialState, action: Action): RestResource<T> => {
+        switch (action.type) {
+            case actionNames.STARTING:
+                loggEvent('Fetch', resourceNavn);
+                return {
+                    ...state,
+                    status: STATUS.LOADING
+                };
+            case actionNames.RELOADING:
+                loggEvent('Re-Fetch', resourceNavn);
+                if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
+                    return {
+                        ...state,
+                        status: STATUS.RELOADING
+                    };
+                } else {
                     return {
                         ...state,
                         status: STATUS.LOADING
                     };
-                case actionNames.RELOADING:
-                    loggEvent('Re-Fetch', resourceNavn);
-                    if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
-                        return {
-                            ...state,
-                            status: STATUS.RELOADING
-                        };
-                    } else {
-                        return {
-                            ...state,
-                            status: STATUS.LOADING
-                        };
-                    }
-                case actionNames.FINISHED:
-                    return {
-                        ...state,
-                        status: STATUS.SUCCESS,
-                        data: (<FetchSuccess<T>>action).data
-                    } as Loaded<T>;
-                case actionNames.FAILED:
-                    loggEvent('Fetch-Failed', resourceNavn);
-                    return {
-                        ...state,
-                        status: STATUS.FAILED,
-                        error: (<FetchError>action).error
-                    } as Failed<T>;
-                case actionNames.INITIALIZE:
-                    return initialState;
-                default:
-                    return state;
-            }
-        },
-        actionNames: actionNames
+                }
+            case actionNames.FINISHED:
+                return {
+                    ...state,
+                    status: STATUS.SUCCESS,
+                    data: (<FetchSuccess<T>>action).data
+                } as Loaded<T>;
+            case actionNames.FAILED:
+                loggEvent('Fetch-Failed', resourceNavn);
+                return {
+                    ...state,
+                    status: STATUS.FAILED,
+                    error: (<FetchError>action).error
+                } as Failed<T>;
+            case actionNames.INITIALIZE:
+                return initialState;
+            default:
+                return state;
+        }
     };
 }

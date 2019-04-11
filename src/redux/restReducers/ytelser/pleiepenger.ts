@@ -8,6 +8,4 @@ export function getPleiepengerFetchUri(state: AppState) {
     return `${apiBaseUri}/ytelse/pleiepenger/${fnr}`;
 }
 
-const { reducer } = createRestResourceReducerAndActions<PleiepengerResponse>('pleiepenger', getPleiepengerFetchUri);
-
-export default reducer;
+export default createRestResourceReducerAndActions<PleiepengerResponse>('pleiepenger', getPleiepengerFetchUri);
