@@ -1,29 +1,10 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import PlukkRestDataDeprecated from '../ytelser/pleiepenger/PlukkRestDataDeprecated';
-import { AppState } from '../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
-import { hentMeldinger, reloadMeldinger } from '../../../../redux/restReducers/meldinger';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import TraadListeContainer from './traadliste/TraadListeContainer';
-import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
-
-interface StateProps {
-    meldingerResource: DeprecatedRestResource<Traad[]>;
-    fødselsnummer: string;
-}
-
-interface DispatchProps {
-    hentBaseUrls: () => void;
-    hentMeldinger: (fødselsnummer: string) => void;
-    reloadMeldinger: (fødselsnummer: string) => void;
-}
-
-type Props = StateProps & DispatchProps;
+import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 
 const meldingerMediaTreshold = '80rem';
 
@@ -40,43 +21,15 @@ const MeldingerArticleStyle = styled.article`
     }
 `;
 
-class MeldingerContainer extends React.PureComponent<Props> {
-    componentDidMount() {
-        if (isNotStarted(this.props.meldingerResource)) {
-            this.props.hentMeldinger(this.props.fødselsnummer);
-        }
-    }
-
-    render() {
-        return (
-            <PlukkRestDataDeprecated restResource={this.props.meldingerResource}>
-                {() => (
-                    <MeldingerArticleStyle>
-                        <TraadListeContainer />
-                        <TraadVisningContainer />
-                    </MeldingerArticleStyle>
-                )}
-            </PlukkRestDataDeprecated>
-        );
-    }
+function MeldingerContainer() {
+    return (
+        <MeldingerArticleStyle>
+            <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
+                {data => <TraadListeContainer traader={data} />}
+            </RestResourceConsumer>
+            <TraadVisningContainer />
+        </MeldingerArticleStyle>
+    );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        meldingerResource: state.restResources.tråderOgMeldinger
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentBaseUrls: () => dispatch(hentBaseUrls()),
-        hentMeldinger: (fødselsnummer: string) => dispatch(hentMeldinger(fødselsnummer)),
-        reloadMeldinger: (fødselsnummer: string) => dispatch(reloadMeldinger(fødselsnummer))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MeldingerContainer);
+export default MeldingerContainer;

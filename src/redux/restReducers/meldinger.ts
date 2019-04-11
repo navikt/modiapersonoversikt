@@ -1,18 +1,13 @@
-import { getMeldinger } from '../../api/meldinger-api';
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { apiBaseUri } from '../../api/config';
+import { AppState } from '../reducers';
+import { Traad } from '../../models/meldinger/meldinger';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('meldinger');
-
-export function hentMeldinger(fødselsnummer: string) {
-    return action(() => getMeldinger(fødselsnummer));
+export function getMeldingerFetchUri(state: AppState): string {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/meldinger/${fnr}/traader`;
 }
 
-export function reloadMeldinger(fødselsnummer: string) {
-    return reload(() => getMeldinger(fødselsnummer));
-}
-
-export function resetMeldingerResource() {
-    return tilbakestill;
-}
+const { reducer } = createRestResourceReducerAndActions<Traad[]>('meldinger', getMeldingerFetchUri);
 
 export default reducer;
