@@ -34,7 +34,6 @@ import { saksoversiktActions } from './redux/restReducers/saksoversikt';
 import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-mock';
 import FeatureToggle from './components/featureToggle/FeatureToggle';
 import setNyGjeldendeBruker from './redux/gjeldendeBruker/actions';
-import { varselActionNames } from './redux/restReducers/varsel';
 import { statiskVarselMock } from './mock/varsler/statiskVarselMock';
 
 configure({ adapter: new EnzymeReactAdapter() });
@@ -87,7 +86,7 @@ export function getTestStore(): Store<AppState> {
         }
     });
     testStore.dispatch({ type: saksoversiktActions.FINISHED, data: getMockSaksoversiktForTest(aremarkFnr) });
-    testStore.dispatch({ type: varselActionNames.FINISHED, data: statiskVarselMock });
+    testStore.dispatch(ressources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
 
     return testStore;

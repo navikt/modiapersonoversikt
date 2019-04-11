@@ -76,7 +76,7 @@ export interface RestEndepunkter {
     oppfolging: DeprecatedRestResource<Oppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
     featureToggles: DeprecatedRestResource<FeatureToggles>;
-    brukersVarsler: DeprecatedRestResource<Varsel[]>;
+    brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;
 }
 
