@@ -4,7 +4,7 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource, isLoading, isReloading } from '../../../../redux/restReducers/deprecatedRestResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
@@ -12,6 +12,12 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
+
+const DatoVelgerWrapper = styled.div`
+    > * {
+        margin-bottom: 1rem;
+    }
+`;
 
 const DatoKomponentWrapper = styled.div`
     ${theme.hvittPanel};
@@ -23,19 +29,6 @@ const TittelWrapper = styled.div`
         outline: none;
     }
     margin-bottom: ${theme.margin.layout};
-`;
-
-const DatoVelgerWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-top: 0.5rem;
-    > *:first-child {
-        margin-right: 0.5rem;
-    }
-`;
-
-const KnappWrapper = styled.div`
-    margin-top: 1rem;
 `;
 
 interface StateProps {
@@ -55,48 +48,36 @@ function DatoInputs(props: Props) {
     const oppfølgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
 
     return (
-        <>
-            <DatoVelgerWrapper>
-                <div>
-                    <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
-                    <Datovelger
-                        input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
-                        visÅrVelger={true}
-                        dato={props.valgtPeriode.fra}
-                        onChange={dato => props.settValgtPeriode({ fra: dato })}
-                        id="utbetalinger-datovelger-fra"
-                        disabled={oppfølgingLastes}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="utbetalinger-datovelger-til">Til:</label>
-                    <Datovelger
-                        input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
-                        visÅrVelger={true}
-                        dato={props.valgtPeriode.til}
-                        onChange={dato => props.settValgtPeriode({ til: dato })}
-                        id="utbetalinger-datovelger-til"
-                        disabled={oppfølgingLastes}
-                    />
-                </div>
-            </DatoVelgerWrapper>
-            <KnappWrapper>
-                <Knapp
-                    onClick={() =>
-                        props.reloadDetaljertOppfølging(
-                            props.fødselsnummer,
-                            props.valgtPeriode.fra,
-                            props.valgtPeriode.til
-                        )
-                    }
-                    spinner={oppfølgingLastes}
-                    aria-disabled={oppfølgingLastes}
-                    htmlType="button"
-                >
-                    Søk
-                </Knapp>
-            </KnappWrapper>
-        </>
+        <DatoVelgerWrapper>
+            <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
+            <Datovelger
+                input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
+                visÅrVelger={true}
+                dato={props.valgtPeriode.fra}
+                onChange={dato => props.settValgtPeriode({ fra: dato })}
+                id="utbetalinger-datovelger-fra"
+                disabled={oppfølgingLastes}
+            />
+            <label htmlFor="utbetalinger-datovelger-til">Til:</label>
+            <Datovelger
+                input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
+                visÅrVelger={true}
+                dato={props.valgtPeriode.til}
+                onChange={dato => props.settValgtPeriode({ til: dato })}
+                id="utbetalinger-datovelger-til"
+                disabled={oppfølgingLastes}
+            />
+            <Knapp
+                onClick={() =>
+                    props.reloadDetaljertOppfølging(props.fødselsnummer, props.valgtPeriode.fra, props.valgtPeriode.til)
+                }
+                spinner={oppfølgingLastes}
+                aria-disabled={oppfølgingLastes}
+                htmlType="button"
+            >
+                Søk
+            </Knapp>
+        </DatoVelgerWrapper>
     );
 }
 

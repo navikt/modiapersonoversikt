@@ -12,6 +12,12 @@ interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
 }
 
+const OppfolgingStyle = styled.article`
+    > *:not(:last-child) {
+        margin-bottom: ${theme.margin.layout};
+    }
+`;
+
 const DetaljertInfoWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -21,25 +27,17 @@ const DetaljertInfoWrapper = styled.div`
     }
 `;
 
-const EkspanderbartPanelWrapper = styled.div`
-    > * {
-        margin-top: ${theme.margin.layout};
-    }
-`;
-
 function OppfolgingVisning(props: VisningProps) {
     return (
-        <article>
+        <OppfolgingStyle>
             <VisuallyHiddenAutoFokusHeader tittel="Oppfølging" />
             <DetaljertInfoWrapper>
                 <OppfolgingDatoPanel />
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />
             </DetaljertInfoWrapper>
-            <EkspanderbartPanelWrapper>
-                <SykefravarsoppfolgingEkspanderbartPanel syfoPunkt={props.detaljertOppfølging.sykefraværsoppfølging} />
-                <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
-            </EkspanderbartPanelWrapper>
-        </article>
+            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkt={props.detaljertOppfølging.sykefraværsoppfølging} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
+        </OppfolgingStyle>
     );
 }
 
