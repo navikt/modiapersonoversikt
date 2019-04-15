@@ -4,7 +4,6 @@ import {
     Entitet,
     Feilmelding,
     FeilWrapper,
-    KategoriNotat,
     Kommunikasjonsretning
 } from '../../models/saksoversikt/dokumentmetadata';
 import { fyllRandomListe } from '../utils/mock-utils';
@@ -43,8 +42,7 @@ export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker
         temakodeVisning: tema[1],
         ettersending: faker.random.boolean(),
         erJournalfort: faker.random.boolean(),
-        feil: getFeilWrapper(faker, navfaker),
-        kategoriNotat: getKategoriNotat(navfaker)
+        feil: getFeilWrapper(faker, navfaker)
     };
 }
 
@@ -99,13 +97,5 @@ function getFeilmelding(navfaker: NavFaker): Feilmelding {
         Feilmelding.DokumentIkkeFunnet,
         Feilmelding.TemakodeErBidrag,
         Feilmelding.UkjentFeil
-    ]);
-}
-
-function getKategoriNotat(navfaker: NavFaker): KategoriNotat {
-    return navfaker.random.arrayElement([
-        KategoriNotat.Referat,
-        KategoriNotat.InterntNotat,
-        KategoriNotat.Forvaltningsnotat
     ]);
 }

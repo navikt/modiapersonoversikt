@@ -3,7 +3,6 @@ import {
     Dokument as Enkeltdokument,
     DokumentMetadata,
     Entitet,
-    KategoriNotat,
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
@@ -109,7 +108,7 @@ function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
         case Kommunikasjonsretning.Ut:
             return utgåendeTekst(dokument.mottaker, dokument.navn);
         case Kommunikasjonsretning.Intern:
-            return dokument.kategoriNotat === KategoriNotat.Forvaltningsnotat ? 'Samtalereferat' : 'Notat';
+            return 'Notat';
         default:
             return 'Ukjent kommunikasjonsretning';
     }
