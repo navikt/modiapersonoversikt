@@ -9,6 +9,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './cookieUtils';
+import { KontrollSpørsmålState } from '../../../redux/kontrollSporsmal/types';
 
 interface DispatchProps {
     lukkKontrollSpørsmål: () => void;
@@ -17,6 +18,7 @@ interface DispatchProps {
 
 interface StateProps {
     fnr?: string;
+    kontrollSpørsmål: KontrollSpørsmålState;
 }
 
 type Props = StateProps & DispatchProps;
@@ -55,15 +57,21 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
         settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(this.props.fnr);
     }
 
+    visNyttKnapp() {
+        return this.props.kontrollSpørsmål.spørsmål && this.props.kontrollSpørsmål.spørsmål.length !== 0;
+    }
+
     render() {
         return (
             <KnapperStyling>
                 <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={this.handleLukkClick}>
                     Lukk
                 </KnappBase>
-                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
-                    Nytt
-                </KnappBase>
+                {this.visNyttKnapp() ? (
+                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
+                        Nytt
+                    </KnappBase>
+                ) : null}
             </KnapperStyling>
         );
     }
@@ -71,7 +79,8 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fnr: getFnrFromPerson(state.restResources.personinformasjon)
+        fnr: getFnrFromPerson(state.restResources.personinformasjon),
+        kontrollSpørsmål: state.kontrollSpørsmål
     };
 }
 
