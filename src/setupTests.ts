@@ -35,7 +35,6 @@ import { getMockSaksoversiktForTest } from './mock/saksoversikt/saksoversikt-moc
 import FeatureToggle from './components/featureToggle/FeatureToggle';
 import setNyGjeldendeBruker from './redux/gjeldendeBruker/actions';
 import { statiskVarselMock } from './mock/varsler/statiskVarselMock';
-import { getMockYtelserOgKontrakter } from './mock/oppfolging-mock';
 import { statiskOppfolgingMock } from './mock/statiskOppfolgingMock';
 
 configure({ adapter: new EnzymeReactAdapter() });

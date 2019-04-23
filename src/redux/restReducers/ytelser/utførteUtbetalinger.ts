@@ -1,18 +1,34 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { getUtbetalinger } from '../../../api/utbetaling-api';
+import { createRestResourceReducerAndActions } from '../../../rest/utils/restResource';
+import { UtbetalingerResponse } from '../../../models/utbetalinger';
+import moment from 'moment';
+import { apiBaseUri } from '../../../api/config';
+import { AppState } from '../../reducers';
+import { backendDatoformat } from '../../../mock/utils/mock-utils';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('utførteUtbetalingerYtelser');
-
-export function hentUtførteUtbetalinger(fødselsnummer: string, fraOgMed: Date) {
-    return action(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
+function getUtbetalingerFetchUri(state: AppState, startDato: Date) {
+    const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
+    const fra = moment(startDato).format(backendDatoformat);
+    const til = moment().format(backendDatoformat);
+    return `${apiBaseUri}/utbetaling/${fodselsnummer}?startDato=${fra}&sluttDato=${til}`;
 }
 
-export function reloadUtførteUtbetalinger(fødselsnummer: string, fraOgMed: Date) {
-    return reload(() => getUtbetalinger(fødselsnummer, fraOgMed, new Date()));
+function getNyligeUtbetalingerFetchUri(state: AppState) {
+    const nittiDagerTilbakeITid = moment()
+        .subtract(90, 'day')
+        .startOf('day')
+        .toDate();
+    return getUtbetalingerFetchUri(state, nittiDagerTilbakeITid);
 }
 
-export function resetUtførteUtbetalingerResource() {
-    return tilbakestill;
+export function getToÅrGamleUtbetalingerFetchUri(state: AppState) {
+    const toÅrTilbakeITid = moment()
+        .subtract(2, 'year')
+        .startOf('day')
+        .toDate();
+    return getUtbetalingerFetchUri(state, toÅrTilbakeITid);
 }
 
-export default reducer;
+export default createRestResourceReducerAndActions<UtbetalingerResponse>(
+    'utførteUtbetalingerYtelser',
+    getNyligeUtbetalingerFetchUri
+);

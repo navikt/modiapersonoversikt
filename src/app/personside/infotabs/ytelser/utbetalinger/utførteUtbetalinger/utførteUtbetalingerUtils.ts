@@ -7,23 +7,16 @@ import {
 import { Utbetaling, UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
 import { datoSynkende } from '../../../../../../utils/dateUtils';
-import {
-    isLoaded,
-    isReloading,
-    DeprecatedRestResource
-} from '../../../../../../redux/restReducers/deprecatedRestResource';
 import moment from 'moment';
-import { PersonRespons } from '../../../../../../models/person/person';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
+import { RestResource, isLoaded, isReloading } from '../../../../../../rest/utils/restResource';
 
-export const toÅrTilbakeITid = moment()
-    .subtract(2, 'year')
-    .startOf('day')
-    .toDate();
-export const nittiDagerTilbakeITid = moment()
-    .subtract(90, 'day')
-    .startOf('day')
-    .toDate();
+function toÅrTilbakeITid() {
+    return moment()
+        .subtract(2, 'year')
+        .startOf('day')
+        .toDate();
+}
 
 export function filtrerOgSorterUtbetalinger(utbetalinger: Utbetaling[], type: YtelserKeys): Utbetaling[] {
     return utbetalinger
@@ -45,14 +38,14 @@ export function fjernIrelevanteUtbetalinger(relevantYtelse: YtelserKeys) {
     };
 }
 
-export function inneholderToÅrGamleUtbetalinger(resource: DeprecatedRestResource<UtbetalingerResponse>) {
+export function inneholderToÅrGamleUtbetalinger(resource: RestResource<UtbetalingerResponse>) {
     if (!isLoaded(resource)) {
         return false;
     }
-    return moment(resource.data.periode.startDato).toDate() <= toÅrTilbakeITid;
+    return moment(resource.data.periode.startDato).toDate() <= toÅrTilbakeITid();
 }
 
-export function getKnappStatus(resource: DeprecatedRestResource<PersonRespons>): KnappStatus {
+export function getKnappStatus(resource: RestResource<UtbetalingerResponse>): KnappStatus {
     if (inneholderToÅrGamleUtbetalinger(resource)) {
         return KnappStatus.Skjul;
     } else if (isReloading(resource)) {

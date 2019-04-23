@@ -71,7 +71,7 @@ export interface RestEndepunkter {
     utbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
-    utførteUtbetalingerYtelser: DeprecatedRestResource<UtbetalingerResponse>;
+    utførteUtbetalingerYtelser: RestResource<UtbetalingerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
