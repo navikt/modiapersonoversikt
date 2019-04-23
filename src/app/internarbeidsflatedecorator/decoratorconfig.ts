@@ -1,4 +1,4 @@
-import { apiBaseUri } from './api/config';
+import { apiBaseUri } from '../../api/config';
 
 interface Toggles {
     visEnhet: boolean;

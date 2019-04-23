@@ -12,7 +12,7 @@ import AppStyle, { ContentStyle } from './AppWrapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
-import Decorator from './Decorator';
+import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 
 if (mockEnabled) {
