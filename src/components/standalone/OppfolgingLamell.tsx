@@ -26,6 +26,12 @@ const Styles = styled.div`
         ${theme.visuallyHidden}
     }
     overflow-y: auto;
+    .ekspanderbartPanel__innhold {
+        padding: 0;
+    }
+    .ekspanderbartPanel__hode:hover {
+        ${theme.hover}
+    }
 `;
 
 class OppfolgingLamell extends React.PureComponent<Props> {

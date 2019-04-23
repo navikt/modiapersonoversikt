@@ -42,10 +42,10 @@ const Style = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: steelblue;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
     > *:first-child {
-        flex-shrink: 0;
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);
         padding: 0.5rem 1rem 0.7rem;
@@ -54,9 +54,9 @@ const Style = styled.div`
 `;
 
 const KomponentStyle = styled.div`
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     background-color: ${theme.color.bakgrunn};
     margin: 1rem;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.7);
