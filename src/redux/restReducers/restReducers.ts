@@ -43,7 +43,7 @@ import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
-import { Oppfolging } from '../../models/oppfolging';
+import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { Varsel } from '../../models/varsel';
@@ -73,7 +73,7 @@ export interface RestEndepunkter {
     pleiepenger: RestResource<PleiepengerResponse>;
     utførteUtbetalingerYtelser: DeprecatedRestResource<UtbetalingerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
-    oppfolging: DeprecatedRestResource<Oppfolging>;
+    oppfolging: RestResource<DetaljertOppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
     featureToggles: DeprecatedRestResource<FeatureToggles>;
     brukersVarsler: RestResource<Varsel[]>;
