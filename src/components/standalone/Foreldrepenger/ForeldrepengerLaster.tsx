@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
@@ -9,27 +7,16 @@ import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepen
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
+import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 
 interface Props {
     fødselsnummer: string;
 }
 
-const Margin = styled.div`
-    margin: 0.5em;
-`;
-
 const Style = styled.div`
     ${theme.hvittPanel};
     max-width: ${theme.width.ytelser};
 `;
-
-const onPending = (
-    <FillCenterAndFadeIn>
-        <Margin>
-            <NavFrontendSpinner type={'XL'} />
-        </Margin>
-    </FillCenterAndFadeIn>
-);
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -64,7 +51,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
         return (
             <RestResourceConsumer<ForeldrepengerResponse>
                 getResource={restResources => restResources.foreldrepenger}
-                returnOnPending={onPending}
+                returnOnPending={BigCenteredLazySpinner}
                 returnOnError={onError}
             >
                 {data => this.getAktuellForeldrepengeRettighet(data.foreldrepenger)}

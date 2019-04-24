@@ -25,6 +25,7 @@ import { aggregertSakstema } from './utils/saksoversiktUtils';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
+import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -141,7 +142,10 @@ class SaksoversiktMicroFrontend extends React.PureComponent<Props> {
                 <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                 <LyttPåNyttFnrIReduxOgHentPersoninfo />
                 <FetchFeatureToggles />
-                <Innholdslaster avhengigheter={[this.props.saksoversiktResource]}>
+                <Innholdslaster
+                    avhengigheter={[this.props.saksoversiktResource]}
+                    returnOnPending={BigCenteredLazySpinner}
+                >
                     <DokumentListeContainer />
                     <DokumentOgVedlegg />
                 </Innholdslaster>
