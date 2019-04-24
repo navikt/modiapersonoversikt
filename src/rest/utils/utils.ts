@@ -1,5 +1,5 @@
 import { Action, Dispatch } from 'redux';
-import { ActionTypes, FetchUriGenerator } from './restResource';
+import { ActionTypes, FetchUriCreator } from './restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
 
@@ -53,13 +53,13 @@ function fetchData(uri: string) {
 }
 
 export function fetchDataAndDispatchToRedux<T>(
-    fetchUriGenerator: FetchUriGenerator,
+    fetchUriCreator: FetchUriCreator,
     actionNames: ActionTypes,
     reload?: boolean
 ) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING });
-        const uri = fetchUriGenerator(getState());
+        const uri = fetchUriCreator(getState());
         return fetchData(uri)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED))
             .catch(handterFeil(dispatch, actionNames.FAILED));

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { getTestStore } from '../setupTests';
+import { getTestStore } from './testStore';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Store } from 'redux';

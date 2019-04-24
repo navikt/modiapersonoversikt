@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource, Loaded } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Etiketter from './Etiketter';
 import styled from 'styled-components';
-import PlukkRestDataDeprecated from '../../../infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import Innholdslaster from '../../../../../components/Innholdslaster';
 
 interface Props {
     personResource: DeprecatedRestResource<PersonRespons>;
@@ -22,9 +22,9 @@ function EtiketterContainer(props: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
             <Wrapper>
-                <PlukkRestDataDeprecated restResource={props.personResource}>
-                    {data => <Etiketter person={data as Person} />}
-                </PlukkRestDataDeprecated>
+                <Innholdslaster avhengigheter={[props.personResource]}>
+                    <Etiketter person={(props.personResource as Loaded<Person>).data} />
+                </Innholdslaster>
             </Wrapper>
         </ErrorBoundary>
     );
@@ -36,7 +36,4 @@ const mapStateToProps = (state: AppState) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    null
-)(EtiketterContainer);
+export default connect(mapStateToProps)(EtiketterContainer);

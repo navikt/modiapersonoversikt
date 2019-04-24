@@ -1,17 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-
 import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource, Loaded } from '../../redux/restReducers/deprecatedRestResource';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
-import PlukkRestDataDeprecated from '../../app/personside/infotabs/ytelser/pleiepenger/PlukkRestDataDeprecated';
+import Innholdslaster from '../Innholdslaster';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -41,30 +39,20 @@ const onError = (
     </FillCenterAndFadeIn>
 );
 
-class Personside extends React.PureComponent<Props> {
-    constructor(props: Props) {
-        super(props);
+function Sideinnhold(props: { data: PersonRespons }) {
+    if (erPersonResponsAvTypeBegrensetTilgang(props.data)) {
+        return <BegrensetTilgangSide person={props.data as BegrensetTilgang} />;
+    } else {
+        return <Visittkort />;
     }
+}
 
-    getSideinnhold(data: PersonRespons) {
-        if (erPersonResponsAvTypeBegrensetTilgang(data)) {
-            return <BegrensetTilgangSide person={data as BegrensetTilgang} />;
-        } else {
-            return <Visittkort />;
-        }
-    }
-
-    render() {
-        return (
-            <PlukkRestDataDeprecated
-                restResource={this.props.personResource}
-                returnOnPending={onPending}
-                returnOnError={onError}
-            >
-                {data => this.getSideinnhold(data)}
-            </PlukkRestDataDeprecated>
-        );
-    }
+function Personside(props: Props) {
+    return (
+        <Innholdslaster avhengigheter={[props.personResource]} returnOnPending={onPending} returnOnError={onError}>
+            <Sideinnhold data={(props.personResource as Loaded<PersonRespons>).data} />
+        </Innholdslaster>
+    );
 }
 
 function mapStateToProps(state: AppState): PersonsideStateProps {

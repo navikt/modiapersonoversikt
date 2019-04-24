@@ -6,11 +6,12 @@ import {
     getKnappStatus,
     inneholderToÅrGamleUtbetalinger
 } from './utførteUtbetalingerUtils';
-import { Loaded, NotStarted, Reloading } from '../../../../../../redux/restReducers/deprecatedRestResource';
+import { Loaded, NotStarted, Reloading } from '../../../../../../rest/utils/restResource';
 import { STATUS } from '../../../../../../redux/restReducers/utils';
 import moment from 'moment';
 import { backendDatoformat } from '../../../../../../mock/utils/mock-utils';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
+import { mockRestResourceState } from '../../../../../../rest/utils/mockRestResourceState';
 
 test('filtrerer vekk urelevante ytelser', () => {
     const utbetalinger: Utbetaling[] = [
@@ -63,12 +64,14 @@ test('leverer riktig knappstatus', () => {
 
 function unLoadedRestReducer(): NotStarted<UtbetalingerResponse> {
     return {
+        ...mockRestResourceState,
         status: STATUS.NOT_STARTED
     };
 }
 
 function loadedRestReducerMed2ÅrGamleUtbetalinger(): Loaded<UtbetalingerResponse> {
     return {
+        ...mockRestResourceState,
         status: STATUS.SUCCESS,
         data: {
             periode: {

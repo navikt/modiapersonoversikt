@@ -1,7 +1,6 @@
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
 import { resetUtbetalingerResource } from '../../redux/restReducers/utbetalinger';
-import { resetUtførteUtbetalingerResource } from '../../redux/restReducers/ytelser/utførteUtbetalinger';
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
 import { hentPerson } from '../../redux/restReducers/personinformasjon';
 import { useEffect } from 'react';
@@ -51,7 +50,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
                 dispatch(restResources.sykepenger.actions.reset);
                 dispatch(restResources.pleiepenger.actions.reset);
                 dispatch(restResources.foreldrepenger.actions.reset);
-                dispatch(resetUtførteUtbetalingerResource());
+                dispatch(restResources.utførteUtbetalingerYtelser.actions.reset);
                 dispatch(resetKontrollSpørsmål());
             })
     };

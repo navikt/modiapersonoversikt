@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import ArbeidsForholdListe from './ArbeidsforholdListe';
 import { statiskSykepengerMock } from '../../../../../../mock/ytelse/statiskSykepengerMock';
 import TestProvider from '../../../../../../test/Testprovider';
-import { getTestStore } from '../../../../../../setupTests';
+import { getTestStore } from '../../../../../../test/testStore';
 import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../redux/ytelser/sykepengerReducer';
 
 test('ArbeidsforholdListe matcher snapshot', () => {

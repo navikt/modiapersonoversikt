@@ -1,26 +1,31 @@
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
-import { getDetaljertOppfolging, getOppfolging } from '../../api/oppfolging-api';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { apiBaseUri } from '../../api/config';
+import { formaterTilISO8601Date } from '../../utils/stringFormatting';
+import { AppState } from '../reducers';
+import { DetaljertOppfolging } from '../../models/oppfolging';
+import { AsyncDispatch } from '../ThunkTypes';
 
-const { reducer, action, reload, tilbakestill } = createActionsAndReducerDeprecated('oppfolging');
-
-export function hentOppfolging(fødselsnummer: string) {
-    return action(() => getOppfolging(fødselsnummer));
+function getDetaljertOppfolgingFetchUri(state: AppState) {
+    const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
+    const periode = state.oppfolging.valgtPeriode;
+    const uri = `${apiBaseUri}/oppfolging/${fodselsnummer}/ytelserogkontrakter${lagQueryParametre(
+        periode.fra,
+        periode.til
+    )}`;
+    return uri;
 }
 
-export function reloadOppfolging(fødselsnummer: string) {
-    return reload(() => getOppfolging(fødselsnummer));
+function lagQueryParametre(startDato: Date, sluttDato: Date): string {
+    return `?startDato=${formaterTilISO8601Date(startDato)}&sluttDato=${formaterTilISO8601Date(sluttDato)}`;
 }
 
-export function resetOppfolgingResource() {
-    return tilbakestill;
+export function getOppfolgingFetchUriu(state: AppState) {
+    const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/oppfolging/${fodselsnummer}`;
 }
 
-export function hentDetaljertOppfolging(fødselsnummer: string, startDato: Date, sluttDato: Date) {
-    return action(() => getDetaljertOppfolging(fødselsnummer, startDato, sluttDato));
+export function reloadOppfolingActionCreator(dispatch: AsyncDispatch, getState: () => AppState) {
+    dispatch(getState().restResources.oppfolging.actions.reload);
 }
 
-export function reloadDetaljertOppfolging(fødselsnummer: string, startDato: Date, sluttDato: Date) {
-    return reload(() => getDetaljertOppfolging(fødselsnummer, startDato, sluttDato));
-}
-
-export default reducer;
+export default createRestResourceReducerAndActions<DetaljertOppfolging>('oppfolging', getDetaljertOppfolgingFetchUri);

@@ -4,14 +4,14 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { DeprecatedRestResource, isLoading, isReloading } from '../../../../redux/restReducers/deprecatedRestResource';
+import { isLoading, isReloading, RestResource } from '../../../../rest/utils/restResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { reloadDetaljertOppfolging } from '../../../../redux/restReducers/oppfolging';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
+import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -32,14 +32,13 @@ const TittelWrapper = styled.div`
 `;
 
 interface StateProps {
-    oppfølgingResource: DeprecatedRestResource<DetaljertOppfolging>;
+    oppfølgingResource: RestResource<DetaljertOppfolging>;
     valgtPeriode: VisOppfolgingFraTilDato;
-    fødselsnummer: string;
 }
 
 interface DispatchProps {
     settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => void;
-    reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) => void;
+    reloadDetaljertOppfolging: () => void;
 }
 
 type Props = DispatchProps & StateProps;
@@ -68,9 +67,7 @@ function DatoInputs(props: Props) {
                 disabled={oppfølgingLastes}
             />
             <Knapp
-                onClick={() =>
-                    props.reloadDetaljertOppfølging(props.fødselsnummer, props.valgtPeriode.fra, props.valgtPeriode.til)
-                }
+                onClick={props.reloadDetaljertOppfolging}
                 spinner={oppfølgingLastes}
                 aria-disabled={oppfølgingLastes}
                 htmlType="button"
@@ -94,7 +91,6 @@ function OppfolgingDatoPanel(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
         oppfølgingResource: state.restResources.oppfolging,
         valgtPeriode: state.oppfolging.valgtPeriode
     };
@@ -103,8 +99,7 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => dispatch(settValgtPeriode(change)),
-        reloadDetaljertOppfølging: (fødselsnummer: string, startDato: Date, sluttDato: Date) =>
-            dispatch(reloadDetaljertOppfolging(fødselsnummer, startDato, sluttDato))
+        reloadDetaljertOppfolging: () => dispatch(reloadOppfolingActionCreator)
     };
 }
 

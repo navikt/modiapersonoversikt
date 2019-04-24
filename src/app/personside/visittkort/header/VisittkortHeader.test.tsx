@@ -6,7 +6,7 @@ import TestProvider from '../../../../test/Testprovider';
 import { mount } from 'enzyme';
 import { Person } from '../../../../models/person/person';
 import { personinformasjonActionNames } from '../../../../redux/restReducers/personinformasjon';
-import { getTestStore } from '../../../../setupTests';
+import { getTestStore } from '../../../../test/testStore';
 
 test('viser info om bruker i visittkort-header', () => {
     const visittkortheader = renderer.create(
