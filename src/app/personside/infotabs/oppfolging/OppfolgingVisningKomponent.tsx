@@ -35,7 +35,7 @@ function OppfolgingVisning(props: VisningProps) {
                 <OppfolgingDatoPanel />
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />
             </DetaljertInfoWrapper>
-            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkt={props.detaljertOppfølging.sykefraværsoppfølging} />
+            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfølging.sykefraværsoppfølging} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
         </OppfolgingStyle>
     );
