@@ -12,15 +12,15 @@ export interface ActionTypes {
     INITIALIZE: string;
 }
 
-type FetchThunk<T> = (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
+type ThunkFetcher<T> = (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
 
 export interface RestResource<T> {
     status: STATUS;
     actions: {
-        fetch: FetchThunk<T>;
-        reload: FetchThunk<T>;
-        fetchWithCustomUriGenerator: (uriGenerator: FetchUriGenerator) => FetchThunk<T>;
-        reloadWithCustomUriGenerator: (uriGenerator: FetchUriGenerator) => FetchThunk<T>;
+        fetch: ThunkFetcher<T>;
+        reload: ThunkFetcher<T>;
+        fetchWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
+        reloadWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
         setData: (data: T) => Action;
         reset: (dispatch: AsyncDispatch) => void;
     };
@@ -86,16 +86,16 @@ function getActionTypes(resourceNavn: string): ActionTypes {
     };
 }
 
-export type FetchUriGenerator = (state: AppState) => string;
+export type FetchUriCreator = (state: AppState) => string;
 
-export function createRestResourceReducerAndActions<T>(resourceNavn: string, defaultUriGenerator: FetchUriGenerator) {
+export function createRestResourceReducerAndActions<T>(resourceNavn: string, defaultUriCreator: FetchUriCreator) {
     const actionNames = getActionTypes(resourceNavn);
-    const fetch = fetchDataAndDispatchToRedux(defaultUriGenerator, actionNames);
-    const reload = fetchDataAndDispatchToRedux(defaultUriGenerator, actionNames, true);
-    const fetchWithCustomUriGenerator = (customUriGenerator: FetchUriGenerator) =>
-        fetchDataAndDispatchToRedux(customUriGenerator, actionNames);
-    const reloadWithCustomUriGenerator = (customUriGenerator: FetchUriGenerator) =>
-        fetchDataAndDispatchToRedux(customUriGenerator, actionNames, true);
+    const fetch = fetchDataAndDispatchToRedux(defaultUriCreator, actionNames);
+    const reload = fetchDataAndDispatchToRedux(defaultUriCreator, actionNames, true);
+    const fetchWithCustomUriCreator = (customUriCreator: FetchUriCreator) =>
+        fetchDataAndDispatchToRedux(customUriCreator, actionNames);
+    const reloadWithCustomUriCreator = (customUriCreator: FetchUriCreator) =>
+        fetchDataAndDispatchToRedux(customUriCreator, actionNames, true);
     const setData = (data: T) => ({ type: actionNames.FINISHED, data: data });
     const reset = dispatchReset(actionNames);
 
@@ -104,8 +104,8 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
         actions: {
             fetch,
             reload,
-            fetchWithCustomUriGenerator,
-            reloadWithCustomUriGenerator,
+            fetchWithCustomUriCreator,
+            reloadWithCustomUriCreator,
             setData,
             reset
         }

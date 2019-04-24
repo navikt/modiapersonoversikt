@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
 import RestResourceConsumer from '../../../../../../rest/consumer/RestResourceConsumer';
 import { RestResource } from '../../../../../../rest/utils/restResource';
-import { getToÅrGamleUtbetalingerFetchUri } from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
+import { hentToÅrgamleUtbetalingerActionCreator } from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
 
 export enum KnappStatus {
     Vis,
@@ -29,7 +29,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    dispatch: AsyncDispatch;
+    hentToÅrGamleUtbetalinger: () => void;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
@@ -39,11 +39,6 @@ const Padding = styled.div`
 `;
 
 function UtførteUtbetalingerContainer(props: Props) {
-    function hentToÅrGamleUtbetalinger() {
-        props.dispatch(
-            props.utførteUtbetalinger.actions.reloadWithCustomUriGenerator(getToÅrGamleUtbetalingerFetchUri)
-        );
-    }
     return (
         <ErrorBoundary boundaryName="Utførte utbetalinger">
             <section>
@@ -59,7 +54,7 @@ function UtførteUtbetalingerContainer(props: Props) {
                     {data => (
                         <UtførteUtbetalingerListe
                             utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, props.ytelseType)}
-                            hentToÅrGamleUtbetalinger={hentToÅrGamleUtbetalinger}
+                            hentToÅrGamleUtbetalinger={props.hentToÅrGamleUtbetalinger}
                             knappStatus={getKnappStatus(props.utførteUtbetalinger)}
                         />
                     )}
@@ -77,7 +72,7 @@ function mapStateToProops(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        dispatch: dispatch
+        hentToÅrGamleUtbetalinger: () => dispatch(hentToÅrgamleUtbetalingerActionCreator)
     };
 }
 

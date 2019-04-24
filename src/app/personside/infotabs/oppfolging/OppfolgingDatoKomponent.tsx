@@ -4,14 +4,14 @@ import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import theme from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading } from '../../../../rest/utils/restResource';
+import { isLoading, isReloading, RestResource } from '../../../../rest/utils/restResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
 import { AppState } from '../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
-import { RestResource } from '../../../../rest/utils/restResource';
+import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -38,7 +38,7 @@ interface StateProps {
 
 interface DispatchProps {
     settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => void;
-    dispatch: AsyncDispatch;
+    reloadDetaljertOppfolging: () => void;
 }
 
 type Props = DispatchProps & StateProps;
@@ -67,7 +67,7 @@ function DatoInputs(props: Props) {
                 disabled={oppfølgingLastes}
             />
             <Knapp
-                    onClick={() => props.dispatch(props.oppfølgingResource.actions.reload)}
+                onClick={props.reloadDetaljertOppfolging}
                 spinner={oppfølgingLastes}
                 aria-disabled={oppfølgingLastes}
                 htmlType="button"
@@ -99,7 +99,7 @@ function mapStateToProps(state: AppState): StateProps {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => dispatch(settValgtPeriode(change)),
-        dispatch: dispatch
+        reloadDetaljertOppfolging: () => dispatch(reloadOppfolingActionCreator)
     };
 }
 

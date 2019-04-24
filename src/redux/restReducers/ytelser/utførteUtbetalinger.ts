@@ -4,6 +4,7 @@ import moment from 'moment';
 import { apiBaseUri } from '../../../api/config';
 import { AppState } from '../../reducers';
 import { backendDatoformat } from '../../../mock/utils/mock-utils';
+import { AsyncDispatch } from '../../ThunkTypes';
 
 function getUtbetalingerFetchUri(state: AppState, startDato: Date) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
@@ -26,6 +27,14 @@ export function getToÅrGamleUtbetalingerFetchUri(state: AppState) {
         .startOf('day')
         .toDate();
     return getUtbetalingerFetchUri(state, toÅrTilbakeITid);
+}
+
+export function hentToÅrgamleUtbetalingerActionCreator(dispatch: AsyncDispatch, getState: () => AppState) {
+    dispatch(
+        getState().restResources.utførteUtbetalingerYtelser.actions.reloadWithCustomUriCreator(
+            getToÅrGamleUtbetalingerFetchUri
+        )
+    );
 }
 
 export default createRestResourceReducerAndActions<UtbetalingerResponse>(

@@ -7,8 +7,8 @@ export const mockRestResourceState: RestResource<any> = {
     actions: {
         fetch: jest.fn(),
         reload: jest.fn(),
-        fetchWithCustomUriGenerator: jest.fn(),
-        reloadWithCustomUriGenerator: jest.fn(),
+        fetchWithCustomUriCreator: jest.fn(),
+        reloadWithCustomUriCreator: jest.fn(),
         setData: jest.fn(),
         reset: jest.fn()
     }
