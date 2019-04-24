@@ -36,11 +36,11 @@ const TableStyle = styled.div`
         td:first-child,
         th:first-child {
             text-align: left;
-            font-weight: bold;
         }
         thead {
             border-bottom: 0.2rem solid ${theme.color.bakgrunn};
             text-transform: uppercase;
+            font-weight: bold;
         }
     }
 `;
@@ -52,6 +52,7 @@ const UUOrder = styled.div`
     }
     .second {
         order: 2;
+        font-weight: bold;
     }
 `;
 
