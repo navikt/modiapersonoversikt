@@ -9,6 +9,7 @@ import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { FlexCenter } from '../../common-styled-components';
+import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 
 interface OwnProps {
     fødselsnummer: string;
@@ -52,7 +53,7 @@ function SykePengerLaster(props: Props) {
 
     return (
         <RestResourceConsumer<SykepengerResponse>
-            spinnerSize="XL"
+            returnOnPending={BigCenteredLazySpinner}
             getResource={restResources => restResources.sykepenger}
         >
             {data => getInnhold(data)}

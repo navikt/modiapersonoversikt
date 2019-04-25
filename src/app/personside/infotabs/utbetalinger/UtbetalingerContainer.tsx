@@ -22,6 +22,7 @@ import Arenalenke from './Arenalenke/Arenalenke';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
+import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 
 interface StateProps {
     utbetalingerResource: DeprecatedRestResource<UtbetalingerResponse>;
@@ -96,7 +97,10 @@ class UtbetalingerContainer extends React.PureComponent<Props> {
                         </FiltreringSection>
                     </div>
                     <UtbetalingerSection aria-label="Filtrerte utbetalinger">
-                        <Innholdslaster avhengigheter={[this.props.utbetalingerResource]}>
+                        <Innholdslaster
+                            avhengigheter={[this.props.utbetalingerResource]}
+                            returnOnPending={BigCenteredLazySpinner}
+                        >
                             <Utbetalinger
                                 utbetalingerData={
                                     (this.props.utbetalingerResource as Loaded<UtbetalingerResponse>).data

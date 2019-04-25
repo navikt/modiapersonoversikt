@@ -12,6 +12,10 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
+import { Avgrensninger } from 'nav-datovelger';
+import { Feilmelding } from '../../../../utils/Feilmelding';
+import { formaterDato } from '../../../../utils/stringFormatting';
+import moment from 'moment';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -43,8 +47,46 @@ interface DispatchProps {
 
 type Props = DispatchProps & StateProps;
 
+const tidligsteDato = () =>
+    moment()
+        .subtract(10, 'year')
+        .startOf('day')
+        .toDate();
+
+const senesteDato = () =>
+    moment()
+        .add(1, 'year')
+        .endOf('day')
+        .toDate();
+
+function getDatoFeilmelding(fra: Date, til: Date) {
+    if (fra > til) {
+        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
+    }
+    if (til > senesteDato()) {
+        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato etter ' + formaterDato(senesteDato()) }} />;
+    }
+    if (fra < tidligsteDato()) {
+        return (
+            <Feilmelding
+                feil={{
+                    feilmelding: 'Du kan ikke velge en dato før ' + formaterDato(tidligsteDato())
+                }}
+            />
+        );
+    }
+    return null;
+}
+
 function DatoInputs(props: Props) {
     const oppfølgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
+    const fra = props.valgtPeriode.fra;
+    const til = props.valgtPeriode.til;
+    const periodeFeilmelding = getDatoFeilmelding(fra, til);
+    const avgrensninger: Avgrensninger = {
+        minDato: tidligsteDato(),
+        maksDato: senesteDato()
+    };
 
     return (
         <DatoVelgerWrapper>
@@ -52,24 +94,24 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                dato={props.valgtPeriode.fra}
+                dato={fra}
                 onChange={dato => props.settValgtPeriode({ fra: dato })}
                 id="utbetalinger-datovelger-fra"
-                disabled={oppfølgingLastes}
+                avgrensninger={avgrensninger}
             />
             <label htmlFor="utbetalinger-datovelger-til">Til:</label>
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                dato={props.valgtPeriode.til}
+                dato={til}
                 onChange={dato => props.settValgtPeriode({ til: dato })}
                 id="utbetalinger-datovelger-til"
-                disabled={oppfølgingLastes}
+                avgrensninger={avgrensninger}
             />
+            {periodeFeilmelding}
             <Knapp
-                onClick={props.reloadDetaljertOppfolging}
+                onClick={!oppfølgingLastes ? props.reloadDetaljertOppfolging : () => null}
                 spinner={oppfølgingLastes}
-                aria-disabled={oppfølgingLastes}
                 htmlType="button"
             >
                 Søk

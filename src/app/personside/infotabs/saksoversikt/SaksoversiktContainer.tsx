@@ -16,6 +16,7 @@ import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
+import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 
 interface StateProps {
     baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
@@ -71,7 +72,10 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
                     <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
-                    <Innholdslaster avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}>
+                    <Innholdslaster
+                        avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}
+                        returnOnPending={BigCenteredLazySpinner}
+                    >
                         <SakstemaListeContainer />
                         <SaksDokumenterContainer />
                     </Innholdslaster>
