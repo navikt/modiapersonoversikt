@@ -1,4 +1,8 @@
-import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+
+export function sisteSendteMelding(traad: Traad) {
+    return traad.meldinger[0];
+}
 
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return [
