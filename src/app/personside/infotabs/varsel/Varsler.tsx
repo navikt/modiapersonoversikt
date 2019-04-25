@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Varsel, Varseltype } from '../../../../models/varsel';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
@@ -72,7 +71,6 @@ const Kommaliste = styled.ul`
 `;
 
 function lagVarselTabellRow(varsel: Varsel) {
-    const [åpen, setÅpen] = useState(false);
     const dato = formatterDato(varsel.mottattTidspunkt);
     const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
@@ -85,12 +83,7 @@ function lagVarselTabellRow(varsel: Varsel) {
         </Kommaliste>
     );
     const detaljer = (
-        <Ekspanderbartpanel
-            tittelProps="element"
-            tittel={!åpen ? 'Vis detaljer' : 'Skjul Detaljer'}
-            apen={åpen}
-            onClick={() => setÅpen(!åpen)}
-        >
+        <Ekspanderbartpanel tittelProps="element" tittel={'Detaljer'}>
             <MeldingsListe sortertMeldingsliste={sortertMeldingsliste} />
         </Ekspanderbartpanel>
     );

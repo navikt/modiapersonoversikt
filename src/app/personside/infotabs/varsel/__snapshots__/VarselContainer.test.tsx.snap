@@ -190,7 +190,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                     <span
                       className="typo-element ekspanderbartPanel__heading"
                     >
-                      Vis detaljer
+                      Detaljer
                     </span>
                     <span
                       className="ekspanderbartPanel__indikator"
@@ -247,7 +247,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                     <span
                       className="typo-element ekspanderbartPanel__heading"
                     >
-                      Vis detaljer
+                      Detaljer
                     </span>
                     <span
                       className="ekspanderbartPanel__indikator"
