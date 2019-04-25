@@ -1,12 +1,4 @@
-import {
-    LestStatus,
-    Melding,
-    Saksbehandler,
-    TypeKontakt,
-    Temagruppe,
-    Traad,
-    Meldingstype
-} from '../../models/meldinger/meldinger';
+import { LestStatus, Melding, Saksbehandler, Temagruppe, Traad, Meldingstype } from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
@@ -28,9 +20,6 @@ function getTraad(): Traad {
         .map(() => getMelding(temagruppe));
     return {
         traadId: faker.random.alphaNumeric(8),
-        temagruppe: temagruppe,
-        typeKontakt: navfaker.random.arrayElement([TypeKontakt.Monolog, TypeKontakt.Oppmøte, TypeKontakt.Telefon]),
-        dato: moment(faker.date.recent(40)).format(backendDatoformat),
         meldinger: meldinger
     };
 }

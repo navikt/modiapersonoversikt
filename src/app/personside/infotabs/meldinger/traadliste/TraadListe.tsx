@@ -5,6 +5,7 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { sisteSendteMelding } from '../utils/meldingerUtils';
 
 interface Props {
     traader: Traad[];
@@ -29,7 +30,7 @@ const TraadListeStyle = styled.ol`
 
 function SortertListe(props: Props) {
     const traadKomponenter = props.traader
-        .sort(datoSynkende(traad => traad.dato))
+        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
         .map(traad => (
             <TraadListeElement
                 traad={traad}
