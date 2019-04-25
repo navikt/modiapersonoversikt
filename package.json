@@ -19,7 +19,7 @@
         "start": "react-scripts start",
         "build": "npm run build:less && react-scripts build",
         "test": "react-scripts test",
-        "test-coverage": "react-scripts test --coverage",
+        "test-bail": "react-scripts test --watchAll=false --bail",
         "eject": "react-scripts eject",
         "build:less": "node node_modules/less/bin/lessc --npm-import=\"prefix=~\" src/index.less src/index.css",
         "build-library": "tsc -p ./tsconfig.library.json"
@@ -27,7 +27,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "npm run test-coverage && npm run build-library"
+            "pre-push": "npm run test-bail && npm run build-library"
         }
     },
     "lint-staged": {
