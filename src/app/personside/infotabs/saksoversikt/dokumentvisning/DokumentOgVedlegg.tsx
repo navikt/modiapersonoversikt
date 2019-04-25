@@ -31,8 +31,9 @@ type Props = DispatchProps & StateProps;
 
 const Content = styled.div`
     flex-grow: 1;
-    min-height: 70vh;
+    min-height: 50vh;
     display: flex;
+    height: 0; // IE11-hack for at flex skal funke
     flex-direction: column;
     object {
         flex-grow: 1;
