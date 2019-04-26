@@ -90,22 +90,22 @@ function DatoInputs(props: Props) {
 
     return (
         <DatoVelgerWrapper>
-            <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
+            <label htmlFor="oppfolging-datovelger-fra">Fra:</label>
             <Datovelger
-                input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
+                input={{ id: 'oppfolging-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
                 dato={fra}
                 onChange={dato => props.settValgtPeriode({ fra: dato })}
-                id="utbetalinger-datovelger-fra"
+                id="oppfolging-datovelger-fra"
                 avgrensninger={avgrensninger}
             />
-            <label htmlFor="utbetalinger-datovelger-til">Til:</label>
+            <label htmlFor="oppfolging-datovelger-til">Til:</label>
             <Datovelger
-                input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
+                input={{ id: 'oppfolging-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
                 dato={til}
                 onChange={dato => props.settValgtPeriode({ til: dato })}
-                id="utbetalinger-datovelger-til"
+                id="oppfolging-datovelger-til"
                 avgrensninger={avgrensninger}
             />
             {periodeFeilmelding}
