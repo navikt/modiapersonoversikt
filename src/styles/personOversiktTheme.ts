@@ -91,7 +91,30 @@ export const theme = {
     `,
     width: {
         ytelser: pxToRem(1020)
-    }
+    },
+    table: css`
+        table {
+            width: 100%;
+            text-align: left;
+            border: solid 1px rgba(0, 0, 0, 0.15);
+            thead {
+                border-bottom: 0.2rem solid rgba(0, 0, 0, 0.1);
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            th,
+            td {
+                padding: 1rem;
+                vertical-align: bottom;
+            }
+            th {
+                padding-bottom: 0.7rem;
+            }
+            tr:nth-child(even) {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+        }
+    `
 };
 
 export default theme;

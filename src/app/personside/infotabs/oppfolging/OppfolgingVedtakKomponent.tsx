@@ -13,36 +13,8 @@ interface Props {
     ytelseVedtak: OppfolgingsVedtak[];
 }
 
-const Style = styled.div`
-    border: ${theme.border.skille};
-    border-radius: ${theme.borderRadius.layout};
-`;
-
 const TableStyle = styled.div`
-    padding: ${theme.margin.px20};
-    table {
-        width: 100%;
-        text-align: right;
-        th,
-        td {
-            padding: 0.7rem 0;
-            &:not(:first-child) {
-                padding-left: 1rem;
-            }
-        }
-        td {
-            vertical-align: bottom;
-        }
-        td:first-child,
-        th:first-child {
-            text-align: left;
-        }
-        thead {
-            border-bottom: 0.2rem solid ${theme.color.bakgrunn};
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-    }
+    ${theme.table}
 `;
 const UUOrder = styled.div`
     display: flex;
@@ -60,7 +32,7 @@ function formaterPeriode(vedtak: OppfolgingsVedtak) {
     return datoEllerTomString(vedtak.aktivFra) + ' - ' + datoEllerTomString(vedtak.aktivTil);
 }
 
-function OppfolgingsVedtakListe(props: Props) {
+function OppfolgingsVedtakTabell(props: Props) {
     const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
     const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
     const listekomponenter = sortertPåDato.map((vedtak, index) => [
@@ -73,13 +45,13 @@ function OppfolgingsVedtakListe(props: Props) {
     ]);
 
     return (
-        <Style>
+        <section>
             <Undertittel className="visually-hidden">Vedtak</Undertittel>
             <TableStyle>
                 <Normaltekst tag="div">{createTable(tittelrekke, listekomponenter)}</Normaltekst>
             </TableStyle>
-        </Style>
+        </section>
     );
 }
 
-export default OppfolgingsVedtakListe;
+export default OppfolgingsVedtakTabell;

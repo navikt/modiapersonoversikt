@@ -14,30 +14,7 @@ interface Props {
 
 const TableStyle = styled.div`
     border-top: ${theme.border.skille};
-    padding: ${theme.margin.px20};
-    table {
-        width: 100%;
-        text-align: right;
-        th,
-        td {
-            padding: 1rem;
-        }
-        td {
-            vertical-align: bottom;
-        }
-        td:first-child,
-        th:first-child {
-            text-align: left;
-        }
-        tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        thead {
-            border-bottom: 0.2rem solid ${theme.color.bakgrunn};
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-    }
+    ${theme.table}
 `;
 
 function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
