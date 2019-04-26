@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import renderDecoratorHead from '../decorator';
-import { AppState } from '../redux/reducers';
+import renderDecoratorHead from './decoratorconfig';
+import { AppState } from '../../redux/reducers';
 import { connect } from 'react-redux';
 
 interface StateProps {

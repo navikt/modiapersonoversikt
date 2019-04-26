@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import DescriptionList, { DescriptionListEntries } from '../../../../components/DescriptionList';
-import OppfolgingsVedtakListe from './OppfolgingVedtakKomponent';
+import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 interface Props {
@@ -55,7 +55,7 @@ function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
             <Undertittel>{props.ytelse.type}</Undertittel>
             <YtelsePanelStyle>
                 <DescriptionList entries={descriptionListProps} />
-                <OppfolgingsVedtakListe ytelseVedtak={props.ytelse.vedtak} />
+                <OppfolgingsVedtakTabell ytelseVedtak={props.ytelse.vedtak} />
             </YtelsePanelStyle>
         </ElementStyle>
     );

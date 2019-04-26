@@ -2,57 +2,46 @@ import * as React from 'react';
 import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
+import { createTable } from '../../../../utils/tableUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import DescriptionList from '../../../../components/DescriptionList';
-import { formaterDato } from '../../../../utils/stringFormatting';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
-    syfoPunkt: SyfoPunkt[];
+    syfoPunkter: SyfoPunkt[];
 }
 
-const ElementStyle = styled.div`
-    padding: ${theme.margin.layout};
+const TableStyle = styled.div`
+    border-top: ${theme.border.skille};
+    ${theme.table}
 `;
 
-const ListeStyle = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-`;
-
-function SykefravarsoppfolgingListe(props: { syfoPunkter: SyfoPunkt[] }) {
+function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
     const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
 
-    const listekomponenter = sortertPåDato.map((syfopunkt, index) => (
-        <SyfoPunktElement key={index} syfoPunkt={syfopunkt} />
-    ));
-
-    return <ListeStyle>{listekomponenter}</ListeStyle>;
-}
-
-function SyfoPunktElement(props: { syfoPunkt: SyfoPunkt }) {
-    const descriptionListProps = {
-        ['Innen ' + formaterDato(props.syfoPunkt.dato)]: props.syfoPunkt.syfoHendelse,
-        Status: props.syfoPunkt.status
-    };
+    const tableHeaders = ['Innen', 'Hendelse', 'Status'];
+    const tableRows = sortertPåDato.map((syfopunkt, index) => [
+        formatterDato(syfopunkt.dato),
+        syfopunkt.syfoHendelse,
+        syfopunkt.status
+    ]);
 
     return (
-        <ElementStyle>
-            <DescriptionList entries={descriptionListProps} />
-        </ElementStyle>
+        <TableStyle>
+            <Normaltekst tag="div">{createTable(tableHeaders, tableRows)}</Normaltekst>
+        </TableStyle>
     );
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
-    if (props.syfoPunkt.length === 0) {
+    if (props.syfoPunkter.length === 0) {
         return <AlertStripeInfo>Det finnes ikke oppfølgingsinformasjon om bruker i Arena</AlertStripeInfo>;
     }
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging">
-            <SykefravarsoppfolgingListe syfoPunkter={props.syfoPunkt} />
+            <SykefravarsoppfolgingTabell syfoPunkter={props.syfoPunkter} />
         </EkspanderbartYtelserPanel>
     );
 }

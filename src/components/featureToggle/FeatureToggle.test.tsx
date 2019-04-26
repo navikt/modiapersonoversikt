@@ -5,7 +5,7 @@ import LazySpinner from '../LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
 import FeatureToggle from './FeatureToggle';
-import { getTestStore } from '../../setupTests';
+import { getTestStore } from '../../test/testStore';
 import { featureToggleActionNames } from '../../redux/restReducers/featureToggles';
 import { FeatureToggles } from './toggleIDs';
 

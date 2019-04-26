@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet, PleiepengerResponse } from '../../../models/ytelse/pleiepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
@@ -9,28 +7,17 @@ import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pl
 import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
+import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 
 interface Props {
     fødselsnummer: string;
     barnetsFødselsnummer: string;
 }
 
-const Margin = styled.div`
-    margin: 0.5em;
-`;
-
 const Style = styled.div`
     ${theme.hvittPanel};
     max-width: ${theme.width.ytelser};
 `;
-
-const onPending = (
-    <FillCenterAndFadeIn>
-        <Margin>
-            <NavFrontendSpinner type={'XL'} />
-        </Margin>
-    </FillCenterAndFadeIn>
-);
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -65,7 +52,7 @@ class PleiepengerLaster extends React.PureComponent<Props> {
         return (
             <RestResourceConsumer<PleiepengerResponse>
                 getResource={restResources => restResources.pleiepenger}
-                returnOnPending={onPending}
+                returnOnPending={BigCenteredLazySpinner}
                 returnOnError={onError}
             >
                 {data => this.getAktuellPleiepengeRettighet(data.pleiepenger)}

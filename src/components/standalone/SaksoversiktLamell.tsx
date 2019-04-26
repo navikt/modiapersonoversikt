@@ -28,6 +28,9 @@ const Styles = styled.div`
         ${theme.visuallyHidden}
     }
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 `;
 
 class SaksoversiktLamell extends React.Component<Props> {

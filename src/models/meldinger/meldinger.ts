@@ -1,8 +1,5 @@
 export interface Traad {
     traadId: string;
-    temagruppe: Temagruppe;
-    typeKontakt: TypeKontakt;
-    dato: string;
     meldinger: Melding[];
 }
 

@@ -19,6 +19,7 @@ import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { TilbakePil } from '../../components/common-styled-components';
+import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 
 const BrukerprofilWrapper = styled.article`
     flex-grow: 1;
@@ -154,7 +155,10 @@ class BrukerprofilSide extends React.PureComponent<Props> {
         return (
             <BrukerprofilWrapper>
                 {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
-                <Innholdslaster avhengigheter={[this.props.personResource, this.props.veilederRollerResource]}>
+                <Innholdslaster
+                    avhengigheter={[this.props.personResource, this.props.veilederRollerResource]}
+                    returnOnPending={BigCenteredLazySpinner}
+                >
                     {erNyePersonoversikten() && (
                         <Header person={(this.props.personResource as Loaded<PersonRespons>).data as Person} />
                     )}

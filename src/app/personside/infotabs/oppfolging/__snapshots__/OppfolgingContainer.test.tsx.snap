@@ -1,76 +1,489 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
-.c0 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+.c4 > * {
+  margin-bottom: 1rem;
+}
+
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  padding: 1.25rem;
+}
+
+.c3 {
+  margin-bottom: .8rem;
+}
+
+.c3:focus {
+  outline: none;
+}
+
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-animation: fYGRJE 0.3s ease-out;
-  animation: fYGRJE 0.3s ease-out;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
-.c0 > * {
-  -webkit-flex: 0 1 25rem;
-  -ms-flex: 0 1 25rem;
-  flex: 0 1 25rem;
+.c7 dt {
+  color: #78706a;
+}
+
+.c7 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c7 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c5 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  padding: 1.25rem;
+}
+
+.c5 > *:first-child {
+  margin-bottom: 1rem;
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
-<div
+.c6 > *:first-child {
+  margin-right: 5rem;
+}
+
+.c10 {
+  font-weight: bold;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.c9 > *:first-child {
+  -webkit-flex-basis: 10em;
+  -ms-flex-preferred-size: 10em;
+  flex-basis: 10em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.c9 > * {
+  white-space: nowrap;
+}
+
+.c9 > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.c8 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: .8rem;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c1 > *:last-child {
+  margin-left: .8rem;
+  -webkit-flex-basis: 75%;
+  -ms-flex-preferred-size: 75%;
+  flex-basis: 75%;
+}
+
+<article
   className="c0"
 >
-  <svg
-    aria-label="Laster innhold"
-    className="spinner spinner--xxl"
-    focusable="false"
-    height={32}
-    kind="spinner"
-    preserveAspectRatio="xMidYMid"
-    viewBox="0 0 50 50"
-    width={32}
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
   >
-    <title>
-      Venter...
-    </title>
-    <circle
-      cx="25"
-      cy="25"
-      fill="none"
-      r="20"
-      stroke="#bdbab7"
-      strokeWidth="5"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-    <circle
-      cx="25"
-      cy="25"
-      fill="none"
-      r="20"
-      stroke="#7f756c"
-      strokeDasharray="50 155"
-      strokeLinecap="round"
-      strokeWidth="5"
-    />
-  </svg>
-</div>
+    Oppfølging
+  </h2>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h2
+          className="typo-undertittel"
+        >
+          Oppfølging og ytelser vises for perioden:
+        </h2>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="oppfolging-datovelger-fra"
+        >
+          Fra:
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                id="oppfolging-datovelger-fra"
+                maxLength={10}
+                name="Fra dato"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value="01.11.1969"
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
+                >
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <label
+          htmlFor="oppfolging-datovelger-til"
+        >
+          Til:
+        </label>
+        <div
+          onBlur={[Function]}
+          onKeyDown={[Function]}
+        >
+          <div
+            className="nav-datovelger"
+          >
+            <div
+              className="nav-datovelger__inputContainer"
+            >
+              <input
+                aria-invalid={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="nav-datovelger__input"
+                id="oppfolging-datovelger-til"
+                maxLength={10}
+                name="Til dato"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                type="text"
+                value="01.02.1970"
+              />
+              <button
+                aria-expanded={false}
+                aria-label="Kalender"
+                className="nav-datovelger__kalenderknapp"
+                onClick={[Function]}
+                role="button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height={16}
+                  role="presentation"
+                  viewBox="0 0 18 18"
+                  width={16}
+                >
+                  <title>
+                    Kalenderikon
+                  </title>
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    stroke="#0067C5"
+                  >
+                    <path
+                      d="M4 2.667H1.333v14h15.334v-14H14"
+                    />
+                    <path
+                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          className="knapp knapp--standard"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Søk
+        </button>
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <h2
+        className="typo-undertittel"
+      >
+        Arbeidsoppfølging
+      </h2>
+      <div
+        className="c6"
+      >
+        <dl
+          className="c7"
+        >
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Er under oppfølging
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Nei
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Oppfølgingsenhet
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              E0001 Tangen AS
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Rettighetsgruppe
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              RGRP8
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Innsatsgruppe
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              INGRP10
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Veileder
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Testident Testidentesen (Z0000001)
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Meldeplikt
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Nei
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Formidlingsgruppe
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              FMGRP2
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Oppfølgingsvedtak
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              15.04.2019
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c8"
+  >
+    <div
+      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-controls="Helt tilfeldig ID"
+        aria-expanded={false}
+        className="ekspanderbartPanel__hode"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c10"
+              >
+                Sykefraværsoppfølging
+              </span>
+            </p>
+          </div>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c8"
+  >
+    <div
+      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-controls="Helt tilfeldig ID"
+        aria-expanded={false}
+        className="ekspanderbartPanel__hode"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c10"
+              >
+                Ytelser
+              </span>
+            </p>
+          </div>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+</article>
 `;

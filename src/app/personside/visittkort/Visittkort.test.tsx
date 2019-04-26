@@ -2,7 +2,7 @@ import * as React from 'react';
 import Visittkort from './VisittkortContainer';
 import { mount } from 'enzyme';
 import TestProvider from '../../../test/Testprovider';
-import { getTestStore } from '../../../setupTests';
+import { getTestStore } from '../../../test/testStore';
 import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
 
 test('viser visittkortheader når visittkort først rendres', () => {

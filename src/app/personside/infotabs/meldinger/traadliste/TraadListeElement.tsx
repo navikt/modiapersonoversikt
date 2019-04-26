@@ -8,6 +8,7 @@ import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
+import { sisteSendteMelding } from '../utils/meldingerUtils';
 
 interface Props {
     traad: Traad;
@@ -40,15 +41,11 @@ const PanelStyle = styled.div`
     }
 `;
 
-function sisteSendteMelding(traad: Traad) {
-    return traad.meldinger[0];
-}
-
 function TraadListeElement(props: Props) {
-    const datoTekst = formatterDatoTid(props.traad.dato);
-    const tittel = `${meldingstypeTekst(sisteSendteMelding(props.traad).meldingstype)} - ${temagruppeTekst(
-        props.traad.temagruppe
-    )}`;
+    const nyesteMelding = sisteSendteMelding(props.traad);
+    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
+    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+
     return (
         <li>
             <VisMerKnapp
