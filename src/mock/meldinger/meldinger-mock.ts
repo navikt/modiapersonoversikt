@@ -48,6 +48,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
 function getSaksbehandler(): Saksbehandler {
     return {
         ident: faker.random.alphaNumeric(6),
-        navn: faker.name.firstName() + ' ' + faker.name.lastName()
+        fornavn: faker.name.firstName(),
+        etternavn: faker.name.lastName()
     };
 }

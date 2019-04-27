@@ -18,8 +18,9 @@ export interface Melding {
 }
 
 export interface Saksbehandler {
-    navn: string;
-    ident: string;
+    fornavn: string;
+    etternavn: string;
+    ident?: string;
 }
 
 export enum TypeKontakt {
@@ -64,5 +65,6 @@ export enum Meldingstype {
 
 export enum LestStatus {
     IkkeLest = 'IKKE_LEST_AV_BRUKER',
-    Lest = 'LEST_AV_BRUKER'
+    Lest = 'LEST_AV_BRUKER',
+    IkkeBesvart = 'IKKE_BESVART'
 }
