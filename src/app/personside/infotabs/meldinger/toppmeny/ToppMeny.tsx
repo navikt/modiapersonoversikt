@@ -16,12 +16,13 @@ const PanelStyle = styled.div`
 
 const KnapperPanelStyle = styled.div`
     display: flex;
-    > *:not(:first-child) {
-        margin-left: ${theme.margin.px10};
+    > * {
+        margin-right: ${theme.margin.layout};
     }
 `;
 
 const InputStyle = styled.div`
+    flex-grow: 1;
     .move-input-label {
         display: flex;
         > * {
@@ -50,7 +51,7 @@ function ToppMeny(props: Props) {
     return (
         <PanelStyle>
             <InputStyle>
-                <Input label={'Søk'} className={'move-input-label'} />
+                <Input label={'Søk'} className={'move-input-label'} bredde={'L'} />
             </InputStyle>
             <Funksjoner valgtTraad={props.valgtTraad} />
         </PanelStyle>
