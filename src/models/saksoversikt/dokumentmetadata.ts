@@ -17,7 +17,6 @@ export interface DokumentMetadata {
     temakodeVisning: string;
     ettersending: boolean;
     erJournalfort: boolean;
-    kategoriNotat: KategoriNotat;
     feil: FeilWrapper;
 }
 
@@ -52,12 +51,6 @@ export enum Feilmelding {
 export interface FeilWrapper {
     inneholderFeil: boolean;
     feilmelding: Feilmelding;
-}
-
-export enum KategoriNotat {
-    Forvaltningsnotat = 'FORVALTNINGSNOTAT',
-    InterntNotat = 'INTERNT_NOTAT',
-    Referat = 'REFERAT'
 }
 
 export interface Dokument {
