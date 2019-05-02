@@ -24,7 +24,7 @@ export interface DetaljertOppfolging {
     rettighetsgruppe: string;
     vedtaksdato: string;
     sykefraværsoppfølging: SyfoPunkt[];
-    ytelser: OppfolgingsYtelse[];
+    ytelser: (OppfolgingsYtelse | Dagpenger)[];
 }
 
 export interface SyfoPunkt {
@@ -35,14 +35,26 @@ export interface SyfoPunkt {
 }
 
 export interface OppfolgingsYtelse {
-    dagerIgjen: number;
-    ukerIgjen: number;
     datoKravMottatt: string;
     fom: null | string;
     tom: null | string;
     status: string;
     type: string;
     vedtak: OppfolgingsVedtak[];
+    dagerIgjenMedBortfall: number;
+    ukerIgjenMedBortfall: number;
+}
+
+export interface Dagpenger extends OppfolgingsYtelse {
+    dagerIgjen: number;
+    ukerIgjen: number;
+    dagerIgjenPermittering: number;
+    ukerIgjenPermittering: number;
+    type: 'Dagpenger';
+}
+
+export function isDagpenger(oppfolgingsYtelse: OppfolgingsYtelse): oppfolgingsYtelse is Dagpenger {
+    return oppfolgingsYtelse.type === 'Dagpenger';
 }
 
 export interface OppfolgingsVedtak {
