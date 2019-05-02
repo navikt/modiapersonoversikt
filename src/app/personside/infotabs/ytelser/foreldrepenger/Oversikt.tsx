@@ -74,9 +74,7 @@ function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
             Omsorgsovertakelse: datoEllerNull(foreldrePenger.omsorgsovertakelse)
         };
     }
-    return {
-        Termindato: null
-    };
+    return {};
 }
 
 function Oversikt({ foreldrePenger }: Props) {
