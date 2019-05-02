@@ -52,7 +52,9 @@ function Sykepengertilfellet({ sykepenger }: Props) {
             Sanksjonperiode: periodeEllerNull(sykepenger.sanksjon)
         }),
         Ferieperioder: periodeEllerNull(sykepenger.ferie1),
-        Ferieperioder2: periodeEllerNull(sykepenger.ferie2),
+        ...fjernEntriesUtenVerdi({
+            Ferieperioder2: periodeEllerNull(sykepenger.ferie2)
+        }),
         ...getForsikringEntries(sykepenger.forsikring),
         ...getYrkesskadeEntries(sykepenger.sykmeldinger)
     };
