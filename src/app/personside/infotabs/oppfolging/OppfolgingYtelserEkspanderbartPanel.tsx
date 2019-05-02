@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { OppfolgingsYtelse } from '../../../../models/oppfolging';
+import { isDagpenger, OppfolgingsYtelse } from '../../../../models/oppfolging';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import DescriptionList, { DescriptionListEntries } from '../../../../components/DescriptionList';
+import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 
@@ -41,31 +41,39 @@ function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }
 
-function YtelseElement(props: { ytelse: OppfolgingsYtelse }) {
+function YtelseElement({ ytelse }: { ytelse: OppfolgingsYtelse }) {
     const descriptionListProps = {
-        Status: props.ytelse.status,
-        'Dato søknad mottatt': datoEllerNull(props.ytelse.datoKravMottatt),
-        'Dato fra': datoEllerNull(props.ytelse.fom),
-        'Dato til': datoEllerNull(props.ytelse.tom),
-        ...dersomDagpengerLeggTilFelter(props.ytelse)
+        Status: ytelse.status,
+        'Dato søknad mottatt': datoEllerNull(ytelse.datoKravMottatt),
+        'Dato fra': datoEllerNull(ytelse.fom),
+        'Dato til': datoEllerNull(ytelse.tom),
+        ...fjernEntriesUtenVerdi({
+            'Bortfall: Dager igjen': ytelse.dagerIgjenMedBortfall,
+            'Bortfall: Uker igjen': ytelse.ukerIgjenMedBortfall
+        }),
+        ...dersomDagpengerLeggTilFelter(ytelse)
     };
 
     return (
         <ElementStyle>
-            <Undertittel>{props.ytelse.type}</Undertittel>
+            <Undertittel>{ytelse.type}</Undertittel>
             <YtelsePanelStyle>
                 <DescriptionList entries={descriptionListProps} />
-                <OppfolgingsVedtakTabell ytelseVedtak={props.ytelse.vedtak} />
+                <OppfolgingsVedtakTabell ytelseVedtak={ytelse.vedtak} />
             </YtelsePanelStyle>
         </ElementStyle>
     );
 }
 
 function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionListEntries {
-    if (ytelse.type === 'Dagpenger') {
+    if (isDagpenger(ytelse)) {
         return {
             'Dager igjen': ytelse.dagerIgjen,
-            'Uker igjen': ytelse.ukerIgjen
+            'Uker igjen': ytelse.ukerIgjen,
+            ...fjernEntriesUtenVerdi({
+                'Permittering: Dager igjen': ytelse.dagerIgjenPermittering,
+                'Permittering: Uker igjen': ytelse.ukerIgjenPermittering
+            })
         };
     }
 

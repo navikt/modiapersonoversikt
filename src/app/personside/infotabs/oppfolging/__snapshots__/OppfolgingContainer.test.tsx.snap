@@ -185,7 +185,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 onKeyDown={[Function]}
                 pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                 type="text"
-                value="01.11.1969"
+                value="01.01.1970"
               />
               <button
                 aria-expanded={false}
@@ -250,7 +250,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 onKeyDown={[Function]}
                 pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                 type="text"
-                value="01.02.1970"
+                value="01.01.1970"
               />
               <button
                 aria-expanded={false}
@@ -404,7 +404,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             <dd
               className="typo-normal"
             >
-              15.04.2019
+              01.01.1970
             </dd>
           </div>
         </dl>
