@@ -44,7 +44,7 @@ function Sykepengertilfellet({ sykepenger }: Props) {
     const sykepengeTilfelletEntries: DescriptionListEntries = {
         'Sykemeldt fra og med': datoEllerNull(sykepenger.sykmeldtFom),
         'Forbrukte dager': sykepenger.forbrukteDager,
-        Maksdato: sykepenger.slutt,
+        Maksdato: datoEllerNull(sykepenger.slutt),
         'Untatt aktivitet': sykepenger.unntakAktivitet,
         'Midlertidig stans': sykepenger.midlertidigStanset,
         ...fjernEntriesUtenVerdi({

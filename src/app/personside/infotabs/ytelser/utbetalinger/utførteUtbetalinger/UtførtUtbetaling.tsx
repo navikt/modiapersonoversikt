@@ -54,7 +54,7 @@ function UtførtUtbetaling({ utbetaling, ytelse }: Props) {
         Bruttobeløp: NOKellerNull(bruttoSum),
         Arbeidsgiver: ytelse.arbeidsgiver && ytelse.arbeidsgiver.navn,
         Organisasjonsnummer: ytelse.arbeidsgiver && ytelse.arbeidsgiver.orgnr,
-        Skattetrekk: ytelse.skattsum,
+        Skattetrekk: NOKellerNull(ytelse.skattsum),
         Kreditortrekk: getKreditorTrekk(ytelse)
     };
     const [visDetaljer, setVisDetaljer] = useState(false);
