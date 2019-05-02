@@ -28,37 +28,36 @@ exports[`Sykemelding matcher snapshot 1`] = `
 }
 
 .c1 table {
-  text-align: right;
+  width: 100%;
+  text-align: left;
+  border: solid 1px rgba(0,0,0,0.15);
 }
 
 .c1 table thead {
-  border-bottom: 0.2rem solid #cce1f3;
+  border-bottom: 0.2rem solid rgba(0,0,0,0.1);
+  text-transform: uppercase;
   font-weight: bold;
 }
 
 .c1 table th,
 .c1 table td {
-  padding: 0.7rem 0;
+  padding: 1rem;
+  vertical-align: bottom;
 }
 
-.c1 table th:not(:first-child),
-.c1 table td:not(:first-child) {
-  padding-left: 1rem;
+.c1 table th {
+  padding-bottom: 0.7rem;
 }
 
-.c1 table td {
-  font-weight: normal;
-}
-
-.c1 table tbody tr {
-  border-bottom: 0.2rem solid #e9e7e7;
+.c1 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.05);
 }
 
 <div>
   <h3
     className="typo-ingress"
   >
-    Sykemelding
+    Sykmelding
   </h3>
   <dl
     className="c0"
@@ -99,75 +98,65 @@ exports[`Sykemelding matcher snapshot 1`] = `
         Lommelegen AS
       </dd>
     </div>
-    <div>
-      <dt
-        className="typo-etikett-liten"
-      >
-        Gradering
-      </dt>
-      <dd
-        className="typo-normal"
-      >
-        <div
-          className="c1"
-        >
-          <table
-            role="table"
-          >
-            <thead
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
-                <th
-                  role="columnheader"
-                >
-                  Periode
-                </th>
-                <th
-                  role="columnheader"
-                >
-                  Gradering
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
-                <td
-                  role="cell"
-                >
-                  09.02.2014 - 11.05.2014
-                </td>
-                <td
-                  role="cell"
-                >
-                  97%
-                </td>
-              </tr>
-              <tr
-                role="row"
-              >
-                <td
-                  role="cell"
-                >
-                  09.02.2014 - 11.05.2014
-                </td>
-                <td
-                  role="cell"
-                >
-                  97%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </dd>
-    </div>
   </dl>
+  <div
+    aria-label="Sykmeldingsperioder"
+    className="c1"
+  >
+    <table
+      role="table"
+    >
+      <thead
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <th
+            role="columnheader"
+          >
+            Periode
+          </th>
+          <th
+            role="columnheader"
+          >
+            Gradering
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            09.02.2014 - 11.05.2014
+          </td>
+          <td
+            role="cell"
+          >
+            97%
+          </td>
+        </tr>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            09.02.2014 - 11.05.2014
+          </td>
+          <td
+            role="cell"
+          >
+            97%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 `;
