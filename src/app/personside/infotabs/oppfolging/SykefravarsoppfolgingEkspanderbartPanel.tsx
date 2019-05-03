@@ -36,7 +36,11 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
     if (props.syfoPunkter.length === 0) {
-        return <AlertStripeInfo>Det finnes ikke oppfølgingsinformasjon om bruker i Arena</AlertStripeInfo>;
+        return (
+            <AlertStripeInfo>
+                Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena
+            </AlertStripeInfo>
+        );
     }
 
     return (
