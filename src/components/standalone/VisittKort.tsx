@@ -13,6 +13,7 @@ import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHand
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import theme from '../../styles/personOversiktTheme';
 import styled from 'styled-components';
+import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
 
 interface Props {
     fødselsnummer: string;
@@ -41,6 +42,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <Kontrollsporsmal />
                         <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />
+                        <TilbakemeldingFab />
                     </Styles>
                 </Provider>
             </ErrorBoundary>
