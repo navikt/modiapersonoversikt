@@ -21,6 +21,10 @@ const TilbakemeldingPopupContainer = styled.div`
         ${theme.focus}
     }
 `;
+const KnappWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
 const IkkeVis = styled.button`
     background: none;
     border: none;
@@ -31,6 +35,7 @@ const TakkForTilbakemeldingenContainer = styled(TilbakemeldingPopupContainer)`
 `;
 
 interface Props {
+    sporsmal: string;
     erApen: boolean;
     besvart: boolean;
     settBesvart(tilfredshet: number, besvart: string): void;
@@ -43,30 +48,7 @@ interface InternalProps extends Props {
     settKommentar(kommentar: string): void;
 }
 
-function IkkeVisKnapp(props: InternalProps) {
-    if (props.valgt >= 0) {
-        return null;
-    }
-
-    return (
-        <IkkeVis
-            role="button"
-            className="lenke"
-            onClick={event => {
-                event.preventDefault();
-                props.settBesvart(-1, '');
-            }}
-        >
-            Ikke vis denne igjen
-        </IkkeVis>
-    );
-}
-
 function Kommentar(props: InternalProps) {
-    if (props.valgt < 0) {
-        return null;
-    }
-
     return (
         <>
             <Textarea
@@ -75,7 +57,19 @@ function Kommentar(props: InternalProps) {
                 label="Si gjerne litt mer om opplevelsen av endringer."
                 maxLength={750}
             />
-            <Hovedknapp role="submit">Send</Hovedknapp>
+            <KnappWrapper>
+                <Hovedknapp role="submit">Send</Hovedknapp>
+                <IkkeVis
+                    role="button"
+                    className="lenke"
+                    onClick={event => {
+                        event.preventDefault();
+                        props.settBesvart(-1, '');
+                    }}
+                >
+                    Ikke vis denne igjen
+                </IkkeVis>
+            </KnappWrapper>
         </>
     );
 }
@@ -95,12 +89,9 @@ function TilbakemeldingSkjema(props: InternalProps) {
     return (
         <TilbakemeldingPopupContainer ref={popup} tabIndex={-1}>
             <Innholdstittel className="blokk-xs">Tilbakemelding</Innholdstittel>
-            <Normaltekst className="blokk-m">
-                Her kan vi skrive spørsmålet... lorem ipsum etc, bare for å få litt tekst her
-            </Normaltekst>
+            <Normaltekst className="blokk-m">{props.sporsmal}</Normaltekst>
             <form onSubmit={submitHandler}>
                 <TilbakemeldingValg {...props} />
-                <IkkeVisKnapp {...props} />
                 <Kommentar {...props} />
             </form>
         </TilbakemeldingPopupContainer>
