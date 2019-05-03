@@ -1,21 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { AppState } from '../../../redux/reducers';
-import { DeprecatedRestResource, isLoaded } from '../../../redux/restReducers/deprecatedRestResource';
 import { FeatureToggles } from '../../featureToggle/toggleIDs';
 import { useClickOutside } from '../../../utils/customHooks';
 import TilbakemeldingPopup from './TilbakemeldingPopup';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { apneIkon, lukkeIkon } from './TilbakemeldingIkoner';
+import IfFeatureToggleOn from '../../featureToggle/IfFeatureToggleOn';
 
 const localstoragePrefix = 'modiapersonoversikt__tilbakemelding__';
 const localstorageId = 'hurtigreferat';
-
-interface Props {
-    featureErPa: boolean;
-}
+const sporsmal = 'Her kan vi skrive spørsmålet... lorem ipsum etc, bare for å få litt tekst her';
 
 const TilbakemeldingWrapper = styled.div``;
 const TilbakemeldingBtn = styled.button`
@@ -43,15 +38,14 @@ const TilbakemeldingBtn = styled.button`
     }
 `;
 
-function TilbakemeldingFab(props: Props) {
+function TilbakemeldingFab() {
     const localStorageKey = `${localstoragePrefix}${localstorageId}`;
     const [besvart, settBesvart] = React.useState(Boolean(window.localStorage.getItem(localStorageKey)));
     const [erApen, settErApen] = React.useState(false);
     const wrapper = React.createRef<HTMLDivElement>();
     useClickOutside(wrapper, () => settErApen(false));
 
-    const skalVises = props.featureErPa && (erApen || !besvart);
-    if (!skalVises) {
+    if (besvart && !erApen) {
         return null;
     }
 
@@ -72,22 +66,20 @@ function TilbakemeldingFab(props: Props) {
 
     const ikon = erApen ? lukkeIkon : apneIkon;
     return (
-        <TilbakemeldingWrapper ref={wrapper}>
-            <TilbakemeldingPopup erApen={erApen} besvart={besvart} settBesvart={settBesvartCallback} />
-            <TilbakemeldingBtn onClick={() => settErApen(!erApen)}>
-                <img src={ikon} alt="" />
-                <span className="sr-only">{erApen ? 'Lukk tilbakemelding' : 'Vis tilbakemelding'}</span>
-            </TilbakemeldingBtn>
-        </TilbakemeldingWrapper>
+        <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
+            <TilbakemeldingWrapper ref={wrapper}>
+                <TilbakemeldingPopup
+                    erApen={erApen}
+                    besvart={besvart}
+                    settBesvart={settBesvartCallback}
+                    sporsmal={sporsmal}
+                />
+                <TilbakemeldingBtn onClick={() => settErApen(!erApen)}>
+                    <img src={ikon} alt="" />
+                    <span className="sr-only">{erApen ? 'Lukk tilbakemelding' : 'Vis tilbakemelding'}</span>
+                </TilbakemeldingBtn>
+            </TilbakemeldingWrapper>
+        </IfFeatureToggleOn>
     );
 }
-
-function mapStateToProps(state: AppState) {
-    const featureToggles: DeprecatedRestResource<FeatureToggles> = state.restResources.featureToggles;
-    if (!isLoaded(featureToggles)) {
-        return { featureErPa: false };
-    }
-    return { featureErPa: featureToggles.data[FeatureToggles.VisTilbakemelding] };
-}
-
-export default connect(mapStateToProps)(TilbakemeldingFab);
+export default TilbakemeldingFab;
