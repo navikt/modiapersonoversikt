@@ -12,7 +12,7 @@ interface Props {
 function Arbeidssituasjon(props: Props) {
     const sykemeldingEntries: DescriptionListEntries = {
         Arbeidsgiverperiode: convertBoolTilJaNei(props.sykepenger.erArbeidsgiverperiode),
-        Arbeidskategori: props.sykepenger.arbeidsKategori
+        Arbeidskategori: props.sykepenger.arbeidskategori
     };
 
     return (

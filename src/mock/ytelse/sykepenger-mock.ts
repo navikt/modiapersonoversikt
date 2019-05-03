@@ -62,7 +62,7 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         slutt: navfaker.random.vektetSjanse(0.7) ? null : moment(faker.date.past(1)).format(backendDatoformat),
         arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
         erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
-        arbeidsKategori: 'Ærlig arbeid'
+        arbeidskategori: 'Ærlig arbeid'
     };
 }
 

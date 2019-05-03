@@ -24,7 +24,7 @@ export interface Sykepenger {
     slutt: null | string;
     arbeidsforholdListe: Arbeidsforhold[];
     erArbeidsgiverperiode: boolean;
-    arbeidsKategori: string;
+    arbeidskategori: string;
 }
 
 export interface Forsikring {
