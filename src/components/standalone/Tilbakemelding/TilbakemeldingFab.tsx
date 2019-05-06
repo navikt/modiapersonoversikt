@@ -1,16 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { FeatureToggles } from '../../featureToggle/toggleIDs';
 import { useClickOutside } from '../../../utils/customHooks';
 import TilbakemeldingPopup from './TilbakemeldingPopup';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { apneIkon, lukkeIkon } from './TilbakemeldingIkoner';
-import IfFeatureToggleOn from '../../featureToggle/IfFeatureToggleOn';
 
 const localstoragePrefix = 'modiapersonoversikt__tilbakemelding__';
-const localstorageId = 'hurtigreferat';
-const sporsmal = 'Her kan vi skrive spørsmålet... lorem ipsum etc, bare for å få litt tekst her';
 
 const TilbakemeldingWrapper = styled.div``;
 const TilbakemeldingBtn = styled.button`
@@ -23,12 +19,12 @@ const TilbakemeldingBtn = styled.button`
     border-radius: 50%;
     border: none;
     background-color: white;
-    box-shadow: 0 6px 10px 0 ${theme.color.gråSkrift};
+    box-shadow: 0 ${pxToRem(6)} ${pxToRem(10)} 0 ${theme.color.gråSkrift};
     transition: all 0.1s ease-in-out;
     z-index: 999;
 
     &:hover {
-        box-shadow: 0 6px 14px 0 ${theme.color.gråSkrift};
+        box-shadow: 0 ${pxToRem(6)} ${pxToRem(14)} 0 ${theme.color.gråSkrift};
         transform: scale(1.15);
         cursor: pointer;
     }
@@ -38,24 +34,36 @@ const TilbakemeldingBtn = styled.button`
     }
 `;
 
-function TilbakemeldingFab() {
-    const localStorageKey = `${localstoragePrefix}${localstorageId}`;
-    const [besvart, settBesvart] = React.useState(Boolean(window.localStorage.getItem(localStorageKey)));
+interface Props {
+    temaId: string;
+    sporsmal: string;
+}
+
+function tilfredshetErValg(tilfredshet: number) {
+    return tilfredshet >= 0;
+}
+
+function TilbakemeldingFab(props: Props) {
+    const localStorageKey = `${localstoragePrefix}${props.temaId}`;
+    const erBesvartFraLocalStorage = Boolean(window.localStorage.getItem(localStorageKey));
+    const [erBesvart, settErBesvart] = React.useState(erBesvartFraLocalStorage);
     const [erApen, settErApen] = React.useState(false);
     const wrapper = React.createRef<HTMLDivElement>();
-    useClickOutside(wrapper, () => settErApen(false));
 
-    if (besvart && !erApen) {
+    const clickOutsideHandler = useCallback(() => settErApen(false), [settErApen]);
+    useClickOutside(wrapper, clickOutsideHandler);
+
+    if (erBesvart && !erApen) {
         return null;
     }
 
     const settBesvartCallback = (tilfredshet: number, kommentar: string) => {
-        settBesvart(true);
+        settErBesvart(true);
         window.localStorage.setItem(localStorageKey, 'true');
 
-        if (tilfredshet >= 0) {
+        if (tilfredshetErValg(tilfredshet)) {
             loggEvent('tilbakemelding', 'tilbakemelding', {
-                feature: localstorageId,
+                feature: props.temaId,
                 tilfredshet,
                 kommentar
             });
@@ -66,20 +74,18 @@ function TilbakemeldingFab() {
 
     const ikon = erApen ? lukkeIkon : apneIkon;
     return (
-        <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
-            <TilbakemeldingWrapper ref={wrapper}>
-                <TilbakemeldingPopup
-                    erApen={erApen}
-                    besvart={besvart}
-                    settBesvart={settBesvartCallback}
-                    sporsmal={sporsmal}
-                />
-                <TilbakemeldingBtn onClick={() => settErApen(!erApen)}>
-                    <img src={ikon} alt="" />
-                    <span className="sr-only">{erApen ? 'Lukk tilbakemelding' : 'Vis tilbakemelding'}</span>
-                </TilbakemeldingBtn>
-            </TilbakemeldingWrapper>
-        </IfFeatureToggleOn>
+        <TilbakemeldingWrapper ref={wrapper}>
+            <TilbakemeldingPopup
+                erApen={erApen}
+                besvart={erBesvart}
+                settBesvart={settBesvartCallback}
+                sporsmal={props.sporsmal}
+            />
+            <TilbakemeldingBtn onClick={() => settErApen(!erApen)}>
+                <img src={ikon} alt="" />
+                <span className="sr-only">{erApen ? 'Lukk tilbakemelding' : 'Vis tilbakemelding'}</span>
+            </TilbakemeldingBtn>
+        </TilbakemeldingWrapper>
     );
 }
 export default TilbakemeldingFab;

@@ -14,6 +14,8 @@ import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import theme from '../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
+import { FeatureToggles } from '../featureToggle/toggleIDs';
+import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
 
 interface Props {
     fødselsnummer: string;
@@ -32,6 +34,9 @@ const Styles = styled.div`
     }
 `;
 
+const temaId = 'hurtigreferat';
+const sporsmal = 'Her kan vi skrive spørsmålet... lorem ipsum etc, bare for å få litt tekst her';
+
 class VisittkortStandAlone extends React.Component<Props> {
     render() {
         return (
@@ -42,7 +47,10 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <Kontrollsporsmal />
                         <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />
-                        <TilbakemeldingFab />
+
+                        <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
+                            <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} />
+                        </IfFeatureToggleOn>
                     </Styles>
                 </Provider>
             </ErrorBoundary>

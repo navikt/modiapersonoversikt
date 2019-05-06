@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { smilies } from './TilbakemeldingIkoner';
 import theme from '../../../styles/personOversiktTheme';
 
-const TilbakemeldingValgWrapper = styled.article`
+const TilbakemeldingValgWrapper = styled.article<{ ikkePabegynt: boolean }>`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 
     input + img {
-        opacity: ${(props: Props) => (props.valgt >= 0 ? '0.6' : '1')};
+        opacity: ${props => (props.ikkePabegynt ? '1' : '0.6')};
     }
 `;
 const Label = styled.label`
@@ -57,7 +57,7 @@ function Valg(props: Props & { value: number; src: string; alt: string }) {
 
 function TilbakemeldingValg(props: Props) {
     return (
-        <TilbakemeldingValgWrapper {...props}>
+        <TilbakemeldingValgWrapper ikkePabegynt={props.valgt < 0}>
             <Valg value={1} src={smilies.veldigMisfornoyd} alt="Veldig misfornøyd" {...props} />
             <Valg value={2} src={smilies.misfornoyd} alt="Misfornøyd" {...props} />
             <Valg value={3} src={smilies.noytral} alt="Nøytral" {...props} />
