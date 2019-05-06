@@ -2,10 +2,11 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-type TittelRekke = (string | ReactNode)[];
-type Rows = Array<Array<string | number | undefined | ReactNode>>;
+export type TittelRekke = (string | ReactNode)[];
+export type TableRow = Array<string | number | undefined | ReactNode>;
+export type TableRows = TableRow[];
 
-export function createTable(tittelrekke: TittelRekke, rows: Rows) {
+export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
     rows.forEach(row => {
         if (row.length !== tittelrekke.length) {
             console.warn('Ulik lengde på tittelrekke og innholdsrekke, dette bør du nok se på', tittelrekke, row);
@@ -61,6 +62,6 @@ const TableStyle = styled.div`
     }
 `;
 
-export function StyledTable(props: { tittelRekke: TittelRekke; rows: Rows }) {
+export function StyledTable(props: { tittelRekke: TittelRekke; rows: TableRows }) {
     return <TableStyle className="typo-normal">{createTable(props.tittelRekke, props.rows)}</TableStyle>;
 }

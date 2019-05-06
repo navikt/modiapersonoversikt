@@ -19,16 +19,7 @@ interface Props {
 
 const Wrapper = styled.article`
     padding: ${theme.margin.layout};
-`;
-
-const UtbetalingerStyle = styled.section`
-    > * {
-        margin-bottom: 3rem;
-    }
-`;
-
-const InfoStyle = styled.div`
-    > * {
+    > *:not(:last-child) {
         margin-bottom: 3rem;
     }
 `;
@@ -40,16 +31,12 @@ function Sykepenger({ sykepenger }: Props) {
                 <VisuallyHiddenAutoFokusHeader
                     tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
                 />
-                <InfoStyle>
-                    <Sykepengertilfellet sykepenger={sykepenger} />
-                    <Arbeidssituasjon sykepenger={sykepenger} />
-                    <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                </InfoStyle>
-                <UtbetalingerStyle aria-label="Utbetlainger sykepenger">
-                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
-                </UtbetalingerStyle>
+                <Sykepengertilfellet sykepenger={sykepenger} />
+                <Arbeidssituasjon sykepenger={sykepenger} />
+                <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
             </Wrapper>
         </ErrorBoundary>
     );

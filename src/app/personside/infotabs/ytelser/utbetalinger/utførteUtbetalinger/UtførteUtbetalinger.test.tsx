@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../../mock/statiskMockUtbetaling';
 import { Utbetaling } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
-import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
+import UtførteUtbetalinger from './UtførteUtbetalinger';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
 
 test('Kommende utbetalinger matcher snapshot', () => {
@@ -18,7 +18,7 @@ test('Kommende utbetalinger matcher snapshot', () => {
     };
 
     const result = renderer.create(
-        <UtførteUtbetalingerListe
+        <UtførteUtbetalinger
             utbetalinger={[utbetaling]}
             knappStatus={KnappStatus.Vis}
             hentToÅrGamleUtbetalinger={() => null}

@@ -9,7 +9,7 @@ import { AlignTextCenter } from '../../../../../../components/common-styled-comp
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 import styled from 'styled-components';
-import UtførteUtbetalingerListe from './UtførteUtbetalingerListe';
+import UtførteUtbetalinger from './UtførteUtbetalinger';
 import RestResourceConsumer from '../../../../../../rest/consumer/RestResourceConsumer';
 import { RestResource } from '../../../../../../rest/utils/restResource';
 import { hentToÅrgamleUtbetalingerActionCreator } from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
@@ -52,7 +52,7 @@ function UtførteUtbetalingerContainer(props: Props) {
                     spinnerSize="S"
                 >
                     {data => (
-                        <UtførteUtbetalingerListe
+                        <UtførteUtbetalinger
                             utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, props.ytelseType)}
                             hentToÅrGamleUtbetalinger={props.hentToÅrGamleUtbetalinger}
                             knappStatus={getKnappStatus(props.utførteUtbetalinger)}

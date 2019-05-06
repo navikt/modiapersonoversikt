@@ -2,212 +2,188 @@
 
 exports[`Kommende utbetalinger matcher snapshot 1`] = `
 Array [
-  .c4 {
+  .c1 > li {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.c5 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c5:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c5:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c5:hover {
-  opacity: 0.8;
-}
-
-.c5:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
-.c6 {
-  margin-right: 0.5rem;
+.c1 > li > *:first-child {
+  margin-right: 2rem;
 }
 
 .c0 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
-  padding: 1.25rem;
+  overflow: auto;
+  border: solid 1px rgba(0,0,0,0.15);
 }
 
-.c7 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 0 1.25rem;
+.c0 table {
+  text-align: left;
+  width: 100%;
 }
 
-.c2 {
-  margin-bottom: 1.25rem;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c1 dt {
-  color: #78706a;
-}
-
-.c1 dd {
+.c0 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.1);
   font-weight: bold;
-  margin-top: 0.3rem;
 }
 
-.c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  width: 13rem;
-  overflow-wrap: break-word;
+.c0 table th,
+.c0 table td {
+  padding: 0.7rem;
+  vertical-align: bottom;
 }
 
-@media print {
-  .c3 {
-    display: none;
-  }
+.c0 table th {
+  padding-bottom: 0.7rem;
 }
 
-<ol>
-    <li
-      aria-label="Utført utbetaling 29.03.2017"
+.c0 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.05);
+}
+
+<div
+    className="typo-normal c0"
+  >
+    <table
+      role="table"
     >
-      <div
-        className="c0"
-        open={false}
+      <thead
+        role="rowgroup"
       >
-        <dl
-          className="c1"
+        <tr
+          role="row"
         >
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Type
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Foreldrepenger
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Netto
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              11,386.00 NOK
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Dato
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              29.03.2017
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Periode
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              09.11.2016 - 31.10.2017
-            </dd>
-          </div>
-        </dl>
-        <div
-          className="c2"
-        >
-          <div
-            className="c3"
+          <th
+            role="columnheader"
           >
-            <div
-              className="c4"
+            Type
+          </th>
+          <th
+            role="columnheader"
+          >
+            Netto
+          </th>
+          <th
+            role="columnheader"
+          >
+            Dato
+          </th>
+          <th
+            role="columnheader"
+          >
+            Periode
+          </th>
+          <th
+            role="columnheader"
+          >
+            Bruttobeløp
+          </th>
+          <th
+            role="columnheader"
+          >
+            Arbeidsgiver
+          </th>
+          <th
+            role="columnheader"
+          >
+            Orgnummer
+          </th>
+          <th
+            role="columnheader"
+          >
+            Skattetrekk
+          </th>
+          <th
+            role="columnheader"
+          >
+            Kreditortrekk
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            Foreldrepenger
+          </td>
+          <td
+            role="cell"
+          >
+            11,386.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            29.03.2017
+          </td>
+          <td
+            role="cell"
+          >
+            09.11.2016 - 31.10.2017
+          </td>
+          <td
+            role="cell"
+          >
+            13,370.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            Ensjø Bistro
+          </td>
+          <td
+            role="cell"
+          >
+            1234556678235
+          </td>
+          <td
+            role="cell"
+          >
+            -730.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            <ul
+              className="c1"
             >
-              <button
-                aria-expanded={false}
-                className="c5"
-                onClick={[Function]}
-              >
-                <span
-                  className="c6"
-                >
-                  <span
-                    className="typo-normal"
-                  >
-                    Vis
-                     
-                    detaljer
-                  </span>
+              <li>
+                <span>
+                  Bjerke, Berntsen and Nilsen
                 </span>
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--ned"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          className="c7"
-          open={false}
-        />
-      </div>
-    </li>
-  </ol>,
+                 
+                <span>
+                  -1,042.00
+                   NOK
+                </span>
+              </li>
+              <li>
+                <span>
+                  Olsen AS
+                </span>
+                 
+                <span>
+                  -212.00
+                   NOK
+                </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>,
   .c0 {
   display: -webkit-box;
   display: -webkit-flex;
