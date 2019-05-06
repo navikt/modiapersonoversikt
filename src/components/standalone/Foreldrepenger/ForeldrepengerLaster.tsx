@@ -15,7 +15,6 @@ interface Props {
 
 const Style = styled.div`
     ${theme.hvittPanel};
-    max-width: ${theme.width.ytelser};
 `;
 
 const onError = (

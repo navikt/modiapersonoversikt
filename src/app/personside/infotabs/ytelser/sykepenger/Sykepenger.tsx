@@ -21,6 +21,19 @@ const Wrapper = styled.article`
     padding: ${theme.margin.layout};
 `;
 
+const OversiktStyling = styled.div`
+    margin: ${theme.margin.layout};
+    display: flex;
+`;
+
+const Flex = styled.div`
+    display: flex;
+    flex-direction: column;
+    > * {
+        flex-grow: 1;
+    }
+`;
+
 const SpaceBetween = styled.div`
     > * {
         margin-top: 2rem;
@@ -34,9 +47,13 @@ function Sykepenger({ sykepenger }: Props) {
                 <VisuallyHiddenAutoFokusHeader
                     tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
                 />
-                <Sykepengertilfellet sykepenger={sykepenger} />
-                <Arbeidssituasjon sykepenger={sykepenger} />
-                <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                <OversiktStyling>
+                    <Flex>
+                        <Sykepengertilfellet sykepenger={sykepenger} />
+                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                    </Flex>
+                    <Arbeidssituasjon sykepenger={sykepenger} />
+                </OversiktStyling>
                 <SpaceBetween>
                     <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
                     <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />

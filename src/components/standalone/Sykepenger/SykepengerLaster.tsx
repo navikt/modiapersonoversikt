@@ -18,7 +18,6 @@ interface OwnProps {
 
 const Style = styled.div`
     ${theme.hvittPanel};
-    max-width: ${theme.width.ytelser};
 `;
 
 type Props = OwnProps;
