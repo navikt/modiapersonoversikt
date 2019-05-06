@@ -1,60 +1,43 @@
 import * as React from 'react';
-import { Pleiepengeperiode, Vedtak as VedtakInterface } from '../../../../../models/ytelse/pleiepenger';
+import { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
-import DescriptionList from '../../../../../components/DescriptionList';
 import { Undertittel } from 'nav-frontend-typografi';
 import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/stringFormatting';
+import { createTable } from '../../../../../utils/tableUtils';
 
 interface Props {
     periode: Pleiepengeperiode;
     periodeNummer: number;
 }
 
-const PaddingBottom = styled.div`
-    padding-bottom: 1rem;
-`;
-
-const VedtaksListe = styled.ul`
-    list-style: none;
-    padding: 2rem;
-    li {
-        margin-top: ${theme.margin.px10};
-        &:not(:last-child) {
-            padding-bottom: ${theme.margin.px20};
-            border-bottom: ${theme.border.skilleDashed};
-        }
+const VedtaksTable = styled.div`
+    padding: 1rem;
+    > *:not(:last-child) {
+        margin-bottom: 1rem;
     }
+    ${theme.table}
 `;
-
-function Vedtak({ vedtak }: { vedtak: VedtakInterface }) {
-    const anvisteUtbetalingerEntries = {
-        'Fra og med dato': formaterDato(vedtak.periode.fom),
-        'Til og med dato': formaterDato(vedtak.periode.tom),
-        Bruttobeløp: NOKellerNull(vedtak.bruttobeløp),
-        'Anvist Utbetaling': formaterDato(vedtak.anvistUtbetaling),
-        Dagsats: NOKellerNull(vedtak.dagsats),
-        Pleiepengegrad: prosentEllerNull(vedtak.pleiepengegrad)
-    };
-
-    return (
-        <li>
-            <DescriptionList entries={anvisteUtbetalingerEntries} />
-            <PaddingBottom />
-        </li>
-    );
-}
 
 function Pleiepengerperiode({ periode, ...props }: Props) {
-    const vedtak = periode.vedtak.map((v, index) => <Vedtak key={index} vedtak={v} />);
+    const tittelRekke = ['Fra og med', 'Til og med', 'Bruttobeløp', 'Anvist utbetaling', 'Dagsats', 'Pleiepengegrad'];
+    const rows = periode.vedtak.map(vedtak => [
+        formaterDato(vedtak.periode.fom),
+        formaterDato(vedtak.periode.tom),
+        NOKellerNull(vedtak.bruttobeløp),
+        formaterDato(vedtak.anvistUtbetaling),
+        NOKellerNull(vedtak.dagsats),
+        prosentEllerNull(vedtak.pleiepengegrad)
+    ]);
+    const table = createTable(tittelRekke, rows);
 
     return (
         <YtelserPeriode tittel={`Periode ${props.periodeNummer} - ${formaterDato(periode.fom)}`}>
-            <VedtaksListe>
+            <VedtaksTable>
                 <Undertittel>Anviste utbetalinger</Undertittel>
-                {vedtak}
-            </VedtaksListe>
+                {table}
+            </VedtaksTable>
         </YtelserPeriode>
     );
 }
