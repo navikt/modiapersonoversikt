@@ -359,32 +359,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 `;
 
 exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c4 dt {
-  color: #78706a;
-}
-
-.c4 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c4 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
 .c2 {
   text-transform: uppercase;
 }
@@ -403,22 +377,37 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c5 {
-  padding-bottom: 1rem;
-}
-
 .c3 {
-  list-style: none;
-  padding: 2rem;
+  padding: 1rem;
 }
 
-.c3 li {
-  margin-top: 0.625rem;
+.c3 > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
-.c3 li:not(:last-child) {
-  padding-bottom: 1.25rem;
-  border-bottom: dotted 0.09375rem #b7b1a9;
+.c3 table {
+  width: 100%;
+  text-align: left;
+  border: solid 1px rgba(0,0,0,0.15);
+}
+
+.c3 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.1);
+  font-weight: bold;
+}
+
+.c3 table th,
+.c3 table td {
+  padding: 1rem;
+  vertical-align: bottom;
+}
+
+.c3 table th {
+  padding-bottom: 0.7rem;
+}
+
+.c3 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.05);
 }
 
 <li
@@ -437,7 +426,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
       </span>
     </span>
   </h3>
-  <ul
+  <div
     className="c3"
   >
     <h2
@@ -445,168 +434,120 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
     >
       Anviste utbetalinger
     </h2>
-    <li>
-      <dl
-        className="c4"
+    <table
+      role="table"
+    >
+      <thead
+        role="rowgroup"
       >
-        <div>
-          <dt
-            className="typo-etikett-liten"
+        <tr
+          role="row"
+        >
+          <th
+            role="columnheader"
           >
-            Fra og med dato
-          </dt>
-          <dd
-            className="typo-normal"
+            Fra og med
+          </th>
+          <th
+            role="columnheader"
           >
-            01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Til og med dato
-          </dt>
-          <dd
-            className="typo-normal"
-          >
-            01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
+            Til og med
+          </th>
+          <th
+            role="columnheader"
           >
             Bruttobeløp
-          </dt>
-          <dd
-            className="typo-normal"
+          </th>
+          <th
+            role="columnheader"
+          >
+            Anvist utbetaling
+          </th>
+          <th
+            role="columnheader"
+          >
+            Dagsats
+          </th>
+          <th
+            role="columnheader"
+          >
+            Pleiepengegrad
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            01.01.1970
+          </td>
+          <td
+            role="cell"
+          >
+            01.01.1970
+          </td>
+          <td
+            role="cell"
           >
             120.00 NOK
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Anvist Utbetaling
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Dagsats
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             5.00 NOK
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Pleiepengegrad
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             66%
-          </dd>
-        </div>
-      </dl>
-      <div
-        className="c5"
-      />
-    </li>
-    <li>
-      <dl
-        className="c4"
-      >
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Fra og med dato
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+        </tr>
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
           >
             01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Til og med dato
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Bruttobeløp
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             596.00 NOK
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Anvist Utbetaling
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             01.01.1970
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Dagsats
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             27.00 NOK
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Pleiepengegrad
-          </dt>
-          <dd
-            className="typo-normal"
+          </td>
+          <td
+            role="cell"
           >
             58%
-          </dd>
-        </div>
-      </dl>
-      <div
-        className="c5"
-      />
-    </li>
-  </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </li>
 `;

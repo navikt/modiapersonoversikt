@@ -5,103 +5,96 @@ exports[`UtbetalingerPåVentListe matcher snapshot 1`] = `
   text-align: center;
 }
 
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+.c0 > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
-.c3 dt {
-  color: #78706a;
+.c0 table {
+  width: 100%;
+  text-align: left;
+  border: solid 1px rgba(0,0,0,0.15);
 }
 
-.c3 dd {
+.c0 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.1);
   font-weight: bold;
-  margin-top: 0.3rem;
 }
 
-.c3 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  width: 13rem;
-  overflow-wrap: break-word;
+.c0 table th,
+.c0 table td {
+  padding: 1rem;
+  vertical-align: bottom;
 }
 
-.c2 {
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
-  padding: 1.25rem;
+.c0 table th {
+  padding-bottom: 0.7rem;
 }
 
-.c0 {
-  padding: 0.5rem;
+.c0 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.05);
 }
 
-<section>
+<section
+  className="c0"
+>
   <div
-    className="c0"
+    className="c1"
   >
-    <div
-      className="c1"
+    <h4
+      className="typo-undertittel"
     >
-      <h4
-        className="typo-undertittel"
-      >
-        Utbetalinger på vent
-      </h4>
-    </div>
+      Utbetalinger på vent
+    </h4>
   </div>
-  <ol>
-    <li
-      aria-label="Utbetaling på vent"
-      className="c2"
+  <table
+    role="table"
+  >
+    <thead
+      role="rowgroup"
     >
-      <dl
-        className="c3"
+      <tr
+        role="row"
       >
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Årsak
-          </dt>
-          <dd
-            className="typo-normal"
-          >
-            Pga mistenkelig oppførsel
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Utbetalingsperiode
-          </dt>
-          <dd
-            className="typo-normal"
-          >
-            13.10.2017 - 10.10.2018
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-etikett-liten"
-          >
-            Utbetalingsgrad
-          </dt>
-          <dd
-            className="typo-normal"
-          >
-            62%
-          </dd>
-        </div>
-      </dl>
-    </li>
-  </ol>
+        <th
+          role="columnheader"
+        >
+          Årsak
+        </th>
+        <th
+          role="columnheader"
+        >
+          Utbetalingsperiode
+        </th>
+        <th
+          role="columnheader"
+        >
+          Utbetalingsgrad
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      role="rowgroup"
+    >
+      <tr
+        role="row"
+      >
+        <td
+          role="cell"
+        >
+          Pga mistenkelig oppførsel
+        </td>
+        <td
+          role="cell"
+        >
+          13.10.2017 - 10.10.2018
+        </td>
+        <td
+          role="cell"
+        >
+          62%
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 `;
