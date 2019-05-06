@@ -7,6 +7,7 @@ import { Textarea } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { smilies } from './TilbakemeldingIkoner';
 import { useFocusOnMount } from '../../../utils/customHooks';
+import { LenkeKnapp } from '../../common-styled-components';
 
 const TilbakemeldingPopupContainer = styled.div`
     ${theme.hvittPanel}
@@ -24,10 +25,6 @@ const TilbakemeldingPopupContainer = styled.div`
 const KnappWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-`;
-const IkkeVis = styled.button`
-    background: none;
-    border: none;
 `;
 const TakkForTilbakemeldingenContainer = styled(TilbakemeldingPopupContainer)`
     background-color: #98d0b0;
@@ -59,25 +56,15 @@ function Kommentar(props: InternalProps) {
             />
             <KnappWrapper>
                 <Hovedknapp role="submit">Send</Hovedknapp>
-                <IkkeVis
-                    role="button"
-                    className="lenke"
-                    onClick={event => {
-                        event.preventDefault();
-                        props.settBesvart(-1, '');
-                    }}
-                >
+                <LenkeKnapp type="button" onClick={() => props.settBesvart(-1, '')}>
                     Ikke vis denne igjen
-                </IkkeVis>
+                </LenkeKnapp>
             </KnappWrapper>
         </>
     );
 }
 
 function TilbakemeldingSkjema(props: InternalProps) {
-    if (props.besvart) {
-        return null;
-    }
     const popup = React.createRef<HTMLDivElement>();
     useFocusOnMount(popup);
 
@@ -98,11 +85,7 @@ function TilbakemeldingSkjema(props: InternalProps) {
     );
 }
 
-function TakkForTilbakemeldingen(props: InternalProps) {
-    if (!props.besvart) {
-        return null;
-    }
-
+function TakkForTilbakemeldingen() {
     return (
         <TakkForTilbakemeldingenContainer>
             <img src={smilies.veldigFornoyd} alt="Smiley" className="blokk-xs" />
@@ -120,14 +103,13 @@ function TilbakemeldingPopup(props: Props) {
 
     const [valgt, settValgt] = useState(-1);
     const [kommentar, settKommentar] = useState('');
-    const internalProps = { valgt, settValgt, kommentar, settKommentar };
+    const internalProps: InternalProps = { valgt, settValgt, kommentar, settKommentar, ...props };
 
-    return (
-        <>
-            <TilbakemeldingSkjema {...internalProps} {...props} />
-            <TakkForTilbakemeldingen {...internalProps} {...props} />
-        </>
-    );
+    if (props.besvart) {
+        return <TakkForTilbakemeldingen />;
+    }
+
+    return <TilbakemeldingSkjema {...internalProps} />;
 }
 
 export default TilbakemeldingPopup;
