@@ -14,7 +14,7 @@ interface Props {
     pleiepenger: Pleiepengerettighet;
 }
 
-export const OversiktStyling = styled.div`
+const OversiktStyling = styled.div`
     margin: ${theme.margin.layout};
     display: flex;
 `;
