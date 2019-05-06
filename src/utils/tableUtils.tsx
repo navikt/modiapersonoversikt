@@ -40,13 +40,13 @@ export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
 
 const TableStyle = styled.div`
     overflow: auto;
-    border: solid 1px rgba(0, 0, 0, 0.15);
+    border: solid 1px rgba(0, 0, 0, 0.25);
     background-color: white;
     table {
         text-align: left;
         width: 100%;
         thead {
-            border-bottom: 0.2rem solid rgba(0, 0, 0, 0.1);
+            border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
             font-weight: bold;
         }
         th,
@@ -58,7 +58,7 @@ const TableStyle = styled.div`
             padding-bottom: 0.7rem;
         }
         tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgba(0, 0, 0, 0.1);
         }
     }
 `;
