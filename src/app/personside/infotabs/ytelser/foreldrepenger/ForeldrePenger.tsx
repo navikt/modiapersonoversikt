@@ -22,7 +22,7 @@ function Foreldrepenger({ foreldrepenger }: Props) {
         <article>
             <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />
             <Oversikt foreldrePenger={foreldrepenger} />
-            <ul>{perioder}</ul>
+            <ol>{perioder}</ol>
         </article>
     );
 }

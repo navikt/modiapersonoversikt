@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
-import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
@@ -27,6 +26,11 @@ interface StateProps {
 interface DispatchProps {
     toggleVisAlleArbeidsforhold: () => void;
 }
+
+export const OversiktStyling = styled.div`
+    margin: ${theme.margin.layout};
+    display: flex;
+`;
 
 type Props = DispatchProps & OwnProps & StateProps;
 

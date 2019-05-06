@@ -1,60 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Kommende utbetalinger matcher snapshot 1`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c2 > li {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.c2 > li > *:first-child {
-  margin-right: 2rem;
-}
-
+exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
 .c1 {
+  text-align: center;
+}
+
+.c2 {
   overflow: auto;
   border: solid 1px rgba(0,0,0,0.15);
   background-color: white;
 }
 
-.c1 table {
+.c2 table {
   text-align: left;
   width: 100%;
 }
 
-.c1 table thead {
+.c2 table thead {
   border-bottom: 0.2rem solid rgba(0,0,0,0.1);
   font-weight: bold;
 }
 
-.c1 table th,
-.c1 table td {
+.c2 table th,
+.c2 table td {
   padding: 0.7rem;
   vertical-align: bottom;
 }
 
-.c1 table th {
+.c2 table th {
   padding-bottom: 0.7rem;
 }
 
-.c1 table tr:nth-child(even) {
+.c2 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.05);
 }
 
@@ -62,11 +39,20 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-<div
+<section
   className="c0"
 >
   <div
-    className="typo-normal c1"
+    className="c1"
+  >
+    <h4
+      className="typo-undertittel"
+    >
+      Kommende utbetalinger
+    </h4>
+  </div>
+  <div
+    className="typo-normal c2"
   >
     <table
       role="table"
@@ -80,22 +66,27 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
+            Registeringsdato
+          </th>
+          <th
+            role="columnheader"
+          >
             Type
           </th>
           <th
             role="columnheader"
           >
-            Netto
-          </th>
-          <th
-            role="columnheader"
-          >
-            Dato
-          </th>
-          <th
-            role="columnheader"
-          >
             Periode
+          </th>
+          <th
+            role="columnheader"
+          >
+            Utbetalingsgrad
+          </th>
+          <th
+            role="columnheader"
+          >
+            Dagsats
           </th>
           <th
             role="columnheader"
@@ -115,12 +106,7 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
-            Skattetrekk
-          </th>
-          <th
-            role="columnheader"
-          >
-            Kreditortrekk
+            Saksbehandler
           </th>
         </tr>
       </thead>
@@ -133,86 +119,51 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
           <td
             role="cell"
           >
-            Foreldrepenger
+            25.06.2018
           </td>
           <td
             role="cell"
           >
-            11,386.00 NOK
+            KONTOØVERFØRING
           </td>
           <td
             role="cell"
           >
-            29.03.2017
+            14.01.2018 - 15.07.2017
           </td>
           <td
             role="cell"
           >
-            09.11.2016 - 31.10.2017
+            79%
           </td>
           <td
             role="cell"
           >
-            13,370.00 NOK
+            705.00 NOK
           </td>
           <td
             role="cell"
           >
-            Ensjø Bistro
+            466.00 NOK
           </td>
           <td
             role="cell"
           >
-            1234556678235
+            Vedvik - Lunde
           </td>
           <td
             role="cell"
           >
-            -730.00 NOK
+            1234567890
           </td>
           <td
             role="cell"
           >
-            <ul
-              className="c2"
-            >
-              <li>
-                <span>
-                  Bjerke, Berntsen and Nilsen
-                </span>
-                 
-                <span>
-                  -1,042.00
-                   NOK
-                </span>
-              </li>
-              <li>
-                <span>
-                  Olsen AS
-                </span>
-                 
-                <span>
-                  -212.00
-                   NOK
-                </span>
-              </li>
-            </ul>
+            Mari Johannessen
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div
-    className="c3"
-  >
-    <button
-      className="knapp knapp--standard"
-      disabled={false}
-      onClick={[Function]}
-      type="submit"
-    >
-      Hent alle utførte utbetalinger
-    </button>
-  </div>
-</div>
+</section>
 `;

@@ -41,6 +41,7 @@ export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
 const TableStyle = styled.div`
     overflow: auto;
     border: solid 1px rgba(0, 0, 0, 0.15);
+    background-color: white;
     table {
         text-align: left;
         width: 100%;

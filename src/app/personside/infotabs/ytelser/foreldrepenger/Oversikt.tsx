@@ -7,7 +7,6 @@ import DescriptionList, {
     fjernEntriesUtenVerdi
 } from '../../../../../components/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
 import ArbeidsForhold from './Arbeidsforhold';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -18,6 +17,11 @@ interface Props {
     foreldrePenger: Foreldrepengerettighet;
 }
 
+const OversiktStyling = styled.div`
+    margin: ${theme.margin.layout};
+    display: flex;
+`;
+
 const ArbeidsForholdListeStyle = styled.ol`
     list-style: none;
     > *:not(:first-child) {
@@ -26,10 +30,6 @@ const ArbeidsForholdListeStyle = styled.ol`
     > *:not(:last-child) {
         margin-bottom: 2rem;
     }
-`;
-
-const Luft = styled.div`
-    margin-top: 2rem;
 `;
 
 function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
@@ -110,7 +110,6 @@ function Oversikt({ foreldrePenger }: Props) {
                 <YtelserInfoGruppe tittel="Om foreldrepengeretten">
                     <DescriptionList entries={foreldrePengeRetten} />
                 </YtelserInfoGruppe>
-                <Luft />
                 <YtelserInfoGruppe tittel="Om barnet">
                     <DescriptionList entries={barnet} />
                 </YtelserInfoGruppe>

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sykepengertilfellet matcher snapshot 1`] = `
-.c0 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11,30 +11,39 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c0 dt {
+.c1 dt {
   color: #78706a;
 }
 
-.c0 dd {
+.c1 dd {
   font-weight: bold;
   margin-top: 0.3rem;
 }
 
-.c0 > div {
+.c1 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-<div>
+.c0 {
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 0.3rem white;
+  padding: 1.25rem;
+}
+
+<div
+  className="c0"
+>
   <h3
     className="typo-ingress"
   >
     Sykepengetilfellet
   </h3>
   <dl
-    className="c0"
+    className="c1"
   >
     <div>
       <dt

@@ -19,8 +19,11 @@ interface Props {
 
 const Wrapper = styled.article`
     padding: ${theme.margin.layout};
-    > *:not(:last-child) {
-        margin-bottom: 3rem;
+`;
+
+const SpaceBetween = styled.div`
+    > * {
+        margin-top: 2rem;
     }
 `;
 
@@ -34,9 +37,11 @@ function Sykepenger({ sykepenger }: Props) {
                 <Sykepengertilfellet sykepenger={sykepenger} />
                 <Arbeidssituasjon sykepenger={sykepenger} />
                 <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
+                <SpaceBetween>
+                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
+                </SpaceBetween>
             </Wrapper>
         </ErrorBoundary>
     );

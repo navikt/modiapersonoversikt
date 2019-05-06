@@ -24,8 +24,11 @@ interface Props {
 
 const Wrapper = styled.article`
     padding: ${theme.margin.layout};
+    > *:first-child {
+        ${theme.gråttPanel}
+    }
     > *:not(:last-child) {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 `;
 
