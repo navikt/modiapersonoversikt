@@ -2,7 +2,7 @@ import * as React from 'react';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Arbeidsforhold } from '../../../../../models/ytelse/foreldrepenger';
+import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
 import { datoEllerNull, NOKellerNull } from '../../../../../utils/stringFormatting';
 
 interface Props {

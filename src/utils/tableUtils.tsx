@@ -28,7 +28,7 @@ export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
                     <tr role="row" key={index}>
                         {row.map((entry, i) => (
                             <td role="cell" key={i}>
-                                {entry}
+                                {entry || (entry === 0 && '0') || '\u2014'}
                             </td>
                         ))}
                     </tr>

@@ -34,79 +34,12 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   overflow-wrap: break-word;
 }
 
-.c3 span:not(:last-child):after {
+.c4 span:not(:last-child):after {
   content: '.';
 }
 
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c7 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c7:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c7:hover {
-  opacity: 0.8;
-}
-
-.c7:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
-.c8 {
-  margin-right: 0.5rem;
-}
-
-.c9 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 0 1.25rem 1.25rem;
-}
-
-.c10 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 0 1.25rem;
-}
-
-.c4 {
-  margin-right: 1.25rem;
+.c3 li:not(:first-child) {
+  border-top: solid 0.0625rem #c6c2bf;
 }
 
 .c0 {
@@ -115,12 +48,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-@media print {
-  .c5 {
-    display: none;
-  }
 }
 
 <div
@@ -207,147 +134,121 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     >
       Arbeidssituasjon
     </h3>
-    <dl
-      className="c2"
+    <ol
+      aria-label="Arbeidsgivere"
+      className="c3"
     >
-      <div>
-        <dt
-          className="typo-etikett-liten"
+      <li>
+        <dl
+          className="c2"
         >
-          Arbeidsgiver
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Ryan og Sønner
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Arbeidskategori
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Arbeidstaker
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Inntekstsperiode
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Månedssats
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Kontonummer
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          <span
-            className="c3"
-          >
-            <span>
-              5493
-            </span>
-            <span>
-              85
-            </span>
-            <span>
-              21445
-            </span>
-          </span>
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Refusjonstype
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Ikke refusjon
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Inntekt for perioden
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          45,029.00 NOK
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Refusjon til dato
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          01.01.1970
-        </dd>
-      </div>
-    </dl>
-    <div
-      className="c4"
-    >
-      <div
-        className="c5"
-      >
-        <div
-          className="c6"
-        >
-          <button
-            aria-expanded={false}
-            className="c7"
-            onClick={[Function]}
-          >
-            <span
-              className="c8"
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Arbeidsgiver
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Ryan og Sønner
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Arbeidskategori
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Arbeidstaker
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Inntekstsperiode
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Månedssats
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Kontonummer
+            </dt>
+            <dd
+              className="typo-normal"
             >
               <span
-                className="typo-normal"
+                className="c4"
               >
-                Vis
-                 
-                alle arbeidsforhold
+                <span>
+                  5493
+                </span>
+                <span>
+                  85
+                </span>
+                <span>
+                  21445
+                </span>
               </span>
-            </span>
-            <i
-              className="nav-frontend-chevron chevronboks chevron--ned"
-            />
-          </button>
-        </div>
-      </div>
-    </div>
-    <div
-      className="c9"
-      open={false}
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Refusjonstype
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              Ikke refusjon
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Inntekt for perioden
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              45,029.00 NOK
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-etikett-liten"
+            >
+              Refusjon til dato
+            </dt>
+            <dd
+              className="typo-normal"
+            >
+              01.01.1970
+            </dd>
+          </div>
+        </dl>
+      </li>
+    </ol>
+    <button
+      className="knapp knapp--hoved"
+      disabled={false}
+      onClick={[Function]}
+      type="submit"
     >
-      <div
-        className="c10"
-        open={false}
-      />
-    </div>
+      Vis alle arbeidsforhold
+    </button>
   </div>
 </div>
 `;

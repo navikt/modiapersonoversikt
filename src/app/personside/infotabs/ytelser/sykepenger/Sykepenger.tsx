@@ -5,7 +5,7 @@ import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
 import Sykemelding from './sykemelding/Sykemelding';
-import Arbeidssituasjon from './arbeidsforhold/Arbeidssituasjon';
+import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
