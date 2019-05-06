@@ -82,7 +82,7 @@ function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionLis
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
     if (props.ytelser.length === 0) {
-        return <AlertStripeInfo>Det finnes ikke ytelsesinformasjon om bruker i Arena</AlertStripeInfo>;
+        return <AlertStripeInfo>Det finnes ikke informasjon om ytelser for valgt periode i Arena</AlertStripeInfo>;
     }
 
     return (

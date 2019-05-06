@@ -61,5 +61,5 @@ export const statiskSykepengerMock: Sykepenger = {
     slutt: '2019-01-16',
     arbeidsforholdListe: [arbeidsforhold, arbeidsforhold],
     erArbeidsgiverperiode: true,
-    arbeidsKategori: 'Ærlig arbeid'
+    arbeidskategori: 'Ærlig arbeid'
 };
