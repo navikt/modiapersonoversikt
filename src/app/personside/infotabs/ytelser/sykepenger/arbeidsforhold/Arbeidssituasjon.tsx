@@ -9,18 +9,18 @@ interface Props {
     sykepenger: Sykepenger;
 }
 
-function Arbeidsforhold(props: Props) {
+function Arbeidssituasjon(props: Props) {
     const sykemeldingEntries: DescriptionListEntries = {
         Arbeidsgiverperiode: convertBoolTilJaNei(props.sykepenger.erArbeidsgiverperiode),
-        Arbeidskategori: props.sykepenger.arbeidsKategori
+        Arbeidskategori: props.sykepenger.arbeidskategori
     };
 
     return (
-        <YtelserInfoGruppe tittel="Arbeidsforhold">
+        <YtelserInfoGruppe tittel="Arbeidssituasjon">
             <DescriptionList entries={sykemeldingEntries} />
             <ArbeidsForholdListe arbeidsforhold={props.sykepenger.arbeidsforholdListe} />
         </YtelserInfoGruppe>
     );
 }
 
-export default Arbeidsforhold;
+export default Arbeidssituasjon;

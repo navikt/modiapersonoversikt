@@ -14,26 +14,7 @@ interface Props {
 }
 
 const GraderingsTableStyle = styled.div`
-    table {
-        text-align: right;
-        thead {
-            border-bottom: 0.2rem solid ${theme.color.kategori};
-            font-weight: bold;
-        }
-        th,
-        td {
-            padding: 0.7rem 0;
-            &:not(:first-child) {
-                padding-left: 1rem;
-            }
-        }
-        td {
-            font-weight: normal;
-        }
-        tbody tr {
-            border-bottom: 0.2rem solid ${theme.color.bakgrunn};
-        }
-    }
+    ${theme.table}
 `;
 
 function GraderingsTabell(props: Props) {
@@ -42,7 +23,11 @@ function GraderingsTabell(props: Props) {
         periodeEllerNull(sykmelding.sykmeldt) || undefined,
         prosentEllerNull(sykmelding.sykmeldingsgrad) || undefined
     ]);
-    return <GraderingsTableStyle>{createTable(tittelRekke, tableEntries)}</GraderingsTableStyle>;
+    return (
+        <GraderingsTableStyle aria-label="Sykmeldingsperioder">
+            {createTable(tittelRekke, tableEntries)}
+        </GraderingsTableStyle>
+    );
 }
 
 function Sykemelding(props: Props) {
@@ -51,13 +36,13 @@ function Sykemelding(props: Props) {
     const sykemeldingEntries: DescriptionListEntries = {
         Periode: periodeEllerNull(sykemeldingPeriode),
         Behandlingsdato: datoEllerNull(aktuellSykemelding.behandlet),
-        Sykmelder: aktuellSykemelding.sykmelder,
-        Gradering: <GraderingsTabell {...props} />
+        Sykmelder: aktuellSykemelding.sykmelder
     };
 
     return (
-        <YtelserInfoGruppe tittel="Sykemelding">
+        <YtelserInfoGruppe tittel="Sykmelding">
             <DescriptionList entries={sykemeldingEntries} />
+            <GraderingsTabell {...props} />
         </YtelserInfoGruppe>
     );
 }

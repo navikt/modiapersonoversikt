@@ -5,7 +5,7 @@ import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
 import Sykemelding from './sykemelding/Sykemelding';
-import Arbeidsforhold from './arbeidsforhold/Arbeidsforhold';
+import Arbeidssituasjon from './arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVentListe';
@@ -44,10 +44,10 @@ function Sykepenger({ sykepenger }: Props) {
                 <FlexOgPadding>
                     <InfoStyle>
                         <Sykepengertilfellet sykepenger={sykepenger} />
+                        <Arbeidssituasjon sykepenger={sykepenger} />
                         <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                        <Arbeidsforhold sykepenger={sykepenger} />
                     </InfoStyle>
-                    <UtbetalingerStyle aria-label="UTbetlainger sykepenger">
+                    <UtbetalingerStyle aria-label="Utbetlainger sykepenger">
                         <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
                         <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
                         <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />

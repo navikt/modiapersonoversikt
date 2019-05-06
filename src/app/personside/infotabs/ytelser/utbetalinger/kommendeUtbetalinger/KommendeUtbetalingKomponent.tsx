@@ -27,7 +27,7 @@ function KommendeUtbetalingKomponent({ kommendeUtbetaling }: Props) {
         Bruttobeløp: NOKellerNull(kommendeUtbetaling.bruttobeløp),
         Arbeidsgiver: kommendeUtbetaling.arbeidsgiverNavn,
         Organisasjonsnummer: kommendeUtbetaling.arbeidsgiverOrgNr,
-        'Saksbehandlerident (Tryde-ident)': kommendeUtbetaling.saksbehandler
+        Saksbehandlerident: kommendeUtbetaling.saksbehandler
     };
     const [visDetaljer, setVisDetaljer] = useState(false);
     return (
