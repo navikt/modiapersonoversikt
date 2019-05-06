@@ -6,8 +6,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
-import { createTable } from '../../../../../../utils/tableUtils';
-import theme from '../../../../../../styles/personOversiktTheme';
+import { StyledTable } from '../../../../../../utils/tableUtils';
 
 interface Props {
     utbetalingerPåVent: UtbetalingPåVent[];
@@ -17,7 +16,6 @@ const Style = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
-    ${theme.table}
 `;
 
 function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
@@ -30,12 +28,10 @@ function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
         periodeEllerNull(utbetaling.vedtak),
         prosentEllerNull(utbetaling.utbetalingsgrad)
     ]);
-    const table = createTable(tittelRekke, rows);
-
-    return table;
+    return <StyledTable tittelRekke={tittelRekke} rows={rows} />;
 }
 
-function UtbetalingerPåVentListe(props: Props) {
+function UtbetalingerPVent(props: Props) {
     return (
         <Style>
             <AlignTextCenter>
@@ -46,4 +42,4 @@ function UtbetalingerPåVentListe(props: Props) {
     );
 }
 
-export default UtbetalingerPåVentListe;
+export default UtbetalingerPVent;

@@ -5,17 +5,11 @@ import DescriptionList, { DescriptionListEntries } from '../../../../../../compo
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
-import styled from 'styled-components';
-import theme from '../../../../../../styles/personOversiktTheme';
-import { createTable } from '../../../../../../utils/tableUtils';
+import { StyledTable } from '../../../../../../utils/tableUtils';
 
 interface Props {
     sykmeldinger: ISykemelding[];
 }
-
-const GraderingsTableStyle = styled.div`
-    ${theme.table}
-`;
 
 function GraderingsTabell(props: Props) {
     const tittelRekke = ['Periode', 'Gradering'];
@@ -23,11 +17,7 @@ function GraderingsTabell(props: Props) {
         periodeEllerNull(sykmelding.sykmeldt) || undefined,
         prosentEllerNull(sykmelding.sykmeldingsgrad) || undefined
     ]);
-    return (
-        <GraderingsTableStyle aria-label="Sykmeldingsperioder">
-            {createTable(tittelRekke, tableEntries)}
-        </GraderingsTableStyle>
-    );
+    return <StyledTable tittelRekke={tittelRekke} rows={tableEntries} />;
 }
 
 function Sykemelding(props: Props) {

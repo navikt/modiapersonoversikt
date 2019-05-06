@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
+import styled from 'styled-components';
 
-export function createTable(
-    tittelrekke: (string | ReactNode)[],
-    table: Array<Array<string | number | undefined | ReactNode>>
-) {
-    table.forEach(row => {
+type TittelRekke = (string | ReactNode)[];
+type Rows = Array<Array<string | number | undefined | ReactNode>>;
+
+export function createTable(tittelrekke: TittelRekke, rows: Rows) {
+    rows.forEach(row => {
         if (row.length !== tittelrekke.length) {
             console.warn('Ulik lengde på tittelrekke og innholdsrekke, dette bør du nok se på', tittelrekke, row);
         }
@@ -22,7 +23,7 @@ export function createTable(
                 </tr>
             </thead>
             <tbody role="rowgroup">
-                {table.map((row, index) => (
+                {rows.map((row, index) => (
                     <tr role="row" key={index}>
                         {row.map((entry, i) => (
                             <td role="cell" key={i}>
@@ -34,4 +35,32 @@ export function createTable(
             </tbody>
         </table>
     );
+}
+
+const TableStyle = styled.div`
+    overflow: auto;
+    border: solid 1px rgba(0, 0, 0, 0.15);
+    table {
+        text-align: left;
+        width: 100%;
+        thead {
+            border-bottom: 0.2rem solid rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        th,
+        td {
+            padding: 0.7rem;
+            vertical-align: bottom;
+        }
+        th {
+            padding-bottom: 0.7rem;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+`;
+
+export function StyledTable(props: { tittelRekke: TittelRekke; rows: Rows }) {
+    return <TableStyle className="typo-normal">{createTable(props.tittelRekke, props.rows)}</TableStyle>;
 }
