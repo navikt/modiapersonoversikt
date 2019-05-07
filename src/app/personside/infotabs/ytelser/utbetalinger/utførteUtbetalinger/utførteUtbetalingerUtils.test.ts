@@ -4,7 +4,8 @@ import { YtelserKeys } from '../../ytelserKeys';
 import {
     filtrerOgSorterUtbetalinger,
     getKnappStatus,
-    inneholderToÅrGamleUtbetalinger
+    inneholderToÅrGamleUtbetalinger,
+    sorterYtelser
 } from './utførteUtbetalingerUtils';
 import { Loaded, NotStarted, Reloading } from '../../../../../../rest/utils/restResource';
 import { STATUS } from '../../../../../../redux/restReducers/utils';
@@ -39,6 +40,42 @@ test('filtrerer vekk urelevante ytelser', () => {
 
     expect(resultat).toHaveLength(1);
     expect(resultat[0].ytelser![0].type).toEqual(YtelserKeys.Foreldrepenger);
+});
+
+test('sorterer ytelser riktig, sluttdato får prioritet forran startdato', () => {
+    const utbetalinger: Utbetaling = {
+        ...statiskMockUtbetaling,
+        ytelser: [
+            {
+                ...statiskMockYtelse,
+                periode: {
+                    start: '2010-01-01',
+                    slutt: '2010-01-10'
+                }
+            },
+            {
+                ...statiskMockYtelse,
+                periode: {
+                    start: '2010-01-05',
+                    slutt: '2010-01-10'
+                }
+            },
+            {
+                ...statiskMockYtelse,
+                periode: {
+                    start: '2010-01-01',
+                    slutt: '2010-01-15'
+                }
+            }
+        ]
+    };
+
+    const ytelser = { ...utbetalinger.ytelser };
+    const sorterteYtelser = sorterYtelser(utbetalinger).ytelser;
+
+    expect(sorterteYtelser![0].periode).toEqual(ytelser![2].periode);
+    expect(sorterteYtelser![1].periode).toEqual(ytelser![1].periode);
+    expect(sorterteYtelser![2].periode).toEqual(ytelser![0].periode);
 });
 
 test('gjennkjenner at reducer inneholder to år gamle utbetalinger', () => {
