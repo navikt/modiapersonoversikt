@@ -1,18 +1,15 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Arbeidsforhold } from '../../../../../../models/ytelse/sykepenger';
+import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
-import { connect } from 'react-redux';
+import { useState } from 'react';
 import { AppState } from '../../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
-import { toggleVisAlleArbeidsforholdSykepengerActionCreator } from '../../../../../../redux/ytelser/sykepengerReducer';
-
-interface OwnProps {
-    arbeidsforhold?: Arbeidsforhold[];
-}
+import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../../redux/ytelser/pleiepengerReducer';
+import { connect } from 'react-redux';
 
 interface StateProps {
     visAlleArbeidsforhold: boolean;
@@ -20,6 +17,10 @@ interface StateProps {
 
 interface DispatchProps {
     toggleVisAlleArbeidsforhold: () => void;
+}
+
+interface OwnProps {
+    arbeidsforhold?: Arbeidsforhold[];
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
@@ -30,24 +31,23 @@ const StyledListe = styled.ol`
     }
 `;
 
-function ArbeidsForholdListe({ arbeidsforhold, visAlleArbeidsforhold, toggleVisAlleArbeidsforhold }: Props) {
+function ArbeidsForholdListe({ arbeidsforhold }: Props) {
+    const [visAlle, setVisAlle] = useState(false);
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
         return <AlertStripeInfo>Kunne ikke finne noen arbeidsforhold</AlertStripeInfo>;
     }
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;
     const visAlleArbeidsforholdKnapp = (
-        <KnappBase type={'hoved'} onClick={() => toggleVisAlleArbeidsforhold()}>
-            {arbeidsforhold.length > 1 && visAlleArbeidsforhold
-                ? 'Vis færre arbeidsforhold'
-                : 'Vis alle arbeidsforhold'}
+        <KnappBase type={'hoved'} onClick={() => setVisAlle(!visAlle)}>
+            {visAlle ? 'Vis færre arbeidsforhold' : 'Vis alle arbeidsforhold'}
         </KnappBase>
     );
     return (
         <>
             <StyledListe aria-label="Arbeidsgivere">
                 <ArbeidsForholdListeElement arbeidsforhold={førsteArbForhold} />
-                {visAlleArbeidsforhold &&
+                {visAlle &&
                     resten.map((arbforhold, index) => (
                         <ArbeidsForholdListeElement key={index} arbeidsforhold={arbforhold} />
                     ))}
@@ -59,13 +59,13 @@ function ArbeidsForholdListe({ arbeidsforhold, visAlleArbeidsforhold, toggleVisA
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visAlleArbeidsforhold: state.ytelser.sykepenger.visAlleArbeidsforhold
+        visAlleArbeidsforhold: state.ytelser.pleiepenger.visAlleArbeidsforhold
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        toggleVisAlleArbeidsforhold: () => dispatch(toggleVisAlleArbeidsforholdSykepengerActionCreator())
+        toggleVisAlleArbeidsforhold: () => dispatch(toggleVisAlleArbeidsforholdActionCreator())
     };
 }
 

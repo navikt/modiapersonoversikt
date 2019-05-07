@@ -3,11 +3,9 @@ import ForeldrePengerContainer from './foreldrepenger/ForeldrePengerContainer';
 import styled from 'styled-components';
 import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
 import SykePengerContainer from './sykepenger/SykePengerContainer';
-import theme from '../../../../styles/personOversiktTheme';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 
 const Styling = styled.section`
-    max-width: ${theme.width.ytelser};
     width: 100%;
     align-self: center;
     > * {

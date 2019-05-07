@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import UtbetalingerPåVentListe from './UtbetalingerPåVentListe';
+import UtbetalingerPVent from './UtbetalingerPåVent';
 import { statiskSykepengerMock } from '../../../../../../mock/ytelse/statiskSykepengerMock';
 
-test('UtbetalingerPåVentListe matcher snapshot', () => {
+test('UtbetalingerPVent matcher snapshot', () => {
     const utbetalingPåVent = statiskSykepengerMock.utbetalingerPåVent[0];
-    const resultat = renderer.create(<UtbetalingerPåVentListe utbetalingerPåVent={[utbetalingPåVent]} />);
+    const resultat = renderer.create(<UtbetalingerPVent utbetalingerPåVent={[utbetalingPåVent]} />);
 
     expect(resultat.toJSON()).toMatchSnapshot();
 });

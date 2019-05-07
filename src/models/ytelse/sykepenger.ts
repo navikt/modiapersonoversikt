@@ -1,5 +1,6 @@
 import { Periode } from '../periode';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
+import { Arbeidsforhold } from './arbeidsforhold';
 
 export interface SykepengerResponse {
     sykepenger: Sykepenger[] | null;
@@ -52,14 +53,4 @@ export interface Yrkesskade {
 export interface Gradering {
     gradert: Periode;
     sykmeldingsgrad: number;
-}
-
-export interface Arbeidsforhold {
-    arbeidsgiverNavn: string;
-    arbeidsgiverKontonr: string | null;
-    inntektsperiode: string | null;
-    inntektForPerioden: number | null;
-    refusjonTom: string | null;
-    refusjonstype: string | null;
-    sykepengerFom: string;
 }

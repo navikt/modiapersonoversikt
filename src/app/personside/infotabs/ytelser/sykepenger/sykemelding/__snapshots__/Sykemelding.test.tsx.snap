@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sykemelding matcher snapshot 1`] = `
-.c0 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11,56 +11,69 @@ exports[`Sykemelding matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c0 dt {
+.c1 dt {
   color: #78706a;
 }
 
-.c0 dd {
+.c1 dd {
   font-weight: bold;
   margin-top: 0.3rem;
 }
 
-.c0 > div {
+.c1 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c1 table {
-  width: 100%;
-  text-align: left;
-  border: solid 1px rgba(0,0,0,0.15);
+.c0 {
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 0.3rem white;
+  padding: 1.25rem;
 }
 
-.c1 table thead {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.1);
-  text-transform: uppercase;
+.c2 {
+  overflow: auto;
+  border: solid 1px rgba(0,0,0,0.25);
+  background-color: white;
+}
+
+.c2 table {
+  text-align: left;
+  width: 100%;
+}
+
+.c2 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c1 table th,
-.c1 table td {
-  padding: 1rem;
+.c2 table th,
+.c2 table td {
+  padding: 0.7rem;
   vertical-align: bottom;
 }
 
-.c1 table th {
+.c2 table th {
   padding-bottom: 0.7rem;
 }
 
-.c1 table tr:nth-child(even) {
-  background-color: rgba(0,0,0,0.05);
+.c2 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
 }
 
-<div>
+<div
+  className="c0"
+>
   <h3
     className="typo-ingress"
   >
     Sykmelding
   </h3>
   <dl
-    className="c0"
+    className="c1"
   >
     <div>
       <dt
@@ -100,8 +113,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
     </div>
   </dl>
   <div
-    aria-label="Sykmeldingsperioder"
-    className="c1"
+    className="typo-normal c2"
   >
     <table
       role="table"
