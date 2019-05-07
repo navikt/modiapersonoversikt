@@ -36,7 +36,8 @@ exports[`Sykemelding matcher snapshot 1`] = `
 
 .c2 {
   overflow: auto;
-  border: solid 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
   background-color: white;
 }
 
@@ -53,7 +54,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
 .c2 table th,
 .c2 table td {
   padding: 0.7rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .c2 table th {

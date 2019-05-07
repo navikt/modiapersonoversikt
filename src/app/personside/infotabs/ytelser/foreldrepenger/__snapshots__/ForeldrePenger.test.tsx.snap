@@ -51,7 +51,8 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 
 .c12 {
   overflow: auto;
-  border: solid 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
   background-color: white;
 }
 
@@ -68,7 +69,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 .c12 table th,
 .c12 table td {
   padding: 0.7rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .c12 table th {
@@ -77,6 +78,10 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 
 .c12 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
+}
+
+.c10 {
+  white-space: nowrap;
 }
 
 .c10 > *:not(:last-child) {
