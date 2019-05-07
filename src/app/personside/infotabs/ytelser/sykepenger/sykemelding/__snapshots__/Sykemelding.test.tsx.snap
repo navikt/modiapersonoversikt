@@ -145,26 +145,12 @@ exports[`Sykemelding matcher snapshot 1`] = `
           <td
             role="cell"
           >
-            09.02.2014 - 11.05.2014
+            28.07.2014 - 03.01.2014
           </td>
           <td
             role="cell"
           >
-            97%
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            09.02.2014 - 11.05.2014
-          </td>
-          <td
-            role="cell"
-          >
-            97%
+            89%
           </td>
         </tr>
       </tbody>

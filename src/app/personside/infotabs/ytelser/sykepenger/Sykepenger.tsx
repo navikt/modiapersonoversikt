@@ -12,6 +12,7 @@ import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 interface Props {
     sykepenger: ISykepenger;
@@ -41,6 +42,7 @@ const SpaceBetween = styled.div`
 `;
 
 function Sykepenger({ sykepenger }: Props) {
+    const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">
             <Wrapper>
@@ -50,7 +52,7 @@ function Sykepenger({ sykepenger }: Props) {
                 <OversiktStyling>
                     <Flex>
                         <Sykepengertilfellet sykepenger={sykepenger} />
-                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                        <Sykemelding sykmelding={aktuellSykmelding} />
                     </Flex>
                     <Arbeidssituasjon sykepenger={sykepenger} />
                 </OversiktStyling>
