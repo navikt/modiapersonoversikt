@@ -19,6 +19,7 @@ const Style = styled.div`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
+    white-space: nowrap;
 `;
 
 function UtførteUtbetalinger(props: Props) {

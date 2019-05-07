@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Trekk, Utbetaling, Ytelse } from '../../../../../../models/utbetalinger';
 import styled from 'styled-components';
 import { TableRow } from '../../../../../../utils/tableUtils';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 function getKreditorTrekk(ytelse: Ytelse): React.ReactNode | null {
     if (!ytelse.trekkListe || ytelse.trekkListe.length === 0) {
@@ -16,9 +17,13 @@ const KreditorListeStyle = styled.ul`
     > li {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.5rem;
-        > *:first-child {
-            margin-right: 2rem;
+        > *:last-child {
+            margin-left: 1rem;
+        }
+        &:not(:last-child) {
+            border-bottom: ${theme.border.skilleSvak};
+            padding-bottom: 0.1rem;
+            margin-bottom: 0.1rem;
         }
     }
 `;
@@ -27,7 +32,7 @@ function KreditortrekkListe(props: { trekkListe: Trekk[] }) {
     const kreditorliste = props.trekkListe.map((trekk, index) => {
         return (
             <li key={index}>
-                <span>{trekk.kreditor}</span> <span>{formaterNOK(trekk.trekkbeløp)} NOK</span>
+                <span>{trekk.kreditor || '\u2014'}</span> <span>{formaterNOK(trekk.trekkbeløp)} NOK</span>
             </li>
         );
     });
