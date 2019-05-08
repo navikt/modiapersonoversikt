@@ -24,7 +24,7 @@ const Style = styled.div`
 
 function UtførteUtbetalinger(props: Props) {
     const viserToÅrMedUtbetalinger = props.knappStatus === KnappStatus.Viser2årMedUtbetalinger;
-    if (viserToÅrMedUtbetalinger && (!props.utbetalinger || props.utbetalinger.length === 0)) {
+    if (viserToÅrMedUtbetalinger && props.utbetalinger.length === 0) {
         return <AlertStripeInfo>Kunne ikke finne noen utførte utbetalinger</AlertStripeInfo>;
     }
     const tittelRekke = [
