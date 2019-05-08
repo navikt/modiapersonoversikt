@@ -15,9 +15,9 @@ import { RestResource } from '../../../../../../rest/utils/restResource';
 import { hentToÅrgamleUtbetalingerActionCreator } from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
 
 export enum KnappStatus {
-    Vis,
-    Skjul,
-    Spinner
+    Viser90DagerMedUtbetalinger,
+    Viser2årMedUtbetalinger,
+    Henter2årMedUtbetalinger
 }
 
 interface OwnProps {

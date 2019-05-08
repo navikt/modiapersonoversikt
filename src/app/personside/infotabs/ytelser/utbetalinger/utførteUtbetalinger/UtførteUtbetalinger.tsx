@@ -23,7 +23,8 @@ const Style = styled.div`
 `;
 
 function UtførteUtbetalinger(props: Props) {
-    if (props.knappStatus === KnappStatus.Skjul && (!props.utbetalinger || props.utbetalinger.length === 0)) {
+    const viserToÅrMedUtbetalinger = props.knappStatus === KnappStatus.Viser2årMedUtbetalinger;
+    if (viserToÅrMedUtbetalinger && (!props.utbetalinger || props.utbetalinger.length === 0)) {
         return <AlertStripeInfo>Kunne ikke finne noen utførte utbetalinger</AlertStripeInfo>;
     }
     const tittelRekke = [
@@ -44,10 +45,13 @@ function UtførteUtbetalinger(props: Props) {
         ],
         []
     );
-    const hentAlleUtbetalingerKnapp = !(props.knappStatus === KnappStatus.Skjul) && (
+    const hentAlleUtbetalingerKnapp = (
         <FlexCenter>
-            <Knapp onClick={props.hentToÅrGamleUtbetalinger} spinner={props.knappStatus === KnappStatus.Spinner}>
-                Hent alle utførte utbetalinger
+            <Knapp
+                onClick={props.hentToÅrGamleUtbetalinger}
+                spinner={props.knappStatus === KnappStatus.Henter2årMedUtbetalinger}
+            >
+                Hent 2 år med utførte utbetalinger
             </Knapp>
         </FlexCenter>
     );
@@ -55,8 +59,11 @@ function UtførteUtbetalinger(props: Props) {
     return (
         <Style>
             {rows.length !== 0 && <StyledTable tittelRekke={tittelRekke} rows={rows} />}
-            {hentAlleUtbetalingerKnapp || (
-                <AlertStripeInfo>Viser alle utførte utbetalinger 2 år tilbake i tid</AlertStripeInfo>
+            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
+            {viserToÅrMedUtbetalinger ? (
+                <AlertStripeInfo>Viser utførte utbetalinger 2 år tilbake i tid</AlertStripeInfo>
+            ) : (
+                <AlertStripeInfo>Viser utførte utbetalinger 90 dager tilbake i tid</AlertStripeInfo>
             )}
         </Style>
     );

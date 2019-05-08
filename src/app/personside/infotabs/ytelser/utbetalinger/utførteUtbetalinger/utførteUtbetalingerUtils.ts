@@ -58,9 +58,9 @@ export function inneholderToÅrGamleUtbetalinger(resource: RestResource<Utbetali
 
 export function getKnappStatus(resource: RestResource<UtbetalingerResponse>): KnappStatus {
     if (inneholderToÅrGamleUtbetalinger(resource)) {
-        return KnappStatus.Skjul;
+        return KnappStatus.Viser2årMedUtbetalinger;
     } else if (isReloading(resource)) {
-        return KnappStatus.Spinner;
+        return KnappStatus.Henter2årMedUtbetalinger;
     }
-    return KnappStatus.Vis;
+    return KnappStatus.Viser90DagerMedUtbetalinger;
 }

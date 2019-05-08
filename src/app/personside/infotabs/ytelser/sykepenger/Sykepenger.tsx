@@ -23,7 +23,6 @@ const Wrapper = styled.article`
 `;
 
 const OversiktStyling = styled.div`
-    margin: ${theme.margin.layout};
     display: flex;
 `;
 

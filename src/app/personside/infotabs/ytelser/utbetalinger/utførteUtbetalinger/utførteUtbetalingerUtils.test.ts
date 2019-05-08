@@ -87,16 +87,16 @@ test('gjennkjenner at reducer inneholder to år gamle utbetalinger', () => {
 
 test('leverer riktig knappstatus', () => {
     let result = getKnappStatus(unLoadedRestReducer());
-    expect(result).toBe(KnappStatus.Vis);
+    expect(result).toBe(KnappStatus.Viser90DagerMedUtbetalinger);
 
     result = getKnappStatus(loadedRestReducerMed90DagerGamleUtbetalinger());
-    expect(result).toBe(KnappStatus.Vis);
+    expect(result).toBe(KnappStatus.Viser90DagerMedUtbetalinger);
 
     result = getKnappStatus(reloadingRestReducerMed90DagerGamleUtbetalinger());
-    expect(result).toBe(KnappStatus.Spinner);
+    expect(result).toBe(KnappStatus.Henter2årMedUtbetalinger);
 
     result = getKnappStatus(loadedRestReducerMed2ÅrGamleUtbetalinger());
-    expect(result).toBe(KnappStatus.Skjul);
+    expect(result).toBe(KnappStatus.Viser2årMedUtbetalinger);
 });
 
 function unLoadedRestReducer(): NotStarted<UtbetalingerResponse> {

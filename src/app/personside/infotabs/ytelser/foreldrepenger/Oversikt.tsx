@@ -16,7 +16,7 @@ interface Props {
 }
 
 const OversiktStyling = styled.div`
-    margin: ${theme.margin.layout};
+    padding: ${theme.margin.layout};
     display: flex;
 `;
 
