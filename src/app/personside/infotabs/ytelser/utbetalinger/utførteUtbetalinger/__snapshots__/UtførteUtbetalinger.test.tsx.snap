@@ -21,16 +21,22 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
 }
 
-.c2 > li > *:first-child {
-  margin-right: 2rem;
+.c2 > li > *:last-child {
+  margin-left: 1rem;
+}
+
+.c2 > li:not(:last-child) {
+  border-bottom: solid 0.0625rem #c6c2bf;
+  padding-bottom: 0.1rem;
+  margin-bottom: 0.1rem;
 }
 
 .c1 {
   overflow: auto;
-  border: solid 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
   background-color: white;
 }
 
@@ -47,7 +53,7 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
 .c1 table th,
 .c1 table td {
   padding: 0.7rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .c1 table th {
@@ -56,6 +62,10 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
 
 .c1 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
+}
+
+.c0 {
+  white-space: nowrap;
 }
 
 .c0 > *:not(:last-child) {
@@ -211,8 +221,46 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
       onClick={[Function]}
       type="submit"
     >
-      Hent alle utførte utbetalinger
+      Hent 2 år med utførte utbetalinger
     </button>
+  </div>
+  <div
+    className="alertstripe alertstripe--info"
+  >
+    <span
+      aria-label="info"
+      className="alertstripe__ikon"
+    >
+      <svg
+        focusable="false"
+        height="1.5em"
+        kind="info-sirkel-fyll"
+        viewBox="0 0 24 24"
+        width="1.5em"
+      >
+        <g
+          fill="none"
+          fillRule="nonzero"
+        >
+          <path
+            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+            fill="#669DB4"
+          />
+          <g
+            fill="#FFF"
+          >
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+            />
+          </g>
+        </g>
+      </svg>
+    </span>
+    <div
+      className="typo-normal alertstripe__tekst"
+    >
+      Viser utførte utbetalinger 90 dager tilbake i tid
+    </div>
   </div>
 </div>
 `;

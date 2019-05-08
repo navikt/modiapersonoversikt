@@ -20,7 +20,7 @@ test('Kommende utbetalinger matcher snapshot', () => {
     const result = renderer.create(
         <UtførteUtbetalinger
             utbetalinger={[utbetaling]}
-            knappStatus={KnappStatus.Vis}
+            knappStatus={KnappStatus.Viser90DagerMedUtbetalinger}
             hentToÅrGamleUtbetalinger={() => null}
         />
     );

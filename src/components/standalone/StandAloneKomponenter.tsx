@@ -44,7 +44,7 @@ const Style = styled.div`
     background-color: steelblue;
     display: grid;
     grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100vw;
     > *:first-child {
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);

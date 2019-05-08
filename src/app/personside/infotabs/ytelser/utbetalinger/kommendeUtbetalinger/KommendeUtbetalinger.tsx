@@ -20,6 +20,7 @@ const KommendeUtbetalingerStyle = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
+    white-space: nowrap;
 `;
 
 function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {

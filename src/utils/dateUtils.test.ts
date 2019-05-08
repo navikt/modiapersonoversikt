@@ -46,6 +46,16 @@ describe('Sorterer etter dato', () => {
         expect(sortedDates[sortedDates.length - 1]).toEqual(new Date('2010-01-01'));
     });
 
+    it('acendingDateComparator returnerer 1, -1 eller 0 ettersom hvilken dato som er størst eller om de er like', () => {
+        const liten = new Date('2000-01-01');
+        const liten2 = new Date('2000-01-01');
+        const stor = new Date('2000-01-10');
+
+        expect(ascendingDateComparator(stor, liten)).toEqual(1);
+        expect(ascendingDateComparator(liten, stor)).toEqual(-1);
+        expect(ascendingDateComparator(liten, liten2)).toEqual(0);
+    });
+
     it('Generic comparator', () => {
         interface MockObject {
             date: string | Date;

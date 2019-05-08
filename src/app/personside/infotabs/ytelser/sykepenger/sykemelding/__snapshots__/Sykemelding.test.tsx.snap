@@ -30,13 +30,14 @@ exports[`Sykemelding matcher snapshot 1`] = `
 .c0 {
   border-radius: 0.5rem;
   background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.35rem rgba(0,0,0,0.1);
   padding: 1.25rem;
 }
 
 .c2 {
   overflow: auto;
-  border: solid 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
   background-color: white;
 }
 
@@ -53,7 +54,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
 .c2 table th,
 .c2 table td {
   padding: 0.7rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .c2 table th {
@@ -145,26 +146,12 @@ exports[`Sykemelding matcher snapshot 1`] = `
           <td
             role="cell"
           >
-            09.02.2014 - 11.05.2014
+            28.07.2014 - 03.01.2014
           </td>
           <td
             role="cell"
           >
-            97%
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            09.02.2014 - 11.05.2014
-          </td>
-          <td
-            role="cell"
-          >
-            97%
+            89%
           </td>
         </tr>
       </tbody>

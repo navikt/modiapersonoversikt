@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import theme from '../styles/personOversiktTheme';
 
 export type TittelRekke = (string | ReactNode)[];
 export type TableRow = Array<string | number | undefined | ReactNode>;
@@ -40,7 +41,8 @@ export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
 
 const TableStyle = styled.div`
     overflow: auto;
-    border: solid 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.05rem rgba(0, 0, 0, 0.25);
+    border-radius: ${theme.borderRadius.layout};
     background-color: white;
     table {
         text-align: left;
@@ -52,7 +54,7 @@ const TableStyle = styled.div`
         th,
         td {
             padding: 0.7rem;
-            vertical-align: bottom;
+            vertical-align: middle;
         }
         th {
             padding-bottom: 0.7rem;

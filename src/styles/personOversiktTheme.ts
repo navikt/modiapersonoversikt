@@ -25,7 +25,7 @@ export const theme = {
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
         background-color: #e9e7e7;
-        box-shadow: inset 0 0 0 0.3rem white;
+        box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.35rem rgba(0, 0, 0, 0.1);
         padding: ${pxToRem(20)};
     `,
     hvittPanel: css`

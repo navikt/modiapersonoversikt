@@ -16,6 +16,7 @@ const Style = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
+    white-space: nowrap;
 `;
 
 function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
