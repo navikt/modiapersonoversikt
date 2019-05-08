@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11,23 +11,23 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c4 dt {
+.c5 dt {
   color: #78706a;
 }
 
-.c4 dd {
+.c5 dd {
   font-weight: bold;
   margin-top: 0.3rem;
 }
 
-.c4 > div {
+.c5 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c6 {
+.c7 {
   text-align: center;
 }
 
@@ -37,6 +37,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 
 .c1 {
   font-weight: bold;
+}
+
+.c4 {
+  border-radius: 0.5rem;
+  background-color: #e9e7e7;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.35rem rgba(0,0,0,0.1);
+  padding: 1.25rem;
 }
 
 .c0 > *:first-child {
@@ -49,58 +56,51 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c7 {
+.c8 {
   overflow: auto;
   box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c7 table {
+.c8 table {
   text-align: left;
   width: 100%;
 }
 
-.c7 table thead {
+.c8 table thead {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c7 table th,
-.c7 table td {
+.c8 table th,
+.c8 table td {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c7 table th {
+.c8 table th {
   padding-bottom: 0.7rem;
 }
 
-.c7 table tr:nth-child(even) {
+.c8 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
-.c5 {
+.c6 {
   white-space: nowrap;
 }
 
-.c5 > *:not(:last-child) {
+.c6 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-.c8 {
+.c9 {
   padding: 0.5rem;
 }
 
 .c3 {
   padding: .8rem;
-}
-
-.c3 > *:first-child {
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.35rem rgba(0,0,0,0.1);
-  padding: 1.25rem;
 }
 
 .c3 > *:not(:last-child) {
@@ -126,183 +126,187 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   <article
     className="c3"
   >
-    <dl
+    <div
       className="c4"
     >
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Arbeidsprosent mor
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          58%
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Mors situasjon
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          nobis sit quo et quis
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Disponibel gradering
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          9%
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Forskyvelsesperiode
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          08.10.2014 - 22.08.2014
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Andre forskyvelsesperiode
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          09.12.2014 - 26.08.2014
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Midlertidig stans
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          2019-02-10
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Stansårsak
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Avsluttet
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Avslått
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Avslått
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Mødrekvote
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          —
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Rett til Mødrekvote
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Ingen rett til mødrekvote
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Aleneomsorg Mor
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          —
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Fedrekvote
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          —
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Rett til Fedrekvote
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          Rett til fedrekvote
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-etikett-liten"
-        >
-          Aleneomsorg Far
-        </dt>
-        <dd
-          className="typo-normal"
-        >
-          —
-        </dd>
-      </div>
-    </dl>
+      <dl
+        className="c5"
+      >
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Arbeidsprosent mor
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            58%
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Mors situasjon
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            nobis sit quo et quis
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Disponibel gradering
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            9%
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Forskyvelsesperiode
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            08.10.2014 - 22.08.2014
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Andre forskyvelsesperiode
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            09.12.2014 - 26.08.2014
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Midlertidig stans
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            2019-02-10
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Stansårsak
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Avsluttet
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Avslått
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Avslått
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Mødrekvote
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            —
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Rett til Mødrekvote
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Ingen rett til mødrekvote
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Aleneomsorg Mor
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            —
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Fedrekvote
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            —
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Rett til Fedrekvote
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            Rett til fedrekvote
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-etikett-liten"
+          >
+            Aleneomsorg Far
+          </dt>
+          <dd
+            className="typo-normal"
+          >
+            —
+          </dd>
+        </div>
+      </dl>
+    </div>
     <section
-      className="c5"
+      className="c6"
     >
       <div
-        className="c6"
+        className="c7"
       >
         <h4
           className="typo-undertittel"
@@ -311,7 +315,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         </h4>
       </div>
       <div
-        className="typo-normal c7"
+        className="typo-normal c8"
       >
         <table
           role="table"
@@ -427,10 +431,10 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
     </section>
     <section>
       <div
-        className="c8"
+        className="c9"
       >
         <div
-          className="c6"
+          className="c7"
         >
           <h4
             className="typo-undertittel"

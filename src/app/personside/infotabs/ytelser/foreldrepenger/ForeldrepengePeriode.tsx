@@ -16,6 +16,7 @@ import {
 import { YtelserKeys } from '../ytelserKeys';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
+import { GråttPanel } from '../../../../../components/common-styled-components';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -24,9 +25,6 @@ interface Props {
 
 const Wrapper = styled.article`
     padding: ${theme.margin.layout};
-    > *:first-child {
-        ${theme.gråttPanel}
-    }
     > *:not(:last-child) {
         margin-bottom: 2rem;
     }
@@ -58,7 +56,9 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
             <Wrapper>
-                <DescriptionList entries={entries} />
+                <GråttPanel>
+                    <DescriptionList entries={entries} />
+                </GråttPanel>
                 <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
                 <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
             </Wrapper>
