@@ -41,7 +41,7 @@ export function createTable(tittelrekke: TittelRekke, rows: TableRows) {
 
 const TableStyle = styled.div`
     overflow: auto;
-    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.05rem rgba(0, 0, 0, 0.25);
     border-radius: ${theme.borderRadius.layout};
     background-color: white;
     table {
