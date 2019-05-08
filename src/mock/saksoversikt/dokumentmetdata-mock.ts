@@ -42,16 +42,16 @@ export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker
         temakodeVisning: tema[1],
         ettersending: faker.random.boolean(),
         erJournalfort: faker.random.boolean(),
-        feil: getFeilWrapper(faker, navfaker)
+        feil: getFeilWrapper(navfaker.random.vektetSjanse(0.1), faker, navfaker)
     };
 }
 
-function getFeilWrapper(faker: Faker.FakerStatic, navfaker: NavFaker): FeilWrapper {
-    return {
-        inneholderFeil: faker.random.boolean(),
-        feilmelding: getFeilmelding(navfaker)
-    };
+function getFeilWrapper(isFeil: boolean, faker: Faker.FakerStatic, navfaker: NavFaker): FeilWrapper {
+    return isFeil
+        ? { inneholderFeil: true, feilmelding: getFeilmelding(navfaker) }
+        : { inneholderFeil: false, feilmelding: null };
 }
+
 const fakeDokumentNavn = [
     'Referat fra samtale på telefon',
     'Vedtak korrigert refusjon/u bet',
@@ -62,11 +62,12 @@ const fakeDokumentNavn = [
     'Innhenting av opplysninger',
     'Automatisk vedtak/nyfødt barn'
 ];
+
 function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
     return {
         tittel: navFaker.random.arrayElement(fakeDokumentNavn),
         dokumentreferanse: faker.random.alphaNumeric(8),
-        kanVises: faker.random.boolean(),
+        kanVises: navFaker.random.vektetSjanse(0.9),
         logiskDokument: faker.random.boolean()
     };
 }

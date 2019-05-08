@@ -3,6 +3,7 @@ import {
     Dokument as Enkeltdokument,
     DokumentMetadata,
     Entitet,
+    Feilmelding,
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
@@ -19,7 +20,7 @@ import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { Person, PersonRespons } from '../../../../../models/person/person';
-import { isLoaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource, isLoaded } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -158,21 +159,23 @@ class DokumentListeElement extends React.Component<Props> {
         ]);
 
         if (!lenkeTrykket) {
-            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument);
+            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument, this.props.dokument);
         }
     }
 
-    visDokumentHvisTilgang(enkeltdokument: Enkeltdokument) {
-        if (this.props.harTilgangTilSakstema && enkeltdokument.kanVises) {
-            this.props.velgOgVisDokument(enkeltdokument);
+    visDokumentHvisTilgang(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
+        if (this.dokumentKanVises(dokument, dokumentMetadata)) {
+            this.props.velgOgVisDokument(dokument);
         }
     }
 
     render() {
-        const dokument = this.props.dokument;
+        const dokumentMetadata = this.props.dokument;
         const brukersNavn = isLoaded(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
 
-        const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
+        const saksid = dokumentMetadata.tilhørendeFagsaksid
+            ? dokumentMetadata.tilhørendeFagsaksid
+            : dokumentMetadata.tilhørendeSaksid;
         const saksvisning =
             this.props.sakstemakode === sakstemakodeAlle ? (
                 <EtikettGrå>
@@ -182,13 +185,13 @@ class DokumentListeElement extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 && (
+        const dokumentVedlegg = dokumentMetadata.vedlegg && dokumentMetadata.vedlegg.length > 0 && (
             <div>
-                <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
+                <Normaltekst>Dokumentet har {dokumentMetadata.vedlegg.length} vedlegg:</Normaltekst>
                 <ul>
-                    {dokument.vedlegg.map(vedlegg => (
-                        <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
-                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg)}</span>
+                    {dokumentMetadata.vedlegg.map(vedlegg => (
+                        <li key={vedlegg.dokumentreferanse + dokumentMetadata.journalpostId}>
+                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg, dokumentMetadata)}</span>
                             {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                         </li>
                     ))}
@@ -196,7 +199,8 @@ class DokumentListeElement extends React.Component<Props> {
             </div>
         );
 
-        const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
+        const kanVises = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
+
         const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
             <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                 <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
@@ -205,7 +209,7 @@ class DokumentListeElement extends React.Component<Props> {
             </NyttVinduLenkeStyle>
         );
 
-        const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
+        const hoveddokumentErValgt = dokumentMetadata.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
             <ListeElementStyle
@@ -222,14 +226,16 @@ class DokumentListeElement extends React.Component<Props> {
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
                             <LenkeKnapp
                                 aria-disabled={!kanVises}
-                                onClick={() => this.visDokumentHvisTilgang(dokument.hoveddokument)}
+                                onClick={() =>
+                                    this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
+                                }
                             >
-                                <Element>{dokument.hoveddokument.tittel}</Element>
+                                <Element>{dokumentMetadata.hoveddokument.tittel}</Element>
                             </LenkeKnapp>
                         </div>
                         <div className="order-first">
                             <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
+                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
                             </Innholdslaster>
                         </div>
                     </UUcustomOrder>
@@ -242,10 +248,21 @@ class DokumentListeElement extends React.Component<Props> {
         );
     }
 
-    private vedleggItem(vedlegg: Enkeltdokument) {
+    private dokumentKanVises(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
+        return (
+            this.props.harTilgangTilSakstema &&
+            dokument.kanVises &&
+            dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning
+        );
+    }
+
+    private vedleggItem(vedlegg: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
         if (!vedlegg.logiskDokument) {
             return (
-                <LenkeKnapp aria-disabled={vedlegg.kanVises} onClick={() => this.visDokumentHvisTilgang(vedlegg)}>
+                <LenkeKnapp
+                    aria-disabled={vedlegg.kanVises}
+                    onClick={() => this.visDokumentHvisTilgang(vedlegg, dokumentMetadata)}
+                >
                     <Element>{vedlegg.tittel}</Element>
                 </LenkeKnapp>
             );

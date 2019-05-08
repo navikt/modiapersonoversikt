@@ -69,7 +69,7 @@ function getSakstema(): Sakstema {
     const tema = navfaker.random.arrayElement(temaarray);
 
     return {
-        harTilgang: faker.random.boolean(),
+        harTilgang: navfaker.random.vektetSjanse(0.8),
         temakode: tema[0],
         temanavn: tema[1],
         erGruppert: faker.random.boolean(),
