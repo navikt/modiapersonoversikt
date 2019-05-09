@@ -2,8 +2,9 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 interface Props {
     children: ReactNode;

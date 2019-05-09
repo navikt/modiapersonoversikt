@@ -31,7 +31,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 }
 
 .c7 dt {
-  color: #78706a;
+  color: #645f5a;
 }
 
 .c7 dd {
@@ -69,10 +69,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 
 .c6 > *:first-child {
   margin-right: 5rem;
-}
-
-.c10 {
-  font-weight: bold;
 }
 
 .c9 {
@@ -313,7 +309,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         >
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Er under oppfølging
             </dt>
@@ -325,7 +321,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Oppfølgingsenhet
             </dt>
@@ -337,7 +333,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Rettighetsgruppe
             </dt>
@@ -349,7 +345,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Innsatsgruppe
             </dt>
@@ -361,7 +357,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Veileder
             </dt>
@@ -373,7 +369,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Meldeplikt
             </dt>
@@ -385,7 +381,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Formidlingsgruppe
             </dt>
@@ -397,7 +393,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Oppfølgingsvedtak
             </dt>
@@ -430,15 +426,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           <div
             className="c9"
           >
-            <p
-              className="typo-normal"
+            <h2
+              className="typo-undertittel"
             >
-              <span
-                className="c10"
-              >
-                Sykefraværsoppfølging
-              </span>
-            </p>
+              Sykefraværsoppfølging
+            </h2>
           </div>
           <span
             className="ekspanderbartPanel__indikator"
@@ -466,15 +458,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           <div
             className="c9"
           >
-            <p
-              className="typo-normal"
+            <h2
+              className="typo-undertittel"
             >
-              <span
-                className="c10"
-              >
-                Ytelser
-              </span>
-            </p>
+              Ytelser
+            </h2>
           </div>
           <span
             className="ekspanderbartPanel__indikator"

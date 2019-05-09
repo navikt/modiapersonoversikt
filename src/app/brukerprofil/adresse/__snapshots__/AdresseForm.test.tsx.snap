@@ -2,7 +2,7 @@
 
 exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
 .c3 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 
@@ -238,7 +238,7 @@ exports[`Rendrer adresseform riktig ved folkeregistrert bostedsadresse 1`] = `
 
 exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 
@@ -751,7 +751,7 @@ exports[`Rendrer adresseform riktig ved midlertidig gateadresse 1`] = `
 
 exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 
@@ -1181,7 +1181,7 @@ exports[`Rendrer adresseform riktig ved midlertidig matrikkeladresse 1`] = `
 
 exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 
@@ -1652,7 +1652,7 @@ exports[`Rendrer adresseform riktig ved midlertidig postboksadresse 1`] = `
 
 exports[`Rendrer adresseform riktig ved midlertidig utenlandsadresse 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 

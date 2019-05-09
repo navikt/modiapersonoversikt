@@ -16,7 +16,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 }
 
 .c1 dt {
-  color: #78706a;
+  color: #645f5a;
 }
 
 .c1 dd {
@@ -45,7 +45,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
     >
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Arbeidsgiver
         </dt>
@@ -57,7 +57,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Arbeidskategori
         </dt>
@@ -69,7 +69,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Inntekstsperiode
         </dt>
@@ -81,7 +81,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Kontonummer
         </dt>
@@ -105,7 +105,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Refusjonstype
         </dt>
@@ -117,7 +117,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Inntekt for perioden
         </dt>
@@ -129,7 +129,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Refusjon til dato
         </dt>
