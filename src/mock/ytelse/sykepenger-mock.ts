@@ -16,7 +16,7 @@ import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { aremark } from '../person/aremark';
-import { Arbeidsforhold } from '../../models/ytelse/sykepenger';
+import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { statiskSykepengerMock } from './statiskSykepengerMock';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
@@ -62,7 +62,7 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         slutt: navfaker.random.vektetSjanse(0.7) ? null : moment(faker.date.past(1)).format(backendDatoformat),
         arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
         erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
-        arbeidsKategori: 'Ærlig arbeid'
+        arbeidskategori: 'Ærlig arbeid'
     };
 }
 

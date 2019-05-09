@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
+.c1 {
+  text-align: center;
+}
+
+.c2 {
+  overflow: auto;
+  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
+  background-color: white;
+}
+
+.c2 table {
+  text-align: left;
+  width: 100%;
+}
+
+.c2 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  font-weight: bold;
+}
+
+.c2 table th,
+.c2 table td {
+  padding: 0.7rem;
+  vertical-align: middle;
+}
+
+.c2 table th {
+  padding-bottom: 0.7rem;
+}
+
+.c2 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.c0 {
+  white-space: nowrap;
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+<section
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <h4
+      className="typo-undertittel"
+    >
+      Kommende utbetalinger
+    </h4>
+  </div>
+  <div
+    className="typo-normal c2"
+  >
+    <table
+      role="table"
+    >
+      <thead
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <th
+            role="columnheader"
+          >
+            Registeringsdato
+          </th>
+          <th
+            role="columnheader"
+          >
+            Type
+          </th>
+          <th
+            role="columnheader"
+          >
+            Periode
+          </th>
+          <th
+            role="columnheader"
+          >
+            Utbetalingsgrad
+          </th>
+          <th
+            role="columnheader"
+          >
+            Dagsats
+          </th>
+          <th
+            role="columnheader"
+          >
+            Bruttobeløp
+          </th>
+          <th
+            role="columnheader"
+          >
+            Arbeidsgiver
+          </th>
+          <th
+            role="columnheader"
+          >
+            Orgnummer
+          </th>
+          <th
+            role="columnheader"
+          >
+            Saksbehandler
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            25.06.2018
+          </td>
+          <td
+            role="cell"
+          >
+            KONTOØVERFØRING
+          </td>
+          <td
+            role="cell"
+          >
+            14.01.2018 - 15.07.2017
+          </td>
+          <td
+            role="cell"
+          >
+            79%
+          </td>
+          <td
+            role="cell"
+          >
+            705.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            466.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            Vedvik - Lunde
+          </td>
+          <td
+            role="cell"
+          >
+            1234567890
+          </td>
+          <td
+            role="cell"
+          >
+            Mari Johannessen
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+`;

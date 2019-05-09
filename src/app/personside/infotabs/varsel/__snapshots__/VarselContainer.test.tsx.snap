@@ -178,7 +178,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 className="ekspanderbartPanel ekspanderbartPanel--lukket"
               >
                 <button
-                  aria-controls="Helt tilfeldig ID"
                   aria-expanded={false}
                   className="ekspanderbartPanel__hode"
                   onClick={[Function]}
@@ -236,7 +235,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 className="ekspanderbartPanel ekspanderbartPanel--lukket"
               >
                 <button
-                  aria-controls="Helt tilfeldig ID"
                   aria-expanded={false}
                   className="ekspanderbartPanel__hode"
                   onClick={[Function]}

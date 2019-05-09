@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Arbeidsforhold } from '../../../../../models/ytelse/pleiepenger';
-import DescriptionList from '../../../../../components/DescriptionList';
-import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoEllerNull, NOKellerNull } from '../../../../../utils/stringFormatting';
+import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
+import { datoEllerNull, NOKellerNull } from '../../../../../../utils/stringFormatting';
+import DescriptionList from '../../../../../../components/DescriptionList';
 
 function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold?: Arbeidsforhold }) {
     if (!arbeidsforhold) {
@@ -22,7 +22,11 @@ function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold?: Arbeidsforhold })
         'Refusjon til dato': datoEllerNull(arbeidsforhold.refusjonTom)
     };
 
-    return <DescriptionList entries={arbeidsSituasjonEntries} />;
+    return (
+        <li>
+            <DescriptionList entries={arbeidsSituasjonEntries} />
+        </li>
+    );
 }
 
 export default ArbeidsForhold;

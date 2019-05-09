@@ -64,7 +64,7 @@ function getPleiepengeperiode(): Pleiepengeperiode {
         fom: moment(faker.date.past(2)).format(backendDatoformat),
         antallPleiepengedager: navfaker.random.integer(20),
         arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 2),
-        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 2)
+        vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 3)
     };
 }
 

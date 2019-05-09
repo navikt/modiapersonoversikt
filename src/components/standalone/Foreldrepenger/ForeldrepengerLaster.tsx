@@ -4,7 +4,6 @@ import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/ForeldrePenger';
-import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
@@ -15,7 +14,6 @@ interface Props {
 
 const Style = styled.div`
     ${theme.hvittPanel};
-    max-width: ${theme.width.ytelser};
 `;
 
 const onError = (
@@ -39,11 +37,9 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
         }
 
         return (
-            <FlexCenter>
-                <Style>
-                    <Foreldrepenger foreldrepenger={aktuellRettighet} />
-                </Style>
-            </FlexCenter>
+            <Style>
+                <Foreldrepenger foreldrepenger={aktuellRettighet} />
+            </Style>
         );
     }
 

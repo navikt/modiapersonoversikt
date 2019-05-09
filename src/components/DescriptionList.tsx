@@ -52,7 +52,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
     return (
         <div key={term}>
             <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
-            <Normaltekst tag="dd">{description || '\u2014'}</Normaltekst>
+            <Normaltekst tag="dd">{description || (description === 0 && '0') || '\u2014'}</Normaltekst>
         </div>
     );
 }

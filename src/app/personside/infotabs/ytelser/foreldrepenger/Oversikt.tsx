@@ -1,68 +1,32 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Foreldrepengerettighet, isAdopsjon, isFødsel } from '../../../../../models/ytelse/foreldrepenger';
-import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet } from './foreldrePengerUtils';
+import { utledFraDatoForRettighet } from './foreldrePengerUtils';
 import DescriptionList, {
     DescriptionListEntries,
     fjernEntriesUtenVerdi
 } from '../../../../../components/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import { OversiktStyling } from '../felles-styling/CommonStylingYtelser';
-import ArbeidsForhold from './Arbeidsforhold';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { datoEllerNull, formaterDato, prosentEllerNull } from '../../../../../utils/stringFormatting';
+import ArbeidsForholdListe from '../arbeidsforhold/ArbeidsforholdListe';
 
 interface Props {
     foreldrePenger: Foreldrepengerettighet;
 }
 
-const ArbeidsForholdListeStyle = styled.ol`
-    list-style: none;
-    > *:not(:first-child) {
-        border-top: ${theme.border.skilleSvak};
-    }
-    > *:not(:last-child) {
-        margin-bottom: 2rem;
-    }
+const OversiktStyling = styled.div`
+    padding: ${theme.margin.layout};
+    display: flex;
 `;
 
-const Luft = styled.div`
-    margin-top: 2rem;
+const Flex = styled.div`
+    display: flex;
+    flex-direction: column;
+    > * {
+        flex-grow: 1;
+    }
 `;
-
-function AlleArbeidsforhold(props: { foreldrePenger: Foreldrepengerettighet }) {
-    const [gjeldendeArbeidsforhold, ...tidligereArbeidsforhold] = sorterArbeidsforholdEtterRefusjonTom(
-        props.foreldrePenger
-    );
-
-    const [visAlleArbeidsforhold, setVisalleArbeidsforhold] = useState(false);
-
-    const tidligereArbeidsforholdCollapse = (
-        <DetaljerCollapse
-            open={visAlleArbeidsforhold}
-            toggle={() => setVisalleArbeidsforhold(!visAlleArbeidsforhold)}
-            tittel="alle arbeidsforhold"
-        >
-            <ArbeidsForholdListeStyle aria-label="Andre arbeidsforhold">
-                {tidligereArbeidsforhold.map((arbForhold, index) => (
-                    <li key={index}>
-                        <ArbeidsForhold arbeidsforhold={arbForhold} />
-                    </li>
-                ))}
-            </ArbeidsForholdListeStyle>
-        </DetaljerCollapse>
-    );
-
-    const flereArbeidsforhold = tidligereArbeidsforhold.length > 0;
-    return (
-        <>
-            <ArbeidsForhold arbeidsforhold={gjeldendeArbeidsforhold} />
-            {flereArbeidsforhold && tidligereArbeidsforholdCollapse}
-        </>
-    );
-}
 
 function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
     if (isFødsel(foreldrePenger)) {
@@ -74,9 +38,7 @@ function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
             Omsorgsovertakelse: datoEllerNull(foreldrePenger.omsorgsovertakelse)
         };
     }
-    return {
-        Termindato: null
-    };
+    return {};
 }
 
 function Oversikt({ foreldrePenger }: Props) {
@@ -108,17 +70,16 @@ function Oversikt({ foreldrePenger }: Props) {
 
     return (
         <OversiktStyling>
-            <div>
+            <Flex>
                 <YtelserInfoGruppe tittel="Om foreldrepengeretten">
                     <DescriptionList entries={foreldrePengeRetten} />
                 </YtelserInfoGruppe>
-                <Luft />
                 <YtelserInfoGruppe tittel="Om barnet">
                     <DescriptionList entries={barnet} />
                 </YtelserInfoGruppe>
-            </div>
+            </Flex>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <AlleArbeidsforhold foreldrePenger={foreldrePenger} />
+                <ArbeidsForholdListe arbeidsforhold={foreldrePenger.arbeidsforhold} />
             </YtelserInfoGruppe>
         </OversiktStyling>
     );

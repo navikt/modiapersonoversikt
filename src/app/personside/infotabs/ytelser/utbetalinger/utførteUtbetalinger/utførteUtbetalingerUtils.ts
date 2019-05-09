@@ -18,11 +18,22 @@ function toÅrTilbakeITid() {
         .toDate();
 }
 
+export function sorterYtelser(utbetaling: Utbetaling): Utbetaling {
+    const ytelser = utbetaling.ytelser || [];
+    return {
+        ...utbetaling,
+        ytelser: ytelser
+            .sort(datoSynkende(ytelse => ytelse.periode.start))
+            .sort(datoSynkende(ytelse => ytelse.periode.slutt))
+    };
+}
+
 export function filtrerOgSorterUtbetalinger(utbetalinger: Utbetaling[], type: YtelserKeys): Utbetaling[] {
     return utbetalinger
         .map(fjernIrelevanteUtbetalinger(type))
         .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
         .filter(fjernTommeUtbetalinger)
+        .map(sorterYtelser)
         .sort(datoSynkende(utbetaling => utbetaling.utbetalingsdato || new Date()));
 }
 
@@ -47,9 +58,9 @@ export function inneholderToÅrGamleUtbetalinger(resource: RestResource<Utbetali
 
 export function getKnappStatus(resource: RestResource<UtbetalingerResponse>): KnappStatus {
     if (inneholderToÅrGamleUtbetalinger(resource)) {
-        return KnappStatus.Skjul;
+        return KnappStatus.Viser2årMedUtbetalinger;
     } else if (isReloading(resource)) {
-        return KnappStatus.Spinner;
+        return KnappStatus.Henter2årMedUtbetalinger;
     }
-    return KnappStatus.Vis;
+    return KnappStatus.Viser90DagerMedUtbetalinger;
 }

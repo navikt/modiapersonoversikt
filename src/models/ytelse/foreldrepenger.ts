@@ -1,5 +1,6 @@
 import { Periode } from '../periode';
 import { KommendeUtbetaling } from './ytelse-utbetalinger';
+import { Arbeidsforhold } from './arbeidsforhold';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;
@@ -63,14 +64,4 @@ export interface Foreldrepengerperiode {
     rettTilMødrekvote: string;
     stansårsak: string | null;
     kommendeUtbetalinger: KommendeUtbetaling[];
-}
-
-export interface Arbeidsforhold {
-    arbeidsgiverNavn: string;
-    arbeidsgiverKontonr: string | null;
-    inntektsperiode: string | null;
-    inntektForPerioden: number | null;
-    sykepengerFom: string | null;
-    refusjonTom: string | null;
-    refusjonstype: string | null;
 }

@@ -1,214 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Kommende utbetalinger matcher snapshot 1`] = `
-Array [
-  .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c5 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c5:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c5:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
-}
-
-.c5:hover {
-  opacity: 0.8;
-}
-
-.c5:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
-.c6 {
-  margin-right: 0.5rem;
-}
-
-.c0 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
-  padding: 1.25rem;
-}
-
-.c7 {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  padding: 0 1.25rem;
-}
-
-.c2 {
-  margin-bottom: 1.25rem;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c1 dt {
-  color: #78706a;
-}
-
-.c1 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-@media print {
-  .c3 {
-    display: none;
-  }
-}
-
-<ol>
-    <li
-      aria-label="Utført utbetaling 29.03.2017"
-    >
-      <div
-        className="c0"
-        open={false}
-      >
-        <dl
-          className="c1"
-        >
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Type
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Foreldrepenger
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Netto
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              11,386.00 NOK
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Dato
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              29.03.2017
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-etikett-liten"
-            >
-              Periode
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              09.11.2016 - 31.10.2017
-            </dd>
-          </div>
-        </dl>
-        <div
-          className="c2"
-        >
-          <div
-            className="c3"
-          >
-            <div
-              className="c4"
-            >
-              <button
-                aria-expanded={false}
-                className="c5"
-                onClick={[Function]}
-              >
-                <span
-                  className="c6"
-                >
-                  <span
-                    className="typo-normal"
-                  >
-                    Vis
-                     
-                    detaljer
-                  </span>
-                </span>
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--ned"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          className="c7"
-          open={false}
-        />
-      </div>
-    </li>
-  </ol>,
-  .c0 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -219,8 +12,208 @@ Array [
   justify-content: center;
 }
 
+.c2 > li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c2 > li > *:last-child {
+  margin-left: 1rem;
+}
+
+.c2 > li:not(:last-child) {
+  border-bottom: solid 0.0625rem #c6c2bf;
+  padding-bottom: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.c1 {
+  overflow: auto;
+  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
+  background-color: white;
+}
+
+.c1 table {
+  text-align: left;
+  width: 100%;
+}
+
+.c1 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  font-weight: bold;
+}
+
+.c1 table th,
+.c1 table td {
+  padding: 0.7rem;
+  vertical-align: middle;
+}
+
+.c1 table th {
+  padding-bottom: 0.7rem;
+}
+
+.c1 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.c0 {
+  white-space: nowrap;
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
 <div
-    className="c0"
+  className="c0"
+>
+  <div
+    className="typo-normal c1"
+  >
+    <table
+      role="table"
+    >
+      <thead
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <th
+            role="columnheader"
+          >
+            Type
+          </th>
+          <th
+            role="columnheader"
+          >
+            Netto
+          </th>
+          <th
+            role="columnheader"
+          >
+            Dato
+          </th>
+          <th
+            role="columnheader"
+          >
+            Periode
+          </th>
+          <th
+            role="columnheader"
+          >
+            Bruttobeløp
+          </th>
+          <th
+            role="columnheader"
+          >
+            Arbeidsgiver
+          </th>
+          <th
+            role="columnheader"
+          >
+            Orgnummer
+          </th>
+          <th
+            role="columnheader"
+          >
+            Skattetrekk
+          </th>
+          <th
+            role="columnheader"
+          >
+            Kreditortrekk
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          role="row"
+        >
+          <td
+            role="cell"
+          >
+            Foreldrepenger
+          </td>
+          <td
+            role="cell"
+          >
+            11,386.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            29.03.2017
+          </td>
+          <td
+            role="cell"
+          >
+            09.11.2016 - 31.10.2017
+          </td>
+          <td
+            role="cell"
+          >
+            13,370.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            Ensjø Bistro
+          </td>
+          <td
+            role="cell"
+          >
+            1234556678235
+          </td>
+          <td
+            role="cell"
+          >
+            -730.00 NOK
+          </td>
+          <td
+            role="cell"
+          >
+            <ul
+              className="c2"
+            >
+              <li>
+                <span>
+                  Bjerke, Berntsen and Nilsen
+                </span>
+                 
+                <span>
+                  -1,042.00
+                   NOK
+                </span>
+              </li>
+              <li>
+                <span>
+                  Olsen AS
+                </span>
+                 
+                <span>
+                  -212.00
+                   NOK
+                </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    className="c3"
   >
     <button
       className="knapp knapp--standard"
@@ -228,8 +221,46 @@ Array [
       onClick={[Function]}
       type="submit"
     >
-      Hent alle utførte utbetalinger
+      Hent 2 år med utførte utbetalinger
     </button>
-  </div>,
-]
+  </div>
+  <div
+    className="alertstripe alertstripe--info"
+  >
+    <span
+      aria-label="info"
+      className="alertstripe__ikon"
+    >
+      <svg
+        focusable="false"
+        height="1.5em"
+        kind="info-sirkel-fyll"
+        viewBox="0 0 24 24"
+        width="1.5em"
+      >
+        <g
+          fill="none"
+          fillRule="nonzero"
+        >
+          <path
+            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+            fill="#669DB4"
+          />
+          <g
+            fill="#FFF"
+          >
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+            />
+          </g>
+        </g>
+      </svg>
+    </span>
+    <div
+      className="typo-normal alertstripe__tekst"
+    >
+      Viser utførte utbetalinger 90 dager tilbake i tid
+    </div>
+  </div>
+</div>
 `;

@@ -16,27 +16,18 @@ import {
 import { YtelserKeys } from '../ytelserKeys';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
+import { GråttPanel } from '../../../../../components/common-styled-components';
 
 interface Props {
     periode: Foreldrepengerperiode;
     periodenr: number;
 }
 
-const Padding = styled.div`
-    margin: ${theme.margin.px10} ${theme.margin.px20} ${theme.margin.px40};
-`;
-
-const FlexOgPadding = styled.div`
-    display: flex;
+const Wrapper = styled.article`
     padding: ${theme.margin.layout};
-`;
-
-const UtbetalingerStyle = styled.section`
-    flex-basis: 55%;
-`;
-
-const Liten = styled.div`
-    flex-basis: 45%;
+    > *:not(:last-child) {
+        margin-bottom: 2rem;
+    }
 `;
 
 function ForeldrepengePeriode({ periode, periodenr }: Props) {
@@ -64,17 +55,13 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
     };
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
-            <FlexOgPadding>
-                <Liten>
-                    <Padding>
-                        <DescriptionList entries={entries} />
-                    </Padding>
-                </Liten>
-                <UtbetalingerStyle aria-label="Utbetalinger foreldrepenger">
-                    <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
-                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
-                </UtbetalingerStyle>
-            </FlexOgPadding>
+            <Wrapper>
+                <GråttPanel>
+                    <DescriptionList entries={entries} />
+                </GråttPanel>
+                <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
+                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
+            </Wrapper>
         </YtelserPeriode>
     );
 }

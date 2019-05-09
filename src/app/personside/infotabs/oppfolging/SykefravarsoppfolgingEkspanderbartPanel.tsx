@@ -3,10 +3,9 @@ import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
-import { createTable } from '../../../../utils/tableUtils';
+import { StyledTable } from '../../../../utils/tableUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
@@ -14,7 +13,6 @@ interface Props {
 
 const TableStyle = styled.div`
     border-top: ${theme.border.skille};
-    ${theme.table}
 `;
 
 function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
@@ -29,14 +27,18 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 
     return (
         <TableStyle>
-            <Normaltekst tag="div">{createTable(tableHeaders, tableRows)}</Normaltekst>
+            <StyledTable tittelRekke={tableHeaders} rows={tableRows} />
         </TableStyle>
     );
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
     if (props.syfoPunkter.length === 0) {
-        return <AlertStripeInfo>Det finnes ikke oppfølgingsinformasjon om bruker i Arena</AlertStripeInfo>;
+        return (
+            <AlertStripeInfo>
+                Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena
+            </AlertStripeInfo>
+        );
     }
 
     return (

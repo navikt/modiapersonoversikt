@@ -156,5 +156,5 @@ test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
         </TestProvider>
     );
 
-    expect(result.html()).toContain('Kunne ikke finne arbeidsforhold');
+    expect(result.html()).toContain('Kunne ikke finne noen arbeidsforhold');
 });

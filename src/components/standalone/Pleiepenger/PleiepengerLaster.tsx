@@ -4,7 +4,6 @@ import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet, PleiepengerResponse } from '../../../models/ytelse/pleiepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pleiepenger';
-import { FlexCenter } from '../../common-styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
@@ -16,7 +15,6 @@ interface Props {
 
 const Style = styled.div`
     ${theme.hvittPanel};
-    max-width: ${theme.width.ytelser};
 `;
 
 const onError = (
@@ -40,11 +38,9 @@ class PleiepengerLaster extends React.PureComponent<Props> {
         }
 
         return (
-            <FlexCenter>
-                <Style>
-                    <Pleiepenger pleiepenger={aktuellRettighet} />
-                </Style>
-            </FlexCenter>
+            <Style>
+                <Pleiepenger pleiepenger={aktuellRettighet} />
+            </Style>
         );
     }
 

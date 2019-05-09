@@ -5,55 +5,62 @@ import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
 import Sykemelding from './sykemelding/Sykemelding';
-import Arbeidsforhold from './arbeidsforhold/Arbeidsforhold';
+import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
-import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVentListe';
+import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 interface Props {
     sykepenger: ISykepenger;
 }
 
-const FlexOgPadding = styled.div`
+const Wrapper = styled.article`
+    padding: ${theme.margin.layout};
+`;
+
+const OversiktStyling = styled.div`
     display: flex;
-    padding: ${theme.margin.layout};
 `;
 
-const UtbetalingerStyle = styled.section`
-    flex-basis: 55%;
-`;
-
-const InfoStyle = styled.div`
-    flex-basis: 45%;
-    padding: ${theme.margin.layout};
+const Flex = styled.div`
+    display: flex;
+    flex-direction: column;
     > * {
-        margin-bottom: 3rem;
+        flex-grow: 1;
+    }
+`;
+
+const SpaceBetween = styled.div`
+    > * {
+        margin-top: 2rem;
     }
 `;
 
 function Sykepenger({ sykepenger }: Props) {
+    const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">
-            <article>
+            <Wrapper>
                 <VisuallyHiddenAutoFokusHeader
                     tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
                 />
-                <FlexOgPadding>
-                    <InfoStyle>
+                <OversiktStyling>
+                    <Flex>
                         <Sykepengertilfellet sykepenger={sykepenger} />
-                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
-                        <Arbeidsforhold sykepenger={sykepenger} />
-                    </InfoStyle>
-                    <UtbetalingerStyle aria-label="UTbetlainger sykepenger">
-                        <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                        <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                        <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
-                    </UtbetalingerStyle>
-                </FlexOgPadding>
-            </article>
+                        <Sykemelding sykmelding={aktuellSykmelding} />
+                    </Flex>
+                    <Arbeidssituasjon sykepenger={sykepenger} />
+                </OversiktStyling>
+                <SpaceBetween>
+                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
+                </SpaceBetween>
+            </Wrapper>
         </ErrorBoundary>
     );
 }

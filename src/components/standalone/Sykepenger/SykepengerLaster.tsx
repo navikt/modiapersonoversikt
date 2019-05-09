@@ -8,7 +8,6 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import { FlexCenter } from '../../common-styled-components';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 
 interface OwnProps {
@@ -18,7 +17,6 @@ interface OwnProps {
 
 const Style = styled.div`
     ${theme.hvittPanel};
-    max-width: ${theme.width.ytelser};
 `;
 
 type Props = OwnProps;
@@ -43,11 +41,9 @@ function SykePengerLaster(props: Props) {
             return <AlertStripeAdvarsel>Fant ikke aktuell sykepengerettighet for bruker</AlertStripeAdvarsel>;
         }
         return (
-            <FlexCenter>
-                <Style>
-                    <Sykepenger sykepenger={aktuellRettighet} />
-                </Style>
-            </FlexCenter>
+            <Style>
+                <Sykepenger sykepenger={aktuellRettighet} />
+            </Style>
         );
     }
 
