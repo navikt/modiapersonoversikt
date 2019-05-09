@@ -34,8 +34,6 @@ const Flex = styled.div`
     }
 `;
 
-const SpaceBetween = styled.div``;
-
 function Sykepenger({ sykepenger }: Props) {
     const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
     return (
@@ -51,11 +49,9 @@ function Sykepenger({ sykepenger }: Props) {
                     </Flex>
                     <Arbeidssituasjon sykepenger={sykepenger} />
                 </OversiktStyling>
-                <SpaceBetween>
-                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
-                </SpaceBetween>
+                <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
             </Wrapper>
         </ErrorBoundary>
     );
