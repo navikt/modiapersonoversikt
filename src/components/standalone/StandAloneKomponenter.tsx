@@ -24,6 +24,7 @@ import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
+import VarslerLamell from './VarslerLamell';
 
 enum Komponenter {
     Visittkort,
@@ -35,7 +36,8 @@ enum Komponenter {
     Pleiepenger,
     HentOppgaveKnapp,
     Foreldrepenger,
-    Sykepenger
+    Sykepenger,
+    Varsler
 }
 
 const Style = styled.div`
@@ -95,6 +97,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
         case Komponenter.Sykepenger:
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
+        case Komponenter.Varsler:
+            return <VarslerLamell fødselsnummer={aremark.fødselsnummer} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
