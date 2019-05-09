@@ -34,11 +34,7 @@ const Flex = styled.div`
     }
 `;
 
-const SpaceBetween = styled.div`
-    > * {
-        margin-top: 2rem;
-    }
-`;
+const SpaceBetween = styled.div``;
 
 function Sykepenger({ sykepenger }: Props) {
     const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];

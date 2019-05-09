@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
-import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
-import { ReactNode } from 'react';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyling = styled.dl`
     display: flex;
@@ -51,7 +51,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
     }
     return (
         <div key={term}>
-            <EtikettLiten tag="dt">{term || ''}</EtikettLiten>
+            <Normaltekst tag="dt">{term || ''}</Normaltekst>
             <Normaltekst tag="dd">{description || (description === 0 && '0') || '\u2014'}</Normaltekst>
         </div>
     );

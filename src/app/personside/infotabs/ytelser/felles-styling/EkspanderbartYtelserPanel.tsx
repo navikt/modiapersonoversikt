@@ -2,8 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';
-import { Bold } from '../../../../../components/common-styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
@@ -41,9 +40,7 @@ function EkspanderbartYtelserPanel(props: Props) {
 
     const tittel = (
         <TittelStyle>
-            <Normaltekst>
-                <Bold>{props.tittel}</Bold>
-            </Normaltekst>
+            <Undertittel tag="h2">{props.tittel}</Undertittel>
             {tillegsinfo}
         </TittelStyle>
     );
