@@ -2,7 +2,7 @@
 
 exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 
@@ -201,7 +201,7 @@ exports[`Viser riktig form for å endre norsk kontonummer 1`] = `
 
 exports[`Viser riktig form for å endre utenlandsk kontonummer 1`] = `
 .c2 {
-  color: #78706a;
+  color: #645f5a;
   margin-top: 3px;
 }
 

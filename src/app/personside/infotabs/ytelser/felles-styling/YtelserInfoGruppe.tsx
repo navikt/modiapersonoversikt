@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { Ingress } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 
@@ -16,7 +16,7 @@ const Style = styled.div`
 function YtelserInfoGruppe(props: Props) {
     return (
         <Style>
-            <Ingress tag="h3">{props.tittel}</Ingress>
+            <Undertittel tag="h3">{props.tittel}</Undertittel>
             {props.children}
         </Style>
     );
