@@ -12,7 +12,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 .c3 dt {
-  color: #78706a;
+  color: #645f5a;
 }
 
 .c3 dd {
@@ -27,28 +27,9 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   overflow-wrap: break-word;
 }
 
-.c12 {
-  text-align: center;
-}
-
-.c8 {
-  text-transform: uppercase;
-}
-
-.c7 {
-  font-weight: bold;
-}
-
-.c10 {
-  border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.35rem rgba(0,0,0,0.1);
-  padding: 1.25rem;
-}
-
 .c6 > *:first-child {
   background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
+  padding: 0.5rem 1.25rem;
 }
 
 .c6 ol {
@@ -56,61 +37,75 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c13 {
+.c10 {
   overflow: auto;
-  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c13 table {
+.c10 table {
   text-align: left;
   width: 100%;
 }
 
-.c13 table thead {
+.c10 table thead {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c13 table th,
-.c13 table td {
+.c10 table th,
+.c10 table td {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c13 table th {
+.c10 table th {
   padding-bottom: 0.7rem;
 }
 
-.c13 table tr:nth-child(even) {
+.c10 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
-.c11 {
+.c9 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
   white-space: nowrap;
+}
+
+.c9 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.c8 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c11 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
 }
 
 .c11 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-.c14 {
-  padding: 0.5rem;
-}
-
-.c9 {
+.c7 {
   padding: .8rem;
-}
-
-.c9 > *:not(:last-child) {
-  margin-bottom: 2rem;
 }
 
 .c2 {
   border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.35rem rgba(0,0,0,0.1);
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
@@ -164,7 +159,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         className="c2"
       >
         <h3
-          className="typo-ingress"
+          className="typo-undertittel"
         >
           Om foreldrepengeretten
         </h3>
@@ -173,7 +168,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         >
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Foreldrepengetype
             </dt>
@@ -185,7 +180,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Dekningsgrad
             </dt>
@@ -197,7 +192,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Rettighet fra dato
             </dt>
@@ -209,7 +204,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Graderingsdager
             </dt>
@@ -221,7 +216,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Restdager
             </dt>
@@ -233,7 +228,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Maksdato
             </dt>
@@ -245,7 +240,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Arbeidskategori
             </dt>
@@ -257,7 +252,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Fedrekvote til og med
             </dt>
@@ -273,7 +268,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         className="c2"
       >
         <h3
-          className="typo-ingress"
+          className="typo-undertittel"
         >
           Om barnet
         </h3>
@@ -282,7 +277,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         >
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Termindato
             </dt>
@@ -294,7 +289,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Fødselsdato
             </dt>
@@ -306,7 +301,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Annen forelder
             </dt>
@@ -318,7 +313,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Antall barn
             </dt>
@@ -335,7 +330,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       className="c2"
     >
       <h3
-        className="typo-ingress"
+        className="typo-undertittel"
       >
         Arbeidssituasjon
       </h3>
@@ -349,7 +344,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           >
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Arbeidsgiver
               </dt>
@@ -361,7 +356,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Kontonummer
               </dt>
@@ -385,7 +380,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Inntekstsperiode
               </dt>
@@ -397,7 +392,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Inntekt for perioden
               </dt>
@@ -409,7 +404,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Refusjonstype
               </dt>
@@ -421,7 +416,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Refusjon til dato
               </dt>
@@ -433,7 +428,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Sykepenger fra og med
               </dt>
@@ -461,30 +456,27 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       className="c6"
     >
       <h3
-        className="typo-normal"
+        className="typo-undertittel"
       >
-        <span
-          className="c7"
-        >
-          <span
-            className="c8"
-          >
-            Periode 1 - 29.04.2017
-          </span>
-        </span>
+        Periode 1 - 29.04.2017
       </h3>
       <article
-        className="c9"
+        className="c7"
       >
         <div
-          className="c10"
+          className="c8"
         >
+          <h2
+            className="typo-undertittel"
+          >
+            Om foreldrepengeperioden
+          </h2>
           <dl
             className="c3"
           >
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Arbeidsprosent mor
               </dt>
@@ -496,7 +488,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Mors situasjon
               </dt>
@@ -508,7 +500,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Disponibel gradering
               </dt>
@@ -520,7 +512,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Forskyvelsesperiode
               </dt>
@@ -532,7 +524,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Andre forskyvelsesperiode
               </dt>
@@ -544,7 +536,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Midlertidig stans
               </dt>
@@ -556,7 +548,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Stansårsak
               </dt>
@@ -568,7 +560,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Avslått
               </dt>
@@ -580,7 +572,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Mødrekvote
               </dt>
@@ -592,7 +584,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Rett til Mødrekvote
               </dt>
@@ -604,7 +596,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Aleneomsorg Mor
               </dt>
@@ -616,7 +608,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Fedrekvote
               </dt>
@@ -628,7 +620,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Rett til Fedrekvote
               </dt>
@@ -640,7 +632,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </div>
             <div>
               <dt
-                className="typo-etikett-liten"
+                className="typo-normal"
               >
                 Aleneomsorg Far
               </dt>
@@ -653,19 +645,15 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </dl>
         </div>
         <section
-          className="c11"
+          className="c9"
         >
-          <div
-            className="c12"
+          <h4
+            className="typo-undertittel"
           >
-            <h4
-              className="typo-undertittel"
-            >
-              Kommende utbetalinger
-            </h4>
-          </div>
+            Kommende utbetalinger
+          </h4>
           <div
-            className="typo-normal c13"
+            className="typo-normal c10"
           >
             <table
               role="table"
@@ -779,20 +767,14 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </table>
           </div>
         </section>
-        <section>
-          <div
-            className="c14"
+        <section
+          className="c11"
+        >
+          <h4
+            className="typo-undertittel"
           >
-            <div
-              className="c12"
-            >
-              <h4
-                className="typo-undertittel"
-              >
-                Utførte utbetalinger
-              </h4>
-            </div>
-          </div>
+            Utførte utbetalinger
+          </h4>
         </section>
       </article>
     </li>

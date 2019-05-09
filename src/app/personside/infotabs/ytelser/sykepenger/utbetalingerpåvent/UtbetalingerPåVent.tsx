@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import { StyledTable } from '../../../../../../utils/tableUtils';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 interface Props {
     utbetalingerPåVent: UtbetalingPåVent[];
@@ -16,6 +16,7 @@ const Style = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
+    ${theme.gråttPanel};
     white-space: nowrap;
 `;
 
@@ -35,9 +36,7 @@ function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
 function UtbetalingerPVent(props: Props) {
     return (
         <Style>
-            <AlignTextCenter>
-                <Undertittel tag="h4">Utbetalinger på vent</Undertittel>
-            </AlignTextCenter>
+            <Undertittel tag="h4">Utbetalinger på vent</Undertittel>
             {getInnhold(props.utbetalingerPåVent)}
         </Style>
     );

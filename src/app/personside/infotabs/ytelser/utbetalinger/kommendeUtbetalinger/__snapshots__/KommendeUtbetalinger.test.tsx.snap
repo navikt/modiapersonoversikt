@@ -2,41 +2,41 @@
 
 exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
 .c1 {
-  text-align: center;
-}
-
-.c2 {
   overflow: auto;
-  box-shadow: 0 0 0 0.05rem rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c2 table {
+.c1 table {
   text-align: left;
   width: 100%;
 }
 
-.c2 table thead {
+.c1 table thead {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c2 table th,
-.c2 table td {
+.c1 table th,
+.c1 table td {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c2 table th {
+.c1 table th {
   padding-bottom: 0.7rem;
 }
 
-.c2 table tr:nth-child(even) {
+.c1 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
 .c0 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
   white-space: nowrap;
 }
 
@@ -47,17 +47,13 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
 <section
   className="c0"
 >
-  <div
-    className="c1"
+  <h4
+    className="typo-undertittel"
   >
-    <h4
-      className="typo-undertittel"
-    >
-      Kommende utbetalinger
-    </h4>
-  </div>
+    Kommende utbetalinger
+  </h4>
   <div
-    className="typo-normal c2"
+    className="typo-normal c1"
   >
     <table
       role="table"
