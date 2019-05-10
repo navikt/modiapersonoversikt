@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import EtikettGrå from '../EtikettGrå';
+import EtikettGrå from '../../../../components/EtikettGrå';
 import { Tekst } from './tekster';
-import { formatterDatoTid } from '../../utils/dateUtils';
+import { formatterDatoTid } from '../../../../utils/dateUtils';
 
 interface Props {
     tekst: Tekst;

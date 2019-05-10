@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Tekst } from './tekster';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
-import InformasjonSVG from '../../svg/InformasjonSVG';
-import theme from '../../styles/personOversiktTheme';
+import InformasjonSVG from '../../../../svg/InformasjonSVG';
+import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
 import { Undertittel } from 'nav-frontend-typografi';
 
@@ -59,7 +59,7 @@ const KnappOgIkon = styled.div`
     }
 `;
 
-function HurtigvelgerElement(props: Props) {
+function HurtigreferatElement(props: Props) {
     return (
         <ContainerStyle>
             <Undertittel>{props.tekst.tittel}</Undertittel>
@@ -78,4 +78,4 @@ function HurtigvelgerElement(props: Props) {
     );
 }
 
-export default HurtigvelgerElement;
+export default HurtigreferatElement;

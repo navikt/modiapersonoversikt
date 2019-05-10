@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Tekst, tekster } from './tekster';
-import HurtigvelgerElement from './HurtigvelgerElement';
+import HurtigreferatElement from './HurtigreferatElement';
 import styled from 'styled-components';
 
 interface Props {
@@ -11,15 +11,15 @@ const MarginBottom = styled.div`
     margin-bottom: 6rem;
 `;
 
-function HurtigvalgListe(props: Props) {
+function HurtigreferatListe(props: Props) {
     return (
         <ul>
             {tekster.map(tekst => (
-                <HurtigvelgerElement key={tekst.tittel} tekst={tekst} sendTekst={() => props.send(tekst)} />
+                <HurtigreferatElement key={tekst.tittel} tekst={tekst} sendTekst={() => props.send(tekst)} />
             ))}
             <MarginBottom />
         </ul>
     );
 }
 
-export default HurtigvalgListe;
+export default HurtigreferatListe;

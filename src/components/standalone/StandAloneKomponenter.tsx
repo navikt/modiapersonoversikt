@@ -25,7 +25,8 @@ import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
-import HurtigvalgListe from '../Hurtigvelger/HurtigvalgListe';
+import HurtigReferatContainer from '../../app/personside/dialogpanel/Hurtigreferat/HurtigreferatContainer';
+import TestProvider from '../../test/Testprovider';
 
 enum Komponenter {
     Visittkort,
@@ -99,7 +100,11 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Varsler:
             return <VarslerLamell fødselsnummer={aremark.fødselsnummer} />;
         case Komponenter.Hurtigvalg:
-            return <HurtigvalgListe send={() => null} />;
+            return (
+                <TestProvider>
+                    <HurtigReferatContainer />
+                </TestProvider>
+            );
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { theme } from '../../../styles/personOversiktTheme';
 import { Normaltekst } from 'nav-frontend-typografi';
+import HurtigReferatContainer from './Hurtigreferat/HurtigreferatContainer';
 
 const border = 'rgba(0, 0, 0, 0.1) 1px solid';
 
@@ -19,6 +20,7 @@ const DialogPanelWrapper = styled.div`
 function DialogPanel() {
     return (
         <DialogPanelWrapper role="region" aria-label="Dialogpanel">
+            <HurtigReferatContainer />
             <Undertittel>Dialogpanel</Undertittel>
             <Normaltekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Normaltekst>
         </DialogPanelWrapper>
