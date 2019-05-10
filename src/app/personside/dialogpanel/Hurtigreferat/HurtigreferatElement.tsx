@@ -9,7 +9,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     tekst: Tekst;
-    sendTekst: () => void;
+    send: () => void;
 }
 
 const ContainerStyle = styled.li`
@@ -70,7 +70,7 @@ function HurtigreferatElement(props: Props) {
                         <Preview tekst={props.tekst} />
                     </DropDown>
                 </PreviewContainer>
-                <KnappBase type={'hoved'} onClick={() => props.sendTekst()}>
+                <KnappBase type={'hoved'} onClick={props.send}>
                     Send
                 </KnappBase>
             </KnappOgIkon>

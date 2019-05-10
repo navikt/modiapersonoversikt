@@ -26,12 +26,7 @@ const Styles = styled.div`
         ${theme.visuallyHidden}
     }
     overflow-y: auto;
-    .ekspanderbartPanel__innhold {
-        padding: 0;
-    }
-    .ekspanderbartPanel__hode:hover {
-        ${theme.hover}
-    }
+    ${theme.resetEkspanderbartPanelStyling}
 `;
 
 class VarslerLamell extends React.PureComponent<Props> {
