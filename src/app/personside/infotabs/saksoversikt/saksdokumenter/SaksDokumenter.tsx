@@ -206,7 +206,7 @@ class SaksDokumenter extends React.PureComponent<Props> {
         const props = this.props;
 
         if (!props.valgtSakstema) {
-            return null;
+            return <SakstemaListeContainer />;
         }
 
         const filterCheckboxer = (
