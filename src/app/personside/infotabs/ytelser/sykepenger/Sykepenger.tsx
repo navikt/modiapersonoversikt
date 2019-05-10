@@ -24,6 +24,11 @@ const Wrapper = styled.article`
 
 const OversiktStyling = styled.div`
     display: flex;
+    flex-wrap: wrap;
+    > * {
+        flex-basis: 40%;
+        flex-grow: 1;
+    }
 `;
 
 const Flex = styled.div`
