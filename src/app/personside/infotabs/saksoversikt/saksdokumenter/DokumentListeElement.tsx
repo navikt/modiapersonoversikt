@@ -199,9 +199,9 @@ class DokumentListeElement extends React.Component<Props> {
             </div>
         );
 
-        const kanVises = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
+        const tilgangTilHoveddokument = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
 
-        const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
+        const egetVinduLenke = !this.props.erStandaloneVindu && tilgangTilHoveddokument && (
             <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                 <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                     <Normaltekst tag="span">Åpne i eget vindu</Normaltekst>
@@ -218,14 +218,14 @@ class DokumentListeElement extends React.Component<Props> {
                 }
                 ref={this.dokumentRef}
                 valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
-                klikkbar={kanVises}
+                klikkbar={tilgangTilHoveddokument}
             >
-                <IkonWrapper>{dokumentIkon(kanVises)}</IkonWrapper>
+                <IkonWrapper>{dokumentIkon(this.harTilgangTilJournalpost(dokumentMetadata))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder>
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
                             <LenkeKnapp
-                                aria-disabled={!kanVises}
+                                aria-disabled={!tilgangTilHoveddokument}
                                 onClick={() =>
                                     this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
                                 }
@@ -249,10 +249,12 @@ class DokumentListeElement extends React.Component<Props> {
     }
 
     private dokumentKanVises(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
+        return dokument.kanVises && this.harTilgangTilJournalpost(dokumentMetadata);
+    }
+
+    private harTilgangTilJournalpost(dokumentMetadata: DokumentMetadata) {
         return (
-            this.props.harTilgangTilSakstema &&
-            dokument.kanVises &&
-            dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning
+            this.props.harTilgangTilSakstema && dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning
         );
     }
 
