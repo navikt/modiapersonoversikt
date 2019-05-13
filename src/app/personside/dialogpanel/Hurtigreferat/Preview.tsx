@@ -12,6 +12,7 @@ interface Props {
 const PreviewStyle = styled.div`
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     > * {
         margin-bottom: 0.5rem;
     }
@@ -31,7 +32,7 @@ function Preview(props: Props) {
             <Undertittel tag="h3">{props.tekst.tittel}</Undertittel>
             <EtikettGrå>{formatterDatoTid(new Date())}</EtikettGrå>
             <EtikettGrå>Samtalereferat / Telefon</EtikettGrå>
-            <Normaltekst>{props.tekst.tekst}</Normaltekst>
+            <Normaltekst>{props.tekst.fritekst}</Normaltekst>
             <Normaltekst>Hilsen Nav</Normaltekst>
         </PreviewStyle>
     );

@@ -11,10 +11,10 @@ export interface PostResourceActionTypes {
 }
 
 export enum PostStatus {
-    NOT_STARTED,
-    POSTING,
-    SUCCESS,
-    FAIL
+    NOT_STARTED = 'NOT_STARTED',
+    POSTING = 'POSTING',
+    SUCCESS = 'SUCCESS',
+    FAIL = 'FAIL'
 }
 
 export interface PostResource<T> {

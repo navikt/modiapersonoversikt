@@ -1,13 +1,25 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { tekster } from './tekster';
+import { Tekst, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
-import { FlexCenter } from '../../../../components/common-styled-components';
-import NavFrontendSpinner from 'nav-frontend-spinner';
+import { connect } from 'react-redux';
+import { isNotStartedPosting, isPosting, PostResource } from '../../../../rest/utils/postResource';
+import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
+import { AppState } from '../../../../redux/reducers';
+import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+
+interface StateProps {
+    sendMeldingResource: PostResource<SendMeldingRequest>;
+}
+
+interface DispatchProps {
+    sendMelding: (tekst: Tekst) => void;
+}
+
+type Props = StateProps & DispatchProps;
 
 const Style = styled.div`
     ${theme.resetEkspanderbartPanelStyling};
@@ -18,24 +30,20 @@ const MarginBottom = styled.div`
     margin-bottom: 6rem;
 `;
 
-function HurtigreferatContainer() {
-    const [isPosting, setIsPosting] = useState(false);
-    const handlePost = tekst => {
-        setIsPosting(true);
-    };
-    if (isPosting) {
-        return (
-            <FlexCenter>
-                <NavFrontendSpinner type="L" />
-            </FlexCenter>
-        );
-    }
+function HurtigreferatContainer(props: Props) {
+    const sendResource = props.sendMeldingResource;
     return (
         <Style>
             <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>
                 <ul>
                     {tekster.map(tekst => (
-                        <HurtigreferatElement key={tekst.tittel} tekst={tekst} send={() => handlePost(tekst)} />
+                        <HurtigreferatElement
+                            key={tekst.tittel}
+                            sendResource={sendResource}
+                            tekst={tekst}
+                            send={isNotStartedPosting(sendResource) ? () => props.sendMelding(tekst) : () => null}
+                            spinner={isPosting(sendResource) && sendResource.payload.fritekst === tekst.fritekst}
+                        />
                     ))}
                     <MarginBottom />
                 </ul>
@@ -44,4 +52,17 @@ function HurtigreferatContainer() {
     );
 }
 
-export default HurtigreferatContainer;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        sendMeldingResource: state.restResources.sendMelding
+    };
+}
+
+const actionCreators = {
+    sendMelding: (tekst: Tekst) => sendMeldingActionCreator({ fritekst: tekst.fritekst })
+};
+
+export default connect(
+    mapStateToProps,
+    actionCreators
+)(HurtigreferatContainer);

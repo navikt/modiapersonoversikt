@@ -47,7 +47,7 @@ import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { Varsel } from '../../models/varsel';
-import { Melding, Traad } from '../../models/meldinger/meldinger';
+import { SendMeldingRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
 
@@ -80,7 +80,7 @@ export interface RestEndepunkter {
     featureToggles: DeprecatedRestResource<FeatureToggles>;
     brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;
-    sendMelding: PostResource<Melding>;
+    sendMelding: PostResource<SendMeldingRequest>;
 }
 
 export default combineReducers<RestEndepunkter>({
