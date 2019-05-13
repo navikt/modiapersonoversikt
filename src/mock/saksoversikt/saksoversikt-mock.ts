@@ -5,8 +5,10 @@ import { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getBehandlingskjede, getBehandlingskjeder } from './behandlingskjeder-mock';
-import { getDokumentMetadata, getDokumentMetadataListe } from './dokumentmetdata-mock';
+import { getDokumentMetadata, getDokumentMetadataListe } from './dokumentmetadata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { getAremarkSakstemaListe } from './aremark-saksoversikt-mock';
+import { aremark } from '../person/aremark';
 
 const temaarray = [
     ['AAP', 'Arbeidsavklaringspenger'],
@@ -24,6 +26,12 @@ const temaarray = [
 ];
 
 export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            resultat: getAremarkSakstemaListe()
+        };
+    }
+
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 
@@ -60,7 +68,7 @@ function getSakstemaListe(): Sakstema[] {
         return [];
     }
 
-    return Array(navfaker.random.integer(15, 1))
+    return Array(navfaker.random.integer(5, 1))
         .fill(null)
         .map(() => getSakstema());
 }
