@@ -2,7 +2,7 @@ import { postConfig } from './config';
 
 export function post(uri: string, body: object) {
     return fetch(uri, postConfig(body)).then(response => {
-        if (response.ok) {
+        if (response.ok && !response.redirected) {
             return parseResponse(response);
         } else {
             throw response.statusText;
