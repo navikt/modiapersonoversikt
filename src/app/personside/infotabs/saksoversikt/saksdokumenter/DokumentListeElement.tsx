@@ -11,8 +11,8 @@ import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import Dokument from '../../../../../svg/Dokument';
-import DokumentIkkeTilgangMerket from '../../../../../svg/DokumentIkkeTilgangMerket';
+import DokumentIkon from '../../../../../svg/Dokument';
+import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangMerket';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
 import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
@@ -29,6 +29,7 @@ import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 interface OwnProps {
     dokument: DokumentMetadata;
@@ -125,11 +126,11 @@ function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) 
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
-function dokumentIkon(harTilgang: boolean) {
+function getDokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
-        return <Dokument />;
+        return <DokumentIkon />;
     } else {
-        return <DokumentIkkeTilgangMerket aria-label="Du har ikke tilgang til dette dokumentet" />;
+        return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
 }
 
@@ -171,7 +172,7 @@ class DokumentListeElement extends React.Component<Props> {
 
     render() {
         const dokumentMetadata = this.props.dokument;
-        const brukersNavn = isLoaded(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
+        const brukersNavn = isLoadedPerson(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
 
         const saksid = dokumentMetadata.tilhørendeFagsaksid
             ? dokumentMetadata.tilhørendeFagsaksid
@@ -220,7 +221,7 @@ class DokumentListeElement extends React.Component<Props> {
                 valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
                 klikkbar={tilgangTilHoveddokument}
             >
-                <IkonWrapper>{dokumentIkon(this.harTilgangTilJournalpost(dokumentMetadata))}</IkonWrapper>
+                <IkonWrapper>{getDokumentIkon(this.harTilgangTilJournalpost(dokumentMetadata))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder>
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
@@ -262,7 +263,7 @@ class DokumentListeElement extends React.Component<Props> {
         if (!vedlegg.logiskDokument) {
             return (
                 <LenkeKnapp
-                    aria-disabled={vedlegg.kanVises}
+                    aria-disabled={!vedlegg.kanVises}
                     onClick={() => this.visDokumentHvisTilgang(vedlegg, dokumentMetadata)}
                 >
                     <Element>{vedlegg.tittel}</Element>
