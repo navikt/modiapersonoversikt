@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Traad } from '../../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
-import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import theme from '../../../../../../styles/personOversiktTheme';
+import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
@@ -80,7 +80,7 @@ function Funksjoner(props: Props) {
     );
 }
 
-function ToppMeny(props: Props) {
+function Verktoylinje(props: Props) {
     return (
         <PanelStyle>
             <Funksjoner valgtTraad={props.valgtTraad} />
@@ -88,4 +88,4 @@ function ToppMeny(props: Props) {
     );
 }
 
-export default ToppMeny;
+export default Verktoylinje;

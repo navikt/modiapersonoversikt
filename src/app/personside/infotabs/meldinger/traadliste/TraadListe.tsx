@@ -6,17 +6,13 @@ import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { sisteSendteMelding } from '../utils/meldingerUtils';
-import Input from 'nav-frontend-skjema/lib/input';
+import TraadFilterPanel from './filter/TraadFilterPanel';
 
 interface Props {
     traader: Traad[];
     settValgtTraad: (traad: Traad) => void;
     valgtTraad?: Traad;
 }
-
-const InputStyle = styled.div`
-    padding: ${theme.margin.layout};
-`;
 
 const PanelStyle = styled.div`
     ${theme.hvittPanel};
@@ -56,9 +52,7 @@ class TraadListe extends React.PureComponent<Props> {
 
         return (
             <PanelStyle>
-                <InputStyle>
-                    <Input label={'Søk etter melding'} className={'move-input-label'} bredde={'L'} />
-                </InputStyle>
+                <TraadFilterPanel />
                 <SortertListe traader={this.props.traader} settValgtTraad={this.props.settValgtTraad} />
             </PanelStyle>
         );
