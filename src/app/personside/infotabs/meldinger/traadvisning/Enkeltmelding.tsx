@@ -6,10 +6,17 @@ import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import styled from 'styled-components';
 
 interface Props {
     melding: Melding;
 }
+
+const Style = styled.div`
+    .snakkeboble-panel {
+        flex-basis: 70%;
+    }
+`;
 
 function meldingstittel(melding: Melding) {
     const ulestTekst = melding.status === LestStatus.IkkeLest ? 'Ulest, ' : '';
@@ -28,13 +35,15 @@ function EnkeltMelding(props: Props) {
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
 
     return (
-        <Snakkeboble pilHoyre={pilHøyre}>
-            <Element>{topptekst}</Element>
-            <Normaltekst>{datoTekst}</Normaltekst>
-            <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
-            <hr />
-            <Normaltekst>{props.melding.fritekst}</Normaltekst>
-        </Snakkeboble>
+        <Style>
+            <Snakkeboble pilHoyre={pilHøyre}>
+                <Element>{topptekst}</Element>
+                <Normaltekst>{datoTekst}</Normaltekst>
+                <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
+                <hr />
+                <Normaltekst>{props.melding.fritekst}</Normaltekst>
+            </Snakkeboble>
+        </Style>
     );
 }
 
