@@ -17,6 +17,11 @@ interface Props {
 const OversiktStyling = styled.div`
     padding: ${theme.margin.layout};
     display: flex;
+    flex-wrap: wrap;
+    > * {
+        flex-basis: 40%;
+        flex-grow: 1;
+    }
 `;
 
 function getKjønnString(fnr: string): string {
