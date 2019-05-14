@@ -12,7 +12,7 @@ import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/Dokument';
-import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangMerket';
+import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
 import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
@@ -32,7 +32,7 @@ import { FeatureToggles } from '../../../../../components/featureToggle/toggleID
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 interface OwnProps {
-    dokument: DokumentMetadata;
+    dokumentMetadata: DokumentMetadata;
     harTilgangTilSakstema: boolean;
     sakstemakode: string;
     sakstemanavn: string;
@@ -137,8 +137,8 @@ function getDokumentIkon(harTilgang: boolean) {
 function lagSaksoversiktLenke(props: Props) {
     const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
     const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
-    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
-    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    const journalpostQuery = `journalpostId=${props.dokumentMetadata.journalpostId}`;
+    const dokumentQuery = `dokumentId=${props.dokumentMetadata.hoveddokument.dokumentreferanse}`;
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
@@ -160,7 +160,7 @@ class DokumentListeElement extends React.Component<Props> {
         ]);
 
         if (!lenkeTrykket) {
-            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument, this.props.dokument);
+            this.visDokumentHvisTilgang(this.props.dokumentMetadata.hoveddokument, this.props.dokumentMetadata);
         }
     }
 
@@ -171,7 +171,7 @@ class DokumentListeElement extends React.Component<Props> {
     }
 
     render() {
-        const dokumentMetadata = this.props.dokument;
+        const dokumentMetadata = this.props.dokumentMetadata;
         const brukersNavn = isLoadedPerson(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
 
         const saksid = dokumentMetadata.tilhørendeFagsaksid
@@ -218,7 +218,7 @@ class DokumentListeElement extends React.Component<Props> {
                     cancelIfHighlighting(() => this.handleClickOnDokument(event))
                 }
                 ref={this.dokumentRef}
-                valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
+                valgt={this.props.dokumentMetadata === this.props.valgtDokument && this.props.visDokument}
                 klikkbar={tilgangTilHoveddokument}
             >
                 <IkonWrapper>{getDokumentIkon(this.harTilgangTilJournalpost(dokumentMetadata))}</IkonWrapper>
@@ -278,7 +278,7 @@ class DokumentListeElement extends React.Component<Props> {
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
     return {
         velgOgVisDokument: enkeltdokument => {
-            dispatch(settValgtDokument(ownProps.dokument));
+            dispatch(settValgtDokument(ownProps.dokumentMetadata));
             dispatch(settVisDokument(true));
             dispatch(settValgtEnkeltdokument(enkeltdokument));
         }

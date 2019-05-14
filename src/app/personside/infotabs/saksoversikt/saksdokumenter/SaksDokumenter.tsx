@@ -108,7 +108,7 @@ const TittelWrapperStyling = styled.div`
 function Dokumentgruppe({ gruppe, harTilgang, sakstemakode }: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
         <DokumentListeElement
-            dokument={dokument}
+            dokumentMetadata={dokument}
             harTilgangTilSakstema={harTilgang}
             sakstemakode={sakstemakode}
             sakstemanavn={dokument.temakodeVisning}
