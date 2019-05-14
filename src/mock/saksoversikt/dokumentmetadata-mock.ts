@@ -69,7 +69,8 @@ function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
         tittel: navFaker.random.arrayElement(fakeDokumentNavn),
         dokumentreferanse: faker.random.alphaNumeric(8),
         kanVises: navFaker.random.vektetSjanse(0.9),
-        logiskDokument: faker.random.boolean()
+        logiskDokument: faker.random.boolean(),
+        skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null
     };
 }
 

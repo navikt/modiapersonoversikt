@@ -58,4 +58,5 @@ export interface Dokument {
     dokumentreferanse: string;
     kanVises: boolean;
     logiskDokument: boolean;
+    skjerming: string | null;
 }
