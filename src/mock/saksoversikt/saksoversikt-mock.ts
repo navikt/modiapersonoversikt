@@ -4,8 +4,8 @@ import navfaker from 'nav-faker/dist/index';
 import { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import { getBehandlingskjede, getBehandlingskjeder } from './behandlingskjeder-mock';
-import { getDokumentMetadata, getDokumentMetadataListe } from './dokumentmetadata-mock';
+import { getBehandlingskjeder } from './behandlingskjeder-mock';
+import { getDokumentMetadataListe } from './dokumentmetadata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getAremarkSakstemaListe } from './aremark-saksoversikt-mock';
 import { aremark } from '../person/aremark';
@@ -40,26 +40,9 @@ export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
     };
 }
 
-export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaResponse {
-    faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'utbetaling');
-
-    const tema = navfaker.random.arrayElement(temaarray);
+export function getStaticMockSaksoversikt(): SakstemaResponse {
     return {
-        resultat: [
-            {
-                ...getSakstema(),
-                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
-                tilhørendeSaker: [getSak(tema[0])]
-            },
-            {
-                ...getSakstema(),
-                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
-                tilhørendeSaker: [getSak(tema[0])]
-            }
-        ]
+        resultat: getAremarkSakstemaListe()
     };
 }
 
