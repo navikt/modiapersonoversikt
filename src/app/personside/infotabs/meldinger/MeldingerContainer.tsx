@@ -5,7 +5,6 @@ import theme from '../../../../styles/personOversiktTheme';
 import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import TraadListeContainer from './traadliste/TraadListeContainer';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import ToppMenyContainer from './toppmeny/ToppMenyContainer';
 
 const meldingerMediaTreshold = '80rem';
 
@@ -31,7 +30,6 @@ const MeldingerArticleStyle = styled.article`
 function MeldingerContainer() {
     return (
         <MeldingerMainStyle>
-            <ToppMenyContainer />
             <MeldingerArticleStyle>
                 <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
                     {data => <TraadListeContainer traader={data} />}

@@ -73,10 +73,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.SaksoversiktMCF:
             return (
                 <Provider store={store}>
-                    <SaksoversiktMicroFrontend
-                        fødselsnummer={props.fnr}
-                        queryParamString={'sakstemaKode=BAR&journalpostId=ldhlu1bk&dokumentId=6tu2p5mg'}
-                    />
+                    <SaksoversiktMicroFrontend fødselsnummer={props.fnr} />
                 </Provider>
             );
         case Komponenter.Brukerprofil:
