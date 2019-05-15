@@ -1088,14 +1088,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <li>
                     <span>
                       <button
-                        aria-disabled={false}
+                        aria-disabled={true}
                         className="c22"
                         onClick={[Function]}
                       >
                         <p
                           className="typo-element"
                         >
-                          A-inntekt
+                          A-inntekt (Skjermet)
                         </p>
                       </button>
                     </span>
@@ -1218,7 +1218,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     <p
                       className="typo-element"
                     >
-                      Spørsmål via nav.no
+                      Spørsmål via nav.no (Skjermet)
                     </p>
                   </button>
                 </div>
