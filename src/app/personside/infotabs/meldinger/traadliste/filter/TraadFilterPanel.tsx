@@ -10,7 +10,7 @@ const InputStyle = styled.div`
 function TraadFilterPanel() {
     return (
         <InputStyle>
-            <Input label={'Søk etter melding'} className={'move-input-label'} bredde={'L'} />
+            <Input label={'Søk etter melding'} className={'move-input-label'} />
         </InputStyle>
     );
 }
