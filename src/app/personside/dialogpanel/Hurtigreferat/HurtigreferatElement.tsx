@@ -6,8 +6,6 @@ import InformasjonSVG from '../../../../svg/InformasjonSVG';
 import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
 import { Undertittel } from 'nav-frontend-typografi';
-import { isPosting, PostResource } from '../../../../rest/utils/postResource';
-import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
 
 interface Props {
     tekst: Tekst;

@@ -39,7 +39,6 @@ function HurtigreferatContainer(props: Props) {
                     {tekster.map(tekst => (
                         <HurtigreferatElement
                             key={tekst.tittel}
-                            sendResource={sendResource}
                             tekst={tekst}
                             send={isNotStartedPosting(sendResource) ? () => props.sendMelding(tekst) : () => null}
                             spinner={isPosting(sendResource) && sendResource.payload.fritekst === tekst.fritekst}
@@ -59,7 +58,11 @@ function mapStateToProps(state: AppState): StateProps {
 }
 
 const actionCreators = {
-    sendMelding: (tekst: Tekst) => sendMeldingActionCreator({ fritekst: tekst.fritekst })
+    sendMelding: (tekst: Tekst) =>
+        sendMeldingActionCreator({
+            fritekst: tekst.fritekst,
+            kanal: 'Telefon'
+        })
 };
 
 export default connect(

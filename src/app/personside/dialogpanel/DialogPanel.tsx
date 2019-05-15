@@ -10,6 +10,7 @@ import { AppState } from '../../../redux/reducers';
 import { SendMeldingRequest } from '../../../models/meldinger/meldinger';
 import { connect } from 'react-redux';
 import Preview from './Hurtigreferat/Preview';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -42,11 +43,11 @@ function getInnhold(props: Props) {
         return <AlertStripeAdvarsel>Kunne ikke sende melding</AlertStripeAdvarsel>;
     }
     return (
-        <>
+        <ErrorBoundary boundaryName="Dialogpanel">
             <HurtigReferatContainer />
             <Undertittel>Dialogpanel</Undertittel>
             <Normaltekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Normaltekst>
-        </>
+        </ErrorBoundary>
     );
 }
 
