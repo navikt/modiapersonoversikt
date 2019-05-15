@@ -63,10 +63,10 @@ export function isFailedPosting<T>(postResource: PostResource<T>): postResource 
 function getActionTypes(resourceNavn: string): PostResourceActionTypes {
     const navnUppercase = resourceNavn.toUpperCase() + ' / ';
     return {
-        POSTING: navnUppercase + 'POSTING',
-        FINISHED: navnUppercase + 'FINISHED',
-        FAILED: navnUppercase + 'FAILED',
-        INITIALIZE: navnUppercase + 'INITIALIZE'
+        POSTING: navnUppercase + 'STARTED POSTING',
+        FINISHED: navnUppercase + 'FINISHED POSTING',
+        FAILED: navnUppercase + 'FAILED POSTING',
+        INITIALIZE: navnUppercase + 'INITIALIZED POSTING '
     };
 }
 
