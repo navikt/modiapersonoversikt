@@ -27,6 +27,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
+import { getMockGsakTema } from './meldinger/oppgave-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -168,6 +169,13 @@ function setupMeldingerMock(mock: FetchMock) {
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
         )
+    );
+}
+
+function setupGsakTemaMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/dialogoppgave/tema',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
     );
 }
 
@@ -375,6 +383,7 @@ export function setupMock() {
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
     setupMeldingerMock(mock);
+    setupGsakTemaMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
 }
