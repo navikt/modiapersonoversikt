@@ -6,10 +6,17 @@ import styled from 'styled-components';
 import { Tekst, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
 import { connect } from 'react-redux';
-import { isNotStartedPosting, isPosting, PostResource } from '../../../../rest/utils/postResource';
+import {
+    isFailedPosting,
+    isFinishedPosting,
+    isNotStartedPosting,
+    isPosting,
+    PostResource
+} from '../../../../rest/utils/postResource';
 import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -28,6 +35,12 @@ const Style = styled.div`
 
 function HurtigreferatContainer(props: Props) {
     const sendResource = props.sendMeldingResource;
+    if (isFinishedPosting(sendResource)) {
+        return <AlertStripeInfo>Meldingen ble sendt.</AlertStripeInfo>;
+    }
+    if (isFailedPosting(sendResource)) {
+        return <AlertStripeFeil>Det skjedde en feil ved sending av melding.</AlertStripeFeil>;
+    }
     return (
         <Style>
             <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>

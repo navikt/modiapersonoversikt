@@ -25,8 +25,7 @@ import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
-import HurtigReferatContainer from '../../app/personside/dialogpanel/Hurtigreferat/HurtigreferatContainer';
-import TestProvider from '../../test/Testprovider';
+import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 
 enum Komponenter {
     Visittkort,
@@ -88,7 +87,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                 <PleiepengerLamell fødselsnummer={aremark.fødselsnummer} barnetsFødselsnummer={moss.fødselsnummer} />
             );
         case Komponenter.Foreldrepenger:
-            return <ForeldrepengerLamell fødselsnummer={aremark.fødselsnummer} />;
+            return <ForeldrepengerLamell fødselsnummer={props.fnr} />;
         case Komponenter.HentOppgaveKnapp:
             return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
@@ -98,12 +97,13 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Sykepenger:
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
-            return <VarslerLamell fødselsnummer={aremark.fødselsnummer} />;
+            return <VarslerLamell fødselsnummer={props.fnr} />;
         case Komponenter.Hurtigvalg:
             return (
-                <TestProvider>
-                    <HurtigReferatContainer />
-                </TestProvider>
+                <HurtigreferatStandalone
+                    meldingBleSendtCallback={() => console.log('Ble sendt')}
+                    fødselsnummer={props.fnr}
+                />
             );
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
