@@ -19,8 +19,8 @@ import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
-import { Person, PersonRespons } from '../../../../../models/person/person';
-import { DeprecatedRestResource, isLoaded } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { PersonRespons } from '../../../../../models/person/person';
+import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -135,7 +135,7 @@ function getDokumentIkon(harTilgang: boolean) {
 }
 
 function lagSaksoversiktLenke(props: Props) {
-    const brukersFnr = isLoaded(props.bruker) ? props.bruker.data.fødselsnummer : '';
+    const brukersFnr = isLoadedPerson(props.bruker) ? props.bruker.data.fødselsnummer : '';
     const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
     const journalpostQuery = `journalpostId=${props.dokumentMetadata.journalpostId}`;
     const dokumentQuery = `dokumentId=${props.dokumentMetadata.hoveddokument.dokumentreferanse}`;
@@ -172,7 +172,7 @@ class DokumentListeElement extends React.Component<Props> {
 
     render() {
         const dokumentMetadata = this.props.dokumentMetadata;
-        const brukersNavn = isLoadedPerson(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
+        const brukersNavn = isLoadedPerson(this.props.bruker) ? this.props.bruker.data.navn.sammensatt : '';
 
         const saksid = dokumentMetadata.tilhørendeFagsaksid
             ? dokumentMetadata.tilhørendeFagsaksid
