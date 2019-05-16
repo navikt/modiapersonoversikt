@@ -7,7 +7,7 @@ import { Tekst, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
 import { connect } from 'react-redux';
 import { isNotStartedPosting, isPosting, PostResource } from '../../../../rest/utils/postResource';
-import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 
@@ -26,10 +26,6 @@ const Style = styled.div`
     filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
 `;
 
-const MarginBottom = styled.div`
-    margin-bottom: 6rem;
-`;
-
 function HurtigreferatContainer(props: Props) {
     const sendResource = props.sendMeldingResource;
     return (
@@ -44,7 +40,6 @@ function HurtigreferatContainer(props: Props) {
                             spinner={isPosting(sendResource) && sendResource.payload.fritekst === tekst.fritekst}
                         />
                     ))}
-                    <MarginBottom />
                 </ul>
             </EkspanderbartpanelBase>
         </Style>
@@ -61,7 +56,11 @@ const actionCreators = {
     sendMelding: (tekst: Tekst) =>
         sendMeldingActionCreator({
             fritekst: tekst.fritekst,
-            kanal: 'Telefon'
+            kanal: 'Telefon',
+            type: Meldingstype.SamtalereferatTelefon,
+            temagruppe: Temagruppe.Arbeid,
+            traadId: null,
+            kontorsperretEnhet: null
         })
 };
 

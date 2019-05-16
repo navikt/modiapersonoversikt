@@ -1,18 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import EtikettGrå from '../../../../components/EtikettGrå';
-import { Tekst } from './tekster';
 import { formatterDatoTid } from '../../../../utils/dateUtils';
-
-interface Props {
-    tekst: Tekst;
-}
+import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
+import theme from '../../../../styles/personOversiktTheme';
 
 const PreviewStyle = styled.div`
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: ${theme.borderRadius.layout};
     > * {
         margin-bottom: 0.5rem;
     }
@@ -26,14 +24,12 @@ const PreviewStyle = styled.div`
     }
 `;
 
-function Preview(props: Props) {
+function Preview(props: Partial<SendMeldingRequest>) {
     return (
         <PreviewStyle>
-            <Undertittel tag="h3">{props.tekst.tittel}</Undertittel>
+            <Normaltekst>Samtalereferat / Telefon</Normaltekst>
             <EtikettGrå>{formatterDatoTid(new Date())}</EtikettGrå>
-            <EtikettGrå>Samtalereferat / Telefon</EtikettGrå>
-            <Normaltekst>{props.tekst.fritekst}</Normaltekst>
-            <Normaltekst>Hilsen Nav</Normaltekst>
+            <Normaltekst>{props.fritekst}</Normaltekst>
         </PreviewStyle>
     );
 }

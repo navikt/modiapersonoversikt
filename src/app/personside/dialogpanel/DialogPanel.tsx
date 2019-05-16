@@ -35,7 +35,7 @@ function getInnhold(props: Props) {
         return (
             <>
                 <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
-                <Preview tekst={{ fritekst: props.sendMeldingResource.payload.fritekst, tittel: '' }} />
+                <Preview fritekst={props.sendMeldingResource.payload.fritekst} />
             </>
         );
     }

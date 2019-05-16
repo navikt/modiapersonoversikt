@@ -18,8 +18,13 @@ const ContainerStyle = styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.7rem;
     background-color: white;
+    flex-wrap: wrap;
+    padding: 0.35rem;
+    > * {
+        flex-grow: 1;
+        margin: 0.35rem;
+    }
     &:nth-child(odd) {
         background-color: #dedede;
     }
@@ -40,6 +45,7 @@ const PreviewContainer = styled.div`
     }
     &:focus {
         ${theme.focus};
+        border-radius: ${theme.borderRadius.layout};
     }
 `;
 
@@ -55,7 +61,8 @@ const DropDown = styled.div`
 const KnappOgIkon = styled.div`
     display: flex;
     align-items: center;
-    > * {
+    justify-content: flex-end;
+    > *:last-child {
         margin-left: 0.5rem;
     }
 `;
@@ -68,7 +75,7 @@ function HurtigreferatElement(props: Props) {
                 <PreviewContainer tabIndex={0}>
                     <InformasjonSVG alt="Vis hurtigsvar" />
                     <DropDown className="content">
-                        <Preview tekst={props.tekst} />
+                        <Preview fritekst={props.tekst.fritekst} />
                     </DropDown>
                 </PreviewContainer>
                 <KnappBase type={'hoved'} onClick={props.send} spinner={props.spinner}>

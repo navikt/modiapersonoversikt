@@ -237,7 +237,7 @@ function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
 function setupSendMeldingMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendmelding',
-        withDelayedResponse(randomDelay() * 3, STATUS_OK, () => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
     );

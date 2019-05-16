@@ -77,7 +77,7 @@ export interface SendMeldingRequest {
     fritekst: string;
     tilknyttetEnhet: string;
     erTilknyttetAnsatt: boolean;
-    traadId: string;
+    traadId: string | null;
     kontorsperretEnhet: string | null;
     temagruppe: string;
 }
