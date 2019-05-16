@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Tekst } from './tekster';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
@@ -6,11 +7,12 @@ import InformasjonSVG from '../../../../svg/InformasjonSVG';
 import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
 import { Undertittel } from 'nav-frontend-typografi';
+import { useClickOutside } from '../../../../utils/customHooks';
+import TemaGruppeValg from './TemaGruppevalg';
 
 interface Props {
     tekst: Tekst;
-    send: () => void;
-    spinner: boolean;
+    sendMelding: (tekst: string, temaGruppe: string) => void;
 }
 
 const ContainerStyle = styled.li`
@@ -68,6 +70,16 @@ const KnappOgIkon = styled.div`
 `;
 
 function HurtigreferatElement(props: Props) {
+    const ref = React.createRef<HTMLDivElement>();
+    const [visTemagruppeValg, setVisTemagruppeValg] = useState(false);
+    const [sender, setSender] = useState(false);
+    useClickOutside(ref, () => setVisTemagruppeValg(false));
+    const handleSend = (temagruppe: string) => {
+        setVisTemagruppeValg(false);
+        setSender(true);
+        const tekstMedTemagruppe = props.tekst.fritekst.replace('$TEMA$', temagruppe);
+        props.sendMelding(tekstMedTemagruppe, temagruppe);
+    };
     return (
         <ContainerStyle>
             <Undertittel>{props.tekst.tittel}</Undertittel>
@@ -78,9 +90,14 @@ function HurtigreferatElement(props: Props) {
                         <Preview fritekst={props.tekst.fritekst} />
                     </DropDown>
                 </PreviewContainer>
-                <KnappBase type={'hoved'} onClick={props.send} spinner={props.spinner}>
+                <KnappBase type={'hoved'} onClick={() => setVisTemagruppeValg(true)} spinner={sender}>
                     Send
                 </KnappBase>
+                {visTemagruppeValg && (
+                    <div ref={ref}>
+                        <TemaGruppeValg handleSend={handleSend} />
+                    </div>
+                )}
             </KnappOgIkon>
         </ContainerStyle>
     );

@@ -3,17 +3,16 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Tekst, tekster } from './tekster';
+import { tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
 import { connect } from 'react-redux';
 import {
     isFailedPosting,
     isFinishedPosting,
     isNotStartedPosting,
-    isPosting,
     PostResource
 } from '../../../../rest/utils/postResource';
-import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendMeldingRequest } from '../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -23,7 +22,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    sendMelding: (tekst: Tekst) => void;
+    sendMelding: (tekst: string, temaGruppe: string) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -49,8 +48,7 @@ function HurtigreferatContainer(props: Props) {
                         <HurtigreferatElement
                             key={tekst.tittel}
                             tekst={tekst}
-                            send={isNotStartedPosting(sendResource) ? () => props.sendMelding(tekst) : () => null}
-                            spinner={isPosting(sendResource) && sendResource.payload.fritekst === tekst.fritekst}
+                            sendMelding={isNotStartedPosting(sendResource) ? props.sendMelding : () => null}
                         />
                     ))}
                 </ul>
@@ -66,12 +64,12 @@ function mapStateToProps(state: AppState): StateProps {
 }
 
 const actionCreators = {
-    sendMelding: (tekst: Tekst) =>
+    sendMelding: (tekst: string, temaGruppe: string) =>
         sendMeldingActionCreator({
-            fritekst: tekst.fritekst,
+            fritekst: tekst,
             kanal: 'Telefon',
             type: Meldingstype.SamtalereferatTelefon,
-            temagruppe: Temagruppe.Arbeid,
+            temagruppe: temaGruppe,
             traadId: null,
             kontorsperretEnhet: null
         })
