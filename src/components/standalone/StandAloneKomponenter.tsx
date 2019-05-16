@@ -24,6 +24,7 @@ import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
+import VarslerLamell from './VarslerLamell';
 
 enum Komponenter {
     Visittkort,
@@ -35,7 +36,8 @@ enum Komponenter {
     Pleiepenger,
     HentOppgaveKnapp,
     Foreldrepenger,
-    Sykepenger
+    Sykepenger,
+    Varsler
 }
 
 const Style = styled.div`
@@ -44,7 +46,7 @@ const Style = styled.div`
     background-color: steelblue;
     display: grid;
     grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100vw;
     > *:first-child {
         background-color: white;
         border-bottom: 0.3rem solid rgba(0, 0, 0, 0.3);
@@ -71,10 +73,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.SaksoversiktMCF:
             return (
                 <Provider store={store}>
-                    <SaksoversiktMicroFrontend
-                        fødselsnummer={props.fnr}
-                        queryParamString={'sakstemaKode=BAR&journalpostId=ldhlu1bk&dokumentId=6tu2p5mg'}
-                    />
+                    <SaksoversiktMicroFrontend fødselsnummer={props.fnr} />
                 </Provider>
             );
         case Komponenter.Brukerprofil:
@@ -95,6 +94,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <OppfolgingLamell fødselsnummer={props.fnr} />;
         case Komponenter.Sykepenger:
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
+        case Komponenter.Varsler:
+            return <VarslerLamell fødselsnummer={aremark.fødselsnummer} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

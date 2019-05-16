@@ -4,7 +4,7 @@ import { statiskSykepengerMock } from '../../../../../../mock/ytelse/statiskSyke
 import Sykemelding from './Sykemelding';
 
 test('Sykemelding matcher snapshot', () => {
-    const resultat = renderer.create(<Sykemelding sykmeldinger={statiskSykepengerMock.sykmeldinger} />);
+    const resultat = renderer.create(<Sykemelding sykmelding={statiskSykepengerMock.sykmeldinger[0]} />);
 
     expect(resultat.toJSON()).toMatchSnapshot();
 });

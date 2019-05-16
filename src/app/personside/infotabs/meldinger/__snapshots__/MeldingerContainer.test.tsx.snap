@@ -1,45 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c1 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c2 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c2 .move-input-label {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c2 .move-input-label > * {
-  margin-left: 0.625rem;
-  margin-top: 0.625rem;
-}
-
 .c0 > *:last-child {
   margin-top: .8rem;
 }
 
-.c3 > * {
+.c1 > * {
   margin-bottom: .8rem;
 }
 
 @media (min-width:80rem) {
-  .c3 {
+  .c1 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -50,7 +21,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     align-items: flex-start;
   }
 
-  .c3 > *:last-child {
+  .c1 > *:last-child {
     margin-left: .8rem;
   }
 }
@@ -58,35 +29,8 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 <div
   className="c0"
 >
-  <div
-    className="c1"
-  >
-    <div
-      className="c2"
-    >
-      <div
-        className="skjemaelement move-input-label"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Søk
-        </label>
-        <input
-          className="skjemaelement__input input--l"
-          id="Helt tilfeldig ID"
-          type="text"
-        />
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-    </div>
-  </div>
   <article
-    className="c3"
+    className="c1"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -104,30 +48,27 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         >
           <g
             fill="none"
-            fillRule="evenodd"
+            fillRule="nonzero"
           >
             <path
-              d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-              fill="#FFA733"
-              fillRule="nonzero"
+              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+              fill="#669DB4"
             />
-            <path
-              d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-              fill="#3E3832"
-            />
-            <path
-              d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-              fill="#3E3832"
-              fillRule="nonzero"
-            />
+            <g
+              fill="#FFF"
+            >
+              <path
+                d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+              />
+            </g>
           </g>
         </svg>
       </span>
-      <span
+      <div
         className="typo-normal alertstripe__tekst"
       >
         Ingen tråd er valgt
-      </span>
+      </div>
     </div>
   </article>
 </div>

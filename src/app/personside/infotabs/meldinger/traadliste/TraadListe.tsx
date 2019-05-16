@@ -6,6 +6,7 @@ import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { sisteSendteMelding } from '../utils/meldingerUtils';
+import TraadFilterPanel from './filter/TraadFilterPanel';
 
 interface Props {
     traader: Traad[];
@@ -51,6 +52,7 @@ class TraadListe extends React.PureComponent<Props> {
 
         return (
             <PanelStyle>
+                <TraadFilterPanel />
                 <SortertListe traader={this.props.traader} settValgtTraad={this.props.settValgtTraad} />
             </PanelStyle>
         );

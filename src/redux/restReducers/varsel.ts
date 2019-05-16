@@ -5,7 +5,7 @@ import { Varsel } from '../../models/varsel';
 
 export function getVarselFetchUri(state: AppState): string {
     const fnr = state.gjeldendeBruker.fødselsnummer;
-    return `${apiBaseUri}/varsel/${fnr}`;
+    return `${apiBaseUri}/varsler/${fnr}`;
 }
 
 export default createRestResourceReducerAndActions<Varsel[]>('varsel', getVarselFetchUri);
