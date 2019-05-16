@@ -11,6 +11,9 @@ export function getMeldingPostUri(state: AppState): string {
     return `${apiBaseUri}/dialog/${fnr}/sendmelding`;
 }
 
+export const resetSendMeldingActionCreator = (dispatch: AsyncDispatch, getState: () => AppState) =>
+    dispatch(getState().restResources.sendMelding.actions.reset);
+
 export function sendMeldingActionCreator(
     payload: Pick<SendMeldingRequest, 'fritekst' | 'kanal' | 'type' | 'temagruppe' | 'traadId' | 'kontorsperretEnhet'>
 ) {

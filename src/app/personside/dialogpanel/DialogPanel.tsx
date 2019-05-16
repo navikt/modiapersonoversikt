@@ -11,12 +11,19 @@ import { SendMeldingRequest } from '../../../models/meldinger/meldinger';
 import { connect } from 'react-redux';
 import Preview from './Hurtigreferat/Preview';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import KnappBase from 'nav-frontend-knapper';
+import { resetSendMeldingActionCreator } from '../../../redux/restReducers/sendMelding';
+import { AsyncDispatch } from '../../../redux/ThunkTypes';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
 }
 
-type Props = StateProps;
+interface DispatchProps {
+    resetSendMeldingResource: () => void;
+}
+
+type Props = StateProps & DispatchProps;
 
 const border = 'rgba(0, 0, 0, 0.1) 1px solid';
 
@@ -36,6 +43,9 @@ function getInnhold(props: Props) {
             <>
                 <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
                 <Preview fritekst={props.sendMeldingResource.payload.fritekst} />
+                <KnappBase type="standard" onClick={() => props.resetSendMeldingResource()}>
+                    Send ny melding
+                </KnappBase>
             </>
         );
     }
@@ -65,4 +75,13 @@ function mapStateToProps(state: AppState): StateProps {
     };
 }
 
-export default connect(mapStateToProps)(DialogPanel);
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        resetSendMeldingResource: () => dispatch(resetSendMeldingActionCreator)
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DialogPanel);
