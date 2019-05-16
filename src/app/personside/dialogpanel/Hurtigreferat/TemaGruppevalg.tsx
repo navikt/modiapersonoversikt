@@ -6,15 +6,15 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
-    handleSend: (temagruppe: string) => void;
+    handleSend: (temagruppe: Valg) => void;
 }
 
-interface Valg {
+export interface Valg {
     kodeverk: string;
     beskrivelse: string;
 }
 
-const temagrupper: Valg[] = [
+const muligetemagruppevalg: Valg[] = [
     {
         kodeverk: Temagruppe.Arbeid,
         beskrivelse: 'Arbeid'
@@ -68,9 +68,9 @@ function TemaGruppeValg(props: Props) {
             <HvittPanel>
                 <Undertittel tag="h4">Temagruppe</Undertittel>
                 <ul>
-                    {temagrupper.map(tema => (
+                    {muligetemagruppevalg.map(tema => (
                         <li key={tema.kodeverk}>
-                            <KnappBase type="standard" onClick={() => props.handleSend(tema.kodeverk)}>
+                            <KnappBase type="standard" onClick={() => props.handleSend(tema)}>
                                 {tema.beskrivelse}
                             </KnappBase>
                         </li>

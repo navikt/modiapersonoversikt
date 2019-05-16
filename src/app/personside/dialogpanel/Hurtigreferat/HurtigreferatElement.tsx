@@ -8,7 +8,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useClickOutside } from '../../../../utils/customHooks';
-import TemaGruppeValg from './TemaGruppevalg';
+import TemaGruppeValg, { Valg } from './TemaGruppevalg';
 
 interface Props {
     tekst: Tekst;
@@ -73,13 +73,16 @@ function HurtigreferatElement(props: Props) {
     const ref = React.createRef<HTMLDivElement>();
     const [visTemagruppeValg, setVisTemagruppeValg] = useState(false);
     const [sender, setSender] = useState(false);
+
     useClickOutside(ref, () => setVisTemagruppeValg(false));
-    const handleSend = (temagruppe: string) => {
+
+    const handleSend = (temagruppe: Valg) => {
         setVisTemagruppeValg(false);
         setSender(true);
-        const tekstMedTemagruppe = props.tekst.fritekst.replace('$TEMA$', temagruppe);
-        props.sendMelding(tekstMedTemagruppe, temagruppe);
+        const tekstMedTemagruppe = props.tekst.fritekst.replace('TEMA', temagruppe.beskrivelse.toLowerCase());
+        props.sendMelding(tekstMedTemagruppe, temagruppe.kodeverk);
     };
+
     return (
         <ContainerStyle>
             <Undertittel>{props.tekst.tittel}</Undertittel>
