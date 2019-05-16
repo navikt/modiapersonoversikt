@@ -22,3 +22,17 @@ export interface GsakTemaUnderkategori {
     tekst: string;
     erGyldig: boolean;
 }
+
+export interface OpprettOppgaveRequest {
+    valgtEnhetId: number;
+    henvendelseId: string;
+    dagerFrist: number;
+    ansvarligEnhetId: string;
+    ansvarligIdent?: string;
+    beskrivelse: string;
+    temakode: string;
+    underkategorikode?: string;
+    brukerid: string;
+    oppgaveTypeKode: string;
+    prioritetKode: string;
+}
