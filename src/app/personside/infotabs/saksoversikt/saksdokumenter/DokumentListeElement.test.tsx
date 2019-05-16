@@ -31,8 +31,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        const actual = wrapper.find(DokumentIkkeTilgangIkon);
-        expect(actual).toHaveLength(1);
+        expect(wrapper.find(DokumentIkkeTilgangIkon)).toHaveLength(1);
     });
 
     it('Viser ikke-tilgang-ikon hvis ikke tilgang til sakstema', () => {
@@ -48,8 +47,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        const actual = wrapper.find(DokumentIkkeTilgangIkon);
-        expect(actual).toHaveLength(1);
+        expect(wrapper.find(DokumentIkkeTilgangIkon)).toHaveLength(1);
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', () => {
@@ -79,8 +77,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        const actual = wrapper.find(Dokument);
-        expect(actual).toHaveLength(1);
+        expect(wrapper.find(Dokument)).toHaveLength(1);
     });
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', () => {
@@ -98,8 +95,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        const actual = wrapper.find(Dokument);
-        expect(actual).toHaveLength(1);
+        expect(wrapper.find(Dokument)).toHaveLength(1);
     });
 
     function lagStoreMedJustertDokumentMetadata(partialDok: Partial<DokumentMetadata>) {

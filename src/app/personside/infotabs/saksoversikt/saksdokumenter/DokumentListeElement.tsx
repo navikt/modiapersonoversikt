@@ -135,7 +135,7 @@ function getDokumentIkon(harTilgang: boolean) {
 }
 
 function lagSaksoversiktLenke(props: Props) {
-    const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
+    const brukersFnr = isLoaded(props.bruker) ? props.bruker.data.fødselsnummer : '';
     const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
     const journalpostQuery = `journalpostId=${props.dokumentMetadata.journalpostId}`;
     const dokumentQuery = `dokumentId=${props.dokumentMetadata.hoveddokument.dokumentreferanse}`;
