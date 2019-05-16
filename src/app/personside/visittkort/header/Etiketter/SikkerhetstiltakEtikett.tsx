@@ -18,12 +18,12 @@ const Styling = styled.div`
 `;
 
 function SikkerhetstiltakEtikett(props: { sikkerhetstiltak?: Sikkerhetstiltak }) {
+    const etikettRef = React.createRef<HTMLDivElement>();
+    useFocusOnMount(etikettRef);
+
     if (!props.sikkerhetstiltak) {
         return null;
     }
-
-    const etikettRef = React.createRef<HTMLDivElement>();
-    useFocusOnMount(etikettRef);
 
     return (
         <Styling tabIndex={-1} ref={etikettRef} role="alert" aria-live="assertive">

@@ -5,6 +5,7 @@ import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { Undertittel } from 'nav-frontend-typografi';
 import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/stringFormatting';
 import { StyledTable } from '../../../../../utils/tableUtils';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     periode: Pleiepengeperiode;
@@ -12,7 +13,8 @@ interface Props {
 }
 
 const VedtaksTable = styled.div`
-    padding: 1rem;
+    ${theme.gråttPanel};
+    margin: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }

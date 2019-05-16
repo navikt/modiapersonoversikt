@@ -15,12 +15,12 @@ function frontendLoggerIsInitialized(): boolean {
     return true;
 }
 
-function useLogger(): boolean {
+function uselogger(): boolean {
     return !isDevelopment() && frontendLoggerIsInitialized();
 }
 
 export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
-    if (!useLogger()) {
+    if (!uselogger()) {
         return;
     }
     const identHash = md5(getSaksbehandlerIdent() || '');
@@ -42,7 +42,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
         message: message,
         ...ekstraFelter
     };
-    if (useLogger()) {
+    if (uselogger()) {
         // @ts-ignore
         window['frontendlogger'].info(info);
     } else {
@@ -56,7 +56,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         error: error.stack,
         ...ekstraFelter
     };
-    if (useLogger()) {
+    if (uselogger()) {
         // @ts-ignore
         window['frontendlogger'].error(info);
     } else {

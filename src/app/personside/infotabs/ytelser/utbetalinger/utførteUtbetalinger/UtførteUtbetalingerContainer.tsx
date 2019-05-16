@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { UtbetalingerResponse } from '../../../../../../models/utbetalinger';
 import { YtelserKeys } from '../../ytelserKeys';
 import { filtrerOgSorterUtbetalinger, getKnappStatus } from './utførteUtbetalingerUtils';
-import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 import styled from 'styled-components';
@@ -13,11 +12,12 @@ import UtførteUtbetalinger from './UtførteUtbetalinger';
 import RestResourceConsumer from '../../../../../../rest/consumer/RestResourceConsumer';
 import { RestResource } from '../../../../../../rest/utils/restResource';
 import { hentToÅrgamleUtbetalingerActionCreator } from '../../../../../../redux/restReducers/ytelser/utførteUtbetalinger';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 export enum KnappStatus {
-    Vis,
-    Skjul,
-    Spinner
+    Viser90DagerMedUtbetalinger,
+    Viser2årMedUtbetalinger,
+    Henter2årMedUtbetalinger
 }
 
 interface OwnProps {
@@ -34,19 +34,18 @@ interface DispatchProps {
 
 type Props = DispatchProps & StateProps & OwnProps;
 
-const Padding = styled.div`
-    padding: 0.5rem;
+const Style = styled.section`
+    > *:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    ${theme.gråttPanel};
 `;
 
 function UtførteUtbetalingerContainer(props: Props) {
     return (
         <ErrorBoundary boundaryName="Utførte utbetalinger">
-            <section>
-                <Padding>
-                    <AlignTextCenter>
-                        <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
-                    </AlignTextCenter>
-                </Padding>
+            <Style>
+                <Undertittel tag="h4">Utførte utbetalinger</Undertittel>
                 <RestResourceConsumer<UtbetalingerResponse>
                     getResource={restResources => restResources.utførteUtbetalingerYtelser}
                     spinnerSize="S"
@@ -59,7 +58,7 @@ function UtførteUtbetalingerContainer(props: Props) {
                         />
                     )}
                 </RestResourceConsumer>
-            </section>
+            </Style>
         </ErrorBoundary>
     );
 }

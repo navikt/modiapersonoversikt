@@ -84,6 +84,10 @@ export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
 }
 
 export function ascendingDateComparator(a: Date, b: Date) {
+    if (+a === +b) {
+        //converterer til int for å sjekke equality
+        return 0;
+    }
     return a > b ? 1 : -1;
 }
 

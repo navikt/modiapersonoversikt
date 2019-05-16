@@ -115,7 +115,7 @@ function getTrekk(): Trekk {
     return {
         trekktype: 'Prosenttrekk',
         trekkbeløp: -Number(faker.commerce.price()) * 2,
-        kreditor: faker.company.companyName()
+        kreditor: navfaker.random.vektetSjanse(0.7) ? faker.company.companyName() : null
     };
 }
 

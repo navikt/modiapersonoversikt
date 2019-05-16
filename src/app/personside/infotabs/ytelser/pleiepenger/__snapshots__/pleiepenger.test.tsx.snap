@@ -3,8 +3,8 @@
 exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 .c1 {
   border-radius: 0.5rem;
-  background-color: #e9e7e7;
-  box-shadow: inset 0 0 0 0.3rem white;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
@@ -19,7 +19,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c2 dt {
-  color: #78706a;
+  color: #645f5a;
 }
 
 .c2 dd {
@@ -43,11 +43,24 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 .c0 {
-  margin: .8rem;
+  padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c0 > * {
+  -webkit-flex-basis: 40%;
+  -ms-flex-preferred-size: 40%;
+  flex-basis: 40%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 <div
@@ -57,7 +70,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     className="c1"
   >
     <h3
-      className="typo-ingress"
+      className="typo-undertittel"
     >
       Om pleiepengeretten
     </h3>
@@ -66,7 +79,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     >
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Fra og med
         </dt>
@@ -78,7 +91,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Til og med
         </dt>
@@ -90,7 +103,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Pleiepengegrad
         </dt>
@@ -102,7 +115,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Barnet (jente)
         </dt>
@@ -114,7 +127,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
       </div>
       <div>
         <dt
-          className="typo-etikett-liten"
+          className="typo-normal"
         >
           Annen forelder
         </dt>
@@ -130,7 +143,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     className="c1"
   >
     <h3
-      className="typo-ingress"
+      className="typo-undertittel"
     >
       Arbeidssituasjon
     </h3>
@@ -144,7 +157,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         >
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Arbeidsgiver
             </dt>
@@ -156,7 +169,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Arbeidskategori
             </dt>
@@ -168,7 +181,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Inntekstsperiode
             </dt>
@@ -180,7 +193,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Kontonummer
             </dt>
@@ -204,7 +217,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Refusjonstype
             </dt>
@@ -216,7 +229,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Inntekt for perioden
             </dt>
@@ -228,7 +241,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
           </div>
           <div>
             <dt
-              className="typo-etikett-liten"
+              className="typo-normal"
             >
               Refusjon til dato
             </dt>
@@ -254,17 +267,9 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 `;
 
 exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
-.c2 {
-  text-transform: uppercase;
-}
-
-.c1 {
-  font-weight: bold;
-}
-
 .c0 > *:first-child {
   background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
+  padding: 0.5rem 1.25rem;
 }
 
 .c0 ol {
@@ -272,41 +277,46 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c4 {
+.c2 {
   overflow: auto;
-  border: solid 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
   background-color: white;
 }
 
-.c4 table {
+.c2 table {
   text-align: left;
   width: 100%;
 }
 
-.c4 table thead {
+.c2 table thead {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c4 table th,
-.c4 table td {
+.c2 table th,
+.c2 table td {
   padding: 0.7rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
-.c4 table th {
+.c2 table th {
   padding-bottom: 0.7rem;
 }
 
-.c4 table tr:nth-child(even) {
+.c2 table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
-.c3 {
-  padding: 1rem;
+.c1 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+  margin: .8rem;
 }
 
-.c3 > *:not(:last-child) {
+.c1 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -314,20 +324,12 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
   className="c0"
 >
   <h3
-    className="typo-normal"
+    className="typo-undertittel"
   >
-    <span
-      className="c1"
-    >
-      <span
-        className="c2"
-      >
-        Periode 1 - 01.01.1970
-      </span>
-    </span>
+    Periode 1 - 01.01.1970
   </h3>
   <div
-    className="c3"
+    className="c1"
   >
     <h2
       className="typo-undertittel"
@@ -335,7 +337,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
       Anviste utbetalinger
     </h2>
     <div
-      className="typo-normal c4"
+      className="typo-normal c2"
     >
       <table
         role="table"

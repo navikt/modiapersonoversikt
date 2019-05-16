@@ -62,11 +62,15 @@ function TilbakemeldingFab(props: Props) {
         window.localStorage.setItem(localStorageKey, 'true');
 
         if (tilfredshetErValg(tilfredshet)) {
-            loggEvent('tilbakemelding', 'tilbakemelding', {
-                feature: props.temaId,
-                tilfredshet,
-                kommentar
-            });
+            loggEvent(
+                'tilbakemelding',
+                props.temaId,
+                {},
+                {
+                    tilfredshet,
+                    kommentar
+                }
+            );
         } else {
             settErApen(false);
         }

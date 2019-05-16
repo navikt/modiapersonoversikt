@@ -151,7 +151,7 @@ function setupYtelserOgKontrakter(mock: FetchMock) {
 
 function setupVarselMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/varsel/:fodselsnummer',
+        apiBaseUri + '/varsler/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
             fødselsNummerErGyldigStatus,

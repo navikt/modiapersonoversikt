@@ -97,12 +97,13 @@ function TakkForTilbakemeldingen() {
 }
 
 function TilbakemeldingPopup(props: Props) {
+    const [valgt, settValgt] = useState(-1);
+    const [kommentar, settKommentar] = useState('');
+
     if (!props.erApen) {
         return null;
     }
 
-    const [valgt, settValgt] = useState(-1);
-    const [kommentar, settKommentar] = useState('');
     const internalProps: InternalProps = { valgt, settValgt, kommentar, settKommentar, ...props };
 
     if (props.besvart) {

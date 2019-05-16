@@ -49,7 +49,7 @@ export interface Ytelseskomponent {
 export interface Trekk {
     trekktype: string;
     trekkbeløp: number;
-    kreditor?: string;
+    kreditor: string | null;
 }
 
 export interface Skatt {

@@ -2,7 +2,6 @@ import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbet
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { AlignTextCenter } from '../../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import {
     datoEllerNull,
@@ -11,6 +10,7 @@ import {
     prosentEllerNull
 } from '../../../../../../utils/stringFormatting';
 import { StyledTable } from '../../../../../../utils/tableUtils';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -20,6 +20,8 @@ const KommendeUtbetalingerStyle = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
+    ${theme.gråttPanel};
+    white-space: nowrap;
 `;
 
 function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
@@ -54,9 +56,7 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
 function KommendeUtbetalinger(props: Props) {
     return (
         <KommendeUtbetalingerStyle>
-            <AlignTextCenter>
-                <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
-            </AlignTextCenter>
+            <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
             {getInnhold(props.kommendeUtbetalinger)}
         </KommendeUtbetalingerStyle>
     );

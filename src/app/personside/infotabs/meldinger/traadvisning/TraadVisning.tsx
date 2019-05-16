@@ -4,13 +4,20 @@ import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import theme from '../../../../../styles/personOversiktTheme';
+import VerktoylinjeContainer from './verktoylinje/VerktoylinjeContainer';
 
 interface Props {
     valgtTraad?: Traad;
 }
 
 const VisningStyle = styled.section`
+    ${theme.hvittPanel};
+    padding: ${theme.margin.layout};
     flex-grow: 1;
+    > *:last-child {
+        margin-top: ${theme.margin.layout};
+    }
 `;
 
 function AlleMeldinger(props: { traad: Traad }) {
@@ -29,6 +36,7 @@ class TraadVisning extends React.PureComponent<Props> {
 
         return (
             <VisningStyle aria-label={'Meldinger for valgt tråd'}>
+                <VerktoylinjeContainer />
                 <AlleMeldinger traad={this.props.valgtTraad} />
             </VisningStyle>
         );

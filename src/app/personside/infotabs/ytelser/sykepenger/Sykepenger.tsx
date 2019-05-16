@@ -12,6 +12,7 @@ import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 interface Props {
     sykepenger: ISykepenger;
@@ -22,8 +23,12 @@ const Wrapper = styled.article`
 `;
 
 const OversiktStyling = styled.div`
-    margin: ${theme.margin.layout};
     display: flex;
+    flex-wrap: wrap;
+    > * {
+        flex-basis: 40%;
+        flex-grow: 1;
+    }
 `;
 
 const Flex = styled.div`
@@ -34,13 +39,8 @@ const Flex = styled.div`
     }
 `;
 
-const SpaceBetween = styled.div`
-    > * {
-        margin-top: 2rem;
-    }
-`;
-
 function Sykepenger({ sykepenger }: Props) {
+    const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">
             <Wrapper>
@@ -50,15 +50,13 @@ function Sykepenger({ sykepenger }: Props) {
                 <OversiktStyling>
                     <Flex>
                         <Sykepengertilfellet sykepenger={sykepenger} />
-                        <Sykemelding sykmeldinger={sykepenger.sykmeldinger} />
+                        <Sykemelding sykmelding={aktuellSykmelding} />
                     </Flex>
                     <Arbeidssituasjon sykepenger={sykepenger} />
                 </OversiktStyling>
-                <SpaceBetween>
-                    <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                    <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                    <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
-                </SpaceBetween>
+                <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
+                <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
+                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
             </Wrapper>
         </ErrorBoundary>
     );

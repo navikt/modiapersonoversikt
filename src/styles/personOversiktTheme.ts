@@ -18,14 +18,14 @@ export const theme = {
         bakgrunn: '#e9e7e7',
         kategori: '#cce1f3',
         ytelser: '#d6897d',
-        gråSkrift: '#78706a',
+        gråSkrift: '#645f5a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
-        background-color: #e9e7e7;
-        box-shadow: inset 0 0 0 0.3rem white;
+        background-color: #f1f0f0;
+        box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
         padding: ${pxToRem(20)};
     `,
     hvittPanel: css`
