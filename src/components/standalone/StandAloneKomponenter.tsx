@@ -26,6 +26,8 @@ import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
 import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
+import TestProvider from '../../test/Testprovider';
+import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
 
 enum Komponenter {
     Visittkort,
@@ -39,7 +41,8 @@ enum Komponenter {
     Foreldrepenger,
     Sykepenger,
     Varsler,
-    Hurtigvalg
+    Hurtigreferat,
+    Dialogpanel
 }
 
 const Style = styled.div`
@@ -98,12 +101,18 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
             return <VarslerLamell fødselsnummer={props.fnr} />;
-        case Komponenter.Hurtigvalg:
+        case Komponenter.Hurtigreferat:
             return (
                 <HurtigreferatStandalone
                     meldingBleSendtCallback={() => console.log('Ble sendt')}
                     fødselsnummer={props.fnr}
                 />
+            );
+        case Komponenter.Dialogpanel:
+            return (
+                <TestProvider>
+                    <DialogPanel />
+                </TestProvider>
             );
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;

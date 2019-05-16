@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
@@ -16,6 +15,7 @@ import { Meldingstype, SendMeldingRequest } from '../../../../models/meldinger/m
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
