@@ -24,10 +24,9 @@ export interface GsakTemaUnderkategori {
 }
 
 export interface OpprettOppgaveRequest {
-    valgtEnhetId: number;
+    valgtEnhetId: string;
     henvendelseId: string;
     dagerFrist: number;
-    ansvarligEnhetId: string;
     ansvarligIdent?: string;
     beskrivelse: string;
     temakode: string;

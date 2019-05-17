@@ -1,6 +1,11 @@
 import React, { useState, FormEvent } from 'react';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../models/meldinger/oppgave';
+import {
+    GsakTema,
+    GsakTemaOppgavetype,
+    GsakTemaUnderkategori,
+    OpprettOppgaveRequest
+} from '../../../../../../../models/meldinger/oppgave';
 import Select from 'nav-frontend-skjema/lib/select';
 import { ChangeEvent } from 'react';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
@@ -8,6 +13,10 @@ import Textarea from 'nav-frontend-skjema/lib/textarea';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { eldsteMelding } from '../../../utils/meldingerUtils';
+import { getSaksbehandlerIdent } from '../../../../../../../utils/loggInfo/getSaksbehandlerIdent';
+import moment from 'moment';
 
 const KnappWrapper = styled.div`
     display: flex;
@@ -17,6 +26,7 @@ const KnappWrapper = styled.div`
 interface Props {
     gsakTema: GsakTema[];
     valgtTraad?: Traad;
+    gjeldendeBrukerFnr: string;
 }
 
 interface InternalProps extends Props {
@@ -132,7 +142,8 @@ function SkjemaElementer(props: InternalProps) {
 function OpprettOppgaveSkjema(props: InternalProps) {
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        console.log('Skal lagre...');
+        const request = lagOppgaveRequest(props);
+        console.log('Skal lagre ', request);
     };
 
     return (
@@ -140,6 +151,30 @@ function OpprettOppgaveSkjema(props: InternalProps) {
             <SkjemaElementer {...props} />
         </form>
     );
+}
+
+function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
+    const saksbehandlerEnhet = getSaksbehandlerEnhet();
+
+    return {
+        valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
+        henvendelseId: props.valgtTraad ? eldsteMelding(props.valgtTraad).id : 'UKJENT',
+        dagerFrist: props.valgtOppgavetype ? props.valgtOppgavetype.dagerFrist : 0,
+        ansvarligIdent: getSaksbehandlerIdent(),
+        beskrivelse: lagBeskrivelse(props.beskrivelse, saksbehandlerEnhet),
+        temakode: props.valgtTema ? props.valgtTema.kode : 'UKJENT',
+        underkategorikode: props.valgtUnderkategori && props.valgtUnderkategori.kode,
+        brukerid: props.gjeldendeBrukerFnr,
+        oppgaveTypeKode: props.valgtOppgavetype ? props.valgtOppgavetype.kode : 'UKJENT',
+        prioritetKode: props.valgtPrioritet.toString() + '_TEMAKODE'
+    };
+}
+
+function lagBeskrivelse(beskrivelse: string, saksbehandlerEnhet?: string) {
+    const formattedDate = moment().format('dd.MM.yyyy HH:mm');
+    const ansatt = 'Ansatt'; // Hent fra HodeController /me og legg i redux
+
+    return `--- ${formattedDate} ${ansatt} (${getSaksbehandlerIdent()} ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
 }
 
 function OppgavePanel(props: Props) {

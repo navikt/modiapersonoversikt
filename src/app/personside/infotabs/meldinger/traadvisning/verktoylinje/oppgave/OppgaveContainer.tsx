@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RestResourceConsumer from '../../../../../../../rest/consumer/RestResourceConsumer';
 import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-import OppgavePanel from './OppgavePanel';
+import OppgavePanel from './OppgavePanelContainer';
 
 function OppgaveContainer() {
     return (

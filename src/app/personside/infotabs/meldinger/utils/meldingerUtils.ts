@@ -4,6 +4,10 @@ export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger[0];
 }
 
+export function eldsteMelding(traad: Traad) {
+    return traad.meldinger[traad.meldinger.length - 1];
+}
+
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return [
         Temagruppe.Arbeid,

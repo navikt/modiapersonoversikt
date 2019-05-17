@@ -5,11 +5,13 @@ import OppgavePanel from './OppgavePanel';
 
 interface StateProps {
     valgtTraad?: Traad;
+    gjeldendeBrukerFnr: string;
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        valgtTraad: state.meldinger.valgtTraad
+        valgtTraad: state.meldinger.valgtTraad,
+        gjeldendeBrukerFnr: state.gjeldendeBruker.fødselsnummer
     };
 }
 
