@@ -348,6 +348,10 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+function opprettOppgaveMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
 let mockInitialised = false;
 export function setupMock() {
     if (mockInitialised) {
@@ -395,4 +399,5 @@ export function setupMock() {
     setupGsakTemaMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
+    opprettOppgaveMock(mock);
 }

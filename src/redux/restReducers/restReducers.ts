@@ -30,6 +30,7 @@ import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/oppgave';
+import opprettOppgave from './meldinger/opprettOppgave';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -52,7 +53,7 @@ import { Varsel } from '../../models/varsel';
 import { Melding, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
-import { GsakTema } from '../../models/meldinger/oppgave';
+import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 
 export interface RestEndepunkter {
@@ -87,6 +88,7 @@ export interface RestEndepunkter {
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
     sendMelding: PostResource<Melding>;
+    opprettOppgave: PostResource<OpprettOppgaveRequest>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -120,5 +122,6 @@ export default combineReducers<RestEndepunkter>({
     brukersVarsler: varselReducer,
     tråderOgMeldinger: meldingerReducer,
     oppgaveGsakTema: oppgaveGsakTemaReducer,
-    sendMelding: sendMelding
+    sendMelding: sendMelding,
+    opprettOppgave: opprettOppgave
 });

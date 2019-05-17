@@ -6,4 +6,4 @@ export function getGsakTemaFetchUri(): string {
     return `${apiBaseUri}/dialogoppgave/tema`;
 }
 
-export default createRestResourceReducerAndActions<GsakTema[]>('oppgaveGsakTema', getGsakTemaFetchUri);
+export default createRestResourceReducerAndActions<GsakTema[]>('oppgaver', getGsakTemaFetchUri);
