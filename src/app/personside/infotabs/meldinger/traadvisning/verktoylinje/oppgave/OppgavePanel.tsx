@@ -155,6 +155,7 @@ function OpprettOppgaveSkjema(props: InternalProps) {
 
 function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
+    const temakode = props.valgtTema ? props.valgtTema.kode : 'UKJENT';
 
     return {
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
@@ -162,17 +163,17 @@ function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
         dagerFrist: props.valgtOppgavetype ? props.valgtOppgavetype.dagerFrist : 0,
         ansvarligIdent: getSaksbehandlerIdent(),
         beskrivelse: lagBeskrivelse(props.beskrivelse, saksbehandlerEnhet),
-        temakode: props.valgtTema ? props.valgtTema.kode : 'UKJENT',
+        temakode: temakode,
         underkategorikode: props.valgtUnderkategori && props.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: props.valgtOppgavetype ? props.valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: props.valgtPrioritet.toString() + '_TEMAKODE'
+        prioritetKode: props.valgtPrioritet.toString() + '_' + temakode
     };
 }
 
 function lagBeskrivelse(beskrivelse: string, saksbehandlerEnhet?: string) {
     const formattedDate = moment().format('dd.MM.yyyy HH:mm');
-    const ansatt = 'Ansatt'; // Hent fra HodeController /me og legg i redux
+    const ansatt = 'Ansatt'; // TODO Hent fra HodeController /me og legg i redux
 
     return `--- ${formattedDate} ${ansatt} (${getSaksbehandlerIdent()} ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
 }
