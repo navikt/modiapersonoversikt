@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import oppgaverReducer from './oppgaver';
@@ -52,8 +53,10 @@ import { Melding, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
 import { GsakTema } from '../../models/meldinger/oppgave';
+import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 
 export interface RestEndepunkter {
+    innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: DeprecatedRestResource<PersonRespons>;
     brukersNavKontor: DeprecatedRestResource<BrukersNavKontorResponse>;
     oppgaver: DeprecatedRestResource<Oppgave[]>;
@@ -87,6 +90,7 @@ export interface RestEndepunkter {
 }
 
 export default combineReducers<RestEndepunkter>({
+    innloggetSaksbehandler: innloggetSaksbehandlerReducer,
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,

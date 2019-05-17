@@ -28,6 +28,7 @@ import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-moc
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
+import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -41,6 +42,13 @@ function randomDelay() {
 
 const fødselsNummerErGyldigStatus = (args: HandlerArgument) =>
     erGyldigFødselsnummer(args.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
+
+function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/hode/me',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockInnloggetSaksbehandler())
+    );
+}
 
 function setupPersonMock(mock: FetchMock) {
     mock.get(
@@ -356,6 +364,7 @@ export function setupMock() {
         }, MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
+    setupInnloggetSaksbehandlerMock(mock);
     setupPersonMock(mock);
     setupEgenAnsattMock(mock);
     setupKontaktinformasjonMock(mock);
