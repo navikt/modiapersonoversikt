@@ -17,17 +17,21 @@ import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksb
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { getSaksbehandlerIdent } from '../../../../../../../utils/loggInfo/getSaksbehandlerIdent';
 import moment from 'moment';
+import { PostResource } from '../../../../../../../rest/utils/postResource';
 
 const KnappWrapper = styled.div`
     display: flex;
     justify-content: space-between;
 `;
 
-interface Props {
+interface StateProps {
     gsakTema: GsakTema[];
     valgtTraad?: Traad;
     gjeldendeBrukerFnr: string;
+    opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
 }
+
+type Props = StateProps;
 
 interface InternalProps extends Props {
     valgtTema?: GsakTema;
@@ -43,9 +47,9 @@ interface InternalProps extends Props {
 }
 
 enum Prioritet {
-    HOY = 'Høy',
-    NORM = 'Normal',
-    LAV = 'Lav'
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
 }
 
 function hentValgtTema(props: Props, event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
@@ -68,31 +72,53 @@ function hentValgtOppgavetype(
 
 function lagTemaOptions(props: Props) {
     return [
-        <option value={''}>Velg tema</option>,
-        props.gsakTema.map(gsakTema => <option value={`${gsakTema.kode}`}>{gsakTema.tekst}</option>)
+        <option value={''} key={''}>
+            Velg tema
+        </option>,
+        props.gsakTema.map(gsakTema => (
+            <option value={`${gsakTema.kode}`} key={gsakTema.kode}>
+                {gsakTema.tekst}
+            </option>
+        ))
     ];
 }
 
 function lagUnderkategoriOptions(valgtGsakTema?: GsakTema) {
     return valgtGsakTema
         ? [
-              <option value={''}>Velg underkategori</option>,
+              <option value={''} key={''}>
+                  Velg underkategori
+              </option>,
               valgtGsakTema.underkategorier.map(underkategori => (
-                  <option value={`${underkategori.kode}`}>{underkategori.tekst}</option>
+                  <option value={`${underkategori.kode}`} key={underkategori.kode}>
+                      {underkategori.tekst}
+                  </option>
               ))
           ]
-        : [<option value={''}>Ingen tema valgt</option>];
+        : [
+              <option value={''} key={''}>
+                  Ingen tema valgt
+              </option>
+          ];
 }
 
 function lagOppgavetypeOptions(valgtGsakTema?: GsakTema) {
     return valgtGsakTema
         ? [
-              <option value={''}>Velg oppgavetype</option>,
+              <option value={''} key={''}>
+                  Velg oppgavetype
+              </option>,
               valgtGsakTema.oppgavetyper.map(oppgavetype => (
-                  <option value={`${oppgavetype.kode}`}>{oppgavetype.tekst}</option>
+                  <option value={`${oppgavetype.kode}`} key={oppgavetype.kode}>
+                      {oppgavetype.tekst}
+                  </option>
               ))
           ]
-        : [<option value={''}>Ingen tema valgt</option>];
+        : [
+              <option value={''} key={''}>
+                  Ingen tema valgt
+              </option>
+          ];
 }
 
 function SkjemaElementer(props: InternalProps) {
@@ -132,7 +158,9 @@ function SkjemaElementer(props: InternalProps) {
                 }
             />
             <KnappWrapper>
-                <Hovedknapp role="submit">Send</Hovedknapp>
+                <Hovedknapp role="submit" disabled={!props.valgtTema || !props.valgtOppgavetype}>
+                    Send
+                </Hovedknapp>
                 <LenkeKnapp type="button">Avbryt</LenkeKnapp>
             </KnappWrapper>
         </>
@@ -144,6 +172,7 @@ function OpprettOppgaveSkjema(props: InternalProps) {
         event.preventDefault();
         const request = lagOppgaveRequest(props);
         console.log('Skal lagre ', request);
+        props.opprettOppgaveResource.actions.post(request);
     };
 
     return (
@@ -167,12 +196,12 @@ function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
         underkategorikode: props.valgtUnderkategori && props.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: props.valgtOppgavetype ? props.valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: props.valgtPrioritet.toString() + '_' + temakode
+        prioritetKode: props.valgtPrioritet + '_' + temakode
     };
 }
 
 function lagBeskrivelse(beskrivelse: string, saksbehandlerEnhet?: string) {
-    const formattedDate = moment().format('dd.MM.yyyy HH:mm');
+    const formattedDate = moment().format('DD.MM.YYYY HH:mm');
     const ansatt = 'Ansatt'; // TODO Hent fra HodeController /me og legg i redux
 
     return `--- ${formattedDate} ${ansatt} (${getSaksbehandlerIdent()} ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
