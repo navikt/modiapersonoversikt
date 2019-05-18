@@ -24,6 +24,13 @@ const KnappWrapper = styled.div`
     justify-content: space-between;
 `;
 
+const SkjemaStyle = styled.div`
+    .inputPanelGruppe__inner {
+        display: flex;
+        justify-content: space-between;
+    }
+`;
+
 interface StateProps {
     gsakTema: GsakTema[];
     valgtTraad?: Traad;
@@ -123,7 +130,7 @@ function lagOppgavetypeOptions(valgtGsakTema?: GsakTema) {
 
 function SkjemaElementer(props: InternalProps) {
     return (
-        <>
+        <SkjemaStyle>
             <Select label={'Tema'} onChange={event => props.settValgtTema(hentValgtTema(props, event))}>
                 {lagTemaOptions(props)}
             </Select>
@@ -163,7 +170,7 @@ function SkjemaElementer(props: InternalProps) {
                 </Hovedknapp>
                 <LenkeKnapp type="button">Avbryt</LenkeKnapp>
             </KnappWrapper>
-        </>
+        </SkjemaStyle>
     );
 }
 
