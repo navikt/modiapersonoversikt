@@ -7,7 +7,6 @@ import InformasjonSVG from '../../../../svg/InformasjonSVG';
 import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useClickOutside } from '../../../../utils/customHooks';
 import TemaGruppeValg, { Valg } from './TemaGruppevalg';
 
 interface Props {
@@ -74,9 +73,7 @@ function HurtigreferatElement(props: Props) {
     const [visTemagruppeValg, setVisTemagruppeValg] = useState(false);
     const [sender, setSender] = useState(false);
 
-    useClickOutside(ref, () => setVisTemagruppeValg(false));
-
-    const handleSend = (temagruppe: Valg) => {
+    const handleVelgTemagruppe = (temagruppe: Valg) => {
         setVisTemagruppeValg(false);
         setSender(true);
         props.sendMelding(props.tekst.fritekst, temagruppe);
@@ -97,7 +94,7 @@ function HurtigreferatElement(props: Props) {
                 </KnappBase>
                 {visTemagruppeValg && (
                     <div ref={ref}>
-                        <TemaGruppeValg handleSend={handleSend} />
+                        <TemaGruppeValg lukk={() => setVisTemagruppeValg(false)} handleVelgTemagruppe={handleVelgTemagruppe} />
                     </div>
                 )}
             </KnappOgIkon>

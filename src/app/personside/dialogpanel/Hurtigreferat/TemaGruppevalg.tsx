@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import {Undertittel} from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
-import { Temagruppe } from '../../../../models/meldinger/meldinger';
+import {Temagruppe} from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { useFocusOnMount } from '../../../../utils/customHooks';
+import {useClickOutside, useFocusOnMount, useFocusOutside} from '../../../../utils/customHooks';
 
 interface Props {
-    handleSend: (temagruppe: Valg) => void;
+    handleVelgTemagruppe: (temagruppe: Valg) => void;
+    lukk: () => void;
 }
 
 export interface Valg {
@@ -63,22 +64,30 @@ const HvittPanel = styled.div`
     }
 `;
 
+const FocusableSpan = styled.span`
+  &:focus {
+    ${theme.focus};
+  }
+`;
+
 function TemaGruppeValg(props: Props) {
-    const ref = React.createRef<HTMLElement>();
-    useFocusOnMount(ref);
-    // TODO useOnFocusOutside(() => setVisTemagruppe(false))
+    const headerRef = React.createRef<HTMLElement>();
+    const wrapperRef = React.createRef<HTMLDivElement>();
+    useFocusOnMount(headerRef);
+    useClickOutside(wrapperRef, props.lukk);
+    useFocusOutside(wrapperRef, props.lukk);
     return (
-        <TemagruppeWrapper>
+        <TemagruppeWrapper ref={wrapperRef}>
             <HvittPanel>
                 <Undertittel tag="h4">
-                    <span ref={ref} tabIndex={-1}>
+                    <FocusableSpan ref={headerRef} tabIndex={-1}>
                         Velg temagruppe
-                    </span>
+                    </FocusableSpan>
                 </Undertittel>
                 <ul>
                     {muligetemagruppevalg.map(tema => (
                         <li key={tema.kodeverk}>
-                            <KnappBase type="standard" onClick={() => props.handleSend(tema)}>
+                            <KnappBase type="standard" onClick={() => props.handleVelgTemagruppe(tema)}>
                                 {tema.beskrivelse}
                             </KnappBase>
                         </li>
