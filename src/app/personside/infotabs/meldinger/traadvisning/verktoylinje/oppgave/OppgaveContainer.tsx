@@ -3,10 +3,14 @@ import RestResourceConsumer from '../../../../../../../rest/consumer/RestResourc
 import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 import OppgavePanel from './OppgavePanelContainer';
 
-function OppgaveContainer() {
+interface Props {
+    lukkPanel: () => void;
+}
+
+function OppgaveContainer(props: Props) {
     return (
         <RestResourceConsumer<GsakTema[]> getResource={restResources => restResources.oppgaveGsakTema}>
-            {data => <OppgavePanel gsakTema={data} />}
+            {data => <OppgavePanel gsakTema={data} lukkPanel={props.lukkPanel} />}
         </RestResourceConsumer>
     );
 }

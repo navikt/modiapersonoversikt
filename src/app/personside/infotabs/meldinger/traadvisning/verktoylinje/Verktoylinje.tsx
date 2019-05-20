@@ -71,7 +71,7 @@ function Funksjoner(props: Props) {
                 <JournalforingPanel />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OppgaveContainer />
+                <OppgaveContainer lukkPanel={() => settVisOppgave(false)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel />

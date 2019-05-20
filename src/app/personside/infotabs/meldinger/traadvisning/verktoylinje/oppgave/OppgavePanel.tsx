@@ -33,6 +33,10 @@ const SkjemaStyle = styled.div`
     }
 `;
 
+interface FunksjonProps {
+    lukkPanel: () => void;
+}
+
 interface StateProps {
     gsakTema: GsakTema[];
     valgtTraad?: Traad;
@@ -41,7 +45,7 @@ interface StateProps {
     opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
 }
 
-type Props = StateProps;
+type Props = FunksjonProps & StateProps;
 
 interface InternalProps extends Props {
     valgtTema?: GsakTema;
@@ -171,7 +175,9 @@ function SkjemaElementer(props: InternalProps) {
                 <Hovedknapp role="submit" disabled={!props.valgtTema || !props.valgtOppgavetype}>
                     Send
                 </Hovedknapp>
-                <LenkeKnapp type="button">Avbryt</LenkeKnapp>
+                <LenkeKnapp type="button" onClick={props.lukkPanel}>
+                    Avbryt
+                </LenkeKnapp>
             </KnappWrapper>
         </SkjemaStyle>
     );
