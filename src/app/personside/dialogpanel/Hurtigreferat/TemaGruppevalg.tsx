@@ -4,6 +4,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { useFocusOnMount } from '../../../../utils/customHooks';
 
 interface Props {
     handleSend: (temagruppe: Valg) => void;
@@ -63,10 +64,17 @@ const HvittPanel = styled.div`
 `;
 
 function TemaGruppeValg(props: Props) {
+    const ref = React.createRef<HTMLElement>();
+    useFocusOnMount(ref);
+    // TODO useOnFocusOutside(() => setVisTemagruppe(false))
     return (
         <TemagruppeWrapper>
             <HvittPanel>
-                <Undertittel tag="h4">Temagruppe</Undertittel>
+                <Undertittel tag="h4">
+                    <span ref={ref} tabIndex={-1}>
+                        Velg temagruppe
+                    </span>
+                </Undertittel>
                 <ul>
                     {muligetemagruppevalg.map(tema => (
                         <li key={tema.kodeverk}>

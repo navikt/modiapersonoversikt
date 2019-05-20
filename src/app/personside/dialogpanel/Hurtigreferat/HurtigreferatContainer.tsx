@@ -16,6 +16,7 @@ import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Valg } from './TemaGruppevalg';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -40,16 +41,20 @@ function HurtigreferatContainer(props: Props) {
     if (isFailedPosting(sendResource)) {
         return <AlertStripeFeil>Det skjedde en feil ved sending av melding.</AlertStripeFeil>;
     }
+
+    const sendMelding = (tekst: string, temagruppe: Valg) => {
+        if (isNotStartedPosting(props.sendMeldingResource)) {
+            const tekstMedTemagruppe = tekst.replace('TEMA', temagruppe.beskrivelse.toLowerCase());
+            props.sendMelding(tekstMedTemagruppe, temagruppe.kodeverk);
+        }
+    };
+
     return (
         <Style>
             <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>
                 <ul>
                     {tekster.map(tekst => (
-                        <HurtigreferatElement
-                            key={tekst.tittel}
-                            tekst={tekst}
-                            sendMelding={isNotStartedPosting(sendResource) ? props.sendMelding : () => null}
-                        />
+                        <HurtigreferatElement key={tekst.tittel} tekst={tekst} sendMelding={sendMelding} />
                     ))}
                 </ul>
             </EkspanderbartpanelBase>

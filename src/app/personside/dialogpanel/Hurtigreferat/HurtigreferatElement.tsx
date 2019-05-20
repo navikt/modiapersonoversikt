@@ -12,7 +12,7 @@ import TemaGruppeValg, { Valg } from './TemaGruppevalg';
 
 interface Props {
     tekst: Tekst;
-    sendMelding: (tekst: string, temaGruppe: string) => void;
+    sendMelding: (tekst: string, temaGruppe: Valg) => void;
 }
 
 const ContainerStyle = styled.li`
@@ -79,8 +79,7 @@ function HurtigreferatElement(props: Props) {
     const handleSend = (temagruppe: Valg) => {
         setVisTemagruppeValg(false);
         setSender(true);
-        const tekstMedTemagruppe = props.tekst.fritekst.replace('TEMA', temagruppe.beskrivelse.toLowerCase());
-        props.sendMelding(tekstMedTemagruppe, temagruppe.kodeverk);
+        props.sendMelding(props.tekst.fritekst, temagruppe);
     };
 
     return (
