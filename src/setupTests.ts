@@ -7,7 +7,6 @@ import FeatureToggle from './components/featureToggle/FeatureToggle';
 
 configure({ adapter: new EnzymeReactAdapter() });
 
-// tslint:disable-next-line
 const globalAny: any = global;
 globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
@@ -21,5 +20,4 @@ FeatureToggle.prototype.render = function() {
     return this.props.children;
 };
 
-// tslint:disable-next-line
 window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };

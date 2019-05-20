@@ -1,7 +1,6 @@
 import { RestResource } from './restResource';
 import { STATUS } from './utils';
 
-// tslint:disable-next-line
 export const mockRestResourceState: RestResource<any> = {
     status: STATUS.NOT_STARTED,
     actions: {
