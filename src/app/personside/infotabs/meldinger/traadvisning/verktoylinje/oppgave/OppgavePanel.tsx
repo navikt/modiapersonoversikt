@@ -15,9 +15,9 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
-import { getSaksbehandlerIdent } from '../../../../../../../utils/loggInfo/getSaksbehandlerIdent';
 import moment from 'moment';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
+import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 
 const KnappWrapper = styled.div`
     display: flex;
@@ -27,7 +27,6 @@ const KnappWrapper = styled.div`
 const SkjemaStyle = styled.div`
     .inputPanelGruppe__inner {
         display: flex;
-        justify-content: space-between;
     }
 `;
 
@@ -35,6 +34,7 @@ interface StateProps {
     gsakTema: GsakTema[];
     valgtTraad?: Traad;
     gjeldendeBrukerFnr: string;
+    innloggetSaksbehandler: InnloggetSaksbehandler;
     opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
 }
 
@@ -197,8 +197,8 @@ function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         henvendelseId: props.valgtTraad ? eldsteMelding(props.valgtTraad).id : 'UKJENT',
         dagerFrist: props.valgtOppgavetype ? props.valgtOppgavetype.dagerFrist : 0,
-        ansvarligIdent: getSaksbehandlerIdent(),
-        beskrivelse: lagBeskrivelse(props.beskrivelse, saksbehandlerEnhet),
+        ansvarligIdent: props.innloggetSaksbehandler.ident,
+        beskrivelse: lagBeskrivelse(props.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temakode: temakode,
         underkategorikode: props.valgtUnderkategori && props.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
@@ -207,11 +207,16 @@ function lagOppgaveRequest(props: InternalProps): OpprettOppgaveRequest {
     };
 }
 
-function lagBeskrivelse(beskrivelse: string, saksbehandlerEnhet?: string) {
+function lagBeskrivelse(
+    beskrivelse: string,
+    innloggetSaksbehandler: InnloggetSaksbehandler,
+    saksbehandlerEnhet?: string
+) {
     const formattedDate = moment().format('DD.MM.YYYY HH:mm');
-    const ansatt = 'Ansatt'; // TODO Hent fra HodeController /me og legg i redux
 
-    return `--- ${formattedDate} ${ansatt} (${getSaksbehandlerIdent()} ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
+    return `--- ${formattedDate} ${innloggetSaksbehandler.navn} (${
+        innloggetSaksbehandler.ident
+    } ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
 }
 
 function OppgavePanel(props: Props) {
