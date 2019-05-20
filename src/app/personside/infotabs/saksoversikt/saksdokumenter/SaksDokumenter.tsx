@@ -6,7 +6,6 @@ import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
-import DokumentKomponent from './DokumentListeElement';
 import { AlignTextCenter, Bold, Uppercase } from '../../../../../components/common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
@@ -18,6 +17,7 @@ import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
+import DokumentListeElement from './DokumentListeElement';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -107,8 +107,8 @@ const TittelWrapperStyling = styled.div`
 
 function Dokumentgruppe({ gruppe, harTilgang, sakstemakode }: DokumentGruppeProps) {
     const dokumentKomponenter = gruppe.array.map(dokument => (
-        <DokumentKomponent
-            dokument={dokument}
+        <DokumentListeElement
+            dokumentMetadata={dokument}
             harTilgangTilSakstema={harTilgang}
             sakstemakode={sakstemakode}
             sakstemanavn={dokument.temakodeVisning}
