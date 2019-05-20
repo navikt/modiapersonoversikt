@@ -15,6 +15,7 @@ export interface Melding {
     opprettetDato: string;
     journalfortDato: string;
     ferdigstiltDato: string;
+    erFerdigstiltUtenSvar: boolean;
 }
 
 export interface Saksbehandler {

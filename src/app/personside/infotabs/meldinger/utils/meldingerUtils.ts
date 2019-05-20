@@ -1,4 +1,4 @@
-import { Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 
 export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger[0];
@@ -6,6 +6,21 @@ export function sisteSendteMelding(traad: Traad) {
 
 export function eldsteMelding(traad: Traad) {
     return traad.meldinger[traad.meldinger.length - 1];
+}
+
+export function erMonolog(traad: Traad) {
+    const bareSaksbehandler: boolean = traad.meldinger.some(erFraSaksbehandler);
+    const bareBruker: boolean = traad.meldinger.some(erFraBruker);
+
+    return bareSaksbehandler !== bareBruker;
+}
+
+export function erFraSaksbehandler(melding: Melding) {
+    return erMeldingFraNav(melding.meldingstype);
+}
+
+export function erFraBruker(melding: Melding) {
+    return erMeldingFraBruker(melding.meldingstype);
 }
 
 export function erSamtalereferat(temagruppe: Temagruppe) {

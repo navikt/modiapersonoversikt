@@ -27,6 +27,9 @@ const KnappWrapper = styled.div`
 const SkjemaStyle = styled.div`
     .inputPanelGruppe__inner {
         display: flex;
+        > * {
+            flex-grow: 1;
+        }
     }
 `;
 

@@ -1,14 +1,19 @@
 import * as React from 'react';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import Element from 'nav-frontend-typografi/lib/element';
 import styled from 'styled-components';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
-import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { sisteSendteMelding } from '../utils/meldingerUtils';
+import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
+import Oppmote from '../../../../../svg/Oppmote';
+import Telefon from '../../../../../svg/Telefon';
+import Oppgave from '../../../../../svg/Oppgave';
+import Dokument from '../../../../../svg/Dokument';
+import Monolog from '../../../../../svg/Monolog';
+import Dialog from '../../../../../svg/Dialog';
 
 interface Props {
     traad: Traad;
@@ -16,10 +21,16 @@ interface Props {
     settValgtTraad: (traad: Traad) => void;
 }
 
+interface Meldingsprops {
+    type: Meldingstype;
+    erFerdigstiltUtenSvar: boolean;
+    erMonolog: boolean;
+}
+
 const SVGStyling = styled.span`
     svg {
-        height: ${theme.margin.px20};
-        width: ${theme.margin.px20};
+        height: ${theme.margin.px30};
+        width: ${theme.margin.px30};
     }
 `;
 
@@ -41,6 +52,27 @@ const PanelStyle = styled.div`
     }
 `;
 
+function Meldingsikon(props: Meldingsprops) {
+    switch (props.type) {
+        case Meldingstype.SamtalereferatOppmøte:
+            return <Oppmote />;
+        case Meldingstype.SamtalereferatTelefon:
+            return <Telefon />;
+        case Meldingstype.OppgaveVarsel:
+            return <Oppgave />;
+        case Meldingstype.DokumentVarsel:
+            return <Dokument />;
+        default: {
+            // TODO Vi må legge på et ekstra besvart / ubesvart ikon...
+            if (props.erMonolog) {
+                return <Monolog />;
+            } else {
+                return <Dialog />;
+            }
+        }
+    }
+}
+
 function TraadListeElement(props: Props) {
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
@@ -55,7 +87,11 @@ function TraadListeElement(props: Props) {
             >
                 <PanelStyle>
                     <SVGStyling>
-                        <SakIkkeTilgangIkon />
+                        <Meldingsikon
+                            type={nyesteMelding.meldingstype}
+                            erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                            erMonolog={erMonolog(props.traad)}
+                        />
                     </SVGStyling>
                     <div>
                         <UUcustomOrder>
