@@ -5,6 +5,7 @@ import createPostResourceReducerAndActions from '../../rest/utils/postResource';
 import { AsyncDispatch } from '../ThunkTypes';
 import { getSaksbehandlerIdent } from '../../utils/loggInfo/getSaksbehandlerIdent';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { loggError } from '../../utils/frontendLogger';
 
 export function getMeldingPostUri(state: AppState): string {
     const fnr = state.gjeldendeBruker.fødselsnummer;
@@ -19,14 +20,20 @@ export function sendMeldingActionCreator(
 ) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const saksbehandler = getSaksbehandlerIdent();
-        const enhet = getSaksbehandlerEnhet();
-        if (!saksbehandler) {
-            throw new Error('Kunne ikke finne saksbehandlerIdent');
-        }
-        if (!enhet) {
-            throw new Error('Kunne ikke finne enhet');
-        }
         const state = getState();
+        if (!saksbehandler) {
+            const error = new Error('Kunne ikke finne saksbehandlerident');
+            loggError(error);
+            dispatch(state.restResources.sendMelding.actions.setError(error));
+            return;
+        }
+        const enhet = getSaksbehandlerEnhet();
+        if (!enhet) {
+            const error = new Error('Kunne ikke finne enhet');
+            loggError(error);
+            dispatch(state.restResources.sendMelding.actions.setError(error));
+            return;
+        }
         const fnr = state.gjeldendeBruker.fødselsnummer;
         const request: SendMeldingRequest = {
             fnr: fnr,

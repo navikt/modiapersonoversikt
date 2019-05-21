@@ -43,7 +43,9 @@ function HurtigreferatContainer(props: Props) {
         return <AlertStripeInfo>Meldingen ble sendt.</AlertStripeInfo>;
     }
     if (isFailedPosting(sendResource)) {
-        return <AlertStripeFeil>Det skjedde en feil ved sending av melding.</AlertStripeFeil>;
+        return (
+            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeFeil>
+        );
     }
 
     const sendMelding = (tekst: string, temagruppe: Valg) => {
