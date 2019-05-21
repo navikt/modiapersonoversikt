@@ -2,7 +2,7 @@ import * as React from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { tekster } from './tekster';
+import { Tekst, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
 import { connect } from 'react-redux';
 import {
@@ -17,9 +17,13 @@ import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMel
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { Valg } from './TemaGruppevalg';
+import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
+import { PersonRespons } from '../../../../models/person/person';
+import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
+    person: DeprecatedRestResource<PersonRespons>;
 }
 
 interface DispatchProps {
@@ -49,11 +53,16 @@ function HurtigreferatContainer(props: Props) {
         }
     };
 
+    const navn = isLoadedPerson(props.person) ? props.person.data.navn.sammensatt : 'Bruker';
+    const teksterMedBrukersNavn: Tekst[] = tekster.map((tekst: Tekst) => ({
+        ...tekst,
+        fritekst: tekst.fritekst.replace('BRUKER', navn)
+    }));
     return (
         <Style>
             <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>
                 <ul>
-                    {tekster.map(tekst => (
+                    {teksterMedBrukersNavn.map(tekst => (
                         <HurtigreferatElement key={tekst.tittel} tekst={tekst} sendMelding={sendMelding} />
                     ))}
                 </ul>
@@ -64,7 +73,8 @@ function HurtigreferatContainer(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        sendMeldingResource: state.restResources.sendMelding
+        sendMeldingResource: state.restResources.sendMelding,
+        person: state.restResources.personinformasjon
     };
 }
 
