@@ -22,6 +22,7 @@ import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecate
 import { PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { Select } from 'nav-frontend-skjema';
+import { getTemaFraCookie, setTemaCookie } from './temagruppeutils';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -37,6 +38,9 @@ type Props = StateProps & DispatchProps;
 const Style = styled.div`
     ${theme.resetEkspanderbartPanelStyling};
     filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
+    label {
+        ${theme.visuallyHidden}
+    }
 `;
 
 const Padding = styled.div`
@@ -57,7 +61,8 @@ const temagruppeValg: Tema[] = [
 ];
 
 function HurtigreferatContainer(props: Props) {
-    const [temagruppe, setTemagruppe] = useState<Tema>();
+    const initialTema = temagruppeValg.find(tema => tema.kodeverk === getTemaFraCookie());
+    const [valgtTema, setTemagruppe] = useState<Tema | undefined>(initialTema);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
 
@@ -72,18 +77,20 @@ function HurtigreferatContainer(props: Props) {
     }
 
     const sendMelding = (tekst: string) => {
-        if (!temagruppe) {
+        if (!valgtTema) {
             setTemaGruppeFeilmelding(true);
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
-            props.sendMelding(tekst, temagruppe.kodeverk);
+            props.sendMelding(tekst, valgtTema.kodeverk);
         }
     };
 
     const velgTemagruppeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        setTemagruppe(temagruppeValg.find(tema => tema.kodeverk === event.target.value));
+        const tema = temagruppeValg.find(tema => tema.kodeverk === event.target.value);
+        setTemagruppe(tema);
         setTemaGruppeFeilmelding(false);
+        tema && setTemaCookie(tema.kodeverk);
     };
 
     const navn = isLoadedPerson(props.person) ? props.person.data.navn.sammensatt : 'Bruker';
@@ -92,7 +99,7 @@ function HurtigreferatContainer(props: Props) {
         ...tekst,
         fritekst: tekst.fritekst
             .replace('BRUKER', navn)
-            .replace('TEMA', temagruppe ? temagruppe.beskrivelse.toLowerCase() : 'tema')
+            .replace('TEMA', valgtTema ? valgtTema.beskrivelse.toLowerCase() : 'tema')
     }));
 
     return (
@@ -104,9 +111,11 @@ function HurtigreferatContainer(props: Props) {
                         onChange={velgTemagruppeHandler}
                         feil={temaGruppeFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}
                     >
-                        <option value="">Velg temagruppe</option>
+                        <option value="" disabled>
+                            Velg temagruppe
+                        </option>
                         {temagruppeValg.map(valg => (
-                            <option key={valg.kodeverk} value={valg.kodeverk}>
+                            <option key={valg.kodeverk} value={valg.kodeverk} selected={valg === valgtTema}>
                                 {valg.beskrivelse}
                             </option>
                         ))}
