@@ -50,7 +50,7 @@ function getInnhold(props: Props) {
         );
     }
     if (isFailedPosting(props.sendMeldingResource)) {
-        return <AlertStripeAdvarsel>Kunne ikke sende melding</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>Det skjedde en feil ved sending av melding: {props.sendMeldingResource.error.message}</AlertStripeAdvarsel>;
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">

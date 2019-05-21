@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ChangeEvent, useState } from 'react';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import {ChangeEvent, useState} from 'react';
+import {EkspanderbartpanelBase} from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import { Hurtigreferat, tekster } from './tekster';
+import {Hurtigreferat, tekster} from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
     isFailedPosting,
     isFinishedPosting,
@@ -13,16 +13,16 @@ import {
     isPosting,
     PostResource
 } from '../../../../rest/utils/postResource';
-import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
-import { AppState } from '../../../../redux/reducers';
-import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
-import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import {Meldingstype, SendMeldingRequest, Temagruppe} from '../../../../models/meldinger/meldinger';
+import {AppState} from '../../../../redux/reducers';
+import {sendMeldingActionCreator} from '../../../../redux/restReducers/sendMelding';
+import {AlertStripeAdvarsel, AlertStripeInfo} from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
-import { PersonRespons } from '../../../../models/person/person';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { Select } from 'nav-frontend-skjema';
-import { getTemaFraCookie, setTemaCookie } from './temagruppeutils';
+import {DeprecatedRestResource} from '../../../../redux/restReducers/deprecatedRestResource';
+import {PersonRespons} from '../../../../models/person/person';
+import {isLoadedPerson} from '../../../../redux/restReducers/personinformasjon';
+import {Select} from 'nav-frontend-skjema';
+import {getTemaFraCookie, setTemaCookie} from './temagruppeutils';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -53,11 +53,11 @@ interface Tema {
 }
 
 const temagruppeValg: Tema[] = [
-    { beskrivelse: 'Arbeid', kodeverk: Temagruppe.Arbeid },
-    { beskrivelse: 'Familie', kodeverk: Temagruppe.Familie },
-    { beskrivelse: 'Hjelpemiddel', kodeverk: Temagruppe.Hjelpemiddel },
-    { beskrivelse: 'Pensjon', kodeverk: Temagruppe.Pensjon },
-    { beskrivelse: 'Øvrig', kodeverk: Temagruppe.Øvrig }
+    {beskrivelse: 'Arbeid', kodeverk: Temagruppe.Arbeid},
+    {beskrivelse: 'Familie', kodeverk: Temagruppe.Familie},
+    {beskrivelse: 'Hjelpemiddel', kodeverk: Temagruppe.Hjelpemiddel},
+    {beskrivelse: 'Pensjon', kodeverk: Temagruppe.Pensjon},
+    {beskrivelse: 'Øvrig', kodeverk: Temagruppe.Øvrig}
 ];
 
 function HurtigreferatContainer(props: Props) {
@@ -72,7 +72,7 @@ function HurtigreferatContainer(props: Props) {
 
     if (isFailedPosting(sendResource)) {
         return (
-            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeFeil>
+            <AlertStripeAdvarsel>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeAdvarsel>
         );
     }
 
@@ -109,13 +109,14 @@ function HurtigreferatContainer(props: Props) {
                     <Select
                         label="Temagruppe"
                         onChange={velgTemagruppeHandler}
-                        feil={temaGruppeFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}
+                        feil={temaGruppeFeilmelding ? {feilmelding: 'Du må velge temagruppe'} : undefined}
+                        defaultValue={valgtTema ? valgtTema.kodeverk : ''}
                     >
                         <option value="" disabled>
                             Velg temagruppe
                         </option>
                         {temagruppeValg.map(valg => (
-                            <option key={valg.kodeverk} value={valg.kodeverk} selected={valg === valgtTema}>
+                            <option key={valg.kodeverk} value={valg.kodeverk}>
                                 {valg.beskrivelse}
                             </option>
                         ))}
