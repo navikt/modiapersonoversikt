@@ -1,11 +1,11 @@
-export interface Tekst {
+export interface Hurtigreferat {
     tittel: string;
     fritekst: string;
 }
 
-export type ITekster = Tekst[];
+export type Hurtigreferater = Hurtigreferat[];
 
-export const tekster: ITekster = [
+export const tekster: Hurtigreferater = [
     {
         tittel: 'Henvist www.nav.no',
         fritekst: 'BRUKER er henvist til informasjon på www.nav.no'
