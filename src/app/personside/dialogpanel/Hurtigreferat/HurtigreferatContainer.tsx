@@ -16,7 +16,7 @@ import {
 import {Meldingstype, SendMeldingRequest, Temagruppe} from '../../../../models/meldinger/meldinger';
 import {AppState} from '../../../../redux/reducers';
 import {sendMeldingActionCreator} from '../../../../redux/restReducers/sendMelding';
-import {AlertStripeAdvarsel, AlertStripeInfo} from 'nav-frontend-alertstriper';
+import {AlertStripeFeil, AlertStripeSuksess} from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import {DeprecatedRestResource} from '../../../../redux/restReducers/deprecatedRestResource';
 import {PersonRespons} from '../../../../models/person/person';
@@ -65,14 +65,15 @@ function HurtigreferatContainer(props: Props) {
     const [valgtTema, setTemagruppe] = useState<Tema | undefined>(initialTema);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
+    console.log(valgtTema);
 
     if (isFinishedPosting(sendResource)) {
-        return <AlertStripeInfo>Meldingen ble sendt.</AlertStripeInfo>;
+        return <AlertStripeSuksess>Meldingen ble sendt.</AlertStripeSuksess>;
     }
 
     if (isFailedPosting(sendResource)) {
         return (
-            <AlertStripeAdvarsel>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeAdvarsel>
+            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeFeil>
         );
     }
 
