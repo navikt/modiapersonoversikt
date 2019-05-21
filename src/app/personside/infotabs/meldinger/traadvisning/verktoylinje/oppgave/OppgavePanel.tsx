@@ -7,7 +7,6 @@ import {
     OpprettOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
 import Select from 'nav-frontend-skjema/lib/select';
-import { ChangeEvent } from 'react';
 import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import Textarea from 'nav-frontend-skjema/lib/textarea';
 import styled from 'styled-components';
@@ -18,6 +17,14 @@ import { eldsteMelding } from '../../../utils/meldingerUtils';
 import moment from 'moment';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
+import {
+    hentValgtOppgavetype,
+    hentValgtTema,
+    hentValgtUnderkategori,
+    lagOppgavetypeOptions,
+    lagTemaOptions,
+    lagUnderkategoriOptions
+} from './oppgaveUtils';
 
 const KnappWrapper = styled.div`
     display: flex;
@@ -66,80 +73,11 @@ enum Prioritet {
     LAV = 'LAV'
 }
 
-function hentValgtTema(props: Props, event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
-    return props.gsakTema.find(tema => tema.kode === event.target.value) || undefined;
-}
-
-function hentValgtUnderkategori(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaUnderkategori | undefined {
-    return valgtTema && valgtTema.underkategorier.find(underkategori => underkategori.kode === event.target.value);
-}
-
-function hentValgtOppgavetype(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaOppgavetype | undefined {
-    return valgtTema && valgtTema.oppgavetyper.find(oppgavetype => oppgavetype.kode === event.target.value);
-}
-
-function lagTemaOptions(props: Props) {
-    return [
-        <option value={''} key={''}>
-            Velg tema
-        </option>,
-        props.gsakTema.map(gsakTema => (
-            <option value={`${gsakTema.kode}`} key={gsakTema.kode}>
-                {gsakTema.tekst}
-            </option>
-        ))
-    ];
-}
-
-function lagUnderkategoriOptions(valgtGsakTema?: GsakTema) {
-    return valgtGsakTema
-        ? [
-              <option value={''} key={''}>
-                  Velg underkategori
-              </option>,
-              valgtGsakTema.underkategorier.map(underkategori => (
-                  <option value={`${underkategori.kode}`} key={underkategori.kode}>
-                      {underkategori.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''}>
-                  Ingen tema valgt
-              </option>
-          ];
-}
-
-function lagOppgavetypeOptions(valgtGsakTema?: GsakTema) {
-    return valgtGsakTema
-        ? [
-              <option value={''} key={''}>
-                  Velg oppgavetype
-              </option>,
-              valgtGsakTema.oppgavetyper.map(oppgavetype => (
-                  <option value={`${oppgavetype.kode}`} key={oppgavetype.kode}>
-                      {oppgavetype.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''}>
-                  Ingen tema valgt
-              </option>
-          ];
-}
-
 function SkjemaElementer(props: InternalProps) {
     return (
         <SkjemaStyle>
-            <Select label={'Tema'} onChange={event => props.settValgtTema(hentValgtTema(props, event))}>
-                {lagTemaOptions(props)}
+            <Select label={'Tema'} onChange={event => props.settValgtTema(hentValgtTema(props.gsakTema, event))}>
+                {lagTemaOptions(props.gsakTema)}
             </Select>
             <Select
                 label={'Gjelder'}
