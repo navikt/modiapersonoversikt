@@ -21,8 +21,13 @@ const PanelStyle = styled.div`
 
 const KnapperPanelStyle = styled.div`
     display: flex;
+    justify-content: space-between;
+`;
+
+const OppgaveknapperStyle = styled.div`
+    display: flex;
     > * {
-        margin-right: ${theme.margin.layout};
+        margin-right: 1.5rem;
     }
 `;
 
@@ -56,15 +61,17 @@ function Funksjoner(props: Props) {
     return (
         <>
             <KnapperPanelStyle>
-                <LenkeKnapp onClick={() => journalforingKlikk()} underline={visJournalforing}>
-                    Journalfør
-                </LenkeKnapp>
-                <LenkeKnapp onClick={() => oppgaveKlikk()} underline={visOppgave}>
-                    Oppgave
-                </LenkeKnapp>
-                <LenkeKnapp onClick={() => merkKlikk()} underline={visMerk}>
-                    Merk
-                </LenkeKnapp>
+                <OppgaveknapperStyle>
+                    <LenkeKnapp onClick={journalforingKlikk} underline={visJournalforing}>
+                        Journalfør
+                    </LenkeKnapp>
+                    <LenkeKnapp onClick={oppgaveKlikk} underline={visOppgave}>
+                        Lag oppgave
+                    </LenkeKnapp>
+                    <LenkeKnapp onClick={merkKlikk} underline={visMerk}>
+                        Merk
+                    </LenkeKnapp>
+                </OppgaveknapperStyle>
                 <LenkeKnapp>Skriv ut</LenkeKnapp>
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
