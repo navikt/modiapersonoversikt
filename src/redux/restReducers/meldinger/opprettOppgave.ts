@@ -8,7 +8,7 @@ export function getOpprettOppgaveUri(state: AppState): string {
     return `${apiBaseUri}/dialogoppgave/opprett`;
 }
 
-export function opprettOppgaveAction(request: OpprettOppgaveRequest) {
+export function opprettOppgaveActionCreator(request: OpprettOppgaveRequest) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const state = getState();
 
