@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+    Dokument,
     Dokument as Enkeltdokument,
     DokumentMetadata,
     Entitet,
@@ -231,7 +232,7 @@ class DokumentListeElement extends React.Component<Props> {
                                     this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
                                 }
                             >
-                                <Element>{dokumentMetadata.hoveddokument.tittel}</Element>
+                                <Element>{this.dokumentTekst(dokumentMetadata.hoveddokument)}</Element>
                             </LenkeKnapp>
                         </div>
                         <div className="order-first">
@@ -247,6 +248,10 @@ class DokumentListeElement extends React.Component<Props> {
                 <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>{egetVinduLenke}</IfFeatureToggleOn>
             </ListeElementStyle>
         );
+    }
+
+    private dokumentTekst(dokument: Dokument) {
+        return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
     }
 
     private dokumentKanVises(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
@@ -266,7 +271,7 @@ class DokumentListeElement extends React.Component<Props> {
                     aria-disabled={!vedlegg.kanVises}
                     onClick={() => this.visDokumentHvisTilgang(vedlegg, dokumentMetadata)}
                 >
-                    <Element>{vedlegg.tittel}</Element>
+                    <Element>{this.dokumentTekst(vedlegg)}</Element>
                 </LenkeKnapp>
             );
         } else {
