@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent, useState } from 'react';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Hurtigreferat, tekster } from './tekster';
@@ -17,7 +17,6 @@ import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
@@ -65,7 +64,6 @@ function HurtigreferatContainer(props: Props) {
     const [valgtTema, setTema] = useState<Tema | undefined>(initialTema);
     const [temaFeilmelding, setTemaFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
-    console.log(valgtTema);
 
     if (isFinishedPosting(sendResource)) {
         return <AlertStripeSuksess>Meldingen ble sendt.</AlertStripeSuksess>;
@@ -99,13 +97,13 @@ function HurtigreferatContainer(props: Props) {
     const teksterMedBrukersNavn: Hurtigreferat[] = tekster.map((tekst: Hurtigreferat) => ({
         ...tekst,
         fritekst: tekst.fritekst
-            .replace('BRUKER', navn)
-            .replace('TEMA', valgtTema ? valgtTema.beskrivelse.toLowerCase() : 'tema')
+            .replace('[bruker.navnsammensatt]', navn)
+            .replace('[tema]', valgtTema ? valgtTema.beskrivelse.toLowerCase() : 'tema')
     }));
 
     return (
         <Style>
-            <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>
+            <Ekspanderbartpanel tittel={'Hurtigreferat'}>
                 <Padding>
                     <Select
                         label="Tema"
@@ -137,7 +135,7 @@ function HurtigreferatContainer(props: Props) {
                         />
                     ))}
                 </ul>
-            </EkspanderbartpanelBase>
+            </Ekspanderbartpanel>
         </Style>
     );
 }

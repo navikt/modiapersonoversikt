@@ -26,7 +26,6 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c0 {
-  margin: 0 1em;
   border-top: rgba(0,0,0,0.1) 1px solid;
   border-bottom: rgba(0,0,0,0.1) 1px solid;
   -webkit-box-flex: 1;
@@ -60,11 +59,11 @@ exports[`viser dialogpanel 1`] = `
         <div
           className="ekspanderbartPanel__flex-wrapper"
         >
-          <h2
-            className="typo-undertittel"
+          <span
+            className="typo-undertittel ekspanderbartPanel__heading"
           >
             Hurtigreferat
-          </h2>
+          </span>
           <span
             className="ekspanderbartPanel__indikator"
           />
