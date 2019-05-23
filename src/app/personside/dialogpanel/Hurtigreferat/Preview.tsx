@@ -7,20 +7,12 @@ import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
 import theme from '../../../../styles/personOversiktTheme';
 
 const PreviewStyle = styled.div`
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    padding: 1rem;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: ${theme.borderRadius.layout};
     > * {
         margin-bottom: 0.5rem;
-    }
-    > *:last-child {
-        > * {
-            margin-top: 0.5rem;
-        }
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
     }
 `;
 

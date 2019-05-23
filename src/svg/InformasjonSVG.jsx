@@ -2,14 +2,12 @@ import * as React from 'react';
 
 function InformasjonSVG(props) {
     return (
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 24 24" {...props}>
-            <g fillRule="nonzero" fill="none">
-                <path d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                      fill="#669DB4"/>
-                <g fill="#FFF">
-                    <path
-                        d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"/>
-                </g>
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+            <g stroke='#000' strokeLinejoin='round' strokeMiterlimit='10' fill='none'>
+                <circle strokeLinecap='round' cx='11.5' cy='12.5' r='11' />
+                <path strokeLinecap='round' d='M8.5 19.5h6M9.5 10.5h2v8.5' />
+                <path d='M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z'
+                />
             </g>
         </svg>
     );

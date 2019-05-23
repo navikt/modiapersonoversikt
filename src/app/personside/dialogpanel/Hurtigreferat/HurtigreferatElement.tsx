@@ -5,7 +5,7 @@ import KnappBase from 'nav-frontend-knapper';
 import InformasjonSVG from '../../../../svg/InformasjonSVG';
 import theme from '../../../../styles/personOversiktTheme';
 import Preview from './Preview';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 
 interface Props {
     tekst: Hurtigreferat;
@@ -13,17 +13,17 @@ interface Props {
     spinner: boolean;
 }
 
-const ContainerStyle = styled.li`
+const Style = styled.li`
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: white;
     flex-wrap: wrap;
-    padding: 0.35rem;
+    padding: 0.15rem 0.35rem;
     > * {
         flex-grow: 1;
-        margin: 0.35rem;
+        margin: 0.15rem;
     }
     &:nth-child(odd) {
         background-color: #dedede;
@@ -69,8 +69,8 @@ const KnappOgIkon = styled.div`
 
 function HurtigreferatElement(props: Props) {
     return (
-        <ContainerStyle>
-            <Undertittel>{props.tekst.tittel}</Undertittel>
+        <Style>
+            <Element>{props.tekst.tittel}</Element>
             <KnappOgIkon>
                 <PreviewContainer tabIndex={0}>
                     <InformasjonSVG alt="Vis hurtigsvar" />
@@ -78,11 +78,11 @@ function HurtigreferatElement(props: Props) {
                         <Preview fritekst={props.tekst.fritekst} />
                     </DropDown>
                 </PreviewContainer>
-                <KnappBase type={'hoved'} onClick={props.sendMelding} spinner={props.spinner}>
+                <KnappBase type={'flat'} onClick={props.sendMelding} spinner={props.spinner}>
                     Send
                 </KnappBase>
             </KnappOgIkon>
-        </ContainerStyle>
+        </Style>
     );
 }
 
