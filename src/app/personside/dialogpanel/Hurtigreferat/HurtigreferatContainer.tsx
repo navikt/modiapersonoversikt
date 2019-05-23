@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {ChangeEvent, useState} from 'react';
-import {EkspanderbartpanelBase} from 'nav-frontend-ekspanderbartpanel';
+import { ChangeEvent, useState } from 'react';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
-import {Hurtigreferat, tekster} from './tekster';
+import { Hurtigreferat, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
     isFailedPosting,
     isFinishedPosting,
@@ -13,16 +13,16 @@ import {
     isPosting,
     PostResource
 } from '../../../../rest/utils/postResource';
-import {Meldingstype, SendMeldingRequest, Temagruppe} from '../../../../models/meldinger/meldinger';
-import {AppState} from '../../../../redux/reducers';
-import {sendMeldingActionCreator} from '../../../../redux/restReducers/sendMelding';
-import {AlertStripeFeil, AlertStripeSuksess} from 'nav-frontend-alertstriper';
+import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
+import { AppState } from '../../../../redux/reducers';
+import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import {DeprecatedRestResource} from '../../../../redux/restReducers/deprecatedRestResource';
-import {PersonRespons} from '../../../../models/person/person';
-import {isLoadedPerson} from '../../../../redux/restReducers/personinformasjon';
-import {Select} from 'nav-frontend-skjema';
-import {getTemaFraCookie, setTemaCookie} from './temagruppeutils';
+import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
+import { PersonRespons } from '../../../../models/person/person';
+import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
+import { Select } from 'nav-frontend-skjema';
+import { getTemaFraCookie, setTemaCookie } from './temautils';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -30,7 +30,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    sendMelding: (tekst: string, temaGruppe: string) => void;
+    sendMelding: (tekst: string, tema: string) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -52,18 +52,18 @@ interface Tema {
     beskrivelse: string;
 }
 
-const temagruppeValg: Tema[] = [
-    {beskrivelse: 'Arbeid', kodeverk: Temagruppe.Arbeid},
-    {beskrivelse: 'Familie', kodeverk: Temagruppe.Familie},
-    {beskrivelse: 'Hjelpemiddel', kodeverk: Temagruppe.Hjelpemiddel},
-    {beskrivelse: 'Pensjon', kodeverk: Temagruppe.Pensjon},
-    {beskrivelse: 'Øvrig', kodeverk: Temagruppe.Øvrig}
+const temaValg: Tema[] = [
+    { beskrivelse: 'Arbeid', kodeverk: Temagruppe.Arbeid },
+    { beskrivelse: 'Familie', kodeverk: Temagruppe.Familie },
+    { beskrivelse: 'Hjelpemiddel', kodeverk: Temagruppe.Hjelpemiddel },
+    { beskrivelse: 'Pensjon', kodeverk: Temagruppe.Pensjon },
+    { beskrivelse: 'Øvrig', kodeverk: Temagruppe.Øvrig }
 ];
 
 function HurtigreferatContainer(props: Props) {
-    const initialTema = temagruppeValg.find(tema => tema.kodeverk === getTemaFraCookie());
-    const [valgtTema, setTemagruppe] = useState<Tema | undefined>(initialTema);
-    const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
+    const initialTema = temaValg.find(tema => tema.kodeverk === getTemaFraCookie());
+    const [valgtTema, setTema] = useState<Tema | undefined>(initialTema);
+    const [temaFeilmelding, setTemaFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
     console.log(valgtTema);
 
@@ -79,7 +79,7 @@ function HurtigreferatContainer(props: Props) {
 
     const sendMelding = (tekst: string) => {
         if (!valgtTema) {
-            setTemaGruppeFeilmelding(true);
+            setTemaFeilmelding(true);
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
@@ -87,10 +87,10 @@ function HurtigreferatContainer(props: Props) {
         }
     };
 
-    const velgTemagruppeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        const tema = temagruppeValg.find(tema => tema.kodeverk === event.target.value);
-        setTemagruppe(tema);
-        setTemaGruppeFeilmelding(false);
+    const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+        const tema = temaValg.find(tema => tema.kodeverk === event.target.value);
+        setTema(tema);
+        setTemaFeilmelding(false);
         tema && setTemaCookie(tema.kodeverk);
     };
 
@@ -108,15 +108,15 @@ function HurtigreferatContainer(props: Props) {
             <EkspanderbartpanelBase heading={<Undertittel>Hurtigreferat</Undertittel>} ariaTittel={'Hurtigreferat'}>
                 <Padding>
                     <Select
-                        label="Temagruppe"
-                        onChange={velgTemagruppeHandler}
-                        feil={temaGruppeFeilmelding ? {feilmelding: 'Du må velge temagruppe'} : undefined}
+                        label="Tema"
+                        onChange={velgTemaHandler}
+                        feil={temaFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}
                         defaultValue={valgtTema ? valgtTema.kodeverk : ''}
                     >
                         <option value="" disabled>
-                            Velg temagruppe
+                            Velg tema
                         </option>
-                        {temagruppeValg.map(valg => (
+                        {temaValg.map(valg => (
                             <option key={valg.kodeverk} value={valg.kodeverk}>
                                 {valg.beskrivelse}
                             </option>
@@ -149,13 +149,13 @@ function mapStateToProps(state: AppState): StateProps {
     };
 }
 
-const actionCreators = {
-    sendMelding: (tekst: string, temaGruppe: string) =>
+const actionCreators: DispatchProps = {
+    sendMelding: (tekst: string, tema: string) =>
         sendMeldingActionCreator({
             fritekst: tekst,
             kanal: 'Telefon',
             type: Meldingstype.SamtalereferatTelefon,
-            temagruppe: temaGruppe,
+            temagruppe: tema,
             traadId: null,
             kontorsperretEnhet: null
         })
