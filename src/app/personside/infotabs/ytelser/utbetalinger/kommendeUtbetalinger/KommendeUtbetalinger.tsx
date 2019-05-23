@@ -28,17 +28,7 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
     if (kommendeUtbetalinger.length === 0) {
         return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
     }
-    const tittelRekke = [
-        'Registeringsdato',
-        'Type',
-        'Periode',
-        'Utbetalingsgrad',
-        'Dagsats',
-        'Bruttobeløp',
-        'Arbeidsgiver',
-        'Orgnummer',
-        'Saksbehandler'
-    ];
+    const tittelRekke = ['Dato', 'Type', 'Periode', 'Utb.grad', 'Dagsats', 'Bruttobeløp', 'Arbeidsgiver', 'Orgnummer'];
     const rows = kommendeUtbetalinger.map(kommendeUtbetaling => [
         datoEllerNull(kommendeUtbetaling.utbetalingsdato),
         kommendeUtbetaling.type,
@@ -47,8 +37,7 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
         NOKellerNull(kommendeUtbetaling.dagsats),
         NOKellerNull(kommendeUtbetaling.bruttobeløp),
         kommendeUtbetaling.arbeidsgiverNavn,
-        kommendeUtbetaling.arbeidsgiverOrgNr,
-        kommendeUtbetaling.saksbehandler
+        kommendeUtbetaling.arbeidsgiverOrgNr
     ]);
     return <StyledTable tittelRekke={tittelRekke} rows={rows} />;
 }
