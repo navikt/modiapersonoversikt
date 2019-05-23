@@ -317,7 +317,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               <th
                 role="columnheader"
               >
-                Registeringsdato
+                Dato
               </th>
               <th
                 role="columnheader"
@@ -332,7 +332,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               <th
                 role="columnheader"
               >
-                Utbetalingsgrad
+                Utb.grad
               </th>
               <th
                 role="columnheader"
@@ -353,11 +353,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 role="columnheader"
               >
                 Orgnummer
-              </th>
-              <th
-                role="columnheader"
-              >
-                Saksbehandler
               </th>
             </tr>
           </thead>
@@ -406,11 +401,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 role="cell"
               >
                 1234567890
-              </td>
-              <td
-                role="cell"
-              >
-                Mari Johannessen
               </td>
             </tr>
           </tbody>
