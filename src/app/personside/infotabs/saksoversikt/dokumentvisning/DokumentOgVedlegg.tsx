@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Dokument, DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
@@ -59,13 +60,13 @@ const KnappWrapper = styled.div`
 
 function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: string; dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
+    const [errMsg, setErrMsg] = useState('');
+    const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
 
     return (
-        <ObjectHttpFeilHandtering
-            url={dokUrl}
-            width="100%"
-            errorFallback={statusKode => <AlertStripeAdvarsel>{feilmelding(statusKode)}</AlertStripeAdvarsel>}
-        />
+        <ObjectHttpFeilHandtering url={dokUrl} width="100%" onError={onError}>
+            <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
+        </ObjectHttpFeilHandtering>
     );
 }
 

@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { Omit } from '../utils/types';
 
-interface Props extends React.DetailedHTMLProps<React.ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement> {
+interface Props
+    extends Omit<React.DetailedHTMLProps<React.ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>, 'onError'> {
     url: string;
-    errorFallback: (status: number) => JSX.Element;
+    onError: (status: number) => void;
 }
 
-export function ObjectHttpFeilHandtering({ url, errorFallback, children, ...rest }: Props): JSX.Element {
+export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Props) {
     const [bloburl, setUrl] = useState('');
-    const [errorCode, setErrorCode] = useState<undefined | number>(undefined);
+    const [isError, setError] = useState(false);
 
     useEffect(() => {
         fetch(url)
             .then(res => {
-                if (!res.ok) setErrorCode(res.status);
+                if (!res.ok) {
+                    setError(true);
+                    onError(res.status);
+                }
                 return res.blob();
             })
             .then(blob => {
@@ -28,8 +33,8 @@ export function ObjectHttpFeilHandtering({ url, errorFallback, children, ...rest
 
     if (bloburl == '') {
         return <NavFrontendSpinner />;
-    } else if (errorCode) {
-        return errorFallback(errorCode);
+    } else if (isError) {
+        return <>{children}</>;
     }
 
     return <object data={bloburl} {...rest} />;
