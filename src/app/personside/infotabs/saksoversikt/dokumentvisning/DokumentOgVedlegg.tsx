@@ -13,6 +13,7 @@ import { settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/s
 import { LenkeKnapp, TilbakePil } from '../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
+import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -60,10 +61,24 @@ function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: st
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
 
     return (
-        <object data={dokUrl} width={'100%'}>
-            <AlertStripeAdvarsel>Du har ikke tilgang til dokument.</AlertStripeAdvarsel>
-        </object>
+        <ObjectHttpFeilHandtering
+            url={dokUrl}
+            width="100%"
+            errorFallback={statusKode => <AlertStripeAdvarsel>{feilmelding(statusKode)}</AlertStripeAdvarsel>}
+        />
     );
+}
+
+function feilmelding(statusKode: number) {
+    switch (statusKode) {
+        case 401:
+        case 403:
+            return 'Du har ikke tilgang til dette dokumentet.';
+        case 404:
+            return 'Dokument ikke funnet.';
+        default:
+            return 'Ukjent feil ved henting av dokument. Kontakt brukerstøtte. Feilkode: ' + statusKode;
+    }
 }
 
 function DokumentOgVedlegg(props: Props) {
