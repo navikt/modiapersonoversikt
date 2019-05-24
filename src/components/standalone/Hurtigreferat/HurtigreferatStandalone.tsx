@@ -11,6 +11,9 @@ import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import HurtigreferatContainer from '../../../app/personside/dialogpanel/Hurtigreferat/HurtigreferatContainer';
 import TriggerCallback from './TriggerCallback';
+import IfFeatureToggleOn from '../../featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../featureToggle/toggleIDs';
+import FetchFeatureToggles from '../../../app/PersonOppslagHandler/FetchFeatureToggles';
 
 interface Props {
     meldingBleSendtCallback: () => void;
@@ -37,7 +40,10 @@ function HurtigreferatStandalone(props: Props) {
                 <Styles>
                     <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
                     <TriggerCallback callBack={props.meldingBleSendtCallback} />
-                    <HurtigreferatContainer />
+                    <FetchFeatureToggles />
+                    <IfFeatureToggleOn toggleID={FeatureToggles.Hurtigreferat}>
+                        <HurtigreferatContainer />
+                    </IfFeatureToggleOn>
                 </Styles>
             </Provider>
         </ErrorBoundary>
