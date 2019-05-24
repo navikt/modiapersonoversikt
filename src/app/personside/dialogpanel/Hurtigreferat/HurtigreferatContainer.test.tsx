@@ -11,6 +11,10 @@ jest.mock('react-collapse', () => {
     };
 });
 
+beforeEach(() => {
+    Date.prototype.getTime = jest.fn(() => 0);
+});
+
 test('viser hurtigreferat', () => {
     const visittkortbody = renderer.create(
         <TestProvider>
