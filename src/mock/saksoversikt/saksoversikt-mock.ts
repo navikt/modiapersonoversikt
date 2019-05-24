@@ -4,9 +4,11 @@ import navfaker from 'nav-faker/dist/index';
 import { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import { getBehandlingskjede, getBehandlingskjeder } from './behandlingskjeder-mock';
-import { getDokumentMetadata, getDokumentMetadataListe } from './dokumentmetdata-mock';
+import { getBehandlingskjeder } from './behandlingskjeder-mock';
+import { getDokumentMetadataListe } from './dokumentmetadata-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { getAremarkSakstemaListe } from './aremark-saksoversikt-mock';
+import { aremark } from '../person/aremark';
 
 const temaarray = [
     ['AAP', 'Arbeidsavklaringspenger'],
@@ -24,6 +26,12 @@ const temaarray = [
 ];
 
 export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            resultat: getAremarkSakstemaListe()
+        };
+    }
+
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'utbetaling');
 
@@ -32,26 +40,9 @@ export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
     };
 }
 
-export function getMockSaksoversiktForTest(fødselsnummer: string): SakstemaResponse {
-    faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'utbetaling');
-
-    const tema = navfaker.random.arrayElement(temaarray);
+export function getStaticMockSaksoversikt(): SakstemaResponse {
     return {
-        resultat: [
-            {
-                ...getSakstema(),
-                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
-                tilhørendeSaker: [getSak(tema[0])]
-            },
-            {
-                ...getSakstema(),
-                behandlingskjeder: [getBehandlingskjede(faker, navfaker)],
-                dokumentMetadata: [getDokumentMetadata(faker, navfaker, tema)],
-                tilhørendeSaker: [getSak(tema[0])]
-            }
-        ]
+        resultat: getAremarkSakstemaListe()
     };
 }
 
@@ -60,7 +51,7 @@ function getSakstemaListe(): Sakstema[] {
         return [];
     }
 
-    return Array(navfaker.random.integer(15, 1))
+    return Array(navfaker.random.integer(5, 1))
         .fill(null)
         .map(() => getSakstema());
 }
@@ -69,7 +60,7 @@ function getSakstema(): Sakstema {
     const tema = navfaker.random.arrayElement(temaarray);
 
     return {
-        harTilgang: faker.random.boolean(),
+        harTilgang: navfaker.random.vektetSjanse(0.8),
         temakode: tema[0],
         temanavn: tema[1],
         erGruppert: faker.random.boolean(),

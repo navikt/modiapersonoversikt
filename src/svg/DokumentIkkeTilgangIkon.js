@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function DokumentIkkeTilgangMerket(props) {
+function DokumentIkkeTilgangIkon(props) {
     return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g fill="#C6C2BF">
@@ -11,4 +11,4 @@ function DokumentIkkeTilgangMerket(props) {
     );
 }
 
-export default DokumentIkkeTilgangMerket;
+export default DokumentIkkeTilgangIkon;

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {
+    Dokument,
     Dokument as Enkeltdokument,
     DokumentMetadata,
     Entitet,
+    Feilmelding,
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
@@ -10,16 +12,16 @@ import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import Dokument from '../../../../../svg/Dokument';
-import DokumentIkkeTilgangMerket from '../../../../../svg/DokumentIkkeTilgangMerket';
+import DokumentIkon from '../../../../../svg/Dokument';
+import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';
 import { settValgtDokument, settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
 import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
-import { Person, PersonRespons } from '../../../../../models/person/person';
-import { isLoaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { PersonRespons } from '../../../../../models/person/person';
+import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
@@ -28,9 +30,10 @@ import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 interface OwnProps {
-    dokument: DokumentMetadata;
+    dokumentMetadata: DokumentMetadata;
     harTilgangTilSakstema: boolean;
     sakstemakode: string;
     sakstemanavn: string;
@@ -124,19 +127,19 @@ function formaterDatoOgAvsender(brukernavn: string, dokument: DokumentMetadata) 
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 
-function dokumentIkon(harTilgang: boolean) {
+function getDokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
-        return <Dokument />;
+        return <DokumentIkon />;
     } else {
-        return <DokumentIkkeTilgangMerket aria-label="Du har ikke tilgang til dette dokumentet" />;
+        return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
 }
 
 function lagSaksoversiktLenke(props: Props) {
-    const brukersFnr = isLoaded(props.bruker) ? (props.bruker.data as Person).fødselsnummer : '';
+    const brukersFnr = isLoadedPerson(props.bruker) ? props.bruker.data.fødselsnummer : '';
     const sakstemaQuery = `sakstemaKode=${props.sakstemakode}`;
-    const journalpostQuery = `journalpostId=${props.dokument.journalpostId}`;
-    const dokumentQuery = `dokumentId=${props.dokument.hoveddokument.dokumentreferanse}`;
+    const journalpostQuery = `journalpostId=${props.dokumentMetadata.journalpostId}`;
+    const dokumentQuery = `dokumentId=${props.dokumentMetadata.hoveddokument.dokumentreferanse}`;
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
@@ -158,21 +161,23 @@ class DokumentListeElement extends React.Component<Props> {
         ]);
 
         if (!lenkeTrykket) {
-            this.visDokumentHvisTilgang(this.props.dokument.hoveddokument);
+            this.visDokumentHvisTilgang(this.props.dokumentMetadata.hoveddokument, this.props.dokumentMetadata);
         }
     }
 
-    visDokumentHvisTilgang(enkeltdokument: Enkeltdokument) {
-        if (this.props.harTilgangTilSakstema && enkeltdokument.kanVises) {
-            this.props.velgOgVisDokument(enkeltdokument);
+    visDokumentHvisTilgang(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
+        if (this.dokumentKanVises(dokument, dokumentMetadata)) {
+            this.props.velgOgVisDokument(dokument);
         }
     }
 
     render() {
-        const dokument = this.props.dokument;
-        const brukersNavn = isLoaded(this.props.bruker) ? (this.props.bruker.data as Person).navn.sammensatt : '';
+        const dokumentMetadata = this.props.dokumentMetadata;
+        const brukersNavn = isLoadedPerson(this.props.bruker) ? this.props.bruker.data.navn.sammensatt : '';
 
-        const saksid = dokument.tilhørendeFagsaksid ? dokument.tilhørendeFagsaksid : dokument.tilhørendeSaksid;
+        const saksid = dokumentMetadata.tilhørendeFagsaksid
+            ? dokumentMetadata.tilhørendeFagsaksid
+            : dokumentMetadata.tilhørendeSaksid;
         const saksvisning =
             this.props.sakstemakode === sakstemakodeAlle ? (
                 <EtikettGrå>
@@ -182,13 +187,13 @@ class DokumentListeElement extends React.Component<Props> {
                 <EtikettGrå>Saksid: {saksid}</EtikettGrå>
             );
 
-        const dokumentVedlegg = dokument.vedlegg && dokument.vedlegg.length > 0 && (
+        const dokumentVedlegg = dokumentMetadata.vedlegg && dokumentMetadata.vedlegg.length > 0 && (
             <div>
-                <Normaltekst>Dokumentet har {dokument.vedlegg.length} vedlegg:</Normaltekst>
+                <Normaltekst>Dokumentet har {dokumentMetadata.vedlegg.length} vedlegg:</Normaltekst>
                 <ul>
-                    {dokument.vedlegg.map(vedlegg => (
-                        <li key={vedlegg.dokumentreferanse + dokument.journalpostId}>
-                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg)}</span>
+                    {dokumentMetadata.vedlegg.map(vedlegg => (
+                        <li key={vedlegg.dokumentreferanse + dokumentMetadata.journalpostId}>
+                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg, dokumentMetadata)}</span>
                             {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
                         </li>
                     ))}
@@ -196,8 +201,9 @@ class DokumentListeElement extends React.Component<Props> {
             </div>
         );
 
-        const kanVises = this.props.harTilgangTilSakstema && dokument.hoveddokument.kanVises;
-        const egetVinduLenke = !this.props.erStandaloneVindu && kanVises && (
+        const tilgangTilHoveddokument = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
+
+        const egetVinduLenke = !this.props.erStandaloneVindu && tilgangTilHoveddokument && (
             <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
                 <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
                     <Normaltekst tag="span">Åpne i eget vindu</Normaltekst>
@@ -205,7 +211,7 @@ class DokumentListeElement extends React.Component<Props> {
             </NyttVinduLenkeStyle>
         );
 
-        const hoveddokumentErValgt = dokument.hoveddokument === this.props.valgtEnkeltDokument;
+        const hoveddokumentErValgt = dokumentMetadata.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
             <ListeElementStyle
@@ -213,23 +219,25 @@ class DokumentListeElement extends React.Component<Props> {
                     cancelIfHighlighting(() => this.handleClickOnDokument(event))
                 }
                 ref={this.dokumentRef}
-                valgt={this.props.dokument === this.props.valgtDokument && this.props.visDokument}
-                klikkbar={kanVises}
+                valgt={this.props.dokumentMetadata === this.props.valgtDokument && this.props.visDokument}
+                klikkbar={tilgangTilHoveddokument}
             >
-                <IkonWrapper>{dokumentIkon(kanVises)}</IkonWrapper>
+                <IkonWrapper>{getDokumentIkon(this.harTilgangTilJournalpost(dokumentMetadata))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder>
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
                             <LenkeKnapp
-                                aria-disabled={!kanVises}
-                                onClick={() => this.visDokumentHvisTilgang(dokument.hoveddokument)}
+                                aria-disabled={!tilgangTilHoveddokument}
+                                onClick={() =>
+                                    this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
+                                }
                             >
-                                <Element>{dokument.hoveddokument.tittel}</Element>
+                                <Element>{this.dokumentTekst(dokumentMetadata.hoveddokument)}</Element>
                             </LenkeKnapp>
                         </div>
                         <div className="order-first">
                             <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokument)}</Normaltekst>
+                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
                             </Innholdslaster>
                         </div>
                     </UUcustomOrder>
@@ -242,11 +250,28 @@ class DokumentListeElement extends React.Component<Props> {
         );
     }
 
-    private vedleggItem(vedlegg: Enkeltdokument) {
+    private dokumentTekst(dokument: Dokument) {
+        return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
+    }
+
+    private dokumentKanVises(dokument: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
+        return dokument.kanVises && this.harTilgangTilJournalpost(dokumentMetadata);
+    }
+
+    private harTilgangTilJournalpost(dokumentMetadata: DokumentMetadata) {
+        return (
+            this.props.harTilgangTilSakstema && dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning
+        );
+    }
+
+    private vedleggItem(vedlegg: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
         if (!vedlegg.logiskDokument) {
             return (
-                <LenkeKnapp aria-disabled={vedlegg.kanVises} onClick={() => this.visDokumentHvisTilgang(vedlegg)}>
-                    <Element>{vedlegg.tittel}</Element>
+                <LenkeKnapp
+                    aria-disabled={!vedlegg.kanVises}
+                    onClick={() => this.visDokumentHvisTilgang(vedlegg, dokumentMetadata)}
+                >
+                    <Element>{this.dokumentTekst(vedlegg)}</Element>
                 </LenkeKnapp>
             );
         } else {
@@ -258,7 +283,7 @@ class DokumentListeElement extends React.Component<Props> {
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
     return {
         velgOgVisDokument: enkeltdokument => {
-            dispatch(settValgtDokument(ownProps.dokument));
+            dispatch(settValgtDokument(ownProps.dokumentMetadata));
             dispatch(settVisDokument(true));
             dispatch(settValgtEnkeltdokument(enkeltdokument));
         }

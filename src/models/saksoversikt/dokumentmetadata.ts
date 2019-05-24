@@ -50,7 +50,7 @@ export enum Feilmelding {
 
 export interface FeilWrapper {
     inneholderFeil: boolean;
-    feilmelding: Feilmelding;
+    feilmelding: Feilmelding | null;
 }
 
 export interface Dokument {
@@ -58,4 +58,5 @@ export interface Dokument {
     dokumentreferanse: string;
     kanVises: boolean;
     logiskDokument: boolean;
+    skjerming: string | null;
 }
