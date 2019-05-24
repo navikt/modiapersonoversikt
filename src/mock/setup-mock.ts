@@ -234,6 +234,15 @@ function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
     );
 }
 
+function setupSendMeldingMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendmelding',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+            return {};
+        })
+    );
+}
+
 function setupVergemalMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/person/:fodselsnummer/vergemal',
@@ -377,4 +386,5 @@ export function setupMock() {
     setupMeldingerMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
+    setupSendMeldingMock(mock);
 }

@@ -6,60 +6,56 @@ import NavFrontendChevron from 'nav-frontend-chevron';
 
 const DropDownContainerStyle = styled.div`
     position: relative;
-    display: inline-block;
-    .dropdown {
-        display: none;
-    }
-    &:hover,
-    &:focus-within {
-        .dropdown {
-            display: block;
+    &:not(:hover):not(:focus-within) {
+        .content {
+            ${theme.visuallyHidden};
         }
     }
-    cursor: pointer;
-    align-self: flex-start;
-    > *:first-child {
-        padding: 0.2rem;
-    }
 `;
 
-const OneLine = styled.div`
+const Header = styled.div`
     display: inline-flex;
     align-items: center;
-    > *:last-child {
-        margin-top: 0.2rem;
-        margin-left: 0.3rem;
-    }
     &:focus {
-        ${theme.focus}
+        ${theme.focus};
     }
+    cursor: pointer;
 `;
 
-const ScrollBar = styled.div`
-    overflow-y: auto;
-    max-height: 70vh;
+const ChevronStyling = styled.div`
+    margin-top: 0.2rem;
+    margin-left: 0.3rem;
 `;
 
 const DropDownContent = styled.div`
     z-index: 1000;
     position: absolute;
-    box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.5);
+    filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.7));
     border-radius: ${theme.borderRadius.layout};
-    overflow: hidden;
+    overflow-y: auto;
+    max-height: 70vh;
 `;
 
-function DropDownMenu(props: { header: ReactNode; children: ReactNode }) {
+function DropDownMenu({
+    header,
+    children,
+    chevron = true
+}: {
+    header: ReactNode;
+    children: ReactNode;
+    chevron?: boolean;
+}) {
     return (
-        <DropDownContainerStyle aria-haspopup={true}>
-            <OneLine tabIndex={0}>
-                {props.header}
-                <NavFrontendChevron type="ned" />
-            </OneLine>
-            <DropDownContent>
-                <ScrollBar className="dropdown" aria-label="dropdown menu">
-                    {props.children}
-                </ScrollBar>
-            </DropDownContent>
+        <DropDownContainerStyle>
+            <Header tabIndex={0}>
+                {header}
+                {chevron && (
+                    <ChevronStyling>
+                        <NavFrontendChevron type="ned" />
+                    </ChevronStyling>
+                )}
+            </Header>
+            <DropDownContent className="content">{children}</DropDownContent>
         </DropDownContainerStyle>
     );
 }

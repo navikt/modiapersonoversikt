@@ -12,12 +12,7 @@ const AppWrapper = styled.div`
     .visually-hidden {
         ${theme.visuallyHidden}
     }
-    .ekspanderbartPanel__innhold {
-        padding: 0;
-    }
-    .ekspanderbartPanel__hode:hover {
-        ${theme.hover}
-    }
+    ${theme.resetEkspanderbartPanelStyling};
 `;
 
 export const ContentStyle = styled.div`
