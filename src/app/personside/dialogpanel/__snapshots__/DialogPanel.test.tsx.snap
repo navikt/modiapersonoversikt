@@ -1,8 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser dialogpanel 1`] = `
+.c1 {
+  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
+}
+
+.c1 .ekspanderbartPanel__innhold {
+  padding: 0;
+}
+
+.c1 .ekspanderbartPanel__hode:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c1 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
 .c0 {
-  margin: 0 1em;
   border-top: rgba(0,0,0,0.1) 1px solid;
   border-bottom: rgba(0,0,0,0.1) 1px solid;
   -webkit-box-flex: 1;
@@ -20,6 +43,34 @@ exports[`viser dialogpanel 1`] = `
   className="c0"
   role="region"
 >
+  <div
+    className="c1"
+  >
+    <div
+      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-expanded={false}
+        className="ekspanderbartPanel__hode"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <span
+            className="typo-undertittel ekspanderbartPanel__heading"
+          >
+            Hurtigreferat
+          </span>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
   <h2
     className="typo-undertittel"
   >

@@ -10,6 +10,10 @@ export function pxToRem(px: number): string {
     return px / oneRemInPx + 'rem';
 }
 
+const hover = css`
+    box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+`;
+
 export const theme = {
     color: {
         lenkeSelected: '#005b82',
@@ -79,15 +83,21 @@ export const theme = {
             pointer-events: none;
         }
     `,
-    hover: css`
-        box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
-    `,
+    hover: hover,
     visuallyHidden: `
         position: absolute !important;
         height: 1px; width: 1px;
         overflow: hidden;
         clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
         clip: rect(1px, 1px, 1px, 1px);
+    `,
+    resetEkspanderbartPanelStyling: css`
+        .ekspanderbartPanel__innhold {
+            padding: 0;
+        }
+        .ekspanderbartPanel__hode:hover {
+            ${hover}
+        }
     `
 };
 

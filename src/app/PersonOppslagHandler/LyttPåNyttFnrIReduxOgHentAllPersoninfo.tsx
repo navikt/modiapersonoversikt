@@ -52,6 +52,8 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
                 dispatch(restResources.foreldrepenger.actions.reset);
                 dispatch(restResources.utførteUtbetalingerYtelser.actions.reset);
                 dispatch(resetKontrollSpørsmål());
+                dispatch(restResources.sendMelding.actions.reset);
+                dispatch(restResources.tråderOgMeldinger.actions.reset);
             })
     };
 }

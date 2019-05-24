@@ -11,16 +11,17 @@ export interface PostResourceActionTypes {
 }
 
 export enum PostStatus {
-    NOT_STARTED,
-    POSTING,
-    SUCCESS,
-    FAIL
+    NOT_STARTED = 'NOT_STARTED',
+    POSTING = 'POSTING',
+    SUCCESS = 'SUCCESS',
+    FAIL = 'FAIL'
 }
 
 export interface PostResource<T> {
     status: PostStatus;
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
+        setError: (e: Error) => (dispatch: AsyncDispatch) => void;
         post: (payload: T) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
     };
 }
@@ -41,7 +42,7 @@ export interface FinishedPostResource<T> extends PostResource<T> {
 
 export interface FailedPostResource<T> extends PostResource<T> {
     status: PostStatus.FAIL;
-    payload: T;
+    error: Error;
 }
 
 export function isNotStartedPosting<T>(postResource: PostResource<T>): postResource is NotStartedPostResource<T> {
@@ -63,16 +64,21 @@ export function isFailedPosting<T>(postResource: PostResource<T>): postResource 
 function getActionTypes(resourceNavn: string): PostResourceActionTypes {
     const navnUppercase = resourceNavn.toUpperCase() + ' / ';
     return {
-        POSTING: navnUppercase + 'POSTING',
-        FINISHED: navnUppercase + 'FINISHED',
-        FAILED: navnUppercase + 'FAILED',
-        INITIALIZE: navnUppercase + 'INITIALIZE'
+        POSTING: navnUppercase + 'STARTED POSTING',
+        FINISHED: navnUppercase + 'FINISHED POSTING',
+        FAILED: navnUppercase + 'FAILED POSTING',
+        INITIALIZE: navnUppercase + 'INITIALIZED POSTING '
     };
 }
 
 export interface PostAction<T> {
     type: PostResourceActionTypes;
     payload: T;
+}
+
+export interface FailAction<T> {
+    type: PostResourceActionTypes;
+    error: Error;
 }
 
 export type PostUriCreator = (state: AppState) => string;
@@ -84,11 +90,12 @@ function createPostResourceReducerAndActions<T extends object>(resourceNavn: str
         status: PostStatus.NOT_STARTED,
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
+            setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
             post: (payload: T) => (dispatch: AsyncDispatch, getState: () => AppState) => {
                 dispatch({ type: actionNames.POSTING, payload: payload });
                 post(getPostUri(getState()), payload)
                     .then(() => dispatch({ type: actionNames.FINISHED }))
-                    .catch(() => dispatch({ type: actionNames.FAILED }));
+                    .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }
     };
@@ -111,8 +118,9 @@ function createPostResourceReducerAndActions<T extends object>(resourceNavn: str
             case actionNames.FAILED:
                 return {
                     ...state,
-                    status: PostStatus.FAIL
-                };
+                    status: PostStatus.FAIL,
+                    error: (action as FailAction<T>).error
+                } as FailedPostResource<T>;
             default:
                 return state;
         }
