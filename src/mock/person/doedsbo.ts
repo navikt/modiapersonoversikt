@@ -5,9 +5,9 @@ import {
     Doedsbo,
     KontaktpersonMedId,
     KontaktpersonUtenId,
-    OrganisasjonSomAdressat,
-    Personnavn
+    OrganisasjonSomAdressat
 } from '../../models/person/doedsbo';
+import { Navn } from '../../models/person/person';
 
 export function getMockDoedsbo(faker: Faker.FakerStatic): Doedsbo[] | undefined {
     if (vektetSjanse(faker, 0.5)) {
@@ -33,19 +33,31 @@ function mockDoedsbo(faker: Faker.FakerStatic): Doedsbo {
 function mockAdressat(faker: Faker.FakerStatic): Adressat {
     if (vektetSjanse(faker, 0.2)) {
         return {
-            advokatSomAdressat: mockAdvokatSomAdressat(faker)
+            advokatSomAdressat: mockAdvokatSomAdressat(faker),
+            organisasjonSomAdressat: null,
+            kontaktpersonMedIdNummerSomAdressat: null,
+            kontaktpersonUtenIdNummerSomAdressat: null
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
-            organisasjonSomAdressat: mockOrganisasjonSomAdressat(faker)
+            organisasjonSomAdressat: mockOrganisasjonSomAdressat(faker),
+            advokatSomAdressat: null,
+            kontaktpersonMedIdNummerSomAdressat: null,
+            kontaktpersonUtenIdNummerSomAdressat: null
         };
     } else if (vektetSjanse(faker, 0.2)) {
         return {
+            advokatSomAdressat: null,
+            organisasjonSomAdressat: null,
+            kontaktpersonMedIdNummerSomAdressat: null,
             kontaktpersonUtenIdNummerSomAdressat: mockKontaktpersonUtenId(faker)
         };
     } else {
         return {
-            kontaktpersonMedIdNummerSomAdressat: mockKontaktpersonMedId(faker)
+            advokatSomAdressat: null,
+            organisasjonSomAdressat: null,
+            kontaktpersonMedIdNummerSomAdressat: mockKontaktpersonMedId(faker),
+            kontaktpersonUtenIdNummerSomAdressat: null
         };
     }
 }
@@ -79,9 +91,11 @@ function mockKontaktpersonMedId(faker: Faker.FakerStatic): KontaktpersonMedId {
     };
 }
 
-function mockPersonnavn(faker: Faker.FakerStatic): Personnavn {
+function mockPersonnavn(faker: Faker.FakerStatic): Navn {
     return {
         fornavn: faker.name.firstName(),
-        etternavn: faker.name.lastName()
+        etternavn: faker.name.lastName(),
+        mellomnavn: null,
+        sammensatt: ''
     };
 }

@@ -6,8 +6,7 @@ import {
     Doedsbo,
     KontaktpersonMedId,
     KontaktpersonUtenId,
-    OrganisasjonSomAdressat,
-    Personnavn
+    OrganisasjonSomAdressat
 } from '../../../../../../models/person/doedsbo';
 import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { formaterDato } from '../../../../../../utils/stringFormatting';
@@ -15,10 +14,16 @@ import EtikettGrå from '../../../../../../components/EtikettGrå';
 import VisittkortElement from '../../VisittkortElement';
 import AlertStripeFeil from 'nav-frontend-alertstriper/lib/feil-alertstripe';
 import LocationPin from '../../../../../../svg/LocationPin';
+import styled from 'styled-components';
+import { hentNavn } from '../../../utils';
 
 interface Props {
     person: Person;
 }
+
+const AdresseStyle = styled.div`
+    margin-top: 0.5rem;
+`;
 
 function KontaktinformasjonDoedsbo(props: Props) {
     const doedsboListe = props.person.kontaktinformasjonForDoedsbo;
@@ -27,20 +32,22 @@ function KontaktinformasjonDoedsbo(props: Props) {
         return null;
     }
 
-    const doedsboElementer = doedsboListe.map(doedsbo => (
-        <VisittkortElement beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
-            <Adressatinfo adressat={doedsbo.adressat} />
-            <br />
-            <Adresseinfo doedsbo={doedsbo} />
-            <Endretinfo doedsbo={doedsbo} />
-        </VisittkortElement>
-    ));
-
-    return <>{doedsboElementer}</>;
+    return (
+        <>
+            {doedsboListe.map(doedsbo => (
+                <VisittkortElement beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+                    <Adressatinfo adressat={doedsbo.adressat} />
+                    <AdresseStyle>
+                        <Adresseinfo doedsbo={doedsbo} />
+                    </AdresseStyle>
+                    <Endretinfo doedsbo={doedsbo} />
+                </VisittkortElement>
+            ))}
+        </>
+    );
 }
 
-function Adresseinfo(props: { doedsbo: Doedsbo }) {
-    const doedsbo = props.doedsbo;
+function Adresseinfo({ doedsbo }: { doedsbo: Doedsbo }) {
     const adresselinje2 = doedsbo.adresselinje2 ? <Normaltekst>{doedsbo.adresselinje2}</Normaltekst> : null;
     const landkode = doedsbo.landkode ? <Normaltekst>{doedsbo.landkode}</Normaltekst> : null;
 
@@ -56,9 +63,7 @@ function Adresseinfo(props: { doedsbo: Doedsbo }) {
     );
 }
 
-function Endretinfo(props: { doedsbo: Doedsbo }) {
-    const doedsbo = props.doedsbo;
-
+function Endretinfo({ doedsbo }: { doedsbo: Doedsbo }) {
     return (
         <EtikettGrå>
             Endret {formaterDato(doedsbo.registrert)} i {doedsbo.master}
@@ -66,8 +71,7 @@ function Endretinfo(props: { doedsbo: Doedsbo }) {
     );
 }
 
-function Adressatinfo(props: { adressat: Adressat }) {
-    const adressat = props.adressat;
+function Adressatinfo({ adressat }: { adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
     } else if (adressat.organisasjonSomAdressat) {
@@ -81,8 +85,7 @@ function Adressatinfo(props: { adressat: Adressat }) {
     }
 }
 
-function AdvokatSomAdressatInfo(props: { adressat: AdvokatSomAdressat }) {
-    const adressat = props.adressat;
+function AdvokatSomAdressatInfo({ adressat }: { adressat: AdvokatSomAdressat }) {
     const firma = adressat.organisasjonsnavn ? (
         <Normaltekst>Advokatfirma {adressat.organisasjonsnavn}</Normaltekst>
     ) : null;
@@ -92,19 +95,18 @@ function AdvokatSomAdressatInfo(props: { adressat: AdvokatSomAdressat }) {
 
     return (
         <>
-            <Normaltekst>{formatterNavn(adressat.kontaktperson)}</Normaltekst>
+            <Normaltekst>{hentNavn(adressat.kontaktperson)}</Normaltekst>
             {firma}
             {orgnr}
         </>
     );
 }
 
-function OrganisasjonSomAdressatInfo(props: { adressat: OrganisasjonSomAdressat }) {
-    const adressat = props.adressat;
+function OrganisasjonSomAdressatInfo({ adressat }: { adressat: OrganisasjonSomAdressat }) {
     const orgnr = adressat.organisasjonsnummer ? (
         <Normaltekst>Org. nr: {adressat.organisasjonsnummer}</Normaltekst>
     ) : null;
-    const kontakt = adressat.kontaktperson ? <Normaltekst>{formatterNavn(adressat.kontaktperson)}</Normaltekst> : null;
+    const kontakt = adressat.kontaktperson ? <Normaltekst>{hentNavn(adressat.kontaktperson)}</Normaltekst> : null;
 
     return (
         <>
@@ -115,23 +117,21 @@ function OrganisasjonSomAdressatInfo(props: { adressat: OrganisasjonSomAdressat 
     );
 }
 
-function KontaktpersonUtenIdInfo(props: { adressat: KontaktpersonUtenId }) {
-    const adressat = props.adressat;
+function KontaktpersonUtenIdInfo({ adressat }: { adressat: KontaktpersonUtenId }) {
     const foedselsdato = adressat.foedselsdato ? (
         <Normaltekst>{formaterDato(adressat.foedselsdato)}</Normaltekst>
     ) : null;
 
     return (
         <>
-            <Normaltekst>{formatterNavn(adressat.navn)}</Normaltekst>
+            <Normaltekst>{hentNavn(adressat.navn)}</Normaltekst>
             {foedselsdato}
         </>
     );
 }
 
-function KontaktpersonMedIdInfo(props: { adressat: KontaktpersonMedId }) {
-    const adressat = props.adressat;
-    const navn = adressat.navn ? <Normaltekst>{formatterNavn(adressat.navn)}</Normaltekst> : null;
+function KontaktpersonMedIdInfo({ adressat }: { adressat: KontaktpersonMedId }) {
+    const navn = adressat.navn ? <Normaltekst>{hentNavn(adressat.navn)}</Normaltekst> : null;
 
     return (
         <>
@@ -139,10 +139,6 @@ function KontaktpersonMedIdInfo(props: { adressat: KontaktpersonMedId }) {
             <Normaltekst>{adressat.idNummer}</Normaltekst>
         </>
     );
-}
-
-function formatterNavn(navn: Personnavn): string {
-    return `${navn.fornavn} ${navn.mellomnavn ? navn.mellomnavn : ''} ${navn.etternavn}`;
 }
 
 export default KontaktinformasjonDoedsbo;

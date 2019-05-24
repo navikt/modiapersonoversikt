@@ -1,3 +1,5 @@
+import { Navn } from './person';
+
 export interface Doedsbo {
     adressat: Adressat;
     adresselinje1: string;
@@ -10,36 +12,30 @@ export interface Doedsbo {
 }
 
 export interface Adressat {
-    advokatSomAdressat?: AdvokatSomAdressat;
-    kontaktpersonMedIdNummerSomAdressat?: KontaktpersonMedId;
-    kontaktpersonUtenIdNummerSomAdressat?: KontaktpersonUtenId;
-    organisasjonSomAdressat?: OrganisasjonSomAdressat;
+    advokatSomAdressat: AdvokatSomAdressat | null;
+    kontaktpersonMedIdNummerSomAdressat: KontaktpersonMedId | null;
+    kontaktpersonUtenIdNummerSomAdressat: KontaktpersonUtenId | null;
+    organisasjonSomAdressat: OrganisasjonSomAdressat | null;
 }
 
 export interface AdvokatSomAdressat {
-    kontaktperson: Personnavn;
+    kontaktperson: Navn;
     organisasjonsnavn?: string;
     organisasjonsnummer?: number;
 }
 
 export interface OrganisasjonSomAdressat {
-    kontaktperson?: Personnavn;
+    kontaktperson?: Navn;
     organisasjonsnavn: string;
     organisasjonsnummer?: number;
 }
 
 export interface KontaktpersonMedId {
     idNummer: number;
-    navn?: Personnavn;
+    navn?: Navn;
 }
 
 export interface KontaktpersonUtenId {
     foedselsdato?: string;
-    navn: Personnavn;
-}
-
-export interface Personnavn {
-    fornavn: string;
-    etternavn: string;
-    mellomnavn?: string;
+    navn: Navn;
 }
