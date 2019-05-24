@@ -96,9 +96,7 @@ function HurtigreferatContainer(props: Props) {
 
     const teksterMedBrukersNavn: Hurtigreferat[] = tekster.map((tekst: Hurtigreferat) => ({
         ...tekst,
-        fritekst: tekst.fritekst
-            .replace('[bruker.navnsammensatt]', navn)
-            .replace('[tema]', valgtTema ? valgtTema.beskrivelse.toLowerCase() : 'tema')
+        fritekst: tekst.fritekst.replace('[bruker.navnsammensatt]', navn)
     }));
 
     return (

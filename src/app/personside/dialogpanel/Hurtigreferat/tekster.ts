@@ -7,17 +7,13 @@ export type Hurtigreferater = Hurtigreferat[];
 
 export const tekster: Hurtigreferater = [
     {
-        tittel: 'Henvist www.nav.no',
-        fritekst: '[bruker.navnsammensatt] er henvist til informasjon på www.nav.no'
-    },
-    {
-        tittel: 'Veiledet www.nav.no (skjermdeling)',
-        fritekst: '[bruker.navnsammensatt] er blitt veiledet i bruk av www.nav.no'
-    },
-    {
         tittel: 'Generell informasjon',
         fritekst:
-            '[bruker.navnsammensatt] har fått generell informasjon om NAVs tjenester og ytelser, og er henvist til mer informasjon på www.nav.no.'
+            '[bruker.navnsammensatt] har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no'
+    },
+    {
+        tittel: 'Veiledet www.nav.no',
+        fritekst: '[bruker.navnsammensatt] er blitt veiledet i bruk av www.nav.no'
     },
     {
         tittel: 'Utbetaling',
@@ -30,7 +26,7 @@ export const tekster: Hurtigreferater = [
 Du har fått informasjon om at:
 - vi har brukt skattetrekket som vi har fått overført fra skatteetaten
 - hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
-Du har også fått informasjon om at du kan lese mer på http://www.nav.no/skatt`
+Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skatt`
     },
     {
         tittel: 'Søknad',
@@ -51,7 +47,13 @@ Du har også fått informasjon om at du kan lese mer på http://www.nav.no/skatt
         fritekst: '[bruker.navnsammensatt] har fått veiledning i vedtaket sitt.'
     },
     {
-        tittel: 'Annet',
-        fritekst: '[bruker.navnsammensatt] har fått veiledning om [tema].'
+        tittel: 'Ubesvart anrop',
+        fritekst:
+            '[bruker.navnsammensatt] har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.'
+    },
+    {
+        tittel: 'Tekniske problemer',
+        fritekst:
+            '[bruker.navnsammensatt] har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.'
     }
 ];
