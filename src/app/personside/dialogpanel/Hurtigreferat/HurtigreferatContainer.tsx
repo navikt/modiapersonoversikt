@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent, useState } from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Hurtigreferat, tekster } from './tekster';
@@ -22,6 +22,7 @@ import { PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { Select } from 'nav-frontend-skjema';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -61,6 +62,7 @@ const temaValg: Tema[] = [
 
 function HurtigreferatContainer(props: Props) {
     const initialTema = temaValg.find(tema => tema.kodeverk === getTemaFraCookie());
+    const [open, setOpen] = useState(false);
     const [valgtTema, setTema] = useState<Tema | undefined>(initialTema);
     const [temaFeilmelding, setTemaFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
@@ -75,13 +77,14 @@ function HurtigreferatContainer(props: Props) {
         );
     }
 
-    const sendMelding = (tekst: string) => {
+    const sendMelding = (hurtigreferat: Hurtigreferat) => {
         if (!valgtTema) {
             setTemaFeilmelding(true);
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
-            props.sendMelding(tekst, valgtTema.kodeverk);
+            loggEvent('sendMelding', 'hurtigreferat', {}, { tema: valgtTema, tittel: hurtigreferat.tittel });
+            props.sendMelding(hurtigreferat.fritekst, valgtTema.kodeverk);
         }
     };
 
@@ -99,9 +102,14 @@ function HurtigreferatContainer(props: Props) {
         fritekst: tekst.fritekst.replace('[bruker.navnsammensatt]', navn)
     }));
 
+    const onClickHandler = () => {
+        !open && loggEvent('ekspander', 'hurtigreferat');
+        setOpen(!open);
+    };
+
     return (
         <Style>
-            <Ekspanderbartpanel tittel={'Hurtigreferat'}>
+            <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
                 <Padding>
                     <Select
                         label="Tema"
@@ -124,7 +132,7 @@ function HurtigreferatContainer(props: Props) {
                         <HurtigreferatElement
                             key={hurtigreferat.tittel}
                             tekst={hurtigreferat}
-                            sendMelding={() => sendMelding(hurtigreferat.fritekst)}
+                            sendMelding={() => sendMelding(hurtigreferat)}
                             spinner={
                                 isPosting(props.sendMeldingResource)
                                     ? props.sendMeldingResource.payload.fritekst === hurtigreferat.fritekst
@@ -133,7 +141,7 @@ function HurtigreferatContainer(props: Props) {
                         />
                     ))}
                 </ul>
-            </Ekspanderbartpanel>
+            </EkspanderbartpanelPure>
         </Style>
     );
 }
