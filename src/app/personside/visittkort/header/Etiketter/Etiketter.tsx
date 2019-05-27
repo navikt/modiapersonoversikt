@@ -9,6 +9,7 @@ import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
 import ReservertIKRREtikett from './ReservertIKRREtikett';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import DoedsboEtikett from './DoedsboEtikett';
 
 interface Props {
     person: Person;
@@ -33,6 +34,7 @@ function Etiketter({ person }: Props) {
                 <TilrettelagtKommunikasjonsEtiketter
                     tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
                 />
+                <DoedsboEtikett doedsbo={person.kontaktinformasjonForDoedsbo} />
             </StyledEtikketter>
         </ErrorBoundary>
     );

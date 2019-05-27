@@ -2,6 +2,7 @@ import { Endringsinfo, Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
+import { Doedsbo } from './doedsbo';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -28,6 +29,7 @@ export interface Person extends PersonRespons {
     sivilstand: Sivilstand;
     familierelasjoner: Familierelasjon[];
     kontaktinformasjon: NavKontaktinformasjon;
+    kontaktinformasjonForDoedsbo?: Doedsbo[];
 }
 
 export interface Navn {
