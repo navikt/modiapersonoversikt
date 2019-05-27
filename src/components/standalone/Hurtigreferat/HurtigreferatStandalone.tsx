@@ -14,6 +14,7 @@ import TriggerCallback from './TriggerCallback';
 import IfFeatureToggleOn from '../../featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../featureToggle/toggleIDs';
 import FetchFeatureToggles from '../../../app/PersonOppslagHandler/FetchFeatureToggles';
+import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 
 interface Props {
     meldingBleSendtCallback: () => void;
@@ -39,6 +40,7 @@ function HurtigreferatStandalone(props: Props) {
             <Provider store={store}>
                 <Styles>
                     <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
                     <TriggerCallback callBack={props.meldingBleSendtCallback} />
                     <FetchFeatureToggles />
                     <IfFeatureToggleOn toggleID={FeatureToggles.Hurtigreferat}>
