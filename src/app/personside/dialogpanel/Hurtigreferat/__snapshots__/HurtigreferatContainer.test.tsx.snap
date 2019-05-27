@@ -292,7 +292,7 @@ exports[`viser hurtigreferat 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
+                    Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
                   </p>
                 </div>
               </div>
@@ -370,7 +370,7 @@ exports[`viser hurtigreferat 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN er blitt veiledet i bruk av www.nav.no
+                    Aremark Testfamilien er blitt veiledet i bruk av www.nav.no
                   </p>
                 </div>
               </div>
@@ -448,7 +448,7 @@ exports[`viser hurtigreferat 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
+                    Aremark Testfamilien har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
                   </p>
                 </div>
               </div>
@@ -526,7 +526,7 @@ exports[`viser hurtigreferat 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har spørsmål om skattetrekk.
+                    Aremark Testfamilien har spørsmål om skattetrekk.
 Du har fått informasjon om at:
 - vi har brukt skattetrekket som vi har fått overført fra skatteetaten
 - hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
@@ -608,7 +608,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har fått veiledning i å fylle ut søknaden på www.nav.no
+                    Aremark Testfamilien har fått veiledning i å fylle ut søknaden på www.nav.no
                   </p>
                 </div>
               </div>
@@ -686,7 +686,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
+                    Aremark Testfamilien fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
                   </p>
                 </div>
               </div>
@@ -764,7 +764,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending
+                    Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending
                   </p>
                 </div>
               </div>
@@ -842,7 +842,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har fått veiledning i vedtaket sitt.
+                    Aremark Testfamilien har fått veiledning i vedtaket sitt.
                   </p>
                 </div>
               </div>
@@ -920,7 +920,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
+                    Aremark Testfamilien har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
                   </p>
                 </div>
               </div>
@@ -998,7 +998,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   <p
                     className="typo-normal"
                   >
-                    AREMARK TESTFAMILIEN har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
+                    Aremark Testfamilien har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
                   </p>
                 </div>
               </div>

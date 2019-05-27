@@ -23,6 +23,7 @@ import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon
 import { Select } from 'nav-frontend-skjema';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
+import { capitalizeName } from '../../../../utils/stringFormatting';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -95,7 +96,7 @@ function HurtigreferatContainer(props: Props) {
         tema && setTemaCookie(tema.kodeverk);
     };
 
-    const navn = isLoadedPerson(props.person) ? props.person.data.navn.sammensatt : 'Bruker';
+    const navn = isLoadedPerson(props.person) ? capitalizeName(props.person.data.navn.sammensatt) : 'Bruker';
 
     const teksterMedBrukersNavn: Hurtigreferat[] = tekster.map((tekst: Hurtigreferat) => ({
         ...tekst,
