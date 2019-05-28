@@ -174,7 +174,7 @@ test('summerer trekk riktig', () => {
 test('summerer beløp på tvers av utbetalinger', () => {
     const randomTellendeUtbetaling = {
         ...randomUtbetaling,
-        status: 'ok',
+        status: 'Utbetalt',
         utbetalingsdato: '2010-01-01'
     };
 
@@ -210,22 +210,12 @@ test('summerer beløp på tvers av utbetalinger', () => {
                     nettobeløp: 10000
                 }
             ]
-        },
-        {
-            ...randomUtbetaling,
-            utbetalingsdato: null,
-            ytelser: [
-                {
-                    ...randomYtelse,
-                    nettobeløp: 10000
-                }
-            ]
         }
     ];
 
     const summert = summertBeløpStringFraUtbetalinger(utbetalinger, getNettoSumYtelser);
 
-    expect(parseInt(summert, 10)).toEqual(600);
+    expect(summert.replace(/\s/g, '').replace(',', '.')).toEqual('600.00');
 });
 
 const mockFilter: UtbetalingFilterState = {
@@ -337,21 +327,12 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
 });
 
 test('filtrerer bort utbetalinger som ikke er utbetalt', () => {
-    const mockUtbetalingUtenUtbetaltDato: Utbetaling = {
-        ...statiskMockUtbetaling,
-        utbetalingsdato: null
-    };
-
     const mockUtbetalingReturnertForSaksbehandling: Utbetaling = {
         ...statiskMockUtbetaling,
         status: 'Returnert til NAV for saksbehandling'
     };
 
-    const utbetalinger = [
-        statiskMockUtbetaling,
-        mockUtbetalingReturnertForSaksbehandling,
-        mockUtbetalingUtenUtbetaltDato
-    ];
+    const utbetalinger = [statiskMockUtbetaling, mockUtbetalingReturnertForSaksbehandling];
 
     const result: Utbetaling[] = utbetalinger.filter(filtrerBortUtbetalingerSomIkkeErUtbetalt);
 
