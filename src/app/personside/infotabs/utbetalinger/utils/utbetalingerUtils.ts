@@ -98,11 +98,7 @@ export function formaterNOK(beløp: number): string {
 }
 
 export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
-    return (
-        utbetaling.utbetalingsdato !== null &&
-        // Utbetalinger kan feilaktig ha en utbetalingsdato selv om de er returnert til nav for saksbehandling
-        !utbetaling.status.includes('Returnert til NAV')
-    );
+    return utbetaling.status.toLowerCase() === 'utbetalt';
 }
 
 export function summertBeløpStringFraUtbetalinger(
