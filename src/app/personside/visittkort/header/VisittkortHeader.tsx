@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { erDød, Navn, Person } from '../../../../models/person/person';
+import { erDød, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
@@ -12,6 +12,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import ToolTip from '../../../../components/tooltip/ToolTip';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { hentNavn } from '../utils';
 
 interface Props {
     visittkortApent: boolean;
@@ -79,10 +80,6 @@ const ChevronStyling = styled.div`
     top: 50%;
     transform: translateY(-50%);
 `;
-
-function hentNavn(navn: Navn) {
-    return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
-}
 
 class VisittkortHeader extends React.PureComponent<Props, State> {
     private navneLinjeRef = React.createRef<HTMLSpanElement>();

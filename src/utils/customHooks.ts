@@ -28,3 +28,12 @@ export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callba
         return () => document.removeEventListener('mousedown', handler);
     }, [handler]);
 }
+
+export function useFocusOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
+    const handler: EventListener = useCallback(runIfEventIsNotInsideRef(ref, callback), [ref, callback]);
+
+    useEffect(() => {
+        document.addEventListener('focusin', handler);
+        return () => document.removeEventListener('focusin', handler);
+    }, [handler]);
+}

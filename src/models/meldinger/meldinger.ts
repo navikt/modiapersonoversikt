@@ -69,3 +69,16 @@ export enum LestStatus {
     Lest = 'LEST_AV_BRUKER',
     IkkeBesvart = 'IKKE_BESVART'
 }
+
+export interface SendMeldingRequest {
+    fnr: string;
+    navident: string;
+    kanal: string;
+    type: string | null;
+    fritekst: string;
+    tilknyttetEnhet: string;
+    erTilknyttetAnsatt: boolean;
+    traadId: string | null;
+    kontorsperretEnhet: string | null;
+    temagruppe: string;
+}
