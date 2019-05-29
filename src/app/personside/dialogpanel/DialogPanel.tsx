@@ -36,7 +36,7 @@ const DialogPanelWrapper = styled.div`
     }
 `;
 
-function getInnhold(props: Props) {
+function Dialogpanel(props: Props) {
     if (isFinishedPosting(props.sendMeldingResource)) {
         return (
             <>
@@ -67,7 +67,7 @@ function getInnhold(props: Props) {
 function DialogPanel(props: Props) {
     return (
         <DialogPanelWrapper role="region" aria-label="Dialogpanel">
-            {getInnhold(props)}
+            <Dialogpanel {...props} />
         </DialogPanelWrapper>
     );
 }

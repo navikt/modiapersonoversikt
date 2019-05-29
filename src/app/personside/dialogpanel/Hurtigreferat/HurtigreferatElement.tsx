@@ -38,7 +38,7 @@ const Style = styled.li`
 `;
 
 const PreviewContainer = styled.div`
-    &:not(:hover):not(:focus-within) {
+    &:not(:hover):not(:focus-within):not(:focus) {
         .content {
             ${theme.visuallyHidden};
         }
@@ -78,7 +78,7 @@ function HurtigreferatElement(props: Props) {
                         <Preview fritekst={props.tekst.fritekst} />
                     </DropDown>
                 </PreviewContainer>
-                <KnappBase type={'flat'} onClick={props.sendMelding} spinner={props.spinner}>
+                <KnappBase type="flat" onClick={props.sendMelding} spinner={props.spinner}>
                     Send
                 </KnappBase>
             </KnappOgIkon>

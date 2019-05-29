@@ -1,4 +1,11 @@
-import { convertBoolTilJaNei, datoEllerNull, formaterDato, NOKellerNull, prosentEllerNull } from './stringFormatting';
+import {
+    capitalizeName,
+    convertBoolTilJaNei,
+    datoEllerNull,
+    formaterDato,
+    NOKellerNull,
+    prosentEllerNull
+} from './stringFormatting';
 
 describe('convertBoolTilJaNei', () => {
     it('Returnerer Ja ved true', () => {
@@ -58,4 +65,13 @@ it('Formaterer dato på backend-format til ønsket visningsformat', () => {
     const formatertDato = formaterDato(rawDate);
 
     expect(formatertDato).toEqual('10.02.2014');
+});
+
+it('capitalizeName gir store bokstaver der det skal være', () => {
+    expect(capitalizeName('DANIEL WINSVOLD DEN STORE')).toEqual('Daniel Winsvold Den Store');
+    expect(capitalizeName('jøRund aMsen')).toEqual('Jørund Amsen');
+    expect(capitalizeName('jørund amsen')).toEqual('Jørund Amsen');
+    expect(capitalizeName("o'helga natt")).toEqual("O'Helga Natt");
+    expect(capitalizeName("TEST-TEST O'TESTESEN")).toEqual("Test-Test O'Testesen");
+    expect(capitalizeName("test-test o'testesen")).toEqual("Test-Test O'Testesen");
 });

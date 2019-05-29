@@ -73,3 +73,7 @@ export function periodeEllerNull(periode: Periode | null): string | null {
 export function formaterTilISO8601Date(date: Date) {
     return moment(date).format('YYYY-MM-DD');
 }
+
+export function capitalizeName(name: string): string {
+    return name.replace(/\w[^\s'-]*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
