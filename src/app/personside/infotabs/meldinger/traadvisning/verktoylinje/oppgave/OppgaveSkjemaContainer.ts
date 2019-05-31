@@ -1,7 +1,7 @@
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../../../../redux/reducers';
 import { connect } from 'react-redux';
-import OppgavePanel from './OppgavePanel';
+import OppgaveSkjema from './OppgaveSkjema';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { Loaded, RestResource } from '../../../../../../../rest/utils/restResource';
@@ -42,4 +42,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(OppgavePanel);
+)(OppgaveSkjema);

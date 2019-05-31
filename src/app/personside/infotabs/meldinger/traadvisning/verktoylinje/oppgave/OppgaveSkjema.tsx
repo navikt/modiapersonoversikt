@@ -7,13 +7,12 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
-import { OppgaveProps, OppgaveSkjema } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 
-function OpprettOppgaveSkjema(props: OppgaveProps & { form: OppgaveSkjema }) {
+function OpprettOppgaveSkjema(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
         const request = lagOppgaveRequest(props);
-        console.log('Skal lagre ', request);
         props.opprettOppgave(request);
     };
 
@@ -24,22 +23,22 @@ function OpprettOppgaveSkjema(props: OppgaveProps & { form: OppgaveSkjema }) {
     );
 }
 
-function OppgavePanel(props: OppgaveProps) {
-    const [valgtTema, velgTema] = useState<GsakTema | undefined>(undefined);
+function OppgaveSkjema(props: OppgaveProps) {
+    const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtPrioritet, settValgtPrioritet] = useState(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
 
-    function settValgtTema(tema: GsakTema | undefined) {
-        velgTema(tema);
+    function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
+        settValgtTema(tema);
         if (!tema) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
         }
     }
 
-    const formState: OppgaveSkjema = {
+    const formState: OppgaveSkjemaProps = {
         state: {
             valgtTema,
             valgtUnderkategori,
@@ -48,7 +47,7 @@ function OppgavePanel(props: OppgaveProps) {
             beskrivelse
         },
         actions: {
-            settValgtTema,
+            oppdaterStateVedValgtTema,
             settValgtUnderkategori,
             settValgtOppgavetype,
             settValgtPrioritet,
@@ -59,4 +58,4 @@ function OppgavePanel(props: OppgaveProps) {
     return <OpprettOppgaveSkjema {...props} form={formState} />;
 }
 
-export default OppgavePanel;
+export default OppgaveSkjema;

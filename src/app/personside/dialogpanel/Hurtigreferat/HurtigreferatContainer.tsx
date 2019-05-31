@@ -158,7 +158,7 @@ const actionCreators: DispatchProps = {
     sendMelding: (tekst: string, tema: string) =>
         sendMeldingActionCreator({
             fritekst: tekst,
-            kanal: 'Telefon',
+            kanal: 'TelefonIkon.js',
             type: Meldingstype.SamtalereferatTelefon,
             temagruppe: tema,
             traadId: null,

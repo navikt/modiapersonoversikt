@@ -10,7 +10,7 @@ import {
 import Textarea from 'nav-frontend-skjema/lib/textarea';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { OppgaveProps, OppgaveSkjema } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
 
 const KnappStyle = styled.div`
@@ -27,13 +27,13 @@ const SkjemaStyle = styled.div`
     }
 `;
 
-export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjema }) {
+export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const valgtTema = props.form.state.valgtTema;
     return (
         <SkjemaStyle>
             <Select
                 label={'Tema'}
-                onChange={event => props.form.actions.settValgtTema(hentValgtTema(props.gsakTema, event))}
+                onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
             >
                 {lagTemaOptions(props.gsakTema)}
             </Select>

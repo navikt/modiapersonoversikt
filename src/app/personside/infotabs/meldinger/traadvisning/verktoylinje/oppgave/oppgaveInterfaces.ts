@@ -19,7 +19,7 @@ export interface OppgaveProps {
     opprettOppgave: (request: OpprettOppgaveRequest) => void;
 }
 
-export interface OppgaveSkjema {
+export interface OppgaveSkjemaProps {
     state: {
         valgtTema?: GsakTema;
         valgtOppgavetype?: GsakTemaOppgavetype;
@@ -28,7 +28,7 @@ export interface OppgaveSkjema {
         valgtUnderkategori?: GsakTemaUnderkategori;
     };
     actions: {
-        settValgtTema(tema: GsakTema | undefined): void;
+        oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
         settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
         settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
         settValgtPrioritet(prioritet: OppgavePrioritet): void;

@@ -10,8 +10,6 @@ import TraadFilterPanel from './filter/TraadFilterPanel';
 
 interface Props {
     traader: Traad[];
-    settValgtTraad: (traad: Traad) => void;
-    valgtTraad?: Traad;
 }
 
 const PanelStyle = styled.div`
@@ -32,14 +30,7 @@ const TraadListeStyle = styled.ol`
 function SortertListe(props: Props) {
     const traadKomponenter = props.traader
         .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-        .map(traad => (
-            <TraadListeElement
-                traad={traad}
-                erValgtTraad={props.valgtTraad === traad}
-                settValgtTraad={props.settValgtTraad}
-                key={traad.traadId}
-            />
-        ));
+        .map(traad => <TraadListeElement traad={traad} key={traad.traadId} />);
 
     return <TraadListeStyle>{traadKomponenter}</TraadListeStyle>;
 }
@@ -53,7 +44,7 @@ class TraadListe extends React.PureComponent<Props> {
         return (
             <PanelStyle>
                 <TraadFilterPanel />
-                <SortertListe traader={this.props.traader} settValgtTraad={this.props.settValgtTraad} />
+                <SortertListe traader={this.props.traader} />
             </PanelStyle>
         );
     }

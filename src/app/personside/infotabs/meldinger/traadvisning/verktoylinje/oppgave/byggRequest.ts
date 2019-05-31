@@ -2,10 +2,10 @@ import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/opp
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjema } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import moment from 'moment';
 
-export function lagOppgaveRequest(props: OppgaveProps & { form: OppgaveSkjema }): OpprettOppgaveRequest {
+export function lagOppgaveRequest(props: OppgaveProps & { form: OppgaveSkjemaProps }): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
     const valgtTema = props.form.state.valgtTema;
     const temakode = valgtTema ? valgtTema.kode : 'UKJENT';

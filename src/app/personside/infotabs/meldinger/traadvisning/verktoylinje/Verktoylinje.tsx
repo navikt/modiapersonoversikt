@@ -6,7 +6,7 @@ import { LenkeKnapp } from '../../../../../../components/common-styled-component
 import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
-import OppgaveContainer from './oppgave/OppgaveContainer';
+import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 
 interface Props {
     valgtTraad?: Traad;
@@ -26,7 +26,7 @@ const KnapperPanelStyle = styled.div`
 
 const OppgaveknapperStyle = styled.div`
     display: flex;
-    > * {
+    > *:not(:last-child) {
         margin-right: 1.5rem;
     }
 `;
@@ -78,7 +78,7 @@ function Funksjoner(props: Props) {
                 <JournalforingPanel />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OppgaveContainer lukkPanel={() => settVisOppgave(false)} />
+                <OpprettOppgaveContainer lukkPanel={() => settVisOppgave(false)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel />

@@ -8,20 +8,32 @@ import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
-import Oppmote from '../../../../../svg/Oppmote';
-import Telefon from '../../../../../svg/Telefon';
-import Oppgave from '../../../../../svg/Oppgave';
-import Dokument from '../../../../../svg/Dokument';
-import Monolog from '../../../../../svg/Monolog';
-import Dialog from '../../../../../svg/Dialog';
+import OppmoteIkon from '../../../../../svg/OppmoteIkon';
+import TelefonIkon from '../../../../../svg/TelefonIkon';
+import OppgaveIkon from '../../../../../svg/OppgaveIkon';
+import DokumentIkon from '../../../../../svg/DokumentIkon';
+import MonologIkon from '../../../../../svg/MonologIkon';
+import DialogIkon from '../../../../../svg/DialogIkon';
+import { AppState } from '../../../../../redux/reducers';
+import { connect } from 'react-redux';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 
-interface Props {
+interface OwnProps {
     traad: Traad;
-    erValgtTraad: boolean;
+}
+
+interface StateProps {
+    valgtTraad?: Traad;
+}
+
+interface DispatchProps {
     settValgtTraad: (traad: Traad) => void;
 }
 
-interface Meldingsprops {
+type Props = OwnProps & StateProps & DispatchProps;
+
+interface MeldingsikonProps {
     type: Meldingstype;
     erFerdigstiltUtenSvar: boolean;
     erMonolog: boolean;
@@ -52,22 +64,22 @@ const PanelStyle = styled.div`
     }
 `;
 
-function Meldingsikon(props: Meldingsprops) {
+function Meldingsikon(props: MeldingsikonProps) {
     switch (props.type) {
         case Meldingstype.SamtalereferatOppmøte:
-            return <Oppmote />;
+            return <OppmoteIkon />;
         case Meldingstype.SamtalereferatTelefon:
-            return <Telefon />;
+            return <TelefonIkon />;
         case Meldingstype.OppgaveVarsel:
-            return <Oppgave />;
+            return <OppgaveIkon />;
         case Meldingstype.DokumentVarsel:
-            return <Dokument />;
+            return <DokumentIkon />;
         default: {
             // TODO Vi må legge på et ekstra besvart / ubesvart ikon...
             if (props.erMonolog) {
-                return <Monolog />;
+                return <MonologIkon />;
             } else {
-                return <Dialog />;
+                return <DialogIkon />;
             }
         }
     }
@@ -81,7 +93,7 @@ function TraadListeElement(props: Props) {
     return (
         <li>
             <VisMerKnapp
-                valgt={props.erValgtTraad}
+                valgt={props.traad === props.valgtTraad}
                 onClick={() => props.settValgtTraad(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
@@ -105,4 +117,19 @@ function TraadListeElement(props: Props) {
     );
 }
 
-export default TraadListeElement;
+function mapStateToProps(state: AppState): StateProps {
+    return {
+        valgtTraad: state.meldinger.valgtTraad
+    };
+}
+
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
+    return {
+        settValgtTraad: (traad: Traad) => dispatch(settValgtTraad(traad))
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TraadListeElement);

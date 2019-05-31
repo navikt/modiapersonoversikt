@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../../../../test/Testprovider';
-import OppgaveContainer from './OppgaveContainer';
+import OpprettOppgaveContainer from './OpprettOppgaveContainer';
 
 test('Viser oppgavecontainer med alt innhold', () => {
     const container = renderer.create(
         <TestProvider>
-            <OppgaveContainer lukkPanel={() => {}} />
+            <OpprettOppgaveContainer lukkPanel={() => {}} />
         </TestProvider>
     );
 

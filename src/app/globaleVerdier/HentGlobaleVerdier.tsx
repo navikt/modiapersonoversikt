@@ -11,7 +11,7 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-function HentGlobaleVerdier(props: Props) {
+function FetchSessionInfoOgLeggIRedux(props: Props) {
     useEffect(() => {
         props.hentGlobaleVerdier();
     }, []);
@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(HentGlobaleVerdier);
+)(FetchSessionInfoOgLeggIRedux);
