@@ -5,23 +5,23 @@ import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSak
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 
-export function lagOppgaveRequest(props: OppgaveProps & { form: OppgaveSkjemaProps }): OpprettOppgaveRequest {
+export function lagOppgaveRequest(props: OppgaveProps, form: OppgaveSkjemaProps): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
-    const valgtTema = props.form.state.valgtTema;
+    const valgtTema = form.state.valgtTema;
     const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
-    const valgtOppgavetype = props.form.state.valgtOppgavetype;
+    const valgtOppgavetype = form.state.valgtOppgavetype;
 
     return {
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         henvendelseId: props.valgtTraad ? eldsteMelding(props.valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
         ansvarligIdent: props.innloggetSaksbehandler.ident,
-        beskrivelse: lagBeskrivelse(props.form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temakode: temakode,
-        underkategorikode: props.form.state.valgtUnderkategori && props.form.state.valgtUnderkategori.kode,
+        underkategorikode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: props.form.state.valgtPrioritet + '_' + temakode
+        prioritetKode: form.state.valgtPrioritet + '_' + temakode
     };
 }
 

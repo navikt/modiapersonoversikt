@@ -24,7 +24,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    valgtTraad?: Traad;
+    erValgt: boolean;
 }
 
 interface DispatchProps {
@@ -93,7 +93,7 @@ function TraadListeElement(props: Props) {
     return (
         <li>
             <VisMerKnapp
-                valgt={props.traad === props.valgtTraad}
+                valgt={props.erValgt}
                 onClick={() => props.settValgtTraad(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
@@ -117,9 +117,9 @@ function TraadListeElement(props: Props) {
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
+function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     return {
-        valgtTraad: state.meldinger.valgtTraad
+        erValgt: state.meldinger.valgtTraad === ownProps.traad
     };
 }
 
