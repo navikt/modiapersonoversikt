@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { theme } from '../../../styles/personOversiktTheme';
-import { Normaltekst } from 'nav-frontend-typografi';
 import HurtigReferatContainer from './Hurtigreferat/HurtigreferatContainer';
 import { isFailedPosting, isFinishedPosting, PostResource } from '../../../rest/utils/postResource';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
@@ -14,6 +13,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import KnappBase from 'nav-frontend-knapper';
 import { resetSendMeldingActionCreator } from '../../../redux/restReducers/sendMelding';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import TraadVisningContainer from '../infotabs/meldinger/traadvisning/TraadVisningContainer';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -59,7 +59,7 @@ function Dialogpanel(props: Props) {
         <ErrorBoundary boundaryName="Dialogpanel">
             <HurtigReferatContainer />
             <Undertittel>Dialogpanel</Undertittel>
-            <Normaltekst>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, veniam?</Normaltekst>
+            <TraadVisningContainer />
         </ErrorBoundary>
     );
 }

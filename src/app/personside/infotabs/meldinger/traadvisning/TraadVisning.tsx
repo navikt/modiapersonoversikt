@@ -5,7 +5,6 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import theme from '../../../../../styles/personOversiktTheme';
-import VerktoylinjeContainer from './verktoylinje/VerktoylinjeContainer';
 
 interface Props {
     valgtTraad?: Traad;
@@ -36,7 +35,6 @@ class TraadVisning extends React.PureComponent<Props> {
 
         return (
             <VisningStyle aria-label={'Meldinger for valgt tråd'}>
-                <VerktoylinjeContainer />
                 <AlleMeldinger traad={this.props.valgtTraad} />
             </VisningStyle>
         );
