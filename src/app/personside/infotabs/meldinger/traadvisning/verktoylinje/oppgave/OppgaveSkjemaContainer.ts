@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import OppgaveSkjema from './OppgaveSkjema';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
-import { Loaded, RestResource } from '../../../../../../../rest/utils/restResource';
+import { isLoaded, RestResource } from '../../../../../../../rest/utils/restResource';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { opprettOppgaveActionCreator } from '../../../../../../../redux/restReducers/meldinger/opprettOppgave';
 import { AsyncDispatch } from '../../../../../../../redux/ThunkTypes';
@@ -21,7 +21,10 @@ interface DispatchProps {
 }
 
 function hentInnloggetSaksbehandler(resource: RestResource<InnloggetSaksbehandler>) {
-    return (resource as Loaded<InnloggetSaksbehandler>).data;
+    if (!isLoaded(resource)) {
+        throw new Error('Innlogget saksbehandler ikke funnet.');
+    }
+    return resource.data;
 }
 
 function mapStateToProps(state: AppState): StateProps {

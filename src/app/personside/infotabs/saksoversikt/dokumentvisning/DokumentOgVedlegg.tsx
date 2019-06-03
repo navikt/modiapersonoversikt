@@ -76,7 +76,7 @@ function feilmelding(statusKode: number) {
         case 403:
             return 'Du har ikke tilgang til dette dokumentet.';
         case 404:
-            return 'DokumentIkon ikke funnet.';
+            return 'Dokument ikke funnet.';
         default:
             return 'Ukjent feil ved henting av dokument. Kontakt brukerstøtte. Feilkode: ' + statusKode;
     }

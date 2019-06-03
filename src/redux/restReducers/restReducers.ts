@@ -29,7 +29,7 @@ import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
-import oppgaveGsakTemaReducer from './meldinger/oppgave';
+import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';

@@ -3,7 +3,7 @@ import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksb
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
-import moment from 'moment';
+import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 
 export function lagOppgaveRequest(props: OppgaveProps & { form: OppgaveSkjemaProps }): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
@@ -30,9 +30,7 @@ function lagBeskrivelse(
     innloggetSaksbehandler: InnloggetSaksbehandler,
     saksbehandlerEnhet?: string
 ) {
-    const formattedDate = moment().format('DD.MM.YYYY HH:mm');
-
-    return `--- ${formattedDate} ${innloggetSaksbehandler.navn} (${
+    return `--- ${formatterDatoTidNaa()} ${innloggetSaksbehandler.navn} (${
         innloggetSaksbehandler.ident
     } ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
 }

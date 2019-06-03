@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RestResourceConsumer from '../../../../../../../rest/consumer/RestResourceConsumer';
 import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-import OppgavePanel from './OppgaveSkjemaContainer';
+import OppgaveSkjemaContainer from './OppgaveSkjemaContainer';
 import styled from 'styled-components';
 
 interface Props {
@@ -16,7 +16,7 @@ function OpprettOppgaveContainer(props: Props) {
     return (
         <PanelStyle>
             <RestResourceConsumer<GsakTema[]> getResource={restResources => restResources.oppgaveGsakTema}>
-                {data => <OppgavePanel gsakTema={data} lukkPanel={props.lukkPanel} />}
+                {data => <OppgaveSkjemaContainer gsakTema={data} lukkPanel={props.lukkPanel} />}
             </RestResourceConsumer>
         </PanelStyle>
     );

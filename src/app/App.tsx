@@ -14,7 +14,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
-import HentGlobaleVerdier from './globaleVerdier/HentGlobaleVerdier';
+import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 
 if (mockEnabled) {
     setupMock();

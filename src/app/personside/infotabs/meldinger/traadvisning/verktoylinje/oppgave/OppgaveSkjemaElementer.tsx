@@ -35,25 +35,25 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
             >
-                {lagTemaOptions(props.gsakTema)}
+                <TemaOptions gsakTema={props.gsakTema} />
             </Select>
             <Select
                 label={'Gjelder'}
                 onChange={event => props.form.actions.settValgtUnderkategori(hentValgtUnderkategori(event, valgtTema))}
             >
-                {lagUnderkategoriOptions(valgtTema)}
+                <UnderkategoriOptions valgtGsakTema={valgtTema} />
             </Select>
             <Select
                 label={'Type oppgave'}
                 onChange={event => props.form.actions.settValgtOppgavetype(hentValgtOppgavetype(event, valgtTema))}
             >
-                {lagOppgavetypeOptions(valgtTema)}
+                <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
             <RadioPanelGruppe
                 radios={[
-                    { label: 'Høy', value: OppgavePrioritet.HOY, disabled: !valgtTema },
-                    { label: 'Normal', value: OppgavePrioritet.NORM, disabled: !valgtTema },
-                    { label: 'Lav', value: OppgavePrioritet.LAV, disabled: !valgtTema }
+                    { label: 'Høy', value: OppgavePrioritet.HOY },
+                    { label: 'Normal', value: OppgavePrioritet.NORM },
+                    { label: 'Lav', value: OppgavePrioritet.LAV }
                 ]}
                 name={'Prioritet'}
                 checked={props.form.state.valgtPrioritet}
@@ -70,9 +70,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
             />
             <KnappStyle>
-                <Hovedknapp role="submit" disabled={!valgtTema || !props.form.state.valgtOppgavetype}>
-                    Send
-                </Hovedknapp>
+                <Hovedknapp role="submit">Send</Hovedknapp>
                 <LenkeKnapp type="button" onClick={props.lukkPanel}>
                     Avbryt
                 </LenkeKnapp>
@@ -82,7 +80,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
 }
 
 function hentValgtTema(gsakTema: GsakTema[], event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
-    return gsakTema.find(tema => tema.kode === event.target.value) || undefined;
+    return gsakTema.find(tema => tema.kode === event.target.value);
 }
 
 function hentValgtUnderkategori(
@@ -99,26 +97,28 @@ function hentValgtOppgavetype(
     return valgtTema && valgtTema.oppgavetyper.find(oppgavetype => oppgavetype.kode === event.target.value);
 }
 
-function lagTemaOptions(gsakTema: GsakTema[]) {
-    return [
+function TemaOptions(props: { gsakTema: GsakTema[] }) {
+    const options = [
         <option value={''} key={''}>
             Velg tema
         </option>,
-        gsakTema.map(gsakTema => (
+        props.gsakTema.map(gsakTema => (
             <option value={`${gsakTema.kode}`} key={gsakTema.kode}>
                 {gsakTema.tekst}
             </option>
         ))
     ];
+
+    return <>{options}</>;
 }
 
-function lagUnderkategoriOptions(valgtGsakTema?: GsakTema) {
-    return valgtGsakTema
+function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
+    const options = props.valgtGsakTema
         ? [
               <option value={''} key={''}>
                   Velg underkategori
               </option>,
-              valgtGsakTema.underkategorier.map(underkategori => (
+              props.valgtGsakTema.underkategorier.map(underkategori => (
                   <option value={`${underkategori.kode}`} key={underkategori.kode}>
                       {underkategori.tekst}
                   </option>
@@ -129,15 +129,17 @@ function lagUnderkategoriOptions(valgtGsakTema?: GsakTema) {
                   Ingen tema valgt
               </option>
           ];
+
+    return <>{options}</>;
 }
 
-function lagOppgavetypeOptions(valgtGsakTema?: GsakTema) {
-    return valgtGsakTema
+function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
+    const options = props.valgtGsakTema
         ? [
               <option value={''} key={''}>
                   Velg oppgavetype
               </option>,
-              valgtGsakTema.oppgavetyper.map(oppgavetype => (
+              props.valgtGsakTema.oppgavetyper.map(oppgavetype => (
                   <option value={`${oppgavetype.kode}`} key={oppgavetype.kode}>
                       {oppgavetype.tekst}
                   </option>
@@ -148,4 +150,6 @@ function lagOppgavetypeOptions(valgtGsakTema?: GsakTema) {
                   Ingen tema valgt
               </option>
           ];
+
+    return <>{options}</>;
 }

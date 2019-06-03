@@ -33,7 +33,7 @@ export interface OpprettOppgaveRequest {
     valgtEnhetId: string;
     henvendelseId: string;
     dagerFrist: number;
-    ansvarligIdent?: string;
+    ansvarligIdent: string | null;
     beskrivelse: string;
     temakode: string;
     underkategorikode?: string;

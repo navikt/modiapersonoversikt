@@ -11,7 +11,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
         case Meldingstype.DelvisSvarSkriftlig:
             return 'Delsvar';
         case Meldingstype.DokumentVarsel:
-            return 'DokumentIkon varsel';
+            return 'Dokument varsel';
         case Meldingstype.OppgaveVarsel:
             return 'OppgaveIkon varsel';
         case Meldingstype.SamtalereferatTelefon:

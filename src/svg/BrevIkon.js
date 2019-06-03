@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function Brev(props) {
+export default function BrevIkon(props) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} {...props}>
             <g stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" fill="none">
