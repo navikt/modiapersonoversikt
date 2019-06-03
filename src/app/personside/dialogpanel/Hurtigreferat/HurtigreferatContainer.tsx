@@ -38,7 +38,8 @@ type Props = StateProps & DispatchProps;
 
 const Style = styled.div`
     ${theme.resetEkspanderbartPanelStyling};
-    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
+    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.2);
+    border-radius: ${theme.borderRadius.layout};
     label {
         ${theme.visuallyHidden}
     }
