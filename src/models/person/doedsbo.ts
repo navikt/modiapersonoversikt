@@ -31,7 +31,7 @@ export interface OrganisasjonSomAdressat {
 }
 
 export interface KontaktpersonMedId {
-    idNummer: number;
+    idNummer: string;
     navn?: Navn;
 }
 
