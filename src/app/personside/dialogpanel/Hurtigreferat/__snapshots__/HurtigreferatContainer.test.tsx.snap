@@ -110,8 +110,8 @@ exports[`viser hurtigreferat 1`] = `
 }
 
 .c0 {
-  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
-  filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
+  box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.2);
+  border-radius: .25rem;
 }
 
 .c0 .ekspanderbartPanel__innhold {

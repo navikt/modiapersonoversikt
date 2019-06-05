@@ -41,7 +41,8 @@ function getMelding(temagruppe: Temagruppe): Melding {
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: moment(faker.date.recent(40)).format(backendDatoformat),
         journalfortDato: moment(faker.date.recent(40)).format(backendDatoformat),
-        ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat)
+        ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat),
+        erFerdigstiltUtenSvar: faker.random.boolean()
     };
 }
 

@@ -12,7 +12,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import DokumentIkon from '../../../../../svg/Dokument';
+import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { AnyAction, Dispatch } from 'redux';

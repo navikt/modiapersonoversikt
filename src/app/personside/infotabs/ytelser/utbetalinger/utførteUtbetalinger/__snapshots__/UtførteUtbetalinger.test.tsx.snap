@@ -100,7 +100,7 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
-            Dato
+            Utb.dato
           </th>
           <th
             role="columnheader"
@@ -115,12 +115,12 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
-            Arbeidsgiver
+            Arb.giver
           </th>
           <th
             role="columnheader"
           >
-            Orgnummer
+            Org.nummer
           </th>
           <th
             role="columnheader"
@@ -213,18 +213,6 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
     </table>
   </div>
   <div
-    className="c3"
-  >
-    <button
-      className="knapp knapp--standard"
-      disabled={false}
-      onClick={[Function]}
-      type="submit"
-    >
-      Hent 2 år med utførte utbetalinger
-    </button>
-  </div>
-  <div
     className="alertstripe alertstripe--info"
   >
     <span
@@ -261,6 +249,18 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
     >
       Viser utførte utbetalinger 90 dager tilbake i tid
     </div>
+  </div>
+  <div
+    className="c3"
+  >
+    <button
+      className="knapp knapp--standard"
+      disabled={false}
+      onClick={[Function]}
+      type="submit"
+    >
+      Hent 2 år med utførte utbetalinger
+    </button>
   </div>
 </div>
 `;

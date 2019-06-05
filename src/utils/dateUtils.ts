@@ -2,12 +2,19 @@ import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
+const DATO_FORMAT = 'DD.MM.YYYY';
+const DATO_TID_FORMAT = 'DD.MM.YYYY HH:mm';
+
 export function formatterDato(dato: string | Date) {
-    return moment(dato).format('DD.MM.YYYY');
+    return moment(dato).format(DATO_FORMAT);
 }
 
 export function formatterDatoTid(dato: string | Date) {
-    return moment(dato).format('DD.MM.YYYY HH:mm');
+    return moment(dato).format(DATO_TID_FORMAT);
+}
+
+export function formatterDatoTidNaa() {
+    return moment().format(DATO_TID_FORMAT);
 }
 
 const månedTilNavnMapping = (månednr: number) => {

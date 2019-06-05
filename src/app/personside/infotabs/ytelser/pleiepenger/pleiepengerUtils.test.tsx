@@ -156,5 +156,5 @@ test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
         </TestProvider>
     );
 
-    expect(result.html()).toContain('Kunne ikke finne noen arbeidsforhold');
+    expect(result.html()).toContain('Ingen arbeidsgiver er registrert');
 });
