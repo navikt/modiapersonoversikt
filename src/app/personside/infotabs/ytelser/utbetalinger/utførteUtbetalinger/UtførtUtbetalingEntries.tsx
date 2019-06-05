@@ -3,7 +3,7 @@ import { formaterNOK, getBruttoSumYtelser, getNettoSumYtelser } from '../../../u
 import * as React from 'react';
 import { Trekk, Utbetaling, Ytelse } from '../../../../../../models/utbetalinger';
 import styled from 'styled-components';
-import { TableRow } from '../../../../../../utils/tableUtils';
+import { TableRow } from '../../../../../../utils/table/Table';
 import theme from '../../../../../../styles/personOversiktTheme';
 
 function getKreditorTrekk(ytelse: Ytelse): React.ReactNode | null {

@@ -3,7 +3,7 @@ import { Varsel, Varseltype } from '../../../../models/varsel';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { createTable } from '../../../../utils/tableUtils';
+import { Table } from '../../../../utils/table/Table';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import MeldingsListe from './meldingsliste/MeldingsListe';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
@@ -96,7 +96,7 @@ function Varsler(props: Props) {
         <Element key={index}>{text}</Element>
     ));
     const tabellInnhold = sortertPåDato.map(varsel => lagVarselTabellRow(varsel));
-    const table = createTable(tittelRekke, tabellInnhold);
+    const table = <Table tittelRekke={tittelRekke} rows={tabellInnhold} />;
 
     return (
         <article>
