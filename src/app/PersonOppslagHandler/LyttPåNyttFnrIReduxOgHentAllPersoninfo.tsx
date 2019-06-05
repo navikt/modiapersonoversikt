@@ -54,6 +54,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
                 dispatch(resetKontrollSpørsmål());
                 dispatch(restResources.sendMelding.actions.reset);
                 dispatch(restResources.tråderOgMeldinger.actions.reset);
+                dispatch(restResources.brukersVarsler.actions.reset);
             })
     };
 }
