@@ -27,6 +27,8 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
+import { getMockGsakTema } from './meldinger/oppgave-mock';
+import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -40,6 +42,13 @@ function randomDelay() {
 
 const fødselsNummerErGyldigStatus = (args: HandlerArgument) =>
     erGyldigFødselsnummer(args.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
+
+function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/hode/me',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockInnloggetSaksbehandler())
+    );
+}
 
 function setupPersonMock(mock: FetchMock) {
     mock.get(
@@ -168,6 +177,13 @@ function setupMeldingerMock(mock: FetchMock) {
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
         )
+    );
+}
+
+function setupGsakTemaMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/dialogoppgave/tema',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
     );
 }
 
@@ -341,6 +357,10 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+function opprettOppgaveMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
 let mockInitialised = false;
 export function setupMock() {
     if (mockInitialised) {
@@ -357,6 +377,7 @@ export function setupMock() {
         }, MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
+    setupInnloggetSaksbehandlerMock(mock);
     setupPersonMock(mock);
     setupEgenAnsattMock(mock);
     setupKontaktinformasjonMock(mock);
@@ -384,7 +405,9 @@ export function setupMock() {
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
     setupMeldingerMock(mock);
+    setupGsakTemaMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
+    opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
 }

@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser oppgavecontainer med alt innhold 1`] = `
+.c3 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c3:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c3:hover {
+  opacity: 0.8;
+}
+
+.c3:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c0 {
+  margin-top: 1.5rem;
+}
+
+<div
+  className="c0"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="skjemaelement"
+      >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Tema
+        </label>
+        <div
+          className="selectContainer input--fullbredde"
+        >
+          <select
+            className="skjemaelement__input"
+            disabled={false}
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+          >
+            <option
+              value=""
+            >
+              Velg tema
+            </option>
+            <option
+              value="AGR"
+            >
+              Ajourhold - Grunnopplysninger
+            </option>
+            <option
+              value="AAP"
+            >
+              Arbeidsavklaringspenger
+            </option>
+          </select>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="skjemaelement"
+      >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Gjelder
+        </label>
+        <div
+          className="selectContainer input--fullbredde"
+        >
+          <select
+            className="skjemaelement__input"
+            disabled={false}
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+          >
+            <option
+              value=""
+            >
+              Ingen tema valgt
+            </option>
+          </select>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="skjemaelement"
+      >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Type oppgave
+        </label>
+        <div
+          className="selectContainer input--fullbredde"
+        >
+          <select
+            className="skjemaelement__input"
+            disabled={false}
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+          >
+            <option
+              value=""
+            >
+              Ingen tema valgt
+            </option>
+          </select>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="inputPanelGruppe"
+      >
+        <fieldset
+          className="skjema__fieldset"
+        >
+          <legend
+            className="skjema__legend"
+          >
+            Prioritet
+          </legend>
+          <div
+            className="inputPanelGruppe__inner"
+          >
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
+            >
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                id="Helt tilfeldig ID"
+                name="Prioritet"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="HOY"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Høy
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel inputPanel--checked"
+              htmlFor="Helt tilfeldig ID"
+            >
+              <input
+                aria-checked={true}
+                checked={true}
+                className="inputPanel__field"
+                id="Helt tilfeldig ID"
+                name="Prioritet"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="NORM"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Normal
+              </span>
+            </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
+            >
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                id="Helt tilfeldig ID"
+                name="Prioritet"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="LAV"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Lav
+              </span>
+            </label>
+          </div>
+        </fieldset>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="skjemaelement textarea__container"
+      >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Beskrivelse
+        </label>
+        <div
+          className="textarea--medMeta__wrapper"
+        >
+          <textarea
+            className="skjemaelement__input textarea--medMeta"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            style={
+              Object {
+                "height": "30px",
+              }
+            }
+            type="text"
+            value=""
+          />
+          <p
+            className="textarea--medMeta__teller"
+          >
+            <span>
+              Du har 
+              2000
+               tegn igjen
+            </span>
+          </p>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+        <div
+          aria-hidden="true"
+          className="textareamirror"
+        />
+      </div>
+      <div
+        className="c2"
+      >
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          role="submit"
+          type="submit"
+        >
+          Send
+        </button>
+        <button
+          className="c3"
+          onClick={[Function]}
+          type="button"
+        >
+          Avbryt
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;

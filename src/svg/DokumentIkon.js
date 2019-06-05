@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Dokument(props) {
+function DokumentIkon(props) {
     return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -15,4 +15,4 @@ function Dokument(props) {
     );
 }
 
-export default Dokument;
+export default DokumentIkon;

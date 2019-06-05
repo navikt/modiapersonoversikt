@@ -6,7 +6,7 @@ import { LenkeKnapp } from '../../../../../../components/common-styled-component
 import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
-import OppgavePanel from './oppgave/OppgavePanel';
+import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 
 interface Props {
     valgtTraad?: Traad;
@@ -21,8 +21,13 @@ const PanelStyle = styled.div`
 
 const KnapperPanelStyle = styled.div`
     display: flex;
-    > * {
-        margin-right: ${theme.margin.layout};
+    justify-content: space-between;
+`;
+
+const OppgaveknapperStyle = styled.div`
+    display: flex;
+    > *:not(:last-child) {
+        margin-right: 1.5rem;
     }
 `;
 
@@ -56,22 +61,24 @@ function Funksjoner(props: Props) {
     return (
         <>
             <KnapperPanelStyle>
-                <LenkeKnapp onClick={() => journalforingKlikk()} underline={visJournalforing}>
-                    Journalfør
-                </LenkeKnapp>
-                <LenkeKnapp onClick={() => oppgaveKlikk()} underline={visOppgave}>
-                    Oppgave
-                </LenkeKnapp>
-                <LenkeKnapp onClick={() => merkKlikk()} underline={visMerk}>
-                    Merk
-                </LenkeKnapp>
+                <OppgaveknapperStyle>
+                    <LenkeKnapp onClick={journalforingKlikk} underline={visJournalforing}>
+                        Journalfør
+                    </LenkeKnapp>
+                    <LenkeKnapp onClick={oppgaveKlikk} underline={visOppgave}>
+                        Lag oppgave
+                    </LenkeKnapp>
+                    <LenkeKnapp onClick={merkKlikk} underline={visMerk}>
+                        Merk
+                    </LenkeKnapp>
+                </OppgaveknapperStyle>
                 <LenkeKnapp>Skriv ut</LenkeKnapp>
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
                 <JournalforingPanel />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OppgavePanel />
+                <OpprettOppgaveContainer lukkPanel={() => settVisOppgave(false)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel />

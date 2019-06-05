@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import oppgaverReducer from './oppgaver';
@@ -27,7 +28,9 @@ import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
-import meldingerReducer from './meldinger';
+import meldingerReducer from './meldinger/meldinger';
+import oppgaveGsakTemaReducer from './meldinger/gsakTema';
+import opprettOppgave from './meldinger/opprettOppgave';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -50,8 +53,11 @@ import { Varsel } from '../../models/varsel';
 import { SendMeldingRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
+import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
+import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 
 export interface RestEndepunkter {
+    innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: DeprecatedRestResource<PersonRespons>;
     brukersNavKontor: DeprecatedRestResource<BrukersNavKontorResponse>;
     oppgaver: DeprecatedRestResource<Oppgave[]>;
@@ -80,10 +86,13 @@ export interface RestEndepunkter {
     featureToggles: DeprecatedRestResource<FeatureToggles>;
     brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;
+    oppgaveGsakTema: RestResource<GsakTema[]>;
+    opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendMelding: PostResource<SendMeldingRequest>;
 }
 
 export default combineReducers<RestEndepunkter>({
+    innloggetSaksbehandler: innloggetSaksbehandlerReducer,
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,
@@ -112,5 +121,7 @@ export default combineReducers<RestEndepunkter>({
     featureToggles: featureToggleReducer,
     brukersVarsler: varselReducer,
     tråderOgMeldinger: meldingerReducer,
-    sendMelding: sendMelding
+    oppgaveGsakTema: oppgaveGsakTemaReducer,
+    sendMelding: sendMelding,
+    opprettOppgave: opprettOppgave
 });

@@ -4,6 +4,17 @@ export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger[0];
 }
 
+export function eldsteMelding(traad: Traad) {
+    return traad.meldinger[traad.meldinger.length - 1];
+}
+
+export function erMonolog(traad: Traad) {
+    const bareSaksbehandler: boolean = traad.meldinger.some(melding => erMeldingFraNav(melding.meldingstype));
+    const bareBruker: boolean = traad.meldinger.some(melding => erMeldingFraBruker(melding.meldingstype));
+
+    return bareSaksbehandler !== bareBruker;
+}
+
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return [
         Temagruppe.Arbeid,
