@@ -8,6 +8,7 @@ import {
     OrganisasjonSomAdressat
 } from '../../models/person/doedsbo';
 import { Navn } from '../../models/person/person';
+import { aremark } from './aremark';
 
 export function getMockDoedsbo(faker: Faker.FakerStatic): Doedsbo[] | undefined {
     if (vektetSjanse(faker, 0.5)) {
@@ -86,7 +87,7 @@ function mockKontaktpersonUtenId(faker: Faker.FakerStatic): KontaktpersonUtenId 
 function mockKontaktpersonMedId(faker: Faker.FakerStatic): KontaktpersonMedId {
     const navn = vektetSjanse(faker, 0.5) ? mockPersonnavn(faker) : undefined;
     return {
-        idNummer: faker.random.number(),
+        idNummer: aremark.fødselsnummer,
         navn: navn
     };
 }
