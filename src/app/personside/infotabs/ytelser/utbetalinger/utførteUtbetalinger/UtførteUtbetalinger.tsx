@@ -30,11 +30,11 @@ function UtførteUtbetalinger(props: Props) {
     const tittelRekke = [
         'Type',
         'Netto',
-        'Dato',
+        'Utb.dato',
         'Periode',
         'Bruttobeløp',
-        'Arbeidsgiver',
-        'Orgnummer',
+        'Arb.giver',
+        'Org.nummer',
         'Skattetrekk',
         'Kreditortrekk'
     ];
@@ -59,12 +59,12 @@ function UtførteUtbetalinger(props: Props) {
     return (
         <Style>
             {rows.length !== 0 && <StyledTable tittelRekke={tittelRekke} rows={rows} />}
-            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
             {viserToÅrMedUtbetalinger ? (
                 <AlertStripeInfo>Viser utførte utbetalinger 2 år tilbake i tid</AlertStripeInfo>
             ) : (
                 <AlertStripeInfo>Viser utførte utbetalinger 90 dager tilbake i tid</AlertStripeInfo>
             )}
+            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
         </Style>
     );
 }
