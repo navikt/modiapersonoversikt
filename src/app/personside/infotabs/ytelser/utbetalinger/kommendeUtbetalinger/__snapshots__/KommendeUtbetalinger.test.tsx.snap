@@ -67,7 +67,7 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
-            Dato
+            Utb.dato
           </th>
           <th
             role="columnheader"
@@ -97,12 +97,12 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
           <th
             role="columnheader"
           >
-            Arbeidsgiver
+            Arb.giver
           </th>
           <th
             role="columnheader"
           >
-            Orgnummer
+            Org.nummer
           </th>
         </tr>
       </thead>

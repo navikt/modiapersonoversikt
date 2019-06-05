@@ -30,11 +30,11 @@ function UtførteUtbetalinger(props: Props) {
     const tittelRekke = [
         'Type',
         'Netto',
-        'Dato',
+        'Utb.dato',
         'Periode',
         'Bruttobeløp',
-        'Arbeidsgiver',
-        'Orgnummer',
+        'Arb.giver',
+        'Org.nummer',
         'Skattetrekk',
         'Kreditortrekk'
     ];

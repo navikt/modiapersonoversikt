@@ -28,7 +28,16 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
     if (kommendeUtbetalinger.length === 0) {
         return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
     }
-    const tittelRekke = ['Dato', 'Type', 'Periode', 'Utb.grad', 'Dagsats', 'Bruttobeløp', 'Arbeidsgiver', 'Orgnummer'];
+    const tittelRekke = [
+        'Utb.dato',
+        'Type',
+        'Periode',
+        'Utb.grad',
+        'Dagsats',
+        'Bruttobeløp',
+        'Arb.giver',
+        'Org.nummer'
+    ];
     const rows = kommendeUtbetalinger.map(kommendeUtbetaling => [
         datoEllerNull(kommendeUtbetaling.utbetalingsdato),
         kommendeUtbetaling.type,
