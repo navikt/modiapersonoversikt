@@ -21,14 +21,22 @@ const TableStyle = styled.div`
         width: 100%;
         text-align: right;
         tr {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 15% 50% 25% 10%;
+            grid-template-rows: auto auto;
+        }
+        td,
+        th {
+            &:not(:last-child) {
+                padding: 0.7rem;
+            }
+            &:last-child {
+                grid-row: 2 / 3;
+                grid-column: 1 / end;
+            }
         }
         thead {
             text-transform: uppercase;
-            th {
-                margin-bottom: 0.5rem;
-            }
             th:nth-child(3) ~ th {
                 ${theme.visuallyHidden};
             }
@@ -36,31 +44,6 @@ const TableStyle = styled.div`
         tbody tr {
             ${theme.hvittPanel};
             margin-bottom: 0.5rem;
-            td {
-                &:last-child {
-                    width: 100%;
-                }
-            }
-        }
-        th,
-        td {
-            display: inline-block;
-            &:not(:last-child) {
-                vertical-align: bottom;
-                padding: 1rem;
-            }
-            &:first-child {
-                flex: 0 0 15%;
-            }
-            &:nth-child(2) {
-                flex: 0 0 50%;
-            }
-            &:nth-child(3) {
-                flex: 0 0 25%;
-            }
-            &:nth-child(4) {
-                flex: 0 0 10%;
-            }
         }
     }
 `;
