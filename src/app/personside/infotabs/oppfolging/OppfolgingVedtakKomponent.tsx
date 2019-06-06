@@ -4,8 +4,8 @@ import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
-import { StyledTable } from '../../../../utils/tableUtils';
 import EtikettGrå from '../../../../components/EtikettGrå';
+import { StyledTable } from '../../../../utils/table/StyledTable';
 
 interface Props {
     ytelseVedtak: OppfolgingsVedtak[];

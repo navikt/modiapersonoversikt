@@ -18,7 +18,7 @@ import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
-import { createTable } from '../../../../../utils/tableUtils';
+import { Table } from '../../../../../utils/table/Table';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -92,9 +92,11 @@ class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
         const brutto: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
         const trekk: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
         const utbetalt: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);
-        const totaltUtbetaltTabell = createTable(
-            ['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt'],
-            [[periode, brutto, trekk, utbetalt]]
+        const totaltUtbetaltTabell = (
+            <Table
+                tittelRekke={['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt']}
+                rows={[[periode, brutto, trekk, utbetalt]]}
+            />
         );
 
         return (
