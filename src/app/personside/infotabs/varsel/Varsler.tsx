@@ -27,12 +27,24 @@ const TableStyle = styled.div`
         }
         td,
         th {
-            &:not(:last-child) {
-                padding: 0.7rem;
+            &:nth-child(1) {
+                grid-column: 1 / 2;
+            }
+            &:nth-child(2) {
+                grid-column: 2 / 3;
+            }
+            &:nth-child(3) {
+                grid-column: 3 / 4;
+            }
+            &:nth-child(4) {
+                grid-column: 4 / 5;
             }
             &:last-child {
                 grid-row: 2 / 3;
                 grid-column: 1 / end;
+            }
+            &:not(:last-child) {
+                padding: 0.7rem;
             }
         }
         thead {
