@@ -34,7 +34,7 @@ function getVarselMelding(): Varselmelding {
     const motakerInfo = kanal === 'SMS' ? faker.phone.phoneNumber() : kanal === 'EPOST' ? 'fakemail@faker.no' : null;
     return {
         kanal: kanal,
-        innhold: 'Meldingsinnhold',
+        innhold: faker.lorem.sentence(faker.random.number(25)),
         mottakerInformasjon: motakerInfo,
         utsendingsTidspunkt: moment(faker.date.recent(90)).format(backendDatoformat),
         feilbeskrivelse: 'Feil',

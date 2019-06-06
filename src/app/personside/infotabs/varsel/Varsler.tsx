@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Varsel, Varseltype } from '../../../../models/varsel';
-import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Table } from '../../../../utils/table/Table';
-import MeldingsListe from './meldingsliste/MeldingsListe';
+import VarselDetaljer from './varselDetaljer/VarselDetaljer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
@@ -16,10 +16,10 @@ interface Props {
     varsler: Varsel[];
 }
 
-const TableStyle = styled.div`
+const Style = styled.article`
     table {
         width: 100%;
-        text-align: right;
+        text-align: left;
         tr {
             display: grid;
             grid-template-columns: 15% 50% 25% 10%;
@@ -38,6 +38,7 @@ const TableStyle = styled.div`
             }
             &:nth-child(4) {
                 grid-column: 4 / 5;
+                text-align: right;
             }
             &:last-child {
                 grid-row: 2 / 3;
@@ -86,7 +87,7 @@ function lagVarselTabellRow(varsel: Varsel, open: boolean, toggleOpen: () => voi
     );
     const detaljer = (
         <Collapse isOpened={open}>
-            <MeldingsListe sortertMeldingsliste={sortertMeldingsliste} />
+            <VarselDetaljer sortertMeldingsliste={sortertMeldingsliste} />
         </Collapse>
     );
 
@@ -115,15 +116,14 @@ function Varsler(props: Props) {
     const tabellInnhold = sortertPåDato.map(varsel =>
         lagVarselTabellRow(varsel, openVarsler.includes(varsel), () => toggleOpenVarsler(varsel))
     );
-    const table = <Table tittelRekke={tittelRekke} rows={tabellInnhold} />;
 
     return (
-        <article>
+        <Style>
             <VisuallyHiddenAutoFokusHeader tittel="Varsler" />
             <Normaltekst tag={'div'}>
-                <TableStyle>{table}</TableStyle>
+                <Table tittelRekke={tittelRekke} rows={tabellInnhold} />
             </Normaltekst>
-        </article>
+        </Style>
     );
 }
 
