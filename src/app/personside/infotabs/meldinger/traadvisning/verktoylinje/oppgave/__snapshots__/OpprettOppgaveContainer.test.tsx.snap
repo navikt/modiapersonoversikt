@@ -66,6 +66,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
+.c4 {
+  margin-top: .8rem;
+  color: #d0021b;
+}
+
 .c0 {
   margin-top: 1.5rem;
 }
@@ -330,5 +335,8 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       </div>
     </div>
   </form>
+  <div
+    className="c4"
+  />
 </div>
 `;
