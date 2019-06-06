@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
+import { loggError } from '../frontendLogger';
 
 type TitleCell = string | ReactNode;
 export type TitleRow = TitleCell[];
@@ -7,14 +8,17 @@ export type TableCell = string | number | undefined | ReactNode;
 export type TableRow = Array<TableCell>;
 export type TableRows = TableRow[];
 
-export type TableProps = { tittelRekke: TitleRow; rows: TableRows };
+export type TableProps = { tittelRekke: TitleRow; rows: TableRows; rowsOnClickHandlers?: Array<() => void> };
 
-export function Table({ tittelRekke, rows }: TableProps) {
+export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
     rows.forEach((row: TableRow) => {
         if (row.length !== tittelRekke.length) {
-            console.warn('Ulik lengde på tittelRekke og innholdsrekke, dette bør du nok se på', tittelRekke, row);
+            loggError(new Error('Ulik lengde på tittelRekke og innholdsrekke, dette bør du nok se på'));
         }
     });
+    if (rowsOnClickHandlers && rowsOnClickHandlers.length != rows.length) {
+        loggError(new Error('Ulik lengde på liste med onClickHandlers og antall rows'));
+    }
     return (
         <table role="table">
             <thead role="rowgroup">
@@ -28,7 +32,7 @@ export function Table({ tittelRekke, rows }: TableProps) {
             </thead>
             <tbody role="rowgroup">
                 {rows.map((row: TableRow, index: number) => (
-                    <tr role="row" key={index}>
+                    <tr role="row" key={index} onClick={rowsOnClickHandlers && rowsOnClickHandlers[index]}>
                         {row.map((entry, i) => (
                             <td role="cell" key={i}>
                                 {entry || (entry === 0 && '0') || '\u2014'}
