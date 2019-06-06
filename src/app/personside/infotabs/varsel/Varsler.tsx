@@ -74,7 +74,7 @@ const Kommaliste = styled.ul`
 `;
 
 function lagVarselTabellRow(varsel: Varsel, open: boolean, toggleOpen: () => void) {
-    const dato = formatterDato(varsel.mottattTidspunkt);
+    const dato = formatterDatoMedMaanedsnavn(varsel.mottattTidspunkt);
     const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
     const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));

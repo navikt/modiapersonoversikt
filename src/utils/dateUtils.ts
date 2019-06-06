@@ -3,10 +3,15 @@ import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 
 const DATO_FORMAT = 'DD.MM.YYYY';
+const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
 const DATO_TID_FORMAT = 'DD.MM.YYYY HH:mm';
 
 export function formatterDato(dato: string | Date) {
     return moment(dato).format(DATO_FORMAT);
+}
+
+export function formatterDatoMedMaanedsnavn(dato: string | Date) {
+    return moment(dato).format(DATO_FORMAT_MANEDSNAVN);
 }
 
 export function formatterDatoTid(dato: string | Date) {
