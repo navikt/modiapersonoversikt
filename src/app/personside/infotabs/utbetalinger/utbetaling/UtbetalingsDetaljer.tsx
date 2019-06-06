@@ -11,7 +11,7 @@ import {
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import { Bold } from '../../../../../components/common-styled-components';
-import { createTable } from '../../../../../utils/tableUtils';
+import { Table } from '../../../../../utils/table/Table';
 
 type Props = {
     ytelse: Ytelse;
@@ -71,7 +71,7 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                 );
         }
 
-        return createTable(tittelrekke, tabellElementer);
+        return <Table tittelRekke={tittelrekke} rows={tabellElementer} />;
     } else {
         return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
     }
@@ -80,16 +80,18 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
 function UtbetalingsDetaljer(props: Props) {
     const ytelse = props.ytelse;
     const detaljer = utbetalingsDetaljerTable(ytelse);
-    const oversikt = createTable(
-        ['Konto', 'Brutto', 'Trekk', 'Utbetalt'],
-        [
-            [
-                props.konto,
-                formaterNOK(ytelse.ytelseskomponentersum),
-                formaterNOK(ytelse.skattsum + ytelse.trekksum),
-                formaterNOK(ytelse.nettobeløp)
-            ]
-        ]
+    const oversikt = (
+        <Table
+            tittelRekke={['Konto', 'Brutto', 'Trekk', 'Utbetalt']}
+            rows={[
+                [
+                    props.konto,
+                    formaterNOK(ytelse.ytelseskomponentersum),
+                    formaterNOK(ytelse.skattsum + ytelse.trekksum),
+                    formaterNOK(ytelse.nettobeløp)
+                ]
+            ]}
+        />
     );
     return (
         <Wrapper aria-label="Utbetalingsdetaljer">

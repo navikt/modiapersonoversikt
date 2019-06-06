@@ -1,28 +1,55 @@
 import * as React from 'react';
 import { Varsel, Varseltype } from '../../../../models/varsel';
-import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { createTable } from '../../../../utils/tableUtils';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import MeldingsListe from './meldingsliste/MeldingsListe';
+import { Table } from '../../../../utils/table/Table';
+import VarselDetaljer from './varselDetaljer/VarselDetaljer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
+import { useState } from 'react';
+import { Collapse } from 'react-collapse';
+import VisMerChevron from '../../../../components/VisMerChevron';
 
 interface Props {
     varsler: Varsel[];
 }
 
-const TableStyle = styled.div`
+const Style = styled.article`
     table {
         width: 100%;
-        text-align: right;
+        text-align: left;
+        tr {
+            display: grid;
+            grid-template-columns: 15% 50% 25% 10%;
+            grid-template-rows: auto auto;
+        }
+        td,
+        th {
+            &:nth-child(1) {
+                grid-column: 1 / 2;
+            }
+            &:nth-child(2) {
+                grid-column: 2 / 3;
+            }
+            &:nth-child(3) {
+                grid-column: 3 / 4;
+            }
+            &:nth-child(4) {
+                grid-column: 4 / 5;
+                text-align: right;
+            }
+            &:last-child {
+                grid-row: 2 / 3;
+                grid-column: 1 / end;
+            }
+            &:not(:last-child) {
+                padding: 0.7rem;
+            }
+        }
         thead {
             text-transform: uppercase;
-            th {
-                margin-bottom: 0.5rem;
-            }
             th:nth-child(3) ~ th {
                 ${theme.visuallyHidden};
             }
@@ -30,30 +57,6 @@ const TableStyle = styled.div`
         tbody tr {
             ${theme.hvittPanel};
             margin-bottom: 0.5rem;
-            display: block;
-            td {
-                &:last-child {
-                    width: 100%;
-                }
-            }
-        }
-        th,
-        td {
-            display: inline-block;
-            &:not(:last-child) {
-                vertical-align: bottom;
-                padding: 1rem 1rem 0;
-            }
-            &:first-child {
-                text-align: left;
-                width: 20%;
-            }
-            &:nth-child(2) {
-                width: 50%;
-            }
-            &:nth-child(3) {
-                width: 30%;
-            }
         }
     }
 `;
@@ -70,8 +73,8 @@ const Kommaliste = styled.ul`
     }
 `;
 
-function lagVarselTabellRow(varsel: Varsel) {
-    const dato = formatterDato(varsel.mottattTidspunkt);
+function lagVarselTabellRow(varsel: Varsel, open: boolean, toggleOpen: () => void) {
+    const dato = formatterDatoMedMaanedsnavn(varsel.mottattTidspunkt);
     const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
     const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));
@@ -83,28 +86,45 @@ function lagVarselTabellRow(varsel: Varsel) {
         </Kommaliste>
     );
     const detaljer = (
-        <Ekspanderbartpanel tittelProps="element" tittel={'Detaljer'}>
-            <MeldingsListe sortertMeldingsliste={sortertMeldingsliste} />
-        </Ekspanderbartpanel>
+        <Collapse isOpened={open}>
+            <VarselDetaljer sortertMeldingsliste={sortertMeldingsliste} />
+        </Collapse>
     );
-    return [dato, varseltype, kommunikasjonskanaler, detaljer];
+
+    const visDetaljerKnapp = (
+        <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' detaljer'} />
+    );
+
+    return [dato, varseltype, kommunikasjonskanaler, visDetaljerKnapp, detaljer];
 }
 
 function Varsler(props: Props) {
+    const [openVarsler, setOpenVarsler] = useState<Varsel[]>([]);
+
+    const toggleOpenVarsler = (varsel: Varsel) => {
+        if (openVarsler.includes(varsel)) {
+            setOpenVarsler(openVarsler.filter(it => it != varsel));
+        } else {
+            setOpenVarsler([...openVarsler, varsel]);
+        }
+    };
+
     const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
-    const tittelRekke = ['Dato', 'Type', 'Sendt i kanal', 'Detaljer'].map((text, index) => (
+    const tittelRekke = ['Dato', 'Type', 'Sendt i kanal', 'Vis detaljer', 'Detaljer'].map((text, index) => (
         <Element key={index}>{text}</Element>
     ));
-    const tabellInnhold = sortertPåDato.map(varsel => lagVarselTabellRow(varsel));
-    const table = createTable(tittelRekke, tabellInnhold);
+    const tabellInnhold = sortertPåDato.map(varsel =>
+        lagVarselTabellRow(varsel, openVarsler.includes(varsel), () => toggleOpenVarsler(varsel))
+    );
+    const rowClickHandlers = sortertPåDato.map(varsel => () => toggleOpenVarsler(varsel));
 
     return (
-        <article>
+        <Style>
             <VisuallyHiddenAutoFokusHeader tittel="Varsler" />
             <Normaltekst tag={'div'}>
-                <TableStyle>{table}</TableStyle>
+                <Table tittelRekke={tittelRekke} rows={tabellInnhold} rowsOnClickHandlers={rowClickHandlers} />
             </Normaltekst>
-        </article>
+        </Style>
     );
 }
 

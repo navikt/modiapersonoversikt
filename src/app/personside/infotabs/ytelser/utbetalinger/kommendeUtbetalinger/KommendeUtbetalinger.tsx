@@ -9,8 +9,8 @@ import {
     periodeEllerNull,
     prosentEllerNull
 } from '../../../../../../utils/stringFormatting';
-import { StyledTable } from '../../../../../../utils/tableUtils';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
