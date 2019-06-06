@@ -116,12 +116,13 @@ function Varsler(props: Props) {
     const tabellInnhold = sortertPåDato.map(varsel =>
         lagVarselTabellRow(varsel, openVarsler.includes(varsel), () => toggleOpenVarsler(varsel))
     );
+    const rowClickHandlers = sortertPåDato.map(varsel => () => toggleOpenVarsler(varsel));
 
     return (
         <Style>
             <VisuallyHiddenAutoFokusHeader tittel="Varsler" />
             <Normaltekst tag={'div'}>
-                <Table tittelRekke={tittelRekke} rows={tabellInnhold} />
+                <Table tittelRekke={tittelRekke} rows={tabellInnhold} rowsOnClickHandlers={rowClickHandlers} />
             </Normaltekst>
         </Style>
     );
