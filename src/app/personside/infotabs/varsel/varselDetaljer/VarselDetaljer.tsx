@@ -9,7 +9,8 @@ interface Props {
 }
 
 const ListeStyle = styled.ol`
-    > * {
+    ${theme.gråttPanel}
+    > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
 `;

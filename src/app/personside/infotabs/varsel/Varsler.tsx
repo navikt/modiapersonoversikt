@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Varsel, Varseltype } from '../../../../models/varsel';
 import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
@@ -8,8 +9,7 @@ import VarselDetaljer from './varselDetaljer/VarselDetaljer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
-import { useState } from 'react';
-import { Collapse } from 'react-collapse';
+import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
 
 interface Props {
@@ -86,9 +86,9 @@ function lagVarselTabellRow(varsel: Varsel, open: boolean, toggleOpen: () => voi
         </Kommaliste>
     );
     const detaljer = (
-        <Collapse isOpened={open}>
+        <UnmountClosed isOpened={open}>
             <VarselDetaljer sortertMeldingsliste={sortertMeldingsliste} />
-        </Collapse>
+        </UnmountClosed>
     );
 
     const visDetaljerKnapp = (
