@@ -113,19 +113,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         <ul
           className="c5"
         >
-          <li>
-            <p
-              className="typo-normal"
-            >
-              EPOST
-            </p>
+          <li
+            className="typo-normal"
+          >
+            EPOST
           </li>
-          <li>
-            <p
-              className="typo-normal"
-            >
-              SMS
-            </p>
+          <li
+            className="typo-normal"
+          >
+            SMS
           </li>
         </ul>
         <button
@@ -165,12 +161,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         <ul
           className="c5"
         >
-          <li>
-            <p
-              className="typo-normal"
-            >
-              EPOST
-            </p>
+          <li
+            className="typo-normal"
+          >
+            EPOST
           </li>
         </ul>
         <button

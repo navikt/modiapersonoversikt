@@ -50,9 +50,9 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     const kommunikasjonskanaler = (
         <Kommaliste>
             {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
-                <li key={kanal}>
-                    <Normaltekst>{kanal}</Normaltekst>
-                </li>
+                <Normaltekst tag="li" key={kanal}>
+                    {kanal}
+                </Normaltekst>
             ))}
         </Kommaliste>
     );
