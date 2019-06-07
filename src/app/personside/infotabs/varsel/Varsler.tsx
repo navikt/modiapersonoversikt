@@ -41,8 +41,8 @@ function Varsler(props: Props) {
                 <p>Kanal</p>
             </HeaderStyle>
             <ListStyle>
-                {sortertPåDato.map(varsel => (
-                    <Varsel varsel={varsel} />
+                {sortertPåDato.map((varsel, index) => (
+                    <Varsel key={index} varsel={varsel} />
                 ))}
             </ListStyle>
         </article>

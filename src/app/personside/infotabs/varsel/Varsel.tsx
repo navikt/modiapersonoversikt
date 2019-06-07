@@ -50,7 +50,9 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     const kommunikasjonskanaler = (
         <Kommaliste>
             {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
-                <li key={kanal}>{kanal}</li>
+                <li key={kanal}>
+                    <Normaltekst>{kanal}</Normaltekst>
+                </li>
             ))}
         </Kommaliste>
     );
@@ -62,7 +64,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
                 <Normaltekst>
                     <Bold>{Varseltype[varsel.varselType]}</Bold>
                 </Normaltekst>
-                <Normaltekst>{kommunikasjonskanaler}</Normaltekst>
+                {kommunikasjonskanaler}
                 <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' detaljer'} />
             </HeaderStyle>
             <UnmountClosed isOpened={open}>
