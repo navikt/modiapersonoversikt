@@ -25,14 +25,32 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c3 {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 20% 55% 1fr auto;
+  -ms-grid-columns: 20% 55% 1fr;
+  grid-template-columns: 20% 55% 1fr;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   border-radius: .25rem;
   cursor: pointer;
+}
+
+.c3 > *:nth-child(1) {
+  -ms-grid-column: 1;
+}
+
+.c3 > *:nth-child(2) {
+  -ms-grid-column: 2;
+}
+
+.c3 > *:nth-child(3) {
+  -ms-grid-column: 3;
+}
+
+.c3 > *:nth-child(4) {
+  -ms-grid-column: 4;
 }
 
 .c3:hover {
@@ -53,9 +71,27 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c0 {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 20% 55% 1fr;
   grid-template-columns: 20% 55% 1fr;
   font-weight: bold;
+}
+
+.c0 > *:nth-child(1) {
+  -ms-grid-column: 1;
+}
+
+.c0 > *:nth-child(2) {
+  -ms-grid-column: 2;
+}
+
+.c0 > *:nth-child(3) {
+  -ms-grid-column: 3;
+}
+
+.c0 > *:nth-child(4) {
+  -ms-grid-column: 4;
 }
 
 .c0 > * {
