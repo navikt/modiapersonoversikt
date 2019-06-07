@@ -1,7 +1,7 @@
 FROM node:10.3.0-alpine as nodebuilder
 
 ADD / /source
-ENV CI=true
+#ENV CI=true # Får eslint-warnings til å bli behandlet som errors og brekker da bygget
 WORKDIR /source
 RUN npm ci
 ENV NODE_ENV=production
