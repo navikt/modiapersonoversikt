@@ -91,7 +91,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             <form onSubmit={submitHandler}>
                 <OppgaveSkjemaElementer {...props} form={formState} />
             </form>
-            <ValideringsfeilStyle>{valideringsfeil}</ValideringsfeilStyle>
+            <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
         </>
     );
 }
