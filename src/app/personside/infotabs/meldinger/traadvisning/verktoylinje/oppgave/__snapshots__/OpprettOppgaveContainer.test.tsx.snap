@@ -336,6 +336,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     </div>
   </form>
   <div
+    aria-live="polite"
     className="c4"
   />
 </div>
