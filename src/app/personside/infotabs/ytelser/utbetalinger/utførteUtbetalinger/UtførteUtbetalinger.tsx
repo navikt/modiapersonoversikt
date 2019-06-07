@@ -6,8 +6,9 @@ import { Utbetaling } from '../../../../../../models/utbetalinger';
 import { flatMapYtelser } from '../../../utbetalinger/utils/utbetalingerUtils';
 import utførtUtbetalingEntries from './UtførtUtbetalingEntries';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
-import { StyledTable, TableRow } from '../../../../../../utils/tableUtils';
+import { TableRow } from '../../../../../../utils/table/Table';
 import styled from 'styled-components';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     utbetalinger: Utbetaling[];

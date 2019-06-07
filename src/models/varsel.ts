@@ -8,11 +8,11 @@ export interface Varsel {
 export interface Varselmelding {
     kanal: Kanal;
     innhold: string;
-    mottakerInformasjon?: string;
+    mottakerInformasjon: null | string;
     utsendingsTidspunkt: string;
     feilbeskrivelse: string;
-    epostemne?: string;
-    url?: string;
+    epostemne: null | string;
+    url: null | string;
     erRevarsel: boolean;
 }
 

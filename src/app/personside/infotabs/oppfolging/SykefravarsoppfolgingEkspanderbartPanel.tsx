@@ -3,9 +3,9 @@ import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
-import { StyledTable } from '../../../../utils/tableUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { StyledTable } from '../../../../utils/table/StyledTable';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];

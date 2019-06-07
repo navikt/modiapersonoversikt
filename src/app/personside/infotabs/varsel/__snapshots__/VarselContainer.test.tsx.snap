@@ -5,17 +5,86 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
+.c5 {
+  padding: 0.7rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 > *:first-child {
+  -webkit-flex: 0 0 15%;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+}
+
+.c5 > *:last-child {
+  max-width: 30rem;
+}
+
+.c4 > * {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c3 {
+  border: none;
+  padding: 0.1rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
 .c0 table {
   width: 100%;
+  text-align: left;
+}
+
+.c0 table tr {
+  display: grid;
+  grid-template-columns: 15% 50% 25% 10%;
+  grid-template-rows: auto auto;
+}
+
+.c0 table td:nth-child(1),
+.c0 table th:nth-child(1) {
+  grid-column: 1 / 2;
+}
+
+.c0 table td:nth-child(2),
+.c0 table th:nth-child(2) {
+  grid-column: 2 / 3;
+}
+
+.c0 table td:nth-child(3),
+.c0 table th:nth-child(3) {
+  grid-column: 3 / 4;
+}
+
+.c0 table td:nth-child(4),
+.c0 table th:nth-child(4) {
+  grid-column: 4 / 5;
   text-align: right;
+}
+
+.c0 table td:last-child,
+.c0 table th:last-child {
+  grid-row: 2 / 3;
+  grid-column: 1 / end;
+}
+
+.c0 table td:not(:last-child),
+.c0 table th:not(:last-child) {
+  padding: 0.7rem;
 }
 
 .c0 table thead {
   text-transform: uppercase;
-}
-
-.c0 table thead th {
-  margin-bottom: 0.5rem;
 }
 
 .c0 table thead th:nth-child(3) ~ th {
@@ -34,38 +103,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
   margin-bottom: 0.5rem;
-  display: block;
-}
-
-.c0 table tbody tr td:last-child {
-  width: 100%;
-}
-
-.c0 table th,
-.c0 table td {
-  display: inline-block;
-}
-
-.c0 table th:not(:last-child),
-.c0 table td:not(:last-child) {
-  vertical-align: bottom;
-  padding: 1rem 1rem 0;
-}
-
-.c0 table th:first-child,
-.c0 table td:first-child {
-  text-align: left;
-  width: 20%;
-}
-
-.c0 table th:nth-child(2),
-.c0 table td:nth-child(2) {
-  width: 50%;
-}
-
-.c0 table th:nth-child(3),
-.c0 table td:nth-child(3) {
-  width: 30%;
 }
 
 .c2 li {
@@ -77,7 +114,9 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   margin-right: 0.5em;
 }
 
-<article>
+<article
+  className="c0"
+>
   <h2
     className="visually-hidden"
     tabIndex={-1}
@@ -87,179 +126,337 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   <div
     className="typo-normal"
   >
-    <div
-      className="c0"
+    <table
+      role="table"
     >
-      <table
-        role="table"
+      <thead
+        role="rowgroup"
       >
-        <thead
-          role="rowgroup"
+        <tr
+          role="row"
         >
-          <tr
-            role="row"
+          <th
+            role="columnheader"
           >
-            <th
-              role="columnheader"
+            <p
+              className="typo-element"
             >
-              <p
-                className="typo-element"
-              >
-                Dato
-              </p>
-            </th>
-            <th
-              role="columnheader"
+              Dato
+            </p>
+          </th>
+          <th
+            role="columnheader"
+          >
+            <p
+              className="typo-element"
             >
-              <p
-                className="typo-element"
-              >
-                Type
-              </p>
-            </th>
-            <th
-              role="columnheader"
+              Type
+            </p>
+          </th>
+          <th
+            role="columnheader"
+          >
+            <p
+              className="typo-element"
             >
-              <p
-                className="typo-element"
-              >
-                Sendt i kanal
-              </p>
-            </th>
-            <th
-              role="columnheader"
+              Sendt i kanal
+            </p>
+          </th>
+          <th
+            role="columnheader"
+          >
+            <p
+              className="typo-element"
             >
-              <p
-                className="typo-element"
-              >
-                Detaljer
-              </p>
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          role="rowgroup"
+              Vis detaljer
+            </p>
+          </th>
+          <th
+            role="columnheader"
+          >
+            <p
+              className="typo-element"
+            >
+              Detaljer
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          onClick={[Function]}
+          role="row"
         >
-          <tr
-            role="row"
+          <td
+            role="cell"
           >
-            <td
-              role="cell"
+            01. jan. 1970
+          </td>
+          <td
+            role="cell"
+          >
+            <span
+              className="c1"
             >
-              01.01.1970
-            </td>
-            <td
-              role="cell"
+              Påminnelse om å sende meldekort
+            </span>
+          </td>
+          <td
+            role="cell"
+          >
+            <ul
+              className="c2"
             >
-              <span
-                className="c1"
-              >
-                Påminnelse om å sende meldekort
-              </span>
-            </td>
-            <td
-              role="cell"
+              <li>
+                EPOST
+              </li>
+              <li>
+                SMS
+              </li>
+            </ul>
+          </td>
+          <td
+            role="cell"
+          >
+            <button
+              aria-expanded={false}
+              aria-label="Detaljer"
+              className="c3"
+              onClick={[Function]}
+              title="Vis detaljer"
             >
-              <ul
-                className="c2"
-              >
-                <li>
-                  EPOST
-                </li>
-                <li>
-                  SMS
-                </li>
-              </ul>
-            </td>
-            <td
-              role="cell"
+              <i
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+          </td>
+          <td
+            role="cell"
+          >
+            <div
+              className="ReactCollapse--collapse"
+              style={
+                Object {
+                  "height": 0,
+                  "overflow": "hidden",
+                }
+              }
             >
               <div
-                className="ekspanderbartPanel ekspanderbartPanel--lukket"
+                className="ReactCollapse--content"
               >
-                <button
-                  aria-expanded={false}
-                  className="ekspanderbartPanel__hode"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  type="button"
+                <ol
+                  className="c4"
                 >
-                  <div
-                    className="ekspanderbartPanel__flex-wrapper"
+                  <li
+                    className="c5"
                   >
-                    <span
-                      className="typo-element ekspanderbartPanel__heading"
-                    >
-                      Detaljer
-                    </span>
-                    <span
-                      className="ekspanderbartPanel__indikator"
-                    />
-                  </div>
-                </button>
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          EPOST
+                        </span>
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        01. jan. 1970
+                      </p>
+                    </div>
+                    <div>
+                      <div>
+                        <p
+                          className="typo-normal"
+                        >
+                          <span
+                            className="c1"
+                          >
+                            Epostemne
+                          </span>
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          Meldingsinnhold
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          Epost: 
+                          mottakerinfo
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                  <li
+                    className="c5"
+                  >
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          SMS
+                        </span>
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        01. jan. 1970
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        Meldingsinnhold
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          Tlf: 
+                          mottakerinfo
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                </ol>
               </div>
-            </td>
-          </tr>
-          <tr
-            role="row"
+            </div>
+          </td>
+        </tr>
+        <tr
+          onClick={[Function]}
+          role="row"
+        >
+          <td
+            role="cell"
           >
-            <td
-              role="cell"
+            01. jan. 1970
+          </td>
+          <td
+            role="cell"
+          >
+            <span
+              className="c1"
             >
-              01.01.1970
-            </td>
-            <td
-              role="cell"
+              Påminnelse om å sende meldekort
+            </span>
+          </td>
+          <td
+            role="cell"
+          >
+            <ul
+              className="c2"
             >
-              <span
-                className="c1"
-              >
-                Påminnelse om å sende meldekort
-              </span>
-            </td>
-            <td
-              role="cell"
+              <li>
+                EPOST
+              </li>
+            </ul>
+          </td>
+          <td
+            role="cell"
+          >
+            <button
+              aria-expanded={false}
+              aria-label="Detaljer"
+              className="c3"
+              onClick={[Function]}
+              title="Vis detaljer"
             >
-              <ul
-                className="c2"
-              >
-                <li>
-                  EPOST
-                </li>
-              </ul>
-            </td>
-            <td
-              role="cell"
+              <i
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+          </td>
+          <td
+            role="cell"
+          >
+            <div
+              className="ReactCollapse--collapse"
+              style={
+                Object {
+                  "height": 0,
+                  "overflow": "hidden",
+                }
+              }
             >
               <div
-                className="ekspanderbartPanel ekspanderbartPanel--lukket"
+                className="ReactCollapse--content"
               >
-                <button
-                  aria-expanded={false}
-                  className="ekspanderbartPanel__hode"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  type="button"
+                <ol
+                  className="c4"
                 >
-                  <div
-                    className="ekspanderbartPanel__flex-wrapper"
+                  <li
+                    className="c5"
                   >
-                    <span
-                      className="typo-element ekspanderbartPanel__heading"
-                    >
-                      Detaljer
-                    </span>
-                    <span
-                      className="ekspanderbartPanel__indikator"
-                    />
-                  </div>
-                </button>
+                    <div>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          EPOST
+                        </span>
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        01. jan. 1970
+                      </p>
+                    </div>
+                    <div>
+                      <div>
+                        <p
+                          className="typo-normal"
+                        >
+                          <span
+                            className="c1"
+                          >
+                            Epostemne
+                          </span>
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          Meldingsinnhold
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c1"
+                        >
+                          Epost: 
+                          mottakerinfo
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                </ol>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </article>
 `;

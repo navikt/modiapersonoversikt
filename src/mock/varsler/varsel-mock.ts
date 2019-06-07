@@ -30,10 +30,12 @@ function getVarsel(): Varsel {
 }
 
 function getVarselMelding(): Varselmelding {
+    const kanal = navfaker.random.arrayElement(['SMS', 'NAV.NO', 'EPOST']);
+    const motakerInfo = kanal === 'SMS' ? faker.phone.phoneNumber() : kanal === 'EPOST' ? 'fakemail@faker.no' : null;
     return {
-        kanal: navfaker.random.arrayElement(['SMS', 'NAV.NO', 'EPOST']),
-        innhold: 'Meldingsinnhold',
-        mottakerInformasjon: 'mottakerinfo',
+        kanal: kanal,
+        innhold: faker.lorem.sentence(faker.random.number(25)),
+        mottakerInformasjon: motakerInfo,
         utsendingsTidspunkt: moment(faker.date.recent(90)).format(backendDatoformat),
         feilbeskrivelse: 'Feil',
         epostemne: 'Epostemne',
