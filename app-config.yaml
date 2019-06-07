@@ -7,14 +7,14 @@ replicas:
 port: 80
 healthcheck:
   liveness:
-    path: isAlive
-    initialDelay: 10
+    path: modiapersonoversikt/internal/isAlive
+    initialDelay: 20
   readiness:
-    path: isReady
-    initialDelay: 10
+    path: modiapersonoversikt/internal/isReady
+    initialDelay: 20
 resources:
     limits:
-      cpu: 3000m
+      cpu: 3
       memory: 1024Mi
     requests:
       cpu: 200m
