@@ -1,17 +1,11 @@
 FROM node:10.3.0-alpine as nodebuilder
 
 ADD / /source
+ENV CI=true
 WORKDIR /source
 RUN npm ci
+ENV NODE_ENV=production
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=nodebuilder /source/build /usr/share/nginx/html/modiapersonoversikt
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY entrypoint.sh /entrypoint
-ENTRYPOINT ["/entrypoint"]
-
-SHELL ["/bin/sh", "-c"]
-ADD run.sh /run.sh
-RUN ["chmod", "+x", "/run.sh"]
-CMD /run.sh
+FROM navikt/pus-fss-frontend
+COPY --from nodebuilder /source/build /app
