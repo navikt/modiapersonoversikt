@@ -8,7 +8,7 @@ import { SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
 import { DokumentMetadata, Feilmelding } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { mount } from 'enzyme';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
-import Dokument from '../../../../../svg/Dokument';
+import DokumentIkon from '../../../../../svg/DokumentIkon';
 
 describe('DokumentListeElement', () => {
     const staticSaksoversikt = getStaticMockSaksoversikt();
@@ -77,7 +77,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        expect(wrapper.find(Dokument)).toHaveLength(1);
+        expect(wrapper.find(DokumentIkon)).toHaveLength(1);
     });
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', () => {
@@ -95,7 +95,7 @@ describe('DokumentListeElement', () => {
                 />
             </TestProvider>
         );
-        expect(wrapper.find(Dokument)).toHaveLength(1);
+        expect(wrapper.find(DokumentIkon)).toHaveLength(1);
     });
 
     function lagStoreMedJustertDokumentMetadata(partialDok: Partial<DokumentMetadata>) {

@@ -5,8 +5,8 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
-import { StyledTable } from '../../../../../../utils/tableUtils';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     utbetalingerPåVent: UtbetalingPåVent[];

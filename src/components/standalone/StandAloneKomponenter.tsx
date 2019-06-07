@@ -103,10 +103,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <VarslerLamell fødselsnummer={props.fnr} />;
         case Komponenter.Hurtigreferat:
             return (
-                <HurtigreferatStandalone
-                    meldingBleSendtCallback={() => console.log('Ble sendt')}
-                    fødselsnummer={props.fnr}
-                />
+                <HurtigreferatStandalone meldingBleSendtCallback={() => alert('Ble sendt')} fødselsnummer={props.fnr} />
             );
         case Komponenter.Dialogpanel:
             return (

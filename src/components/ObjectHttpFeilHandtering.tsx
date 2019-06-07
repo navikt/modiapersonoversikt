@@ -19,6 +19,8 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
                 if (!res.ok) {
                     setError(true);
                     onError(res.status);
+                } else {
+                    setError(false);
                 }
                 return res.blob();
             })

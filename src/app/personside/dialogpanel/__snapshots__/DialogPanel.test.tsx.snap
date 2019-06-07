@@ -2,8 +2,8 @@
 
 exports[`viser dialogpanel 1`] = `
 .c1 {
-  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
-  filter: drop-shadow(0 0 1px rgba(0,0,0,0.7));
+  box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.2);
+  border-radius: .25rem;
 }
 
 .c1 .ekspanderbartPanel__innhold {

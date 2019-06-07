@@ -3,9 +3,9 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import TraadVisningContainer from './traadvisning/TraadVisningContainer';
-import TraadListeContainer from './traadliste/TraadListeContainer';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import VerktoylinjeContainer from './traadvisning/verktoylinje/VerktoylinjeContainer';
+import TraadListe from './traadliste/TraadListe';
 
 const meldingerMediaTreshold = '80rem';
 
@@ -33,7 +33,7 @@ function MeldingerContainer() {
         <MeldingerMainStyle>
             <MeldingerArticleStyle>
                 <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
-                    {data => <TraadListeContainer traader={data} />}
+                    {data => <TraadListe traader={data} />}
                 </RestResourceConsumer>
                 <div>
                     <VerktoylinjeContainer />

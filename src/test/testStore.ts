@@ -30,20 +30,23 @@ import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-moc
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setNyGjeldendeBruker from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
+import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
+import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-    const ressources = testStore.getState().restResources;
+    const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.fødselsnummer;
 
     testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
+    testStore.dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     testStore.dispatch({
         type: navKontorActionNames.FINISHED,
         data: { navKontor: getMockNavKontor('0118', undefined) }
     });
-    testStore.dispatch(ressources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
-    testStore.dispatch(ressources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
-    testStore.dispatch(ressources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
+    testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
+    testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
+    testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
     testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
     testStore.dispatch({
@@ -62,9 +65,10 @@ export function getTestStore(): Store<AppState> {
         }
     });
     testStore.dispatch({ type: saksoversiktActions.FINISHED, data: getStaticMockSaksoversikt() });
-    testStore.dispatch(ressources.brukersVarsler.actions.setData(statiskVarselMock));
+    testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
-    testStore.dispatch(ressources.oppfolging.actions.setData(statiskOppfolgingMock));
+    testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
+    testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
 
     return testStore;
 }

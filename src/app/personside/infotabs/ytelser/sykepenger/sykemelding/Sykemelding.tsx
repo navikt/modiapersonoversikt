@@ -3,7 +3,7 @@ import DescriptionList, { DescriptionListEntries } from '../../../../../../compo
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
-import { StyledTable } from '../../../../../../utils/tableUtils';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     sykmelding: ISykemelding;

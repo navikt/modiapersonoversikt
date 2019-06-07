@@ -6,8 +6,9 @@ import { Utbetaling } from '../../../../../../models/utbetalinger';
 import { flatMapYtelser } from '../../../utbetalinger/utils/utbetalingerUtils';
 import utførtUtbetalingEntries from './UtførtUtbetalingEntries';
 import { KnappStatus } from './UtførteUtbetalingerContainer';
-import { StyledTable, TableRow } from '../../../../../../utils/tableUtils';
+import { TableRow } from '../../../../../../utils/table/Table';
 import styled from 'styled-components';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     utbetalinger: Utbetaling[];
@@ -30,11 +31,11 @@ function UtførteUtbetalinger(props: Props) {
     const tittelRekke = [
         'Type',
         'Netto',
-        'Dato',
+        'Utb.dato',
         'Periode',
         'Bruttobeløp',
-        'Arbeidsgiver',
-        'Orgnummer',
+        'Arb.giver',
+        'Org.nummer',
         'Skattetrekk',
         'Kreditortrekk'
     ];
@@ -59,12 +60,12 @@ function UtførteUtbetalinger(props: Props) {
     return (
         <Style>
             {rows.length !== 0 && <StyledTable tittelRekke={tittelRekke} rows={rows} />}
-            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
             {viserToÅrMedUtbetalinger ? (
                 <AlertStripeInfo>Viser utførte utbetalinger 2 år tilbake i tid</AlertStripeInfo>
             ) : (
                 <AlertStripeInfo>Viser utførte utbetalinger 90 dager tilbake i tid</AlertStripeInfo>
             )}
+            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
         </Style>
     );
 }

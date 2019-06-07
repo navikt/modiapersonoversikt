@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Varselmelding } from '../../../../../models/varsel';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import MeldingsListeElement from './MeldingsListeElement';
+import VarselDetaljerElement from './VarselDetaljerElement';
 
 interface Props {
     sortertMeldingsliste: Varselmelding[];
@@ -14,12 +14,12 @@ const ListeStyle = styled.ol`
     }
 `;
 
-function MeldingsListe(props: Props) {
+function VarselDetaljer(props: Props) {
     const listekomponenter = props.sortertMeldingsliste.map((melding, index) => (
-        <MeldingsListeElement key={index} melding={melding} />
+        <VarselDetaljerElement key={index} melding={melding} />
     ));
 
     return <ListeStyle>{listekomponenter}</ListeStyle>;
 }
 
-export default MeldingsListe;
+export default VarselDetaljer;

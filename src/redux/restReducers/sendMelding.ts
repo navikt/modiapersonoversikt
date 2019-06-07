@@ -16,7 +16,10 @@ export const resetSendMeldingActionCreator = (dispatch: AsyncDispatch, getState:
     dispatch(getState().restResources.sendMelding.actions.reset);
 
 export function sendMeldingActionCreator(
-    payload: Pick<SendMeldingRequest, 'fritekst' | 'kanal' | 'type' | 'temagruppe' | 'traadId' | 'kontorsperretEnhet'>
+    payload: Pick<
+        SendMeldingRequest,
+        'fritekst' | 'kanal' | 'type' | 'temagruppe' | 'traadId' | 'kontorsperretEnhet' | 'erTilknyttetAnsatt'
+    >
 ) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const saksbehandler = getSaksbehandlerIdent();
@@ -39,7 +42,6 @@ export function sendMeldingActionCreator(
             fnr: fnr,
             navident: saksbehandler,
             tilknyttetEnhet: enhet,
-            erTilknyttetAnsatt: false,
             ...payload
         };
         dispatch(state.restResources.sendMelding.actions.post(request));

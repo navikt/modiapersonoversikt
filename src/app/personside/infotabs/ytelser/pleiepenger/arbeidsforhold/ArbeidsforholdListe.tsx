@@ -34,7 +34,7 @@ const StyledListe = styled.ol`
 function ArbeidsForholdListe({ arbeidsforhold }: Props) {
     const [visAlle, setVisAlle] = useState(false);
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
-        return <AlertStripeInfo>Kunne ikke finne noen arbeidsforhold</AlertStripeInfo>;
+        return <AlertStripeInfo>Ingen arbeidsgiver er registrert</AlertStripeInfo>;
     }
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;

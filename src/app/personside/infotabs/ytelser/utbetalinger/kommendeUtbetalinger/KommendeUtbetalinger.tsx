@@ -9,8 +9,8 @@ import {
     periodeEllerNull,
     prosentEllerNull
 } from '../../../../../../utils/stringFormatting';
-import { StyledTable } from '../../../../../../utils/tableUtils';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { StyledTable } from '../../../../../../utils/table/StyledTable';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -29,15 +29,14 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
         return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
     }
     const tittelRekke = [
-        'Registeringsdato',
+        'Utb.dato',
         'Type',
         'Periode',
-        'Utbetalingsgrad',
+        'Utb.grad',
         'Dagsats',
         'Bruttobeløp',
-        'Arbeidsgiver',
-        'Orgnummer',
-        'Saksbehandler'
+        'Arb.giver',
+        'Org.nummer'
     ];
     const rows = kommendeUtbetalinger.map(kommendeUtbetaling => [
         datoEllerNull(kommendeUtbetaling.utbetalingsdato),
@@ -47,8 +46,7 @@ function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
         NOKellerNull(kommendeUtbetaling.dagsats),
         NOKellerNull(kommendeUtbetaling.bruttobeløp),
         kommendeUtbetaling.arbeidsgiverNavn,
-        kommendeUtbetaling.arbeidsgiverOrgNr,
-        kommendeUtbetaling.saksbehandler
+        kommendeUtbetaling.arbeidsgiverOrgNr
     ]);
     return <StyledTable tittelRekke={tittelRekke} rows={rows} />;
 }

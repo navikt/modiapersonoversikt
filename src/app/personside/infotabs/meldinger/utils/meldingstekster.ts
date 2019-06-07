@@ -13,7 +13,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
         case Meldingstype.DokumentVarsel:
             return 'Dokument varsel';
         case Meldingstype.OppgaveVarsel:
-            return 'Oppgave varsel';
+            return 'OppgaveIkon varsel';
         case Meldingstype.SamtalereferatTelefon:
             return 'Samtalereferat telefon';
         case Meldingstype.SpørsmålModiaUtgående:
