@@ -15,8 +15,22 @@ const Style = styled.li`
 `;
 
 const HeaderStyle = styled.div`
+    display: -ms-grid;
     display: grid;
-    grid-template-columns: 20% 55% 1fr auto;
+    -ms-grid-columns: 20% 55% 1fr;
+    grid-template-columns: 20% 55% 1fr;
+    > *:nth-child(1) {
+        -ms-grid-column: 1;
+    }
+    > *:nth-child(2) {
+        -ms-grid-column: 2;
+    }
+    > *:nth-child(3) {
+        -ms-grid-column: 3;
+    }
+    > *:nth-child(4) {
+        -ms-grid-column: 4;
+    }
     align-items: center;
     border-radius: ${theme.borderRadius.layout};
     cursor: pointer;
