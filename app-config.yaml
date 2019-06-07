@@ -25,5 +25,23 @@ fasitResources:
       resourceType: loadbalancerconfig
     - alias: iadecorator-js
       resourceType: restservice
+
+    # security resources
+    - alias: srvmodiapersonoversikt
+      resourceType: credential
+    - alias: isso-rp-user
+      resourceType: credential
+    - alias: isso-host
+      resourceType: baseUrl
+    - alias: isso-jwks
+      resourceType: baseUrl
+    - alias: isso-issuer
+      resourceType: baseUrl
+    - alias: isso.isalive
+      resourceType: baseUrl
+    - alias: veilarblogin.redirect-url
+      resourceType: restservice
+      propertyMap:
+        url: OIDC_REDIRECT_URL
 alertProfiles:
 - minimal
