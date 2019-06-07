@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Brukes av jenkins for publisering av npm-lib
 set -e
 set -x
 AUTH_TOKEN=${NPM_AUTH}

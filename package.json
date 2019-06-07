@@ -18,6 +18,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "npm run build:less && react-scripts build",
+        "heroku-postbuild": "cross-env REACT_APP_MOCK_ENABLED=true react-scripts build",
         "test": "react-scripts test",
         "test-bail": "react-scripts test --watchAll=false --bail",
         "eject": "react-scripts eject",
@@ -124,6 +125,7 @@
         "enzyme": "^3.3.0",
         "enzyme-adapter-react-16": "^1.1.1",
         "eslint-config-prettier": "^4.1.0",
+        "express": "^4.17.1",
         "husky": "^2.2.0",
         "jest-enzyme": "^7.0.2",
         "jest-fetch-mock": "^2.1.1",
