@@ -13,7 +13,7 @@ const Style = styled.li`
     padding: 0.7rem;
     display: flex;
     > *:first-child {
-        flex: 0 0 15%;
+        flex: 0 0 20%;
     }
     > *:last-child {
         max-width: 30rem;
