@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import { Bold } from '../../../../components/common-styled-components';
-import VarselDetaljer from './varselDetaljer/VarselDetaljer';
+import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
@@ -17,8 +17,8 @@ const Style = styled.li`
 const HeaderStyle = styled.div`
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 20% 55% 1fr;
-    grid-template-columns: 20% 55% 1fr;
+    -ms-grid-columns: 20% 55% 1fr auto;
+    grid-template-columns: 20% 55% 1fr auto;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
@@ -62,7 +62,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
 
     const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));
     const kommunikasjonskanaler = (
-        <Kommaliste>
+        <Kommaliste aria-label="Kommunikasjonskanaler">
             {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
                 <Normaltekst tag="li" key={kanal}>
                     {kanal}
@@ -71,18 +71,19 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
         </Kommaliste>
     );
 
+    const varselTekst = Varseltype[varsel.varselType];
     return (
-        <Style>
+        <Style aria-label={varselTekst}>
             <HeaderStyle onClick={toggleOpen}>
                 <Normaltekst>{formatterDatoMedMaanedsnavn(varsel.mottattTidspunkt)}</Normaltekst>
                 <Normaltekst>
-                    <Bold>{Varseltype[varsel.varselType]}</Bold>
+                    <Bold>{varselTekst}</Bold>
                 </Normaltekst>
                 {kommunikasjonskanaler}
-                <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' detaljer'} />
+                <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' meldinger'} />
             </HeaderStyle>
             <UnmountClosed isOpened={open}>
-                <VarselDetaljer sortertMeldingsliste={sortertMeldingsliste} />
+                <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
             </UnmountClosed>
         </Style>
     );

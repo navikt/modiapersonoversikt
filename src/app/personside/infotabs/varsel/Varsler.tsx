@@ -23,9 +23,6 @@ const HeaderStyle = styled.div`
     > *:nth-child(3) {
         -ms-grid-column: 3;
     }
-    > *:nth-child(4) {
-        -ms-grid-column: 4;
-    }
     font-weight: bold;
     > * {
         padding: 0.7rem 0.7rem 0.3rem;
@@ -48,7 +45,7 @@ function Varsler(props: Props) {
                 <p>Type</p>
                 <p>Kanal</p>
             </HeaderStyle>
-            <ListStyle>
+            <ListStyle aria-label="Brukerens varsler">
                 {sortertPåDato.map((varsel, index) => (
                     <Varsel key={index} varsel={varsel} />
                 ))}

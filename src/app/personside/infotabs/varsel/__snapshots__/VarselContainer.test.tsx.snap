@@ -27,8 +27,8 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 .c3 {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 20% 55% 1fr;
-  grid-template-columns: 20% 55% 1fr;
+  -ms-grid-columns: 20% 55% 1fr auto;
+  grid-template-columns: 20% 55% 1fr auto;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -90,10 +90,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   -ms-grid-column: 3;
 }
 
-.c0 > *:nth-child(4) {
-  -ms-grid-column: 4;
-}
-
 .c0 > * {
   padding: 0.7rem 0.7rem 0.3rem;
 }
@@ -123,9 +119,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </p>
   </div>
   <ol
+    aria-label="Brukerens varsler"
     className="c1"
   >
     <li
+      aria-label="Påminnelse om å sende meldekort"
       className="c2"
     >
       <div
@@ -147,6 +145,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </span>
         </p>
         <ul
+          aria-label="Kommunikasjonskanaler"
           className="c5"
         >
           <li
@@ -162,10 +161,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         </ul>
         <button
           aria-expanded={false}
-          aria-label="Vis detaljer"
+          aria-label="Vis meldinger"
           className="c6"
           onClick={[Function]}
-          title="Vis detaljer"
+          title="Vis meldinger"
         >
           <i
             className="nav-frontend-chevron chevronboks chevron--ned"
@@ -174,6 +173,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       </div>
     </li>
     <li
+      aria-label="Påminnelse om å sende meldekort"
       className="c2"
     >
       <div
@@ -195,6 +195,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </span>
         </p>
         <ul
+          aria-label="Kommunikasjonskanaler"
           className="c5"
         >
           <li
@@ -205,10 +206,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         </ul>
         <button
           aria-expanded={false}
-          aria-label="Vis detaljer"
+          aria-label="Vis meldinger"
           className="c6"
           onClick={[Function]}
-          title="Vis detaljer"
+          title="Vis meldinger"
         >
           <i
             className="nav-frontend-chevron chevronboks chevron--ned"

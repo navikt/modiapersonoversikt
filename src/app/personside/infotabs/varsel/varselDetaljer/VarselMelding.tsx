@@ -56,9 +56,9 @@ function Mottakerinformasjon(props: Props) {
     }
 }
 
-function VarselDetaljerElement(props: Props) {
+function VarselMelding(props: Props) {
     return (
-        <Style>
+        <Style aria-label={props.melding.kanal}>
             <div>
                 <Normaltekst>
                     <Bold>{props.melding.kanal}</Bold>
@@ -73,4 +73,4 @@ function VarselDetaljerElement(props: Props) {
     );
 }
 
-export default VarselDetaljerElement;
+export default VarselMelding;
