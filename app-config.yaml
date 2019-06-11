@@ -12,6 +12,9 @@ healthcheck:
   readiness:
     path: modiapersonoversikt/internal/isReady
     initialDelay: 60
+prometheus:
+  enabled: true
+  path: modiapersonoversikt/internal/metrics
 resources:
     limits:
       cpu: 3
