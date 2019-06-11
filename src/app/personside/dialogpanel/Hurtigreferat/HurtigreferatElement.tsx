@@ -70,7 +70,7 @@ const KnappOgIkon = styled.div`
 function HurtigreferatElement(props: Props) {
     return (
         <Style>
-            <Element>{props.tekst.tittel}</Element>
+            <Element tag="h4">{props.tekst.tittel}</Element>
             <KnappOgIkon>
                 <PreviewContainer tabIndex={0}>
                     <InformasjonSVG alt="Vis hurtigsvar" />
@@ -79,7 +79,7 @@ function HurtigreferatElement(props: Props) {
                     </DropDown>
                 </PreviewContainer>
                 <KnappBase type="flat" onClick={props.sendMelding} spinner={props.spinner}>
-                    Send
+                    Send<span className="sr-only"> hurtigreferat {props.tekst.tittel}</span>
                 </KnappBase>
             </KnappOgIkon>
         </Style>

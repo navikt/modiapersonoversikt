@@ -19,7 +19,7 @@ import { isLoading, DeprecatedRestResource } from '../../../redux/restReducers/d
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 
-const HentOppgaveLayout = styled.div`
+const HentOppgaveLayout = styled.article`
     text-align: center;
     > *:not(:first-child) {
         margin: 0.4em 0 0 0;
@@ -111,6 +111,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
         ));
         return (
             <HentOppgaveLayout>
+                <h2 className="sr-only">Hent oppgave</h2>
                 <KnappLayout>
                     <Select
                         label="Hent oppgave fra temagruppe"

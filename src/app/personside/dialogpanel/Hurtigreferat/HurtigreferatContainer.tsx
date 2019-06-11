@@ -36,7 +36,7 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-const Style = styled.div`
+const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
     box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.2);
     border-radius: ${theme.borderRadius.layout};
@@ -111,6 +111,7 @@ function HurtigreferatContainer(props: Props) {
 
     return (
         <Style>
+            <h3 className="sr-only">Send hurtigreferat</h3>
             <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
                 <Padding>
                     <Select
