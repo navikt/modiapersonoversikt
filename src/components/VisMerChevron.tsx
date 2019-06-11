@@ -23,7 +23,12 @@ const ChevronKnappStyle = styled.button`
 
 function VisMerChevron(props: Props) {
     return (
-        <ChevronKnappStyle onClick={props.onClick} aria-expanded={props.open} aria-label="Detaljer" title={props.title}>
+        <ChevronKnappStyle
+            onClick={props.onClick}
+            aria-expanded={props.open}
+            aria-label={props.title}
+            title={props.title}
+        >
             <NavFrontendChevron type={props.open ? 'opp' : 'ned'} />
             {props.children}
         </ChevronKnappStyle>

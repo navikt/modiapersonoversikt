@@ -377,7 +377,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   >
     <button
       aria-expanded={false}
-      aria-label="Detaljer"
+      aria-label="Åpne visittkort (Alt + N)"
       className="c13"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
