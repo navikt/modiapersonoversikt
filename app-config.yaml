@@ -4,17 +4,20 @@ replicas:
   min: 2
   max: 4
   cpuThresholdPercentage: 50
-port: 80
+port: 8080
 healthcheck:
   liveness:
-    path: isAlive
-    initialDelay: 10
+    path: modiapersonoversikt/internal/isAlive
+    initialDelay: 20
   readiness:
-    path: isReady
-    initialDelay: 10
+    path: modiapersonoversikt/internal/isReady
+    initialDelay: 20
+prometheus:
+  enabled: true
+  path: modiapersonoversikt/internal/metrics
 resources:
     limits:
-      cpu: 3000m
+      cpu: 3
       memory: 1024Mi
     requests:
       cpu: 200m
@@ -25,5 +28,23 @@ fasitResources:
       resourceType: loadbalancerconfig
     - alias: iadecorator-js
       resourceType: restservice
+
+    # security resources
+    - alias: srvmodiapersonoversikt
+      resourceType: credential
+    - alias: isso-rp-user
+      resourceType: credential
+    - alias: isso-host
+      resourceType: baseUrl
+    - alias: isso-jwks
+      resourceType: baseUrl
+    - alias: isso-issuer
+      resourceType: baseUrl
+    - alias: isso.isalive
+      resourceType: baseUrl
+    - alias: veilarblogin.redirect-url
+      resourceType: restservice
+      propertyMap:
+        url: OIDC_REDIRECT_URL
 alertProfiles:
 - minimal
