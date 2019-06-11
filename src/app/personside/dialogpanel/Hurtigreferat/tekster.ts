@@ -40,7 +40,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
     {
         tittel: 'Elektronisk innsending',
         fritekst:
-            '[bruker.navn] får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending'
+            '[bruker.navn] får ikke sendt inn opplysninger til NAV elektronisk. [bruker.pronomen] er anbefalt å se om [bruker.pronomen] finner løsningen på www.nav.no/elektroniskinnsending'
     },
     {
         tittel: 'Vedtak',
