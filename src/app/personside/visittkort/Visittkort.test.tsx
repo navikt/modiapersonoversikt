@@ -23,7 +23,7 @@ test('viser visittkortheader og visitkortbody når visittkort åpnes med musekli
         </TestProvider>
     );
 
-    visittkort.find('button[aria-label="Detaljer"]').simulate('click');
+    visittkort.find('button[aria-expanded=false]').simulate('click');
 
     expect(visittkort.find('section[aria-label="Visittkort-hode"]')).toHaveLength(1);
     expect(visittkort.find('section[aria-label="Visittkortdetaljer"]')).toHaveLength(1);

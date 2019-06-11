@@ -1,130 +1,56 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Varsel, Varseltype } from '../../../../models/varsel';
-import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
+import { Varsel as VarselModell } from '../../../../models/varsel';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import { Table } from '../../../../utils/table/Table';
-import VarselDetaljer from './varselDetaljer/VarselDetaljer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Bold } from '../../../../components/common-styled-components';
-import { UnmountClosed } from 'react-collapse';
-import VisMerChevron from '../../../../components/VisMerChevron';
+import Varsel from './Varsel';
 
 interface Props {
-    varsler: Varsel[];
+    varsler: VarselModell[];
 }
 
-const Style = styled.article`
-    table {
-        width: 100%;
-        text-align: left;
-        tr {
-            display: grid;
-            grid-template-columns: 15% 50% 25% 10%;
-            grid-template-rows: auto auto;
-        }
-        td,
-        th {
-            &:nth-child(1) {
-                grid-column: 1 / 2;
-            }
-            &:nth-child(2) {
-                grid-column: 2 / 3;
-            }
-            &:nth-child(3) {
-                grid-column: 3 / 4;
-            }
-            &:nth-child(4) {
-                grid-column: 4 / 5;
-                text-align: right;
-            }
-            &:last-child {
-                grid-row: 2 / 3;
-                grid-column: 1 / end;
-            }
-            &:not(:last-child) {
-                padding: 0.7rem;
-            }
-        }
-        thead {
-            text-transform: uppercase;
-            th:nth-child(3) ~ th {
-                ${theme.visuallyHidden};
-            }
-        }
-        tbody tr {
-            ${theme.hvittPanel};
-            margin-bottom: 0.5rem;
-        }
+const HeaderStyle = styled.div`
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 55% 1fr;
+    grid-template-columns: 20% 55% 1fr;
+    > *:nth-child(1) {
+        -ms-grid-column: 1;
+    }
+    > *:nth-child(2) {
+        -ms-grid-column: 2;
+    }
+    > *:nth-child(3) {
+        -ms-grid-column: 3;
+    }
+    font-weight: bold;
+    > * {
+        padding: 0.7rem 0.7rem 0.3rem;
     }
 `;
 
-const Kommaliste = styled.ul`
-    li {
-        display: inline-block;
-    }
-    li:not(:last-child) {
-        &:after {
-            content: ',';
-            margin-right: 0.5em;
-        }
+const ListStyle = styled.ol`
+    > * {
+        margin-top: 0.5rem;
     }
 `;
-
-function lagVarselTabellRow(varsel: Varsel, open: boolean, toggleOpen: () => void) {
-    const dato = formatterDatoMedMaanedsnavn(varsel.mottattTidspunkt);
-    const varseltype = <Bold>{Varseltype[varsel.varselType]}</Bold>;
-    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
-    const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));
-    const kommunikasjonskanaler = (
-        <Kommaliste>
-            {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
-                <li key={kanal}>{kanal}</li>
-            ))}
-        </Kommaliste>
-    );
-    const detaljer = (
-        <UnmountClosed isOpened={open}>
-            <VarselDetaljer sortertMeldingsliste={sortertMeldingsliste} />
-        </UnmountClosed>
-    );
-
-    const visDetaljerKnapp = (
-        <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' detaljer'} />
-    );
-
-    return [dato, varseltype, kommunikasjonskanaler, visDetaljerKnapp, detaljer];
-}
 
 function Varsler(props: Props) {
-    const [openVarsler, setOpenVarsler] = useState<Varsel[]>([]);
-
-    const toggleOpenVarsler = (varsel: Varsel) => {
-        if (openVarsler.includes(varsel)) {
-            setOpenVarsler(openVarsler.filter(it => it != varsel));
-        } else {
-            setOpenVarsler([...openVarsler, varsel]);
-        }
-    };
-
     const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
-    const tittelRekke = ['Dato', 'Type', 'Sendt i kanal', 'Vis detaljer', 'Detaljer'].map((text, index) => (
-        <Element key={index}>{text}</Element>
-    ));
-    const tabellInnhold = sortertPåDato.map(varsel =>
-        lagVarselTabellRow(varsel, openVarsler.includes(varsel), () => toggleOpenVarsler(varsel))
-    );
-    const rowClickHandlers = sortertPåDato.map(varsel => () => toggleOpenVarsler(varsel));
-
     return (
-        <Style>
+        <article>
             <VisuallyHiddenAutoFokusHeader tittel="Varsler" />
-            <Normaltekst tag={'div'}>
-                <Table tittelRekke={tittelRekke} rows={tabellInnhold} rowsOnClickHandlers={rowClickHandlers} />
-            </Normaltekst>
-        </Style>
+            <HeaderStyle>
+                <p>Dato</p>
+                <p>Type</p>
+                <p>Kanal</p>
+            </HeaderStyle>
+            <ListStyle aria-label="Brukerens varsler">
+                {sortertPåDato.map((varsel, index) => (
+                    <Varsel key={index} varsel={varsel} />
+                ))}
+            </ListStyle>
+        </article>
     );
 }
 
