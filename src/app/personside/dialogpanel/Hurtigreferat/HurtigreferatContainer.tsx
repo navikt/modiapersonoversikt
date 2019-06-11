@@ -63,6 +63,7 @@ const temaValg: Tema[] = [
 ];
 
 function HurtigreferatContainer(props: Props) {
+    let selectRef: HTMLSelectElement | null;
     const initialTema = temaValg.find(tema => tema.kodeverk === getTemaFraCookie());
     const [open, setOpen] = useState(false);
     const [valgtTema, setTema] = useState<Tema | undefined>(initialTema);
@@ -82,6 +83,7 @@ function HurtigreferatContainer(props: Props) {
     const sendMelding = (hurtigreferat: Hurtigreferat) => {
         if (!valgtTema) {
             setTemaFeilmelding(true);
+            selectRef && selectRef.focus();
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
@@ -115,6 +117,8 @@ function HurtigreferatContainer(props: Props) {
             <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
                 <Padding>
                     <Select
+                        // @ts-ignore
+                        selectRef={r => (selectRef = r)}
                         label="Tema"
                         onChange={velgTemaHandler}
                         feil={temaFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}
