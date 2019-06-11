@@ -9,12 +9,6 @@ interface Props {
     varsler: VarselModell[];
 }
 
-export enum VarslerLabelIds {
-    Dato = 'VarselDatoLabel',
-    Type = 'VarselTypeLabel',
-    Kanal = 'VarselKanalLabel'
-}
-
 const HeaderStyle = styled.div`
     display: -ms-grid;
     display: grid;

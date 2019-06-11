@@ -26,33 +26,6 @@ npm run start
 
 `npm run build:less` trenger kun å kjøres første gang og etter endringer i less-filer og avhengingheter som dras inn via `src/index.less`
 
-### Kjøre appen lokalt for utvikling i ie11
-
-Etter create-react-app 3.0 er det litt knot å kompilere dette prosjektet lokalt for ie11 (prod-versjonen funker fint for ie11)
-
--   Legg til i `package.json`:
-
-```
-"browserslist": {
-        ...
-        "development": [
-            ...
-            "IE 11"
-        ]
-    }
-```
-
--   I `index.tsx` legger du inn disse importene som linje 1 og 2:
-
-```
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
-```
-
--   Slett mappen `node_modules/.cache`
-
-NB, ikke commit disse endringene
-
 ### Bygge og kjøre via docker
 
 ```console
