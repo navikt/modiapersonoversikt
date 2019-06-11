@@ -8,10 +8,10 @@ port: 80
 healthcheck:
   liveness:
     path: modiapersonoversikt/internal/isAlive
-    initialDelay: 20
+    initialDelay: 60
   readiness:
     path: modiapersonoversikt/internal/isReady
-    initialDelay: 20
+    initialDelay: 60
 resources:
     limits:
       cpu: 3
