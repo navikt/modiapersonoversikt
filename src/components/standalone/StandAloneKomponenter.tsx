@@ -28,6 +28,7 @@ import VarslerLamell from './VarslerLamell';
 import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
+import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 enum Komponenter {
     Visittkort,
@@ -42,7 +43,8 @@ enum Komponenter {
     Sykepenger,
     Varsler,
     Hurtigreferat,
-    Dialogpanel
+    Dialogpanel,
+    JournalforingPanel
 }
 
 const Style = styled.div`
@@ -109,6 +111,12 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return (
                 <TestProvider>
                     <DialogPanel />
+                </TestProvider>
+            );
+        case Komponenter.JournalforingPanel:
+            return (
+                <TestProvider>
+                    <JournalforingPanel />
                 </TestProvider>
             );
         default:
