@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
@@ -13,17 +13,18 @@ import {
     isPosting,
     PostResource
 } from '../../../../rest/utils/postResource';
-import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendMeldingRequest } from '../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { Select } from 'nav-frontend-skjema';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
+import Temavelger, { temaValg } from '../component/temavelger';
+import { Kodeverk } from '../../../../models/kodeverk';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -49,25 +50,13 @@ const Padding = styled.div`
     padding: 0 1rem;
 `;
 
-interface Tema {
-    kodeverk: string;
-    beskrivelse: string;
-}
-
-const temaValg: Tema[] = [
-    { beskrivelse: 'Arbeid', kodeverk: Temagruppe.Arbeid },
-    { beskrivelse: 'Familie', kodeverk: Temagruppe.Familie },
-    { beskrivelse: 'Hjelpemiddel', kodeverk: Temagruppe.Hjelpemiddel },
-    { beskrivelse: 'Pensjon', kodeverk: Temagruppe.Pensjon },
-    { beskrivelse: 'Øvrig', kodeverk: Temagruppe.Øvrig }
-];
-
 function HurtigreferatContainer(props: Props) {
-    let selectRef: HTMLSelectElement | null;
-    const initialTema = temaValg.find(tema => tema.kodeverk === getTemaFraCookie());
     const [open, setOpen] = useState(false);
-    const [valgtTema, setTema] = useState<Tema | undefined>(initialTema);
-    const [temaFeilmelding, setTemaFeilmelding] = useState(false);
+    const initialTema = temaValg.find(tema => tema.kodeRef === getTemaFraCookie());
+    const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
+    const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
+    let selectRef: HTMLSelectElement | null;
+
     const sendResource = props.sendMeldingResource;
 
     if (!isLoadedPerson(props.person)) {
@@ -85,22 +74,21 @@ function HurtigreferatContainer(props: Props) {
     }
 
     const sendMelding = (hurtigreferat: Hurtigreferat) => {
-        if (!valgtTema) {
-            setTemaFeilmelding(true);
+        if (!tema) {
+            setVisTemaFeilmelding(true);
             selectRef && selectRef.focus();
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
-            loggEvent('sendMelding', 'hurtigreferat', {}, { tema: valgtTema, tittel: hurtigreferat.tittel });
-            props.sendMelding(hurtigreferat.fritekst, valgtTema.kodeverk);
+            loggEvent('sendMelding', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
+            props.sendMelding(hurtigreferat.fritekst, tema.kodeRef);
         }
     };
 
-    const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        const tema = temaValg.find(tema => tema.kodeverk === event.target.value);
+    const setTemaHandler = (tema?: Kodeverk) => {
         setTema(tema);
-        setTemaFeilmelding(false);
-        tema && setTemaCookie(tema.kodeverk);
+        setVisTemaFeilmelding(false);
+        tema && setTemaCookie(tema.kodeRef);
     };
 
     const person = props.person.data;
@@ -124,23 +112,12 @@ function HurtigreferatContainer(props: Props) {
             <h3 className="sr-only">Send hurtigreferat</h3>
             <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
                 <Padding>
-                    <Select
-                        // @ts-ignore
-                        selectRef={r => (selectRef = r)}
-                        label="Tema"
-                        onChange={velgTemaHandler}
-                        feil={temaFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}
-                        defaultValue={valgtTema ? valgtTema.kodeverk : ''}
-                    >
-                        <option value="" disabled>
-                            Velg tema
-                        </option>
-                        {temaValg.map(valg => (
-                            <option key={valg.kodeverk} value={valg.kodeverk}>
-                                {valg.beskrivelse}
-                            </option>
-                        ))}
-                    </Select>
+                    <Temavelger
+                        selectRef={ref => (selectRef = ref)}
+                        setTema={setTemaHandler}
+                        tema={tema}
+                        visFeilmelding={visTemaFeilmelding}
+                    />
                 </Padding>
                 <ul>
                     {teksterMedBrukersNavn.map(hurtigreferat => (
