@@ -22,8 +22,13 @@ import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/per
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
+<<<<<<< HEAD
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
 import Temavelger, { temaValg } from '../component/temavelger';
+=======
+import { capitalizeName } from '../../../../utils/stringFormatting';
+import Temavelger, { temaValg } from '../component/Temavelger';
+>>>>>>> Begynnte på SendNyMelding
 import { Kodeverk } from '../../../../models/kodeverk';
 
 interface StateProps {
