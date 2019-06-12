@@ -1,19 +1,5 @@
 import { Periode } from '../periode';
 
-export interface HistoriskUtbetaling {
-    vedtak: null | Periode;
-    utbetalingsgrad: null | number;
-    utbetalingsdato: null | string;
-    nettobeløp: null | number;
-    bruttobeløp: null | number;
-    skattetrekk: null | number;
-    arbeidsgiverNavn: null | string;
-    arbeidsgiverOrgNr: null | string;
-    dagsats: null | number;
-    type: null | string;
-    trekk: null | KreditorTrekk[];
-}
-
 export interface KommendeUtbetaling {
     vedtak: null | Periode;
     utbetalingsgrad: null | number;
@@ -37,11 +23,6 @@ export interface UtbetalingPåVent {
     ferie2: null | Periode;
     sanksjon: null | Sanksjonsperiode;
     sykmeldt: null | Periode;
-}
-
-export interface KreditorTrekk {
-    kreditorsNavn: string;
-    beløp: number;
 }
 
 export interface Sanksjonsperiode {
