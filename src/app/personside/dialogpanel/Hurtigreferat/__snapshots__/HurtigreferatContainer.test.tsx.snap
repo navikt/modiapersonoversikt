@@ -137,9 +137,14 @@ exports[`viser hurtigreferat 1`] = `
   padding: 0 1rem;
 }
 
-<div
+<article
   className="c0"
 >
+  <h3
+    className="sr-only"
+  >
+    Send hurtigreferat
+  </h3>
   <div
     className="ekspanderbartPanel ekspanderbartPanel--lukket"
   >
@@ -232,11 +237,11 @@ exports[`viser hurtigreferat 1`] = `
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Generell informasjon
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -272,7 +277,7 @@ exports[`viser hurtigreferat 1`] = `
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -294,7 +299,7 @@ exports[`viser hurtigreferat 1`] = `
                   >
                     Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -304,17 +309,23 @@ exports[`viser hurtigreferat 1`] = `
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Generell informasjon
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Veiledet www.nav.no
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -350,7 +361,7 @@ exports[`viser hurtigreferat 1`] = `
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -372,7 +383,7 @@ exports[`viser hurtigreferat 1`] = `
                   >
                     Aremark Testfamilien er blitt veiledet i bruk av www.nav.no
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -382,17 +393,23 @@ exports[`viser hurtigreferat 1`] = `
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Veiledet www.nav.no
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Utbetaling
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -428,7 +445,7 @@ exports[`viser hurtigreferat 1`] = `
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -450,7 +467,7 @@ exports[`viser hurtigreferat 1`] = `
                   >
                     Aremark Testfamilien har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -460,17 +477,23 @@ exports[`viser hurtigreferat 1`] = `
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Utbetaling
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Skatt
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -506,7 +529,7 @@ exports[`viser hurtigreferat 1`] = `
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -532,7 +555,7 @@ Du har fått informasjon om at:
 - hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
 Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skatt
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -542,17 +565,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Skatt
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Søknad
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -588,7 +617,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -610,7 +639,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien har fått veiledning i å fylle ut søknaden på www.nav.no
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -620,17 +649,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Søknad
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Saksbehandlingstid
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -666,7 +701,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -688,7 +723,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -698,17 +733,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Saksbehandlingstid
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Elektronisk innsending
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -744,7 +785,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -766,7 +807,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -776,17 +817,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Elektronisk innsending
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Vedtak
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -822,7 +869,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -844,7 +891,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien har fått veiledning i vedtaket sitt.
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -854,17 +901,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Vedtak
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Ubesvart anrop
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -900,7 +953,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -922,7 +975,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -932,17 +985,23 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Ubesvart anrop
+              </span>
             </button>
           </div>
         </li>
         <li
           className="c2"
         >
-          <p
+          <h4
             className="typo-element"
           >
             Tekniske problemer
-          </p>
+          </h4>
           <div
             className="c3"
           >
@@ -978,7 +1037,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <div
                 className="content c5"
               >
-                <div
+                <article
                   className="c6"
                 >
                   <p
@@ -1000,7 +1059,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   >
                     Aremark Testfamilien har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
                   </p>
-                </div>
+                </article>
               </div>
             </div>
             <button
@@ -1010,11 +1069,17 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               type="submit"
             >
               Send
+              <span
+                className="sr-only"
+              >
+                 hurtigreferat 
+                Tekniske problemer
+              </span>
             </button>
           </div>
         </li>
       </ul>
     </article>
   </div>
-</div>
+</article>
 `;

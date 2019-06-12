@@ -49,7 +49,13 @@ function UtførteUtbetalinger(props: Props) {
     const hentAlleUtbetalingerKnapp = (
         <FlexCenter>
             <Knapp
-                onClick={props.hentToÅrGamleUtbetalinger}
+                className={viserToÅrMedUtbetalinger ? 'sr-only' : undefined}
+                aria-disabled={viserToÅrMedUtbetalinger}
+                onClick={
+                    props.knappStatus === KnappStatus.Viser90DagerMedUtbetalinger
+                        ? props.hentToÅrGamleUtbetalinger
+                        : () => null
+                }
                 spinner={props.knappStatus === KnappStatus.Henter2årMedUtbetalinger}
             >
                 Hent 2 år med utførte utbetalinger
@@ -65,7 +71,7 @@ function UtførteUtbetalinger(props: Props) {
             ) : (
                 <AlertStripeInfo>Viser utførte utbetalinger 90 dager tilbake i tid</AlertStripeInfo>
             )}
-            {!viserToÅrMedUtbetalinger && hentAlleUtbetalingerKnapp}
+            {hentAlleUtbetalingerKnapp}
         </Style>
     );
 }

@@ -42,6 +42,7 @@ const Style = styled.section`
 `;
 
 function UtførteUtbetalingerContainer(props: Props) {
+    const knappStatus = getKnappStatus(props.utførteUtbetalinger);
     return (
         <ErrorBoundary boundaryName="Utførte utbetalinger">
             <Style>
@@ -54,7 +55,7 @@ function UtførteUtbetalingerContainer(props: Props) {
                         <UtførteUtbetalinger
                             utbetalinger={filtrerOgSorterUtbetalinger(data.utbetalinger, props.ytelseType)}
                             hentToÅrGamleUtbetalinger={props.hentToÅrGamleUtbetalinger}
-                            knappStatus={getKnappStatus(props.utførteUtbetalinger)}
+                            knappStatus={knappStatus}
                         />
                     )}
                 </RestResourceConsumer>

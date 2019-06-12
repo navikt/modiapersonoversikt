@@ -14,6 +14,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { resetSendMeldingActionCreator } from '../../../redux/restReducers/sendMelding';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import TraadVisningContainer from '../infotabs/meldinger/traadvisning/TraadVisningContainer';
+import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -27,7 +28,7 @@ type Props = StateProps & DispatchProps;
 
 const border = 'rgba(0, 0, 0, 0.1) 1px solid';
 
-const DialogPanelWrapper = styled.div`
+const DialogPanelWrapper = styled.article`
     border-top: ${border};
     border-bottom: ${border};
     flex-grow: 1;
@@ -40,6 +41,7 @@ function Dialogpanel(props: Props) {
     if (isFinishedPosting(props.sendMeldingResource)) {
         return (
             <>
+                <VisuallyHiddenAutoFokusHeader tittel="Melding sendt" />
                 <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
                 <Preview fritekst={props.sendMeldingResource.payload.fritekst} />
                 <KnappBase type="standard" onClick={() => props.resetSendMeldingResource()}>
@@ -57,8 +59,8 @@ function Dialogpanel(props: Props) {
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
-            <HurtigReferatContainer />
             <Undertittel>Dialogpanel</Undertittel>
+            <HurtigReferatContainer />
             <TraadVisningContainer />
         </ErrorBoundary>
     );

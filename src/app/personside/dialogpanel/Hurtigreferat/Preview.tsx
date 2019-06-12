@@ -6,7 +6,7 @@ import { formatterDatoTid } from '../../../../utils/dateUtils';
 import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
 import theme from '../../../../styles/personOversiktTheme';
 
-const PreviewStyle = styled.div`
+const PreviewStyle = styled.article`
     padding: 1rem;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.5);
