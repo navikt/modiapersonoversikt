@@ -109,6 +109,14 @@ export enum Kjønn {
     Diskresjonskode = 'D'
 }
 
+export function erMann(person: Person) {
+    return person.kjønn === Kjønn.Mann;
+}
+
+export function erKvinne(person: Person) {
+    return person.kjønn === Kjønn.Kvinne;
+}
+
 export enum BegrensetTilgangTyper {
     Kode6 = 'sikkerhetsbegrensning.diskresjonskode6',
     Kode7 = 'sikkerhetsbegrensning.diskresjonskode7',
