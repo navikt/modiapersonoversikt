@@ -1,5 +1,5 @@
 import { Periode } from '../periode';
-import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
+import { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
 
 export interface SykepengerResponse {
@@ -17,7 +17,6 @@ export interface Sykepenger {
     unntakAktivitet: null | string;
     forsikring: null | Forsikring;
     sykmeldinger: Sykmelding[];
-    historiskeUtbetalinger: HistoriskUtbetaling[];
     kommendeUtbetalinger: KommendeUtbetaling[];
     utbetalingerPåVent: UtbetalingPåVent[];
     bruker: string;
