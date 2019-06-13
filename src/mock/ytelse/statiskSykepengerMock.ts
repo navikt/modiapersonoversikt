@@ -53,7 +53,6 @@ export const statiskSykepengerMock: Sykepenger = {
         forsikret: null
     },
     sykmeldinger: [sykmelding, sykmelding],
-    historiskeUtbetalinger: [],
     kommendeUtbetalinger: [statiskKommendeUtbetaling, statiskKommendeUtbetaling],
     utbetalingerPåVent: [statiskUtbetalingPåVentMock, statiskUtbetalingPåVentMock],
     bruker: '10108000398',

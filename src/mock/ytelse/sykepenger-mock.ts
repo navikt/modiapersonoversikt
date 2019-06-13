@@ -13,8 +13,8 @@ import {
 } from '../../models/ytelse/sykepenger';
 import { getPeriode } from '../person/periodeMock';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
-import { getHistoriskUtbetaling, getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
-import { HistoriskUtbetaling, KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
+import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
+import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { aremark } from '../person/aremark';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { statiskSykepengerMock } from './statiskSykepengerMock';
@@ -52,7 +52,6 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         unntakAktivitet: navfaker.random.vektetSjanse(0.3) ? 'Untatt aktivitet' : null,
         forsikring: navfaker.random.vektetSjanse(0.3) ? getForsikring() : null,
         sykmeldinger: fyllRandomListe<Sykmelding>(() => getMockSykmelding(), 3),
-        historiskeUtbetalinger: fyllRandomListe<HistoriskUtbetaling>(() => getHistoriskUtbetaling(faker), 5, true),
         kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 3, true),
         utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,

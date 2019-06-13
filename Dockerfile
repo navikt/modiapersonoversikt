@@ -5,6 +5,8 @@ ADD / /source
 WORKDIR /source
 RUN npm ci
 ENV NODE_ENV=production
+ENV REACT_APP_MODIA_URL=/modiabrukerdialog/rest
+ENV REACT_APP_HODE_URL=/internarbeidsflatedecorator/js/head.min.js
 RUN npm run build
 
 FROM navikt/pus-fss-frontend
