@@ -31,44 +31,37 @@ const OppgaveknapperStyle = styled.div`
     }
 `;
 
+enum FunksjonVindu {
+    JOURNALFORING,
+    OPPGAVE,
+    MERK
+}
+
 function Funksjoner(props: Props) {
-    const [visJournalforing, settVisJournalforing] = React.useState(false);
-    const [visOppgave, settVisOppgave] = React.useState(false);
-    const [visMerk, settVisMerk] = React.useState(false);
+    const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
 
     if (!props.valgtTraad) {
         return null;
     }
 
-    function journalforingKlikk() {
-        settVisJournalforing(!visJournalforing);
-        settVisOppgave(false);
-        settVisMerk(false);
-    }
+    const setResetVindu = (klikketVindu: FunksjonVindu) => () =>
+        aktivtVindu === klikketVindu ? settAktivtVindu(null) : settAktivtVindu(klikketVindu);
 
-    function oppgaveKlikk() {
-        settVisOppgave(!visOppgave);
-        settVisJournalforing(false);
-        settVisMerk(false);
-    }
-
-    function merkKlikk() {
-        settVisMerk(!visMerk);
-        settVisJournalforing(false);
-        settVisOppgave(false);
-    }
+    const visJournalforing = aktivtVindu === FunksjonVindu.JOURNALFORING;
+    const visOppgave = aktivtVindu === FunksjonVindu.OPPGAVE;
+    const visMerk = aktivtVindu === FunksjonVindu.MERK;
 
     return (
         <>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
-                    <LenkeKnapp onClick={journalforingKlikk} underline={visJournalforing}>
+                    <LenkeKnapp onClick={setResetVindu(FunksjonVindu.JOURNALFORING)} underline={visJournalforing}>
                         Journalfør
                     </LenkeKnapp>
-                    <LenkeKnapp onClick={oppgaveKlikk} underline={visOppgave}>
+                    <LenkeKnapp onClick={setResetVindu(FunksjonVindu.OPPGAVE)} underline={visOppgave}>
                         Lag oppgave
                     </LenkeKnapp>
-                    <LenkeKnapp onClick={merkKlikk} underline={visMerk}>
+                    <LenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} underline={visMerk}>
                         Merk
                     </LenkeKnapp>
                 </OppgaveknapperStyle>
@@ -78,7 +71,7 @@ function Funksjoner(props: Props) {
                 <JournalforingPanel />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => settVisOppgave(false)} />
+                <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel />
