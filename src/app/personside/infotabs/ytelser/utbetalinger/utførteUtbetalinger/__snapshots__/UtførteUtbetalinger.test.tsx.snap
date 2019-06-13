@@ -254,6 +254,7 @@ exports[`Kommende utbetalinger matcher snapshot 1`] = `
     className="c3"
   >
     <button
+      aria-disabled={false}
       className="knapp knapp--standard"
       disabled={false}
       onClick={[Function]}

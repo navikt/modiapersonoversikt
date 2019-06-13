@@ -38,14 +38,24 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: .8rem;
 }
 
-<div
+<article
   aria-label="Dialogpanel"
   className="c0"
   role="region"
 >
-  <div
+  <h2
+    className="typo-undertittel"
+  >
+    Dialogpanel
+  </h2>
+  <article
     className="c1"
   >
+    <h3
+      className="sr-only"
+    >
+      Send hurtigreferat
+    </h3>
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
     >
@@ -70,12 +80,7 @@ exports[`viser dialogpanel 1`] = `
         </div>
       </button>
     </div>
-  </div>
-  <h2
-    className="typo-undertittel"
-  >
-    Dialogpanel
-  </h2>
+  </article>
   <div
     className="alertstripe alertstripe--info"
   >
@@ -114,5 +119,5 @@ exports[`viser dialogpanel 1`] = `
       Ingen tråd er valgt
     </div>
   </div>
-</div>
+</article>
 `;
