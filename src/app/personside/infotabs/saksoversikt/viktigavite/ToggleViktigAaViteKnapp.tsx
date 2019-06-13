@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { AnyAction } from 'redux';
+import { connect } from 'react-redux';
 import { setViktigÅViteÅpen } from '../../../../../redux/saksoversikt/actions';
 import { AppState } from '../../../../../redux/reducers';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface StateProps {
     valgtSakstema?: Sakstema;
@@ -42,7 +42,7 @@ function mapStateToProps(state: AppState): StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<AnyAction>): DispatchProps {
+function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         setÅpen: (åpen: boolean) => dispatch(setViktigÅViteÅpen(åpen))
     };
