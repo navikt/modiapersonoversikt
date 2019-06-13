@@ -39,5 +39,7 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
         return <>{children}</>;
     }
 
+    // TODO: Kan du se på denne jørund?
+    // eslint-disable-next-line jsx-a11y/alt-text
     return <object data={bloburl} {...rest} />;
 }

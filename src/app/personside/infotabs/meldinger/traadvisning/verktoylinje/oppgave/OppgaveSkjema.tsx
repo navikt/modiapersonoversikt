@@ -17,7 +17,7 @@ const ValideringsfeilStyle = styled.div`
 `;
 
 function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
-    const tommeKomponenter = Array();
+    const tommeKomponenter = [];
 
     if (!props.state.valgtTema) {
         tommeKomponenter.push('Tema');

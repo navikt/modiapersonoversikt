@@ -11,7 +11,7 @@ export interface Adopsjon extends Foreldrepengerettighet {
 }
 
 export function isAdopsjon(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Adopsjon {
-    return !!(<Adopsjon>foreldrepenger).omsorgsovertakelse;
+    return !!(foreldrepenger as Adopsjon).omsorgsovertakelse;
 }
 
 export interface Fødsel extends Foreldrepengerettighet {
@@ -19,7 +19,7 @@ export interface Fødsel extends Foreldrepengerettighet {
 }
 
 export function isFødsel(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Fødsel {
-    return !!(<Fødsel>foreldrepenger).termin;
+    return !!(foreldrepenger as Fødsel).termin;
 }
 
 export interface Foreldrepengerettighet {

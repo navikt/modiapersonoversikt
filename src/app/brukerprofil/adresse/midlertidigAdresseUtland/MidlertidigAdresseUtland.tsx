@@ -77,10 +77,6 @@ function onLandChanged(input: Kodeverk, props: Props) {
 }
 
 class MidlertidigAdresseUtland extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         const utlandsadresseState = this.props.midlertidigAdresseUtland.value;
         const utlandsadresseValidering = this.props.midlertidigAdresseUtland.validering;

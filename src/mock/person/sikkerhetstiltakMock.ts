@@ -12,7 +12,7 @@ const fysiskUtestenkt: Sikkerhetstiltak = {
 const fysiskOgTelefonUtestenkt: Sikkerhetstiltak = {
     sikkerhetstiltakskode: SikkerhetstiltakTyper.FysiskOgTelefonUtestengelse,
     sikkerhetstiltaksbeskrivelse:
-        'Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel' + ' og språk.'
+        'Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.'
 };
 
 const toAnsatte: Sikkerhetstiltak = {
