@@ -22,7 +22,10 @@ export interface PostResource<T> {
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
         setError: (e: Error) => (dispatch: AsyncDispatch) => void;
-        post: (payload: T, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
+        post: (
+            payload: T,
+            callback?: (response: any) => void
+        ) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
     };
 }
 
@@ -91,11 +94,14 @@ function createPostResourceReducerAndActions<T extends object>(resourceNavn: str
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
             setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
-            post: (payload: T, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => {
+            post: (payload: T, callback?: (response: any) => void) => (
+                dispatch: AsyncDispatch,
+                getState: () => AppState
+            ) => {
                 dispatch({ type: actionNames.POSTING, payload: payload });
                 post(getPostUri(getState()), payload)
+                    .then((response: any) => callback && callback(response))
                     .then(() => dispatch({ type: actionNames.FINISHED }))
-                    .then(() => callback && callback())
                     .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }
