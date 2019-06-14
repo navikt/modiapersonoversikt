@@ -2,13 +2,12 @@ import * as React from 'react';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Select } from 'nav-frontend-skjema';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 
 interface Props {
     setTema: (tema?: Kodeverk) => void;
     tema?: Kodeverk;
     visFeilmelding?: boolean;
-    selectRef?: (ref: HTMLSelectElement) => void;
 }
 
 export const temaValg: Kodeverk[] = [
@@ -20,6 +19,14 @@ export const temaValg: Kodeverk[] = [
 ];
 
 function Temavelger(props: Props) {
+    let selectRef: HTMLSelectElement | null = null;
+
+    useEffect(() => {
+        if (props.visFeilmelding) {
+            selectRef && selectRef.focus();
+        }
+    }, [selectRef, props.visFeilmelding]);
+
     const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         const tema = temaValg.find(tema => tema.kodeRef === event.target.value);
         props.setTema(tema);
@@ -27,7 +34,7 @@ function Temavelger(props: Props) {
     return (
         <Select
             // @ts-ignore
-            selectRef={props.selectRef}
+            selectRef={ref => (selectRef = ref)}
             label="Tema"
             onChange={velgTemaHandler}
             feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}

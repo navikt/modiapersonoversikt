@@ -189,10 +189,10 @@ exports[`viser hurtigreferat 1`] = `
           >
             <select
               className="skjemaelement__input"
-              defaultValue=""
               disabled={false}
               id="Helt tilfeldig ID"
               onChange={[Function]}
+              value=""
             >
               <option
                 disabled={true}

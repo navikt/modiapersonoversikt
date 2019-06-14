@@ -22,13 +22,8 @@ import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/per
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
-<<<<<<< HEAD
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
-import Temavelger, { temaValg } from '../component/temavelger';
-=======
-import { capitalizeName } from '../../../../utils/stringFormatting';
 import Temavelger, { temaValg } from '../component/Temavelger';
->>>>>>> Begynnte på SendNyMelding
 import { Kodeverk } from '../../../../models/kodeverk';
 
 interface StateProps {
@@ -60,7 +55,6 @@ function HurtigreferatContainer(props: Props) {
     const initialTema = temaValg.find(tema => tema.kodeRef === getTemaFraCookie());
     const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
-    let selectRef: HTMLSelectElement | null;
 
     const sendResource = props.sendMeldingResource;
 
@@ -81,7 +75,6 @@ function HurtigreferatContainer(props: Props) {
     const sendMelding = (hurtigreferat: Hurtigreferat) => {
         if (!tema) {
             setVisTemaFeilmelding(true);
-            selectRef && selectRef.focus();
             return;
         }
         if (isNotStartedPosting(props.sendMeldingResource)) {
@@ -117,12 +110,7 @@ function HurtigreferatContainer(props: Props) {
             <h3 className="sr-only">Send hurtigreferat</h3>
             <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
                 <Padding>
-                    <Temavelger
-                        selectRef={ref => (selectRef = ref)}
-                        setTema={setTemaHandler}
-                        tema={tema}
-                        visFeilmelding={visTemaFeilmelding}
-                    />
+                    <Temavelger setTema={setTemaHandler} tema={tema} visFeilmelding={visTemaFeilmelding} />
                 </Padding>
                 <ul>
                     {teksterMedBrukersNavn.map(hurtigreferat => (
