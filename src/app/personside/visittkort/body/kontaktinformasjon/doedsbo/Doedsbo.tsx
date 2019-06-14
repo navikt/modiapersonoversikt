@@ -34,8 +34,8 @@ function KontaktinformasjonDoedsbo(props: Props) {
 
     return (
         <>
-            {doedsboListe.map(doedsbo => (
-                <VisittkortElement beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+            {doedsboListe.map((doedsbo, index) => (
+                <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
                     <Adressatinfo adressat={doedsbo.adressat} />
                     <AdresseStyle>
                         <Adresseinfo doedsbo={doedsbo} />

@@ -31,7 +31,9 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
         return () => {
             window.URL.revokeObjectURL(bloburl);
         };
-    }, [url, bloburl, onError]);
+        // TODO: Kan du se på denne jørund?
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [url]);
 
     if (bloburl === '') {
         return <NavFrontendSpinner />;
