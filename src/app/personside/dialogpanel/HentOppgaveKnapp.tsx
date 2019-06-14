@@ -115,7 +115,7 @@ class HentOppgaveKnapp extends React.Component<Props, State> {
                 <KnappLayout>
                     <Select
                         label="Hent oppgave fra temagruppe"
-                        value={valgtTemagruppe}
+                        value={valgtTemagruppe || ''}
                         onChange={this.onTemagruppeChange}
                         feil={
                             this.state.temagruppeFeilmelding

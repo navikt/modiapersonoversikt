@@ -16,14 +16,14 @@ import {
 import { Meldingstype, SendMeldingRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
-import { PersonRespons } from '../../../../models/person/person';
+import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { Select } from 'nav-frontend-skjema';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
-import { capitalizeName } from '../../../../utils/stringFormatting';
+import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -70,6 +70,10 @@ function HurtigreferatContainer(props: Props) {
     const [temaFeilmelding, setTemaFeilmelding] = useState(false);
     const sendResource = props.sendMeldingResource;
 
+    if (!isLoadedPerson(props.person)) {
+        return <AlertStripeAdvarsel>Ingen person i kontekst</AlertStripeAdvarsel>;
+    }
+
     if (isFinishedPosting(sendResource)) {
         return <AlertStripeSuksess>Meldingen ble sendt.</AlertStripeSuksess>;
     }
@@ -99,11 +103,15 @@ function HurtigreferatContainer(props: Props) {
         tema && setTemaCookie(tema.kodeverk);
     };
 
-    const navn = isLoadedPerson(props.person) ? capitalizeName(props.person.data.navn.sammensatt) : 'Bruker';
+    const person = props.person.data;
+    const navn = capitalizeName(getNavn(person.navn));
+    const pronomen = erMann(person) ? 'han' : erKvinne(person) ? 'hun' : 'bruker';
 
     const teksterMedBrukersNavn: Hurtigreferat[] = tekster.map((tekst: Hurtigreferat) => ({
         ...tekst,
-        fritekst: tekst.fritekst.replace('[bruker.navnsammensatt]', navn)
+        fritekst: capitalizeAfterPunctuation(
+            tekst.fritekst.replace(/\[bruker\.navn\]/g, navn).replace(/\[bruker\.pronomen\]/g, pronomen)
+        )
     }));
 
     const onClickHandler = () => {
