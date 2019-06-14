@@ -16,10 +16,13 @@ import navfaker from 'nav-faker/dist/index';
 import { Kodeverk } from '../../models/kodeverk';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getMockNavn } from './personMock';
+import md5 from 'md5';
 
 export function mockPersonsokResponse(request: PersonsokRequest): PersonsokResponse[] {
-    faker.seed(Number(aremark.fødselsnummer));
-    navfaker.seed(aremark.fødselsnummer);
+    navfaker.seed(md5(JSON.stringify(request)));
+    const seednr = navfaker.personIdentifikator.fødselsnummer();
+    faker.seed(Number(seednr));
+    navfaker.seed(seednr);
 
     return fyllRandomListe(() => getPersonsokResponse(), 10);
 }
