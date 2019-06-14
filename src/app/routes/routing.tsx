@@ -36,7 +36,7 @@ function Routing(props: Props) {
                     />
                 )}
             />
-            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={Brukerprofilside} />
+            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
             <Route component={Startbilde} />
         </Switch>
     );
