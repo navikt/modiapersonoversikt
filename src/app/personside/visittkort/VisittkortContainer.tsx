@@ -40,7 +40,7 @@ class VisittkortContainer extends React.PureComponent<Props> {
     render() {
         const { person, visittkortErApent: erApnet, toggleVisittkort: toggle } = this.props;
         const visittkortHotkeys = erNyePersonoversikten() ? (
-            <HandleVisittkortHotkeys fødselsnummer={person.fødselsnummer} />
+            <HandleVisittkortHotkeys />
         ) : (
             <HandleVisittkortHotkeysGamlemodia />
         );

@@ -4,18 +4,12 @@ import IfFeatureToggleOff from './IfFeatureToggleOff';
 import LazySpinner from '../LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
-import FeatureToggle from './FeatureToggle';
 import { getTestStore } from '../../test/testStore';
 import { featureToggleActionNames } from '../../redux/restReducers/featureToggles';
 import { FeatureToggles } from './toggleIDs';
 
 const toggleId = FeatureToggles.Tooltip;
 const testStore = getTestStore();
-
-beforeEach(() => {
-    FeatureToggle.prototype.render = FeatureToggle.prototype.actualRender;
-    FeatureToggle.prototype.componentDidMount = () => null;
-});
 
 function setToggleTo(value: boolean | undefined) {
     testStore.dispatch({ type: featureToggleActionNames.FINISHED, data: { [toggleId]: value } });
