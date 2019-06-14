@@ -2,26 +2,26 @@ import { Kodeverk } from '../kodeverk';
 import { Navn } from './person';
 
 export interface PersonsokResponse {
-    diskresjonskode?: Kodeverk;
-    postadresse?: UstrukturertAdresse;
-    bostedsadresse?: StrukturertAdresse;
+    diskresjonskode?: Kodeverk | null;
+    postadresse: UstrukturertAdresse | null;
+    bostedsadresse: StrukturertAdresse | null;
     kjonn: Kodeverk;
     navn: Navn;
     status: Kodeverk;
     ident: NorskIdent;
-    brukerinfo?: Brukerinfo;
+    brukerinfo: Brukerinfo | null;
 }
 
 export interface UstrukturertAdresse {
-    landkode?: Kodeverk;
-    adresselinje1?: string;
-    adresselinje2?: string;
-    adresselinje3?: string;
-    adresselinje4?: string;
+    landkode: Kodeverk | null;
+    adresselinje1: string | null;
+    adresselinje2: string | null;
+    adresselinje3: string | null;
+    adresselinje4: string | null;
 }
 
 export interface StrukturertAdresse {
-    landkode?: Kodeverk;
+    landkode: Kodeverk | null;
     tilleggsadresse: string;
     tilleggsadresseType: string;
 }
@@ -34,7 +34,7 @@ export interface NorskIdent {
 export interface Brukerinfo {
     ansvarligEnhet: string;
     gjeldendePostadresseType: Kodeverk;
-    midlertidigPostadresse?: MidlertidigAdresse;
+    midlertidigPostadresse: MidlertidigAdresse | null;
 }
 
 export interface MidlertidigAdresse {
