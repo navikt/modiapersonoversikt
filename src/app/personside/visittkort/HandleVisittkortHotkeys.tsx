@@ -29,7 +29,7 @@ function HandleVisittkortHotkeys(props: Props) {
 
         window.addEventListener('keydown', handleVisittkortHotkeys);
         return () => window.removeEventListener('keydown', handleVisittkortHotkeys);
-    }, []);
+    }, [dispatch, fødselsnummer, props.history]);
 
     return null;
 }

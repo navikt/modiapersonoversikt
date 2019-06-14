@@ -31,9 +31,9 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
         return () => {
             window.URL.revokeObjectURL(bloburl);
         };
-    }, [url]);
+    }, [url, bloburl, onError]);
 
-    if (bloburl == '') {
+    if (bloburl === '') {
         return <NavFrontendSpinner />;
     } else if (isError) {
         return <>{children}</>;

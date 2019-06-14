@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { EffectCallback, useEffect } from 'react';
 import { loggError } from './frontendLogger';
 import { RefObject } from 'react';
 import { useCallback } from 'react';
@@ -13,7 +13,11 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
                 loggError(new Error('Kunne ikke sette fokus'));
             }
         }
-    }, [ref.current]);
+    }, [ref]);
+}
+
+export function useOnMount(effect: EffectCallback) {
+    useEffect(effect, []);
 }
 
 export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
