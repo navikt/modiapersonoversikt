@@ -6,14 +6,6 @@ import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalin
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 
-// Mock react collapse sin UnmountClosed
-jest.mock('react-collapse', () => {
-    return {
-        // @ts-ignore
-        UnmountClosed: props => props.children
-    };
-});
-
 const periode: UtbetalingerPeriode = {
     startDato: '17-05-1905',
     sluttDato: '17-05-1905'

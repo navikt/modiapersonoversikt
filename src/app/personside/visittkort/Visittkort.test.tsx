@@ -5,17 +5,6 @@ import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../test/testStore';
 import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
 
-test('viser visittkortheader når visittkort først rendres', () => {
-    const visittkort = mount(
-        <TestProvider>
-            <Visittkort />
-        </TestProvider>
-    );
-
-    expect(visittkort.find('section[aria-label="Visittkort-hode"]')).toHaveLength(1);
-    expect(visittkort.find('section[aria-label="Visittkortdetaljer"]')).toHaveLength(0);
-});
-
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
     const visittkort = mount(
         <TestProvider>
