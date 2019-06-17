@@ -126,7 +126,7 @@ function getAremarkVerge() {
                     mellomnavn: '',
                     sammensatt: ' Solli Simen'
                 },
-                embete: lagKodeverksverdi('AAA', 'Fylkesmannen i ' + 'Østfold')
+                embete: lagKodeverksverdi('AAA', 'Fylkesmannen i Østfold')
             }
         ]
     };

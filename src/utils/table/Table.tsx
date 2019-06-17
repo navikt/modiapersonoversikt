@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */ // Bruker flex til å style tabell. Da trenger den eksplisitte roller for å funke med skjermleser
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { loggError } from '../frontendLogger';
@@ -16,7 +17,7 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
             loggError(new Error('Ulik lengde på tittelRekke og innholdsrekke, dette bør du nok se på'));
         }
     });
-    if (rowsOnClickHandlers && rowsOnClickHandlers.length != rows.length) {
+    if (rowsOnClickHandlers && rowsOnClickHandlers.length !== rows.length) {
         loggError(new Error('Ulik lengde på liste med onClickHandlers og antall rows'));
     }
     return (

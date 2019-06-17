@@ -1,31 +1,15 @@
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { useDispatch } from 'react-redux';
 
-interface DispatchProps {
-    hentFeatureToggles: () => void;
-}
+function FetchFeatureToggles() {
+    const dispatch = useDispatch();
 
-type Props = DispatchProps;
-
-function FetchFeatureToggles(props: Props) {
     useEffect(() => {
-        props.hentFeatureToggles();
-    }, []);
+        dispatch(hentFeatureToggles());
+    }, [dispatch]);
 
     return null;
 }
 
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentFeatureToggles: () => {
-            dispatch(hentFeatureToggles());
-        }
-    };
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(FetchFeatureToggles);
+export default FetchFeatureToggles;

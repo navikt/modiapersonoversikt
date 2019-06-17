@@ -12,6 +12,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     href="https://www-q1.nav.no/no/Person/Arbeid/Dagpenger+og+stonader+ved+arbeidsloshet/
                 Informasjon+om+meldekort"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om meldekort
                 </a>
@@ -25,6 +26,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     href="https://www-q1.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+utlandet/Nyttig+a+vite/
                 Du+har+plikt+til+%C3%A5+gi+NAV+riktige+opplysninger.351762.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     straks melde fra til NAV.
                 </a>
@@ -37,6 +39,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                 <a
                     href="https://www-q1.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om jobbsøkertips
                 </a>
@@ -50,6 +53,7 @@ export function ViktigÅViteINDInnhold(): JSX.Element {
                     href="https://www-q1.nav.no/no/Person/Arbeid/Dagpenger+og+stonader+ved+arbeidsloshet/
                 St%C3%B8nader+ved+tiltak.1073747255.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om stønader ved tiltak
                 </a>

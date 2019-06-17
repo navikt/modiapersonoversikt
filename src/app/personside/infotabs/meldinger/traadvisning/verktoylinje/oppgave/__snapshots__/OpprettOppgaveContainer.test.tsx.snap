@@ -320,7 +320,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         <button
           className="knapp knapp--hoved"
           disabled={false}
-          role="submit"
           type="submit"
         >
           Send

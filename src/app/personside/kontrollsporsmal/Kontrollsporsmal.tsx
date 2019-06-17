@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
@@ -13,6 +12,7 @@ import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { useOnMount } from '../../../utils/customHooks';
 
 interface StateProps {
     visKontrollSpørsmål: boolean;
@@ -46,11 +46,11 @@ const KontrollSporsmalStyling = styled.section`
 `;
 
 function Kontrollsporsmal(props: Props) {
-    useEffect(() => {
+    useOnMount(() => {
         if (kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
             props.lukkKontrollSpørsmål();
         }
-    }, [props.fnr]);
+    });
 
     if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar() || !erKontaktsenter()) {
         return null;

@@ -32,10 +32,6 @@ const NavKontaktinformasjonWrapper = styled.div`
 `;
 
 class KontaktinformasjonFormContainer extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     componentDidMount() {
         if (isNotStarted(this.props.retningsnummerResource)) {
             this.props.hentRetningsnummer();

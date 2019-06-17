@@ -31,13 +31,17 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
         return () => {
             window.URL.revokeObjectURL(bloburl);
         };
+        // TODO: Kan du se på denne jørund?
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
-    if (bloburl == '') {
+    if (bloburl === '') {
         return <NavFrontendSpinner />;
     } else if (isError) {
         return <>{children}</>;
     }
 
+    // TODO: Kan du se på denne jørund?
+    // eslint-disable-next-line jsx-a11y/alt-text
     return <object data={bloburl} {...rest} />;
 }
