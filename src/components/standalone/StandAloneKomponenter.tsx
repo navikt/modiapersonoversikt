@@ -28,6 +28,7 @@ import VarslerLamell from './VarslerLamell';
 import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
+import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
 
 enum Komponenter {
     Visittkort,
@@ -42,7 +43,8 @@ enum Komponenter {
     Sykepenger,
     Varsler,
     Hurtigreferat,
-    Dialogpanel
+    Dialogpanel,
+    Personsok
 }
 
 const Style = styled.div`
@@ -111,6 +113,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <DialogPanel />
                 </TestProvider>
             );
+        case Komponenter.Personsok:
+            return <PersonsokStandAloneKomponent />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

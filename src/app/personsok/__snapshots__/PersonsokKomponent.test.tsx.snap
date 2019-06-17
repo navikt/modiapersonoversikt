@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser dialogpanel 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <button
+      className="knapp knapp--hoved"
+      disabled={false}
+      role="submit"
+      type="submit"
+    >
+      Send
+    </button>
+  </form>
+  <div />
+</div>
+`;

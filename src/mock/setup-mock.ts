@@ -29,6 +29,7 @@ import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
+import { mockStaticPersonsokResponse } from './person/personsokMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -201,6 +202,13 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
             },
             (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
         )
+    );
+}
+
+function setupPersonsokMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/personsok',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => mockStaticPersonsokResponse())
     );
 }
 
@@ -410,4 +418,5 @@ export function setupMock() {
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
+    setupPersonsokMock(mock);
 }

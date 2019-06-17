@@ -31,6 +31,7 @@ import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
+import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -55,6 +56,7 @@ import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
+import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -89,6 +91,7 @@ export interface RestEndepunkter {
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendMelding: PostResource<SendMeldingRequest>;
+    personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -123,5 +126,6 @@ export default combineReducers<RestEndepunkter>({
     tråderOgMeldinger: meldingerReducer,
     oppgaveGsakTema: oppgaveGsakTemaReducer,
     sendMelding: sendMelding,
-    opprettOppgave: opprettOppgave
+    opprettOppgave: opprettOppgave,
+    personsok: personsok
 });
