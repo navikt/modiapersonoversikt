@@ -17,47 +17,56 @@ export enum PostStatus {
     FAIL = 'FAIL'
 }
 
-export interface PostResource<T> {
+export interface PostResource<Request, Response = any> {
     status: PostStatus;
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
         setError: (e: Error) => (dispatch: AsyncDispatch) => void;
-        post: (payload: T, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
+        post: (payload: Request, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
     };
 }
 
-export interface NotStartedPostResource<T> extends PostResource<T> {
+export interface NotStartedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.NOT_STARTED;
 }
 
-export interface PostingPostResource<T> extends PostResource<T> {
+export interface PostingPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.POSTING;
-    payload: T;
+    payload: Request;
 }
 
-export interface FinishedPostResource<T> extends PostResource<T> {
+export interface FinishedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.SUCCESS;
-    payload: T;
+    response: Response;
+    payload: Request;
 }
 
-export interface FailedPostResource<T> extends PostResource<T> {
+export interface FailedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.FAIL;
     error: Error;
 }
 
-export function isNotStartedPosting<T>(postResource: PostResource<T>): postResource is NotStartedPostResource<T> {
+export function isNotStartedPosting<Request, Response>(
+    postResource: PostResource<Request, Response>
+): postResource is NotStartedPostResource<Request, Response> {
     return postResource.status === PostStatus.NOT_STARTED;
 }
 
-export function isPosting<T>(postResource: PostResource<T>): postResource is PostingPostResource<T> {
+export function isPosting<Request, Response>(
+    postResource: PostResource<Request, Response>
+): postResource is PostingPostResource<Request, Response> {
     return postResource.status === PostStatus.POSTING;
 }
 
-export function isFinishedPosting<T>(postResource: PostResource<T>): postResource is FinishedPostResource<T> {
+export function isFinishedPosting<Request, Response>(
+    postResource: PostResource<Request, Response>
+): postResource is FinishedPostResource<Request, Response> {
     return postResource.status === PostStatus.SUCCESS;
 }
 
-export function isFailedPosting<T>(postResource: PostResource<T>): postResource is FailedPostResource<T> {
+export function isFailedPosting<Request, Response>(
+    postResource: PostResource<Request, Response>
+): postResource is FailedPostResource<Request, Response> {
     return postResource.status === PostStatus.FAIL;
 }
 
@@ -71,37 +80,45 @@ function getActionTypes(resourceNavn: string): PostResourceActionTypes {
     };
 }
 
-export interface PostAction<T> {
+export interface PostAction<Request, Response> {
     type: PostResourceActionTypes;
-    payload: T;
+    payload: Request;
 }
 
-export interface FailAction<T> {
+export interface FinishedPostAction<Request, Response> {
+    type: PostResourceActionTypes;
+    response: Response;
+}
+
+export interface FailAction<Request, Response> {
     type: PostResourceActionTypes;
     error: Error;
 }
 
 export type PostUriCreator = (state: AppState) => string;
 
-function createPostResourceReducerAndActions<T extends object>(resourceNavn: string, getPostUri: PostUriCreator) {
+function createPostResourceReducerAndActions<Request extends object, Response>(
+    resourceNavn: string,
+    getPostUri: PostUriCreator
+) {
     const actionNames = getActionTypes(resourceNavn);
 
-    const initialState: PostResource<T> = {
+    const initialState: PostResource<Request, Response> = {
         status: PostStatus.NOT_STARTED,
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
             setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
-            post: (payload: T, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => {
-                dispatch({ type: actionNames.POSTING, payload: payload });
-                post(getPostUri(getState()), payload)
-                    .then(() => dispatch({ type: actionNames.FINISHED }))
+            post: (request: Request, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => {
+                dispatch({ type: actionNames.POSTING, payload: request });
+                post(getPostUri(getState()), request)
+                    .then(response => dispatch({ type: actionNames.FINISHED, response: response }))
                     .then(() => callback && callback())
                     .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }
     };
 
-    return (state: PostResource<T> = initialState, action: Action): PostResource<T> => {
+    return (state: PostResource<Request, Response> = initialState, action: Action): PostResource<Request, Response> => {
         switch (action.type) {
             case actionNames.INITIALIZE:
                 return initialState;
@@ -109,19 +126,20 @@ function createPostResourceReducerAndActions<T extends object>(resourceNavn: str
                 return {
                     ...state,
                     status: PostStatus.POSTING,
-                    payload: (action as PostAction<T>).payload
-                } as PostingPostResource<T>;
+                    payload: (action as PostAction<Request, Response>).payload
+                } as PostingPostResource<Request, Response>;
             case actionNames.FINISHED:
                 return {
                     ...state,
-                    status: PostStatus.SUCCESS
-                };
+                    status: PostStatus.SUCCESS,
+                    response: (action as FinishedPostAction<Request, Response>).response
+                } as FinishedPostResource<Request, Response>;
             case actionNames.FAILED:
                 return {
                     ...state,
                     status: PostStatus.FAIL,
-                    error: (action as FailAction<T>).error
-                } as FailedPostResource<T>;
+                    error: (action as FailAction<Request, Response>).error
+                } as FailedPostResource<Request, Response>;
             default:
                 return state;
         }
