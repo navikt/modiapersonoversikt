@@ -5,14 +5,6 @@ import { Utbetaling } from '../../../../../models/utbetalinger';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
 import TestProvider from '../../../../../test/Testprovider';
 
-// Mock react collapse sin UnmountClosed
-jest.mock('react-collapse', () => {
-    return {
-        // @ts-ignore
-        UnmountClosed: props => props.children
-    };
-});
-
 const sammensattUtbetaling: Utbetaling = {
     ...statiskMockUtbetaling,
     ytelser: [statiskMockYtelse, statiskMockYtelse]
