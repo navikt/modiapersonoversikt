@@ -97,7 +97,7 @@ export interface FailAction<Request, Response> {
 
 export type PostUriCreator = (state: AppState) => string;
 
-function createPostResourceReducerAndActions<Request extends object, Response>(
+function createPostResourceReducerAndActions<Request extends object, Response = any>(
     resourceNavn: string,
     getPostUri: PostUriCreator
 ) {
