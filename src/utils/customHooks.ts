@@ -10,7 +10,7 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
         if (ref.current) {
             ref.current.focus();
             if (document.activeElement !== ref.current) {
-                loggError(new Error('Kunne ikke sette fokus'));
+                loggError(new Error('Kunne ikke sette fokus på: ' + ref.current.innerText));
             }
         }
     }, [ref]);
