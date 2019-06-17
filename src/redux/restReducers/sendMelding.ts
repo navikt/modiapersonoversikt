@@ -44,8 +44,8 @@ export function sendMeldingActionCreator(
             tilknyttetEnhet: enhet,
             ...payload
         };
-        const loadMeldinger = () => dispatch(state.restResources.tråderOgMeldinger.actions.fetch);
-        dispatch(state.restResources.sendMelding.actions.post(request, loadMeldinger));
+        const reloadMeldinger = () => dispatch(state.restResources.tråderOgMeldinger.actions.reload);
+        dispatch(state.restResources.sendMelding.actions.post(request, reloadMeldinger));
     };
 }
 
