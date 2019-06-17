@@ -1,42 +1,18 @@
 import { useEffect } from 'react';
 import { AppState } from '../../redux/reducers';
-import { connect } from 'react-redux';
-import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { useDispatch, useSelector } from 'react-redux';
 
-interface StateProps {}
+function FetchSessionInfoOgLeggIRedux() {
+    const dispatch = useDispatch();
+    const restResources = useSelector((state: AppState) => state.restResources);
 
-interface DispatchProps {
-    hentGlobaleVerdier: () => void;
-}
-
-type Props = StateProps & DispatchProps;
-
-function FetchSessionInfoOgLeggIRedux(props: Props) {
     useEffect(() => {
-        props.hentGlobaleVerdier();
-    }, []);
+        dispatch(restResources.innloggetSaksbehandler.actions.fetch);
+        dispatch(restResources.oppgaveGsakTema.actions.fetch);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
 
     return null;
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        fnrIKontekst: state.gjeldendeBruker.fødselsnummer
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentGlobaleVerdier: () =>
-            dispatch((d: AsyncDispatch, getState: () => AppState) => {
-                const restResources = getState().restResources;
-                dispatch(restResources.innloggetSaksbehandler.actions.fetch);
-                dispatch(restResources.oppgaveGsakTema.actions.fetch);
-            })
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FetchSessionInfoOgLeggIRedux);
+export default FetchSessionInfoOgLeggIRedux;

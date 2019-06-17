@@ -53,6 +53,7 @@ function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest):
 
 function getGyldigTil(periode?: Periode) {
     if (!periode) {
+        // eslint-disable-next-line no-throw-literal
         throw 'Ugyldig periode for endring av adresse';
     }
     return periode.til;

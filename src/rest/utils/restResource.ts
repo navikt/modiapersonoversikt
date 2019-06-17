@@ -136,14 +136,14 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 return {
                     ...state,
                     status: STATUS.SUCCESS,
-                    data: (<FetchSuccess<T>>action).data
+                    data: (action as FetchSuccess<T>).data
                 } as Loaded<T>;
             case actionNames.FAILED:
                 loggEvent('Fetch-Failed', resourceNavn);
                 return {
                     ...state,
                     status: STATUS.FAILED,
-                    error: (<FetchError>action).error
+                    error: (action as FetchError).error
                 } as Failed<T>;
             case actionNames.INITIALIZE:
                 return initialState;

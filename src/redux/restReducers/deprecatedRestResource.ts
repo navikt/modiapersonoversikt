@@ -110,12 +110,12 @@ export function createActionsAndReducerDeprecated<T>(resourceNavn: string) {
                 case actionTypes.FINISHED:
                     return {
                         status: STATUS.SUCCESS,
-                        data: (<FetchSuccess<T>>action).data
+                        data: (action as FetchSuccess<T>).data
                     } as Loaded<T>;
                 case actionTypes.FAILED:
                     return {
                         status: STATUS.FAILED,
-                        error: (<FetchError>action).error
+                        error: (action as FetchError).error
                     } as Failed<T>;
                 case actionTypes.INITIALIZE:
                     return initialState;

@@ -55,7 +55,7 @@ function Kommentar(props: InternalProps) {
                 maxLength={750}
             />
             <KnappWrapper>
-                <Hovedknapp role="submit">Send</Hovedknapp>
+                <Hovedknapp htmlType="submit">Send</Hovedknapp>
                 <LenkeKnapp type="button" onClick={() => props.settBesvart(-1, '')}>
                     Ikke vis denne igjen
                 </LenkeKnapp>

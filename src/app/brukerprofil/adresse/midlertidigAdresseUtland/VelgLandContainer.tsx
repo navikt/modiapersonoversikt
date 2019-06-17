@@ -25,10 +25,6 @@ interface OwnProps {
 type Props = OwnProps & DispatchProps & StateProps;
 
 class VelgLandContainer extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     componentDidMount() {
         if (isNotStarted(this.props.landResource)) {
             this.props.hentLand();

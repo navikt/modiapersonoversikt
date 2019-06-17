@@ -25,7 +25,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 
     if (fødselsnummer === aremark.fødselsnummer) {
         return {
-            sykepenger: [statiskSykepengerMock, statiskSykepengerMock]
+            sykepenger: [statiskSykepengerMock]
         };
     }
 

@@ -70,7 +70,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
             />
             <KnappStyle>
-                <Hovedknapp role="submit">Send</Hovedknapp>
+                <Hovedknapp htmlType="submit">Send</Hovedknapp>
                 <LenkeKnapp type="button" onClick={props.lukkPanel}>
                     Avbryt
                 </LenkeKnapp>
