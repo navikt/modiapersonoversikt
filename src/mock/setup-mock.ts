@@ -3,7 +3,7 @@ import faker from 'faker/locale/nb_NO';
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock, { HandlerArgument, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
@@ -369,6 +369,16 @@ function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
+const contentTypeMiddleware: Middleware = (requestArgs, response) => {
+    if (response.headers) {
+        return response;
+    }
+    response.headers = {
+        'content-type': 'application/json'
+    };
+    return response;
+};
+
 let mockInitialised = false;
 export function setupMock() {
     if (mockInitialised) {
@@ -380,9 +390,7 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: MiddlewareUtils.combine((requestArgs, response) => {
-            return response;
-        }, MiddlewareUtils.failurerateMiddleware(0.02))
+        middleware: MiddlewareUtils.combine(contentTypeMiddleware, MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
     setupInnloggetSaksbehandlerMock(mock);
