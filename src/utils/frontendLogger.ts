@@ -53,6 +53,8 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
+        saksbehandler: getSaksbehandlerIdent(),
+        url: document.URL,
         error: error.stack,
         ...ekstraFelter
     };
