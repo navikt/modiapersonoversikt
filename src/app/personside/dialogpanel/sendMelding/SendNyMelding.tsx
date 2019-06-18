@@ -9,8 +9,10 @@ import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+import { AppState } from '../../../../redux/reducers';
+import { isLoaded } from '../../../../redux/restReducers/deprecatedRestResource';
 
 const FormStyle = styled.form`
     display: flex;
@@ -37,6 +39,7 @@ function SendNyMelding() {
     const [tema, setTema] = useState<Kodeverk | undefined>(undefined);
     const [temaFeil, setTemaFeil] = useState(false);
     const [visFeilMeldinger, setVisFeilmeldinger] = useState(false);
+    const sakstema = useSelector((state: AppState) => state.restResources.sakstema);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -99,6 +102,17 @@ function SendNyMelding() {
                 <CollapseStyle>
                     <UnmountClosed isOpened={erReferat}>
                         <Temavelger setTema={setTema} tema={tema} visFeilmelding={temaFeil && visFeilMeldinger} />
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={!erReferat}>
+                        {isLoaded(sakstema)
+                            ? sakstema.data.resultat.map(tema =>
+                                  tema.dokumentMetadata.map(it => (
+                                      <p>
+                                          {it.id} {it.baksystem}
+                                      </p>
+                                  ))
+                              )
+                            : null}
                     </UnmountClosed>
                 </CollapseStyle>
                 <Textarea
