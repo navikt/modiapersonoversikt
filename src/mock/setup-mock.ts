@@ -29,6 +29,7 @@ import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
+import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
 
 const STATUS_OK = () => 200;
@@ -341,6 +342,18 @@ function setupValutaKodeverk(mock: FetchMock) {
     );
 }
 
+function setupJournalforingMock(mock: FetchMock) {
+    console.log('apibase', apiBaseUri);
+    mock.get(
+        apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
+        withDelayedResponse(5000, STATUS_OK, () => gsakSaker)
+    );
+    mock.get(
+        apiBaseUri + '/journalforing/:fnr/saker/pensjon',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
+    );
+}
+
 function setupNavigasjonsmenyMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/hode/me',
@@ -426,5 +439,6 @@ export function setupMock() {
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
+    setupJournalforingMock(mock);
     setupPersonsokMock(mock);
 }
