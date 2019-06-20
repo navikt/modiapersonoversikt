@@ -2,22 +2,34 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { PersonsokResponse } from '../../models/person/personsok';
-import PersonsokResultatLinje from './PersonsokResultatLinje';
-import { isFinishedPosting } from '../../rest/utils/postResource';
+import { isFinishedPosting, isPosting } from '../../rest/utils/postResource';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import {
+    BostedCelle,
+    BostedsadresseCelle,
+    IdentCelle,
+    MidlertidigAdresseCelle,
+    NavnCelle,
+    PostadresseCelle
+} from './PersonsokResultatElementer';
+import { StyledTable } from '../../utils/table/StyledTable';
 
 interface PersonsokResultatProps {
     resultat: PersonsokResponse[];
 }
 
 function PersonsokResultatListe(props: PersonsokResultatProps) {
-    console.log(props.resultat);
-    return (
-        <>
-            {props.resultat.map(linje => (
-                <PersonsokResultatLinje resultat={linje} key={''} />
-            ))}
-        </>
-    );
+    const tittelRekke = ['Fødselsnummer', 'Navn', 'Midlertidig adresse', 'Postadresse', 'Bostedsadresse', 'Bosted'];
+    const tableEntries = props.resultat.map(linje => [
+        <IdentCelle ident={linje.ident} />,
+        <NavnCelle navn={linje.navn} />,
+        <MidlertidigAdresseCelle brukerinfo={linje.brukerinfo} />,
+        <PostadresseCelle postadresse={linje.postadresse} />,
+        <BostedsadresseCelle bostedsadresse={linje.bostedsadresse} />,
+        <BostedCelle />
+    ]);
+
+    return <StyledTable tittelRekke={tittelRekke} rows={tableEntries} />;
 }
 
 function PersonsokResultat() {
@@ -25,8 +37,10 @@ function PersonsokResultat() {
 
     if (isFinishedPosting(personsokResource)) {
         return <PersonsokResultatListe resultat={personsokResource.response} />;
+    } else if (isPosting(personsokResource)) {
+        return <NavFrontendSpinner />;
     } else {
-        return <div />;
+        return null;
     }
 }
 
