@@ -39,6 +39,7 @@ function nullstill(props: PersonsokSkjemaProps) {
     props.actionsCriteria.settKontonummer('');
     props.actionsCriteria.settPostnummer('');
     props.actionsCriteria.settHusbokstav('');
+    props.actionsCriteria.settHusnummer('');
     props.actionsCriteria.settGatenavn('');
     props.actionsCriteria.settEtternavn('');
     props.actionsCriteria.settFornavn('');
