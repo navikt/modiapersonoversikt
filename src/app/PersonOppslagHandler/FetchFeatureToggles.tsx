@@ -6,7 +6,7 @@ function FetchFeatureToggles() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(hentFeatureToggles());
+        dispatch(hentFeatureToggles);
     }, [dispatch]);
 
     return null;

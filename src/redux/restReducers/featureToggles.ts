@@ -5,9 +5,7 @@ import { FeatureToggleResponse } from '../../models/featureToggle';
 
 const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('featureToggles');
 
-export function hentFeatureToggles() {
-    return action(() => getAllFeatureToggles());
-}
+export const hentFeatureToggles = action(getAllFeatureToggles);
 
 async function getAllFeatureToggles() {
     const featureToggleKeys = Object.keys(FeatureToggles);
