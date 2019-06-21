@@ -13,12 +13,12 @@ export const tekster: Hurtigreferater = [
     },
     {
         tittel: 'Veiledet www.nav.no',
-        fritekst: '[bruker.navn] er blitt veiledet i bruk av www.nav.no'
+        fritekst: '[bruker.navn] har fått veiledning i bruk av www.nav.no'
     },
     {
         tittel: 'Utbetaling',
         fritekst:
-            '[bruker.navn] har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.'
+            '[bruker.navn] har fått informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.'
     },
     {
         tittel: 'Skatt',
@@ -30,21 +30,21 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
     },
     {
         tittel: 'Søknad',
-        fritekst: '[bruker.navn] har fått veiledning i å fylle ut søknaden på www.nav.no'
+        fritekst: '[bruker.navn] har fått veiledning i å fylle ut søknad på www.nav.no'
     },
     {
         tittel: 'Saksbehandlingstid',
         fritekst:
-            '[bruker.navn] fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.'
+            '[bruker.navn] har fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.'
     },
     {
         tittel: 'Elektronisk innsending',
         fritekst:
-            '[bruker.navn] får ikke sendt inn opplysninger til NAV elektronisk. [bruker.pronomen] er anbefalt å se om [bruker.pronomen] finner løsningen på www.nav.no/elektroniskinnsending'
+            '[bruker.navn] får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på www.nav.no/elektroniskinnsending'
     },
     {
         tittel: 'Vedtak',
-        fritekst: '[bruker.navn] har fått veiledning i vedtaket sitt.'
+        fritekst: '[bruker.navn] har fått veiledning om vedtaket sitt.'
     },
     {
         tittel: 'Ubesvart anrop',
