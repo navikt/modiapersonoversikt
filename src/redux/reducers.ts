@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import RestEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
+import restEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
@@ -30,7 +30,7 @@ export interface AppState {
 }
 
 export default combineReducers<AppState>({
-    restResources: RestEndepunkterReducers,
+    restResources: restEndepunkterReducers,
     ui: UIReducer,
     temagruppe: temagruppeReducer,
     utbetalinger: utbetalingerReducer,
