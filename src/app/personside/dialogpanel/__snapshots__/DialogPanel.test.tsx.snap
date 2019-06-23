@@ -426,7 +426,7 @@ exports[`viser dialogpanel 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien er blitt veiledet i bruk av www.nav.no
+                      Aremark Testfamilien har fått veiledning i bruk av www.nav.no
                     </p>
                   </article>
                 </div>
@@ -510,7 +510,7 @@ exports[`viser dialogpanel 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien har informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
+                      Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
                     </p>
                   </article>
                 </div>
@@ -682,7 +682,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien har fått veiledning i å fylle ut søknaden på www.nav.no
+                      Aremark Testfamilien har fått veiledning i å fylle ut søknad på www.nav.no
                     </p>
                   </article>
                 </div>
@@ -766,7 +766,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
+                      Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
                     </p>
                   </article>
                 </div>
@@ -850,7 +850,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Han er anbefalt å se om han finner løsningen på www.nav.no/elektroniskinnsending
+                      Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på www.nav.no/elektroniskinnsending
                     </p>
                   </article>
                 </div>
@@ -934,7 +934,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                     <p
                       className="typo-normal"
                     >
-                      Aremark Testfamilien har fått veiledning i vedtaket sitt.
+                      Aremark Testfamilien har fått veiledning om vedtaket sitt.
                     </p>
                   </article>
                 </div>
