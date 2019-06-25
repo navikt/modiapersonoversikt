@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useRef } from 'react';
 import styled from 'styled-components';
 import { Innholdstittel, Normaltekst, Element } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
@@ -65,7 +65,7 @@ function Kommentar(props: InternalProps) {
 }
 
 function TilbakemeldingSkjema(props: InternalProps) {
-    const popup = React.createRef<HTMLDivElement>();
+    const popup = useRef(null);
     useFocusOnMount(popup);
 
     const submitHandler = (event: FormEvent) => {
