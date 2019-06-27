@@ -54,7 +54,7 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
 function KommendeUtbetalinger(props: Props) {
     return (
         <KommendeUtbetalingerStyle>
-            <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
+            <Undertittel tag="h4">Utbetalinger</Undertittel>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
         </KommendeUtbetalingerStyle>
     );
