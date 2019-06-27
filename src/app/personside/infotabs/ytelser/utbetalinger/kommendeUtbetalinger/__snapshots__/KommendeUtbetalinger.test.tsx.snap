@@ -50,7 +50,7 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
   <h4
     className="typo-undertittel"
   >
-    Kommende utbetalinger
+    Utbetalinger
   </h4>
   <div
     className="typo-normal c1"
