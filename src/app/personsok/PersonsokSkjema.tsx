@@ -3,7 +3,6 @@ import { FormEvent, useState } from 'react';
 import { PersonsokRequest } from '../../models/person/personsok';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import { Kjønn } from '../../models/person/person';
 import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 
@@ -23,7 +22,7 @@ export interface PersonsokSkjemaProps {
         fodselsdatoTil?: Date;
         alderFra: string;
         alderTil: string;
-        kjonn?: Kjønn;
+        kjonn: string;
     };
     actionsCriteria: {
         settFornavn(fornavn: string): void;
@@ -40,7 +39,7 @@ export interface PersonsokSkjemaProps {
         settFodselsdatoTil(fodselsdatoTil: Date | undefined): void;
         settAlderFra(alderFra: string): void;
         settAlderTil(alderTil: string): void;
-        settKjonn(kjonn: Kjønn | undefined): void;
+        settKjonn(kjonn: string): void;
     };
 }
 
@@ -51,21 +50,28 @@ function stringToNumber(input: string): number | undefined {
     return parseInt(input);
 }
 
+function emptyString(input: string): string | undefined {
+    if (input.length === 0) {
+        return undefined;
+    }
+    return input;
+}
+
 function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     return {
-        fornavn: form.stateCriteria.fornavn,
-        etternavn: form.stateCriteria.etternavn,
-        gatenavn: form.stateCriteria.gatenavn,
+        fornavn: emptyString(form.stateCriteria.fornavn),
+        etternavn: emptyString(form.stateCriteria.etternavn),
+        gatenavn: emptyString(form.stateCriteria.gatenavn),
         husnummer: stringToNumber(form.stateCriteria.husnummer),
-        husbokstav: form.stateCriteria.husbokstav,
-        postnummer: form.stateCriteria.postnummer,
-        kontonummer: form.stateCriteria.kontonummer,
-        kommunenummer: form.stateLimit.kommunenummer,
+        husbokstav: emptyString(form.stateCriteria.husbokstav),
+        postnummer: emptyString(form.stateCriteria.postnummer),
+        kontonummer: emptyString(form.stateCriteria.kontonummer),
+        kommunenummer: emptyString(form.stateLimit.kommunenummer),
         fodsesldatoFra: formatterDatoForBackendPost(form.stateLimit.fodselsdatoFra),
         fodsesldatoTil: formatterDatoForBackendPost(form.stateLimit.fodselsdatoTil),
         alderFra: stringToNumber(form.stateLimit.alderFra),
         alderTil: stringToNumber(form.stateLimit.alderTil),
-        kjonn: form.stateLimit.kjonn
+        kjonn: emptyString(form.stateLimit.kjonn)
     };
 }
 
@@ -84,7 +90,7 @@ function PersonsokSkjema() {
     const [fodselsdatoTil, settFodselsdatoTil] = useState<Date | undefined>(undefined);
     const [alderFra, settAlderFra] = useState<string>('');
     const [alderTil, settAlderTil] = useState<string>('');
-    const [kjonn, settKjonn] = useState<Kjønn | undefined>(undefined);
+    const [kjonn, settKjonn] = useState<string>('');
 
     const formState: PersonsokSkjemaProps = {
         stateCriteria: {

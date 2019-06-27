@@ -29,10 +29,23 @@ const KnappStyle = styled.div`
 
 const InputLinje = styled.div`
     display: flex;
+    .skjemaelement {
+        padding-right: 0.5em;
+    }
 `;
 
 const DatovelgerStyle = styled.div`
     flex-direction: column;
+    padding-right: 0.5em;
+    margin-bottom: 1em;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    font-weight: 400;
+`;
+
+const DatolabelStyle = styled.div`
+    margin-bottom: 0.5em;
 `;
 
 function nullstill(props: PersonsokSkjemaProps) {
@@ -43,18 +56,10 @@ function nullstill(props: PersonsokSkjemaProps) {
     props.actionsCriteria.settGatenavn('');
     props.actionsCriteria.settEtternavn('');
     props.actionsCriteria.settFornavn('');
-    props.actionsLimit.settKjonn(undefined);
+    props.actionsLimit.settKjonn('');
     props.actionsLimit.settAlderFra('');
     props.actionsLimit.settFodselsdatoTil(undefined);
     props.actionsLimit.settFodselsdatoFra(undefined);
-}
-
-function hentValgtKjønn(event: ChangeEvent<HTMLSelectElement>): Kjønn | undefined {
-    const value = event.target.value;
-    if (value === '') {
-        return undefined;
-    }
-    return Kjønn[value];
 }
 
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
@@ -136,7 +141,9 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     />
                     <InputLinje>
                         <DatovelgerStyle>
-                            <label htmlFor="personsok-datovelger-fra">Fødselsdato fra:</label>
+                            <DatolabelStyle>
+                                <label htmlFor="personsok-datovelger-fra">Fødselsdato fra:</label>
+                            </DatolabelStyle>
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
@@ -146,7 +153,9 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             />
                         </DatovelgerStyle>
                         <DatovelgerStyle>
-                            <label htmlFor="personsok-datovelger-til">Fødselsdato til:</label>
+                            <DatolabelStyle>
+                                <label htmlFor="personsok-datovelger-til">Fødselsdato til:</label>
+                            </DatolabelStyle>
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
@@ -177,7 +186,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     <Select
                         label={'Kjønn'}
                         onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                            props.form.actionsLimit.settKjonn(hentValgtKjønn(event))
+                            props.form.actionsLimit.settKjonn(event.target.value)
                         }
                     >
                         <option value={''} key={''}>

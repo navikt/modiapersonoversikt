@@ -29,6 +29,8 @@ function PersonsokResultatListe(props: PersonsokResultatProps) {
         <BostedCelle />
     ]);
 
+    // TODO Legge til rowClickHandlers (setNyBrukerIPath(this.props.history, fødselsnummer);)
+
     return <StyledTable tittelRekke={tittelRekke} rows={tableEntries} />;
 }
 
