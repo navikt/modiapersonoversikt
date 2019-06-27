@@ -1,25 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`viser dialogpanel 1`] = `
-<div>
-  <form
-    onSubmit={[Function]}
-  >
-    <button
-      className="knapp knapp--hoved"
-      disabled={false}
-      role="submit"
-      type="submit"
-    >
-      Send
-    </button>
-  </form>
-  <div />
-</div>
-`;
-
 exports[`viser personsøk-komponent 1`] = `
-.c5 {
+.c6 {
   position: relative;
   border: none;
   padding: 0;
@@ -37,7 +19,7 @@ exports[`viser personsøk-komponent 1`] = `
   color: #0067c5;
 }
 
-.c5:after {
+.c6:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -45,16 +27,16 @@ exports[`viser personsøk-komponent 1`] = `
   width: 100%;
 }
 
-.c5:focus {
+.c6:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c5:hover {
+.c6:hover {
   opacity: 0.8;
 }
 
-.c5:hover:after {
+.c6:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -74,7 +56,7 @@ exports[`viser personsøk-komponent 1`] = `
   padding-right: 3em;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -92,10 +74,24 @@ exports[`viser personsøk-komponent 1`] = `
   display: flex;
 }
 
+.c2 .skjemaelement {
+  padding-right: 0.5em;
+}
+
 .c3 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  padding-right: 0.5em;
+  margin-bottom: 1em;
+  font-family: 'Source Sans Pro',Arial,sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+}
+
+.c4 {
+  margin-bottom: 0.5em;
 }
 
 <div>
@@ -307,11 +303,15 @@ exports[`viser personsøk-komponent 1`] = `
             <div
               className="c3"
             >
-              <label
-                htmlFor="personsok-datovelger-fra"
+              <div
+                className="c4"
               >
-                Fødselsdato fra:
-              </label>
+                <label
+                  htmlFor="personsok-datovelger-fra"
+                >
+                  Fødselsdato fra:
+                </label>
+              </div>
               <div
                 onBlur={[Function]}
                 onKeyDown={[Function]}
@@ -376,11 +376,15 @@ exports[`viser personsøk-komponent 1`] = `
             <div
               className="c3"
             >
-              <label
-                htmlFor="personsok-datovelger-til"
+              <div
+                className="c4"
               >
-                Fødselsdato til:
-              </label>
+                <label
+                  htmlFor="personsok-datovelger-til"
+                >
+                  Fødselsdato til:
+                </label>
+              </div>
               <div
                 onBlur={[Function]}
                 onKeyDown={[Function]}
@@ -537,7 +541,7 @@ exports[`viser personsøk-komponent 1`] = `
         </section>
       </div>
       <div
-        className="c4"
+        className="c5"
       >
         <button
           className="knapp knapp--hoved"
@@ -547,7 +551,7 @@ exports[`viser personsøk-komponent 1`] = `
           Send
         </button>
         <button
-          className="c5"
+          className="c6"
           onClick={[Function]}
           type="button"
         >
