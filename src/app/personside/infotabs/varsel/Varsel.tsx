@@ -71,7 +71,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
         </Kommaliste>
     );
 
-    const varselTekst = Varseltype[varsel.varselType];
+    const varselTekst = Varseltype[varsel.varselType] || 'Ukjent nøkkel: ' + varsel.varselType;
     return (
         <Style aria-label={varselTekst}>
             <HeaderStyle onClick={toggleOpen}>

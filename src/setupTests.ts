@@ -16,3 +16,11 @@ const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
 
 window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
+
+// Mock react collapse sin UnmountClosed
+jest.mock('react-collapse', () => {
+    return {
+        // @ts-ignore
+        UnmountClosed: props => props.children
+    };
+});

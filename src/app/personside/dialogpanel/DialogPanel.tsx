@@ -13,8 +13,8 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import KnappBase from 'nav-frontend-knapper';
 import { resetSendMeldingActionCreator } from '../../../redux/restReducers/sendMelding';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import TraadVisningContainer from '../infotabs/meldinger/traadvisning/TraadVisningContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
+import SendNyMelding from './sendMelding/SendNyMelding';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
@@ -61,7 +61,7 @@ function Dialogpanel(props: Props) {
         <ErrorBoundary boundaryName="Dialogpanel">
             <Undertittel>Dialogpanel</Undertittel>
             <HurtigReferatContainer />
-            <TraadVisningContainer />
+            <SendNyMelding />
         </ErrorBoundary>
     );
 }
