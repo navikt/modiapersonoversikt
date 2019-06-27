@@ -26,7 +26,7 @@ const KommendeUtbetalingerStyle = styled.section`
 
 function Utbetalinger({ kommendeUtbetalinger }: Props) {
     if (kommendeUtbetalinger.length === 0) {
-        return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
+        return <AlertStripeInfo>Ingen utbetalinger funnet</AlertStripeInfo>;
     }
     const tittelRekke = [
         'Reg.dato',
