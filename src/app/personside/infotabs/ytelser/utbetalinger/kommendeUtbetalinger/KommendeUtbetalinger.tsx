@@ -24,12 +24,12 @@ const KommendeUtbetalingerStyle = styled.section`
     white-space: nowrap;
 `;
 
-function getInnhold(kommendeUtbetalinger: KommendeUtbetaling[]) {
+function Utbetalinger({ kommendeUtbetalinger }: Props) {
     if (kommendeUtbetalinger.length === 0) {
         return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
     }
     const tittelRekke = [
-        'Utb.dato',
+        'Reg.dato',
         'Type',
         'Periode',
         'Utb.grad',
@@ -55,7 +55,7 @@ function KommendeUtbetalinger(props: Props) {
     return (
         <KommendeUtbetalingerStyle>
             <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
-            {getInnhold(props.kommendeUtbetalinger)}
+            <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
         </KommendeUtbetalingerStyle>
     );
 }
