@@ -1,40 +1,39 @@
 import React from 'react';
-import { UseFetchHook } from '../../../../../../../utils/hooks/use-fetch';
+import { FetchContainer } from '../../../../../../../utils/hooks/use-fetch';
 import { JournalforingsSak, SakKategori } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeProps } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
+import { StyledTable } from '../../../../../../../utils/table/StyledTable';
+import { TableRow } from '../../../../../../../utils/table/Table';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
-    gsakSaker: UseFetchHook<Array<JournalforingsSak>>;
-    psakSaker: UseFetchHook<Array<JournalforingsSak>>;
-    alleSaker: UseFetchHook<Array<JournalforingsSak>>;
+    gsakSaker: FetchContainer<Array<JournalforingsSak>>;
+    psakSaker: FetchContainer<Array<JournalforingsSak>>;
+    alleSaker: FetchContainer<Array<JournalforingsSak>>;
 }
 
-type EnumObject<T> = { [key in SakKategori]: T };
-function fordelSakerPaKategori(
-    alle: UseFetchHook<Array<JournalforingsSak>>,
-    gsak: UseFetchHook<Array<JournalforingsSak>>,
-    psak: UseFetchHook<Array<JournalforingsSak>>
-): EnumObject<Array<JournalforingsSak>> {
-    const initalValue: EnumObject<Array<JournalforingsSak>> = { Fagsaker: [], 'Generelle saker': [] };
+type Tema = { tema: string; saker: Array<JournalforingsSak> };
+type Kategorier = { [key in SakKategori]: Tema[] };
+
+function getSaker(
+    alle: FetchContainer<Array<JournalforingsSak>>,
+    gsak: FetchContainer<Array<JournalforingsSak>>,
+    psak: FetchContainer<Array<JournalforingsSak>>
+): JournalforingsSak[] {
     if (alle.isLoading || alle.isError) {
-        return initalValue;
+        return [];
     }
+
     const psakData = psak.data || [];
     const gsakData = gsak.data || [];
 
     const psakIder = psakData.map(sak => sak.fagsystemSaksId);
     const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
 
-    return [...gsakSaker, ...psakData]
-        .flat()
-        .reduce((acc: EnumObject<Array<JournalforingsSak>>, sak: JournalforingsSak) => {
-            const kategori = sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
-            acc[kategori].push(sak);
-            return acc;
-        }, initalValue);
+    return [...gsakSaker, ...psakData];
 }
 
 const Form = styled.form`
@@ -67,19 +66,69 @@ function ConditionalFeilmelding(props: AlertStripeProps & { vis: boolean }) {
     return <AlertStripeAdvarsel {...rest} />;
 }
 
+function fordelSaker(saker: JournalforingsSak[]): Kategorier {
+    return saker.reduce(
+        (kategorier: Kategorier, sak: JournalforingsSak) => {
+            const kategori: SakKategori = sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
+
+            if (!temaFinnes(kategorier, kategori, sak)) {
+                kategorier[kategori].push({ tema: sak.temaNavn, saker: [sak] });
+                return kategorier;
+            } else {
+                return leggTilSak(kategorier, kategori, sak);
+            }
+        },
+        { Fagsaker: [], 'Generelle saker': [] }
+    );
+}
+
+function temaFinnes(acc: Kategorier, kategori: SakKategori, sak: JournalforingsSak): boolean {
+    return acc[kategori].some(tema => tema.tema === sak.temaNavn);
+}
+
+function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: JournalforingsSak) {
+    kategorier[kategori] = kategorier[kategori].map(tema => {
+        if (tema.tema !== sak.temaNavn) {
+            return tema;
+        }
+        return {
+            ...tema,
+            saker: tema.saker.concat(sak)
+        };
+    });
+
+    return kategorier;
+}
+
+function TemaTable({ tema, saker }: Tema) {
+    const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
+    return (
+        <>
+            <Undertittel tag="h4">{tema}</Undertittel>
+            <StyledTable tittelRekke={tittelRekke} rows={saker.map(sak => rad(sak))} />
+        </>
+    );
+}
+
+function rad(sak: JournalforingsSak): TableRow {
+    return [sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn];
+}
+
 function VelgSak(props: Props) {
-    const kategori = useFieldState(SakKategori.FAG);
+    const valgtKategori = useFieldState(SakKategori.FAG);
     const { gsakSaker, psakSaker, alleSaker } = props;
-    const sakerFordeltPaKategori = fordelSakerPaKategori(alleSaker, gsakSaker, psakSaker);
-    const valgtKategori = sakerFordeltPaKategori[kategori.value].map((sak: JournalforingsSak) => (
-        <li key={sak.fagsystemSaksId!}>{sak.fagsystemNavn}</li>
+    const saker = getSaker(alleSaker, gsakSaker, psakSaker);
+    const fordelteSaker = fordelSaker(saker);
+
+    const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
+        <TemaTable key={tema.tema} tema={tema.tema} saker={tema.saker} />
     ));
 
     return (
         <>
             <Form className="blokk-xxs">
-                <SakgruppeRadio label={SakKategori.FAG} {...kategori} />
-                <SakgruppeRadio label={SakKategori.GEN} {...kategori} />
+                <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
+                <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
             <div className="blokk-xxs">
                 <ConditionalFeilmelding vis={!gsakSaker.isError} className="blokk-xxxs">
@@ -89,8 +138,9 @@ function VelgSak(props: Props) {
                     Feil ved uthenting av saker fra PSAK
                 </ConditionalFeilmelding>
             </div>
-            <ul>{valgtKategori}</ul>
+            {temaTable}
         </>
     );
 }
+
 export default VelgSak;
