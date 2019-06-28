@@ -114,7 +114,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                 </TestProvider>
             );
         case Komponenter.JournalforingPanel:
-            return <JournalforingPanel />;
+            return <JournalforingPanel lukkPanel={() => null} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

@@ -8,11 +8,16 @@ import styled from 'styled-components';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import { TableRow } from '../../../../../../../utils/table/Table';
 import { Undertittel } from 'nav-frontend-typografi';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import theme from '../../../../../../../styles/personOversiktTheme';
+import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 
 interface Props {
     gsakSaker: FetchContainer<Array<JournalforingsSak>>;
     psakSaker: FetchContainer<Array<JournalforingsSak>>;
     alleSaker: FetchContainer<Array<JournalforingsSak>>;
+    velgSak: (sak: JournalforingsSak) => void;
+    lukkPanel: () => void;
 }
 
 type Tema = { tema: string; saker: Array<JournalforingsSak> };
@@ -69,11 +74,10 @@ function ConditionalFeilmelding(props: AlertStripeProps & { vis: boolean }) {
 function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     return saker.reduce(
         (kategorier: Kategorier, sak: JournalforingsSak) => {
-            const kategori: SakKategori = sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
+            const kategori = sakKategori(sak);
 
-            if (!temaFinnes(kategorier, kategori, sak)) {
-                kategorier[kategori].push({ tema: sak.temaNavn, saker: [sak] });
-                return kategorier;
+            if (!temaFinnes(kategorier, kategori, sak.temaNavn)) {
+                return lagTema(kategorier, kategori, sak);
             } else {
                 return leggTilSak(kategorier, kategori, sak);
             }
@@ -82,8 +86,17 @@ function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     );
 }
 
-function temaFinnes(acc: Kategorier, kategori: SakKategori, sak: JournalforingsSak): boolean {
-    return acc[kategori].some(tema => tema.tema === sak.temaNavn);
+export function sakKategori(sak: JournalforingsSak): SakKategori {
+    return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
+}
+
+function temaFinnes(acc: Kategorier, kategori: SakKategori, temaNavn: string): boolean {
+    return acc[kategori].some(tema => tema.tema === temaNavn);
+}
+
+function lagTema(kategorier: Kategorier, sakKategori: SakKategori, sak: JournalforingsSak) {
+    kategorier[sakKategori].push({ tema: sak.temaNavn, saker: [sak] });
+    return kategorier;
 }
 
 function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: JournalforingsSak) {
@@ -100,13 +113,22 @@ function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: Journalf
     return kategorier;
 }
 
-function TemaTable({ tema, saker }: Tema) {
+const TableStyle = styled.div`
+    border: ${theme.border.skille};
+`;
+
+function TemaTable({ tema, saker, velgSak }: Tema & { velgSak: (sak: JournalforingsSak) => void }) {
     const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
     return (
-        <>
-            <Undertittel tag="h4">{tema}</Undertittel>
-            <StyledTable tittelRekke={tittelRekke} rows={saker.map(sak => rad(sak))} />
-        </>
+        <TableStyle>
+            <EkspanderbartpanelBase heading={<Undertittel tag="h4">{tema}</Undertittel>} apen={true}>
+                <StyledTable
+                    tittelRekke={tittelRekke}
+                    rows={saker.map(sak => rad(sak))}
+                    rowsOnClickHandlers={saker.map(sak => () => velgSak(sak))}
+                />
+            </EkspanderbartpanelBase>
+        </TableStyle>
     );
 }
 
@@ -121,7 +143,7 @@ function VelgSak(props: Props) {
     const fordelteSaker = fordelSaker(saker);
 
     const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
-        <TemaTable key={tema.tema} tema={tema.tema} saker={tema.saker} />
+        <TemaTable key={tema.tema} tema={tema.tema} saker={tema.saker} velgSak={props.velgSak} />
     ));
 
     return (
@@ -139,6 +161,9 @@ function VelgSak(props: Props) {
                 </ConditionalFeilmelding>
             </div>
             {temaTable}
+            <LenkeKnapp type="button" onClick={props.lukkPanel}>
+                Avbryt
+            </LenkeKnapp>
         </>
     );
 }
