@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useRef } from 'react';
 import styled from 'styled-components';
 import { Innholdstittel, Normaltekst, Element } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
@@ -51,7 +51,7 @@ function Kommentar(props: InternalProps) {
             <Textarea
                 value={props.kommentar}
                 onChange={e => props.settKommentar((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
-                label="Si gjerne litt mer om opplevelsen av endringer."
+                label="Hva skaper utfordringer i din arbeidshverdag og hva kunne gjort den enklere? Alle tilbakemeldinger er anonyme."
                 maxLength={750}
             />
             <KnappWrapper>
@@ -65,7 +65,7 @@ function Kommentar(props: InternalProps) {
 }
 
 function TilbakemeldingSkjema(props: InternalProps) {
-    const popup = React.createRef<HTMLDivElement>();
+    const popup = useRef(null);
     useFocusOnMount(popup);
 
     const submitHandler = (event: FormEvent) => {
@@ -75,7 +75,7 @@ function TilbakemeldingSkjema(props: InternalProps) {
 
     return (
         <TilbakemeldingPopupContainer ref={popup} tabIndex={-1}>
-            <Innholdstittel className="blokk-xs">Tilbakemelding</Innholdstittel>
+            <Innholdstittel className="blokk-xs">Gi tilbakemelding</Innholdstittel>
             <Normaltekst className="blokk-m">{props.sporsmal}</Normaltekst>
             <form onSubmit={submitHandler}>
                 <TilbakemeldingValg {...props} />
