@@ -8,7 +8,6 @@ exports[`viser dialogpanel 1`] = `
     <button
       className="knapp knapp--hoved"
       disabled={false}
-      role="submit"
       type="submit"
     >
       Send

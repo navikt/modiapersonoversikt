@@ -104,6 +104,7 @@ function MerkPanel(props: Props) {
                 dispatch(merkSlett.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
                 break;
         }
+        props.lukkPanel();
     };
 
     return (
