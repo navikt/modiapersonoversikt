@@ -13,9 +13,12 @@ export interface Melding {
     lestDato?: string;
     status: LestStatus;
     opprettetDato: string;
-    journalfortDato: string;
+    journalfortDato?: string;
     ferdigstiltDato: string;
     erFerdigstiltUtenSvar: boolean;
+    kontorsperretEnhet?: string;
+    markertSomFeilsendtAv?: string;
+    erDelsvar: boolean;
 }
 
 export interface Saksbehandler {

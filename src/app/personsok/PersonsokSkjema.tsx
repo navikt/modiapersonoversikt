@@ -17,7 +17,7 @@ function PersonsokSkjema() {
 
     return (
         <form onSubmit={submitHandler}>
-            <Hovedknapp role={'submit'}>Send</Hovedknapp>
+            <Hovedknapp htmlType={'submit'}>Send</Hovedknapp>
         </form>
     );
 }
