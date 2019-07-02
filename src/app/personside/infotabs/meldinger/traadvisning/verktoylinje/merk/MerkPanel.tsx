@@ -28,11 +28,11 @@ interface Props {
 }
 
 enum MerkOperasjon {
-    FEILSENDT = 'Merk som feilsendt',
-    BISYS = 'Kopiert inn i Bisys',
-    KONTORSPERRET = 'Kontorsperret',
-    AVSLUTT = 'Avslutt uten å svare bruker',
-    SLETT = 'Merk for sletting'
+    FEILSENDT = 'FEILSENDT',
+    BISYS = 'BISYS',
+    KONTORSPERRET = 'KONTORSPERRET',
+    AVSLUTT = 'AVSLUTT',
+    SLETT = 'SLETT'
 }
 
 const KnappStyle = styled.div`
@@ -86,12 +86,12 @@ function MerkPanel(props: Props) {
                     merkAvslutt.actions.post({
                         saksbehandlerValgtEnhet: '',
                         eldsteMeldingOppgaveId: '',
-                        eldsteMeldingTraadId: ''
+                        eldsteMeldingTraadId: valgtTraad.traadId
                     })
                 );
                 break;
             case MerkOperasjon.BISYS:
-                dispatch(merkBidrag.actions.post({ eldsteMeldingTraadId: '' }));
+                dispatch(merkBidrag.actions.post({ eldsteMeldingTraadId: eldsteMelding(valgtTraad).id }));
                 break;
             case MerkOperasjon.FEILSENDT:
                 dispatch(merkFeilsendt.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
