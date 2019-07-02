@@ -1,6 +1,7 @@
 import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
+import { backendDatoformat } from '../mock/utils/mock-utils';
 
 const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
@@ -20,6 +21,13 @@ export function formatterDatoTid(dato: string | Date) {
 
 export function formatterDatoTidNaa() {
     return moment().format(DATO_TID_FORMAT);
+}
+
+export function formatterDatoForBackendPost(dato?: Date): string | undefined {
+    if (!dato) {
+        return undefined;
+    }
+    return moment().format(backendDatoformat);
 }
 
 const månedTilNavnMapping = (månednr: number) => {
