@@ -1,6 +1,6 @@
 import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import * as React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import {
@@ -26,7 +26,7 @@ const KommendeUtbetalingerStyle = styled.section`
 
 function Utbetalinger({ kommendeUtbetalinger }: Props) {
     if (kommendeUtbetalinger.length === 0) {
-        return <AlertStripeInfo>Ingen kommende utbetalinger funnet</AlertStripeInfo>;
+        return <AlertStripeInfo>Ingen utbetalinger funnet</AlertStripeInfo>;
     }
     const tittelRekke = [
         'Reg.dato',
@@ -54,8 +54,9 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
 function KommendeUtbetalinger(props: Props) {
     return (
         <KommendeUtbetalingerStyle>
-            <Undertittel tag="h4">Kommende utbetalinger</Undertittel>
+            <Undertittel tag="h4">Utbetalinger</Undertittel>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
+            <AlertStripe type={'info'}>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripe>
         </KommendeUtbetalingerStyle>
     );
 }
