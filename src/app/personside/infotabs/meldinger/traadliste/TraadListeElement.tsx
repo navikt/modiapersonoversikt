@@ -66,9 +66,9 @@ const PanelStyle = styled.div`
 
 function Meldingsikon(props: MeldingsikonProps) {
     switch (props.type) {
-        case Meldingstype.SamtalereferatOppmøte:
+        case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return <OppmoteIkon />;
-        case Meldingstype.SamtalereferatTelefon:
+        case Meldingstype.SAMTALEREFERAT_TELEFON:
             return <TelefonIkon />;
         case Meldingstype.OppgaveVarsel:
             return <OppgaveIkon />;

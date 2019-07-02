@@ -143,7 +143,7 @@ const actionCreators: DispatchProps = {
         sendMeldingActionCreator({
             fritekst: tekst,
             kanal: 'TELEFON',
-            type: Meldingstype.SamtalereferatTelefon,
+            type: Meldingstype.SAMTALEREFERAT_TELEFON,
             temagruppe: tema,
             traadId: null,
             kontorsperretEnhet: null,

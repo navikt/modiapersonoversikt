@@ -29,9 +29,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
         id: faker.random.alphaNumeric(8),
         meldingstype: navfaker.random.arrayElement([
             Meldingstype.DelvisSvarSkriftlig,
-            Meldingstype.SamtalereferatOppmøte,
-            Meldingstype.SpørsmålSkriftlig,
-            Meldingstype.SvarTelefon
+            Meldingstype.SAMTALEREFERAT_OPPMOTE,
+            Meldingstype.SPORSMAL_SKRIFTLIG,
+            Meldingstype.SVAR_TELEFON
         ]),
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),

@@ -46,7 +46,7 @@ enum Oppgaveliste {
 }
 
 function SendNyMelding() {
-    const initialDialogType = Meldingstype.SpørsmålSkriftlig;
+    const initialDialogType = Meldingstype.SAMTALEREFERAT_TELEFON;
     const [tema, setTema] = useState<Kodeverk | undefined>(undefined);
     const [sak, setSak] = useState<JournalforingsSak | undefined>(undefined);
     const [tekst, setTekst] = useState('');
@@ -81,10 +81,10 @@ function SendNyMelding() {
         dispatch(psaksaker.actions.fetch);
     }
 
-    const erReferat = dialogType !== Meldingstype.SpørsmålSkriftlig;
-    const erOppmøte = dialogType !== Meldingstype.SamtalereferatOppmøte;
+    const erReferat = dialogType !== Meldingstype.SPORSMAL_SKRIFTLIG;
+    const erOppmøte = dialogType !== Meldingstype.SAMTALEREFERAT_OPPMOTE;
     const erGyldigReferat = !temaFeil && !tekstFeil;
-    const erGyldigSpørsmål = true;
+    const erGyldigSpørsmål = true; //TODO sjekk at sak er valgt
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -173,12 +173,12 @@ function SendNyMelding() {
                     name="Dialogtype"
                     legend="Velg dialogtype"
                     radios={[
-                        { label: 'Samtalereferat telefon', value: Meldingstype.SamtalereferatTelefon },
-                        { label: 'Spørsmål til bruker', value: Meldingstype.SpørsmålSkriftlig },
-                        { label: 'Samtalereferat oppmøte', value: Meldingstype.SamtalereferatOppmøte }
+                        { label: 'Samtalereferat telefon', value: Meldingstype.SAMTALEREFERAT_TELEFON },
+                        { label: 'Spørsmål til bruker', value: Meldingstype.SPORSMAL_SKRIFTLIG },
+                        { label: 'Samtalereferat oppmøte', value: Meldingstype.SAMTALEREFERAT_OPPMOTE }
                     ]}
                     checked={dialogType}
-                    onChange={(_, value) => setDialogType(value as Meldingstype)}
+                    onChange={(_, value) => setDialogType(Meldingstype[value])}
                 />
                 <UnmountClosed isOpened={erReferat}>
                     <Temavelger setTema={setTema} tema={tema} visFeilmelding={temaFeil && visFeilMeldinger} />

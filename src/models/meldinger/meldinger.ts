@@ -53,14 +53,14 @@ export enum Temagruppe {
 export enum Meldingstype {
     DokumentVarsel = 'DOKUMENT_VARSEL',
     OppgaveVarsel = 'OPPGAVE_VARSEL',
-    SpørsmålSkriftlig = 'SPORSMAL_SKRIFTLIG',
+    SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
     SvarSkriftlig = 'SVAR_SKRIFTLIG',
-    SvarOppmøte = 'SVAR_OPPMOTE',
-    SvarTelefon = 'SVAR_TELEFON',
+    SVAR_OPPMOTE = 'SVAR_OPPMOTE',
+    SVAR_TELEFON = 'SVAR_TELEFON',
     DelvisSvarSkriftlig = 'DELVIS_SVAR_SKRIFTLIG',
-    SamtalereferatOppmøte = 'SAMTALEREFERAT_OPPMOTE',
-    SamtalereferatTelefon = 'SAMTALEREFERAT_TELEFON',
-    SpørsmålModiaUtgående = 'SPORSMAL_MODIA_UTGAAENDE',
+    SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
+    SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
+    SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
     SvarSblInngående = 'SVAR_SBL_INNGAAENDE'
 }
 

@@ -50,7 +50,7 @@ describe('Temagrupper', () => {
 });
 
 describe('Meldingstyper', () => {
-    const spørsmålSkriftlig = Meldingstype.SpørsmålSkriftlig;
+    const spørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG;
     const svarSkriftlig = Meldingstype.SvarSkriftlig;
     const dokumentvarsel = Meldingstype.DokumentVarsel;
 

@@ -2,11 +2,11 @@ import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldin
 
 export function meldingstypeTekst(meldingstype: Meldingstype) {
     switch (meldingstype) {
-        case Meldingstype.SvarTelefon:
+        case Meldingstype.SVAR_TELEFON:
             return 'Svar telefon';
-        case Meldingstype.SpørsmålSkriftlig:
+        case Meldingstype.SPORSMAL_SKRIFTLIG:
             return 'Spørsmål fra bruker';
-        case Meldingstype.SamtalereferatOppmøte:
+        case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return 'Samtalereferat oppmøte';
         case Meldingstype.DelvisSvarSkriftlig:
             return 'Delsvar';
@@ -14,11 +14,11 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Dokument varsel';
         case Meldingstype.OppgaveVarsel:
             return 'OppgaveIkon varsel';
-        case Meldingstype.SamtalereferatTelefon:
+        case Meldingstype.SAMTALEREFERAT_TELEFON:
             return 'Samtalereferat telefon';
-        case Meldingstype.SpørsmålModiaUtgående:
+        case Meldingstype.SPORSMAL_MODIA_UTGAAENDE:
             return 'Spørsmål fra NAV';
-        case Meldingstype.SvarOppmøte:
+        case Meldingstype.SVAR_OPPMOTE:
             return 'Svar oppmøte';
         case Meldingstype.SvarSblInngående:
             return 'Svar fra bruker';

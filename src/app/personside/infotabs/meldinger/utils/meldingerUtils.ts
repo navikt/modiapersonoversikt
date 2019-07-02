@@ -60,17 +60,17 @@ export function erKommunaleTjenester(temagruppe: Temagruppe) {
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
-    return [Meldingstype.SpørsmålSkriftlig, Meldingstype.SvarSblInngående].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SvarSblInngående].includes(meldingstype);
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
         Meldingstype.SvarSkriftlig,
-        Meldingstype.SvarOppmøte,
-        Meldingstype.SvarTelefon,
-        Meldingstype.SamtalereferatTelefon,
-        Meldingstype.SamtalereferatOppmøte,
-        Meldingstype.SpørsmålModiaUtgående,
+        Meldingstype.SVAR_OPPMOTE,
+        Meldingstype.SVAR_TELEFON,
+        Meldingstype.SAMTALEREFERAT_TELEFON,
+        Meldingstype.SAMTALEREFERAT_OPPMOTE,
+        Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
         Meldingstype.DokumentVarsel,
         Meldingstype.OppgaveVarsel,
         Meldingstype.DelvisSvarSkriftlig
@@ -82,5 +82,5 @@ export function erMeldingVarsel(meldingstype: Meldingstype) {
 }
 
 export function erMeldingSpørsmål(meldingstype: Meldingstype) {
-    return [Meldingstype.SpørsmålModiaUtgående, Meldingstype.SpørsmålSkriftlig].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG].includes(meldingstype);
 }
