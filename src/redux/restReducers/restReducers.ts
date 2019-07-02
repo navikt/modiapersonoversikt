@@ -23,7 +23,6 @@ import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
-import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
@@ -81,7 +80,6 @@ export interface RestEndepunkter {
     utbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
-    utførteUtbetalingerYtelser: RestResource<UtbetalingerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
@@ -117,7 +115,6 @@ export default combineReducers<RestEndepunkter>({
     utbetalinger: utbetalingerReducer,
     sykepenger: sykepengerReducer,
     pleiepenger: pleiepengerReducer,
-    utførteUtbetalingerYtelser: utførteUtbetalingerReducer,
     foreldrepenger: foreldrepengerReducer,
     oppfolging: oppfolgingReducer,
     sakstema: saksoversiktReducer,

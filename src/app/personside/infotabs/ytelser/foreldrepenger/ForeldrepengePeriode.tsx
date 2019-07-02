@@ -13,9 +13,7 @@ import {
     periodeEllerNull,
     prosentEllerNull
 } from '../../../../../utils/stringFormatting';
-import { YtelserKeys } from '../ytelserKeys';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
-import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import { GråttPanel } from '../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 
@@ -59,7 +57,6 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
                     <DescriptionList entries={entries} />
                 </GråttPanel>
                 <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
-                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Foreldrepenger} />
             </Wrapper>
         </YtelserPeriode>
     );
