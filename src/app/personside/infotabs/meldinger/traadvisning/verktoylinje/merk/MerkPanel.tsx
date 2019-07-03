@@ -127,7 +127,7 @@ function MerkPanel(props: Props) {
                 radios={[
                     { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: !enableStandardValg },
                     { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: enableBidrag },
-                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET },
+                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: !enableStandardValg },
                     {
                         label: 'Avslutt uten å svare bruker',
                         value: MerkOperasjon.AVSLUTT,
