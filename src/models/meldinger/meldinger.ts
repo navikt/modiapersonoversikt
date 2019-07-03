@@ -5,6 +5,7 @@ export interface Traad {
 
 export interface Melding {
     id: string;
+    oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe;
     skrevetAv: Saksbehandler;

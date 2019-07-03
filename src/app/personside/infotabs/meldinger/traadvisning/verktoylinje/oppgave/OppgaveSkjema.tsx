@@ -82,6 +82,9 @@ function OppgaveSkjema(props: OppgaveProps) {
         if (!harSkjemaValideringsfeil) {
             const request = lagOppgaveRequest(props, formState);
             props.opprettOppgave(request);
+            if (props.kontorsperreFunksjon) {
+                props.kontorsperreFunksjon();
+            }
             props.lukkPanel();
         }
     };

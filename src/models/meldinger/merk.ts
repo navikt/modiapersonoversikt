@@ -12,7 +12,7 @@ export interface KontorsperrRequest {
 }
 
 export interface AvsluttUtenSvarRequest {
-    saksbehandlerValgtEnhet: string;
-    eldsteMeldingTraadId: string;
-    eldsteMeldingOppgaveId: string;
+    saksbehandlerValgtEnhet?: string;
+    eldsteMeldingTraadId?: string;
+    eldsteMeldingOppgaveId?: string;
 }

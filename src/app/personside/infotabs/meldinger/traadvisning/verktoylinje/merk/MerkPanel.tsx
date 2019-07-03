@@ -22,6 +22,10 @@ import {
 } from '../../../utils/meldingerUtils';
 import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { UnmountClosed } from 'react-collapse';
+import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
+import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 
 interface Props {
     lukkPanel: () => void;
@@ -51,6 +55,8 @@ function lagMeldingsidListe(traad: Traad) {
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
+    const [opprettOppgave, settOpprettOppgave] = useState(true);
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = useSelector((state: AppState) => state.meldinger.valgtTraad);
     const merkAvslutt = useSelector((state: AppState) => state.restResources.merkAvslutt);
     const merkBidrag = useSelector((state: AppState) => state.restResources.merkBidrag);
@@ -84,8 +90,8 @@ function MerkPanel(props: Props) {
             case MerkOperasjon.AVSLUTT:
                 dispatch(
                     merkAvslutt.actions.post({
-                        saksbehandlerValgtEnhet: '',
-                        eldsteMeldingOppgaveId: '',
+                        saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
+                        eldsteMeldingOppgaveId: eldsteMelding(valgtTraad).oppgaveId,
                         eldsteMeldingTraadId: valgtTraad.traadId
                     })
                 );
@@ -97,8 +103,6 @@ function MerkPanel(props: Props) {
                 dispatch(merkFeilsendt.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
                 break;
             case MerkOperasjon.KONTORSPERRET:
-                dispatch(merkKontorsperret.actions.post({ fnr: '', meldingsidListe: lagMeldingsidListe(valgtTraad) }));
-                // TODO: Opprett oppgave også
                 break;
             case MerkOperasjon.SLETT:
                 dispatch(merkSlett.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
@@ -107,13 +111,23 @@ function MerkPanel(props: Props) {
         props.lukkPanel();
     };
 
+    function kontorsperring() {
+        if (!valgtTraad) {
+            return;
+        }
+        dispatch(
+            merkKontorsperret.actions.post({ fnr: valgtBrukersFnr, meldingsidListe: lagMeldingsidListe(valgtTraad) })
+        );
+        props.lukkPanel();
+    }
+
     return (
         <form onSubmit={submitHandler}>
             <RadioPanelGruppe
                 radios={[
                     { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: !enableStandardValg },
                     { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: enableBidrag },
-                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: !enableStandardValg },
+                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET },
                     {
                         label: 'Avslutt uten å svare bruker',
                         value: MerkOperasjon.AVSLUTT,
@@ -123,15 +137,27 @@ function MerkPanel(props: Props) {
                 ]}
                 name={'merk'}
                 checked={valgtOperasjon}
-                legend={'Merk tråd'}
+                legend={''}
                 onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
             />
-            <KnappStyle>
-                <Hovedknapp htmlType="submit">Merk</Hovedknapp>
-                <LenkeKnapp type="button" onClick={props.lukkPanel}>
-                    Avbryt
-                </LenkeKnapp>
-            </KnappStyle>
+            <UnmountClosed isOpened={valgtOperasjon === MerkOperasjon.KONTORSPERRET}>
+                <Checkbox
+                    label={'Opprett oppgave'}
+                    checked={opprettOppgave}
+                    onChange={_ => settOpprettOppgave(!opprettOppgave)}
+                />
+                <UnmountClosed isOpened={opprettOppgave}>
+                    <OpprettOppgaveContainer lukkPanel={() => {}} kontorsperreFunksjon={kontorsperring} />
+                </UnmountClosed>
+            </UnmountClosed>
+            {valgtOperasjon === MerkOperasjon.KONTORSPERRET && opprettOppgave ? null : ( // Bruk knapp i oppgavepanel
+                <KnappStyle>
+                    <Hovedknapp htmlType="submit">Merk</Hovedknapp>
+                    <LenkeKnapp type="button" onClick={props.lukkPanel}>
+                        Avbryt
+                    </LenkeKnapp>
+                </KnappStyle>
+            )}
         </form>
     );
 }
