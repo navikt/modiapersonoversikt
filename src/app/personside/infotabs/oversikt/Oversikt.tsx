@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Oversiktskomponent from './Oversiktskomponent';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
+import OppfolgingOversikt from './OppfolgingOversikt';
 
 const Style = styled.article`
     display: flex;
@@ -19,7 +20,7 @@ function Oversikt() {
     return (
         <Style>
             <Oversiktskomponent tittel={'Utbetalinger'} children={<Normaltekst>Utbelainger</Normaltekst>} />
-            <Oversiktskomponent tittel={'Oppfølging'} children={<Normaltekst>Oppfølging</Normaltekst>} />
+            <Oversiktskomponent tittel={'Oppfølging'} children={<OppfolgingOversikt />} />
             <Oversiktskomponent tittel={'Varsler'} children={<VarselOversikt />} />
             <Oversiktskomponent tittel={'Meldinger'} children={<Normaltekst>Meldinger</Normaltekst>} />
             <Oversiktskomponent tittel={'Ytelser'} children={<Normaltekst>Ytelser</Normaltekst>} />

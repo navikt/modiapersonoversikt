@@ -14,28 +14,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.625rem;
 }
 
-.c5 {
+.c6 {
   font-weight: bold;
 }
 
-.c2 > * {
+.c3 > * {
   margin-top: 1px;
 }
 
-.c3 {
+.c4 {
   display: grid;
   grid-template-columns: 70% auto;
   background-color: white;
   padding: 0.625rem;
 }
 
-.c4 li {
+.c5 li {
   display: inline-block;
 }
 
-.c4 li:not(:last-child):after {
+.c5 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
+}
+
+.c2 {
+  margin-top: 1px;
+  background-color: white;
+  padding: 0.625rem;
 }
 
 .c0 {
@@ -109,11 +115,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
       </a>
     </div>
-    <p
-      className="typo-normal"
+    <div
+      className="c2"
     >
-      Oppfølging
-    </p>
+      <p
+        className="typo-normal"
+      >
+        Er ikke i arbeidsrettet oppfølging
+      </p>
+    </div>
   </div>
   <div
     className=""
@@ -139,10 +149,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </a>
     </div>
     <ol
-      className="c2"
+      className="c3"
     >
       <div
-        className="c3"
+        className="c4"
       >
         <p
           className="typo-normal"
@@ -151,7 +161,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c4"
+          className="c5"
         >
           <li
             className="typo-normal"
@@ -168,14 +178,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-normal"
         >
           <span
-            className="c5"
+            className="c6"
           >
             Påminnelse om å sende meldekort
           </span>
         </p>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <p
           className="typo-normal"
@@ -184,7 +194,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c4"
+          className="c5"
         >
           <li
             className="typo-normal"
@@ -196,7 +206,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-normal"
         >
           <span
-            className="c5"
+            className="c6"
           >
             Påminnelse om å sende meldekort
           </span>
