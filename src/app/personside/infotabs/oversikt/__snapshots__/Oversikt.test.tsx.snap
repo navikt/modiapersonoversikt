@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser oversikt med alt innhold 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.625rem;
+}
+
+.c5 {
+  font-weight: bold;
+}
+
+.c2 > * {
+  margin-top: 1px;
+}
+
+.c3 {
+  display: grid;
+  grid-template-columns: 70% auto;
+  background-color: white;
+  padding: 0.625rem;
+}
+
+.c4 li {
+  display: inline-block;
+}
+
+.c4 li:not(:last-child):after {
+  content: ',';
+  margin-right: 0.5em;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c0 > * {
+  margin: 0.9375rem;
+  width: 25rem;
+  overflow-wrap: break-word;
+}
+
+<article
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="typo-undertittel"
+      >
+        Utbetalinger
+      </h3>
+      <a
+        className="lenke"
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          Vis alle
+        </p>
+      </a>
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Utbelainger
+    </p>
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="typo-undertittel"
+      >
+        Oppfølging
+      </h3>
+      <a
+        className="lenke"
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          Vis alle
+        </p>
+      </a>
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Oppfølging
+    </p>
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="typo-undertittel"
+      >
+        Varsler
+      </h3>
+      <a
+        className="lenke"
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          Vis alle
+        </p>
+      </a>
+    </div>
+    <ol
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <p
+          className="typo-normal"
+        >
+          28. mars 2019
+        </p>
+        <ul
+          aria-label="Kommunikasjonskanaler"
+          className="c4"
+        >
+          <li
+            className="typo-normal"
+          >
+            SMS
+          </li>
+          <li
+            className="typo-normal"
+          >
+            EPOST
+          </li>
+        </ul>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c5"
+          >
+            Påminnelse om å sende meldekort
+          </span>
+        </p>
+      </div>
+      <div
+        className="c3"
+      >
+        <p
+          className="typo-normal"
+        >
+          10. jan. 2019
+        </p>
+        <ul
+          aria-label="Kommunikasjonskanaler"
+          className="c4"
+        >
+          <li
+            className="typo-normal"
+          >
+            EPOST
+          </li>
+        </ul>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c5"
+          >
+            Påminnelse om å sende meldekort
+          </span>
+        </p>
+      </div>
+    </ol>
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="typo-undertittel"
+      >
+        Meldinger
+      </h3>
+      <a
+        className="lenke"
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          Vis alle
+        </p>
+      </a>
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Meldinger
+    </p>
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="typo-undertittel"
+      >
+        Ytelser
+      </h3>
+      <a
+        className="lenke"
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          Vis alle
+        </p>
+      </a>
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Ytelser
+    </p>
+  </div>
+</article>
+`;

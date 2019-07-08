@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
@@ -15,6 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
+import Oversikt from './oversikt/Oversikt';
 
 interface OwnProps {
     personRespons: PersonRespons;
@@ -64,8 +64,6 @@ class InfoTabs extends React.PureComponent<Props> {
     }
 
     render() {
-        const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
-
         const basePath = paths.personUri + '/:fodselsnummer/';
 
         return (
@@ -93,7 +91,7 @@ class InfoTabs extends React.PureComponent<Props> {
                             <Route path={basePath + INFOTABS.SAKER + '/'} component={() => <SaksoversiktContainer />} />
                             <Route path={basePath + INFOTABS.YTELSER + '/'} component={() => <YtelserContainer />} />
                             <Route path={basePath + INFOTABS.VARSEL + '/'} component={() => <VarslerContainer />} />
-                            <Route component={OversiktWithProps} />
+                            <Route path={basePath + INFOTABS.OVERSIKT + '/'} component={() => <Oversikt />} />
                         </Switch>
                     </OpenTab>
                 </Section>
