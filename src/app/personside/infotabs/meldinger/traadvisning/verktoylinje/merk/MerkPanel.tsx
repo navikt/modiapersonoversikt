@@ -4,7 +4,7 @@ import { FormEvent } from 'react';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import {
     eldsteMelding,
@@ -26,6 +26,8 @@ import { UnmountClosed } from 'react-collapse';
 import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { apiBaseUri } from '../../../../../../../api/config';
+import { post } from '../../../../../../../api/api';
 
 interface Props {
     lukkPanel: () => void;
@@ -44,6 +46,12 @@ const KnappStyle = styled.div`
     justify-content: space-between;
 `;
 
+const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
+const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
+const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
+const MERK_KONTORSPERRET_URL = `${apiBaseUri}/dialogmerking/kontorsperret`;
+const MERK_SLETT_URL = `${apiBaseUri}/dialogmerking/slett`;
+
 function lagBehandlingskjede(traad: Traad) {
     return traad.meldinger.filter(melding => !erMeldingFeilsendt(melding)).map(melding => melding.id);
 }
@@ -53,16 +61,10 @@ function lagMeldingsidListe(traad: Traad) {
 }
 
 function MerkPanel(props: Props) {
-    const dispatch = useDispatch();
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = useSelector((state: AppState) => state.meldinger.valgtTraad);
-    const merkAvslutt = useSelector((state: AppState) => state.restResources.merkAvslutt);
-    const merkBidrag = useSelector((state: AppState) => state.restResources.merkBidrag);
-    const merkFeilsendt = useSelector((state: AppState) => state.restResources.merkFeilsendt);
-    const merkKontorsperret = useSelector((state: AppState) => state.restResources.merkKontorsperret);
-    const merkSlett = useSelector((state: AppState) => state.restResources.merkSlett);
 
     if (!valgtTraad) {
         return <AlertStripeAdvarsel>Ingen tråd valgt</AlertStripeAdvarsel>;
@@ -70,17 +72,17 @@ function MerkPanel(props: Props) {
 
     const melding = eldsteMelding(valgtTraad);
 
-    const enableStandardValg =
-        !erEldsteMeldingJournalfort(valgtTraad) &&
-        !erFeilsendt(valgtTraad) &&
-        !erBehandlet(valgtTraad) &&
-        !erKontorsperret(valgtTraad);
-    const enableBidrag = !erKommunaleTjenester(melding.temagruppe) && enableStandardValg;
-    const enableFerdigstillUtenSvar =
-        erMeldingSpørsmål(melding.meldingstype) &&
-        !erKontorsperret(valgtTraad) &&
-        !erBehandlet(valgtTraad) &&
-        !harDelsvar(valgtTraad);
+    const disableStandardvalg =
+        erEldsteMeldingJournalfort(valgtTraad) &&
+        erFeilsendt(valgtTraad) &&
+        erBehandlet(valgtTraad) &&
+        erKontorsperret(valgtTraad);
+    const disableBidrag = !erKommunaleTjenester(melding.temagruppe) && disableStandardvalg;
+    const disableFerdigstillUtenSvar =
+        !erMeldingSpørsmål(melding.meldingstype) &&
+        erKontorsperret(valgtTraad) &&
+        erBehandlet(valgtTraad) &&
+        harDelsvar(valgtTraad);
     const enableSlett =
         harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
 
@@ -88,24 +90,22 @@ function MerkPanel(props: Props) {
         event.preventDefault();
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
-                dispatch(
-                    merkAvslutt.actions.post({
-                        saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
-                        eldsteMeldingOppgaveId: eldsteMelding(valgtTraad).oppgaveId,
-                        eldsteMeldingTraadId: valgtTraad.traadId
-                    })
-                );
+                post(MERK_AVSLUTT_URL, {
+                    saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
+                    eldsteMeldingOppgaveId: eldsteMelding(valgtTraad).oppgaveId,
+                    eldsteMeldingTraadId: valgtTraad.traadId
+                });
                 break;
             case MerkOperasjon.BISYS:
-                dispatch(merkBidrag.actions.post({ eldsteMeldingTraadId: eldsteMelding(valgtTraad).id }));
+                post(MERK_BISYS_URL, { eldsteMeldingTraadId: eldsteMelding(valgtTraad).id });
                 break;
             case MerkOperasjon.FEILSENDT:
-                dispatch(merkFeilsendt.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
+                post(MERK_FEILSENDT_URL, { behandlingsidListe: lagBehandlingskjede(valgtTraad) });
                 break;
             case MerkOperasjon.KONTORSPERRET:
                 break;
             case MerkOperasjon.SLETT:
-                dispatch(merkSlett.actions.post({ behandlingsidListe: lagBehandlingskjede(valgtTraad) }));
+                post(MERK_SLETT_URL, { behandlingsidListe: lagBehandlingskjede(valgtTraad) });
                 break;
         }
         props.lukkPanel();
@@ -115,9 +115,7 @@ function MerkPanel(props: Props) {
         if (!valgtTraad) {
             return;
         }
-        dispatch(
-            merkKontorsperret.actions.post({ fnr: valgtBrukersFnr, meldingsidListe: lagMeldingsidListe(valgtTraad) })
-        );
+        post(MERK_KONTORSPERRET_URL, { fnr: valgtBrukersFnr, meldingsidListe: lagMeldingsidListe(valgtTraad) });
         props.lukkPanel();
     }
 
@@ -125,13 +123,13 @@ function MerkPanel(props: Props) {
         <form onSubmit={submitHandler}>
             <RadioPanelGruppe
                 radios={[
-                    { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: !enableStandardValg },
-                    { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: enableBidrag },
-                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: !enableStandardValg },
+                    { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+                    { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
+                    { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
                     {
                         label: 'Avslutt uten å svare bruker',
                         value: MerkOperasjon.AVSLUTT,
-                        disabled: !enableFerdigstillUtenSvar
+                        disabled: disableFerdigstillUtenSvar
                     },
                     { label: 'Merk for sletting', value: MerkOperasjon.SLETT, disabled: !enableSlett }
                 ]}
