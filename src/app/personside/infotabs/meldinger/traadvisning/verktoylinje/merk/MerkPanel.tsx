@@ -73,15 +73,15 @@ function MerkPanel(props: Props) {
     const melding = eldsteMelding(valgtTraad);
 
     const disableStandardvalg =
-        erEldsteMeldingJournalfort(valgtTraad) &&
-        erFeilsendt(valgtTraad) &&
-        erBehandlet(valgtTraad) &&
+        erEldsteMeldingJournalfort(valgtTraad) ||
+        erFeilsendt(valgtTraad) ||
+        erBehandlet(valgtTraad) ||
         erKontorsperret(valgtTraad);
-    const disableBidrag = !erKommunaleTjenester(melding.temagruppe) && disableStandardvalg;
+    const disableBidrag = !erKommunaleTjenester(melding.temagruppe) || disableStandardvalg;
     const disableFerdigstillUtenSvar =
-        !erMeldingSpørsmål(melding.meldingstype) &&
-        erKontorsperret(valgtTraad) &&
-        erBehandlet(valgtTraad) &&
+        !erMeldingSpørsmål(melding.meldingstype) ||
+        erKontorsperret(valgtTraad) ||
+        erBehandlet(valgtTraad) ||
         harDelsvar(valgtTraad);
     const enableSlett =
         harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
