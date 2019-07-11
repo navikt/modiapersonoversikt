@@ -1,5 +1,4 @@
 import * as React from 'react';
-import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useState } from 'react';
 import { FormEvent } from 'react';
 import styled from 'styled-components';
@@ -26,6 +25,7 @@ import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksb
 import { UnmountClosed } from 'react-collapse';
 import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
 
 interface Props {
     lukkPanel: () => void;
