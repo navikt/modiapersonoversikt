@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 interface Props {
     lukkPanel: () => void;
+    kontorsperreFunksjon?: () => void;
 }
 
 const PanelStyle = styled.div`
@@ -16,7 +17,13 @@ function OpprettOppgaveContainer(props: Props) {
     return (
         <PanelStyle>
             <RestResourceConsumer<GsakTema[]> getResource={restResources => restResources.oppgaveGsakTema}>
-                {data => <OppgaveSkjemaContainer gsakTema={data} lukkPanel={props.lukkPanel} />}
+                {data => (
+                    <OppgaveSkjemaContainer
+                        gsakTema={data}
+                        lukkPanel={props.lukkPanel}
+                        kontorsperreFunksjon={props.kontorsperreFunksjon}
+                    />
+                )}
             </RestResourceConsumer>
         </PanelStyle>
     );
