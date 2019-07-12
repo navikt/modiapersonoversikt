@@ -44,6 +44,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.625rem;
 }
 
+.c7 > * {
+  background-color: white;
+  padding: 0.625rem;
+  margin-top: 1px;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -63,9 +69,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 <article
   className="c0"
 >
-  <div
-    className=""
-  >
+  <div>
     <div
       className="c1"
     >
@@ -92,9 +96,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       Utbelainger
     </p>
   </div>
-  <div
-    className=""
-  >
+  <div>
     <div
       className="c1"
     >
@@ -125,9 +127,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </p>
     </div>
   </div>
-  <div
-    className=""
-  >
+  <div>
     <div
       className="c1"
     >
@@ -214,9 +214,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
     </ol>
   </div>
-  <div
-    className=""
-  >
+  <div>
     <div
       className="c1"
     >
@@ -243,9 +241,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       Meldinger
     </p>
   </div>
-  <div
-    className=""
-  >
+  <div>
     <div
       className="c1"
     >
@@ -266,11 +262,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
       </a>
     </div>
-    <p
-      className="typo-normal"
-    >
-      Ytelser
-    </p>
+    <div
+      className="c7"
+    />
   </div>
 </article>
 `;
