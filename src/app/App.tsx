@@ -11,7 +11,7 @@ import AppStyle, { ContentStyle } from './AppWrapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
-import Decorator from './internarbeidsflatedecorator/Decorator';
+import EnhetContext from './internarbeidsflatedecorator/context';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useOnMount } from '../utils/customHooks';
@@ -35,7 +35,7 @@ function Personoveriskt() {
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
                 <AppStyle ref={appRef}>
-                    <Decorator />
+                    <EnhetContext />
                     <ContentStyle>
                         <Routing />
                     </ContentStyle>

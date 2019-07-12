@@ -365,6 +365,13 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
     );
 }
 
+function setupModiacontext(mock: FetchMock) {
+    mock.get('/modiacontextholder/api/context', { aktivBruker: '10108000398', aktivEnhet: '0200' });
+    mock.get('/modiacontextholder/api/context/aktivbruker', { aktivBruker: '10108000398', aktivEnhet: null });
+    mock.get('/modiacontextholder/api/context/aktivenhet', { aktivBruker: null, aktivEnhet: '0200' });
+    mock.post('/modiacontextholder/api/context', {});
+}
+
 function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
@@ -379,6 +386,27 @@ const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     return response;
 };
 
+const loggingMiddleware: Middleware = (request, response) => {
+    // tslint:disable
+    console.groupCollapsed(request.url);
+    console.groupCollapsed('config');
+    console.log('url', request.url);
+    console.log('queryParams', request.queryParams);
+    console.log('pathParams', request.pathParams);
+    console.log('body', request.body);
+    console.groupEnd();
+
+    try {
+        console.log('response', JSON.parse(response.body));
+    } catch (e) {
+        console.log('response', response);
+    }
+
+    console.groupEnd();
+    // tslint:enable
+    return response;
+};
+
 let mockInitialised = false;
 export function setupMock() {
     if (mockInitialised) {
@@ -390,7 +418,11 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: MiddlewareUtils.combine(contentTypeMiddleware, MiddlewareUtils.failurerateMiddleware(0.02))
+        middleware: MiddlewareUtils.combine(
+            contentTypeMiddleware,
+            MiddlewareUtils.failurerateMiddleware(0.02),
+            loggingMiddleware
+        )
     });
 
     setupInnloggetSaksbehandlerMock(mock);
@@ -427,4 +459,5 @@ export function setupMock() {
     opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
     setupPersonsokMock(mock);
+    setupModiacontext(mock);
 }
