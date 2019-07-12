@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 import { Bold } from '../../../../components/common-styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyle = styled.ol`
     > * {

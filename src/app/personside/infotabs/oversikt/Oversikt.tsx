@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 import Oversiktskomponent from './Oversiktskomponent';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
+import { Normaltekst } from 'nav-frontend-typografi';
+import YtelserOversikt from './YtelserOversikt';
 
 const Style = styled.article`
     display: flex;
@@ -23,7 +24,7 @@ function Oversikt() {
             <Oversiktskomponent tittel={'Oppfølging'} children={<OppfolgingOversikt />} />
             <Oversiktskomponent tittel={'Varsler'} children={<VarselOversikt />} />
             <Oversiktskomponent tittel={'Meldinger'} children={<Normaltekst>Meldinger</Normaltekst>} />
-            <Oversiktskomponent tittel={'Ytelser'} children={<Normaltekst>Ytelser</Normaltekst>} />
+            <Oversiktskomponent tittel={'Ytelser'} children={<YtelserOversikt />} />
         </Style>
     );
 }

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { DetaljertOppfolging, Oppfolging } from '../../../../models/oppfolging';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const Style = styled.div`
     margin-top: 1px;

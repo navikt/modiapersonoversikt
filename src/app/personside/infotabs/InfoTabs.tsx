@@ -91,7 +91,7 @@ class InfoTabs extends React.PureComponent<Props> {
                             <Route path={basePath + INFOTABS.SAKER + '/'} component={() => <SaksoversiktContainer />} />
                             <Route path={basePath + INFOTABS.YTELSER + '/'} component={() => <YtelserContainer />} />
                             <Route path={basePath + INFOTABS.VARSEL + '/'} component={() => <VarslerContainer />} />
-                            <Route path={basePath + INFOTABS.OVERSIKT + '/'} component={() => <Oversikt />} />
+                            <Route path={basePath + INFOTABS.OVERSIKT + '/'} component={Oversikt} />
                         </Switch>
                     </OpenTab>
                 </Section>
