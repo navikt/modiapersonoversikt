@@ -31,11 +31,6 @@ import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
-import merkFeilsendt from './meldinger/merkFeilsendt';
-import merkBidrag from './meldinger/merkBidrag';
-import merkKontorsperret from './meldinger/merkKontorsperret';
-import merkAvslutt from './meldinger/merkAvslutt';
-import merkSlett from './meldinger/merkSlett';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -61,12 +56,6 @@ import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
-import {
-    AvsluttUtenSvarRequest,
-    KontorsperrRequest,
-    RequestMedBehandlingskjede,
-    RequestMedTraadId
-} from '../../models/meldinger/merk';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -101,11 +90,6 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendMelding: PostResource<SendMeldingRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
-    merkFeilsendt: PostResource<RequestMedBehandlingskjede>;
-    merkBidrag: PostResource<RequestMedTraadId>;
-    merkKontorsperret: PostResource<KontorsperrRequest>;
-    merkAvslutt: PostResource<AvsluttUtenSvarRequest>;
-    merkSlett: PostResource<RequestMedBehandlingskjede>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -140,10 +124,5 @@ export default combineReducers<RestEndepunkter>({
     oppgaveGsakTema: oppgaveGsakTemaReducer,
     sendMelding: sendMelding,
     opprettOppgave: opprettOppgave,
-    personsok: personsok,
-    merkFeilsendt: merkFeilsendt,
-    merkBidrag: merkBidrag,
-    merkKontorsperret: merkKontorsperret,
-    merkAvslutt: merkAvslutt,
-    merkSlett: merkSlett
+    personsok: personsok
 });

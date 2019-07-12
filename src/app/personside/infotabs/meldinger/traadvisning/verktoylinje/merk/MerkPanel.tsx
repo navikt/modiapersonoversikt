@@ -19,7 +19,6 @@ import {
     harDelsvar,
     harTilgangTilSletting
 } from '../../../utils/meldingerUtils';
-import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { UnmountClosed } from 'react-collapse';
@@ -28,6 +27,7 @@ import Checkbox from 'nav-frontend-skjema/lib/checkbox';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     lukkPanel: () => void;
