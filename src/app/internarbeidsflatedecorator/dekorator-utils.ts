@@ -1,4 +1,5 @@
 import { apiBaseUri } from '../../api/config';
+import { settValgtEnhet } from './context-api';
 
 interface Config {
     config: {
@@ -16,6 +17,7 @@ interface Config {
         applicationName: string;
         initiellEnhet?: string;
         fnr?: string;
+        handleChangeEnhet(enhet: string): void;
     };
 }
 
@@ -28,6 +30,7 @@ const config = (fnr: string, enhet: string): Config => ({
         },
         fnr: fnr,
         initiellEnhet: enhet,
+        handleChangeEnhet: settValgtEnhet,
         toggles: {
             visEnhet: false,
             visEnhetVelger: true,

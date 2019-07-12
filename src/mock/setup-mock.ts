@@ -359,6 +359,10 @@ function setupNavigasjonsmenyMock(mock: FetchMock) {
                 {
                     navn: 'NAV Oslo',
                     enhetId: '1220'
+                },
+                {
+                    navn: 'NAV Bærum',
+                    enhetId: '1221'
                 }
             ]
         }))

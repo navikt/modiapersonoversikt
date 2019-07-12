@@ -33,6 +33,17 @@ export function hentIdent(): Promise<string> {
     return fetchToJson<MeModell>(`${apiBaseUri}/hode/me`).then(data => data.ident);
 }
 
+export function settValgtEnhet(enhet: string) {
+    return fetch(`${apiBaseUri}/hode/velgenhet`, {
+        body: enhet,
+        method: 'post',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
 export function hentAktivEnhet(): Promise<string> {
     return fetchToJson<AktivEnhetModell>(`/modiacontextholder/api/context/aktivenhet`).then(data => {
         return data.aktivEnhet;
