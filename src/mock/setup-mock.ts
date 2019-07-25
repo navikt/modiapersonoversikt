@@ -410,7 +410,11 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: MiddlewareUtils.combine(contentTypeMiddleware, MiddlewareUtils.failurerateMiddleware(0.02))
+        middleware: MiddlewareUtils.combine(
+            contentTypeMiddleware,
+            MiddlewareUtils.failurerateMiddleware(0.02),
+            MiddlewareUtils.loggingMiddleware()
+        )
     });
 
     setupInnloggetSaksbehandlerMock(mock);
