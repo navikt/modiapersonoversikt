@@ -28,11 +28,11 @@ function fetchReducer<TYPE>(state: FetchData<TYPE>, action: FetchActions<TYPE>):
     }
 }
 
-export type UseFetchHook<TYPE> = ReducerState<FetchReducer<TYPE>> & {
+export type FetchContainer<TYPE> = ReducerState<FetchReducer<TYPE>> & {
     refetch(): void;
 };
 
-export default function useFetch<TYPE>(url: RequestInfo, option?: RequestInit): UseFetchHook<TYPE> {
+export default function useFetch<TYPE>(url: RequestInfo, option?: RequestInit): FetchContainer<TYPE> {
     const [rerun, setRerun] = useState(0);
     const [state, dispatch] = useReducer<FetchReducer<TYPE>>(fetchReducer, initalState);
     useEffect(() => {
@@ -70,8 +70,8 @@ export default function useFetch<TYPE>(url: RequestInfo, option?: RequestInit): 
 export function combineStates<T>(
     reducer: (acc: T, next: T) => T,
     initialValue: T,
-    ...allekall: Array<UseFetchHook<T>>
-): UseFetchHook<T> {
+    ...allekall: Array<FetchContainer<T>>
+): FetchContainer<T> {
     const isLoading = allekall.some(kall => kall.isLoading);
     const isError = allekall.every(kall => kall.isError);
     const data = isLoading
