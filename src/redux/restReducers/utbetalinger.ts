@@ -11,9 +11,7 @@ export function reloadUtbetalinger(fødselsnummer: string, startDato: Date, slut
     return reload(() => getUtbetalinger(fødselsnummer, startDato, sluttDato));
 }
 
-export function resetUtbetalingerResource() {
-    return tilbakestill;
-}
+export const resetUtbetalingerResource = tilbakestill;
 
 export const utbetalingerActions = actionNames;
 export default reducer;

@@ -105,6 +105,101 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
 }
 
+.c11 {
+  overflow: auto;
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
+  background-color: white;
+}
+
+.c11 table {
+  text-align: left;
+  width: 100%;
+}
+
+.c11 table thead {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  font-weight: bold;
+}
+
+.c11 table th,
+.c11 table td {
+  padding: 0.7rem;
+  vertical-align: middle;
+}
+
+.c11 table th {
+  padding-bottom: 0.7rem;
+}
+
+.c11 table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.c10 {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c16 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c16 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c15 .first {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c15 .second {
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  font-weight: bold;
+}
+
+.c12 > * {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c14 > *:last-child {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-flex-basis: 70%;
+  -ms-flex-preferred-size: 70%;
+  flex-basis: 70%;
+}
+
+.c13 {
+  padding: 1.25rem;
+}
+
 .c0 > *:not(:last-child) {
   margin-bottom: .8rem;
 }
@@ -437,6 +532,107 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           />
         </div>
       </button>
+      <article
+        aria-label="Sykefraværsoppfølging"
+        className="ekspanderbartPanel__innhold"
+      >
+        <div
+          className="c10"
+        >
+          <div
+            className="typo-normal c11"
+          >
+            <table
+              role="table"
+            >
+              <thead
+                role="rowgroup"
+              >
+                <tr
+                  role="row"
+                >
+                  <th
+                    role="columnheader"
+                  >
+                    Innen
+                  </th>
+                  <th
+                    role="columnheader"
+                  >
+                    Hendelse
+                  </th>
+                  <th
+                    role="columnheader"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                role="rowgroup"
+              >
+                <tr
+                  role="row"
+                >
+                  <td
+                    role="cell"
+                  >
+                    01.01.1970
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    vel expedita dolore excepturi est alias
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+                <tr
+                  role="row"
+                >
+                  <td
+                    role="cell"
+                  >
+                    01.01.1970
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    illo repellendus ad iste neque maxime
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+                <tr
+                  role="row"
+                >
+                  <td
+                    role="cell"
+                  >
+                    01.01.1970
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    nostrum sunt quia mollitia impedit sint
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
   <div
@@ -469,6 +665,278 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           />
         </div>
       </button>
+      <article
+        aria-label="Ytelser"
+        className="ekspanderbartPanel__innhold"
+      >
+        <ol
+          className="c12"
+        >
+          <div
+            className="c13"
+          >
+            <h2
+              className="typo-undertittel"
+            >
+              Dagpenger
+            </h2>
+            <div
+              className="c14"
+            >
+              <dl
+                className="c7"
+              >
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Status
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    Avsluttet
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Dato søknad mottatt
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    01.01.1970
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Dato fra
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    01.01.1970
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Dato til
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    01.01.1970
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Bortfall: Dager igjen
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    46
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Bortfall: Uker igjen
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    8
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Dager igjen
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    28
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Uker igjen
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    10
+                  </dd>
+                </div>
+              </dl>
+              <section>
+                <h2
+                  className="typo-undertittel visually-hidden"
+                >
+                  Vedtak
+                </h2>
+                <div
+                  className="typo-normal c11"
+                >
+                  <table
+                    role="table"
+                  >
+                    <thead
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          role="columnheader"
+                        >
+                          Vedtak
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Status
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Aktivitetsfase
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          <div
+                            className="c15"
+                          >
+                            <h4
+                              className="second"
+                            >
+                              Ordinære dagpenger
+                            </h4>
+                            <div
+                              className="c16"
+                            >
+                              <p
+                                className="typo-etikett-liten first"
+                              >
+                                01.01.1970 - 01.01.1970
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Iverksatt
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Ikke spesif. aktivitetsfase
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          <div
+                            className="c15"
+                          >
+                            <h4
+                              className="second"
+                            >
+                              Ordinære dagpenger
+                            </h4>
+                            <div
+                              className="c16"
+                            >
+                              <p
+                                className="typo-etikett-liten first"
+                              >
+                                01.01.1970 - 01.01.1970
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Avsluttet
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Ikke spesif. aktivitetsfase
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          <div
+                            className="c15"
+                          >
+                            <h4
+                              className="second"
+                            >
+                              Ordinære dagpenger
+                            </h4>
+                            <div
+                              className="c16"
+                            >
+                              <p
+                                className="typo-etikett-liten first"
+                              >
+                                01.01.1970 - 01.01.1970
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Avsluttet
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Ikke spesif. aktivitetsfase
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </ol>
+      </article>
     </div>
   </div>
 </article>

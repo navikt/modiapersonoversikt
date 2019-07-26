@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -15,6 +14,7 @@ import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
+import { useOnMount } from '../utils/customHooks';
 
 if (mockEnabled) {
     setupMock();
@@ -25,9 +25,9 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 function Personoveriskt() {
     const appRef = React.createRef<HTMLDivElement>();
 
-    useEffect(() => {
+    useOnMount(() => {
         ModalWrapper.setAppElement(appRef.current);
-    }, []);
+    });
 
     return (
         <Provider store={store}>

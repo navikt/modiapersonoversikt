@@ -23,7 +23,6 @@ import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
-import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
@@ -31,6 +30,7 @@ import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
+import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
 import { BrukersNavKontorResponse } from '../../models/navkontor';
@@ -55,6 +55,7 @@ import { PostResource } from '../../rest/utils/postResource';
 import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
+import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -79,7 +80,6 @@ export interface RestEndepunkter {
     utbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
-    utførteUtbetalingerYtelser: RestResource<UtbetalingerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
     sakstema: DeprecatedRestResource<SakstemaResponse>;
@@ -89,6 +89,7 @@ export interface RestEndepunkter {
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendMelding: PostResource<SendMeldingRequest>;
+    personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -114,7 +115,6 @@ export default combineReducers<RestEndepunkter>({
     utbetalinger: utbetalingerReducer,
     sykepenger: sykepengerReducer,
     pleiepenger: pleiepengerReducer,
-    utførteUtbetalingerYtelser: utførteUtbetalingerReducer,
     foreldrepenger: foreldrepengerReducer,
     oppfolging: oppfolgingReducer,
     sakstema: saksoversiktReducer,
@@ -123,5 +123,6 @@ export default combineReducers<RestEndepunkter>({
     tråderOgMeldinger: meldingerReducer,
     oppgaveGsakTema: oppgaveGsakTemaReducer,
     sendMelding: sendMelding,
-    opprettOppgave: opprettOppgave
+    opprettOppgave: opprettOppgave,
+    personsok: personsok
 });

@@ -29,10 +29,6 @@ interface OwnProps {
 type Props = DispatchProps & StateProps & OwnProps;
 
 class NavKontorContainer extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     componentDidMount() {
         if (isNotStarted(this.props.baseUrlResource)) {
             this.props.hentBaseUrls();

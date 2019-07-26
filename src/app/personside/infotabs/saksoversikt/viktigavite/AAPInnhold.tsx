@@ -13,6 +13,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                 Arbeidsavklaringspenger+%28AAP%29.217377.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om arbeidsavklaringspenger
                 </a>
@@ -25,6 +26,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     <a
                         href="https\://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Jobbsøketips
                     </a>
@@ -32,7 +34,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                 </li>
 
                 <li>
-                    <a href="https\://tjenester.nav.no/akademia/startside?1" target="_blank">
+                    <a href="https\://tjenester.nav.no/akademia/startside?1" target="_blank" rel="noopener noreferrer">
                         Interessetesten Akademia
                     </a>
                     &nbsp;er et arbeidsverktøy til å finne ut mer om stillinger, arbeidsområder og arbeidslivet generelt
@@ -50,6 +52,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Arbeid/Oppfolging+av+arbeidssokere/Relatert+informasjon/
                 Aktivitetsplan.347229.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om aktivitetsplan
                 </a>
@@ -62,7 +65,11 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                 arbeidslivet. Du og fastlegen din eller annen behandler er ansvarlig for den medisinske behandlingen
                 din.
                 <br />
-                <a href="https\://www.nav.no/no/Bedrift/Rekruttering/Arbeidsrettede+tiltak" target="_blank">
+                <a
+                    href="https\://www.nav.no/no/Bedrift/Rekruttering/Arbeidsrettede+tiltak"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Les mer om arbeidsrettede tiltak
                 </a>
             </Normaltekst>
@@ -77,6 +84,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                 Relatert+informasjon/Tilleggsst%C3%B8nader.346092.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om tilleggsstønader
                 </a>
@@ -92,6 +100,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                 Relatert+informasjon/Meldekort+-+arbeidsavklaringspenger.346078.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om meldekort
                 </a>
@@ -101,6 +110,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                 Relatert+informasjon/Ferie+med+ytelser+fra+NAV.351695.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om ferie
                     <br />
@@ -111,6 +121,7 @@ export function ViktigÅViteAAPInnhold(): JSX.Element {
                     href="https\://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+utlandet/Nyttig+a+vite/
                 Du+har+plikt+til+%C3%A5+gi+NAV+riktige+opplysninger.351762.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om endringer.
                 </a>

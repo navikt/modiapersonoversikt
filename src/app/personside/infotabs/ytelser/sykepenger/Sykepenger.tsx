@@ -1,13 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { YtelserKeys } from '../ytelserKeys';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
 import Sykemelding from './sykemelding/Sykemelding';
 import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
-import UtførteUtbetalingerContainer from '../utbetalinger/utførteUtbetalinger/UtførteUtbetalingerContainer';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
@@ -56,7 +54,6 @@ function Sykepenger({ sykepenger }: Props) {
                 </OversiktStyling>
                 <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
                 <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-                <UtførteUtbetalingerContainer ytelseType={YtelserKeys.Sykepenger} />
             </Wrapper>
         </ErrorBoundary>
     );

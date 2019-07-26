@@ -1,5 +1,6 @@
 import * as Cookies from 'js-cookie';
-import { loggError } from '../frontendLogger';
+import { loggErrorUtenSaksbehandlerIdent } from '../frontendLogger';
+import { mockEnabled } from '../../api/config';
 
 interface Cookie {
     [name: string]: string;
@@ -13,7 +14,10 @@ export function getSaksbehandlerInstillingerCookieNavn() {
         key => key.includes(saksbehandlerCookieNavn) && !key.includes('timeout')
     );
     if (!cookienavn) {
-        loggError(new Error(`Kunne ikke finne ${saksbehandlerCookieNavn}-cookie`));
+        if (mockEnabled) {
+            Cookies.set(saksbehandlerCookieNavn + '-Z990099', '4100');
+        }
+        loggErrorUtenSaksbehandlerIdent(new Error(`Kunne ikke finne ${saksbehandlerCookieNavn}-cookie`));
     }
     return cookienavn;
 }

@@ -49,7 +49,7 @@ export interface EndreKontaktinformasjonState {
 
 interface DispatchProps {
     reloadPerson: (fødselsnummer: string) => void;
-    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<{}>;
+    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<unknown>;
     tilbakestill: () => void;
 }
 

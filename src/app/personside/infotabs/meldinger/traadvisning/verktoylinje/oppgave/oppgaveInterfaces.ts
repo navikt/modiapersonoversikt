@@ -17,6 +17,7 @@ export interface OppgaveProps {
     opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
     lukkPanel: () => void;
     opprettOppgave: (request: OpprettOppgaveRequest) => void;
+    kontorsperreFunksjon?: () => void;
 }
 
 export interface OppgaveSkjemaProps {

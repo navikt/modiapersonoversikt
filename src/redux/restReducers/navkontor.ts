@@ -12,9 +12,7 @@ export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: 
     return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode ? diskresjonsKode.kodeRef : undefined));
 }
 
-export function resetNavKontorResource() {
-    return tilbakestill;
-}
+export const resetNavKontorResource = tilbakestill;
 
 export { actionNames };
 export default reducer;

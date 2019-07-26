@@ -1,19 +1,13 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-
 import { AppState } from '../../redux/reducers';
-import { erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
+import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { isLoaded, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
-
-interface PersonsideStateProps {
-    personResource: DeprecatedRestResource<PersonRespons>;
-}
+import { isLoaded } from '../../redux/restReducers/deprecatedRestResource';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -21,14 +15,10 @@ const onError = (
     </FillCenterAndFadeIn>
 );
 
-class Personside extends React.PureComponent<PersonsideStateProps> {
-    constructor(props: PersonsideStateProps) {
-        super(props);
-    }
+function Personside() {
+    const personResource = useSelector((state: AppState) => state.restResources.personinformasjon);
 
-    getSideinnhold() {
-        const personResource = this.props.personResource;
-
+    function getSideinnhold() {
         if (isLoaded(personResource) && erPersonResponsAvTypeBegrensetTilgang(personResource.data)) {
             return <BegrensetTilgangSide person={personResource.data} />;
         } else {
@@ -36,22 +26,11 @@ class Personside extends React.PureComponent<PersonsideStateProps> {
         }
     }
 
-    render() {
-        return (
-            <Innholdslaster avhengigheter={[this.props.personResource]} returnOnError={onError}>
-                {this.getSideinnhold()}
-            </Innholdslaster>
-        );
-    }
+    return (
+        <Innholdslaster avhengigheter={[personResource]} returnOnError={onError}>
+            {getSideinnhold()}
+        </Innholdslaster>
+    );
 }
 
-function mapStateToProps(state: AppState): PersonsideStateProps {
-    return {
-        personResource: state.restResources.personinformasjon
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(Personside);
+export default Personside;

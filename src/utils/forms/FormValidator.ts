@@ -64,6 +64,7 @@ export default class FormValidator<T> {
         let result = {} as FormValidering<T>;
 
         for (const key in obj) {
+            // @ts-ignore
             if (!obj.hasOwnProperty(key)) {
                 continue;
             }

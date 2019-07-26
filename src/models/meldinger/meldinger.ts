@@ -5,6 +5,7 @@ export interface Traad {
 
 export interface Melding {
     id: string;
+    oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe;
     skrevetAv: Saksbehandler;
@@ -13,9 +14,12 @@ export interface Melding {
     lestDato?: string;
     status: LestStatus;
     opprettetDato: string;
-    journalfortDato: string;
+    journalfortDato?: string;
     ferdigstiltDato: string;
     erFerdigstiltUtenSvar: boolean;
+    kontorsperretEnhet?: string;
+    markertSomFeilsendtAv?: string;
+    erDelsvar: boolean;
 }
 
 export interface Saksbehandler {

@@ -77,10 +77,6 @@ function onLandChanged(input: Kodeverk, props: Props) {
 }
 
 class MidlertidigAdresseUtland extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         const utlandsadresseState = this.props.midlertidigAdresseUtland.value;
         const utlandsadresseValidering = this.props.midlertidigAdresseUtland.validering;
@@ -94,7 +90,7 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
             <>
                 {visEndringsinfo(this.props.endringsinfo)}
                 <VelgLandContainer
-                    landChanged={input => onLandChanged(input, this.props)}
+                    landChanged={(input: Kodeverk) => onLandChanged(input, this.props)}
                     midlertidigAdresseUtlandInput={this.props.midlertidigAdresseUtland}
                 />
                 <InputLinje>

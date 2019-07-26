@@ -9,7 +9,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                 Vi forventer at du selv aktivt forsøker å skaffe deg jobb. Du må derfor søke jobber. Dersom du ikke
                 finner ledige stillinger innenfor det du ønsker å arbeide med, må du utvide jobbsøket ditt. Det gjør du
                 selv på Ditt NAV.&nbsp;
-                <a href="https://tjenester.nav.no/stillinger/" target="_blank">
+                <a href="https://tjenester.nav.no/stillinger/" target="_blank" rel="noopener noreferrer">
                     Ledige stillinger
                 </a>
             </Normaltekst>
@@ -22,6 +22,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     <a
                         href="https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Jobblogg"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Bruk jobblogg
                     </a>
@@ -30,6 +31,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     <a
                         href="https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Les mer om jobbsøkertips
                     </a>
@@ -42,7 +44,11 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
             </Normaltekst>
             <Normaltekst>
                 Hvilken jobb kan passe for deg?&nbsp;
-                <a href="https://www.nav.no/no/Person/Arbeid/Test+deg+for+jobb+og+utdanning" target="_blank">
+                <a
+                    href="https://www.nav.no/no/Person/Arbeid/Test+deg+for+jobb+og+utdanning"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Interessetester og kartleggingstester
                 </a>
             </Normaltekst>
@@ -52,6 +58,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     href="https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsl%C3%B8shet+og+permittering/
                     Relatert+informasjon/Dagpenger+og+utdanning.345930.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om dagpenger og utdanning
                 </a>
@@ -59,7 +66,11 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
             <br />
             <Undertittel>Hva NAV kan hjelpe deg med?</Undertittel>
             <Normaltekst>
-                <a href="https://www.nav.no/no/Person/Arbeid/Oppfolging+av+arbeidssokere" target="_blank">
+                <a
+                    href="https://www.nav.no/no/Person/Arbeid/Oppfolging+av+arbeidssokere"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Les mer om oppfølging av arbeidssøkere
                 </a>
             </Normaltekst>
@@ -71,6 +82,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     href="https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsl%C3%B8shet+og+permittering/
                     Informasjon+om+meldekort"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om meldekort
                 </a>
@@ -80,6 +92,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     href="https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                     Relatert+informasjon/Ferie+med+ytelser+fra+NAV.351695.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om ferie
                 </a>
@@ -90,6 +103,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     href="https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+utlandet/Nyttig+a+vite/
                     Du+har+plikt+til+%C3%A5+gi+NAV+riktige+opplysninger.351762.cms"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Les mer om endringer
                 </a>

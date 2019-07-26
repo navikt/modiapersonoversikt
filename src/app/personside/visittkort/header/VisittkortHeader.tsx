@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { erDød, Person } from '../../../../models/person/person';
+import { erDød, erMann, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
@@ -104,7 +104,7 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
     render() {
         const { person, visittkortApent } = this.props;
         const ikon = {
-            ikon: person.kjønn === 'M' ? <Mann /> : <Kvinne />
+            ikon: erMann(person) ? <Mann /> : <Kvinne />
         };
         const alder = erDød(person.personstatus) ? 'Død' : person.alder;
         const kjønn = person.kjønn === 'M' ? 'Mann' : 'Kvinne';

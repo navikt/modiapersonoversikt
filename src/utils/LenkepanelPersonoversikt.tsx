@@ -23,6 +23,7 @@ function LenkepanelPersonoversikt(props: Props) {
             <LenkepanelBase
                 href={props.url}
                 linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode => (
+                    // eslint-disable-next-line jsx-a11y/anchor-has-content
                     <a target={'_blank'} rel={'noopener noreferrer'} {...props as React.HTMLProps<HTMLAnchorElement>} />
                 )}
             >

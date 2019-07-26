@@ -76,7 +76,7 @@ export const aremark: Person = {
     },
     sikkerhetstiltak: {
         sikkerhetstiltaksbeskrivelse:
-            'Får verken møte opp på NAV-kontor eller ringe på telefon ' + 'grunnet truende oppførsel og språk.',
+            'Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.',
         sikkerhetstiltakskode: SikkerhetstiltakTyper.FysiskOgTelefonUtestengelse,
         periode: {
             fra: '2005-12-12',

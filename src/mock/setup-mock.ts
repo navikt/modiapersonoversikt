@@ -3,7 +3,7 @@ import faker from 'faker/locale/nb_NO';
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
-import FetchMock, { HandlerArgument, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
@@ -30,6 +30,7 @@ import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
+import { mockStaticPersonsokResponse } from './person/personsokMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -205,6 +206,13 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
     );
 }
 
+function setupPersonsokMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/personsok',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => mockStaticPersonsokResponse())
+    );
+}
+
 function setupOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/plukk/:temagruppe',
@@ -374,6 +382,36 @@ function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
+function merkAvsluttMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/avslutt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkBidragMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/bidrag', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkFeilsendtMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/feilsendt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkKontorsperretMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/kontorsperret', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkSlettMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+const contentTypeMiddleware: Middleware = (requestArgs, response) => {
+    if (response.headers) {
+        return response;
+    }
+    response.headers = {
+        'content-type': 'application/json'
+    };
+    return response;
+};
+
 let mockInitialised = false;
 export function setupMock() {
     if (mockInitialised) {
@@ -385,9 +423,7 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: MiddlewareUtils.combine((requestArgs, response) => {
-            return response;
-        }, MiddlewareUtils.failurerateMiddleware(0.02))
+        middleware: MiddlewareUtils.combine(contentTypeMiddleware, MiddlewareUtils.failurerateMiddleware(0.02))
     });
 
     setupInnloggetSaksbehandlerMock(mock);
@@ -423,5 +459,11 @@ export function setupMock() {
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
+    setupPersonsokMock(mock);
+    merkAvsluttMock(mock);
+    merkBidragMock(mock);
+    merkFeilsendtMock(mock);
+    merkKontorsperretMock(mock);
+    merkSlettMock(mock);
     setupJournalforingMock(mock);
 }

@@ -29,6 +29,7 @@ import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
 import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
 
 enum Komponenter {
     Visittkort,
@@ -44,6 +45,7 @@ enum Komponenter {
     Varsler,
     Hurtigreferat,
     Dialogpanel,
+    Personsok,
     JournalforingPanel
 }
 
@@ -113,6 +115,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <DialogPanel />
                 </TestProvider>
             );
+        case Komponenter.Personsok:
+            return <PersonsokStandAloneKomponent />;
         case Komponenter.JournalforingPanel:
             return <JournalforingPanel />;
         default:

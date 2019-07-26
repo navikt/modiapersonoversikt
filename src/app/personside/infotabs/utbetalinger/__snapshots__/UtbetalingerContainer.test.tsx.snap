@@ -31,7 +31,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   text-decoration: underline;
 }
 
-.c31 {
+.c32 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -53,11 +53,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   justify-content: flex-end;
 }
 
-.c28 {
+.c29 {
   text-transform: uppercase;
 }
 
-.c27 {
+.c28 {
   font-weight: bold;
 }
 
@@ -121,6 +121,118 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-right: 1.25rem;
 }
 
+.c22 h2 {
+  margin: 0;
+  padding: 1.25rem 0;
+}
+
+.c22 th:not(:first-child) {
+  font-weight: normal;
+}
+
+.c22 th {
+  text-transform: uppercase;
+}
+
+.c22 tr {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.c22 tr > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: block;
+}
+
+.c22 tr .sumBrutto,
+.c22 tr .sumNetto,
+.c22 tr .sumTrekk {
+  position: absolute;
+}
+
+.c22 tr .sumBrutto {
+  right: 12rem;
+}
+
+.c22 tr .sumTrekk {
+  right: 6rem;
+}
+
+.c22 tr .sumNetto {
+  right: 0;
+}
+
+.c22 tr td.sumNetto {
+  font-weight: bold;
+}
+
+.c22 tr .periodeForYtelse,
+.c22 tr .ytelseDetaljer {
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+}
+
+.c22 tr .periodeForYtelse {
+  display: block;
+  text-align: left;
+}
+
+.c22 tr .ytelseDetaljer {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 12rem;
+}
+
+.c22 tr .ytelseDetaljer dl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c22 tr .ytelseDetaljer dl dt {
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c22 tr .ytelseDetaljer dl dd {
+  padding-left: 1rem;
+  -webkit-flex-basis: 7rem;
+  -ms-flex-preferred-size: 7rem;
+  flex-basis: 7rem;
+}
+
+.c22 tbody tr {
+  margin-top: 0.5rem;
+}
+
+.c22 tbody tr > *:nth-last-child(n + 3) {
+  padding-top: 0.5rem;
+  border-top: solid 0.0625rem #c6c2bf;
+}
+
 .c11 table {
   width: 100%;
   text-align: right;
@@ -172,18 +284,32 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c29 {
+.c33 th:not(:first-child) {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.c34 td:not(:first-child) {
+  font-weight: bold;
+}
+
+.c35 {
+  border-top: solid 0.0625rem #c6c2bf;
+  margin: 0.5rem 0;
+}
+
+.c30 {
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c29:focus {
+.c30:focus {
   position: relative;
   outline: none;
 }
 
-.c29:focus::after {
+.c30:focus::after {
   position: absolute;
   top: 0;
   content: '';
@@ -193,7 +319,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c30 {
+.c31 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -207,35 +333,35 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c30 > *:nth-child(3) {
+.c31 > *:nth-child(3) {
   margin-bottom: 0.8rem;
 }
 
-.c30 .order-first {
+.c31 .order-first {
   -webkit-order: -1;
   -ms-flex-order: -1;
   order: -1;
 }
 
-.c26 > *:first-child {
+.c27 > *:first-child {
   background-color: #cce1f3;
   padding: 0.2rem 1.25rem;
 }
 
-.c26 ol {
+.c27 ol {
   padding: 0;
   margin: 0;
 }
 
-.c26 ol > *:not(:first-child) {
+.c27 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c22:focus {
+.c23:focus {
   outline: none;
 }
 
-.c23 {
+.c24 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
@@ -243,11 +369,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: .8rem;
 }
 
-.c23 > *:first-child {
+.c24 > *:first-child {
   padding: 1.25rem;
 }
 
-.c25 {
+.c26 {
   padding: 0;
   margin: 0;
 }
@@ -256,7 +382,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   list-style: none;
 }
 
-.c24 {
+.c25 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -267,7 +393,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   align-items: center;
 }
 
-.c24 > *:last-child {
+.c25 > *:last-child {
   margin-left: 1rem;
 }
 
@@ -367,7 +493,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media print {
-  .c29 {
+  .c22 table {
+    page-break-inside: auto;
+  }
+
+  .c22 tbody {
+    page-break-inside: auto;
+  }
+}
+
+@media print {
+  .c30 {
     list-style-type: none;
   }
 }
@@ -785,21 +921,149 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             <div
               className="c21"
               open={false}
-            />
+            >
+              <aside
+                aria-label="Sammendrag utbetalinger"
+                className="c22"
+              >
+                <div
+                  className="typo-normal"
+                >
+                  <table
+                    role="table"
+                  >
+                    <thead
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Ytelse
+                        </th>
+                        <th
+                          className="sumBrutto"
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Brutto
+                        </th>
+                        <th
+                          className="sumTrekk"
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Trekk
+                        </th>
+                        <th
+                          className="sumNetto"
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Utbetalt
+                        </th>
+                        <th
+                          className="visually-hidden"
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Periode
+                        </th>
+                        <th
+                          className="visually-hidden"
+                          role="columnheader"
+                          scope="col"
+                        >
+                          Detaljer
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          role="rowheader"
+                          scope="row"
+                        >
+                          Sykepenger 2017
+                        </th>
+                        <td
+                          className="sumBrutto"
+                          role="cell"
+                        >
+                          13,370.00
+                        </td>
+                        <td
+                          className="sumTrekk"
+                          role="cell"
+                        >
+                          -1,984.00
+                        </td>
+                        <td
+                          className="sumNetto"
+                          role="cell"
+                        >
+                          11,386.00
+                        </td>
+                        <td
+                          className="periodeForYtelse"
+                          role="cell"
+                        >
+                          01.01.1970
+                           - 
+                          31.10.2017
+                        </td>
+                        <td
+                          className="ytelseDetaljer"
+                          role="cell"
+                        >
+                          <dl>
+                            <dt>
+                              Mouse
+                            </dt>
+                            <dd>
+                              3,860.00
+                            </dd>
+                            <dt>
+                              Computer
+                            </dt>
+                            <dd>
+                              3,930.00
+                            </dd>
+                            <dt>
+                              Bacon
+                            </dt>
+                            <dd>
+                              5,580.00
+                            </dd>
+                          </dl>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </aside>
+            </div>
           </div>
         </div>
       </article>
       <div
-        className="c22"
+        className="c23"
         onKeyDown={[Function]}
         tabIndex={-1}
       >
         <article
           aria-label="Utbetalinger"
-          className="c23"
+          className="c24"
         >
           <div
-            className="c24"
+            className="c25"
           >
             <h2
               className="typo-undertittel"
@@ -816,19 +1080,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Måneder"
-            className="c25"
+            className="c26"
           >
             <li
-              className="c26"
+              className="c27"
             >
               <h3
                 className="typo-normal"
               >
                 <span
-                  className="c27"
+                  className="c28"
                 >
                   <span
-                    className="c28"
+                    className="c29"
                   >
                     Mars 2017
                   </span>
@@ -838,7 +1102,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 aria-label="Utbetalinger fra Mars 2017"
               >
                 <li
-                  className="c29"
+                  className="c30"
                   onClick={[Function]}
                   onFocus={[Function]}
                   tabIndex={0}
@@ -851,16 +1115,16 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                       className="c11"
                     >
                       <div
-                        className="c30"
+                        className="c31"
                       >
                         <div
-                          className="c31"
+                          className="c32"
                         >
                           <h4
                             className="typo-normal"
                           >
                             <span
-                              className="c27"
+                              className="c28"
                             >
                               Sykepenger
                             </span>
@@ -869,7 +1133,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             className="typo-normal"
                           >
                             <span
-                              className="c27"
+                              className="c28"
                             >
                               11,386.00
                             </span>
@@ -881,13 +1145,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           29. Mars 2017
                            / 
                           <span
-                            className="c27"
+                            className="c28"
                           >
                             Utbetalt
                           </span>
                         </p>
                         <div
-                          className="c31"
+                          className="c32"
                         >
                           <p
                             className="typo-normal"
@@ -901,7 +1165,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           </p>
                         </div>
                         <div
-                          className="c31"
+                          className="c32"
                         >
                           <p
                             className="typo-normal"
@@ -979,7 +1243,285 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                         <div
                           className="c21"
                           open={false}
-                        />
+                        >
+                          <aside
+                            aria-label="Utbetalingsdetaljer"
+                            className="c33"
+                          >
+                            <span
+                              className="typo-normal"
+                            >
+                              <div
+                                className="c34"
+                              >
+                                <table
+                                  role="table"
+                                >
+                                  <thead
+                                    role="rowgroup"
+                                  >
+                                    <tr
+                                      role="row"
+                                    >
+                                      <th
+                                        role="columnheader"
+                                      >
+                                        Konto
+                                      </th>
+                                      <th
+                                        role="columnheader"
+                                      >
+                                        Brutto
+                                      </th>
+                                      <th
+                                        role="columnheader"
+                                      >
+                                        Trekk
+                                      </th>
+                                      <th
+                                        role="columnheader"
+                                      >
+                                        Utbetalt
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody
+                                    role="rowgroup"
+                                  >
+                                    <tr
+                                      role="row"
+                                    >
+                                      <td
+                                        role="cell"
+                                      >
+                                        83980854563
+                                      </td>
+                                      <td
+                                        role="cell"
+                                      >
+                                        13,370.00
+                                      </td>
+                                      <td
+                                        role="cell"
+                                      >
+                                        -1,984.00
+                                      </td>
+                                      <td
+                                        role="cell"
+                                      >
+                                        11,386.00
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </span>
+                            <div
+                              className="c35"
+                            />
+                            <span
+                              className="typo-normal"
+                            >
+                              <table
+                                role="table"
+                              >
+                                <thead
+                                  role="rowgroup"
+                                >
+                                  <tr
+                                    role="row"
+                                  >
+                                    <th
+                                      role="columnheader"
+                                    >
+                                      Detaljer
+                                    </th>
+                                    <th
+                                      role="columnheader"
+                                    >
+                                      Sats
+                                    </th>
+                                    <th
+                                      role="columnheader"
+                                    >
+                                      Antall
+                                    </th>
+                                    <th
+                                      role="columnheader"
+                                    >
+                                      Beløp
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody
+                                  role="rowgroup"
+                                >
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Bacon
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      558.00
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      10
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      5,580.00
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Computer
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      1,310.00
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      3
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      3,930.00
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Mouse
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      1,930.00
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      2
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      3,860.00
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Skattetrekk
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      -730.00
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Prosenttrekk
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      -1,042.00
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    role="row"
+                                  >
+                                    <td
+                                      role="cell"
+                                    >
+                                      Prosenttrekk
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      —
+                                    </td>
+                                    <td
+                                      role="cell"
+                                    >
+                                      -212.00
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </span>
+                            <div
+                              className="c35"
+                            />
+                            <h4
+                              className="typo-normal"
+                            >
+                              <span
+                                className="c28"
+                              >
+                                Melding
+                              </span>
+                            </h4>
+                            <p
+                              className="typo-normal"
+                            >
+                              Utbetalingsmelding
+                            </p>
+                          </aside>
+                        </div>
                       </div>
                     </div>
                   </article>
