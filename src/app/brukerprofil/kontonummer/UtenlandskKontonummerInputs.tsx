@@ -8,7 +8,6 @@ import Innholdslaster from '../../../components/Innholdslaster';
 
 import { EndreBankkontoState } from './kontonummerUtils';
 import { hentValutaer } from '../../../redux/restReducers/kodeverk/valutaKodeverk';
-import { hentLandKodeverk } from '../../../redux/restReducers/kodeverk/landKodeverk';
 import { AppState } from '../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
@@ -17,6 +16,7 @@ import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
 import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 
 interface OwnProps {
     bankkonto: EndreBankkontoState;
@@ -26,17 +26,14 @@ interface OwnProps {
 
 interface DispatchProps {
     hentValutaKodeverk: () => void;
-    hentLandKodeverk: () => void;
 }
 
 interface StateProps {
     valutaKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
-    landKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
 }
 
 interface LoadedProps {
     valutaKodeverkResource: Loaded<KodeverkResponse>;
-    landKodeverkResource: Loaded<KodeverkResponse>;
 }
 
 type Props = OwnProps & DispatchProps;
@@ -44,23 +41,17 @@ type Props = OwnProps & DispatchProps;
 class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
     constructor(props: Props & StateProps) {
         super(props);
-
         if (isNotStarted(this.props.valutaKodeverkResource)) {
             this.props.hentValutaKodeverk();
-        }
-
-        if (isNotStarted(this.props.landKodeverkResource)) {
-            this.props.hentLandKodeverk();
         }
     }
 
     render() {
         return (
-            <Innholdslaster avhengigheter={[this.props.valutaKodeverkResource, this.props.landKodeverkResource]}>
+            <Innholdslaster avhengigheter={[this.props.valutaKodeverkResource]}>
                 <Inputs
                     {...this.props}
                     valutaKodeverkResource={this.props.valutaKodeverkResource as Loaded<KodeverkResponse>}
-                    landKodeverkResource={this.props.landKodeverkResource as Loaded<KodeverkResponse>}
                 />
             </Innholdslaster>
         );
@@ -72,7 +63,9 @@ function Inputs(props: Props & LoadedProps) {
     const validering = props.bankkontoValidering.felter;
     return (
         <>
-            <VelgLand {...props} />
+            <RestResourceConsumer<KodeverkResponse> getResource={restResources => restResources.land}>
+                {land => <VelgLand {...props} land={land} />}
+            </RestResourceConsumer>
             <Input
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
@@ -148,8 +141,8 @@ function Inputs(props: Props & LoadedProps) {
     );
 }
 
-function VelgLand(props: Props & LoadedProps) {
-    const options = props.landKodeverkResource.data.kodeverk.sort(alfabetiskKodeverkComparator).map(landKodeverk => {
+function VelgLand(props: Props & { land: KodeverkResponse }) {
+    const options = props.land.kodeverk.sort(alfabetiskKodeverkComparator).map(landKodeverk => {
         return (
             <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
                 {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)} ({landKodeverk.kodeRef})
@@ -196,10 +189,11 @@ function VelgValuta(props: Props & LoadedProps) {
     );
 }
 
-function handleLandChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
-    const valgtKodeverk: Kodeverk = props.landKodeverkResource.data.kodeverk.find(
-        kodeverk => kodeverk.kodeRef === event.target.value
-    ) || { kodeRef: '', beskrivelse: '' };
+function handleLandChange(props: Props & { land: KodeverkResponse }, event: ChangeEvent<HTMLSelectElement>) {
+    const valgtKodeverk: Kodeverk = props.land.kodeverk.find(kodeverk => kodeverk.kodeRef === event.target.value) || {
+        kodeRef: '',
+        beskrivelse: ''
+    };
 
     props.updateBankkontoInputsState({ landkode: valgtKodeverk });
 }
@@ -214,15 +208,13 @@ function handleValutaChange(props: Props & LoadedProps, event: ChangeEvent<HTMLS
 
 const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
     return {
-        hentValutaKodeverk: () => dispatch(hentValutaer()),
-        hentLandKodeverk: () => dispatch(hentLandKodeverk())
+        hentValutaKodeverk: () => dispatch(hentValutaer())
     };
 };
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        valutaKodeverkResource: state.restResources.valuta,
-        landKodeverkResource: state.restResources.land
+        valutaKodeverkResource: state.restResources.valuta
     };
 };
 
