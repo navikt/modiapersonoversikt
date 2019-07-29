@@ -71,7 +71,7 @@ export interface RestEndepunkter {
     endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
-    tilrettelagtKommunikasjonKodeverk: DeprecatedRestResource<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
     endreKontaktinformasjon: DeprecatedRestResource<{}>;
     postnummer: RestResource<KodeverkResponse>;
     endreAdresse: DeprecatedRestResource<{}>;

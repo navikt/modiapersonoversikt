@@ -11,7 +11,6 @@ import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
-import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
@@ -44,10 +43,9 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     testStore.dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     testStore.dispatch(restResources.veilederRoller.actions.setData(getMockVeilederRoller()));
-    testStore.dispatch({
-        type: tilrettelagtKommunikasjonActionNames.FINISHED,
-        data: mockTilrettelagtKommunikasjonKodeverk()
-    });
+    testStore.dispatch(
+        restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk())
+    );
     testStore.dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
     testStore.dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
