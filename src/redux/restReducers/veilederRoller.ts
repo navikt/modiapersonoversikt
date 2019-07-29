@@ -1,11 +1,8 @@
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
-import { fetchVeilederRoller } from '../../api/veileder-roller-api';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { VeilederRoller } from '../../models/veilederRoller';
+import { apiBaseUri } from '../../api/config';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('veileder_roller');
-
-export function getVeilederRoller() {
-    return action(() => fetchVeilederRoller());
-}
-
-export { actionNames as veilederRollerReducerActionNames };
-export default reducer;
+export default createRestResourceReducerAndActions<VeilederRoller>(
+    'veileder_roller',
+    () => `${apiBaseUri}/veileder/roller`
+);

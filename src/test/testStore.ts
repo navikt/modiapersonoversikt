@@ -11,7 +11,6 @@ import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
 import { actionNames as baseUrlsActionNames } from '../redux/restReducers/baseurls';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
-import { veilederRollerReducerActionNames } from '../redux/restReducers/veilederRoller';
 import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
@@ -49,7 +48,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
-    testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
+    testStore.dispatch(restResources.veilederRoller.actions.setData(getMockVeilederRoller()));
     testStore.dispatch({
         type: tilrettelagtKommunikasjonActionNames.FINISHED,
         data: mockTilrettelagtKommunikasjonKodeverk()
