@@ -82,7 +82,7 @@ export interface RestEndepunkter {
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
-    sakstema: DeprecatedRestResource<SakstemaResponse>;
+    sakstema: RestResource<SakstemaResponse>;
     featureToggles: DeprecatedRestResource<FeatureToggles>;
     brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;

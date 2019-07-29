@@ -18,7 +18,6 @@ import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { utbetalingerActions } from '../redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
-import { saksoversiktActions } from '../redux/restReducers/saksoversikt';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setNyGjeldendeBruker from '../redux/gjeldendeBruker/actions';
@@ -57,7 +56,7 @@ export function getTestStore(): Store<AppState> {
             periode: { startDato: '1905-01-01', sluttDato: '1986-12-28' }
         }
     });
-    testStore.dispatch({ type: saksoversiktActions.FINISHED, data: getStaticMockSaksoversikt() });
+    testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));

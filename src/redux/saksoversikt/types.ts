@@ -67,7 +67,7 @@ export interface SetViktigÅViteÅpen extends Action {
     åpen: boolean;
 }
 
-export interface SetErStandaloneVindu {
+export interface SetErStandaloneVindu extends Action {
     type: SaksoversiktActionTypes.SetErStandaloneVindu;
     standaloneVindu: boolean;
 }

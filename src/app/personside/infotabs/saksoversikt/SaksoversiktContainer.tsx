@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
-import Innholdslaster from '../../../../components/Innholdslaster';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
@@ -15,9 +13,9 @@ import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
+import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 
 interface StateProps {
-    saksoversiktResource: DeprecatedRestResource<SakstemaResponse>;
     personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
@@ -25,8 +23,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    hentSaksoversikt: (fødselsnummer: string) => void;
-    reloadSaksoversikt: (fødselsnummer: string) => void;
     skjulDokumentOgVisSaksoversikt: () => void;
 }
 
@@ -53,9 +49,6 @@ const SaksoversiktArticle = styled.article`
 class SaksoversiktContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
-        if (isNotStarted(this.props.saksoversiktResource)) {
-            this.props.hentSaksoversikt(this.props.fødselsnummer);
-        }
     }
 
     render() {
@@ -65,13 +58,17 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
                     <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
-                    <Innholdslaster
-                        avhengigheter={[this.props.saksoversiktResource]}
+                    <RestResourceConsumer<SakstemaResponse>
+                        getResource={restResources => restResources.sakstema}
                         returnOnPending={BigCenteredLazySpinner}
                     >
-                        <SakstemaListeContainer />
-                        <SaksDokumenterContainer />
-                    </Innholdslaster>
+                        {sakstema => (
+                            <>
+                                <SakstemaListeContainer />
+                                <SaksDokumenterContainer />
+                            </>
+                        )}
+                    </RestResourceConsumer>
                 </SaksoversiktArticle>
             );
         }
@@ -81,7 +78,6 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        saksoversiktResource: state.restResources.sakstema,
         personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
@@ -90,8 +86,6 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }
