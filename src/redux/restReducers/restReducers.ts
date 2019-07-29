@@ -65,7 +65,7 @@ export interface RestEndepunkter {
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
-    baseUrl: DeprecatedRestResource<BaseUrlsResponse>;
+    baseUrl: RestResource<BaseUrlsResponse>;
     endreNavn: DeprecatedRestResource<{}>;
     endreKontonummer: DeprecatedRestResource<{}>;
     endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;

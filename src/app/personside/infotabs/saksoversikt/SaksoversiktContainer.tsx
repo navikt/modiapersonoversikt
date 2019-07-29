@@ -7,8 +7,6 @@ import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
 import Innholdslaster from '../../../../components/Innholdslaster';
-import { BaseUrlsResponse } from '../../../../models/baseurls';
-import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
@@ -19,7 +17,6 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 
 interface StateProps {
-    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
     saksoversiktResource: DeprecatedRestResource<SakstemaResponse>;
     personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
@@ -28,7 +25,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    hentBaseUrls: () => void;
     hentSaksoversikt: (fødselsnummer: string) => void;
     reloadSaksoversikt: (fødselsnummer: string) => void;
     skjulDokumentOgVisSaksoversikt: () => void;
@@ -57,9 +53,6 @@ const SaksoversiktArticle = styled.article`
 class SaksoversiktContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
-        if (isNotStarted(this.props.baseUrlResource)) {
-            this.props.hentBaseUrls();
-        }
         if (isNotStarted(this.props.saksoversiktResource)) {
             this.props.hentSaksoversikt(this.props.fødselsnummer);
         }
@@ -73,7 +66,7 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
                 <SaksoversiktArticle aria-label="Brukerens saker">
                     <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
                     <Innholdslaster
-                        avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}
+                        avhengigheter={[this.props.saksoversiktResource]}
                         returnOnPending={BigCenteredLazySpinner}
                     >
                         <SakstemaListeContainer />
@@ -88,7 +81,6 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        baseUrlResource: state.restResources.baseUrl,
         saksoversiktResource: state.restResources.sakstema,
         personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
@@ -98,7 +90,6 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
         reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))

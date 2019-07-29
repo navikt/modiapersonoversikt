@@ -9,7 +9,6 @@ import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
-import { actionNames as baseUrlsActionNames } from '../redux/restReducers/baseurls';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
@@ -47,7 +46,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
     testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
-    testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
+    testStore.dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     testStore.dispatch(restResources.veilederRoller.actions.setData(getMockVeilederRoller()));
     testStore.dispatch({
         type: tilrettelagtKommunikasjonActionNames.FINISHED,
