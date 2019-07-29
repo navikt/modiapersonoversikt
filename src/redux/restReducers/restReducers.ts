@@ -70,7 +70,7 @@ export interface RestEndepunkter {
     endreKontonummer: DeprecatedRestResource<{}>;
     endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
     veilederRoller: RestResource<VeilederRoller>;
-    retningsnummer: DeprecatedRestResource<KodeverkResponse>;
+    retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: DeprecatedRestResource<KodeverkResponse>;
     endreKontaktinformasjon: DeprecatedRestResource<{}>;
     postnummer: DeprecatedRestResource<KodeverkResponse>;

@@ -13,7 +13,6 @@ import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
-import { retningsnummerKodeverkActionNames } from '../redux/restReducers/kodeverk/retningsnummereReducer';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
 import { postnummerActionNames } from '../redux/restReducers/kodeverk/postnummerReducer';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
@@ -52,7 +51,7 @@ export function getTestStore(): Store<AppState> {
         type: tilrettelagtKommunikasjonActionNames.FINISHED,
         data: mockTilrettelagtKommunikasjonKodeverk()
     });
-    testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk() });
+    testStore.dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
     testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
     testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
     testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
