@@ -73,7 +73,7 @@ export interface RestEndepunkter {
     retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: DeprecatedRestResource<KodeverkResponse>;
     endreKontaktinformasjon: DeprecatedRestResource<{}>;
-    postnummer: DeprecatedRestResource<KodeverkResponse>;
+    postnummer: RestResource<KodeverkResponse>;
     endreAdresse: DeprecatedRestResource<{}>;
     valuta: DeprecatedRestResource<KodeverkResponse>;
     land: DeprecatedRestResource<KodeverkResponse>;

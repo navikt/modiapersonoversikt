@@ -14,7 +14,6 @@ import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
-import { postnummerActionNames } from '../redux/restReducers/kodeverk/postnummerReducer';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { landActionNames } from '../redux/restReducers/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
@@ -52,7 +51,7 @@ export function getTestStore(): Store<AppState> {
         data: mockTilrettelagtKommunikasjonKodeverk()
     });
     testStore.dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
-    testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
+    testStore.dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
     testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
     testStore.dispatch({

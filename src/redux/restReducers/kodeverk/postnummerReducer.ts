@@ -1,11 +1,8 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { fetchKodeverk } from '../../../api/kodeverk';
+import { createRestResourceReducerAndActions } from '../../../rest/utils/restResource';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import { apiBaseUri } from '../../../api/config';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-postnummer');
-
-export function hentPostnummere() {
-    return action(() => fetchKodeverk('Postnummer'));
-}
-
-export { actionNames as postnummerActionNames };
-export default reducer;
+export default createRestResourceReducerAndActions<KodeverkResponse>(
+    'kodeverk-postnummer',
+    () => `${apiBaseUri}/kodeverk/Postnummer`
+);
