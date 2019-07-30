@@ -16,7 +16,6 @@ import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-moc
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
-import { utbetalingerActions } from '../redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
@@ -49,13 +48,12 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
     testStore.dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
-    testStore.dispatch({
-        type: utbetalingerActions.FINISHED,
-        data: {
+    testStore.dispatch(
+        restResources.utbetalinger.actions.setData({
             utbetalinger: [statiskMockUtbetaling],
             periode: { startDato: '1905-01-01', sluttDato: '1986-12-28' }
-        }
-    });
+        })
+    );
     testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));

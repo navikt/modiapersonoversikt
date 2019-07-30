@@ -77,7 +77,7 @@ export interface RestEndepunkter {
     endreAdresse: DeprecatedRestResource<{}>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
-    utbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
+    utbetalinger: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;

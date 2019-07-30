@@ -1,41 +1,20 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import {
-    isLoaded,
-    isLoading,
-    isReloading,
-    DeprecatedRestResource
-} from '../../../../../redux/restReducers/deprecatedRestResource';
+import { isLoaded, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
 import { AppState } from '../../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
+import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
-
-interface OwnProps {
-    hentUtbetalinger: () => void;
-}
-
-interface StateProps {
-    filter: UtbetalingFilterState;
-    fødselsnummer: string;
-    utbetalingerResource: DeprecatedRestResource<UtbetalingerResponse>;
-}
-
-interface DispatchProps {
-    updateFilter: (change: Partial<UtbetalingFilterState>) => void;
-}
-
-type Props = DispatchProps & StateProps & OwnProps;
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
@@ -85,51 +64,62 @@ const WrapOnSmallScreen = styled.div`
     }
 `;
 
-function onRadioChange(props: Props, key: PeriodeValg) {
-    props.updateFilter({
-        periode: {
-            ...props.filter.periode,
-            radioValg: key
-        }
-    });
-}
-
 function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
     return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
-function Filtrering(props: Props) {
+function Filtrering() {
+    const dispatch = useDispatch();
+    const utbetalingerResource = useSelector((state: AppState) => state.restResources.utbetalinger);
+    const reloadUtbetalingerAction = utbetalingerResource.actions.reload;
+    const reloadUtbetalinger = useCallback(() => dispatch(reloadUtbetalingerAction), [
+        dispatch,
+        reloadUtbetalingerAction
+    ]);
+
+    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const updateFilter = useCallback((change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change)), [
+        dispatch
+    ]);
+
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];
-        const checked = props.filter.periode.radioValg === label;
+        const checked = filter.periode.radioValg === label;
         return (
             <Radio
                 key={label}
                 label={label}
                 checked={checked}
-                onChange={() => onRadioChange(props, PeriodeValg[key])}
+                onChange={() =>
+                    updateFilter({
+                        periode: {
+                            ...filter.periode,
+                            radioValg: PeriodeValg[key]
+                        }
+                    })
+                }
                 name="FiltreringsvalgGruppe"
             />
         );
     });
 
-    const visSpinner = isLoading(props.utbetalingerResource) || isReloading(props.utbetalingerResource);
-    const checkBokser = isLoaded(props.utbetalingerResource) && visCheckbokser(props.utbetalingerResource.data) && (
+    const visSpinner = isLoading(utbetalingerResource) || isReloading(utbetalingerResource);
+    const checkBokser = isLoaded(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
         <>
             <InputPanel>
                 <EtikettLiten>Utbetaling til</EtikettLiten>
                 <UtbetaltTilValg
-                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
-                    onChange={props.updateFilter}
-                    filterState={props.filter}
+                    utbetalinger={utbetalingerResource.data.utbetalinger}
+                    onChange={updateFilter}
+                    filterState={filter}
                 />
             </InputPanel>
             <InputPanel>
                 <EtikettLiten>Velg ytelse</EtikettLiten>
                 <YtelseValg
-                    onChange={props.updateFilter}
-                    filterState={props.filter}
-                    utbetalinger={props.utbetalingerResource.data.utbetalinger}
+                    onChange={updateFilter}
+                    filterState={filter}
+                    utbetalinger={utbetalingerResource.data.utbetalinger}
                 />
             </InputPanel>
         </>
@@ -140,16 +130,17 @@ function Filtrering(props: Props) {
                 <EtikettLiten tag="legend">Velg periode</EtikettLiten>
                 {radios}
             </FieldSet>
-            {props.filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
-                <EgendefinertDatoInputs filter={props.filter} updateFilter={props.updateFilter} />
+            {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
+                <EgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
             )}
             <KnappWrapper>
-                <Knapp onClick={props.hentUtbetalinger} spinner={visSpinner} htmlType="button">
+                <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
                     Hent utbetalinger
                 </Knapp>
             </KnappWrapper>
         </InputPanel>
     );
+
     return (
         <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
             <Undertittel>Filtrering</Undertittel>
@@ -162,21 +153,4 @@ function Filtrering(props: Props) {
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        utbetalingerResource: state.restResources.utbetalinger,
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        filter: state.utbetalinger.filter
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        updateFilter: (change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Filtrering);
+export default Filtrering;
