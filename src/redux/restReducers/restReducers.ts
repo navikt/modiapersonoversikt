@@ -33,7 +33,7 @@ import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
-import { BrukersNavKontorResponse } from '../../models/navkontor';
+import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
 import { Vergemal } from '../../models/vergemal/vergemal';
@@ -60,7 +60,7 @@ import { PersonsokRequest, PersonsokResponse } from '../../models/person/persons
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: DeprecatedRestResource<PersonRespons>;
-    brukersNavKontor: RestResource<BrukersNavKontorResponse>;
+    brukersNavKontor: RestResource<NavKontorResponse>;
     oppgaver: DeprecatedRestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;

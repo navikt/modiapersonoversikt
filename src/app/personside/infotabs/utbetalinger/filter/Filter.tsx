@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { isLoaded, isLoading, isReloading } from '../../../../../rest/utils/restResource';
+import { hasData, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
@@ -104,7 +104,7 @@ function Filtrering() {
     });
 
     const visSpinner = isLoading(utbetalingerResource) || isReloading(utbetalingerResource);
-    const checkBokser = isLoaded(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
+    const checkBokser = hasData(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
         <>
             <InputPanel>
                 <EtikettLiten>Utbetaling til</EtikettLiten>

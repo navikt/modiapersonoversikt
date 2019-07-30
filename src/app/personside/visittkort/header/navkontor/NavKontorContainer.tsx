@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
+import { NavKontorResponse } from '../../../../../models/navkontor';
 import { Bold } from '../../../../../components/common-styled-components';
 import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 
@@ -24,16 +24,14 @@ const NavKontorSection = styled.section`
 `;
 
 const onError = <em>Problemer med å hente nav-enhet</em>;
+const onNotFound = (
+    <Normaltekst>
+        {' '}
+        <Bold>Ingen enhet</Bold>{' '}
+    </Normaltekst>
+);
 
-function NavKontorVisning(props: { navKontor: BrukersNavKontorResponse }) {
-    if (!props.navKontor) {
-        return (
-            <Normaltekst>
-                <Bold>Ingen enhet</Bold>
-            </Normaltekst>
-        );
-    }
-
+function NavKontorVisning(props: { navKontor: NavKontorResponse }) {
     return (
         <Normaltekst>
             <Bold>
@@ -49,10 +47,11 @@ function NavKontorContainer() {
             <Normaltekst tag="h2">
                 <Bold>NAV-kontor</Bold>
             </Normaltekst>
-            <RestResourceConsumer<BrukersNavKontorResponse>
+            <RestResourceConsumer<NavKontorResponse>
                 getResource={restResources => restResources.brukersNavKontor}
                 spinnerSize={'S'}
                 returnOnError={onError}
+                returnOnNotFound={onNotFound}
             >
                 {navkontor => <NavKontorVisning navKontor={navkontor} />}
             </RestResourceConsumer>

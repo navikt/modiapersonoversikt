@@ -1,18 +1,22 @@
 import * as React from 'react';
-import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
+import { NavKontorResponse } from '../../../../../models/navkontor';
 import NavKontorVisning from './NavKontor';
-import { Person } from '../../../../../models/person/person';
 import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
+import VisittkortElement from '../VisittkortElement';
+import NavLogo from '../../../../../svg/NavLogo';
 
-interface Props {
-    person: Person;
-}
+const onNotFound = (
+    <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
+        <br />
+    </VisittkortElement>
+);
 
-function NavKontorContainer(props: Props) {
+function NavKontorContainer() {
     return (
-        <RestResourceConsumer<BrukersNavKontorResponse>
+        <RestResourceConsumer<NavKontorResponse>
             getResource={restResources => restResources.brukersNavKontor}
             spinnerSize={'L'}
+            returnOnNotFound={onNotFound}
         >
             {navkontor => <NavKontorVisning brukersNavKontorResponse={navkontor} />}
         </RestResourceConsumer>

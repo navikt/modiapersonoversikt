@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { BrukersNavKontorResponse, NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
+import { NavKontorResponse, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import VisittkortElement from '../VisittkortElement';
@@ -106,7 +106,7 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsMottak[] }) {
     );
 }
 
-function NavkontorInfo(props: { navKontor: NavKontor }) {
+function NavkontorInfo(props: { navKontor: NavKontorResponse }) {
     return (
         <>
             <Publikumsmottak publikumsmottak={props.navKontor.publikumsmottak} />
@@ -126,22 +126,9 @@ function NavkontorInfo(props: { navKontor: NavKontor }) {
     );
 }
 
-function IngenNavKontor() {
-    return (
-        <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
-            <br />
-        </VisittkortElement>
-    );
-}
-
-function NavKontorVisning(props: { brukersNavKontorResponse: BrukersNavKontorResponse }) {
+function NavKontorVisning(props: { brukersNavKontorResponse: NavKontorResponse }) {
     const navKontor = props.brukersNavKontorResponse;
-    if (!navKontor) {
-        return <IngenNavKontor />;
-    }
-
     const beskrivelse = `${navKontor.enhetId} ${navKontor.enhetNavn}`;
-
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
             <NavkontorInfo navKontor={navKontor} />

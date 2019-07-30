@@ -25,7 +25,7 @@ import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
-import { isLoaded } from '../../../../rest/utils/restResource';
+import { hasData } from '../../../../rest/utils/restResource';
 
 interface Props {
     fødselsnummer: string;
@@ -117,7 +117,7 @@ function SaksoversiktMicroFrontend(props: Props) {
         dispatch(setErStandaloneVindu(true));
     });
     useEffect(() => {
-        if (isLoaded(saksoversiktResource) && props.queryParamString) {
+        if (hasData(saksoversiktResource) && props.queryParamString) {
             hentQueryParametreFraUrlOgVisDokument(saksoversiktResource.data.resultat, dispatch, props.queryParamString);
         }
     }, [saksoversiktResource, props.queryParamString, dispatch]);

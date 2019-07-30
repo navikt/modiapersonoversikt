@@ -2,7 +2,7 @@ import { createRestResourceReducerAndActions } from '../../rest/utils/restResour
 import { apiBaseUri } from '../../api/config';
 import { AppState } from '../reducers';
 import { isLoadedPerson } from './personinformasjon';
-import { BrukersNavKontorResponse } from '../../models/navkontor';
+import { NavKontorResponse } from '../../models/navkontor';
 import { loggError } from '../../utils/frontendLogger';
 import { Kodeverk } from '../../models/kodeverk';
 
@@ -23,4 +23,4 @@ function getBrukersNavkontorFetchUri(state: AppState) {
     return getUrl(geografiskTilknytning, diskresjonsKode);
 }
 
-export default createRestResourceReducerAndActions<BrukersNavKontorResponse>('navkontor', getBrukersNavkontorFetchUri);
+export default createRestResourceReducerAndActions<NavKontorResponse>('navkontor', getBrukersNavkontorFetchUri);
