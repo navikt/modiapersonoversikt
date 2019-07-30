@@ -1,5 +1,4 @@
 import { hentFeatureToggles } from '../../redux/restReducers/featureToggles';
-import { resetNavKontorResource } from '../../redux/restReducers/navkontor';
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
 import { hentPerson } from '../../redux/restReducers/personinformasjon';
 import { useEffect, useMemo } from 'react';
@@ -21,12 +20,12 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
 
     const memoHentPersopn = useMemo(() => hentPerson(fnr), [fnr]);
     useDispatchOnNewFnr(memoHentPersopn, fnr);
-    useDispatchOnNewFnr(resetNavKontorResource, fnr);
     useDispatchOnNewFnr(resetKontrollSpørsmål, fnr);
     useDispatchOnNewFnr(restResources.kontaktinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.vergemal.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.egenAnsatt.actions.fetch, fnr);
     useDispatchOnNewFnr(hentFeatureToggles, fnr);
+    useDispatchOnNewFnr(restResources.brukersNavKontor.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.utbetalinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.pleiepenger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sykepenger.actions.reset, fnr);

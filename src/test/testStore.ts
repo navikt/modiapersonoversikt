@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk';
 import { aremark } from '../mock/person/aremark';
 import { personinformasjonActionNames } from '../redux/restReducers/personinformasjon';
 import { getPerson } from '../mock/person/personMock';
-import { actionNames as navKontorActionNames } from '../redux/restReducers/navkontor';
 import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
@@ -32,10 +31,7 @@ export function getTestStore(): Store<AppState> {
 
     testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
     testStore.dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
-    testStore.dispatch({
-        type: navKontorActionNames.FINISHED,
-        data: { navKontor: getMockNavKontor('0118', undefined) }
-    });
+    testStore.dispatch(restResources.brukersNavKontor.actions.setData(getMockNavKontor('0118', undefined)));
     testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
     testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));

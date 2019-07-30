@@ -18,6 +18,4 @@ export interface NavKontor {
     publikumsmottak: PublikumsMottak[];
 }
 
-export interface BrukersNavKontorResponse {
-    navKontor: NavKontor | null;
-}
+export type BrukersNavKontorResponse = NavKontor | null;

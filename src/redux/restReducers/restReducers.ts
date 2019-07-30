@@ -60,7 +60,7 @@ import { PersonsokRequest, PersonsokResponse } from '../../models/person/persons
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: DeprecatedRestResource<PersonRespons>;
-    brukersNavKontor: DeprecatedRestResource<BrukersNavKontorResponse>;
+    brukersNavKontor: RestResource<BrukersNavKontorResponse>;
     oppgaver: DeprecatedRestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
