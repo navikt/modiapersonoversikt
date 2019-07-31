@@ -59,6 +59,7 @@ import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
 import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
+import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -77,7 +78,7 @@ export interface RestEndepunkter {
     tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
     endreKontaktinformasjon: PostResource<EndreKontaktinformasjonRequest>;
     postnummer: RestResource<KodeverkResponse>;
-    endreAdresse: DeprecatedRestResource<{}>;
+    endreAdresse: PostResource<EndreAdresseRequest>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
