@@ -9,23 +9,15 @@ import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
-import { actionNames as baseUrlsActionNames } from '../redux/restReducers/baseurls';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
-import { veilederRollerReducerActionNames } from '../redux/restReducers/veilederRoller';
 import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
-import { tilrettelagtKommunikasjonActionNames } from '../redux/restReducers/kodeverk/tilrettelagtKommunikasjonReducer';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
-import { retningsnummerKodeverkActionNames } from '../redux/restReducers/kodeverk/retningsnummereReducer';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
-import { postnummerActionNames } from '../redux/restReducers/kodeverk/postnummerReducer';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
-import { landActionNames } from '../redux/restReducers/kodeverk/landKodeverk';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
-import { valutaerActionNames } from '../redux/restReducers/kodeverk/valutaKodeverk';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { utbetalingerActions } from '../redux/restReducers/utbetalinger';
 import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
-import { saksoversiktActions } from '../redux/restReducers/saksoversikt';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setNyGjeldendeBruker from '../redux/gjeldendeBruker/actions';
@@ -48,16 +40,15 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
     testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
-    testStore.dispatch({ type: baseUrlsActionNames.FINISHED, data: mockBaseUrls() });
-    testStore.dispatch({ type: veilederRollerReducerActionNames.FINISHED, data: getMockVeilederRoller() });
-    testStore.dispatch({
-        type: tilrettelagtKommunikasjonActionNames.FINISHED,
-        data: mockTilrettelagtKommunikasjonKodeverk()
-    });
-    testStore.dispatch({ type: retningsnummerKodeverkActionNames.FINISHED, data: mockRetningsnummereKodeverk() });
-    testStore.dispatch({ type: postnummerActionNames.FINISHED, data: mockPostnummere() });
-    testStore.dispatch({ type: landActionNames.FINISHED, data: mockLandKodeverk() });
-    testStore.dispatch({ type: valutaerActionNames.FINISHED, data: mockValutaKodeverk() });
+    testStore.dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
+    testStore.dispatch(restResources.veilederRoller.actions.setData(getMockVeilederRoller()));
+    testStore.dispatch(
+        restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk())
+    );
+    testStore.dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
+    testStore.dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
+    testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
+    testStore.dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
     testStore.dispatch({
         type: utbetalingerActions.FINISHED,
         data: {
@@ -65,7 +56,7 @@ export function getTestStore(): Store<AppState> {
             periode: { startDato: '1905-01-01', sluttDato: '1986-12-28' }
         }
     });
-    testStore.dispatch({ type: saksoversiktActions.FINISHED, data: getStaticMockSaksoversikt() });
+    testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));

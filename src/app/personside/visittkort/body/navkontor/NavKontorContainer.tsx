@@ -5,20 +5,20 @@ import { AppState } from '../../../../../redux/reducers';
 import Innholdslaster from '../../../../../components/Innholdslaster';
 import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
 import NavKontorVisning from './NavKontor';
-import { BaseUrlsResponse } from '../../../../../models/baseurls';
-import { hentBaseUrls } from '../../../../../redux/restReducers/baseurls';
 import { Person } from '../../../../../models/person/person';
 import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource, isNotStarted, Loaded } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
+import { BaseUrlsResponse } from '../../../../../models/baseurls';
+import { isLoaded, RestResource } from '../../../../../rest/utils/restResource';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface DispatchProps {
-    hentBaseUrls: () => void;
     hentNavKontor: (person: Person) => void;
 }
 
 interface StateProps {
-    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
+    baseUrlResource: RestResource<BaseUrlsResponse>;
     navKontorResource: DeprecatedRestResource<BrukersNavKontorResponse>;
 }
 
@@ -30,9 +30,6 @@ type Props = DispatchProps & StateProps & OwnProps;
 
 class NavKontorContainer extends React.Component<Props> {
     componentDidMount() {
-        if (isNotStarted(this.props.baseUrlResource)) {
-            this.props.hentBaseUrls();
-        }
         if (isNotStarted(this.props.navKontorResource)) {
             this.props.hentNavKontor(this.props.person);
         }
@@ -45,15 +42,14 @@ class NavKontorContainer extends React.Component<Props> {
     }
 
     render() {
-        const baseUrlResponse = this.props.baseUrlResource;
+        if (!isLoaded(this.props.baseUrlResource)) {
+            return <AlertStripeAdvarsel>Har ikke lastet base-url'er</AlertStripeAdvarsel>;
+        }
         return (
-            <Innholdslaster
-                avhengigheter={[this.props.navKontorResource, this.props.baseUrlResource]}
-                spinnerSize={'L'}
-            >
+            <Innholdslaster avhengigheter={[this.props.navKontorResource]} spinnerSize={'L'}>
                 <NavKontorVisning
                     brukersNavKontorResponse={(this.props.navKontorResource as Loaded<BrukersNavKontorResponse>).data}
-                    baseUrlsResponse={(baseUrlResponse as Loaded<BaseUrlsResponse>).data}
+                    baseUrlsResponse={this.props.baseUrlResource.data}
                 />
             </Innholdslaster>
         );
@@ -69,7 +65,6 @@ const mapStateToProps = (state: AppState) => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentBaseUrls: () => dispatch(hentBaseUrls()),
         hentNavKontor: (person: Person) => dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode))
     };
 }
