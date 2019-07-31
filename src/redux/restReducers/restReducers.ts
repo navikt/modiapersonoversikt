@@ -61,7 +61,7 @@ export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: DeprecatedRestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
-    oppgaver: DeprecatedRestResource<Oppgave[]>;
+    oppgaver: PostResource<{}, Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
