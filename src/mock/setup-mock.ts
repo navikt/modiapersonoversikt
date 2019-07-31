@@ -346,12 +346,13 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(5000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
         withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
     );
+    mock.post(apiBaseUri + '/journalforing/:fnr/:traadId', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
 function setupNavigasjonsmenyMock(mock: FetchMock) {

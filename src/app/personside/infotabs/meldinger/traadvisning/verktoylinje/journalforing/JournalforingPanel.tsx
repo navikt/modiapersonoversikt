@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Spinner from 'nav-frontend-spinner';
-import useFetch, { combineStates } from '../../../../../../../utils/hooks/use-fetch';
+import useFetch, { AsyncResult, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
+import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
 const Container = styled.section`
-    padding: 0.5rem 1.5rem;
+    position: relative;
+    text-align: center;
+    padding: 1.5rem 1rem;
 `;
 
 export enum SakKategori {
@@ -40,6 +43,7 @@ const credentials: RequestInit = { credentials: 'include' };
 
 interface Props {
     lukkPanel: () => void;
+    traad: Traad;
 }
 
 function JournalforingPanel(props: Props) {
@@ -52,48 +56,30 @@ function JournalforingPanel(props: Props) {
         setValgtSak(sak);
     }
 
-    const gsakSaker = useFetch<Array<JournalforingsSak>>(
+    const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
         credentials
     );
-    const psakSaker = useFetch<Array<JournalforingsSak>>(
+    const psakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
         credentials
     );
-    const alleSaker = combineStates<Array<JournalforingsSak>>(
-        (acc, next) => acc.concat(next),
-        [],
-        gsakSaker,
-        psakSaker
-    );
 
-    if (alleSaker.isLoading) {
-        return (
-            <Container>
-                <Spinner />
-            </Container>
-        );
+    if (isPending(gsakSaker) || isPending(psakSaker)) {
+        return <Spinner type="XL" />;
     } else if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
-        return (
-            <JournalforSak
-                sak={valgtSak}
-                tilbake={() => setAktivtVindu(AktivtVindu.SAKLISTE)}
-                lukkPanel={props.lukkPanel}
-            />
-        );
+        return <JournalforSak traad={props.traad} sak={valgtSak} fnr={fnr} lukkPanel={props.lukkPanel} />;
     } else {
-        return (
-            <Container>
-                <VelgSak
-                    gsakSaker={gsakSaker}
-                    psakSaker={psakSaker}
-                    alleSaker={alleSaker}
-                    velgSak={velgSak}
-                    lukkPanel={props.lukkPanel}
-                />
-            </Container>
-        );
+        return <VelgSak gsakSaker={gsakSaker} psakSaker={psakSaker} velgSak={velgSak} lukkPanel={props.lukkPanel} />;
     }
 }
 
-export default JournalforingPanel;
+function JournalforingPanelContainer(props: Props) {
+    return (
+        <Container>
+            <JournalforingPanel {...props} />
+        </Container>
+    );
+}
+
+export default JournalforingPanelContainer;

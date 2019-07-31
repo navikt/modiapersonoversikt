@@ -12,7 +12,6 @@ const AppWrapper = styled.div`
     .visually-hidden {
         ${theme.visuallyHidden}
     }
-    ${theme.resetEkspanderbartPanelStyling};
 `;
 
 export const ContentStyle = styled.div`

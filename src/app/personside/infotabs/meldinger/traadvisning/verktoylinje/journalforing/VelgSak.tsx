@@ -1,21 +1,17 @@
-import React from 'react';
-import { FetchContainer } from '../../../../../../../utils/hooks/use-fetch';
+import React, { useState } from 'react';
+import { AsyncResult, isPending, hasError } from '@nutgaard/use-fetch';
 import { JournalforingsSak, SakKategori } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeProps } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { StyledTable } from '../../../../../../../utils/table/StyledTable';
-import { TableRow } from '../../../../../../../utils/table/Table';
 import { Undertittel } from 'nav-frontend-typografi';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import theme from '../../../../../../../styles/personOversiktTheme';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
+import SaksTabell from './SaksTabell';
 
 interface Props {
-    gsakSaker: FetchContainer<Array<JournalforingsSak>>;
-    psakSaker: FetchContainer<Array<JournalforingsSak>>;
-    alleSaker: FetchContainer<Array<JournalforingsSak>>;
+    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
+    psakSaker: AsyncResult<Array<JournalforingsSak>>;
     velgSak: (sak: JournalforingsSak) => void;
     lukkPanel: () => void;
 }
@@ -24,16 +20,15 @@ type Tema = { tema: string; saker: Array<JournalforingsSak> };
 type Kategorier = { [key in SakKategori]: Tema[] };
 
 function getSaker(
-    alle: FetchContainer<Array<JournalforingsSak>>,
-    gsak: FetchContainer<Array<JournalforingsSak>>,
-    psak: FetchContainer<Array<JournalforingsSak>>
+    gsak: AsyncResult<Array<JournalforingsSak>>,
+    psak: AsyncResult<Array<JournalforingsSak>>
 ): JournalforingsSak[] {
-    if (alle.isLoading || alle.isError) {
+    if (isPending(gsak) || hasError(gsak) || isPending(psak) || hasError(psak)) {
         return [];
     }
 
-    const psakData = psak.data || [];
-    const gsakData = gsak.data || [];
+    const psakData = psak.data;
+    const gsakData = gsak.data;
 
     const psakIder = psakData.map(sak => sak.fagsystemSaksId);
     const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
@@ -113,33 +108,25 @@ function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: Journalf
     return kategorier;
 }
 
-const TableStyle = styled.div`
-    border: ${theme.border.skille};
-`;
-
 function TemaTable({ tema, saker, velgSak }: Tema & { velgSak: (sak: JournalforingsSak) => void }) {
-    const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
+    const [apen, settApen] = useState(false);
     return (
-        <TableStyle>
-            <EkspanderbartpanelBase heading={<Undertittel tag="h4">{tema}</Undertittel>} apen={true}>
-                <StyledTable
-                    tittelRekke={tittelRekke}
-                    rows={saker.map(sak => rad(sak))}
-                    rowsOnClickHandlers={saker.map(sak => () => velgSak(sak))}
-                />
-            </EkspanderbartpanelBase>
-        </TableStyle>
+        <EkspanderbartpanelBasePure
+            heading={<Undertittel tag="h4">{tema}</Undertittel>}
+            apen={apen}
+            onClick={() => settApen(!apen)}
+            className="blokk-xxxs"
+            border
+        >
+            <SaksTabell saker={saker} velgSak={velgSak} />
+        </EkspanderbartpanelBasePure>
     );
-}
-
-function rad(sak: JournalforingsSak): TableRow {
-    return [sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn];
 }
 
 function VelgSak(props: Props) {
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const { gsakSaker, psakSaker, alleSaker } = props;
-    const saker = getSaker(alleSaker, gsakSaker, psakSaker);
+    const { gsakSaker, psakSaker } = props;
+    const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
 
     const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
@@ -148,22 +135,19 @@ function VelgSak(props: Props) {
 
     return (
         <>
-            <Form className="blokk-xxs">
+            <Form className="blokk-xs">
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
-            <div className="blokk-xxs">
-                <ConditionalFeilmelding vis={!gsakSaker.isError} className="blokk-xxxs">
+            <div className="blokk-xs">
+                <ConditionalFeilmelding vis={hasError(gsakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra GSAK
                 </ConditionalFeilmelding>
-                <ConditionalFeilmelding vis={!psakSaker.isError}>
+                <ConditionalFeilmelding vis={hasError(psakSaker)}>
                     Feil ved uthenting av saker fra PSAK
                 </ConditionalFeilmelding>
             </div>
             {temaTable}
-            <LenkeKnapp type="button" onClick={props.lukkPanel}>
-                Avbryt
-            </LenkeKnapp>
         </>
     );
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
 import SykePengerContainer from './sykepenger/SykePengerContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
+import theme from '../../../../styles/personOversiktTheme';
 
 const Styling = styled.section`
     width: 100%;
@@ -11,6 +12,7 @@ const Styling = styled.section`
     > * {
         margin-bottom: 0.5rem;
     }
+    ${theme.resetEkspanderbartPanelStyling};
 `;
 
 function YtelserContainer() {

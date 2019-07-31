@@ -68,7 +68,7 @@ function Funksjoner(props: Props) {
                 <LenkeKnapp>Skriv ut</LenkeKnapp>
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
-                <JournalforingPanel lukkPanel={() => settAktivtVindu(null)} />
+                <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
                 <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
