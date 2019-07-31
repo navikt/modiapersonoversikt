@@ -57,6 +57,7 @@ import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
 import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
+import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -69,7 +70,7 @@ export interface RestEndepunkter {
     baseUrl: RestResource<BaseUrlsResponse>;
     endreNavn: PostResource<EndreNavnRequest>;
     endreKontonummer: PostResource<EndreKontonummerRequest>;
-    endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
+    endreTilrettelagtKommunikasjon: PostResource<EndreTilrettelagtKommunikasjonrequest>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
