@@ -55,6 +55,7 @@ import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -65,7 +66,7 @@ export interface RestEndepunkter {
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
     baseUrl: RestResource<BaseUrlsResponse>;
-    endreNavn: DeprecatedRestResource<{}>;
+    endreNavn: PostResource<EndreNavnRequest>;
     endreKontonummer: DeprecatedRestResource<{}>;
     endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
     veilederRoller: RestResource<VeilederRoller>;
