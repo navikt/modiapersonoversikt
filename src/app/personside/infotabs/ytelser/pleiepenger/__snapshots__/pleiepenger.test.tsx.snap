@@ -284,27 +284,28 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
   background-color: white;
 }
 
-.c2 table {
+.c2 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c2 table thead {
+.c2 [role='table'] thead,
+.c2 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c2 table th,
-.c2 table td {
+.c2 [role='table'] [role='cell'],
+.c2 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c2 table th {
+.c2 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c2 table tr:nth-child(even) {
+.c2 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
