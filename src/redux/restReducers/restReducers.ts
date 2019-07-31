@@ -56,6 +56,7 @@ import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave'
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
+import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -67,7 +68,7 @@ export interface RestEndepunkter {
     vergemal: RestResource<Vergemal>;
     baseUrl: RestResource<BaseUrlsResponse>;
     endreNavn: PostResource<EndreNavnRequest>;
-    endreKontonummer: DeprecatedRestResource<{}>;
+    endreKontonummer: PostResource<EndreKontonummerRequest>;
     endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
