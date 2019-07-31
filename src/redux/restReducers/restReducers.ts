@@ -58,6 +58,7 @@ import { PersonsokRequest, PersonsokResponse } from '../../models/person/persons
 import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
 import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -74,7 +75,7 @@ export interface RestEndepunkter {
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
-    endreKontaktinformasjon: DeprecatedRestResource<{}>;
+    endreKontaktinformasjon: PostResource<EndreKontaktinformasjonRequest>;
     postnummer: RestResource<KodeverkResponse>;
     endreAdresse: DeprecatedRestResource<{}>;
     valuta: RestResource<KodeverkResponse>;
