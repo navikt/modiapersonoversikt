@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function FetchSessionInfoOgLeggIRedux() {
     const dispatch = useDispatch();
-    const restResources = useSelector((state: AppState) => state.restResources);
+    const innlogetSaksbehandlerFetch = useSelector(
+        (state: AppState) => state.restResources.innloggetSaksbehandler.actions.fetch
+    );
+    const oppgaveGsakTemaFetch = useSelector((state: AppState) => state.restResources.oppgaveGsakTema.actions.fetch);
+    const baseUrlFetch = useSelector((state: AppState) => state.restResources.baseUrl.actions.fetch);
 
     useEffect(() => {
-        dispatch(restResources.innloggetSaksbehandler.actions.fetch);
-        dispatch(restResources.oppgaveGsakTema.actions.fetch);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
+        dispatch(innlogetSaksbehandlerFetch);
+        dispatch(oppgaveGsakTemaFetch);
+        dispatch(baseUrlFetch);
+    }, [dispatch, innlogetSaksbehandlerFetch, oppgaveGsakTemaFetch, baseUrlFetch]);
 
     return null;
 }

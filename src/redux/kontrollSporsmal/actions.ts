@@ -1,4 +1,4 @@
-import { ActionTypes, Roter, SetSpørsmål, Spørsmål, Lukk, Reset } from './types';
+import { ActionTypes, Roter, SetSpørsmål, Spørsmål, Lukk } from './types';
 
 export function setKontrollSpørsmål(spørsmål: Spørsmål[]): SetSpørsmål {
     return {
@@ -19,8 +19,4 @@ export function lukkKontrollSpørsmål(): Lukk {
     };
 }
 
-export function resetKontrollSpørsmål(): Reset {
-    return {
-        type: ActionTypes.Reset
-    };
-}
+export const resetKontrollSpørsmål = { type: ActionTypes.Reset };

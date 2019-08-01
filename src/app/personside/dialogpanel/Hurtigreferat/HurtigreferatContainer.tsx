@@ -17,7 +17,6 @@ import { Meldingstype, SendMeldingRequest } from '../../../../models/meldinger/m
 import { AppState } from '../../../../redux/reducers';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
@@ -25,10 +24,11 @@ import { loggEvent } from '../../../../utils/frontendLogger';
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
 import Temavelger, { temaValg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
+import { RestResource } from '../../../../rest/utils/restResource';
 
 interface StateProps {
     sendMeldingResource: PostResource<SendMeldingRequest>;
-    person: DeprecatedRestResource<PersonRespons>;
+    person: RestResource<PersonRespons>;
 }
 
 interface DispatchProps {

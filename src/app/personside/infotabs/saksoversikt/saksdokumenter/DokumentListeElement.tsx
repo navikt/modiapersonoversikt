@@ -21,8 +21,6 @@ import { connect } from 'react-redux';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { PersonRespons } from '../../../../../models/person/person';
-import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
-import Innholdslaster from '../../../../../components/Innholdslaster';
 import { paths } from '../../../../routes/routing';
 import Element from 'nav-frontend-typografi/lib/element';
 import EtikettGrå from '../../../../../components/EtikettGrå';
@@ -31,6 +29,7 @@ import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { RestResource } from '../../../../../rest/utils/restResource';
 
 interface OwnProps {
     dokumentMetadata: DokumentMetadata;
@@ -44,7 +43,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    bruker: DeprecatedRestResource<PersonRespons>;
+    bruker: RestResource<PersonRespons>;
     erStandaloneVindu: boolean;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltDokument?: Enkeltdokument;
@@ -236,9 +235,7 @@ class DokumentListeElement extends React.Component<Props> {
                             </LenkeKnapp>
                         </div>
                         <div className="order-first">
-                            <Innholdslaster avhengigheter={[this.props.bruker]} spinnerSize={'XXS'}>
-                                <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
-                            </Innholdslaster>
+                            <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
                         </div>
                     </UUcustomOrder>
                     {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}

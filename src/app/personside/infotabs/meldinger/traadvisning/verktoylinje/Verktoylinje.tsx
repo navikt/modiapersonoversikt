@@ -74,7 +74,7 @@ function Funksjoner(props: Props) {
                 <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
-                <MerkPanel />
+                <MerkPanel lukkPanel={() => settVisMerk(false)} />
             </UnmountClosed>
         </>
     );

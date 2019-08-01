@@ -1,20 +1,26 @@
-import { getNavkontor } from '../../api/navkontor';
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { apiBaseUri } from '../../api/config';
+import { AppState } from '../reducers';
+import { isLoadedPerson } from './personinformasjon';
+import { NavKontorResponse } from '../../models/navkontor';
+import { loggError } from '../../utils/frontendLogger';
 import { Kodeverk } from '../../models/kodeverk';
 
-const { reducer, action, actionNames, tilbakestill } = createActionsAndReducerDeprecated('navkontor');
+export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
+    return `${apiBaseUri}/enheter?gt=${geografiskTilknytning || ''}${
+        diskresjonsKode ? '&dkode=' + diskresjonsKode.kodeRef : ''
+    }`;
+}
 
-export function hentNavKontor(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
-    if (!geografiskTilknytning && !diskresjonsKode) {
-        return action(() => new Promise(resolve => resolve({ navKontor: null })));
+function getBrukersNavkontorFetchUri(state: AppState) {
+    const personResource = state.restResources.personinformasjon;
+    if (!isLoadedPerson(personResource)) {
+        loggError(new Error('Fetch Nav-kontor: Kunne ikke finne personinformasjon'));
+        return `${apiBaseUri}/enheter?gt=`;
     }
-
-    return action(() => getNavkontor(geografiskTilknytning, diskresjonsKode ? diskresjonsKode.kodeRef : undefined));
+    const geografiskTilknytning = personResource.data.geografiskTilknytning;
+    const diskresjonsKode = personResource.data.diskresjonskode;
+    return getUrl(geografiskTilknytning, diskresjonsKode);
 }
 
-export function resetNavKontorResource() {
-    return tilbakestill;
-}
-
-export { actionNames };
-export default reducer;
+export default createRestResourceReducerAndActions<NavKontorResponse>('navkontor', getBrukersNavkontorFetchUri);

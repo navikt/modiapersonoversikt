@@ -5,12 +5,9 @@ import { connect } from 'react-redux';
 import Input from 'nav-frontend-skjema/lib/input';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import KnappBase from 'nav-frontend-knapper';
-
-import { STATUS } from '../../../redux/restReducers/utils';
 import { EndreNavnRequest } from '../../../redux/restReducers/brukerprofil/endreNavnRequest';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
-import { endreNavn, reset } from '../../../redux/restReducers/brukerprofil/endreNavn';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
@@ -21,6 +18,7 @@ import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles'
 import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { PostStatus } from '../../../rest/utils/postResource';
 
 interface NavnInputProps {
     label: string;
@@ -55,7 +53,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    resourceStatus: STATUS;
+    resourceStatus: PostStatus;
 }
 
 interface OwnProps {
@@ -231,7 +229,7 @@ class EndreNavnForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={this.props.resourceStatus === STATUS.LOADING}
+                            spinner={this.props.resourceStatus === PostStatus.POSTING}
                             disabled={!kanEndreNavn || !this.state.formErEndret || !this.navnErEndret()}
                             autoDisableVedSpinner={true}
                         >
@@ -259,8 +257,9 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        endreNavn: (request: EndreNavnRequest) => dispatch(endreNavn(request)),
-        resetEndreNavnResource: () => dispatch(reset())
+        endreNavn: (request: EndreNavnRequest) =>
+            dispatch((d, getState) => d(getState().restResources.endreNavn.actions.post(request))),
+        resetEndreNavnResource: () => dispatch((d, getState) => d(getState().restResources.endreNavn.actions.reset))
     };
 }
 

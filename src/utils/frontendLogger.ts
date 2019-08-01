@@ -1,6 +1,7 @@
 import { isDevelopment } from './environment';
 import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
 import md5 from 'md5';
+import { detect } from 'detect-browser';
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
@@ -51,16 +52,23 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    loggErrorUtenSaksbehandlerIdent(error, message, { ...ekstraFelter, saksbehandler: getSaksbehandlerIdent() });
+}
+
+export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    const browser = detect();
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
+        url: document.URL,
         error: error.stack,
+        browser: (browser && browser.name) || undefined,
         ...ekstraFelter
     };
     if (uselogger()) {
         // @ts-ignore
         window['frontendlogger'].error(info);
     } else {
-        console.error(info);
+        console.error(error, info);
     }
 }
 

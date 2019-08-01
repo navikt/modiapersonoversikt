@@ -1,19 +1,13 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import BrukerProfilDatovelger, { tilPeriode } from '../../../../components/forms/BrukerProfilDatovelger';
 import Input from 'nav-frontend-skjema/lib/input';
-
 import { Endringsinfo, Utlandsadresse } from '../../../../models/personadresse';
-import { Kodeverk, KodeverkResponse } from '../../../../models/kodeverk';
-import { hentLandKodeverk } from '../../../../redux/restReducers/kodeverk/landKodeverk';
-import { AppState } from '../../../../redux/reducers';
+import { Kodeverk } from '../../../../models/kodeverk';
 import VelgLandContainer from './VelgLandContainer';
 import { ValideringsResultat } from '../../../../utils/forms/FormValidator';
-import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { visEndringsinfo } from '../../utils/formUtils';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 
 export interface MidlertidigAdresseUtlandInputs {
     value: Utlandsadresse;
@@ -32,22 +26,12 @@ export const tomUtlandsadresse = {
     }
 };
 
-interface OwnProps {
+interface Props {
     endringsinfo?: Endringsinfo;
     onChange: (adresser: Partial<Utlandsadresse>) => void;
     midlertidigAdresseUtland: MidlertidigAdresseUtlandInputs;
     visFeilmeldinger: boolean;
 }
-
-interface DispatchProps {
-    hentLandKodeverk: () => void;
-}
-
-interface StateProps {
-    landResource: DeprecatedRestResource<KodeverkResponse>;
-}
-
-type Props = OwnProps & DispatchProps & StateProps;
 
 const InputLinje = styled.div`
     display: flex;
@@ -148,19 +132,4 @@ class MidlertidigAdresseUtland extends React.Component<Props> {
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        landResource: state.restResources.land
-    };
-};
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentLandKodeverk: () => dispatch(hentLandKodeverk())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MidlertidigAdresseUtland);
+export default MidlertidigAdresseUtland;

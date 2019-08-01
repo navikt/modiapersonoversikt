@@ -34,8 +34,9 @@ const Styles = styled.div`
     }
 `;
 
-const temaId = 'hurtigreferat';
-const sporsmal = 'Her kan vi skrive spørsmålet... lorem ipsum etc, bare for å få litt tekst her';
+const temaId = 'tilbakemelding';
+const sporsmal =
+    'Vi ønsker din tilbakemelding på Modia Personoversikt. Hvordan fungerer det for deg i din arbeidshverdag?';
 
 class VisittkortStandAlone extends React.Component<Props> {
     render() {
@@ -46,7 +47,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <Kontrollsporsmal />
-                        <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />
+                        <VisittkortLaster />
 
                         <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
                             <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} />

@@ -42,7 +42,8 @@ function getMelding(temagruppe: Temagruppe): Melding {
         opprettetDato: moment(faker.date.recent(40)).format(backendDatoformat),
         journalfortDato: moment(faker.date.recent(40)).format(backendDatoformat),
         ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat),
-        erFerdigstiltUtenSvar: faker.random.boolean()
+        erFerdigstiltUtenSvar: faker.random.boolean(),
+        erDelsvar: faker.random.boolean()
     };
 }
 

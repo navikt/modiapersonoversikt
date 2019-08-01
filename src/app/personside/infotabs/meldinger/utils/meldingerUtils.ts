@@ -1,4 +1,4 @@
-import { Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 
 export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger[0];
@@ -83,4 +83,36 @@ export function erMeldingVarsel(meldingstype: Meldingstype) {
 
 export function erMeldingSpørsmål(meldingstype: Meldingstype) {
     return [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG].includes(meldingstype);
+}
+
+export function erKontorsperret(traad: Traad): boolean {
+    return !!eldsteMelding(traad).kontorsperretEnhet;
+}
+
+export function erEldsteMeldingJournalfort(traad: Traad): boolean {
+    return !!eldsteMelding(traad).journalfortDato;
+}
+
+export function erFeilsendt(traad: Traad): boolean {
+    return !!eldsteMelding(traad).markertSomFeilsendtAv;
+}
+
+export function erMeldingFeilsendt(melding: Melding): boolean {
+    return !!melding.markertSomFeilsendtAv;
+}
+
+export function erBehandlet(traad: Traad): boolean {
+    const minstEnMeldingErFraNav: boolean = traad.meldinger.some(melding => erMeldingFraNav(melding.meldingstype));
+    const erFerdigstiltUtenSvar: boolean = eldsteMelding(traad).erFerdigstiltUtenSvar;
+
+    return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
+}
+
+export function harDelsvar(traad: Traad): boolean {
+    return traad.meldinger.some(melding => melding.erDelsvar);
+}
+
+export function harTilgangTilSletting() {
+    // TODO Fiks når vi har satt opp vault/fasit
+    return true;
 }

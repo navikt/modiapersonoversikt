@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { AppState } from '../../redux/reducers';
-import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
+import { erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import MainLayout from './MainLayout';
-import Innholdslaster from '../../components/Innholdslaster';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { isLoaded } from '../../redux/restReducers/deprecatedRestResource';
+import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -16,20 +13,21 @@ const onError = (
 );
 
 function Personside() {
-    const personResource = useSelector((state: AppState) => state.restResources.personinformasjon);
-
-    function getSideinnhold() {
-        if (isLoaded(personResource) && erPersonResponsAvTypeBegrensetTilgang(personResource.data)) {
-            return <BegrensetTilgangSide person={personResource.data} />;
+    function getSideinnhold(personResource: PersonRespons) {
+        if (erPersonResponsAvTypeBegrensetTilgang(personResource)) {
+            return <BegrensetTilgangSide person={personResource} />;
         } else {
             return <MainLayout />;
         }
     }
 
     return (
-        <Innholdslaster avhengigheter={[personResource]} returnOnError={onError}>
-            {getSideinnhold()}
-        </Innholdslaster>
+        <RestResourceConsumer<PersonRespons>
+            getResource={restResources => restResources.personinformasjon}
+            returnOnError={onError}
+        >
+            {data => getSideinnhold(data)}
+        </RestResourceConsumer>
     );
 }
 

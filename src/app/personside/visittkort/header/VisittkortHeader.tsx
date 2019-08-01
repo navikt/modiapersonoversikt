@@ -125,7 +125,7 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
 
                 <HøyreFelt>
                     <EtiketterContainer />
-                    <NavKontorContainer person={person} />
+                    <NavKontorContainer />
                 </HøyreFelt>
 
                 <ChevronStyling>

@@ -1,16 +1,10 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { EndreNavnRequest } from './endreNavnRequest';
-import { postEndreNavn } from '../../../api/brukerprofil/endrenavn-api';
+import createPostResourceReducerAndActions from '../../../rest/utils/postResource';
+import { AppState } from '../../reducers';
+import { apiBaseUri } from '../../../api/config';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endrenavn');
-
-export function endreNavn(request: EndreNavnRequest) {
-    return action(() => postEndreNavn(request));
+function getEndreNavnPostUri(state: AppState, request: EndreNavnRequest) {
+    return `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/navn/`;
 }
 
-export function reset() {
-    return tilbakestill;
-}
-
-export { actionNames };
-export default reducer;
+export default createPostResourceReducerAndActions<EndreNavnRequest>('endrenavn', getEndreNavnPostUri);

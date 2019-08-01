@@ -1,11 +1,8 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { fetchKodeverk } from '../../../api/kodeverk';
+import { createRestResourceReducerAndActions } from '../../../rest/utils/restResource';
+import { KodeverkResponse } from '../../../models/kodeverk';
+import { apiBaseUri } from '../../../api/config';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-retningsnummer');
-
-export function hentRetningsnummere() {
-    return action(() => fetchKodeverk('Retningsnumre'));
-}
-
-export const retningsnummerKodeverkActionNames = actionNames;
-export default reducer;
+export default createRestResourceReducerAndActions<KodeverkResponse>(
+    'kodeverk-retningsnummer',
+    () => `${apiBaseUri}/kodeverk/Retningsnumre`
+);

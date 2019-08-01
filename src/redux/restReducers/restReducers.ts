@@ -23,7 +23,6 @@ import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
-import utførteUtbetalingerReducer from './ytelser/utførteUtbetalinger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
@@ -34,14 +33,13 @@ import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
 import { Oppgave } from '../../models/oppgave';
-import { BrukersNavKontorResponse } from '../../models/navkontor';
+import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
 import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
-import { DeprecatedRestResource } from './deprecatedRestResource';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
@@ -49,7 +47,6 @@ import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { Varsel } from '../../models/varsel';
 import { SendMeldingRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
@@ -57,38 +54,42 @@ import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
+import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
+import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
+import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import psaksaker from './saker/psaksaker';
 import sammensattesaker from './saker/sammensattesaker';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
-    personinformasjon: DeprecatedRestResource<PersonRespons>;
-    brukersNavKontor: DeprecatedRestResource<BrukersNavKontorResponse>;
-    oppgaver: DeprecatedRestResource<Oppgave[]>;
+    personinformasjon: RestResource<PersonRespons>;
+    brukersNavKontor: RestResource<NavKontorResponse>;
+    oppgaver: PostResource<{}, Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
-    baseUrl: DeprecatedRestResource<BaseUrlsResponse>;
-    endreNavn: DeprecatedRestResource<{}>;
-    endreKontonummer: DeprecatedRestResource<{}>;
-    endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
-    veilederRoller: DeprecatedRestResource<VeilederRoller>;
-    retningsnummer: DeprecatedRestResource<KodeverkResponse>;
-    tilrettelagtKommunikasjonKodeverk: DeprecatedRestResource<KodeverkResponse>;
-    endreKontaktinformasjon: DeprecatedRestResource<{}>;
-    postnummer: DeprecatedRestResource<KodeverkResponse>;
-    endreAdresse: DeprecatedRestResource<{}>;
-    valuta: DeprecatedRestResource<KodeverkResponse>;
-    land: DeprecatedRestResource<KodeverkResponse>;
-    utbetalinger: DeprecatedRestResource<UtbetalingerResponse>;
+    baseUrl: RestResource<BaseUrlsResponse>;
+    endreNavn: PostResource<EndreNavnRequest>;
+    endreKontonummer: PostResource<EndreKontonummerRequest>;
+    endreTilrettelagtKommunikasjon: PostResource<EndreTilrettelagtKommunikasjonrequest>;
+    veilederRoller: RestResource<VeilederRoller>;
+    retningsnummer: RestResource<KodeverkResponse>;
+    tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
+    endreKontaktinformasjon: PostResource<EndreKontaktinformasjonRequest>;
+    postnummer: RestResource<KodeverkResponse>;
+    endreAdresse: PostResource<EndreAdresseRequest>;
+    valuta: RestResource<KodeverkResponse>;
+    land: RestResource<KodeverkResponse>;
+    utbetalinger: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
-    utførteUtbetalingerYtelser: RestResource<UtbetalingerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
-    sakstema: DeprecatedRestResource<SakstemaResponse>;
-    featureToggles: DeprecatedRestResource<FeatureToggles>;
+    sakstema: RestResource<SakstemaResponse>;
+    featureToggles: RestResource<{ [name: string]: boolean }>;
     brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
@@ -122,7 +123,6 @@ export default combineReducers<RestEndepunkter>({
     utbetalinger: utbetalingerReducer,
     sykepenger: sykepengerReducer,
     pleiepenger: pleiepengerReducer,
-    utførteUtbetalingerYtelser: utførteUtbetalingerReducer,
     foreldrepenger: foreldrepengerReducer,
     oppfolging: oppfolgingReducer,
     sakstema: saksoversiktReducer,

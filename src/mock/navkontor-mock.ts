@@ -1,6 +1,6 @@
 import faker from 'faker/locale/nb_NO';
 
-import { ApningsTid, NavKontor, PublikumsMottak } from '../models/navkontor';
+import { ApningsTid, NavKontorResponse, PublikumsMottak } from '../models/navkontor';
 import { tilfeldigGateadresse } from './person/adresseMock';
 import { Gateadresse } from '../models/personadresse';
 
@@ -49,7 +49,7 @@ const mockKontaktInfo: PublikumsMottak = {
     apningstider: mockApningsTider
 };
 
-export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?: string): NavKontor {
+export function getMockNavKontor(geografiskTilknytning: string, diskresjonskode?: string): NavKontorResponse {
     faker.seed(Number(geografiskTilknytning));
     if (diskresjonskode) {
         return {

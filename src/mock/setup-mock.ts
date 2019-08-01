@@ -223,9 +223,7 @@ function setupOppgaveMock(mock: FetchMock) {
 function endreNavnMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/brukerprofil/:fodselsnummer/navn',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => {
-            return undefined;
-        })
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
@@ -382,6 +380,26 @@ function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
+function merkAvsluttMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/avslutt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkBidragMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/bidrag', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkFeilsendtMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/feilsendt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkKontorsperretMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/kontorsperret', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
+function merkSlettMock(mock: FetchMock) {
+    mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     if (response.headers) {
         return response;
@@ -441,4 +459,9 @@ export function setupMock() {
     setupSendMeldingMock(mock);
     setupJournalforingMock(mock);
     setupPersonsokMock(mock);
+    merkAvsluttMock(mock);
+    merkBidragMock(mock);
+    merkFeilsendtMock(mock);
+    merkKontorsperretMock(mock);
+    merkSlettMock(mock);
 }
