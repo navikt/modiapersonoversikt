@@ -14,7 +14,6 @@ import {
 } from '../../../redux/restReducers/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import Undertittel from 'nav-frontend-typografi/lib/undertittel';
@@ -89,7 +88,7 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
         slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser()),
         resetEndreAdresseResource: () =>
             dispatch((d, getState) => d(getState().restResources.endreAdresse.actions.reset)),
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer))
+        reloadPerson: () => dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload))
     };
 }
 

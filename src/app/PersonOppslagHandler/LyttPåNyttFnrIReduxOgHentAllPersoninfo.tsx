@@ -1,6 +1,5 @@
 import { resetKontrollSpørsmål } from '../../redux/kontrollSporsmal/actions';
-import { hentPerson } from '../../redux/restReducers/personinformasjon';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { Action } from 'redux';
@@ -18,9 +17,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const restResources = useSelector((state: AppState) => state.restResources);
 
-    const memoHentPersopn = useMemo(() => hentPerson(fnr), [fnr]);
-    useDispatchOnNewFnr(memoHentPersopn, fnr);
     useDispatchOnNewFnr(resetKontrollSpørsmål, fnr);
+    useDispatchOnNewFnr(restResources.personinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.kontaktinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.vergemal.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.egenAnsatt.actions.fetch, fnr);

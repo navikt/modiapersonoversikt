@@ -1,24 +1,11 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { AppState } from '../../redux/reducers';
 import { BegrensetTilgang, erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from '../../app/personside/BegrensetTilgangSide';
-import { DeprecatedRestResource, Loaded } from '../../redux/restReducers/deprecatedRestResource';
 import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
-import Innholdslaster from '../Innholdslaster';
 import { BigCenteredLazySpinner } from '../BigCenteredLazySpinner';
-
-interface OwnProps {
-    fødselsnummer: string;
-}
-
-interface PersonsideStateProps {
-    personResource: DeprecatedRestResource<PersonRespons>;
-}
-
-type Props = OwnProps & PersonsideStateProps;
+import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -34,22 +21,16 @@ function Sideinnhold(props: { data: PersonRespons }) {
     }
 }
 
-function Personside(props: Props) {
+function Personside() {
     return (
-        <Innholdslaster
-            avhengigheter={[props.personResource]}
+        <RestResourceConsumer<PersonRespons>
+            getResource={restResources => restResources.personinformasjon}
             returnOnPending={BigCenteredLazySpinner}
             returnOnError={onError}
         >
-            <Sideinnhold data={(props.personResource as Loaded<PersonRespons>).data} />
-        </Innholdslaster>
+            {person => <Sideinnhold data={person} />}
+        </RestResourceConsumer>
     );
 }
 
-function mapStateToProps(state: AppState): PersonsideStateProps {
-    return {
-        personResource: state.restResources.personinformasjon
-    };
-}
-
-export default connect(mapStateToProps)(Personside);
+export default Personside;

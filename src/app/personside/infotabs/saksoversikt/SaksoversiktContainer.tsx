@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
@@ -16,7 +14,6 @@ import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySp
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 
 interface StateProps {
-    personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
     fødselsnummer: string;
@@ -78,7 +75,6 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
     };

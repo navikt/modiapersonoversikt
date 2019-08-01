@@ -15,7 +15,6 @@ import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 import { loggEvent } from '../../../utils/frontendLogger';
@@ -358,7 +357,8 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
+        reloadPerson: (fødselsnummer: string) =>
+            dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload)),
         endreNavKontaktinformasjon: (request: EndreKontaktinformasjonRequest) =>
             dispatch((d, getState) => d(getState().restResources.endreKontaktinformasjon.actions.post(request))),
         tilbakestill: () => dispatch((d, getState) => d(getState().restResources.endreKontaktinformasjon.actions.reset))

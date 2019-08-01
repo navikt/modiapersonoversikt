@@ -2,7 +2,6 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import reducers, { AppState } from '../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
 import { aremark } from '../mock/person/aremark';
-import { personinformasjonActionNames } from '../redux/restReducers/personinformasjon';
 import { getPerson } from '../mock/person/personMock';
 import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
@@ -29,7 +28,7 @@ export function getTestStore(): Store<AppState> {
     const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.fødselsnummer;
 
-    testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
+    testStore.dispatch(restResources.personinformasjon.actions.setData(getPerson(aremarkFnr)));
     testStore.dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     testStore.dispatch(restResources.brukersNavKontor.actions.setData(getMockNavKontor('0118', undefined)));
     testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));

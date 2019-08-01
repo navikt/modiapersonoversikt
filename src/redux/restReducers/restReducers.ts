@@ -40,7 +40,6 @@ import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
-import { DeprecatedRestResource } from './deprecatedRestResource';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
@@ -63,7 +62,7 @@ import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
-    personinformasjon: DeprecatedRestResource<PersonRespons>;
+    personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     oppgaver: PostResource<{}, Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;

@@ -29,7 +29,6 @@ import EtikettGrå from '../../../components/EtikettGrå';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { Undertekst } from 'nav-frontend-typografi';
@@ -325,7 +324,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
+        reloadPerson: () => dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>
             dispatch((d, getState) => d(getState().restResources.endreKontonummer.actions.post(request))),
         resetEndreKontonummerResource: () =>
