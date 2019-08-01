@@ -4,7 +4,7 @@ import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { connect } from 'react-redux';
 import { settValgtSakstema } from '../../../../../redux/saksoversikt/actions';
 import SakstemaListe from './SakstemaListe';
-import { Loaded } from '../../../../../rest/utils/restResource';
+import { HasData } from '../../../../../rest/utils/restResource';
 
 interface StateProps {
     sakstema: Sakstema[];
@@ -18,7 +18,7 @@ interface DispatchProps {
 function mapStateToProps(state: AppState): StateProps {
     return {
         valgtSakstema: state.saksoversikt.valgtSakstema,
-        sakstema: (state.restResources.sakstema as Loaded<SakstemaResponse>).data.resultat
+        sakstema: (state.restResources.sakstema as HasData<SakstemaResponse>).data.resultat
     };
 }
 

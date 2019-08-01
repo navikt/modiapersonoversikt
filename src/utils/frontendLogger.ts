@@ -68,7 +68,7 @@ export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, 
         // @ts-ignore
         window['frontendlogger'].error(info);
     } else {
-        console.error(info);
+        console.error(error, info);
     }
 }
 

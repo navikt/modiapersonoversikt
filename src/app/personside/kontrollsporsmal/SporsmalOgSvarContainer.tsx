@@ -5,13 +5,13 @@ import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
-import { isLoaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
+import { DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
 import { shuffle } from '../../../utils/list-utils';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { RestResource } from '../../../rest/utils/restResource';
+import { hasData, RestResource } from '../../../rest/utils/restResource';
 
 interface StateProps {
     personinformasjon: DeprecatedRestResource<PersonRespons>;
@@ -71,10 +71,12 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
 }
 
 function extractSpørsmål<T>(
-    restRessurs: DeprecatedRestResource<T>,
+    restRessurs: RestResource<T> | DeprecatedRestResource<T>,
     spørsmålExtractors: SpørsmålsExtractor<T>[]
 ): Spørsmål[] {
-    if (isLoaded(restRessurs)) {
+    // @ts-ignore
+    if (hasData(restRessurs)) {
+        // @ts-ignore
         const data = restRessurs.data;
         return spørsmålExtractors
             .map(extractor => {

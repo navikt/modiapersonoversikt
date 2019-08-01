@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { EffectCallback, RefObject, useCallback, useEffect } from 'react';
-import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
+import {EffectCallback, RefObject, useCallback, useEffect, useRef} from 'react';
+import {EventListener, runIfEventIsNotInsideRef} from './reactRefUtils';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useEffect(() => {
@@ -33,4 +33,12 @@ export function useFocusOutside<T extends HTMLElement>(ref: RefObject<T>, callba
         document.addEventListener('focusin', handler);
         return () => document.removeEventListener('focusin', handler);
     }, [handler]);
+}
+
+export function usePrevious<T>(value: T) {
+    const ref = useRef<T>();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
 }

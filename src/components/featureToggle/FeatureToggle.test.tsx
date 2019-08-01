@@ -5,14 +5,14 @@ import LazySpinner from '../LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
 import { getTestStore } from '../../test/testStore';
-import { featureToggleActionNames } from '../../redux/restReducers/featureToggles';
 import { FeatureToggles } from './toggleIDs';
 
 const toggleId = FeatureToggles.Tooltip;
 const testStore = getTestStore();
 
 function setToggleTo(value: boolean | undefined) {
-    testStore.dispatch({ type: featureToggleActionNames.FINISHED, data: { [toggleId]: value } });
+    // @ts-ignore (undefined representerer at featuretogglen ikke har blitt satt enda)
+    testStore.dispatch(testStore.getState().restResources.featureToggles.actions.setData({ [toggleId]: value }));
 }
 
 test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {

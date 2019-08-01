@@ -3,7 +3,6 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Checkbox from 'nav-frontend-skjema/lib/checkbox';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
 import { AlignTextCenter, Bold, Uppercase } from '../../../../../components/common-styled-components';
@@ -18,6 +17,7 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 interface Props {
     valgtSakstema?: Sakstema;
