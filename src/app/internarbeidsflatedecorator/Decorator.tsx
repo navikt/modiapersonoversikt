@@ -9,8 +9,6 @@ import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetI
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { isDevelopment } from '../../utils/environment';
-import { finnMiljoStreng } from '../../utils/url-utils';
 
 interface StateProps extends RouteComponentProps<{}> {
     fnr: string | null;
@@ -18,8 +16,6 @@ interface StateProps extends RouteComponentProps<{}> {
 }
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
-const identSource = () => fetch(`${apiBaseUri}/hode/me`).then(resp => resp.json());
-const enheterSource = () => fetch(`${apiBaseUri}/hode/enheter`).then(resp => resp.json());
 
 function lagConfig(fnr: string | undefined | null, enhet: string | undefined | null, history: History): DecoratorProps {
     return {
@@ -32,8 +28,6 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
             visSokefelt: true,
             visVeilder: true
         },
-        identSource,
-        enheterSource,
         onSok(fnr: string | null): void {
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
@@ -51,9 +45,7 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
                 }
             });
         },
-        contextholder: isDevelopment()
-            ? { url: 'ws://localhost:2999/hereIsWS' }
-            : { url: `wss://veilederflatehendelser${finnMiljoStreng()}.adeo.no/modiaeventdistribution/websocket` }
+        contextholder: true
     };
 }
 
