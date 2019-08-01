@@ -47,7 +47,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <Kontrollsporsmal />
-                        <VisittkortLaster fødselsnummer={this.props.fødselsnummer} />
+                        <VisittkortLaster />
 
                         <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
                             <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} />

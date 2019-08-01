@@ -12,7 +12,6 @@ import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import styled from 'styled-components';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { PostStatus } from '../../../rest/utils/postResource';
@@ -166,7 +165,8 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
+        reloadPerson: (fødselsnummer: string) =>
+            dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
             dispatch((d, getState) => d(getState().restResources.endreTilrettelagtKommunikasjon.actions.post(request))),
         resetEndreTilrettelagtKommunikasjonResource: () =>
