@@ -273,7 +273,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     kontaktInfoBleLagret() {
-        return this.props.resourceStatus === PostStatus.POSTING;
+        return this.props.resourceStatus === PostStatus.SUCCESS;
     }
 
     Tilbakemelding() {
