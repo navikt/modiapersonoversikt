@@ -222,9 +222,7 @@ function setupOppgaveMock(mock: FetchMock) {
 function endreNavnMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/brukerprofil/:fodselsnummer/navn',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => {
-            return undefined;
-        })
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 

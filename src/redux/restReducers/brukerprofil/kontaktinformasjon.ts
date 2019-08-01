@@ -1,15 +1,14 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { postEndreNavKontaktinformasjon, Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
+import { apiBaseUri } from '../../../api/config';
+import { AppState } from '../../reducers';
+import { EndreKontaktinformasjonRequest } from './endreKontaktinformasjonRequest';
+import createPostResourceReducerAndActions from '../../../rest/utils/postResource';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endre-kontaktinformasjon');
-
-export function endreNavKontaktinformasjon(request: Request, fødselsnummer: string) {
-    return action(() => postEndreNavKontaktinformasjon(request, fødselsnummer));
+function getEndreKontaktinformasjonPostUri(state: AppState, request: EndreKontaktinformasjonRequest) {
+    const fødselsnummer = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/brukerprofil/${fødselsnummer}/telefonnummer/`;
 }
 
-function dispatchtilbakestill() {
-    return tilbakestill;
-}
-
-export { actionNames, dispatchtilbakestill as tilbakestill };
-export default reducer;
+export default createPostResourceReducerAndActions<EndreKontaktinformasjonRequest>(
+    'endre-kontaktinformasjon',
+    getEndreKontaktinformasjonPostUri
+);

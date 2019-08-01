@@ -1,9 +1,8 @@
 import * as React from 'react';
-
-import { STATUS } from '../../../../redux/restReducers/utils';
 import RequestTilbakemelding from '../../RequestTilbakemelding';
+import { PostStatus } from '../../../../rest/utils/postResource';
 
-export default function SubmitFeedback(props: { visFeedback: boolean; status: STATUS }) {
+export default function SubmitFeedback(props: { visFeedback: boolean; status: PostStatus }) {
     if (!props.visFeedback) {
         return null;
     }

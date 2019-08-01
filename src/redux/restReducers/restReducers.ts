@@ -55,6 +55,11 @@ import sendMelding from './sendMelding';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
+import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
+import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
+import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
+import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -65,15 +70,15 @@ export interface RestEndepunkter {
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
     baseUrl: RestResource<BaseUrlsResponse>;
-    endreNavn: DeprecatedRestResource<{}>;
-    endreKontonummer: DeprecatedRestResource<{}>;
-    endreTilrettelagtKommunikasjon: DeprecatedRestResource<{}>;
+    endreNavn: PostResource<EndreNavnRequest>;
+    endreKontonummer: PostResource<EndreKontonummerRequest>;
+    endreTilrettelagtKommunikasjon: PostResource<EndreTilrettelagtKommunikasjonrequest>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
-    endreKontaktinformasjon: DeprecatedRestResource<{}>;
+    endreKontaktinformasjon: PostResource<EndreKontaktinformasjonRequest>;
     postnummer: RestResource<KodeverkResponse>;
-    endreAdresse: DeprecatedRestResource<{}>;
+    endreAdresse: PostResource<EndreAdresseRequest>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;

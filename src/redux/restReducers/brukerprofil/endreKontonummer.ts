@@ -1,16 +1,14 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { EndreKontonummerRequest } from './endreKontonummerRequest';
-import { postEndreKontonummer } from '../../../api/brukerprofil/endreKontonummer-api';
+import createPostResourceReducerAndActions from '../../../rest/utils/postResource';
+import { AppState } from '../../reducers';
+import { apiBaseUri } from '../../../api/config';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endre-kontonummer');
-
-export function endreKontonummer(fødselsnummer: string, request: EndreKontonummerRequest) {
-    return action(() => postEndreKontonummer(fødselsnummer, request));
+function getEndreKontonummerPostUri(state: AppState, request: EndreKontonummerRequest) {
+    const fødselsnummer = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/brukerprofil/${fødselsnummer}/kontonummer/`;
 }
 
-export function reset() {
-    return tilbakestill;
-}
-
-export { actionNames };
-export default reducer;
+export default createPostResourceReducerAndActions<EndreKontonummerRequest>(
+    'endre-kontonummer',
+    getEndreKontonummerPostUri
+);

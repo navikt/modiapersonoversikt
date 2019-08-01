@@ -3,14 +3,8 @@ import { FormEvent } from 'react';
 import { connect } from 'react-redux';
 
 import KnappBase from 'nav-frontend-knapper';
-
-import { STATUS } from '../../../redux/restReducers/utils';
 import { AppState } from '../../../redux/reducers';
 import { EndreTilrettelagtKommunikasjonrequest } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import {
-    endreTilrettelagtKommunikasjon,
-    reset
-} from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjon';
 import { Person } from '../../../models/person/person';
 import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
@@ -21,6 +15,7 @@ import styled from 'styled-components';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { PostStatus } from '../../../rest/utils/postResource';
 
 interface State {
     checkbokser: CheckboksProps[];
@@ -33,7 +28,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    resourceStatus: STATUS;
+    resourceStatus: PostStatus;
 }
 
 interface OwnProps {
@@ -67,7 +62,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS) {
+        if (prevProps.resourceStatus !== PostStatus.SUCCESS && this.props.resourceStatus === PostStatus.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -139,13 +134,13 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
                     <KnappBase
                         type="standard"
                         onClick={this.tilbakestillForm}
-                        disabled={!this.erEndret() || this.props.resourceStatus === STATUS.LOADING}
+                        disabled={!this.erEndret() || this.props.resourceStatus === PostStatus.POSTING}
                     >
                         Avbryt
                     </KnappBase>
                     <KnappBase
                         type="hoved"
-                        spinner={this.props.resourceStatus === STATUS.LOADING}
+                        spinner={this.props.resourceStatus === PostStatus.POSTING}
                         disabled={!this.erEndret()}
                         title={!this.erEndret() ? 'Ingen endringer' : ''}
                         autoDisableVedSpinner={true}
@@ -173,8 +168,9 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
         endreTilrettelagtKommunikasjon: (request: EndreTilrettelagtKommunikasjonrequest) =>
-            dispatch(endreTilrettelagtKommunikasjon(request)),
-        resetEndreTilrettelagtKommunikasjonResource: () => dispatch(reset())
+            dispatch((d, getState) => d(getState().restResources.endreTilrettelagtKommunikasjon.actions.post(request))),
+        resetEndreTilrettelagtKommunikasjonResource: () =>
+            dispatch((d, getState) => d(getState().restResources.endreTilrettelagtKommunikasjon.actions.reset))
     };
 }
 

@@ -13,16 +13,15 @@ import { Telefon } from '../../../models/person/NAVKontaktinformasjon';
 import { formaterTelefonnummer, sorterRetningsnummerMedNorgeFørst } from '../../../utils/telefon-utils';
 import { TelefonInput, TelefonMetadata } from './TelefonInput';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import { endreNavKontaktinformasjon, tilbakestill } from '../../../redux/restReducers/brukerprofil/kontaktinformasjon';
-import { Request } from '../../../api/brukerprofil/endre-navkontaktinformasjon-api';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { STATUS } from '../../../redux/restReducers/utils';
 import { erTomStreng, removeWhitespace } from '../../../utils/string-utils';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidTelefonInput, validerTelefonInput } from './kontaktinformasjonValidator';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import { PostStatus } from '../../../rest/utils/postResource';
+import { EndreKontaktinformasjonRequest } from '../../../redux/restReducers/brukerprofil/endreKontaktinformasjonRequest';
 
 export interface TelefonInput {
     retningsnummer: string;
@@ -49,12 +48,12 @@ export interface EndreKontaktinformasjonState {
 
 interface DispatchProps {
     reloadPerson: (fødselsnummer: string) => void;
-    endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) => Promise<unknown>;
+    endreNavKontaktinformasjon: (request: EndreKontaktinformasjonRequest) => void;
     tilbakestill: () => void;
 }
 
 interface StateProps {
-    resourceStatus: STATUS;
+    resourceStatus: PostStatus;
 }
 
 interface OwnProps {
@@ -141,7 +140,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS) {
+        if (prevProps.resourceStatus !== PostStatus.SUCCESS && this.props.resourceStatus === PostStatus.SUCCESS) {
             this.props.reloadPerson(this.props.person.fødselsnummer);
         }
     }
@@ -217,7 +216,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     resetResource() {
-        if (this.props.resourceStatus !== STATUS.NOT_STARTED) {
+        if (this.props.resourceStatus !== PostStatus.NOT_STARTED) {
             this.props.tilbakestill();
         }
     }
@@ -249,7 +248,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
             jobb: getTelefonHvisSatt(this.state.inputs.jobb),
             hjem: getTelefonHvisSatt(this.state.inputs.hjem)
         };
-        this.props.endreNavKontaktinformasjon(request, this.props.person.fødselsnummer);
+        this.props.endreNavKontaktinformasjon(request);
         loggEvent('Endre kontaktinformasjon', 'Brukerprofil');
     }
 
@@ -266,7 +265,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     requestIsPending() {
-        return this.props.resourceStatus === STATUS.LOADING;
+        return this.props.resourceStatus === PostStatus.POSTING;
     }
 
     formErEndret() {
@@ -275,7 +274,7 @@ class KontaktinformasjonForm extends React.Component<Props, EndreKontaktinformas
     }
 
     kontaktInfoBleLagret() {
-        return this.props.resourceStatus === STATUS.SUCCESS;
+        return this.props.resourceStatus === PostStatus.SUCCESS;
     }
 
     Tilbakemelding() {
@@ -360,9 +359,9 @@ const mapStateToProps = (state: AppState): StateProps => {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
-        endreNavKontaktinformasjon: (request: Request, fødselsnummer: string) =>
-            dispatch(endreNavKontaktinformasjon(request, fødselsnummer)),
-        tilbakestill: () => dispatch(tilbakestill())
+        endreNavKontaktinformasjon: (request: EndreKontaktinformasjonRequest) =>
+            dispatch((d, getState) => d(getState().restResources.endreKontaktinformasjon.actions.post(request))),
+        tilbakestill: () => dispatch((d, getState) => d(getState().restResources.endreKontaktinformasjon.actions.reset))
     };
 }
 
