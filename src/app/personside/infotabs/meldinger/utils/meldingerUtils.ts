@@ -65,20 +65,20 @@ export function erMeldingFraBruker(meldingstype: Meldingstype) {
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
-        Meldingstype.SvarSkriftlig,
+        Meldingstype.SVAR_SKRIFTLIG,
         Meldingstype.SVAR_OPPMOTE,
         Meldingstype.SVAR_TELEFON,
         Meldingstype.SAMTALEREFERAT_TELEFON,
         Meldingstype.SAMTALEREFERAT_OPPMOTE,
         Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-        Meldingstype.DokumentVarsel,
-        Meldingstype.OppgaveVarsel,
-        Meldingstype.DelvisSvarSkriftlig
+        Meldingstype.DOKUMENT_VARSEL,
+        Meldingstype.OPPGAVE_VARSEL,
+        Meldingstype.DELVIS_SVAR_SKRIFTLIG
     ].includes(meldingstype);
 }
 
 export function erMeldingVarsel(meldingstype: Meldingstype) {
-    return [Meldingstype.OppgaveVarsel, Meldingstype.DokumentVarsel].includes(meldingstype);
+    return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
 export function erMeldingSpørsmål(meldingstype: Meldingstype) {

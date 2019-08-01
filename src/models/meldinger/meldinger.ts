@@ -51,13 +51,13 @@ export enum Temagruppe {
 }
 
 export enum Meldingstype {
-    DokumentVarsel = 'DOKUMENT_VARSEL',
-    OppgaveVarsel = 'OPPGAVE_VARSEL',
+    DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
+    OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
     SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
-    SvarSkriftlig = 'SVAR_SKRIFTLIG',
+    SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
     SVAR_OPPMOTE = 'SVAR_OPPMOTE',
     SVAR_TELEFON = 'SVAR_TELEFON',
-    DelvisSvarSkriftlig = 'DELVIS_SVAR_SKRIFTLIG',
+    DELVIS_SVAR_SKRIFTLIG = 'DELVIS_SVAR_SKRIFTLIG',
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
@@ -74,7 +74,7 @@ export interface SendMeldingRequest {
     fnr: string;
     navident: string;
     kanal: string;
-    type: string | null;
+    type: string;
     fritekst: string;
     tilknyttetEnhet: string;
     erTilknyttetAnsatt: boolean;

@@ -70,9 +70,9 @@ function Meldingsikon(props: MeldingsikonProps) {
             return <OppmoteIkon />;
         case Meldingstype.SAMTALEREFERAT_TELEFON:
             return <TelefonIkon />;
-        case Meldingstype.OppgaveVarsel:
+        case Meldingstype.OPPGAVE_VARSEL:
             return <OppgaveIkon />;
-        case Meldingstype.DokumentVarsel:
+        case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
             // TODO Vi må legge på et ekstra besvart / ubesvart ikon...

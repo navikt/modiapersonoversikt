@@ -51,8 +51,8 @@ describe('Temagrupper', () => {
 
 describe('Meldingstyper', () => {
     const spørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG;
-    const svarSkriftlig = Meldingstype.SvarSkriftlig;
-    const dokumentvarsel = Meldingstype.DokumentVarsel;
+    const svarSkriftlig = Meldingstype.SVAR_SKRIFTLIG;
+    const dokumentvarsel = Meldingstype.DOKUMENT_VARSEL;
 
     it('gir at spørsmål skriftlig er fra bruker', function() {
         expect(erMeldingFraBruker(spørsmålSkriftlig)).toBe(true);

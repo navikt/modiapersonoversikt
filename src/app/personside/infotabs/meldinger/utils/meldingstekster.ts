@@ -8,11 +8,11 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Spørsmål fra bruker';
         case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return 'Samtalereferat oppmøte';
-        case Meldingstype.DelvisSvarSkriftlig:
+        case Meldingstype.DELVIS_SVAR_SKRIFTLIG:
             return 'Delsvar';
-        case Meldingstype.DokumentVarsel:
+        case Meldingstype.DOKUMENT_VARSEL:
             return 'Dokument varsel';
-        case Meldingstype.OppgaveVarsel:
+        case Meldingstype.OPPGAVE_VARSEL:
             return 'OppgaveIkon varsel';
         case Meldingstype.SAMTALEREFERAT_TELEFON:
             return 'Samtalereferat telefon';
@@ -22,7 +22,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Svar oppmøte';
         case Meldingstype.SvarSblInngående:
             return 'Svar fra bruker';
-        case Meldingstype.SvarSkriftlig:
+        case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';
         default:
             return 'Ukjent meldingstype';
