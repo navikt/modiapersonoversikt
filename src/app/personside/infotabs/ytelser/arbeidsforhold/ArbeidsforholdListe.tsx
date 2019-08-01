@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import styled from 'styled-components';
