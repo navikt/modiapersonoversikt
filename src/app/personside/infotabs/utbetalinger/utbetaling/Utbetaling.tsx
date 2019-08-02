@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SammensattUtbetaling from './SammensattUtbetaling';
 
 import EnkelUtbetaling from './EnkelUtbetaling';

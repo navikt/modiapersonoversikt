@@ -22,7 +22,10 @@ export interface PostResource<Request, Response = any> {
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
         setError: (e: Error) => (dispatch: AsyncDispatch) => void;
-        post: (payload: Request, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
+        post: (
+            payload: Request,
+            callback?: (response: Response) => void
+        ) => (dispatch: AsyncDispatch, getState: () => AppState) => void;
     };
 }
 
@@ -95,11 +98,11 @@ export interface FailAction<Request, Response> {
     error: Error;
 }
 
-export type PostUriCreator = (state: AppState) => string;
+export type PostUriCreator<Request> = (state: AppState, request: Request) => string;
 
 function createPostResourceReducerAndActions<Request extends object, Response = any>(
     resourceNavn: string,
-    getPostUri: PostUriCreator
+    getPostUri: PostUriCreator<Request>
 ) {
     const actionNames = getActionTypes(resourceNavn);
 
@@ -108,11 +111,16 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
             setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
-            post: (request: Request, callback?: () => void) => (dispatch: AsyncDispatch, getState: () => AppState) => {
+            post: (request: Request, callback?: (response: Response) => void) => (
+                dispatch: AsyncDispatch,
+                getState: () => AppState
+            ) => {
                 dispatch({ type: actionNames.POSTING, payload: request });
-                post(getPostUri(getState()), request)
-                    .then(response => dispatch({ type: actionNames.FINISHED, response: response }))
-                    .then(() => callback && callback())
+                post(getPostUri(getState(), request), request)
+                    .then(response => {
+                        dispatch({ type: actionNames.FINISHED, response: response });
+                        callback && callback((response as unknown) as Response);
+                    })
                     .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }

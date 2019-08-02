@@ -1,17 +1,16 @@
-import { createActionsAndReducerDeprecated } from './deprecatedRestResource';
-import { getFeatureToggle } from '../../api/featuretoggle-api';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { FeatureToggleResponse } from '../../models/featureToggle';
+import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
+import { apiBaseUri } from '../../api/config';
+import { loggError } from '../../utils/frontendLogger';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('featureToggles');
+export default createRestResourceReducerAndActions<{ [name: string]: boolean }>('featureToggles', () => '');
 
-export const hentFeatureToggles = action(getAllFeatureToggles);
-
-async function getAllFeatureToggles() {
+export async function fetchAllFeatureToggles() {
     const featureToggleKeys = Object.keys(FeatureToggles);
 
     const featureTogglePromises: Promise<FeatureToggleResponse>[] = featureToggleKeys.map(key => {
-        return getFeatureToggle(FeatureToggles[key]);
+        return fetchFeatureToggle(FeatureToggles[key]);
     });
 
     const toggleStates = await Promise.all(featureTogglePromises);
@@ -28,10 +27,14 @@ async function getAllFeatureToggles() {
     return keysAndStatus;
 }
 
-export function resetFeatureToggles() {
-    return tilbakestill;
+function fetchFeatureToggle(toggleId: string): Promise<FeatureToggleResponse> {
+    const uri = `${apiBaseUri}/featuretoggle/${toggleId}`;
+    return fetch(uri, { credentials: 'include' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            loggError(new Error(response.statusText + ' Kunne ikke hente featuretoggle med ID: ' + toggleId));
+            return false; // feature toggles default false
+        }
+    });
 }
-
-export const featureToggleActionNames = actionNames;
-
-export default reducer;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SakstemaListeElement from './SakstemaListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
 import {

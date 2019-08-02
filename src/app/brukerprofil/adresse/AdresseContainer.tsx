@@ -10,19 +10,18 @@ import {
     endreNorskGateadresse,
     endrePostboksadrese,
     endreUtlandsadresse,
-    reset,
     slettMidlertidigeAdresser
 } from '../../../redux/restReducers/brukerprofil/endreAdresseReducer';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
 import { VeilederRoller } from '../../../models/veilederRoller';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
-import { DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { Undertittel } from 'nav-frontend-typografi';
+import { PostResource } from '../../../rest/utils/postResource';
+import { EndreAdresseRequest } from '../../../redux/restReducers/brukerprofil/adresse-api';
 
 interface StateProps {
-    endreAdresseResource: DeprecatedRestResource<{}>;
+    endreAdresseResource: PostResource<EndreAdresseRequest>;
 }
 
 interface DispatchProps {
@@ -79,16 +78,17 @@ const mapStateToProps = (state: AppState): StateProps => {
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
         endreNorskGateadresse: (fødselsnummer: string, gateadresse: Gateadresse) =>
-            dispatch(endreNorskGateadresse(fødselsnummer, gateadresse)),
+            dispatch(endreNorskGateadresse(gateadresse)),
         endreMatrikkeladresse: (fødselsnummer: string, matrikkeladresse: Matrikkeladresse) =>
-            dispatch(endreMatrikkeladresse(fødselsnummer, matrikkeladresse)),
+            dispatch(endreMatrikkeladresse(matrikkeladresse)),
         endrePostboksadresse: (fødselsnummer: string, postboksadresse: Postboksadresse) =>
-            dispatch(endrePostboksadrese(fødselsnummer, postboksadresse)),
+            dispatch(endrePostboksadrese(postboksadresse)),
         endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) =>
-            dispatch(endreUtlandsadresse(fødselsnummer, utlandsadresse)),
-        slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser(fødselsnummer)),
-        resetEndreAdresseResource: () => dispatch(reset()),
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer))
+            dispatch(endreUtlandsadresse(utlandsadresse)),
+        slettMidlertidigeAdresser: fødselsnummer => dispatch(slettMidlertidigeAdresser()),
+        resetEndreAdresseResource: () =>
+            dispatch((d, getState) => d(getState().restResources.endreAdresse.actions.reset)),
+        reloadPerson: () => dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload))
     };
 }
 

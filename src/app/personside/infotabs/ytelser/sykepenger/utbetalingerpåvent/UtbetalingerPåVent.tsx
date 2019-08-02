@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';

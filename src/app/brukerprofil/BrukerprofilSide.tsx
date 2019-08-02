@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { paths } from '../routes/routing';
-import { erDød, Person } from '../../models/person/person';
+import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { theme } from '../../styles/personOversiktTheme';
 import BrukerprofilForm from './BrukerprofilForm';
-import { AppState } from '../../redux/reducers';
-import { useSelector } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
@@ -18,8 +15,6 @@ import { TilbakePil } from '../../components/common-styled-components';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../utils/customHooks';
-import { isLoadedPerson } from '../../redux/restReducers/personinformasjon';
-import Innholdslaster from '../../components/Innholdslaster';
 
 const BrukerprofilWrapper = styled.article`
     flex-grow: 1;
@@ -133,28 +128,29 @@ class Header extends React.PureComponent<{ person: Person }> {
 }
 
 function BrukerprofilSide() {
-    const personResource = useSelector((state: AppState) => state.restResources.personinformasjon);
-
     useOnMount(() => loggEvent('Sidevisning', 'Brukerprofil'));
-
-    if (!isLoadedPerson(personResource)) {
-        return <Innholdslaster avhengigheter={[personResource]} returnOnPending={BigCenteredLazySpinner} />;
-    }
 
     return (
         <BrukerprofilWrapper>
             {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
-            <RestResourceConsumer<VeilederRoller>
-                getResource={restResources => restResources.veilederRoller}
+            <RestResourceConsumer<PersonRespons>
+                getResource={restResources => restResources.personinformasjon}
                 returnOnPending={BigCenteredLazySpinner}
             >
-                {veilederRoller => (
-                    <>
-                        {erNyePersonoversikten() && <Header person={personResource.data} />}
-                        <ContentWrapper>
-                            <BrukerprofilForm person={personResource.data} veilderRoller={veilederRoller} />
-                        </ContentWrapper>
-                    </>
+                {person => (
+                    <RestResourceConsumer<VeilederRoller>
+                        getResource={restResources => restResources.veilederRoller}
+                        returnOnPending={BigCenteredLazySpinner}
+                    >
+                        {veilederRoller => (
+                            <>
+                                {erNyePersonoversikten() && <Header person={person as Person} />}
+                                <ContentWrapper>
+                                    <BrukerprofilForm person={person as Person} veilderRoller={veilederRoller} />
+                                </ContentWrapper>
+                            </>
+                        )}
+                    </RestResourceConsumer>
                 )}
             </RestResourceConsumer>
         </BrukerprofilWrapper>

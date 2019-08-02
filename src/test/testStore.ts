@@ -2,7 +2,6 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import reducers, { AppState } from '../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
 import { aremark } from '../mock/person/aremark';
-import { personinformasjonActionNames } from '../redux/restReducers/personinformasjon';
 import { getPerson } from '../mock/person/personMock';
 import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
@@ -22,14 +21,14 @@ import setNyGjeldendeBruker from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
-import { featureToggleActionNames } from '../redux/restReducers/featureToggles';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
     const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.fødselsnummer;
 
-    testStore.dispatch({ type: personinformasjonActionNames.FINISHED, data: getPerson(aremarkFnr) });
+    testStore.dispatch(restResources.personinformasjon.actions.setData(getPerson(aremarkFnr)));
     testStore.dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     testStore.dispatch(restResources.brukersNavKontor.actions.setData(getMockNavKontor('0118', undefined)));
     testStore.dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
@@ -55,7 +54,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
-    testStore.dispatch({ type: featureToggleActionNames.FINISHED, data: { 'saksoversikt-nytt-vindu': true } });
+    testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));
 
     return testStore;
 }

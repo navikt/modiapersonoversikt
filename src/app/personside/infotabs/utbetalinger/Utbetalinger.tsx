@@ -13,7 +13,7 @@ import {
     utbetalingDatoComparator,
     utbetaltTilBruker
 } from './utils/utbetalingerUtils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 import AriaNotification from '../../../../components/AriaNotification';

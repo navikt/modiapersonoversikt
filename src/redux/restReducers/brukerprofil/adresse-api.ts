@@ -1,7 +1,5 @@
-import { apiBaseUri } from '../config';
-import { post } from '../api';
-import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../models/personadresse';
-import { Periode } from '../../models/periode';
+import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
+import { Periode } from '../../../models/periode';
 
 export interface EndreAdresseRequest {
     norskAdresse: {
@@ -46,11 +44,6 @@ interface EndreUtlandsadresseRequest {
     gyldigTil: string;
 }
 
-function postEndreAdresse(fødselsnummer: string, request: EndreAdresseRequest): Promise<{}> {
-    console.log(request);
-    return post(`${apiBaseUri}/brukerprofil/${fødselsnummer}/adresse/`, request);
-}
-
 function getGyldigTil(periode?: Periode) {
     if (!periode) {
         // eslint-disable-next-line no-throw-literal
@@ -59,9 +52,9 @@ function getGyldigTil(periode?: Periode) {
     return periode.til;
 }
 
-export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
+export function getEndreNorskGateadresseRequest(gateadresse: Gateadresse): EndreAdresseRequest {
     const { poststed, periode, ...mappedGateadresse } = gateadresse;
-    const request: EndreAdresseRequest = {
+    return {
         norskAdresse: {
             gateadresse: {
                 ...mappedGateadresse,
@@ -73,12 +66,11 @@ export function postEndreNorskGateadresse(fødselsnummer: string, gateadresse: G
         utenlandskAdresse: null,
         folkeregistrertAdresse: false
     };
-    return postEndreAdresse(fødselsnummer, request);
 }
 
-export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladresse: Matrikkeladresse) {
+export function getEndreMatrikkeladresseRequest(matrikkeladresse: Matrikkeladresse): EndreAdresseRequest {
     const { poststed, periode, ...mappedMatrikkeladresse } = matrikkeladresse;
-    const request: EndreAdresseRequest = {
+    return {
         norskAdresse: {
             gateadresse: null,
             postboksadresse: null,
@@ -90,12 +82,11 @@ export function postEndreMatrikkeladresse(fødselsnummer: string, matrikkeladres
         utenlandskAdresse: null,
         folkeregistrertAdresse: false
     };
-    return postEndreAdresse(fødselsnummer, request);
 }
 
-export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse: Postboksadresse) {
+export function getEndrePostboksadresseRequest(postboksadresse: Postboksadresse): EndreAdresseRequest {
     const { poststed, periode, ...mappedPostboksadresse } = postboksadresse;
-    const request: EndreAdresseRequest = {
+    return {
         norskAdresse: {
             gateadresse: null,
             matrikkeladresse: null,
@@ -107,20 +98,18 @@ export function postEndrePostboksadresse(fødselsnummer: string, postboksadresse
         utenlandskAdresse: null,
         folkeregistrertAdresse: false
     };
-    return postEndreAdresse(fødselsnummer, request);
 }
 
-export function postSlettMidlertidigeAdresser(fødselsnummer: string) {
-    const request: EndreAdresseRequest = {
+export function getSlettMidlertidigeAdresserRequest(): EndreAdresseRequest {
+    return {
         norskAdresse: null,
         utenlandskAdresse: null,
         folkeregistrertAdresse: true
     };
-    return postEndreAdresse(fødselsnummer, request);
 }
 
-export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlandsadresse) {
-    const request: EndreAdresseRequest = {
+export function getEndreUtenlandsadresseRequest(adresse: Utlandsadresse): EndreAdresseRequest {
+    return {
         norskAdresse: null,
         utenlandskAdresse: {
             landkode: adresse.landkode ? adresse.landkode.kodeRef : '',
@@ -131,6 +120,4 @@ export function postEndreUtenlandsadresse(fødselsnummer: string, adresse: Utlan
         },
         folkeregistrertAdresse: false
     };
-
-    return postEndreAdresse(fødselsnummer, request);
 }

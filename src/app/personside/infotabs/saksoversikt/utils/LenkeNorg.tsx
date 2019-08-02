@@ -9,7 +9,6 @@ import { PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 function lenkeNorg2Frontend(props: StateProps): string {
@@ -36,7 +35,7 @@ function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
     return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 }
 
-function hentGeografiskTilknytning(personResource: DeprecatedRestResource<PersonRespons>) {
+function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
     return isLoadedPerson(personResource) ? personResource.data.geografiskTilknytning : '';
 }
 

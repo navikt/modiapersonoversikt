@@ -3,8 +3,6 @@ import { ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 
 import { Input } from 'nav-frontend-skjema';
-
-import { STATUS } from '../../../redux/restReducers/utils';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
 import { VeilederRoller } from '../../../models/veilederRoller';
@@ -22,7 +20,6 @@ import {
 } from './kontonummerUtils';
 import UtenlandskKontonrInputs from './UtenlandskKontonummerInputs';
 import RequestTilbakemelding from '../RequestTilbakemelding';
-import { endreKontonummer, reset } from '../../../redux/restReducers/brukerprofil/endreKontonummer';
 import { EndreKontonummerRequest } from '../../../redux/restReducers/brukerprofil/endreKontonummerRequest';
 import { ignoreEnter } from '../utils/formUtils';
 import { getValidNorskBankKontoForm, validerNorskBankKonto } from './norskKontoValidator';
@@ -32,12 +29,12 @@ import EtikettGrå from '../../../components/EtikettGrå';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
-import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { FormatertKontonummer } from '../../../utils/FormatertKontonummer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';
+import { PostStatus } from '../../../rest/utils/postResource';
 
 enum bankEnum {
     erNorsk = 'Kontonummer i Norge',
@@ -57,7 +54,7 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    resourceStatus: STATUS;
+    resourceStatus: PostStatus;
 }
 
 interface OwnProps {
@@ -94,7 +91,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     kontonummerBleEndret(prevProps: Props) {
-        return prevProps.resourceStatus !== STATUS.SUCCESS && this.props.resourceStatus === STATUS.SUCCESS;
+        return prevProps.resourceStatus !== PostStatus.SUCCESS && this.props.resourceStatus === PostStatus.SUCCESS;
     }
 
     getInitialState(): State {
@@ -216,17 +213,17 @@ class EndreKontonummerForm extends React.Component<Props, State> {
     }
 
     resetResource() {
-        if (this.props.resourceStatus !== STATUS.NOT_STARTED) {
+        if (this.props.resourceStatus !== PostStatus.NOT_STARTED) {
             this.props.resetEndreKontonummerResource();
         }
     }
 
     kontonummerBleLagret() {
-        return this.props.resourceStatus === STATUS.SUCCESS;
+        return this.props.resourceStatus === PostStatus.SUCCESS;
     }
 
     requestIsPending() {
-        return this.props.resourceStatus === STATUS.LOADING;
+        return this.props.resourceStatus === PostStatus.POSTING;
     }
 
     render() {
@@ -271,7 +268,7 @@ class EndreKontonummerForm extends React.Component<Props, State> {
                 </KnappBase>
                 <KnappBase
                     type="hoved"
-                    spinner={this.props.resourceStatus === STATUS.LOADING}
+                    spinner={this.props.resourceStatus === PostStatus.POSTING}
                     autoDisableVedSpinner={true}
                     disabled={
                         !this.formErEndret() ||
@@ -326,10 +323,11 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        reloadPerson: (fødselsnummer: string) => dispatch(reloadPerson(fødselsnummer)),
+        reloadPerson: () => dispatch((d, getState) => d(getState().restResources.personinformasjon.actions.reload)),
         endreKontonummer: (fødselsnummer: string, request: EndreKontonummerRequest) =>
-            dispatch(endreKontonummer(fødselsnummer, request)),
-        resetEndreKontonummerResource: () => dispatch(reset())
+            dispatch((d, getState) => d(getState().restResources.endreKontonummer.actions.post(request))),
+        resetEndreKontonummerResource: () =>
+            dispatch((d, getState) => d(getState().restResources.endreKontonummer.actions.reset))
     };
 }
 
