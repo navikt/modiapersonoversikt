@@ -5,9 +5,6 @@ import { HøyreKolonne as HøyreKolonneBase, VenstreKolonne as VenstreKolonneBas
 import { Undertittel } from 'nav-frontend-typografi';
 import theme from '../../styles/personOversiktTheme';
 import { UIState } from '../../redux/uiReducers/UIReducer';
-// const Typo = require('nav-frontend-typografi');
-//
-// console.log('Undertittel IMPOT', Typo);
 
 export const VenstreKolonne = styled(VenstreKolonneBase)`
     @media (${theme.media.smallScreen}) {
@@ -55,7 +52,6 @@ const Tittel = styled.div`
 `;
 
 export function SmallScreenToggleButton(props: { UI: UIState; toggleDialogpanel: Function }) {
-    console.log('Test', Undertittel);
     return (
         <SideKnappContainer onClick={() => props.toggleDialogpanel()} stickToRight={!props.UI.dialogPanel.ekspandert}>
             <KnappWrapper>
