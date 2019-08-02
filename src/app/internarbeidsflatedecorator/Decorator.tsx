@@ -52,7 +52,6 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
 function Decorator({ fnr, enhet, history }: StateProps) {
     const config = useCallback(lagConfig, [fnr, enhet, history])(fnr, enhet, history);
 
-    console.log('config', config);
     return (
         <nav id="header">
             <InternflateDecorator {...config} />
