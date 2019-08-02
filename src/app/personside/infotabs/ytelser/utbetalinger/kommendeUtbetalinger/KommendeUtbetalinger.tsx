@@ -1,6 +1,6 @@
 import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import {
@@ -11,7 +11,6 @@ import {
 } from '../../../../../../utils/stringFormatting';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -57,7 +56,7 @@ function KommendeUtbetalinger(props: Props) {
         <KommendeUtbetalingerStyle>
             <Undertittel tag="h4">Utbetalinger</Undertittel>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
-            <AlertStripe type={'info'}>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripe>
+            <AlertStripeInfo>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripeInfo>
         </KommendeUtbetalingerStyle>
     );
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import styled from 'styled-components';

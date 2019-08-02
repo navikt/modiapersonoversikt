@@ -14,7 +14,7 @@ import HentOppgaveKnappStandalone from './HentOppgaveKnapp';
 import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import reducers from '../../redux/reducers';

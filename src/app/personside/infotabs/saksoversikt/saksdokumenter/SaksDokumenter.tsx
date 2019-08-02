@@ -16,7 +16,7 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     valgtSakstema?: Sakstema;
