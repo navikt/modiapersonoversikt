@@ -2,16 +2,16 @@ import * as React from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 
-import Input from 'nav-frontend-skjema/lib/input';
+import { Input } from 'nav-frontend-skjema';
 
 import { STATUS } from '../../../redux/restReducers/utils';
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';
 import { VeilederRoller } from '../../../models/veilederRoller';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel, Undertekst } from 'nav-frontend-typografi';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
 import KnappBase from 'nav-frontend-knapper';
-import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import {
     EndreBankkontoState,
     erBrukersKontonummerUtenlandsk,
@@ -35,7 +35,6 @@ import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { Undertekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../utils/FormatertKontonummer';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';

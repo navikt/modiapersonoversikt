@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 
-import Input from 'nav-frontend-skjema/lib/input';
+import { Input } from 'nav-frontend-skjema';
 
 import { Matrikkeladresse } from '../../../../../models/personadresse';
 import PoststedVelger, { PoststedInformasjon } from '../../common/PoststedVelger';

@@ -12,7 +12,7 @@ import {
     reset
 } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjon';
 import { Person } from '../../../models/person/person';
-import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
+import { CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';

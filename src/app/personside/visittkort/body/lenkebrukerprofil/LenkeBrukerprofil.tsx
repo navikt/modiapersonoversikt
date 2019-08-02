@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Person } from '../../../../../models/person/person';
 import { paths } from '../../../../routes/routing';
 import { Link } from 'react-router-dom';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; person: Person }) {
     if (props.nyModiaPersonoversikt) {

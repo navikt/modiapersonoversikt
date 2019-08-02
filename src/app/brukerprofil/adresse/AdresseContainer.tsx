@@ -19,7 +19,7 @@ import { reloadPerson } from '../../../redux/restReducers/personinformasjon';
 import { DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface StateProps {
     endreAdresseResource: DeprecatedRestResource<{}>;

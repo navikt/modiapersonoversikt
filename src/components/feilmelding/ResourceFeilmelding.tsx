@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+// import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { isFailed, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 
 const MarginWrapper = styled.div`
@@ -15,7 +15,7 @@ function ReducerFeilmelding({ resource }: FeilmeldingProps) {
     if (isFailed(resource)) {
         return (
             <MarginWrapper>
-                <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>
+                <p>Det skjedde en teknisk feil</p>
             </MarginWrapper>
         );
     } else {

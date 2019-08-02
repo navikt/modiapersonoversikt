@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 

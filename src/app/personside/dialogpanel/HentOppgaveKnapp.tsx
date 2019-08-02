@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
-import Select from 'nav-frontend-skjema/lib/select';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { Select } from 'nav-frontend-skjema';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 import { Oppgave } from '../../../models/oppgave';
 import { setNyBrukerIPath } from '../../routes/routing';
