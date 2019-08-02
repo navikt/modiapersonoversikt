@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import TilrettelagtKommunikasjonsForm from './TilrettelagtKommunikasjonForm';

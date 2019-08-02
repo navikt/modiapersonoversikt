@@ -6,8 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import VisPeriode from '../../components/person/VisPeriode';
 import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 
 interface BegrensetTilgangProps {
     person: BegrensetTilgang;

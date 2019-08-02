@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { erDød, erMann, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';

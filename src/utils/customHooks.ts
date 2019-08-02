@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {EffectCallback, RefObject, useCallback, useEffect, useRef} from 'react';
-import {EventListener, runIfEventIsNotInsideRef} from './reactRefUtils';
+import { EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
+import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useEffect(() => {

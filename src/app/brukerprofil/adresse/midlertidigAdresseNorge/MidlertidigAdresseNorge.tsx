@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 
-import Select from 'nav-frontend-skjema/lib/select';
+import { Select } from 'nav-frontend-skjema';
 
 import { Endringsinfo, Gateadresse, Matrikkeladresse, Postboksadresse } from '../../../../models/personadresse';
 import GateadresseForm from './gateadresse/GateadresseForm';

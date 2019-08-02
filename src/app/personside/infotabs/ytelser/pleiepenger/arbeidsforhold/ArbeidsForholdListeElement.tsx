@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { datoEllerNull, NOKellerNull } from '../../../../../../utils/stringFormatting';
 import DescriptionList from '../../../../../../components/DescriptionList';

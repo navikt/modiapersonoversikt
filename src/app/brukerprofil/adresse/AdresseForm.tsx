@@ -38,7 +38,7 @@ import {
     validerUtenlandsAdresse
 } from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 import { EndreAdresseInfomelding } from '../Infomelding';
-import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { LestStatus, Melding, Saksbehandler } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import Element from 'nav-frontend-typografi/lib/element';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import styled from 'styled-components';
 
 interface Props {

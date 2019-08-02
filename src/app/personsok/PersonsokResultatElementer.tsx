@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Brukerinfo, NorskIdent, StrukturertAdresse, UstrukturertAdresse } from '../../models/person/personsok';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Navn } from '../../models/person/person';
 
 export function IdentCelle(props: { ident: NorskIdent }) {

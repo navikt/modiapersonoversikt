@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import KnappBase from 'nav-frontend-knapper';
-import UndertekstBold from 'nav-frontend-typografi/lib/undertekst-bold';
+import { UndertekstBold } from 'nav-frontend-typografi';
 
 import { Person } from '../../../models/person/person';
 import { AppState } from '../../../redux/reducers';

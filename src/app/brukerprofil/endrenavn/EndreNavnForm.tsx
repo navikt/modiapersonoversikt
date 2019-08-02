@@ -2,8 +2,8 @@ import * as React from 'react';
 import { FormEvent } from 'react';
 import { connect } from 'react-redux';
 
-import Input from 'nav-frontend-skjema/lib/input';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Input } from 'nav-frontend-skjema';
+import { Undertittel } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
 import { EndreNavnRequest } from '../../../redux/restReducers/brukerprofil/endreNavnRequest';
 import { Person } from '../../../models/person/person';

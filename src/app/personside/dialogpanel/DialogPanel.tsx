@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import { theme } from '../../../styles/personOversiktTheme';
 import HurtigReferatContainer from './Hurtigreferat/HurtigreferatContainer';
 import { isFailedPosting, isFinishedPosting, PostResource } from '../../../rest/utils/postResource';

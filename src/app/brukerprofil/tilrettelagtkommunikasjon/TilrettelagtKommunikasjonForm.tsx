@@ -6,7 +6,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { EndreTilrettelagtKommunikasjonrequest } from '../../../redux/restReducers/brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { Person } from '../../../models/person/person';
-import CheckboksPanelGruppe from 'nav-frontend-skjema/lib/checkboks-panel-gruppe';
+import { CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';

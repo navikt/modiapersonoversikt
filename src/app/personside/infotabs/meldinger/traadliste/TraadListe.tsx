@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
