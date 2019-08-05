@@ -1,18 +1,13 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import { EndreTilrettelagtKommunikasjonrequest } from './endreTilrettelagtKommunikasjonrequest';
-import { postEndreTilrettelagtKommunikasjon } from '../../../api/brukerprofil/endretilrettelagtkommunikasjon-api';
+import createPostResourceReducerAndActions from '../../../rest/utils/postResource';
+import { AppState } from '../../reducers';
+import { apiBaseUri } from '../../../api/config';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated(
-    'endretilrettelagtkommunikasjon'
+function getEndreTilrettelagtKommunikasjonPostUri(state: AppState, request: EndreTilrettelagtKommunikasjonrequest) {
+    return `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/tilrettelagtkommunikasjon/`;
+}
+
+export default createPostResourceReducerAndActions<EndreTilrettelagtKommunikasjonrequest>(
+    'endretilrettelagtkommunikasjon',
+    getEndreTilrettelagtKommunikasjonPostUri
 );
-
-export function endreTilrettelagtKommunikasjon(request: EndreTilrettelagtKommunikasjonrequest) {
-    return action(() => postEndreTilrettelagtKommunikasjon(request));
-}
-
-export function reset() {
-    return tilbakestill;
-}
-
-export { actionNames };
-export default reducer;

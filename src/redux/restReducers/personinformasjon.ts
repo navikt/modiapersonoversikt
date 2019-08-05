@@ -1,25 +1,20 @@
-import { getPerson } from '../../api/person-api';
-import { createActionsAndReducerDeprecated, isLoaded, Loaded, DeprecatedRestResource } from './deprecatedRestResource';
 import { Person, PersonRespons } from '../../models/person/person';
+import { createRestResourceReducerAndActions, hasData, HasData, RestResource } from '../../rest/utils/restResource';
+import { AppState } from '../reducers';
+import { apiBaseUri } from '../../api/config';
 
-const { reducer, action, actionNames, reload } = createActionsAndReducerDeprecated('personinformasjon');
-
-export function hentPerson(fødselsnummer: string) {
-    return action(() => getPerson(fødselsnummer));
+function getPersondataFetchUri(state: AppState) {
+    const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/person/${fodselsnummer}`;
 }
 
-export function reloadPerson(fødselsnummer: string) {
-    return reload(() => getPerson(fødselsnummer));
+export default createRestResourceReducerAndActions<PersonRespons>('personinformasjon', getPersondataFetchUri);
+
+// @ts-ignore
+export function isLoadedPerson(person: RestResource<PersonRespons>): person is HasData<Person> {
+    return hasData(person) && person.data.hasOwnProperty('fødselsnummer');
 }
 
-export function isLoadedPerson(person: DeprecatedRestResource<PersonRespons>): person is Loaded<Person> {
-    return isLoaded(person) && person.data.hasOwnProperty('fødselsnummer');
-}
-
-export function getFnrFromPerson(person: DeprecatedRestResource<PersonRespons>): string | undefined {
+export function getFnrFromPerson(person: RestResource<PersonRespons>): string | undefined {
     return isLoadedPerson(person) ? person.data.fødselsnummer : undefined;
 }
-
-export const personinformasjonActionNames = actionNames;
-
-export default reducer;

@@ -8,11 +8,11 @@ import {
     KontaktpersonUtenId,
     OrganisasjonSomAdressat
 } from '../../../../../../models/person/doedsbo';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { formaterDato } from '../../../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import VisittkortElement from '../../VisittkortElement';
-import AlertStripeFeil from 'nav-frontend-alertstriper/lib/feil-alertstripe';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocationPin from '../../../../../../svg/LocationPin';
 import styled from 'styled-components';
 import { hentNavn } from '../../../utils';

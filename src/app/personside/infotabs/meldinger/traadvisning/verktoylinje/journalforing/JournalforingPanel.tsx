@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 function JournalforingPanel() {
     return <Normaltekst>Journalføringspanel</Normaltekst>;

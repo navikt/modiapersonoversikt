@@ -2,8 +2,8 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-import Ingress from 'nav-frontend-typografi/lib/ingress';
-import Input from 'nav-frontend-skjema/lib/input';
+import { Ingress } from 'nav-frontend-typografi';
+import { Input } from 'nav-frontend-skjema';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { TelefonInput as TelefonInputState } from './KontaktinformasjonForm';

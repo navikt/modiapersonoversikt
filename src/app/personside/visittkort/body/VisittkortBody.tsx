@@ -16,10 +16,10 @@ interface VisittkortBodyProps {
     person: Person;
 }
 
-function NavKontorSeksjon({ person }: { person: Person }) {
+function NavKontorSeksjon() {
     return (
         <VisittkortGruppe tittel={'NAV-kontor'}>
-            <NavKontorContainer person={person} />
+            <NavKontorContainer />
         </VisittkortGruppe>
     );
 }
@@ -29,7 +29,7 @@ function OneColumnLayout(person: Person) {
         <Kolonne>
             <Kontaktinformasjon person={person} />
             <Familie person={person} />
-            <NavKontorSeksjon person={person} />
+            <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
             <VergemalContainer />
             <Sikkerhetstiltak person={person} />
@@ -46,7 +46,7 @@ function TwoColumnLayout(person: Person) {
                 <Familie person={person} />
             </Kolonne>
             <Kolonne>
-                <NavKontorSeksjon person={person} />
+                <NavKontorSeksjon />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <VergemalContainer />
                 <Sikkerhetstiltak person={person} />
@@ -68,7 +68,7 @@ function ThreeColumnLayout(person: Person) {
                 <VergemalContainer />
             </Kolonne>
             <Kolonne>
-                <NavKontorSeksjon person={person} />
+                <NavKontorSeksjon />
                 <Sikkerhetstiltak person={person} />
                 <LenkeBrukerprofilContainer person={person} />
             </Kolonne>

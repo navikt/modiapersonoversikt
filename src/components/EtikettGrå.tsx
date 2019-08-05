@@ -1,5 +1,5 @@
 import * as React from 'react';
-import EtikettLiten from 'nav-frontend-typografi/lib/etikett-liten';
+import { EtikettLiten } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { TypografiProps } from 'nav-frontend-typografi';
