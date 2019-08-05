@@ -1,13 +1,12 @@
 import React, { ChangeEvent } from 'react';
-import Select from 'nav-frontend-skjema/lib/select';
-import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { Select } from 'nav-frontend-skjema';
+import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
 import {
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
     OppgavePrioritet
 } from '../../../../../../../models/meldinger/oppgave';
-import Textarea from 'nav-frontend-skjema/lib/textarea';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';

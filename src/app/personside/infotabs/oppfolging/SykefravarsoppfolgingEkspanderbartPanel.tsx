@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';

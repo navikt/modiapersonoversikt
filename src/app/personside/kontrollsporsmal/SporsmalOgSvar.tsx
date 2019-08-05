@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import * as React from 'react';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Bold } from '../../../components/common-styled-components';
 import { Spørsmål } from '../../../redux/kontrollSporsmal/types';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import UtropstegnPlain from '../../../svg/UtropstegnPlain';
-import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     spørsmål: Spørsmål;

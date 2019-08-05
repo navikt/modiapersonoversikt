@@ -1,36 +1,25 @@
 import * as React from 'react';
-import { isNotStarted, DeprecatedRestResource } from '../../../../redux/restReducers/deprecatedRestResource';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { hentSaksoversikt, reloadSaksoversikt } from '../../../../redux/restReducers/saksoversikt';
-import Innholdslaster from '../../../../components/Innholdslaster';
-import { BaseUrlsResponse } from '../../../../models/baseurls';
-import { hentBaseUrls } from '../../../../redux/restReducers/baseurls';
 import { AsyncDispatch } from '../../../../redux/ThunkTypes';
-import { PersonRespons } from '../../../../models/person/person';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
+import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 
 interface StateProps {
-    baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>;
-    saksoversiktResource: DeprecatedRestResource<SakstemaResponse>;
-    personResource: DeprecatedRestResource<PersonRespons>;
     visDokument: boolean;
     valgtSakstema?: Sakstema;
     fødselsnummer: string;
 }
 
 interface DispatchProps {
-    hentBaseUrls: () => void;
-    hentSaksoversikt: (fødselsnummer: string) => void;
-    reloadSaksoversikt: (fødselsnummer: string) => void;
     skjulDokumentOgVisSaksoversikt: () => void;
 }
 
@@ -57,12 +46,6 @@ const SaksoversiktArticle = styled.article`
 class SaksoversiktContainer extends React.PureComponent<Props> {
     componentDidMount() {
         this.props.skjulDokumentOgVisSaksoversikt();
-        if (isNotStarted(this.props.baseUrlResource)) {
-            this.props.hentBaseUrls();
-        }
-        if (isNotStarted(this.props.saksoversiktResource)) {
-            this.props.hentSaksoversikt(this.props.fødselsnummer);
-        }
     }
 
     render() {
@@ -72,13 +55,17 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
             return (
                 <SaksoversiktArticle aria-label="Brukerens saker">
                     <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
-                    <Innholdslaster
-                        avhengigheter={[this.props.saksoversiktResource, this.props.baseUrlResource]}
+                    <RestResourceConsumer<SakstemaResponse>
+                        getResource={restResources => restResources.sakstema}
                         returnOnPending={BigCenteredLazySpinner}
                     >
-                        <SakstemaListeContainer />
-                        <SaksDokumenterContainer />
-                    </Innholdslaster>
+                        {sakstema => (
+                            <>
+                                <SakstemaListeContainer />
+                                <SaksDokumenterContainer />
+                            </>
+                        )}
+                    </RestResourceConsumer>
                 </SaksoversiktArticle>
             );
         }
@@ -88,9 +75,6 @@ class SaksoversiktContainer extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        baseUrlResource: state.restResources.baseUrl,
-        saksoversiktResource: state.restResources.sakstema,
-        personResource: state.restResources.personinformasjon,
         visDokument: state.saksoversikt.visDokument,
         valgtSakstema: state.saksoversikt.valgtSakstema
     };
@@ -98,9 +82,6 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        hentBaseUrls: () => dispatch(hentBaseUrls()),
-        hentSaksoversikt: (fødselsnummer: string) => dispatch(hentSaksoversikt(fødselsnummer)),
-        reloadSaksoversikt: (fødselsnummer: string) => dispatch(reloadSaksoversikt(fødselsnummer)),
         skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
     };
 }

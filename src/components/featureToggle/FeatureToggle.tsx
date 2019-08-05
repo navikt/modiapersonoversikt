@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { AppState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';
-import { isLoaded } from '../../redux/restReducers/deprecatedRestResource';
-import { ReactNode } from 'react';
+import { hasData } from '../../rest/utils/restResource';
 
 export enum DisplayWhenToggleIs {
     ON,
@@ -44,7 +44,7 @@ function FeatureToggle(props: Props) {
 
 function featureIsOnSelector(state: AppState, toggleId: string): boolean | undefined {
     const toggleResource = state.restResources.featureToggles;
-    if (!isLoaded(toggleResource)) {
+    if (!hasData(toggleResource)) {
         return undefined;
     }
     return toggleResource.data[toggleId];

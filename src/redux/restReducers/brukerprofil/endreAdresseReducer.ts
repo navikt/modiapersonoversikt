@@ -1,38 +1,47 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
 import {
-    postEndreMatrikkeladresse,
-    postEndreNorskGateadresse,
-    postEndrePostboksadresse,
-    postEndreUtenlandsadresse,
-    postSlettMidlertidigeAdresser
-} from '../../../api/brukerprofil/adresse-api';
+    EndreAdresseRequest,
+    getEndreNorskGateadresseRequest,
+    getEndreMatrikkeladresseRequest,
+    getEndrePostboksadresseRequest,
+    getEndreUtenlandsadresseRequest,
+    getSlettMidlertidigeAdresserRequest
+} from './adresse-api';
 import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '../../../models/personadresse';
+import { AppState } from '../../reducers';
+import { apiBaseUri } from '../../../api/config';
+import { AsyncDispatch } from '../../ThunkTypes';
+import createPostResourceReducerAndActions from '../../../rest/utils/postResource';
 
-const { reducer, action, tilbakestill, actionNames } = createActionsAndReducerDeprecated('endreadresse');
-
-export function endreNorskGateadresse(fødselsnummer: string, gateadresse: Gateadresse) {
-    return action(() => postEndreNorskGateadresse(fødselsnummer, gateadresse));
+function getEndreAdressePostUri(state: AppState, request: EndreAdresseRequest) {
+    const fødselsnummer = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/brukerprofil/${fødselsnummer}/adresse/`;
 }
 
-export function endreMatrikkeladresse(fødselsnummer: string, matrikkeladresse: Matrikkeladresse) {
-    return action(() => postEndreMatrikkeladresse(fødselsnummer, matrikkeladresse));
+export default createPostResourceReducerAndActions<EndreAdresseRequest>('endreadresse', getEndreAdressePostUri);
+
+function createThunkPoster(request: EndreAdresseRequest) {
+    return (d: AsyncDispatch, getState: () => AppState) => {
+        const postEndreAdresse = getState().restResources.endreAdresse.actions.post;
+        d(postEndreAdresse(request));
+    };
 }
 
-export function endrePostboksadrese(fødselsnummer: string, postboksadresse: Postboksadresse) {
-    return action(() => postEndrePostboksadresse(fødselsnummer, postboksadresse));
+export function endreNorskGateadresse(gateadresse: Gateadresse) {
+    return createThunkPoster(getEndreNorskGateadresseRequest(gateadresse));
 }
 
-export function slettMidlertidigeAdresser(fødselsnummer: string) {
-    return action(() => postSlettMidlertidigeAdresser(fødselsnummer));
+export function endreMatrikkeladresse(matrikkeladresse: Matrikkeladresse) {
+    return createThunkPoster(getEndreMatrikkeladresseRequest(matrikkeladresse));
 }
 
-export function endreUtlandsadresse(fødselsnummer: string, utlandsadresse: Utlandsadresse) {
-    return action(() => postEndreUtenlandsadresse(fødselsnummer, utlandsadresse));
+export function endrePostboksadrese(postboksadresse: Postboksadresse) {
+    return createThunkPoster(getEndrePostboksadresseRequest(postboksadresse));
 }
 
-export function reset() {
-    return tilbakestill;
+export function slettMidlertidigeAdresser() {
+    return createThunkPoster(getSlettMidlertidigeAdresserRequest());
 }
 
-export { actionNames };
-export default reducer;
+export function endreUtlandsadresse(utlandsadresse: Utlandsadresse) {
+    return createThunkPoster(getEndreUtenlandsadresseRequest(utlandsadresse));
+}
