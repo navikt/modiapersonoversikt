@@ -3,17 +3,12 @@ import { useCallback } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { AppState } from '../../redux/reducers';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
-
-interface StateProps extends RouteComponentProps<{}> {
-    fnr: string | null;
-    enhet: string | undefined;
-}
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -49,7 +44,9 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
     };
 }
 
-function Decorator({ fnr, enhet, history }: StateProps) {
+function Decorator({ history }: RouteComponentProps<{}>) {
+    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const enhet = getSaksbehandlerEnhet();
     const config = useCallback(lagConfig, [fnr, enhet, history])(fnr, enhet, history);
 
     return (
@@ -58,12 +55,4 @@ function Decorator({ fnr, enhet, history }: StateProps) {
         </nav>
     );
 }
-
-function mapStateToProps(state: AppState) {
-    return {
-        fnr: state.gjeldendeBruker.fødselsnummer,
-        enhet: getSaksbehandlerEnhet()
-    };
-}
-
-export default withRouter(connect(mapStateToProps)(Decorator));
+export default withRouter(Decorator);
