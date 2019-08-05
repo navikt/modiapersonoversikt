@@ -9,7 +9,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyle = styled.ol`
     > * {
-        margin-top: 1px;
+        margin-top: ${theme.margin.px1};
     }
 `;
 
@@ -51,7 +51,7 @@ function VarselVisning(props: Props) {
 
     const sortertPåDato = props.varsler
         .sort(datoSynkende(varsel => varsel.mottattTidspunkt))
-        .slice(0, Math.max(2, props.varsler.length));
+        .slice(0, Math.min(2, props.varsler.length));
 
     return (
         <ListStyle>

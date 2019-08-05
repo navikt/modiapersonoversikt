@@ -6,6 +6,7 @@ import VarselOversikt from './VarselOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
 import { Normaltekst } from 'nav-frontend-typografi';
 import YtelserOversikt from './YtelserOversikt';
+import UtbetalingerOversikt from './UtbetalingerOversikt';
 
 const Style = styled.article`
     display: flex;
@@ -20,7 +21,7 @@ const Style = styled.article`
 function Oversikt() {
     return (
         <Style>
-            <Oversiktskomponent tittel={'Utbetalinger'} children={<Normaltekst>Utbelainger</Normaltekst>} />
+            <Oversiktskomponent tittel={'Utbetalinger'} children={<UtbetalingerOversikt />} />
             <Oversiktskomponent tittel={'Oppfølging'} children={<OppfolgingOversikt />} />
             <Oversiktskomponent tittel={'Varsler'} children={<VarselOversikt />} />
             <Oversiktskomponent tittel={'Meldinger'} children={<Normaltekst>Meldinger</Normaltekst>} />

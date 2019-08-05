@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { Bold } from '../../../../components/common-styled-components';
 
 const Style = styled.div`
-    margin-top: 1px;
+    margin-top: ${theme.margin.px1};
     background-color: white;
     padding: ${theme.margin.px10};
 `;
@@ -42,8 +43,14 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
 
     return (
         <>
-            <Normaltekst>Oppføgende enhet: {oppfolging.enhet.navn}</Normaltekst>
-            <Normaltekst>Veileder: {veilederNavn}</Normaltekst>
+            <Normaltekst>
+                <Bold>Oppfølgende enhet:</Bold>
+            </Normaltekst>
+            <Normaltekst>{oppfolging.enhet.navn}</Normaltekst>
+            <Normaltekst>
+                <Bold>Veileder:</Bold>
+            </Normaltekst>
+            <Normaltekst>{veilederNavn}</Normaltekst>
         </>
     );
 }
