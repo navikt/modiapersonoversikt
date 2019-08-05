@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { UtbetalingFilterState, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../api/utbetaling-api';
 import { Avgrensninger } from 'nav-datovelger';
 import moment from 'moment';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
+import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../redux/restReducers/utbetalinger';
 
 interface Props {
     filter: UtbetalingFilterState;

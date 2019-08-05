@@ -52,10 +52,13 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    loggErrorUtenSaksbehandlerIdent(error, message, { ...ekstraFelter, saksbehandler: getSaksbehandlerIdent() });
+}
+
+export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     const browser = detect();
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
-        saksbehandler: getSaksbehandlerIdent(),
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
@@ -65,7 +68,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         // @ts-ignore
         window['frontendlogger'].error(info);
     } else {
-        console.error(info);
+        console.error(error, info);
     }
 }
 

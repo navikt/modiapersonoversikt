@@ -4,11 +4,12 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import * as React from 'react';
-import { isLoaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
-import { Person, PersonRespons } from '../../../../../models/person/person';
+import { hasData, RestResource } from '../../../../../rest/utils/restResource';
+import { PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 function lenkeNorg2Frontend(props: StateProps): string {
     const temakodeTilNorgoppslag = props.valgtSakstema ? byggSøkestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
@@ -30,12 +31,12 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     return temaArray.join();
 }
 
-function hentNorg2Url(baseUrlResource: DeprecatedRestResource<BaseUrlsResponse>) {
-    return isLoaded(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
+function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
+    return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 }
 
-function hentGeografiskTilknytning(personResource: DeprecatedRestResource<PersonRespons>) {
-    return isLoaded(personResource) ? (personResource.data as Person).geografiskTilknytning : '';
+function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
+    return isLoadedPerson(personResource) ? personResource.data.geografiskTilknytning : '';
 }
 
 interface StateProps {

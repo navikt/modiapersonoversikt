@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 import TittelOgIkon from './IkonOgTittel';
 import { theme } from '../../../../styles/personOversiktTheme';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 
 export const VisittkortBodyWrapper = styled.section`
     ${theme.hvittPanel};

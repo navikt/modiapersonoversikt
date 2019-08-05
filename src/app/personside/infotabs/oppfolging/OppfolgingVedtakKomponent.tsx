@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { StyledTable } from '../../../../utils/table/StyledTable';

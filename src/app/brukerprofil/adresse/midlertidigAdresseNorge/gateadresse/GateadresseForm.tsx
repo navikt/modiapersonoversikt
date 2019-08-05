@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-import Input from 'nav-frontend-skjema/lib/input';
+import { Input } from 'nav-frontend-skjema';
 import { default as PoststedVelger, PoststedInformasjon } from '../../common/PoststedVelger';
 import { Gateadresse } from '../../../../../models/personadresse';
 import { AdresseFormInput } from '../MidlertidigAdresseNorge';

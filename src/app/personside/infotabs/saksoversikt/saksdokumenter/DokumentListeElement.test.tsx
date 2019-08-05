@@ -1,7 +1,6 @@
 import * as React from 'react';
 import DokumentListeElement from './DokumentListeElement';
 import TestProvider from '../../../../../test/Testprovider';
-import { saksoversiktActions } from '../../../../../redux/restReducers/saksoversikt';
 import { getStaticMockSaksoversikt } from '../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../test/testStore';
 import { SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
@@ -114,7 +113,9 @@ describe('DokumentListeElement', () => {
             ]
         };
         const testStore = getTestStore();
-        testStore.dispatch({ type: saksoversiktActions.FINISHED, data: staticMockSaksoversikt });
+        const dispatch = testStore.dispatch;
+        const state = testStore.getState();
+        dispatch(state.restResources.sakstema.actions.setData(staticMockSaksoversikt));
 
         const dokumentResultat: DokumentMetadata = {
             ...staticSaksoversikt.resultat[0].dokumentMetadata[0],

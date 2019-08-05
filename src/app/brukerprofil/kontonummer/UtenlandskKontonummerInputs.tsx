@@ -1,78 +1,29 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import { connect } from 'react-redux';
-
-import Input from 'nav-frontend-skjema/lib/input';
-import Select from 'nav-frontend-skjema/lib/select';
-import Innholdslaster from '../../../components/Innholdslaster';
-
+import { Input } from 'nav-frontend-skjema';
+import { Select } from 'nav-frontend-skjema';
 import { EndreBankkontoState } from './kontonummerUtils';
-import { hentValutaer } from '../../../redux/restReducers/kodeverk/valutaKodeverk';
-import { hentLandKodeverk } from '../../../redux/restReducers/kodeverk/landKodeverk';
-import { AppState } from '../../../redux/reducers';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';
 import { ignoreEnter } from '../utils/formUtils';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { alfabetiskKodeverkComparator } from '../../../utils/kodeverkUtils';
-import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
+import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 
-interface OwnProps {
+interface Props {
     bankkonto: EndreBankkontoState;
     bankkontoValidering: ValideringsResultat<EndreBankkontoState>;
     updateBankkontoInputsState: (property: Partial<EndreBankkontoState>) => void;
 }
 
-interface DispatchProps {
-    hentValutaKodeverk: () => void;
-    hentLandKodeverk: () => void;
-}
-
-interface StateProps {
-    valutaKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
-    landKodeverkResource: DeprecatedRestResource<KodeverkResponse>;
-}
-
-interface LoadedProps {
-    valutaKodeverkResource: Loaded<KodeverkResponse>;
-    landKodeverkResource: Loaded<KodeverkResponse>;
-}
-
-type Props = OwnProps & DispatchProps;
-
-class UtenlandskKontonrInputs extends React.Component<Props & StateProps> {
-    constructor(props: Props & StateProps) {
-        super(props);
-
-        if (isNotStarted(this.props.valutaKodeverkResource)) {
-            this.props.hentValutaKodeverk();
-        }
-
-        if (isNotStarted(this.props.landKodeverkResource)) {
-            this.props.hentLandKodeverk();
-        }
-    }
-
-    render() {
-        return (
-            <Innholdslaster avhengigheter={[this.props.valutaKodeverkResource, this.props.landKodeverkResource]}>
-                <Inputs
-                    {...this.props}
-                    valutaKodeverkResource={this.props.valutaKodeverkResource as Loaded<KodeverkResponse>}
-                    landKodeverkResource={this.props.landKodeverkResource as Loaded<KodeverkResponse>}
-                />
-            </Innholdslaster>
-        );
-    }
-}
-
-function Inputs(props: Props & LoadedProps) {
+function UtenlandskKontonrInputs(props: Props) {
     const bankkonto = props.bankkonto;
     const validering = props.bankkontoValidering.felter;
     return (
         <>
-            <VelgLand {...props} />
+            <RestResourceConsumer<KodeverkResponse> getResource={restResources => restResources.land}>
+                {land => <VelgLand {...props} land={land} />}
+            </RestResourceConsumer>
             <Input
                 label="Bankens navn"
                 value={bankkonto.banknavn || ''}
@@ -143,13 +94,15 @@ function Inputs(props: Props & LoadedProps) {
                 onChange={event => props.updateBankkontoInputsState({ bankkode: event.target.value })}
                 feil={validering.bankkode.skjemafeil}
             />
-            <VelgValuta {...props} />
+            <RestResourceConsumer<KodeverkResponse> getResource={restResources => restResources.valuta}>
+                {valutaer => <VelgValuta {...props} valutaer={valutaer} />}
+            </RestResourceConsumer>
         </>
     );
 }
 
-function VelgLand(props: Props & LoadedProps) {
-    const options = props.landKodeverkResource.data.kodeverk.sort(alfabetiskKodeverkComparator).map(landKodeverk => {
+function VelgLand(props: Props & { land: KodeverkResponse }) {
+    const options = props.land.kodeverk.sort(alfabetiskKodeverkComparator).map(landKodeverk => {
         return (
             <option key={landKodeverk.kodeRef} value={landKodeverk.kodeRef}>
                 {formaterStatsborgerskapMedRiktigCasing(landKodeverk.beskrivelse)} ({landKodeverk.kodeRef})
@@ -171,16 +124,14 @@ function VelgLand(props: Props & LoadedProps) {
     );
 }
 
-function VelgValuta(props: Props & LoadedProps) {
-    const options = props.valutaKodeverkResource.data.kodeverk
-        .sort(alfabetiskKodeverkComparator)
-        .map((valutakodeverk: Kodeverk) => {
-            return (
-                <option key={valutakodeverk.kodeRef} value={valutakodeverk.kodeRef}>
-                    {valutakodeverk.beskrivelse} ({valutakodeverk.kodeRef})
-                </option>
-            );
-        });
+function VelgValuta(props: Props & { valutaer: KodeverkResponse }) {
+    const options = props.valutaer.kodeverk.sort(alfabetiskKodeverkComparator).map((valutakodeverk: Kodeverk) => {
+        return (
+            <option key={valutakodeverk.kodeRef} value={valutakodeverk.kodeRef}>
+                {valutakodeverk.beskrivelse} ({valutakodeverk.kodeRef})
+            </option>
+        );
+    });
     return (
         <Select
             label="Velg valuta"
@@ -196,37 +147,21 @@ function VelgValuta(props: Props & LoadedProps) {
     );
 }
 
-function handleLandChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
-    const valgtKodeverk: Kodeverk = props.landKodeverkResource.data.kodeverk.find(
-        kodeverk => kodeverk.kodeRef === event.target.value
-    ) || { kodeRef: '', beskrivelse: '' };
+function handleLandChange(props: Props & { land: KodeverkResponse }, event: ChangeEvent<HTMLSelectElement>) {
+    const valgtKodeverk: Kodeverk = props.land.kodeverk.find(kodeverk => kodeverk.kodeRef === event.target.value) || {
+        kodeRef: '',
+        beskrivelse: ''
+    };
 
     props.updateBankkontoInputsState({ landkode: valgtKodeverk });
 }
 
-function handleValutaChange(props: Props & LoadedProps, event: ChangeEvent<HTMLSelectElement>) {
-    const valgtKodeverk: Kodeverk = props.valutaKodeverkResource.data.kodeverk.find(
+function handleValutaChange(props: Props & { valutaer: KodeverkResponse }, event: ChangeEvent<HTMLSelectElement>) {
+    const valgtKodeverk: Kodeverk = props.valutaer.kodeverk.find(
         kodeverk => kodeverk.kodeRef === event.target.value
     ) || { kodeRef: '', beskrivelse: '' };
 
     props.updateBankkontoInputsState({ valuta: valgtKodeverk });
 }
 
-const mapDispatchToProps = (dispatch: AsyncDispatch): DispatchProps => {
-    return {
-        hentValutaKodeverk: () => dispatch(hentValutaer()),
-        hentLandKodeverk: () => dispatch(hentLandKodeverk())
-    };
-};
-
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        valutaKodeverkResource: state.restResources.valuta,
-        landKodeverkResource: state.restResources.land
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UtenlandskKontonrInputs);
+export default UtenlandskKontonrInputs;

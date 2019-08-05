@@ -18,6 +18,8 @@ import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 import AriaNotification from '../../../../components/AriaNotification';
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../redux/reducers';
 
 const UtbetalingerArticle = styled.article`
     ${theme.hvittPanel};
@@ -70,10 +72,10 @@ function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: Utbeta
 
 interface UtbetalingerProps {
     utbetalingerData: UtbetalingerResponse;
-    filter: UtbetalingFilterState;
 }
 
-function Utbetalinger({ filter, ...props }: UtbetalingerProps) {
+function Utbetalinger(props: UtbetalingerProps) {
+    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (

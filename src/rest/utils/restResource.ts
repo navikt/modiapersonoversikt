@@ -8,6 +8,7 @@ export interface ActionTypes {
     STARTING: string;
     RELOADING: string;
     FINISHED: string;
+    NOTFOUND: string;
     FAILED: string;
     INITIALIZE: string;
 }
@@ -31,6 +32,10 @@ export interface Success<T> extends RestResource<T> {
     data: T;
 }
 
+export interface NotFound<T> extends RestResource<T> {
+    status: STATUS.NOT_FOUND;
+}
+
 export interface Reloading<T> extends RestResource<T> {
     status: STATUS.RELOADING;
     data: T;
@@ -49,18 +54,28 @@ export interface Failed<T> extends RestResource<T> {
     error: string;
 }
 
-export type Loaded<T> = Success<T> | Reloading<T>;
+export type HasData<T> = Success<T> | Reloading<T>;
+
+export type IsLoaded<T> = Success<T> | Reloading<T> | NotFound<T>;
 
 export function isSuccess<T>(restResource: RestResource<T>): restResource is Success<T> {
     return restResource.status === STATUS.SUCCESS;
 }
 
-export function isLoaded<T>(restResource: RestResource<T>): restResource is Loaded<T> {
-    return restResource.status === STATUS.SUCCESS || restResource.status === STATUS.RELOADING;
+export function hasData<T>(restResource: RestResource<T>): restResource is HasData<T> {
+    return isSuccess(restResource) || isReloading(restResource);
+}
+
+export function isLoaded<T>(restResource: RestResource<T>): restResource is IsLoaded<T> {
+    return isSuccess(restResource) || isReloading(restResource) || isNotFound(restResource);
 }
 
 export function isReloading<T>(restResource: RestResource<T>): restResource is Reloading<T> {
     return restResource.status === STATUS.RELOADING;
+}
+
+export function isNotFound<T>(restResource: RestResource<T>): restResource is NotFound<T> {
+    return restResource.status === STATUS.NOT_FOUND;
 }
 
 export function isNotStarted<T>(restResource: RestResource<T>): restResource is NotStarted<T> {
@@ -81,6 +96,7 @@ function getActionTypes(resourceNavn: string): ActionTypes {
         STARTING: navnUppercase + 'STARTING',
         RELOADING: navnUppercase + 'RELOADING',
         FINISHED: navnUppercase + 'FINISHED',
+        NOTFOUND: navnUppercase + 'NOT_FOUND',
         FAILED: navnUppercase + 'FAILED',
         INITIALIZE: navnUppercase + 'INITIALIZE'
     };
@@ -137,7 +153,12 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     ...state,
                     status: STATUS.SUCCESS,
                     data: (action as FetchSuccess<T>).data
-                } as Loaded<T>;
+                } as HasData<T>;
+            case actionNames.NOTFOUND:
+                return {
+                    ...state,
+                    status: STATUS.NOT_FOUND
+                };
             case actionNames.FAILED:
                 loggEvent('Fetch-Failed', resourceNavn);
                 return {

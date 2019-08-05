@@ -1,30 +1,9 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-
-import { BrukersNavKontorResponse } from '../../../../../models/navkontor';
-import { AppState } from '../../../../../redux/reducers';
-import Innholdslaster from '../../../../../components/Innholdslaster';
-import { Person } from '../../../../../models/person/person';
-import { hentNavKontor } from '../../../../../redux/restReducers/navkontor';
-import { isNotStarted, Loaded, DeprecatedRestResource } from '../../../../../redux/restReducers/deprecatedRestResource';
+import { NavKontorResponse } from '../../../../../models/navkontor';
 import { Bold } from '../../../../../components/common-styled-components';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-
-interface StateProps {
-    navKontorResource: DeprecatedRestResource<BrukersNavKontorResponse>;
-}
-
-interface DispatchProps {
-    hentNavKontor: (person: Person) => void;
-}
-
-interface OwnProps {
-    person: Person;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 
 const NavKontorSection = styled.section`
     margin: 0.5rem 0 0 0;
@@ -45,16 +24,14 @@ const NavKontorSection = styled.section`
 `;
 
 const onError = <em>Problemer med å hente nav-enhet</em>;
+const onNotFound = (
+    <Normaltekst>
+        {' '}
+        <Bold>Ingen enhet</Bold>{' '}
+    </Normaltekst>
+);
 
-function NavKontorVisning(props: BrukersNavKontorResponse) {
-    if (!props.navKontor) {
-        return (
-            <Normaltekst>
-                <Bold>Ingen enhet</Bold>
-            </Normaltekst>
-        );
-    }
-
+function NavKontorVisning(props: { navKontor: NavKontorResponse }) {
     return (
         <Normaltekst>
             <Bold>
@@ -64,50 +41,22 @@ function NavKontorVisning(props: BrukersNavKontorResponse) {
     );
 }
 
-class NavKontorContainer extends React.Component<Props> {
-    componentDidMount() {
-        if (isNotStarted(this.props.navKontorResource)) {
-            this.props.hentNavKontor(this.props.person);
-        }
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        if (this.props.person.fødselsnummer !== prevProps.person.fødselsnummer) {
-            this.props.hentNavKontor(this.props.person);
-        }
-    }
-
-    render() {
-        return (
-            <NavKontorSection aria-label="Nav kontor">
-                <Normaltekst tag="h2">
-                    <Bold>NAV-kontor</Bold>
-                </Normaltekst>
-                <Innholdslaster
-                    avhengigheter={[this.props.navKontorResource]}
-                    spinnerSize={'S'}
-                    returnOnError={onError}
-                >
-                    <NavKontorVisning {...(this.props.navKontorResource as Loaded<BrukersNavKontorResponse>).data} />
-                </Innholdslaster>
-            </NavKontorSection>
-        );
-    }
+function NavKontorContainer() {
+    return (
+        <NavKontorSection aria-label="Nav kontor">
+            <Normaltekst tag="h2">
+                <Bold>NAV-kontor</Bold>
+            </Normaltekst>
+            <RestResourceConsumer<NavKontorResponse>
+                getResource={restResources => restResources.brukersNavKontor}
+                spinnerSize={'S'}
+                returnOnError={onError}
+                returnOnNotFound={onNotFound}
+            >
+                {navkontor => <NavKontorVisning navKontor={navkontor} />}
+            </RestResourceConsumer>
+        </NavKontorSection>
+    );
 }
 
-const mapStateToProps = (state: AppState) => {
-    return {
-        navKontorResource: state.restResources.brukersNavKontor
-    };
-};
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentNavKontor: (person: Person) => dispatch(hentNavKontor(person.geografiskTilknytning, person.diskresjonskode))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(NavKontorContainer);
+export default NavKontorContainer;

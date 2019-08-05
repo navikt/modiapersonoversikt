@@ -3,7 +3,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
