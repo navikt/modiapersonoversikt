@@ -5,7 +5,7 @@ import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-
 import { Radio } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeProps } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import { UndertekstBold } from 'nav-frontend-typografi';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import SaksTabell from './SaksTabell';
 
@@ -13,6 +13,7 @@ interface Props {
     gsakSaker: AsyncResult<Array<JournalforingsSak>>;
     psakSaker: AsyncResult<Array<JournalforingsSak>>;
     velgSak: (sak: JournalforingsSak) => void;
+    valgtSak?: JournalforingsSak;
     lukkPanel: () => void;
 }
 
@@ -46,9 +47,28 @@ const Form = styled.form`
     }
 `;
 
+const MiniRadio = styled(Radio)`
+    .radioknapp + label {
+        cline-height: 1.25rem;
+        &:before {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+    }
+`;
+
+const MiniEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
+    .ekspanderbartPanel__hode {
+        padding: 0.25rem 0.5rem;
+    }
+    .ekspanderbartPanel__innhold {
+        padding: 0.5rem;
+    }
+`;
+
 function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
     return (
-        <Radio
+        <MiniRadio
             label={props.label}
             name="journalforing-sakgruppe"
             value={props.label}
@@ -108,18 +128,24 @@ function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: Journalf
     return kategorier;
 }
 
-function TemaTable({ tema, saker, velgSak }: Tema & { velgSak: (sak: JournalforingsSak) => void }) {
-    const [apen, settApen] = useState(false);
+function TemaTable({
+    tema,
+    saker,
+    velgSak,
+    valgtSak
+}: Tema & { velgSak: (sak: JournalforingsSak) => void; valgtSak?: JournalforingsSak }) {
+    const apenByDefault = (valgtSak && saker.findIndex(sak => sak.saksId === valgtSak.saksId) >= 0) || false;
+    const [apen, settApen] = useState(apenByDefault);
     return (
-        <EkspanderbartpanelBasePure
-            heading={<Undertittel tag="h4">{tema}</Undertittel>}
+        <MiniEkspanderbartpanelBasePure
+            heading={<UndertekstBold tag="h4">{tema}</UndertekstBold>}
             apen={apen}
             onClick={() => settApen(!apen)}
             className="blokk-xxxs"
             border
         >
             <SaksTabell saker={saker} velgSak={velgSak} />
-        </EkspanderbartpanelBasePure>
+        </MiniEkspanderbartpanelBasePure>
     );
 }
 
@@ -130,20 +156,26 @@ function VelgSak(props: Props) {
     const fordelteSaker = fordelSaker(saker);
 
     const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
-        <TemaTable key={tema.tema} tema={tema.tema} saker={tema.saker} velgSak={props.velgSak} />
+        <TemaTable
+            key={tema.tema}
+            tema={tema.tema}
+            saker={tema.saker}
+            velgSak={props.velgSak}
+            valgtSak={props.valgtSak}
+        />
     ));
 
     return (
         <>
-            <Form className="blokk-xs">
+            <Form className="blokk-xxs">
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
-            <div className="blokk-xs">
+            <div>
                 <ConditionalFeilmelding vis={hasError(gsakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra GSAK
                 </ConditionalFeilmelding>
-                <ConditionalFeilmelding vis={hasError(psakSaker)}>
+                <ConditionalFeilmelding vis={hasError(psakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra PSAK
                 </ConditionalFeilmelding>
             </div>

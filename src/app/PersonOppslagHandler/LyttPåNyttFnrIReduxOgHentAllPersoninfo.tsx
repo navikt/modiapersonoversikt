@@ -8,6 +8,7 @@ import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { Action } from 'redux';
 import { AsyncAction } from '../../redux/ThunkTypes';
+import { cache } from '@nutgaard/use-fetch';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -35,6 +36,10 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.sendMelding.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
+
+    useEffect(() => {
+        cache.clear();
+    }, [fnr]);
 
     return null;
 }

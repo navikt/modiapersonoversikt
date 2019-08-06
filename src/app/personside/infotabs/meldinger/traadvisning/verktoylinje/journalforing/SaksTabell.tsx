@@ -8,19 +8,24 @@ const DivTable = styled(TableStyle)`
     [role='table'] {
         display: table;
         border-collapse: collapse;
-    }
-    .thead[role='rowgroup'] {
-        display: table-header-group;
-    }
-    .tbody[role='rowgroup'] {
-        display: table-row-group;
-    }
-    [role='row'] {
-        display: table-row;
-    }
-    [role='cell'],
-    [role='columnheader'] {
-        display: table-cell;
+
+        .thead[role='rowgroup'] {
+            display: table-header-group;
+        }
+        .tbody[role='rowgroup'] {
+            display: table-row-group;
+        }
+        [role='row'] {
+            display: table-row;
+        }
+        [role='columnheader'] {
+            font-size: 14px;
+        }
+        [role='cell'],
+        [role='columnheader'] {
+            display: table-cell;
+            padding: 0.25rem;
+        }
     }
 `;
 

@@ -10,7 +10,7 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 const Container = styled.section`
     position: relative;
     text-align: center;
-    padding: 1.5rem 1rem;
+    margin-top: 1rem;
 `;
 
 export enum SakKategori {
@@ -56,6 +56,10 @@ function JournalforingPanel(props: Props) {
         setValgtSak(sak);
     }
 
+    const tilbake = () => {
+        setAktivtVindu(AktivtVindu.SAKLISTE);
+    };
+
     const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
         credentials
@@ -68,9 +72,19 @@ function JournalforingPanel(props: Props) {
     if (isPending(gsakSaker) || isPending(psakSaker)) {
         return <Spinner type="XL" />;
     } else if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
-        return <JournalforSak traad={props.traad} sak={valgtSak} fnr={fnr} lukkPanel={props.lukkPanel} />;
+        return (
+            <JournalforSak traad={props.traad} sak={valgtSak} fnr={fnr} tilbake={tilbake} lukkPanel={props.lukkPanel} />
+        );
     } else {
-        return <VelgSak gsakSaker={gsakSaker} psakSaker={psakSaker} velgSak={velgSak} lukkPanel={props.lukkPanel} />;
+        return (
+            <VelgSak
+                gsakSaker={gsakSaker}
+                psakSaker={psakSaker}
+                velgSak={velgSak}
+                valgtSak={valgtSak}
+                lukkPanel={props.lukkPanel}
+            />
+        );
     }
 }
 
