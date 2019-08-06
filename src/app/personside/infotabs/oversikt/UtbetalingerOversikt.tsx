@@ -4,7 +4,7 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
 
@@ -52,8 +52,11 @@ function UtbetalingerPanel(props: Props) {
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
     return (
         <UtbetalingStyle>
-            <Normaltekst>{formaterDato(utbetaling.posteringsdato)}</Normaltekst>
+            <Normaltekst>
+                {formaterDato(utbetaling.posteringsdato)} / {utbetaling.status}
+            </Normaltekst>
             <YtelseNavn utbetaling={utbetaling} />
+            <YtelsePeriode utbetaling={utbetaling} />
             <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
         </UtbetalingStyle>
     );
@@ -77,6 +80,25 @@ function YtelseNavn({ utbetaling }: { utbetaling: Utbetaling }) {
     return (
         <Normaltekst>
             <Bold>{ytelseNavn}</Bold>
+        </Normaltekst>
+    );
+}
+
+function YtelsePeriode({ utbetaling }: { utbetaling: Utbetaling }) {
+    const ytelsesperioder = (utbetaling.ytelser || [])
+        .filter(ytelse => ytelse.type !== 'Gebyr' && ytelse.type !== 'Skatt')
+        .map(ytelse => ytelse.periode);
+
+    if (ytelsesperioder.length === 0) {
+        return <Normaltekst>Ingen periode</Normaltekst>;
+    }
+
+    const tidligsteStart = ytelsesperioder.sort(datoStigende(periode => periode.start))[0].start;
+    const senesteSlutt = ytelsesperioder.sort(datoSynkende(periode => periode.slutt))[0].slutt;
+
+    return (
+        <Normaltekst>
+            {formaterDato(tidligsteStart)} - {formaterDato(senesteSlutt)}
         </Normaltekst>
     );
 }

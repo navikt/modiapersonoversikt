@@ -109,6 +109,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-normal"
         >
           26.03.2017
+           / 
+          Utbetalt
         </p>
         <p
           className="typo-normal"
@@ -118,6 +120,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           >
             Sykepenger
           </span>
+        </p>
+        <p
+          className="typo-normal"
+        >
+          09.11.2016
+           - 
+          31.10.2017
         </p>
         <p
           className="typo-normal"
