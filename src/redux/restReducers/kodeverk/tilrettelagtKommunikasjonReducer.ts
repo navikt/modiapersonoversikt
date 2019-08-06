@@ -1,11 +1,8 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { fetchKodeverk } from '../../../api/kodeverk';
+import { apiBaseUri } from '../../../api/config';
+import { createRestResourceReducerAndActions } from '../../../rest/utils/restResource';
+import { KodeverkResponse } from '../../../models/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-tilrettelagt-kommunikasjon');
-
-export function hentTilrettelagtKommunikasjon() {
-    return action(() => fetchKodeverk('TilrettelagtKommunikasjon'));
-}
-
-export const tilrettelagtKommunikasjonActionNames = actionNames;
-export default reducer;
+export default createRestResourceReducerAndActions<KodeverkResponse>(
+    'kodeverk-tilrettelagt-kommunikasjon',
+    () => `${apiBaseUri}/kodeverk/TilrettelagtKommunikasjon`
+);

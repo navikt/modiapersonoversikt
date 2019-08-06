@@ -1,11 +1,8 @@
-import { createActionsAndReducerDeprecated } from '../deprecatedRestResource';
-import { fetchKodeverk } from '../../../api/kodeverk';
+import { apiBaseUri } from '../../../api/config';
+import { createRestResourceReducerAndActions } from '../../../rest/utils/restResource';
+import { KodeverkResponse } from '../../../models/kodeverk';
 
-const { reducer, action, actionNames } = createActionsAndReducerDeprecated('kodeverk-valuta');
-
-export function hentValutaer() {
-    return action(() => fetchKodeverk('Valutaer'));
-}
-
-export const valutaerActionNames = actionNames;
-export default reducer;
+export default createRestResourceReducerAndActions<KodeverkResponse>(
+    'kodeverk-valuta',
+    () => `${apiBaseUri}/kodeverk/Valutaer`
+);

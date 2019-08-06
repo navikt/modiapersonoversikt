@@ -1,10 +1,9 @@
 import * as React from 'react';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
-import Element from 'nav-frontend-typografi/lib/element';
 import styled from 'styled-components';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';

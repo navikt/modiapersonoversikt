@@ -34,21 +34,22 @@ import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
 import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
 import {
-    isFailed,
-    isLoading,
-    isNotStarted,
-    isSuccess,
-    DeprecatedRestResource
-} from '../../../redux/restReducers/deprecatedRestResource';
-import {
     getValidUtlandsadresseForm,
     validerUtenlandsAdresse
 } from './midlertidigAdresseUtland/midlertidigAdresseUtlandValidator';
 import { EndreAdresseInfomelding } from '../Infomelding';
-import RadioPanelGruppe from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import FolkeregistrertAdresse from './FolkeregistrertAdresse';
 import { loggEvent } from '../../../utils/frontendLogger';
 import KnappMedBekreftPopup from '../../../components/KnappMedBekreftPopup';
+import {
+    isFailedPosting,
+    isFinishedPosting,
+    isNotStartedPosting,
+    isPosting,
+    PostResource
+} from '../../../rest/utils/postResource';
+import { EndreAdresseRequest } from '../../../redux/restReducers/brukerprofil/adresse-api';
 
 interface Props {
     veilederRoller: VeilederRoller;
@@ -59,7 +60,7 @@ interface Props {
     endreUtlandsadresse: (fødselsnummer: string, utlandsadresse: Utlandsadresse) => void;
     slettMidlertidigeAdresser: (fødselsnummer: string) => void;
     resetEndreAdresseResource: () => void;
-    endreAdresseResource: DeprecatedRestResource<{}>;
+    endreAdresseResource: PostResource<EndreAdresseRequest>;
     reloadPersonInfo: (fødselsnummer: string) => void;
 }
 
@@ -124,7 +125,7 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     reloadOnEndret(prevProps: Props) {
-        if (!isSuccess(prevProps.endreAdresseResource) && isSuccess(this.props.endreAdresseResource)) {
+        if (!isFinishedPosting(prevProps.endreAdresseResource) && isFinishedPosting(this.props.endreAdresseResource)) {
             this.props.reloadPersonInfo(this.props.person.fødselsnummer);
         }
     }
@@ -377,13 +378,13 @@ class AdresseForm extends React.Component<Props, State> {
     }
 
     resetResource() {
-        if (isNotStarted(this.props.endreAdresseResource)) {
+        if (isNotStartedPosting(this.props.endreAdresseResource)) {
             this.props.resetEndreAdresseResource();
         }
     }
 
     requestIsPending() {
-        return isLoading(this.props.endreAdresseResource);
+        return isPosting(this.props.endreAdresseResource);
     }
 
     slettMidlertidigAdresse() {
@@ -428,7 +429,7 @@ class AdresseForm extends React.Component<Props, State> {
                             type="standard"
                             onClick={this.onAvbryt}
                             disabled={
-                                (!this.state.formErEndret && !isFailed(this.props.endreAdresseResource)) ||
+                                (!this.state.formErEndret && !isFailedPosting(this.props.endreAdresseResource)) ||
                                 this.requestIsPending()
                             }
                         >
@@ -436,7 +437,7 @@ class AdresseForm extends React.Component<Props, State> {
                         </KnappBase>
                         <KnappBase
                             type="hoved"
-                            spinner={isLoading(this.props.endreAdresseResource)}
+                            spinner={isPosting(this.props.endreAdresseResource)}
                             autoDisableVedSpinner={true}
                             disabled={!this.state.formErEndret && !this.kanSletteMidlertidigeAdresser()}
                         >

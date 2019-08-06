@@ -1,25 +1,20 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { isNotStarted, Loaded, DeprecatedRestResource } from '../../redux/restReducers/deprecatedRestResource';
 import { theme } from '../../styles/personOversiktTheme';
-import Innholdslaster from '../../components/Innholdslaster';
 import BrukerprofilForm from './BrukerprofilForm';
-import { AppState } from '../../redux/reducers';
-import { getVeilederRoller } from '../../redux/restReducers/veilederRoller';
-import { connect } from 'react-redux';
 import { FormatertKontonummer } from '../../utils/FormatertKontonummer';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import HandleBrukerprofilHotkeys from './HandleBrukerprofilHotkeys';
 import { erNyePersonoversikten } from '../../utils/erNyPersonoversikt';
-import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { TilbakePil } from '../../components/common-styled-components';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
+import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
+import { useOnMount } from '../../utils/customHooks';
 
 const BrukerprofilWrapper = styled.article`
     flex-grow: 1;
@@ -69,17 +64,6 @@ const Fokus = styled.div`
         ${theme.focus}
     }
 `;
-
-interface DispatchProps {
-    hentVeilederRoller: () => void;
-}
-
-interface StateProps {
-    personResource: DeprecatedRestResource<PersonRespons>;
-    veilederRollerResource: DeprecatedRestResource<VeilederRoller>;
-}
-
-type Props = StateProps & DispatchProps;
 
 function hentNavn({ navn }: Person) {
     return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
@@ -143,51 +127,34 @@ class Header extends React.PureComponent<{ person: Person }> {
     }
 }
 
-class BrukerprofilSide extends React.PureComponent<Props> {
-    componentDidMount() {
-        if (isNotStarted(this.props.veilederRollerResource)) {
-            this.props.hentVeilederRoller();
-        }
-        loggEvent('Sidevisning', 'Brukerprofil');
-    }
+function BrukerprofilSide() {
+    useOnMount(() => loggEvent('Sidevisning', 'Brukerprofil'));
 
-    render() {
-        return (
-            <BrukerprofilWrapper>
-                {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
-                <Innholdslaster
-                    avhengigheter={[this.props.personResource, this.props.veilederRollerResource]}
-                    returnOnPending={BigCenteredLazySpinner}
-                >
-                    {erNyePersonoversikten() && (
-                        <Header person={(this.props.personResource as Loaded<PersonRespons>).data as Person} />
-                    )}
-                    <ContentWrapper>
-                        <BrukerprofilForm
-                            person={(this.props.personResource as Loaded<PersonRespons>).data as Person}
-                            veilderRoller={(this.props.veilederRollerResource as Loaded<VeilederRoller>).data}
-                        />
-                    </ContentWrapper>
-                </Innholdslaster>
-            </BrukerprofilWrapper>
-        );
-    }
+    return (
+        <BrukerprofilWrapper>
+            {erNyePersonoversikten() && <HandleBrukerprofilHotkeys />}
+            <RestResourceConsumer<PersonRespons>
+                getResource={restResources => restResources.personinformasjon}
+                returnOnPending={BigCenteredLazySpinner}
+            >
+                {person => (
+                    <RestResourceConsumer<VeilederRoller>
+                        getResource={restResources => restResources.veilederRoller}
+                        returnOnPending={BigCenteredLazySpinner}
+                    >
+                        {veilederRoller => (
+                            <>
+                                {erNyePersonoversikten() && <Header person={person as Person} />}
+                                <ContentWrapper>
+                                    <BrukerprofilForm person={person as Person} veilderRoller={veilederRoller} />
+                                </ContentWrapper>
+                            </>
+                        )}
+                    </RestResourceConsumer>
+                )}
+            </RestResourceConsumer>
+        </BrukerprofilWrapper>
+    );
 }
 
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        personResource: state.restResources.personinformasjon,
-        veilederRollerResource: state.restResources.veilederRoller
-    };
-};
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        hentVeilederRoller: () => dispatch(getVeilederRoller())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BrukerprofilSide);
+export default BrukerprofilSide;

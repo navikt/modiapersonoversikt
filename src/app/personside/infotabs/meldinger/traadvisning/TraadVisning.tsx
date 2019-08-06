@@ -3,10 +3,10 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useEffect } from 'react';
-import { isLoaded, RestResource } from '../../../../../rest/utils/restResource';
+import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 
@@ -35,7 +35,7 @@ function AlleMeldinger(props: { traad: Traad }) {
 function TraadVisning({ valgtTraad, traader }: Props) {
     const dispatch = useDispatch();
     useEffect(() => {
-        if (!valgtTraad && isLoaded(traader)) {
+        if (!valgtTraad && hasData(traader)) {
             dispatch(settValgtTraad(traader.data[0]));
         }
     }, [valgtTraad, traader, dispatch]);

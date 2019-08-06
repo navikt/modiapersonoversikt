@@ -1,23 +1,18 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-
 import KnappBase from 'nav-frontend-knapper';
-import Select from 'nav-frontend-skjema/lib/select';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-
-import { Oppgave } from '../../../models/oppgave';
+import { Select } from 'nav-frontend-skjema';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { setNyBrukerIPath } from '../../routes/routing';
-import { History } from 'history';
-import ResourceFeilmelding from '../../../components/feilmelding/ResourceFeilmelding';
 import { velgTemagruppe } from '../../../redux/temagruppe';
-import { plukkOppgaver, selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
+import { selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { AppState } from '../../../redux/reducers';
-import { isLoading, DeprecatedRestResource } from '../../../redux/restReducers/deprecatedRestResource';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
+import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -56,117 +51,77 @@ const PLUKKBARE_TEMAGRUPPER = [
     { kode: 'UTLAND', beskrivelse: 'Utland' }
 ];
 
-interface State {
-    temagruppeFeilmelding?: string;
-    tomKø: boolean;
-}
+type Props = RouteComponentProps<{}>;
 
-interface StateProps {
-    valgtTemagruppe?: string;
-    oppgaveResource: DeprecatedRestResource<Oppgave[]>;
-    routeHistory: History;
-}
+function HentOppgaveKnapp(props: Props) {
+    const [tomKø, setTomKø] = useState(false);
+    const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
+    const dispatch = useDispatch();
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+    const velgTemaGruppe = (temagruppe: string) => dispatch(velgTemagruppe(temagruppe));
+    const valgtTemaGruppe = useSelector((state: AppState) => state.temagruppe.valgtTemagruppe);
 
-interface DispatchProps {
-    plukkOppgaver: (temagruppe: string) => Promise<Oppgave[]>;
-    velgTemagruppe: (temagruppe: string) => void;
-}
-
-type Props = StateProps & DispatchProps & RouteComponentProps<{}>;
-
-class HentOppgaveKnapp extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.onPlukkOppgaver = this.onPlukkOppgaver.bind(this);
-        this.onTemagruppeChange = this.onTemagruppeChange.bind(this);
-        this.state = { tomKø: false };
-    }
-
-    onPlukkOppgaver() {
-        if (!this.props.valgtTemagruppe) {
-            this.setState({ temagruppeFeilmelding: 'Du må velge temagruppe' });
+    const onPlukkOppgaver = () => {
+        if (!valgtTemaGruppe) {
+            setTemaGruppeFeilmelding(true);
             return;
         }
-        this.setState({ temagruppeFeilmelding: undefined, tomKø: false });
+        setTemaGruppeFeilmelding(false);
+        setTomKø(false);
         settJobberMedSpørsmålOgSvar();
-        this.props.plukkOppgaver(this.props.valgtTemagruppe).then((oppgaver: Oppgave[]) => {
-            const fødselsnummer = selectFodselsnummerfraOppgaver(oppgaver);
-            if (!fødselsnummer) {
-                this.setState({ tomKø: true });
-                return;
-            }
-            setNyBrukerIPath(this.props.history, fødselsnummer);
-        });
-    }
-
-    render() {
-        const valgtTemagruppe = this.props.valgtTemagruppe;
-        const tomtTilbakemelding = this.state.tomKø ? (
-            <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
-        ) : null;
-        const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map(temagruppe => (
-            <option value={temagruppe.kode} key={temagruppe.kode}>
-                {temagruppe.beskrivelse}
-            </option>
-        ));
-        return (
-            <HentOppgaveLayout>
-                <h2 className="sr-only">Hent oppgave</h2>
-                <KnappLayout>
-                    <Select
-                        label="Hent oppgave fra temagruppe"
-                        value={valgtTemagruppe || ''}
-                        onChange={this.onTemagruppeChange}
-                        feil={
-                            this.state.temagruppeFeilmelding
-                                ? { feilmelding: this.state.temagruppeFeilmelding }
-                                : undefined
-                        }
-                    >
-                        <option disabled={true} value={''}>
-                            Velg temagruppe
-                        </option>
-                        {temagruppeOptions}
-                    </Select>
-                    <KnappBase
-                        id="hentoppgaveknapp"
-                        type="hoved"
-                        onClick={this.onPlukkOppgaver}
-                        spinner={isLoading(this.props.oppgaveResource)}
-                    >
-                        Hent
-                    </KnappBase>
-                </KnappLayout>
-                <ResourceFeilmelding resource={this.props.oppgaveResource} />
-                {tomtTilbakemelding}
-            </HentOppgaveLayout>
+        dispatch(
+            oppgaveResource.actions.post({}, response => {
+                const fødselsnummer = selectFodselsnummerfraOppgaver(response);
+                if (!fødselsnummer) {
+                    setTomKø(true);
+                    return;
+                }
+                setNyBrukerIPath(props.history, fødselsnummer);
+            })
         );
-    }
-
-    private onTemagruppeChange(event: ChangeEvent<HTMLSelectElement>) {
-        this.props.velgTemagruppe(event.target.value);
-        this.setState({ temagruppeFeilmelding: undefined });
-    }
-}
-
-function mapStateToProps(state: AppState, routeProps: RouteComponentProps<{}>): StateProps {
-    return {
-        valgtTemagruppe: state.temagruppe.valgtTemagruppe,
-        oppgaveResource: state.restResources.oppgaver,
-        routeHistory: routeProps.history
     };
-}
 
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        plukkOppgaver: temagruppe => dispatch(plukkOppgaver(temagruppe)),
-        velgTemagruppe: temagruppe => dispatch(velgTemagruppe(temagruppe))
+    const onTemagruppeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        velgTemaGruppe(event.target.value);
+        setTemaGruppeFeilmelding(false);
     };
+
+    const tomtTilbakemelding = tomKø ? (
+        <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
+    ) : null;
+    const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map(temagruppe => (
+        <option value={temagruppe.kode} key={temagruppe.kode}>
+            {temagruppe.beskrivelse}
+        </option>
+    ));
+    return (
+        <HentOppgaveLayout>
+            <h2 className="sr-only">Hent oppgave</h2>
+            <KnappLayout>
+                <Select
+                    label="Hent oppgave fra temagruppe"
+                    value={valgtTemaGruppe || ''}
+                    onChange={onTemagruppeChange}
+                    feil={temaGruppeFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}
+                >
+                    <option disabled={true} value={''}>
+                        Velg temagruppe
+                    </option>
+                    {temagruppeOptions}
+                </Select>
+                <KnappBase
+                    id="hentoppgaveknapp"
+                    type="hoved"
+                    onClick={onPlukkOppgaver}
+                    spinner={isPosting(oppgaveResource)}
+                >
+                    Hent
+                </KnappBase>
+            </KnappLayout>
+            {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
+            {tomtTilbakemelding}
+        </HentOppgaveLayout>
+    );
 }
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(HentOppgaveKnapp)
-);
+export default withRouter(HentOppgaveKnapp);

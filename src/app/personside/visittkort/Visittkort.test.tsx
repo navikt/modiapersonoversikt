@@ -4,6 +4,8 @@ import { mount } from 'enzyme';
 import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../test/testStore';
 import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
+import { aremark } from '../../../mock/person/aremark';
+import { Person } from '../../../models/person/person';
 
 test('viser visittkortheader og visitkortbody når visittkort åpnes med museklikk', () => {
     const visittkort = mount(
@@ -20,6 +22,13 @@ test('viser visittkortheader og visitkortbody når visittkort åpnes med musekli
 
 test('setter fokus på visittkortdetaljer når visittkort åpnes', () => {
     const testStore = getTestStore();
+    const aremarkUtenSikkerhetstiltak: Person = {
+        ...aremark,
+        sikkerhetstiltak: undefined
+    };
+    testStore.dispatch(
+        testStore.getState().restResources.personinformasjon.actions.setData(aremarkUtenSikkerhetstiltak)
+    );
     mount(
         <TestProvider customStore={testStore}>
             <Visittkort />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-import Select from 'nav-frontend-skjema/lib/select';
+import { Select } from 'nav-frontend-skjema';
 
 import { KodeverkResponse } from '../../../models/kodeverk';
 import { ValideringsResultat } from '../../../utils/forms/FormValidator';

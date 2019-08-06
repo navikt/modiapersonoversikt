@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { BrukersNavKontorResponse, NavKontor, PublikumsMottak } from '../../../../../models/navkontor';
+import { NavKontorResponse, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/klokkeslett';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import VisittkortElement from '../VisittkortElement';
@@ -12,6 +12,7 @@ import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { ENDASH } from '../../../../../utils/string-utils';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 
 const NameCase = styled.span`
     text-transform: capitalize;
@@ -105,46 +106,32 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsMottak[] }) {
     );
 }
 
-function navkontorInfo(navKontor: NavKontor, norg2Url: string) {
+function NavkontorInfo(props: { navKontor: NavKontorResponse }) {
     return (
         <>
-            <Publikumsmottak publikumsmottak={navKontor.publikumsmottak} />
-            <a
-                href={`${norg2Url}/#/startsok?enhetNr=${navKontor.enhetId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lenke"
-            >
-                <Normaltekst tag="span">Mer informasjon om kontoret</Normaltekst>
-            </a>
+            <Publikumsmottak publikumsmottak={props.navKontor.publikumsmottak} />
+            <RestResourceConsumer<BaseUrlsResponse> getResource={restResources => restResources.baseUrl}>
+                {baseUrls => (
+                    <a
+                        href={`${hentNorg2Url(baseUrls)}/#/startsok?enhetNr=${props.navKontor.enhetId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="lenke"
+                    >
+                        <Normaltekst tag="span">Mer informasjon om kontoret</Normaltekst>
+                    </a>
+                )}
+            </RestResourceConsumer>
         </>
     );
 }
 
-function IngenNavKontor() {
-    return (
-        <VisittkortElement beskrivelse="Ingen enhet" ikon={<NavLogo />}>
-            <br />
-        </VisittkortElement>
-    );
-}
-
-function NavKontorVisning(props: {
-    brukersNavKontorResponse: BrukersNavKontorResponse;
-    baseUrlsResponse: BaseUrlsResponse;
-}) {
-    const navKontor = props.brukersNavKontorResponse.navKontor;
-    if (!navKontor) {
-        return <IngenNavKontor />;
-    }
-
+function NavKontorVisning(props: { brukersNavKontorResponse: NavKontorResponse }) {
+    const navKontor = props.brukersNavKontorResponse;
     const beskrivelse = `${navKontor.enhetId} ${navKontor.enhetNavn}`;
-
-    const norg2Url = hentNorg2Url(props.baseUrlsResponse);
-
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
-            {navkontorInfo(navKontor, norg2Url)}
+            <NavkontorInfo navKontor={navKontor} />
         </VisittkortElement>
     );
 }

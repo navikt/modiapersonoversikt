@@ -9,7 +9,7 @@ import {
     ytelseBelopDescComparator
 } from '../utils/utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import AlertStripeAdvarsel from 'nav-frontend-alertstriper/lib/advarsel-alertstripe';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Bold } from '../../../../../components/common-styled-components';
 import { Table } from '../../../../../utils/table/Table';
 
