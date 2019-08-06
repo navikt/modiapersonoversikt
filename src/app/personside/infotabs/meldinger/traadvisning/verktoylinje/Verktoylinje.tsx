@@ -6,6 +6,7 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
+import { useEffect } from 'react';
 
 interface Props {
     valgtTraad?: Traad;
@@ -86,7 +87,10 @@ enum FunksjonVindu {
 }
 
 function Funksjoner(props: Props) {
-    const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(FunksjonVindu.JOURNALFORING);
+    const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
+    useEffect(() => {
+        settAktivtVindu(null);
+    }, [props, settAktivtVindu]);
 
     if (!props.valgtTraad) {
         return null;

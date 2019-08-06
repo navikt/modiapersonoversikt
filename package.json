@@ -100,7 +100,7 @@
         "redux-devtools-extension": "^2.13.7",
         "redux-thunk": "^2.3.0",
         "styled-components": "^4.2.0",
-        "yet-another-fetch-mock": "^2.3.3"
+        "yet-another-fetch-mock": "^3.2.0"
     },
     "devDependencies": {
         "@craco/craco": "^5.2.1",
