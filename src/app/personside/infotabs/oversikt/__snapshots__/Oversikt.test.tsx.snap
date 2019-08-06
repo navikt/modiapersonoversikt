@@ -14,40 +14,49 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.625rem;
 }
 
-.c6 {
+.c4 {
   font-weight: bold;
 }
 
-.c3 > * {
-  margin-top: 1px;
+.c6 > * {
+  margin-top: 0.0625rem;
 }
 
-.c4 {
+.c7 {
   display: grid;
   grid-template-columns: 70% auto;
   background-color: white;
   padding: 0.625rem;
 }
 
-.c5 li {
+.c8 li {
   display: inline-block;
 }
 
-.c5 li:not(:last-child):after {
+.c8 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c2 {
-  margin-top: 1px;
+.c5 {
+  margin-top: 0.0625rem;
   background-color: white;
   padding: 0.625rem;
 }
 
-.c7 > * {
+.c9 > * {
   background-color: white;
   padding: 0.625rem;
   margin-top: 1px;
+}
+
+.c2 > * {
+  margin-top: 0.0625rem;
+}
+
+.c3 {
+  background-color: white;
+  padding: 0.625rem;
 }
 
 .c0 {
@@ -90,11 +99,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
       </a>
     </div>
-    <p
-      className="typo-normal"
+    <ol
+      className="c2"
     >
-      Utbelainger
-    </p>
+      <div
+        className="c3"
+      >
+        <p
+          className="typo-normal"
+        >
+          26.03.2017
+        </p>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c4"
+          >
+            Sykepenger
+          </span>
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Utbetaling til: 
+          AREMARK TESTFAMILIEN
+        </p>
+      </div>
+    </ol>
   </div>
   <div>
     <div
@@ -118,7 +150,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </a>
     </div>
     <div
-      className="c2"
+      className="c5"
     >
       <p
         className="typo-normal"
@@ -149,10 +181,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </a>
     </div>
     <ol
-      className="c3"
+      className="c6"
     >
       <div
-        className="c4"
+        className="c7"
       >
         <p
           className="typo-normal"
@@ -161,7 +193,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c5"
+          className="c8"
         >
           <li
             className="typo-normal"
@@ -178,14 +210,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-normal"
         >
           <span
-            className="c6"
+            className="c4"
           >
             Påminnelse om å sende meldekort
           </span>
         </p>
       </div>
       <div
-        className="c4"
+        className="c7"
       >
         <p
           className="typo-normal"
@@ -194,7 +226,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c5"
+          className="c8"
         >
           <li
             className="typo-normal"
@@ -206,7 +238,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-normal"
         >
           <span
-            className="c6"
+            className="c4"
           >
             Påminnelse om å sende meldekort
           </span>
@@ -263,7 +295,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </a>
     </div>
     <div
-      className="c7"
+      className="c9"
     />
   </div>
 </article>
