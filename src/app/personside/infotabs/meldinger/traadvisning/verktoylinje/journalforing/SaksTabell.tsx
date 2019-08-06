@@ -43,6 +43,7 @@ const Row = styled.a.attrs({
         ${theme.focusInset}
     }
 `;
+
 const Cell = styled.div.attrs({
     role: 'cell'
 })`

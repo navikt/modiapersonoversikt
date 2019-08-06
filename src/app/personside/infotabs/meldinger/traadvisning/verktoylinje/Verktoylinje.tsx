@@ -13,9 +13,7 @@ interface Props {
 }
 
 const PanelStyle = styled.div`
-    background-color: white;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
-    border-radius: 0.25rem;
+    ${theme.hvittPanel}
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;

@@ -1,41 +1,12 @@
-import React, { useState } from 'react';
-import { AsyncResult, isPending, hasError } from '@nutgaard/use-fetch';
-import { JournalforingsSak, SakKategori } from './JournalforingPanel';
+import React from 'react';
+import { AsyncResult, hasData, hasError } from '@nutgaard/use-fetch';
+import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel, AlertStripeProps } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import TemaTable from './TemaTabell';
 import styled from 'styled-components';
-import { UndertekstBold } from 'nav-frontend-typografi';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
-import SaksTabell from './SaksTabell';
-
-interface Props {
-    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
-    psakSaker: AsyncResult<Array<JournalforingsSak>>;
-    velgSak: (sak: JournalforingsSak) => void;
-    valgtSak?: JournalforingsSak;
-    lukkPanel: () => void;
-}
-
-type Tema = { tema: string; saker: Array<JournalforingsSak> };
-type Kategorier = { [key in SakKategori]: Tema[] };
-
-function getSaker(
-    gsak: AsyncResult<Array<JournalforingsSak>>,
-    psak: AsyncResult<Array<JournalforingsSak>>
-): JournalforingsSak[] {
-    if (isPending(gsak) || hasError(gsak) || isPending(psak) || hasError(psak)) {
-        return [];
-    }
-
-    const psakData = psak.data;
-    const gsakData = gsak.data;
-
-    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
-    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
-
-    return [...gsakSaker, ...psakData];
-}
+import visibleIf from '../../../../../../../components/visibleIfHoc';
 
 const Form = styled.form`
     display: flex;
@@ -57,14 +28,7 @@ const MiniRadio = styled(Radio)`
     }
 `;
 
-const MiniEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
-    .ekspanderbartPanel__hode {
-        padding: 0.25rem 0.5rem;
-    }
-    .ekspanderbartPanel__innhold {
-        padding: 0.5rem;
-    }
-`;
+const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
 
 function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
     return (
@@ -78,12 +42,25 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
     );
 }
 
-function ConditionalFeilmelding(props: AlertStripeProps & { vis: boolean }) {
-    const { vis, ...rest } = props;
-    if (!vis) {
-        return null;
-    }
-    return <AlertStripeAdvarsel {...rest} />;
+interface Props {
+    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
+    psakSaker: AsyncResult<Array<JournalforingsSak>>;
+    velgSak: (sak: JournalforingsSak) => void;
+    valgtSak?: JournalforingsSak;
+    lukkPanel: () => void;
+}
+
+function getSaker(
+    gsak: AsyncResult<Array<JournalforingsSak>>,
+    psak: AsyncResult<Array<JournalforingsSak>>
+): JournalforingsSak[] {
+    const psakData = hasData(psak) ? psak.data : [];
+    const gsakData = hasData(gsak) ? gsak.data : [];
+
+    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
+    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
+
+    return [...gsakSaker, ...psakData];
 }
 
 function fordelSaker(saker: JournalforingsSak[]): Kategorier {
@@ -128,27 +105,6 @@ function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: Journalf
     return kategorier;
 }
 
-function TemaTable({
-    tema,
-    saker,
-    velgSak,
-    valgtSak
-}: Tema & { velgSak: (sak: JournalforingsSak) => void; valgtSak?: JournalforingsSak }) {
-    const apenByDefault = (valgtSak && saker.findIndex(sak => sak.saksId === valgtSak.saksId) >= 0) || false;
-    const [apen, settApen] = useState(apenByDefault);
-    return (
-        <MiniEkspanderbartpanelBasePure
-            heading={<UndertekstBold tag="h4">{tema}</UndertekstBold>}
-            apen={apen}
-            onClick={() => settApen(!apen)}
-            className="blokk-xxxs"
-            border
-        >
-            <SaksTabell saker={saker} velgSak={velgSak} />
-        </MiniEkspanderbartpanelBasePure>
-    );
-}
-
 function VelgSak(props: Props) {
     const valgtKategori = useFieldState(SakKategori.FAG);
     const { gsakSaker, psakSaker } = props;
@@ -172,10 +128,10 @@ function VelgSak(props: Props) {
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
             <div>
-                <ConditionalFeilmelding vis={hasError(gsakSaker)} className="blokk-xxxs">
+                <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra GSAK
                 </ConditionalFeilmelding>
-                <ConditionalFeilmelding vis={hasError(psakSaker)} className="blokk-xxxs">
+                <ConditionalFeilmelding visible={hasError(psakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra PSAK
                 </ConditionalFeilmelding>
             </div>

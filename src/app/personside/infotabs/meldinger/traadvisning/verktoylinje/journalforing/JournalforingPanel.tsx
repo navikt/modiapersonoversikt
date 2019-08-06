@@ -7,12 +7,6 @@ import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
-const Container = styled.section`
-    position: relative;
-    text-align: center;
-    margin-top: 1rem;
-`;
-
 export enum SakKategori {
     FAG = 'Fagsaker',
     GEN = 'Generelle saker'
@@ -39,12 +33,21 @@ export interface JournalforingsSak {
     temaNavn: string;
 }
 
-const credentials: RequestInit = { credentials: 'include' };
+export type Tema = { tema: string; saker: Array<JournalforingsSak> };
+export type Kategorier = { [key in SakKategori]: Tema[] };
 
 interface Props {
     lukkPanel: () => void;
     traad: Traad;
 }
+
+const credentials: RequestInit = { credentials: 'include' };
+
+const Container = styled.section`
+    position: relative;
+    text-align: center;
+    margin-top: 1rem;
+`;
 
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
