@@ -1,0 +1,611 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Viser oversikt med alt innhold 1`] = `
+.c7 {
+  font-weight: bold;
+}
+
+.c13 {
+  border: none;
+  padding: 0.1rem;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.c13:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #FFBD66;
+}
+
+.c15 {
+  padding: 0.7rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c15 > *:first-child {
+  -webkit-flex: 0 0 20%;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+}
+
+.c15 > *:last-child {
+  max-width: 30rem;
+}
+
+.c14 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c14 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c10 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+}
+
+.c11 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% 55% 1fr auto;
+  grid-template-columns: 20% 55% 1fr auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+.c11 > *:nth-child(1) {
+  -ms-grid-column: 1;
+}
+
+.c11 > *:nth-child(2) {
+  -ms-grid-column: 2;
+}
+
+.c11 > *:nth-child(3) {
+  -ms-grid-column: 3;
+}
+
+.c11 > *:nth-child(4) {
+  -ms-grid-column: 4;
+}
+
+.c11:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c11 > * {
+  padding: 0.7rem;
+}
+
+.c12 li {
+  display: inline-block;
+}
+
+.c12 li:not(:last-child):after {
+  content: ',';
+  margin-right: 0.5em;
+}
+
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.625rem;
+}
+
+.c4 > * {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c9 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c8 {
+  padding: 0.625rem;
+}
+
+.c16 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c16 > * {
+  padding: 0.625rem;
+}
+
+.c5 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c6 {
+  background-color: white;
+  padding: 0.625rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1 > * {
+  margin: 0.9375rem;
+  max-width: 30rem;
+}
+
+<article
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Utbetalinger
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/UTBETALING/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            utbetalinger
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <ol
+          className="c5"
+        >
+          <div
+            className="c6"
+          >
+            <p
+              className="typo-normal"
+            >
+              26.03.2017
+               / 
+              Utbetalt
+            </p>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c7"
+              >
+                Sykepenger
+              </span>
+            </p>
+            <p
+              className="typo-normal"
+            >
+              09.11.2016
+               - 
+              31.10.2017
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Utbetaling til: 
+              AREMARK TESTFAMILIEN
+            </p>
+          </div>
+        </ol>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Oppfølging
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/OPPFØLGING/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            oppfølging
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c8"
+        >
+          <p
+            className="typo-normal"
+          >
+            Er ikke i arbeidsrettet oppfølging
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Varsler
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/VARSLER/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            varsler
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <ol
+          className="c9"
+        >
+          <li
+            aria-label="Påminnelse om å sende meldekort"
+            className="c10"
+          >
+            <div
+              className="c11"
+              onClick={[Function]}
+            >
+              <p
+                className="typo-normal"
+              >
+                28. mars 2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c7"
+                >
+                  Påminnelse om å sende meldekort
+                </span>
+              </p>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                className="c12"
+              >
+                <li
+                  className="typo-normal"
+                >
+                  EPOST
+                </li>
+                <li
+                  className="typo-normal"
+                >
+                  SMS
+                </li>
+              </ul>
+              <button
+                aria-expanded={false}
+                aria-label="Vis meldinger"
+                className="c13"
+                onClick={[Function]}
+                title="Vis meldinger"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <ol
+              aria-label="Meldinger"
+              className="c14"
+            >
+              <li
+                aria-label="EPOST"
+                className="c15"
+              >
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      EPOST
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    01. mars 2019
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      <span
+                        className="c7"
+                      >
+                        Epostemne
+                      </span>
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      Meldingsinnhold
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      Epost: 
+                      mottakerinfo
+                    </span>
+                  </p>
+                </div>
+              </li>
+              <li
+                aria-label="SMS"
+                className="c15"
+              >
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      SMS
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    24. jan. 2019
+                  </p>
+                </div>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    Meldingsinnhold
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      Tlf: 
+                      mottakerinfo
+                    </span>
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </li>
+          <li
+            aria-label="Påminnelse om å sende meldekort"
+            className="c10"
+          >
+            <div
+              className="c11"
+              onClick={[Function]}
+            >
+              <p
+                className="typo-normal"
+              >
+                10. jan. 2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c7"
+                >
+                  Påminnelse om å sende meldekort
+                </span>
+              </p>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                className="c12"
+              >
+                <li
+                  className="typo-normal"
+                >
+                  EPOST
+                </li>
+              </ul>
+              <button
+                aria-expanded={false}
+                aria-label="Vis meldinger"
+                className="c13"
+                onClick={[Function]}
+                title="Vis meldinger"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <ol
+              aria-label="Meldinger"
+              className="c14"
+            >
+              <li
+                aria-label="EPOST"
+                className="c15"
+              >
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      EPOST
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    02. feb. 2019
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      <span
+                        className="c7"
+                      >
+                        Epostemne
+                      </span>
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      Meldingsinnhold
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c7"
+                    >
+                      Epost: 
+                      mottakerinfo
+                    </span>
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Meldinger
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/MELDINGER/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            meldinger
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      />
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Ytelser
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/YTELSER/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            ytelser
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c16"
+        />
+      </div>
+    </div>
+  </div>
+</article>
+`;

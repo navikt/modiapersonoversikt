@@ -17,7 +17,7 @@ export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     faker.seed(Number(fødselsnummer));
 
     return {
-        erUnderOppfølging: faker.random.boolean(),
+        erUnderOppfølging: true,
         veileder: getSaksbehandler(),
         enhet: getAnsattEnhet()
     };
