@@ -12,7 +12,7 @@ import { INFOTABS } from '../InfoTabEnum';
 interface Props {
     children: ReactNode;
     tittel: string;
-    infotabToOpen: INFOTABS;
+    infotabPath: INFOTABS;
 }
 
 const PanelStyle = styled.div`
@@ -33,7 +33,7 @@ const MainStyle = styled.div`
 
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabToOpen}/`;
+    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath}/`;
 
     return (
         <PanelStyle>
