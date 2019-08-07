@@ -12,11 +12,8 @@ import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AppState } from '../../../../redux/reducers';
-import { isLoaded, isNotStarted } from '../../../../rest/utils/restResource';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import VelgSak from './VelgSak';
-import { Normaltekst } from 'nav-frontend-typografi';
-import EkspanderKnapp from '../../../../components/EkspanderKnapp';
+import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
@@ -29,9 +26,6 @@ const FormStyle = styled.form`
     align-items: stretch;
     textarea {
         min-height: 9rem;
-    }
-    button {
-        margin-top: 0.5rem;
     }
     .ReactCollapse--collapse .skjemaelement {
         margin: 0;
@@ -54,32 +48,18 @@ function SendNyMelding() {
     const [tekstFeil, setTekstFeil] = useState(false);
     const [temaFeil, setTemaFeil] = useState(false);
     const [oppgaveListe, setOppgaveliste] = useState(Oppgaveliste.MinListe);
-    const [visSaker, setVisSaker] = useState(false);
     const [visFeilMeldinger, setVisFeilmeldinger] = useState(false);
 
-    const sammensattesaker = useSelector((state: AppState) => state.restResources.sammensatteSaker);
-    const psaksaker = useSelector((state: AppState) => state.restResources.psakSaker);
     const personinformasjon = useSelector((state: AppState) => state.restResources.personinformasjon);
     const dispatch = useDispatch();
 
     const enhet = getSaksbehandlerEnhet();
-
-    const saker: JournalforingsSak[] =
-        isLoaded(sammensattesaker) && isLoaded(psaksaker) ? [...sammensattesaker.data, ...psaksaker.data] : [];
 
     useEffect(() => {
         setTekstFeil(tekst.length === 0 || tekst.length > tekstMaksLengde);
         setTemaFeil(!tema);
         setVisFeilmeldinger(false);
     }, [tekst, tema]);
-
-    if (isNotStarted(sammensattesaker)) {
-        dispatch(sammensattesaker.actions.fetch);
-    }
-
-    if (isNotStarted(psaksaker)) {
-        dispatch(psaksaker.actions.fetch);
-    }
 
     const erReferat = dialogType !== Meldingstype.SPORSMAL_SKRIFTLIG;
     const erOppmøte = dialogType !== Meldingstype.SAMTALEREFERAT_OPPMOTE;
@@ -123,10 +103,6 @@ function SendNyMelding() {
         setTema(undefined);
     };
 
-    const handleVelgSak = (sak: JournalforingsSak) => {
-        setSak(sak);
-    };
-
     const tekstFeilmelding: SkjemaelementFeil | undefined =
         visFeilMeldinger && tekstFeil
             ? {
@@ -140,21 +116,10 @@ function SendNyMelding() {
 
     const spørsmålFields = (
         <>
-            <div>
-                <Normaltekst>Valgt sak: {sak && sak.saksId}</Normaltekst>
-                <EkspanderKnapp onClick={() => setVisSaker(!visSaker)} open={visSaker} />
-            </div>
-            <UnmountClosed isOpened={visSaker}>
-                <section>
-                    <VelgSak saker={saker} valgtSak={sak} setValgtSak={handleVelgSak} />{' '}
-                    <p style={{ display: 'none' }}>
-                        /* TODO Denne byttes ut med komponent fra Journalføring når den er ferdig*/
-                    </p>
-                </section>
-            </UnmountClosed>
+            <DialogpanelVelgSak valgtSak={sak} setValgtSak={setSak} />
             <section>
                 <Select
-                    label="oppgaveliste"
+                    label="Oppgaveliste"
                     value={oppgaveListe}
                     onChange={event => setOppgaveliste(event.target.value as Oppgaveliste)}
                 >
