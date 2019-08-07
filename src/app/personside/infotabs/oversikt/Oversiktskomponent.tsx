@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
+import { INFOTABS } from '../InfoTabEnum';
 
 interface Props {
     children: ReactNode;
     tittel: string;
-    uriKomponent: string;
+    infotabToOpen: INFOTABS;
 }
 
 const PanelStyle = styled.div`
@@ -32,7 +33,7 @@ const MainStyle = styled.div`
 
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.uriKomponent}/`;
+    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabToOpen}/`;
 
     return (
         <PanelStyle>

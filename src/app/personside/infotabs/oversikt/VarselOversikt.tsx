@@ -1,34 +1,15 @@
 import * as React from 'react';
-import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
+import { Varsel as VarselModell } from '../../../../models/varsel';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
-import { Bold } from '../../../../components/common-styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst } from 'nav-frontend-typografi';
+import Varsel from '../varsel/Varsel';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
-    }
-`;
-
-const VarselStyle = styled.div`
-    display: grid;
-    grid-template-columns: 70% auto;
-    background-color: white;
-    padding: ${theme.margin.px10};
-`;
-
-const Kommaliste = styled.ul`
-    li {
-        display: inline-block;
-    }
-    li:not(:last-child) {
-        &:after {
-            content: ',';
-            margin-right: 0.5em;
-        }
     }
 `;
 
@@ -49,9 +30,7 @@ function VarselVisning(props: Props) {
         return <Normaltekst>Ingen varsler</Normaltekst>;
     }
 
-    const sortertPåDato = props.varsler
-        .sort(datoSynkende(varsel => varsel.mottattTidspunkt))
-        .slice(0, Math.min(2, props.varsler.length));
+    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt)).slice(0, 2);
 
     return (
         <ListStyle>
@@ -59,30 +38,6 @@ function VarselVisning(props: Props) {
                 <Varsel key={index} varsel={varsel} />
             ))}
         </ListStyle>
-    );
-}
-
-function Varsel({ varsel }: { varsel: VarselModell }) {
-    const distinkteKommunikasjonsKanaler = new Set(varsel.meldingListe.map(melding => melding.kanal));
-    const kommunikasjonskanaler = (
-        <Kommaliste aria-label="Kommunikasjonskanaler">
-            {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
-                <Normaltekst tag="li" key={kanal}>
-                    {kanal}
-                </Normaltekst>
-            ))}
-        </Kommaliste>
-    );
-    const varselTekst = Varseltype[varsel.varselType] || 'Ukjent nøkkel: ' + varsel.varselType;
-
-    return (
-        <VarselStyle>
-            <Normaltekst>{formatterDatoMedMaanedsnavn(varsel.mottattTidspunkt)}</Normaltekst>
-            {kommunikasjonskanaler}
-            <Normaltekst>
-                <Bold>{varselTekst}</Bold>
-            </Normaltekst>
-        </VarselStyle>
     );
 }
 

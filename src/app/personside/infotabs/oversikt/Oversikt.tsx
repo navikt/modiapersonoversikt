@@ -7,6 +7,7 @@ import OppfolgingOversikt from './OppfolgingOversikt';
 import YtelserOversikt from './YtelserOversikt';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
 import MeldingerOversikt from './MeldingerOversikt';
+import { INFOTABS } from '../InfoTabEnum';
 
 const Style = styled.article`
     display: flex;
@@ -24,20 +25,28 @@ function Oversikt() {
         <Style>
             <KolonneStyle>
                 <Oversiktskomponent
-                    uriKomponent={'utbetaling'}
+                    infotabToOpen={INFOTABS.UTBETALING}
                     tittel={'Utbetalinger'}
                     children={<UtbetalingerOversikt />}
                 />
                 <Oversiktskomponent
-                    uriKomponent={'oppfølging'}
+                    infotabToOpen={INFOTABS.OPPFOLGING}
                     tittel={'Oppfølging'}
                     children={<OppfolgingOversikt />}
                 />
-                <Oversiktskomponent uriKomponent={'varsler'} tittel={'Varsler'} children={<VarselOversikt />} />
+                <Oversiktskomponent infotabToOpen={INFOTABS.VARSEL} tittel={'Varsler'} children={<VarselOversikt />} />
             </KolonneStyle>
             <KolonneStyle>
-                <Oversiktskomponent uriKomponent={'meldinger'} tittel={'Meldinger'} children={<MeldingerOversikt />} />
-                <Oversiktskomponent uriKomponent={'ytelser'} tittel={'Ytelser'} children={<YtelserOversikt />} />
+                <Oversiktskomponent
+                    infotabToOpen={INFOTABS.MELDINGER}
+                    tittel={'Meldinger'}
+                    children={<MeldingerOversikt />}
+                />
+                <Oversiktskomponent
+                    infotabToOpen={INFOTABS.YTELSER}
+                    tittel={'Ytelser'}
+                    children={<YtelserOversikt />}
+                />
             </KolonneStyle>
         </Style>
     );

@@ -7,6 +7,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
+import { utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -36,9 +37,7 @@ function UtbetalingerPanel(props: Props) {
         return <Normaltekst>Ingen utbetalinger</Normaltekst>;
     }
 
-    const sortertPåDato = props.utbetalinger.utbetalinger
-        .sort(datoSynkende(utbetaling => utbetaling.posteringsdato))
-        .slice(0, Math.min(3, props.utbetalinger.utbetalinger.length));
+    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
 
     return (
         <ListStyle>
