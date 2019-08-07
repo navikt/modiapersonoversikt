@@ -151,11 +151,11 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c9 > * {
-  margin-bottom: 1rem;
+.c9 textarea {
+  min-height: 9rem;
 }
 
-.c10 .skjemaelement {
+.c9 .ReactCollapse--collapse .skjemaelement {
   margin: 0;
 }
 
@@ -1187,12 +1187,12 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                 onChange={[Function]}
                 onFocus={[Function]}
                 type="radio"
-                value="SAMTALEREFERAT_OPPMOTE"
+                value="SPORSMAL_SKRIFTLIG"
               />
               <span
                 className="inputPanel__label"
               >
-                Samtalereferat oppmøte
+                Spørsmål til bruker
               </span>
             </label>
             <label
@@ -1209,12 +1209,12 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                 onChange={[Function]}
                 onFocus={[Function]}
                 type="radio"
-                value="SPORSMAL_SKRIFTLIG"
+                value="SAMTALEREFERAT_OPPMOTE"
               />
               <span
                 className="inputPanel__label"
               >
-                Spørsmål til bruker
+                Samtalereferat oppmøte
               </span>
             </label>
           </div>
@@ -1225,8 +1225,125 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
         />
       </div>
       <div
-        className="c10"
+        className="skjemaelement"
       >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Tema
+        </label>
+        <div
+          className="selectContainer input--fullbredde"
+        >
+          <select
+            className="skjemaelement__input"
+            disabled={false}
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              disabled={true}
+              value=""
+            >
+              Velg tema
+            </option>
+            <option
+              value="ARBD"
+            >
+              Arbeid
+            </option>
+            <option
+              value="FMLI"
+            >
+              Familie
+            </option>
+            <option
+              value="HJLPM"
+            >
+              Hjelpemiddel
+            </option>
+            <option
+              value="PENS"
+            >
+              Pensjon
+            </option>
+            <option
+              value="OVRG"
+            >
+              Øvrig
+            </option>
+          </select>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
+      >
+        <button
+          aria-expanded={false}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
+        >
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
+          >
+            <span
+              className="typo-normal ekspanderbartPanel__heading"
+            >
+              Velg sak
+            </span>
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          aria-label="Velg sak"
+          className="ekspanderbartPanel__innhold"
+        >
+          <svg
+            aria-label="Laster innhold"
+            className="spinner spinner--xl"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width={32}
+          >
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#bdbab7"
+              strokeWidth="5"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="5"
+            />
+          </svg>
+        </article>
+      </div>
+      <section>
         <div
           className="skjemaelement"
         >
@@ -1234,7 +1351,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Tema
+            Oppgaveliste
           </label>
           <div
             className="selectContainer input--fullbredde"
@@ -1244,38 +1361,19 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               disabled={false}
               id="Helt tilfeldig ID"
               onChange={[Function]}
-              value=""
+              value="MinListe"
             >
               <option
-                disabled={true}
-                value=""
+                value="MinListe"
               >
-                Velg tema
+                Min oppgaveliste
               </option>
               <option
-                value="ARBD"
+                value="Enhetensliste"
               >
-                Arbeid
-              </option>
-              <option
-                value="FMLI"
-              >
-                Familie
-              </option>
-              <option
-                value="HJLPM"
-              >
-                Hjelpemiddel
-              </option>
-              <option
-                value="PENS"
-              >
-                Pensjon
-              </option>
-              <option
-                value="OVRG"
-              >
-                Øvrig
+                Skal til 
+                4100
+                 sin oppgaveliste
               </option>
             </select>
           </div>
@@ -1284,7 +1382,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             role="alert"
           />
         </div>
-      </div>
+      </section>
       <div
         className="skjemaelement textarea__container"
       >
@@ -1301,6 +1399,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             className="skjemaelement__input textarea--medMeta"
             id="Helt tilfeldig ID"
             onChange={[Function]}
+            placeholder="Alt du skriver i denne boksen blir synlig for brukeren når du trykker \\"Del med Aremark\\""
             style={
               Object {
                 "height": "30px",
@@ -1328,12 +1427,51 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           className="textareamirror"
         />
       </div>
+      <div
+        className="alertstripe alertstripe--info"
+      >
+        <span
+          aria-label="info"
+          className="alertstripe__ikon"
+        >
+          <svg
+            focusable="false"
+            height="1.5em"
+            kind="info-sirkel-fyll"
+            viewBox="0 0 24 24"
+            width="1.5em"
+          >
+            <g
+              fill="none"
+              fillRule="nonzero"
+            >
+              <path
+                d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                fill="#669DB4"
+              />
+              <g
+                fill="#FFF"
+              >
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+                />
+              </g>
+            </g>
+          </svg>
+        </span>
+        <div
+          className="typo-normal alertstripe__tekst"
+        >
+          Bruker kan svare
+        </div>
+      </div>
       <button
         className="knapp knapp--hoved"
         disabled={false}
         type="submit"
       >
-        Del med Navn her
+        Del med 
+        Aremark
       </button>
       <button
         className="knapp knapp--standard"
