@@ -7,6 +7,7 @@ import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
+import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 
 interface Props {
     valgtTraad?: Traad;
@@ -32,50 +33,8 @@ const OppgaveknapperStyle = styled.div`
     }
 `;
 
-const SvartLenkeKnapp = styled.button<{ aktiv?: boolean }>`
+const SvartLenkeKnapp = styled(EkspanderKnapp)`
     color: #3e3832;
-    position: relative;
-    border: none;
-    padding: 0;
-    border-radius: ${theme.borderRadius.knapp};
-    cursor: pointer;
-    background-color: transparent;
-    &:before {
-        content: '';
-        border-bottom: 1px solid transparent;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        position: absolute;
-    }
-    &:focus {
-        ${theme.focus}
-    }
-    &:hover {
-        &:before {
-            border-color: #3e3832;
-        }
-    }
-    ${props => {
-        if (props.aktiv === undefined) {
-            return '';
-        }
-        const direction = props.aktiv ? 'bottom' : 'top';
-        return `
-            padding-right: 1.25rem;
-            &:after {
-              content: '';
-              position: absolute;
-              height: 0.75rem;
-              width: 0.75rem;
-              display: block;
-              border: 0.5rem solid transparent;
-              border-${direction}-color: #3E3832;
-              right: 0;
-              ${direction}: 25%;
-            }
-        `;
-    }}
 `;
 
 enum FunksjonVindu {
@@ -88,7 +47,7 @@ function Funksjoner(props: Props) {
     const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
     useEffect(() => {
         settAktivtVindu(null);
-    }, [props, settAktivtVindu]);
+    }, [props.valgtTraad, settAktivtVindu]);
 
     if (!props.valgtTraad) {
         return null;
@@ -105,17 +64,19 @@ function Funksjoner(props: Props) {
         <>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
-                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.JOURNALFORING)} aktiv={visJournalforing}>
-                        Journalfør
-                    </SvartLenkeKnapp>
-                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.OPPGAVE)} aktiv={visOppgave}>
-                        Lag oppgave
-                    </SvartLenkeKnapp>
-                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} aktiv={visMerk}>
-                        Merk
-                    </SvartLenkeKnapp>
+                    <SvartLenkeKnapp
+                        onClick={setResetVindu(FunksjonVindu.JOURNALFORING)}
+                        open={visJournalforing}
+                        tittel="Journalfør"
+                    />
+                    <SvartLenkeKnapp
+                        onClick={setResetVindu(FunksjonVindu.OPPGAVE)}
+                        open={visOppgave}
+                        tittel="Lag oppgave"
+                    />
+                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <SvartLenkeKnapp>Skriv ut</SvartLenkeKnapp>
+                <SvartLenkeKnapp onClick={() => {}} tittel="Skriv ut" />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />

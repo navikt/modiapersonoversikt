@@ -6,6 +6,8 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { useSelector } from 'react-redux';
+import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -52,7 +54,7 @@ const Container = styled.section`
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
-    const fnr = '10108000398';
+    const fnr = useSelector(fnrSelector);
 
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
@@ -75,9 +77,7 @@ function JournalforingPanel(props: Props) {
     if (isPending(gsakSaker) || isPending(psakSaker)) {
         return <Spinner type="XL" />;
     } else if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
-        return (
-            <JournalforSak traad={props.traad} sak={valgtSak} fnr={fnr} tilbake={tilbake} lukkPanel={props.lukkPanel} />
-        );
+        return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
     } else {
         return (
             <VelgSak

@@ -4,6 +4,8 @@ import { JournalforingsSak } from './JournalforingPanel';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { TableStyle } from '../../../../../../../utils/table/StyledTable';
 
+// Ved å bytte ut `tr`/`td` etc med html-elementer mister man tabell-semantikken og styling
+// Div-Table gjennopprettet denne vha role=XXX og display-attributtet, samtidig som man har mer fleksibilitet i tabellen
 const DivTable = styled(TableStyle)`
     [role='table'] {
         display: table;

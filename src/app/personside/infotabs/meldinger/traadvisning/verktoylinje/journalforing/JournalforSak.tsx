@@ -10,11 +10,12 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
+import { useSelector } from 'react-redux';
+import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 
 export interface Props {
     sak: JournalforingsSak;
     traad: Traad;
-    fnr: string;
     tilbake: () => void;
     lukkPanel: () => void;
 }
@@ -27,11 +28,12 @@ const PanelLayout = styled.section`
 `;
 
 export function JournalforSak(props: Props) {
-    const { sak, fnr, tilbake, traad, lukkPanel } = props;
+    const { sak, tilbake, traad, lukkPanel } = props;
     const { traadId } = traad;
     const kategori = sakKategori(sak);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const fnr = useSelector(fnrSelector);
 
     const journalfor = () => {
         setSubmitting(true);
