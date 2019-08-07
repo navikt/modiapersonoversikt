@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncResult, hasData, hasError } from '@nutgaard/use-fetch';
+import useFetch, { AsyncResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
@@ -8,6 +8,12 @@ import TemaTable from './TemaTabell';
 import styled from 'styled-components';
 import visibleIf from '../../../../../../../components/visibleIfHoc';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
+import { apiBaseUri } from '../../../../../../../api/config';
+import Spinner from 'nav-frontend-spinner';
+import { useSelector } from 'react-redux';
+import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const Form = styled.form`
     display: flex;
@@ -44,8 +50,6 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
 }
 
 interface Props {
-    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
-    psakSaker: AsyncResult<Array<JournalforingsSak>>;
     velgSak: (sak: JournalforingsSak) => void;
     valgtSak?: JournalforingsSak;
     lukkPanel: () => void;
@@ -96,10 +100,23 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 }
 
 function VelgSak(props: Props) {
+    const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const { gsakSaker, psakSaker } = props;
+    const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+        `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
+        credentials
+    );
+    const psakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+        `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
+        credentials
+    );
+
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
+
+    if (isPending(gsakSaker) || isPending(psakSaker)) {
+        return <Spinner type="XL" />;
+    }
 
     const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
         <TemaTable
