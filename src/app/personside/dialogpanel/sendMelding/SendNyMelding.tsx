@@ -9,8 +9,7 @@ import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import { useDispatch, useSelector } from 'react-redux';
-import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
@@ -19,6 +18,7 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import Select from 'nav-frontend-skjema/lib/select';
 import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { useSendMelding } from '../../../../redux/restReducers/sendMelding';
 
 const FormStyle = styled.form`
     display: flex;
@@ -41,17 +41,17 @@ enum Oppgaveliste {
 
 function SendNyMelding() {
     const initialDialogType = Meldingstype.SAMTALEREFERAT_TELEFON;
-    const [tema, setTema] = useState<Kodeverk | undefined>(undefined);
-    const [sak, setSak] = useState<JournalforingsSak | undefined>(undefined);
     const [tekst, setTekst] = useState('');
     const [dialogType, setDialogType] = useState(initialDialogType);
+    const [tema, setTema] = useState<Kodeverk | undefined>(undefined);
+    const [sak, setSak] = useState<JournalforingsSak | undefined>(undefined);
+    const [oppgaveListe, setOppgaveliste] = useState(Oppgaveliste.MinListe);
     const [tekstFeil, setTekstFeil] = useState(false);
     const [temaFeil, setTemaFeil] = useState(false);
-    const [oppgaveListe, setOppgaveliste] = useState(Oppgaveliste.MinListe);
     const [visFeilMeldinger, setVisFeilmeldinger] = useState(false);
+    const sendMelding = useSendMelding();
 
     const personinformasjon = useSelector((state: AppState) => state.restResources.personinformasjon);
-    const dispatch = useDispatch();
 
     const enhet = getSaksbehandlerEnhet();
 
@@ -63,35 +63,31 @@ function SendNyMelding() {
 
     const erReferat = dialogType !== Meldingstype.SPORSMAL_SKRIFTLIG;
     const erOppmøte = dialogType !== Meldingstype.SAMTALEREFERAT_OPPMOTE;
-    const erGyldigReferat = !temaFeil && !tekstFeil;
-    const erGyldigSpørsmål = true; //TODO sjekk at sak er valgt
+    const erGyldigReferat = erReferat && !temaFeil && !tekstFeil;
+    const erGyldigSpørsmål = !erReferat;
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (tema && erReferat && erGyldigReferat) {
-            dispatch(
-                sendMeldingActionCreator({
-                    fritekst: tekst,
-                    kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
-                    type: dialogType,
-                    temagruppe: tema.kodeRef,
-                    traadId: null,
-                    kontorsperretEnhet: null,
-                    erTilknyttetAnsatt: true
-                })
-            );
-        } else if (!erReferat && sak && erGyldigSpørsmål) {
-            dispatch(
-                sendMeldingActionCreator({
-                    fritekst: tekst,
-                    kanal: '',
-                    type: dialogType,
-                    temagruppe: sak.temaKode,
-                    traadId: null,
-                    kontorsperretEnhet: null,
-                    erTilknyttetAnsatt: true
-                })
-            );
+        if (erGyldigReferat && tema) {
+            sendMelding({
+                fritekst: tekst,
+                kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
+                type: dialogType,
+                temagruppe: tema.kodeRef,
+                traadId: null,
+                kontorsperretEnhet: null,
+                erTilknyttetAnsatt: true
+            });
+        } else if (erGyldigSpørsmål && sak) {
+            sendMelding({
+                fritekst: tekst,
+                kanal: '',
+                type: dialogType,
+                temagruppe: sak.temaKode,
+                traadId: null,
+                kontorsperretEnhet: null,
+                erTilknyttetAnsatt: true
+            });
         } else {
             setVisFeilmeldinger(true);
         }

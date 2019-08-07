@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
+import { useSelector } from 'react-redux';
+import { AppState } from '../redux/reducers';
+import { RestEndepunkter } from '../redux/restReducers/restReducers';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useEffect(() => {
@@ -41,4 +44,16 @@ export function usePrevious<T>(value: T) {
         ref.current = value;
     });
     return ref.current;
+}
+
+export function useAppState<T>(selector: (state: AppState) => T) {
+    return useSelector((state: AppState) => selector(state));
+}
+
+export function useRestResource<T>(selector: (resources: RestEndepunkter) => T) {
+    return useAppState(state => selector(state.restResources));
+}
+
+export function useFødselsnummer() {
+    return useAppState(state => state.gjeldendeBruker.fødselsnummer);
 }
