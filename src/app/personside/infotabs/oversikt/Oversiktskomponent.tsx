@@ -4,30 +4,46 @@ import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../redux/reducers';
+import { paths } from '../../../routes/routing';
 
 interface Props {
     children: ReactNode;
     tittel: string;
+    uriKomponent: string;
 }
+
+const PanelStyle = styled.div`
+    ${theme.hvittPanel};
+`;
 
 const OverskriftStyle = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: white;
     padding: ${theme.margin.px10};
 `;
 
+const MainStyle = styled.div`
+    > * {
+        border-top: ${theme.border.skille};
+    }
+`;
+
 function Oversiktskomponent(props: Props) {
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.uriKomponent}/`;
+
     return (
-        <div>
+        <PanelStyle>
             <OverskriftStyle>
                 <Undertittel tag="h3">{props.tittel}</Undertittel>
-                <Link className="lenke" to={''}>
-                    <Normaltekst>Vis alle</Normaltekst>
+                <Link className="lenke" to={path}>
+                    <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                 </Link>
             </OverskriftStyle>
-            {props.children}
-        </div>
+            <MainStyle>{props.children}</MainStyle>
+        </PanelStyle>
     );
 }
 

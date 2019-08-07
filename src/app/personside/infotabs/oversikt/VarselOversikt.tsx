@@ -8,8 +8,8 @@ import theme from '../../../../styles/personOversiktTheme';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyle = styled.ol`
-    > * {
-        margin-top: ${theme.margin.px1};
+    > *:not(:first-child) {
+        border-top: ${theme.border.skille};
     }
 `;
 

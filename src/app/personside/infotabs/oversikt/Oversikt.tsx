@@ -4,28 +4,41 @@ import Oversiktskomponent from './Oversiktskomponent';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
-import { Normaltekst } from 'nav-frontend-typografi';
 import YtelserOversikt from './YtelserOversikt';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
+import MeldingerOversikt from './MeldingerOversikt';
 
 const Style = styled.article`
     display: flex;
-    flex-wrap: wrap;
+`;
+
+const KolonneStyle = styled.div`
     > * {
         margin: ${pxToRem(15)};
-        width: 25rem;
-        overflow-wrap: break-word;
+        max-width: 30rem;
     }
 `;
 
 function Oversikt() {
     return (
         <Style>
-            <Oversiktskomponent tittel={'Utbetalinger'} children={<UtbetalingerOversikt />} />
-            <Oversiktskomponent tittel={'Oppfølging'} children={<OppfolgingOversikt />} />
-            <Oversiktskomponent tittel={'Varsler'} children={<VarselOversikt />} />
-            <Oversiktskomponent tittel={'Meldinger'} children={<Normaltekst>Meldinger</Normaltekst>} />
-            <Oversiktskomponent tittel={'Ytelser'} children={<YtelserOversikt />} />
+            <KolonneStyle>
+                <Oversiktskomponent
+                    uriKomponent={'utbetaling'}
+                    tittel={'Utbetalinger'}
+                    children={<UtbetalingerOversikt />}
+                />
+                <Oversiktskomponent
+                    uriKomponent={'oppfølging'}
+                    tittel={'Oppfølging'}
+                    children={<OppfolgingOversikt />}
+                />
+                <Oversiktskomponent uriKomponent={'varsler'} tittel={'Varsler'} children={<VarselOversikt />} />
+            </KolonneStyle>
+            <KolonneStyle>
+                <Oversiktskomponent uriKomponent={'meldinger'} tittel={'Meldinger'} children={<MeldingerOversikt />} />
+                <Oversiktskomponent uriKomponent={'ytelser'} tittel={'Ytelser'} children={<YtelserOversikt />} />
+            </KolonneStyle>
         </Style>
     );
 }

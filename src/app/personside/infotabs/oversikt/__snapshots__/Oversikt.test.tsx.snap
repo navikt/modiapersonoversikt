@@ -1,7 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
-.c1 {
+.c7 {
+  font-weight: bold;
+}
+
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+}
+
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -10,51 +20,50 @@ exports[`Viser oversikt med alt innhold 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  background-color: white;
   padding: 0.625rem;
 }
 
-.c4 {
-  font-weight: bold;
+.c4 > * {
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c6 > * {
-  margin-top: 0.0625rem;
+.c9 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c7 {
+.c10 {
   display: grid;
   grid-template-columns: 70% auto;
   background-color: white;
   padding: 0.625rem;
 }
 
-.c8 li {
+.c11 li {
   display: inline-block;
 }
 
-.c8 li:not(:last-child):after {
+.c11 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c5 {
-  margin-top: 0.0625rem;
-  background-color: white;
+.c8 {
   padding: 0.625rem;
 }
 
-.c9 > * {
-  background-color: white;
+.c12 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c12 > * {
   padding: 0.625rem;
-  margin-top: 1px;
 }
 
-.c2 > * {
-  margin-top: 0.0625rem;
+.c5 > *:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c3 {
+.c6 {
   background-color: white;
   padding: 0.625rem;
 }
@@ -64,248 +73,281 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
 }
 
-.c0 > * {
+.c1 > * {
   margin: 0.9375rem;
-  width: 25rem;
-  overflow-wrap: break-word;
+  max-width: 30rem;
 }
 
 <article
   className="c0"
 >
-  <div>
+  <div
+    className="c1"
+  >
     <div
-      className="c1"
-    >
-      <h3
-        className="typo-undertittel"
-      >
-        Utbetalinger
-      </h3>
-      <a
-        className="lenke"
-        href="/"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          Vis alle
-        </p>
-      </a>
-    </div>
-    <ol
       className="c2"
     >
       <div
         className="c3"
       >
-        <p
-          className="typo-normal"
+        <h3
+          className="typo-undertittel"
         >
-          26.03.2017
-           / 
-          Utbetalt
-        </p>
-        <p
-          className="typo-normal"
+          Utbetalinger
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/utbetaling/"
+          onClick={[Function]}
         >
-          <span
-            className="c4"
-          >
-            Sykepenger
-          </span>
-        </p>
-        <p
-          className="typo-normal"
-        >
-          09.11.2016
-           - 
-          31.10.2017
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Utbetaling til: 
-          AREMARK TESTFAMILIEN
-        </p>
-      </div>
-    </ol>
-  </div>
-  <div>
-    <div
-      className="c1"
-    >
-      <h3
-        className="typo-undertittel"
-      >
-        Oppfølging
-      </h3>
-      <a
-        className="lenke"
-        href="/"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          Vis alle
-        </p>
-      </a>
-    </div>
-    <div
-      className="c5"
-    >
-      <p
-        className="typo-normal"
-      >
-        Er ikke i arbeidsrettet oppfølging
-      </p>
-    </div>
-  </div>
-  <div>
-    <div
-      className="c1"
-    >
-      <h3
-        className="typo-undertittel"
-      >
-        Varsler
-      </h3>
-      <a
-        className="lenke"
-        href="/"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          Vis alle
-        </p>
-      </a>
-    </div>
-    <ol
-      className="c6"
-    >
-      <div
-        className="c7"
-      >
-        <p
-          className="typo-normal"
-        >
-          28. mars 2019
-        </p>
-        <ul
-          aria-label="Kommunikasjonskanaler"
-          className="c8"
-        >
-          <li
+          <p
             className="typo-normal"
           >
-            SMS
-          </li>
-          <li
-            className="typo-normal"
-          >
-            EPOST
-          </li>
-        </ul>
-        <p
-          className="typo-normal"
-        >
-          <span
-            className="c4"
-          >
-            Påminnelse om å sende meldekort
-          </span>
-        </p>
+            Gå til 
+            utbetalinger
+          </p>
+        </a>
       </div>
       <div
-        className="c7"
+        className="c4"
       >
-        <p
-          className="typo-normal"
+        <ol
+          className="c5"
         >
-          10. jan. 2019
-        </p>
-        <ul
-          aria-label="Kommunikasjonskanaler"
-          className="c8"
+          <div
+            className="c6"
+          >
+            <p
+              className="typo-normal"
+            >
+              26.03.2017
+               / 
+              Utbetalt
+            </p>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c7"
+              >
+                Sykepenger
+              </span>
+            </p>
+            <p
+              className="typo-normal"
+            >
+              09.11.2016
+               - 
+              31.10.2017
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Utbetaling til: 
+              AREMARK TESTFAMILIEN
+            </p>
+          </div>
+        </ol>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
         >
-          <li
+          Oppfølging
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/oppfølging/"
+          onClick={[Function]}
+        >
+          <p
             className="typo-normal"
           >
-            EPOST
-          </li>
-        </ul>
-        <p
-          className="typo-normal"
-        >
-          <span
-            className="c4"
-          >
-            Påminnelse om å sende meldekort
-          </span>
-        </p>
+            Gå til 
+            oppfølging
+          </p>
+        </a>
       </div>
-    </ol>
-  </div>
-  <div>
-    <div
-      className="c1"
-    >
-      <h3
-        className="typo-undertittel"
+      <div
+        className="c4"
       >
-        Meldinger
-      </h3>
-      <a
-        className="lenke"
-        href="/"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
+        <div
+          className="c8"
         >
-          Vis alle
-        </p>
-      </a>
-    </div>
-    <p
-      className="typo-normal"
-    >
-      Meldinger
-    </p>
-  </div>
-  <div>
-    <div
-      className="c1"
-    >
-      <h3
-        className="typo-undertittel"
-      >
-        Ytelser
-      </h3>
-      <a
-        className="lenke"
-        href="/"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          Vis alle
-        </p>
-      </a>
+          <p
+            className="typo-normal"
+          >
+            Er ikke i arbeidsrettet oppfølging
+          </p>
+        </div>
+      </div>
     </div>
     <div
-      className="c9"
-    />
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Varsler
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/varsler/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            varsler
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <ol
+          className="c9"
+        >
+          <div
+            className="c10"
+          >
+            <p
+              className="typo-normal"
+            >
+              28. mars 2019
+            </p>
+            <ul
+              aria-label="Kommunikasjonskanaler"
+              className="c11"
+            >
+              <li
+                className="typo-normal"
+              >
+                SMS
+              </li>
+              <li
+                className="typo-normal"
+              >
+                EPOST
+              </li>
+            </ul>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c7"
+              >
+                Påminnelse om å sende meldekort
+              </span>
+            </p>
+          </div>
+          <div
+            className="c10"
+          >
+            <p
+              className="typo-normal"
+            >
+              10. jan. 2019
+            </p>
+            <ul
+              aria-label="Kommunikasjonskanaler"
+              className="c11"
+            >
+              <li
+                className="typo-normal"
+              >
+                EPOST
+              </li>
+            </ul>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c7"
+              >
+                Påminnelse om å sende meldekort
+              </span>
+            </p>
+          </div>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Meldinger
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/meldinger/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            meldinger
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      />
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3
+          className="typo-undertittel"
+        >
+          Ytelser
+        </h3>
+        <a
+          className="lenke"
+          href="/modiapersonoversikt/person/10108000398/ytelser/"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            Gå til 
+            ytelser
+          </p>
+        </a>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c12"
+        />
+      </div>
+    </div>
   </div>
 </article>
 `;

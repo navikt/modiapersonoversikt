@@ -28,3 +28,12 @@ export function erTall(input: string) {
 export function sorterAlfabetisk(a: string, b: string) {
     return a > b ? 1 : -1;
 }
+
+export function delAvStringMedDots(input: string, lengde: number) {
+    let streng = input.substr(0, Math.min(lengde, input.length));
+    if (streng.length < input.length) {
+        // Vi har kuttet tekst, legg på dots
+        streng += '...';
+    }
+    return streng;
+}

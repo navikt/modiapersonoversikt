@@ -21,10 +21,11 @@ interface ForeldrepengerProps {
 }
 
 const YtelserStyle = styled.div`
+    > *:not(:first-child) {
+        border-top: ${theme.border.skille};
+    }
     > * {
-        background-color: white;
         padding: ${theme.margin.px10};
-        margin-top: 1px;
     }
 `;
 
