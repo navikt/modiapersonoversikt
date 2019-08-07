@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import styled from 'styled-components';
-import Input from 'nav-frontend-skjema/lib/input';
+import { Input } from 'nav-frontend-skjema';
 import { ChangeEvent } from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
-import Select from 'nav-frontend-skjema/lib/select';
+import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
-import Systemtittel from 'nav-frontend-typografi/lib/systemtittel';
+import { Systemtittel } from 'nav-frontend-typografi';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};

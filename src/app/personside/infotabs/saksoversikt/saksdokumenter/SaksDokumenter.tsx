@@ -2,13 +2,12 @@ import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import Checkbox from 'nav-frontend-skjema/lib/checkbox';
+import { Checkbox } from 'nav-frontend-skjema';
 import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
 import { AlignTextCenter, Bold, Uppercase } from '../../../../../components/common-styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
 import ViktigÅVite from '../viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
 import LenkeNorg from '../utils/LenkeNorg';
@@ -17,7 +16,7 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     valgtSakstema?: Sakstema;

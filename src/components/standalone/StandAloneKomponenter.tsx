@@ -115,10 +115,10 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <DialogPanel />
                 </TestProvider>
             );
-        case Komponenter.JournalforingPanel:
-            return <JournalforingPanel />;
         case Komponenter.Personsok:
             return <PersonsokStandAloneKomponent />;
+        case Komponenter.JournalforingPanel:
+            return <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

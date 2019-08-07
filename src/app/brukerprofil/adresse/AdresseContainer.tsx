@@ -16,7 +16,7 @@ import { Gateadresse, Matrikkeladresse, Postboksadresse, Utlandsadresse } from '
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
+import { Undertittel } from 'nav-frontend-typografi';
 import { PostResource } from '../../../rest/utils/postResource';
 import { EndreAdresseRequest } from '../../../redux/restReducers/brukerprofil/adresse-api';
 

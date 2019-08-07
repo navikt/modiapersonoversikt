@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontaktinformasjon/adresse/Adresse';
 import { Person } from '../../../models/person/person';
-import Element from 'nav-frontend-typografi/lib/element';
-import Normaltekst from 'nav-frontend-typografi/lib/normaltekst';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 
 const AdresseWrapper = styled.div`

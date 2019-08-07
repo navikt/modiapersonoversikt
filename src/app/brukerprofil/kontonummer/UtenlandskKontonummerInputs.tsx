@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import Input from 'nav-frontend-skjema/lib/input';
-import Select from 'nav-frontend-skjema/lib/select';
+import { Input } from 'nav-frontend-skjema';
+import { Select } from 'nav-frontend-skjema';
 import { EndreBankkontoState } from './kontonummerUtils';
 import { Kodeverk, KodeverkResponse } from '../../../models/kodeverk';
 import { formaterStatsborgerskapMedRiktigCasing } from '../../personside/visittkort/header/status/Statsborgerskap';

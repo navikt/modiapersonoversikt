@@ -1,41 +1,12 @@
 import React from 'react';
-import { UseFetchHook } from '../../../../../../../utils/hooks/use-fetch';
-import { JournalforingsSak, SakKategori } from './JournalforingPanel';
+import { AsyncResult, hasData, hasError } from '@nutgaard/use-fetch';
+import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel, AlertStripeProps } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import TemaTable from './TemaTabell';
 import styled from 'styled-components';
-
-interface Props {
-    gsakSaker: UseFetchHook<Array<JournalforingsSak>>;
-    psakSaker: UseFetchHook<Array<JournalforingsSak>>;
-    alleSaker: UseFetchHook<Array<JournalforingsSak>>;
-}
-
-type EnumObject<T> = { [key in SakKategori]: T };
-function fordelSakerPaKategori(
-    alle: UseFetchHook<Array<JournalforingsSak>>,
-    gsak: UseFetchHook<Array<JournalforingsSak>>,
-    psak: UseFetchHook<Array<JournalforingsSak>>
-): EnumObject<Array<JournalforingsSak>> {
-    const initalValue: EnumObject<Array<JournalforingsSak>> = { Fagsaker: [], 'Generelle saker': [] };
-    if (alle.isLoading || alle.isError) {
-        return initalValue;
-    }
-    const psakData = psak.data || [];
-    const gsakData = gsak.data || [];
-
-    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
-    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
-
-    return [...gsakSaker, ...psakData]
-        .flat()
-        .reduce((acc: EnumObject<Array<JournalforingsSak>>, sak: JournalforingsSak) => {
-            const kategori = sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
-            acc[kategori].push(sak);
-            return acc;
-        }, initalValue);
-}
+import visibleIf from '../../../../../../../components/visibleIfHoc';
 
 const Form = styled.form`
     display: flex;
@@ -47,9 +18,21 @@ const Form = styled.form`
     }
 `;
 
+const MiniRadio = styled(Radio)`
+    .radioknapp + label {
+        cline-height: 1.25rem;
+        &:before {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+    }
+`;
+
+const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
+
 function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
     return (
-        <Radio
+        <MiniRadio
             label={props.label}
             name="journalforing-sakgruppe"
             value={props.label}
@@ -59,38 +42,102 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
     );
 }
 
-function ConditionalFeilmelding(props: AlertStripeProps & { vis: boolean }) {
-    const { vis, ...rest } = props;
-    if (!vis) {
-        return null;
-    }
-    return <AlertStripeAdvarsel {...rest} />;
+interface Props {
+    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
+    psakSaker: AsyncResult<Array<JournalforingsSak>>;
+    velgSak: (sak: JournalforingsSak) => void;
+    valgtSak?: JournalforingsSak;
+    lukkPanel: () => void;
+}
+
+function getSaker(
+    gsak: AsyncResult<Array<JournalforingsSak>>,
+    psak: AsyncResult<Array<JournalforingsSak>>
+): JournalforingsSak[] {
+    const psakData = hasData(psak) ? psak.data : [];
+    const gsakData = hasData(gsak) ? gsak.data : [];
+
+    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
+    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
+
+    return [...gsakSaker, ...psakData];
+}
+
+function fordelSaker(saker: JournalforingsSak[]): Kategorier {
+    return saker.reduce(
+        (kategorier: Kategorier, sak: JournalforingsSak) => {
+            const kategori = sakKategori(sak);
+
+            if (!temaFinnes(kategorier, kategori, sak.temaNavn)) {
+                return lagTema(kategorier, kategori, sak);
+            } else {
+                return leggTilSak(kategorier, kategori, sak);
+            }
+        },
+        { Fagsaker: [], 'Generelle saker': [] }
+    );
+}
+
+export function sakKategori(sak: JournalforingsSak): SakKategori {
+    return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
+}
+
+function temaFinnes(acc: Kategorier, kategori: SakKategori, temaNavn: string): boolean {
+    return acc[kategori].some(tema => tema.tema === temaNavn);
+}
+
+function lagTema(kategorier: Kategorier, sakKategori: SakKategori, sak: JournalforingsSak) {
+    kategorier[sakKategori].push({ tema: sak.temaNavn, saker: [sak] });
+    return kategorier;
+}
+
+function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: JournalforingsSak) {
+    kategorier[kategori] = kategorier[kategori].map(tema => {
+        if (tema.tema !== sak.temaNavn) {
+            return tema;
+        }
+        return {
+            ...tema,
+            saker: tema.saker.concat(sak)
+        };
+    });
+
+    return kategorier;
 }
 
 function VelgSak(props: Props) {
-    const kategori = useFieldState(SakKategori.FAG);
-    const { gsakSaker, psakSaker, alleSaker } = props;
-    const sakerFordeltPaKategori = fordelSakerPaKategori(alleSaker, gsakSaker, psakSaker);
-    const valgtKategori = sakerFordeltPaKategori[kategori.value].map((sak: JournalforingsSak) => (
-        <li key={sak.fagsystemSaksId!}>{sak.fagsystemNavn}</li>
+    const valgtKategori = useFieldState(SakKategori.FAG);
+    const { gsakSaker, psakSaker } = props;
+    const saker = getSaker(gsakSaker, psakSaker);
+    const fordelteSaker = fordelSaker(saker);
+
+    const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
+        <TemaTable
+            key={tema.tema}
+            tema={tema.tema}
+            saker={tema.saker}
+            velgSak={props.velgSak}
+            valgtSak={props.valgtSak}
+        />
     ));
 
     return (
         <>
             <Form className="blokk-xxs">
-                <SakgruppeRadio label={SakKategori.FAG} {...kategori} />
-                <SakgruppeRadio label={SakKategori.GEN} {...kategori} />
+                <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
+                <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
-            <div className="blokk-xxs">
-                <ConditionalFeilmelding vis={!gsakSaker.isError} className="blokk-xxxs">
+            <div>
+                <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra GSAK
                 </ConditionalFeilmelding>
-                <ConditionalFeilmelding vis={!psakSaker.isError}>
+                <ConditionalFeilmelding visible={hasError(psakSaker)} className="blokk-xxxs">
                     Feil ved uthenting av saker fra PSAK
                 </ConditionalFeilmelding>
             </div>
-            <ul>{valgtKategori}</ul>
+            {temaTable}
         </>
     );
 }
+
 export default VelgSak;

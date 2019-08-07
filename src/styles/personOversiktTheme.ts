@@ -24,7 +24,8 @@ export const theme = {
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
-        objektlisteActive: 'rgba(102, 203, 236, 0.35)'
+        objektlisteActive: 'rgba(102, 203, 236, 0.35)',
+        morkGra: '#3E3832'
     },
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
@@ -70,6 +71,7 @@ export const theme = {
         `
     },
     focus: 'outline: none; box-shadow: 0 0 0 0.1875rem #FFBD66;',
+    focusInset: 'outline: none; box-shadow: inset 0 0 0 0.1875rem #FFBD66;',
     focusOverlay: css`
         position: relative;
         outline: none;

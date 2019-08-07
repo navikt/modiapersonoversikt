@@ -112,27 +112,28 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   background-color: white;
 }
 
-.c11 table {
+.c11 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c11 table thead {
+.c11 [role='table'] thead,
+.c11 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c11 table th,
-.c11 table td {
+.c11 [role='table'] [role='cell'],
+.c11 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c11 table th {
+.c11 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c11 table tr:nth-child(even) {
+.c11 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 

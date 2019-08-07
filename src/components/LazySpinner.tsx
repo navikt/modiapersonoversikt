@@ -26,7 +26,7 @@ class LazySpinner extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        clearTimeout(this.timer);
+        window.clearTimeout(this.timer);
     }
 
     render() {

@@ -344,12 +344,13 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(5000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
         withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
     );
+    mock.post(apiBaseUri + '/journalforing/:fnr/:traadId', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
 function setupNavigasjonsmenyMock(mock: FetchMock) {
@@ -421,7 +422,11 @@ export function setupMock() {
 
     const mock = FetchMock.configure({
         enableFallback: true,
-        middleware: MiddlewareUtils.combine(contentTypeMiddleware, MiddlewareUtils.failurerateMiddleware(0.02))
+        middleware: MiddlewareUtils.combine(
+            contentTypeMiddleware,
+            MiddlewareUtils.failurerateMiddleware(0.02),
+            MiddlewareUtils.loggingMiddleware()
+        )
     });
 
     setupInnloggetSaksbehandlerMock(mock);
@@ -457,11 +462,11 @@ export function setupMock() {
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
     setupSendMeldingMock(mock);
-    setupJournalforingMock(mock);
     setupPersonsokMock(mock);
     merkAvsluttMock(mock);
     merkBidragMock(mock);
     merkFeilsendtMock(mock);
     merkKontorsperretMock(mock);
     merkSlettMock(mock);
+    setupJournalforingMock(mock);
 }

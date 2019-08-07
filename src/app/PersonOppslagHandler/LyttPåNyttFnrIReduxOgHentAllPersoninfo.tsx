@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Action } from 'redux';
 import { AsyncAction } from '../../redux/ThunkTypes';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
+import { cache } from '@nutgaard/use-fetch';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -31,6 +32,10 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
     useFetchFeatureTogglesOnNewFnr();
+
+    useEffect(() => {
+        cache.clear();
+    }, [fnr]);
 
     return null;
 }

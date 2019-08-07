@@ -22,7 +22,7 @@ import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { PersonRespons } from '../../../../../models/person/person';
 import { paths } from '../../../../routes/routing';
-import Element from 'nav-frontend-typografi/lib/element';
+import { Element } from 'nav-frontend-typografi';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
