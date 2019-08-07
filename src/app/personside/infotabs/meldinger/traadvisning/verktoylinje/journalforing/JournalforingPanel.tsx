@@ -60,7 +60,7 @@ function JournalforingPanel(props: Props) {
     if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
         return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
     } else {
-        return <VelgSak velgSak={velgSak} valgtSak={valgtSak} lukkPanel={props.lukkPanel} />;
+        return <VelgSak velgSak={velgSak} valgtSak={valgtSak} />;
     }
 }
 
