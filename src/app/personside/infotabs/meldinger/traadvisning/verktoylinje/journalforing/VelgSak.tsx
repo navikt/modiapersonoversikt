@@ -52,7 +52,6 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
 interface Props {
     velgSak: (sak: JournalforingsSak) => void;
     valgtSak?: JournalforingsSak;
-    lukkPanel: () => void;
 }
 
 function getSaker(
