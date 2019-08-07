@@ -59,9 +59,6 @@ import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest'
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
-import { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import psaksaker from './saker/psaksaker';
-import sammensattesaker from './saker/sammensattesaker';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -96,8 +93,6 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendMelding: PostResource<SendMeldingRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
-    psakSaker: RestResource<JournalforingsSak[]>;
-    sammensatteSaker: RestResource<JournalforingsSak[]>;
 }
 
 export default combineReducers<RestEndepunkter>({
@@ -132,7 +127,5 @@ export default combineReducers<RestEndepunkter>({
     oppgaveGsakTema: oppgaveGsakTemaReducer,
     sendMelding: sendMelding,
     opprettOppgave: opprettOppgave,
-    personsok: personsok,
-    psakSaker: psaksaker,
-    sammensatteSaker: sammensattesaker
+    personsok: personsok
 });
