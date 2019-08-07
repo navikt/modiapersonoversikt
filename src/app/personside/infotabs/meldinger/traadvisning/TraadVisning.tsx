@@ -3,12 +3,12 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useEffect } from 'react';
 import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 
 interface Props {
     valgtTraad?: Traad;
@@ -40,13 +40,11 @@ function TraadVisning({ valgtTraad, traader }: Props) {
         }
     }, [valgtTraad, traader, dispatch]);
 
-    if (!valgtTraad) {
-        return <AlertStripeInfo>Ingen tråd er valgt</AlertStripeInfo>;
-    }
-
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'}>
-            <AlleMeldinger traad={valgtTraad} />
+            <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
+                {trader => <AlleMeldinger traad={valgtTraad || trader[0]} />}
+            </RestResourceConsumer>
         </VisningStyle>
     );
 }

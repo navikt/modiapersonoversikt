@@ -20,7 +20,7 @@ function TemaTable({
     velgSak,
     valgtSak
 }: Tema & { velgSak: (sak: JournalforingsSak) => void; valgtSak?: JournalforingsSak }) {
-    const apenByDefault = (valgtSak && saker.findIndex(sak => sak.saksId === valgtSak.saksId) >= 0) || false;
+    const apenByDefault = (valgtSak && saker.some(sak => sak.saksId === valgtSak.saksId)) || false;
     const [apen, settApen] = useState(apenByDefault);
     return (
         <MiniEkspanderbartpanelBasePure

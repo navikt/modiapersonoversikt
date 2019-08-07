@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncResult, hasData, hasError } from '@nutgaard/use-fetch';
+import useFetch, { AsyncResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
@@ -7,6 +7,13 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components';
 import visibleIf from '../../../../../../../components/visibleIfHoc';
+import { Group, groupBy } from '../../../../../../../utils/groupArray';
+import { apiBaseUri } from '../../../../../../../api/config';
+import Spinner from 'nav-frontend-spinner';
+import { useSelector } from 'react-redux';
+import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const Form = styled.form`
     display: flex;
@@ -43,8 +50,6 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
 }
 
 interface Props {
-    gsakSaker: AsyncResult<Array<JournalforingsSak>>;
-    psakSaker: AsyncResult<Array<JournalforingsSak>>;
     velgSak: (sak: JournalforingsSak) => void;
     valgtSak?: JournalforingsSak;
     lukkPanel: () => void;
@@ -64,52 +69,54 @@ function getSaker(
 }
 
 function fordelSaker(saker: JournalforingsSak[]): Kategorier {
-    return saker.reduce(
-        (kategorier: Kategorier, sak: JournalforingsSak) => {
-            const kategori = sakKategori(sak);
+    const kategoriGruppert = saker.reduce(groupBy(sakKategori), { [SakKategori.FAG]: [], [SakKategori.GEN]: [] });
 
-            if (!temaFinnes(kategorier, kategori, sak.temaNavn)) {
-                return lagTema(kategorier, kategori, sak);
-            } else {
-                return leggTilSak(kategorier, kategori, sak);
-            }
-        },
-        { Fagsaker: [], 'Generelle saker': [] }
+    const temaGruppertefagSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.FAG].reduce(
+        groupBy(sak => sak.temaNavn),
+        {}
     );
+    const temaGrupperteGenerelleSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.GEN].reduce(
+        groupBy(sak => sak.temaNavn),
+        {}
+    );
+
+    const fagSaker = Object.entries(temaGruppertefagSaker).reduce(
+        (acc, [tema, saker]) => [...acc, { tema, saker }],
+        [] as Tema[]
+    );
+    const generelleSaker = Object.entries(temaGrupperteGenerelleSaker).reduce(
+        (acc, [tema, saker]) => [...acc, { tema, saker }],
+        [] as Tema[]
+    );
+
+    return {
+        [SakKategori.FAG]: fagSaker,
+        [SakKategori.GEN]: generelleSaker
+    };
 }
 
 export function sakKategori(sak: JournalforingsSak): SakKategori {
     return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
 }
 
-function temaFinnes(acc: Kategorier, kategori: SakKategori, temaNavn: string): boolean {
-    return acc[kategori].some(tema => tema.tema === temaNavn);
-}
-
-function lagTema(kategorier: Kategorier, sakKategori: SakKategori, sak: JournalforingsSak) {
-    kategorier[sakKategori].push({ tema: sak.temaNavn, saker: [sak] });
-    return kategorier;
-}
-
-function leggTilSak(kategorier: Kategorier, kategori: SakKategori, sak: JournalforingsSak) {
-    kategorier[kategori] = kategorier[kategori].map(tema => {
-        if (tema.tema !== sak.temaNavn) {
-            return tema;
-        }
-        return {
-            ...tema,
-            saker: tema.saker.concat(sak)
-        };
-    });
-
-    return kategorier;
-}
-
 function VelgSak(props: Props) {
+    const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const { gsakSaker, psakSaker } = props;
+    const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+        `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
+        credentials
+    );
+    const psakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+        `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
+        credentials
+    );
+
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
+
+    if (isPending(gsakSaker) || isPending(psakSaker)) {
+        return <Spinner type="XL" />;
+    }
 
     const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
         <TemaTable
