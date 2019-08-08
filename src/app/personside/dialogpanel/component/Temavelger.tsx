@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
-import { Select } from 'nav-frontend-skjema';
+import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import { ChangeEvent, useEffect } from 'react';
 
 interface Props {
@@ -32,23 +32,24 @@ function Temavelger(props: Props) {
         props.setTema(tema);
     };
     return (
-        <Select
-            // @ts-ignore
-            selectRef={ref => (selectRef = ref)}
-            label="Tema"
-            onChange={velgTemaHandler}
-            feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}
-            value={props.tema ? props.tema.kodeRef : ''}
-        >
-            <option value="" disabled>
-                Velg tema
-            </option>
-            {temaValg.map(valg => (
-                <option key={valg.kodeRef} value={valg.kodeRef}>
-                    {valg.beskrivelse}
+        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}>
+            <Select
+                // @ts-ignore
+                selectRef={ref => (selectRef = ref)}
+                label="Tema"
+                onChange={velgTemaHandler}
+                value={props.tema ? props.tema.kodeRef : ''}
+            >
+                <option value="" disabled>
+                    Velg tema
                 </option>
-            ))}
-        </Select>
+                {temaValg.map(valg => (
+                    <option key={valg.kodeRef} value={valg.kodeRef}>
+                        {valg.beskrivelse}
+                    </option>
+                ))}
+            </Select>
+        </SkjemaGruppe>
     );
 }
 

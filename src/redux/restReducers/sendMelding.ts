@@ -13,6 +13,11 @@ export function getMeldingPostUri(state: AppState): string {
     return `${apiBaseUri}/dialog/${fnr}/sendmelding`;
 }
 
+export type SendMeldingRequestRequiredFormData = Pick<
+    SendMeldingRequest,
+    'fritekst' | 'kanal' | 'type' | 'temagruppe' | 'traadId' | 'kontorsperretEnhet' | 'erTilknyttetAnsatt'
+>;
+
 export function useSendMelding() {
     const dispatch = useDispatch();
     const sendMeldingActions = useRestResource(resources => resources.sendMelding.actions);
@@ -20,12 +25,7 @@ export function useSendMelding() {
     const fødselsnummer = useFødselsnummer();
     const saksbehandler = getSaksbehandlerIdent();
 
-    return (
-        payload: Pick<
-            SendMeldingRequest,
-            'fritekst' | 'kanal' | 'type' | 'temagruppe' | 'traadId' | 'kontorsperretEnhet' | 'erTilknyttetAnsatt'
-        >
-    ) => {
+    return (payload: SendMeldingRequestRequiredFormData) => {
         if (!saksbehandler) {
             const error = new Error('Kunne ikke finne saksbehandlerident');
             loggError(error);
