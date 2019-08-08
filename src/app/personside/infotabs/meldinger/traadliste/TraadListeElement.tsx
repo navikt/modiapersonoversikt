@@ -8,10 +8,12 @@ import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
 import { AppState } from '../../../../../redux/reducers';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
+import { isFinishedPosting } from '../../../../../rest/utils/postResource';
+import { EtikettSuksess } from 'nav-frontend-etiketter';
 
 interface OwnProps {
     traad: Traad;
@@ -69,11 +71,26 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
         </li>
     );
+}
+
+function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+
+    if (!isFinishedPosting(oppgaveResource)) {
+        return null;
+    }
+
+    if (oppgaveResource.response.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
+        return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
+    }
+
+    return null;
 }
 
 function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
