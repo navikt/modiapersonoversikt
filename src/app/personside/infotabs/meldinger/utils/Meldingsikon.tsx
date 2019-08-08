@@ -7,19 +7,31 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
 import styled from 'styled-components';
-import { theme } from '../../../../../styles/personOversiktTheme';
+import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
+import { UndertekstBold } from 'nav-frontend-typografi';
 
 interface MeldingsikonProps {
     type: Meldingstype;
     erFerdigstiltUtenSvar: boolean;
     erMonolog: boolean;
+    antallMeldinger: number;
 }
 
-const SVGStyling = styled.span`
+const Styling = styled.span`
+    position: relative;
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
     }
+`;
+
+const NumberBadge = styled(UndertekstBold)`
+    position: absolute;
+    top: ${pxToRem(-3)};
+    right: ${pxToRem(9)};
+    background-color: white;
+    border-radius: 50%;
+    padding: 0 0.1rem;
 `;
 
 function Ikon({ props }: { props: MeldingsikonProps }) {
@@ -45,9 +57,10 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
 
 function Meldingsikon(props: MeldingsikonProps) {
     return (
-        <SVGStyling>
+        <Styling>
             <Ikon props={props} />
-        </SVGStyling>
+            {props.antallMeldinger > 1 && <NumberBadge>{props.antallMeldinger}</NumberBadge>}
+        </Styling>
     );
 }
 

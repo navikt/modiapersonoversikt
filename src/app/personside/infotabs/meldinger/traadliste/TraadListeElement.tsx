@@ -64,6 +64,7 @@ function TraadListeElement(props: Props) {
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
                     />
                     <div>
                         <UUcustomOrder>
