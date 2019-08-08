@@ -176,56 +176,64 @@ exports[`viser hurtigreferat 1`] = `
         className="c1"
       >
         <div
-          className="skjemaelement"
+          className=""
         >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Tema
-          </label>
           <div
-            className="selectContainer input--fullbredde"
+            className="skjemaelement"
           >
-            <select
-              className="skjemaelement__input"
-              disabled={false}
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              value=""
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
             >
-              <option
-                disabled={true}
+              Tema
+            </label>
+            <div
+              className="selectContainer input--fullbredde"
+            >
+              <select
+                className="skjemaelement__input"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
                 value=""
               >
-                Velg tema
-              </option>
-              <option
-                value="ARBD"
-              >
-                Arbeid
-              </option>
-              <option
-                value="FMLI"
-              >
-                Familie
-              </option>
-              <option
-                value="HJLPM"
-              >
-                Hjelpemiddel
-              </option>
-              <option
-                value="PENS"
-              >
-                Pensjon
-              </option>
-              <option
-                value="OVRG"
-              >
-                Øvrig
-              </option>
-            </select>
+                <option
+                  disabled={true}
+                  value=""
+                >
+                  Velg tema
+                </option>
+                <option
+                  value="ARBD"
+                >
+                  Arbeid
+                </option>
+                <option
+                  value="FMLI"
+                >
+                  Familie
+                </option>
+                <option
+                  value="HJLPM"
+                >
+                  Hjelpemiddel
+                </option>
+                <option
+                  value="PENS"
+                >
+                  Pensjon
+                </option>
+                <option
+                  value="OVRG"
+                >
+                  Øvrig
+                </option>
+              </select>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
           </div>
           <div
             aria-live="assertive"

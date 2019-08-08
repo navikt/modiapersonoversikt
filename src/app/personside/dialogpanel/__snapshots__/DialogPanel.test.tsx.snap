@@ -137,6 +137,19 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 1rem;
 }
 
+.c11 .ekspanderbartPanel__hode,
+.c11 ekspanderbartPanel__innhold {
+  padding: 0.6rem;
+}
+
+.c12 textarea {
+  min-height: 9rem;
+}
+
+.c10 > * {
+  margin-bottom: 0.3rem;
+}
+
 .c9 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -151,12 +164,27 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c9 textarea {
-  min-height: 9rem;
-}
-
 .c9 .ReactCollapse--collapse .skjemaelement {
   margin: 0;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c13 > * {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .c0 {
@@ -221,56 +249,64 @@ exports[`viser dialogpanel 1`] = `
           className="c2"
         >
           <div
-            className="skjemaelement"
+            className=""
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Tema
-            </label>
             <div
-              className="selectContainer input--fullbredde"
+              className="skjemaelement"
             >
-              <select
-                className="skjemaelement__input"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                value=""
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <option
-                  disabled={true}
+                Tema
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
                   value=""
                 >
-                  Velg tema
-                </option>
-                <option
-                  value="ARBD"
-                >
-                  Arbeid
-                </option>
-                <option
-                  value="FMLI"
-                >
-                  Familie
-                </option>
-                <option
-                  value="HJLPM"
-                >
-                  Hjelpemiddel
-                </option>
-                <option
-                  value="PENS"
-                >
-                  Pensjon
-                </option>
-                <option
-                  value="OVRG"
-                >
-                  Øvrig
-                </option>
-              </select>
+                  <option
+                    disabled={true}
+                    value=""
+                  >
+                    Velg tema
+                  </option>
+                  <option
+                    value="ARBD"
+                  >
+                    Arbeid
+                  </option>
+                  <option
+                    value="FMLI"
+                  >
+                    Familie
+                  </option>
+                  <option
+                    value="HJLPM"
+                  >
+                    Hjelpemiddel
+                  </option>
+                  <option
+                    value="PENS"
+                  >
+                    Pensjon
+                  </option>
+                  <option
+                    value="OVRG"
+                  >
+                    Øvrig
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
             </div>
             <div
               aria-live="assertive"
@@ -1137,8 +1173,136 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
       className="c9"
       onSubmit={[Function]}
     >
+      <fieldset
+        className="skjema__fieldset c10"
+      >
+        <legend
+          className="skjema__legend"
+        >
+          Velg dialogtype
+        </legend>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onClick={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Samtalereferat telefon
+          </label>
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onClick={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Samtalereferat oppmøte
+          </label>
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onClick={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Spørsmål til bruker
+          </label>
+        </div>
+      </fieldset>
       <div
-        className="inputPanelGruppe"
+        className=""
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Tema
+          </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                disabled={true}
+                value=""
+              >
+                Velg tema
+              </option>
+              <option
+                value="ARBD"
+              >
+                Arbeid
+              </option>
+              <option
+                value="FMLI"
+              >
+                Familie
+              </option>
+              <option
+                value="HJLPM"
+              >
+                Hjelpemiddel
+              </option>
+              <option
+                value="PENS"
+              >
+                Pensjon
+              </option>
+              <option
+                value="OVRG"
+              >
+                Øvrig
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className=""
       >
         <fieldset
           className="skjema__fieldset"
@@ -1146,78 +1310,74 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           <legend
             className="skjema__legend"
           >
-            Velg dialogtype
+            Velg sak
           </legend>
           <div
-            className="inputPanelGruppe__inner"
+            className="ekspanderbartPanel c11 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
-            <label
-              className="inputPanel radioPanel inputPanel--checked"
-              htmlFor="Helt tilfeldig ID"
+            <button
+              aria-expanded={false}
+              className="ekspanderbartPanel__hode"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
             >
-              <input
-                aria-checked={true}
-                checked={true}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Dialogtype"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="SAMTALEREFERAT_TELEFON"
-              />
-              <span
-                className="inputPanel__label"
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
               >
-                Samtalereferat telefon
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
+                <span
+                  className="typo-normal ekspanderbartPanel__heading"
+                >
+                  Velg sak
+                </span>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <article
+              aria-label="Velg sak"
+              className="ekspanderbartPanel__innhold"
             >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Dialogtype"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="SPORSMAL_SKRIFTLIG"
-              />
-              <span
-                className="inputPanel__label"
+              <svg
+                aria-label="Laster innhold"
+                className="spinner spinner--xl"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                preserveAspectRatio="xMidYMid"
+                viewBox="0 0 50 50"
+                width={32}
               >
-                Spørsmål til bruker
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Dialogtype"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="SAMTALEREFERAT_OPPMOTE"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Samtalereferat oppmøte
-              </span>
-            </label>
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#bdbab7"
+                  strokeWidth="5"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="5"
+                />
+              </svg>
+            </article>
           </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
         </fieldset>
         <div
           aria-live="assertive"
@@ -1231,7 +1391,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           className="skjemaelement__label"
           htmlFor="Helt tilfeldig ID"
         >
-          Tema
+          Oppgaveliste
         </label>
         <div
           className="selectContainer input--fullbredde"
@@ -1241,38 +1401,19 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             disabled={false}
             id="Helt tilfeldig ID"
             onChange={[Function]}
-            value=""
+            value="MinListe"
           >
             <option
-              disabled={true}
-              value=""
+              value="MinListe"
             >
-              Velg tema
+              Min oppgaveliste
             </option>
             <option
-              value="ARBD"
+              value="Enhetensliste"
             >
-              Arbeid
-            </option>
-            <option
-              value="FMLI"
-            >
-              Familie
-            </option>
-            <option
-              value="HJLPM"
-            >
-              Hjelpemiddel
-            </option>
-            <option
-              value="PENS"
-            >
-              Pensjon
-            </option>
-            <option
-              value="OVRG"
-            >
-              Øvrig
+              Skal til 
+              4100
+               sin oppgaveliste
             </option>
           </select>
         </div>
@@ -1282,149 +1423,55 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
         />
       </div>
       <div
-        className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
+        className="c12"
       >
-        <button
-          aria-expanded={false}
-          className="ekspanderbartPanel__hode"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          type="button"
-        >
-          <div
-            className="ekspanderbartPanel__flex-wrapper"
-          >
-            <span
-              className="typo-normal ekspanderbartPanel__heading"
-            >
-              Velg sak
-            </span>
-            <span
-              className="ekspanderbartPanel__indikator"
-            />
-          </div>
-        </button>
-        <article
-          aria-label="Velg sak"
-          className="ekspanderbartPanel__innhold"
-        >
-          <svg
-            aria-label="Laster innhold"
-            className="spinner spinner--xl"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            preserveAspectRatio="xMidYMid"
-            viewBox="0 0 50 50"
-            width={32}
-          >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#bdbab7"
-              strokeWidth="5"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="5"
-            />
-          </svg>
-        </article>
-      </div>
-      <section>
         <div
-          className="skjemaelement"
+          className="skjemaelement textarea__container"
         >
           <label
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Oppgaveliste
+            Melding
           </label>
           <div
-            className="selectContainer input--fullbredde"
+            className="textarea--medMeta__wrapper"
           >
-            <select
-              className="skjemaelement__input"
-              disabled={false}
+            <textarea
+              className="skjemaelement__input textarea--medMeta"
               id="Helt tilfeldig ID"
               onChange={[Function]}
-              value="MinListe"
+              placeholder="Alt du skriver i denne boksen blir synlig for brukeren når du trykker \\"Del med Aremark\\""
+              style={
+                Object {
+                  "height": "30px",
+                }
+              }
+              type="text"
+              value=""
+            />
+            <p
+              className="textarea--medMeta__teller"
             >
-              <option
-                value="MinListe"
-              >
-                Min oppgaveliste
-              </option>
-              <option
-                value="Enhetensliste"
-              >
-                Skal til 
-                4100
-                 sin oppgaveliste
-              </option>
-            </select>
+              <span>
+                Du har 
+                5000
+                 tegn igjen
+              </span>
+            </p>
           </div>
           <div
             aria-live="assertive"
             role="alert"
           />
-        </div>
-      </section>
-      <div
-        className="skjemaelement textarea__container"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Melding
-        </label>
-        <div
-          className="textarea--medMeta__wrapper"
-        >
-          <textarea
-            className="skjemaelement__input textarea--medMeta"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            placeholder="Alt du skriver i denne boksen blir synlig for brukeren når du trykker \\"Del med Aremark\\""
-            style={
-              Object {
-                "height": "30px",
-              }
-            }
-            type="text"
-            value=""
+          <div
+            aria-hidden="true"
+            className="textareamirror"
           />
-          <p
-            className="textarea--medMeta__teller"
-          >
-            <span>
-              Du har 
-              5000
-               tegn igjen
-            </span>
-          </p>
         </div>
         <div
           aria-live="assertive"
           role="alert"
-        />
-        <div
-          aria-hidden="true"
-          className="textareamirror"
         />
       </div>
       <div
@@ -1465,22 +1512,26 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           Bruker kan svare
         </div>
       </div>
-      <button
-        className="knapp knapp--hoved"
-        disabled={false}
-        type="submit"
+      <div
+        className="c13"
       >
-        Del med 
-        Aremark
-      </button>
-      <button
-        className="knapp knapp--standard"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Avbryt
-      </button>
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          type="submit"
+        >
+          Del med 
+          Aremark
+        </button>
+        <button
+          className="knapp knapp--standard"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Avbryt
+        </button>
+      </div>
     </form>
   </article>
 </article>
