@@ -58,6 +58,7 @@ function Traadelement({ traad }: { traad: Traad }) {
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(traad)}
+                        antallMeldinger={traad.meldinger.length}
                     />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
