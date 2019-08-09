@@ -16,9 +16,6 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
-    > *:not(:first-child) {
-        margin: 0.4em 0 0 0;
-    }
 `;
 
 const KnappLayout = styled.div`

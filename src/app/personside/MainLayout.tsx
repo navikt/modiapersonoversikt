@@ -41,9 +41,7 @@ class MainLayout extends React.Component<Props> {
                     <div>
                         <PilKnapp
                             width="30px"
-                            beskrivelse={
-                                this.props.UI.dialogPanel.ekspandert ? 'Minimer dialogpanel' : 'Ekspander dialogpanel'
-                            }
+                            beskrivelse={this.props.UI.dialogPanel.ekspandert ? 'Skjul dialogpanel' : 'Vis dialogpanel'}
                             direction={this.props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
                             onClick={() => this.props.toggleDialogpanel()}
                         />

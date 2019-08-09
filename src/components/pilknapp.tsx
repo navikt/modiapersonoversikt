@@ -62,6 +62,7 @@ function PilKnapp(props: Props) {
     return (
         <KnappWrapper
             aria-label={props.beskrivelse}
+            title={props.beskrivelse}
             onClick={props.onClick}
             width={props.width}
             direction={props.direction}

@@ -13,11 +13,7 @@ import SendNyMelding from './sendMelding/SendNyMelding';
 import { useRestResource } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 
-const border = 'rgba(0, 0, 0, 0.1) 1px solid';
-
 const DialogPanelWrapper = styled.article`
-    border-top: ${border};
-    border-bottom: ${border};
     flex-grow: 1;
     > *:not(:last-child) {
         margin-bottom: ${theme.margin.layout};
