@@ -3,6 +3,8 @@ import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import { ChangeEvent, useEffect } from 'react';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     setTema: (tema?: Kodeverk) => void;
@@ -17,6 +19,12 @@ export const temaValg: Kodeverk[] = [
     { beskrivelse: 'Pensjon', kodeRef: Temagruppe.Pensjon },
     { beskrivelse: 'Øvrig', kodeRef: Temagruppe.Øvrig }
 ];
+
+const StyledSelect = styled(Select)`
+    label {
+        ${theme.visuallyHidden}
+    }
+`;
 
 function Temavelger(props: Props) {
     let selectRef: HTMLSelectElement | null = null;
@@ -33,7 +41,7 @@ function Temavelger(props: Props) {
     };
     return (
         <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}>
-            <Select
+            <StyledSelect
                 // @ts-ignore
                 selectRef={ref => (selectRef = ref)}
                 label="Tema"
@@ -48,7 +56,7 @@ function Temavelger(props: Props) {
                         {valg.beskrivelse}
                     </option>
                 ))}
-            </Select>
+            </StyledSelect>
         </SkjemaGruppe>
     );
 }

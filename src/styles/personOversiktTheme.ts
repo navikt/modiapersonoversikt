@@ -19,6 +19,7 @@ export const theme = {
         lenkeSelected: '#005b82',
         lenkeHover: '#C6C2BF',
         lenke: '#0067c5',
+        dialogpanelBakgrunn: '#f1f2f2',
         bakgrunn: '#e9e7e7',
         kategori: '#cce1f3',
         ytelser: '#d6897d',

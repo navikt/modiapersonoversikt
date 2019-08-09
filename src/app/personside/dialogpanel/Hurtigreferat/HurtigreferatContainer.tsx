@@ -24,15 +24,16 @@ import { useDispatch } from 'react-redux';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
-    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.2);
-    border-radius: ${theme.borderRadius.layout};
+    .ekspanderbartPanel__hode {
+        padding: 0.6rem;
+    }
     label {
         ${theme.visuallyHidden}
     }
 `;
 
 const Padding = styled.div`
-    padding: 0 1rem;
+    padding: 0 0.5rem;
 `;
 
 function HurtigreferatContainer() {
@@ -100,7 +101,13 @@ function HurtigreferatContainer() {
     return (
         <Style>
             <h3 className="sr-only">Send hurtigreferat</h3>
-            <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
+            <EkspanderbartpanelPure
+                apen={open}
+                onClick={onClickHandler}
+                tittel={'Spor samtale'}
+                tittelProps="element"
+                border={true}
+            >
                 <Padding>
                     <Temavelger setTema={setTemaHandler} tema={tema} visFeilmelding={visTemaFeilmelding} />
                 </Padding>

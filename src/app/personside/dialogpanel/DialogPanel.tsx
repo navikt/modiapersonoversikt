@@ -15,9 +15,15 @@ import { useDispatch } from 'react-redux';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
-    > *:not(:last-child) {
-        margin-bottom: ${theme.margin.layout};
-    }
+`;
+
+const Padding = styled.div`
+    padding: 1rem ${theme.margin.layout};
+`;
+
+const HurtigreferatWrapper = styled(Padding)`
+    background-color: white;
+    border-bottom: ${theme.border.skilleSvak};
 `;
 
 function Dialogpanel() {
@@ -26,29 +32,34 @@ function Dialogpanel() {
     if (isFinishedPosting(sendReferatResource)) {
         //TODO handle sendspørsmål
         return (
-            <>
+            <Padding>
                 <VisuallyHiddenAutoFokusHeader tittel="Melding sendt" />
                 <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
                 <Preview fritekst={sendReferatResource.payload.fritekst} />
                 <KnappBase type="standard" onClick={() => dispatch(sendReferatResource.actions.reset)}>
                     Send ny melding
                 </KnappBase>
-            </>
+            </Padding>
         );
     }
     if (isFailedPosting(sendReferatResource)) {
         //TODO handle sendspørsmål
         return (
-            <AlertStripeFeil>
-                Det skjedde en feil ved sending av melding: {sendReferatResource.error.message}
-            </AlertStripeFeil>
+            <Padding>
+                <AlertStripeFeil>
+                    Det skjedde en feil ved sending av melding: {sendReferatResource.error.message}
+                </AlertStripeFeil>
+            </Padding>
         );
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
-            <Undertittel>Dialogpanel</Undertittel>
-            <HurtigReferatContainer />
-            <SendNyMelding />
+            <HurtigreferatWrapper>
+                <HurtigReferatContainer />
+            </HurtigreferatWrapper>
+            <Padding>
+                <SendNyMelding />
+            </Padding>
         </ErrorBoundary>
     );
 }
@@ -56,6 +67,7 @@ function Dialogpanel() {
 function DialogPanel() {
     return (
         <DialogPanelWrapper role="region" aria-label="Dialogpanel">
+            <Undertittel className="sr-only">Dialogpanel</Undertittel>
             <Dialogpanel />
         </DialogPanelWrapper>
     );

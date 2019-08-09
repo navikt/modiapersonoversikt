@@ -14,14 +14,15 @@ import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import Select from 'nav-frontend-skjema/lib/select';
 import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
 import VelgDialogType from './VelgDialogType';
 import { useRestResource } from '../../../../utils/customHooks';
+import { Undertittel } from 'nav-frontend-typografi';
+import Oppgaveliste from './Oppgaveliste';
 
-enum Oppgaveliste {
+export enum OppgavelisteValg {
     MinListe = 'MinListe',
     EnhetensListe = 'Enhetensliste'
 }
@@ -37,26 +38,27 @@ export interface FormState {
     dialogType: SendNyMeldingDialogTyper;
     tema?: Kodeverk;
     sak?: JournalforingsSak;
-    oppgaveListe: Oppgaveliste;
+    oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
 }
 
 const FormStyle = styled.form`
     display: flex;
+    margin-top: 1rem;
     flex-direction: column;
     align-items: stretch;
     .ReactCollapse--collapse .skjemaelement {
-        margin: 0;
+        margin-bottom: 0;
     }
 `;
 
 const KnappWrapper = styled.div`
     display: flex;
-    justify-content: flex-end;
     flex-wrap: wrap;
     > * {
-        margin-top: 0.5rem;
-        margin-left: 0.5rem;
+        margin-top: 0.7rem;
+        margin-right: 0.5rem;
+        flex-grow: 1;
     }
 `;
 
@@ -68,7 +70,7 @@ function SendNyMelding() {
         dialogType: SendNyMeldingDialogTyper.SamtaleReferatTelefon,
         tema: undefined,
         sak: undefined,
-        oppgaveListe: Oppgaveliste.MinListe,
+        oppgaveListe: OppgavelisteValg.MinListe,
         visFeilmeldinger: false
     };
     const [state, setState] = useState<FormState>(initialState);
@@ -95,7 +97,7 @@ function SendNyMelding() {
                 postSpørsmålAction({
                     fritekst: state.tekst,
                     saksID: state.sak.saksId,
-                    erOppgaveTilknyttetAnsatt: state.oppgaveListe === Oppgaveliste.MinListe
+                    erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
                 })
             );
         } else {
@@ -111,41 +113,33 @@ function SendNyMelding() {
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
         : 'bruker';
 
-    function OppgaveListe() {
-        return (
-            <Select
-                label="Oppgaveliste"
-                value={state.oppgaveListe}
-                onChange={event => updateState({ oppgaveListe: event.target.value as Oppgaveliste })}
-            >
-                <option value={Oppgaveliste.MinListe}>Min oppgaveliste</option>
-                <option value={Oppgaveliste.EnhetensListe}>Skal til {enhet} sin oppgaveliste</option>
-            </Select>
-        );
-    }
-
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
 
     return (
         <article>
-            <h3 className="sr-only">Send ny melding</h3>
+            <Undertittel>Send ny melding</Undertittel>
             <FormStyle onSubmit={handleSubmit}>
                 <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
-                <UnmountClosed isOpened={erReferat}>
+                <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
+                    {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                     <Temavelger
                         setTema={tema => updateState({ tema: tema })}
                         tema={state.tema}
                         visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
                     />
                 </UnmountClosed>
-                <UnmountClosed isOpened={erSpørsmål}>
+                <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
                     <DialogpanelVelgSak
                         setValgtSak={sak => updateState({ sak })}
                         visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
                         valgtSak={state.sak}
                     />
-                    <OppgaveListe />
+                    <Oppgaveliste
+                        state={state}
+                        enhet={enhet}
+                        setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                    />
                 </UnmountClosed>
                 <TekstFelt
                     formState={state}
@@ -160,7 +154,11 @@ function SendNyMelding() {
                     <KnappBase type="hoved" htmlType="submit">
                         Del med {navn}
                     </KnappBase>
-                    <KnappMedBekreftPopup onBekreft={handleAvbryt} popUpTekst="Du vil miste meldingen du har påbegynnt">
+                    <KnappMedBekreftPopup
+                        type="flat"
+                        onBekreft={handleAvbryt}
+                        popUpTekst="Du vil miste meldingen du har påbegynnt"
+                    >
                         Avbryt
                     </KnappMedBekreftPopup>
                 </KnappWrapper>

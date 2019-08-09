@@ -3,10 +3,15 @@ import { NyMeldingValidator } from './validatorer';
 import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import { FormState } from './SendNyMelding';
 import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
-const Style = styled(SkjemaGruppe)`
+const StyledSkjemagruppe = styled(SkjemaGruppe)`
+    margin-top: 1rem;
     textarea {
         min-height: 9rem;
+    }
+    label {
+        ${theme.visuallyHidden}
     }
 `;
 
@@ -19,7 +24,7 @@ interface Props {
 
 function TekstFelt(props: Props) {
     return (
-        <Style
+        <StyledSkjemagruppe
             feil={
                 !NyMeldingValidator.tekst(props.formState) && props.formState.visFeilmeldinger
                     ? { feilmelding: `Du må skrive en tekst på mellom 0 og ${props.tekstMaksLengde} tegn` }
@@ -31,11 +36,9 @@ function TekstFelt(props: Props) {
                 onChange={e => props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
                 label={'Melding'}
                 maxLength={props.tekstMaksLengde}
-                placeholder={`Alt du skriver i denne boksen blir synlig for brukeren når du trykker "Del med ${
-                    props.navn
-                }"`}
+                placeholder={`Alt du skriver i denne boksen blir synlig for brukeren når du trykker "Del med ${props.navn}"`}
             />
-        </Style>
+        </StyledSkjemagruppe>
     );
 }
 

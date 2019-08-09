@@ -13,9 +13,14 @@ import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import theme from '../../../styles/personOversiktTheme';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
+    padding: ${theme.margin.layout};
+    label {
+        ${theme.visuallyHidden}
+    }
 `;
 
 const KnappLayout = styled.div`
@@ -32,7 +37,6 @@ const KnappLayout = styled.div`
     }
     > *:last-child {
         margin-top: 0.4em;
-        text-transform: none;
     }
 `;
 
@@ -112,7 +116,7 @@ function HentOppgaveKnapp(props: Props) {
                     onClick={onPlukkOppgaver}
                     spinner={isPosting(oppgaveResource)}
                 >
-                    Hent
+                    Plukk oppgave
                 </KnappBase>
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
