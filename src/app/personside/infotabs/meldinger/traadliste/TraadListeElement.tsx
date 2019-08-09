@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
+import { Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
-import OppmoteIkon from '../../../../../svg/OppmoteIkon';
-import TelefonIkon from '../../../../../svg/TelefonIkon';
-import OppgaveIkon from '../../../../../svg/OppgaveIkon';
-import DokumentIkon from '../../../../../svg/DokumentIkon';
-import MonologIkon from '../../../../../svg/MonologIkon';
-import DialogIkon from '../../../../../svg/DialogIkon';
 import { AppState } from '../../../../../redux/reducers';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
+import Meldingsikon from '../utils/Meldingsikon';
+import { isFinishedPosting } from '../../../../../rest/utils/postResource';
+import { EtikettSuksess } from 'nav-frontend-etiketter';
 
 interface OwnProps {
     traad: Traad;
@@ -31,19 +28,6 @@ interface DispatchProps {
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
-
-interface MeldingsikonProps {
-    type: Meldingstype;
-    erFerdigstiltUtenSvar: boolean;
-    erMonolog: boolean;
-}
-
-const SVGStyling = styled.span`
-    svg {
-        height: ${theme.margin.px30};
-        width: ${theme.margin.px30};
-    }
-`;
 
 const UUcustomOrder = styled.div`
     display: flex;
@@ -63,27 +47,6 @@ const PanelStyle = styled.div`
     }
 `;
 
-function Meldingsikon(props: MeldingsikonProps) {
-    switch (props.type) {
-        case Meldingstype.SAMTALEREFERAT_OPPMOTE:
-            return <OppmoteIkon />;
-        case Meldingstype.SAMTALEREFERAT_TELEFON:
-            return <TelefonIkon />;
-        case Meldingstype.OPPGAVE_VARSEL:
-            return <OppgaveIkon />;
-        case Meldingstype.DOKUMENT_VARSEL:
-            return <DokumentIkon />;
-        default: {
-            // TODO Vi må legge på et ekstra besvart / ubesvart ikon...
-            if (props.erMonolog) {
-                return <MonologIkon />;
-            } else {
-                return <DialogIkon />;
-            }
-        }
-    }
-}
-
 function TraadListeElement(props: Props) {
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
@@ -97,23 +60,37 @@ function TraadListeElement(props: Props) {
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
-                    <SVGStyling>
-                        <Meldingsikon
-                            type={nyesteMelding.meldingstype}
-                            erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
-                            erMonolog={erMonolog(props.traad)}
-                        />
-                    </SVGStyling>
+                    <Meldingsikon
+                        type={nyesteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
+                    />
                     <div>
                         <UUcustomOrder>
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
         </li>
     );
+}
+
+function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+
+    if (!isFinishedPosting(oppgaveResource)) {
+        return null;
+    }
+
+    if (oppgaveResource.response.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
+        return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
+    }
+
+    return null;
 }
 
 function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
