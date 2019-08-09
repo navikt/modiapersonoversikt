@@ -1,18 +1,23 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { AppState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
-import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
-function lagConfig(fnr: string | undefined | null, enhet: string | undefined | null, history: History): DecoratorProps {
+function lagConfig(
+    fnr: string | undefined | null,
+    enhet: string | undefined | null,
+    history: History,
+    settEnhet: (enhet: string) => void
+): DecoratorProps {
     return {
         appname: 'Modia personoversikt',
         fnr,
@@ -39,6 +44,7 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
                     'Content-Type': 'application/json'
                 }
             });
+            settEnhet(enhet);
         },
         contextholder: true
     };
@@ -46,8 +52,8 @@ function lagConfig(fnr: string | undefined | null, enhet: string | undefined | n
 
 function Decorator({ history }: RouteComponentProps<{}>) {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const enhet = getSaksbehandlerEnhet();
-    const config = useCallback(lagConfig, [fnr, enhet, history])(fnr, enhet, history);
+    const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
+    const config = useCallback(lagConfig, [fnr, enhet, history, settEnhet])(fnr, enhet, history, settEnhet);
 
     return (
         <nav id="header">

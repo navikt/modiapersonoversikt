@@ -30,6 +30,7 @@ import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
+import { setupWsControlAndMock } from './context-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -339,30 +340,6 @@ function setupValutaKodeverk(mock: FetchMock) {
     );
 }
 
-function setupNavigasjonsmenyMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/hode/me',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({
-            ident: 'z123445',
-            fornavn: 'Nils',
-            etternavn: 'Saksbehandler',
-            navn: 'Nils Saksbehandler'
-        }))
-    );
-
-    mock.get(
-        apiBaseUri + '/hode/enheter',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({
-            enhetliste: [
-                {
-                    navn: 'NAV Oslo',
-                    enhetId: '1220'
-                }
-            ]
-        }))
-    );
-}
-
 function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
@@ -438,7 +415,7 @@ export function setupMock() {
     endreNavKontaktinformasjonMock(mock);
     setupEndreAdresseMock(mock);
     endreTilrettelagtKommunikasjonnMock(mock);
-    setupNavigasjonsmenyMock(mock);
+    setupWsControlAndMock(mock);
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
     setupOppfølgingMock(mock);
