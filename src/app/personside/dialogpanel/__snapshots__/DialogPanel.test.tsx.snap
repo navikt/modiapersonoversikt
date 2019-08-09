@@ -188,8 +188,6 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c0 {
-  border-top: rgba(0,0,0,0.1) 1px solid;
-  border-bottom: rgba(0,0,0,0.1) 1px solid;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -1412,7 +1410,6 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               value="Enhetensliste"
             >
               Skal til 
-              4100
                sin oppgaveliste
             </option>
           </select>
