@@ -257,9 +257,18 @@ function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
     );
 }
 
-function setupSendMeldingMock(mock: FetchMock) {
+function setupSendReferatMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendmelding',
+        apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+            return {};
+        })
+    );
+}
+
+function setupSendSpørsmålMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
@@ -461,7 +470,8 @@ export function setupMock() {
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
-    setupSendMeldingMock(mock);
+    setupSendReferatMock(mock);
+    setupSendSpørsmålMock(mock);
     setupPersonsokMock(mock);
     merkAvsluttMock(mock);
     merkBidragMock(mock);

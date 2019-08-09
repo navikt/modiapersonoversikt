@@ -7,7 +7,7 @@ import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
@@ -16,11 +16,10 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import Select from 'nav-frontend-skjema/lib/select';
 import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
-import { useSendMelding } from '../../../../redux/restReducers/sendMelding';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
-import { byggSendNyMeldingRequest } from './byggSendNyMeldingRequest';
 import VelgDialogType from './VelgDialogType';
+import { useRestResource } from '../../../../utils/customHooks';
 
 enum Oppgaveliste {
     MinListe = 'MinListe',
@@ -74,17 +73,33 @@ function SendNyMelding() {
     };
     const [state, setState] = useState<FormState>(initialState);
     const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
-    const sendMelding = useSendMelding();
     const personinformasjon = useSelector((state: AppState) => state.restResources.personinformasjon);
     const enhet = getSaksbehandlerEnhet();
+    const postReferatAction = useRestResource(resources => resources.sendReferat.actions.post);
+    const postSpørsmålAction = useRestResource(resources => resources.sendSpørsmål.actions.post);
+    const dispatch = useDispatch();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        const sendMeldingRequest = byggSendNyMeldingRequest(state);
-        if (!sendMeldingRequest) {
-            updateState({ visFeilmeldinger: true });
+        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
+            const erOppmøte = state.dialogType === SendNyMeldingDialogTyper.SamtaleReferatOppmøte;
+            dispatch(
+                postReferatAction({
+                    fritekst: state.tekst,
+                    kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
+                    temagruppe: state.tema.kodeRef
+                })
+            );
+        } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
+            dispatch(
+                postSpørsmålAction({
+                    fritekst: state.tekst,
+                    saksID: state.sak.saksId,
+                    erOppgaveTilknyttetAnsatt: state.oppgaveListe === Oppgaveliste.MinListe
+                })
+            );
         } else {
-            sendMelding(sendMeldingRequest);
+            updateState({ visFeilmeldinger: true });
         }
     };
 

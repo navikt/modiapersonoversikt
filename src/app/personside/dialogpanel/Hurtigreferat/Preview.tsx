@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../../utils/dateUtils';
-import { SendMeldingRequest } from '../../../../models/meldinger/meldinger';
+import { SendReferatRequest } from '../../../../models/meldinger/meldinger';
 import theme from '../../../../styles/personOversiktTheme';
 
 const PreviewStyle = styled.article`
@@ -16,7 +16,7 @@ const PreviewStyle = styled.article`
     }
 `;
 
-function Preview(props: Partial<SendMeldingRequest>) {
+function Preview(props: Partial<SendReferatRequest>) {
     return (
         <PreviewStyle>
             <Normaltekst>Samtalereferat / Telefon</Normaltekst>

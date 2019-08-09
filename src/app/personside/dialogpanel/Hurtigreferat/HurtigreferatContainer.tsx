@@ -11,7 +11,6 @@ import {
     isNotStartedPosting,
     isPosting
 } from '../../../../rest/utils/postResource';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { erKvinne, erMann, getNavn } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
@@ -21,7 +20,7 @@ import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/st
 import Temavelger, { temaValg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { useRestResource } from '../../../../utils/customHooks';
-import { useSendMelding } from '../../../../redux/restReducers/sendMelding';
+import { useDispatch } from 'react-redux';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
@@ -42,9 +41,9 @@ function HurtigreferatContainer() {
     const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
 
-    const sendResource = useRestResource(resources => resources.sendMelding);
+    const sendResource = useRestResource(resources => resources.sendReferat);
+    const dispatch = useDispatch();
     const person = useRestResource(resources => resources.personinformasjon);
-    const sendMelding = useSendMelding();
 
     if (!isLoadedPerson(person)) {
         return <AlertStripeAdvarsel>Ingen person i kontekst</AlertStripeAdvarsel>;
@@ -66,16 +65,14 @@ function HurtigreferatContainer() {
             return;
         }
         if (isNotStartedPosting(sendResource)) {
-            loggEvent('sendMelding', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
-            sendMelding({
-                fritekst: hurtigreferat.fritekst,
-                kanal: 'TELEFON',
-                type: Meldingstype.SAMTALEREFERAT_TELEFON,
-                temagruppe: tema.kodeRef,
-                traadId: null,
-                kontorsperretEnhet: null,
-                erTilknyttetAnsatt: true
-            });
+            loggEvent('sendReferat', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
+            dispatch(
+                sendResource.actions.post({
+                    fritekst: hurtigreferat.fritekst,
+                    kanal: 'TELEFON',
+                    temagruppe: tema.kodeRef
+                })
+            );
         }
     };
 

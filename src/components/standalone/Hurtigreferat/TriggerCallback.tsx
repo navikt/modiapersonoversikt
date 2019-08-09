@@ -7,7 +7,7 @@ interface Props {
 }
 
 function TriggerCallback(props: Props) {
-    const sendMeldingResource = useRestResource(resources => resources.sendMelding);
+    const sendMeldingResource = useRestResource(resources => resources.sendReferat);
     const dispatch = useDispatch();
     if (isFinishedPosting(sendMeldingResource)) {
         props.callBack();

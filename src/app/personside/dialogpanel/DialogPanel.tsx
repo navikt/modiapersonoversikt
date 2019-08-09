@@ -21,24 +21,26 @@ const DialogPanelWrapper = styled.article`
 `;
 
 function Dialogpanel() {
-    const sendMeldingResource = useRestResource(resources => resources.sendMelding);
+    const sendReferatResource = useRestResource(resources => resources.sendReferat);
     const dispatch = useDispatch();
-    if (isFinishedPosting(sendMeldingResource)) {
+    if (isFinishedPosting(sendReferatResource)) {
+        //TODO handle sendspørsmål
         return (
             <>
                 <VisuallyHiddenAutoFokusHeader tittel="Melding sendt" />
                 <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
-                <Preview fritekst={sendMeldingResource.payload.fritekst} />
-                <KnappBase type="standard" onClick={() => dispatch(sendMeldingResource.actions.reset)}>
+                <Preview fritekst={sendReferatResource.payload.fritekst} />
+                <KnappBase type="standard" onClick={() => dispatch(sendReferatResource.actions.reset)}>
                     Send ny melding
                 </KnappBase>
             </>
         );
     }
-    if (isFailedPosting(sendMeldingResource)) {
+    if (isFailedPosting(sendReferatResource)) {
+        //TODO handle sendspørsmål
         return (
             <AlertStripeFeil>
-                Det skjedde en feil ved sending av melding: {sendMeldingResource.error.message}
+                Det skjedde en feil ved sending av melding: {sendReferatResource.error.message}
             </AlertStripeFeil>
         );
     }

@@ -74,15 +74,14 @@ export enum LestStatus {
     IkkeBesvart = 'IKKE_BESVART'
 }
 
-export interface SendMeldingRequest {
-    fnr: string;
-    navident: string;
-    kanal: string;
-    type: string;
+export interface SendReferatRequest {
     fritekst: string;
-    tilknyttetEnhet: string;
-    erTilknyttetAnsatt: boolean;
-    traadId: string | null;
-    kontorsperretEnhet: string | null;
     temagruppe: string;
+    kanal: string;
+}
+
+export interface SendSpørsmålRequest {
+    fritekst: string;
+    saksID: string;
+    erOppgaveTilknyttetAnsatt: boolean;
 }
