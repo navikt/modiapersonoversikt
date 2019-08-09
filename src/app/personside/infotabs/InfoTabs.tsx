@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import ComponentPlaceholder from '../../../components/component-placeholder/ComponentPlaceHolder';
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
@@ -10,17 +9,15 @@ import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import { Person, PersonRespons } from '../../../models/person/person';
 import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
+import Oversikt from './oversikt/Oversikt';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../redux/reducers';
 
-interface OwnProps {
-    personRespons: PersonRespons;
-}
-
-type Props = RouteComponentProps<{}> & OwnProps;
+type Props = RouteComponentProps<{}>;
 
 const OpenTab = styled.div`
     margin-top: ${theme.margin.px20};
@@ -47,59 +44,43 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
     return openTab || INFOTABS.OVERSIKT;
 }
 
-class InfoTabs extends React.PureComponent<Props> {
-    constructor(props: Props) {
-        super(props);
-        this.updateRouterPath = this.updateRouterPath.bind(this);
-    }
+function InfoTabs(props: Props) {
+    const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
 
-    updateRouterPath(newTab: INFOTABS) {
-        const fødselsnummer = (this.props.personRespons as Person).fødselsnummer;
+    const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
-        const newPath = this.props.history.location.pathname !== path;
+        const newPath = props.history.location.pathname !== path;
         if (newPath) {
-            this.props.history.push(path);
-            this.forceUpdate();
+            props.history.push(path);
         }
-    }
+    };
 
-    render() {
-        const OversiktWithProps = () => <ComponentPlaceholder height={'500px'} name={'Oversikt'} hue={0} />;
-
-        const basePath = paths.personUri + '/:fodselsnummer/';
-
-        return (
-            <ErrorBoundary boundaryName="InfoTabs">
-                <Section role="region" aria-label="Info-tabs">
-                    <h2 className="visually-hidden">Tab-panel</h2>
-                    <TabKnapper
-                        onTabChange={this.updateRouterPath}
-                        openTab={getOpenTabFromRouterPath(this.props.history.location.pathname)}
-                    />
-                    <OpenTab>
-                        <Switch location={this.props.history.location}>
-                            <Route
-                                path={basePath + INFOTABS.UTBETALING + '/'}
-                                component={() => <UtbetalingerContainer />}
-                            />
-                            <Route
-                                path={basePath + INFOTABS.OPPFOLGING + '/'}
-                                component={() => <OppfolgingContainer />}
-                            />
-                            <Route
-                                path={basePath + INFOTABS.MELDINGER + '/'}
-                                component={() => <MeldingerContainer />}
-                            />
-                            <Route path={basePath + INFOTABS.SAKER + '/'} component={() => <SaksoversiktContainer />} />
-                            <Route path={basePath + INFOTABS.YTELSER + '/'} component={() => <YtelserContainer />} />
-                            <Route path={basePath + INFOTABS.VARSEL + '/'} component={() => <VarslerContainer />} />
-                            <Route component={OversiktWithProps} />
-                        </Switch>
-                    </OpenTab>
-                </Section>
-            </ErrorBoundary>
-        );
-    }
+    const basePath = paths.personUri + '/:fodselsnummer/';
+    return (
+        <ErrorBoundary boundaryName="InfoTabs">
+            <Section role="region" aria-label="Info-tabs">
+                <h2 className="visually-hidden">Tab-panel</h2>
+                <TabKnapper
+                    onTabChange={updateRouterPath}
+                    openTab={getOpenTabFromRouterPath(props.history.location.pathname)}
+                />
+                <OpenTab>
+                    <Switch location={props.location}>
+                        <Route
+                            path={basePath + INFOTABS.UTBETALING + '/'}
+                            component={() => <UtbetalingerContainer />}
+                        />
+                        <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={() => <OppfolgingContainer />} />
+                        <Route path={basePath + INFOTABS.MELDINGER + '/'} component={() => <MeldingerContainer />} />
+                        <Route path={basePath + INFOTABS.SAKER + '/'} component={() => <SaksoversiktContainer />} />
+                        <Route path={basePath + INFOTABS.YTELSER + '/'} component={() => <YtelserContainer />} />
+                        <Route path={basePath + INFOTABS.VARSEL + '/'} component={() => <VarslerContainer />} />
+                        <Route path={basePath + INFOTABS.OVERSIKT + '/'} component={Oversikt} />
+                    </Switch>
+                </OpenTab>
+            </Section>
+        </ErrorBoundary>
+    );
 }
 
 export default withRouter(InfoTabs);
