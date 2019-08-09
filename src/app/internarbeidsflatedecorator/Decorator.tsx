@@ -1,25 +1,58 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import renderDecoratorHead from './decoratorconfig';
+import { useCallback } from 'react';
+import NAVSPA from '@navikt/navspa';
+import { History } from 'history';
 import { AppState } from '../../redux/reducers';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { DecoratorProps } from './decoratorprops';
+import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { apiBaseUri } from '../../api/config';
+import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-interface StateProps {
-    fødselsnummer: string;
-}
+const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
-function Decorator(props: StateProps) {
-    useEffect(() => {
-        renderDecoratorHead(props.fødselsnummer);
-    }, [props.fødselsnummer]);
-
-    return <nav id="header" />;
-}
-
-function mapStateToProps(state: AppState): StateProps {
+function lagConfig(fnr: string | undefined | null, enhet: string | undefined | null, history: History): DecoratorProps {
     return {
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer
+        appname: 'Modia personoversikt',
+        fnr,
+        enhet,
+        toggles: {
+            visEnhet: false,
+            visEnhetVelger: true,
+            visSokefelt: true,
+            visVeilder: true
+        },
+        onSok(fnr: string | null): void {
+            if (fnr && fnr.length > 0) {
+                setNyBrukerIPath(history, fnr);
+            } else {
+                fjernBrukerFraPath(history);
+            }
+        },
+        onEnhetChange(enhet: string): void {
+            fetch(`${apiBaseUri}/hode/velgenhet`, {
+                credentials: 'same-origin',
+                method: 'POST',
+                body: enhet,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        },
+        contextholder: true
     };
 }
 
-export default connect(mapStateToProps)(Decorator);
+function Decorator({ history }: RouteComponentProps<{}>) {
+    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const enhet = getSaksbehandlerEnhet();
+    const config = useCallback(lagConfig, [fnr, enhet, history])(fnr, enhet, history);
+
+    return (
+        <nav id="header">
+            <InternflateDecorator {...config} />
+        </nav>
+    );
+}
+export default withRouter(Decorator);
