@@ -21,6 +21,7 @@ import VelgDialogType from './VelgDialogType';
 import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
+import { isPosting } from '../../../../rest/utils/postResource';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -77,16 +78,20 @@ function SendNyMelding() {
     const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
     const personinformasjon = useSelector((state: AppState) => state.restResources.personinformasjon);
     const enhet = getSaksbehandlerEnhet();
-    const postReferatAction = useRestResource(resources => resources.sendReferat.actions.post);
-    const postSpørsmålAction = useRestResource(resources => resources.sendSpørsmål.actions.post);
+    const postReferatResource = useRestResource(resources => resources.sendReferat);
+    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (senderMelding) {
+            return;
+        }
         if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
             const erOppmøte = state.dialogType === SendNyMeldingDialogTyper.SamtaleReferatOppmøte;
             dispatch(
-                postReferatAction({
+                postReferatResource.actions.post({
                     fritekst: state.tekst,
                     kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
                     temagruppe: state.tema.kodeRef
@@ -94,7 +99,7 @@ function SendNyMelding() {
             );
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             dispatch(
-                postSpørsmålAction({
+                postSpørsmålResource.actions.post({
                     fritekst: state.tekst,
                     saksID: state.sak.saksId,
                     erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
@@ -151,7 +156,7 @@ function SendNyMelding() {
                     <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
                 </UnmountClosed>
                 <KnappWrapper>
-                    <KnappBase type="hoved" htmlType="submit">
+                    <KnappBase type="hoved" htmlType="submit" spinner={senderMelding}>
                         Del med {navn}
                     </KnappBase>
                     <KnappMedBekreftPopup

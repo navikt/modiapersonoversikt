@@ -21,36 +21,59 @@ const Padding = styled.div`
     padding: 1rem ${theme.margin.layout};
 `;
 
+const KvitteringStyling = styled(Padding)`
+    > *:not(:first-child) {
+        margin-top: 1rem;
+    }
+`;
+
 const HurtigreferatWrapper = styled(Padding)`
     background-color: white;
     border-bottom: ${theme.border.skilleSvak};
 `;
 
+function Feilmelding(props: { errormessage: string }) {
+    return (
+        <KvitteringStyling>
+            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {props.errormessage}</AlertStripeFeil>
+        </KvitteringStyling>
+    );
+}
+
 function Dialogpanel() {
     const sendReferatResource = useRestResource(resources => resources.sendReferat);
+    const sendSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const dispatch = useDispatch();
+
     if (isFinishedPosting(sendReferatResource)) {
-        //TODO handle sendspørsmål
         return (
-            <Padding>
-                <VisuallyHiddenAutoFokusHeader tittel="Melding sendt" />
-                <AlertStripeSuksess>Melding sendt</AlertStripeSuksess>
-                <Preview fritekst={sendReferatResource.payload.fritekst} />
+            <KvitteringStyling>
+                <VisuallyHiddenAutoFokusHeader tittel="Referatet ble sendt" />
+                <AlertStripeSuksess>Referatet ble loggført</AlertStripeSuksess>
+                <Preview fritekst={sendReferatResource.payload.fritekst} tittel={'Samtalereferat / Telefon'} />
                 <KnappBase type="standard" onClick={() => dispatch(sendReferatResource.actions.reset)}>
                     Send ny melding
                 </KnappBase>
-            </Padding>
+            </KvitteringStyling>
+        );
+    }
+    if (isFinishedPosting(sendSpørsmålResource)) {
+        return (
+            <KvitteringStyling>
+                <VisuallyHiddenAutoFokusHeader tittel="Spørsmål ble sendt" />
+                <AlertStripeSuksess>Spørsmålet ble sendt</AlertStripeSuksess>
+                <Preview fritekst={sendSpørsmålResource.payload.fritekst} tittel={'Spørsmål til bruker'} />
+                <KnappBase type="standard" onClick={() => dispatch(sendSpørsmålResource.actions.reset)}>
+                    Send ny melding
+                </KnappBase>
+            </KvitteringStyling>
         );
     }
     if (isFailedPosting(sendReferatResource)) {
-        //TODO handle sendspørsmål
-        return (
-            <Padding>
-                <AlertStripeFeil>
-                    Det skjedde en feil ved sending av melding: {sendReferatResource.error.message}
-                </AlertStripeFeil>
-            </Padding>
-        );
+        return <Feilmelding errormessage={sendReferatResource.error.message} />;
+    }
+    if (isFailedPosting(sendSpørsmålResource)) {
+        return <Feilmelding errormessage={sendSpørsmålResource.error.message} />;
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">

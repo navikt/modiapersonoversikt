@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
+import theme from '../../../../styles/personOversiktTheme';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../../utils/dateUtils';
-import { SendReferatRequest } from '../../../../models/meldinger/meldinger';
-import theme from '../../../../styles/personOversiktTheme';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -16,10 +15,15 @@ const PreviewStyle = styled.article`
     }
 `;
 
-function Preview(props: Partial<SendReferatRequest>) {
+interface Props {
+    tittel: string;
+    fritekst: string;
+}
+
+function Preview(props: Props) {
     return (
         <PreviewStyle>
-            <Normaltekst>Samtalereferat / Telefon</Normaltekst>
+            <Normaltekst>{props.tittel}</Normaltekst>
             <EtikettGrå>{formatterDatoTid(new Date())}</EtikettGrå>
             <Normaltekst>{props.fritekst}</Normaltekst>
         </PreviewStyle>
