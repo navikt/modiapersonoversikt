@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { KommunikasjonsKanal, Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
@@ -93,7 +93,7 @@ function SendNyMelding() {
             dispatch(
                 postReferatResource.actions.post({
                     fritekst: state.tekst,
-                    kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
+                    kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
                     temagruppe: state.tema.kodeRef
                 })
             );

@@ -74,10 +74,15 @@ export enum LestStatus {
     IkkeBesvart = 'IKKE_BESVART'
 }
 
+export enum KommunikasjonsKanal {
+    Telefon = 'TELEFON',
+    Oppmøte = 'OPPMOTE'
+}
+
 export interface SendReferatRequest {
     fritekst: string;
     temagruppe: string;
-    kanal: string;
+    kanal: KommunikasjonsKanal;
 }
 
 export interface SendSpørsmålRequest {

@@ -21,6 +21,7 @@ import Temavelger, { temaValg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
+import { KommunikasjonsKanal } from '../../../../models/meldinger/meldinger';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
@@ -70,7 +71,7 @@ function HurtigreferatContainer() {
             dispatch(
                 sendResource.actions.post({
                     fritekst: hurtigreferat.fritekst,
-                    kanal: 'TELEFON',
+                    kanal: KommunikasjonsKanal.Telefon,
                     temagruppe: tema.kodeRef
                 })
             );

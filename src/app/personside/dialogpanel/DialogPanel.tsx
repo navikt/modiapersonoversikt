@@ -12,6 +12,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAut
 import SendNyMelding from './sendMelding/SendNyMelding';
 import { useRestResource } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
+import { KommunikasjonsKanal } from '../../../models/meldinger/meldinger';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -46,11 +47,12 @@ function Dialogpanel() {
     const dispatch = useDispatch();
 
     if (isFinishedPosting(sendReferatResource)) {
+        const kanal = sendReferatResource.payload.kanal === KommunikasjonsKanal.Telefon ? 'Telefon' : 'Oppmøte';
         return (
             <KvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel="Referatet ble sendt" />
                 <AlertStripeSuksess>Referatet ble loggført</AlertStripeSuksess>
-                <Preview fritekst={sendReferatResource.payload.fritekst} tittel={'Samtalereferat / Telefon'} />
+                <Preview fritekst={sendReferatResource.payload.fritekst} tittel={`Samtalereferat / ${kanal}`} />
                 <KnappBase type="standard" onClick={() => dispatch(sendReferatResource.actions.reset)}>
                     Send ny melding
                 </KnappBase>
