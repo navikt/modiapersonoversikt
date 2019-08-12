@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
-import { Select } from 'nav-frontend-skjema';
+import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import { ChangeEvent, useEffect } from 'react';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     setTema: (tema?: Kodeverk) => void;
@@ -18,6 +20,12 @@ export const temaValg: Kodeverk[] = [
     { beskrivelse: 'Øvrig', kodeRef: Temagruppe.Øvrig }
 ];
 
+const StyledSelect = styled(Select)`
+    label {
+        ${theme.visuallyHidden}
+    }
+`;
+
 function Temavelger(props: Props) {
     let selectRef: HTMLSelectElement | null = null;
 
@@ -32,23 +40,24 @@ function Temavelger(props: Props) {
         props.setTema(tema);
     };
     return (
-        <Select
-            // @ts-ignore
-            selectRef={ref => (selectRef = ref)}
-            label="Tema"
-            onChange={velgTemaHandler}
-            feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}
-            value={props.tema ? props.tema.kodeRef : ''}
-        >
-            <option value="" disabled>
-                Velg tema
-            </option>
-            {temaValg.map(valg => (
-                <option key={valg.kodeRef} value={valg.kodeRef}>
-                    {valg.beskrivelse}
+        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}>
+            <StyledSelect
+                // @ts-ignore
+                selectRef={ref => (selectRef = ref)}
+                label="Tema"
+                onChange={velgTemaHandler}
+                value={props.tema ? props.tema.kodeRef : ''}
+            >
+                <option value="" disabled>
+                    Velg temagruppe
                 </option>
-            ))}
-        </Select>
+                {temaValg.map(valg => (
+                    <option key={valg.kodeRef} value={valg.kodeRef}>
+                        {valg.beskrivelse}
+                    </option>
+                ))}
+            </StyledSelect>
+        </SkjemaGruppe>
     );
 }
 

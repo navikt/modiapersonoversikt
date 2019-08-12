@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../styles/personOversiktTheme';
 
 export const LayoutWrapper = styled.div`
@@ -8,8 +8,7 @@ export const LayoutWrapper = styled.div`
     display: flex;
     flex-flow: row nowrap;
     > * {
-        transition: width 0.3s ease-out;
-        overflow-y: scroll;
+        transition: flex 0.3s ease-out;
         @media print {
             overflow-y: auto;
         }
@@ -20,24 +19,46 @@ interface StyleProps {
     dialogPanelEkspandert?: boolean;
 }
 export const VenstreKolonne = styled.section<StyleProps>`
-    width: ${props => (props.dialogPanelEkspandert ? '50%' : '70%')};
+    flex-basis: ${props => (props.dialogPanelEkspandert ? '70%' : '90%')};
+    flex-grow: 1;
+    flex-shrink: 1;
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     > * {
         border-radius: ${theme.borderRadius.layout};
     }
 `;
 
 export const HøyreKolonne = styled.section<StyleProps>`
-    width: ${props => (props.dialogPanelEkspandert ? '50%' : '30%')};
-    background-color: white;
+    ${props =>
+        props.dialogPanelEkspandert
+            ? css`
+                  flex: 30% 1 1;
+              `
+            : css`
+                  justify-content: flex-end;
+                  > *:not(:last-child) {
+                      display: none;
+                  }
+                  &:before {
+                      content: 'Dialogpanel';
+                      writing-mode: vertical-rl;
+                      text-transform: uppercase;
+                      text-align: center;
+                      margin: auto;
+                  }
+              `};
+    background-color: ${theme.color.dialogpanelBakgrunn};
+    overflow-y: auto;
     box-shadow: 0 0 1rem 0 ${theme.color.bakgrunn};
     z-index: 1;
     display: flex;
     flex-flow: column nowrap;
     > * {
-        padding: ${theme.margin.layout};
+        ${theme.animation.fadeIn};
         flex-shrink: 0;
+        border-top: ${theme.border.skilleSvak};
     }
 `;

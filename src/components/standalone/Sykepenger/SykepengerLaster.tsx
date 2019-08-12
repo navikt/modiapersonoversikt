@@ -4,7 +4,7 @@ import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
 import { loggError, loggEvent } from '../../../utils/frontendLogger';
 import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
 import moment from 'moment';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
@@ -28,7 +28,7 @@ function SykePengerLaster(props: Props) {
 
     function getInnhold(data: SykepengerResponse) {
         if (!data.sykepenger) {
-            return <AlertStripeAdvarsel>Kunne ikke finne sykepengerettighet for bruker</AlertStripeAdvarsel>;
+            return <AlertStripeInfo>Kunne ikke finne sykepengerettighet for bruker</AlertStripeInfo>;
         }
         const aktuellRettighet = data.sykepenger.find(rettighet =>
             moment(rettighet.sykmeldtFom).isSame(moment(props.sykmeldtFraOgMed))

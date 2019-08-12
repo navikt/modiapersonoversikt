@@ -32,10 +32,10 @@ function getMelding(temagruppe: Temagruppe): Melding {
     return {
         id: faker.random.alphaNumeric(8),
         meldingstype: navfaker.random.arrayElement([
-            Meldingstype.DelvisSvarSkriftlig,
-            Meldingstype.SamtalereferatOppmøte,
-            Meldingstype.SpørsmålSkriftlig,
-            Meldingstype.SvarTelefon
+            Meldingstype.DELVIS_SVAR_SKRIFTLIG,
+            Meldingstype.SAMTALEREFERAT_OPPMOTE,
+            Meldingstype.SPORSMAL_SKRIFTLIG,
+            Meldingstype.SVAR_TELEFON
         ]),
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),

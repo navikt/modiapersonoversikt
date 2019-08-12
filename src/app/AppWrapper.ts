@@ -12,6 +12,9 @@ const AppWrapper = styled.div`
     .visually-hidden {
         ${theme.visuallyHidden}
     }
+    .knapp {
+        text-transform: none;
+    }
 `;
 
 export const ContentStyle = styled.div`

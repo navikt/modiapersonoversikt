@@ -60,29 +60,29 @@ export function erKommunaleTjenester(temagruppe: Temagruppe) {
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
-    return [Meldingstype.SpørsmålSkriftlig, Meldingstype.SvarSblInngående].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SvarSblInngående].includes(meldingstype);
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
-        Meldingstype.SvarSkriftlig,
-        Meldingstype.SvarOppmøte,
-        Meldingstype.SvarTelefon,
-        Meldingstype.SamtalereferatTelefon,
-        Meldingstype.SamtalereferatOppmøte,
-        Meldingstype.SpørsmålModiaUtgående,
-        Meldingstype.DokumentVarsel,
-        Meldingstype.OppgaveVarsel,
-        Meldingstype.DelvisSvarSkriftlig
+        Meldingstype.SVAR_SKRIFTLIG,
+        Meldingstype.SVAR_OPPMOTE,
+        Meldingstype.SVAR_TELEFON,
+        Meldingstype.SAMTALEREFERAT_TELEFON,
+        Meldingstype.SAMTALEREFERAT_OPPMOTE,
+        Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
+        Meldingstype.DOKUMENT_VARSEL,
+        Meldingstype.OPPGAVE_VARSEL,
+        Meldingstype.DELVIS_SVAR_SKRIFTLIG
     ].includes(meldingstype);
 }
 
 export function erMeldingVarsel(meldingstype: Meldingstype) {
-    return [Meldingstype.OppgaveVarsel, Meldingstype.DokumentVarsel].includes(meldingstype);
+    return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
 export function erMeldingSpørsmål(meldingstype: Meldingstype) {
-    return [Meldingstype.SpørsmålModiaUtgående, Meldingstype.SpørsmålSkriftlig].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG].includes(meldingstype);
 }
 
 export function erKontorsperret(traad: Traad): boolean {

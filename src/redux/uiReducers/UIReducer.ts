@@ -23,7 +23,7 @@ export const initialUIState: UIState = {
         apent: false
     },
     dialogPanel: {
-        ekspandert: false
+        ekspandert: true
     }
 };
 

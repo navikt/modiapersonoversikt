@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
-import { AppState } from '../redux/reducers';
 import { useSelector } from 'react-redux';
+import { AppState } from '../redux/reducers';
 import { RestEndepunkter } from '../redux/restReducers/restReducers';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {

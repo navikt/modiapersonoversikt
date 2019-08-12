@@ -75,7 +75,7 @@ function HurtigreferatElement(props: Props) {
                 <PreviewContainer tabIndex={0}>
                     <InformasjonSVG alt="Vis hurtigsvar" />
                     <DropDown className="content">
-                        <Preview fritekst={props.tekst.fritekst} />
+                        <Preview fritekst={props.tekst.fritekst} tittel="Samtalereferat / Telefon" />
                     </DropDown>
                 </PreviewContainer>
                 <KnappBase type="flat" onClick={props.sendMelding} spinner={props.spinner}>

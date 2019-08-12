@@ -48,9 +48,9 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { SendMeldingRequest, Traad } from '../../models/meldinger/meldinger';
+import { SendReferatRequest, SendSpørsmålRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
-import sendMelding from './sendMelding';
+import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
@@ -59,6 +59,7 @@ import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest'
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
+import sendSpørsmål from './sendSpørsmål';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -91,7 +92,8 @@ export interface RestEndepunkter {
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
-    sendMelding: PostResource<SendMeldingRequest>;
+    sendReferat: PostResource<SendReferatRequest>;
+    sendSpørsmål: PostResource<SendSpørsmålRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
@@ -125,7 +127,8 @@ export default combineReducers<RestEndepunkter>({
     brukersVarsler: varselReducer,
     tråderOgMeldinger: meldingerReducer,
     oppgaveGsakTema: oppgaveGsakTemaReducer,
-    sendMelding: sendMelding,
+    sendReferat: sendReferat,
+    sendSpørsmål: sendSpørsmål,
     opprettOppgave: opprettOppgave,
     personsok: personsok
 });
