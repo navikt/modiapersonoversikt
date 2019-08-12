@@ -59,7 +59,12 @@ function Oversikt() {
                 />
             </KolonneStyle>
             <KolonneStyle>
-                <Oversiktskomponent tittel={'Saker'} infotabPath={INFOTABS.SAKER} children={<SakerOversikt />} />
+                <Oversiktskomponent
+                    tittel={'Saker'}
+                    infotabPath={INFOTABS.SAKER}
+                    children={<SakerOversikt />}
+                    hurtigtast={'S'}
+                />
             </KolonneStyle>
         </Style>
     );
