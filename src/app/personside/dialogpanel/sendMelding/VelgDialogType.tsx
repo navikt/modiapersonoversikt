@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { FormState, SendNyMeldingDialogTyper } from './SendNyMelding';
+import { FormState, SendNyMeldingDialogType } from './SendNyMelding';
 import Select from 'nav-frontend-skjema/lib/select';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 
 interface Props {
     formState: FormState;
-    updateDialogType: (dialogType: SendNyMeldingDialogTyper) => void;
+    updateDialogType: (dialogType: SendNyMeldingDialogType) => void;
 }
 
 const StyledSelect = styled(Select)`
@@ -20,11 +21,11 @@ function VelgDialogType(props: Props) {
         <StyledSelect
             label="Velg dialogtype"
             value={props.formState.dialogType}
-            onChange={event => props.updateDialogType((event.target.value as unknown) as SendNyMeldingDialogTyper)}
+            onChange={event => props.updateDialogType((event.target.value as unknown) as SendNyMeldingDialogType)}
         >
-            <option value={SendNyMeldingDialogTyper.SamtaleReferatTelefon}>Samtalereferat telefon</option>
-            <option value={SendNyMeldingDialogTyper.SamtaleReferatOppmøte}>Samtalereferat oppmøte</option>
-            <option value={SendNyMeldingDialogTyper.SpørsmålSkriftlig}>Spørsmål til bruker</option>
+            <option value={Meldingstype.SAMTALEREFERAT_TELEFON}>Samtalereferat telefon</option>
+            <option value={Meldingstype.SAMTALEREFERAT_OPPMOTE}>Samtalereferat oppmøte</option>
+            <option value={Meldingstype.SPORSMAL_SKRIFTLIG}>Spørsmål til bruker</option>
         </StyledSelect>
     );
 }

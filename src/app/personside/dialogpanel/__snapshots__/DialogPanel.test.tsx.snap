@@ -147,8 +147,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 0.5rem;
 }
 
-.c15 .ekspanderbartPanel__hode,
-.c15 .ekspanderbartPanel__innhold {
+.c15 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
@@ -1464,7 +1463,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                 className="skjemaelement__input textarea--medMeta"
                 id="Helt tilfeldig ID"
                 onChange={[Function]}
-                placeholder="Alt du skriver i denne boksen blir synlig for brukeren når du trykker \\"Del med Aremark\\""
+                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
                 style={
                   Object {
                     "height": "30px",

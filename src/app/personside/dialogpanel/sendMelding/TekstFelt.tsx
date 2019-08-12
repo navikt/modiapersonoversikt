@@ -36,7 +36,7 @@ function TekstFelt(props: Props) {
                 onChange={e => props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
                 label={'Melding'}
                 maxLength={props.tekstMaksLengde}
-                placeholder={`Alt du skriver i denne boksen blir synlig for brukeren når du trykker "Del med ${props.navn}"`}
+                placeholder={`Alt du skriver i denne boksen blir synlig for ${props.navn} når du trykker "Del med ${props.navn}"`}
             />
         </StyledSkjemagruppe>
     );

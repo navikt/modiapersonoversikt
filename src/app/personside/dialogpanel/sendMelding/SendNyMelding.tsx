@@ -7,8 +7,7 @@ import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../../redux/reducers';
+import { useDispatch } from 'react-redux';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
@@ -28,15 +27,14 @@ export enum OppgavelisteValg {
     EnhetensListe = 'Enhetensliste'
 }
 
-export enum SendNyMeldingDialogTyper {
-    SamtaleReferatTelefon = Meldingstype.SAMTALEREFERAT_TELEFON,
-    SamtaleReferatOppmøte = Meldingstype.SAMTALEREFERAT_OPPMOTE,
-    SpørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG
-}
+export type SendNyMeldingDialogType =
+    | Meldingstype.SAMTALEREFERAT_TELEFON
+    | Meldingstype.SAMTALEREFERAT_OPPMOTE
+    | Meldingstype.SPORSMAL_SKRIFTLIG;
 
 export interface FormState {
     tekst: string;
-    dialogType: SendNyMeldingDialogTyper;
+    dialogType: SendNyMeldingDialogType;
     tema?: Kodeverk;
     sak?: JournalforingsSak;
     oppgaveListe: OppgavelisteValg;
@@ -68,7 +66,7 @@ const tekstMaksLengde = 5000;
 function SendNyMelding() {
     const initialState: FormState = {
         tekst: '',
-        dialogType: SendNyMeldingDialogTyper.SamtaleReferatTelefon,
+        dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
         tema: undefined,
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe,
@@ -76,12 +74,12 @@ function SendNyMelding() {
     };
     const [state, setState] = useState<FormState>(initialState);
     const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
-    const personinformasjon = useSelector((state: AppState) => state.restResources.personinformasjon);
-    const enhet = getSaksbehandlerEnhet();
+    const personinformasjon = useRestResource(resources => resources.personinformasjon);
     const postReferatResource = useRestResource(resources => resources.sendReferat);
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
+    const enhet = getSaksbehandlerEnhet();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -89,7 +87,7 @@ function SendNyMelding() {
             return;
         }
         if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
-            const erOppmøte = state.dialogType === SendNyMeldingDialogTyper.SamtaleReferatOppmøte;
+            const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
             dispatch(
                 postReferatResource.actions.post({
                     fritekst: state.tekst,

@@ -4,6 +4,7 @@ import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import styled from 'styled-components';
+import { pxToRem } from '../../styles/personOversiktTheme';
 
 const Style = styled.div`
     padding: 0.4rem;
@@ -16,7 +17,7 @@ function EkspanderDilaogpanelKnapp() {
     return (
         <Style>
             <PilKnapp
-                width="30px"
+                width={pxToRem(30)}
                 beskrivelse={dialogpanelErEkspandert ? 'Skjul dialogpanel' : 'Vis dialogpanel'}
                 direction={dialogpanelErEkspandert ? 'right' : 'left'}
                 onClick={() => dispatch(toggleDialogpanel())}

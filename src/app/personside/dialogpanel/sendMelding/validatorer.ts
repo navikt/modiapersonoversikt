@@ -1,4 +1,5 @@
-import { FormState, SendNyMeldingDialogTyper } from './SendNyMelding';
+import { FormState } from './SendNyMelding';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 
 export class NyMeldingValidator {
     public static tekst(state: FormState) {
@@ -11,7 +12,7 @@ export class NyMeldingValidator {
         return state.sak !== undefined;
     }
     public static erReferat(state: FormState) {
-        return state.dialogType !== SendNyMeldingDialogTyper.SpørsmålSkriftlig;
+        return state.dialogType !== Meldingstype.SPORSMAL_SKRIFTLIG;
     }
     public static erSporsmal(state: FormState) {
         return !this.erReferat(state);

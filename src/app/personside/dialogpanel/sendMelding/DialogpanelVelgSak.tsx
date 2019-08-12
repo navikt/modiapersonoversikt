@@ -8,8 +8,7 @@ import styled from 'styled-components';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 
 const StyledEkspanderbartPanelPure = styled(EkspanderbartpanelPure)`
-    .ekspanderbartPanel__hode,
-    .ekspanderbartPanel__innhold {
+    .ekspanderbartPanel__hode {
         padding: 0.6rem;
     }
 `;
