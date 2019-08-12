@@ -29,6 +29,7 @@ import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
+import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 
@@ -340,6 +341,19 @@ function setupValutaKodeverk(mock: FetchMock) {
     );
 }
 
+function setupJournalforingMock(mock: FetchMock) {
+    console.log('apibase', apiBaseUri);
+    mock.get(
+        apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
+        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
+    );
+    mock.get(
+        apiBaseUri + '/journalforing/:fnr/saker/pensjon',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
+    );
+    mock.post(apiBaseUri + '/journalforing/:fnr/:traadId', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+}
+
 function opprettOppgaveMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
@@ -431,4 +445,5 @@ export function setupMock() {
     merkFeilsendtMock(mock);
     merkKontorsperretMock(mock);
     merkSlettMock(mock);
+    setupJournalforingMock(mock);
 }

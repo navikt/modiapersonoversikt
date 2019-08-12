@@ -20,3 +20,14 @@ export function groupArray<T>(array: T[], getGroupCategoryForElement: (element: 
         return acc;
     }, []);
 }
+
+export type Group<T> = { [key: string]: Array<T> };
+export function groupBy<T>(fn: (value: T) => string): (acc: Group<T>, value: T) => Group<T> {
+    return (acc: Group<T>, element: T) => {
+        const key = fn(element);
+        const group: Array<T> = acc[key] || [];
+        group.push(element);
+        acc[key] = group;
+        return acc;
+    };
+}

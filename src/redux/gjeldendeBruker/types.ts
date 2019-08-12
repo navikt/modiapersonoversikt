@@ -8,8 +8,7 @@ export enum SetNyGjeldendeBrukerActionTypes {
     SetNyPerson = 'GJELDENDEBRUKER / SET'
 }
 
-export interface SetNyGjeldendeBrukerAction extends Action {
-    type: SetNyGjeldendeBrukerActionTypes.SetNyPerson;
+export interface SetNyGjeldendeBrukerAction extends Action<SetNyGjeldendeBrukerActionTypes.SetNyPerson> {
     fnr: string;
 }
 

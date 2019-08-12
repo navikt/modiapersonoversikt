@@ -44,27 +44,28 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   background-color: white;
 }
 
-.c5 table {
+.c5 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c5 table thead {
+.c5 [role='table'] thead,
+.c5 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c5 table th,
-.c5 table td {
+.c5 [role='table'] [role='cell'],
+.c5 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c5 table th {
+.c5 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c5 table tr:nth-child(even) {
+.c5 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 

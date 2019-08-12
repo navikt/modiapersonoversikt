@@ -28,6 +28,7 @@ import VarslerLamell from './VarslerLamell';
 import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
+import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
 
 enum Komponenter {
@@ -44,7 +45,8 @@ enum Komponenter {
     Varsler,
     Hurtigreferat,
     Dialogpanel,
-    Personsok
+    Personsok,
+    JournalforingPanel
 }
 
 const Style = styled.div`
@@ -115,6 +117,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.Personsok:
             return <PersonsokStandAloneKomponent />;
+        case Komponenter.JournalforingPanel:
+            return <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

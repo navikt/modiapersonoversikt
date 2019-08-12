@@ -3,11 +3,16 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useEffect } from 'react';
+import { hasData, RestResource } from '../../../../../rest/utils/restResource';
+import { useDispatch } from 'react-redux';
+import { settValgtTraad } from '../../../../../redux/meldinger/actions';
+import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 
 interface Props {
     valgtTraad?: Traad;
+    traader: RestResource<Traad[]>;
 }
 
 const VisningStyle = styled.section`
@@ -27,18 +32,21 @@ function AlleMeldinger(props: { traad: Traad }) {
     return <div>{meldingskomponenter}</div>;
 }
 
-class TraadVisning extends React.PureComponent<Props> {
-    render() {
-        if (!this.props.valgtTraad) {
-            return <AlertStripeInfo>Ingen tråd er valgt</AlertStripeInfo>;
+function TraadVisning({ valgtTraad, traader }: Props) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (!valgtTraad && hasData(traader)) {
+            dispatch(settValgtTraad(traader.data[0]));
         }
+    }, [valgtTraad, traader, dispatch]);
 
-        return (
-            <VisningStyle aria-label={'Meldinger for valgt tråd'}>
-                <AlleMeldinger traad={this.props.valgtTraad} />
-            </VisningStyle>
-        );
-    }
+    return (
+        <VisningStyle aria-label={'Meldinger for valgt tråd'}>
+            <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
+                {trader => <AlleMeldinger traad={valgtTraad || trader[0]} />}
+            </RestResourceConsumer>
+        </VisningStyle>
+    );
 }
 
 export default TraadVisning;

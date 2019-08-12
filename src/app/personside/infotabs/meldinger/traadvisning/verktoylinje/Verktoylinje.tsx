@@ -2,21 +2,23 @@ import * as React from 'react';
 import { Traad } from '../../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
-import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
+import { useEffect } from 'react';
+import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 
 interface Props {
     valgtTraad?: Traad;
 }
 
 const PanelStyle = styled.div`
-    background-color: #e8e8e8;
+    ${theme.hvittPanel}
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.24rem;
 `;
 
 const KnapperPanelStyle = styled.div`
@@ -31,57 +33,59 @@ const OppgaveknapperStyle = styled.div`
     }
 `;
 
+const SvartLenkeKnapp = styled(EkspanderKnapp)`
+    color: #3e3832;
+`;
+
+enum FunksjonVindu {
+    JOURNALFORING,
+    OPPGAVE,
+    MERK
+}
+
 function Funksjoner(props: Props) {
-    const [visJournalforing, settVisJournalforing] = React.useState(false);
-    const [visOppgave, settVisOppgave] = React.useState(false);
-    const [visMerk, settVisMerk] = React.useState(false);
+    const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
+    useEffect(() => {
+        settAktivtVindu(null);
+    }, [props.valgtTraad, settAktivtVindu]);
 
     if (!props.valgtTraad) {
         return null;
     }
 
-    function journalforingKlikk() {
-        settVisJournalforing(!visJournalforing);
-        settVisOppgave(false);
-        settVisMerk(false);
-    }
+    const setResetVindu = (klikketVindu: FunksjonVindu) => () =>
+        aktivtVindu === klikketVindu ? settAktivtVindu(null) : settAktivtVindu(klikketVindu);
 
-    function oppgaveKlikk() {
-        settVisOppgave(!visOppgave);
-        settVisJournalforing(false);
-        settVisMerk(false);
-    }
-
-    function merkKlikk() {
-        settVisMerk(!visMerk);
-        settVisJournalforing(false);
-        settVisOppgave(false);
-    }
+    const visJournalforing = aktivtVindu === FunksjonVindu.JOURNALFORING;
+    const visOppgave = aktivtVindu === FunksjonVindu.OPPGAVE;
+    const visMerk = aktivtVindu === FunksjonVindu.MERK;
 
     return (
         <>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
-                    <LenkeKnapp onClick={journalforingKlikk} underline={visJournalforing}>
-                        Journalfør
-                    </LenkeKnapp>
-                    <LenkeKnapp onClick={oppgaveKlikk} underline={visOppgave}>
-                        Lag oppgave
-                    </LenkeKnapp>
-                    <LenkeKnapp onClick={merkKlikk} underline={visMerk}>
-                        Merk
-                    </LenkeKnapp>
+                    <SvartLenkeKnapp
+                        onClick={setResetVindu(FunksjonVindu.JOURNALFORING)}
+                        open={visJournalforing}
+                        tittel="Journalfør"
+                    />
+                    <SvartLenkeKnapp
+                        onClick={setResetVindu(FunksjonVindu.OPPGAVE)}
+                        open={visOppgave}
+                        tittel="Lag oppgave"
+                    />
+                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <LenkeKnapp>Skriv ut</LenkeKnapp>
+                <SvartLenkeKnapp onClick={() => {}} tittel="Skriv ut" />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
-                <JournalforingPanel />
+                <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => settVisOppgave(false)} />
+                <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
-                <MerkPanel lukkPanel={() => settVisMerk(false)} />
+                <MerkPanel lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
         </>
     );

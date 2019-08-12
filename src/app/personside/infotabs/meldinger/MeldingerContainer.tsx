@@ -33,12 +33,16 @@ function MeldingerContainer() {
         <MeldingerMainStyle>
             <MeldingerArticleStyle>
                 <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
-                    {data => <TraadListe traader={data} />}
+                    {data => (
+                        <>
+                            <TraadListe traader={data} />
+                            <div>
+                                <VerktoylinjeContainer />
+                                <TraadVisningContainer />
+                            </div>
+                        </>
+                    )}
                 </RestResourceConsumer>
-                <div>
-                    <VerktoylinjeContainer />
-                    <TraadVisningContainer />
-                </div>
             </MeldingerArticleStyle>
         </MeldingerMainStyle>
     );
