@@ -55,16 +55,16 @@ export enum Temagruppe {
 }
 
 export enum Meldingstype {
-    DokumentVarsel = 'DOKUMENT_VARSEL',
-    OppgaveVarsel = 'OPPGAVE_VARSEL',
-    SpørsmålSkriftlig = 'SPORSMAL_SKRIFTLIG',
-    SvarSkriftlig = 'SVAR_SKRIFTLIG',
-    SvarOppmøte = 'SVAR_OPPMOTE',
-    SvarTelefon = 'SVAR_TELEFON',
-    DelvisSvarSkriftlig = 'DELVIS_SVAR_SKRIFTLIG',
-    SamtalereferatOppmøte = 'SAMTALEREFERAT_OPPMOTE',
-    SamtalereferatTelefon = 'SAMTALEREFERAT_TELEFON',
-    SpørsmålModiaUtgående = 'SPORSMAL_MODIA_UTGAAENDE',
+    DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
+    OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
+    SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
+    SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
+    SVAR_OPPMOTE = 'SVAR_OPPMOTE',
+    SVAR_TELEFON = 'SVAR_TELEFON',
+    DELVIS_SVAR_SKRIFTLIG = 'DELVIS_SVAR_SKRIFTLIG',
+    SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
+    SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
+    SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
     SvarSblInngående = 'SVAR_SBL_INNGAAENDE'
 }
 
@@ -74,15 +74,19 @@ export enum LestStatus {
     IkkeBesvart = 'IKKE_BESVART'
 }
 
-export interface SendMeldingRequest {
-    fnr: string;
-    navident: string;
-    kanal: string;
-    type: string | null;
+export enum KommunikasjonsKanal {
+    Telefon = 'TELEFON',
+    Oppmøte = 'OPPMOTE'
+}
+
+export interface SendReferatRequest {
     fritekst: string;
-    tilknyttetEnhet: string;
-    erTilknyttetAnsatt: boolean;
-    traadId: string | null;
-    kontorsperretEnhet: string | null;
     temagruppe: string;
+    kanal: KommunikasjonsKanal;
+}
+
+export interface SendSpørsmålRequest {
+    fritekst: string;
+    saksID: string;
+    erOppgaveTilknyttetAnsatt: boolean;
 }

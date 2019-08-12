@@ -37,8 +37,8 @@
         ]
     },
     "dependencies": {
-        "@nutgaard/use-fetch": "^2.3.0",
         "@navikt/navspa": "^1.0.3",
+        "@nutgaard/use-fetch": "^2.3.0",
         "classnames": "^2.2.6",
         "core-js": "^2.5.7",
         "detect-browser": "^3.0.1",

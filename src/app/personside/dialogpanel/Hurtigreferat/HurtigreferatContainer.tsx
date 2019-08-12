@@ -5,60 +5,49 @@ import theme from '../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import { Hurtigreferat, tekster } from './tekster';
 import HurtigreferatElement from './HurtigreferatElement';
-import { connect } from 'react-redux';
 import {
     isFailedPosting,
     isFinishedPosting,
     isNotStartedPosting,
-    isPosting,
-    PostResource
+    isPosting
 } from '../../../../rest/utils/postResource';
-import { Meldingstype, SendMeldingRequest } from '../../../../models/meldinger/meldinger';
-import { AppState } from '../../../../redux/reducers';
-import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { erKvinne, erMann, getNavn, PersonRespons } from '../../../../models/person/person';
+import { erKvinne, erMann, getNavn } from '../../../../models/person/person';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
 import Temavelger, { temaValg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
-import { RestResource } from '../../../../rest/utils/restResource';
-
-interface StateProps {
-    sendMeldingResource: PostResource<SendMeldingRequest>;
-    person: RestResource<PersonRespons>;
-}
-
-interface DispatchProps {
-    sendMelding: (tekst: string, tema: string) => void;
-}
-
-type Props = StateProps & DispatchProps;
+import { useRestResource } from '../../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { KommunikasjonsKanal } from '../../../../models/meldinger/meldinger';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
-    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.2);
-    border-radius: ${theme.borderRadius.layout};
+    .ekspanderbartPanel__hode {
+        padding: 0.6rem;
+    }
     label {
         ${theme.visuallyHidden}
     }
 `;
 
 const Padding = styled.div`
-    padding: 0 1rem;
+    padding: 0 0.5rem;
 `;
 
-function HurtigreferatContainer(props: Props) {
+function HurtigreferatContainer() {
     const [open, setOpen] = useState(false);
     const initialTema = temaValg.find(tema => tema.kodeRef === getTemaFraCookie());
     const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
 
-    const sendResource = props.sendMeldingResource;
+    const sendResource = useRestResource(resources => resources.sendReferat);
+    const dispatch = useDispatch();
+    const person = useRestResource(resources => resources.personinformasjon);
 
-    if (!isLoadedPerson(props.person)) {
+    if (!isLoadedPerson(person)) {
         return <AlertStripeAdvarsel>Ingen person i kontekst</AlertStripeAdvarsel>;
     }
 
@@ -72,14 +61,20 @@ function HurtigreferatContainer(props: Props) {
         );
     }
 
-    const sendMelding = (hurtigreferat: Hurtigreferat) => {
+    const handleSendMelding = (hurtigreferat: Hurtigreferat) => {
         if (!tema) {
             setVisTemaFeilmelding(true);
             return;
         }
-        if (isNotStartedPosting(props.sendMeldingResource)) {
-            loggEvent('sendMelding', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
-            props.sendMelding(hurtigreferat.fritekst, tema.kodeRef);
+        if (isNotStartedPosting(sendResource)) {
+            loggEvent('sendReferat', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
+            dispatch(
+                sendResource.actions.post({
+                    fritekst: hurtigreferat.fritekst,
+                    kanal: KommunikasjonsKanal.Telefon,
+                    temagruppe: tema.kodeRef
+                })
+            );
         }
     };
 
@@ -89,9 +84,8 @@ function HurtigreferatContainer(props: Props) {
         tema && setTemaCookie(tema.kodeRef);
     };
 
-    const person = props.person.data;
-    const navn = capitalizeName(getNavn(person.navn));
-    const pronomen = erMann(person) ? 'han' : erKvinne(person) ? 'hun' : 'bruker';
+    const navn = capitalizeName(getNavn(person.data.navn));
+    const pronomen = erMann(person.data) ? 'han' : erKvinne(person.data) ? 'hun' : 'bruker';
 
     const teksterMedBrukersNavn: Hurtigreferat[] = tekster.map((tekst: Hurtigreferat) => ({
         ...tekst,
@@ -108,7 +102,13 @@ function HurtigreferatContainer(props: Props) {
     return (
         <Style>
             <h3 className="sr-only">Send hurtigreferat</h3>
-            <EkspanderbartpanelPure apen={open} onClick={onClickHandler} tittel={'Hurtigreferat'}>
+            <EkspanderbartpanelPure
+                apen={open}
+                onClick={onClickHandler}
+                tittel="Spor samtale"
+                tittelProps="element"
+                border={true}
+            >
                 <Padding>
                     <Temavelger setTema={setTemaHandler} tema={tema} visFeilmelding={visTemaFeilmelding} />
                 </Padding>
@@ -117,10 +117,10 @@ function HurtigreferatContainer(props: Props) {
                         <HurtigreferatElement
                             key={hurtigreferat.tittel}
                             tekst={hurtigreferat}
-                            sendMelding={() => sendMelding(hurtigreferat)}
+                            sendMelding={() => handleSendMelding(hurtigreferat)}
                             spinner={
-                                isPosting(props.sendMeldingResource)
-                                    ? props.sendMeldingResource.payload.fritekst === hurtigreferat.fritekst
+                                isPosting(sendResource)
+                                    ? sendResource.payload.fritekst === hurtigreferat.fritekst
                                     : false
                             }
                         />
@@ -131,27 +131,4 @@ function HurtigreferatContainer(props: Props) {
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        sendMeldingResource: state.restResources.sendMelding,
-        person: state.restResources.personinformasjon
-    };
-}
-
-const actionCreators: DispatchProps = {
-    sendMelding: (tekst: string, tema: string) =>
-        sendMeldingActionCreator({
-            fritekst: tekst,
-            kanal: 'TELEFON',
-            type: Meldingstype.SamtalereferatTelefon,
-            temagruppe: tema,
-            traadId: null,
-            kontorsperretEnhet: null,
-            erTilknyttetAnsatt: true
-        })
-};
-
-export default connect(
-    mapStateToProps,
-    actionCreators
-)(HurtigreferatContainer);
+export default HurtigreferatContainer;

@@ -1,119 +1,171 @@
 import * as React from 'react';
-import { FormEvent, useEffect, useState } from 'react';
-import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { FormEvent, useState } from 'react';
+import { KommunikasjonsKanal, Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
-import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { useDispatch } from 'react-redux';
-import { sendMeldingActionCreator } from '../../../../redux/restReducers/sendMelding';
+import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import DialogpanelVelgSak from './DialogpanelVelgSak';
+import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
+import { capitalizeName } from '../../../../utils/stringFormatting';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { NyMeldingValidator } from './validatorer';
+import TekstFelt from './TekstFelt';
+import VelgDialogType from './VelgDialogType';
+import { useRestResource } from '../../../../utils/customHooks';
+import { Undertittel } from 'nav-frontend-typografi';
+import Oppgaveliste from './Oppgaveliste';
+import { isPosting } from '../../../../rest/utils/postResource';
+
+export enum OppgavelisteValg {
+    MinListe = 'MinListe',
+    EnhetensListe = 'Enhetensliste'
+}
+
+export type SendNyMeldingDialogType =
+    | Meldingstype.SAMTALEREFERAT_TELEFON
+    | Meldingstype.SAMTALEREFERAT_OPPMOTE
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+
+export interface FormState {
+    tekst: string;
+    dialogType: SendNyMeldingDialogType;
+    tema?: Kodeverk;
+    sak?: JournalforingsSak;
+    oppgaveListe: OppgavelisteValg;
+    visFeilmeldinger: boolean;
+}
 
 const FormStyle = styled.form`
     display: flex;
+    margin-top: 1rem;
     flex-direction: column;
     align-items: stretch;
-    > * {
-        margin-bottom: 1rem;
+    .ReactCollapse--collapse .skjemaelement {
+        margin-bottom: 0;
     }
 `;
 
-const CollapseStyle = styled.div`
-    .skjemaelement {
-        margin: 0;
+const KnappWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+        margin-top: 0.7rem;
+        margin-right: 0.5rem;
+        flex-grow: 1;
     }
 `;
 
 const tekstMaksLengde = 5000;
 
+const initialState: FormState = {
+    tekst: '',
+    dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
+    tema: undefined,
+    sak: undefined,
+    oppgaveListe: OppgavelisteValg.MinListe,
+    visFeilmeldinger: false
+};
+
 function SendNyMelding() {
-    const initialDialogType = Meldingstype.SamtalereferatTelefon;
-    const [dialogType, setDialogType] = useState(initialDialogType);
-    const [tekst, setTekst] = useState('');
-    const [tekstFeil, setTekstFeil] = useState(false);
-    const [tema, setTema] = useState<Kodeverk | undefined>(undefined);
-    const [temaFeil, setTemaFeil] = useState(false);
-    const [visFeilMeldinger, setVisFeilmeldinger] = useState(false);
+    const [state, setState] = useState<FormState>(initialState);
+    const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
+    const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const postReferatResource = useRestResource(resources => resources.sendReferat);
+    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setTekstFeil(tekst.length === 0 || tekst.length > tekstMaksLengde);
-        setTemaFeil(!tema);
-        setVisFeilmeldinger(false);
-    }, [tekst, tema]);
-
-    const erReferat = dialogType !== Meldingstype.SpørsmålSkriftlig;
-    const erOppmøte = dialogType !== Meldingstype.SamtalereferatOppmøte;
-    const erGyldigReferat = !temaFeil && !tekstFeil;
+    const enhet = getSaksbehandlerEnhet();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (tema && erReferat && erGyldigReferat) {
+        if (senderMelding) {
+            return;
+        }
+        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
+            const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
             dispatch(
-                sendMeldingActionCreator({
-                    fritekst: tekst,
-                    kanal: erOppmøte ? 'OPPMOTE' : 'TELEFON',
-                    type: dialogType,
-                    temagruppe: tema.kodeRef,
-                    traadId: null,
-                    kontorsperretEnhet: null,
-                    erTilknyttetAnsatt: true
+                postReferatResource.actions.post({
+                    fritekst: state.tekst,
+                    kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
+                    temagruppe: state.tema.kodeRef
+                })
+            );
+        } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
+            dispatch(
+                postSpørsmålResource.actions.post({
+                    fritekst: state.tekst,
+                    saksID: state.sak.saksId,
+                    erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
                 })
             );
         } else {
-            setVisFeilmeldinger(true);
+            updateState({ visFeilmeldinger: true });
         }
     };
 
     const handleAvbryt = () => {
-        setDialogType(initialDialogType);
-        setTekst('');
-        setTema(undefined);
+        updateState(initialState);
     };
 
-    const tekstFeilmelding: SkjemaelementFeil | undefined =
-        visFeilMeldinger && tekstFeil
-            ? {
-                  feilmelding: tekst.length === 0 ? 'Du må skrive en tekst' : `Maks ${tekstMaksLengde} tegn`
-              }
-            : undefined;
+    const navn = isLoadedPerson(personinformasjon)
+        ? capitalizeName(personinformasjon.data.navn.fornavn || '')
+        : 'bruker';
+
+    const erReferat = NyMeldingValidator.erReferat(state);
+    const erSpørsmål = NyMeldingValidator.erSporsmal(state);
 
     return (
         <article>
-            <h3 className="sr-only">Send ny melding</h3>
+            <Undertittel>Send ny melding</Undertittel>
             <FormStyle onSubmit={handleSubmit}>
-                <RadioPanelGruppe
-                    name="Dialogtype"
-                    legend="Velg dialogtype"
-                    radios={[
-                        { label: 'Samtalereferat telefon', value: Meldingstype.SamtalereferatTelefon },
-                        { label: 'Samtalereferat oppmøte', value: Meldingstype.SamtalereferatOppmøte },
-                        { label: 'Spørsmål til bruker', value: Meldingstype.SpørsmålSkriftlig }
-                    ]}
-                    checked={dialogType}
-                    onChange={(_, value) => setDialogType(value as Meldingstype)}
+                <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
+                <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
+                    {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
+                    <Temavelger
+                        setTema={tema => updateState({ tema: tema })}
+                        tema={state.tema}
+                        visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                    />
+                </UnmountClosed>
+                <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
+                    <DialogpanelVelgSak
+                        setValgtSak={sak => updateState({ sak })}
+                        visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
+                        valgtSak={state.sak}
+                    />
+                    <Oppgaveliste
+                        state={state}
+                        enhet={enhet}
+                        setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                    />
+                </UnmountClosed>
+                <TekstFelt
+                    formState={state}
+                    navn={navn}
+                    tekstMaksLengde={tekstMaksLengde}
+                    updateTekst={tekst => updateState({ tekst })}
                 />
-                <CollapseStyle>
-                    <UnmountClosed isOpened={erReferat}>
-                        <Temavelger setTema={setTema} tema={tema} visFeilmelding={temaFeil && visFeilMeldinger} />
-                    </UnmountClosed>
-                </CollapseStyle>
-                <Textarea
-                    value={tekst}
-                    onChange={e => setTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
-                    label={'Melding'}
-                    maxLength={tekstMaksLengde}
-                    feil={tekstFeilmelding}
-                />
-                <KnappBase type="hoved" htmlType="submit">
-                    Del med Navn her
-                </KnappBase>
-                <KnappMedBekreftPopup onBekreft={handleAvbryt} popUpTekst="Du vil miste meldingen du har påbegynnt">
-                    Avbryt
-                </KnappMedBekreftPopup>
+                <UnmountClosed isOpened={erSpørsmål}>
+                    <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
+                </UnmountClosed>
+                <KnappWrapper>
+                    <KnappBase type="hoved" htmlType="submit" spinner={senderMelding}>
+                        Del med {navn}
+                    </KnappBase>
+                    <KnappMedBekreftPopup
+                        type="flat"
+                        onBekreft={handleAvbryt}
+                        popUpTekst="Du vil miste meldingen du har påbegynnt"
+                    >
+                        Avbryt
+                    </KnappMedBekreftPopup>
+                </KnappWrapper>
             </FormStyle>
         </article>
     );

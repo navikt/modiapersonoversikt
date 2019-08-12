@@ -2,27 +2,27 @@ import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldin
 
 export function meldingstypeTekst(meldingstype: Meldingstype) {
     switch (meldingstype) {
-        case Meldingstype.SvarTelefon:
+        case Meldingstype.SVAR_TELEFON:
             return 'Svar telefon';
-        case Meldingstype.SpørsmålSkriftlig:
+        case Meldingstype.SPORSMAL_SKRIFTLIG:
             return 'Spørsmål fra bruker';
-        case Meldingstype.SamtalereferatOppmøte:
+        case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return 'Samtalereferat oppmøte';
-        case Meldingstype.DelvisSvarSkriftlig:
+        case Meldingstype.DELVIS_SVAR_SKRIFTLIG:
             return 'Delsvar';
-        case Meldingstype.DokumentVarsel:
+        case Meldingstype.DOKUMENT_VARSEL:
             return 'Dokument varsel';
-        case Meldingstype.OppgaveVarsel:
+        case Meldingstype.OPPGAVE_VARSEL:
             return 'OppgaveIkon varsel';
-        case Meldingstype.SamtalereferatTelefon:
+        case Meldingstype.SAMTALEREFERAT_TELEFON:
             return 'Samtalereferat telefon';
-        case Meldingstype.SpørsmålModiaUtgående:
+        case Meldingstype.SPORSMAL_MODIA_UTGAAENDE:
             return 'Spørsmål fra NAV';
-        case Meldingstype.SvarOppmøte:
+        case Meldingstype.SVAR_OPPMOTE:
             return 'Svar oppmøte';
         case Meldingstype.SvarSblInngående:
             return 'Svar fra bruker';
-        case Meldingstype.SvarSkriftlig:
+        case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';
         default:
             return 'Ukjent meldingstype';

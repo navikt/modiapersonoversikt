@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
-import KnappBase from 'nav-frontend-knapper';
+import KnappBase, { KnappBaseProps } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 
-interface Props {
+interface Props extends Partial<Pick<KnappBaseProps, 'type'>> {
     onBekreft: () => void;
     children: string;
     popUpTekst?: string;
@@ -56,7 +56,7 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
     render() {
         return (
             <>
-                <KnappBase type="standard" htmlType="button" onClick={this.visModal}>
+                <KnappBase type={this.props.type || 'standard'} htmlType="button" onClick={this.visModal}>
                     {this.props.children}
                 </KnappBase>
                 <ModalWrapper isOpen={this.state.visModal} contentLabel="Bekreft valg" onRequestClose={this.skjulModal}>

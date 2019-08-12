@@ -28,7 +28,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.pleiepenger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sykepenger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.foreldrepenger.actions.reset, fnr);
-    useDispatchOnNewFnr(restResources.sendMelding.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.sendReferat.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.sendSpørsmål.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
     useFetchFeatureTogglesOnNewFnr();

@@ -36,16 +36,16 @@ const NumberBadge = styled(UndertekstBold)`
 
 function Ikon({ props }: { props: MeldingsikonProps }) {
     switch (props.type) {
-        case Meldingstype.SamtalereferatOppmøte:
+        case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return <OppmoteIkon />;
-        case Meldingstype.SamtalereferatTelefon:
+        case Meldingstype.SAMTALEREFERAT_TELEFON:
             return <TelefonIkon />;
-        case Meldingstype.OppgaveVarsel:
+        case Meldingstype.OPPGAVE_VARSEL:
             return <OppgaveIkon />;
-        case Meldingstype.DokumentVarsel:
+        case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
-            // TODO Vi må legge på et ekstra besvart / ubesvart ikon...
+            // TODO Vi må legge på et ekstra besvart / ubesvart ikon (ubesvart inngående rød konvolutt, ubesvart utgående)
             if (props.erMonolog) {
                 return <MonologIkon />;
             } else {
