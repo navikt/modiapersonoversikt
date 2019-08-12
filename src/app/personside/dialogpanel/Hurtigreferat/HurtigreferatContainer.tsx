@@ -105,7 +105,7 @@ function HurtigreferatContainer() {
             <EkspanderbartpanelPure
                 apen={open}
                 onClick={onClickHandler}
-                tittel={'Spor samtale'}
+                tittel="Spor samtale"
                 tittelProps="element"
                 border={true}
             >

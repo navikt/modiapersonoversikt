@@ -211,7 +211,7 @@ exports[`viser hurtigreferat 1`] = `
                   disabled={true}
                   value=""
                 >
-                  Velg tema
+                  Velg temagruppe
                 </option>
                 <option
                   value="ARBD"

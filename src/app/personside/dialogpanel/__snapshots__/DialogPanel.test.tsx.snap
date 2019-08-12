@@ -328,7 +328,7 @@ exports[`viser dialogpanel 1`] = `
                       disabled={true}
                       value=""
                     >
-                      Velg tema
+                      Velg temagruppe
                     </option>
                     <option
                       value="ARBD"
@@ -1298,7 +1298,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                   disabled={true}
                   value=""
                 >
-                  Velg tema
+                  Velg temagruppe
                 </option>
                 <option
                   value="ARBD"

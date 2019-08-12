@@ -40,7 +40,7 @@ function Temavelger(props: Props) {
         props.setTema(tema);
     };
     return (
-        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge tema' } : undefined}>
+        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}>
             <StyledSelect
                 // @ts-ignore
                 selectRef={ref => (selectRef = ref)}
@@ -49,7 +49,7 @@ function Temavelger(props: Props) {
                 value={props.tema ? props.tema.kodeRef : ''}
             >
                 <option value="" disabled>
-                    Velg tema
+                    Velg temagruppe
                 </option>
                 {temaValg.map(valg => (
                     <option key={valg.kodeRef} value={valg.kodeRef}>

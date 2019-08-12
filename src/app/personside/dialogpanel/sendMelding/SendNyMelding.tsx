@@ -63,15 +63,16 @@ const KnappWrapper = styled.div`
 
 const tekstMaksLengde = 5000;
 
+const initialState: FormState = {
+    tekst: '',
+    dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
+    tema: undefined,
+    sak: undefined,
+    oppgaveListe: OppgavelisteValg.MinListe,
+    visFeilmeldinger: false
+};
+
 function SendNyMelding() {
-    const initialState: FormState = {
-        tekst: '',
-        dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
-        tema: undefined,
-        sak: undefined,
-        oppgaveListe: OppgavelisteValg.MinListe,
-        visFeilmeldinger: false
-    };
     const [state, setState] = useState<FormState>(initialState);
     const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
     const personinformasjon = useRestResource(resources => resources.personinformasjon);

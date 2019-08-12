@@ -45,7 +45,7 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
         case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
-            // TODO Vi må legge på et ekstra besvart / ubesvart ikon...
+            // TODO Vi må legge på et ekstra besvart / ubesvart ikon (ubesvart inngående rød konvolutt, ubesvart utgående)
             if (props.erMonolog) {
                 return <MonologIkon />;
             } else {

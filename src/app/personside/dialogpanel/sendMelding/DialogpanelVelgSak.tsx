@@ -23,6 +23,12 @@ interface Props {
     visFeilmelding: boolean;
 }
 
+function getTittel(sak: JournalforingsSak) {
+    return `${sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato) + ' | '}${sak.temaNavn} | ${
+        sak.saksId
+    }`;
+}
+
 function DialogpanelVelgSak(props: Props) {
     const [visSaker, setVisSaker] = useState(false);
 
@@ -31,11 +37,8 @@ function DialogpanelVelgSak(props: Props) {
         props.setValgtSak(sak);
     };
 
-    const tittel = props.valgtSak
-        ? `${props.valgtSak.opprettetDato && formatterDatoMedMaanedsnavn(props.valgtSak.opprettetDato) + ' | '}${
-              props.valgtSak.temaNavn
-          } | ${props.valgtSak.saksId}`
-        : 'Velg sak';
+    const tittel = props.valgtSak ? getTittel(props.valgtSak) : 'Velg sak';
+
     return (
         <StyledSkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge en sak' } : undefined}>
             <StyledEkspanderbartPanelPure
