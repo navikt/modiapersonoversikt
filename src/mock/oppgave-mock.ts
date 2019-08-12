@@ -7,6 +7,6 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
     }
 
     return Array.from({ length: navfaker.random.integer(4, 1) }, () => {
-        return { fødselsnummer: navfaker.personIdentifikator.fødselsnummer(), henvendelseId: '123', oppgaveid: '456' };
+        return { fødselsnummer: navfaker.personIdentifikator.fødselsnummer(), henvendelseid: '123', oppgaveid: '456' };
     });
 }

@@ -8,9 +8,13 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'meldinger');
 
-    return Array(navfaker.random.integer(20, 5))
+    const traadArray = Array(navfaker.random.integer(20, 5))
         .fill(null)
         .map(() => getTraad());
+
+    traadArray[0].traadId = '123'; // Legger til denne for å tving at man har en matchende oppgave-id i mock
+
+    return traadArray;
 }
 
 function getTraad(): Traad {
