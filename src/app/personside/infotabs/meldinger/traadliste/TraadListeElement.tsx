@@ -14,6 +14,8 @@ import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
 import { isFinishedPosting } from '../../../../../rest/utils/postResource';
 import { EtikettSuksess } from 'nav-frontend-etiketter';
+import { useAppState } from '../../../../../utils/customHooks';
+import JumpingDots from '../../../dialogpanel/fortsettDialog/JumpingDots';
 
 interface OwnProps {
     traad: Traad;
@@ -48,6 +50,7 @@ const PanelStyle = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
+    const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
@@ -71,6 +74,7 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <JumpingDots vis={traadDialogpanel === props.traad} />
                         <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     </div>
                 </PanelStyle>

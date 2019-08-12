@@ -1,7 +1,11 @@
 import { Action } from 'redux';
 
 export interface VisittkortAction extends Action {
-    erApen: boolean;
+    erApen?: boolean;
+}
+
+export interface DialogpanelAction extends Action {
+    erApen?: boolean;
 }
 
 export enum UIActionTypes {
@@ -27,24 +31,26 @@ export const initialUIState: UIState = {
     }
 };
 
-export function toggleVisittkort(erApent?: boolean) {
+export function toggleVisittkort(erApent?: boolean): VisittkortAction {
     return {
         type: UIActionTypes.TOGGLE_VISITTKORT,
         erApen: erApent
     };
 }
 
-export function toggleDialogpanel() {
+export function toggleDialogpanel(erApen?: boolean): DialogpanelAction {
     return {
-        type: UIActionTypes.TOGGLE_DIALOGPANEL
+        type: UIActionTypes.TOGGLE_DIALOGPANEL,
+        erApen: erApen
     };
 }
 
-function reducer(state: UIState = initialUIState, action: Action) {
+type Actions = VisittkortAction | DialogpanelAction;
+
+function reducer(state: UIState = initialUIState, action: Actions) {
     switch (action.type) {
         case UIActionTypes.TOGGLE_VISITTKORT:
-            const erApen = (action as VisittkortAction).erApen;
-            const nesteVerdi = erApen !== undefined ? erApen : !state.visittkort.apent;
+            const nesteVerdi = action.erApen !== undefined ? action.erApen : !state.visittkort.apent;
             return {
                 ...state,
                 visittkort: {
@@ -53,11 +59,12 @@ function reducer(state: UIState = initialUIState, action: Action) {
                 }
             };
         case UIActionTypes.TOGGLE_DIALOGPANEL:
+            const ekspandert = action.erApen !== undefined ? action.erApen : !state.dialogPanel.ekspandert;
             return {
                 ...state,
                 dialogPanel: {
                     ...state.visittkort,
-                    ekspandert: !state.dialogPanel.ekspandert
+                    ekspandert: ekspandert
                 }
             };
         default:
