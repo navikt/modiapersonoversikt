@@ -25,7 +25,7 @@ function VelgDialogType(props: Props) {
         >
             <option value={Meldingstype.SAMTALEREFERAT_TELEFON}>Samtalereferat telefon</option>
             <option value={Meldingstype.SAMTALEREFERAT_OPPMOTE}>Samtalereferat oppmøte</option>
-            <option value={Meldingstype.SPORSMAL_SKRIFTLIG}>Spørsmål til bruker</option>
+            <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål til bruker</option>
         </StyledSelect>
     );
 }

@@ -12,7 +12,7 @@ export class NyMeldingValidator {
         return state.sak !== undefined;
     }
     public static erReferat(state: FormState) {
-        return state.dialogType !== Meldingstype.SPORSMAL_SKRIFTLIG;
+        return state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     }
     public static erSporsmal(state: FormState) {
         return !this.erReferat(state);

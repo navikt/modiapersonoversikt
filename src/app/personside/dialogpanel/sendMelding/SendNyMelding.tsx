@@ -30,7 +30,7 @@ export enum OppgavelisteValg {
 export type SendNyMeldingDialogType =
     | Meldingstype.SAMTALEREFERAT_TELEFON
     | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SPORSMAL_SKRIFTLIG;
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
 export interface FormState {
     tekst: string;
