@@ -29,24 +29,42 @@ function Oversikt() {
                     infotabPath={INFOTABS.UTBETALING}
                     tittel={'Utbetalinger'}
                     children={<UtbetalingerOversikt />}
+                    hurtigtast={'U'}
                 />
                 <Oversiktskomponent
                     infotabPath={INFOTABS.OPPFOLGING}
                     tittel={'Oppfølging'}
                     children={<OppfolgingOversikt />}
+                    hurtigtast={'O'}
                 />
-                <Oversiktskomponent infotabPath={INFOTABS.VARSEL} tittel={'Varsler'} children={<VarselOversikt />} />
+                <Oversiktskomponent
+                    infotabPath={INFOTABS.VARSEL}
+                    tittel={'Varsler'}
+                    children={<VarselOversikt />}
+                    hurtigtast={'V'}
+                />
             </KolonneStyle>
             <KolonneStyle>
                 <Oversiktskomponent
                     infotabPath={INFOTABS.MELDINGER}
                     tittel={'Meldinger'}
                     children={<MeldingerOversikt />}
+                    hurtigtast={'M'}
                 />
-                <Oversiktskomponent infotabPath={INFOTABS.YTELSER} tittel={'Ytelser'} children={<YtelserOversikt />} />
+                <Oversiktskomponent
+                    infotabPath={INFOTABS.YTELSER}
+                    tittel={'Ytelser'}
+                    children={<YtelserOversikt />}
+                    hurtigtast={'Y'}
+                />
             </KolonneStyle>
             <KolonneStyle>
-                <Oversiktskomponent tittel={'Saker'} infotabPath={INFOTABS.SAKER} children={<SakerOversikt />} />
+                <Oversiktskomponent
+                    tittel={'Saker'}
+                    infotabPath={INFOTABS.SAKER}
+                    children={<SakerOversikt />}
+                    hurtigtast={'S'}
+                />
             </KolonneStyle>
         </Style>
     );

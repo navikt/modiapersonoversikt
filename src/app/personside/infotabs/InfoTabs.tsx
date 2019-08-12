@@ -16,6 +16,7 @@ import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
+import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 
 type Props = RouteComponentProps<{}>;
 
@@ -59,6 +60,7 @@ function InfoTabs(props: Props) {
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <Section role="region" aria-label="Info-tabs">
+                <HandleInfotabsHotkeys />
                 <h2 className="visually-hidden">Tab-panel</h2>
                 <TabKnapper
                     onTabChange={updateRouterPath}

@@ -13,6 +13,7 @@ interface Props {
     children: ReactNode;
     tittel: string;
     infotabPath: INFOTABS;
+    hurtigtast: string;
 }
 
 const PanelStyle = styled.div`
@@ -33,12 +34,14 @@ const MainStyle = styled.div`
 
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath}/`;
+    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
 
     return (
         <PanelStyle>
             <OverskriftStyle>
-                <Undertittel tag="h3">{props.tittel}</Undertittel>
+                <Undertittel tag="h3">
+                    {props.tittel} (Alt + {props.hurtigtast})
+                </Undertittel>
                 <Link className="lenke" to={path}>
                     <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                 </Link>
