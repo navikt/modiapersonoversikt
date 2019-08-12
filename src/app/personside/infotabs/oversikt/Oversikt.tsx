@@ -8,6 +8,7 @@ import YtelserOversikt from './YtelserOversikt';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
 import MeldingerOversikt from './MeldingerOversikt';
 import { INFOTABS } from '../InfoTabEnum';
+import SakerOversikt from './SakerOversikt';
 
 const Style = styled.article`
     display: flex;
@@ -56,6 +57,9 @@ function Oversikt() {
                     children={<YtelserOversikt />}
                     hurtigtast={'Y'}
                 />
+            </KolonneStyle>
+            <KolonneStyle>
+                <Oversiktskomponent tittel={'Saker'} infotabPath={INFOTABS.SAKER} children={<SakerOversikt />} />
             </KolonneStyle>
         </Style>
     );

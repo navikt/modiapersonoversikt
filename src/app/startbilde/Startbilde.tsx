@@ -6,6 +6,7 @@ import { paths, setNyBrukerIPath } from '../routes/routing';
 import { aremark } from '../../mock/person/aremark';
 import { moss } from '../../mock/person/moss';
 import HentOppgaveKnapp from '../personside/dialogpanel/HentOppgaveKnapp';
+import SetFnrIRedux from '../PersonOppslagHandler/SetFnrIRedux';
 
 type StartbildeProps = RouteComponentProps<{}>;
 
@@ -21,6 +22,7 @@ class Startbilde extends React.Component<StartbildeProps> {
     render() {
         return (
             <StartBildeLayout>
+                <SetFnrIRedux fødselsnummer="" />
                 <KnappBase onClick={() => this.snarveiTilAremark()} type="hoved">
                     Snarvei til Aremark!
                 </KnappBase>
