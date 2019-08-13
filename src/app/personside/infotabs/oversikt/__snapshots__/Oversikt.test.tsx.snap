@@ -250,10 +250,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Utbetalinger
+           (Alt + 
+          U
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/UTBETALING/"
+          href="/modiapersonoversikt/person/10108000398/utbetaling/"
           onClick={[Function]}
         >
           <p
@@ -316,10 +319,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Oppfølging
+           (Alt + 
+          O
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/OPPFØLGING/"
+          href="/modiapersonoversikt/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
           <p
@@ -354,10 +360,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Varsler
+           (Alt + 
+          V
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/VARSLER/"
+          href="/modiapersonoversikt/person/10108000398/varsler/"
           onClick={[Function]}
         >
           <p
@@ -632,10 +641,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Meldinger
+           (Alt + 
+          M
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/MELDINGER/"
+          href="/modiapersonoversikt/person/10108000398/meldinger/"
           onClick={[Function]}
         >
           <p
@@ -660,10 +672,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Ytelser
+           (Alt + 
+          Y
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/YTELSER/"
+          href="/modiapersonoversikt/person/10108000398/ytelser/"
           onClick={[Function]}
         >
           <p
@@ -696,10 +711,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="typo-undertittel"
         >
           Saker
+           (Alt + 
+          S
+          )
         </h3>
         <a
           className="lenke"
-          href="/modiapersonoversikt/person/10108000398/SAKER/"
+          href="/modiapersonoversikt/person/10108000398/saker/"
           onClick={[Function]}
         >
           <p
