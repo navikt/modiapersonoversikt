@@ -55,7 +55,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
 
     const handleSendMelding = () => {
         dispatch(setDialogpanelTraad(valgtTraad));
-        false && dispatch(toggleDialogpanel(true)); //TODO sørge for at dialogpanel er åpent, men dette fører til "hopp" i animasjon. Porque?
+        dispatch(toggleDialogpanel(true));
     };
 
     return (
