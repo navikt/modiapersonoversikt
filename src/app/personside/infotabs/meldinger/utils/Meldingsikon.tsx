@@ -6,7 +6,7 @@ import OppgaveIkon from '../../../../../svg/OppgaveIkon';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { UndertekstBold } from 'nav-frontend-typografi';
 
@@ -17,11 +17,16 @@ interface MeldingsikonProps {
     antallMeldinger: number;
 }
 
-const Styling = styled.span`
+const Styling = styled.span<{ visNumberBadge: boolean }>`
     position: relative;
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
+        ${props =>
+            props.visNumberBadge &&
+            css`
+                clip-path: polygon(0 0, 79% 0, 79% 46%, 100% 46%, 100% 100%, 0 100%);
+            `};
     }
 `;
 
@@ -29,7 +34,6 @@ const NumberBadge = styled(UndertekstBold)`
     position: absolute;
     top: ${pxToRem(-3)};
     right: ${pxToRem(9)};
-    background-color: white;
     border-radius: 50%;
     padding: 0 0.1rem;
 `;
@@ -56,10 +60,11 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
 }
 
 function Meldingsikon(props: MeldingsikonProps) {
+    const visNumberBadge = props.antallMeldinger > 1;
     return (
-        <Styling>
+        <Styling visNumberBadge={visNumberBadge}>
             <Ikon props={props} />
-            {props.antallMeldinger > 1 && <NumberBadge>{props.antallMeldinger}</NumberBadge>}
+            {visNumberBadge && <NumberBadge>{props.antallMeldinger}</NumberBadge>}
         </Styling>
     );
 }
