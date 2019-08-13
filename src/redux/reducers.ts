@@ -15,6 +15,8 @@ import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
 import { UtbetalingerState } from './utbetalinger/types';
 import { MeldingerState } from './meldinger/types';
 import { meldingerReducer } from './meldinger/reducer';
+import { OppgaveState } from './oppgave/types';
+import { oppgaverReducer } from './oppgave/reducer';
 
 export interface AppState {
     restResources: RestEndepunkter;
@@ -23,6 +25,7 @@ export interface AppState {
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     meldinger: MeldingerState;
+    oppgaver: OppgaveState;
     ytelser: YtelserState;
     kontrollSpørsmål: KontrollSpørsmålState;
     oppfolging: OppfolgingState;
@@ -36,6 +39,7 @@ export default combineReducers<AppState>({
     utbetalinger: utbetalingerReducer,
     saksoversikt: saksoversiktReducer,
     meldinger: meldingerReducer,
+    oppgaver: oppgaverReducer,
     ytelser: ytelserReducere,
     kontrollSpørsmål: kontrollspørsmålReducer,
     oppfolging: oppfolgingReducer,

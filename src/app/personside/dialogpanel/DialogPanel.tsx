@@ -10,9 +10,11 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 import SendNyMelding from './sendMelding/SendNyMelding';
-import { useRestResource } from '../../../utils/customHooks';
+import { useAppState, useRestResource } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { KommunikasjonsKanal } from '../../../models/meldinger/meldinger';
+import FortsettDialog from './fortsettDialog/FortsettDialog';
+import { UnmountClosed } from 'react-collapse';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -44,6 +46,7 @@ function Feilmelding(props: { errormessage: string }) {
 function Dialogpanel() {
     const sendReferatResource = useRestResource(resources => resources.sendReferat);
     const sendSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const visFortsettDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad !== undefined);
     const dispatch = useDispatch();
 
     if (isFinishedPosting(sendReferatResource)) {
@@ -83,7 +86,12 @@ function Dialogpanel() {
                 <HurtigReferatContainer />
             </HurtigreferatWrapper>
             <Padding>
-                <SendNyMelding />
+                <UnmountClosed isOpened={visFortsettDialogpanel}>
+                    <FortsettDialog />
+                </UnmountClosed>
+                <UnmountClosed isOpened={!visFortsettDialogpanel}>
+                    <SendNyMelding />
+                </UnmountClosed>
             </Padding>
         </ErrorBoundary>
     );

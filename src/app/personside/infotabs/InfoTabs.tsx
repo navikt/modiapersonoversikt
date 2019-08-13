@@ -68,15 +68,12 @@ function InfoTabs(props: Props) {
                 />
                 <OpenTab>
                     <Switch location={props.location}>
-                        <Route
-                            path={basePath + INFOTABS.UTBETALING + '/'}
-                            component={() => <UtbetalingerContainer />}
-                        />
-                        <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={() => <OppfolgingContainer />} />
-                        <Route path={basePath + INFOTABS.MELDINGER + '/'} component={() => <MeldingerContainer />} />
-                        <Route path={basePath + INFOTABS.SAKER + '/'} component={() => <SaksoversiktContainer />} />
-                        <Route path={basePath + INFOTABS.YTELSER + '/'} component={() => <YtelserContainer />} />
-                        <Route path={basePath + INFOTABS.VARSEL + '/'} component={() => <VarslerContainer />} />
+                        <Route path={basePath + INFOTABS.UTBETALING + '/'} component={UtbetalingerContainer} />
+                        <Route path={basePath + INFOTABS.OPPFOLGING + '/'} component={OppfolgingContainer} />
+                        <Route path={basePath + INFOTABS.MELDINGER + '/'} component={MeldingerContainer} />
+                        <Route path={basePath + INFOTABS.SAKER + '/'} component={SaksoversiktContainer} />
+                        <Route path={basePath + INFOTABS.YTELSER + '/'} component={YtelserContainer} />
+                        <Route path={basePath + INFOTABS.VARSEL + '/'} component={VarslerContainer} />
                         <Route path={basePath + INFOTABS.OVERSIKT + '/'} component={Oversikt} />
                     </Switch>
                 </OpenTab>
