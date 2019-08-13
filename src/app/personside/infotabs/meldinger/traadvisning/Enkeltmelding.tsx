@@ -6,6 +6,8 @@ import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import styled from 'styled-components';
+import navlogo from '../../../../../svg/navlogo.svg';
+import brukerikon from '../../../../../svg/bruker.svg';
 
 interface Props {
     melding: Melding;
@@ -14,6 +16,20 @@ interface Props {
 const Style = styled.div`
     .snakkeboble-panel {
         flex-basis: 70%;
+    }
+    .nav-ikon,
+    .bruker-ikon {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position-y: 0.5rem;
+    }
+    .nav-ikon {
+        background-image: url(${navlogo});
+        width: 3.5rem;
+    }
+    .bruker-ikon {
+        background-image: url(${brukerikon});
+        width: 2.5rem;
     }
 `;
 
@@ -28,14 +44,14 @@ function saksbehandlerTekst(saksbehandler: Saksbehandler) {
 }
 
 function EnkeltMelding(props: Props) {
-    const pilHøyre = erMeldingFraNav(props.melding.meldingstype);
+    const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
 
     return (
         <Style>
-            <Snakkeboble pilHoyre={pilHøyre}>
+            <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <Element>{topptekst}</Element>
                 <Normaltekst>{datoTekst}</Normaltekst>
                 <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
