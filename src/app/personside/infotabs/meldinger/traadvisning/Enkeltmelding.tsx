@@ -18,8 +18,8 @@ const Style = styled.div`
 `;
 
 function meldingstittel(melding: Melding) {
-    const ulestTekst = melding.status === LestStatus.IkkeLest ? 'Ulest, ' : '';
-    return `${meldingstypeTekst(melding.meldingstype)} - ${ulestTekst}${temagruppeTekst(melding.temagruppe)}`;
+    const lestTekst = melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ';
+    return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
 }
 
 function saksbehandlerTekst(saksbehandler: Saksbehandler) {

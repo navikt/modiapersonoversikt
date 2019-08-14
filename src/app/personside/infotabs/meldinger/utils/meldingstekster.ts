@@ -25,7 +25,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
         case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';
         default:
-            return 'Ukjent meldingstype';
+            return 'Ukjent meldingstype' + meldingstype;
     }
 }
 
@@ -55,7 +55,9 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
             return 'Hjelpemiddel';
         case Temagruppe.Familie:
             return 'Familie';
+        case Temagruppe.Null:
+            return '';
         default:
-            return 'Ukjent temagruppe';
+            return 'Ukjent temagruppe:' + temagruppe;
     }
 }
