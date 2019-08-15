@@ -5,6 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
+
+const ValideringsfeilStyle = styled.div`
+    margin: ${theme.margin.layout};
+    color: #d0021b;
+`;
 
 export interface PersonsokSkjemaProps {
     stateCriteria: {
@@ -75,6 +82,14 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     };
 }
 
+function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
+    if (props.stateCriteria.kontonummer && props.stateCriteria.kontonummer.length !== 11) {
+        return 'Kontonummer må ha 11 siffer';
+    }
+
+    return undefined;
+}
+
 function PersonsokSkjema() {
     const dispatch = useDispatch();
     const personsokResource = useSelector((state: AppState) => state.restResources.personsok);
@@ -91,6 +106,7 @@ function PersonsokSkjema() {
     const [alderFra, settAlderFra] = useState<string>('');
     const [alderTil, settAlderTil] = useState<string>('');
     const [kjonn, settKjonn] = useState<string>('');
+    const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
 
     const formState: PersonsokSkjemaProps = {
         stateCriteria: {
@@ -131,15 +147,22 @@ function PersonsokSkjema() {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        const request: PersonsokRequest = lagRequest(formState);
-        console.log(request);
-        dispatch(personsokResource.actions.post(request));
+        const harSkjemafeil = validerSkjema(formState);
+        settValideringsfeil(harSkjemafeil);
+        if (!harSkjemafeil) {
+            const request: PersonsokRequest = lagRequest(formState);
+            console.log(request);
+            dispatch(personsokResource.actions.post(request));
+        }
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <PersonsokSkjemaElementer form={formState} />
-        </form>
+        <>
+            <form onSubmit={submitHandler}>
+                <PersonsokSkjemaElementer form={formState} />
+            </form>
+            <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
+        </>
     );
 }
 
