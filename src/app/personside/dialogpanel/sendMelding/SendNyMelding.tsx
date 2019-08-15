@@ -13,7 +13,6 @@ import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
 import VelgDialogType from './VelgDialogType';
@@ -21,6 +20,7 @@ import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { isPosting } from '../../../../rest/utils/postResource';
+import { FormStyle } from '../fellesStyling';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -41,21 +41,12 @@ export interface FormState {
     visFeilmeldinger: boolean;
 }
 
-const FormStyle = styled.form`
-    display: flex;
-    margin-top: 1rem;
-    flex-direction: column;
-    align-items: stretch;
-    .ReactCollapse--collapse .skjemaelement {
-        margin-bottom: 0;
-    }
-`;
-
 const KnappWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
+    margin-top: 1rem;
     > * {
-        margin-top: 0.7rem;
+        margin-bottom: 0.7rem;
         margin-right: 0.5rem;
         flex-grow: 1;
     }
@@ -80,7 +71,6 @@ function SendNyMelding() {
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
-    const enhet = getSaksbehandlerEnhet();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -140,16 +130,20 @@ function SendNyMelding() {
                         valgtSak={state.sak}
                     />
                     <Oppgaveliste
-                        state={state}
-                        enhet={enhet}
+                        oppgaveliste={state.oppgaveListe}
                         setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                     />
                 </UnmountClosed>
                 <TekstFelt
-                    formState={state}
+                    tekst={state.tekst}
                     navn={navn}
                     tekstMaksLengde={tekstMaksLengde}
                     updateTekst={tekst => updateState({ tekst })}
+                    feilmelding={
+                        !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
+                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                            : undefined
+                    }
                 />
                 <UnmountClosed isOpened={erSpørsmål}>
                     <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>

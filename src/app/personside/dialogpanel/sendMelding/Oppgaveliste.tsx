@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
-import { FormState, OppgavelisteValg } from './SendNyMelding';
+import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 interface Props {
-    state: FormState;
-    enhet?: string;
+    oppgaveliste: OppgavelisteValg;
     setOppgaveliste: (oppgaveliste: OppgavelisteValg) => void;
 }
 
@@ -14,17 +14,19 @@ const StyledSelect = styled(Select)`
     label {
         ${theme.visuallyHidden}
     }
+    margin-top: 1rem;
 `;
 
 function Oppgaveliste(props: Props) {
+    const enhet = getSaksbehandlerEnhet();
     return (
         <StyledSelect
             label="Oppgaveliste"
-            value={props.state.oppgaveListe}
+            value={props.oppgaveliste}
             onChange={event => props.setOppgaveliste(event.target.value as OppgavelisteValg)}
         >
-            <option value={OppgavelisteValg.MinListe}>Skal til min oppgaveliste</option>
-            <option value={OppgavelisteValg.EnhetensListe}>Skal til {props.enhet} sin oppgaveliste</option>
+            <option value={OppgavelisteValg.MinListe}>Svar skal til min oppgaveliste</option>
+            <option value={OppgavelisteValg.EnhetensListe}>Svar skal til {enhet} sin oppgaveliste</option>
         </StyledSelect>
     );
 }
