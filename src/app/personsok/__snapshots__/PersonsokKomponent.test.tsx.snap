@@ -94,6 +94,11 @@ exports[`viser personsøk-komponent 1`] = `
   margin-bottom: 0.5em;
 }
 
+.c7 {
+  margin: .8rem;
+  color: #d0021b;
+}
+
 <div>
   <form
     onSubmit={[Function]}
@@ -560,5 +565,9 @@ exports[`viser personsøk-komponent 1`] = `
       </div>
     </article>
   </form>
+  <div
+    aria-live="polite"
+    className="c7"
+  />
 </div>
 `;
