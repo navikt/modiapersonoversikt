@@ -78,6 +78,7 @@ function SendNyMelding() {
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
     const postReferatResource = useRestResource(resources => resources.sendReferat);
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
     const enhet = getSaksbehandlerEnhet();
@@ -90,19 +91,25 @@ function SendNyMelding() {
         if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
             const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
             dispatch(
-                postReferatResource.actions.post({
-                    fritekst: state.tekst,
-                    kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
-                    temagruppe: state.tema.kodeRef
-                })
+                postReferatResource.actions.post(
+                    {
+                        fritekst: state.tekst,
+                        kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
+                        temagruppe: state.tema.kodeRef
+                    },
+                    () => dispatch(reloadMeldinger)
+                )
             );
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             dispatch(
-                postSpørsmålResource.actions.post({
-                    fritekst: state.tekst,
-                    saksID: state.sak.saksId,
-                    erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
-                })
+                postSpørsmålResource.actions.post(
+                    {
+                        fritekst: state.tekst,
+                        saksID: state.sak.saksId,
+                        erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
+                    },
+                    () => dispatch(reloadMeldinger)
+                )
             );
         } else {
             updateState({ visFeilmeldinger: true });
