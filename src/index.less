@@ -34,6 +34,62 @@ body {
     max-width: initial;
 }
 
+.personsok-button,
+#toggle-personsok {
+    #hentPerson & {
+        margin: -3px 0 0 17px;
+    }
+    .personpanel & {
+        margin: -6px 0 0 17px;
+    }
+    width: 44px;
+    height: 44px;
+    border-radius: 44px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 0;
+    margin-right: 1.5em;
+
+    span {
+        color: black;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #fff;
+        display: inline-block;
+        padding-top: 9px;
+    }
+    &:hover span {
+        background-color: blue;
+        outline: none;
+    }
+    &:focus {
+        box-shadow: none;
+        border: 3px solid #ffbd66;
+    }
+    &:active {
+        .personsok-pil {
+            border-top: none;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #3e3832;
+        }
+    }
+    .personsok-pil {
+        display: block;
+        width: 0;
+        height: 0;
+        padding: 0;
+        margin: 0 auto;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid #3e3832;
+    }
+}
+
 /*
 Source Sans Pro som vi får fra nav-frontend-typografi ser ikke bra ut i noen browsere, feks Chrome i Windows 7 og 10.
 Det finnes allerede et issue på dette: https://github.com/navikt/nav-frontend-moduler/issues/46.

@@ -15,6 +15,8 @@ import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useOnMount } from '../utils/customHooks';
+import PersonsokKomponent from './personsok/PersonsokKomponent';
+import { useEffect, useState } from 'react';
 
 if (mockEnabled) {
     setupMock();
@@ -34,6 +36,7 @@ function Personoveriskt() {
             <>
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
+                <AvasertSok />
                 <AppStyle ref={appRef}>
                     <Decorator />
                     <ContentStyle>
@@ -53,6 +56,32 @@ function App() {
                 <Route path={'/'} component={Personoveriskt} />
             </Switch>
         </BrowserRouter>
+    );
+}
+
+function AvasertSok() {
+    const [apen, settApen] = useState(false);
+    useEffect(() => {
+        const mouseEvent = () => {
+            settApen(a => {
+                return !a;
+            });
+        };
+        const toggle = document.getElementById('toggle-personsok');
+        if (toggle) {
+            toggle.addEventListener('click', mouseEvent);
+        }
+        return () => {
+            if (toggle) {
+                toggle.removeEventListener('click', mouseEvent);
+            }
+        };
+    }, [settApen]);
+
+    return (
+        <ModalWrapper contentLabel={'Avansert søk'} onRequestClose={() => settApen(false)} isOpen={apen}>
+            <PersonsokKomponent />
+        </ModalWrapper>
     );
 }
 

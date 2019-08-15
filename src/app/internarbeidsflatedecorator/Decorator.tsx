@@ -46,7 +46,11 @@ function lagConfig(
             });
             settEnhet(enhet);
         },
-        contextholder: true
+        contextholder: true,
+        markup: {
+            etterSokefelt:
+                '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> A <span class="personsok-pil"></span> </span> </button>'
+        }
     };
 }
 
