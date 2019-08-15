@@ -25,7 +25,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
         case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';
         default:
-            return 'Ukjent meldingstype' + meldingstype;
+            return 'Ukjent meldingstype: ' + meldingstype;
     }
 }
 
@@ -58,6 +58,6 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
         case Temagruppe.Null:
             return '';
         default:
-            return 'Ukjent temagruppe:' + temagruppe;
+            return 'Ukjent temagruppe: ' + temagruppe;
     }
 }
