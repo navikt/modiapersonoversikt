@@ -44,12 +44,15 @@ export interface FormState {
 const KnappWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1rem;
     > * {
         margin-bottom: 0.7rem;
         margin-right: 0.5rem;
         flex-grow: 1;
     }
+`;
+
+const Margin = styled.div`
+    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
 `;
 
 const tekstMaksLengde = 5000;
@@ -122,25 +125,27 @@ function SendNyMelding() {
             <Undertittel>Send ny melding</Undertittel>
             <FormStyle onSubmit={handleSubmit}>
                 <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
-                <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
-                    {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
-                    <Temavelger
-                        setTema={tema => updateState({ tema: tema })}
-                        tema={state.tema}
-                        visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
-                    />
-                </UnmountClosed>
-                <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
-                    <DialogpanelVelgSak
-                        setValgtSak={sak => updateState({ sak })}
-                        visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
-                        valgtSak={state.sak}
-                    />
-                    <Oppgaveliste
-                        oppgaveliste={state.oppgaveListe}
-                        setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
-                    />
-                </UnmountClosed>
+                <Margin>
+                    <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
+                        {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
+                        <Temavelger
+                            setTema={tema => updateState({ tema: tema })}
+                            tema={state.tema}
+                            visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                        />
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
+                        <DialogpanelVelgSak
+                            setValgtSak={sak => updateState({ sak })}
+                            visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
+                            valgtSak={state.sak}
+                        />
+                        <Oppgaveliste
+                            oppgaveliste={state.oppgaveListe}
+                            setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                        />
+                    </UnmountClosed>
+                </Margin>
                 <TekstFelt
                     tekst={state.tekst}
                     navn={navn}
@@ -152,9 +157,11 @@ function SendNyMelding() {
                             : undefined
                     }
                 />
-                <UnmountClosed isOpened={erSpørsmål}>
-                    <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
-                </UnmountClosed>
+                <Margin>
+                    <UnmountClosed isOpened={erSpørsmål}>
+                        <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
+                    </UnmountClosed>
+                </Margin>
                 <KnappWrapper>
                     <KnappBase type="hoved" htmlType="submit" spinner={senderMelding}>
                         Del med {navn}

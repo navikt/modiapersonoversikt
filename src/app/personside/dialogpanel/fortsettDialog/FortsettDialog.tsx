@@ -49,6 +49,10 @@ const StyledKnappMedBekreftPopup = styled(KnappMedBekreftPopup)`
     width: 100%;
 `;
 
+const Margin = styled.div`
+    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
+`;
+
 function FortsettDialog() {
     const [state, setState] = useState<FortsettDialogState>({
         tekst: '',
@@ -102,28 +106,29 @@ function FortsettDialog() {
                     updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                     erTilknyttetOppgave={erTilknyttetOppgave}
                 />
-                <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
-                    <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
-                </UnmountClosed>
-                <UnmountClosed isOpened={brukerKanSvareValg}>
-                    <BrukerKanSvare formState={state} updateFormState={updateState} />
-                </UnmountClosed>
-                <UnmountClosed isOpened={erDelsvar}>
-                    <Temavelger setTema={tema => updateState({ tema: tema })} tema={state.tema} />
-                </UnmountClosed>
+                <Margin>
+                    <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
+                        <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={brukerKanSvareValg}>
+                        <BrukerKanSvare formState={state} updateFormState={updateState} />
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={erDelsvar}>
+                        <Temavelger setTema={tema => updateState({ tema: tema })} tema={state.tema} />
+                    </UnmountClosed>
+                </Margin>
                 <SubmitKnapp htmlType="submit">
                     {erDelsvar
                         ? `Svar delvis og legg tilbake på ${state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'}`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
-                <UnmountClosed isOpened={erTilknyttetOppgave}>
+                {erTilknyttetOppgave ? (
                     <LeggTilbakepanel />
-                </UnmountClosed>
-                <UnmountClosed isOpened={!erTilknyttetOppgave}>
+                ) : (
                     <StyledKnappMedBekreftPopup type="flat" onBekreft={() => dispatch(setDialogpanelTraad(undefined))}>
                         Avbryt
                     </StyledKnappMedBekreftPopup>
-                </UnmountClosed>
+                )}
             </FormStyle>
         </article>
     );
