@@ -82,17 +82,19 @@ function Dialogpanel() {
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
-            <Padding>
-                <UnmountClosed isOpened={visFortsettDialogpanel}>
+            <UnmountClosed isOpened={visFortsettDialogpanel}>
+                <Padding>
                     <FortsettDialog />
-                </UnmountClosed>
-                <UnmountClosed isOpened={!visFortsettDialogpanel}>
-                    <HurtigreferatWrapper>
-                        <HurtigReferatContainer />
-                    </HurtigreferatWrapper>
+                </Padding>
+            </UnmountClosed>
+            <UnmountClosed isOpened={!visFortsettDialogpanel}>
+                <HurtigreferatWrapper>
+                    <HurtigReferatContainer />
+                </HurtigreferatWrapper>
+                <Padding>
                     <SendNyMelding />
-                </UnmountClosed>
-            </Padding>
+                </Padding>
+            </UnmountClosed>
         </ErrorBoundary>
     );
 }
