@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser dialogpanel 1`] = `
-.c10 {
+.c11 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c10 .typo-etikett-liten {
+.c11 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c9 {
+.c10 {
   padding: 1rem;
   background-color: white;
   border: 1px solid rgba(0,0,0,0.5);
   border-radius: .25rem;
 }
 
-.c9 > * {
+.c10 > * {
   margin-bottom: 0.5rem;
 }
 
-.c5 {
+.c6 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -42,7 +42,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 0.15rem 0.35rem;
 }
 
-.c5 > * {
+.c6 > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -50,20 +50,20 @@ exports[`viser dialogpanel 1`] = `
   margin: 0.15rem;
 }
 
-.c5:nth-child(odd) {
+.c6:nth-child(odd) {
   background-color: #dedede;
 }
 
-.c5 svg {
+.c6 svg {
   height: 2rem;
   width: 2rem;
 }
 
-.c5 svg:hover {
+.c6 svg:hover {
   opacity: 0.7;
 }
 
-.c7:not(:hover):not(:focus-within):not(:focus) .content {
+.c8:not(:hover):not(:focus-within):not(:focus) .content {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -74,13 +74,13 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c7:focus {
+.c8:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
   border-radius: .25rem;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   z-index: 1000;
   left: 10%;
@@ -90,7 +90,7 @@ exports[`viser dialogpanel 1`] = `
   filter: drop-shadow(0 1rem 2rem rgba(0,0,0,0.7));
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -105,11 +105,11 @@ exports[`viser dialogpanel 1`] = `
   justify-content: flex-end;
 }
 
-.c6 > *:last-child {
+.c7 > *:last-child {
   margin-left: 0.5rem;
 }
 
-.c4 label {
+.c5 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -120,19 +120,19 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c2 .ekspanderbartPanel__innhold {
+.c3 .ekspanderbartPanel__innhold {
   padding: 0;
 }
 
-.c2 .ekspanderbartPanel__hode:hover {
+.c3 .ekspanderbartPanel__hode:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c2 .ekspanderbartPanel__hode {
+.c3 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
-.c2 label {
+.c3 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -143,27 +143,19 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c3 {
+.c4 {
   padding: 0 0.5rem;
 }
 
-.c15 .ekspanderbartPanel__hode {
+.c14 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
-.c14 {
-  margin-bottom: 0.8rem;
-}
-
-.c17 {
-  margin-top: 1rem;
-}
-
-.c17 textarea {
+.c16 textarea {
   min-height: 9rem;
 }
 
-.c17 label {
+.c16 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -185,7 +177,11 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c16 label {
+.c15 {
+  margin-top: 1rem;
+}
+
+.c15 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -211,11 +207,15 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c12 .ReactCollapse--collapse .skjemaelement {
+.c12 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c18 {
+.c12 > * {
+  margin-bottom: 1rem;
+}
+
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -223,10 +223,11 @@ exports[`viser dialogpanel 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
-.c18 > * {
-  margin-top: 0.7rem;
+.c17 > * {
+  margin-bottom: 0.7rem;
   margin-right: 0.5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -241,11 +242,11 @@ exports[`viser dialogpanel 1`] = `
   flex-grow: 1;
 }
 
-.c11 {
+.c1 {
   padding: 1rem .8rem;
 }
 
-.c1 {
+.c2 {
   padding: 1rem .8rem;
   background-color: white;
   border-bottom: solid 0.0625rem #c6c2bf;
@@ -263,963 +264,6 @@ exports[`viser dialogpanel 1`] = `
   </h2>
   <div
     className="c1"
-  >
-    <article
-      className="c2"
-    >
-      <h3
-        className="sr-only"
-      >
-        Send hurtigreferat
-      </h3>
-      <div
-        className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
-      >
-        <button
-          aria-expanded={false}
-          className="ekspanderbartPanel__hode"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          type="button"
-        >
-          <div
-            className="ekspanderbartPanel__flex-wrapper"
-          >
-            <span
-              className="typo-element ekspanderbartPanel__heading"
-            >
-              Spor samtale
-            </span>
-            <span
-              className="ekspanderbartPanel__indikator"
-            />
-          </div>
-        </button>
-        <article
-          aria-label="Spor samtale"
-          className="ekspanderbartPanel__innhold"
-        >
-          <div
-            className="c3"
-          >
-            <div
-              className=""
-            >
-              <div
-                className="skjemaelement c4"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Tema
-                </label>
-                <div
-                  className="selectContainer input--fullbredde"
-                >
-                  <select
-                    className="skjemaelement__input"
-                    disabled={false}
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    value=""
-                  >
-                    <option
-                      disabled={true}
-                      value=""
-                    >
-                      Velg temagruppe
-                    </option>
-                    <option
-                      value="ARBD"
-                    >
-                      Arbeid
-                    </option>
-                    <option
-                      value="FMLI"
-                    >
-                      Familie
-                    </option>
-                    <option
-                      value="HJLPM"
-                    >
-                      Hjelpemiddel
-                    </option>
-                    <option
-                      value="PENS"
-                    >
-                      Pensjon
-                    </option>
-                    <option
-                      value="OVRG"
-                    >
-                      Øvrig
-                    </option>
-                  </select>
-                </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-          </div>
-          <ul>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Generell informasjon
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Generell informasjon
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Veiledet www.nav.no
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått veiledning i bruk av www.nav.no
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Veiledet www.nav.no
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Utbetaling
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Utbetaling
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Skatt
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har spørsmål om skattetrekk.
-Du har fått informasjon om at:
-- vi har brukt skattetrekket som vi har fått overført fra skatteetaten
-- hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
-Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skatt
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Skatt
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Søknad
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått veiledning i å fylle ut søknad på www.nav.no
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Søknad
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Saksbehandlingstid
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Saksbehandlingstid
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Elektronisk innsending
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på www.nav.no/elektroniskinnsending
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Elektronisk innsending
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Vedtak
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har fått veiledning om vedtaket sitt.
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Vedtak
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Ubesvart anrop
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Ubesvart anrop
-                  </span>
-                </button>
-              </div>
-            </li>
-            <li
-              className="c5"
-            >
-              <h4
-                className="typo-element"
-              >
-                Tekniske problemer
-              </h4>
-              <div
-                className="c6"
-              >
-                <div
-                  className="c7"
-                  tabIndex={0}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <circle
-                        cx="11.5"
-                        cy="12.5"
-                        r="11"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8.5 19.5h6M9.5 10.5h2v8.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
-                      />
-                    </g>
-                  </svg>
-                  <div
-                    className="content c8"
-                  >
-                    <article
-                      className="c9"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Samtalereferat / Telefon
-                      </p>
-                      <div
-                        className="c10"
-                      >
-                        <p
-                          className="typo-etikett-liten"
-                        >
-                          01.01.1970 01:00
-                        </p>
-                      </div>
-                      <p
-                        className="typo-normal"
-                      >
-                        Aremark Testfamilien har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
-                      </p>
-                    </article>
-                  </div>
-                </div>
-                <button
-                  className="knapp knapp--flat"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Send
-                  <span
-                    className="sr-only"
-                  >
-                     hurtigreferat 
-                    Tekniske problemer
-                  </span>
-                </button>
-              </div>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </article>
-  </div>
-  <div
-    className="c11"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -1259,6 +303,963 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
         Ingen tråd er valgt
       </div>
     </div>
+    <div
+      className="c2"
+    >
+      <article
+        className="c3"
+      >
+        <h3
+          className="sr-only"
+        >
+          Send hurtigreferat
+        </h3>
+        <div
+          className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
+        >
+          <button
+            aria-expanded={false}
+            className="ekspanderbartPanel__hode"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+          >
+            <div
+              className="ekspanderbartPanel__flex-wrapper"
+            >
+              <span
+                className="typo-element ekspanderbartPanel__heading"
+              >
+                Spor samtale
+              </span>
+              <span
+                className="ekspanderbartPanel__indikator"
+              />
+            </div>
+          </button>
+          <article
+            aria-label="Spor samtale"
+            className="ekspanderbartPanel__innhold"
+          >
+            <div
+              className="c4"
+            >
+              <div
+                className=""
+              >
+                <div
+                  className="skjemaelement c5"
+                >
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Tema
+                  </label>
+                  <div
+                    className="selectContainer input--fullbredde"
+                  >
+                    <select
+                      className="skjemaelement__input"
+                      disabled={false}
+                      id="Helt tilfeldig ID"
+                      onChange={[Function]}
+                      value=""
+                    >
+                      <option
+                        disabled={true}
+                        value=""
+                      >
+                        Velg temagruppe
+                      </option>
+                      <option
+                        value="ARBD"
+                      >
+                        Arbeid
+                      </option>
+                      <option
+                        value="FMLI"
+                      >
+                        Familie
+                      </option>
+                      <option
+                        value="HJLPM"
+                      >
+                        Hjelpemiddel
+                      </option>
+                      <option
+                        value="PENS"
+                      >
+                        Pensjon
+                      </option>
+                      <option
+                        value="OVRG"
+                      >
+                        Øvrig
+                      </option>
+                    </select>
+                  </div>
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                </div>
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+            </div>
+            <ul>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Generell informasjon
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Generell informasjon
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Veiledet www.nav.no
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått veiledning i bruk av www.nav.no
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Veiledet www.nav.no
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Utbetaling
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Utbetaling
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Skatt
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har spørsmål om skattetrekk.
+Du har fått informasjon om at:
+- vi har brukt skattetrekket som vi har fått overført fra skatteetaten
+- hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
+Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skatt
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Skatt
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Søknad
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått veiledning i å fylle ut søknad på www.nav.no
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Søknad
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Saksbehandlingstid
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Saksbehandlingstid
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Elektronisk innsending
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på www.nav.no/elektroniskinnsending
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Elektronisk innsending
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Vedtak
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har fått veiledning om vedtaket sitt.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Vedtak
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Ubesvart anrop
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Ubesvart anrop
+                    </span>
+                  </button>
+                </div>
+              </li>
+              <li
+                className="c6"
+              >
+                <h4
+                  className="typo-element"
+                >
+                  Tekniske problemer
+                </h4>
+                <div
+                  className="c7"
+                >
+                  <div
+                    className="c8"
+                    tabIndex={0}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <circle
+                          cx="11.5"
+                          cy="12.5"
+                          r="11"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.5 19.5h6M9.5 10.5h2v8.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M11 6c-.277 0-.5.225-.5.5 0 .277.223.5.5.5.275 0 .5-.223.5-.5 0-.275-.225-.5-.5-.5z"
+                        />
+                      </g>
+                    </svg>
+                    <div
+                      className="content c9"
+                    >
+                      <article
+                        className="c10"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Samtalereferat / Telefon
+                        </p>
+                        <div
+                          className="c11"
+                        >
+                          <p
+                            className="typo-etikett-liten"
+                          >
+                            01.01.1970 01:00
+                          </p>
+                        </div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Aremark Testfamilien har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="knapp knapp--flat"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="submit"
+                  >
+                    Send
+                    <span
+                      className="sr-only"
+                    >
+                       hurtigreferat 
+                      Tekniske problemer
+                    </span>
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </article>
+    </div>
     <article>
       <h2
         className="typo-undertittel"
@@ -1269,52 +1270,54 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
         className="c12"
         onSubmit={[Function]}
       >
-        <div
-          className="skjemaelement c13"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Velg dialogtype
-          </label>
+        <div>
           <div
-            className="selectContainer input--fullbredde"
+            className="skjemaelement c13"
           >
-            <select
-              className="skjemaelement__input"
-              disabled={false}
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              value="SAMTALEREFERAT_TELEFON"
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
             >
-              <option
+              Velg dialogtype
+            </label>
+            <div
+              className="selectContainer input--fullbredde"
+            >
+              <select
+                className="skjemaelement__input"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
                 value="SAMTALEREFERAT_TELEFON"
               >
-                Samtalereferat telefon
-              </option>
-              <option
-                value="SAMTALEREFERAT_OPPMOTE"
-              >
-                Samtalereferat oppmøte
-              </option>
-              <option
-                value="SPORSMAL_MODIA_UTGAAENDE"
-              >
-                Spørsmål til bruker
-              </option>
-            </select>
+                <option
+                  value="SAMTALEREFERAT_TELEFON"
+                >
+                  Samtalereferat telefon
+                </option>
+                <option
+                  value="SAMTALEREFERAT_OPPMOTE"
+                >
+                  Samtalereferat oppmøte
+                </option>
+                <option
+                  value="SPORSMAL_MODIA_UTGAAENDE"
+                >
+                  Spørsmål til bruker
+                </option>
+              </select>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
         <div
           className=""
         >
           <div
-            className="skjemaelement c4"
+            className="skjemaelement c5"
           >
             <label
               className="skjemaelement__label"
@@ -1376,10 +1379,10 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="c14"
+          className=""
         >
           <div
-            className="ekspanderbartPanel c15 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c14 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -1446,7 +1449,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="skjemaelement c16"
+          className="skjemaelement c15"
         >
           <label
             className="skjemaelement__label"
@@ -1467,12 +1470,12 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <option
                 value="MinListe"
               >
-                Skal til min oppgaveliste
+                Svar skal til min oppgaveliste
               </option>
               <option
                 value="Enhetensliste"
               >
-                Skal til 
+                Svar skal til 
                  sin oppgaveliste
               </option>
             </select>
@@ -1483,7 +1486,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="c17"
+          className="c16"
         >
           <div
             className="skjemaelement textarea__container"
@@ -1573,7 +1576,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           </div>
         </div>
         <div
-          className="c18"
+          className="c17"
         >
           <button
             className="knapp knapp--hoved"
