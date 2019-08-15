@@ -87,6 +87,26 @@ function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
         return 'Kontonummer må ha 11 siffer';
     }
 
+    if (props.stateCriteria.husnummer && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når husnummer er satt';
+    }
+
+    if (props.stateCriteria.husbokstav && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når husbokstav er satt';
+    }
+
+    if (props.stateCriteria.postnummer && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når postnummer er satt';
+    }
+
+    if (
+        props.stateLimit.fodselsdatoFra &&
+        props.stateLimit.fodselsdatoTil &&
+        props.stateLimit.fodselsdatoFra > props.stateLimit.fodselsdatoTil
+    ) {
+        return 'Fødselsdato fra må være mindre enn fødselsdato til';
+    }
+
     return undefined;
 }
 
