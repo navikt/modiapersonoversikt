@@ -26,7 +26,7 @@ function PersonsokResultatListe(props: PersonsokResultatProps) {
         <MidlertidigAdresseCelle brukerinfo={linje.brukerinfo} />,
         <PostadresseCelle postadresse={linje.postadresse} />,
         <BostedsadresseCelle bostedsadresse={linje.bostedsadresse} />,
-        <BostedCelle />
+        <BostedCelle brukerinfo={linje.brukerinfo} />
     ]);
 
     // TODO Legge til rowClickHandlers (setNyBrukerIPath(this.props.history, fødselsnummer);)
