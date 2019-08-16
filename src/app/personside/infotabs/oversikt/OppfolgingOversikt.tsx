@@ -35,9 +35,13 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
         return <Normaltekst>Er ikke i arbeidsrettet oppfølging</Normaltekst>;
     }
 
-    const veilederNavn = oppfolging.veileder
-        ? `${oppfolging.veileder.navn} (${oppfolging.veileder.ident})`
-        : 'Ikke angitt';
+    const veilederNavn = oppfolging.veileder ? (
+        <Normaltekst>{oppfolging.veileder.navn}</Normaltekst>
+    ) : (
+        <Normaltekst>Ikke angitt</Normaltekst>
+    );
+
+    const veilederIdent = oppfolging.veileder ? <Normaltekst>({oppfolging.veileder.ident})</Normaltekst> : null;
 
     return (
         <>
@@ -48,7 +52,8 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
             <Normaltekst>
                 <Bold>Veileder:</Bold>
             </Normaltekst>
-            <Normaltekst>{veilederNavn}</Normaltekst>
+            {veilederNavn}
+            {veilederIdent}
         </>
     );
 }
