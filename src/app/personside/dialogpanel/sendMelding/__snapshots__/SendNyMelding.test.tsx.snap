@@ -1,6 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser send ny melding 1`] = `
+.c3 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c4 .ekspanderbartPanel__hode {
+  padding: 0.6rem;
+}
+
+.c6 textarea {
+  min-height: 9rem;
+}
+
+.c6 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
 .c2 label {
   position: absolute !important;
   height: 1px;
@@ -12,12 +42,8 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c3 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
-}
-
-.c5 textarea {
-  min-height: 9rem;
+.c5 {
+  margin-top: 1rem;
 }
 
 .c5 label {
@@ -31,33 +57,7 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c1 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c4 {
-  margin-top: 1rem;
-}
-
-.c4 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c0 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -72,15 +72,19 @@ exports[`viser send ny melding 1`] = `
   align-items: stretch;
 }
 
-.c0 .skjemaelement {
+.c1 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c0 > * {
+.c1 > * {
   margin-bottom: 1rem;
 }
 
-.c6 {
+.c0 {
+  padding: 1rem .8rem;
+}
+
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -90,7 +94,7 @@ exports[`viser send ny melding 1`] = `
   flex-wrap: wrap;
 }
 
-.c6 > * {
+.c7 > * {
   margin-bottom: 0.7rem;
   margin-right: 0.5rem;
   -webkit-box-flex: 1;
@@ -99,19 +103,21 @@ exports[`viser send ny melding 1`] = `
   flex-grow: 1;
 }
 
-<article>
+<article
+  className="c0"
+>
   <h2
     className="typo-undertittel"
   >
     Send ny melding
   </h2>
   <form
-    className="c0"
+    className="c1"
     onSubmit={[Function]}
   >
     <div>
       <div
-        className="skjemaelement c1"
+        className="skjemaelement c2"
       >
         <label
           className="skjemaelement__label"
@@ -159,7 +165,7 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c2"
+          className="skjemaelement c3"
         >
           <label
             className="skjemaelement__label"
@@ -224,7 +230,7 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="ekspanderbartPanel c3 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          className="ekspanderbartPanel c4 ekspanderbartPanel--lukket ekspanderbartPanel--border"
         >
           <button
             aria-expanded={false}
@@ -291,7 +297,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="skjemaelement c4"
+        className="skjemaelement c5"
       >
         <label
           className="skjemaelement__label"
@@ -329,7 +335,7 @@ exports[`viser send ny melding 1`] = `
       </div>
     </div>
     <div
-      className="c5"
+      className="c6"
     >
       <div
         className="skjemaelement textarea__container"
@@ -423,7 +429,7 @@ exports[`viser send ny melding 1`] = `
       </div>
     </div>
     <div
-      className="c6"
+      className="c7"
     >
       <button
         className="knapp knapp--hoved"

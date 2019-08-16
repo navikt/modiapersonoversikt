@@ -21,6 +21,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { isPosting } from '../../../../rest/utils/postResource';
 import { FormStyle } from '../fellesStyling';
+import theme from '../../../../styles/personOversiktTheme';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -40,6 +41,10 @@ export interface FormState {
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
 }
+
+const StyledArticle = styled.article`
+    padding: 1rem ${theme.margin.layout};
+`;
 
 const KnappWrapper = styled.div`
     display: flex;
@@ -121,7 +126,7 @@ function SendNyMelding() {
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
 
     return (
-        <article>
+        <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
             <FormStyle onSubmit={handleSubmit}>
                 <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
@@ -175,7 +180,7 @@ function SendNyMelding() {
                     </KnappMedBekreftPopup>
                 </KnappWrapper>
             </FormStyle>
-        </article>
+        </StyledArticle>
     );
 }
 

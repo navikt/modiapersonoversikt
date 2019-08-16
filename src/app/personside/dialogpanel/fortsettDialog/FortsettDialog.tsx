@@ -23,23 +23,28 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 export type FortsettDialogType =
+    | Meldingstype.SVAR_SKRIFTLIG
     | Meldingstype.DELVIS_SVAR_SKRIFTLIG
     | Meldingstype.SVAR_OPPMOTE
-    | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.SVAR_TELEFON; //TODO riktige typer her
+    | Meldingstype.SVAR_TELEFON;
 
 export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
     tema?: Kodeverk;
-    oppgave?: Oppgave; //TODO denne skal neppe være optional, må sendes inn
+    oppgave?: Oppgave;
     brukerKanSvare: boolean;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;
 }
+
+const StyledArticle = styled.article`
+    padding: 1rem ${theme.margin.layout};
+`;
 
 const SubmitKnapp = styled(Hovedknapp)`
     margin-top: 1rem;
@@ -85,13 +90,15 @@ function FortsettDialog() {
         console.log(state);
     };
 
+    const handleAvbryt = () => dispatch(setDialogpanelTraad(undefined));
+
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const erTilknyttetOppgave = true;
-    const brukerKanIkkeSvareInfo = !erDelsvar && state.dialogType !== Meldingstype.SVAR_SKRIFTLIG;
+    const erTilknyttetOppgave = true; //TODO håndtere tilknytning til oppgave
+    const brukerKanIkkeSvareInfo = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
     const brukerKanSvareValg = state.dialogType === Meldingstype.SVAR_SKRIFTLIG;
 
     return (
-        <article>
+        <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
             <FormStyle onSubmit={handleSubmit}>
                 <TidligereMeldinger traad={traad} />
@@ -125,12 +132,12 @@ function FortsettDialog() {
                 {erTilknyttetOppgave ? (
                     <LeggTilbakepanel />
                 ) : (
-                    <StyledKnappMedBekreftPopup type="flat" onBekreft={() => dispatch(setDialogpanelTraad(undefined))}>
+                    <StyledKnappMedBekreftPopup type="flat" onBekreft={handleAvbryt}>
                         Avbryt
                     </StyledKnappMedBekreftPopup>
                 )}
             </FormStyle>
-        </article>
+        </StyledArticle>
     );
 }
 

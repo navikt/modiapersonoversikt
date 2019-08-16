@@ -83,17 +83,13 @@ function Dialogpanel() {
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
             <UnmountClosed isOpened={visFortsettDialogpanel}>
-                <Padding>
-                    <FortsettDialog />
-                </Padding>
+                <FortsettDialog />
             </UnmountClosed>
             <UnmountClosed isOpened={!visFortsettDialogpanel}>
                 <HurtigreferatWrapper>
                     <HurtigReferatContainer />
                 </HurtigreferatWrapper>
-                <Padding>
-                    <SendNyMelding />
-                </Padding>
+                <SendNyMelding />
             </UnmountClosed>
         </ErrorBoundary>
     );

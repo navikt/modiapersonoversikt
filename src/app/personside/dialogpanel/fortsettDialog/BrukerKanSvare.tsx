@@ -10,7 +10,7 @@ interface Props {
     updateFormState: (change: Partial<FortsettDialogState>) => void;
 }
 
-const Style = styled.div`
+const Style = styled.fieldset`
     > *:not(:first-child) {
         margin-top: 1rem;
     }
