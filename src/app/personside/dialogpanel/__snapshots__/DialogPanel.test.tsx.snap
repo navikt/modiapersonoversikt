@@ -147,23 +147,15 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 0.5rem;
 }
 
-.c15 .ekspanderbartPanel__hode {
+.c14 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
-.c14 {
-  margin-bottom: 0.8rem;
-}
-
-.c17 {
-  margin-top: 1rem;
-}
-
-.c17 textarea {
+.c16 textarea {
   min-height: 9rem;
 }
 
-.c17 label {
+.c16 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -185,7 +177,11 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c16 label {
+.c15 {
+  margin-top: 1rem;
+}
+
+.c15 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -211,11 +207,19 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c12 .ReactCollapse--collapse .skjemaelement {
+.c12 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c18 {
+.c12 > * {
+  margin-bottom: 1rem;
+}
+
+.c11 {
+  padding: 1rem .8rem;
+}
+
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -225,8 +229,8 @@ exports[`viser dialogpanel 1`] = `
   flex-wrap: wrap;
 }
 
-.c18 > * {
-  margin-top: 0.7rem;
+.c17 > * {
+  margin-bottom: 0.7rem;
   margin-right: 0.5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -239,10 +243,6 @@ exports[`viser dialogpanel 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-}
-
-.c11 {
-  padding: 1rem .8rem;
 }
 
 .c1 {
@@ -261,6 +261,44 @@ exports[`viser dialogpanel 1`] = `
   >
     Dialogpanel
   </h2>
+  <div
+    className="alertstripe alertstripe--info"
+  >
+    <span
+      aria-label="info"
+      className="alertstripe__ikon"
+    >
+      <svg
+        focusable="false"
+        height="1.5em"
+        kind="info-sirkel-fyll"
+        viewBox="0 0 24 24"
+        width="1.5em"
+      >
+        <g
+          fill="none"
+          fillRule="nonzero"
+        >
+          <path
+            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+            fill="#669DB4"
+          />
+          <g
+            fill="#FFF"
+          >
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+            />
+          </g>
+        </g>
+      </svg>
+    </span>
+    <div
+      className="typo-normal alertstripe__tekst"
+    >
+      Ingen tråd er valgt
+    </div>
+  </div>
   <div
     className="c1"
   >
@@ -1218,57 +1256,19 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
       </div>
     </article>
   </div>
-  <div
+  <article
     className="c11"
   >
-    <div
-      className="alertstripe alertstripe--info"
+    <h2
+      className="typo-undertittel"
     >
-      <span
-        aria-label="info"
-        className="alertstripe__ikon"
-      >
-        <svg
-          focusable="false"
-          height="1.5em"
-          kind="info-sirkel-fyll"
-          viewBox="0 0 24 24"
-          width="1.5em"
-        >
-          <g
-            fill="none"
-            fillRule="nonzero"
-          >
-            <path
-              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-              fill="#669DB4"
-            />
-            <g
-              fill="#FFF"
-            >
-              <path
-                d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
-              />
-            </g>
-          </g>
-        </svg>
-      </span>
-      <div
-        className="typo-normal alertstripe__tekst"
-      >
-        Ingen tråd er valgt
-      </div>
-    </div>
-    <article>
-      <h2
-        className="typo-undertittel"
-      >
-        Send ny melding
-      </h2>
-      <form
-        className="c12"
-        onSubmit={[Function]}
-      >
+      Send ny melding
+    </h2>
+    <form
+      className="c12"
+      onSubmit={[Function]}
+    >
+      <div>
         <div
           className="skjemaelement c13"
         >
@@ -1310,6 +1310,10 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             role="alert"
           />
         </div>
+      </div>
+      <div
+        className=""
+      >
         <div
           className=""
         >
@@ -1376,10 +1380,10 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="c14"
+          className=""
         >
           <div
-            className="ekspanderbartPanel c15 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c14 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -1446,7 +1450,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="skjemaelement c16"
+          className="skjemaelement c15"
         >
           <label
             className="skjemaelement__label"
@@ -1467,12 +1471,12 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <option
                 value="MinListe"
               >
-                Skal til min oppgaveliste
+                Svar skal til min oppgaveliste
               </option>
               <option
                 value="Enhetensliste"
               >
-                Skal til 
+                Svar skal til 
                  sin oppgaveliste
               </option>
             </select>
@@ -1482,58 +1486,62 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             role="alert"
           />
         </div>
+      </div>
+      <div
+        className="c16"
+      >
         <div
-          className="c17"
+          className="skjemaelement textarea__container"
         >
-          <div
-            className="skjemaelement textarea__container"
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Melding
-            </label>
-            <div
-              className="textarea--medMeta__wrapper"
-            >
-              <textarea
-                className="skjemaelement__input textarea--medMeta"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-                style={
-                  Object {
-                    "height": "30px",
-                  }
+            Melding
+          </label>
+          <div
+            className="textarea--medMeta__wrapper"
+          >
+            <textarea
+              className="skjemaelement__input textarea--medMeta"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+              style={
+                Object {
+                  "height": "30px",
                 }
-                type="text"
-                value=""
-              />
-              <p
-                className="textarea--medMeta__teller"
-              >
-                <span>
-                  Du har 
-                  5000
-                   tegn igjen
-                </span>
-              </p>
-            </div>
-            <div
-              aria-live="assertive"
-              role="alert"
+              }
+              type="text"
+              value=""
             />
-            <div
-              aria-hidden="true"
-              className="textareamirror"
-            />
+            <p
+              className="textarea--medMeta__teller"
+            >
+              <span>
+                Du har 
+                5000
+                 tegn igjen
+              </span>
+            </p>
           </div>
           <div
             aria-live="assertive"
             role="alert"
           />
+          <div
+            aria-hidden="true"
+            className="textareamirror"
+          />
         </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className=""
+      >
         <div
           className="alertstripe alertstripe--info"
         >
@@ -1572,28 +1580,28 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             Bruker kan svare
           </div>
         </div>
-        <div
-          className="c18"
+      </div>
+      <div
+        className="c17"
+      >
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          type="submit"
         >
-          <button
-            className="knapp knapp--hoved"
-            disabled={false}
-            type="submit"
-          >
-            Del med 
-            Aremark
-          </button>
-          <button
-            className="knapp knapp--flat"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            Avbryt
-          </button>
-        </div>
-      </form>
-    </article>
-  </div>
+          Del med 
+          Aremark
+        </button>
+        <button
+          className="knapp knapp--flat"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Avbryt
+        </button>
+      </div>
+    </form>
+  </article>
 </article>
 `;

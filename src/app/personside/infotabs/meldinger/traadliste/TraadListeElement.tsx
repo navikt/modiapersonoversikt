@@ -16,6 +16,7 @@ import { isFinishedPosting } from '../../../../../rest/utils/postResource';
 import { EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState } from '../../../../../utils/customHooks';
 import JumpingDots from '../../../dialogpanel/fortsettDialog/JumpingDots';
+import { UnmountClosed } from 'react-collapse';
 
 interface OwnProps {
     traad: Traad;
@@ -74,7 +75,9 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
-                        <JumpingDots vis={traadDialogpanel === props.traad} />
+                        <UnmountClosed isOpened={traadDialogpanel === props.traad}>
+                            <JumpingDots />
+                        </UnmountClosed>
                         <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     </div>
                 </PanelStyle>
