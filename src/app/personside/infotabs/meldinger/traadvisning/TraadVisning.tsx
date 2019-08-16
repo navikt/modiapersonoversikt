@@ -63,7 +63,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
             <KnappWrapper>
                 <Collapse isOpened={true}>
                     {traadDialogpanel === valgtTraad ? (
-                        <JumpingDots vis={true} />
+                        <JumpingDots />
                     ) : (
                         <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
                     )}

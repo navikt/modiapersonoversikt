@@ -8,6 +8,7 @@ interface Props extends Partial<Pick<KnappBaseProps, 'type'>> {
     onBekreft: () => void;
     children: string;
     popUpTekst?: string;
+    className?: string;
 }
 
 interface State {
@@ -56,7 +57,12 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
     render() {
         return (
             <>
-                <KnappBase type={this.props.type || 'standard'} htmlType="button" onClick={this.visModal}>
+                <KnappBase
+                    type={this.props.type || 'standard'}
+                    htmlType="button"
+                    onClick={this.visModal}
+                    className={this.props.className}
+                >
                     {this.props.children}
                 </KnappBase>
                 <ModalWrapper isOpen={this.state.visModal} contentLabel="Bekreft valg" onRequestClose={this.skjulModal}>

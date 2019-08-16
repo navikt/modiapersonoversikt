@@ -3,18 +3,14 @@ import { useState } from 'react';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
-import { SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
+import { SkjemaGruppe } from 'nav-frontend-skjema';
 
 const StyledEkspanderbartPanelPure = styled(EkspanderbartpanelPure)`
     .ekspanderbartPanel__hode {
         padding: 0.6rem;
     }
-`;
-
-const StyledSkjemaGruppe = styled(SkjemaGruppe)`
-    margin-bottom: 0.8rem;
 `;
 
 interface Props {
@@ -40,7 +36,7 @@ function DialogpanelVelgSak(props: Props) {
     const tittel = props.valgtSak ? getTittel(props.valgtSak) : 'Velg sak';
 
     return (
-        <StyledSkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge en sak' } : undefined}>
+        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge en sak' } : undefined}>
             <StyledEkspanderbartPanelPure
                 onClick={() => setVisSaker(!visSaker)}
                 apen={visSaker}
@@ -50,7 +46,7 @@ function DialogpanelVelgSak(props: Props) {
             >
                 <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
             </StyledEkspanderbartPanelPure>
-        </StyledSkjemaGruppe>
+        </SkjemaGruppe>
     );
 }
 
