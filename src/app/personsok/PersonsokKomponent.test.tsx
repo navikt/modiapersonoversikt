@@ -1,12 +1,16 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../test/Testprovider';
-import Personsok from './Personsok';
+import PersonsokSkjema from './PersonsokSkjema';
+import PersonsokResultat from './PersonsokResultat';
 
 test('viser personsøk-komponent', () => {
     const personsokKomponent = renderer.create(
         <TestProvider>
-            <Personsok />
+            <>
+                <PersonsokSkjema />
+                <PersonsokResultat onClose={() => {}} />
+            </>
         </TestProvider>
     );
 
