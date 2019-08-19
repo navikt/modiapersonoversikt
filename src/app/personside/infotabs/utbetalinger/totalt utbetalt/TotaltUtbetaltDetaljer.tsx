@@ -187,7 +187,11 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
 function TotaltUtbetaltDetaljer(props: Props) {
     const ytelserSammendrag = getYtelserSammendrag(props.utbetalinger);
     return (
-        <DetaljerCollapse open={props.visDetaljer} toggle={props.toggleVisDetaljer} tittel="sammendrag">
+        <DetaljerCollapse
+            open={props.visDetaljer}
+            toggle={props.toggleVisDetaljer}
+            tittel={props.visDetaljer ? 'Skjul sammendrag' : 'Vis sammendrag'}
+        >
             <ErrorBoundary>
                 <DetaljerStyle aria-label="Sammendrag utbetalinger">
                     <Normaltekst tag="div">

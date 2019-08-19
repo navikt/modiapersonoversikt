@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { NyMeldingValidator } from './validatorer';
 import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
-import { FormState } from './SendNyMelding';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
-    margin-top: 1rem;
     textarea {
         min-height: 9rem;
     }
@@ -16,23 +13,18 @@ const StyledSkjemagruppe = styled(SkjemaGruppe)`
 `;
 
 interface Props {
-    formState: FormState;
+    tekst: string;
     navn: string;
     tekstMaksLengde: number;
     updateTekst: (tekst: string) => void;
+    feilmelding?: string;
 }
 
 function TekstFelt(props: Props) {
     return (
-        <StyledSkjemagruppe
-            feil={
-                !NyMeldingValidator.tekst(props.formState) && props.formState.visFeilmeldinger
-                    ? { feilmelding: `Du må skrive en tekst på mellom 0 og ${props.tekstMaksLengde} tegn` }
-                    : undefined
-            }
-        >
+        <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
             <Textarea
-                value={props.formState.tekst}
+                value={props.tekst}
                 onChange={e => props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
                 label={'Melding'}
                 maxLength={props.tekstMaksLengde}

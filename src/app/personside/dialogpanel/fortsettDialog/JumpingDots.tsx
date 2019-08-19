@@ -1,11 +1,6 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { UnmountClosed } from 'react-collapse';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-
-interface Props {
-    vis: boolean;
-}
+import { pxToRem } from '../../../../styles/personOversiktTheme';
 
 const dotHeight = 7;
 
@@ -16,10 +11,6 @@ const Wave = keyframes`
 70% {
   transform: translateY(${pxToRem(-dotHeight)});
 }
-`;
-
-const StyledUnmountClosed = styled(UnmountClosed)`
-    filter: drop-shadow(0 0.2rem 0.4rem ${theme.color.bakgrunn});
 `;
 
 const Wrapper = styled.div`
@@ -45,15 +36,13 @@ const Dot = styled.span`
     }
 `;
 
-function JumpingDots(props: Props) {
+function JumpingDots() {
     return (
-        <StyledUnmountClosed isOpened={props.vis}>
-            <Wrapper>
-                <Dot />
-                <Dot />
-                <Dot />
-            </Wrapper>
-        </StyledUnmountClosed>
+        <Wrapper>
+            <Dot />
+            <Dot />
+            <Dot />
+        </Wrapper>
     );
 }
 

@@ -387,9 +387,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                       <span
                         className="typo-normal"
                       >
-                        Vis
-                         
-                        detaljer
+                        Vis detaljer
                       </span>
                     </span>
                     <i
@@ -750,9 +748,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                       <span
                         className="typo-normal"
                       >
-                        Vis
-                         
-                        detaljer
+                        Vis detaljer
                       </span>
                     </span>
                     <i

@@ -18,15 +18,17 @@ const StyledSelect = styled(Select)`
 
 function VelgDialogType(props: Props) {
     return (
-        <StyledSelect
-            label="Velg dialogtype"
-            value={props.formState.dialogType}
-            onChange={event => props.updateDialogType((event.target.value as unknown) as SendNyMeldingDialogType)}
-        >
-            <option value={Meldingstype.SAMTALEREFERAT_TELEFON}>Samtalereferat telefon</option>
-            <option value={Meldingstype.SAMTALEREFERAT_OPPMOTE}>Samtalereferat oppmøte</option>
-            <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål til bruker</option>
-        </StyledSelect>
+        <div>
+            <StyledSelect
+                label="Velg dialogtype"
+                value={props.formState.dialogType}
+                onChange={event => props.updateDialogType((event.target.value as unknown) as SendNyMeldingDialogType)}
+            >
+                <option value={Meldingstype.SAMTALEREFERAT_TELEFON}>Samtalereferat telefon</option>
+                <option value={Meldingstype.SAMTALEREFERAT_OPPMOTE}>Samtalereferat oppmøte</option>
+                <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål til bruker</option>
+            </StyledSelect>
+        </div>
     );
 }
 

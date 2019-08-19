@@ -87,9 +87,7 @@ Array [
             <span
               className="typo-normal"
             >
-              Skjul
-               
-              sammendrag
+              Skjul sammendrag
             </span>
           </span>
           <i
@@ -456,9 +454,7 @@ Array [
               <span
                 className="typo-normal"
               >
-                Skjul
-                 
-                sammendrag
+                Skjul sammendrag
               </span>
             </span>
             <i
