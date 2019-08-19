@@ -69,32 +69,6 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c9 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
-}
-
-.c11 {
-  margin-bottom: 1rem;
-}
-
-.c11 > *:not(:first-child) {
-  margin-top: 0.3rem;
-}
-
-.c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c10 > * {
-  margin-top: 0.5rem;
-}
-
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -128,6 +102,10 @@ exports[`viser fortsett dialog 1`] = `
 
 .c8 {
   margin-top: 1rem;
+}
+
+.c9 {
+  width: 100%;
 }
 
 <article
@@ -441,11 +419,6 @@ exports[`viser fortsett dialog 1`] = `
               Svar skriftlig
             </option>
             <option
-              value="DELVIS_SVAR_SKRIFTLIG"
-            >
-              Svar delvis
-            </option>
-            <option
               value="SVAR_TELEFON"
             >
               Svar skriftlig telefon
@@ -602,230 +575,14 @@ exports[`viser fortsett dialog 1`] = `
     >
       Del med Aremark
     </button>
-    <div
-      className="ekspanderbartPanel c9 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+    <button
+      className="knapp c9 knapp--flat"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
     >
-      <button
-        aria-expanded={false}
-        className="ekspanderbartPanel__hode"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
-      >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
-        >
-          <span
-            className="typo-normal ekspanderbartPanel__heading"
-          >
-            Legg tilbake
-          </span>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <article
-        aria-label="Legg tilbake"
-        className="ekspanderbartPanel__innhold"
-      >
-        <div
-          className="c10"
-        >
-          <div
-            className="c11"
-          >
-            <legend
-              className="sr-only"
-            >
-              Velg årsak
-            </legend>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Innhabil
-              </label>
-            </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Feil temagruppe
-              </label>
-            </div>
-            <div
-              className=""
-            >
-              <div
-                className="skjemaelement c7"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Tema
-                </label>
-                <div
-                  className="selectContainer input--fullbredde"
-                >
-                  <select
-                    className="skjemaelement__input"
-                    disabled={false}
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    value=""
-                  >
-                    <option
-                      disabled={true}
-                      value=""
-                    >
-                      Velg temagruppe
-                    </option>
-                    <option
-                      value="ARBD"
-                    >
-                      Arbeid
-                    </option>
-                    <option
-                      value="FMLI"
-                    >
-                      Familie
-                    </option>
-                    <option
-                      value="HJLPM"
-                    >
-                      Hjelpemiddel
-                    </option>
-                    <option
-                      value="PENS"
-                    >
-                      Pensjon
-                    </option>
-                    <option
-                      value="OVRG"
-                    >
-                      Øvrig
-                    </option>
-                  </select>
-                </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Annen årsak
-              </label>
-            </div>
-            <div
-              className="c11"
-            >
-              <div
-                className="skjemaelement textarea__container"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Årsak
-                </label>
-                <div
-                  className="textarea--medMeta__wrapper"
-                >
-                  <textarea
-                    className="skjemaelement__input textarea--medMeta"
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    style={
-                      Object {
-                        "height": "30px",
-                      }
-                    }
-                    type="text"
-                    value=""
-                  />
-                  <p
-                    className="textarea--medMeta__teller"
-                  >
-                    <span>
-                      Du har 
-                      2000
-                       tegn igjen
-                    </span>
-                  </p>
-                </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
-                <div
-                  aria-hidden="true"
-                  className="textareamirror"
-                />
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-          <button
-            className="knapp knapp--hoved"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Legg tilbake
-          </button>
-        </div>
-      </article>
-    </div>
+      Avbryt
+    </button>
   </form>
 </article>
 `;
