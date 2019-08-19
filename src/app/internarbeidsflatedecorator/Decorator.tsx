@@ -9,6 +9,7 @@ import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
+import './personsokKnapp.less';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -46,7 +47,11 @@ function lagConfig(
             });
             settEnhet(enhet);
         },
-        contextholder: true
+        contextholder: true,
+        markup: {
+            etterSokefelt:
+                '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> A <span class="personsok-pil"></span> </span> </button>'
+        }
     };
 }
 

@@ -1,4 +1,5 @@
 const { ESLINT_MODES } = require('@craco/craco');
+const CracoLessPlugin = require('craco-less');
 
 const DisableAsciiOnly = {
     overrideWebpackConfig: ({ webpackConfig, context: { env } }) => {
@@ -14,6 +15,6 @@ module.exports = function({ env }) {
         eslint: {
             mode: ESLINT_MODES.file
         },
-        plugins: [{ plugin: DisableAsciiOnly }]
+        plugins: [{ plugin: DisableAsciiOnly }, { plugin: CracoLessPlugin }]
     };
 };
