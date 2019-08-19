@@ -73,6 +73,10 @@ exports[`viser fortsett dialog 1`] = `
   padding: 0.6rem;
 }
 
+.c11 {
+  margin-bottom: 1rem;
+}
+
 .c11 > *:not(:first-child) {
   margin-top: 0.3rem;
 }
@@ -628,7 +632,7 @@ exports[`viser fortsett dialog 1`] = `
         <div
           className="c10"
         >
-          <fieldset
+          <div
             className="c11"
           >
             <legend
@@ -756,52 +760,65 @@ exports[`viser fortsett dialog 1`] = `
               </label>
             </div>
             <div
-              className="skjemaelement textarea__container"
+              className="c11"
             >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Årsak
-              </label>
               <div
-                className="textarea--medMeta__wrapper"
+                className="skjemaelement textarea__container"
               >
-                <textarea
-                  className="skjemaelement__input textarea--medMeta"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  style={
-                    Object {
-                      "height": "30px",
-                    }
-                  }
-                  type="text"
-                  value=""
-                />
-                <p
-                  className="textarea--medMeta__teller"
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
                 >
-                  <span>
-                    Du har 
-                    2000
-                     tegn igjen
-                  </span>
-                </p>
+                  Årsak
+                </label>
+                <div
+                  className="textarea--medMeta__wrapper"
+                >
+                  <textarea
+                    className="skjemaelement__input textarea--medMeta"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "height": "30px",
+                      }
+                    }
+                    type="text"
+                    value=""
+                  />
+                  <p
+                    className="textarea--medMeta__teller"
+                  >
+                    <span>
+                      Du har 
+                      2000
+                       tegn igjen
+                    </span>
+                  </p>
+                </div>
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+                <div
+                  aria-hidden="true"
+                  className="textareamirror"
+                />
               </div>
               <div
                 aria-live="assertive"
                 role="alert"
               />
-              <div
-                aria-hidden="true"
-                className="textareamirror"
-              />
             </div>
-          </fieldset>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
           <button
             className="knapp knapp--hoved"
             disabled={false}
+            onClick={[Function]}
             type="submit"
           >
             Legg tilbake

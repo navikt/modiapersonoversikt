@@ -14,7 +14,7 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import LeggTilbakepanel from './LeggTilbakepanel';
+import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { useDispatch } from 'react-redux';
 import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { FormStyle } from '../fellesStyling';
