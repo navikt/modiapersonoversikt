@@ -8,18 +8,18 @@ import ModalWrapper from 'nav-frontend-modal';
 function PersonsokContainer() {
     const [apen, settApen] = useState(false);
     useEffect(() => {
-        const mouseEvent = () => {
+        const clickHandler = () => {
             settApen(a => {
                 return !a;
             });
         };
         const toggle = document.getElementById('toggle-personsok');
         if (toggle) {
-            toggle.addEventListener('click', mouseEvent);
+            toggle.addEventListener('click', clickHandler);
         }
         return () => {
             if (toggle) {
-                toggle.removeEventListener('click', mouseEvent);
+                toggle.removeEventListener('click', clickHandler);
             }
         };
     }, [settApen]);

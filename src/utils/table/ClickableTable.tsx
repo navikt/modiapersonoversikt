@@ -2,7 +2,7 @@
 // Div-Table gjennopprettet denne vha role=XXX og display-attributtet, samtidig som man har mer fleksibilitet i tabellen
 import styled from 'styled-components';
 import { TableStyle } from './StyledTable';
-import theme from '../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { TableProps, TableRow, TitleCell } from './Table';
 import { loggError } from '../frontendLogger';
 import { default as React } from 'react';
@@ -22,7 +22,7 @@ const Style = styled(TableStyle)`
             display: table-row;
         }
         [role='columnheader'] {
-            font-size: 14px;
+            font-size: ${pxToRem(14)};
         }
         [role='cell'],
         [role='columnheader'] {
@@ -50,7 +50,7 @@ const Row = styled.a.attrs({
 const Cell = styled.div.attrs({
     role: 'cell'
 })`
-    line-height: 22px;
+    line-height: ${pxToRem(22)};
 `;
 
 export function ClickableTable({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {

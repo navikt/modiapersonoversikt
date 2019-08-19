@@ -7,6 +7,7 @@ import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
+import { validerKontonummer } from '../brukerprofil/kontonummer/kontonummerUtils';
 
 const ValideringsfeilStyle = styled.div`
     margin: ${theme.margin.layout};
@@ -64,6 +65,18 @@ function emptyString(input: string): string | undefined {
     return input;
 }
 
+function erTomStreng(input?: string): boolean {
+    if (!input) {
+        return true;
+    }
+
+    if (input.trim().length === 0) {
+        return true;
+    }
+
+    return false;
+}
+
 function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     return {
         fornavn: emptyString(form.stateCriteria.fornavn),
@@ -83,19 +96,19 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
 }
 
 function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
-    if (props.stateCriteria.kontonummer && props.stateCriteria.kontonummer.length !== 11) {
+    if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
         return 'Kontonummer må ha 11 siffer';
     }
 
-    if (props.stateCriteria.husnummer && !props.stateCriteria.gatenavn) {
+    if (!erTomStreng(props.stateCriteria.husnummer) && !props.stateCriteria.gatenavn) {
         return 'Gatenavn må fylles ut når husnummer er satt';
     }
 
-    if (props.stateCriteria.husbokstav && !props.stateCriteria.gatenavn) {
+    if (!erTomStreng(props.stateCriteria.husbokstav) && !props.stateCriteria.gatenavn) {
         return 'Gatenavn må fylles ut når husbokstav er satt';
     }
 
-    if (props.stateCriteria.postnummer && !props.stateCriteria.gatenavn) {
+    if (!erTomStreng(props.stateCriteria.postnummer) && !props.stateCriteria.gatenavn) {
         return 'Gatenavn må fylles ut når postnummer er satt';
     }
 
