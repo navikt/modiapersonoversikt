@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
+import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { AppState } from '../../../../redux/reducers';
-import { connect } from 'react-redux';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
@@ -12,18 +10,7 @@ import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-
-interface StateProps {
-    visDokument: boolean;
-    valgtSakstema?: Sakstema;
-    fødselsnummer: string;
-}
-
-interface DispatchProps {
-    skjulDokumentOgVisSaksoversikt: () => void;
-}
-
-type Props = StateProps & DispatchProps;
+import { useAppState, useOnMount } from '../../../../utils/customHooks';
 
 export const saksoversiktMediaTreshold = '80rem';
 
@@ -43,50 +30,35 @@ const SaksoversiktArticle = styled.article`
     }
 `;
 
-class SaksoversiktContainer extends React.PureComponent<Props> {
-    componentDidMount() {
-        this.props.skjulDokumentOgVisSaksoversikt();
+function SaksoversiktContainer() {
+    const dispatch = useDispatch();
+    const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
+    const visDokument = useAppState(state => state.saksoversikt.visDokument);
+
+    useOnMount(() => {
+        skjulDokumentOgVisSaksoversikt();
+    });
+
+    if (visDokument) {
+        return <DokumentOgVedlegg />;
+    } else {
+        return (
+            <SaksoversiktArticle aria-label="Brukerens saker">
+                <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
+                <RestResourceConsumer<SakstemaResponse>
+                    getResource={restResources => restResources.sakstema}
+                    returnOnPending={BigCenteredLazySpinner}
+                >
+                    {sakstema => (
+                        <>
+                            <SakstemaListeContainer />
+                            <SaksDokumenterContainer />
+                        </>
+                    )}
+                </RestResourceConsumer>
+            </SaksoversiktArticle>
+        );
     }
-
-    render() {
-        if (this.props.visDokument) {
-            return <DokumentOgVedlegg />;
-        } else {
-            return (
-                <SaksoversiktArticle aria-label="Brukerens saker">
-                    <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
-                    <RestResourceConsumer<SakstemaResponse>
-                        getResource={restResources => restResources.sakstema}
-                        returnOnPending={BigCenteredLazySpinner}
-                    >
-                        {sakstema => (
-                            <>
-                                <SakstemaListeContainer />
-                                <SaksDokumenterContainer />
-                            </>
-                        )}
-                    </RestResourceConsumer>
-                </SaksoversiktArticle>
-            );
-        }
-    }
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer,
-        visDokument: state.saksoversikt.visDokument,
-        valgtSakstema: state.saksoversikt.valgtSakstema
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        skjulDokumentOgVisSaksoversikt: () => dispatch(settVisDokument(false))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SaksoversiktContainer);
+export default SaksoversiktContainer;
