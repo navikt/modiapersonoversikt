@@ -10,6 +10,7 @@ import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './Respon
 import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
+import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
 
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
@@ -24,6 +25,7 @@ function MainLayout() {
             </VenstreKolonne>
             <HøyreKolonne role="region" aria-label="Oppgavepanel" dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
                 <HentOppgaveKnapp />
+                <TildelteOppgaver />
                 <DialogPanel />
                 <EkspanderDilaogpanelKnapp />
             </HøyreKolonne>
