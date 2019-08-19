@@ -18,12 +18,13 @@ import LeggTilbakepanel from './LeggTilbakepanel';
 import { useDispatch } from 'react-redux';
 import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { FormStyle } from '../fellesStyling';
-import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
+import { OppgavelisteValg, tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { FortsettDialogValidator } from './validatorer';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -87,7 +88,17 @@ function FortsettDialog() {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        console.log(state);
+        if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
+            console.log('svar skriftlig: ', state);
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
+            console.log('delvis svar: ', state);
+        } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {
+            console.log('svar oppmøte: ', state);
+        } else if (FortsettDialogValidator.erGyldigSvarTelefon(state)) {
+            console.log('svar telefon: ', state);
+        } else {
+            updateState({ visFeilmeldinger: true });
+        }
     };
 
     const handleAvbryt = () => dispatch(setDialogpanelTraad(undefined));
@@ -105,8 +116,13 @@ function FortsettDialog() {
                 <TekstFelt
                     tekst={state.tekst}
                     navn={navn}
-                    tekstMaksLengde={5000}
+                    tekstMaksLengde={tekstMaksLengde}
                     updateTekst={tekst => updateState({ tekst: tekst })}
+                    feilmelding={
+                        !FortsettDialogValidator.tekst(state) && state.visFeilmeldinger
+                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                            : undefined
+                    }
                 />
                 <VelgDialogType
                     formState={state}
@@ -120,8 +136,13 @@ function FortsettDialog() {
                     <UnmountClosed isOpened={brukerKanSvareValg}>
                         <BrukerKanSvare formState={state} updateFormState={updateState} />
                     </UnmountClosed>
-                    <UnmountClosed isOpened={erDelsvar}>
-                        <Temavelger setTema={tema => updateState({ tema: tema })} tema={state.tema} />
+                    <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
+                        {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
+                        <Temavelger
+                            setTema={tema => updateState({ tema: tema })}
+                            tema={state.tema}
+                            visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
+                        />
                     </UnmountClosed>
                 </Margin>
                 <SubmitKnapp htmlType="submit">
