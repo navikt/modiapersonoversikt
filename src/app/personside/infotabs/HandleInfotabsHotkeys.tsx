@@ -41,7 +41,7 @@ function HandleInfotabsHotkeys(props: Props) {
 
         window.addEventListener('keydown', handleOversiktHotkeys);
         return () => window.removeEventListener('keydown', handleOversiktHotkeys);
-    }, [fødselsnummer, props.history]);
+    }, [fødselsnummer, props.history, path]);
 
     return null;
 }

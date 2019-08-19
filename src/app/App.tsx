@@ -15,6 +15,7 @@ import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useOnMount } from '../utils/customHooks';
+import PersonsokContainer from './personsok/Personsok';
 
 if (mockEnabled) {
     setupMock();
@@ -34,6 +35,7 @@ function Personoveriskt() {
             <>
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
+                <PersonsokContainer />
                 <AppStyle ref={appRef}>
                     <Decorator />
                     <ContentStyle>

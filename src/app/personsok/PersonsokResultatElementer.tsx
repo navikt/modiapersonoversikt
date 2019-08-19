@@ -39,8 +39,12 @@ export function BostedsadresseCelle(props: { bostedsadresse: StrukturertAdresse 
     }
 }
 
-export function BostedCelle() {
-    return <Normaltekst>Finn ut</Normaltekst>;
+export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
+    if (props.brukerinfo) {
+        return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
+    } else {
+        return null;
+    }
 }
 
 function formatterNavn(navn: Navn) {

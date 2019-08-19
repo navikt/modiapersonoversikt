@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import { loggError } from '../frontendLogger';
 
-type TitleCell = string | ReactNode;
+export type TitleCell = string | ReactNode;
 export type TitleRow = TitleCell[];
 export type TableCell = string | number | undefined | ReactNode;
 export type TableRow = Array<TableCell>;
