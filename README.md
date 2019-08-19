@@ -20,11 +20,8 @@ PORT=80 # Port som nginx skal lytte på når den kjører i docker-containeren. K
 
 ```console
 npm install
-npm run build:less
 npm run start
 ```
-
-`npm run build:less` trenger kun å kjøres første gang og etter endringer i less-filer og avhengingheter som dras inn via `src/index.less`
 
 ### Bygge og kjøre via docker
 
