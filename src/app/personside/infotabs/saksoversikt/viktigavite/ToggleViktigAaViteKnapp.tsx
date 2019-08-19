@@ -30,7 +30,7 @@ function ToggleViktigAaViteKnapp(props: Props) {
         <EkspanderKnapp
             open={props.åpen}
             onClick={() => props.setÅpen(!props.åpen)}
-            tittel={'viktig å vite om ' + sakstemanavn}
+            tittel={'Viktig å vite om ' + sakstemanavn}
         />
     );
 }
