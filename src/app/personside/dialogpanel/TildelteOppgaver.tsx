@@ -57,7 +57,7 @@ function TildelteOppgaver() {
                     nyesteMelding.temagruppe
                 )}`;
                 return (
-                    <li>
+                    <li key={oppgave.oppgaveid}>
                         <Knapp onClick={handleClick}>{tittel}</Knapp>
                     </li>
                 );

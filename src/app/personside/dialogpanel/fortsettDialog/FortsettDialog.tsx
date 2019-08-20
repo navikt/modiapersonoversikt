@@ -68,6 +68,7 @@ function FortsettDialog() {
         isFinishedPosting(oppgaveResource) && traad
             ? oppgaveResource.response.find(oppgave => oppgave.henvendelseid === traad.traadId)
             : undefined;
+    const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const initialState = {
         tekst: '',
         dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
@@ -105,8 +106,20 @@ function FortsettDialog() {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        const postAction = sendSvarResource.actions.post;
         if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
-            console.log('svar skriftlig: ', state);
+            dispatch(
+                postAction({
+                    fritekst: state.tekst,
+                    traadId: traad.traadId,
+                    meldingstype: state.dialogType,
+                    erOppgaveTilknyttetAnsatt: true,
+                    oppgaveId: tilknyttetOppgave && tilknyttetOppgave.oppgaveid
+                })
+            );
+        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state)) {
+            const meldingsType = Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+            console.log('spørsmål skriftlig: ', state, meldingsType);
         } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
             console.log('delvis svar: ', state);
         } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {

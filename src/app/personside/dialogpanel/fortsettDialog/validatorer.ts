@@ -13,6 +13,9 @@ export class FortsettDialogValidator {
         return state.sak !== undefined;
     }
     public static erGyldigSvarSkriftlig(state: FortsettDialogState) {
+        return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state) && !state.brukerKanSvare;
+    }
+    public static erGyldigSpørsmålSkriftlig(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state) && this.brukerKanSvare(state);
     }
     public static tema(state: FortsettDialogState) {

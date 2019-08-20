@@ -3,3 +3,8 @@ export interface Oppgave {
     fødselsnummer: string;
     henvendelseid: string;
 }
+
+export interface LeggTilbakeOppgaveRequest {
+    temagruppe?: string;
+    beskrivelse?: string;
+}

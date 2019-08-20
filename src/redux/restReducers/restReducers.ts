@@ -32,7 +32,7 @@ import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
-import { Oppgave } from '../../models/oppgave';
+import { LeggTilbakeOppgaveRequest, Oppgave } from '../../models/oppgave';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
@@ -48,7 +48,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { SendReferatRequest, SendSpørsmålRequest, Traad } from '../../models/meldinger/meldinger';
+import { SendReferatRequest, SendSpørsmålRequest, SendSvarRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
@@ -60,12 +60,15 @@ import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilre
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import sendSpørsmål from './sendSpørsmål';
+import leggTilbakeOppgave from './leggTilbakeOppgave';
+import sendSvar from './sendSvar';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     oppgaver: PostResource<{}, Oppgave[]>;
+    leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
@@ -94,6 +97,7 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
     sendSpørsmål: PostResource<SendSpørsmålRequest>;
+    sendSvar: PostResource<SendSvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
@@ -102,6 +106,7 @@ export default combineReducers<RestEndepunkter>({
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,
+    leggTilbakeOppgave: leggTilbakeOppgave,
     kontaktinformasjon: kontaktinformasjonReducer,
     egenAnsatt: egenAnsattReducer,
     vergemal: vergemalReducer,
@@ -129,6 +134,7 @@ export default combineReducers<RestEndepunkter>({
     oppgaveGsakTema: oppgaveGsakTemaReducer,
     sendReferat: sendReferat,
     sendSpørsmål: sendSpørsmål,
+    sendSvar: sendSvar,
     opprettOppgave: opprettOppgave,
     personsok: personsok
 });

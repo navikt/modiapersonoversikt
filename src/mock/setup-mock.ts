@@ -221,6 +221,13 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
+function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/oppgaver/:id/leggTilbake',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+    );
+}
+
 function endreNavnMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/brukerprofil/:fodselsnummer/navn',
@@ -270,6 +277,15 @@ function setupSendReferatMock(mock: FetchMock) {
 function setupSendSpørsmålMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+            return {};
+        })
+    );
+}
+
+function setupSendSvarMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
@@ -426,6 +442,7 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
     setupFeatureToggleMock(mock);
@@ -449,6 +466,7 @@ export function setupMock() {
     opprettOppgaveMock(mock);
     setupSendReferatMock(mock);
     setupSendSpørsmålMock(mock);
+    setupSendSvarMock(mock);
     setupPersonsokMock(mock);
     merkAvsluttMock(mock);
     merkBidragMock(mock);

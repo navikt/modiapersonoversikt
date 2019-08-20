@@ -46,6 +46,8 @@ function Feilmelding(props: { errormessage: string }) {
 function Dialogpanel() {
     const sendReferatResource = useRestResource(resources => resources.sendReferat);
     const sendSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const leggTilbakeOppgaveResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const visFortsettDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad !== undefined);
     const dispatch = useDispatch();
 
@@ -74,11 +76,44 @@ function Dialogpanel() {
             </KvitteringStyling>
         );
     }
+    if (isFinishedPosting(sendSvarResource)) {
+        return (
+            <KvitteringStyling>
+                <VisuallyHiddenAutoFokusHeader tittel="Melding ble sendt" />
+                <AlertStripeSuksess>Meldingen ble sendt</AlertStripeSuksess>
+                <Preview fritekst={sendSvarResource.payload.fritekst} tittel={'Medling til bruker'} />
+                <KnappBase type="standard" onClick={() => dispatch(sendSvarResource.actions.reset)}>
+                    Send ny melding
+                </KnappBase>
+            </KvitteringStyling>
+        );
+    }
+    if (isFinishedPosting(leggTilbakeOppgaveResource)) {
+        const payload = leggTilbakeOppgaveResource.payload;
+        return (
+            <KvitteringStyling>
+                <VisuallyHiddenAutoFokusHeader tittel="Oppgaven ble lagt tilbake" />
+                {payload.temagruppe && (
+                    <AlertStripeSuksess>Oppgaven ble lagt tilbake på {payload.temagruppe}</AlertStripeSuksess>
+                )}
+                {!payload.temagruppe && <AlertStripeSuksess>Oppgaven ble lagt tilbake</AlertStripeSuksess>}
+                <KnappBase type="standard" onClick={() => dispatch(leggTilbakeOppgaveResource.actions.reset)}>
+                    Reset
+                </KnappBase>
+            </KvitteringStyling>
+        );
+    }
     if (isFailedPosting(sendReferatResource)) {
         return <Feilmelding errormessage={sendReferatResource.error.message} />;
     }
     if (isFailedPosting(sendSpørsmålResource)) {
         return <Feilmelding errormessage={sendSpørsmålResource.error.message} />;
+    }
+    if (isFailedPosting(sendSvarResource)) {
+        return <Feilmelding errormessage={sendSvarResource.error.message} />;
+    }
+    if (isFailedPosting(leggTilbakeOppgaveResource)) {
+        return <Feilmelding errormessage={leggTilbakeOppgaveResource.error.message} />;
     }
     return (
         <ErrorBoundary boundaryName="Dialogpanel">

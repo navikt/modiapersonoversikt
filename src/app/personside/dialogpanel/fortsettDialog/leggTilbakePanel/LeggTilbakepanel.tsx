@@ -8,6 +8,9 @@ import { Kodeverk } from '../../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
+import { useDispatch } from 'react-redux';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { setDialogpanelTraad } from '../../../../../redux/oppgave/actions';
 
 interface Props {}
 
@@ -54,6 +57,8 @@ function LeggTilbakepanel(props: Props) {
     });
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
+    const dispatch = useDispatch();
+    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -69,11 +74,14 @@ function LeggTilbakepanel(props: Props) {
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            console.log('Legg tilbake innhabil');
+            dispatch(leggTilbakeResource.actions.post({}));
+            dispatch(setDialogpanelTraad(undefined));
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
-            console.log('Legg tilbake annen årsak', state);
-        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state)) {
-            console.log('Legg tilbake feil tema', state);
+            dispatch(leggTilbakeResource.actions.post({ beskrivelse: state.tekst }));
+            dispatch(setDialogpanelTraad(undefined));
+        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
+            dispatch(leggTilbakeResource.actions.post({ temagruppe: state.tema.kodeRef }));
+            dispatch(setDialogpanelTraad(undefined));
         } else {
             updateState({ visFeilmeldinger: true });
         }
