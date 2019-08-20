@@ -68,7 +68,7 @@ function HurtigreferatContainer() {
             return;
         }
         if (isNotStartedPosting(sendResource)) {
-            loggEvent('sendReferat', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
+            loggEvent('sendReferat', 'hurtigreferat', { tema: tema.beskrivelse, tittel: hurtigreferat.tittel });
             dispatch(
                 sendResource.actions.post(
                     {
