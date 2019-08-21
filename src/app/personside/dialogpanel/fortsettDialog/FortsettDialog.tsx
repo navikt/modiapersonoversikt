@@ -26,7 +26,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { AppState } from '../../../../redux/reducers';
-import { isFinishedPosting } from '../../../../rest/utils/postResource';
+import { isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -105,6 +105,9 @@ function FortsettDialog() {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (isPosting(sendSvarResource)) {
+            return;
+        }
         const postAction = sendSvarResource.actions.post;
         if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
             dispatch(
@@ -178,7 +181,7 @@ function FortsettDialog() {
                         />
                     </UnmountClosed>
                 </Margin>
-                <SubmitKnapp htmlType="submit">
+                <SubmitKnapp htmlType="submit" spinner={isPosting(sendSvarResource)}>
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
                               state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'
