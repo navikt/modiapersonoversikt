@@ -144,7 +144,6 @@ function FortsettDialog() {
     return (
         <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
-            {state.oppgave !== undefined && <AlertStripeInfo>Denne oppgaven er tildelt deg</AlertStripeInfo>}
             <FormStyle onSubmit={handleSubmit}>
                 <TidligereMeldinger traad={traad} />
                 <TekstFelt
@@ -181,7 +180,9 @@ function FortsettDialog() {
                 </Margin>
                 <SubmitKnapp htmlType="submit">
                     {erDelsvar
-                        ? `Svar delvis og legg tilbake på ${state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'}`
+                        ? `Skriv delsvar og legg tilbake på ${
+                              state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'
+                          }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
                 {erTilknyttetOppgave ? (

@@ -4,6 +4,7 @@ import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 import { FortsettDialogState } from './FortsettDialog';
 import styled from 'styled-components';
 import { FortsettDialogValidator } from './validatorer';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     formState: FortsettDialogState;
@@ -19,6 +20,7 @@ const Style = styled.div`
 function BrukerKanSvare(props: Props) {
     return (
         <Style>
+            <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
             <Oppgaveliste
                 oppgaveliste={props.formState.oppgaveListe}
                 setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
