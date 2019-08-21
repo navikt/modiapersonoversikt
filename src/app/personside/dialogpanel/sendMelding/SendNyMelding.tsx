@@ -48,12 +48,14 @@ const StyledArticle = styled.article`
 
 const KnappWrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     > * {
         margin-bottom: 0.7rem;
-        margin-right: 0.5rem;
-        flex-grow: 1;
     }
+`;
+
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    margin-top: 1rem;
 `;
 
 const Margin = styled.div`
@@ -149,6 +151,7 @@ function SendNyMelding() {
                             oppgaveliste={state.oppgaveListe}
                             setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                         />
+                        <StyledAlertStripeInfo>Bruker kan svare</StyledAlertStripeInfo>
                     </UnmountClosed>
                 </Margin>
                 <TekstFelt
@@ -162,11 +165,6 @@ function SendNyMelding() {
                             : undefined
                     }
                 />
-                <Margin>
-                    <UnmountClosed isOpened={erSpørsmål}>
-                        <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
-                    </UnmountClosed>
-                </Margin>
                 <KnappWrapper>
                     <KnappBase type="hoved" htmlType="submit" spinner={senderMelding}>
                         Del med {navn}
