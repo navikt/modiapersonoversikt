@@ -184,7 +184,6 @@ function PersonsokSkjema() {
         settValideringsfeil(harSkjemafeil);
         if (!harSkjemafeil) {
             const request: PersonsokRequest = lagRequest(formState);
-            console.log(request);
             dispatch(personsokResource.actions.post(request));
         }
     };
