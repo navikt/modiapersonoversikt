@@ -5,7 +5,6 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import './enkeltmelding.less';
 
 interface Props {
     melding: Melding;
