@@ -1,13 +1,4 @@
-import {
-    Brukerinfo,
-    MidlertidigAdresse,
-    MidlertidigAdressetype,
-    NorskIdent,
-    PersonsokRequest,
-    PersonsokResponse,
-    StrukturertAdresse,
-    UstrukturertAdresse
-} from '../../models/person/personsok';
+import { Brukerinfo, NorskIdent, PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { aremark } from './aremark';
 import { moss } from './moss';
 import faker from 'faker/locale/nb_NO';
@@ -46,38 +37,18 @@ function getPersonsokResponse(): PersonsokResponse {
     };
 }
 
-function getPostadresse(): UstrukturertAdresse {
-    const landkode = vektetSjanse(faker, 0.5) ? getLandkode() : null;
-    return {
-        landkode: landkode,
-        adresselinje1: faker.address.streetAddress(true),
-        adresselinje2: faker.address.city(),
-        adresselinje3: faker.address.country(),
-        adresselinje4: null
-    };
+function getPostadresse(): string {
+    return `${faker.address.streetAddress(true)} ${faker.address.city()} ${faker.address.country()}`;
 }
 
-function getBostedsadresse(): StrukturertAdresse {
-    const landkode = vektetSjanse(faker, 0.5) ? getLandkode() : null;
-
-    return {
-        landkode: landkode,
-        tilleggsadresse: faker.address.streetAddress(true),
-        tilleggsadresseType: 'Gateadresse'
-    };
+function getBostedsadresse(): string {
+    return faker.address.streetAddress(true);
 }
 
 function getDiskresjonskode(): Kodeverk {
     return {
         kodeRef: '6',
         beskrivelse: 'Kode 6'
-    };
-}
-
-function getLandkode(): Kodeverk {
-    return {
-        kodeRef: faker.address.countryCode(),
-        beskrivelse: faker.address.country()
     };
 }
 
@@ -113,7 +84,7 @@ function getIdent(fodselsnummer: string): NorskIdent {
 }
 
 function getBrukerinfo(): Brukerinfo {
-    const midlertidigAdresse = vektetSjanse(faker, 0.5) ? getMidlertidigAdresse() : null;
+    const midlertidigAdresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
 
     return {
         ansvarligEnhet: '1234',
@@ -125,13 +96,6 @@ function getBrukerinfo(): Brukerinfo {
     };
 }
 
-function getMidlertidigAdresse(): MidlertidigAdresse {
-    return {
-        type: MidlertidigAdressetype.PostadresseNorge,
-        ustrukturertAdresse: getPostadresse()
-    };
-}
-
 export function mockStaticPersonsokResponse(): PersonsokResponse[] {
     return [
         {
@@ -140,13 +104,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 beskrivelse: 'Kode 6'
             },
             bostedsadresse: null,
-            postadresse: {
-                landkode: null,
-                adresselinje1: 'Gate 1',
-                adresselinje2: '1234 Oslo',
-                adresselinje3: 'Norge',
-                adresselinje4: null
-            },
+            postadresse: 'Gate 1 1234 Oslo Norge',
             kjonn: {
                 kodeRef: 'M',
                 beskrivelse: 'Mann'
@@ -169,28 +127,12 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     kodeRef: 'P',
                     beskrivelse: 'Postadresse'
                 },
-                midlertidigPostadresse: {
-                    type: MidlertidigAdressetype.PostadresseNorge,
-                    ustrukturertAdresse: {
-                        landkode: null,
-                        adresselinje1: 'Svingen 3',
-                        adresselinje2: '4321 Bergen',
-                        adresselinje3: null,
-                        adresselinje4: null
-                    }
-                }
+                midlertidigPostadresse: 'Svingen 3 4321 Bergen'
             }
         },
         {
             diskresjonskode: null,
-            bostedsadresse: {
-                landkode: {
-                    kodeRef: '123',
-                    beskrivelse: 'Island'
-                },
-                tilleggsadresse: 'Solgaten 1, Reykjavik',
-                tilleggsadresseType: 'Gateadresse'
-            },
+            bostedsadresse: 'Solgaten 1, Reykjavik',
             postadresse: null,
             kjonn: {
                 kodeRef: 'K',
@@ -214,16 +156,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     kodeRef: 'P',
                     beskrivelse: 'Postadresse'
                 },
-                midlertidigPostadresse: {
-                    type: MidlertidigAdressetype.PostadresseUtland,
-                    ustrukturertAdresse: {
-                        landkode: null,
-                        adresselinje1: '23rd street',
-                        adresselinje2: 'New York',
-                        adresselinje3: 'USA',
-                        adresselinje4: null
-                    }
-                }
+                midlertidigPostadresse: '23rd street New York USA'
             }
         }
     ];
