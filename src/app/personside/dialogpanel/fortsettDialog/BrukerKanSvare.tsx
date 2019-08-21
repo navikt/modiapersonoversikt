@@ -4,6 +4,7 @@ import Oppgaveliste from '../sendMelding/Oppgaveliste';
 import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 import { FortsettDialogState } from './FortsettDialog';
 import styled from 'styled-components';
+import { FortsettDialogValidator } from './validatorer';
 
 interface Props {
     formState: FortsettDialogState;
@@ -33,7 +34,9 @@ function BrukerKanSvare(props: Props) {
                     <DialogpanelVelgSak
                         setValgtSak={sak => props.updateFormState({ sak: sak })}
                         valgtSak={props.formState.sak}
-                        visFeilmelding={false}
+                        visFeilmelding={
+                            !FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger
+                        }
                     />
                 </>
             )}

@@ -60,7 +60,7 @@ const Margin = styled.div`
     /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
 `;
 
-const tekstMaksLengde = 5000;
+export const tekstMaksLengde = 5000;
 
 const initialState: FormState = {
     tekst: '',
