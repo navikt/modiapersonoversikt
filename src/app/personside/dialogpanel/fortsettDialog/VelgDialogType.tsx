@@ -26,6 +26,7 @@ function VelgDialogType(props: Props) {
                 onChange={event => props.updateDialogType((event.target.value as unknown) as FortsettDialogType)}
             >
                 <option value={Meldingstype.SVAR_SKRIFTLIG}>Svar skriftlig</option>
+                <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål skriftlig</option>
                 {props.erTilknyttetOppgave && <option value={Meldingstype.DELVIS_SVAR_SKRIFTLIG}>Svar delvis</option>}
                 <option value={Meldingstype.SVAR_TELEFON}>Svar skriftlig telefon</option>
                 <option value={Meldingstype.SVAR_OPPMOTE}>Svar skriftlig oppmøte</option>

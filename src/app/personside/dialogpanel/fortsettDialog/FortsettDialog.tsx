@@ -32,14 +32,14 @@ export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
     | Meldingstype.DELVIS_SVAR_SKRIFTLIG
     | Meldingstype.SVAR_OPPMOTE
-    | Meldingstype.SVAR_TELEFON;
+    | Meldingstype.SVAR_TELEFON
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
 export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
     tema?: Kodeverk;
     oppgave?: Oppgave;
-    brukerKanSvare: boolean;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;
@@ -74,7 +74,6 @@ function FortsettDialog() {
         dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
         tema: undefined,
         oppgave: tilknyttetOppgave,
-        brukerKanSvare: false,
         visFeilmeldinger: false,
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
@@ -135,8 +134,12 @@ function FortsettDialog() {
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
     const erTilknyttetOppgave = state.oppgave !== undefined;
-    const brukerKanIkkeSvareInfo = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
-    const brukerKanSvareValg = state.dialogType === Meldingstype.SVAR_SKRIFTLIG;
+    const brukerKanIkkeSvareInfo = [
+        Meldingstype.SVAR_OPPMOTE,
+        Meldingstype.SVAR_TELEFON,
+        Meldingstype.SVAR_SKRIFTLIG
+    ].includes(state.dialogType);
+    const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
     return (
         <StyledArticle>
