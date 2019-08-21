@@ -3,27 +3,13 @@ import { Navn } from './person';
 
 export interface PersonsokResponse {
     diskresjonskode?: Kodeverk | null;
-    postadresse: UstrukturertAdresse | null;
-    bostedsadresse: StrukturertAdresse | null;
+    postadresse: string | null;
+    bostedsadresse: string | null;
     kjonn: Kodeverk;
     navn: Navn;
     status: Kodeverk;
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
-}
-
-export interface UstrukturertAdresse {
-    landkode: Kodeverk | null;
-    adresselinje1: string | null;
-    adresselinje2: string | null;
-    adresselinje3: string | null;
-    adresselinje4: string | null;
-}
-
-export interface StrukturertAdresse {
-    landkode: Kodeverk | null;
-    tilleggsadresse: string;
-    tilleggsadresseType: string;
 }
 
 export interface NorskIdent {
@@ -34,17 +20,7 @@ export interface NorskIdent {
 export interface Brukerinfo {
     ansvarligEnhet: string;
     gjeldendePostadresseType: Kodeverk;
-    midlertidigPostadresse: MidlertidigAdresse | null;
-}
-
-export interface MidlertidigAdresse {
-    type: MidlertidigAdressetype;
-    ustrukturertAdresse: UstrukturertAdresse;
-}
-
-export enum MidlertidigAdressetype {
-    PostadresseNorge = 'PostadresseNorge',
-    PostadresseUtland = 'PostadresseUtland'
+    midlertidigPostadresse: string | null;
 }
 
 export interface PersonsokRequest {

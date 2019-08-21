@@ -1,50 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
-.c3 .snakkeboble-panel {
-  -webkit-flex-basis: 70%;
-  -ms-flex-preferred-size: 70%;
-  flex-basis: 70%;
-}
-
-.c3 .nav-ikon,
-.c3 .bruker-ikon {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-y: 0.5rem;
-}
-
-.c3 .nav-ikon {
-  background-image: url(navlogo.svg);
-  width: 3.5rem;
-}
-
-.c3 .bruker-ikon {
-  background-image: url(bruker.svg);
-  width: 2.5rem;
-}
-
 .c2 {
   margin-bottom: 1rem;
 }
 
 .c2 .ekspanderbartPanel__hode {
   padding: 0.6rem;
-}
-
-.c5 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c4 textarea {
-  min-height: 9rem;
 }
 
 .c4 label {
@@ -58,7 +20,22 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c9 label {
+.c3 textarea {
+  min-height: 9rem;
+}
+
+.c3 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c8 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -92,15 +69,15 @@ exports[`viser fortsett dialog 1`] = `
   margin-bottom: 1rem;
 }
 
-.c8 .ekspanderbartPanel__hode {
+.c7 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
-.c7 {
+.c6 {
   margin-top: 1rem;
 }
 
-.c7 label {
+.c6 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -111,7 +88,7 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c6 > *:not(:first-child) {
+.c5 > *:not(:first-child) {
   margin-top: 1rem;
 }
 
@@ -119,11 +96,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c10 {
+.c9 {
   margin-top: 1rem;
 }
 
-.c11 {
+.c10 {
   width: 100%;
 }
 
@@ -167,7 +144,7 @@ exports[`viser fortsett dialog 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -215,7 +192,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -263,7 +240,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -311,7 +288,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -361,7 +338,7 @@ exports[`viser fortsett dialog 1`] = `
       </article>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
         className="skjemaelement textarea__container"
@@ -414,7 +391,7 @@ exports[`viser fortsett dialog 1`] = `
     </div>
     <div>
       <div
-        className="skjemaelement c5"
+        className="skjemaelement c4"
       >
         <label
           className="skjemaelement__label"
@@ -502,7 +479,7 @@ exports[`viser fortsett dialog 1`] = `
         </div>
       </div>
       <div
-        className="c6"
+        className="c5"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -543,7 +520,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="skjemaelement c7"
+          className="skjemaelement c6"
         >
           <label
             className="skjemaelement__label"
@@ -583,7 +560,7 @@ exports[`viser fortsett dialog 1`] = `
           className=""
         >
           <div
-            className="ekspanderbartPanel c8 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c7 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -654,7 +631,7 @@ exports[`viser fortsett dialog 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c9"
+          className="skjemaelement c8"
         >
           <label
             className="skjemaelement__label"
@@ -717,14 +694,14 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c10 knapp--hoved"
+      className="knapp c9 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c11 knapp--flat"
+      className="knapp c10 knapp--flat"
       disabled={false}
       onClick={[Function]}
       type="button"
