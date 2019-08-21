@@ -13,9 +13,8 @@ import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
 import { isFinishedPosting } from '../../../../../rest/utils/postResource';
-import { EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState } from '../../../../../utils/customHooks';
-import JumpingDots from '../../../dialogpanel/fortsettDialog/JumpingDots';
 import { UnmountClosed } from 'react-collapse';
 
 interface OwnProps {
@@ -50,6 +49,12 @@ const PanelStyle = styled.div`
     }
 `;
 
+const EtikettStyling = styled.div`
+    > *:not(:last-child) {
+        margin-bottom: 0.2rem;
+    }
+`;
+
 function TraadListeElement(props: Props) {
     const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
     const nyesteMelding = sisteSendteMelding(props.traad);
@@ -75,10 +80,12 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
-                        <UnmountClosed isOpened={traadDialogpanel === props.traad}>
-                            <JumpingDots />
-                        </UnmountClosed>
-                        <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
+                        <EtikettStyling>
+                            <UnmountClosed isOpened={traadDialogpanel === props.traad}>
+                                <EtikettFokus>Besvares i dialogpanel</EtikettFokus>
+                            </UnmountClosed>
+                            <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
+                        </EtikettStyling>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
