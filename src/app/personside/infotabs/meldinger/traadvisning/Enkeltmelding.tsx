@@ -5,33 +5,11 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import styled from 'styled-components';
-import navlogo from '../../../../../svg/navlogo.svg';
-import brukerikon from '../../../../../svg/bruker.svg';
+import './enkeltmelding.less';
 
 interface Props {
     melding: Melding;
 }
-
-const Style = styled.div`
-    .snakkeboble-panel {
-        flex-basis: 70%;
-    }
-    .nav-ikon,
-    .bruker-ikon {
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position-y: 0.5rem;
-    }
-    .nav-ikon {
-        background-image: url(${navlogo});
-        width: 3.5rem;
-    }
-    .bruker-ikon {
-        background-image: url(${brukerikon});
-        width: 2.5rem;
-    }
-`;
 
 function meldingstittel(melding: Melding) {
     const ulestTekst = melding.status === LestStatus.IkkeLest ? 'Ulest, ' : '';
@@ -50,7 +28,7 @@ function EnkeltMelding(props: Props) {
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
 
     return (
-        <Style>
+        <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <Element>{topptekst}</Element>
                 <Normaltekst>{datoTekst}</Normaltekst>
@@ -58,7 +36,7 @@ function EnkeltMelding(props: Props) {
                 <hr />
                 <Normaltekst>{props.melding.fritekst}</Normaltekst>
             </Snakkeboble>
-        </Style>
+        </div>
     );
 }
 
