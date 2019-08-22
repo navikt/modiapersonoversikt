@@ -4,6 +4,7 @@ import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import { FormState } from './SendNyMelding';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import StandardTekstModal from './standardTekster/StandardTekstModal';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     margin-top: 1rem;
@@ -31,6 +32,7 @@ function TekstFelt(props: Props) {
                     : undefined
             }
         >
+            <StandardTekstModal appendTekst={tekst => props.updateTekst(`${props.formState.tekst}\n${tekst}`)} />
             <Textarea
                 value={props.formState.tekst}
                 onChange={e => props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
