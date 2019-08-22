@@ -33,6 +33,7 @@ const TakkForTilbakemeldingenContainer = styled(TilbakemeldingPopupContainer)`
 
 interface Props {
     sporsmal: string;
+    kommentarLabel: string;
     erApen: boolean;
     besvart: boolean;
     settBesvart(tilfredshet: number, besvart: string): void;
@@ -43,6 +44,7 @@ interface InternalProps extends Props {
     kommentar: string;
     settValgt(valgt: number): void;
     settKommentar(kommentar: string): void;
+    kommentarLabel: string;
 }
 
 function Kommentar(props: InternalProps) {
@@ -51,7 +53,7 @@ function Kommentar(props: InternalProps) {
             <Textarea
                 value={props.kommentar}
                 onChange={e => props.settKommentar((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
-                label="Hva skaper utfordringer i din arbeidshverdag og hva kunne gjort den enklere? Alle tilbakemeldinger er anonyme."
+                label={props.kommentarLabel}
                 maxLength={750}
             />
             <KnappWrapper>
