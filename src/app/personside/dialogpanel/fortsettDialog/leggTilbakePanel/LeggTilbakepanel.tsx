@@ -10,7 +10,6 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
-import { isPosting } from '../../../../../rest/utils/postResource';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -57,7 +56,6 @@ function LeggTilbakepanel() {
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
-    const posting = isPosting(leggTilbakeResource);
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -72,9 +70,6 @@ function LeggTilbakepanel() {
 
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if (posting) {
-            return;
-        }
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
             dispatch(leggTilbakeResource.actions.post({}));
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
@@ -129,7 +124,7 @@ function LeggTilbakepanel() {
                         </StyledSkjemaGruppe>
                     </UnmountClosed>
                 </StyledSkjemaGruppe>
-                <Hovedknapp htmlType="button" onClick={handleLeggTilbake} spinner={posting}>
+                <Hovedknapp htmlType="button" onClick={handleLeggTilbake}>
                     Legg tilbake
                 </Hovedknapp>
             </Style>

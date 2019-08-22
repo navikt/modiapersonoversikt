@@ -3,7 +3,7 @@ import Select from 'nav-frontend-skjema/lib/select';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { FortsettDialogState, FortsettDialogType } from './FortsettDialog';
+import { FortsettDialogState, FortsettDialogType } from './FortsettDialogContainer';
 
 interface Props {
     formState: FortsettDialogState;
