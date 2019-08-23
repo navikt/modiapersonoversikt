@@ -35,7 +35,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
             Meldingstype.DELVIS_SVAR_SKRIFTLIG,
             Meldingstype.SAMTALEREFERAT_OPPMOTE,
             Meldingstype.SPORSMAL_SKRIFTLIG,
-            Meldingstype.SVAR_TELEFON
+            Meldingstype.SVAR_TELEFON,
+            Meldingstype.DOKUMENT_VARSEL,
+            Meldingstype.OPPGAVE_VARSEL
         ]),
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),

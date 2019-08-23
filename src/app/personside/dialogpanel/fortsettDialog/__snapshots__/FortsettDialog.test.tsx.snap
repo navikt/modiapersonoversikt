@@ -168,7 +168,7 @@ exports[`viser fortsett dialog 1`] = `
                 <p
                   className="typo-element"
                 >
-                  Samtalereferat oppmøte - Arbeid
+                  Samtalereferat oppmøte - Lest,  Arbeid
                 </p>
                 <p
                   className="typo-normal"
@@ -216,7 +216,7 @@ exports[`viser fortsett dialog 1`] = `
                 <p
                   className="typo-element"
                 >
-                  Spørsmål fra bruker - Ulest, Arbeid
+                  Spørsmål fra bruker - Ulest,  Arbeid
                 </p>
                 <p
                   className="typo-normal"
@@ -264,7 +264,7 @@ exports[`viser fortsett dialog 1`] = `
                 <p
                   className="typo-element"
                 >
-                  Spørsmål fra bruker - Arbeid
+                  Spørsmål fra bruker - Lest,  Arbeid
                 </p>
                 <p
                   className="typo-normal"
@@ -312,7 +312,7 @@ exports[`viser fortsett dialog 1`] = `
                 <p
                   className="typo-element"
                 >
-                  Delsvar - Arbeid
+                  Delsvar - Lest,  Arbeid
                 </p>
                 <p
                   className="typo-normal"
