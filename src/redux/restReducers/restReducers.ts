@@ -62,12 +62,14 @@ import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import sendSpørsmål from './sendSpørsmål';
 import leggTilbakeOppgave from './leggTilbakeOppgave';
 import sendSvar from './sendSvar';
+import tildelteOppgaver from './tildelteOppgaver';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     oppgaver: PostResource<{}, Oppgave[]>;
+    tildDelteOppgaver: RestResource<Oppgave[]>;
     leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
@@ -106,6 +108,7 @@ export default combineReducers<RestEndepunkter>({
     personinformasjon: personinformasjonReducer,
     brukersNavKontor: navkontorReducer,
     oppgaver: oppgaverReducer,
+    tildDelteOppgaver: tildelteOppgaver,
     leggTilbakeOppgave: leggTilbakeOppgave,
     kontaktinformasjon: kontaktinformasjonReducer,
     egenAnsatt: egenAnsattReducer,

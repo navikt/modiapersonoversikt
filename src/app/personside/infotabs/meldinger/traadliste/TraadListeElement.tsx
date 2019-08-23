@@ -8,14 +8,14 @@ import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
 import { AppState } from '../../../../../redux/reducers';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { settValgtTraad } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
-import { isFinishedPosting } from '../../../../../rest/utils/postResource';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
+import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 
 interface OwnProps {
     traad: Traad;
@@ -94,13 +94,9 @@ function TraadListeElement(props: Props) {
 }
 
 function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+    const tildelteOppgaver = useTildelteOppgaver();
 
-    if (!isFinishedPosting(oppgaveResource)) {
-        return null;
-    }
-
-    if (oppgaveResource.response.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
+    if (tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
     }
 
