@@ -3,7 +3,6 @@ import { theme } from '../../../styles/personOversiktTheme';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
-import LazySpinner from '../../../components/LazySpinner';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -25,21 +24,6 @@ export const DialogpanelKvitteringStyling = styled.div`
     padding: 1rem ${theme.margin.layout};
     ${theme.animation.fadeIn};
 `;
-
-const CenterSpinner = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-`;
-
-export function DialogpanelSpinner() {
-    return (
-        <CenterSpinner>
-            <LazySpinner delay={100} type="XL" />
-        </CenterSpinner>
-    );
-}
 
 export function DialogpanelFeilmelding(props: { errormessage: string; lukk: () => void }) {
     return (

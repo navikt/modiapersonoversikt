@@ -14,8 +14,8 @@ import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import FortsettDialogKvittering from './FortsettDialogKvittering';
-import { DialogpanelSpinner } from '../fellesStyling';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -112,7 +112,7 @@ function FortsettDialogContainer(props: Props) {
     };
 
     if (isPosting(sendSvarResource) || isPosting(leggTilbakeResource)) {
-        return <DialogpanelSpinner />;
+        return <CenteredLazySpinner type="XL" delay={100} />;
     }
 
     if (

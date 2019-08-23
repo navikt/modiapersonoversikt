@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { theme } from '../styles/personOversiktTheme';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 
 interface Props {
     delay?: number;
@@ -15,6 +16,14 @@ interface State {
 const FadeIn = styled.span`
     ${theme.animation.fadeIn};
 `;
+
+export function CenteredLazySpinner(props: Props) {
+    return (
+        <FillCenterAndFadeIn>
+            <LazySpinner {...props} />
+        </FillCenterAndFadeIn>
+    );
+}
 
 class LazySpinner extends React.Component<Props, State> {
     private timer?: number;

@@ -11,7 +11,7 @@ import { useRestResource } from '../../../../utils/customHooks';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 import SendNyMeldingKvittering from './SendNyMeldingKvittering';
-import { DialogpanelSpinner } from '../fellesStyling';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -81,7 +81,7 @@ function SendNyMeldingContainer() {
     };
 
     if (senderMelding) {
-        return <DialogpanelSpinner />;
+        return <CenteredLazySpinner type="XL" delay={100} />;
     }
 
     if (meldingSendt || meldingFeilet) {
