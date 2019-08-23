@@ -51,7 +51,8 @@ export enum Temagruppe {
     Pensjon = 'PENS',
     Arbeid = 'ARBD',
     AndreSosiale = 'ANSOS',
-    ØkonomiskSosial = 'OKSOS'
+    ØkonomiskSosial = 'OKSOS',
+    Null = ''
 }
 
 export enum Meldingstype {
