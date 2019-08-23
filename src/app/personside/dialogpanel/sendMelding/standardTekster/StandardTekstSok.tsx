@@ -12,7 +12,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
 
 interface Props {
-    appendTekst(tekst: string): void;
+    appendTekst(tekst: string, locale: string): void;
 }
 const Container = styled.div`
     height: 100%;

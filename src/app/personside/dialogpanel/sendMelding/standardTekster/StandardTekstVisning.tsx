@@ -13,12 +13,12 @@ import LocaleVelger from './LocaleVelger';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
-import { Rule } from '../../../../../components/tekstomrade/utils';
+import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
     sokefelt: FieldState;
-    appendTekst(tekst: string): void;
+    appendTekst(tekst: string, locale: string): void;
 }
 
 const Container = styled.div`
@@ -46,33 +46,18 @@ const Liste = styled.div`
 `;
 const ListeElement = styled.div`
     position: relative;
-    border-bottom: 1px solid ${theme.color.navGra20} input {
+    border-bottom: 1px solid ${theme.color.navGra20};
+
+    input {
         ${theme.visuallyHidden}
     }
     input + label {
         display: flex;
         padding: ${pxToRem(10)} ${pxToRem(15)};
-        padding-left: 3.5rem;
         border-radius: ${theme.borderRadius.layout};
     }
     input:checked + label {
         background-color: ${theme.color.kategori};
-
-        &:before {
-            border-radius: 50%;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: 65%;
-            content: '';
-            height: 1.5rem;
-            width: 1.5rem;
-            position: absolute;
-            top: calc(50% - 0.75rem);
-            left: 1rem;
-            border: none;
-            background-color: #0067c5;
-            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMyAxMCI+ICAgIDxnPiAgICA8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNCwxMGMtMC40LDAtMC44LTAuMS0xLjEtMC40TDAuNCw3LjFDMC4xLDYuOCwwLDYuNCwwLDZzMC4yLTAuOCwwLjUtMS4xQzEsNC40LDIsNC40LDIuNSw0LjlMNCw2LjRsNi40LTYgICAgQzEwLjgsMC4xLDExLjEsMCwxMS41LDBjMC40LDAsMC44LDAuMiwxLDAuNWMwLjYsMC42LDAuNSwxLjYtMC4xLDIuMXYwTDUsOS42QzQuNyw5LjksNC40LDEwLDQsMTB6IE0xMS44LDEuOUwxMS44LDEuOSAgICBDMTEuOCwxLjksMTEuOCwxLjksMTEuOCwxLjl6IE0xMS4yLDEuMUMxMS4yLDEuMSwxMS4yLDEuMSwxMS4yLDEuMUwxMS4yLDEuMXoiLz4gICAgPC9nPjwvc3ZnPg==);
-        }
     }
     input:focus + label {
         outline: none;
@@ -208,10 +193,14 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     );
 }
 
-function velgTekst(settTekst: (tekst: string) => void, tekst: StandardTekster.Tekst | undefined, locale: string) {
+function velgTekst(
+    settTekst: (tekst: string, locale: string) => void,
+    tekst: StandardTekster.Tekst | undefined,
+    locale: string
+) {
     return () => {
         if (kanVises(tekst, locale)) {
-            settTekst(tekst.innhold[locale]);
+            settTekst(tekst.innhold[locale], locale);
         }
     };
 }

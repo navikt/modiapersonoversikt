@@ -1,4 +1,12 @@
 {
+    "tester-alle-nokler": {
+        "id": "1f557a80-5dea-4cda-947a-d2bf2cb367dd",
+        "overskrift": "Test av autofullføring",
+        "tags": ["test", "autofullfør"],
+        "innhold": {
+            "nb_NO": "Dette er en test av alle nøklene som støttes.\n\nbruker.fnr: [bruker.fnr]\nbruker.fornavn: [bruker.fornavn]\nbruker.etternavn: [bruker.etternavn]\nbruker.navn: [bruker.navn]\nbruker.navkontor: [bruker.navkontor]\nbruker.subjekt: [bruker.subjekt]\nbruker.objekt: [bruker.objekt]\nsaksbehandler.fornavn: [saksbehandler.fornavn]\nsaksbehandler.etternavn: [saksbehandler.etternavn]\nsaksbehandler.navn: [saksbehandler.navn]\nsaksbehandler.enhet: [saksbehandler.enhet]"
+        }
+    },
     "1f557a80-5dea-4cda-947a-d2bf2cb367dd": {
         "id": "1f557a80-5dea-4cda-947a-d2bf2cb367dd",
         "overskrift": "Registrere midlertidig adresse",

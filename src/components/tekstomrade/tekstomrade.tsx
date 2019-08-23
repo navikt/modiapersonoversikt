@@ -2,9 +2,11 @@ import React from 'react';
 import 'nav-frontend-skjema-style';
 import classNames from 'classnames';
 import './tekstomrade.less';
-import { parseIntoJsx, Rule } from './utils';
-import { HighlightRule, LinkRule, ParagraphRule } from './rules';
-export * from './rules';
+import { HighlightRule, LinkRule, BoldRule, ParagraphRule } from './parser/rules';
+import { parse, build } from './parser/parser';
+import { Rule } from './parser/domain';
+
+export * from './parser/rules';
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
     as: string | React.ComponentType;
@@ -20,13 +22,13 @@ class Tekstomrade extends React.Component<Props> {
     static defaultProps = {
         as: 'div',
         ingenFormattering: false,
-        rules: [ParagraphRule, HighlightRule, LinkRule]
+        rules: [ParagraphRule, HighlightRule, BoldRule, LinkRule]
     };
 
     render() {
         const { as, children, ingenFormattering, rules, className, ...rest } = this.props;
 
-        const elements = ingenFormattering ? children : parseIntoJsx(rules, children);
+        const elements = ingenFormattering ? children : build(parse(children, this.props.rules), this.props.rules);
 
         return React.createElement<any>(as, { className: cls(className), ...rest }, elements);
     }

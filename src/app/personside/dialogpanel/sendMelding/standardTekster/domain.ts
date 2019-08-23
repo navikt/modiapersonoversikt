@@ -40,3 +40,17 @@ export type Tekst = {
 export type Tekster = {
     [key: string]: Tekst;
 };
+
+export type AutofullforMap = {
+    'bruker.fnr': string;
+    'bruker.fornavn': string;
+    'bruker.etternavn': string;
+    'bruker.navn': string;
+    'bruker.navkontor': string;
+    'bruker.subjekt': string;
+    'bruker.objekt': string;
+    'saksbehandler.fornavn': string;
+    'saksbehandler.etternavn': string;
+    'saksbehandler.navn': string;
+    'saksbehandler.enhet': string;
+};
