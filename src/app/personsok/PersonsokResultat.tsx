@@ -37,7 +37,7 @@ function PersonsokResultat(props: Props) {
     const response = personsokResource.response;
     const tableEntries = response.map(linje => [
         <IdentCelle ident={linje.ident} />,
-        <NavnCelle navn={linje.navn} />,
+        <NavnCelle navn={linje.navn} status={linje.status} />,
         <MidlertidigAdresseCelle brukerinfo={linje.brukerinfo} />,
         <PostadresseCelle postadresse={linje.postadresse} />,
         <BostedsadresseCelle bostedsadresse={linje.bostedsadresse} />,

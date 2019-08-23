@@ -37,6 +37,7 @@ const TilbakemeldingBtn = styled.button`
 interface Props {
     temaId: string;
     sporsmal: string;
+    kommentarLabel: string;
 }
 
 function tilfredshetErValg(tilfredshet: number) {
@@ -84,6 +85,7 @@ function TilbakemeldingFab(props: Props) {
                 besvart={erBesvart}
                 settBesvart={settBesvartCallback}
                 sporsmal={props.sporsmal}
+                kommentarLabel={props.kommentarLabel}
             />
             <TilbakemeldingBtn onClick={() => settErApen(!erApen)}>
                 <img src={ikon} alt="" />

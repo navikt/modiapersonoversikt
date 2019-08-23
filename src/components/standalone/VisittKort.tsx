@@ -34,9 +34,10 @@ const Styles = styled.div`
     }
 `;
 
-const temaId = 'tilbakemelding';
-const sporsmal =
-    'Vi ønsker din tilbakemelding på Modia Personoversikt. Hvordan fungerer det for deg i din arbeidshverdag?';
+const temaId = 'sporsamtalePilot';
+const sporsmal = 'Synes du «Spor samtale» er en effektiv måte å dokumentere samtale med bruker?';
+const kommentarLabel =
+    'Hva er bra, hva kunne vært bedre og er det noe du savner? Andre tilbakemelding? Alle tilbakemeldinger er anonyme.';
 
 class VisittkortStandAlone extends React.Component<Props> {
     render() {
@@ -50,7 +51,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                         <VisittkortLaster />
 
                         <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
-                            <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} />
+                            <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
                         </IfFeatureToggleOn>
                     </Styles>
                 </Provider>

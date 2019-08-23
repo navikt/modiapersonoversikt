@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
-import { useAppState, useRestResource } from '../../../../utils/customHooks';
+import { FormEvent, useEffect, useState } from 'react';
+import { useAppState, usePrevious, useRestResource } from '../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
@@ -14,16 +14,19 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import LeggTilbakepanel from './LeggTilbakepanel';
-import { useDispatch } from 'react-redux';
+import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { FormStyle } from '../fellesStyling';
-import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
+import { OppgavelisteValg, tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { FortsettDialogValidator } from './validatorer';
+import { AppState } from '../../../../redux/reducers';
+import { isFinishedPosting } from '../../../../rest/utils/postResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -59,16 +62,23 @@ const Margin = styled.div`
 `;
 
 function FortsettDialog() {
-    const [state, setState] = useState<FortsettDialogState>({
+    const traad = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+    const tilknyttetOppgave =
+        isFinishedPosting(oppgaveResource) && traad
+            ? oppgaveResource.response.find(oppgave => oppgave.henvendelseid === traad.traadId)
+            : undefined;
+    const initialState = {
         tekst: '',
-        dialogType: Meldingstype.SVAR_SKRIFTLIG,
+        dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
         tema: undefined,
-        oppgave: undefined,
+        oppgave: tilknyttetOppgave,
         brukerKanSvare: false,
         visFeilmeldinger: false,
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
-    });
+    };
+    const [state, setState] = useState<FortsettDialogState>(initialState);
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
             ...state,
@@ -77,36 +87,60 @@ function FortsettDialog() {
         });
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
     const dispatch = useDispatch();
+
+    const previous = usePrevious(traad);
+    useEffect(() => {
+        if (previous !== traad) {
+            setState(initialState);
+        }
+    }, [traad, setState, initialState, previous]);
+
     const navn = isLoadedPerson(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
         : 'bruker';
-    const traad = useAppState(state => state.oppgaver.dialogpanelTraad);
+
     if (!traad) {
         return <AlertStripeInfo>Ingen tråd er valgt</AlertStripeInfo>;
     }
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        console.log(state);
+        if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
+            console.log('svar skriftlig: ', state);
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
+            console.log('delvis svar: ', state);
+        } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {
+            console.log('svar oppmøte: ', state);
+        } else if (FortsettDialogValidator.erGyldigSvarTelefon(state)) {
+            console.log('svar telefon: ', state);
+        } else {
+            updateState({ visFeilmeldinger: true });
+        }
     };
 
     const handleAvbryt = () => dispatch(setDialogpanelTraad(undefined));
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const erTilknyttetOppgave = true; //TODO håndtere tilknytning til oppgave
+    const erTilknyttetOppgave = state.oppgave !== undefined;
     const brukerKanIkkeSvareInfo = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
     const brukerKanSvareValg = state.dialogType === Meldingstype.SVAR_SKRIFTLIG;
 
     return (
         <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
+            {state.oppgave !== undefined && <AlertStripeInfo>Denne oppgaven er tildelt deg</AlertStripeInfo>}
             <FormStyle onSubmit={handleSubmit}>
                 <TidligereMeldinger traad={traad} />
                 <TekstFelt
                     tekst={state.tekst}
                     navn={navn}
-                    tekstMaksLengde={5000}
+                    tekstMaksLengde={tekstMaksLengde}
                     updateTekst={tekst => updateState({ tekst: tekst })}
+                    feilmelding={
+                        !FortsettDialogValidator.tekst(state) && state.visFeilmeldinger
+                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                            : undefined
+                    }
                 />
                 <VelgDialogType
                     formState={state}
@@ -120,8 +154,13 @@ function FortsettDialog() {
                     <UnmountClosed isOpened={brukerKanSvareValg}>
                         <BrukerKanSvare formState={state} updateFormState={updateState} />
                     </UnmountClosed>
-                    <UnmountClosed isOpened={erDelsvar}>
-                        <Temavelger setTema={tema => updateState({ tema: tema })} tema={state.tema} />
+                    <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
+                        {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
+                        <Temavelger
+                            setTema={tema => updateState({ tema: tema })}
+                            tema={state.tema}
+                            visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
+                        />
                     </UnmountClosed>
                 </Margin>
                 <SubmitKnapp htmlType="submit">

@@ -1,50 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
-.c3 .snakkeboble-panel {
-  -webkit-flex-basis: 70%;
-  -ms-flex-preferred-size: 70%;
-  flex-basis: 70%;
-}
-
-.c3 .nav-ikon,
-.c3 .bruker-ikon {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-y: 0.5rem;
-}
-
-.c3 .nav-ikon {
-  background-image: url(navlogo.svg);
-  width: 3.5rem;
-}
-
-.c3 .bruker-ikon {
-  background-image: url(bruker.svg);
-  width: 2.5rem;
-}
-
 .c2 {
   margin-bottom: 1rem;
 }
 
 .c2 .ekspanderbartPanel__hode {
   padding: 0.6rem;
-}
-
-.c5 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c4 textarea {
-  min-height: 9rem;
 }
 
 .c4 label {
@@ -58,7 +20,11 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c7 label {
+.c3 textarea {
+  min-height: 9rem;
+}
+
+.c3 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -69,26 +35,15 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c9 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
-}
-
-.c11 > *:not(:first-child) {
-  margin-top: 0.3rem;
-}
-
-.c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c10 > * {
-  margin-top: 0.5rem;
+.c6 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
 }
 
 .c1 {
@@ -114,7 +69,7 @@ exports[`viser fortsett dialog 1`] = `
   margin-bottom: 1rem;
 }
 
-.c6 > *:not(:first-child) {
+.c5 > *:not(:first-child) {
   margin-top: 1rem;
 }
 
@@ -122,8 +77,12 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c8 {
+.c7 {
   margin-top: 1rem;
+}
+
+.c8 {
+  width: 100%;
 }
 
 <article
@@ -166,7 +125,7 @@ exports[`viser fortsett dialog 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -214,7 +173,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -262,7 +221,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -310,7 +269,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="snakkeboble_ikoner"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -360,7 +319,7 @@ exports[`viser fortsett dialog 1`] = `
       </article>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
         className="skjemaelement textarea__container"
@@ -413,7 +372,7 @@ exports[`viser fortsett dialog 1`] = `
     </div>
     <div>
       <div
-        className="skjemaelement c5"
+        className="skjemaelement c4"
       >
         <label
           className="skjemaelement__label"
@@ -435,11 +394,6 @@ exports[`viser fortsett dialog 1`] = `
               value="SVAR_SKRIFTLIG"
             >
               Svar skriftlig
-            </option>
-            <option
-              value="DELVIS_SVAR_SKRIFTLIG"
-            >
-              Svar delvis
             </option>
             <option
               value="SVAR_TELEFON"
@@ -501,7 +455,7 @@ exports[`viser fortsett dialog 1`] = `
         </div>
       </div>
       <fieldset
-        className="c6"
+        className="c5"
       >
         <div
           className="skjemaelement skjemaelement--horisontal"
@@ -529,7 +483,7 @@ exports[`viser fortsett dialog 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c7"
+          className="skjemaelement c6"
         >
           <label
             className="skjemaelement__label"
@@ -592,223 +546,20 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c8 knapp--hoved"
+      className="knapp c7 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
-    <div
-      className="ekspanderbartPanel c9 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+    <button
+      className="knapp c8 knapp--flat"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
     >
-      <button
-        aria-expanded={false}
-        className="ekspanderbartPanel__hode"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
-      >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
-        >
-          <span
-            className="typo-normal ekspanderbartPanel__heading"
-          >
-            Legg tilbake
-          </span>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <article
-        aria-label="Legg tilbake"
-        className="ekspanderbartPanel__innhold"
-      >
-        <div
-          className="c10"
-        >
-          <fieldset
-            className="c11"
-          >
-            <legend
-              className="sr-only"
-            >
-              Velg årsak
-            </legend>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Innhabil
-              </label>
-            </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Feil temagruppe
-              </label>
-            </div>
-            <div
-              className=""
-            >
-              <div
-                className="skjemaelement c7"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Tema
-                </label>
-                <div
-                  className="selectContainer input--fullbredde"
-                >
-                  <select
-                    className="skjemaelement__input"
-                    disabled={false}
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    value=""
-                  >
-                    <option
-                      disabled={true}
-                      value=""
-                    >
-                      Velg temagruppe
-                    </option>
-                    <option
-                      value="ARBD"
-                    >
-                      Arbeid
-                    </option>
-                    <option
-                      value="FMLI"
-                    >
-                      Familie
-                    </option>
-                    <option
-                      value="HJLPM"
-                    >
-                      Hjelpemiddel
-                    </option>
-                    <option
-                      value="PENS"
-                    >
-                      Pensjon
-                    </option>
-                    <option
-                      value="OVRG"
-                    >
-                      Øvrig
-                    </option>
-                  </select>
-                </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              className="skjemaelement skjemaelement--horisontal"
-            >
-              <input
-                checked={false}
-                className="skjemaelement__input radioknapp"
-                id="Helt tilfeldig ID"
-                name="årsak"
-                onChange={[Function]}
-                type="radio"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Annen årsak
-              </label>
-            </div>
-            <div
-              className="skjemaelement textarea__container"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Årsak
-              </label>
-              <div
-                className="textarea--medMeta__wrapper"
-              >
-                <textarea
-                  className="skjemaelement__input textarea--medMeta"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  style={
-                    Object {
-                      "height": "30px",
-                    }
-                  }
-                  type="text"
-                  value=""
-                />
-                <p
-                  className="textarea--medMeta__teller"
-                >
-                  <span>
-                    Du har 
-                    2000
-                     tegn igjen
-                  </span>
-                </p>
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-              <div
-                aria-hidden="true"
-                className="textareamirror"
-              />
-            </div>
-          </fieldset>
-          <button
-            className="knapp knapp--hoved"
-            disabled={false}
-            type="submit"
-          >
-            Legg tilbake
-          </button>
-        </div>
-      </article>
-    </div>
+      Avbryt
+    </button>
   </form>
 </article>
 `;
