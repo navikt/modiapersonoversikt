@@ -22,7 +22,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 .c2 {
-  border-top: .1rem rgba(0,0,0,.2) solid;
+  border-top: 0.1rem rgba(0,0,0,0.2) solid;
 }
 
 .c2.ekspanderbartPanel {
@@ -30,7 +30,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 .c6 {
-  border-top: .1rem rgba(0,0,0,.2) solid;
+  border-top: 0.1rem rgba(0,0,0,0.2) solid;
 }
 
 .c0 .ekspanderbartPanel__innhold {
