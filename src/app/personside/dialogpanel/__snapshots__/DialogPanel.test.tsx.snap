@@ -155,7 +155,38 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: 0.8rem;
 }
 
+.c18 {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  border-bottom-right-radius: 50%;
+  padding: 0;
+  background-color: #0067c5;
+  border: none;
+  z-index: 10;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c18:after {
+  background: none;
+}
+
+.c18:hover {
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c19 {
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
 .c17 {
+  position: relative;
   margin-top: 1rem;
 }
 
@@ -172,6 +203,10 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px 1px 1px 1px);
   -webkit-clip: rect(1px,1px,1px,1px);
   clip: rect(1px,1px,1px,1px);
+}
+
+.c20 textarea {
+  padding-left: 2rem;
 }
 
 .c13 label {
@@ -215,7 +250,7 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: 0;
 }
 
-.c18 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -225,7 +260,7 @@ exports[`viser dialogpanel 1`] = `
   flex-wrap: wrap;
 }
 
-.c18 > * {
+.c21 > * {
   margin-top: 0.7rem;
   margin-right: 0.5rem;
   -webkit-box-flex: 1;
@@ -1447,49 +1482,70 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
         <div
           className="c17"
         >
-          <div
-            className="skjemaelement textarea__container"
+          <button
+            className="knapp c18 knapp--hoved"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
           >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
+            <svg
+              className="c19"
             >
-              Melding
-            </label>
+              StandardTekstIkon.svg
+            </svg>
+            <span
+              className="sr-only"
+            >
+              Standardtekster
+            </span>
+          </button>
+          <div
+            className="c20"
+          >
             <div
-              className="textarea--medMeta__wrapper"
+              className="skjemaelement textarea__container"
             >
-              <textarea
-                className="skjemaelement__input textarea--medMeta"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-                style={
-                  Object {
-                    "height": "30px",
-                  }
-                }
-                type="text"
-                value=""
-              />
-              <p
-                className="textarea--medMeta__teller"
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <span>
-                  Du har 
-                  5000
-                   tegn igjen
-                </span>
-              </p>
+                Melding
+              </label>
+              <div
+                className="textarea--medMeta__wrapper"
+              >
+                <textarea
+                  className="skjemaelement__input textarea--medMeta"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                  style={
+                    Object {
+                      "height": "30px",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+                <p
+                  className="textarea--medMeta__teller"
+                >
+                  <span>
+                    Du har 
+                    5000
+                     tegn igjen
+                  </span>
+                </p>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+              <div
+                aria-hidden="true"
+                className="textareamirror"
+              />
             </div>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-            <div
-              aria-hidden="true"
-              className="textareamirror"
-            />
           </div>
           <div
             aria-live="assertive"
@@ -1535,7 +1591,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           </div>
         </div>
         <div
-          className="c18"
+          className="c21"
         >
           <button
             className="knapp knapp--hoved"

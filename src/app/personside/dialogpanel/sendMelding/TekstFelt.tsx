@@ -13,12 +13,18 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import MultiRestResourceConsumer from '../../../../rest/consumer/MultiRestResourceConsumer';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
+    position: relative;
     margin-top: 1rem;
     textarea {
         min-height: 9rem;
     }
     label {
         ${theme.visuallyHidden}
+    }
+`;
+const TextareaWrapper = styled.div`
+    textarea {
+        padding-left: 2rem;:
     }
 `;
 
@@ -66,13 +72,17 @@ function TekstFelt(props: Props) {
                     );
                 }}
             </MultiRestResourceConsumer>
-            <Textarea
-                value={props.formState.tekst}
-                onChange={e => props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
-                label={'Melding'}
-                maxLength={props.tekstMaksLengde}
-                placeholder={`Alt du skriver i denne boksen blir synlig for ${props.navn} når du trykker "Del med ${props.navn}"`}
-            />
+            <TextareaWrapper>
+                <Textarea
+                    value={props.formState.tekst}
+                    onChange={e =>
+                        props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
+                    }
+                    label={'Melding'}
+                    maxLength={props.tekstMaksLengde}
+                    placeholder={`Alt du skriver i denne boksen blir synlig for ${props.navn} når du trykker "Del med ${props.navn}"`}
+                />
+            </TextareaWrapper>
         </StyledSkjemagruppe>
     );
 }
