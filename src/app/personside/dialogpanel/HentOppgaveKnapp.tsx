@@ -13,6 +13,7 @@ import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
 import theme from '../../../styles/personOversiktTheme';
 import setNyGjeldendeBruker from '../../../redux/gjeldendeBruker/actions';
+import TildelteOppgaver from './TildelteOppgaver';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -120,6 +121,7 @@ function HentOppgaveKnapp(props: Props) {
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
+            <TildelteOppgaver />
         </HentOppgaveLayout>
     );
 }

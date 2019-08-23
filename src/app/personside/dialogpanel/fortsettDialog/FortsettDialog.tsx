@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { FormEvent, useEffect, useState } from 'react';
-import { useAppState, usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { FormEvent } from 'react';
+import { useRestResource } from '../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
-import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
@@ -14,36 +13,14 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
-import { useDispatch, useSelector } from 'react-redux';
-import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { FormStyle } from '../fellesStyling';
-import { OppgavelisteValg, tekstMaksLengde } from '../sendMelding/SendNyMelding';
-import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
-import { AppState } from '../../../../redux/reducers';
-import { isFinishedPosting } from '../../../../rest/utils/postResource';
-
-export type FortsettDialogType =
-    | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.DELVIS_SVAR_SKRIFTLIG
-    | Meldingstype.SVAR_OPPMOTE
-    | Meldingstype.SVAR_TELEFON;
-
-export interface FortsettDialogState {
-    tekst: string;
-    dialogType: FortsettDialogType;
-    tema?: Kodeverk;
-    oppgave?: Oppgave;
-    brukerKanSvare: boolean;
-    oppgaveListe: OppgavelisteValg;
-    sak?: JournalforingsSak;
-    visFeilmeldinger: boolean;
-}
+import { FortsettDialogState } from './FortsettDialogContainer';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -61,76 +38,37 @@ const Margin = styled.div`
     /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
 `;
 
-function FortsettDialog() {
-    const traad = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
-    const tilknyttetOppgave =
-        isFinishedPosting(oppgaveResource) && traad
-            ? oppgaveResource.response.find(oppgave => oppgave.henvendelseid === traad.traadId)
-            : undefined;
-    const initialState = {
-        tekst: '',
-        dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
-        tema: undefined,
-        oppgave: tilknyttetOppgave,
-        brukerKanSvare: false,
-        visFeilmeldinger: false,
-        sak: undefined,
-        oppgaveListe: OppgavelisteValg.MinListe
-    };
-    const [state, setState] = useState<FortsettDialogState>(initialState);
-    const updateState = (change: Partial<FortsettDialogState>) =>
-        setState({
-            ...state,
-            visFeilmeldinger: false,
-            ...change
-        });
-    const personinformasjon = useRestResource(resources => resources.personinformasjon);
-    const dispatch = useDispatch();
+interface Props {
+    handleSubmit: (event: FormEvent) => void;
+    handleAvbryt: () => void;
+    state: FortsettDialogState;
+    updateState: (change: Partial<FortsettDialogState>) => void;
+    traad: Traad;
+    oppgave?: Oppgave;
+}
 
-    const previous = usePrevious(traad);
-    useEffect(() => {
-        if (previous !== traad) {
-            setState(initialState);
-        }
-    }, [traad, setState, initialState, previous]);
+function FortsettDialog(props: Props) {
+    const { state, updateState, handleAvbryt, handleSubmit } = props;
+    const personinformasjon = useRestResource(resources => resources.personinformasjon);
 
     const navn = isLoadedPerson(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
         : 'bruker';
 
-    if (!traad) {
-        return <AlertStripeInfo>Ingen tråd er valgt</AlertStripeInfo>;
-    }
-
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
-            console.log('svar skriftlig: ', state);
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
-            console.log('delvis svar: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {
-            console.log('svar oppmøte: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarTelefon(state)) {
-            console.log('svar telefon: ', state);
-        } else {
-            updateState({ visFeilmeldinger: true });
-        }
-    };
-
-    const handleAvbryt = () => dispatch(setDialogpanelTraad(undefined));
-
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
     const erTilknyttetOppgave = state.oppgave !== undefined;
-    const brukerKanIkkeSvareInfo = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
-    const brukerKanSvareValg = state.dialogType === Meldingstype.SVAR_SKRIFTLIG;
+    const brukerKanIkkeSvareInfo = [
+        Meldingstype.SVAR_OPPMOTE,
+        Meldingstype.SVAR_TELEFON,
+        Meldingstype.SVAR_SKRIFTLIG
+    ].includes(state.dialogType);
+    const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
     return (
         <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
-            {state.oppgave !== undefined && <AlertStripeInfo>Denne oppgaven er tildelt deg</AlertStripeInfo>}
             <FormStyle onSubmit={handleSubmit}>
-                <TidligereMeldinger traad={traad} />
+                <TidligereMeldinger traad={props.traad} />
                 <TekstFelt
                     tekst={state.tekst}
                     navn={navn}
@@ -165,12 +103,12 @@ function FortsettDialog() {
                 </Margin>
                 <SubmitKnapp htmlType="submit">
                     {erDelsvar
-                        ? `Svar delvis og legg tilbake på ${state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'}`
+                        ? `Skriv delsvar og legg tilbake på ${
+                              state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'
+                          }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
-                {erTilknyttetOppgave ? (
-                    <LeggTilbakepanel />
-                ) : (
+                {!erTilknyttetOppgave && (
                     <StyledKnappMedBekreftPopup type="flat" onBekreft={handleAvbryt}>
                         Avbryt
                     </StyledKnappMedBekreftPopup>
