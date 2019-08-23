@@ -3,7 +3,7 @@ import Select from 'nav-frontend-skjema/lib/select';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { FortsettDialogState, FortsettDialogType } from './FortsettDialog';
+import { FortsettDialogState, FortsettDialogType } from './FortsettDialogContainer';
 
 interface Props {
     formState: FortsettDialogState;
@@ -25,10 +25,11 @@ function VelgDialogType(props: Props) {
                 value={props.formState.dialogType}
                 onChange={event => props.updateDialogType((event.target.value as unknown) as FortsettDialogType)}
             >
-                <option value={Meldingstype.SVAR_SKRIFTLIG}>Svar skriftlig</option>
-                {props.erTilknyttetOppgave && <option value={Meldingstype.DELVIS_SVAR_SKRIFTLIG}>Svar delvis</option>}
-                <option value={Meldingstype.SVAR_TELEFON}>Svar skriftlig telefon</option>
-                <option value={Meldingstype.SVAR_OPPMOTE}>Svar skriftlig oppmøte</option>
+                <option value={Meldingstype.SVAR_SKRIFTLIG}>Svar</option>
+                <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål</option>
+                {props.erTilknyttetOppgave && <option value={Meldingstype.DELVIS_SVAR_SKRIFTLIG}>Delsvar</option>}
+                <option value={Meldingstype.SVAR_TELEFON}>Telefon</option>
+                <option value={Meldingstype.SVAR_OPPMOTE}>Oppmøte</option>
             </StyledSelect>
         </div>
     );

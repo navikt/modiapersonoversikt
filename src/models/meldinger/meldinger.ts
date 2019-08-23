@@ -92,3 +92,14 @@ export interface SendSpørsmålRequest {
     saksID: string;
     erOppgaveTilknyttetAnsatt: boolean;
 }
+
+export interface SendSvarRequest {
+    fritekst: string;
+    traadId: string;
+    meldingstype: Meldingstype;
+    saksId?: string;
+    oppgaveId?: string;
+    behandlingsId?: string;
+    erOppgaveTilknyttetAnsatt: boolean;
+    brukersEnhet?: string;
+}

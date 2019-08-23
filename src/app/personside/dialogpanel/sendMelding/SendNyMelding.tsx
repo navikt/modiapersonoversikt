@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
-import { KommunikasjonsKanal, Meldingstype } from '../../../../models/meldinger/meldinger';
+import { FormEvent } from 'react';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import { useDispatch } from 'react-redux';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
@@ -19,7 +18,6 @@ import VelgDialogType from './VelgDialogType';
 import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
-import { isPosting } from '../../../../rest/utils/postResource';
 import { FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 
@@ -48,12 +46,14 @@ const StyledArticle = styled.article`
 
 const KnappWrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     > * {
         margin-bottom: 0.7rem;
-        margin-right: 0.5rem;
-        flex-grow: 1;
     }
+`;
+
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    margin-top: 1rem;
 `;
 
 const Margin = styled.div`
@@ -62,61 +62,17 @@ const Margin = styled.div`
 
 export const tekstMaksLengde = 5000;
 
-const initialState: FormState = {
-    tekst: '',
-    dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
-    tema: undefined,
-    sak: undefined,
-    oppgaveListe: OppgavelisteValg.MinListe,
-    visFeilmeldinger: false
-};
+interface Props {
+    handleSubmit: (event: FormEvent) => void;
+    handleAvbryt: () => void;
+    state: FormState;
+    updateState: (change: Partial<FormState>) => void;
+}
 
-function SendNyMelding() {
-    const [state, setState] = useState<FormState>(initialState);
-    const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
+function SendNyMelding(props: Props) {
+    const updateState = props.updateState;
+    const state = props.state;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
-    const postReferatResource = useRestResource(resources => resources.sendReferat);
-    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
-    const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
-    const dispatch = useDispatch();
-
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        if (senderMelding) {
-            return;
-        }
-        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
-            const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
-            dispatch(
-                postReferatResource.actions.post(
-                    {
-                        fritekst: state.tekst,
-                        kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
-                        temagruppe: state.tema.kodeRef
-                    },
-                    () => dispatch(reloadMeldinger)
-                )
-            );
-        } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
-            dispatch(
-                postSpørsmålResource.actions.post(
-                    {
-                        fritekst: state.tekst,
-                        saksID: state.sak.saksId,
-                        erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
-                    },
-                    () => dispatch(reloadMeldinger)
-                )
-            );
-        } else {
-            updateState({ visFeilmeldinger: true });
-        }
-    };
-
-    const handleAvbryt = () => {
-        updateState(initialState);
-    };
 
     const navn = isLoadedPerson(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
@@ -128,7 +84,7 @@ function SendNyMelding() {
     return (
         <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
-            <FormStyle onSubmit={handleSubmit}>
+            <FormStyle onSubmit={props.handleSubmit}>
                 <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
                 <Margin>
                     <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
@@ -149,6 +105,7 @@ function SendNyMelding() {
                             oppgaveliste={state.oppgaveListe}
                             setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                         />
+                        <StyledAlertStripeInfo>Bruker kan svare</StyledAlertStripeInfo>
                     </UnmountClosed>
                 </Margin>
                 <TekstFelt
@@ -162,18 +119,13 @@ function SendNyMelding() {
                             : undefined
                     }
                 />
-                <Margin>
-                    <UnmountClosed isOpened={erSpørsmål}>
-                        <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
-                    </UnmountClosed>
-                </Margin>
                 <KnappWrapper>
-                    <KnappBase type="hoved" htmlType="submit" spinner={senderMelding}>
+                    <KnappBase type="hoved" htmlType="submit">
                         Del med {navn}
                     </KnappBase>
                     <KnappMedBekreftPopup
                         type="flat"
-                        onBekreft={handleAvbryt}
+                        onBekreft={props.handleAvbryt}
                         popUpTekst="Du vil miste meldingen du har påbegynnt"
                     >
                         Avbryt

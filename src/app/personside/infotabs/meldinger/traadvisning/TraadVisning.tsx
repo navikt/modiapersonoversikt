@@ -13,8 +13,8 @@ import { Flatknapp } from 'nav-frontend-knapper';
 import { setDialogpanelTraad } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { Collapse } from 'react-collapse';
-import JumpingDots from '../../../dialogpanel/fortsettDialog/JumpingDots';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     valgtTraad?: Traad;
@@ -63,7 +63,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
             <KnappWrapper>
                 <Collapse isOpened={true}>
                     {traadDialogpanel === valgtTraad ? (
-                        <JumpingDots />
+                        <AlertStripeInfo>Besvares i dialogpanel</AlertStripeInfo>
                     ) : (
                         <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
                     )}
