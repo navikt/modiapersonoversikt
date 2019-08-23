@@ -10,6 +10,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
+import { Oppgave } from '../../../../../models/oppgave';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -45,7 +46,11 @@ const Style = styled.div`
     }
 `;
 
-function LeggTilbakepanel() {
+interface Props {
+    oppgave: Oppgave;
+}
+
+function LeggTilbakepanel(props: Props) {
     const [state, setState] = useState<LeggTilbakeState>({
         årsak: undefined,
         tekst: '',
@@ -71,11 +76,23 @@ function LeggTilbakepanel() {
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            dispatch(leggTilbakeResource.actions.post({}));
+            dispatch(leggTilbakeResource.actions.post({ oppgaveId: props.oppgave.oppgaveid, type: 'innhabil' }));
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
-            dispatch(leggTilbakeResource.actions.post({ beskrivelse: state.tekst }));
+            dispatch(
+                leggTilbakeResource.actions.post({
+                    beskrivelse: state.tekst,
+                    oppgaveId: props.oppgave.oppgaveid,
+                    type: 'annenaarsak'
+                })
+            );
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
-            dispatch(leggTilbakeResource.actions.post({ temagruppe: state.tema.kodeRef }));
+            dispatch(
+                leggTilbakeResource.actions.post({
+                    temagruppe: state.tema.kodeRef,
+                    oppgaveId: props.oppgave.oppgaveid,
+                    type: 'feiltema'
+                })
+            );
         } else {
             updateState({ visFeilmeldinger: true });
         }

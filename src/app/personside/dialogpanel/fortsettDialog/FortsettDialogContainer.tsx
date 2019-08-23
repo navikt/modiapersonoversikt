@@ -15,6 +15,7 @@ import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import FortsettDialogKvittering from './FortsettDialogKvittering';
 import { DialogpanelSpinner } from '../fellesStyling';
+import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -124,13 +125,16 @@ function FortsettDialogContainer(props: Props) {
     }
 
     return (
-        <FortsettDialog
-            handleAvbryt={handleAvbryt}
-            state={state}
-            updateState={updateState}
-            handleSubmit={handleSubmit}
-            traad={props.traad}
-        />
+        <>
+            <FortsettDialog
+                handleAvbryt={handleAvbryt}
+                state={state}
+                updateState={updateState}
+                handleSubmit={handleSubmit}
+                traad={props.traad}
+            />
+            {props.tilknyttetOppgave && <LeggTilbakepanel oppgave={props.tilknyttetOppgave} />}
+        </>
     );
 }
 

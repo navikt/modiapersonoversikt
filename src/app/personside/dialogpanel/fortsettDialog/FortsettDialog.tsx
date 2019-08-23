@@ -13,7 +13,6 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { FormStyle } from '../fellesStyling';
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
@@ -109,9 +108,7 @@ function FortsettDialog(props: Props) {
                           }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
-                {erTilknyttetOppgave ? (
-                    <LeggTilbakepanel />
-                ) : (
+                {!erTilknyttetOppgave && (
                     <StyledKnappMedBekreftPopup type="flat" onBekreft={handleAvbryt}>
                         Avbryt
                     </StyledKnappMedBekreftPopup>

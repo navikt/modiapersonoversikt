@@ -10,6 +10,7 @@ import { DialogpanelFeilmelding, DialogpanelKvitteringStyling } from '../fellesS
 import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
+import { erLeggTilbakeOppgaveFeilTemaRequest } from '../../../../models/oppgave';
 
 function FortsettDialogKvittering() {
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
@@ -37,12 +38,14 @@ function FortsettDialogKvittering() {
         return (
             <DialogpanelKvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel="Oppgaven ble lagt tilbake" />
-                {payload.temagruppe && (
+                {erLeggTilbakeOppgaveFeilTemaRequest(payload) && (
                     <AlertStripeSuksess>
                         Oppgaven ble lagt tilbake på {temagruppeTekst(payload.temagruppe as Temagruppe).toLowerCase}
                     </AlertStripeSuksess>
                 )}
-                {!payload.temagruppe && <AlertStripeSuksess>Oppgaven ble lagt tilbake</AlertStripeSuksess>}
+                {!erLeggTilbakeOppgaveFeilTemaRequest(payload) && (
+                    <AlertStripeSuksess>Oppgaven ble lagt tilbake</AlertStripeSuksess>
+                )}
                 <KnappBase type="standard" onClick={reset}>
                     Lukk
                 </KnappBase>
