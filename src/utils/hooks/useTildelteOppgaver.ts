@@ -2,7 +2,7 @@ import { hasData, isNotStarted } from '../../rest/utils/restResource';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { isFinishedPosting } from '../../rest/utils/postResource';
-import { useFødselsnummer, useRestResource } from '../customHooks';
+import { useFødselsnummer, usePrevious, useRestResource } from '../customHooks';
 
 function useTildelteOppgaver() {
     const oppgaveResource = useRestResource(resources => resources.oppgaver);
@@ -10,13 +10,16 @@ function useTildelteOppgaver() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
 
+    const prevFnr = usePrevious(fnr);
     useEffect(() => {
-        if (isNotStarted(tildelteOppgaverResource)) {
-            dispatch(tildelteOppgaverResource.actions.fetch);
-        } else {
-            dispatch(tildelteOppgaverResource.actions.reload);
+        if (prevFnr !== fnr) {
+            if (isNotStarted(tildelteOppgaverResource)) {
+                dispatch(tildelteOppgaverResource.actions.fetch);
+            } else {
+                dispatch(tildelteOppgaverResource.actions.reload);
+            }
         }
-    }, [fnr]);
+    }, [fnr, dispatch, tildelteOppgaverResource, prevFnr]);
 
     const tildelteOppgaver = [
         ...(isFinishedPosting(oppgaveResource) ? oppgaveResource.response : []),

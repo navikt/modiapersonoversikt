@@ -19,7 +19,7 @@ export interface Melding {
     erFerdigstiltUtenSvar: boolean;
     kontorsperretEnhet?: string;
     markertSomFeilsendtAv?: string;
-    erDelsvar: boolean;
+    erDokumentMelding: boolean;
 }
 
 export interface Saksbehandler {
@@ -59,6 +59,7 @@ export enum Meldingstype {
     DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
     OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
     SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
+    SPORSMAL_SKRIFTLIG_DIREKTE = 'SPORSMAL_SKRIFTLIG_DIREKTE',
     SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
     SVAR_OPPMOTE = 'SVAR_OPPMOTE',
     SVAR_TELEFON = 'SVAR_TELEFON',

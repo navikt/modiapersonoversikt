@@ -4,7 +4,7 @@ import { useRestResource } from '../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
-import TidligereMeldinger from './TidligereMeldinger';
+import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import { Oppgave } from '../../../../models/oppgave';
 import TekstFelt from '../sendMelding/TekstFelt';

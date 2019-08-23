@@ -30,6 +30,8 @@ import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
 import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
+import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/tidligereMeldinger/TidligereMeldinger';
+import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 
 enum Komponenter {
     Visittkort,
@@ -46,7 +48,8 @@ enum Komponenter {
     Hurtigreferat,
     Dialogpanel,
     Personsok,
-    JournalforingPanel
+    JournalforingPanel,
+    TraadVisningDialogpanel
 }
 
 const Style = styled.div`
@@ -119,6 +122,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <PersonsokStandAloneKomponent />;
         case Komponenter.JournalforingPanel:
             return <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />;
+        case Komponenter.TraadVisningDialogpanel:
+            return <TidligereMeldinger traad={statiskTraadMock} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

@@ -5,6 +5,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 
 interface Props {
     melding: Melding;
@@ -33,7 +34,7 @@ function EnkeltMelding(props: Props) {
                 <Normaltekst>{datoTekst}</Normaltekst>
                 <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                 <hr />
-                <Normaltekst>{props.melding.fritekst}</Normaltekst>
+                <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
             </Snakkeboble>
         </div>
     );
