@@ -4,7 +4,7 @@ import { useAppState, usePrevious, useRestResource } from '../../../../utils/cus
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import TidligereMeldinger from './TidligereMeldinger';
+import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
