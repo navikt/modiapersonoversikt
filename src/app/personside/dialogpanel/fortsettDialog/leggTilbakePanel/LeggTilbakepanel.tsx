@@ -8,8 +8,9 @@ import { Kodeverk } from '../../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
-
-interface Props {}
+import { useDispatch } from 'react-redux';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { Oppgave } from '../../../../../models/oppgave';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -45,6 +46,10 @@ const Style = styled.div`
     }
 `;
 
+interface Props {
+    oppgave: Oppgave;
+}
+
 function LeggTilbakepanel(props: Props) {
     const [state, setState] = useState<LeggTilbakeState>({
         årsak: undefined,
@@ -54,6 +59,8 @@ function LeggTilbakepanel(props: Props) {
     });
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
+    const dispatch = useDispatch();
+    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -69,11 +76,23 @@ function LeggTilbakepanel(props: Props) {
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            console.log('Legg tilbake innhabil');
+            dispatch(leggTilbakeResource.actions.post({ oppgaveId: props.oppgave.oppgaveid, type: 'innhabil' }));
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
-            console.log('Legg tilbake annen årsak', state);
-        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state)) {
-            console.log('Legg tilbake feil tema', state);
+            dispatch(
+                leggTilbakeResource.actions.post({
+                    beskrivelse: state.tekst,
+                    oppgaveId: props.oppgave.oppgaveid,
+                    type: 'annenaarsak'
+                })
+            );
+        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
+            dispatch(
+                leggTilbakeResource.actions.post({
+                    temagruppe: state.tema.kodeRef,
+                    oppgaveId: props.oppgave.oppgaveid,
+                    type: 'feiltema'
+                })
+            );
         } else {
             updateState({ visFeilmeldinger: true });
         }
@@ -122,7 +141,9 @@ function LeggTilbakepanel(props: Props) {
                         </StyledSkjemaGruppe>
                     </UnmountClosed>
                 </StyledSkjemaGruppe>
-                <Hovedknapp onClick={handleLeggTilbake}>Legg tilbake</Hovedknapp>
+                <Hovedknapp htmlType="button" onClick={handleLeggTilbake}>
+                    Legg tilbake
+                </Hovedknapp>
             </Style>
         </StyledEkspanderbartpanel>
     );

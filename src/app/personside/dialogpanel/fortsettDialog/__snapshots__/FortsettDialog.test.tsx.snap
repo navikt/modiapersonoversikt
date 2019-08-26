@@ -1,15 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
-.c2 {
-  margin-bottom: 1rem;
+.c5 {
+  width: 100%;
+  padding-right: 1rem;
 }
 
-.c2 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.c4 label {
+.c7 {
+  padding: 1rem;
+}
+
+.c4 {
+  border-top: 0.1rem rgba(0,0,0,0.2) solid;
+}
+
+.c4.ekspanderbartPanel {
+  border-radius: 0;
+}
+
+.c8 {
+  border-top: 0.1rem rgba(0,0,0,0.2) solid;
+}
+
+.c2 .ekspanderbartPanel__innhold {
+  padding: 0;
+}
+
+.c2 .ekspanderbartPanel__hode:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c2 > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.c2 > * {
+  border: solid 0.0625rem #b7b1a9;
+}
+
+.c3 {
+  overflow: hidden;
+}
+
+.c10 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -20,11 +64,11 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c3 textarea {
+.c9 textarea {
   min-height: 9rem;
 }
 
-.c3 label {
+.c9 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -35,7 +79,7 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c6 label {
+.c14 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -69,7 +113,26 @@ exports[`viser fortsett dialog 1`] = `
   margin-bottom: 1rem;
 }
 
-.c5 > *:not(:first-child) {
+.c13 .ekspanderbartPanel__hode {
+  padding: 0.6rem;
+}
+
+.c12 {
+  margin-top: 1rem;
+}
+
+.c12 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c11 > *:not(:first-child) {
   margin-top: 1rem;
 }
 
@@ -77,11 +140,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c7 {
+.c15 {
   margin-top: 1rem;
 }
 
-.c8 {
+.c16 {
   width: 100%;
 }
 
@@ -98,228 +161,295 @@ exports[`viser fortsett dialog 1`] = `
     onSubmit={[Function]}
   >
     <div
-      className="ekspanderbartPanel c2 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+      className="c2"
     >
-      <button
-        aria-expanded={false}
-        className="ekspanderbartPanel__hode"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
+      <div
+        className="ekspanderbartPanel c3 ekspanderbartPanel--apen"
       >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
-          <span
-            className="typo-normal ekspanderbartPanel__heading"
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
           >
-            Tidligere meldinger
-          </span>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <article
-        aria-label="Tidligere meldinger"
-        className="ekspanderbartPanel__innhold"
+            <p
+              className="typo-ingress"
+            >
+              Vis tidligere meldinger
+            </p>
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
+        >
+          <div
+            className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
+            erEnkeltsaende={false}
+          >
+            <button
+              aria-expanded={false}
+              className="ekspanderbartPanel__hode"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <div
+                  className="c5"
+                >
+                  <p
+                    className="typo-undertekst"
+                  >
+                    07. juli 2019 00:00
+                  </p>
+                  <p
+                    className="typo-undertekst"
+                  >
+                    Skrevet av 
+                    Sander
+                     
+                    Hansen
+                     (
+                    nzxo4q
+                    )
+                  </p>
+                  <div
+                    className="c6"
+                  >
+                    <p
+                      className="typo-ingress"
+                    >
+                      Samtalereferat oppmøte
+                    </p>
+                    <p
+                      className="typo-undertekst-bold"
+                    >
+                      Arbeid
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <article
+              className="ekspanderbartPanel__innhold"
+            >
+              <div
+                className="c7"
+              >
+                <p
+                  className="typo-normal"
+                >
+                  <span>
+                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                  </span>
+                </p>
+              </div>
+            </article>
+          </div>
+          <div
+            className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
+            erEnkeltsaende={false}
+          >
+            <button
+              aria-expanded={false}
+              className="ekspanderbartPanel__hode"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <div
+                  className="c5"
+                >
+                  <p
+                    className="typo-undertekst"
+                  >
+                    16. juli 2019 00:00
+                  </p>
+                  <div
+                    className="c6"
+                  >
+                    <p
+                      className="typo-ingress"
+                    >
+                      Spørsmål fra bruker
+                    </p>
+                    <p
+                      className="typo-undertekst-bold"
+                    >
+                      Arbeid
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <article
+              className="ekspanderbartPanel__innhold"
+            >
+              <div
+                className="c7"
+              >
+                <p
+                  className="typo-normal"
+                >
+                  <span>
+                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                  </span>
+                </p>
+              </div>
+            </article>
+          </div>
+          <div
+            className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
+            erEnkeltsaende={false}
+          >
+            <button
+              aria-expanded={false}
+              className="ekspanderbartPanel__hode"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <div
+                  className="c5"
+                >
+                  <p
+                    className="typo-undertekst"
+                  >
+                    12. juli 2019 00:00
+                  </p>
+                  <div
+                    className="c6"
+                  >
+                    <p
+                      className="typo-ingress"
+                    >
+                      Spørsmål fra bruker
+                    </p>
+                    <p
+                      className="typo-undertekst-bold"
+                    >
+                      Arbeid
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <article
+              className="ekspanderbartPanel__innhold"
+            >
+              <div
+                className="c7"
+              >
+                <p
+                  className="typo-normal"
+                >
+                  <span>
+                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                  </span>
+                </p>
+              </div>
+            </article>
+          </div>
+        </article>
+      </div>
+      <div
+        className="ekspanderbartPanel c8 ekspanderbartPanel--apen"
+        erEnkeltsaende={true}
       >
-        <div
-          className="snakkeboble_ikoner"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
           <div
-            className="snakkeboble snakkeboble--hoyre"
+            className="ekspanderbartPanel__flex-wrapper"
           >
-            <i
-              className="nav-ikon"
-            />
             <div
-              className="snakkeboble__snakkeboble-pil-container"
+              className="c5"
             >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
+              <p
+                className="typo-undertekst"
+              >
+                27. juli 2019 00:00
+              </p>
+              <p
+                className="typo-undertekst"
+              >
+                Skrevet av 
+                Kristoffer
+                 
+                Fredriksen
+                 (
+                xy70r8
+                )
+              </p>
               <div
-                className="snakkeboble-panel__tekst"
+                className="c6"
               >
                 <p
-                  className="typo-element"
+                  className="typo-ingress"
                 >
-                  Samtalereferat oppmøte - Lest,  Arbeid
+                  Delsvar
                 </p>
                 <p
-                  className="typo-normal"
+                  className="typo-undertekst-bold"
                 >
-                  30.07.2019 00:00
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Skrevet av: 
-                  Sander Hansen (nzxo4q)
-                </p>
-                <hr />
-                <p
-                  className="typo-normal"
-                >
-                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                  Arbeid
                 </p>
               </div>
             </div>
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
           </div>
-        </div>
-        <div
-          className="snakkeboble_ikoner"
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
         >
           <div
-            className="snakkeboble snakkeboble--venstre"
+            className="c7"
           >
-            <i
-              className="bruker-ikon"
-            />
-            <div
-              className="snakkeboble__snakkeboble-pil-container"
+            <p
+              className="typo-normal"
             >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
-              <div
-                className="snakkeboble-panel__tekst"
-              >
-                <p
-                  className="typo-element"
-                >
-                  Spørsmål fra bruker - Ulest,  Arbeid
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  10.08.2019 00:00
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Skrevet av: 
-                  Frida Pedersen (xmqgb8)
-                </p>
-                <hr />
-                <p
-                  className="typo-normal"
-                >
-                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                </p>
-              </div>
-            </div>
+              <span>
+                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+              </span>
+            </p>
           </div>
-        </div>
-        <div
-          className="snakkeboble_ikoner"
-        >
-          <div
-            className="snakkeboble snakkeboble--venstre"
-          >
-            <i
-              className="bruker-ikon"
-            />
-            <div
-              className="snakkeboble__snakkeboble-pil-container"
-            >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
-              <div
-                className="snakkeboble-panel__tekst"
-              >
-                <p
-                  className="typo-element"
-                >
-                  Spørsmål fra bruker - Lest,  Arbeid
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  06.08.2019 00:00
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Skrevet av: 
-                  Synne Lunde (e5otkk)
-                </p>
-                <hr />
-                <p
-                  className="typo-normal"
-                >
-                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="snakkeboble_ikoner"
-        >
-          <div
-            className="snakkeboble snakkeboble--hoyre"
-          >
-            <i
-              className="nav-ikon"
-            />
-            <div
-              className="snakkeboble__snakkeboble-pil-container"
-            >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
-              <div
-                className="snakkeboble-panel__tekst"
-              >
-                <p
-                  className="typo-element"
-                >
-                  Delsvar - Lest,  Arbeid
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  13.08.2019 00:00
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Skrevet av: 
-                  Kristoffer Fredriksen (xy70r8)
-                </p>
-                <hr />
-                <p
-                  className="typo-normal"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
     <div
-      className="c3"
+      className="c9"
     >
       <div
         className="skjemaelement textarea__container"
@@ -372,7 +502,7 @@ exports[`viser fortsett dialog 1`] = `
     </div>
     <div>
       <div
-        className="skjemaelement c4"
+        className="skjemaelement c10"
       >
         <label
           className="skjemaelement__label"
@@ -393,17 +523,22 @@ exports[`viser fortsett dialog 1`] = `
             <option
               value="SVAR_SKRIFTLIG"
             >
-              Svar skriftlig
+              Svar
+            </option>
+            <option
+              value="SPORSMAL_MODIA_UTGAAENDE"
+            >
+              Spørsmål
             </option>
             <option
               value="SVAR_TELEFON"
             >
-              Svar skriftlig telefon
+              Telefon
             </option>
             <option
               value="SVAR_OPPMOTE"
             >
-              Svar skriftlig oppmøte
+              Oppmøte
             </option>
           </select>
         </div>
@@ -454,36 +589,160 @@ exports[`viser fortsett dialog 1`] = `
           Bruker kan ikke svare
         </div>
       </div>
-      <fieldset
-        className="c5"
+      <div
+        className="c11"
       >
         <div
-          className="skjemaelement skjemaelement--horisontal"
+          className="alertstripe alertstripe--info"
         >
-          <input
-            checked={false}
-            className="skjemaelement__input checkboks"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            type="checkbox"
-          />
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+                fillRule="nonzero"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
+                />
+                <g
+                  fill="#FFF"
+                >
+                  <path
+                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Bruker kan svare
+          </div>
+        </div>
+        <div
+          className="skjemaelement c12"
+        >
           <label
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Bruker kan svare
+            Oppgaveliste
           </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value="MinListe"
+            >
+              <option
+                value="MinListe"
+              >
+                Svar skal til min oppgaveliste
+              </option>
+              <option
+                value="Enhetensliste"
+              >
+                Svar skal til 
+                 sin oppgaveliste
+              </option>
+            </select>
+          </div>
           <div
             aria-live="assertive"
             role="alert"
           />
         </div>
-      </fieldset>
+        <div
+          className=""
+        >
+          <div
+            className="ekspanderbartPanel c13 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-expanded={false}
+              className="ekspanderbartPanel__hode"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  className="typo-normal ekspanderbartPanel__heading"
+                >
+                  Velg sak
+                </span>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <article
+              aria-label="Velg sak"
+              className="ekspanderbartPanel__innhold"
+            >
+              <svg
+                aria-label="Laster innhold"
+                className="spinner spinner--xl"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                preserveAspectRatio="xMidYMid"
+                viewBox="0 0 50 50"
+                width={32}
+              >
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#bdbab7"
+                  strokeWidth="5"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="5"
+                />
+              </svg>
+            </article>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+      </div>
       <div
         className=""
       >
         <div
-          className="skjemaelement c6"
+          className="skjemaelement c14"
         >
           <label
             className="skjemaelement__label"
@@ -546,14 +805,14 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c7 knapp--hoved"
+      className="knapp c15 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c8 knapp--flat"
+      className="knapp c16 knapp--flat"
       disabled={false}
       onClick={[Function]}
       type="button"
