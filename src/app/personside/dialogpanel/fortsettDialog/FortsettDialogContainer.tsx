@@ -138,6 +138,7 @@ function FortsettDialogContainer(props: Props) {
                 updateState={updateState}
                 handleSubmit={handleSubmit}
                 traad={props.traad}
+                key={props.traad.traadId}
             />
             {props.tilknyttetOppgave && <LeggTilbakepanel oppgave={props.tilknyttetOppgave} />}
         </>
