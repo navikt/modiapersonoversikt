@@ -80,6 +80,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
                     <Bold>{varselTekst}</Bold>
                 </Normaltekst>
                 {kommunikasjonskanaler}
+
                 <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' meldinger'} />
             </HeaderStyle>
             <UnmountClosed isOpened={open}>
