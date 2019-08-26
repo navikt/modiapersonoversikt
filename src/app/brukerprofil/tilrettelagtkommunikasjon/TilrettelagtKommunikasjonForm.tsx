@@ -82,9 +82,8 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
 
     handleSubmit(event: FormEvent<HTMLFormElement>) {
         this.props.endreTilrettelagtKommunikasjon({
-            fødselsnummer: this.props.person.fødselsnummer,
             tilrettelagtKommunikasjon: this.hentValgtTilrettelagtKommunikasjon()
-        } as EndreTilrettelagtKommunikasjonrequest);
+        });
         event.preventDefault();
         loggEvent('Endre tilrettelagt kommunikasjon', 'Brukerprofil');
     }
@@ -121,7 +120,7 @@ class TilrettelagtKommunikasjonsForm extends React.Component<Props, State> {
     }
 
     hentValgtTilrettelagtKommunikasjon() {
-        return this.state.checkbokser.filter(element => element.checked).map(element => element.value);
+        return this.state.checkbokser.filter(element => element.checked).map(element => element.value as string);
     }
 
     render() {
