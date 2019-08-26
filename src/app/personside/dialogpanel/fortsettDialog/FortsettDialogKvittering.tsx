@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SendSvarRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
-import { FinishedPostResource } from '../../../../rest/utils/postResource';
+import { FailedPostResource, FinishedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
 
@@ -44,6 +44,20 @@ export function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostReso
                 <AlertStripeSuksess>Oppgaven ble lagt tilbake</AlertStripeSuksess>
             )}
             <KnappBase type="standard" onClick={lukk}>
+                Lukk
+            </KnappBase>
+        </DialogpanelKvitteringStyling>
+    );
+}
+
+export function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
+    const dispatch = useDispatch();
+    return (
+        <DialogpanelKvitteringStyling>
+            <AlertStripeFeil>
+                Det skjedde en feil ved tilbakelegging av oppgave: {props.resource.error.message}
+            </AlertStripeFeil>
+            <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
                 Lukk
             </KnappBase>
         </DialogpanelKvitteringStyling>

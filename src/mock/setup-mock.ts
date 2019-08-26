@@ -223,7 +223,7 @@ function setupOppgaveMock(mock: FetchMock) {
 
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/oppgaver/:id/leggTilbake',
+        apiBaseUri + '/oppgaver/leggTilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
     );
 }

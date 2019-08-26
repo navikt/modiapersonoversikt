@@ -14,7 +14,7 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { DialogpanelFeilmelding } from '../fellesStyling';
-import { OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
+import { LeggTilbakeOppgaveFeil, OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -127,7 +127,7 @@ function FortsettDialogContainer(props: Props) {
         return <DialogpanelFeilmelding resource={sendSvarResource} />;
     }
     if (isFailedPosting(leggTilbakeResource)) {
-        return <DialogpanelFeilmelding resource={leggTilbakeResource} />;
+        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
     }
 
     return (
