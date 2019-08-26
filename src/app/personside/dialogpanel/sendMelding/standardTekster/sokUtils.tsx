@@ -6,6 +6,7 @@ import { erPersonResponsAvTypePerson, Kjønn, PersonRespons } from '../../../../
 import { NavKontorResponse } from '../../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../../models/innloggetSaksbehandler';
 import { capitalizeName } from '../../../../../utils/stringFormatting';
+import { loggError } from '../../../../../utils/frontendLogger';
 
 export function sokEtterTekster(
     data: FetchResult<StandardTekster.Tekster>,
@@ -105,6 +106,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     const keys = Object.keys(autofullforMap);
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
+            loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
             return '[ukjent nøkkel]';
         }
         return autofullforMap[key] || '[fant ingen verdi]';

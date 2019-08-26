@@ -3,12 +3,6 @@ import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
-import { autofullfor, byggAutofullforMap } from './standardTekster/sokUtils';
-import { captitalize } from '../../../../utils/stringFormatting';
-import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
-import { PersonRespons } from '../../../../models/person/person';
-import { NavKontorResponse } from '../../../../models/navkontor';
-import MultiRestResourceConsumer from '../../../../rest/consumer/MultiRestResourceConsumer';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;
@@ -21,7 +15,7 @@ const StyledSkjemagruppe = styled(SkjemaGruppe)`
 `;
 const TextareaWrapper = styled.div`
     textarea {
-        padding-left: 2rem;:
+        padding-left: 2.25rem;
     }
 `;
 
@@ -33,17 +27,12 @@ interface Props {
     feilmelding?: string;
 }
 
-type AutofullforData = { person: PersonRespons; saksbehandler: InnloggetSaksbehandler; kontor: NavKontorResponse };
-
-function appendTekst(eksisterendeTekst: string, updateTekst: (tekst: string) => void, data: AutofullforData) {
-    return (tekst: string, locale: string) => {
-        const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
-        const ferdig = captitalize(autofullfor(tekst, nokler));
-
+function appendTekst(eksisterendeTekst: string, updateTekst: (tekst: string) => void) {
+    return (tekst: string) => {
         if (eksisterendeTekst.length > 0) {
-            updateTekst(`${eksisterendeTekst}\n${ferdig}`);
+            updateTekst(`${eksisterendeTekst}\n${tekst}`);
         } else {
-            updateTekst(ferdig);
+            updateTekst(tekst);
         }
     };
 }
@@ -51,17 +40,7 @@ function appendTekst(eksisterendeTekst: string, updateTekst: (tekst: string) => 
 function TekstFelt(props: Props) {
     return (
         <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
-            <MultiRestResourceConsumer<AutofullforData>
-                getResource={restResources => ({
-                    person: restResources.personinformasjon,
-                    saksbehandler: restResources.innloggetSaksbehandler,
-                    kontor: restResources.brukersNavKontor
-                })}
-            >
-                {(data: AutofullforData) => {
-                    return <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst, data)} />;
-                }}
-            </MultiRestResourceConsumer>
+            <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst)} />
             <TextareaWrapper>
                 <Textarea
                     value={props.tekst}

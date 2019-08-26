@@ -14,11 +14,18 @@ import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
+import { autofullfor, byggAutofullforMap } from './sokUtils';
+import { captitalize } from '../../../../../utils/stringFormatting';
+import MultiRestResourceConsumer from '../../../../../rest/consumer/MultiRestResourceConsumer';
+import { PersonRespons } from '../../../../../models/person/person';
+import { InnloggetSaksbehandler } from '../../../../../models/innloggetSaksbehandler';
+import { NavKontorResponse } from '../../../../../models/navkontor';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
     sokefelt: FieldState;
-    appendTekst(tekst: string, locale: string): void;
+    appendTekst(tekst: string): void;
 }
 
 const Container = styled.div`
@@ -31,7 +38,7 @@ const Container = styled.div`
     em {
         font-style: normal;
         background-color: #eed28c;
-        border-radius: 10px;
+        border-radius: ${pxToRem(10)};
         padding: 0 5px;
     }
 `;
@@ -139,7 +146,7 @@ function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, va
                 valgtLocale.setValue(locales[0]);
             }
         }
-    }, [valgtTekst]);
+    }, [valgtTekst, valgtLocale.input.value]);
 }
 
 function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
@@ -193,14 +200,24 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     );
 }
 
+export type AutofullforData = {
+    person: PersonRespons;
+    saksbehandler: InnloggetSaksbehandler;
+    kontor: NavKontorResponse;
+};
 function velgTekst(
-    settTekst: (tekst: string, locale: string) => void,
+    settTekst: (tekst: string) => void,
     tekst: StandardTekster.Tekst | undefined,
-    locale: string
+    locale: string,
+    data: AutofullforData
 ) {
     return () => {
         if (kanVises(tekst, locale)) {
-            settTekst(tekst.innhold[locale], locale);
+            const localeTekst = tekst.innhold[locale];
+            const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
+            const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
+
+            settTekst(ferdigTekst);
         }
     };
 }
@@ -233,9 +250,22 @@ function StandardTekstVisning(props: Props) {
                     <LocaleVelgerContainer>
                         <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
                     </LocaleVelgerContainer>
-                    <VelgKnapp onClick={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value)}>
-                        Velg
-                    </VelgKnapp>
+                    <MultiRestResourceConsumer<AutofullforData>
+                        returnOnError={<AlertStripeAdvarsel>Feil ved lasting av autofyll-tekster.</AlertStripeAdvarsel>}
+                        getResource={restResources => ({
+                            person: restResources.personinformasjon,
+                            saksbehandler: restResources.innloggetSaksbehandler,
+                            kontor: restResources.brukersNavKontor
+                        })}
+                    >
+                        {(data: AutofullforData) => (
+                            <VelgKnapp
+                                onClick={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, data)}
+                            >
+                                Velg
+                            </VelgKnapp>
+                        )}
+                    </MultiRestResourceConsumer>
                 </VelgTekst>
             </PreviewContainer>
         </Container>

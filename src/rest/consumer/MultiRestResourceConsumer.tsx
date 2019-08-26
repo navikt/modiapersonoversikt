@@ -1,10 +1,11 @@
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { isFailed, isNotStarted, RestResource, isLoaded, hasData, HasData } from '../utils/restResource';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LazySpinner from '../../components/LazySpinner';
+import { useOnMount } from '../../utils/customHooks';
 
 type Resources<T> = {
     [P in keyof T]: RestResource<T[P]>;
@@ -35,13 +36,13 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
     const restResources: Resources<T> = useSelector((state: AppState) => props.getResource(state.restResources));
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    useOnMount(() => {
         forEach(restResources, restResource => {
             if (isNotStarted(restResource)) {
                 dispatch(restResource.actions.fetch);
             }
         });
-    }, []);
+    });
 
     if (some(restResources, isFailed)) {
         return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;

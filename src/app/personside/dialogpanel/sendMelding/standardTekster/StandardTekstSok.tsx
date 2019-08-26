@@ -12,7 +12,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
 
 interface Props {
-    appendTekst(tekst: string, locale: string): void;
+    appendTekst(tekst: string): void;
 }
 const Container = styled.div`
     height: 100%;
@@ -39,7 +39,7 @@ const Sokefelt = styled.div`
 
 function StandardTekstSok(props: Props) {
     const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
-    const sokefelt = useFieldState('sykepe');
+    const sokefelt = useFieldState('');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 100);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));
 

@@ -2,11 +2,11 @@ import React from 'react';
 import NavFrontendModal from 'nav-frontend-modal';
 import styled from 'styled-components';
 import StandardTekstSok from './StandardTekstSok';
-import { ReactComponent as SvgIkon } from './StandardTekstIkon.svg';
+import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {
-    appendTekst(tekst: string, locale: string): void;
+    appendTekst(tekst: string): void;
 }
 
 const Modal = styled(NavFrontendModal)`
@@ -67,8 +67,8 @@ function StandardTekstModal(props: Props) {
                 className={'standardtekst__modal'}
             >
                 <StandardTekstSok
-                    appendTekst={(tekst, locale) => {
-                        props.appendTekst(tekst, locale);
+                    appendTekst={tekst => {
+                        props.appendTekst(tekst);
                         setOpen(false);
                     }}
                 />

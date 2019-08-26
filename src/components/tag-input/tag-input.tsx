@@ -3,9 +3,9 @@ import { NavFrontendInputProps } from 'nav-frontend-skjema';
 import 'nav-frontend-skjema-style';
 import { guid } from 'nav-frontend-js-utils';
 import classNames from 'classnames';
+import { Knapp } from 'nav-frontend-knapper';
 import { Omit } from '../../utils/types';
 import './tag-input.less';
-import { Knapp } from 'nav-frontend-knapper';
 
 const cls = (className?: string) => classNames('tag-input', 'skjemaelement', className);
 const inputClass = (width: string, focusWithin: boolean, className?: string, harFeil?: boolean) =>
