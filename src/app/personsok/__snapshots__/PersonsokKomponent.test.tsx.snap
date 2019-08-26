@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-.c6 {
+Array [
+  .c6 {
   position: relative;
   border: none;
   padding: 0;
@@ -94,8 +95,7 @@ exports[`viser personsøk-komponent 1`] = `
   margin-bottom: 0.5em;
 }
 
-<div>
-  <form
+<form
     onSubmit={[Function]}
   >
     <article
@@ -559,6 +559,15 @@ exports[`viser personsøk-komponent 1`] = `
         </button>
       </div>
     </article>
-  </form>
-</div>
+  </form>,
+  .c0 {
+  margin: .8rem;
+  color: #d0021b;
+}
+
+<div
+    aria-live="polite"
+    className="c0"
+  />,
+]
 `;

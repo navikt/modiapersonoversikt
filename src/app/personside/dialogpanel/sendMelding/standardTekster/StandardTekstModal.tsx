@@ -10,16 +10,18 @@ interface Props {
 }
 
 const Modal = styled(NavFrontendModal)`
-    width: 100%;
-    max-width: 57rem;
-    min-height: 20rem;
-    max-height: 40rem;
-    height: 100%;
-    padding: 0;
-    overflow: hidden;
-
-    > section {
+    &.modal {
+        width: 100%;
+        max-width: 57rem;
+        min-height: 20rem;
+        max-height: 40rem;
         height: 100%;
+        padding: 0;
+        overflow: hidden;
+
+        > section {
+            height: 100%;
+        }
     }
 `;
 

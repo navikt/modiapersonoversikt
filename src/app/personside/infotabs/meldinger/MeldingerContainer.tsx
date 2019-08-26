@@ -26,6 +26,9 @@ const MeldingerArticleStyle = styled.article`
     > * {
         margin-bottom: ${theme.margin.layout};
     }
+    > *:last-child {
+        flex-grow: 1;
+    }
 `;
 
 function MeldingerContainer() {

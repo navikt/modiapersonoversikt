@@ -19,9 +19,7 @@ function EkspanderKnapp(props: KnappProps) {
     return (
         <LenkeKnapp onClick={props.onClick} aria-expanded={props.open} className={props.className}>
             <Luft>
-                <Normaltekst tag="span">
-                    {props.open ? 'Skjul' : 'Vis'} {props.tittel || 'detaljer'}
-                </Normaltekst>
+                <Normaltekst tag="span">{props.tittel || (props.open ? 'Skjul detaljer' : 'Vis detaljer')}</Normaltekst>
             </Luft>
             {props.open === undefined ? null : <NavFrontendChevron type={props.open ? 'opp' : 'ned'} />}
         </LenkeKnapp>

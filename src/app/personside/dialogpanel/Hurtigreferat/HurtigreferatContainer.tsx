@@ -43,6 +43,7 @@ function HurtigreferatContainer() {
     const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
 
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const sendResource = useRestResource(resources => resources.sendReferat);
     const dispatch = useDispatch();
     const person = useRestResource(resources => resources.personinformasjon);
@@ -67,13 +68,16 @@ function HurtigreferatContainer() {
             return;
         }
         if (isNotStartedPosting(sendResource)) {
-            loggEvent('sendReferat', 'hurtigreferat', {}, { tema: tema, tittel: hurtigreferat.tittel });
+            loggEvent('sendReferat', 'hurtigreferat', { tema: tema.beskrivelse, tittel: hurtigreferat.tittel });
             dispatch(
-                sendResource.actions.post({
-                    fritekst: hurtigreferat.fritekst,
-                    kanal: KommunikasjonsKanal.Telefon,
-                    temagruppe: tema.kodeRef
-                })
+                sendResource.actions.post(
+                    {
+                        fritekst: hurtigreferat.fritekst,
+                        kanal: KommunikasjonsKanal.Telefon,
+                        temagruppe: tema.kodeRef
+                    },
+                    () => dispatch(reloadMeldinger)
+                )
             );
         }
     };

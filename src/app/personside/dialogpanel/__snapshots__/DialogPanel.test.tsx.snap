@@ -147,12 +147,8 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 0.5rem;
 }
 
-.c15 .ekspanderbartPanel__hode {
+.c14 .ekspanderbartPanel__hode {
   padding: 0.6rem;
-}
-
-.c14 {
-  margin-bottom: 0.8rem;
 }
 
 .c18 {
@@ -187,7 +183,6 @@ exports[`viser dialogpanel 1`] = `
 
 .c17 {
   position: relative;
-  margin-top: 1rem;
 }
 
 .c17 textarea {
@@ -220,7 +215,11 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c16 label {
+.c15 {
+  margin-top: 1rem;
+}
+
+.c15 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -246,8 +245,16 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c12 .ReactCollapse--collapse .skjemaelement {
+.c12 .skjemaelement {
   margin-bottom: 0;
+}
+
+.c12 > * {
+  margin-bottom: 1rem;
+}
+
+.c11 {
+  padding: 1rem .8rem;
 }
 
 .c21 {
@@ -255,18 +262,23 @@ exports[`viser dialogpanel 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c21 > * {
-  margin-top: 0.7rem;
-  margin-right: 0.5rem;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+  margin-bottom: 0.7rem;
+}
+
+.c16 {
+  margin-top: 1rem;
+}
+
+.c1 {
+  background-color: white;
+  border-bottom: solid 0.0625rem #c6c2bf;
+  padding: 1rem .8rem;
 }
 
 .c0 {
@@ -274,16 +286,6 @@ exports[`viser dialogpanel 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-}
-
-.c11 {
-  padding: 1rem .8rem;
-}
-
-.c1 {
-  padding: 1rem .8rem;
-  background-color: white;
-  border-bottom: solid 0.0625rem #c6c2bf;
 }
 
 <article
@@ -1253,19 +1255,19 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
       </div>
     </article>
   </div>
-  <div
+  <article
     className="c11"
   >
-    <article>
-      <h2
-        className="typo-undertittel"
-      >
-        Send ny melding
-      </h2>
-      <form
-        className="c12"
-        onSubmit={[Function]}
-      >
+    <h2
+      className="typo-undertittel"
+    >
+      Send ny melding
+    </h2>
+    <form
+      className="c12"
+      onSubmit={[Function]}
+    >
+      <div>
         <div
           className="skjemaelement c13"
         >
@@ -1307,6 +1309,10 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             role="alert"
           />
         </div>
+      </div>
+      <div
+        className=""
+      >
         <div
           className=""
         >
@@ -1373,10 +1379,10 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="c14"
+          className=""
         >
           <div
-            className="ekspanderbartPanel c15 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c14 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -1443,7 +1449,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="skjemaelement c16"
+          className="skjemaelement c15"
         >
           <label
             className="skjemaelement__label"
@@ -1464,12 +1470,12 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
               <option
                 value="MinListe"
               >
-                Skal til min oppgaveliste
+                Svar skal til min oppgaveliste
               </option>
               <option
                 value="Enhetensliste"
               >
-                Skal til 
+                Svar skal til 
                  sin oppgaveliste
               </option>
             </select>
@@ -1480,80 +1486,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="c17"
-        >
-          <button
-            className="knapp c18 knapp--hoved"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            <svg
-              className="c19"
-            >
-              StandardTekstIkon.svg
-            </svg>
-            <span
-              className="sr-only"
-            >
-              Standardtekster
-            </span>
-          </button>
-          <div
-            className="c20"
-          >
-            <div
-              className="skjemaelement textarea__container"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Melding
-              </label>
-              <div
-                className="textarea--medMeta__wrapper"
-              >
-                <textarea
-                  className="skjemaelement__input textarea--medMeta"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-                  style={
-                    Object {
-                      "height": "30px",
-                    }
-                  }
-                  type="text"
-                  value=""
-                />
-                <p
-                  className="textarea--medMeta__teller"
-                >
-                  <span>
-                    Du har 
-                    5000
-                     tegn igjen
-                  </span>
-                </p>
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-              <div
-                aria-hidden="true"
-                className="textareamirror"
-              />
-            </div>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="alertstripe alertstripe--info"
+          className="alertstripe c16 alertstripe--info"
         >
           <span
             aria-label="info"
@@ -1590,28 +1523,101 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
             Bruker kan svare
           </div>
         </div>
-        <div
-          className="c21"
+      </div>
+      <div
+        className="c17"
+      >
+        <button
+          className="knapp c18 knapp--hoved"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
         >
-          <button
-            className="knapp knapp--hoved"
-            disabled={false}
-            type="submit"
+          <svg
+            className="c19"
           >
-            Del med 
-            Aremark
-          </button>
-          <button
-            className="knapp knapp--flat"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
+            StandardTekstIkon.svg
+          </svg>
+          <span
+            className="sr-only"
           >
-            Avbryt
-          </button>
+            Standardtekster
+          </span>
+        </button>
+        <div
+          className="c20"
+        >
+          <div
+            className="skjemaelement textarea__container"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Melding
+            </label>
+            <div
+              className="textarea--medMeta__wrapper"
+            >
+              <textarea
+                className="skjemaelement__input textarea--medMeta"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                style={
+                  Object {
+                    "height": "30px",
+                  }
+                }
+                type="text"
+                value=""
+              />
+              <p
+                className="textarea--medMeta__teller"
+              >
+                <span>
+                  Du har 
+                  5000
+                   tegn igjen
+                </span>
+              </p>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+            <div
+              aria-hidden="true"
+              className="textareamirror"
+            />
+          </div>
         </div>
-      </form>
-    </article>
-  </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="c21"
+      >
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          type="submit"
+        >
+          Del med 
+          Aremark
+        </button>
+        <button
+          className="knapp knapp--flat"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Avbryt
+        </button>
+      </div>
+    </form>
+  </article>
 </article>
 `;

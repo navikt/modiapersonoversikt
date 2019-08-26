@@ -5,6 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
+import { validerKontonummer } from '../brukerprofil/kontonummer/kontonummerUtils';
+
+const ValideringsfeilStyle = styled.div`
+    margin: ${theme.margin.layout};
+    color: #d0021b;
+`;
 
 export interface PersonsokSkjemaProps {
     stateCriteria: {
@@ -57,6 +65,18 @@ function emptyString(input: string): string | undefined {
     return input;
 }
 
+function erTomStreng(input?: string): boolean {
+    if (!input) {
+        return true;
+    }
+
+    if (input.trim().length === 0) {
+        return true;
+    }
+
+    return false;
+}
+
 function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     return {
         fornavn: emptyString(form.stateCriteria.fornavn),
@@ -75,6 +95,34 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     };
 }
 
+function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
+    if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
+        return 'Kontonummer må ha 11 siffer';
+    }
+
+    if (!erTomStreng(props.stateCriteria.husnummer) && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når husnummer er satt';
+    }
+
+    if (!erTomStreng(props.stateCriteria.husbokstav) && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når husbokstav er satt';
+    }
+
+    if (!erTomStreng(props.stateCriteria.postnummer) && !props.stateCriteria.gatenavn) {
+        return 'Gatenavn må fylles ut når postnummer er satt';
+    }
+
+    if (
+        props.stateLimit.fodselsdatoFra &&
+        props.stateLimit.fodselsdatoTil &&
+        props.stateLimit.fodselsdatoFra > props.stateLimit.fodselsdatoTil
+    ) {
+        return 'Fødselsdato fra må være mindre enn fødselsdato til';
+    }
+
+    return undefined;
+}
+
 function PersonsokSkjema() {
     const dispatch = useDispatch();
     const personsokResource = useSelector((state: AppState) => state.restResources.personsok);
@@ -91,6 +139,7 @@ function PersonsokSkjema() {
     const [alderFra, settAlderFra] = useState<string>('');
     const [alderTil, settAlderTil] = useState<string>('');
     const [kjonn, settKjonn] = useState<string>('');
+    const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
 
     const formState: PersonsokSkjemaProps = {
         stateCriteria: {
@@ -131,15 +180,21 @@ function PersonsokSkjema() {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        const request: PersonsokRequest = lagRequest(formState);
-        console.log(request);
-        dispatch(personsokResource.actions.post(request));
+        const harSkjemafeil = validerSkjema(formState);
+        settValideringsfeil(harSkjemafeil);
+        if (!harSkjemafeil) {
+            const request: PersonsokRequest = lagRequest(formState);
+            dispatch(personsokResource.actions.post(request));
+        }
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <PersonsokSkjemaElementer form={formState} />
-        </form>
+        <>
+            <form onSubmit={submitHandler}>
+                <PersonsokSkjemaElementer form={formState} />
+            </form>
+            <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
+        </>
     );
 }
 

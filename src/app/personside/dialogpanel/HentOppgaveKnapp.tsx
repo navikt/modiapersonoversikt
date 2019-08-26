@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { setNyBrukerIPath } from '../../routes/routing';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppe } from '../../../redux/temagruppe';
 import { selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import theme from '../../../styles/personOversiktTheme';
+import setNyGjeldendeBruker from '../../../redux/gjeldendeBruker/actions';
+import TildelteOppgaver from './TildelteOppgaver';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -77,7 +77,7 @@ function HentOppgaveKnapp(props: Props) {
                     setTomKø(true);
                     return;
                 }
-                setNyBrukerIPath(props.history, fødselsnummer);
+                dispatch(setNyGjeldendeBruker(fødselsnummer));
             })
         );
     };
@@ -121,6 +121,7 @@ function HentOppgaveKnapp(props: Props) {
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
+            <TildelteOppgaver />
         </HentOppgaveLayout>
     );
 }

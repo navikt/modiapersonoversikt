@@ -10,14 +10,14 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 
     const traadArray = Array(navfaker.random.integer(20, 5))
         .fill(null)
-        .map(() => getTraad());
+        .map(() => getMockTraad());
 
     traadArray[0].traadId = '123'; // Legger til denne for å tving at man har en matchende oppgave-id i mock
 
     return traadArray;
 }
 
-function getTraad(): Traad {
+export function getMockTraad(): Traad {
     const temagruppe = navfaker.random.arrayElement([Temagruppe.Arbeid, Temagruppe.Pensjon, Temagruppe.Uføretrygd]);
     const meldinger = Array(navfaker.random.integer(5, 1))
         .fill(null)
@@ -35,7 +35,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
             Meldingstype.DELVIS_SVAR_SKRIFTLIG,
             Meldingstype.SAMTALEREFERAT_OPPMOTE,
             Meldingstype.SPORSMAL_SKRIFTLIG,
-            Meldingstype.SVAR_TELEFON
+            Meldingstype.SVAR_TELEFON,
+            Meldingstype.DOKUMENT_VARSEL,
+            Meldingstype.OPPGAVE_VARSEL
         ]),
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),
@@ -47,7 +49,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
         journalfortDato: moment(faker.date.recent(40)).format(backendDatoformat),
         ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat),
         erFerdigstiltUtenSvar: faker.random.boolean(),
-        erDelsvar: faker.random.boolean()
+        erDokumentMelding: faker.random.boolean()
     };
 }
 

@@ -19,7 +19,7 @@ export interface Melding {
     erFerdigstiltUtenSvar: boolean;
     kontorsperretEnhet?: string;
     markertSomFeilsendtAv?: string;
-    erDelsvar: boolean;
+    erDokumentMelding: boolean;
 }
 
 export interface Saksbehandler {
@@ -51,13 +51,15 @@ export enum Temagruppe {
     Pensjon = 'PENS',
     Arbeid = 'ARBD',
     AndreSosiale = 'ANSOS',
-    ØkonomiskSosial = 'OKSOS'
+    ØkonomiskSosial = 'OKSOS',
+    Null = ''
 }
 
 export enum Meldingstype {
     DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
     OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
     SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
+    SPORSMAL_SKRIFTLIG_DIREKTE = 'SPORSMAL_SKRIFTLIG_DIREKTE',
     SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
     SVAR_OPPMOTE = 'SVAR_OPPMOTE',
     SVAR_TELEFON = 'SVAR_TELEFON',
@@ -89,4 +91,15 @@ export interface SendSpørsmålRequest {
     fritekst: string;
     saksID: string;
     erOppgaveTilknyttetAnsatt: boolean;
+}
+
+export interface SendSvarRequest {
+    fritekst: string;
+    traadId: string;
+    meldingstype: Meldingstype;
+    saksId?: string;
+    oppgaveId?: string;
+    behandlingsId?: string;
+    erOppgaveTilknyttetAnsatt: boolean;
+    brukersEnhet?: string;
 }

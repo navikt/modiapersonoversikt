@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { NyMeldingValidator } from './validatorer';
 import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
-import { FormState } from './SendNyMelding';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
@@ -14,7 +12,6 @@ import MultiRestResourceConsumer from '../../../../rest/consumer/MultiRestResour
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;
-    margin-top: 1rem;
     textarea {
         min-height: 9rem;
     }
@@ -29,10 +26,11 @@ const TextareaWrapper = styled.div`
 `;
 
 interface Props {
-    formState: FormState;
+    tekst: string;
     navn: string;
     tekstMaksLengde: number;
     updateTekst: (tekst: string) => void;
+    feilmelding?: string;
 }
 
 type AutofullforData = { person: PersonRespons; saksbehandler: InnloggetSaksbehandler; kontor: NavKontorResponse };
@@ -52,13 +50,7 @@ function appendTekst(eksisterendeTekst: string, updateTekst: (tekst: string) => 
 
 function TekstFelt(props: Props) {
     return (
-        <StyledSkjemagruppe
-            feil={
-                !NyMeldingValidator.tekst(props.formState) && props.formState.visFeilmeldinger
-                    ? { feilmelding: `Du må skrive en tekst på mellom 0 og ${props.tekstMaksLengde} tegn` }
-                    : undefined
-            }
-        >
+        <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
             <MultiRestResourceConsumer<AutofullforData>
                 getResource={restResources => ({
                     person: restResources.personinformasjon,
@@ -67,14 +59,12 @@ function TekstFelt(props: Props) {
                 })}
             >
                 {(data: AutofullforData) => {
-                    return (
-                        <StandardTekstModal appendTekst={appendTekst(props.formState.tekst, props.updateTekst, data)} />
-                    );
+                    return <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst, data)} />;
                 }}
             </MultiRestResourceConsumer>
             <TextareaWrapper>
                 <Textarea
-                    value={props.formState.tekst}
+                    value={props.tekst}
                     onChange={e =>
                         props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
                     }

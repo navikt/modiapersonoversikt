@@ -5,21 +5,15 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import styled from 'styled-components';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 
 interface Props {
     melding: Melding;
 }
 
-const Style = styled.div`
-    .snakkeboble-panel {
-        flex-basis: 70%;
-    }
-`;
-
 function meldingstittel(melding: Melding) {
-    const ulestTekst = melding.status === LestStatus.IkkeLest ? 'Ulest, ' : '';
-    return `${meldingstypeTekst(melding.meldingstype)} - ${ulestTekst}${temagruppeTekst(melding.temagruppe)}`;
+    const lestTekst = melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ';
+    return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
 }
 
 function saksbehandlerTekst(saksbehandler: Saksbehandler) {
@@ -28,21 +22,21 @@ function saksbehandlerTekst(saksbehandler: Saksbehandler) {
 }
 
 function EnkeltMelding(props: Props) {
-    const pilHøyre = erMeldingFraNav(props.melding.meldingstype);
+    const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
 
     return (
-        <Style>
-            <Snakkeboble pilHoyre={pilHøyre}>
+        <div className="snakkeboble_ikoner">
+            <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <Element>{topptekst}</Element>
                 <Normaltekst>{datoTekst}</Normaltekst>
                 <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                 <hr />
-                <Normaltekst>{props.melding.fritekst}</Normaltekst>
+                <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
             </Snakkeboble>
-        </Style>
+        </div>
     );
 }
 

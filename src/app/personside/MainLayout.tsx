@@ -15,6 +15,12 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
 
+    const ekspanderDialogpanelHandler = () => {
+        if (!UI.dialogPanel.ekspandert) {
+            dispatch(toggleDialogpanel(true));
+        }
+    };
+
     return (
         <LayoutWrapper role="main">
             <VenstreKolonne dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
@@ -22,7 +28,12 @@ function MainLayout() {
                 <Visittkort />
                 <InfoTabs />
             </VenstreKolonne>
-            <HøyreKolonne role="region" aria-label="Oppgavepanel" dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
+            <HøyreKolonne
+                onClick={ekspanderDialogpanelHandler}
+                role="region"
+                aria-label="Oppgavepanel"
+                dialogPanelEkspandert={UI.dialogPanel.ekspandert}
+            >
                 <HentOppgaveKnapp />
                 <DialogPanel />
                 <EkspanderDilaogpanelKnapp />

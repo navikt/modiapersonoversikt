@@ -1,63 +1,55 @@
 import * as React from 'react';
-import { Brukerinfo, NorskIdent, StrukturertAdresse, UstrukturertAdresse } from '../../models/person/personsok';
+import { Brukerinfo, NorskIdent } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Navn } from '../../models/person/person';
+import { Kodeverk } from '../../models/kodeverk';
 
 export function IdentCelle(props: { ident: NorskIdent }) {
     return <Normaltekst>{props.ident.ident}</Normaltekst>;
 }
 
-export function NavnCelle(props: { navn: Navn }) {
-    return <Normaltekst>{formatterNavn(props.navn)}</Normaltekst>;
+export function NavnCelle(props: { navn: Navn; status: Kodeverk }) {
+    return <Normaltekst>{formatterNavn(props.navn, props.status)}</Normaltekst>;
 }
 
 export function MidlertidigAdresseCelle(props: { brukerinfo: Brukerinfo | null }) {
     if (props.brukerinfo && props.brukerinfo.midlertidigPostadresse) {
-        return (
-            <Normaltekst>
-                {formatterUstrukturertAdresse(props.brukerinfo.midlertidigPostadresse.ustrukturertAdresse)}
-            </Normaltekst>
-        );
+        return <Normaltekst>{props.brukerinfo.midlertidigPostadresse}</Normaltekst>;
     } else {
         return null;
     }
 }
 
-export function PostadresseCelle(props: { postadresse: UstrukturertAdresse | null }) {
+export function PostadresseCelle(props: { postadresse: string | null }) {
     if (props.postadresse) {
-        return <Normaltekst>{formatterUstrukturertAdresse(props.postadresse)}</Normaltekst>;
+        return <Normaltekst>{props.postadresse}</Normaltekst>;
     } else {
         return null;
     }
 }
 
-export function BostedsadresseCelle(props: { bostedsadresse: StrukturertAdresse | null }) {
+export function BostedsadresseCelle(props: { bostedsadresse: string | null }) {
     if (props.bostedsadresse) {
-        return <Normaltekst>{formatterStrukturertAdresse(props.bostedsadresse)}</Normaltekst>;
+        return <Normaltekst>{props.bostedsadresse}</Normaltekst>;
     } else {
         return null;
     }
 }
 
-export function BostedCelle() {
-    return <Normaltekst>Finn ut</Normaltekst>;
+export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
+    if (props.brukerinfo) {
+        return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
+    } else {
+        return null;
+    }
 }
 
-function formatterNavn(navn: Navn) {
-    return navn.etternavn + ', ' + navn.fornavn + formatNullableString(navn.mellomnavn, true);
-}
-
-function formatterUstrukturertAdresse(adresse: UstrukturertAdresse) {
-    return (
-        formatNullableString(adresse.adresselinje1) +
-        formatNullableString(adresse.adresselinje2, true) +
-        formatNullableString(adresse.adresselinje3, true) +
-        formatNullableString(adresse.adresselinje4, true)
-    );
-}
-
-function formatterStrukturertAdresse(adresse: StrukturertAdresse) {
-    return adresse.tilleggsadresse;
+function formatterNavn(navn: Navn, status: Kodeverk) {
+    let personNavn = navn.etternavn + ', ' + navn.fornavn + formatNullableString(navn.mellomnavn, true);
+    if (status.beskrivelse === 'DØD') {
+        personNavn += ' (død)';
+    }
+    return personNavn;
 }
 
 function formatNullableString(str: string | null, prefixWithSpace?: boolean) {

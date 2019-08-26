@@ -109,7 +109,7 @@ export function erBehandlet(traad: Traad): boolean {
 }
 
 export function harDelsvar(traad: Traad): boolean {
-    return traad.meldinger.some(melding => melding.erDelsvar);
+    return traad.meldinger.some(melding => melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG);
 }
 
 export function harTilgangTilSletting() {
