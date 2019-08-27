@@ -230,8 +230,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c1 > * {
-  margin: 0.9375rem;
-  max-width: 30rem;
+  margin-bottom: .8rem;
+}
+
+.c1:not(:last-child) {
+  margin-right: .8rem;
 }
 
 <article
