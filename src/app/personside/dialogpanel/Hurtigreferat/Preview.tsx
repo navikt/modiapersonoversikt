@@ -4,6 +4,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../../utils/dateUtils';
+import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -25,7 +26,7 @@ function Preview(props: Props) {
         <PreviewStyle>
             <Normaltekst>{props.tittel}</Normaltekst>
             <EtikettGrå>{formatterDatoTid(new Date())}</EtikettGrå>
-            <Normaltekst>{props.fritekst}</Normaltekst>
+            <Tekstomrade>{props.fritekst}</Tekstomrade>
         </PreviewStyle>
     );
 }
