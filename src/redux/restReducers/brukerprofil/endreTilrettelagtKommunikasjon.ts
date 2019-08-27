@@ -3,8 +3,9 @@ import createPostResourceReducerAndActions from '../../../rest/utils/postResourc
 import { AppState } from '../../reducers';
 import { apiBaseUri } from '../../../api/config';
 
-function getEndreTilrettelagtKommunikasjonPostUri(state: AppState, request: EndreTilrettelagtKommunikasjonrequest) {
-    return `${apiBaseUri}/brukerprofil/${request.fødselsnummer}/tilrettelagtkommunikasjon/`;
+function getEndreTilrettelagtKommunikasjonPostUri(state: AppState) {
+    const fnr = state.gjeldendeBruker.fødselsnummer;
+    return `${apiBaseUri}/brukerprofil/${fnr}/tilrettelagtkommunikasjon/`;
 }
 
 export default createPostResourceReducerAndActions<EndreTilrettelagtKommunikasjonrequest>(
