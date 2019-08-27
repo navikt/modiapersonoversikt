@@ -18,7 +18,7 @@ const HeaderStyle = styled.div`
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 20% 55% 1fr auto;
-    grid-template-columns: 20% 55% 1fr auto;
+    grid-template-columns: 20% minmax(35%, 55%) 1fr auto;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
