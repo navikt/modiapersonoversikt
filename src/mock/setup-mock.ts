@@ -32,6 +32,7 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
+import standardTekster from './standardtekster.json';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -403,6 +404,10 @@ function merkSlettMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
+function setupStandardteksterMock(mock: FetchMock) {
+    mock.get('/modiapersonoversikt-skrivestotte/skrivestotte', standardTekster);
+}
+
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     if (response.headers) {
         return response;
@@ -474,4 +479,5 @@ export function setupMock() {
     merkKontorsperretMock(mock);
     merkSlettMock(mock);
     setupJournalforingMock(mock);
+    setupStandardteksterMock(mock);
 }

@@ -3,4 +3,6 @@ export interface InnloggetSaksbehandler {
     navn: string;
     fornavn: string;
     etternavn: string;
+    enhetId: string;
+    enhetNavn: string;
 }
