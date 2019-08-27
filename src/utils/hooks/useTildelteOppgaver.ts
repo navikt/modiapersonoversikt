@@ -3,6 +3,11 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { isFinishedPosting } from '../../rest/utils/postResource';
 import { useFødselsnummer, usePrevious, useRestResource } from '../customHooks';
+import { Oppgave } from '../../models/oppgave';
+
+export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
+    return list.findIndex(oppgave => oppgave.oppgaveid === value.oppgaveid) === index;
+}
 
 function useTildelteOppgaver() {
     const oppgaveResource = useRestResource(resources => resources.oppgaver);
@@ -24,7 +29,8 @@ function useTildelteOppgaver() {
     const tildelteOppgaver = [
         ...(isFinishedPosting(oppgaveResource) ? oppgaveResource.response : []),
         ...(hasData(tildelteOppgaverResource) ? tildelteOppgaverResource.data : [])
-    ];
+    ].filter(removeDuplicateOppgaver);
+
     const tildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);
     const tildelteOppgaverPaaAndreBrukere = tildelteOppgaver.filter(oppg => oppg.fødselsnummer !== fnr);
 
