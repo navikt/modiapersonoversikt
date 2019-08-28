@@ -84,8 +84,8 @@ function DatoInputs(props: Props) {
     const til = props.valgtPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
     const avgrensninger: DatovelgerAvgrensninger = {
-        minDato: tidligsteDato().toISOString(),
-        maksDato: senesteDato().toISOString()
+        minDato: formaterDato(tidligsteDato()),
+        maksDato: formaterDato(senesteDato())
     };
 
     return (
@@ -94,7 +94,7 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                valgtDato={fra.toISOString()}
+                valgtDato={formaterDato(fra)}
                 onChange={dato => props.settValgtPeriode({ fra: moment(dato).toDate() })}
                 id="oppfolging-datovelger-fra"
                 avgrensninger={avgrensninger}
@@ -103,7 +103,7 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                valgtDato={til.toISOString()}
+                valgtDato={formaterDato(til)}
                 onChange={dato => props.settValgtPeriode({ til: moment(dato).toDate() })}
                 id="oppfolging-datovelger-til"
                 avgrensninger={avgrensninger}

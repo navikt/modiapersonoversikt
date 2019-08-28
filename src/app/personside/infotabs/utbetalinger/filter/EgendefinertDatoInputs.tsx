@@ -51,8 +51,8 @@ function EgendefinertDatoInputs(props: Props) {
     const til = props.filter.periode.egendefinertPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
     const avgrensninger: DatovelgerAvgrensninger = {
-        minDato: tidligsteTilgjengeligeDatoUtbetalingerRestkonto.toISOString(),
-        maksDato: new Date().toISOString()
+        minDato: formaterDato(tidligsteTilgjengeligeDatoUtbetalingerRestkonto),
+        maksDato: formaterDato(new Date())
     };
 
     return (
@@ -61,7 +61,7 @@ function EgendefinertDatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                valgtDato={props.filter.periode.egendefinertPeriode.fra.toISOString()}
+                valgtDato={formaterDato(props.filter.periode.egendefinertPeriode.fra)}
                 onChange={dato => onDatoChange(props, { fra: moment(dato).toDate() })}
                 id="utbetalinger-datovelger-fra"
                 avgrensninger={avgrensninger}
@@ -70,7 +70,7 @@ function EgendefinertDatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                valgtDato={props.filter.periode.egendefinertPeriode.til.toISOString()}
+                valgtDato={formaterDato(props.filter.periode.egendefinertPeriode.til)}
                 onChange={dato => onDatoChange(props, { til: moment(dato).toDate() })}
                 id="utbetalinger-datovelger-til"
                 avgrensninger={avgrensninger}

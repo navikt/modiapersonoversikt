@@ -11,6 +11,7 @@ import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
 import moment from 'moment';
+import { formaterDato } from '../../utils/stringFormatting';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -149,7 +150,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
-                                valgtDato={stateLimit.fodselsdatoFra ? stateLimit.fodselsdatoFra.toISOString() : ''}
+                                valgtDato={stateLimit.fodselsdatoFra ? formaterDato(stateLimit.fodselsdatoFra) : ''}
                                 onChange={dato => props.form.actionsLimit.settFodselsdatoFra(moment(dato).toDate())}
                                 id="personsok-datovelger-fra"
                             />
@@ -161,7 +162,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
-                                valgtDato={stateLimit.fodselsdatoTil ? stateLimit.fodselsdatoTil.toISOString() : ''}
+                                valgtDato={stateLimit.fodselsdatoTil ? formaterDato(stateLimit.fodselsdatoTil) : ''}
                                 onChange={dato => props.form.actionsLimit.settFodselsdatoTil(moment(dato).toDate())}
                                 id="personsok-datovelger-til"
                             />

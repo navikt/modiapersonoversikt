@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-import { formaterTilISO8601Date } from '../../utils/stringFormatting';
+import { formaterDato, formaterTilISO8601Date } from '../../utils/stringFormatting';
 import { Feilmelding } from '../../utils/Feilmelding';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
@@ -41,8 +41,8 @@ const iMorgen = moment()
     .toDate();
 
 const avgrensninger: DatovelgerAvgrensninger = {
-    minDato: iMorgen.toISOString(),
-    maksDato: omEtÅr.toISOString()
+    minDato: formaterDato(iMorgen),
+    maksDato: formaterDato(omEtÅr)
 };
 
 export default function BrukerProfilDatovelger({ dato, id, onChange, feil, children, innenEtÅr }: Props) {
@@ -65,7 +65,7 @@ export default function BrukerProfilDatovelger({ dato, id, onChange, feil, child
                 <Datovelger
                     input={{ id: id, name: 'Datovelger' }}
                     visÅrVelger={true}
-                    valgtDato={dato ? dato.toISOString() : ''}
+                    valgtDato={dato ? formaterDato(dato) : ''}
                     onChange={handleChange}
                     id={id}
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
