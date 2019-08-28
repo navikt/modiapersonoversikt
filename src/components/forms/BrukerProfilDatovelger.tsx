@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avgrensninger } from 'nav-datovelger';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { formaterTilISO8601Date } from '../../utils/stringFormatting';
 import { Feilmelding } from '../../utils/Feilmelding';
@@ -40,9 +40,9 @@ const iMorgen = moment()
     .add(1, 'day')
     .toDate();
 
-const avgrensninger: Avgrensninger = {
-    minDato: iMorgen,
-    maksDato: omEtÅr
+const avgrensninger: DatovelgerAvgrensninger = {
+    minDato: iMorgen.toISOString(),
+    maksDato: omEtÅr.toISOString()
 };
 
 export default function BrukerProfilDatovelger({ dato, id, onChange, feil, children, innenEtÅr }: Props) {
@@ -50,6 +50,10 @@ export default function BrukerProfilDatovelger({ dato, id, onChange, feil, child
         event.preventDefault();
         onChange(omEtÅr);
         loggEvent('Hurtigvalg', 'Datovelger', { type: 'Om et år' });
+    }
+
+    function handleChange(dato: string) {
+        onChange(moment(dato).toDate());
     }
 
     return (
@@ -61,8 +65,8 @@ export default function BrukerProfilDatovelger({ dato, id, onChange, feil, child
                 <Datovelger
                     input={{ id: id, name: 'Datovelger' }}
                     visÅrVelger={true}
-                    dato={dato}
-                    onChange={onChange}
+                    valgtDato={dato ? dato.toISOString() : ''}
+                    onChange={handleChange}
                     id={id}
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}
                 />

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UtbetalingFilterState, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import { Avgrensninger } from 'nav-datovelger';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import moment from 'moment';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
@@ -50,9 +50,9 @@ function EgendefinertDatoInputs(props: Props) {
     const fra = props.filter.periode.egendefinertPeriode.fra;
     const til = props.filter.periode.egendefinertPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger: Avgrensninger = {
-        minDato: tidligsteTilgjengeligeDatoUtbetalingerRestkonto,
-        maksDato: new Date()
+    const avgrensninger: DatovelgerAvgrensninger = {
+        minDato: tidligsteTilgjengeligeDatoUtbetalingerRestkonto.toISOString(),
+        maksDato: new Date().toISOString()
     };
 
     return (
@@ -61,8 +61,8 @@ function EgendefinertDatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                dato={props.filter.periode.egendefinertPeriode.fra}
-                onChange={dato => onDatoChange(props, { fra: dato })}
+                valgtDato={props.filter.periode.egendefinertPeriode.fra.toISOString()}
+                onChange={dato => onDatoChange(props, { fra: moment(dato).toDate() })}
                 id="utbetalinger-datovelger-fra"
                 avgrensninger={avgrensninger}
             />
@@ -70,8 +70,8 @@ function EgendefinertDatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                dato={props.filter.periode.egendefinertPeriode.til}
-                onChange={dato => onDatoChange(props, { til: dato })}
+                valgtDato={props.filter.periode.egendefinertPeriode.til.toISOString()}
+                onChange={dato => onDatoChange(props, { til: moment(dato).toDate() })}
                 id="utbetalinger-datovelger-til"
                 avgrensninger={avgrensninger}
             />

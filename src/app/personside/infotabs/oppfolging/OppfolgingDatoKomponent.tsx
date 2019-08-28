@@ -12,7 +12,7 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
-import { Avgrensninger } from 'nav-datovelger';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import moment from 'moment';
@@ -83,9 +83,9 @@ function DatoInputs(props: Props) {
     const fra = props.valgtPeriode.fra;
     const til = props.valgtPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger: Avgrensninger = {
-        minDato: tidligsteDato(),
-        maksDato: senesteDato()
+    const avgrensninger: DatovelgerAvgrensninger = {
+        minDato: tidligsteDato().toISOString(),
+        maksDato: senesteDato().toISOString()
     };
 
     return (
@@ -94,8 +94,8 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                dato={fra}
-                onChange={dato => props.settValgtPeriode({ fra: dato })}
+                valgtDato={fra.toISOString()}
+                onChange={dato => props.settValgtPeriode({ fra: moment(dato).toDate() })}
                 id="oppfolging-datovelger-fra"
                 avgrensninger={avgrensninger}
             />
@@ -103,8 +103,8 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                dato={til}
-                onChange={dato => props.settValgtPeriode({ til: dato })}
+                valgtDato={til.toISOString()}
+                onChange={dato => props.settValgtPeriode({ til: moment(dato).toDate() })}
                 id="oppfolging-datovelger-til"
                 avgrensninger={avgrensninger}
             />

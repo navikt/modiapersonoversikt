@@ -10,6 +10,7 @@ import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
+import moment from 'moment';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -63,6 +64,7 @@ function nullstill(props: PersonsokSkjemaProps) {
 }
 
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
+    const stateLimit = props.form.stateLimit;
     return (
         <FormStyle>
             <SectionStyle>
@@ -134,7 +136,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     <Input
                         bredde={'M'}
                         label={'Bosted'}
-                        value={props.form.stateLimit.kommunenummer}
+                        value={stateLimit.kommunenummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.form.actionsLimit.settKommunenummer(event.target.value)
                         }
@@ -147,8 +149,8 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoFra}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoFra(dato)}
+                                valgtDato={stateLimit.fodselsdatoFra ? stateLimit.fodselsdatoFra.toISOString() : ''}
+                                onChange={dato => props.form.actionsLimit.settFodselsdatoFra(moment(dato).toDate())}
                                 id="personsok-datovelger-fra"
                             />
                         </DatovelgerStyle>
@@ -159,8 +161,8 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoTil}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoTil(dato)}
+                                valgtDato={stateLimit.fodselsdatoTil ? stateLimit.fodselsdatoTil.toISOString() : ''}
+                                onChange={dato => props.form.actionsLimit.settFodselsdatoTil(moment(dato).toDate())}
                                 id="personsok-datovelger-til"
                             />
                         </DatovelgerStyle>
@@ -169,7 +171,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <Input
                             bredde={'M'}
                             label={'Alder fra'}
-                            value={props.form.stateLimit.alderFra}
+                            value={stateLimit.alderFra}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
                                 props.form.actionsLimit.settAlderFra(event.target.value)
                             }
@@ -177,7 +179,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <Input
                             bredde={'M'}
                             label={'Alder til'}
-                            value={props.form.stateLimit.alderTil}
+                            value={stateLimit.alderTil}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
                                 props.form.actionsLimit.settAlderTil(event.target.value)
                             }
