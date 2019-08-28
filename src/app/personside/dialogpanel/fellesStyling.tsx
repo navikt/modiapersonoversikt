@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/personOversiktTheme';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
+import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
+import Preview from './Hurtigreferat/Preview';
+import { Meldingstype } from '../../../models/meldinger/meldinger';
+import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
+import { FailedPostResource } from '../../../rest/utils/postResource';
+import { useDispatch } from 'react-redux';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -25,10 +31,31 @@ export const DialogpanelKvitteringStyling = styled.div`
     ${theme.animation.fadeIn};
 `;
 
-export function DialogpanelFeilmelding(props: { errormessage: string; lukk: () => void }) {
+export function DialogpanelFeilmelding(props: { resource: FailedPostResource<any, {}> }) {
+    const dispatch = useDispatch();
     return (
         <DialogpanelKvitteringStyling>
-            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {props.errormessage}</AlertStripeFeil>
+            <AlertStripeFeil>
+                Det skjedde en feil ved sending av melding: {props.resource.error.message}
+            </AlertStripeFeil>
+            <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
+                Lukk
+            </KnappBase>
+        </DialogpanelKvitteringStyling>
+    );
+}
+
+export function DialogpanelKvittering(props: {
+    tittel: string;
+    fritekst: string;
+    meldingstype: Meldingstype;
+    lukk: () => void;
+}) {
+    return (
+        <DialogpanelKvitteringStyling>
+            <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
+            <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
+            <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Lukk
             </KnappBase>

@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
-import { FormEvent } from 'react';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
@@ -8,14 +8,13 @@ import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
 import { usePrevious, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import FortsettDialogKvittering from './FortsettDialogKvittering';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { DialogpanelFeilmelding } from '../fellesStyling';
+import { LeggTilbakeOppgaveFeil, OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -63,6 +62,7 @@ function FortsettDialogContainer(props: Props) {
         });
 
     const previous = usePrevious(props.traad);
+
     useEffect(() => {
         if (previous !== props.traad) {
             setState(initialState);
@@ -115,13 +115,19 @@ function FortsettDialogContainer(props: Props) {
         return <CenteredLazySpinner type="XL" delay={100} />;
     }
 
-    if (
-        isFinishedPosting(sendSvarResource) ||
-        isFinishedPosting(leggTilbakeResource) ||
-        isFailedPosting(sendSvarResource) ||
-        isFailedPosting(leggTilbakeResource)
-    ) {
-        return <FortsettDialogKvittering />;
+    if (isFinishedPosting(sendSvarResource)) {
+        return <SvarSendtKvittering resource={sendSvarResource} />;
+    }
+
+    if (isFinishedPosting(leggTilbakeResource)) {
+        return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
+    }
+
+    if (isFailedPosting(sendSvarResource)) {
+        return <DialogpanelFeilmelding resource={sendSvarResource} />;
+    }
+    if (isFailedPosting(leggTilbakeResource)) {
+        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
     }
 
     return (
@@ -132,6 +138,7 @@ function FortsettDialogContainer(props: Props) {
                 updateState={updateState}
                 handleSubmit={handleSubmit}
                 traad={props.traad}
+                key={props.traad.traadId}
             />
             {props.tilknyttetOppgave && <LeggTilbakepanel oppgave={props.tilknyttetOppgave} />}
         </>
