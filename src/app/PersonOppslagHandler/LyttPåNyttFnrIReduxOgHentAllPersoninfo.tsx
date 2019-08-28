@@ -24,6 +24,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useDispatchOnNewFnr(restResources.kontaktinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.vergemal.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.egenAnsatt.actions.fetch, fnr);
+    useDispatchOnNewFnr(restResources.tildDelteOppgaver.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.brukersNavKontor.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.utbetalinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.pleiepenger.actions.reset, fnr);
@@ -33,6 +34,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useDispatchOnNewFnr(restResources.sendSpørsmål.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
+
     useFetchFeatureTogglesOnNewFnr();
 
     useEffect(() => {
