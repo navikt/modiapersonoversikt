@@ -20,8 +20,6 @@ function useTildelteOppgaver() {
         if (prevFnr !== fnr) {
             if (isNotStarted(tildelteOppgaverResource)) {
                 dispatch(tildelteOppgaverResource.actions.fetch);
-            } else {
-                dispatch(tildelteOppgaverResource.actions.reload);
             }
         }
     }, [fnr, dispatch, tildelteOppgaverResource, prevFnr]);
