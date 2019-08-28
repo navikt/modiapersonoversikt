@@ -7,7 +7,6 @@ import { AsyncAction } from '../../redux/ThunkTypes';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { cache } from '@nutgaard/use-fetch';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { setNyBrukerIPath } from '../routes/routing';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -35,10 +34,6 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
     useFetchFeatureTogglesOnNewFnr();
-
-    useEffect(() => {
-        setNyBrukerIPath(props.history, fnr);
-    }, [props.history, fnr]);
 
     useEffect(() => {
         cache.clear();

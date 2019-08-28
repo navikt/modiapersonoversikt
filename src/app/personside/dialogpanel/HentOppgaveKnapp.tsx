@@ -12,8 +12,9 @@ import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
 import theme from '../../../styles/personOversiktTheme';
-import setNyGjeldendeBruker from '../../../redux/gjeldendeBruker/actions';
 import TildelteOppgaver from './TildelteOppgaver';
+import { paths } from '../../routes/routing';
+import { INFOTABS } from '../infotabs/InfoTabEnum';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -77,7 +78,7 @@ function HentOppgaveKnapp(props: Props) {
                     setTomKø(true);
                     return;
                 }
-                dispatch(setNyGjeldendeBruker(fødselsnummer));
+                props.history.push(`${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}`);
             })
         );
     };
