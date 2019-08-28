@@ -43,8 +43,8 @@ function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
             label={props.label}
             name="journalforing-sakgruppe"
             value={props.label}
-            onChange={props.onChange}
-            checked={props.value === props.label}
+            onChange={props.input.onChange}
+            checked={props.input.value === props.label}
         />
     );
 }
@@ -117,7 +117,7 @@ function VelgSak(props: Props) {
         return <Spinner type="XL" />;
     }
 
-    const temaTable = fordelteSaker[valgtKategori.value].map((tema: Tema) => (
+    const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
         <TemaTable
             key={tema.tema}
             tema={tema.tema}

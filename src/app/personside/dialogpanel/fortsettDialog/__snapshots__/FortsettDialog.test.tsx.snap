@@ -53,7 +53,7 @@ exports[`viser fortsett dialog 1`] = `
   overflow: hidden;
 }
 
-.c10 label {
+.c13 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -62,6 +62,40 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px 1px 1px 1px);
   -webkit-clip: rect(1px,1px,1px,1px);
   clip: rect(1px,1px,1px,1px);
+}
+
+.c10 {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  border-bottom-right-radius: 50%;
+  padding: 0;
+  background-color: #0067c5;
+  border: none;
+  z-index: 10;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c10:after {
+  background: none;
+}
+
+.c10:hover {
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c11 {
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.c9 {
+  position: relative;
 }
 
 .c9 textarea {
@@ -79,7 +113,11 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c14 label {
+.c12 textarea {
+  padding-left: 2.25rem;
+}
+
+.c17 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -113,15 +151,15 @@ exports[`viser fortsett dialog 1`] = `
   margin-bottom: 1rem;
 }
 
-.c13 .ekspanderbartPanel__hode {
+.c16 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
-.c12 {
+.c15 {
   margin-top: 1rem;
 }
 
-.c12 label {
+.c15 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -132,7 +170,7 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c11 > *:not(:first-child) {
+.c14 > *:not(:first-child) {
   margin-top: 1rem;
 }
 
@@ -140,11 +178,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c15 {
+.c18 {
   margin-top: 1rem;
 }
 
-.c16 {
+.c19 {
   width: 100%;
 }
 
@@ -451,49 +489,80 @@ exports[`viser fortsett dialog 1`] = `
     <div
       className="c9"
     >
-      <div
-        className="skjemaelement textarea__container"
+      <button
+        className="knapp c10 knapp--hoved"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
       >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
+        <svg
+          className="c11"
+          height="24px"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 24 24"
+          width="24px"
+          x="0px"
+          xmlns="http://www.w3.org/2000/svg"
+          y="0px"
         >
-          Melding
-        </label>
-        <div
-          className="textarea--medMeta__wrapper"
-        >
-          <textarea
-            className="skjemaelement__input textarea--medMeta"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-            style={
-              Object {
-                "height": "30px",
-              }
-            }
-            type="text"
-            value=""
+          <path
+            d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
+            fill="currentColor"
           />
-          <p
-            className="textarea--medMeta__teller"
+        </svg>
+        <span
+          className="sr-only"
+        >
+          Standardtekster
+        </span>
+      </button>
+      <div
+        className="c12"
+      >
+        <div
+          className="skjemaelement textarea__container"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <span>
-              Du har 
-              5000
-               tegn igjen
-            </span>
-          </p>
+            Melding
+          </label>
+          <div
+            className="textarea--medMeta__wrapper"
+          >
+            <textarea
+              className="skjemaelement__input textarea--medMeta"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+              style={
+                Object {
+                  "height": "30px",
+                }
+              }
+              type="text"
+              value=""
+            />
+            <p
+              className="textarea--medMeta__teller"
+            >
+              <span>
+                Du har 
+                5000
+                 tegn igjen
+              </span>
+            </p>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+          <div
+            aria-hidden="true"
+            className="textareamirror"
+          />
         </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-        <div
-          aria-hidden="true"
-          className="textareamirror"
-        />
       </div>
       <div
         aria-live="assertive"
@@ -502,7 +571,7 @@ exports[`viser fortsett dialog 1`] = `
     </div>
     <div>
       <div
-        className="skjemaelement c10"
+        className="skjemaelement c13"
       >
         <label
           className="skjemaelement__label"
@@ -590,7 +659,7 @@ exports[`viser fortsett dialog 1`] = `
         </div>
       </div>
       <div
-        className="c11"
+        className="c14"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -631,7 +700,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </div>
         <div
-          className="skjemaelement c12"
+          className="skjemaelement c15"
         >
           <label
             className="skjemaelement__label"
@@ -671,7 +740,7 @@ exports[`viser fortsett dialog 1`] = `
           className=""
         >
           <div
-            className="ekspanderbartPanel c13 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c16 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -742,7 +811,7 @@ exports[`viser fortsett dialog 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c14"
+          className="skjemaelement c17"
         >
           <label
             className="skjemaelement__label"
@@ -805,14 +874,14 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c15 knapp--hoved"
+      className="knapp c18 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c16 knapp--flat"
+      className="knapp c19 knapp--flat"
       disabled={false}
       onClick={[Function]}
       type="button"
