@@ -59,7 +59,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
     };
 
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'}>
+        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={valgtTraad ? valgtTraad.traadId : ''}>
             <KnappWrapper>
                 <Collapse isOpened={true}>
                     {traadDialogpanel === valgtTraad ? (
