@@ -32,7 +32,7 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
-import standardTekster from './standardtekster.json';
+import standardTekster from './standardtekster.js';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -231,7 +231,7 @@ function setupTildelteOppgaverMock(mock: FetchMock) {
 
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/oppgaver/:id/leggTilbake',
+        apiBaseUri + '/oppgaver/leggTilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
     );
 }
