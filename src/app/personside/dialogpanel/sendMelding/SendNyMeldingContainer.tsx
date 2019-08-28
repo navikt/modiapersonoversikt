@@ -10,8 +10,9 @@ import { useState } from 'react';
 import { useRestResource } from '../../../../utils/customHooks';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
-import SendNyMeldingKvittering from './SendNyMeldingKvittering';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
+import { DialogpanelFeilmelding } from '../fellesStyling';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -35,8 +36,6 @@ function SendNyMeldingContainer() {
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
-    const meldingSendt = isFinishedPosting(postReferatResource) || isFinishedPosting(postSpørsmålResource);
-    const meldingFeilet = isFailedPosting(postReferatResource) || isFailedPosting(postSpørsmålResource);
     const dispatch = useDispatch();
 
     const handleAvbryt = () => {
@@ -84,8 +83,20 @@ function SendNyMeldingContainer() {
         return <CenteredLazySpinner type="XL" delay={100} />;
     }
 
-    if (meldingSendt || meldingFeilet) {
-        return <SendNyMeldingKvittering />;
+    if (isFinishedPosting(postReferatResource)) {
+        return <ReferatSendtKvittering resource={postReferatResource} />;
+    }
+
+    if (isFinishedPosting(postSpørsmålResource)) {
+        return <SporsmalSendtKvittering resource={postSpørsmålResource} />;
+    }
+
+    if (isFailedPosting(postReferatResource)) {
+        return <DialogpanelFeilmelding resource={postReferatResource} />;
+    }
+
+    if (isFailedPosting(postSpørsmålResource)) {
+        return <DialogpanelFeilmelding resource={postSpørsmålResource} />;
     }
 
     return (
