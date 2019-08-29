@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
-    padding: ${theme.margin.px20};
+    padding: ${theme.margin.layout};
     display: flex;
     align-items: center;
     cursor: pointer;

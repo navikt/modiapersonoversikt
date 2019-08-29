@@ -3,9 +3,12 @@ import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/saks
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SakstemaListeElement from '../saksoversikt/sakstemaliste/SakstemaListeElement';
 import { settValgtSakstema } from '../../../../redux/saksoversikt/actions';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { AppState } from '../../../../redux/reducers';
+import { paths } from '../../../routes/routing';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -15,25 +18,33 @@ const ListStyle = styled.ol`
 
 interface Props {
     sakstema: Sakstema[];
+    onClick: (sakstema: Sakstema) => void;
 }
 
-function SakerOversikt() {
+function SakerOversikt(props: RouteComponentProps) {
+    const dispatch = useDispatch();
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+
+    const clickHandler = (sakstema: Sakstema) => {
+        dispatch(settValgtSakstema(sakstema));
+        props.history.push(`${paths.personUri}/${valgtBrukersFnr}/saker`);
+    };
+
     return (
         <RestResourceConsumer<SakstemaResponse> getResource={restResources => restResources.sakstema}>
-            {data => <SakerPanel sakstema={data.resultat} />}
+            {data => <SakerPanel sakstema={data.resultat} onClick={clickHandler} />}
         </RestResourceConsumer>
     );
 }
 
 function SakerPanel(props: Props) {
-    const dispatch = useDispatch();
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
         .map((sakstema, index) => (
             <SakstemaListeElement
                 sakstema={sakstema}
                 erValgtSakstema={false}
-                oppdaterSakstema={() => dispatch(settValgtSakstema(sakstema))}
+                oppdaterSakstema={() => props.onClick(sakstema)}
                 key={index}
             />
         ));
@@ -41,4 +52,4 @@ function SakerPanel(props: Props) {
     return <ListStyle>{sakstemakomponenter}</ListStyle>;
 }
 
-export default SakerOversikt;
+export default withRouter(SakerOversikt);
