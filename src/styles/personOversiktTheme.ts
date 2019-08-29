@@ -28,7 +28,8 @@ export const theme = {
         objektlisteActive: 'rgba(102, 203, 236, 0.35)',
         morkGra: '#3E3832',
         navGra20: '#c6c2bf',
-        orangeFocusLighten60: '#FFE5C2'
+        orangeFocusLighten60: '#FFE5C2',
+        navGra40: '#b7b1a9'
     },
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
