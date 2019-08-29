@@ -222,6 +222,13 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
+function setupTildelteOppgaverMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/oppgaver/tildelt',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+    );
+}
+
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/leggTilbake',
@@ -447,6 +454,7 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
