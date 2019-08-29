@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Oversiktskomponent from './Oversiktskomponent';
-import { pxToRem } from '../../../../styles/personOversiktTheme';
+import theme from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
 import YtelserOversikt from './YtelserOversikt';
@@ -16,8 +16,10 @@ const Style = styled.article`
 
 const KolonneStyle = styled.div`
     > * {
-        margin: ${pxToRem(15)};
-        max-width: 30rem;
+        margin-bottom: ${theme.margin.layout};
+    }
+    &:not(:last-child) {
+        margin-right: ${theme.margin.layout};
     }
 `;
 

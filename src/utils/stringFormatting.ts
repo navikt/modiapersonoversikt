@@ -84,3 +84,10 @@ export function capitalizeAfterPunctuation(name: string): string {
         (txt, group1: string, group2: string) => group1 + group2.toUpperCase()
     );
 }
+
+export function captitalize(content: string): string {
+    return content
+        .split('\n')
+        .map(capitalizeAfterPunctuation)
+        .join('\n');
+}

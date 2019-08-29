@@ -17,7 +17,7 @@ export const statiskTraadMock = {
             journalfortDato: '2019-07-11',
             ferdigstiltDato: '2019-07-07',
             erFerdigstiltUtenSvar: true,
-            erDelsvar: false
+            erDokumentMelding: false
         },
         {
             id: 'q1i6ndyj',
@@ -33,7 +33,7 @@ export const statiskTraadMock = {
             journalfortDato: '2019-07-21',
             ferdigstiltDato: '2019-07-16',
             erFerdigstiltUtenSvar: true,
-            erDelsvar: true
+            erDokumentMelding: false
         },
         {
             id: 'q57oayxa',
@@ -49,7 +49,7 @@ export const statiskTraadMock = {
             journalfortDato: '2019-08-12',
             ferdigstiltDato: '2019-07-12',
             erFerdigstiltUtenSvar: true,
-            erDelsvar: true
+            erDokumentMelding: false
         },
         {
             id: '90l2nkx0',
@@ -65,7 +65,7 @@ export const statiskTraadMock = {
             journalfortDato: '2019-07-30',
             ferdigstiltDato: '2019-07-27',
             erFerdigstiltUtenSvar: false,
-            erDelsvar: true
+            erDokumentMelding: false
         }
     ]
 } as Traad;

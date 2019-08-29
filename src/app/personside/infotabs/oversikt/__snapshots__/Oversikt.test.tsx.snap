@@ -129,7 +129,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 20% 55% 1fr auto;
-  grid-template-columns: 20% 55% 1fr auto;
+  grid-template-columns: 20% minmax(35%,55%) 1fr auto;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -230,8 +230,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c1 > * {
-  margin: 0.9375rem;
-  max-width: 30rem;
+  margin-bottom: .8rem;
+}
+
+.c1:not(:last-child) {
+  margin-right: .8rem;
 }
 
 <article

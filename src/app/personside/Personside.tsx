@@ -5,6 +5,7 @@ import MainLayout from './MainLayout';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -25,6 +26,7 @@ function Personside() {
         <RestResourceConsumer<PersonRespons>
             getResource={restResources => restResources.personinformasjon}
             returnOnError={onError}
+            returnOnPending={<CenteredLazySpinner type="XXL" />}
         >
             {data => getSideinnhold(data)}
         </RestResourceConsumer>

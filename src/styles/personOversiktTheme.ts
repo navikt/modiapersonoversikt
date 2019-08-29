@@ -26,7 +26,9 @@ export const theme = {
         gråSkrift: '#645f5a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)',
-        morkGra: '#3E3832'
+        morkGra: '#3E3832',
+        navGra20: '#c6c2bf',
+        orangeFocusLighten60: '#FFE5C2'
     },
     gråttPanel: css`
         border-radius: ${pxToRem(8)};

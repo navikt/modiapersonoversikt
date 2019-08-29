@@ -32,6 +32,7 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockStaticPersonsokResponse } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
+import standardTekster from './standardtekster.json';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -221,6 +222,13 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
+function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/oppgaver/leggTilbake',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+    );
+}
+
 function endreNavnMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/brukerprofil/:fodselsnummer/navn',
@@ -270,6 +278,15 @@ function setupSendReferatMock(mock: FetchMock) {
 function setupSendSpørsmålMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+            return {};
+        })
+    );
+}
+
+function setupSendSvarMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
@@ -387,6 +404,10 @@ function merkSlettMock(mock: FetchMock) {
     mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
 }
 
+function setupStandardteksterMock(mock: FetchMock) {
+    mock.get('/modiapersonoversikt-skrivestotte/skrivestotte', standardTekster);
+}
+
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     if (response.headers) {
         return response;
@@ -426,6 +447,7 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
     setupFeatureToggleMock(mock);
@@ -449,6 +471,7 @@ export function setupMock() {
     opprettOppgaveMock(mock);
     setupSendReferatMock(mock);
     setupSendSpørsmålMock(mock);
+    setupSendSvarMock(mock);
     setupPersonsokMock(mock);
     merkAvsluttMock(mock);
     merkBidragMock(mock);
@@ -456,4 +479,5 @@ export function setupMock() {
     merkKontorsperretMock(mock);
     merkSlettMock(mock);
     setupJournalforingMock(mock);
+    setupStandardteksterMock(mock);
 }
