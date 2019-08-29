@@ -54,7 +54,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c8 {
-  padding: 1.25rem;
+  padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -82,7 +82,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c4 {
-  padding: 1.25rem;
+  padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
