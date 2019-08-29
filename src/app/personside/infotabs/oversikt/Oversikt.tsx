@@ -16,10 +16,10 @@ const Style = styled.article`
 
 const KolonneStyle = styled.div`
     > * {
-        margin-bottom: ${theme.margin.layout};
+        margin-bottom: ${theme.margin.px30};
     }
     &:not(:last-child) {
-        margin-right: ${theme.margin.layout};
+        margin-right: ${theme.margin.px30};
     }
 `;
 
@@ -59,8 +59,6 @@ function Oversikt() {
                     children={<YtelserOversikt />}
                     hurtigtast={'Y'}
                 />
-            </KolonneStyle>
-            <KolonneStyle>
                 <Oversiktskomponent
                     tittel={'Saker'}
                     infotabPath={INFOTABS.SAKER}

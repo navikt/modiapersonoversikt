@@ -22,6 +22,10 @@ const PanelStyle = styled.div`
 
 const OverskriftStyle = styled.div`
     display: flex;
+    background-color: ${theme.color.bakgrunn};
+    box-shadow: 0 0 0.1rem gray;
+    border-top-left-radius: ${theme.borderRadius.layout};
+    border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
     padding: ${theme.margin.px10};
 `;
@@ -42,10 +46,8 @@ function Oversiktskomponent(props: Props) {
 
     return (
         <PanelStyle>
-            <OverskriftStyle>
-                <Undertittel tag="h3">
-                    {props.tittel} (Alt + {props.hurtigtast})
-                </Undertittel>
+            <OverskriftStyle title={'Alt + ' + props.hurtigtast}>
+                <Undertittel tag="h3">{props.tittel}</Undertittel>
                 <StyledLink className="lenke" to={path}>
                     <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                 </StyledLink>
