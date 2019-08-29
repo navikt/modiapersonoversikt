@@ -18,6 +18,11 @@ const UtbetalingerArticle = styled.article`
     @media (max-width: ${theme.media.utbetalinger}) {
         display: block;
     }
+    position: relative;
+    > * {
+        position: sticky;
+        top: 0;
+    }
 `;
 
 const FiltreringSection = styled.section`

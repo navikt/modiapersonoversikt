@@ -51,7 +51,7 @@ function getSakstemaListe(): Sakstema[] {
         return [];
     }
 
-    return Array(navfaker.random.integer(5, 1))
+    return Array(navfaker.random.integer(25, 20))
         .fill(null)
         .map(() => getSakstema());
 }

@@ -462,6 +462,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
+  position: relative;
+}
+
+.c0 > * {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .c2 {

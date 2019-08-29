@@ -28,6 +28,11 @@ const SaksoversiktArticle = styled.article`
     > * {
         margin-bottom: ${theme.margin.layout};
     }
+    position: relative;
+    > * {
+        position: sticky;
+        top: 0;
+    }
 `;
 
 function SaksoversiktContainer() {
