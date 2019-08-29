@@ -121,7 +121,11 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Personsok:
             return <PersonsokStandAloneKomponent />;
         case Komponenter.JournalforingPanel:
-            return <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />;
+            return (
+                <TestProvider>
+                    <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />
+                </TestProvider>
+            );
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
         default:
