@@ -8,8 +8,9 @@ import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { hasData } from '../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import { setDialogpanelTraad } from '../../../redux/oppgave/actions';
+import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { loggError } from '../../../utils/frontendLogger';
+import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -26,7 +27,8 @@ function DialogPanel() {
         const oppgave = tildelteOppgaver.paaBruker[0];
         const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
         if (traadTilknyttetOppgave) {
-            dispatch(setDialogpanelTraad(traadTilknyttetOppgave));
+            dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
+            dispatch(setValgtTraadMeldingspanel(traadTilknyttetOppgave));
         } else {
             loggError(
                 new Error(

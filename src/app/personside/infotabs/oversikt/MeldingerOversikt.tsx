@@ -11,7 +11,7 @@ import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { delAvStringMedDots } from '../../../../utils/string-utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { settValgtTraad } from '../../../../redux/meldinger/actions';
+import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
@@ -39,7 +39,7 @@ function MeldingerOversikt(props: RouteComponentProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
 
     const clickHandler = (traad: Traad) => {
-        dispatch(settValgtTraad(traad));
+        dispatch(setValgtTraadMeldingspanel(traad));
         props.history.push(`${paths.personUri}/${valgtBrukersFnr}/meldinger`);
     };
 

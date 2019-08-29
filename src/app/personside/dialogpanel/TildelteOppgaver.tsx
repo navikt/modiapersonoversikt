@@ -5,9 +5,9 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useDispatch } from 'react-redux';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
-import { setDialogpanelTraad } from '../../../redux/oppgave/actions';
+import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
-import { settValgtTraad } from '../../../redux/meldinger/actions';
+import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
 import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData, isNotStarted } from '../../../rest/utils/restResource';
@@ -71,8 +71,8 @@ function TildelteOppgaver() {
                 return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
             }
             const handleClick = () => {
-                dispatch(settValgtTraad(traad));
-                dispatch(setDialogpanelTraad(traad));
+                dispatch(setValgtTraadMeldingspanel(traad));
+                dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
             const nyesteMelding = sisteSendteMelding(traad);

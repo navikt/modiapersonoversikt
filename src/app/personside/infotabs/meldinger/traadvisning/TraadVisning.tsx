@@ -7,9 +7,9 @@ import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import { settValgtTraad } from '../../../../../redux/meldinger/actions';
+import { setValgtTraadMeldingspanel } from '../../../../../redux/meldinger/actions';
 import { Flatknapp } from 'nav-frontend-knapper';
-import { setDialogpanelTraad } from '../../../../../redux/oppgave/actions';
+import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { Collapse } from 'react-collapse';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
@@ -49,7 +49,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
     const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
     useEffect(() => {
         if (!valgtTraad && hasData(traader)) {
-            dispatch(settValgtTraad(traader.data[0]));
+            dispatch(setValgtTraadMeldingspanel(traader.data[0]));
         }
     }, [valgtTraad, traader, dispatch]);
 
@@ -58,7 +58,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
     }
 
     const handleSendMelding = () => {
-        dispatch(setDialogpanelTraad(valgtTraad));
+        dispatch(setValgtTraadDialogpanel(valgtTraad));
         dispatch(toggleDialogpanel(true));
     };
 

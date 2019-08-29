@@ -3,7 +3,7 @@ import { SendSvarRequest, Temagruppe } from '../../../../models/meldinger/meldin
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import { FailedPostResource, FinishedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
-import { setIngenTraadBesvaresIDialogpanel } from '../../../../redux/oppgave/actions';
+import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
@@ -18,7 +18,7 @@ export function SvarSendtKvittering(props: { resource: FinishedPostResource<Send
             fritekst={props.resource.payload.fritekst}
             meldingstype={props.resource.payload.meldingstype}
             lukk={() => {
-                dispatch(setIngenTraadBesvaresIDialogpanel());
+                dispatch(setIngenValgtTraadDialogpanel());
                 dispatch(props.resource.actions.reset);
             }}
         />
@@ -29,7 +29,7 @@ export function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostReso
     const dispatch = useDispatch();
     const lukk = () => {
         dispatch(props.resource.actions.reset);
-        dispatch(setIngenTraadBesvaresIDialogpanel());
+        dispatch(setIngenValgtTraadDialogpanel());
     };
     return (
         <DialogpanelKvitteringStyling>
