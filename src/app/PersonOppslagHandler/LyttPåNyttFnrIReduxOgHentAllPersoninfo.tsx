@@ -24,6 +24,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.kontaktinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.vergemal.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.egenAnsatt.actions.fetch, fnr);
+    useDispatchOnNewFnr(restResources.tildDelteOppgaver.actions.fetch, fnr);
+
     useDispatchOnNewFnr(restResources.brukersNavKontor.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.utbetalinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.pleiepenger.actions.reset, fnr);
@@ -31,8 +33,14 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.foreldrepenger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sendReferat.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sendSpørsmål.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.sendSvar.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.leggTilbakeOppgave.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.sakstema.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.oppfolging.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.opprettOppgave.actions.reset, fnr);
+
     useFetchFeatureTogglesOnNewFnr();
     useDispatchOnNewFnr(setDialogpanelTraad(undefined), fnr);
 

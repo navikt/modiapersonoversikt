@@ -17,7 +17,7 @@ import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
-import setNyGjeldendeBruker from '../redux/gjeldendeBruker/actions';
+import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
@@ -51,7 +51,7 @@ export function getTestStore(): Store<AppState> {
     );
     testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
-    testStore.dispatch(setNyGjeldendeBruker(aremarkFnr));
+    testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));

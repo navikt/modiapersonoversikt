@@ -312,11 +312,17 @@ exports[`viser hurtigreferat 1`] = `
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på www.nav.no
-                  </p>
+                    Aremark Testfamilien har fått generell informasjon om NAVs tjenester og ytelser, og du finner mer informasjon om dette på 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no"
+                    >
+                      www.nav.no
+                    </a>
+                  </div>
                 </article>
               </div>
             </div>
@@ -396,11 +402,17 @@ exports[`viser hurtigreferat 1`] = `
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har fått veiledning i bruk av www.nav.no
-                  </p>
+                    Aremark Testfamilien har fått veiledning i bruk av 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no"
+                    >
+                      www.nav.no
+                    </a>
+                  </div>
                 </article>
               </div>
             </div>
@@ -480,11 +492,18 @@ exports[`viser hurtigreferat 1`] = `
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/utbetaling for informasjon og status om utbetalingen sin.
-                  </p>
+                    Aremark Testfamilien har fått informasjon om å følge med på 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no/utbetaling"
+                    >
+                      www.nav.no/utbetaling
+                    </a>
+                     for informasjon og status om utbetalingen sin.
+                  </div>
                 </article>
               </div>
             </div>
@@ -564,15 +583,47 @@ exports[`viser hurtigreferat 1`] = `
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har spørsmål om skattetrekk.
-Du har fått informasjon om at:
-- vi har brukt skattetrekket som vi har fått overført fra skatteetaten
-- hvis du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no
-Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skatt
-                  </p>
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Aremark Testfamilien har spørsmål om skattetrekk.
+                    </p>
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Du har fått informasjon om at:
+                    </p>
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      - vi har brukt skattetrekket som vi har fått overført fra skatteetaten
+                    </p>
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      - hvis du mener skattetrekket er feil må du endre skattekortet selv på 
+                      <a
+                        className="lenke"
+                        href="https://www.skatteetaten.no"
+                      >
+                        www.skatteetaten.no
+                      </a>
+                    </p>
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Du har også fått informasjon om at du kan lese mer på 
+                      <a
+                        className="lenke"
+                        href="https://www.nav.no/skatt"
+                      >
+                        https://www.nav.no/skatt
+                      </a>
+                    </p>
+                  </div>
                 </article>
               </div>
             </div>
@@ -652,11 +703,17 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har fått veiledning i å fylle ut søknad på www.nav.no
-                  </p>
+                    Aremark Testfamilien har fått veiledning i å fylle ut søknad på 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no"
+                    >
+                      www.nav.no
+                    </a>
+                  </div>
                 </article>
               </div>
             </div>
@@ -736,11 +793,18 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien har fått informasjon om å følge med på www.nav.no/saksbehandlingstid for status på behandlingstid på sin søknad.
-                  </p>
+                    Aremark Testfamilien har fått informasjon om å følge med på 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no/saksbehandlingstid"
+                    >
+                      www.nav.no/saksbehandlingstid
+                    </a>
+                     for status på behandlingstid på sin søknad.
+                  </div>
                 </article>
               </div>
             </div>
@@ -820,11 +884,17 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på www.nav.no/elektroniskinnsending
-                  </p>
+                    Aremark Testfamilien får ikke sendt inn opplysninger til NAV elektronisk. Du er anbefalt å se om du finner løsningen på 
+                    <a
+                      className="lenke"
+                      href="https://www.nav.no/elektroniskinnsending"
+                    >
+                      www.nav.no/elektroniskinnsending
+                    </a>
+                  </div>
                 </article>
               </div>
             </div>
@@ -904,11 +974,11 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
                     Aremark Testfamilien har fått veiledning om vedtaket sitt.
-                  </p>
+                  </div>
                 </article>
               </div>
             </div>
@@ -988,11 +1058,11 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
                     Aremark Testfamilien har et ubesvart anrop fra NAV. Du blir kontaktet på nytt dersom NAV ønsker å gi eller innhente informasjon fra deg.
-                  </p>
+                  </div>
                 </article>
               </div>
             </div>
@@ -1072,11 +1142,11 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
                       01.01.1970 01:00
                     </p>
                   </div>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
                     Aremark Testfamilien har opplevd tekniske problemer med nav.no, og har fått veiledning på hvordan dette kan løses. Problemet er nå løst.
-                  </p>
+                  </div>
                 </article>
               </div>
             </div>

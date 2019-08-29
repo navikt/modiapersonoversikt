@@ -1,4 +1,4 @@
-import setNyGjeldendeBruker from '../../redux/gjeldendeBruker/actions';
+import setGjeldendeBrukerIRedux from '../../redux/gjeldendeBruker/actions';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 
@@ -19,7 +19,7 @@ function SetFnrIRedux(props: Props) {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        setFnrIRedux: (fnr: string) => dispatch(setNyGjeldendeBruker(fnr))
+        setFnrIRedux: (fnr: string) => dispatch(setGjeldendeBrukerIRedux(fnr))
     };
 }
 
