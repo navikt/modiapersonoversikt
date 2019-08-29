@@ -63,7 +63,7 @@ function TraadVisning({ valgtTraad, traader }: Props) {
             <KnappWrapper>
                 <Collapse isOpened={true}>
                     {traadDialogpanel === valgtTraad ? (
-                        <AlertStripeInfo>Besvares i dialogpanel</AlertStripeInfo>
+                        <AlertStripeInfo>Under arbeid</AlertStripeInfo>
                     ) : (
                         <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
                     )}
