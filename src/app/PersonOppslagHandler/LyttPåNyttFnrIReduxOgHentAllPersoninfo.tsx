@@ -6,8 +6,6 @@ import { Action } from 'redux';
 import { AsyncAction } from '../../redux/ThunkTypes';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { cache } from '@nutgaard/use-fetch';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { setNyBrukerIPath } from '../routes/routing';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -16,7 +14,7 @@ function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     }, [action, fnr, dispatch]);
 }
 
-function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
+function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const restResources = useSelector((state: AppState) => state.restResources);
 
@@ -37,14 +35,10 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useFetchFeatureTogglesOnNewFnr();
 
     useEffect(() => {
-        setNyBrukerIPath(props.history, fnr);
-    }, [props.history, fnr]);
-
-    useEffect(() => {
         cache.clear();
     }, [fnr]);
 
     return null;
 }
 
-export default withRouter(LyttPåNyttFnrIReduxOgHentAllPersoninfo);
+export default LyttPåNyttFnrIReduxOgHentAllPersoninfo;
