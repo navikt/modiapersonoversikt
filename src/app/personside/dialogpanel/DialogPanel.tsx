@@ -21,7 +21,8 @@ function DialogPanel() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
 
-    if (!dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0 && hasData(traaderResource)) {
+    const visTraadTilknyttetOppgaveIDialogpanel = !dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0;
+    if (visTraadTilknyttetOppgaveIDialogpanel && hasData(traaderResource)) {
         const oppgave = tildelteOppgaver.paaBruker[0];
         const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
         if (traadTilknyttetOppgave) {
