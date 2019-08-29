@@ -1,9 +1,15 @@
 import { Traad } from '../../models/meldinger/meldinger';
-import { OppgaveActionTypes, SetValgtTraad } from './types';
+import { NullstillValgtTraad, OppgaveActionTypes, SetValgtTraad } from './types';
 
-export function setDialogpanelTraad(traad?: Traad): SetValgtTraad {
+export function setDialogpanelTraad(traad: Traad): SetValgtTraad {
     return {
         type: OppgaveActionTypes.SetDialogpanelTraad,
         traad: traad
+    };
+}
+
+export function setIngenTraadBesvaresIDialogpanel(): NullstillValgtTraad {
+    return {
+        type: OppgaveActionTypes.NullstillDialogpanelTraad
     };
 }

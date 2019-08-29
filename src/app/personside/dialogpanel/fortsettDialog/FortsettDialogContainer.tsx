@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
-import { setDialogpanelTraad } from '../../../../redux/oppgave/actions';
+import { setIngenTraadBesvaresIDialogpanel } from '../../../../redux/oppgave/actions';
 import { usePrevious, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
@@ -69,7 +69,7 @@ function FortsettDialogContainer(props: Props) {
         }
     }, [props.traad, setState, previous, initialState]);
 
-    const handleAvbryt = () => dispatch(setDialogpanelTraad(undefined));
+    const handleAvbryt = () => dispatch(setIngenTraadBesvaresIDialogpanel());
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();

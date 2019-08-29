@@ -24,14 +24,15 @@ function DialogPanel() {
     if (!dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0 && hasData(traaderResource)) {
         const oppgave = tildelteOppgaver.paaBruker[0];
         const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
-        if (!traadTilknyttetOppgave) {
+        if (traadTilknyttetOppgave) {
+            dispatch(setDialogpanelTraad(traadTilknyttetOppgave));
+        } else {
             loggError(
                 new Error(
                     `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
                 )
             );
         }
-        dispatch(setDialogpanelTraad(traadTilknyttetOppgave));
     }
 
     const tilknyttetOppgave = dialogpanelTraad
