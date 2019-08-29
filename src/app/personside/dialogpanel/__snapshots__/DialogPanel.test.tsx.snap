@@ -204,32 +204,6 @@ exports[`viser dialogpanel 1`] = `
   padding-left: 2.25rem;
 }
 
-.c13 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c16 {
-  margin-top: 1rem;
-}
-
-.c16 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
 .c12 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -251,6 +225,43 @@ exports[`viser dialogpanel 1`] = `
 
 .c12 > * {
   margin-bottom: 1rem;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c13 > * {
+  margin-top: 0.3rem;
+}
+
+.c13 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c16 {
+  margin-top: 1rem;
+}
+
+.c16 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
 }
 
 .c11 {
@@ -1267,47 +1278,62 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
       className="c12"
       onSubmit={[Function]}
     >
-      <div>
+      <div
+        className="c13"
+      >
         <div
-          className="skjemaelement c13"
+          className="skjemaelement skjemaelement--horisontal"
         >
+          <input
+            checked={true}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onChange={[Function]}
+            type="radio"
+          />
           <label
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Velg dialogtype
+            Referat telefon
           </label>
-          <div
-            className="selectContainer input--fullbredde"
-          >
-            <select
-              className="skjemaelement__input"
-              disabled={false}
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              value="SAMTALEREFERAT_TELEFON"
-            >
-              <option
-                value="SAMTALEREFERAT_TELEFON"
-              >
-                Samtalereferat telefon
-              </option>
-              <option
-                value="SAMTALEREFERAT_OPPMOTE"
-              >
-                Samtalereferat oppmøte
-              </option>
-              <option
-                value="SPORSMAL_MODIA_UTGAAENDE"
-              >
-                Spørsmål til bruker
-              </option>
-            </select>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onChange={[Function]}
+            type="radio"
           />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Referat oppmøte
+          </label>
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input radioknapp"
+            id="Helt tilfeldig ID"
+            name="dialogtype"
+            onChange={[Function]}
+            type="radio"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Spørsmål
+          </label>
         </div>
       </div>
       <div
