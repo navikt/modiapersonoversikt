@@ -22,6 +22,7 @@ import { Kodeverk } from '../../../../models/kodeverk';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { KommunikasjonsKanal } from '../../../../models/meldinger/meldinger';
+import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
@@ -68,7 +69,12 @@ function HurtigreferatContainer() {
             return;
         }
         if (isNotStartedPosting(sendResource)) {
-            loggEvent('sendReferat', 'hurtigreferat', { tema: tema.beskrivelse, tittel: hurtigreferat.tittel });
+            const enhet = getSaksbehandlerEnhet();
+            loggEvent('sendReferat', 'hurtigreferat', {
+                tema: tema.beskrivelse,
+                tittel: hurtigreferat.tittel,
+                enhet: enhet
+            });
             dispatch(
                 sendResource.actions.post(
                     {
