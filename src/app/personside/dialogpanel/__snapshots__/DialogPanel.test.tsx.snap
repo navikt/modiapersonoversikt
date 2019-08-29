@@ -147,7 +147,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 0.5rem;
 }
 
-.c14 .ekspanderbartPanel__hode {
+.c15 .ekspanderbartPanel__hode {
   padding: 0.6rem;
 }
 
@@ -215,11 +215,11 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c15 {
+.c16 {
   margin-top: 1rem;
 }
 
-.c15 label {
+.c16 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -271,7 +271,7 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c16 {
+.c14 {
   margin-top: 1rem;
 }
 
@@ -1379,10 +1379,48 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
+          className="alertstripe c14 alertstripe--info"
+        >
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+                fillRule="nonzero"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
+                />
+                <g
+                  fill="#FFF"
+                >
+                  <path
+                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zM14.976 17.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007H14.976z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Gir ikke varsel til bruker
+          </div>
+        </div>
+        <div
           className=""
         >
           <div
-            className="ekspanderbartPanel c14 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="ekspanderbartPanel c15 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
             <button
               aria-expanded={false}
@@ -1449,7 +1487,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="skjemaelement c15"
+          className="skjemaelement c16"
         >
           <label
             className="skjemaelement__label"
@@ -1486,7 +1524,7 @@ Du har også fått informasjon om at du kan lese mer på https://www.nav.no/skat
           />
         </div>
         <div
-          className="alertstripe c16 alertstripe--info"
+          className="alertstripe c14 alertstripe--info"
         >
           <span
             aria-label="info"
