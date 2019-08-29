@@ -28,8 +28,8 @@ function VelgDialogType(props: Props) {
                 <option value={Meldingstype.SVAR_SKRIFTLIG}>Svar</option>
                 <option value={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}>Spørsmål</option>
                 {props.erTilknyttetOppgave && <option value={Meldingstype.DELVIS_SVAR_SKRIFTLIG}>Delsvar</option>}
-                <option value={Meldingstype.SVAR_TELEFON}>Telefon</option>
-                <option value={Meldingstype.SVAR_OPPMOTE}>Oppmøte</option>
+                {!props.erTilknyttetOppgave && <option value={Meldingstype.SVAR_TELEFON}>Telefon</option>}
+                {!props.erTilknyttetOppgave && <option value={Meldingstype.SVAR_OPPMOTE}>Oppmøte</option>}
             </StyledSelect>
         </div>
     );
