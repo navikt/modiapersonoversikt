@@ -14,8 +14,6 @@ interface Props {
 
 const PanelStyle = styled.div`
     ${theme.hvittPanel};
-    min-width: 24rem;
-    flex-basis: 24rem;
     ol {
         list-style: none;
     }

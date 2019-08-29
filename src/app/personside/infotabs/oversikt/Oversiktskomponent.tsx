@@ -22,6 +22,10 @@ const PanelStyle = styled.div`
 
 const OverskriftStyle = styled.div`
     display: flex;
+    background-color: ${theme.color.bakgrunn};
+    box-shadow: 0 0 0.1rem gray;
+    border-top-left-radius: ${theme.borderRadius.layout};
+    border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
     padding: ${theme.margin.px10};
 `;
@@ -32,19 +36,21 @@ const MainStyle = styled.div`
     }
 `;
 
+const StyledLink = styled(Link)`
+    text-align: right;
+`;
+
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
 
     return (
         <PanelStyle>
-            <OverskriftStyle>
-                <Undertittel tag="h3">
-                    {props.tittel} (Alt + {props.hurtigtast})
-                </Undertittel>
-                <Link className="lenke" to={path}>
+            <OverskriftStyle title={'Alt + ' + props.hurtigtast}>
+                <Undertittel tag="h3">{props.tittel}</Undertittel>
+                <StyledLink className="lenke" to={path}>
                     <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
-                </Link>
+                </StyledLink>
             </OverskriftStyle>
             <MainStyle>{props.children}</MainStyle>
         </PanelStyle>

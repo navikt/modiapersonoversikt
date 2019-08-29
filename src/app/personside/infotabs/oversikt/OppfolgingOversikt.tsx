@@ -7,7 +7,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
 
 const Style = styled.div`
-    padding: ${theme.margin.px10};
+    padding: ${theme.margin.layout};
 `;
 
 interface Props {
