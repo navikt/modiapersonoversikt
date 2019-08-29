@@ -17,7 +17,7 @@ const ListStyle = styled.ol`
 
 const UtbetalingStyle = styled.div`
     background-color: white;
-    padding: ${theme.margin.px10};
+    padding: ${theme.margin.layout};
 `;
 
 interface Props {

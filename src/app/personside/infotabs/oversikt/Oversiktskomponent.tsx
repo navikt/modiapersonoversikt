@@ -32,6 +32,10 @@ const MainStyle = styled.div`
     }
 `;
 
+const StyledLink = styled(Link)`
+    text-align: right;
+`;
+
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
@@ -42,9 +46,9 @@ function Oversiktskomponent(props: Props) {
                 <Undertittel tag="h3">
                     {props.tittel} (Alt + {props.hurtigtast})
                 </Undertittel>
-                <Link className="lenke" to={path}>
+                <StyledLink className="lenke" to={path}>
                     <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
-                </Link>
+                </StyledLink>
             </OverskriftStyle>
             <MainStyle>{props.children}</MainStyle>
         </PanelStyle>
