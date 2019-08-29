@@ -6,6 +6,7 @@ import { Action } from 'redux';
 import { AsyncAction } from '../../redux/ThunkTypes';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { cache } from '@nutgaard/use-fetch';
+import { setDialogpanelTraad } from '../../redux/oppgave/actions';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useDispatchOnNewFnr(restResources.opprettOppgave.actions.reset, fnr);
 
     useFetchFeatureTogglesOnNewFnr();
+    useDispatchOnNewFnr(setDialogpanelTraad(undefined), fnr);
 
     useEffect(() => {
         cache.clear();

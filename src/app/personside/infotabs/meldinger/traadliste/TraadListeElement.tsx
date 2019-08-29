@@ -82,7 +82,7 @@ function TraadListeElement(props: Props) {
                         </UUcustomOrder>
                         <EtikettStyling>
                             <UnmountClosed isOpened={traadDialogpanel === props.traad}>
-                                <EtikettFokus>Besvares i dialogpanel</EtikettFokus>
+                                <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                         </EtikettStyling>

@@ -53,15 +53,49 @@ exports[`viser fortsett dialog 1`] = `
   overflow: hidden;
 }
 
-.c13 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1rem;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.c1 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c1 > * {
+  margin-bottom: 1rem;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c13 > * {
+  margin-top: 0.3rem;
+}
+
+.c13 > *:not(:last-child) {
+  margin-right: 1rem;
 }
 
 .c10 {
@@ -126,29 +160,6 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px 1px 1px 1px);
   -webkit-clip: rect(1px,1px,1px,1px);
   clip: rect(1px,1px,1px,1px);
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 1rem;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.c1 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c1 > * {
-  margin-bottom: 1rem;
 }
 
 .c16 .ekspanderbartPanel__hode {
@@ -569,52 +580,80 @@ exports[`viser fortsett dialog 1`] = `
         role="alert"
       />
     </div>
-    <div>
+    <div
+      className="c13"
+    >
       <div
-        className="skjemaelement c13"
+        className="skjemaelement skjemaelement--horisontal"
       >
+        <input
+          checked={true}
+          className="skjemaelement__input radioknapp"
+          id="Helt tilfeldig ID"
+          name="dialogtype"
+          onChange={[Function]}
+          type="radio"
+        />
         <label
           className="skjemaelement__label"
           htmlFor="Helt tilfeldig ID"
         >
-          Velg dialogtype
+          Svar
         </label>
-        <div
-          className="selectContainer input--fullbredde"
-        >
-          <select
-            className="skjemaelement__input"
-            disabled={false}
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            value="SVAR_SKRIFTLIG"
-          >
-            <option
-              value="SVAR_SKRIFTLIG"
-            >
-              Svar
-            </option>
-            <option
-              value="SPORSMAL_MODIA_UTGAAENDE"
-            >
-              Spørsmål
-            </option>
-            <option
-              value="SVAR_TELEFON"
-            >
-              Telefon
-            </option>
-            <option
-              value="SVAR_OPPMOTE"
-            >
-              Oppmøte
-            </option>
-          </select>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
+      </div>
+      <div
+        className="skjemaelement skjemaelement--horisontal"
+      >
+        <input
+          checked={false}
+          className="skjemaelement__input radioknapp"
+          id="Helt tilfeldig ID"
+          name="dialogtype"
+          onChange={[Function]}
+          type="radio"
         />
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Spørsmål
+        </label>
+      </div>
+      <div
+        className="skjemaelement skjemaelement--horisontal"
+      >
+        <input
+          checked={false}
+          className="skjemaelement__input radioknapp"
+          id="Helt tilfeldig ID"
+          name="dialogtype"
+          onChange={[Function]}
+          type="radio"
+        />
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Svar telefon
+        </label>
+      </div>
+      <div
+        className="skjemaelement skjemaelement--horisontal"
+      >
+        <input
+          checked={false}
+          className="skjemaelement__input radioknapp"
+          id="Helt tilfeldig ID"
+          name="dialogtype"
+          onChange={[Function]}
+          type="radio"
+        />
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Svar oppmøte
+        </label>
       </div>
     </div>
     <div
