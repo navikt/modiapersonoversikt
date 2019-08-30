@@ -10,6 +10,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -32,7 +33,10 @@ function SakerOversikt(props: RouteComponentProps) {
     };
 
     return (
-        <RestResourceConsumer<SakstemaResponse> getResource={restResources => restResources.sakstema}>
+        <RestResourceConsumer<SakstemaResponse>
+            getResource={restResources => restResources.sakstema}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => <SakerPanel sakstema={data.resultat} onClick={clickHandler} />}
         </RestResourceConsumer>
     );

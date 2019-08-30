@@ -15,6 +15,8 @@ import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions'
 import { RouteComponentProps, withRouter } from 'react-router';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -44,7 +46,10 @@ function MeldingerOversikt(props: RouteComponentProps) {
     };
 
     return (
-        <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
+        <RestResourceConsumer<Traad[]>
+            getResource={restResources => restResources.tråderOgMeldinger}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => {
                 const traadKomponenter = data
                     .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
@@ -78,7 +83,7 @@ function Traadelement(props: Props) {
                 <div>
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Element>{tittel}</Element>
-                    <Normaltekst>{delAvStringMedDots(nyesteMelding.fritekst, 100)}</Normaltekst>
+                    <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
                 </div>
             </PanelStyle>
         </VisMerKnapp>

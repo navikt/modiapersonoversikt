@@ -7,6 +7,8 @@ import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { paths } from '../../../routes/routing';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { INFOTABS } from '../InfoTabEnum';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
@@ -14,7 +16,10 @@ interface Props {
 
 function OppfolgingOversikt() {
     return (
-        <RestResourceConsumer<DetaljertOppfolging> getResource={restResources => restResources.oppfolging}>
+        <RestResourceConsumer<DetaljertOppfolging>
+            getResource={restResources => restResources.oppfolging}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => <OppfolgingPanel detaljertOppfølging={data} />}
         </RestResourceConsumer>
     );

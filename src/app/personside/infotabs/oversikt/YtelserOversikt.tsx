@@ -10,6 +10,7 @@ import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { paths } from '../../../routes/routing';
 import { useFødselsnummer } from '../../../../utils/customHooks';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 interface SykepengerProps {
     sykepenger: Sykepenger[];
@@ -34,7 +35,10 @@ function YtelserOversikt() {
 
     return (
         <YtelserStyle>
-            <RestResourceConsumer<PleiepengerResponse> getResource={restResource => restResource.pleiepenger}>
+            <RestResourceConsumer<PleiepengerResponse>
+                getResource={restResource => restResource.pleiepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.pleiepenger) {
                         return null;
@@ -50,7 +54,10 @@ function YtelserOversikt() {
                     );
                 }}
             </RestResourceConsumer>
-            <RestResourceConsumer<SykepengerResponse> getResource={restResource => restResource.sykepenger}>
+            <RestResourceConsumer<SykepengerResponse>
+                getResource={restResource => restResource.sykepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.sykepenger) {
                         return null;
@@ -66,7 +73,10 @@ function YtelserOversikt() {
                     );
                 }}
             </RestResourceConsumer>
-            <RestResourceConsumer<ForeldrepengerResponse> getResource={restResource => restResource.foreldrepenger}>
+            <RestResourceConsumer<ForeldrepengerResponse>
+                getResource={restResource => restResource.foreldrepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.foreldrepenger) {
                         return null;

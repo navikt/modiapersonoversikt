@@ -13,6 +13,7 @@ import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { paths } from '../../../routes/routing';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { INFOTABS } from '../InfoTabEnum';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -26,7 +27,10 @@ interface Props {
 
 function UtbetalingerOversikt() {
     return (
-        <RestResourceConsumer<UtbetalingerResponse> getResource={restResources => restResources.utbetalinger}>
+        <RestResourceConsumer<UtbetalingerResponse>
+            getResource={restResources => restResources.utbetalinger}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => <UtbetalingerPanel utbetalinger={data} />}
         </RestResourceConsumer>
     );

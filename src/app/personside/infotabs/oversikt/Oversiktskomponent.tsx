@@ -16,7 +16,7 @@ interface Props {
     hurtigtast: string;
 }
 
-const PanelStyle = styled.div`
+const PanelStyle = styled.section`
     ${theme.hvittPanel};
 `;
 
@@ -31,7 +31,7 @@ const OverskriftStyle = styled.div`
 `;
 
 const MainStyle = styled.div`
-    > * {
+    > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
 `;

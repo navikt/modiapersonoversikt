@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Oversiktskomponent from './Oversiktskomponent';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
 import YtelserOversikt from './YtelserOversikt';
@@ -12,6 +12,7 @@ import SakerOversikt from './SakerOversikt';
 
 const Style = styled.article`
     display: flex;
+    justify-content: center;
 `;
 
 const KolonneStyle = styled.div`
@@ -21,6 +22,8 @@ const KolonneStyle = styled.div`
     &:not(:last-child) {
         margin-right: ${theme.margin.px30};
     }
+    flex-basis: 50%;
+    max-width: ${pxToRem(800)};
 `;
 
 function Oversikt() {
