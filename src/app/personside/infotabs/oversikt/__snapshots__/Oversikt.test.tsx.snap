@@ -1,6 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
+.c17 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
+}
+
+.c17 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 .c8 {
   font-weight: bold;
 }
@@ -50,12 +85,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c21 svg {
+.c22 svg {
   height: 1.875rem;
   width: 1.875rem;
 }
 
-.c20 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -65,19 +100,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c20 .order-first {
+.c21 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c20 .order-second {
+.c21 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c19 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -208,7 +243,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.625rem;
 }
 
-.c5 > * {
+.c5 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -220,7 +255,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c17 > *:not(:first-child) {
+.c18 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -228,7 +263,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c18 > *:not(:first-child) {
+.c19 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -237,6 +272,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  max-width: 50rem;
 }
 
 .c1 > * {
@@ -253,7 +299,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   <div
     className="c1"
   >
-    <div
+    <section
       className="c2"
     >
       <div
@@ -331,8 +377,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </div>
         </ol>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -382,8 +428,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </button>
         </div>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -657,12 +703,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
         </ol>
       </div>
-    </div>
+    </section>
   </div>
   <div
     className="c1"
   >
-    <div
+    <section
       className="c2"
     >
       <div
@@ -689,9 +735,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
       <div
         className="c5"
-      />
-    </div>
-    <div
+      >
+        <div
+          className="c17"
+        />
+      </div>
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -720,11 +770,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <div
-          className="c17"
-        />
+          className="c18"
+        >
+          <div
+            className="c17"
+          />
+          <div
+            className="c17"
+          />
+          <div
+            className="c17"
+          />
+        </div>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -753,7 +813,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
-          className="c18"
+          className="c19"
         >
           <li>
             <div
@@ -762,11 +822,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <div>
                     <div
-                      className="c20"
+                      className="c21"
                     >
                       <p
                         className="typo-element order-second"
@@ -791,7 +851,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c21"
+                    className="c22"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -831,11 +891,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <div>
                     <div
-                      className="c20"
+                      className="c21"
                     >
                       <p
                         className="typo-element order-second"
@@ -870,7 +930,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c21"
+                    className="c22"
                   />
                 </div>
               </div>
@@ -893,11 +953,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <div>
                     <div
-                      className="c20"
+                      className="c21"
                     >
                       <p
                         className="typo-element order-second"
@@ -912,7 +972,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c21"
+                    className="c22"
                   />
                 </div>
               </div>
@@ -935,11 +995,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c19"
+                  className="c20"
                 >
                   <div>
                     <div
-                      className="c20"
+                      className="c21"
                     >
                       <p
                         className="typo-element order-second"
@@ -964,7 +1024,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c21"
+                    className="c22"
                   />
                 </div>
               </div>
@@ -982,7 +1042,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
         </ol>
       </div>
-    </div>
+    </section>
   </div>
 </article>
 `;
