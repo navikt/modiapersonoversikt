@@ -267,17 +267,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .c1 {
   -webkit-flex-basis: 50%;
   -ms-flex-preferred-size: 50%;
@@ -289,8 +278,23 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-bottom: 1.875rem;
 }
 
-.c1:not(:last-child) {
-  margin-right: 1.875rem;
+@media (min-width:35rem) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width:35rem) {
+  .c1:not(:last-child) {
+    margin-right: 1.875rem;
+  }
 }
 
 <article
