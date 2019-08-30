@@ -62,3 +62,15 @@ export function DialogpanelKvittering(props: {
         </DialogpanelKvitteringStyling>
     );
 }
+
+export const VelgDialogtypeStyle = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    > * {
+        margin-top: 0.3rem;
+    }
+    > *:not(:last-child) {
+        margin-right: 1rem;
+    }
+`;

@@ -21,10 +21,13 @@ const MeldingerArticleStyle = styled.article`
     > * {
         margin-bottom: ${theme.margin.layout};
     }
+    position: relative;
     > *:first-child {
         flex: 30% 1 1;
     }
     > *:last-child {
+        position: sticky;
+        top: 0;
         flex: 70% 1 1;
     }
 `;

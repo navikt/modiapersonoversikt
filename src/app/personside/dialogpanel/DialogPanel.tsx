@@ -2,12 +2,14 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import { useAppState } from '../../../utils/customHooks';
+import { useAppState, useRestResource } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../redux/reducers';
-import { isFinishedPosting } from '../../../rest/utils/postResource';
+import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
+import { hasData } from '../../../rest/utils/restResource';
+import { useDispatch } from 'react-redux';
+import { setDialogpanelTraad } from '../../../redux/oppgave/actions';
+import { loggError } from '../../../utils/frontendLogger';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -15,11 +17,26 @@ const DialogPanelWrapper = styled.article`
 
 function DialogPanel() {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
-    const tilknyttetOppgave =
-        isFinishedPosting(oppgaveResource) && dialogpanelTraad
-            ? oppgaveResource.response.find(oppgave => oppgave.henvendelseid === dialogpanelTraad.traadId)
-            : undefined;
+    const tildelteOppgaver = useTildelteOppgaver();
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dispatch = useDispatch();
+
+    if (!dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0 && hasData(traaderResource)) {
+        const oppgave = tildelteOppgaver.paaBruker[0];
+        const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
+        if (!traadTilknyttetOppgave) {
+            loggError(
+                new Error(
+                    `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
+                )
+            );
+        }
+        dispatch(setDialogpanelTraad(traadTilknyttetOppgave));
+    }
+
+    const tilknyttetOppgave = dialogpanelTraad
+        ? tildelteOppgaver.paaBruker.find(oppgave => oppgave.henvendelseid === dialogpanelTraad.traadId)
+        : undefined;
 
     return (
         <ErrorBoundary boundaryName="Dialogpanel">

@@ -94,6 +94,7 @@ function SendNyMelding(props: Props) {
                             tema={state.tema}
                             visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
                         />
+                        <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                     </UnmountClosed>
                     <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
                         <DialogpanelVelgSak
