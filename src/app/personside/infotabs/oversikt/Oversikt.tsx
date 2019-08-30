@@ -11,16 +11,20 @@ import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 
 const Style = styled.article`
-    display: flex;
-    justify-content: center;
+    @media (${theme.media.wideScreen}) {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 const KolonneStyle = styled.div`
     > * {
         margin-bottom: ${theme.margin.px30};
     }
-    &:not(:last-child) {
-        margin-right: ${theme.margin.px30};
+    @media (${theme.media.wideScreen}) {
+        &:not(:last-child) {
+            margin-right: ${theme.margin.px30};
+        }
     }
     flex-basis: 50%;
     max-width: ${pxToRem(800)};
