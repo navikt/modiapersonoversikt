@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { DetaljertOppfolging, Oppfolging } from '../../../../models/oppfolging';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
-
-const Style = styled.div`
-    padding: ${theme.margin.layout};
-`;
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { paths } from '../../../routes/routing';
+import { useFødselsnummer } from '../../../../utils/customHooks';
+import { INFOTABS } from '../InfoTabEnum';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
@@ -23,10 +21,15 @@ function OppfolgingOversikt() {
 }
 
 function OppfolgingPanel(props: Props) {
+    const fnr = useFødselsnummer();
     return (
-        <Style>
+        <VisMerKnapp
+            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.OPPFOLGING.toLowerCase()}`}
+            ariaDescription="Gå til oppfølging"
+            valgt={false}
+        >
             <OppfolgingVisning oppfolging={props.detaljertOppfølging.oppfølging} />
-        </Style>
+        </VisMerKnapp>
     );
 }
 

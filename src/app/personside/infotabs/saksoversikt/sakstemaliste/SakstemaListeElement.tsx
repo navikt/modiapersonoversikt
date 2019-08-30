@@ -32,6 +32,12 @@ const UUcustomOrder = styled.div`
     }
 `;
 
+const Flex = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
 function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatus: Behandlingsstatus, status: string) {
     const antallUnderbehandling = sakstema.behandlingskjeder.filter(
         behandlingskjede => behandlingskjede.status === sjekkMotStatus
@@ -77,17 +83,19 @@ function SakstemaListeElement(props: Props) {
                 onClick={() => props.oppdaterSakstema(props.sakstema)}
                 ariaDescription={'Vis ' + props.sakstema.temanavn}
             >
-                <div>
-                    <UUcustomOrder>
-                        <Element className="order-second">{props.sakstema.temanavn}</Element>
-                        <Normaltekst className="order-first">
-                            {hentFormattertDatoForSisteHendelse(props.sakstema)}
-                        </Normaltekst>
-                    </UUcustomOrder>
-                    {sakerUnderBehandling}
-                    {sakerFerdigBehandlet}
-                </div>
-                <SVGStyling>{saksikon(props.sakstema.harTilgang)}</SVGStyling>
+                <Flex>
+                    <div>
+                        <UUcustomOrder>
+                            <Element className="order-second">{props.sakstema.temanavn}</Element>
+                            <Normaltekst className="order-first">
+                                {hentFormattertDatoForSisteHendelse(props.sakstema)}
+                            </Normaltekst>
+                        </UUcustomOrder>
+                        {sakerUnderBehandling}
+                        {sakerFerdigBehandlet}
+                    </div>
+                    <SVGStyling>{saksikon(props.sakstema.harTilgang)}</SVGStyling>
+                </Flex>
             </VisMerKnapp>
         </li>
     );
