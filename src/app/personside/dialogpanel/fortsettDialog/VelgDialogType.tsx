@@ -11,6 +11,32 @@ interface Props {
 }
 
 function VelgDialogType(props: Props) {
+    const delvisSvarRadio = (
+        <Radio
+            label="Delvis svar"
+            onChange={() => props.updateDialogType(Meldingstype.DELVIS_SVAR_SKRIFTLIG)}
+            checked={props.formState.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG}
+            name="dialogtype"
+        />
+    );
+
+    const svarOppmoteTelefonRadios = (
+        <>
+            <Radio
+                label="Svar telefon"
+                onChange={() => props.updateDialogType(Meldingstype.SVAR_TELEFON)}
+                checked={props.formState.dialogType === Meldingstype.SVAR_TELEFON}
+                name="dialogtype"
+            />
+            <Radio
+                label="Svar oppmøte"
+                onChange={() => props.updateDialogType(Meldingstype.SVAR_OPPMOTE)}
+                checked={props.formState.dialogType === Meldingstype.SVAR_OPPMOTE}
+                name="dialogtype"
+            />
+        </>
+    );
+
     return (
         <VelgDialogtypeStyle>
             <Radio
@@ -25,29 +51,7 @@ function VelgDialogType(props: Props) {
                 checked={props.formState.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
                 name="dialogtype"
             />
-            {props.erTilknyttetOppgave ? (
-                <Radio
-                    label="Delvis svar"
-                    onChange={() => props.updateDialogType(Meldingstype.DELVIS_SVAR_SKRIFTLIG)}
-                    checked={props.formState.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG}
-                    name="dialogtype"
-                />
-            ) : (
-                <>
-                    <Radio
-                        label="Svar telefon"
-                        onChange={() => props.updateDialogType(Meldingstype.SVAR_TELEFON)}
-                        checked={props.formState.dialogType === Meldingstype.SVAR_TELEFON}
-                        name="dialogtype"
-                    />
-                    <Radio
-                        label="Svar oppmøte"
-                        onChange={() => props.updateDialogType(Meldingstype.SVAR_OPPMOTE)}
-                        checked={props.formState.dialogType === Meldingstype.SVAR_OPPMOTE}
-                        name="dialogtype"
-                    />
-                </>
-            )}
+            {props.erTilknyttetOppgave ? delvisSvarRadio : svarOppmoteTelefonRadios}
         </VelgDialogtypeStyle>
     );
 }
