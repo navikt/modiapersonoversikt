@@ -192,6 +192,11 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   margin-bottom: 0.8rem;
 }
 
+.c0:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #FFBD66;
+}
+
 .c6 {
   margin-top: 2rem;
   padding: 0;
@@ -234,6 +239,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 
 <li
   className="c0"
+  tabIndex={-1}
 >
   <div
     className="c1"
