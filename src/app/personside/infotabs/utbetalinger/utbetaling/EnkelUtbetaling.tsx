@@ -76,8 +76,8 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
 
     componentDidMount() {
         const posteringsdatoFraUrl = (this.props.match.params.posteringsdato as unknown) as number;
-        if (moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl))) {
-            console.log(this.utbetalingRef.current);
+        const erValgtIUrl = moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl));
+        if (erValgtIUrl) {
             this.utbetalingRef.current && this.utbetalingRef.current.focus();
         }
     }
