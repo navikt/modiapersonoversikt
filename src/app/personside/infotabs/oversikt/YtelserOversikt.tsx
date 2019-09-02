@@ -25,7 +25,7 @@ const YtelserStyle = styled.div`
         border-top: ${theme.border.skille};
     }
     > * {
-        padding: ${theme.margin.px10};
+        padding: ${theme.margin.layout};
     }
 `;
 

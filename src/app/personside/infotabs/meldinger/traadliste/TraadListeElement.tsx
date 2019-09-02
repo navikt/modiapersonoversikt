@@ -10,7 +10,7 @@ import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { settValgtTraad } from '../../../../../redux/meldinger/actions';
+import { setValgtTraadMeldingspanel } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState } from '../../../../../utils/customHooks';
@@ -82,7 +82,7 @@ function TraadListeElement(props: Props) {
                         </UUcustomOrder>
                         <EtikettStyling>
                             <UnmountClosed isOpened={traadDialogpanel === props.traad}>
-                                <EtikettFokus>Besvares i dialogpanel</EtikettFokus>
+                                <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                         </EtikettStyling>
@@ -111,7 +111,7 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        settValgtTraad: (traad: Traad) => dispatch(settValgtTraad(traad))
+        settValgtTraad: (traad: Traad) => dispatch(setValgtTraadMeldingspanel(traad))
     };
 }
 

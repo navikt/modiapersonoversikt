@@ -6,8 +6,7 @@ import { Action } from 'redux';
 import { AsyncAction } from '../../redux/ThunkTypes';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { cache } from '@nutgaard/use-fetch';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { setNyBrukerIPath } from '../routes/routing';
+import { setIngenValgtTraadDialogpanel } from '../../redux/oppgave/actions';
 
 function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     const dispatch = useDispatch();
@@ -16,7 +15,7 @@ function useDispatchOnNewFnr(action: Action | AsyncAction, fnr: string) {
     }, [action, fnr, dispatch]);
 }
 
-function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
+function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const restResources = useSelector((state: AppState) => state.restResources);
 
@@ -25,6 +24,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useDispatchOnNewFnr(restResources.kontaktinformasjon.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.vergemal.actions.fetch, fnr);
     useDispatchOnNewFnr(restResources.egenAnsatt.actions.fetch, fnr);
+    useDispatchOnNewFnr(restResources.tildDelteOppgaver.actions.fetch, fnr);
+
     useDispatchOnNewFnr(restResources.brukersNavKontor.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.utbetalinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.pleiepenger.actions.reset, fnr);
@@ -32,13 +33,16 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     useDispatchOnNewFnr(restResources.foreldrepenger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sendReferat.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.sendSpørsmål.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.sendSvar.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.leggTilbakeOppgave.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.tråderOgMeldinger.actions.reset, fnr);
     useDispatchOnNewFnr(restResources.brukersVarsler.actions.reset, fnr);
-    useFetchFeatureTogglesOnNewFnr();
+    useDispatchOnNewFnr(restResources.sakstema.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.oppfolging.actions.reset, fnr);
+    useDispatchOnNewFnr(restResources.opprettOppgave.actions.reset, fnr);
 
-    useEffect(() => {
-        setNyBrukerIPath(props.history, fnr);
-    }, [props.history, fnr]);
+    useFetchFeatureTogglesOnNewFnr();
+    useDispatchOnNewFnr(setIngenValgtTraadDialogpanel(), fnr);
 
     useEffect(() => {
         cache.clear();
@@ -47,4 +51,4 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo(props: RouteComponentProps) {
     return null;
 }
 
-export default withRouter(LyttPåNyttFnrIReduxOgHentAllPersoninfo);
+export default LyttPåNyttFnrIReduxOgHentAllPersoninfo;

@@ -9,7 +9,8 @@ export const initialState: OppgaveState = {
 };
 
 export enum OppgaveActionTypes {
-    SetDialogpanelTraad = 'SetValgtOppgavepanelTraad'
+    SetDialogpanelTraad = 'SetValgtOppgavepanelTraad',
+    NullstillDialogpanelTraad = 'NullstillDialogpanelTraad'
 }
 
 export interface SetValgtTraad {
@@ -17,4 +18,8 @@ export interface SetValgtTraad {
     traad?: Traad;
 }
 
-export type OppgaveActions = SetValgtTraad;
+export interface NullstillValgtTraad {
+    type: OppgaveActionTypes.NullstillDialogpanelTraad;
+}
+
+export type OppgaveActions = SetValgtTraad | NullstillValgtTraad;

@@ -10,6 +10,11 @@ import Meldingsikon from '../meldinger/utils/Meldingsikon';
 import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { delAvStringMedDots } from '../../../../utils/string-utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { AppState } from '../../../../redux/reducers';
+import { paths } from '../../../routes/routing';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -25,40 +30,51 @@ const PanelStyle = styled.div`
 `;
 
 interface Props {
-    traader: Traad[];
+    traad: Traad;
+    onClick: (traad: Traad) => void;
 }
 
-function MeldingerOversikt() {
+function MeldingerOversikt(props: RouteComponentProps) {
+    const dispatch = useDispatch();
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+
+    const clickHandler = (traad: Traad) => {
+        dispatch(setValgtTraadMeldingspanel(traad));
+        props.history.push(`${paths.personUri}/${valgtBrukersFnr}/meldinger`);
+    };
+
     return (
         <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
-            {data => <MeldingerPanel traader={data} />}
+            {data => {
+                const traadKomponenter = data
+                    .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
+                    .slice(0, Math.min(4, data.length))
+                    .map(traad => <Traadelement traad={traad} onClick={clickHandler} key={traad.traadId} />);
+
+                return <ListStyle>{traadKomponenter}</ListStyle>;
+            }}
         </RestResourceConsumer>
     );
 }
 
-function MeldingerPanel(props: Props) {
-    const traadKomponenter = props.traader
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-        .slice(0, Math.min(4, props.traader.length))
-        .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
-
-    return <ListStyle>{traadKomponenter}</ListStyle>;
-}
-
-function Traadelement({ traad }: { traad: Traad }) {
-    const nyesteMelding = sisteSendteMelding(traad);
+function Traadelement(props: Props) {
+    const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
 
     return (
         <div>
-            <VisMerKnapp onClick={() => {}} valgt={false} ariaDescription={'Vis meldinger for ' + tittel}>
+            <VisMerKnapp
+                onClick={() => props.onClick(props.traad)}
+                valgt={false}
+                ariaDescription={'Vis meldinger for ' + tittel}
+            >
                 <PanelStyle>
                     <Meldingsikon
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
-                        erMonolog={erMonolog(traad)}
-                        antallMeldinger={traad.meldinger.length}
+                        erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
                     />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
@@ -71,4 +87,4 @@ function Traadelement({ traad }: { traad: Traad }) {
     );
 }
 
-export default MeldingerOversikt;
+export default withRouter(MeldingerOversikt);

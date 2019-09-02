@@ -11,6 +11,7 @@ import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { Oppgave } from '../../../../../models/oppgave';
+import theme from '../../../../../styles/personOversiktTheme';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -29,6 +30,7 @@ const StyledEkspanderbartpanel = styled(Ekspanderbartpanel)`
     .ekspanderbartPanel__hode {
         padding: 0.6rem;
     }
+    margin: ${theme.margin.layout};
 `;
 
 const StyledSkjemaGruppe = styled(SkjemaGruppe)`
