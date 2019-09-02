@@ -4,9 +4,7 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { paths } from '../../../routes/routing';
-import { useFødselsnummer } from '../../../../utils/customHooks';
-import { INFOTABS } from '../InfoTabEnum';
+import { usePaths } from '../../../routes/routing';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 

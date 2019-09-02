@@ -4,16 +4,17 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
-import { utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
+import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { paths } from '../../../routes/routing';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { INFOTABS } from '../InfoTabEnum';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import moment from 'moment';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -54,14 +55,15 @@ function UtbetalingerPanel(props: Props) {
 
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
     const fnr = useFødselsnummer();
+    const urlDato = moment(utbetaling.posteringsdato).unix();
     return (
         <VisMerKnapp
             valgt={false}
             ariaDescription={`Vis utbetaling`}
-            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.UTBETALING.toLowerCase()}`}
+            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.UTBETALING.toLowerCase()}/${urlDato}`}
         >
             <Normaltekst>
-                {formaterDato(utbetaling.posteringsdato)} / {utbetaling.status}
+                {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
             </Normaltekst>
             <YtelseNavn utbetaling={utbetaling} />
             <YtelsePeriode utbetaling={utbetaling} />
