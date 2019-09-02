@@ -52,7 +52,12 @@ const PanelStyle = styled.div`
 const EtikettStyling = styled.div`
     > *:not(:last-child) {
         margin-bottom: 0.2rem;
+        margin-right: 0.2rem;
     }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 0.2rem;
 `;
 
 function TraadListeElement(props: Props) {
