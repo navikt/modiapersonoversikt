@@ -8,8 +8,9 @@ import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { hasData } from '../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import { setDialogpanelTraad } from '../../../redux/oppgave/actions';
+import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { loggError } from '../../../utils/frontendLogger';
+import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -21,17 +22,20 @@ function DialogPanel() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
 
-    if (!dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0 && hasData(traaderResource)) {
+    const visTraadTilknyttetOppgaveIDialogpanel = !dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0;
+    if (visTraadTilknyttetOppgaveIDialogpanel && hasData(traaderResource)) {
         const oppgave = tildelteOppgaver.paaBruker[0];
         const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
-        if (!traadTilknyttetOppgave) {
+        if (traadTilknyttetOppgave) {
+            dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
+            dispatch(setValgtTraadMeldingspanel(traadTilknyttetOppgave));
+        } else {
             loggError(
                 new Error(
                     `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
                 )
             );
         }
-        dispatch(setDialogpanelTraad(traadTilknyttetOppgave));
     }
 
     const tilknyttetOppgave = dialogpanelTraad
