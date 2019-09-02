@@ -264,65 +264,67 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             className="c4"
             onClick={[Function]}
           >
-            <div
-              className="c5"
-            >
-              <span
-                className="c6"
+            <div>
+              <div
+                className="c5"
               >
-                <svg
-                  height={24}
-                  viewBox="0 0 24 24"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
+                <span
+                  className="c6"
                 >
-                  <g
-                    fill="none"
-                    stroke="#000"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
-                    />
-                    <path
-                      d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
-                      strokeLinecap="round"
-                    />
-                  </g>
-                </svg>
-                <p
-                  className="typo-undertekst-bold c7"
-                >
-                  4
-                </p>
-              </span>
-              <div>
-                <div
-                  className="c8"
-                >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Samtalereferat oppmøte - Arbeid
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    30.07.2019 00:00
-                  </p>
-                </div>
-                <div
-                  className="c9"
-                >
-                  <div
-                    className="etikett etikett--fokus"
-                  >
-                    <span
-                      className="typo-normal"
+                    <g
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
                     >
-                      Under arbeid
-                    </span>
+                      <path
+                        d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
+                      />
+                      <path
+                        d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
+                        strokeLinecap="round"
+                      />
+                    </g>
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c7"
+                  >
+                    4
+                  </p>
+                </span>
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <p
+                      className="typo-element order-second"
+                    >
+                      Samtalereferat oppmøte - Arbeid
+                    </p>
+                    <p
+                      className="typo-normal order-first"
+                    >
+                      30.07.2019 00:00
+                    </p>
+                  </div>
+                  <div
+                    className="c9"
+                  >
+                    <div
+                      className="etikett etikett--fokus"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Under arbeid
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

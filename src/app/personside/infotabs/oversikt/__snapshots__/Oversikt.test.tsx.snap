@@ -1,11 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
+.c22 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-animation: fYGRJE 0.3s ease-out;
+  animation: fYGRJE 0.3s ease-out;
+}
+
+.c22 > * {
+  -webkit-flex: 0 1 25rem;
+  -ms-flex: 0 1 25rem;
+  flex: 0 1 25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 .c8 {
   font-weight: bold;
 }
 
-.c18 {
+.c7 {
   padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -18,22 +53,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c18:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c18:hover > button:last-child {
+.c7:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c18 > *:first-child {
+.c7 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c22 {
+.c9 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -45,7 +80,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c22:focus {
+.c9:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
@@ -75,6 +110,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .c14 {
@@ -171,18 +221,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-right: 0.5em;
 }
 
-.c20 {
+.c19 {
   position: relative;
 }
 
-.c20 svg {
+.c19 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c21 {
+.c20 {
   position: absolute;
   top: -0.1875rem;
   right: 0.5625rem;
@@ -212,7 +262,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.625rem;
 }
 
-.c5 > * {
+.c5 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -224,59 +274,61 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c9 {
-  padding: .8rem;
-}
-
-.c23 > *:not(:first-child) {
+.c21 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
-}
-
-.c23 > * {
-  padding: .8rem;
 }
 
 .c6 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c7 {
-  background-color: white;
-  padding: .8rem;
-}
-
 .c17 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c19 > *:first-child {
+.c18 > *:first-child {
   padding-right: .8rem;
 }
 
-.c24 > *:not(:first-child) {
+.c23 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+.c1 {
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  max-width: 50rem;
 }
 
 .c1 > * {
   margin-bottom: 1.875rem;
 }
 
-.c1:not(:last-child) {
-  margin-right: 1.875rem;
+@media (min-width:35rem) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width:35rem) {
+  .c1:not(:last-child) {
+    margin-right: 1.875rem;
+  }
 }
 
 <article
@@ -285,7 +337,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   <div
     className="c1"
   >
-    <div
+    <section
       className="c2"
     >
       <div
@@ -318,41 +370,53 @@ exports[`Viser oversikt med alt innhold 1`] = `
         >
           <div
             className="c7"
+            onClick={[Function]}
           >
-            <p
-              className="typo-normal"
-            >
-              26.03.2017
-               / 
-              Utbetalt
-            </p>
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c8"
+            <div>
+              <p
+                className="typo-normal"
               >
-                Sykepenger
-              </span>
-            </p>
-            <p
-              className="typo-normal"
+                26.03.2017
+                 / 
+                Utbetalt
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Sykepenger
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                09.11.2016
+                 - 
+                31.10.2017
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Utbetaling til: 
+                AREMARK TESTFAMILIEN
+              </p>
+            </div>
+            <button
+              aria-label="Vis utbetaling"
+              aria-selected={false}
+              className="c9"
             >
-              09.11.2016
-               - 
-              31.10.2017
-            </p>
-            <p
-              className="typo-normal"
-            >
-              Utbetaling til: 
-              AREMARK TESTFAMILIEN
-            </p>
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
         </ol>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -381,17 +445,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <div
-          className="c9"
+          className="c7"
+          onClick={[Function]}
         >
-          <p
-            className="typo-normal"
+          <div>
+            <p
+              className="typo-normal"
+            >
+              Er ikke i arbeidsrettet oppfølging
+            </p>
+          </div>
+          <button
+            aria-label="Gå til oppfølging"
+            aria-selected={false}
+            className="c9"
           >
-            Er ikke i arbeidsrettet oppfølging
-          </p>
+            <i
+              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+            />
+          </button>
         </div>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -665,12 +741,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
         </ol>
       </div>
-    </div>
+    </section>
   </div>
   <div
     className="c1"
   >
-    <div
+    <section
       className="c2"
     >
       <div
@@ -701,16 +777,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         <ol
           className="c17"
         >
-          <div>
-            <div
-              className="c18"
-              onClick={[Function]}
-            >
+          <div
+            className="c7"
+            onClick={[Function]}
+          >
+            <div>
               <div
-                className="c19"
+                className="c18"
               >
                 <span
-                  className="c20"
+                  className="c19"
                 >
                   <svg
                     height={24}
@@ -734,7 +810,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </g>
                   </svg>
                   <p
-                    className="typo-undertekst-bold c21"
+                    className="typo-undertekst-bold c20"
                   >
                     4
                   </p>
@@ -750,29 +826,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   >
                     Samtalereferat oppmøte - Arbeid
                   </p>
-                  <p
-                    className="typo-normal"
+                  <div
+                    className="tekstomrade"
                   >
-                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exerc...
-                  </p>
+                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Su...
+                  </div>
                 </div>
               </div>
-              <button
-                aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
-                aria-selected={false}
-                className="c22"
-                onClick={[Function]}
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
             </div>
+            <button
+              aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
+              aria-selected={false}
+              className="c9"
+              onClick={[Function]}
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
         </ol>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -801,11 +877,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <div
-          className="c23"
-        />
+          className="c21"
+        >
+          <div
+            className="c22"
+          />
+          <div
+            className="c22"
+          />
+          <div
+            className="c22"
+          />
+        </div>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       className="c2"
     >
       <div
@@ -834,63 +920,69 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
-          className="c24"
+          className="c23"
         >
           <li>
             <div
-              className="c18"
+              className="c7"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c25"
+                  className="c24"
                 >
-                  <p
-                    className="typo-element order-second"
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="typo-element order-second"
+                      >
+                        Sykepenger
+                      </p>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        24.12.2018
+                      </p>
+                    </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      1
+                       
+                      søknad
+                       er 
+                      under behandling
+                      .
+                    </p>
+                  </div>
+                  <span
+                    className="c26"
                   >
-                    Sykepenger
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    24.12.2018
-                  </p>
+                    <svg
+                      contentScriptType="text/ecmascript"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="#C6C2BF"
+                      >
+                        <path
+                          d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                        />
+                        <path
+                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                        />
+                      </g>
+                    </svg>
+                  </span>
                 </div>
-                <p
-                  className="typo-normal"
-                >
-                  1
-                   
-                  søknad
-                   er 
-                  under behandling
-                  .
-                </p>
               </div>
-              <span
-                className="c26"
-              >
-                <svg
-                  contentScriptType="text/ecmascript"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    fill="#C6C2BF"
-                  >
-                    <path
-                      d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
-                    />
-                    <path
-                      d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                    />
-                  </g>
-                </svg>
-              </span>
               <button
                 aria-label="Vis Sykepenger"
                 aria-selected={false}
-                className="c22"
+                className="c9"
                 onClick={[Function]}
               >
                 <i
@@ -901,52 +993,58 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
           <li>
             <div
-              className="c18"
+              className="c7"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c25"
+                  className="c24"
                 >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Arbeidsavklaringspenger
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    25.06.2018
-                  </p>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="typo-element order-second"
+                      >
+                        Arbeidsavklaringspenger
+                      </p>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        25.06.2018
+                      </p>
+                    </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      1
+                       
+                      søknad
+                       er 
+                      under behandling
+                      .
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      2
+                       
+                      søknader
+                       er 
+                      ferdig behandlet
+                      .
+                    </p>
+                  </div>
+                  <span
+                    className="c26"
+                  />
                 </div>
-                <p
-                  className="typo-normal"
-                >
-                  1
-                   
-                  søknad
-                   er 
-                  under behandling
-                  .
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  2
-                   
-                  søknader
-                   er 
-                  ferdig behandlet
-                  .
-                </p>
               </div>
-              <span
-                className="c26"
-              />
               <button
                 aria-label="Vis Arbeidsavklaringspenger"
                 aria-selected={false}
-                className="c22"
+                className="c9"
                 onClick={[Function]}
               >
                 <i
@@ -957,32 +1055,38 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
           <li>
             <div
-              className="c18"
+              className="c7"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c25"
+                  className="c24"
                 >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Barnetrygd
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    20.03.2018
-                  </p>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="typo-element order-second"
+                      >
+                        Barnetrygd
+                      </p>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        20.03.2018
+                      </p>
+                    </div>
+                  </div>
+                  <span
+                    className="c26"
+                  />
                 </div>
               </div>
-              <span
-                className="c26"
-              />
               <button
                 aria-label="Vis Barnetrygd"
                 aria-selected={false}
-                className="c22"
+                className="c9"
                 onClick={[Function]}
               >
                 <i
@@ -993,78 +1097,48 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
           <li>
             <div
-              className="c18"
+              className="c7"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c25"
+                  className="c24"
                 >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Tiltakspenger
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    14.01.2018
-                  </p>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="typo-element order-second"
+                      >
+                        Tiltakspenger
+                      </p>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        14.01.2018
+                      </p>
+                    </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      1
+                       
+                      søknad
+                       er 
+                      under behandling
+                      .
+                    </p>
+                  </div>
+                  <span
+                    className="c26"
+                  />
                 </div>
-                <p
-                  className="typo-normal"
-                >
-                  1
-                   
-                  søknad
-                   er 
-                  under behandling
-                  .
-                </p>
               </div>
-              <span
-                className="c26"
-              />
               <button
                 aria-label="Vis Tiltakspenger"
                 aria-selected={false}
-                className="c22"
-                onClick={[Function]}
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li>
-            <div
-              className="c18"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c25"
-                >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Generell
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    21.11.2017
-                  </p>
-                </div>
-              </div>
-              <span
-                className="c26"
-              />
-              <button
-                aria-label="Vis Generell"
-                aria-selected={false}
-                className="c22"
+                className="c9"
                 onClick={[Function]}
               >
                 <i
@@ -1075,7 +1149,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
         </ol>
       </div>
-    </div>
+    </section>
   </div>
 </article>
 `;
