@@ -48,25 +48,28 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
 function InfoTabs(props: Props) {
     const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const paths = usePaths();
+    const ref = React.createRef<HTMLHeadingElement>();
 
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
         const newPath = props.history.location.pathname !== path;
         if (newPath) {
+            ref.current && ref.current.focus();
             props.history.push(path);
         }
     };
 
+    const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <Section role="region" aria-label="Info-tabs">
                 <HandleInfotabsHotkeys />
                 <h2 className="visually-hidden">Tab-panel</h2>
-                <TabKnapper
-                    onTabChange={updateRouterPath}
-                    openTab={getOpenTabFromRouterPath(props.history.location.pathname)}
-                />
+                <TabKnapper onTabChange={updateRouterPath} openTab={openTab} />
                 <OpenTab>
+                    <h2 ref={ref} tabIndex={-1} className="sr-only">
+                        {openTab}
+                    </h2>
                     <Switch location={props.location}>
                         <Route path={paths.utbetlainger + '/:posteringsdato?'} component={UtbetalingerContainer} />
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />

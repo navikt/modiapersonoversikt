@@ -11,6 +11,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 
 export const saksoversiktMediaTreshold = '80rem';
 
@@ -49,7 +50,7 @@ function SaksoversiktContainer() {
     } else {
         return (
             <SaksoversiktArticle aria-label="Brukerens saker">
-                <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />
+                {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
                 <RestResourceConsumer<SakstemaResponse>
                     getResource={restResources => restResources.sakstema}
                     returnOnPending={BigCenteredLazySpinner}

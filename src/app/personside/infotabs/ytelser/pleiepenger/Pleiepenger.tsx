@@ -4,6 +4,7 @@ import Pleiepengerperiode from './Pleiepengerperiode';
 import Oversikt from './Oversikt';
 import { datoStigende } from '../../../../../utils/dateUtils';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
+import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -14,7 +15,7 @@ function Pleiepenger(props: Props) {
 
     return (
         <article>
-            <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />
+            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />}
             <Oversikt pleiepenger={props.pleiepenger} />
             <ol>
                 {sortertePerioder.map((periode, index) => (

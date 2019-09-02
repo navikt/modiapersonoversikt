@@ -4,9 +4,11 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { usePaths } from '../../../routes/routing';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
+import { useFødselsnummer } from '../../../../utils/customHooks';
+import { paths } from '../../../routes/routing';
+import { INFOTABS } from '../InfoTabEnum';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
