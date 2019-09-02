@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { Link } from 'react-router-dom';
@@ -30,27 +30,9 @@ const OverskriftStyle = styled.div`
     padding: ${theme.margin.px10};
 `;
 
-const slideDown = keyframes`
-  from {
-    max-height: 5rem;
-    overflow: hidden;
-  }
-  99% {
-   max-height: 35rem;
-   overflow: hidden;
-  }
-  100% {
-    max-height: initial;
-    overflow: initial;
-  }
-`;
-
 const MainStyle = styled.div`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
-    }
-    > * {
-        animation: 0.4s ${slideDown};
     }
 `;
 

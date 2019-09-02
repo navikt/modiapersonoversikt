@@ -247,11 +247,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c5 > * {
-  -webkit-animation: 0.4s tFFhe;
-  animation: 0.4s tFFhe;
-}
-
 .c4 {
   text-align: right;
 }
