@@ -10,6 +10,8 @@ import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { formaterTilISO8601Date } from '../../utils/stringFormatting';
+import moment from 'moment';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -147,8 +149,12 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoFra}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoFra(dato)}
+                                valgtDato={
+                                    props.form.stateLimit.fodselsdatoFra
+                                        ? formaterTilISO8601Date(props.form.stateLimit.fodselsdatoFra)
+                                        : ''
+                                }
+                                onChange={dato => props.form.actionsLimit.settFodselsdatoFra(moment(dato).toDate())}
                                 id="personsok-datovelger-fra"
                             />
                         </DatovelgerStyle>
@@ -159,8 +165,12 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoTil}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoTil(dato)}
+                                valgtDato={
+                                    props.form.stateLimit.fodselsdatoTil
+                                        ? formaterTilISO8601Date(props.form.stateLimit.fodselsdatoTil)
+                                        : ''
+                                }
+                                onChange={dato => props.form.actionsLimit.settFodselsdatoTil(moment(dato).toDate())}
                                 id="personsok-datovelger-til"
                             />
                         </DatovelgerStyle>
