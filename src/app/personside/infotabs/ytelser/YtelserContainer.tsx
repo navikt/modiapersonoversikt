@@ -5,6 +5,7 @@ import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
 import SykePengerContainer from './sykepenger/SykePengerContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 
 const Styling = styled.section`
     width: 100%;
@@ -18,7 +19,7 @@ const Styling = styled.section`
 function YtelserContainer() {
     return (
         <Styling>
-            <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />
+            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
             <ForeldrePengerContainer />
             <PleiePengerContainer />
             <SykePengerContainer />

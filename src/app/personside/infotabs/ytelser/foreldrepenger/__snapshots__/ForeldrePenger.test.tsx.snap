@@ -146,12 +146,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 <article>
-  <h2
-    className="visually-hidden"
-    tabIndex={-1}
-  >
-    Foreldrepengerettighet
-  </h2>
   <div
     className="c0"
   >

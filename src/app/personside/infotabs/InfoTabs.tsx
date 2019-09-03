@@ -4,7 +4,7 @@ import TabKnapper from './TabKnapper';
 import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
-import { paths } from '../../routes/routing';
+import { usePaths } from '../../routes/routing';
 import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
@@ -47,34 +47,37 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
 
 function InfoTabs(props: Props) {
     const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const paths = usePaths();
+    const ref = React.createRef<HTMLHeadingElement>();
 
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
         const newPath = props.history.location.pathname !== path;
         if (newPath) {
+            ref.current && ref.current.focus();
             props.history.push(path);
         }
     };
 
-    const basePath = paths.personUri + '/:fodselsnummer/';
+    const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <Section role="region" aria-label="Info-tabs">
                 <HandleInfotabsHotkeys />
                 <h2 className="visually-hidden">Tab-panel</h2>
-                <TabKnapper
-                    onTabChange={updateRouterPath}
-                    openTab={getOpenTabFromRouterPath(props.history.location.pathname)}
-                />
+                <TabKnapper onTabChange={updateRouterPath} openTab={openTab} />
                 <OpenTab>
+                    <h2 ref={ref} tabIndex={-1} className="sr-only">
+                        {openTab}
+                    </h2>
                     <Switch location={props.location}>
-                        <Route path={basePath + INFOTABS.UTBETALING} component={UtbetalingerContainer} />
-                        <Route path={basePath + INFOTABS.OPPFOLGING} component={OppfolgingContainer} />
-                        <Route path={basePath + INFOTABS.MELDINGER} component={MeldingerContainer} />
-                        <Route path={basePath + INFOTABS.SAKER} component={SaksoversiktContainer} />
-                        <Route path={basePath + INFOTABS.YTELSER} component={YtelserContainer} />
-                        <Route path={basePath + INFOTABS.VARSEL} component={VarslerContainer} />
-                        <Route path={[basePath + INFOTABS.OVERSIKT, '']} component={Oversikt} />
+                        <Route path={paths.utbetlainger + '/:posteringsdato?'} component={UtbetalingerContainer} />
+                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                        <Route path={paths.meldinger} component={MeldingerContainer} />
+                        <Route path={paths.saker} component={SaksoversiktContainer} />
+                        <Route path={paths.ytelser} component={YtelserContainer} />
+                        <Route path={paths.varsler} component={VarslerContainer} />
+                        <Route path={[paths.oversikt, '']} component={Oversikt} />
                     </Switch>
                 </OpenTab>
             </Section>

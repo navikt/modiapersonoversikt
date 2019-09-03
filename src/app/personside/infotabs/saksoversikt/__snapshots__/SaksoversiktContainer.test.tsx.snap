@@ -435,12 +435,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   aria-label="Brukerens saker"
   className="c0"
 >
-  <h2
-    className="visually-hidden"
-    tabIndex={-1}
-  >
-    Brukerens saker
-  </h2>
   <div
     className="c1"
   >

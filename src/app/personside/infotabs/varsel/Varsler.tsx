@@ -4,6 +4,7 @@ import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Varsel from './Varsel';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 
 interface Props {
     varsler: VarselModell[];
@@ -39,7 +40,7 @@ function Varsler(props: Props) {
     const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
     return (
         <article>
-            <VisuallyHiddenAutoFokusHeader tittel="Varsler" />
+            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Varsler" />}
             <HeaderStyle>
                 <p>Dato</p>
                 <p>Type</p>
