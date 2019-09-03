@@ -65,7 +65,7 @@ export default function BrukerProfilDatovelger({ dato, id, onChange, feil, child
                 <Datovelger
                     input={{ id: id, name: 'Datovelger' }}
                     visÅrVelger={true}
-                    valgtDato={dato ? formaterTilISO8601Date(dato) : ''}
+                    valgtDato={dato ? formaterTilISO8601Date(dato) : undefined}
                     onChange={handleChange}
                     id={id}
                     avgrensninger={innenEtÅr ? avgrensninger : undefined}

@@ -152,7 +152,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                                 valgtDato={
                                     props.form.stateLimit.fodselsdatoFra
                                         ? formaterTilISO8601Date(props.form.stateLimit.fodselsdatoFra)
-                                        : ''
+                                        : undefined
                                 }
                                 onChange={dato => props.form.actionsLimit.settFodselsdatoFra(moment(dato).toDate())}
                                 id="personsok-datovelger-fra"
@@ -168,7 +168,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                                 valgtDato={
                                     props.form.stateLimit.fodselsdatoTil
                                         ? formaterTilISO8601Date(props.form.stateLimit.fodselsdatoTil)
-                                        : ''
+                                        : undefined
                                 }
                                 onChange={dato => props.form.actionsLimit.settFodselsdatoTil(moment(dato).toDate())}
                                 id="personsok-datovelger-til"
