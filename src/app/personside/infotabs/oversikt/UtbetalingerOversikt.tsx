@@ -10,11 +10,8 @@ import { Bold } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { paths } from '../../../routes/routing';
-import { useFødselsnummer } from '../../../../utils/customHooks';
-import { INFOTABS } from '../InfoTabEnum';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import moment from 'moment';
+import { useInfotabsDyplenker } from '../dyplenker';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -54,13 +51,12 @@ function UtbetalingerPanel(props: Props) {
 }
 
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
-    const fnr = useFødselsnummer();
-    const urlDato = moment(utbetaling.posteringsdato).unix();
+    const dyplenkerInfotabs = useInfotabsDyplenker();
     return (
         <VisMerKnapp
             valgt={false}
             ariaDescription={`Vis utbetaling`}
-            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.UTBETALING.toLowerCase()}/${urlDato}`}
+            linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
         >
             <Normaltekst>
                 {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}

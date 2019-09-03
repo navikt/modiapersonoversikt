@@ -17,6 +17,7 @@ import Oversikt from './oversikt/Oversikt';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
+import { useInfotabsDyplenker } from './dyplenker';
 
 type Props = RouteComponentProps<{}>;
 
@@ -49,6 +50,7 @@ function InfoTabs(props: Props) {
     const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const paths = usePaths();
     const ref = React.createRef<HTMLHeadingElement>();
+    const dyplenker = useInfotabsDyplenker();
 
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
@@ -71,7 +73,7 @@ function InfoTabs(props: Props) {
                         {openTab}
                     </h2>
                     <Switch location={props.location}>
-                        <Route path={paths.utbetlainger + '/:posteringsdato?'} component={UtbetalingerContainer} />
+                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />
                         <Route path={paths.meldinger} component={MeldingerContainer} />
                         <Route path={paths.saker} component={SaksoversiktContainer} />
