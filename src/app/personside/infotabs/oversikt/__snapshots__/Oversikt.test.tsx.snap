@@ -838,7 +838,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
               aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
               aria-selected={false}
               className="c9"
-              onClick={[Function]}
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
