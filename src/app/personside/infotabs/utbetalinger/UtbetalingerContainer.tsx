@@ -11,6 +11,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 
 const UtbetalingerArticle = styled.article`
     display: flex;
@@ -45,7 +46,7 @@ function UtbetalingerContainer() {
     return (
         <ErrorBoundary>
             <UtbetalingerArticle role="region" aria-label="Utbetalinger">
-                <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />
+                {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
                 <div>
                     <Arenalenke />
                     <FiltreringSection>

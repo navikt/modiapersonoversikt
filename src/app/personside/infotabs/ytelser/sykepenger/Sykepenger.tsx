@@ -11,6 +11,7 @@ import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { datoSynkende } from '../../../../../utils/dateUtils';
+import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 
 interface Props {
     sykepenger: ISykepenger;
@@ -42,9 +43,11 @@ function Sykepenger({ sykepenger }: Props) {
     return (
         <ErrorBoundary boundaryName="Sykepenger">
             <Wrapper>
-                <VisuallyHiddenAutoFokusHeader
-                    tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
-                />
+                {erModiabrukerdialog() && (
+                    <VisuallyHiddenAutoFokusHeader
+                        tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
+                    />
+                )}
                 <OversiktStyling>
                     <Flex>
                         <Sykepengertilfellet sykepenger={sykepenger} />

@@ -40,7 +40,9 @@ function getUtbetalinger(fødselsnummer: string) {
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return moment(seededFaker.date.past(2)).format(moment.ISO_8601.__momentBuiltinFormatBrand);
+    return moment(seededFaker.date.past(2))
+        .startOf('day')
+        .format(moment.ISO_8601.__momentBuiltinFormatBrand);
 }
 
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {

@@ -6,6 +6,8 @@ import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
 import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import Personside from '../personside/Personside';
+import { useFødselsnummer } from '../../utils/customHooks';
+import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
@@ -17,6 +19,24 @@ export const paths = {
     legacyBrukerprofil: '#!brukerprofil'
 };
 
+export function usePaths() {
+    const fnr = useFødselsnummer();
+
+    function getPath(tab: INFOTABS) {
+        return `${paths.personUri}/${fnr}/${tab.toLowerCase()}`;
+    }
+
+    return {
+        ...paths,
+        oversikt: getPath(INFOTABS.OVERSIKT),
+        oppfolging: getPath(INFOTABS.OPPFOLGING),
+        meldinger: getPath(INFOTABS.MELDINGER),
+        utbetlainger: getPath(INFOTABS.UTBETALING),
+        saker: getPath(INFOTABS.SAKER),
+        ytelser: getPath(INFOTABS.YTELSER),
+        varsler: getPath(INFOTABS.VARSEL)
+    };
+}
 interface RouterProps {
     fodselsnummer: string;
 }

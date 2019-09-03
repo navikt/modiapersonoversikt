@@ -14,6 +14,8 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
+import moment from 'moment';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface OwnProps {
     utbetaling: Utbetaling;
@@ -23,7 +25,7 @@ interface DispatchProps {
     ekspanderYtelse: (ytelse: Ytelse) => void;
 }
 
-type Props = DispatchProps & OwnProps;
+type Props = DispatchProps & OwnProps & RouteComponentProps<{ posteringsdato: string }>;
 
 const SammensattUtbetalingStyle = styled.li`
     padding: ${theme.margin.px20};
@@ -35,6 +37,9 @@ const SammensattUtbetalingStyle = styled.li`
         li {
             page-break-inside: avoid;
         }
+    }
+    &:focus {
+        ${theme.focusInset}
     }
 `;
 
@@ -54,10 +59,19 @@ const YtelsesListe = styled.ul`
 
 class SammensattUtbetaling extends React.PureComponent<Props> {
     private print?: () => void;
+    private utbetalingRef = React.createRef<HTMLLIElement>();
 
     constructor(props: Props) {
         super(props);
         this.visDetaljerAndPrint = this.visDetaljerAndPrint.bind(this);
+    }
+
+    componentDidMount() {
+        const posteringsdatoFraUrl = (this.props.match.params.posteringsdato as unknown) as number;
+        const erValgtIUrl = moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl));
+        if (erValgtIUrl) {
+            this.utbetalingRef.current && this.utbetalingRef.current.focus();
+        }
     }
 
     visDetaljerAndPrint() {
@@ -87,7 +101,7 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
 
         return (
             <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
-                <SammensattUtbetalingStyle>
+                <SammensattUtbetalingStyle ref={this.utbetalingRef} tabIndex={-1}>
                     <UtbetalingTabellStyling>
                         <Normaltekst>
                             {dato} / <Bold>{utbetaling.status}</Bold>
@@ -115,11 +129,13 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
     }
 }
 
-export default connect(
-    null,
-    (dispatch: Dispatch<AnyAction>): DispatchProps => {
-        return {
-            ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
-        };
-    }
-)(SammensattUtbetaling);
+export default withRouter(
+    connect(
+        null,
+        (dispatch: Dispatch<AnyAction>): DispatchProps => {
+            return {
+                ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
+            };
+        }
+    )(SammensattUtbetaling)
+);
