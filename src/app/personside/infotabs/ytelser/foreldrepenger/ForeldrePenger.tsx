@@ -4,6 +4,7 @@ import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
+import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
@@ -20,7 +21,7 @@ function Foreldrepenger({ foreldrepenger }: Props) {
 
     return (
         <article>
-            <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />
+            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />}
             <Oversikt foreldrePenger={foreldrepenger} />
             <ol>{perioder}</ol>
         </article>

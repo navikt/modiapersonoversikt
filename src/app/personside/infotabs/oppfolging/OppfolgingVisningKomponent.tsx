@@ -7,6 +7,7 @@ import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 
 interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
@@ -30,7 +31,7 @@ const DetaljertInfoWrapper = styled.div`
 function OppfolgingVisning(props: VisningProps) {
     return (
         <OppfolgingStyle>
-            <VisuallyHiddenAutoFokusHeader tittel="Oppfølging" />
+            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Oppfølging" />}
             <DetaljertInfoWrapper>
                 <OppfolgingDatoPanel />
                 <VisOppfolgingDetaljer detaljertOppfølging={props.detaljertOppfølging} />

@@ -18,6 +18,8 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
+import { RouteComponentProps, withRouter } from 'react-router';
+import moment from 'moment';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;
@@ -34,7 +36,7 @@ interface StateProps {
     visDetaljer: boolean;
 }
 
-type Props = DispatchProps & OwnProps & StateProps;
+type Props = DispatchProps & OwnProps & StateProps & RouteComponentProps<{ posteringsdato: string }>;
 
 const UtbetalingStyle = styled.li`
     cursor: pointer;
@@ -70,6 +72,14 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
         super(props);
         this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
         this.handlePrint = this.handlePrint.bind(this);
+    }
+
+    componentDidMount() {
+        const posteringsdatoFraUrl = (this.props.match.params.posteringsdato as unknown) as number;
+        const erValgtIUrl = moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl));
+        if (erValgtIUrl) {
+            this.utbetalingRef.current && this.utbetalingRef.current.focus();
+        }
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -172,7 +182,9 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EnkelUtbetaling);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(EnkelUtbetaling)
+);

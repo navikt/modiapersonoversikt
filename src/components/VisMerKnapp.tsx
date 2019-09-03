@@ -2,6 +2,7 @@ import * as React from 'react';
 import { theme } from '../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
     padding: ${theme.margin.layout};
@@ -38,17 +39,28 @@ const Knapp = styled.button`
     }
 `;
 
-interface Props {
-    onClick: (event: React.MouseEvent) => void;
+interface Props extends RouteComponentProps {
+    onClick?: (event: React.MouseEvent) => void;
+    linkTo?: string;
     valgt: boolean;
     children: React.ReactNode;
     ariaDescription: string;
 }
 
 function VisMerKnapp(props: Props) {
+    const handleClick = (event: React.MouseEvent) => {
+        if (props.onClick) {
+            props.onClick(event);
+        } else if (props.linkTo) {
+            props.history.push(props.linkTo);
+        } else {
+            console.error('VisMerKnapp mangler onclick-funksjon eller router-path');
+        }
+    };
+
     return (
-        <Wrapper valgt={props.valgt} onClick={props.onClick}>
-            {props.children}
+        <Wrapper valgt={props.valgt} onClick={handleClick}>
+            <div>{props.children}</div>
             <Knapp onClick={props.onClick} aria-selected={props.valgt} aria-label={props.ariaDescription}>
                 <HoyreChevron stor={true} />
             </Knapp>
@@ -56,4 +68,4 @@ function VisMerKnapp(props: Props) {
     );
 }
 
-export default VisMerKnapp;
+export default withRouter(VisMerKnapp);

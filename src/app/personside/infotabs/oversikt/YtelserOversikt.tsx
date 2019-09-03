@@ -7,6 +7,10 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Bold } from '../../../../components/common-styled-components';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { paths } from '../../../routes/routing';
+import { useFødselsnummer } from '../../../../utils/customHooks';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 interface SykepengerProps {
     sykepenger: Sykepenger[];
@@ -24,36 +28,68 @@ const YtelserStyle = styled.div`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
-    > * {
-        padding: ${theme.margin.layout};
-    }
 `;
 
 function YtelserOversikt() {
+    const valgtBrukersFnr = useFødselsnummer();
+
     return (
         <YtelserStyle>
-            <RestResourceConsumer<PleiepengerResponse> getResource={restResource => restResource.pleiepenger}>
+            <RestResourceConsumer<PleiepengerResponse>
+                getResource={restResource => restResource.pleiepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.pleiepenger) {
                         return null;
                     }
-                    return <PleiepengerKomponent pleiepenger={data.pleiepenger} />;
+                    return (
+                        <VisMerKnapp
+                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
+                            valgt={false}
+                            ariaDescription="Vis pleiepenger"
+                        >
+                            <PleiepengerKomponent pleiepenger={data.pleiepenger} />
+                        </VisMerKnapp>
+                    );
                 }}
             </RestResourceConsumer>
-            <RestResourceConsumer<SykepengerResponse> getResource={restResource => restResource.sykepenger}>
+            <RestResourceConsumer<SykepengerResponse>
+                getResource={restResource => restResource.sykepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.sykepenger) {
                         return null;
                     }
-                    return <SykepengerKomponent sykepenger={data.sykepenger} />;
+                    return (
+                        <VisMerKnapp
+                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
+                            valgt={false}
+                            ariaDescription="Vis sykepenger"
+                        >
+                            <SykepengerKomponent sykepenger={data.sykepenger} />
+                        </VisMerKnapp>
+                    );
                 }}
             </RestResourceConsumer>
-            <RestResourceConsumer<ForeldrepengerResponse> getResource={restResource => restResource.foreldrepenger}>
+            <RestResourceConsumer<ForeldrepengerResponse>
+                getResource={restResource => restResource.foreldrepenger}
+                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            >
                 {data => {
                     if (!data.foreldrepenger) {
                         return null;
                     }
-                    return <ForeldrepengerKomponent foreldrepenger={data.foreldrepenger} />;
+                    return (
+                        <VisMerKnapp
+                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
+                            valgt={false}
+                            ariaDescription="Vis foreldrepenger"
+                        >
+                            <ForeldrepengerKomponent foreldrepenger={data.foreldrepenger} />
+                        </VisMerKnapp>
+                    );
                 }}
             </RestResourceConsumer>
         </YtelserStyle>

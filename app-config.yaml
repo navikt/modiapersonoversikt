@@ -1,5 +1,5 @@
 image: navikt/modiapersonoversikt
-team: oppfolgingperson
+team: personoversikt
 replicas:
   min: 2
   max: 4

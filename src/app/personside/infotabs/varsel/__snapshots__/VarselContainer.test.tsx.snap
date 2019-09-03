@@ -128,12 +128,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 <article>
-  <h2
-    className="visually-hidden"
-    tabIndex={-1}
-  >
-    Varsler
-  </h2>
   <div
     className="c0"
   >

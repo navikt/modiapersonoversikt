@@ -225,12 +225,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 <article
   className="c0"
 >
-  <h2
-    className="visually-hidden"
-    tabIndex={-1}
-  >
-    Oppfølging
-  </h2>
   <div
     className="c1"
   >
