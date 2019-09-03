@@ -35,7 +35,7 @@ const VisittkortHeaderDiv = styled.section`
     flex-flow: row wrap;
     cursor: pointer;
     > * {
-        flex: 1 1 50%;
+        flex: 1 1;
     }
 `;
 
@@ -66,6 +66,7 @@ const GrunninfoDiv = styled.section`
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    word-break: break-word;
     *:focus {
         ${theme.focus}
     }

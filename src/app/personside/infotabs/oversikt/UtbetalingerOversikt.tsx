@@ -8,16 +8,17 @@ import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
 import { utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { paths } from '../../../routes/routing';
+import { useFødselsnummer } from '../../../../utils/customHooks';
+import { INFOTABS } from '../InfoTabEnum';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
-`;
-
-const UtbetalingStyle = styled.div`
-    background-color: white;
-    padding: ${theme.margin.layout};
 `;
 
 interface Props {
@@ -26,7 +27,10 @@ interface Props {
 
 function UtbetalingerOversikt() {
     return (
-        <RestResourceConsumer<UtbetalingerResponse> getResource={restResources => restResources.utbetalinger}>
+        <RestResourceConsumer<UtbetalingerResponse>
+            getResource={restResources => restResources.utbetalinger}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => <UtbetalingerPanel utbetalinger={data} />}
         </RestResourceConsumer>
     );
@@ -34,7 +38,7 @@ function UtbetalingerOversikt() {
 
 function UtbetalingerPanel(props: Props) {
     if (props.utbetalinger.utbetalinger.length === 0) {
-        return <Normaltekst>Ingen utbetalinger</Normaltekst>;
+        return <AlertStripeInfo>Ingen nye utbetalinger</AlertStripeInfo>;
     }
 
     const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
@@ -49,15 +53,20 @@ function UtbetalingerPanel(props: Props) {
 }
 
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
+    const fnr = useFødselsnummer();
     return (
-        <UtbetalingStyle>
+        <VisMerKnapp
+            valgt={false}
+            ariaDescription={`Vis utbetaling`}
+            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.UTBETALING.toLowerCase()}`}
+        >
             <Normaltekst>
                 {formaterDato(utbetaling.posteringsdato)} / {utbetaling.status}
             </Normaltekst>
             <YtelseNavn utbetaling={utbetaling} />
             <YtelsePeriode utbetaling={utbetaling} />
             <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-        </UtbetalingStyle>
+        </VisMerKnapp>
     );
 }
 

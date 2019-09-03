@@ -22,6 +22,7 @@ import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -55,6 +56,6 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));
-
+    testStore.dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
     return testStore;
 }

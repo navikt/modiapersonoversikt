@@ -9,6 +9,8 @@ import { settValgtSakstema } from '../../../../redux/saksoversikt/actions';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -31,7 +33,10 @@ function SakerOversikt(props: RouteComponentProps) {
     };
 
     return (
-        <RestResourceConsumer<SakstemaResponse> getResource={restResources => restResources.sakstema}>
+        <RestResourceConsumer<SakstemaResponse>
+            getResource={restResources => restResources.sakstema}
+            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+        >
             {data => <SakerPanel sakstema={data.resultat} onClick={clickHandler} />}
         </RestResourceConsumer>
     );
@@ -40,6 +45,7 @@ function SakerOversikt(props: RouteComponentProps) {
 function SakerPanel(props: Props) {
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+        .slice(0, 4)
         .map((sakstema, index) => (
             <SakstemaListeElement
                 sakstema={sakstema}
@@ -48,6 +54,10 @@ function SakerPanel(props: Props) {
                 key={index}
             />
         ));
+
+    if (sakstemakomponenter.length === 0) {
+        return <AlertStripeInfo>Fant ingen saker på bruker</AlertStripeInfo>;
+    }
 
     return <ListStyle>{sakstemakomponenter}</ListStyle>;
 }
