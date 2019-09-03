@@ -26,11 +26,11 @@ export function resettable<S>(reducer: Reducer<S>): Reducer<S> {
 }
 export function combineResettableReducers<S>(
     reducers: ReducersMapObject<S, any>,
-    ignore: Array<Keyof<S>> = []
+    useCache: Array<Keyof<S>> = []
 ): Reducer<S> {
     const mappedReducers = entries<ReducersMapObject<S, any>>(reducers)
         .map(([reducerName, reducerFn]) => {
-            if (ignore.includes(reducerName as Keyof<S>)) {
+            if (useCache.includes(reducerName as Keyof<S>)) {
                 return [reducerName, reducerFn];
             } else {
                 return [reducerName, resettable(reducerFn)];
