@@ -9,13 +9,13 @@ import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
-import { setValgtTraadMeldingspanel } from '../../../../../redux/meldinger/actions';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
-import { useAppState } from '../../../../../utils/customHooks';
+import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
+import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
 interface OwnProps {
     traad: Traad;
@@ -25,11 +25,7 @@ interface StateProps {
     erValgt: boolean;
 }
 
-interface DispatchProps {
-    settValgtTraad: (traad: Traad) => void;
-}
-
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = OwnProps & StateProps & MeldingerDyplenkeRouteComponentProps;
 
 const UUcustomOrder = styled.div`
     display: flex;
@@ -49,6 +45,12 @@ const PanelStyle = styled.div`
     }
 `;
 
+const ListElement = styled.li`
+    &:focus {
+        ${theme.focus}
+    }
+`;
+
 const EtikettStyling = styled.div`
     > *:not(:last-child) {
         margin-bottom: 0.2rem;
@@ -65,12 +67,20 @@ function TraadListeElement(props: Props) {
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const ref = React.createRef<HTMLLIElement>();
+    const dyplenker = useInfotabsDyplenker();
+
+    useOnMount(() => {
+        if (erValgtIDyplenke.meldinger(props.traad, props)) {
+            ref.current && ref.current.focus();
+        }
+    });
 
     return (
-        <li>
+        <ListElement tabIndex={-1} ref={ref}>
             <VisMerKnapp
                 valgt={props.erValgt}
-                onClick={() => props.settValgtTraad(props.traad)}
+                linkTo={dyplenker.meldinger.link(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
@@ -94,7 +104,7 @@ function TraadListeElement(props: Props) {
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
-        </li>
+        </ListElement>
     );
 }
 
@@ -114,13 +124,4 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        settValgtTraad: (traad: Traad) => dispatch(setValgtTraadMeldingspanel(traad))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TraadListeElement);
+export default withRouter(connect(mapStateToProps)(TraadListeElement));

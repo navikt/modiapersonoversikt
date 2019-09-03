@@ -75,7 +75,7 @@ function InfoTabs(props: Props) {
                     <Switch location={props.location}>
                         <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={paths.meldinger} component={MeldingerContainer} />
+                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
                         <Route path={paths.saker} component={SaksoversiktContainer} />
                         <Route path={paths.ytelser} component={YtelserContainer} />
                         <Route path={paths.varsler} component={VarslerContainer} />

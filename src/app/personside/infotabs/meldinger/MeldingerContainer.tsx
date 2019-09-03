@@ -7,6 +7,13 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import VerktoylinjeContainer from './traadvisning/verktoylinje/VerktoylinjeContainer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { useEffect } from 'react';
+import { hasData } from '../../../../rest/utils/restResource';
+import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions';
+import { useDispatch } from 'react-redux';
+import { useAppState, useRestResource } from '../../../../utils/customHooks';
+import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps } from '../dyplenker';
+import { withRouter } from 'react-router';
 
 const meldingerMediaTreshold = pxToRem(900);
 
@@ -32,7 +39,23 @@ const MeldingerArticleStyle = styled.article`
     }
 `;
 
-function MeldingerContainer() {
+function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
+    const dispatch = useDispatch();
+    const valgtTraad = useAppState(state => state.meldinger.valgtTraad);
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    useEffect(() => {
+        if (!hasData(traaderResource)) {
+            return;
+        }
+        const traadIUrl = traaderResource.data.find(traad => erValgtIDyplenke.meldinger(traad, props));
+        if (traadIUrl && traadIUrl !== valgtTraad) {
+            dispatch(setValgtTraadMeldingspanel(traadIUrl));
+        } else if (!valgtTraad) {
+            dispatch(setValgtTraadMeldingspanel(traaderResource.data[0]));
+        }
+    }, [valgtTraad, traaderResource, dispatch, props]);
+
     return (
         <article>
             <RestResourceConsumer<Traad[]>
@@ -53,4 +76,4 @@ function MeldingerContainer() {
     );
 }
 
-export default MeldingerContainer;
+export default withRouter(MeldingerContainer);

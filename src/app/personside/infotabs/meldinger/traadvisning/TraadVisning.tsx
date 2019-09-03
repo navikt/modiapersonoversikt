@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
-import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import { setValgtTraadMeldingspanel } from '../../../../../redux/meldinger/actions';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
@@ -18,7 +15,6 @@ import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 
 interface Props {
     valgtTraad?: Traad;
-    traader: RestResource<Traad[]>;
 }
 
 const VisningStyle = styled.section`
@@ -44,14 +40,9 @@ function AlleMeldinger(props: { traad: Traad }) {
     return <div>{meldingskomponenter}</div>;
 }
 
-function TraadVisning({ valgtTraad, traader }: Props) {
+function TraadVisning({ valgtTraad }: Props) {
     const dispatch = useDispatch();
     const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
-    useEffect(() => {
-        if (!valgtTraad && hasData(traader)) {
-            dispatch(setValgtTraadMeldingspanel(traader.data[0]));
-        }
-    }, [valgtTraad, traader, dispatch]);
 
     if (!valgtTraad) {
         return <CenteredLazySpinner />;
