@@ -1,4 +1,6 @@
 import { Action } from 'redux';
+import { AppState } from '../reducers';
+import { useSelector } from 'react-redux';
 
 export interface GjeldendeBrukerState {
     fødselsnummer: string;
@@ -13,3 +15,7 @@ export interface SetNyGjeldendeBrukerAction extends Action<SetNyGjeldendeBrukerA
 }
 
 export type GjeldendeBrukerActions = SetNyGjeldendeBrukerAction;
+
+export function useGjeldendeBruker(): string {
+    return useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+}

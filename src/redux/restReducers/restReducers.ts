@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
@@ -63,6 +61,7 @@ import sendSpørsmål from './sendSpørsmål';
 import leggTilbakeOppgave from './leggTilbakeOppgave';
 import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
+import { combineResettableReducers } from '../reducer-utils';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -103,41 +102,44 @@ export interface RestEndepunkter {
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
-export default combineReducers<RestEndepunkter>({
-    innloggetSaksbehandler: innloggetSaksbehandlerReducer,
-    personinformasjon: personinformasjonReducer,
-    brukersNavKontor: navkontorReducer,
-    oppgaver: oppgaverReducer,
-    tildDelteOppgaver: tildelteOppgaver,
-    leggTilbakeOppgave: leggTilbakeOppgave,
-    kontaktinformasjon: kontaktinformasjonReducer,
-    egenAnsatt: egenAnsattReducer,
-    vergemal: vergemalReducer,
-    baseUrl: baseUrlReducer,
-    endreKontonummer: endrekontonummerReducer,
-    endreNavn: endreNavnReducer,
-    endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
-    veilederRoller: veilederRollerReducer,
-    retningsnummer: retningsnummereReducer,
-    tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
-    endreKontaktinformasjon: endreKontaktinformasjonReducer,
-    postnummer: postnummerReducer,
-    endreAdresse: endreAdresseReducer,
-    valuta: valutaKodeverkReducer,
-    land: landKodeverkReducer,
-    utbetalinger: utbetalingerReducer,
-    sykepenger: sykepengerReducer,
-    pleiepenger: pleiepengerReducer,
-    foreldrepenger: foreldrepengerReducer,
-    oppfolging: oppfolgingReducer,
-    sakstema: saksoversiktReducer,
-    featureToggles: featureToggleReducer,
-    brukersVarsler: varselReducer,
-    tråderOgMeldinger: meldingerReducer,
-    oppgaveGsakTema: oppgaveGsakTemaReducer,
-    sendReferat: sendReferat,
-    sendSpørsmål: sendSpørsmål,
-    sendSvar: sendSvar,
-    opprettOppgave: opprettOppgave,
-    personsok: personsok
-});
+export default combineResettableReducers<RestEndepunkter>(
+    {
+        innloggetSaksbehandler: innloggetSaksbehandlerReducer,
+        personinformasjon: personinformasjonReducer,
+        brukersNavKontor: navkontorReducer,
+        oppgaver: oppgaverReducer,
+        tildDelteOppgaver: tildelteOppgaver,
+        leggTilbakeOppgave: leggTilbakeOppgave,
+        kontaktinformasjon: kontaktinformasjonReducer,
+        egenAnsatt: egenAnsattReducer,
+        vergemal: vergemalReducer,
+        baseUrl: baseUrlReducer,
+        endreKontonummer: endrekontonummerReducer,
+        endreNavn: endreNavnReducer,
+        endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
+        veilederRoller: veilederRollerReducer,
+        retningsnummer: retningsnummereReducer,
+        tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
+        endreKontaktinformasjon: endreKontaktinformasjonReducer,
+        postnummer: postnummerReducer,
+        endreAdresse: endreAdresseReducer,
+        valuta: valutaKodeverkReducer,
+        land: landKodeverkReducer,
+        utbetalinger: utbetalingerReducer,
+        sykepenger: sykepengerReducer,
+        pleiepenger: pleiepengerReducer,
+        foreldrepenger: foreldrepengerReducer,
+        oppfolging: oppfolgingReducer,
+        sakstema: saksoversiktReducer,
+        featureToggles: featureToggleReducer,
+        brukersVarsler: varselReducer,
+        tråderOgMeldinger: meldingerReducer,
+        oppgaveGsakTema: oppgaveGsakTemaReducer,
+        sendReferat: sendReferat,
+        sendSpørsmål: sendSpørsmål,
+        sendSvar: sendSvar,
+        opprettOppgave: opprettOppgave,
+        personsok: personsok
+    },
+    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']
+);
