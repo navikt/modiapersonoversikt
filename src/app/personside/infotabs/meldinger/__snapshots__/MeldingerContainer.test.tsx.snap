@@ -216,130 +216,129 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   }
 }
 
-<article>
-  <article
-    className="c0"
+<article
+  className="c0"
+>
+  <nav
+    className="c1"
   >
     <div
-      className="c1"
+      className="c2"
     >
       <div
-        className="c2"
+        className="skjemaelement move-input-label"
+      >
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Søk etter melding
+        </label>
+        <input
+          className="skjemaelement__input input--fullbredde"
+          id="Helt tilfeldig ID"
+          type="text"
+        />
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+    </div>
+    <ol
+      aria-label="Brukers tråder"
+      className="c3"
+    >
+      <li
+        className="c4"
+        tabIndex={-1}
       >
         <div
-          className="skjemaelement move-input-label"
+          className="c5"
+          onClick={[Function]}
         >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Søk etter melding
-          </label>
-          <input
-            className="skjemaelement__input input--fullbredde"
-            id="Helt tilfeldig ID"
-            type="text"
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-      </div>
-      <ol
-        className="c3"
-      >
-        <li
-          className="c4"
-          tabIndex={-1}
-        >
-          <div
-            className="c5"
-            onClick={[Function]}
-          >
-            <div>
-              <div
-                className="c6"
+          <div>
+            <div
+              className="c6"
+            >
+              <span
+                className="c7"
               >
-                <span
-                  className="c7"
+                <svg
+                  height={24}
+                  viewBox="0 0 24 24"
+                  width={24}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    height={24}
-                    viewBox="0 0 24 24"
-                    width={24}
-                    xmlns="http://www.w3.org/2000/svg"
+                  <g
+                    fill="none"
+                    stroke="#000"
+                    strokeLinejoin="round"
+                    strokeMiterlimit="10"
                   >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    >
-                      <path
-                        d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
-                      />
-                      <path
-                        d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
-                        strokeLinecap="round"
-                      />
-                    </g>
-                  </svg>
+                    <path
+                      d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
+                    />
+                    <path
+                      d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
+                      strokeLinecap="round"
+                    />
+                  </g>
+                </svg>
+                <p
+                  className="typo-undertekst-bold c8"
+                >
+                  4
+                </p>
+              </span>
+              <div>
+                <div
+                  className="c9"
+                >
                   <p
-                    className="typo-undertekst-bold c8"
+                    className="typo-element order-second"
                   >
-                    4
+                    Samtalereferat oppmøte - Arbeid
                   </p>
-                </span>
-                <div>
-                  <div
-                    className="c9"
+                  <p
+                    className="typo-normal order-first"
                   >
-                    <p
-                      className="typo-element order-second"
-                    >
-                      Samtalereferat oppmøte - Arbeid
-                    </p>
-                    <p
-                      className="typo-normal order-first"
-                    >
-                      30.07.2019 00:00
-                    </p>
-                  </div>
+                    30.07.2019 00:00
+                  </p>
+                </div>
+                <div
+                  className="c10"
+                >
                   <div
-                    className="c10"
+                    className="etikett etikett--fokus"
                   >
-                    <div
-                      className="etikett etikett--fokus"
+                    <span
+                      className="typo-normal"
                     >
-                      <span
-                        className="typo-normal"
-                      >
-                        Under arbeid
-                      </span>
-                    </div>
+                      Under arbeid
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-            <button
-              aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
-              aria-selected={false}
-              className="c11"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
           </div>
-        </li>
-      </ol>
-    </div>
-    <div>
-      <div
-        className="c12"
-      />
-    </div>
-  </article>
+          <button
+            aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
+            aria-selected={false}
+            className="c11"
+          >
+            <i
+              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+            />
+          </button>
+        </div>
+      </li>
+    </ol>
+  </nav>
+  <div>
+    <div
+      className="c12"
+    />
+  </div>
 </article>
 `;

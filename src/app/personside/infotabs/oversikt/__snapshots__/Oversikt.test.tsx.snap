@@ -778,75 +778,78 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
+          aria-label="Oversikt brukers meldinger"
           className="c17"
         >
-          <div
-            className="c7"
-            onClick={[Function]}
-          >
-            <div>
-              <div
-                className="c18"
-              >
-                <span
-                  className="c19"
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+            >
+              <div>
+                <div
+                  className="c18"
                 >
-                  <svg
-                    height={24}
-                    viewBox="0 0 24 24"
-                    width={24}
-                    xmlns="http://www.w3.org/2000/svg"
+                  <span
+                    className="c19"
                   >
-                    <g
-                      fill="none"
-                      stroke="#000"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
+                    <svg
+                      height={24}
+                      viewBox="0 0 24 24"
+                      width={24}
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
-                      />
-                      <path
-                        d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
-                        strokeLinecap="round"
-                      />
-                    </g>
-                  </svg>
-                  <p
-                    className="typo-undertekst-bold c20"
-                  >
-                    4
-                  </p>
-                </span>
-                <div>
-                  <p
-                    className="typo-normal"
-                  >
-                    30.07.2019 00:00
-                  </p>
-                  <p
-                    className="typo-element"
-                  >
-                    Samtalereferat oppmøte - Arbeid
-                  </p>
-                  <div
-                    className="tekstomrade"
-                  >
-                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Su...
+                      <g
+                        fill="none"
+                        stroke="#000"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <path
+                          d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
+                        />
+                        <path
+                          d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
+                          strokeLinecap="round"
+                        />
+                      </g>
+                    </svg>
+                    <p
+                      className="typo-undertekst-bold c20"
+                    >
+                      4
+                    </p>
+                  </span>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      30.07.2019 00:00
+                    </p>
+                    <p
+                      className="typo-element"
+                    >
+                      Samtalereferat oppmøte - Arbeid
+                    </p>
+                    <div
+                      className="tekstomrade"
+                    >
+                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Su...
+                    </div>
                   </div>
                 </div>
               </div>
+              <button
+                aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
             </div>
-            <button
-              aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
-              aria-selected={false}
-              className="c9"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
-          </div>
+          </li>
         </ol>
       </div>
     </section>

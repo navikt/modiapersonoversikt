@@ -58,22 +58,20 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     }, [forrigeValgteTraad, traaderResource, dispatch, props, dyplenker.meldinger]);
 
     return (
-        <article>
-            <RestResourceConsumer<Traad[]>
-                getResource={restResources => restResources.tråderOgMeldinger}
-                returnOnPending={<CenteredLazySpinner />}
-            >
-                {data => (
-                    <MeldingerArticleStyle>
-                        <TraadListe traader={data} />
-                        <div>
-                            <Verktoylinje />
-                            <TraadVisning />
-                        </div>
-                    </MeldingerArticleStyle>
-                )}
-            </RestResourceConsumer>
-        </article>
+        <RestResourceConsumer<Traad[]>
+            getResource={restResources => restResources.tråderOgMeldinger}
+            returnOnPending={<CenteredLazySpinner />}
+        >
+            {data => (
+                <MeldingerArticleStyle>
+                    <TraadListe traader={data} />
+                    <div>
+                        <Verktoylinje />
+                        <TraadVisning />
+                    </div>
+                </MeldingerArticleStyle>
+            )}
+        </RestResourceConsumer>
     );
 }
 

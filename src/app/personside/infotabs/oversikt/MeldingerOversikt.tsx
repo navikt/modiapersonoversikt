@@ -44,38 +44,40 @@ function MeldingerOversikt() {
                     .slice(0, 4)
                     .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
 
-                return <ListStyle>{traadKomponenter}</ListStyle>;
+                return <ListStyle aria-label="Oversikt brukers meldinger">{traadKomponenter}</ListStyle>;
             }}
         </RestResourceConsumer>
     );
 }
 
-function Traadelement(props: Props) {
+export function Traadelement(props: Props) {
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
     const dyplenker = useInfotabsDyplenker();
 
     return (
-        <VisMerKnapp
-            linkTo={dyplenker.meldinger.link(props.traad)}
-            valgt={false}
-            ariaDescription={'Vis meldinger for ' + tittel}
-        >
-            <PanelStyle>
-                <Meldingsikon
-                    type={nyesteMelding.meldingstype}
-                    erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
-                    erMonolog={erMonolog(props.traad)}
-                    antallMeldinger={props.traad.meldinger.length}
-                />
-                <div>
-                    <Normaltekst>{datoTekst}</Normaltekst>
-                    <Element>{tittel}</Element>
-                    <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
-                </div>
-            </PanelStyle>
-        </VisMerKnapp>
+        <li>
+            <VisMerKnapp
+                linkTo={dyplenker.meldinger.link(props.traad)}
+                valgt={false}
+                ariaDescription={'Vis meldinger for ' + tittel}
+            >
+                <PanelStyle>
+                    <Meldingsikon
+                        type={nyesteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
+                    />
+                    <div>
+                        <Normaltekst>{datoTekst}</Normaltekst>
+                        <Element>{tittel}</Element>
+                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                    </div>
+                </PanelStyle>
+            </VisMerKnapp>
+        </li>
     );
 }
 

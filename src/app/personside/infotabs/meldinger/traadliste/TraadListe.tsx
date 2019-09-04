@@ -12,7 +12,7 @@ interface Props {
     traader: Traad[];
 }
 
-const PanelStyle = styled.div`
+const PanelStyle = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -30,7 +30,7 @@ function SortertListe(props: Props) {
         .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
         .map(traad => <TraadListeElement traad={traad} key={traad.traadId} />);
 
-    return <TraadListeStyle>{traadKomponenter}</TraadListeStyle>;
+    return <TraadListeStyle aria-label="Brukers tråder">{traadKomponenter}</TraadListeStyle>;
 }
 
 function TraadListe(props: Props) {
