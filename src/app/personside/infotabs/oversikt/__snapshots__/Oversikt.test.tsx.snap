@@ -366,53 +366,56 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
+          aria-label="Oversikt brukers utbetalinger"
           className="c6"
         >
-          <div
-            className="c7"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                29. Mars 2017
-                 / 
-                Utbetalt
-              </p>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c8"
-                >
-                  Sykepenger
-                </span>
-              </p>
-              <p
-                className="typo-normal"
-              >
-                09.11.2016
-                 - 
-                31.10.2017
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Utbetaling til: 
-                AREMARK TESTFAMILIEN
-              </p>
-            </div>
-            <button
-              aria-label="Vis utbetaling"
-              aria-selected={false}
-              className="c9"
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
             >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
-          </div>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  29. Mars 2017
+                   / 
+                  Utbetalt
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Sykepenger
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  09.11.2016
+                   - 
+                  31.10.2017
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
+                </p>
+              </div>
+              <button
+                aria-label="Vis utbetaling"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
+          </li>
         </ol>
       </div>
     </section>
