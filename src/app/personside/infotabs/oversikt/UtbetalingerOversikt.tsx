@@ -42,7 +42,7 @@ function UtbetalingerPanel(props: Props) {
     const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
 
     return (
-        <ListStyle>
+        <ListStyle aria-label="Oversikt brukers utbetalinger">
             {sortertPåDato.map((utbetaling, index) => (
                 <EnkelUtbetaling key={index} utbetaling={utbetaling} />
             ))}
@@ -53,18 +53,20 @@ function UtbetalingerPanel(props: Props) {
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
     const dyplenkerInfotabs = useInfotabsDyplenker();
     return (
-        <VisMerKnapp
-            valgt={false}
-            ariaDescription={`Vis utbetaling`}
-            linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
-        >
-            <Normaltekst>
-                {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
-            </Normaltekst>
-            <YtelseNavn utbetaling={utbetaling} />
-            <YtelsePeriode utbetaling={utbetaling} />
-            <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-        </VisMerKnapp>
+        <li>
+            <VisMerKnapp
+                valgt={false}
+                ariaDescription={`Vis utbetaling`}
+                linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
+            >
+                <Normaltekst>
+                    {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
+                </Normaltekst>
+                <YtelseNavn utbetaling={utbetaling} />
+                <YtelsePeriode utbetaling={utbetaling} />
+                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+            </VisMerKnapp>
+        </li>
     );
 }
 
