@@ -77,7 +77,7 @@ function InfoTabs(props: Props) {
                         <Route path={paths.saker} component={SaksoversiktContainer} />
                         <Route path={paths.ytelser} component={YtelserContainer} />
                         <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={[paths.oversikt, '']} component={Oversikt} />
+                        <Route path={''} component={Oversikt} />
                     </Switch>
                 </OpenTab>
             </Section>
