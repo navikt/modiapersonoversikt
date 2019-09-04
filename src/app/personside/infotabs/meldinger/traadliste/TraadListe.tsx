@@ -33,19 +33,17 @@ function SortertListe(props: Props) {
     return <TraadListeStyle>{traadKomponenter}</TraadListeStyle>;
 }
 
-class TraadListe extends React.PureComponent<Props> {
-    render() {
-        if (this.props.traader.length === 0) {
-            return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
-        }
-
-        return (
-            <PanelStyle>
-                <TraadFilterPanel />
-                <SortertListe traader={this.props.traader} />
-            </PanelStyle>
-        );
+function TraadListe(props: Props) {
+    if (props.traader.length === 0) {
+        return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
+
+    return (
+        <PanelStyle>
+            <TraadFilterPanel />
+            <SortertListe traader={props.traader} />
+        </PanelStyle>
+    );
 }
 
 export default TraadListe;

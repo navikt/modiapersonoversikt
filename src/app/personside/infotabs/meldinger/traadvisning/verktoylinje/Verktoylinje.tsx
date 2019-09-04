@@ -8,13 +8,12 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-
-interface Props {
-    valgtTraad?: Traad;
-}
+import { withRouter } from 'react-router';
+import LazySpinner from '../../../../../../components/LazySpinner';
+import { MeldingerDyplenkeRouteComponentProps, useValgtTraad } from '../../../dyplenker';
 
 const PanelStyle = styled.div`
-    ${theme.hvittPanel}
+    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
@@ -43,15 +42,11 @@ enum FunksjonVindu {
     MERK
 }
 
-function Funksjoner(props: Props) {
+function Funksjoner(props: { valgtTraad: Traad }) {
     const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
     useEffect(() => {
         settAktivtVindu(null);
     }, [props.valgtTraad, settAktivtVindu]);
-
-    if (!props.valgtTraad) {
-        return null;
-    }
 
     const setResetVindu = (klikketVindu: FunksjonVindu) => () =>
         aktivtVindu === klikketVindu ? settAktivtVindu(null) : settAktivtVindu(klikketVindu);
@@ -91,12 +86,18 @@ function Funksjoner(props: Props) {
     );
 }
 
-function Verktoylinje(props: Props) {
+function Verktoylinje(props: MeldingerDyplenkeRouteComponentProps) {
+    const valgtTraad = useValgtTraad(props);
+
+    if (!valgtTraad) {
+        return <LazySpinner />;
+    }
+
     return (
         <PanelStyle>
-            <Funksjoner valgtTraad={props.valgtTraad} />
+            <Funksjoner valgtTraad={valgtTraad} />
         </PanelStyle>
     );
 }
 
-export default Verktoylinje;
+export default withRouter(Verktoylinje);

@@ -2,18 +2,18 @@ import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import VerktoylinjeContainer from './traadvisning/verktoylinje/VerktoylinjeContainer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useEffect } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
-import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions';
+import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
-import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps } from '../dyplenker';
+import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../dyplenker';
 import { withRouter } from 'react-router';
+import TraadVisning from './traadvisning/TraadVisning';
+import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 
 const meldingerMediaTreshold = pxToRem(900);
 
@@ -41,20 +41,21 @@ const MeldingerArticleStyle = styled.article`
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dispatch = useDispatch();
-    const valgtTraad = useAppState(state => state.meldinger.valgtTraad);
+    const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dyplenker = useInfotabsDyplenker();
 
     useEffect(() => {
         if (!hasData(traaderResource)) {
             return;
         }
         const traadIUrl = traaderResource.data.find(traad => erValgtIDyplenke.meldinger(traad, props));
-        if (traadIUrl && traadIUrl !== valgtTraad) {
-            dispatch(setValgtTraadMeldingspanel(traadIUrl));
-        } else if (!valgtTraad) {
-            dispatch(setValgtTraadMeldingspanel(traaderResource.data[0]));
+        if (!traadIUrl) {
+            props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
+        } else if (traadIUrl !== forrigeValgteTraad) {
+            dispatch(huskForrigeValgtTraad(traadIUrl));
         }
-    }, [valgtTraad, traaderResource, dispatch, props]);
+    }, [forrigeValgteTraad, traaderResource, dispatch, props, dyplenker.meldinger]);
 
     return (
         <article>
@@ -66,8 +67,8 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                     <MeldingerArticleStyle>
                         <TraadListe traader={data} />
                         <div>
-                            <VerktoylinjeContainer />
-                            <TraadVisningContainer />
+                            <Verktoylinje />
+                            <TraadVisning />
                         </div>
                     </MeldingerArticleStyle>
                 )}

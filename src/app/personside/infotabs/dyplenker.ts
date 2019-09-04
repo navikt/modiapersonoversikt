@@ -3,6 +3,8 @@ import { usePaths } from '../../routes/routing';
 import { Utbetaling } from '../../../models/utbetalinger';
 import { RouteComponentProps } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
+import { useRestResource } from '../../../utils/customHooks';
+import { hasData } from '../../../rest/utils/restResource';
 
 export function useInfotabsDyplenker() {
     const paths = usePaths();
@@ -29,3 +31,11 @@ export const erValgtIDyplenke = {
     meldinger: (traad: Traad, routeProps: MeldingerDyplenkeRouteComponentProps) =>
         traad.traadId === routeProps.match.params.traadId
 };
+
+export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
+    const traader = useRestResource(resources => resources.tråderOgMeldinger);
+    if (!hasData(traader)) {
+        return undefined;
+    }
+    return traader.data.find(traad => erValgtIDyplenke.meldinger(traad, routeProps));
+}

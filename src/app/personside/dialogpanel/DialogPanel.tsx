@@ -10,17 +10,19 @@ import { hasData } from '../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { loggError } from '../../../utils/frontendLogger';
-import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
 `;
 
-function DialogPanel() {
+function DialogPanel(props: RouteComponentProps) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
+    const dyplenker = useInfotabsDyplenker();
 
     const visTraadTilknyttetOppgaveIDialogpanel = !dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0;
     if (visTraadTilknyttetOppgaveIDialogpanel && hasData(traaderResource)) {
@@ -28,7 +30,7 @@ function DialogPanel() {
         const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
         if (traadTilknyttetOppgave) {
             dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
-            dispatch(setValgtTraadMeldingspanel(traadTilknyttetOppgave));
+            props.history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
         } else {
             loggError(
                 new Error(
@@ -56,4 +58,4 @@ function DialogPanel() {
     );
 }
 
-export default DialogPanel;
+export default withRouter(DialogPanel);

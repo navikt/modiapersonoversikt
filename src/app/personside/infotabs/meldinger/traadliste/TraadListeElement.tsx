@@ -7,8 +7,6 @@ import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
-import { AppState } from '../../../../../redux/reducers';
-import { connect } from 'react-redux';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
@@ -21,11 +19,7 @@ interface OwnProps {
     traad: Traad;
 }
 
-interface StateProps {
-    erValgt: boolean;
-}
-
-type Props = OwnProps & StateProps & MeldingerDyplenkeRouteComponentProps;
+type Props = OwnProps & MeldingerDyplenkeRouteComponentProps;
 
 const UUcustomOrder = styled.div`
     display: flex;
@@ -69,9 +63,10 @@ function TraadListeElement(props: Props) {
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
+    const erValgt = erValgtIDyplenke.meldinger(props.traad, props);
 
     useOnMount(() => {
-        if (erValgtIDyplenke.meldinger(props.traad, props)) {
+        if (erValgt) {
             ref.current && ref.current.focus();
         }
     });
@@ -79,7 +74,7 @@ function TraadListeElement(props: Props) {
     return (
         <ListElement tabIndex={-1} ref={ref}>
             <VisMerKnapp
-                valgt={props.erValgt}
+                valgt={erValgt}
                 linkTo={dyplenker.meldinger.link(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
@@ -118,10 +113,4 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
-    return {
-        erValgt: state.meldinger.valgtTraad === ownProps.traad
-    };
-}
-
-export default withRouter(connect(mapStateToProps)(TraadListeElement));
+export default withRouter(TraadListeElement);
