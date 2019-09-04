@@ -46,5 +46,5 @@ export default combineResettableReducers<AppState>(
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer
     },
-    ['gjeldendeBruker']
+    ['gjeldendeBruker', 'temagruppe', 'restResources']
 );
