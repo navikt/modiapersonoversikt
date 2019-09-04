@@ -10,7 +10,7 @@ import theme from '../../../styles/personOversiktTheme';
 import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
 import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
-import { hasData, isNotStarted } from '../../../rest/utils/restResource';
+import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
@@ -55,10 +55,6 @@ function TildelteOppgaver() {
     const dispatch = useDispatch();
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
-
-    if (isNotStarted(traaderResource)) {
-        dispatch(traaderResource.actions.fetch);
-    }
 
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
