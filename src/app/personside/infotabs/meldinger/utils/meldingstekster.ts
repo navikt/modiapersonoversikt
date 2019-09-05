@@ -56,6 +56,8 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
         case Temagruppe.Familie:
             return 'Familie';
         case Temagruppe.Null:
+        case null:
+        case '':
             return '';
         default:
             return 'Ukjent temagruppe: ' + temagruppe;
