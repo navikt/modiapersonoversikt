@@ -2,10 +2,10 @@ import { initialState, MeldingerActions, MeldingerActionTypes, MeldingerState } 
 
 export function meldingerReducer(state: MeldingerState = initialState, action: MeldingerActions): MeldingerState {
     switch (action.type) {
-        case MeldingerActionTypes.SetValgtTraad:
+        case MeldingerActionTypes.HuskValgtTraad:
             return {
                 ...state,
-                valgtTraad: action.traad
+                forrigeValgteTraad: action.traad
             };
         default:
             return state;

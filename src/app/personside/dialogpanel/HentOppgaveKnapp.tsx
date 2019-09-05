@@ -7,7 +7,6 @@ import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppe } from '../../../redux/temagruppe';
-import { selectFodselsnummerfraOppgaver } from '../../../redux/restReducers/oppgaver';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
@@ -73,12 +72,15 @@ function HentOppgaveKnapp(props: Props) {
         settJobberMedSpørsmålOgSvar();
         dispatch(
             oppgaveResource.actions.post({}, response => {
-                const fødselsnummer = selectFodselsnummerfraOppgaver(response);
+                const oppgave = response[0];
+                const fødselsnummer = oppgave.fødselsnummer;
                 if (!fødselsnummer) {
                     setTomKø(true);
                     return;
                 }
-                props.history.push(`${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}`);
+                props.history.push(
+                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.henvendelseid}`
+                );
             })
         );
     };

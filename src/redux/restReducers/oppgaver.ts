@@ -9,11 +9,3 @@ function getOppgaveFetchUri(state: AppState) {
 }
 
 export default createPostResourceReducerAndActions<{}, Oppgave[]>('oppgave', getOppgaveFetchUri);
-
-export function selectFodselsnummerfraOppgaver(oppgaver: Oppgave[]) {
-    if (oppgaver.length === 0) {
-        return null;
-    } else {
-        return oppgaver[0].fødselsnummer;
-    }
-}

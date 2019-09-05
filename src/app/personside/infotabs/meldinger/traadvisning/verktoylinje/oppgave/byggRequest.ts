@@ -4,8 +4,13 @@ import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
+import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
-export function lagOppgaveRequest(props: OppgaveProps, form: OppgaveSkjemaProps): OpprettOppgaveRequest {
+export function lagOppgaveRequest(
+    props: OppgaveProps,
+    form: OppgaveSkjemaProps,
+    valgtTraad?: Traad
+): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
     const valgtTema = form.state.valgtTema;
     const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
@@ -13,7 +18,7 @@ export function lagOppgaveRequest(props: OppgaveProps, form: OppgaveSkjemaProps)
 
     return {
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
-        henvendelseId: props.valgtTraad ? eldsteMelding(props.valgtTraad).id : 'UKJENT',
+        henvendelseId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
         ansvarligIdent: props.innloggetSaksbehandler.ident,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),

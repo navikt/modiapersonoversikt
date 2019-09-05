@@ -10,6 +10,8 @@ import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
 import theme from '../../../../../../../styles/personOversiktTheme';
+import { useValgtTraad } from '../../../../dyplenker';
+import { withRouter } from 'react-router';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
@@ -49,6 +51,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtPrioritet, settValgtPrioritet] = useState(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
+    const valgtTraad = useValgtTraad(props);
 
     function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
         settValgtTema(tema);
@@ -80,7 +83,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         const harSkjemaValideringsfeil = skjemavalidering(formState);
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
-            const request = lagOppgaveRequest(props, formState);
+            const request = lagOppgaveRequest(props, formState, valgtTraad);
             props.opprettOppgave(request);
             if (props.kontorsperreFunksjon) {
                 props.kontorsperreFunksjon();
@@ -99,4 +102,4 @@ function OppgaveSkjema(props: OppgaveProps) {
     );
 }
 
-export default OppgaveSkjema;
+export default withRouter(OppgaveSkjema);

@@ -27,8 +27,10 @@ import { RadioPanelGruppe, Checkbox } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { MeldingerDyplenkeRouteComponentProps, useValgtTraad } from '../../../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends MeldingerDyplenkeRouteComponentProps {
     lukkPanel: () => void;
 }
 
@@ -63,7 +65,7 @@ function MerkPanel(props: Props) {
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const valgtTraad = useSelector((state: AppState) => state.meldinger.valgtTraad);
+    const valgtTraad = useValgtTraad(props);
 
     if (!valgtTraad) {
         return <AlertStripeAdvarsel>Ingen tråd valgt</AlertStripeAdvarsel>;
@@ -159,4 +161,4 @@ function MerkPanel(props: Props) {
     );
 }
 
-export default MerkPanel;
+export default withRouter(MerkPanel);
