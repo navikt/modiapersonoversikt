@@ -141,5 +141,5 @@ export default combineResettableReducers<RestEndepunkter>(
         opprettOppgave: opprettOppgave,
         personsok: personsok
     },
-    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']
+    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'oppgaver']
 );

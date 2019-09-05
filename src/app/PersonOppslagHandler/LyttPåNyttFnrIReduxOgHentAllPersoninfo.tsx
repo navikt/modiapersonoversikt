@@ -12,6 +12,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
 
     const restResources = useSelector((state: AppState) => state.restResources);
     const personinformasjonFetch = restResources.personinformasjon.actions.fetch;
+    const tråderFetch = restResources.tråderOgMeldinger.actions.fetch;
     const kontaktinformasjonFetch = restResources.kontaktinformasjon.actions.fetch;
     const vergemalFetch = restResources.vergemal.actions.fetch;
     const egenAnsattFetch = restResources.egenAnsatt.actions.fetch;
@@ -20,12 +21,14 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useEffect(() => {
         cache.clear();
         dispatch(reset());
-
-        dispatch(personinformasjonFetch);
-        dispatch(kontaktinformasjonFetch);
-        dispatch(vergemalFetch);
-        dispatch(egenAnsattFetch);
-        dispatch(tildDelteOppgaverFetch);
+        if (fnr.length !== 0) {
+            dispatch(personinformasjonFetch);
+            dispatch(tråderFetch);
+            dispatch(kontaktinformasjonFetch);
+            dispatch(vergemalFetch);
+            dispatch(egenAnsattFetch);
+            dispatch(tildDelteOppgaverFetch);
+        }
     }, [
         dispatch,
         fnr,

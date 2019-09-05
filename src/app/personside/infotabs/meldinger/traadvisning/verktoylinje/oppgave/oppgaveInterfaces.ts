@@ -5,13 +5,12 @@ import {
     OppgavePrioritet,
     OpprettOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
+import { MeldingerDyplenkeRouteComponentProps } from '../../../../dyplenker';
 
-export interface OppgaveProps {
+export interface OppgaveProps extends MeldingerDyplenkeRouteComponentProps {
     gsakTema: GsakTema[];
-    valgtTraad?: Traad;
     gjeldendeBrukerFnr: string;
     innloggetSaksbehandler: InnloggetSaksbehandler;
     opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
