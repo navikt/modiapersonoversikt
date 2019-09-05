@@ -12,14 +12,12 @@ import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
-import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
-interface OwnProps {
+interface Props {
     traad: Traad;
+    erValgt: boolean;
 }
-
-type Props = OwnProps & MeldingerDyplenkeRouteComponentProps;
 
 const UUcustomOrder = styled.div`
     display: flex;
@@ -63,10 +61,9 @@ function TraadListeElement(props: Props) {
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
-    const erValgt = erValgtIDyplenke.meldinger(props.traad, props);
 
     useOnMount(() => {
-        if (erValgt) {
+        if (props.erValgt) {
             ref.current && ref.current.focus();
         }
     });
@@ -74,7 +71,7 @@ function TraadListeElement(props: Props) {
     return (
         <ListElement tabIndex={-1} ref={ref}>
             <VisMerKnapp
-                valgt={erValgt}
+                valgt={props.erValgt}
                 linkTo={dyplenker.meldinger.link(props.traad)}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
@@ -113,4 +110,4 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-export default withRouter(TraadListeElement);
+export default TraadListeElement;

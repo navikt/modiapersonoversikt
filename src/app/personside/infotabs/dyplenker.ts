@@ -32,7 +32,7 @@ export const erValgtIDyplenke = {
         traad.traadId === routeProps.match.params.traadId
 };
 
-export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
+export function useValgtTraadIUrl(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
     const traader = useRestResource(resources => resources.tråderOgMeldinger);
     if (!hasData(traader)) {
         return undefined;
