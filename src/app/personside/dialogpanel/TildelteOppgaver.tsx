@@ -7,7 +7,6 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
-import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
 import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData } from '../../../rest/utils/restResource';
@@ -16,6 +15,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
 import { createRef, useState } from 'react';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 
 const Wrapper = styled.div`
     position: relative;
@@ -48,13 +49,14 @@ const JustifyRight = styled.div`
     align-items: flex-end;
 `;
 
-function TildelteOppgaver() {
+function TildelteOppgaver(props: RouteComponentProps) {
     const ref = createRef<HTMLDivElement>();
     const [visOppgaver, setVisOppgaver] = useState(false);
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
+    const dyplenker = useInfotabsDyplenker();
 
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
@@ -67,7 +69,7 @@ function TildelteOppgaver() {
                 return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
             }
             const handleClick = () => {
-                dispatch(setValgtTraadMeldingspanel(traad));
+                props.history.push(dyplenker.meldinger.link(traad));
                 dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
@@ -106,4 +108,4 @@ function TildelteOppgaver() {
     );
 }
 
-export default TildelteOppgaver;
+export default withRouter(TildelteOppgaver);

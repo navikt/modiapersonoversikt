@@ -6,9 +6,7 @@ import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
-import { useFødselsnummer } from '../../../../utils/customHooks';
-import { paths } from '../../../routes/routing';
-import { INFOTABS } from '../InfoTabEnum';
+import { usePaths } from '../../../routes/routing';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
@@ -26,13 +24,9 @@ function OppfolgingOversikt() {
 }
 
 function OppfolgingPanel(props: Props) {
-    const fnr = useFødselsnummer();
+    const paths = usePaths();
     return (
-        <VisMerKnapp
-            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.OPPFOLGING.toLowerCase()}`}
-            ariaDescription="Gå til oppfølging"
-            valgt={false}
-        >
+        <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
             <OppfolgingVisning oppfolging={props.detaljertOppfølging.oppfølging} />
         </VisMerKnapp>
     );

@@ -10,33 +10,42 @@ import { hasData } from '../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { loggError } from '../../../utils/frontendLogger';
-import { setValgtTraadMeldingspanel } from '../../../redux/meldinger/actions';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../infotabs/dyplenker';
+import { useEffect } from 'react';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
 `;
 
-function DialogPanel() {
+function DialogPanel(props: RouteComponentProps) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
+    const dyplenker = useInfotabsDyplenker();
 
-    const visTraadTilknyttetOppgaveIDialogpanel = !dialogpanelTraad && tildelteOppgaver.paaBruker.length > 0;
-    if (visTraadTilknyttetOppgaveIDialogpanel && hasData(traaderResource)) {
-        const oppgave = tildelteOppgaver.paaBruker[0];
-        const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
-        if (traadTilknyttetOppgave) {
-            dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
-            dispatch(setValgtTraadMeldingspanel(traadTilknyttetOppgave));
-        } else {
-            loggError(
-                new Error(
-                    `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
-                )
-            );
-        }
-    }
+    useEffect(
+        function visTraadTilknyttetOppgaveIDialogpanel() {
+            const oppgave = tildelteOppgaver.paaBruker[0];
+            const visTraadTilknyttetOppgave = !dialogpanelTraad && !!oppgave;
+            if (!visTraadTilknyttetOppgave || !hasData(traaderResource)) {
+                return;
+            }
+            const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
+            if (traadTilknyttetOppgave) {
+                dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
+                props.history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
+            } else {
+                loggError(
+                    new Error(
+                        `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
+                    )
+                );
+            }
+        },
+        [tildelteOppgaver.paaBruker, dialogpanelTraad, dispatch, dyplenker, props.history, traaderResource]
+    );
 
     const tilknyttetOppgave = dialogpanelTraad
         ? tildelteOppgaver.paaBruker.find(oppgave => oppgave.henvendelseid === dialogpanelTraad.traadId)
@@ -56,4 +65,4 @@ function DialogPanel() {
     );
 }
 
-export default DialogPanel;
+export default withRouter(DialogPanel);

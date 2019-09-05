@@ -12,7 +12,7 @@ interface Props {
     traader: Traad[];
 }
 
-const PanelStyle = styled.div`
+const PanelStyle = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -30,22 +30,20 @@ function SortertListe(props: Props) {
         .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
         .map(traad => <TraadListeElement traad={traad} key={traad.traadId} />);
 
-    return <TraadListeStyle>{traadKomponenter}</TraadListeStyle>;
+    return <TraadListeStyle aria-label="Brukers tråder">{traadKomponenter}</TraadListeStyle>;
 }
 
-class TraadListe extends React.PureComponent<Props> {
-    render() {
-        if (this.props.traader.length === 0) {
-            return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
-        }
-
-        return (
-            <PanelStyle>
-                <TraadFilterPanel />
-                <SortertListe traader={this.props.traader} />
-            </PanelStyle>
-        );
+function TraadListe(props: Props) {
+    if (props.traader.length === 0) {
+        return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
+
+    return (
+        <PanelStyle>
+            <TraadFilterPanel />
+            <SortertListe traader={props.traader} />
+        </PanelStyle>
+    );
 }
 
 export default TraadListe;
