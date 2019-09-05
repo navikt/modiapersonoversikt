@@ -14,7 +14,7 @@ import {
     setErStandaloneVindu,
     settValgtDokument,
     settValgtEnkeltdokument,
-    settValgtSakstema,
+    huskValgtSakstema,
     settVisDokument
 } from '../../../../redux/saksoversikt/actions';
 import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
@@ -104,7 +104,7 @@ function hentQueryParametreFraUrlOgVisDokument(
         return;
     }
 
-    dispatch(settValgtSakstema(sakstema));
+    dispatch(huskValgtSakstema(sakstema));
     dispatch(settValgtDokument(dokumentMetadata));
     dispatch(settValgtEnkeltdokument(dokument));
     dispatch(settVisDokument(true));

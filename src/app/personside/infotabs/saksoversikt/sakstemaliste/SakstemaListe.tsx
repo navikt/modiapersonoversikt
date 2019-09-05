@@ -5,22 +5,11 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
-import {
-    aggregertSakstema,
-    hentDatoForSisteHendelse,
-    hentFormattertDatoForSisteHendelse
-} from '../utils/saksoversiktUtils';
+import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
 import { datoSynkende } from '../../../../../utils/dateUtils';
-
-interface Props {
-    sakstema: Sakstema[];
-    oppdaterSakstema: (sakstema: Sakstema) => void;
-    valgtSakstema?: Sakstema;
-}
-
-interface State {
-    aggregertSakstema: Sakstema;
-}
+import { useRestResource } from '../../../../../utils/customHooks';
+import { hasData } from '../../../../../rest/utils/restResource';
+import LazySpinner from '../../../../../components/LazySpinner';
 
 export const sakstemakodeAlle = 'ALLE';
 
@@ -43,58 +32,39 @@ const TittelWrapper = styled.div`
     padding: ${theme.margin.px20};
 `;
 
-type GrupperteTemaProps = Props;
-
-function GrupperteTema(props: GrupperteTemaProps) {
+function GrupperteTema(props: { sakstema: Sakstema[] }) {
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
-        .map(sakstema => (
-            <SakstemaListeElement
-                erValgtSakstema={props.valgtSakstema === sakstema}
-                sakstema={sakstema}
-                oppdaterSakstema={props.oppdaterSakstema}
-                key={sakstema.temakode + hentFormattertDatoForSisteHendelse(sakstema)}
-            />
-        ));
+        .map(sakstema => <SakstemaListeElement sakstema={sakstema} key={getUnikSakstemaKey(sakstema)} />);
     return <SakstemaListeStyle>{sakstemakomponenter}</SakstemaListeStyle>;
 }
 
-class SakstemaListe extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        const aggregert = aggregertSakstema(props.sakstema);
-        this.state = {
-            aggregertSakstema: aggregert
-        };
-        if (!this.props.valgtSakstema) {
-            this.props.oppdaterSakstema(aggregert);
-        }
+function SakstemaListe() {
+    const sakstemaResource = useRestResource(resources => resources.sakstema);
+    const agregerteSaker = useAgregerteSaker();
+
+    if (!hasData(sakstemaResource) || !agregerteSaker) {
+        return <LazySpinner />;
     }
 
-    render() {
-        if (this.props.sakstema.length === 0) {
-            return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
-        }
+    const sakstema = sakstemaResource.data.resultat;
 
-        const sortertSakstema = this.props.sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
-
-        const komplettListe = [this.state.aggregertSakstema, ...sortertSakstema];
-
-        return (
-            <Wrapper>
-                <TittelWrapper>
-                    <Undertittel>Tema</Undertittel>
-                </TittelWrapper>
-                <nav aria-label="Velg sakstema">
-                    <GrupperteTema
-                        valgtSakstema={this.props.valgtSakstema}
-                        sakstema={komplettListe}
-                        oppdaterSakstema={this.props.oppdaterSakstema}
-                    />
-                </nav>
-            </Wrapper>
-        );
+    if (sakstema.length === 0) {
+        return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
     }
+
+    const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
+
+    return (
+        <Wrapper>
+            <TittelWrapper>
+                <Undertittel>Tema</Undertittel>
+            </TittelWrapper>
+            <nav aria-label="Velg sakstema">
+                <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} />
+            </nav>
+        </Wrapper>
+    );
 }
 
 export default SakstemaListe;

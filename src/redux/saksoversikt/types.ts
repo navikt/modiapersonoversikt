@@ -9,7 +9,7 @@ export interface DokumentAvsenderFilter {
 }
 
 export interface SaksoversikState {
-    valgtSakstema?: Sakstema;
+    forrigeValgteSakstema?: Sakstema;
     valgtDokument?: DokumentMetadata;
     valgtEnkeltdokument?: Dokument;
     visDokument: boolean;
@@ -19,7 +19,7 @@ export interface SaksoversikState {
 }
 
 export const initialState: SaksoversikState = {
-    valgtSakstema: undefined,
+    forrigeValgteSakstema: undefined,
     valgtDokument: undefined,
     valgtEnkeltdokument: undefined,
     visDokument: false,
@@ -33,7 +33,7 @@ export const initialState: SaksoversikState = {
 };
 
 export enum SaksoversiktActionTypes {
-    SetValgtSakstema = 'SetValgtSakstema',
+    SetForrigeValgteSakstema = 'SetForrigeValgteSakstema',
     SetValgtDokument = 'SetValgtDokument',
     SetValgtEnkeltdokument = 'SetValgtEnkeltdokument',
     SetVisDokument = 'SetVisDokument',
@@ -42,8 +42,8 @@ export enum SaksoversiktActionTypes {
     SetDokumentAvsenderFilter = 'SetDokumentAvsenderFilter'
 }
 
-export interface SetValgtSakstema {
-    type: SaksoversiktActionTypes.SetValgtSakstema;
+export interface HuskValgtSakstema {
+    type: SaksoversiktActionTypes.SetForrigeValgteSakstema;
     sakstema: Sakstema;
 }
 
@@ -81,7 +81,7 @@ export type SaksoversiktActions =
     | SetVisDokument
     | SetValgtDokument
     | SetValgtEnkeltdokument
-    | SetValgtSakstema
+    | HuskValgtSakstema
     | SetViktigÅViteÅpen
     | SetErStandaloneVindu
     | SetDokumentAvsenderFilter;

@@ -7,11 +7,11 @@ import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
+import { erValgtIDyplenke, SakerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends SakerDyplenkeRouteComponentProps {
     sakstema: Sakstema;
-    erValgtSakstema: boolean;
-    oppdaterSakstema: (sakstema: Sakstema) => void;
 }
 
 const SVGStyling = styled.span`
@@ -65,6 +65,8 @@ function saksikon(harTilgang: boolean) {
 }
 
 function SakstemaListeElement(props: Props) {
+    const dyplenker = useInfotabsDyplenker();
+
     const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
         props.sakstema,
         Behandlingsstatus.UnderBehandling,
@@ -79,8 +81,8 @@ function SakstemaListeElement(props: Props) {
     return (
         <li>
             <VisMerKnapp
-                valgt={props.erValgtSakstema}
-                onClick={() => props.oppdaterSakstema(props.sakstema)}
+                valgt={erValgtIDyplenke.saker(props.sakstema, props)}
+                linkTo={dyplenker.saker.link(props.sakstema)}
                 ariaDescription={'Vis ' + props.sakstema.temanavn}
             >
                 <Flex>
@@ -101,4 +103,4 @@ function SakstemaListeElement(props: Props) {
     );
 }
 
-export default SakstemaListeElement;
+export default withRouter(SakstemaListeElement);

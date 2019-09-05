@@ -4,14 +4,18 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
-import { settVisDokument } from '../../../../redux/saksoversikt/actions';
+import { huskValgtSakstema, settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import SakstemaListe from './sakstemaliste/SakstemaListe';
+import { useEffect } from 'react';
+import { SakerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtSakstema } from '../dyplenker';
+import { withRouter } from 'react-router';
+import { useAgregerteSaker } from './utils/saksoversiktUtils';
 
 export const saksoversiktMediaTreshold = '80rem';
 
@@ -36,14 +40,29 @@ const SaksoversiktArticle = styled.article`
     }
 `;
 
-function SaksoversiktContainer() {
+function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
+    const forrigeValgteSaksTema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
+    const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();
     });
+
+    const saksTemaIUrl = useValgtSakstema(props);
+    const agregerteSakstema = useAgregerteSaker();
+    useEffect(() => {
+        if (!agregerteSakstema) {
+            return;
+        }
+        if (!saksTemaIUrl) {
+            props.history.push(dyplenker.saker.link(forrigeValgteSaksTema || agregerteSakstema));
+        } else if (saksTemaIUrl !== forrigeValgteSaksTema) {
+            dispatch(huskValgtSakstema(saksTemaIUrl));
+        }
+    }, [forrigeValgteSaksTema, agregerteSakstema, saksTemaIUrl, props.history, dispatch, dyplenker.saker]);
 
     if (visDokument) {
         return <DokumentOgVedlegg />;
@@ -57,7 +76,7 @@ function SaksoversiktContainer() {
                 >
                     {sakstema => (
                         <>
-                            <SakstemaListeContainer />
+                            <SakstemaListe />
                             <SaksDokumenterContainer />
                         </>
                     )}
@@ -67,4 +86,4 @@ function SaksoversiktContainer() {
     }
 }
 
-export default SaksoversiktContainer;
+export default withRouter(SaksoversiktContainer);

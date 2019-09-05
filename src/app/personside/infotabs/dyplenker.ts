@@ -5,6 +5,8 @@ import { RouteComponentProps } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../utils/customHooks';
 import { hasData } from '../../../rest/utils/restResource';
+import { Sakstema } from '../../../models/saksoversikt/sakstema';
+import { getUnikSakstemaKey, useAgregerteSaker } from './saksoversikt/utils/saksoversiktUtils';
 
 export function useInfotabsDyplenker() {
     const paths = usePaths();
@@ -16,12 +18,17 @@ export function useInfotabsDyplenker() {
         meldinger: {
             link: (traad: Traad) => `${paths.meldinger}/${traad.traadId}`,
             route: `${paths.meldinger}/:traadId?`
+        },
+        saker: {
+            link: (saksTema: Sakstema) => `${paths.saker}/${getUnikSakstemaKey(saksTema)}`,
+            route: `${paths.saker}/:sakstemakey?`
         }
     };
 }
 
 export type UtbetalingDyplenkeRouteComponentProps = RouteComponentProps<{ posteringsdato: string }>;
 export type MeldingerDyplenkeRouteComponentProps = RouteComponentProps<{ traadId: string }>;
+export type SakerDyplenkeRouteComponentProps = RouteComponentProps<{ sakstemakey: string }>;
 
 export const erValgtIDyplenke = {
     utbetaling: (utbetaling: Utbetaling, routeProps: UtbetalingDyplenkeRouteComponentProps) => {
@@ -29,7 +36,9 @@ export const erValgtIDyplenke = {
         return moment(utbetaling.posteringsdato).isSame(posteringsdatoFraUrl);
     },
     meldinger: (traad: Traad, routeProps: MeldingerDyplenkeRouteComponentProps) =>
-        traad.traadId === routeProps.match.params.traadId
+        traad.traadId === routeProps.match.params.traadId,
+    saker: (sakstema: Sakstema, routeProps: SakerDyplenkeRouteComponentProps) =>
+        getUnikSakstemaKey(sakstema) === routeProps.match.params.sakstemakey
 };
 
 export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
@@ -38,4 +47,13 @@ export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps):
         return undefined;
     }
     return traader.data.find(traad => erValgtIDyplenke.meldinger(traad, routeProps));
+}
+
+export function useValgtSakstema(routeProps: SakerDyplenkeRouteComponentProps) {
+    const sakstemaResource = useRestResource(resources => resources.sakstema);
+    const agregerteSaker = useAgregerteSaker();
+    if (!hasData(sakstemaResource) || !agregerteSaker) {
+        return undefined;
+    }
+    return [agregerteSaker, ...sakstemaResource.data.resultat].find(st => erValgtIDyplenke.saker(st, routeProps));
 }
