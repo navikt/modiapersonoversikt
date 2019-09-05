@@ -4,10 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-
-function getAktivTab(infoTabs: ReactWrapper) {
-    return infoTabs.find('button[role="tab"][aria-selected=true]').text();
-}
+import { getAktivTab } from './utils';
 
 function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
     infoTabs
