@@ -11,6 +11,10 @@ import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData } from '../../../../../rest/utils/restResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 
+interface Props {
+    valgtSakstema?: Sakstema;
+}
+
 export const sakstemakodeAlle = 'ALLE';
 
 const SakstemaListeStyle = styled.ol`
@@ -32,14 +36,26 @@ const TittelWrapper = styled.div`
     padding: ${theme.margin.px20};
 `;
 
-function GrupperteTema(props: { sakstema: Sakstema[] }) {
+function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }) {
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
-        .map(sakstema => <SakstemaListeElement sakstema={sakstema} key={getUnikSakstemaKey(sakstema)} />);
+        .map(sakstema => {
+            return (
+                <SakstemaListeElement
+                    sakstema={sakstema}
+                    key={getUnikSakstemaKey(sakstema)}
+                    erValgt={
+                        props.valgtSakstema
+                            ? getUnikSakstemaKey(sakstema) === getUnikSakstemaKey(props.valgtSakstema)
+                            : false
+                    }
+                />
+            );
+        });
     return <SakstemaListeStyle>{sakstemakomponenter}</SakstemaListeStyle>;
 }
 
-function SakstemaListe() {
+function SakstemaListe(props: Props) {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
 
@@ -61,7 +77,7 @@ function SakstemaListe() {
                 <Undertittel>Tema</Undertittel>
             </TittelWrapper>
             <nav aria-label="Velg sakstema">
-                <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} />
+                <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} valgtSakstema={props.valgtSakstema} />
             </nav>
         </Wrapper>
     );

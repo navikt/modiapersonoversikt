@@ -7,11 +7,11 @@ import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
-import { erValgtIDyplenke, SakerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
-interface Props extends SakerDyplenkeRouteComponentProps {
+interface Props {
     sakstema: Sakstema;
+    erValgt: boolean;
 }
 
 const SVGStyling = styled.span`
@@ -81,7 +81,7 @@ function SakstemaListeElement(props: Props) {
     return (
         <li>
             <VisMerKnapp
-                valgt={erValgtIDyplenke.saker(props.sakstema, props)}
+                valgt={props.erValgt}
                 linkTo={dyplenker.saker.link(props.sakstema)}
                 ariaDescription={'Vis ' + props.sakstema.temanavn}
             >
@@ -103,4 +103,4 @@ function SakstemaListeElement(props: Props) {
     );
 }
 
-export default withRouter(SakstemaListeElement);
+export default SakstemaListeElement;

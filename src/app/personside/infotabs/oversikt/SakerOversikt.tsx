@@ -33,7 +33,7 @@ function SakerPanel(props: Props) {
     const sakstemakomponenter = props.sakstema
         .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
         .slice(0, 4)
-        .map((sakstema, index) => <SakstemaListeElement sakstema={sakstema} key={index} />);
+        .map((sakstema, index) => <SakstemaListeElement sakstema={sakstema} key={index} erValgt={false} />);
 
     if (sakstemakomponenter.length === 0) {
         return <AlertStripeInfo>Fant ingen saker på bruker</AlertStripeInfo>;

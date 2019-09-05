@@ -18,10 +18,11 @@ import DokumentListeElement from './DokumentListeElement';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
-import { SakerDyplenkeRouteComponentProps, useValgtSakstema } from '../../dyplenker';
+import { SakerDyplenkeRouteComponentProps } from '../../dyplenker';
 import { withRouter } from 'react-router';
 
 interface Props extends SakerDyplenkeRouteComponentProps {
+    valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
     oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
@@ -190,19 +191,18 @@ function DokumentListe(props: DokumentListeProps) {
 
 function SaksDokumenter(props: Props) {
     const tittelRef = React.createRef<HTMLDivElement>();
-    const valgtSakstema = useValgtSakstema(props);
 
     useEffect(
         function scrollToTopVedNyttSakstema() {
-            if (!valgtSakstema) {
+            if (!props.valgtSakstema) {
                 return;
             }
             tittelRef.current && tittelRef.current.focus();
         },
-        [valgtSakstema, tittelRef]
+        [props.valgtSakstema, tittelRef]
     );
 
-    if (!valgtSakstema) {
+    if (!props.valgtSakstema) {
         return <AlertStripeAdvarsel>Kunne ikke finne valgt sakstema</AlertStripeAdvarsel>;
     }
 
@@ -226,7 +226,7 @@ function SaksDokumenter(props: Props) {
         </Form>
     );
 
-    const tittel = <Undertittel>{valgtSakstema.temanavn}</Undertittel>;
+    const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
     const valgtSakstemaTittel = props.erStandaloneVindu ? (
         <DropDownMenu header={tittel}>
             <SakstemaListe />
@@ -234,12 +234,12 @@ function SaksDokumenter(props: Props) {
     ) : (
         tittel
     );
-    const filtrerteDokumenter = valgtSakstema.dokumentMetadata.filter(metadata =>
+    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
         hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
     );
 
     return (
-        <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + valgtSakstema.temanavn}>
+        <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
             <InfoOgFilterPanel>
                 <div>
                     <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
@@ -249,12 +249,12 @@ function SaksDokumenter(props: Props) {
                     {filterCheckboxer}
                 </div>
                 <div>
-                    <LenkeNorg valgtSakstema={valgtSakstema} />
-                    <ToggleViktigAaViteKnapp valgtSakstema={valgtSakstema} />
+                    <LenkeNorg valgtSakstema={props.valgtSakstema} />
+                    <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
                 </div>
             </InfoOgFilterPanel>
-            <ViktigÅVite valgtSakstema={valgtSakstema} />
-            <DokumentListe sakstema={valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
+            <ViktigÅVite valgtSakstema={props.valgtSakstema} />
+            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
         </SaksdokumenterStyling>
     );
 }

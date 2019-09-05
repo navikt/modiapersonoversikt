@@ -64,6 +64,8 @@ function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
         }
     }, [forrigeValgteSaksTema, agregerteSakstema, saksTemaIUrl, props.history, dispatch, dyplenker.saker]);
 
+    const valgtSakstema = saksTemaIUrl || forrigeValgteSaksTema || agregerteSakstema;
+
     if (visDokument) {
         return <DokumentOgVedlegg />;
     } else {
@@ -76,8 +78,8 @@ function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
                 >
                     {sakstema => (
                         <>
-                            <SakstemaListe />
-                            <SaksDokumenterContainer />
+                            <SakstemaListe valgtSakstema={valgtSakstema} />
+                            <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
                         </>
                     )}
                 </RestResourceConsumer>

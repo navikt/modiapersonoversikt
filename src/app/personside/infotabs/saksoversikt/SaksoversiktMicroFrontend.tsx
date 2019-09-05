@@ -24,8 +24,9 @@ import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggl
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { useOnMount } from '../../../../utils/customHooks';
+import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { hasData } from '../../../../rest/utils/restResource';
+import LazySpinner from '../../../../components/LazySpinner';
 
 interface Props {
     fødselsnummer: string;
@@ -112,6 +113,7 @@ function hentQueryParametreFraUrlOgVisDokument(
 
 function SaksoversiktMicroFrontend(props: Props) {
     const saksoversiktResource = useSelector((state: AppState) => state.restResources.sakstema);
+    const valgtSakstema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
     const dispatch = useDispatch();
     useOnMount(() => {
         dispatch(setErStandaloneVindu(true));
@@ -121,6 +123,10 @@ function SaksoversiktMicroFrontend(props: Props) {
             hentQueryParametreFraUrlOgVisDokument(saksoversiktResource.data.resultat, dispatch, props.queryParamString);
         }
     }, [saksoversiktResource, props.queryParamString, dispatch]);
+
+    if (!valgtSakstema) {
+        return <LazySpinner />;
+    }
 
     return (
         <SaksoversiktArticle>
@@ -133,7 +139,7 @@ function SaksoversiktMicroFrontend(props: Props) {
             >
                 {sakstema => (
                     <>
-                        <DokumentListeContainer />
+                        <DokumentListeContainer valgtSakstema={valgtSakstema} />
                         <DokumentOgVedlegg />
                     </>
                 )}

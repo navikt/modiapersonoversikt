@@ -988,7 +988,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-label="Vis Sykepenger"
                 aria-selected={false}
                 className="c9"
-                onClick={[Function]}
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
@@ -1050,7 +1049,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-label="Vis Arbeidsavklaringspenger"
                 aria-selected={false}
                 className="c9"
-                onClick={[Function]}
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
@@ -1092,7 +1090,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-label="Vis Barnetrygd"
                 aria-selected={false}
                 className="c9"
-                onClick={[Function]}
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
@@ -1144,7 +1141,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-label="Vis Tiltakspenger"
                 aria-selected={false}
                 className="c9"
-                onClick={[Function]}
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
