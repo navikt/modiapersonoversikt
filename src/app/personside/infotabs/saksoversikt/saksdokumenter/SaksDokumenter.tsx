@@ -229,7 +229,7 @@ function SaksDokumenter(props: Props) {
     const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
     const valgtSakstemaTittel = props.erStandaloneVindu ? (
         <DropDownMenu header={tittel}>
-            <SakstemaListe />
+            <SakstemaListe valgtSakstema={props.valgtSakstema} />
         </DropDownMenu>
     ) : (
         tittel

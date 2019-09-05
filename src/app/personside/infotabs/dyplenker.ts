@@ -7,23 +7,27 @@ import { useRestResource } from '../../../utils/customHooks';
 import { hasData } from '../../../rest/utils/restResource';
 import { Sakstema } from '../../../models/saksoversikt/sakstema';
 import { getUnikSakstemaKey, useAgregerteSaker } from './saksoversikt/utils/saksoversiktUtils';
+import { useMemo } from 'react';
 
 export function useInfotabsDyplenker() {
     const paths = usePaths();
-    return {
-        utbetaling: {
-            link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${moment(utbetaling.posteringsdato).unix()}`,
-            route: `${paths.utbetlainger}/:posteringsdato?`
-        },
-        meldinger: {
-            link: (traad: Traad) => `${paths.meldinger}/${traad.traadId}`,
-            route: `${paths.meldinger}/:traadId?`
-        },
-        saker: {
-            link: (saksTema: Sakstema) => `${paths.saker}/${getUnikSakstemaKey(saksTema)}`,
-            route: `${paths.saker}/:sakstemakey?`
-        }
-    };
+    return useMemo(
+        () => ({
+            utbetaling: {
+                link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${moment(utbetaling.posteringsdato).unix()}`,
+                route: `${paths.utbetlainger}/:posteringsdato?`
+            },
+            meldinger: {
+                link: (traad: Traad) => `${paths.meldinger}/${traad.traadId}`,
+                route: `${paths.meldinger}/:traadId?`
+            },
+            saker: {
+                link: (saksTema: Sakstema) => `${paths.saker}/${getUnikSakstemaKey(saksTema)}`,
+                route: `${paths.saker}/:sakstemakey?`
+            }
+        }),
+        [paths]
+    );
 }
 
 export type UtbetalingDyplenkeRouteComponentProps = RouteComponentProps<{ posteringsdato: string }>;

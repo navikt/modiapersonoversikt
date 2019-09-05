@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
+import { MemoryRouter, Route } from 'react-router';
+import { useInfotabsDyplenker } from '../../app/personside/infotabs/dyplenker';
 
 interface Props {
     fødselsnummer: string;
@@ -33,21 +35,28 @@ const Styles = styled.div`
     height: 100%;
 `;
 
-class SaksoversiktLamell extends React.Component<Props> {
-    render() {
-        return (
-            <ErrorBoundary boundaryName="Saksoversikt">
-                <Provider store={store}>
-                    <Styles>
-                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                        <LyttPåNyttFnrIReduxOgHentPersoninfo />
-                        <FetchFeatureToggles />
-                        <SaksoversiktContainer />
-                    </Styles>
-                </Provider>
-            </ErrorBoundary>
-        );
-    }
+function Routing() {
+    const dyplenker = useInfotabsDyplenker();
+    return (
+        <MemoryRouter>
+            <Route path={[dyplenker.saker.route, '/']} component={SaksoversiktContainer} />
+        </MemoryRouter>
+    );
+}
+
+function SaksoversiktLamell(props: Props) {
+    return (
+        <ErrorBoundary boundaryName="Saksoversikt">
+            <Provider store={store}>
+                <Styles>
+                    <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                    <FetchFeatureToggles />
+                    <Routing />
+                </Styles>
+            </Provider>
+        </ErrorBoundary>
+    );
 }
 
 export default SaksoversiktLamell;
