@@ -20,7 +20,7 @@ export function formatterDatoTid(dato: string | Date) {
     return moment(dato).format(DATO_TID_FORMAT);
 }
 
-export function formatterDatoTidMedMaanedsnavn(dato: string | Date) {
+export function formatterDatoTidMedMaanedsnavn(dato?: string | Date) {
     return moment(dato).format(DATO_TID_MANEDSNANV_FORMAT);
 }
 

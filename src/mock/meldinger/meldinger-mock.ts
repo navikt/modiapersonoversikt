@@ -29,6 +29,10 @@ export function getMockTraad(): Traad {
 }
 
 function getMelding(temagruppe: Temagruppe): Melding {
+    const visKontrosperre = faker.random.boolean();
+    const ferdigstilUtenSvar = faker.random.boolean();
+    const visMarkertSomFeilsendt = faker.random.boolean();
+
     return {
         id: faker.random.alphaNumeric(8),
         meldingstype: navfaker.random.arrayElement([
@@ -48,7 +52,11 @@ function getMelding(temagruppe: Temagruppe): Melding {
         opprettetDato: moment(faker.date.recent(40)).format(backendDatoformat),
         journalfortDato: moment(faker.date.recent(40)).format(backendDatoformat),
         ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat),
-        erFerdigstiltUtenSvar: faker.random.boolean(),
+        erFerdigstiltUtenSvar: ferdigstilUtenSvar,
+        ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
+        kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
+        kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
+        markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
         erDokumentMelding: faker.random.boolean()
     };
 }

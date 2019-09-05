@@ -15,6 +15,7 @@ import { Collapse } from 'react-collapse';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
+import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 
 interface Props {
     valgtTraad?: Traad;
@@ -62,17 +63,25 @@ function TraadVisning({ valgtTraad, traader }: Props) {
         dispatch(toggleDialogpanel(true));
     };
 
+    const melding = eldsteMelding(valgtTraad);
+
+    const toppVisning = melding.markertSomFeilsendtAv ? (
+        <AlertStripeInfo>Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}</AlertStripeInfo>
+    ) : (
+        <KnappWrapper>
+            <Collapse isOpened={true}>
+                {traadDialogpanel === valgtTraad ? (
+                    <AlertStripeInfo>Under arbeid</AlertStripeInfo>
+                ) : (
+                    <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
+                )}
+            </Collapse>
+        </KnappWrapper>
+    );
+
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={valgtTraad ? valgtTraad.traadId : ''}>
-            <KnappWrapper>
-                <Collapse isOpened={true}>
-                    {traadDialogpanel === valgtTraad ? (
-                        <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-                    ) : (
-                        <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
-                    )}
-                </Collapse>
-            </KnappWrapper>
+            {toppVisning}
             <AlleMeldinger traad={valgtTraad} />
         </VisningStyle>
     );

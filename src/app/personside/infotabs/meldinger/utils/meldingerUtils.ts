@@ -1,4 +1,4 @@
-import { Melding, Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 
 export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger[0];
@@ -115,4 +115,9 @@ export function harDelsvar(traad: Traad): boolean {
 export function harTilgangTilSletting() {
     // TODO Fiks når vi har satt opp vault/fasit
     return true;
+}
+
+export function saksbehandlerTekst(saksbehandler: Saksbehandler) {
+    const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
+    return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
 }
