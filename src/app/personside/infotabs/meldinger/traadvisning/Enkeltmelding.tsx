@@ -23,12 +23,16 @@ function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
 }
 
+function journalfortMelding(melding: Melding) {
+    const navn = melding.journalfortAv && saksbehandlerTekst(melding.journalfortAv);
+    const dato = melding.journalfortDato && formaterDato(melding.journalfortDato);
+    return `Journalført av ${navn} ${dato} på tema ${melding.journalfortTemanavn} med saksid ${melding.journalfortSaksid}`;
+}
+
 function Journalforing({ melding }: { melding: Melding }) {
     return melding.journalfortAv && melding.journalfortDato ? (
         <JournalforingStyle>
-            <EtikettGrå>
-                Journalført av {saksbehandlerTekst(melding.journalfortAv)} {formaterDato(melding.journalfortDato)}
-            </EtikettGrå>
+            <EtikettGrå>{journalfortMelding(melding)}</EtikettGrå>
         </JournalforingStyle>
     ) : null;
 }

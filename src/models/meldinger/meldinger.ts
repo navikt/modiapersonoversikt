@@ -10,11 +10,14 @@ export interface Melding {
     temagruppe: Temagruppe;
     skrevetAv: Saksbehandler;
     journalfortAv?: Saksbehandler;
+    journalfortDato?: string;
+    journalfortTema?: string;
+    journalfortTemanavn?: string;
+    journalfortSaksid?: string;
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
     opprettetDato: string;
-    journalfortDato?: string;
     ferdigstiltDato?: string;
     erFerdigstiltUtenSvar: boolean;
     ferdigstiltUtenSvarAv?: Saksbehandler;
