@@ -117,7 +117,10 @@ export function harTilgangTilSletting() {
     return true;
 }
 
-export function saksbehandlerTekst(saksbehandler: Saksbehandler) {
+export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
+    if (!saksbehandler) {
+        return 'Ukjent saksbehandler';
+    }
     const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
     return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
 }
