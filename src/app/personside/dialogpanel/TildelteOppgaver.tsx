@@ -9,7 +9,7 @@ import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
 import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
-import { hasData, isNotStarted } from '../../../rest/utils/restResource';
+import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
@@ -57,10 +57,6 @@ function TildelteOppgaver(props: RouteComponentProps) {
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
-
-    if (isNotStarted(traaderResource)) {
-        dispatch(traaderResource.actions.fetch);
-    }
 
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
