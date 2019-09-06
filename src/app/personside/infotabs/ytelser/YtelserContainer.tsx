@@ -1,15 +1,13 @@
 import * as React from 'react';
-import ForeldrePengerContainer from './foreldrepenger/ForeldrePengerContainer';
 import styled from 'styled-components';
-import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
-import SykePengerContainer from './sykepenger/SykePengerContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import useBrukersYtelser from './useBrukersYtelser';
 
 const Styling = styled.section`
-    width: 100%;
-    align-self: center;
     > * {
         margin-bottom: 0.5rem;
     }
@@ -17,12 +15,14 @@ const Styling = styled.section`
 `;
 
 function YtelserContainer() {
+    const { rettigheter, pending } = useBrukersYtelser();
+
     return (
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
-            <ForeldrePengerContainer />
-            <PleiePengerContainer />
-            <SykePengerContainer />
+            {rettigheter}
+            {!pending && rettigheter.length === 0 && <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>}
+            {pending && <CenteredLazySpinner />}
         </Styling>
     );
 }

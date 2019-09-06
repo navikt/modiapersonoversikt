@@ -4,9 +4,18 @@ import Pleiepenger from './Pleiepenger';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import { getSistePeriodeForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import moment from 'moment';
+import { backendDatoformat } from '../../../../../mock/utils/mock-utils';
 
 interface Props {
     pleiepenger: Pleiepengerettighet | null;
+}
+
+export function getPleiepengerIdDato(pleiepengerettighet: Pleiepengerettighet) {
+    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepengerettighet);
+    return sistePeriodeForPleiepengerettighet
+        ? sistePeriodeForPleiepengerettighet.fom
+        : moment().format(backendDatoformat);
 }
 
 function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
@@ -14,10 +23,8 @@ function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
         return null;
     }
 
-    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepenger);
     const tittelTillegsInfo = [
-        'ID-dato: ' +
-            (sistePeriodeForPleiepengerettighet ? formaterDato(sistePeriodeForPleiepengerettighet.fom) : 'N/A'),
+        'ID-dato: ' + formaterDato(getPleiepengerIdDato(pleiepenger)),
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 

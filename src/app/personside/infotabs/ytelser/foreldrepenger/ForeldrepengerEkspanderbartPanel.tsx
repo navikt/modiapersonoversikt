@@ -3,9 +3,15 @@ import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepen
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import Foreldrepenger from './ForeldrePenger';
+import moment from 'moment';
+import { backendDatoformat } from '../../../../../mock/utils/mock-utils';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
+}
+
+export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
+    return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : moment().format(backendDatoformat);
 }
 
 function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
@@ -14,7 +20,7 @@ function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
     }
 
     const tittelTillegsInfo = [
-        `ID-dato: ${foreldrepenger.rettighetFom && formaterDato(foreldrepenger.rettighetFom)}`,
+        `ID-dato: ${formaterDato(getForeldepengerIdDato(foreldrepenger))}`,
         foreldrepenger.foreldrepengetype
     ];
 

@@ -8,8 +8,12 @@ interface Props {
     sykepenger: ISykepenger;
 }
 
+export function getSykepengerIdDatp(sykepenger: ISykepenger) {
+    return sykepenger.sykmeldtFom;
+}
+
 function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
-    const tittelTillegsInfo = ['ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)];
+    const tittelTillegsInfo = ['ID-dato: ' + formaterDato(getSykepengerIdDatp(sykepenger))];
 
     return (
         <EkspanderbartYtelserPanel tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
