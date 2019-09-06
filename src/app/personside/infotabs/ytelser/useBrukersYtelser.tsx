@@ -4,7 +4,7 @@ import { hasData, isLoading, isNotStarted } from '../../../../rest/utils/restRes
 import { ReactNode, useMemo } from 'react';
 import { getForeldepengerIdDato } from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
 import { getPleiepengerIdDato } from './pleiepenger/PleiepengerEkspanderbartPanel';
-import { getSykepengerIdDatp } from './sykepenger/SykepengerEkspanderbartPanel';
+import { getSykepengerIdDato } from './sykepenger/SykepengerEkspanderbartPanel';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import { Sykepenger } from '../../../../models/ytelse/sykepenger';
@@ -71,7 +71,7 @@ function useBrukersYtelser(props: Props) {
         () =>
             hasData(sykepengerResource) && sykepengerResource.data.sykepenger
                 ? sykepengerResource.data.sykepenger.map(sykepengerettighet => {
-                      const idDato = getSykepengerIdDatp(sykepengerettighet);
+                      const idDato = getSykepengerIdDato(sykepengerettighet);
                       return {
                           idDato: idDato,
                           markup: props.sykepengerKomponent(sykepengerettighet, 'sykepenger' + idDato)
@@ -81,7 +81,7 @@ function useBrukersYtelser(props: Props) {
         [sykepengerResource]
     );
 
-    const rettigheter = useMemo(
+    const ytelser = useMemo(
         () =>
             [...foreldrepenger, ...pleiepenger, ...sykepenger]
                 .sort(datoSynkende(rettighet => rettighet.idDato))
@@ -92,7 +92,7 @@ function useBrukersYtelser(props: Props) {
     const pending =
         isLoading(pleiepengerResource) || isLoading(foreldrepengerResource) || isLoading(sykepengerResource);
 
-    return { rettigheter, pending };
+    return { ytelser, pending };
 }
 
 export default useBrukersYtelser;

@@ -5,8 +5,10 @@ import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPan
 import Foreldrepenger from './ForeldrePenger';
 import moment from 'moment';
 import { backendDatoformat } from '../../../../../mock/utils/mock-utils';
+import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends YtelserDyplenkeRouteComponentProps {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
@@ -14,7 +16,7 @@ export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
     return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : moment().format(backendDatoformat);
 }
 
-function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
+function ForeldrepengerEkspanderbartpanel({ foreldrepenger, ...rest }: Props) {
     if (foreldrepenger === null) {
         return null;
     }
@@ -24,11 +26,13 @@ function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
         foreldrepenger.foreldrepengetype
     ];
 
+    const erValgt = erValgtIDyplenke.ytelser('foreldrepenger' + getForeldepengerIdDato(foreldrepenger), rest);
+
     return (
-        <EkspanderbartYtelserPanel tittel="Foreldrepenger" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel defaultApen={erValgt} tittel="Foreldrepenger" tittelTillegsInfo={tittelTillegsInfo}>
             <Foreldrepenger foreldrepenger={foreldrepenger} />
         </EkspanderbartYtelserPanel>
     );
 }
 
-export default ForeldrepengerEkspanderbartpanel;
+export default withRouter(ForeldrepengerEkspanderbartpanel);

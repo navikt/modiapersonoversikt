@@ -1,28 +1,16 @@
 import * as React from 'react';
-import { Sykepenger, SykepengerResponse } from '../../../../models/ytelse/sykepenger';
-import { Pleiepengerettighet, PleiepengerResponse } from '../../../../models/ytelse/pleiepenger';
-import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../../models/ytelse/foreldrepenger';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
+import { Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { paths } from '../../../routes/routing';
-import { useFødselsnummer } from '../../../../utils/customHooks';
+import useBrukersYtelser from '../ytelser/useBrukersYtelser';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-
-interface SykepengerProps {
-    sykepenger: Sykepenger[];
-}
-
-interface PleiepengerProps {
-    pleiepenger: Pleiepengerettighet[];
-}
-
-interface ForeldrepengerProps {
-    foreldrepenger: Foreldrepengerettighet[];
-}
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { useInfotabsDyplenker } from '../dyplenker';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -31,111 +19,64 @@ const YtelserStyle = styled.div`
 `;
 
 function YtelserOversikt() {
-    const valgtBrukersFnr = useFødselsnummer();
+    const { ytelser, pending } = useBrukersYtelser({
+        pleiepengerKomponent: (pleiepenger1, key) => (
+            <PleiepengerKomponent pleiepenger={pleiepenger1} unikId={key} key={key} />
+        ),
+        foreldrepengerKomponent: (foreldrepenger, key) => (
+            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} unikId={key} key={key} />
+        ),
+        sykepengerKomponent: (sykepenger, key) => <SykepengerKomponent sykepenger={sykepenger} unikId={key} key={key} />
+    });
 
     return (
         <YtelserStyle>
-            <RestResourceConsumer<PleiepengerResponse>
-                getResource={restResource => restResource.pleiepenger}
-                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
-            >
-                {data => {
-                    if (!data.pleiepenger) {
-                        return null;
-                    }
-                    return (
-                        <VisMerKnapp
-                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
-                            valgt={false}
-                            ariaDescription="Vis pleiepenger"
-                        >
-                            <PleiepengerKomponent pleiepenger={data.pleiepenger} />
-                        </VisMerKnapp>
-                    );
-                }}
-            </RestResourceConsumer>
-            <RestResourceConsumer<SykepengerResponse>
-                getResource={restResource => restResource.sykepenger}
-                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
-            >
-                {data => {
-                    if (!data.sykepenger) {
-                        return null;
-                    }
-                    return (
-                        <VisMerKnapp
-                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
-                            valgt={false}
-                            ariaDescription="Vis sykepenger"
-                        >
-                            <SykepengerKomponent sykepenger={data.sykepenger} />
-                        </VisMerKnapp>
-                    );
-                }}
-            </RestResourceConsumer>
-            <RestResourceConsumer<ForeldrepengerResponse>
-                getResource={restResource => restResource.foreldrepenger}
-                returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
-            >
-                {data => {
-                    if (!data.foreldrepenger) {
-                        return null;
-                    }
-                    return (
-                        <VisMerKnapp
-                            linkTo={`${paths.personUri}/${valgtBrukersFnr}/ytelser`}
-                            valgt={false}
-                            ariaDescription="Vis foreldrepenger"
-                        >
-                            <ForeldrepengerKomponent foreldrepenger={data.foreldrepenger} />
-                        </VisMerKnapp>
-                    );
-                }}
-            </RestResourceConsumer>
+            {ytelser}
+            {!pending && ytelser.length === 0 && <AlertStripeInfo>Fant ingen ytelser for bruker</AlertStripeInfo>}
+            {pending && <CenteredLazySpinner padding={theme.margin.layout} />}
         </YtelserStyle>
     );
 }
 
-function PleiepengerKomponent(props: PleiepengerProps) {
-    const pleiepengeRettighet = props.pleiepenger[0];
-
+function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet; unikId: string }) {
+    const dyplenker = useInfotabsDyplenker();
     return (
-        <div>
+        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis pleiepenger">
             <Normaltekst>
                 <Bold>Pleiepenger sykt barn</Bold>
             </Normaltekst>
-            <Normaltekst>Barnets f.nr: {pleiepengeRettighet.barnet}</Normaltekst>
-        </div>
+            <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
+        </VisMerKnapp>
     );
 }
 
-function SykepengerKomponent(props: SykepengerProps) {
-    const sykepenger = props.sykepenger[0];
+function SykepengerKomponent(props: { sykepenger: Sykepenger; unikId: string }) {
+    const dyplenker = useInfotabsDyplenker();
 
     return (
-        <div>
-            <Normaltekst>ID dato: {sykepenger.sykmeldtFom}</Normaltekst>
+        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis sykepenger">
+            <Normaltekst>ID dato: {props.sykepenger.sykmeldtFom}</Normaltekst>
             <Normaltekst>
                 <Bold>Sykepenger</Bold>
             </Normaltekst>
-            <Normaltekst>100% sykemeldt - Maksdato {sykepenger.slutt}</Normaltekst>
-        </div>
+            <Normaltekst>100% sykemeldt - Maksdato {props.sykepenger.slutt}</Normaltekst>
+        </VisMerKnapp>
     );
 }
 
-function ForeldrepengerKomponent(props: ForeldrepengerProps) {
-    const foreldrepenger = props.foreldrepenger[0];
+function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet; unikId: string }) {
+    const dyplenker = useInfotabsDyplenker();
 
     return (
-        <div>
-            <Normaltekst>ID dato: {foreldrepenger.rettighetFom}</Normaltekst>
+        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis foreldrepenger">
+            <Normaltekst>ID dato: {props.foreldrepenger.rettighetFom}</Normaltekst>
             <Normaltekst>
                 <Bold>Foreldrepenger</Bold>
             </Normaltekst>
             <Normaltekst>
-                {foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato {foreldrepenger.slutt}
+                {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato {props.foreldrepenger.slutt}
             </Normaltekst>
-        </div>
+        </VisMerKnapp>
     );
 }
 

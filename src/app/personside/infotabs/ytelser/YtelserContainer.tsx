@@ -18,7 +18,7 @@ const Styling = styled.section`
 `;
 
 function YtelserContainer() {
-    const { rettigheter, pending } = useBrukersYtelser({
+    const { ytelser, pending } = useBrukersYtelser({
         pleiepengerKomponent: (pleiepenger, key) => (
             <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={key} />
         ),
@@ -31,8 +31,8 @@ function YtelserContainer() {
     return (
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
-            {rettigheter}
-            {!pending && rettigheter.length === 0 && <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>}
+            {ytelser}
+            {!pending && ytelser.length === 0 && <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>}
             {pending && <CenteredLazySpinner />}
         </Styling>
     );
