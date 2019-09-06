@@ -925,9 +925,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
+          aria-label="Oversikt brukers saker"
           className="c23"
         >
-          <li>
+          <li
+            className="test-saksnavnknapp"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -941,7 +944,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c25"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Sykepenger
                       </p>
@@ -996,7 +999,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-saksnavnknapp"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1010,7 +1015,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c25"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Arbeidsavklaringspenger
                       </p>
@@ -1058,7 +1063,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-saksnavnknapp"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1072,7 +1079,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c25"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Barnetrygd
                       </p>
@@ -1100,7 +1107,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-saksnavnknapp"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1114,7 +1123,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c25"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Tiltakspenger
                       </p>

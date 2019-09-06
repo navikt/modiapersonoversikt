@@ -453,7 +453,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       <ol
         className="c3"
       >
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c4"
             onClick={[Function]}
@@ -467,7 +469,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Alle tema
                     </p>
@@ -495,7 +497,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -509,7 +513,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Sykepenger
                     </p>
@@ -564,7 +568,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -578,7 +584,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Arbeidsavklaringspenger
                     </p>
@@ -626,7 +632,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -640,7 +648,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Barnetrygd
                     </p>
@@ -668,7 +676,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -682,7 +692,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Tiltakspenger
                     </p>
@@ -720,7 +730,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-saksnavnknapp"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -734,7 +746,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saksnavnoversikt"
                     >
                       Generell
                     </p>
@@ -778,7 +790,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           tabIndex={-1}
         >
           <h2
-            className="typo-undertittel"
+            className="typo-undertittel test-saksnavncontainer"
           >
             Alle tema
           </h2>
