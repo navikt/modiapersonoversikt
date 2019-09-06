@@ -12,7 +12,7 @@ interface Props {
 }
 
 function meldingstittel(melding: Melding) {
-    const lestTekst = melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ';
+    const lestTekst = melding.status === LestStatus.Lest ? 'Lest,' : 'Ulest,';
     return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
 }
 
