@@ -504,7 +504,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
     >
       <button
-        aria-expanded={false}
         className="ekspanderbartPanel__hode"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -637,7 +636,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
     >
       <button
-        aria-expanded={false}
         className="ekspanderbartPanel__hode"
         onClick={[Function]}
         onKeyDown={[Function]}
