@@ -3,6 +3,9 @@ import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/s
 import moment from 'moment';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { useMemo } from 'react';
+import { hasData } from '../../../../../rest/utils/restResource';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
@@ -19,6 +22,13 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
         erGruppert: false,
         feilkoder: []
     };
+}
+
+export function useAgregerteSaker(): Sakstema | undefined {
+    const sakstemaResource = useRestResource(resources => resources.sakstema);
+    return useMemo(() => (hasData(sakstemaResource) ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
+        sakstemaResource
+    ]);
 }
 
 function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
@@ -58,4 +68,8 @@ function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
 
 function formatterDato(date: Date) {
     return moment(date).format('DD.MM.YYYY');
+}
+
+export function getUnikSakstemaKey(sakstema: Sakstema) {
+    return sakstema.temakode + Math.floor(hentDatoForSisteHendelse(sakstema).getTime() / 1000); // TODO bør skrives om til å bruke dato for første hendelse for permanente lenker
 }

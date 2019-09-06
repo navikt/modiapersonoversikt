@@ -6,8 +6,11 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
-interface StateProps {
+interface OwnProps {
     valgtSakstema?: Sakstema;
+}
+
+interface StateProps {
     åpen: boolean;
 }
 
@@ -15,7 +18,7 @@ interface DispatchProps {
     setÅpen: (åpen: boolean) => void;
 }
 
-type Props = StateProps & DispatchProps;
+type Props = StateProps & DispatchProps & OwnProps;
 
 function ToggleViktigAaViteKnapp(props: Props) {
     const temakoderMedTekst = ['AAP', 'DAG', 'IND'];
@@ -37,7 +40,6 @@ function ToggleViktigAaViteKnapp(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        valgtSakstema: state.saksoversikt.valgtSakstema,
         åpen: state.saksoversikt.viktigÅViteÅpen
     };
 }

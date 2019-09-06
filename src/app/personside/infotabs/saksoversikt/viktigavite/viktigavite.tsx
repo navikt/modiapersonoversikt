@@ -9,10 +9,13 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { UnmountClosed } from 'react-collapse';
 
-export type Props = StateProps;
+interface OwnProps {
+    valgtSakstema?: Sakstema;
+}
+
+type Props = StateProps & OwnProps;
 
 export interface StateProps {
-    valgtSakstema?: Sakstema;
     åpen: boolean;
 }
 
@@ -56,7 +59,6 @@ class ViktigÅVite extends React.PureComponent<Props> {
 export default connect(
     (state: AppState): StateProps => {
         return {
-            valgtSakstema: state.saksoversikt.valgtSakstema,
             åpen: state.saksoversikt.viktigÅViteÅpen
         };
     }
