@@ -59,7 +59,7 @@ function SakerPanel(props: Props) {
         return <AlertStripeInfo>Fant ingen saker på bruker</AlertStripeInfo>;
     }
 
-    return <ListStyle aria-label="Oversikt brukers saker">{sakstemakomponenter}</ListStyle>;
+    return <ListStyle>{sakstemakomponenter}</ListStyle>;
 }
 
 export default withRouter(SakerOversikt);

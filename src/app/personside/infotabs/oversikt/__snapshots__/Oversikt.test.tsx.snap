@@ -925,7 +925,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
-          aria-label="Oversikt brukers saker"
           className="c23"
         >
           <li
