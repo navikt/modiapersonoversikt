@@ -17,6 +17,7 @@ import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { sakerDyplenkeTestSelectorer } from '../../dyplenkeTest/utils';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -228,7 +229,11 @@ class SaksDokumenter extends React.PureComponent<Props> {
             </Form>
         );
 
-        const tittel = <Undertittel>{props.valgtSakstema.temanavn}</Undertittel>;
+        const tittel = (
+            <Undertittel className={sakerDyplenkeTestSelectorer.saksnavncontainter}>
+                {props.valgtSakstema.temanavn}
+            </Undertittel>
+        );
         const valgtSakstemaTittel = props.erStandaloneVindu ? (
             <DropDownMenu header={tittel}>
                 <SakstemaListeContainer />
