@@ -8,9 +8,11 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import { withRouter } from 'react-router';
 import LazySpinner from '../../../../../../components/LazySpinner';
-import { MeldingerDyplenkeRouteComponentProps, useValgtTraad } from '../../../dyplenker';
+
+interface Props {
+    valgtTraad?: Traad;
+}
 
 const PanelStyle = styled.div`
     ${theme.hvittPanel};
@@ -80,24 +82,22 @@ function Funksjoner(props: { valgtTraad: Traad }) {
                 <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
-                <MerkPanel lukkPanel={() => settAktivtVindu(null)} />
+                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
         </>
     );
 }
 
-function Verktoylinje(props: MeldingerDyplenkeRouteComponentProps) {
-    const valgtTraad = useValgtTraad(props);
-
-    if (!valgtTraad) {
+function Verktoylinje(props: Props) {
+    if (!props.valgtTraad) {
         return <LazySpinner />;
     }
 
     return (
         <PanelStyle>
-            <Funksjoner valgtTraad={valgtTraad} />
+            <Funksjoner valgtTraad={props.valgtTraad} />
         </PanelStyle>
     );
 }
 
-export default withRouter(Verktoylinje);
+export default Verktoylinje;

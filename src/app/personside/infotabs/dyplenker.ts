@@ -45,7 +45,7 @@ export const erValgtIDyplenke = {
         getUnikSakstemaKey(sakstema) === routeProps.match.params.sakstemakey
 };
 
-export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
+export function useValgtTraadIUrl(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {
     const traader = useRestResource(resources => resources.tråderOgMeldinger);
     if (!hasData(traader)) {
         return undefined;

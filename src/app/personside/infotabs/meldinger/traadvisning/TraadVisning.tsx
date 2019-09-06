@@ -10,11 +10,11 @@ import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-import { MeldingerDyplenkeRouteComponentProps, useValgtTraad } from '../../dyplenker';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { withRouter } from 'react-router';
 
-type Props = MeldingerDyplenkeRouteComponentProps;
+interface Props {
+    valgtTraad?: Traad;
+}
 
 const VisningStyle = styled.section`
     ${theme.hvittPanel};
@@ -42,29 +42,28 @@ function AlleMeldinger({ traad }: { traad: Traad }) {
 function TraadVisning(props: Props) {
     const dispatch = useDispatch();
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const valgtTraad = useValgtTraad(props);
 
-    if (!valgtTraad) {
+    if (!props.valgtTraad) {
         return <CenteredLazySpinner />;
     }
 
     const handleNyMelding = () => {
-        dispatch(setValgtTraadDialogpanel(valgtTraad));
+        props.valgtTraad && dispatch(setValgtTraadDialogpanel(props.valgtTraad));
         dispatch(toggleDialogpanel(true));
     };
 
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={valgtTraad ? valgtTraad.traadId : ''}>
+        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <KnappWrapper>
-                {dialogpanelTraad === valgtTraad ? (
+                {dialogpanelTraad === props.valgtTraad ? (
                     <AlertStripeInfo>Under arbeid</AlertStripeInfo>
                 ) : (
                     <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
                 )}
             </KnappWrapper>
-            <AlleMeldinger traad={valgtTraad} />
+            <AlleMeldinger traad={props.valgtTraad} />
         </VisningStyle>
     );
 }
 
-export default withRouter(TraadVisning);
+export default TraadVisning;

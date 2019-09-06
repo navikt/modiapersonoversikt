@@ -7,9 +7,9 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
-import { MeldingerDyplenkeRouteComponentProps } from '../../../../dyplenker';
+import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
-export interface OppgaveProps extends MeldingerDyplenkeRouteComponentProps {
+export interface OppgaveProps {
     gsakTema: GsakTema[];
     gjeldendeBrukerFnr: string;
     innloggetSaksbehandler: InnloggetSaksbehandler;
@@ -17,6 +17,7 @@ export interface OppgaveProps extends MeldingerDyplenkeRouteComponentProps {
     lukkPanel: () => void;
     opprettOppgave: (request: OpprettOppgaveRequest) => void;
     kontorsperreFunksjon?: () => void;
+    valgtTraad?: Traad;
 }
 
 export interface OppgaveSkjemaProps {
