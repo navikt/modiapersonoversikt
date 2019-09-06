@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, sakerDyplenkeTestSelectorer } from './utils';
 
-test('bytter til riktig tab og setter fokus på riktig sak ved bruk av dyplenke fra oversikt', () => {
+test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', () => {
     const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>
