@@ -6,6 +6,9 @@ import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import useBrukersYtelser from './useBrukersYtelser';
+import PleiepengerEkspanderbartpanel from './pleiepenger/PleiepengerEkspanderbartPanel';
+import SykepengerEkspanderbartpanel from './sykepenger/SykepengerEkspanderbartPanel';
+import ForeldrepengerEkspanderbartpanel from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
 
 const Styling = styled.section`
     > * {
@@ -15,7 +18,15 @@ const Styling = styled.section`
 `;
 
 function YtelserContainer() {
-    const { rettigheter, pending } = useBrukersYtelser();
+    const { rettigheter, pending } = useBrukersYtelser({
+        pleiepengerKomponent: (pleiepenger, key) => (
+            <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={key} />
+        ),
+        sykepengerKomponent: (sykepenger, key) => <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={key} />,
+        foreldrepengerKomponent: (foreldrepenger, key) => (
+            <ForeldrepengerEkspanderbartpanel foreldrepenger={foreldrepenger} key={key} />
+        )
+    });
 
     return (
         <Styling>

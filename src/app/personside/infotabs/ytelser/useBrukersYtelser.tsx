@@ -1,20 +1,27 @@
 import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { hasData, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
-import { default as React, ReactNode, useMemo } from 'react';
-import ForeldrepengerEkspanderbartpanel, {
-    getForeldepengerIdDato
-} from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
-import PleiepengerEkspanderbartpanel, { getPleiepengerIdDato } from './pleiepenger/PleiepengerEkspanderbartPanel';
-import SykepengerEkspanderbartpanel, { getSykepengerIdDatp } from './sykepenger/SykepengerEkspanderbartPanel';
+import { ReactNode, useMemo } from 'react';
+import { getForeldepengerIdDato } from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
+import { getPleiepengerIdDato } from './pleiepenger/PleiepengerEkspanderbartPanel';
+import { getSykepengerIdDatp } from './sykepenger/SykepengerEkspanderbartPanel';
 import { datoSynkende } from '../../../../utils/dateUtils';
+import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
 
 interface YtelseMedDato {
     idDato: string;
     markup: ReactNode;
 }
 
-function useBrukersYtelser() {
+interface Props {
+    pleiepengerKomponent: (pleiepenger: Pleiepengerettighet, key: string) => ReactNode;
+    sykepengerKomponent: (sykepenger: Sykepenger, key: string) => ReactNode;
+    foreldrepengerKomponent: (foreldrepenger: Foreldrepengerettighet, key: string) => ReactNode;
+}
+
+function useBrukersYtelser(props: Props) {
     const foreldrepengerResource = useRestResource(resources => resources.foreldrepenger);
     const pleiepengerResource = useRestResource(resources => resources.pleiepenger);
     const sykepengerResource = useRestResource(resources => resources.sykepenger);
@@ -39,16 +46,11 @@ function useBrukersYtelser() {
                       const idDato = getForeldepengerIdDato(foreldrepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: (
-                              <ForeldrepengerEkspanderbartpanel
-                                  key={'foreldrepenger' + idDato}
-                                  foreldrepenger={foreldrepengerettighet}
-                              />
-                          )
+                          markup: props.foreldrepengerKomponent(foreldrepengerettighet, 'foreldrepenger' + idDato)
                       };
                   })
                 : [],
-        [foreldrepengerResource]
+        [foreldrepengerResource, props]
     );
 
     const pleiepenger: YtelseMedDato[] = useMemo(
@@ -58,16 +60,11 @@ function useBrukersYtelser() {
                       const idDato = getPleiepengerIdDato(pleiepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: (
-                              <PleiepengerEkspanderbartpanel
-                                  key={'pleiepenger' + idDato}
-                                  pleiepenger={pleiepengerettighet}
-                              />
-                          )
+                          markup: props.pleiepengerKomponent(pleiepengerettighet, 'pleiepenger' + idDato)
                       };
                   })
                 : [],
-        [pleiepengerResource]
+        [pleiepengerResource, props]
     );
 
     const sykepenger: YtelseMedDato[] = useMemo(
@@ -77,12 +74,7 @@ function useBrukersYtelser() {
                       const idDato = getSykepengerIdDatp(sykepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: (
-                              <SykepengerEkspanderbartpanel
-                                  key={'sykepenger' + idDato}
-                                  sykepenger={sykepengerettighet}
-                              />
-                          )
+                          markup: props.sykepengerKomponent(sykepengerettighet, 'sykepenger' + idDato)
                       };
                   })
                 : [],
