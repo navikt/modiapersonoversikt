@@ -53,7 +53,7 @@ export function useValgtTraad(routeProps: MeldingerDyplenkeRouteComponentProps):
     return traader.data.find(traad => erValgtIDyplenke.meldinger(traad, routeProps));
 }
 
-export function useValgtSakstema(routeProps: SakerDyplenkeRouteComponentProps) {
+export function useValgtSakstemaIUrl(routeProps: SakerDyplenkeRouteComponentProps) {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
     if (!hasData(sakstemaResource) || !agregerteSaker) {
