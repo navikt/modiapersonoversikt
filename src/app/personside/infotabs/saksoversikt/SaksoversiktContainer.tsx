@@ -25,6 +25,10 @@ const SaksoversiktArticle = styled.article`
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
+        > * {
+            position: sticky;
+            top: 0;
+        }
     }
     .visually-hidden {
         ${theme.visuallyHidden}
@@ -33,10 +37,6 @@ const SaksoversiktArticle = styled.article`
         margin-bottom: ${theme.margin.layout};
     }
     position: relative;
-    > * {
-        position: sticky;
-        top: 0;
-    }
 `;
 
 function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
