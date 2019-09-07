@@ -16,6 +16,7 @@ import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
 import moment from 'moment';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { utbetalingerTest } from '../../dyplenkeTest/utils';
 
 interface OwnProps {
     utbetaling: Utbetaling;
@@ -101,7 +102,11 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
 
         return (
             <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
-                <SammensattUtbetalingStyle ref={this.utbetalingRef} tabIndex={-1}>
+                <SammensattUtbetalingStyle
+                    ref={this.utbetalingRef}
+                    tabIndex={-1}
+                    className={utbetalingerTest.utbetaling}
+                >
                     <UtbetalingTabellStyling>
                         <Normaltekst>
                             {dato} / <Bold>{utbetaling.status}</Bold>

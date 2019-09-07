@@ -16,7 +16,6 @@ import {
 import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 import { getBedriftsNavn, getMockNavn } from './person/personMock';
 import { aremark } from './person/aremark';
-import { statiskMockUtbetaling } from './statiskMockUtbetaling';
 
 export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -33,15 +32,13 @@ export function getMockUtbetalinger(fødselsnummer: string, startDato: string, s
 
 function getUtbetalinger(fødselsnummer: string) {
     if (fødselsnummer === aremark.fødselsnummer) {
-        return [statiskMockUtbetaling];
+        return [...new Array(6)].map(() => getMockUtbetaling(fødselsnummer));
     }
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return Array(navfaker.random.integer(20, 1))
-        .fill(null)
-        .map(() => getMockUtbetaling(fødselsnummer));
+    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 20);
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
