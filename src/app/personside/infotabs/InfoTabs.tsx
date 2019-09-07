@@ -14,22 +14,23 @@ import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import { useInfotabsDyplenker } from './dyplenker';
+import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 
 type Props = RouteComponentProps<{}>;
 
 const OpenTab = styled.div`
-    margin-top: ${theme.margin.px20};
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow-y: auto;
+    padding: ${theme.margin.layout};
 `;
 
 const Section = styled.section`
-    margin-top: ${theme.margin.layout};
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -51,6 +52,7 @@ function InfoTabs(props: Props) {
     const paths = usePaths();
     const ref = React.createRef<HTMLHeadingElement>();
     const dyplenker = useInfotabsDyplenker();
+    const dispatch = useDispatch();
 
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
@@ -59,6 +61,7 @@ function InfoTabs(props: Props) {
             ref.current && ref.current.focus();
             props.history.push(path);
         }
+        dispatch(toggleVisittkort(false));
     };
 
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);

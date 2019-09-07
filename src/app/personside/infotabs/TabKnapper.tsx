@@ -13,6 +13,7 @@ const TabKnapperNav = styled.nav`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    padding: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-right: 0.2em;
     }

@@ -22,10 +22,9 @@ export const VenstreKolonne = styled.section<StyleProps>`
     flex-basis: ${props => (props.dialogPanelEkspandert ? '70%' : '90%')};
     flex-grow: 1;
     flex-shrink: 1;
-    padding: ${theme.margin.layout};
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(5rem, 1fr);
     > * {
         border-radius: ${theme.borderRadius.layout};
     }

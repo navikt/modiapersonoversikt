@@ -10,6 +10,14 @@ import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './Respon
 import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
+import styled from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
+
+const Scrollbar = styled.div`
+    overflow-y: auto;
+    padding: ${theme.margin.layout};
+    flex-grow: 1;
+`;
 
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
@@ -24,8 +32,10 @@ function MainLayout() {
     return (
         <LayoutWrapper role="main">
             <VenstreKolonne dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
-                <Kontrollsporsmal />
-                <Visittkort />
+                <Scrollbar>
+                    <Kontrollsporsmal />
+                    <Visittkort />
+                </Scrollbar>
                 <InfoTabs />
             </VenstreKolonne>
             <HøyreKolonne
