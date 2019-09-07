@@ -9,6 +9,9 @@ import useBrukersYtelser from './useBrukersYtelser';
 import PleiepengerEkspanderbartpanel from './pleiepenger/PleiepengerEkspanderbartPanel';
 import SykepengerEkspanderbartpanel from './sykepenger/SykepengerEkspanderbartPanel';
 import ForeldrepengerEkspanderbartpanel from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
+import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
+import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
+import { getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 
 const Styling = styled.section`
     > * {
@@ -19,12 +22,17 @@ const Styling = styled.section`
 
 function YtelserContainer() {
     const { ytelser, pending } = useBrukersYtelser({
-        pleiepengerKomponent: (pleiepenger, key) => (
-            <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={key} />
+        renderPleiepenger: pleiepenger => (
+            <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),
-        sykepengerKomponent: (sykepenger, key) => <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={key} />,
-        foreldrepengerKomponent: (foreldrepenger, key) => (
-            <ForeldrepengerEkspanderbartpanel foreldrepenger={foreldrepenger} key={key} />
+        renderSykepenger: sykepenger => (
+            <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
+        ),
+        renderForeldrepenger: foreldrepenger => (
+            <ForeldrepengerEkspanderbartpanel
+                foreldrepenger={foreldrepenger}
+                key={getUnikForeldrepengerKey(foreldrepenger)}
+            />
         )
     });
 

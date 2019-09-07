@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
+import { getUnikSykepengerKey, Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { getUnikPleiepengerKey, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { Foreldrepengerettighet, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -20,13 +20,15 @@ const YtelserStyle = styled.div`
 
 function YtelserOversikt() {
     const { ytelser, pending } = useBrukersYtelser({
-        pleiepengerKomponent: (pleiepenger1, key) => (
-            <PleiepengerKomponent pleiepenger={pleiepenger1} unikId={key} key={key} />
+        renderPleiepenger: pleiepenger => (
+            <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),
-        foreldrepengerKomponent: (foreldrepenger, key) => (
-            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} unikId={key} key={key} />
+        renderForeldrepenger: foreldrepenger => (
+            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} key={getUnikForeldrepengerKey(foreldrepenger)} />
         ),
-        sykepengerKomponent: (sykepenger, key) => <SykepengerKomponent sykepenger={sykepenger} unikId={key} key={key} />
+        renderSykepenger: sykepenger => (
+            <SykepengerKomponent sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
+        )
     });
 
     return (
@@ -38,10 +40,14 @@ function YtelserOversikt() {
     );
 }
 
-function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet; unikId: string }) {
+function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
-        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis pleiepenger">
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
+            valgt={false}
+            ariaDescription="Vis pleiepenger"
+        >
             <Normaltekst>
                 <Bold>Pleiepenger sykt barn</Bold>
             </Normaltekst>
@@ -50,11 +56,15 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet; unikId:
     );
 }
 
-function SykepengerKomponent(props: { sykepenger: Sykepenger; unikId: string }) {
+function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
-        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis sykepenger">
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
+            valgt={false}
+            ariaDescription="Vis sykepenger"
+        >
             <Normaltekst>ID dato: {props.sykepenger.sykmeldtFom}</Normaltekst>
             <Normaltekst>
                 <Bold>Sykepenger</Bold>
@@ -64,11 +74,14 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger; unikId: string }) 
     );
 }
 
-function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet; unikId: string }) {
+function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
-
     return (
-        <VisMerKnapp linkTo={dyplenker.ytelser.link(props.unikId)} valgt={false} ariaDescription="Vis foreldrepenger">
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikForeldrepengerKey(props.foreldrepenger))}
+            valgt={false}
+            ariaDescription="Vis foreldrepenger"
+        >
             <Normaltekst>ID dato: {props.foreldrepenger.rettighetFom}</Normaltekst>
             <Normaltekst>
                 <Bold>Foreldrepenger</Bold>

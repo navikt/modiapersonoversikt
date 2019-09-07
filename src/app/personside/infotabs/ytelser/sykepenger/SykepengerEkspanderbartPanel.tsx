@@ -1,6 +1,10 @@
 import * as React from 'react';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
-import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
+import {
+    getSykepengerIdDato,
+    getUnikSykepengerKey,
+    Sykepenger as ISykepenger
+} from '../../../../../models/ytelse/sykepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import Sykepenger from './Sykepenger';
 import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
@@ -10,14 +14,10 @@ interface Props extends YtelserDyplenkeRouteComponentProps {
     sykepenger: ISykepenger;
 }
 
-export function getSykepengerIdDato(sykepenger: ISykepenger) {
-    return sykepenger.sykmeldtFom;
-}
-
 function SykepengerEkspanderbartpanel({ sykepenger, ...rest }: Props) {
     const tittelTillegsInfo = ['ID-dato: ' + formaterDato(getSykepengerIdDato(sykepenger))];
 
-    const valtIDyplenke = erValgtIDyplenke.ytelser('sykepenger' + getSykepengerIdDato(sykepenger), rest);
+    const valtIDyplenke = erValgtIDyplenke.ytelser(getUnikSykepengerKey(sykepenger), rest);
 
     return (
         <EkspanderbartYtelserPanel

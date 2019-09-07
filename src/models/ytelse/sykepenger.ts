@@ -53,3 +53,11 @@ export interface Gradering {
     gradert: Periode;
     sykmeldingsgrad: number;
 }
+
+export function getSykepengerIdDato(sykepenger: Sykepenger) {
+    return sykepenger.sykmeldtFom;
+}
+
+export function getUnikSykepengerKey(sykepenger: Sykepenger) {
+    return 'sykepenger' + getSykepengerIdDato(sykepenger);
+}

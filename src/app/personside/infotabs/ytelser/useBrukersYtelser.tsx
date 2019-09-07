@@ -2,13 +2,10 @@ import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { hasData, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
 import { ReactNode, useMemo } from 'react';
-import { getForeldepengerIdDato } from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
-import { getPleiepengerIdDato } from './pleiepenger/PleiepengerEkspanderbartPanel';
-import { getSykepengerIdDato } from './sykepenger/SykepengerEkspanderbartPanel';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
+import { getPleiepengerIdDato, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
 
 interface YtelseMedDato {
     idDato: string;
@@ -16,9 +13,9 @@ interface YtelseMedDato {
 }
 
 interface Props {
-    pleiepengerKomponent: (pleiepenger: Pleiepengerettighet, key: string) => ReactNode;
-    sykepengerKomponent: (sykepenger: Sykepenger, key: string) => ReactNode;
-    foreldrepengerKomponent: (foreldrepenger: Foreldrepengerettighet, key: string) => ReactNode;
+    renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
+    renderSykepenger: (sykepenger: Sykepenger) => ReactNode;
+    renderForeldrepenger: (foreldrepenger: Foreldrepengerettighet) => ReactNode;
 }
 
 function useBrukersYtelser(props: Props) {
@@ -46,7 +43,7 @@ function useBrukersYtelser(props: Props) {
                       const idDato = getForeldepengerIdDato(foreldrepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: props.foreldrepengerKomponent(foreldrepengerettighet, 'foreldrepenger' + idDato)
+                          markup: props.renderForeldrepenger(foreldrepengerettighet)
                       };
                   })
                 : [],
@@ -60,7 +57,7 @@ function useBrukersYtelser(props: Props) {
                       const idDato = getPleiepengerIdDato(pleiepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: props.pleiepengerKomponent(pleiepengerettighet, 'pleiepenger' + idDato)
+                          markup: props.renderPleiepenger(pleiepengerettighet)
                       };
                   })
                 : [],
@@ -74,11 +71,11 @@ function useBrukersYtelser(props: Props) {
                       const idDato = getSykepengerIdDato(sykepengerettighet);
                       return {
                           idDato: idDato,
-                          markup: props.sykepengerKomponent(sykepengerettighet, 'sykepenger' + idDato)
+                          markup: props.renderSykepenger(sykepengerettighet)
                       };
                   })
                 : [],
-        [sykepengerResource]
+        [sykepengerResource, props]
     );
 
     const ytelser = useMemo(
