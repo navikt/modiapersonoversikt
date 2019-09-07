@@ -529,12 +529,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   position: relative;
 }
 
-.c0 > * {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 .c2 {
   min-width: 19rem;
   -webkit-flex-basis: 19rem;
@@ -624,6 +618,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 @media (max-width:80rem) {
   .c0 {
     display: block;
+  }
+}
+
+@media not all and (max-width:80rem) {
+  .c0 > * {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 }
 
@@ -1180,7 +1182,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                         >
                           01.01.1970
                            - 
-                          01.03.2018
+                          02.03.2018
                         </td>
                         <td
                           className="ytelseDetaljer"
@@ -1307,7 +1309,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <p
                             className="typo-normal"
                           >
-                            15.06.2015 - 14.12.2016
+                            15.06.2015 - 15.12.2016
                           </p>
                           <p
                             className="typo-normal"
@@ -1781,7 +1783,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                               <p
                                 className="typo-normal"
                               >
-                                31.05.2018 - 25.01.2017
+                                31.05.2018 - 26.01.2017
                               </p>
                             </div>
                             <div
@@ -2491,7 +2493,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <p
                             className="typo-normal"
                           >
-                            17.05.2015 - 19.11.2014
+                            18.05.2015 - 19.11.2014
                           </p>
                           <p
                             className="typo-normal"
@@ -2945,7 +2947,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                         <p
                           className="typo-normal order-first"
                         >
-                          21. Oktober 2015
+                          22. Oktober 2015
                            / 
                           <span
                             className="c28"
@@ -2959,7 +2961,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <p
                             className="typo-normal"
                           >
-                            03.05.2019 - 01.03.2018
+                            04.05.2019 - 02.03.2018
                           </p>
                           <p
                             className="typo-normal"
@@ -3241,7 +3243,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      9. Oktober 2015
+                      10. Oktober 2015
                        / 
                       <span
                         className="c28"
@@ -3364,7 +3366,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                               <p
                                 className="typo-normal"
                               >
-                                23.05.2016 - 21.03.2018
+                                23.05.2016 - 22.03.2018
                               </p>
                             </div>
                             <div

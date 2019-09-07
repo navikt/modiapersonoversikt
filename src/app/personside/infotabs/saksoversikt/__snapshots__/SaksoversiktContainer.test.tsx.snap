@@ -408,12 +408,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: .8rem;
 }
 
-.c0 > * {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 @media (min-width:80rem) {
   .c0 {
     display: -webkit-box;
@@ -428,6 +422,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
   .c0 > *:last-child {
     margin-left: .8rem;
+  }
+
+  .c0 > * {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 }
 
