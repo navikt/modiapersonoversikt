@@ -238,7 +238,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 <li
-  className="c0"
+  className="test-utbetaling-utbetalinglamell c0"
   tabIndex={-1}
 >
   <div
