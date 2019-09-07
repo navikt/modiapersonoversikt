@@ -13,7 +13,7 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../models/utbetalinger';
-import { fyllRandomListe, vektetSjanse } from './utils/mock-utils';
+import { backendDatoformat, fyllRandomListe, vektetSjanse } from './utils/mock-utils';
 import { getBedriftsNavn, getMockNavn } from './person/personMock';
 import { aremark } from './person/aremark';
 
@@ -30,21 +30,24 @@ export function getMockUtbetalinger(fødselsnummer: string, startDato: string, s
     };
 }
 
+const fjernDuplikatePosteringsdato = (utbetaling: Utbetaling, index: number, list: Utbetaling[]) =>
+    list.findIndex(u => u.posteringsdato === utbetaling.posteringsdato) === index;
+
 function getUtbetalinger(fødselsnummer: string) {
     if (fødselsnummer === aremark.fødselsnummer) {
-        return [...new Array(6)].map(() => getMockUtbetaling(fødselsnummer));
+        return [...new Array(26)].map(() => getMockUtbetaling(fødselsnummer));
     }
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 20);
+    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 20).filter(fjernDuplikatePosteringsdato);
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return moment(seededFaker.date.past(2))
+    return moment(seededFaker.date.past(5))
         .startOf('day')
-        .format(moment.ISO_8601.__momentBuiltinFormatBrand);
+        .format(backendDatoformat);
 }
 
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
@@ -55,6 +58,7 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
 
     const utbetaltTilPerson = vektetSjanse(faker, 0.9);
 
+    const posteringsdato = randomDato(faker);
     return {
         utbetaltTil: utbetaltTilPerson
             ? getMockNavn(fødselsnummer || '').sammensatt
@@ -63,7 +67,7 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
         erUtbetaltTilOrganisasjon: !utbetaltTilPerson,
         erUtbetaltTilSamhandler: !utbetaltTilPerson,
         nettobeløp: netto,
-        posteringsdato: randomDato(faker),
+        posteringsdato: posteringsdato,
         utbetalingsdato: utbetalingsDato,
         forfallsdato: navfaker.random.vektetSjanse(0.5) ? randomDato(faker) : null,
         melding: 'Utbetalingsmelding',
