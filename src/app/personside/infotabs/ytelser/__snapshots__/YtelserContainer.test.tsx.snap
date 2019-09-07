@@ -35,32 +35,6 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
 }
 
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c7 dt {
-  color: #645f5a;
-}
-
-.c7 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c7 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
 .c15 > *:first-child {
   background-color: #cce1f3;
   padding: 0.5rem 1.25rem;
@@ -103,82 +77,6 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   background-color: rgba(0,0,0,0.1);
 }
 
-.c12 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c12 > *:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c20 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c19 {
-  padding: .8rem;
-}
-
-.c6 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c10 span:not(:last-child):after {
-  content: '.';
-}
-
-.c9 li:not(:first-child) {
-  border-top: solid 0.0625rem #c6c2bf;
-}
-
-.c17 {
-  padding: .8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c17 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
-  flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c18 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c18 > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
 .c16 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
@@ -189,6 +87,43 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 
 .c16 > *:not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.c6 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c7 dt {
+  color: #645f5a;
+}
+
+.c7 dd {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+.c7 > div {
+  margin: 0.9375rem 0;
+  padding-right: 1rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c10 span:not(:last-child):after {
+  content: '.';
 }
 
 .c14 li:not(:first-child) {
@@ -214,6 +149,29 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c20 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c9 li:not(:first-child) {
+  border-top: solid 0.0625rem #c6c2bf;
+}
+
+.c12 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+  white-space: nowrap;
+}
+
+.c12 > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 .c11 {
@@ -263,6 +221,48 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 }
 
 .c5 > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c19 {
+  padding: .8rem;
+}
+
+.c17 {
+  padding: .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c17 > * {
+  -webkit-flex-basis: 40%;
+  -ms-flex-preferred-size: 40%;
+  flex-basis: 40%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c18 > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
