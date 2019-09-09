@@ -13,13 +13,16 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/dateUtils';
-import SakstemaListeContainer from '../sakstemaliste/SakstemaListeContainer';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { sakerDyplenkeTestSelectorer } from '../../dyplenkeTest/utils';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import SakstemaListe from '../sakstemaliste/SakstemaListe';
+import { useEffect } from 'react';
+import { SakerDyplenkeRouteComponentProps } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends SakerDyplenkeRouteComponentProps {
     valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
@@ -187,84 +190,76 @@ function DokumentListe(props: DokumentListeProps) {
     );
 }
 
-class SaksDokumenter extends React.PureComponent<Props> {
-    private tittelRef = React.createRef<HTMLDivElement>();
+function SaksDokumenter(props: Props) {
+    const tittelRef = React.createRef<HTMLDivElement>();
 
-    componentDidUpdate(prevProps: Props) {
-        if (!prevProps.valgtSakstema || !this.props.valgtSakstema) {
-            return;
-        }
-
-        if (prevProps.valgtSakstema.temanavn !== this.props.valgtSakstema.temanavn) {
-            if (this.tittelRef.current) {
-                this.tittelRef.current.focus();
+    useEffect(
+        function scrollToTopVedNyttSakstema() {
+            if (!props.valgtSakstema) {
+                return;
             }
-        }
+            tittelRef.current && tittelRef.current.focus();
+        },
+        [props.valgtSakstema, tittelRef]
+    );
+
+    if (!props.valgtSakstema) {
+        return <AlertStripeAdvarsel>Kunne ikke finne valgt sakstema</AlertStripeAdvarsel>;
     }
 
-    render() {
-        const props = this.props;
+    const filterCheckboxer = (
+        <Form aria-label="Filter">
+            <Checkbox
+                label={'Bruker'}
+                checked={props.avsenderFilter.fraBruker}
+                onChange={() => props.oppdaterAvsenderfilter({ fraBruker: !props.avsenderFilter.fraBruker })}
+            />
+            <Checkbox
+                label={'NAV'}
+                checked={props.avsenderFilter.fraNav}
+                onChange={() => props.oppdaterAvsenderfilter({ fraNav: !props.avsenderFilter.fraNav })}
+            />
+            <Checkbox
+                label={'Andre'}
+                checked={props.avsenderFilter.fraAndre}
+                onChange={() => props.oppdaterAvsenderfilter({ fraAndre: !props.avsenderFilter.fraAndre })}
+            />
+        </Form>
+    );
 
-        if (!props.valgtSakstema) {
-            return <SakstemaListeContainer />;
-        }
+    const tittel = (
+        <Undertittel className={sakerDyplenkeTestSelectorer.saksDokumenter}>{props.valgtSakstema.temanavn}</Undertittel>
+    );
+    const valgtSakstemaTittel = props.erStandaloneVindu ? (
+        <DropDownMenu header={tittel}>
+            <SakstemaListe valgtSakstema={props.valgtSakstema} />
+        </DropDownMenu>
+    ) : (
+        tittel
+    );
+    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
+        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
+    );
 
-        const filterCheckboxer = (
-            <Form aria-label="Filter">
-                <Checkbox
-                    label={'Bruker'}
-                    checked={props.avsenderFilter.fraBruker}
-                    onChange={() => props.oppdaterAvsenderfilter({ fraBruker: !props.avsenderFilter.fraBruker })}
-                />
-                <Checkbox
-                    label={'NAV'}
-                    checked={props.avsenderFilter.fraNav}
-                    onChange={() => props.oppdaterAvsenderfilter({ fraNav: !props.avsenderFilter.fraNav })}
-                />
-                <Checkbox
-                    label={'Andre'}
-                    checked={props.avsenderFilter.fraAndre}
-                    onChange={() => props.oppdaterAvsenderfilter({ fraAndre: !props.avsenderFilter.fraAndre })}
-                />
-            </Form>
-        );
-
-        const tittel = (
-            <Undertittel className={sakerDyplenkeTestSelectorer.saksnavncontainter}>
-                {props.valgtSakstema.temanavn}
-            </Undertittel>
-        );
-        const valgtSakstemaTittel = props.erStandaloneVindu ? (
-            <DropDownMenu header={tittel}>
-                <SakstemaListeContainer />
-            </DropDownMenu>
-        ) : (
-            tittel
-        );
-        const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
-            hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
-        );
-
-        return (
-            <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
-                <InfoOgFilterPanel>
-                    <div>
-                        <TittelWrapperStyling ref={this.tittelRef} tabIndex={-1}>
-                            {valgtSakstemaTittel}
-                            <Normaltekst>({filtrerteDokumenter.length} journalposter)</Normaltekst>
-                        </TittelWrapperStyling>
-                        {filterCheckboxer}
-                    </div>
-                    <div>
-                        <LenkeNorg />
-                        <ToggleViktigAaViteKnapp />
-                    </div>
-                </InfoOgFilterPanel>
-                <ViktigÅVite />
-                <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
-            </SaksdokumenterStyling>
-        );
-    }
+    return (
+        <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
+            <InfoOgFilterPanel>
+                <div>
+                    <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
+                        {valgtSakstemaTittel}
+                        <Normaltekst>({filtrerteDokumenter.length} journalposter)</Normaltekst>
+                    </TittelWrapperStyling>
+                    {filterCheckboxer}
+                </div>
+                <div>
+                    <LenkeNorg valgtSakstema={props.valgtSakstema} />
+                    <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
+                </div>
+            </InfoOgFilterPanel>
+            <ViktigÅVite valgtSakstema={props.valgtSakstema} />
+            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
+        </SaksdokumenterStyling>
+    );
 }
 
-export default SaksDokumenter;
+export default withRouter(SaksDokumenter);

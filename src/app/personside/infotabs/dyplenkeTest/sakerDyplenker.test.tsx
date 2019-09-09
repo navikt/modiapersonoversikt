@@ -18,7 +18,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.OVERSIKT);
 
     const expectedSak = infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.saksnavoversikt)
+        .find('.' + sakerDyplenkeTestSelectorer.saksnavnOversikt)
         .first()
         .text();
 
@@ -27,7 +27,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.SAKER);
 
     const valgtSak = infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.saksnavncontainter)
+        .find('.' + sakerDyplenkeTestSelectorer.saksDokumenter)
         .first()
         .text();
 
@@ -36,7 +36,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
 
 function clickOnSak(infoTabs: ReactWrapper) {
     infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.saksnavnknapp)
+        .find('.' + sakerDyplenkeTestSelectorer.sakstemaListeElement)
         .first()
         .find('button')
         .simulate('click');

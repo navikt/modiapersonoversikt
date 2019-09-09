@@ -8,6 +8,7 @@ import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/Sakso
 import Personside from '../personside/Personside';
 import { useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
+import { useCallback, useMemo } from 'react';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
@@ -22,21 +23,28 @@ export const paths = {
 export function usePaths() {
     const fnr = useFødselsnummer();
 
-    function getPath(tab: INFOTABS) {
-        return `${paths.personUri}/${fnr}/${tab.toLowerCase()}`;
-    }
+    const getPath = useCallback(
+        (tab: INFOTABS) => {
+            return `${paths.personUri}/${fnr}/${tab.toLowerCase()}`;
+        },
+        [fnr]
+    );
 
-    return {
-        ...paths,
-        oversikt: getPath(INFOTABS.OVERSIKT),
-        oppfolging: getPath(INFOTABS.OPPFOLGING),
-        meldinger: getPath(INFOTABS.MELDINGER),
-        utbetlainger: getPath(INFOTABS.UTBETALING),
-        saker: getPath(INFOTABS.SAKER),
-        ytelser: getPath(INFOTABS.YTELSER),
-        varsler: getPath(INFOTABS.VARSEL)
-    };
+    return useMemo(
+        () => ({
+            ...paths,
+            oversikt: getPath(INFOTABS.OVERSIKT),
+            oppfolging: getPath(INFOTABS.OPPFOLGING),
+            meldinger: getPath(INFOTABS.MELDINGER),
+            utbetlainger: getPath(INFOTABS.UTBETALING),
+            saker: getPath(INFOTABS.SAKER),
+            ytelser: getPath(INFOTABS.YTELSER),
+            varsler: getPath(INFOTABS.VARSEL)
+        }),
+        [getPath]
+    );
 }
+
 interface RouterProps {
     fodselsnummer: string;
 }

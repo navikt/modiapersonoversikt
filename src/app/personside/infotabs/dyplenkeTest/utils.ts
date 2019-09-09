@@ -5,7 +5,7 @@ export function getAktivTab(infoTabs: ReactWrapper) {
 }
 
 export const sakerDyplenkeTestSelectorer = {
-    saksnavoversikt: 'test-saksnavnoversikt',
-    saksnavncontainter: 'test-saksnavncontainer',
-    saksnavnknapp: 'test-saksnavnknapp'
+    saksnavnOversikt: 'test-saksnavnoversikt',
+    saksDokumenter: 'test-saksdokumenter',
+    sakstemaListeElement: 'test-sakstemaListeElement'
 };
