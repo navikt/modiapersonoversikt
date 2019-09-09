@@ -4,6 +4,7 @@ import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
+import { ytelserTest } from '../../dyplenkeTest/utils';
 
 interface Props {
     children: ReactNode;
@@ -49,7 +50,7 @@ function EkspanderbartYtelserPanel(props: Props) {
     );
 
     return (
-        <CustomStyling>
+        <CustomStyling className={ytelserTest.ytelse}>
             <EkspanderbartpanelBasePure
                 apen={apen}
                 onClick={() => setApen(!apen)}

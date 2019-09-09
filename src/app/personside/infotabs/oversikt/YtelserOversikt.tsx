@@ -11,6 +11,7 @@ import useBrukersYtelser from '../ytelser/useBrukersYtelser';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { ytelserTest } from '../dyplenkeTest/utils';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -43,16 +44,18 @@ function YtelserOversikt() {
 function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
-        <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
-            valgt={false}
-            ariaDescription="Vis pleiepenger"
-        >
-            <Normaltekst>
-                <Bold>Pleiepenger sykt barn</Bold>
-            </Normaltekst>
-            <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
-        </VisMerKnapp>
+        <li className={ytelserTest.oversikt}>
+            <VisMerKnapp
+                linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
+                valgt={false}
+                ariaDescription="Vis pleiepenger"
+            >
+                <Normaltekst>
+                    <Bold>Pleiepenger sykt barn</Bold>
+                </Normaltekst>
+                <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
+            </VisMerKnapp>
+        </li>
     );
 }
 
