@@ -334,7 +334,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
           aria-label="Oversikt brukers utbetalinger"
           className="c6"
         >
-          <li>
+          <li
+            className="test-utbetalinger-oversikt"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -343,9 +345,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  29. Mars 2017
+                  5. Juli 2018
                    / 
-                  Utbetalt
+                  Ligger hos banken
                 </p>
                 <p
                   className="typo-normal"
@@ -353,15 +355,113 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <span
                     className="c8"
                   >
-                    Sykepenger
+                    Barnetrygd
                   </span>
                 </p>
                 <p
                   className="typo-normal"
                 >
-                  09.11.2016
+                  17.06.2015
                    - 
-                  31.10.2017
+                  16.12.2016
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
+                </p>
+              </div>
+              <button
+                aria-label="Vis utbetaling"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
+          </li>
+          <li
+            className="test-utbetalinger-oversikt"
+          >
+            <div
+              className="c7"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  25. Juli 2017
+                   / 
+                  Ligger hos banken
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Diverse ytelser
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  24.01.2016
+                   - 
+                  05.05.2018
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
+                </p>
+              </div>
+              <button
+                aria-label="Vis utbetaling"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
+          </li>
+          <li
+            className="test-utbetalinger-oversikt"
+          >
+            <div
+              className="c7"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  4. Desember 2016
+                   / 
+                  Returnert til NAV for saksbehandling
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Enslig forsørger
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  20.05.2015
+                   - 
+                  21.11.2014
                 </p>
                 <p
                   className="typo-normal"

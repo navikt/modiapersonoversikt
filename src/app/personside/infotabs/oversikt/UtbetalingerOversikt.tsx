@@ -12,6 +12,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { utbetalingerTest } from '../dyplenkeTest/utils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -53,7 +54,7 @@ function UtbetalingerPanel(props: Props) {
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
     const dyplenkerInfotabs = useInfotabsDyplenker();
     return (
-        <li>
+        <li className={utbetalingerTest.oversikt}>
             <VisMerKnapp
                 valgt={false}
                 ariaDescription={`Vis utbetaling`}
