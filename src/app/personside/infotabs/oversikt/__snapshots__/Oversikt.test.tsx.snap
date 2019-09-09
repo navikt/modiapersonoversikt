@@ -345,7 +345,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  3. Juli 2018
+                  5. Juli 2018
                    / 
                   Ligger hos banken
                 </p>
@@ -361,9 +361,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  15.06.2015
+                  17.06.2015
                    - 
-                  15.12.2016
+                  16.12.2016
                 </p>
                 <p
                   className="typo-normal"
@@ -394,7 +394,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  23. Juli 2017
+                  25. Juli 2017
                    / 
                   Ligger hos banken
                 </p>
@@ -410,9 +410,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  22.01.2016
+                  24.01.2016
                    - 
-                  03.05.2018
+                  05.05.2018
                 </p>
                 <p
                   className="typo-normal"
@@ -443,7 +443,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  2. Desember 2016
+                  4. Desember 2016
                    / 
                   Returnert til NAV for saksbehandling
                 </p>
@@ -459,9 +459,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  18.05.2015
+                  20.05.2015
                    - 
-                  19.11.2014
+                  21.11.2014
                 </p>
                 <p
                   className="typo-normal"
