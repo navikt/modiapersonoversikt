@@ -1,41 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
-.c22 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-animation: fYGRJE 0.3s ease-out;
-  animation: fYGRJE 0.3s ease-out;
-}
-
-.c22 > * {
-  -webkit-flex: 0 1 25rem;
-  -ms-flex: 0 1 25rem;
-  flex: 0 1 25rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .c8 {
   font-weight: bold;
 }
@@ -85,12 +50,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c26 svg {
+.c25 svg {
   height: 1.875rem;
   width: 1.875rem;
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -100,19 +65,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c25 .order-first {
+.c24 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c25 .order-second {
+.c24 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c24 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -297,7 +262,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding-right: .8rem;
 }
 
-.c23 > *:not(:first-child) {
+.c22 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -885,14 +850,110 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c21"
         >
           <div
-            className="c22"
-          />
+            className="c7"
+            onClick={[Function]}
+          >
+            <div>
+              <p
+                className="typo-normal"
+              >
+                ID dato: 
+                2019-02-06
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Sykepenger
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                100% sykemeldt - Maksdato 
+                2019-01-16
+              </p>
+            </div>
+            <button
+              aria-label="Vis sykepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
           <div
-            className="c22"
-          />
+            className="c7"
+            onClick={[Function]}
+          >
+            <div>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Pleiepenger sykt barn
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Barnets f.nr: 
+                08031815240
+              </p>
+            </div>
+            <button
+              aria-label="Vis pleiepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
           <div
-            className="c22"
-          />
+            className="c7"
+            onClick={[Function]}
+          >
+            <div>
+              <p
+                className="typo-normal"
+              >
+                ID dato: 
+                2017-11-21
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Foreldrepenger
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                34
+                % dekningsgrad - Maksdato 
+              </p>
+            </div>
+            <button
+              aria-label="Vis foreldrepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -925,7 +986,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
-          className="c23"
+          className="c22"
         >
           <li
             className="test-sakstemaListeElement"
@@ -936,11 +997,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saksnavnoversikt"
@@ -965,7 +1026,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -1006,11 +1067,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saksnavnoversikt"
@@ -1045,7 +1106,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
@@ -1069,11 +1130,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saksnavnoversikt"
@@ -1088,7 +1149,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
@@ -1112,11 +1173,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saksnavnoversikt"
@@ -1141,7 +1202,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
