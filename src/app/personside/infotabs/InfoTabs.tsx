@@ -77,7 +77,7 @@ function InfoTabs(props: Props) {
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />
                         <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
                         <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={paths.ytelser} component={YtelserContainer} />
+                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
                         <Route path={paths.varsler} component={VarslerContainer} />
                         <Route path={''} component={Oversikt} />
                     </Switch>

@@ -24,6 +24,10 @@ export function useInfotabsDyplenker() {
             saker: {
                 link: (saksTema: Sakstema) => `${paths.saker}/${getUnikSakstemaKey(saksTema)}`,
                 route: `${paths.saker}/:sakstemakey?`
+            },
+            ytelser: {
+                link: (unikId: string) => `${paths.ytelser}/${unikId}`,
+                route: `${paths.ytelser}/:unikId?`
             }
         }),
         [paths]
@@ -33,6 +37,7 @@ export function useInfotabsDyplenker() {
 export type UtbetalingDyplenkeRouteComponentProps = RouteComponentProps<{ posteringsdato: string }>;
 export type MeldingerDyplenkeRouteComponentProps = RouteComponentProps<{ traadId: string }>;
 export type SakerDyplenkeRouteComponentProps = RouteComponentProps<{ sakstemakey: string }>;
+export type YtelserDyplenkeRouteComponentProps = RouteComponentProps<{ unikId: string }>;
 
 export const erValgtIDyplenke = {
     utbetaling: (utbetaling: Utbetaling, routeProps: UtbetalingDyplenkeRouteComponentProps) => {
@@ -42,7 +47,9 @@ export const erValgtIDyplenke = {
     meldinger: (traad: Traad, routeProps: MeldingerDyplenkeRouteComponentProps) =>
         traad.traadId === routeProps.match.params.traadId,
     saker: (sakstema: Sakstema, routeProps: SakerDyplenkeRouteComponentProps) =>
-        getUnikSakstemaKey(sakstema) === routeProps.match.params.sakstemakey
+        getUnikSakstemaKey(sakstema) === routeProps.match.params.sakstemakey,
+    ytelser: (unikId: string, routeProps: YtelserDyplenkeRouteComponentProps) =>
+        unikId === routeProps.match.params.unikId
 };
 
 export function useValgtTraadIUrl(routeProps: MeldingerDyplenkeRouteComponentProps): Traad | undefined {

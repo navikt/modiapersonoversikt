@@ -1,6 +1,8 @@
 import { Periode } from '../periode';
 import { KommendeUtbetaling } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
+import moment from 'moment';
+import { backendDatoformat } from '../../mock/utils/mock-utils';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;
@@ -64,4 +66,12 @@ export interface Foreldrepengerperiode {
     rettTilMødrekvote: string;
     stansårsak: string | null;
     kommendeUtbetalinger: KommendeUtbetaling[];
+}
+
+export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
+    return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : moment().format(backendDatoformat);
+}
+
+export function getUnikForeldrepengerKey(foreldrepenger: Foreldrepengerettighet) {
+    return 'foreldrepenger' + getForeldepengerIdDato(foreldrepenger);
 }
