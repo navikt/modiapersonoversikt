@@ -465,12 +465,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   position: relative;
 }
 
-.c0 > * {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 .c2 {
   min-width: 19rem;
   -webkit-flex-basis: 19rem;
@@ -544,6 +538,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 @media (max-width:80rem) {
   .c0 {
     display: block;
+  }
+}
+
+@media not all and (max-width:80rem) {
+  .c0 > * {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 }
 
@@ -1101,7 +1103,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 aria-label="Utbetalinger fra Mars 2017"
               >
                 <li
-                  className="c30"
+                  className="test-utbetaling-utbetalinglamell c30"
                   onClick={[Function]}
                   onFocus={[Function]}
                   tabIndex={0}

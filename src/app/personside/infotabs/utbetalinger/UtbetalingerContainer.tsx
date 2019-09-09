@@ -19,11 +19,13 @@ const UtbetalingerArticle = styled.article`
     @media (max-width: ${theme.media.utbetalinger}) {
         display: block;
     }
-    position: relative;
-    > * {
-        position: sticky;
-        top: 0;
+    @media not all and (max-width: ${theme.media.utbetalinger}) {
+        > * {
+            position: sticky;
+            top: 0;
+        }
     }
+    position: relative;
 `;
 
 const FiltreringSection = styled.section`
