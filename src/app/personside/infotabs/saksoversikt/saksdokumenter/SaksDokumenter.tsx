@@ -59,6 +59,7 @@ const InfoOgFilterPanel = styled.section`
     }
     > div:last-child {
         align-items: flex-end;
+        flex-grow: 1;
     }
 `;
 
