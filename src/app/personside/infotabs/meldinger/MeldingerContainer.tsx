@@ -10,7 +10,7 @@ import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
-import { erValgtIDyplenke, MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker } from '../dyplenker';
+import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTraadIUrl } from '../dyplenker';
 import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
@@ -44,18 +44,15 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dyplenker = useInfotabsDyplenker();
+    const traadIUrl = useValgtTraadIUrl(props);
 
     useEffect(() => {
-        if (!hasData(traaderResource)) {
-            return;
-        }
-        const traadIUrl = traaderResource.data.find(traad => erValgtIDyplenke.meldinger(traad, props));
-        if (!traadIUrl) {
+        if (!traadIUrl && hasData(traaderResource)) {
             props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
-        } else if (traadIUrl !== forrigeValgteTraad) {
+        } else if (traadIUrl !== forrigeValgteTraad && !!traadIUrl) {
             dispatch(huskForrigeValgtTraad(traadIUrl));
         }
-    }, [forrigeValgteTraad, traaderResource, dispatch, props, dyplenker.meldinger]);
+    }, [forrigeValgteTraad, traadIUrl, traaderResource, dispatch, props.history, dyplenker.meldinger]);
 
     return (
         <RestResourceConsumer<Traad[]>
@@ -64,10 +61,10 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
         >
             {data => (
                 <MeldingerArticleStyle>
-                    <TraadListe traader={data} />
+                    <TraadListe traader={data} valgtTraad={traadIUrl} />
                     <div>
-                        <Verktoylinje />
-                        <TraadVisning />
+                        <Verktoylinje valgtTraad={traadIUrl} />
+                        <TraadVisning valgtTraad={traadIUrl} />
                     </div>
                 </MeldingerArticleStyle>
             )}
