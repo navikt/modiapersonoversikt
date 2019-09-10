@@ -11,6 +11,7 @@ import useBrukersYtelser from '../ytelser/useBrukersYtelser';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { formaterDato } from '../../../../utils/stringFormatting';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -65,11 +66,16 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             valgt={false}
             ariaDescription="Vis sykepenger"
         >
-            <Normaltekst>ID dato: {props.sykepenger.sykmeldtFom}</Normaltekst>
+            <Normaltekst>
+                ID dato: {props.sykepenger.sykmeldtFom ? formaterDato(props.sykepenger.sykmeldtFom) : ''}
+            </Normaltekst>
             <Normaltekst>
                 <Bold>Sykepenger</Bold>
             </Normaltekst>
-            <Normaltekst>100% sykemeldt - Maksdato {props.sykepenger.slutt}</Normaltekst>
+            <Normaltekst>
+                100% sykemeldt - Maksdato{' '}
+                {props.sykepenger.slutt ? formaterDato(props.sykepenger.slutt) : 'ikke tilgjenglig'}
+            </Normaltekst>
         </VisMerKnapp>
     );
 }
@@ -82,12 +88,15 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             valgt={false}
             ariaDescription="Vis foreldrepenger"
         >
-            <Normaltekst>ID dato: {props.foreldrepenger.rettighetFom}</Normaltekst>
+            <Normaltekst>
+                ID dato: {props.foreldrepenger.rettighetFom ? formaterDato(props.foreldrepenger.rettighetFom) : ''}
+            </Normaltekst>
             <Normaltekst>
                 <Bold>Foreldrepenger</Bold>
             </Normaltekst>
             <Normaltekst>
-                {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato {props.foreldrepenger.slutt}
+                {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
+                {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
             </Normaltekst>
         </VisMerKnapp>
     );
