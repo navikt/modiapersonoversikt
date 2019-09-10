@@ -498,7 +498,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="c8"
+    className="test-ytelse-ytelselamell c8"
   >
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
@@ -630,7 +630,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="c8"
+    className="test-ytelse-ytelselamell c8"
   >
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"

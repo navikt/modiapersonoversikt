@@ -285,7 +285,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   className="c0"
 >
   <div
-    className="c1"
+    className="test-ytelse-ytelselamell c1"
   >
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
@@ -994,7 +994,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
     </div>
   </div>
   <div
-    className="c1"
+    className="test-ytelse-ytelselamell c1"
   >
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
@@ -1484,7 +1484,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
     </div>
   </div>
   <div
-    className="c1"
+    className="test-ytelse-ytelselamell c1"
   >
     <div
       className="ekspanderbartPanel ekspanderbartPanel--lukket"
