@@ -20,13 +20,21 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
     clickOnYtelse(infoTabs);
 
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.YTELSER);
-    console.log('1');
+
+    const apenYtelse = infoTabs.find('.ekspanderbartPanel--apen').html();
+    const expectedApenYtelse = infoTabs
+        .find('.' + ytelserTest.ytelse)
+        .last()
+        .children()
+        .html();
+
+    expect(apenYtelse).toEqual(expectedApenYtelse);
 });
 
 function clickOnYtelse(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + ytelserTest.oversikt)
-        .first()
+        .last()
         .find('button')
         .simulate('click');
 }

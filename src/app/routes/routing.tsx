@@ -33,7 +33,7 @@ export function usePaths() {
     return useMemo(
         () => ({
             ...paths,
-            oversikt: getPath(INFOTABS.OVERSIKT),
+            tittel: getPath(INFOTABS.OVERSIKT),
             oppfolging: getPath(INFOTABS.OPPFOLGING),
             meldinger: getPath(INFOTABS.MELDINGER),
             utbetlainger: getPath(INFOTABS.UTBETALING),
