@@ -34,7 +34,11 @@ function YtelserOversikt() {
     return (
         <YtelserStyle>
             {ytelser}
-            {!pending && ytelser.length === 0 && <AlertStripeInfo>Fant ingen ytelser for bruker</AlertStripeInfo>}
+            {!pending && ytelser.length === 0 && (
+                <AlertStripeInfo>
+                    Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
+                </AlertStripeInfo>
+            )}
             {pending && <CenteredLazySpinner padding={theme.margin.layout} />}
         </YtelserStyle>
     );
