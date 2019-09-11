@@ -45,9 +45,11 @@ function getUtbetalinger(fødselsnummer: string) {
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return moment(seededFaker.date.past(5))
+    return moment(seededFaker.date.between('2019-01-01', '2019-01-01')).format(backendDatoformat);
+
+    /*return moment(seededFaker.date.past(5))
         .startOf('day')
-        .format(backendDatoformat);
+        .format(backendDatoformat);*/
 }
 
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
