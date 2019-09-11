@@ -9,7 +9,6 @@ import { LayoutWrapper } from './MainLayoutStyles';
 import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
-import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
@@ -36,7 +35,6 @@ function MainLayout() {
             >
                 <HentOppgaveKnapp />
                 <DialogPanel />
-                <EkspanderDilaogpanelKnapp />
             </HøyreKolonne>
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />
         </LayoutWrapper>
