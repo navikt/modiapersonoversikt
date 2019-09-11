@@ -28,6 +28,12 @@ const DatoKomponentWrapper = styled.div`
     padding: ${theme.margin.px20};
 `;
 
+const KnappWrapper = styled(Knapp)`
+    &:focus {
+        ${theme.focus}
+    }
+`;
+
 const TittelWrapper = styled.div`
     &:focus {
         outline: none;
@@ -109,13 +115,13 @@ function DatoInputs(props: Props) {
                 avgrensninger={avgrensninger}
             />
             {periodeFeilmelding}
-            <Knapp
+            <KnappWrapper
                 onClick={!oppfølgingLastes ? props.reloadDetaljertOppfolging : () => null}
                 spinner={oppfølgingLastes}
                 htmlType="button"
             >
                 Søk
-            </Knapp>
+            </KnappWrapper>
         </DatoVelgerWrapper>
     );
 }
