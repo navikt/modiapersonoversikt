@@ -7,14 +7,14 @@ import {
     SetErStandaloneVindu,
     SetValgtDokument,
     SetValgtEnkeltdokument,
-    SetValgtSakstema,
+    HuskValgtSakstema,
     SetViktigÅViteÅpen,
     SetVisDokument
 } from './types';
 
-export function settValgtSakstema(sakstema: Sakstema): SetValgtSakstema {
+export function huskValgtSakstema(sakstema: Sakstema): HuskValgtSakstema {
     return {
-        type: SaksoversiktActionTypes.SetValgtSakstema,
+        type: SaksoversiktActionTypes.SetForrigeValgteSakstema,
         sakstema: sakstema
     };
 }

@@ -5,10 +5,10 @@ export function saksoversiktReducer(
     action: SaksoversiktActions
 ): SaksoversikState {
     switch (action.type) {
-        case SaksoversiktActionTypes.SetValgtSakstema:
+        case SaksoversiktActionTypes.SetForrigeValgteSakstema:
             return {
                 ...state,
-                valgtSakstema: action.sakstema
+                forrigeValgteSakstema: action.sakstema
             };
         case SaksoversiktActionTypes.SetVisDokument:
             return {

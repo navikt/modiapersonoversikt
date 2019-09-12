@@ -1,31 +1,40 @@
 import * as React from 'react';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import Pleiepenger from './Pleiepenger';
-import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
-import { getSistePeriodeForPleiepengerettighet } from './pleiepengerUtils';
+import {
+    getPleiepengerIdDato,
+    getUnikPleiepengerKey,
+    Pleiepengerettighet
+} from '../../../../../models/ytelse/pleiepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends YtelserDyplenkeRouteComponentProps {
     pleiepenger: Pleiepengerettighet | null;
 }
 
-function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
+function PleiepengerEkspanderbartpanel({ pleiepenger, ...rest }: Props) {
     if (pleiepenger === null) {
         return null;
     }
 
-    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepenger);
     const tittelTillegsInfo = [
-        'ID-dato: ' +
-            (sistePeriodeForPleiepengerettighet ? formaterDato(sistePeriodeForPleiepengerettighet.fom) : 'N/A'),
+        'ID-dato: ' + formaterDato(getPleiepengerIdDato(pleiepenger)),
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 
+    const valtIDyplenke = erValgtIDyplenke.ytelser(getUnikPleiepengerKey(pleiepenger), rest);
+
     return (
-        <EkspanderbartYtelserPanel tittel="Pleiepenger sykt barn" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel
+            defaultApen={valtIDyplenke}
+            tittel="Pleiepenger sykt barn"
+            tittelTillegsInfo={tittelTillegsInfo}
+        >
             <Pleiepenger pleiepenger={pleiepenger} />
         </EkspanderbartYtelserPanel>
     );
 }
 
-export default PleiepengerEkspanderbartpanel;
+export default withRouter(PleiepengerEkspanderbartpanel);

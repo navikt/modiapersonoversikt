@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import restEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import temagruppeReducer, { TemagruppeState } from './temagruppe';
@@ -17,6 +16,7 @@ import { MeldingerState } from './meldinger/types';
 import { meldingerReducer } from './meldinger/reducer';
 import { OppgaveState } from './oppgave/types';
 import { oppgaverReducer } from './oppgave/reducer';
+import { combineResettableReducers } from './reducer-utils';
 
 export interface AppState {
     restResources: RestEndepunkter;
@@ -32,16 +32,19 @@ export interface AppState {
     gjeldendeBruker: GjeldendeBrukerState;
 }
 
-export default combineReducers<AppState>({
-    restResources: restEndepunkterReducers,
-    ui: UIReducer,
-    temagruppe: temagruppeReducer,
-    utbetalinger: utbetalingerReducer,
-    saksoversikt: saksoversiktReducer,
-    meldinger: meldingerReducer,
-    oppgaver: oppgaverReducer,
-    ytelser: ytelserReducere,
-    kontrollSpørsmål: kontrollspørsmålReducer,
-    oppfolging: oppfolgingReducer,
-    gjeldendeBruker: gjeldendeBrukerReducer
-});
+export default combineResettableReducers<AppState>(
+    {
+        restResources: restEndepunkterReducers,
+        ui: UIReducer,
+        temagruppe: temagruppeReducer,
+        utbetalinger: utbetalingerReducer,
+        saksoversikt: saksoversiktReducer,
+        meldinger: meldingerReducer,
+        oppgaver: oppgaverReducer,
+        ytelser: ytelserReducere,
+        kontrollSpørsmål: kontrollspørsmålReducer,
+        oppfolging: oppfolgingReducer,
+        gjeldendeBruker: gjeldendeBrukerReducer
+    },
+    ['gjeldendeBruker', 'temagruppe', 'restResources']
+);

@@ -1,20 +1,20 @@
 import { Traad } from '../../models/meldinger/meldinger';
 
 export interface MeldingerState {
-    valgtTraad?: Traad;
+    forrigeValgteTraad?: Traad;
 }
 
 export const initialState: MeldingerState = {
-    valgtTraad: undefined
+    forrigeValgteTraad: undefined
 };
 
 export enum MeldingerActionTypes {
-    SetValgtTraad = 'SetValgtTraad'
+    HuskValgtTraad = 'SetValgtTraad'
 }
 
-export interface SetValgtTraad {
-    type: MeldingerActionTypes.SetValgtTraad;
+export interface HuskValgtTraad {
+    type: MeldingerActionTypes.HuskValgtTraad;
     traad: Traad;
 }
 
-export type MeldingerActions = SetValgtTraad;
+export type MeldingerActions = HuskValgtTraad;

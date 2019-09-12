@@ -1,28 +1,36 @@
 import * as React from 'react';
-import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import {
+    Foreldrepengerettighet,
+    getForeldepengerIdDato,
+    getUnikForeldrepengerKey
+} from '../../../../../models/ytelse/foreldrepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import EkspanderbartYtelserPanel from '../felles-styling/EkspanderbartYtelserPanel';
 import Foreldrepenger from './ForeldrePenger';
+import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
+import { withRouter } from 'react-router';
 
-interface Props {
+interface Props extends YtelserDyplenkeRouteComponentProps {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
-function ForeldrepengerEkspanderbartpanel({ foreldrepenger }: Props) {
+function ForeldrepengerEkspanderbartpanel({ foreldrepenger, ...rest }: Props) {
     if (foreldrepenger === null) {
         return null;
     }
 
     const tittelTillegsInfo = [
-        `ID-dato: ${foreldrepenger.rettighetFom && formaterDato(foreldrepenger.rettighetFom)}`,
+        `ID-dato: ${formaterDato(getForeldepengerIdDato(foreldrepenger))}`,
         foreldrepenger.foreldrepengetype
     ];
 
+    const erValgt = erValgtIDyplenke.ytelser(getUnikForeldrepengerKey(foreldrepenger), rest);
+
     return (
-        <EkspanderbartYtelserPanel tittel="Foreldrepenger" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel defaultApen={erValgt} tittel="Foreldrepenger" tittelTillegsInfo={tittelTillegsInfo}>
             <Foreldrepenger foreldrepenger={foreldrepenger} />
         </EkspanderbartYtelserPanel>
     );
 }
 
-export default ForeldrepengerEkspanderbartpanel;
+export default withRouter(ForeldrepengerEkspanderbartpanel);

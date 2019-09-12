@@ -9,6 +9,7 @@ import {
     erSamtalereferat,
     kanLeggesTilbake
 } from './meldingerUtils';
+import { temagruppeTekst } from './meldingstekster';
 
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;
@@ -68,5 +69,20 @@ describe('Meldingstyper', () => {
 
     it('gir at spørsmål skriftlig er et spørsmål', function() {
         expect(erMeldingSpørsmål(spørsmålSkriftlig)).toBe(true);
+    });
+});
+describe('Dokumentvarsler', () => {
+    const tomTemaGruppeNull = null;
+    const tomTemaGruppeEmpty = '';
+    const tomTemagruppeTNull = Temagruppe.Null;
+
+    it('Gir tom temagruppe på dokumentvarsler med null', function() {
+        expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('');
+    });
+    it('Gir tom temagruppe på dokumentvarsler med emtpy', function() {
+        expect(temagruppeTekst(<Temagruppe>tomTemaGruppeEmpty)).toBe('');
+    });
+    it('Gir tom temagruppe på dokumentvarsler temagryppe.Null', function() {
+        expect(temagruppeTekst(<Temagruppe>tomTemagruppeTNull)).toBe('');
     });
 });

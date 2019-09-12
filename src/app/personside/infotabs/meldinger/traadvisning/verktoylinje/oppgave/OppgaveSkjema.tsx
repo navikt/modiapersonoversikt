@@ -80,7 +80,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         const harSkjemaValideringsfeil = skjemavalidering(formState);
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
-            const request = lagOppgaveRequest(props, formState);
+            const request = lagOppgaveRequest(props, formState, props.valgtTraad);
             props.opprettOppgave(request);
             if (props.kontorsperreFunksjon) {
                 props.kontorsperreFunksjon();

@@ -1,24 +1,19 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
-import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import { setValgtTraadMeldingspanel } from '../../../../../redux/meldinger/actions';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
-import { Collapse } from 'react-collapse';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
+import { Traad } from '../../../../../models/meldinger/meldinger';
 
 interface Props {
     valgtTraad?: Traad;
-    traader: RestResource<Traad[]>;
 }
 
 const VisningStyle = styled.section`
@@ -36,44 +31,37 @@ const KnappWrapper = styled.div`
     align-items: flex-end;
 `;
 
-function AlleMeldinger(props: { traad: Traad }) {
-    const meldingskomponenter = props.traad.meldinger
+function AlleMeldinger({ traad }: { traad: Traad }) {
+    const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
         .map(melding => <EnkeltMelding melding={melding} key={melding.id} />);
 
     return <div>{meldingskomponenter}</div>;
 }
 
-function TraadVisning({ valgtTraad, traader }: Props) {
+function TraadVisning(props: Props) {
     const dispatch = useDispatch();
-    const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
-    useEffect(() => {
-        if (!valgtTraad && hasData(traader)) {
-            dispatch(setValgtTraadMeldingspanel(traader.data[0]));
-        }
-    }, [valgtTraad, traader, dispatch]);
+    const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
-    if (!valgtTraad) {
+    if (!props.valgtTraad) {
         return <CenteredLazySpinner />;
     }
 
-    const handleSendMelding = () => {
-        dispatch(setValgtTraadDialogpanel(valgtTraad));
+    const handleNyMelding = () => {
+        props.valgtTraad && dispatch(setValgtTraadDialogpanel(props.valgtTraad));
         dispatch(toggleDialogpanel(true));
     };
 
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={valgtTraad ? valgtTraad.traadId : ''}>
+        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <KnappWrapper>
-                <Collapse isOpened={true}>
-                    {traadDialogpanel === valgtTraad ? (
-                        <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-                    ) : (
-                        <Flatknapp onClick={handleSendMelding}>Ny melding</Flatknapp>
-                    )}
-                </Collapse>
+                {dialogpanelTraad === props.valgtTraad ? (
+                    <AlertStripeInfo>Under arbeid</AlertStripeInfo>
+                ) : (
+                    <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
+                )}
             </KnappWrapper>
-            <AlleMeldinger traad={valgtTraad} />
+            <AlleMeldinger traad={props.valgtTraad} />
         </VisningStyle>
     );
 }

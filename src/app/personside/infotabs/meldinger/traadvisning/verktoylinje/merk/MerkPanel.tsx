@@ -26,10 +26,10 @@ import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
 import { RadioPanelGruppe, Checkbox } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     lukkPanel: () => void;
+    valgtTraad: Traad;
 }
 
 enum MerkOperasjon {
@@ -63,11 +63,7 @@ function MerkPanel(props: Props) {
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const valgtTraad = useSelector((state: AppState) => state.meldinger.valgtTraad);
-
-    if (!valgtTraad) {
-        return <AlertStripeAdvarsel>Ingen tråd valgt</AlertStripeAdvarsel>;
-    }
+    const valgtTraad = props.valgtTraad;
 
     const melding = eldsteMelding(valgtTraad);
 

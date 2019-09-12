@@ -18,8 +18,9 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
-import { RouteComponentProps, withRouter } from 'react-router';
-import moment from 'moment';
+import { withRouter } from 'react-router';
+import { erValgtIDyplenke, UtbetalingDyplenkeRouteComponentProps } from '../../dyplenker';
+import { utbetalingerTest } from '../../dyplenkeTest/utils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;
@@ -36,7 +37,7 @@ interface StateProps {
     visDetaljer: boolean;
 }
 
-type Props = DispatchProps & OwnProps & StateProps & RouteComponentProps<{ posteringsdato: string }>;
+type Props = DispatchProps & OwnProps & StateProps & UtbetalingDyplenkeRouteComponentProps;
 
 const UtbetalingStyle = styled.li`
     cursor: pointer;
@@ -75,9 +76,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 
     componentDidMount() {
-        const posteringsdatoFraUrl = (this.props.match.params.posteringsdato as unknown) as number;
-        const erValgtIUrl = moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl));
-        if (erValgtIUrl) {
+        if (erValgtIDyplenke.utbetaling(this.props.utbetaling, this.props)) {
             this.utbetalingRef.current && this.utbetalingRef.current.focus();
         }
     }
@@ -127,6 +126,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                     ref={this.utbetalingRef}
                     tabIndex={0}
                     onFocus={this.props.setYtelseIFokus}
+                    className={utbetalingerTest.utbetaling}
                 >
                     <article aria-expanded={this.props.visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
                         <UtbetalingTabellStyling>

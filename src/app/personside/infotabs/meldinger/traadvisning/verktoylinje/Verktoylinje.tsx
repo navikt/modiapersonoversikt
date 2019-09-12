@@ -8,13 +8,14 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
+import LazySpinner from '../../../../../../components/LazySpinner';
 
 interface Props {
     valgtTraad?: Traad;
 }
 
 const PanelStyle = styled.div`
-    ${theme.hvittPanel}
+    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
@@ -43,15 +44,11 @@ enum FunksjonVindu {
     MERK
 }
 
-function Funksjoner(props: Props) {
+function Funksjoner(props: { valgtTraad: Traad }) {
     const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
     useEffect(() => {
         settAktivtVindu(null);
     }, [props.valgtTraad, settAktivtVindu]);
-
-    if (!props.valgtTraad) {
-        return null;
-    }
 
     const setResetVindu = (klikketVindu: FunksjonVindu) => () =>
         aktivtVindu === klikketVindu ? settAktivtVindu(null) : settAktivtVindu(klikketVindu);
@@ -85,13 +82,17 @@ function Funksjoner(props: Props) {
                 <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
-                <MerkPanel lukkPanel={() => settAktivtVindu(null)} />
+                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
         </>
     );
 }
 
 function Verktoylinje(props: Props) {
+    if (!props.valgtTraad) {
+        return <LazySpinner />;
+    }
+
     return (
         <PanelStyle>
             <Funksjoner valgtTraad={props.valgtTraad} />
