@@ -11,6 +11,5 @@ export const utbetalingerTest = {
 
 export const ytelserTest = {
     oversikt: 'test-ytelse-oversikt',
-    tittel: 'test-ytelser-tittel',
     ytelse: 'test-ytelse-ytelselamell'
 };

@@ -50,7 +50,7 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
                 valgt={false}
                 ariaDescription="Vis pleiepenger"
             >
-                <Normaltekst className={ytelserTest.tittel}>
+                <Normaltekst>
                     <Bold>Pleiepenger sykt barn</Bold>
                 </Normaltekst>
                 <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
@@ -70,7 +70,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
                 ariaDescription="Vis sykepenger"
             >
                 <Normaltekst>ID dato: {props.sykepenger.sykmeldtFom}</Normaltekst>
-                <Normaltekst className={ytelserTest.tittel}>
+                <Normaltekst>
                     <Bold>Sykepenger</Bold>
                 </Normaltekst>
                 <Normaltekst>100% sykemeldt - Maksdato {props.sykepenger.slutt}</Normaltekst>
@@ -89,7 +89,7 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
                 ariaDescription="Vis foreldrepenger"
             >
                 <Normaltekst>ID dato: {props.foreldrepenger.rettighetFom}</Normaltekst>
-                <Normaltekst className={ytelserTest.tittel}>
+                <Normaltekst>
                     <Bold>Foreldrepenger</Bold>
                 </Normaltekst>
                 <Normaltekst>

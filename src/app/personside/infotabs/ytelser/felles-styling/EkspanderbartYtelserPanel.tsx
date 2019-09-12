@@ -50,8 +50,9 @@ function EkspanderbartYtelserPanel(props: Props) {
     );
 
     return (
-        <CustomStyling className={ytelserTest.ytelse}>
+        <CustomStyling>
             <EkspanderbartpanelBasePure
+                className={ytelserTest.ytelse}
                 apen={apen}
                 onClick={() => setApen(!apen)}
                 heading={tittel}
