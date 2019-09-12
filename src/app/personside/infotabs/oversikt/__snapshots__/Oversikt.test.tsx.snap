@@ -345,7 +345,56 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  6. Juli 2018
+                  1. Januar 2019
+                   / 
+                  Returnert til NAV for saksbehandling
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Diverse ytelser
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  01.01.2019
+                   - 
+                  01.01.2019
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
+                </p>
+              </div>
+              <button
+                aria-label="Vis utbetaling"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
+          </li>
+          <li
+            className="test-utbetalinger-oversikt"
+          >
+            <div
+              className="c7"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  1. Januar 2019
                    / 
                   Ligger hos banken
                 </p>
@@ -361,9 +410,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  18.06.2015
+                  01.01.2019
                    - 
-                  17.12.2016
+                  01.01.2019
                 </p>
                 <p
                   className="typo-normal"
@@ -394,9 +443,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  26. Juli 2017
+                  1. Januar 2019
                    / 
-                  Ligger hos banken
+                  Utbetalt
                 </p>
                 <p
                   className="typo-normal"
@@ -404,64 +453,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <span
                     className="c8"
                   >
-                    Diverse ytelser
+                    Alderspensjon
                   </span>
                 </p>
                 <p
                   className="typo-normal"
                 >
-                  25.01.2016
+                  01.01.2019
                    - 
-                  06.05.2018
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Utbetaling til: 
-                  AREMARK TESTFAMILIEN
-                </p>
-              </div>
-              <button
-                aria-label="Vis utbetaling"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-utbetalinger-oversikt"
-          >
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  5. Desember 2016
-                   / 
-                  Returnert til NAV for saksbehandling
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c8"
-                  >
-                    Enslig forsørger
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  21.05.2015
-                   - 
-                  22.11.2014
+                  01.01.2019
                 </p>
                 <p
                   className="typo-normal"
@@ -964,7 +964,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   2019-02-06
                 </p>
                 <p
-                  className="typo-normal test-ytelser-tittel"
+                  className="typo-normal"
                 >
                   <span
                     className="c8"
@@ -999,7 +999,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <p
-                  className="typo-normal test-ytelser-tittel"
+                  className="typo-normal"
                 >
                   <span
                     className="c8"
@@ -1040,7 +1040,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   2017-11-21
                 </p>
                 <p
-                  className="typo-normal test-ytelser-tittel"
+                  className="typo-normal"
                 >
                   <span
                     className="c8"

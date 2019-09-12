@@ -285,10 +285,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   className="c0"
 >
   <div
-    className="test-ytelse-ytelselamell c1"
+    className="c1"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
         aria-expanded={false}
@@ -994,10 +994,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
     </div>
   </div>
   <div
-    className="test-ytelse-ytelselamell c1"
+    className="c1"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
         aria-expanded={false}
@@ -1484,10 +1484,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
     </div>
   </div>
   <div
-    className="test-ytelse-ytelselamell c1"
+    className="c1"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
         aria-expanded={false}
