@@ -30,7 +30,7 @@ function PersonsokResultat(props: Props) {
         return <NavFrontendSpinner />;
     }
     if (!isFinishedPosting(personsokResource)) {
-        return <AlertStripeAdvarsel>Noe gikk feil</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>Søket gav mer enn 200 treff. Forsøk å begrense søket.</AlertStripeAdvarsel>;
     }
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Midlertidig adresse', 'Postadresse', 'Bostedsadresse', 'Bosted'];

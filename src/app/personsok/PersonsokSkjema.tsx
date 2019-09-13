@@ -109,7 +109,7 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
 
 function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
     if (alleFelterErTomme(props)) {
-        return 'Du må fylle ut et felt';
+        return 'Manglende søkekriterier. Angi navn og/eller gatenavn og trykk på "søk" igjen for å utføre et søk';
     }
 
     if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
