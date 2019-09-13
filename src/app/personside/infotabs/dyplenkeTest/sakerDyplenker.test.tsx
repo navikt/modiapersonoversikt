@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab, sakerDyplenkeTestSelectorer } from './utils';
+import { getAktivTab, sakerTest } from './utils';
 
 test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', () => {
     const infoTabs = mount(
@@ -18,7 +18,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.OVERSIKT);
 
     const expectedSak = infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.saksnavnOversikt)
+        .find('.' + sakerTest.oversikt)
         .first()
         .text();
 
@@ -27,7 +27,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.SAKER);
 
     const valgtSak = infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.saksDokumenter)
+        .find('.' + sakerTest.dokument)
         .first()
         .text();
 
@@ -36,7 +36,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
 
 function clickOnSak(infoTabs: ReactWrapper) {
     infoTabs
-        .find('.' + sakerDyplenkeTestSelectorer.sakstemaListeElement)
+        .find('.' + sakerTest.sakstema)
         .first()
         .find('button')
         .simulate('click');

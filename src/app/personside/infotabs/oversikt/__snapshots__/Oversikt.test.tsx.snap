@@ -1092,7 +1092,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c22"
         >
           <li
-            className="test-sakstemaListeElement"
+            className="test-sakstema-list"
           >
             <div
               className="c7"
@@ -1107,7 +1107,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second test-saksnavnoversikt"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Sykepenger
                       </p>
@@ -1162,7 +1162,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
           </li>
           <li
-            className="test-sakstemaListeElement"
+            className="test-sakstema-list"
           >
             <div
               className="c7"
@@ -1177,7 +1177,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second test-saksnavnoversikt"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Arbeidsavklaringspenger
                       </p>
@@ -1225,7 +1225,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
           </li>
           <li
-            className="test-sakstemaListeElement"
+            className="test-sakstema-list"
           >
             <div
               className="c7"
@@ -1240,7 +1240,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second test-saksnavnoversikt"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Barnetrygd
                       </p>
@@ -1268,7 +1268,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
           </li>
           <li
-            className="test-sakstemaListeElement"
+            className="test-sakstema-list"
           >
             <div
               className="c7"
@@ -1283,7 +1283,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second test-saksnavnoversikt"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Tiltakspenger
                       </p>

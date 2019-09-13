@@ -15,7 +15,7 @@ import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
-import { sakerDyplenkeTestSelectorer } from '../../dyplenkeTest/utils';
+import { sakerTest } from '../../dyplenkeTest/utils';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
@@ -228,9 +228,7 @@ function SaksDokumenter(props: Props) {
         </Form>
     );
 
-    const tittel = (
-        <Undertittel className={sakerDyplenkeTestSelectorer.saksDokumenter}>{props.valgtSakstema.temanavn}</Undertittel>
-    );
+    const tittel = <Undertittel className={sakerTest.dokument}>{props.valgtSakstema.temanavn}</Undertittel>;
     const valgtSakstemaTittel = props.erStandaloneVindu ? (
         <DropDownMenu header={tittel}>
             <SakstemaListe valgtSakstema={props.valgtSakstema} />

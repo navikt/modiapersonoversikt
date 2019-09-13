@@ -458,7 +458,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         className="c3"
       >
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c4"
@@ -473,7 +473,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Alle tema
                     </p>
@@ -501,7 +501,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c9"
@@ -516,7 +516,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Sykepenger
                     </p>
@@ -571,7 +571,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c9"
@@ -586,7 +586,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Arbeidsavklaringspenger
                     </p>
@@ -634,7 +634,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c9"
@@ -649,7 +649,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Barnetrygd
                     </p>
@@ -677,7 +677,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c9"
@@ -692,7 +692,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Tiltakspenger
                     </p>
@@ -730,7 +730,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="test-sakstemaListeElement"
+          className="test-sakstema-list"
         >
           <div
             className="c9"
@@ -745,7 +745,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second test-saksnavnoversikt"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Generell
                     </p>
@@ -788,7 +788,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           tabIndex={-1}
         >
           <h2
-            className="typo-undertittel test-saksdokumenter"
+            className="typo-undertittel test-saker-dokumenter"
           >
             Alle tema
           </h2>
