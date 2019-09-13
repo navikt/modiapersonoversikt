@@ -8,7 +8,7 @@ export const sakerDyplenkeTestSelectorer = {
     saksnavnOversikt: 'test-saksnavnoversikt',
     saksDokumenter: 'test-saksdokumenter',
     sakstemaListeElement: 'test-sakstemaListeElement'
-};  
+};
 export const utbetalingerTest = {
     oversikt: 'test-utbetalinger-oversikt',
     utbetaling: 'test-utbetaling-utbetalinglamell'
