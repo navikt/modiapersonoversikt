@@ -178,14 +178,11 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <option value={''} key={''}>
                             Velg Kjønn
                         </option>
-                        <option value={Kjønn.Mann} key={'M'}>
-                            M - Mann
-                        </option>
                         <option value={Kjønn.Kvinne} key={'K'}>
                             K - Kvinne
                         </option>
-                        <option value={Kjønn.Diskresjonskode} key={'D'}>
-                            D - Diskresjonskode
+                        <option value={Kjønn.Mann} key={'M'}>
+                            M - Mann
                         </option>
                     </Select>
                 </section>
