@@ -3,14 +3,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { isFinishedPosting, isNotStartedPosting, isPosting } from '../../rest/utils/postResource';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import {
-    BostedCelle,
-    BostedsadresseCelle,
-    IdentCelle,
-    MidlertidigAdresseCelle,
-    NavnCelle,
-    PostadresseCelle
-} from './PersonsokResultatElementer';
+import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle } from './PersonsokResultatElementer';
 import { ClickableTable } from '../../utils/table/ClickableTable';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { setNyBrukerIPath } from '../routes/routing';
@@ -33,7 +26,7 @@ function PersonsokResultat(props: Props) {
         return <AlertStripeAdvarsel>Søket gav mer enn 200 treff. Forsøk å begrense søket.</AlertStripeAdvarsel>;
     }
 
-    const tittelRekke = ['Fødselsnummer', 'Navn', 'Midlertidig adresse', 'Postadresse', 'Bostedsadresse', 'Bosted'];
+    const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
     const response = personsokResource.response;
 
     if (response.length === 0) {
@@ -43,9 +36,7 @@ function PersonsokResultat(props: Props) {
     const tableEntries = response.map(linje => [
         <IdentCelle ident={linje.ident} />,
         <NavnCelle navn={linje.navn} status={linje.status} />,
-        <MidlertidigAdresseCelle brukerinfo={linje.brukerinfo} />,
-        <PostadresseCelle postadresse={linje.postadresse} />,
-        <BostedsadresseCelle bostedsadresse={linje.bostedsadresse} />,
+        <AdresseCelle response={linje} />,
         <BostedCelle brukerinfo={linje.brukerinfo} />
     ]);
     const handlers = response.map(linje => () => {

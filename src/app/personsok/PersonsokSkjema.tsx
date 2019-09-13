@@ -113,7 +113,7 @@ function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
     }
 
     if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
-        return 'Kontonummer må ha 11 siffer';
+        return 'Ugyldig kontonummer';
     }
 
     if (!erTomStreng(props.stateCriteria.husnummer) && !props.stateCriteria.gatenavn) {
