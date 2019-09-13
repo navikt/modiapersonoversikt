@@ -4,7 +4,7 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/dateUtils';
+import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
@@ -61,7 +61,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
                 linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
             >
                 <Normaltekst>
-                    {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
+                    {formaterDato(getGjeldendeDatoForUtbetaling(utbetaling))} / {utbetaling.status}
                 </Normaltekst>
                 <YtelseNavn utbetaling={utbetaling} />
                 <YtelsePeriode utbetaling={utbetaling} />

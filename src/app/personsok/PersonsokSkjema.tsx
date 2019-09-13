@@ -77,6 +77,18 @@ function erTomStreng(input?: string): boolean {
     return false;
 }
 
+function alleFelterErTomme(props: PersonsokSkjemaProps): boolean {
+    return (
+        erTomStreng(props.stateCriteria.fornavn) &&
+        erTomStreng(props.stateCriteria.etternavn) &&
+        erTomStreng(props.stateCriteria.gatenavn) &&
+        erTomStreng(props.stateCriteria.husnummer) &&
+        erTomStreng(props.stateCriteria.husbokstav) &&
+        erTomStreng(props.stateCriteria.postnummer) &&
+        erTomStreng(props.stateCriteria.kontonummer)
+    );
+}
+
 function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     return {
         fornavn: emptyString(form.stateCriteria.fornavn),
@@ -96,6 +108,10 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
 }
 
 function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
+    if (alleFelterErTomme(props)) {
+        return 'Manglende søkekriterier. Angi navn og/eller gatenavn og trykk på "søk" igjen for å utføre et søk';
+    }
+
     if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
         return 'Kontonummer må ha 11 siffer';
     }
