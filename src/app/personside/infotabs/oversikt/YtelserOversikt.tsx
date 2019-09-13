@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { getUnikSykepengerKey, Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { getSykepengerIdDato, getUnikSykepengerKey, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { getUnikPleiepengerKey, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Foreldrepengerettighet, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
+import {
+    Foreldrepengerettighet,
+    getForeldepengerIdDato,
+    getUnikForeldrepengerKey
+} from '../../../../models/ytelse/foreldrepenger';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
@@ -66,9 +70,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             valgt={false}
             ariaDescription="Vis sykepenger"
         >
-            <Normaltekst>
-                ID dato: {props.sykepenger.sykmeldtFom ? formaterDato(props.sykepenger.sykmeldtFom) : ''}
-            </Normaltekst>
+            <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Normaltekst>
                 <Bold>Sykepenger</Bold>
             </Normaltekst>
@@ -88,9 +90,7 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             valgt={false}
             ariaDescription="Vis foreldrepenger"
         >
-            <Normaltekst>
-                ID dato: {props.foreldrepenger.rettighetFom ? formaterDato(props.foreldrepenger.rettighetFom) : ''}
-            </Normaltekst>
+            <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
             <Normaltekst>
                 <Bold>Foreldrepenger</Bold>
             </Normaltekst>
