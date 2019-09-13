@@ -7,7 +7,7 @@ import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
-import { sakerDyplenkeTestSelectorer } from '../../dyplenkeTest/utils';
+import { sakerTest } from '../../dyplenkeTest/utils';
 import { useInfotabsDyplenker } from '../../dyplenker';
 
 interface Props {
@@ -80,7 +80,7 @@ function SakstemaListeElement(props: Props) {
     );
 
     return (
-        <li className={sakerDyplenkeTestSelectorer.sakstemaListeElement}>
+        <li className={sakerTest.sakstema}>
             <VisMerKnapp
                 valgt={props.erValgt}
                 linkTo={dyplenker.saker.link(props.sakstema)}
@@ -89,7 +89,7 @@ function SakstemaListeElement(props: Props) {
                 <Flex>
                     <div>
                         <UUcustomOrder>
-                            <Element className={'order-second ' + sakerDyplenkeTestSelectorer.saksnavnOversikt}>
+                            <Element className={'order-second ' + sakerTest.oversikt}>
                                 {props.sakstema.temanavn}
                             </Element>
                             <Normaltekst className="order-first">
