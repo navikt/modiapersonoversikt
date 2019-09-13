@@ -1091,7 +1091,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
         <ol
           className="c22"
         >
-          <li>
+          <li
+            className="test-sakstemaListeElement"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1105,7 +1107,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Sykepenger
                       </p>
@@ -1159,7 +1161,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstemaListeElement"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1173,7 +1177,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Arbeidsavklaringspenger
                       </p>
@@ -1220,7 +1224,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstemaListeElement"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1234,7 +1240,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Barnetrygd
                       </p>
@@ -1261,7 +1267,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstemaListeElement"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1275,7 +1283,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saksnavnoversikt"
                       >
                         Tiltakspenger
                       </p>
