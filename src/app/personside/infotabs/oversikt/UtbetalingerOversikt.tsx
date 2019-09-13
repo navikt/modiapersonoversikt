@@ -37,7 +37,12 @@ function UtbetalingerOversikt() {
 
 function UtbetalingerPanel(props: Props) {
     if (props.utbetalinger.utbetalinger.length === 0) {
-        return <AlertStripeInfo>Ingen nye utbetalinger</AlertStripeInfo>;
+        return (
+            <AlertStripeInfo>
+                Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
+                søkeperioden.
+            </AlertStripeInfo>
+        );
     }
 
     const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
