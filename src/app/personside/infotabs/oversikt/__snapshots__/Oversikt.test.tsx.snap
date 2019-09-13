@@ -345,7 +345,56 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  9. Juli 2018
+                  01.01.1970
+                   / 
+                  Returnert til NAV for saksbehandling
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Diverse ytelser
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  01.01.1970
+                   - 
+                  01.01.1970
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Utbetaling til: 
+                  AREMARK TESTFAMILIEN
+                </p>
+              </div>
+              <button
+                aria-label="Vis utbetaling"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
+          </li>
+          <li
+            className="test-utbetalinger-oversikt"
+          >
+            <div
+              className="c7"
+              onClick={[Function]}
+            >
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  01.01.1970
                    / 
                   Ligger hos banken
                 </p>
@@ -361,9 +410,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  21.06.2015
+                  01.01.1970
                    - 
-                  20.12.2016
+                  01.01.1970
                 </p>
                 <p
                   className="typo-normal"
@@ -394,9 +443,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  29. Juli 2017
+                  01.01.1970
                    / 
-                  Ligger hos banken
+                  Utbetalt
                 </p>
                 <p
                   className="typo-normal"
@@ -404,64 +453,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <span
                     className="c8"
                   >
-                    Diverse ytelser
+                    Alderspensjon
                   </span>
                 </p>
                 <p
                   className="typo-normal"
                 >
-                  28.01.2016
+                  01.01.1970
                    - 
-                  09.05.2018
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Utbetaling til: 
-                  AREMARK TESTFAMILIEN
-                </p>
-              </div>
-              <button
-                aria-label="Vis utbetaling"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-utbetalinger-oversikt"
-          >
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  8. Desember 2016
-                   / 
-                  Returnert til NAV for saksbehandling
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c8"
-                  >
-                    Enslig forsørger
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  24.05.2015
-                   - 
-                  25.11.2014
+                  01.01.1970
                 </p>
                 <p
                   className="typo-normal"
@@ -577,7 +577,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                28. mars 2019
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -636,7 +636,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    01. mars 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -685,7 +685,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    24. jan. 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -719,7 +719,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                10. jan. 2019
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -773,7 +773,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    02. feb. 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -889,7 +889,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      30.07.2019 00:00
+                      01.01.1970 01:00
                     </p>
                     <p
                       className="typo-element"
@@ -958,7 +958,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 className="typo-normal"
               >
                 ID dato: 
-                2019-02-06
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -972,8 +972,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                100% sykemeldt - Maksdato 
-                2019-01-16
+                100% sykemeldt - Maksdato
+                 
+                01.01.1970
               </p>
             </div>
             <button
@@ -1026,7 +1027,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 className="typo-normal"
               >
                 ID dato: 
-                2017-11-21
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -1041,7 +1042,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 className="typo-normal"
               >
                 34
-                % dekningsgrad - Maksdato 
+                % dekningsgrad - Maksdato
+                 
+                ikke tilgjengelig
               </p>
             </div>
             <button
@@ -1111,7 +1114,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        24.12.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p
@@ -1181,7 +1184,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        25.06.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p
@@ -1244,7 +1247,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        20.03.2018
+                        01.01.1970
                       </p>
                     </div>
                   </div>
@@ -1287,7 +1290,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        14.01.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p
