@@ -48,20 +48,6 @@ const DatolabelStyle = styled.div`
     margin-bottom: 0.5em;
 `;
 
-function nullstill(props: PersonsokSkjemaProps) {
-    props.actionsCriteria.settKontonummer('');
-    props.actionsCriteria.settPostnummer('');
-    props.actionsCriteria.settHusbokstav('');
-    props.actionsCriteria.settHusnummer('');
-    props.actionsCriteria.settGatenavn('');
-    props.actionsCriteria.settEtternavn('');
-    props.actionsCriteria.settFornavn('');
-    props.actionsLimit.settKjonn('');
-    props.actionsLimit.settAlderFra('');
-    props.actionsLimit.settFodselsdatoTil(undefined);
-    props.actionsLimit.settFodselsdatoFra(undefined);
-}
-
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
     return (
         <FormStyle>
@@ -205,10 +191,8 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                 </section>
             </SectionStyle>
             <KnappStyle>
-                <Hovedknapp htmlType="submit">Send</Hovedknapp>
-                <LenkeKnapp type="button" onClick={() => nullstill(props.form)}>
-                    Nullstill
-                </LenkeKnapp>
+                <Hovedknapp htmlType="submit">Søk</Hovedknapp>
+                <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
             </KnappStyle>
         </FormStyle>
     );

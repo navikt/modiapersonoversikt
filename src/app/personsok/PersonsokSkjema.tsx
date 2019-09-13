@@ -204,9 +204,25 @@ function PersonsokSkjema() {
         }
     };
 
+    const resetHandler = (event: FormEvent) => {
+        settFornavn('');
+        settEtternavn('');
+        settGatenavn('');
+        settHusnummer('');
+        settHusbokstav('');
+        settPostnummer('');
+        settKontonummer('');
+        settKommunenummer('');
+        settFodselsdatoFra(undefined);
+        settFodselsdatoTil(undefined);
+        settAlderFra('');
+        settAlderTil('');
+        settKjonn('');
+    };
+
     return (
         <>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} onReset={resetHandler}>
                 <PersonsokSkjemaElementer form={formState} />
             </form>
             <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>

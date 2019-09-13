@@ -12,7 +12,7 @@ import {
     PostadresseCelle
 } from './PersonsokResultatElementer';
 import { ClickableTable } from '../../utils/table/ClickableTable';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 
@@ -35,6 +35,11 @@ function PersonsokResultat(props: Props) {
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Midlertidig adresse', 'Postadresse', 'Bostedsadresse', 'Bosted'];
     const response = personsokResource.response;
+
+    if (response.length === 0) {
+        return <AlertStripeInfo>Søket ga ingen treff</AlertStripeInfo>;
+    }
+
     const tableEntries = response.map(linje => [
         <IdentCelle ident={linje.ident} />,
         <NavnCelle navn={linje.navn} status={linje.status} />,
