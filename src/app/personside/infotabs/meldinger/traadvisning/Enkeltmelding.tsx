@@ -6,11 +6,16 @@ import { erMeldingFraNav } from '../utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
+import styled from 'styled-components';
 import './enkeltmelding.less';
 
 interface Props {
     melding: Melding;
 }
+
+const SnakkebobleWrapper = styled.div`
+    text-align: left;
+`;
 
 function meldingstittel(melding: Melding) {
     const lestTekst = melding.status === LestStatus.Lest ? 'Lest,' : 'Ulest,';
@@ -31,11 +36,13 @@ function EnkeltMelding(props: Props) {
     return (
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
-                <Element>{topptekst}</Element>
-                <Normaltekst>{datoTekst}</Normaltekst>
-                <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
-                <hr />
-                <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
+                <SnakkebobleWrapper>
+                    <Element>{topptekst}</Element>
+                    <Normaltekst>{datoTekst}</Normaltekst>
+                    <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
+                    <hr />
+                    <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
+                </SnakkebobleWrapper>
             </Snakkeboble>
         </div>
     );
