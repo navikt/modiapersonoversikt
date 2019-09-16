@@ -9,6 +9,7 @@ export const VisittkortBodyWrapper = styled.section`
     ${theme.hvittPanel};
     padding: ${theme.margin.px20};
     display: flex;
+    margin-top: 0.2rem;
     &:focus {
         ${theme.focus}
     }

@@ -20,7 +20,8 @@ const TabKnapperNav = styled.nav`
     > *:not(:first-child) {
         margin-left: 0.2em;
     }
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    border-top: ${theme.border.skille};
+    border-bottom: ${theme.border.skille};
 `;
 
 const KnappWrapper = styled.div`

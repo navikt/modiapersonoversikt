@@ -9,7 +9,6 @@ import { Route, RouteComponentProps, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import theme from '../../../styles/personOversiktTheme';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
@@ -27,7 +26,6 @@ const OpenTab = styled.div`
     flex-direction: column;
     flex-grow: 1;
     overflow-y: auto;
-    padding: ${theme.margin.layout};
 `;
 
 export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {

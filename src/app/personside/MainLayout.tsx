@@ -11,11 +11,9 @@ import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import styled from 'styled-components';
-import theme from '../../styles/personOversiktTheme';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
-    padding: ${theme.margin.layout};
     flex-grow: 1;
 `;
 

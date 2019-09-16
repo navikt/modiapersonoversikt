@@ -52,7 +52,7 @@ export const HøyreKolonne = styled.section<StyleProps>`
     z-index: 1;
     display: flex;
     flex-flow: column nowrap;
-    > * {
+    border-left: ${theme.border.skille} > * {
         ${theme.animation.fadeIn};
         flex-shrink: 0;
         border-top: ${theme.border.skilleSvak};
