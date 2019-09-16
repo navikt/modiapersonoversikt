@@ -4,9 +4,9 @@ import { capitalizeName } from '../../../../../utils/stringFormatting';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import Tekstomrade from 'nav-frontend-tekstomrade';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
+import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 
 function Meldingsforfatter(props: { melding: Melding }) {
     if (
