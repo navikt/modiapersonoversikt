@@ -34,6 +34,7 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
 function clickOnYtelse(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + ytelserTest.oversikt)
+        .hostNodes()
         .at(2)
         .find('button')
         .simulate('click');

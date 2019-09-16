@@ -53,18 +53,17 @@ function YtelserOversikt() {
 function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
-        <div className={ytelserTest.oversikt}>
-            <VisMerKnapp
-                linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
-                valgt={false}
-                ariaDescription="Vis pleiepenger"
-            >
-                <Normaltekst>
-                    <Bold>Pleiepenger sykt barn</Bold>
-                </Normaltekst>
-                <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
-            </VisMerKnapp>
-        </div>
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
+            valgt={false}
+            ariaDescription="Vis pleiepenger"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>
+                <Bold>Pleiepenger sykt barn</Bold>
+            </Normaltekst>
+            <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
+        </VisMerKnapp>
     );
 }
 
@@ -72,44 +71,42 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
-        <div className={ytelserTest.oversikt}>
-            <VisMerKnapp
-                linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
-                valgt={false}
-                ariaDescription="Vis sykepenger"
-            >
-                <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
-                <Normaltekst>
-                    <Bold>Sykepenger</Bold>
-                </Normaltekst>
-                <Normaltekst>
-                    100% sykemeldt - Maksdato{' '}
-                    {props.sykepenger.slutt ? formaterDato(props.sykepenger.slutt) : 'ikke tilgjenglig'}
-                </Normaltekst>
-            </VisMerKnapp>
-        </div>
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
+            valgt={false}
+            ariaDescription="Vis sykepenger"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
+            <Normaltekst>
+                <Bold>Sykepenger</Bold>
+            </Normaltekst>
+            <Normaltekst>
+                100% sykemeldt - Maksdato{' '}
+                {props.sykepenger.slutt ? formaterDato(props.sykepenger.slutt) : 'ikke tilgjenglig'}
+            </Normaltekst>
+        </VisMerKnapp>
     );
 }
 
 function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
-        <div className={ytelserTest.oversikt}>
-            <VisMerKnapp
-                linkTo={dyplenker.ytelser.link(getUnikForeldrepengerKey(props.foreldrepenger))}
-                valgt={false}
-                ariaDescription="Vis foreldrepenger"
-            >
-                <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
-                <Normaltekst>
-                    <Bold>Foreldrepenger</Bold>
-                </Normaltekst>
-                <Normaltekst>
-                    {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
-                    {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
-                </Normaltekst>
-            </VisMerKnapp>
-        </div>
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(getUnikForeldrepengerKey(props.foreldrepenger))}
+            valgt={false}
+            ariaDescription="Vis foreldrepenger"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
+            <Normaltekst>
+                <Bold>Foreldrepenger</Bold>
+            </Normaltekst>
+            <Normaltekst>
+                {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
+                {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
+            </Normaltekst>
+        </VisMerKnapp>
     );
 }
 
