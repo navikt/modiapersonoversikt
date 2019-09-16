@@ -17,7 +17,6 @@ interface Props {
 }
 
 const VisningStyle = styled.section`
-    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     flex-grow: 1;
     > *:last-child {
