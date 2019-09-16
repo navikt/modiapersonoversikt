@@ -1,4 +1,3 @@
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { AppState } from '../../../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import OppgaveSkjema from './OppgaveSkjema';
@@ -10,7 +9,6 @@ import { opprettOppgaveActionCreator } from '../../../../../../../redux/restRedu
 import { AsyncDispatch } from '../../../../../../../redux/ThunkTypes';
 
 interface StateProps {
-    valgtTraad?: Traad;
     gjeldendeBrukerFnr: string;
     innloggetSaksbehandler: InnloggetSaksbehandler;
     opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
@@ -29,7 +27,6 @@ function hentInnloggetSaksbehandler(resource: RestResource<InnloggetSaksbehandle
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        valgtTraad: state.meldinger.valgtTraad,
         gjeldendeBrukerFnr: state.gjeldendeBruker.fødselsnummer,
         innloggetSaksbehandler: hentInnloggetSaksbehandler(state.restResources.innloggetSaksbehandler),
         opprettOppgaveResource: state.restResources.opprettOppgave

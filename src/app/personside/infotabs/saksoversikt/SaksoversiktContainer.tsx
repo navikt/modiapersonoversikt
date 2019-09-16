@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import SakstemaListeContainer from './sakstemaliste/SakstemaListeContainer';
 import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
 import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
@@ -12,6 +11,10 @@ import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySp
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import SakstemaListe from './sakstemaliste/SakstemaListe';
+import { SakerDyplenkeRouteComponentProps } from '../dyplenker';
+import { withRouter } from 'react-router';
+import { useSyncSaksoversiktMedUrl } from './useInitializeSaksoversikt';
 
 export const saksoversiktMediaTreshold = '80rem';
 
@@ -22,6 +25,10 @@ const SaksoversiktArticle = styled.article`
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
+        > * {
+            position: sticky;
+            top: 0;
+        }
     }
     .visually-hidden {
         ${theme.visuallyHidden}
@@ -30,13 +37,9 @@ const SaksoversiktArticle = styled.article`
         margin-bottom: ${theme.margin.layout};
     }
     position: relative;
-    > * {
-        position: sticky;
-        top: 0;
-    }
 `;
 
-function SaksoversiktContainer() {
+function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
@@ -44,6 +47,8 @@ function SaksoversiktContainer() {
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();
     });
+
+    const valgtSakstema = useSyncSaksoversiktMedUrl(props);
 
     if (visDokument) {
         return <DokumentOgVedlegg />;
@@ -57,8 +62,8 @@ function SaksoversiktContainer() {
                 >
                     {sakstema => (
                         <>
-                            <SakstemaListeContainer />
-                            <SaksDokumenterContainer />
+                            <SakstemaListe valgtSakstema={valgtSakstema} />
+                            <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
                         </>
                     )}
                 </RestResourceConsumer>
@@ -67,4 +72,4 @@ function SaksoversiktContainer() {
     }
 }
 
-export default SaksoversiktContainer;
+export default withRouter(SaksoversiktContainer);

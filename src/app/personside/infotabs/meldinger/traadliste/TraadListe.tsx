@@ -10,9 +10,10 @@ import TraadFilterPanel from './filter/TraadFilterPanel';
 
 interface Props {
     traader: Traad[];
+    valgtTraad?: Traad;
 }
 
-const PanelStyle = styled.div`
+const PanelStyle = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -25,27 +26,20 @@ const TraadListeStyle = styled.ol`
     }
 `;
 
-function SortertListe(props: Props) {
+function TraadListe(props: Props) {
+    if (props.traader.length === 0) {
+        return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
+    }
     const traadKomponenter = props.traader
         .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-        .map(traad => <TraadListeElement traad={traad} key={traad.traadId} />);
+        .map(traad => <TraadListeElement traad={traad} key={traad.traadId} erValgt={traad === props.valgtTraad} />);
 
-    return <TraadListeStyle>{traadKomponenter}</TraadListeStyle>;
-}
-
-class TraadListe extends React.PureComponent<Props> {
-    render() {
-        if (this.props.traader.length === 0) {
-            return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
-        }
-
-        return (
-            <PanelStyle>
-                <TraadFilterPanel />
-                <SortertListe traader={this.props.traader} />
-            </PanelStyle>
-        );
-    }
+    return (
+        <PanelStyle>
+            <TraadFilterPanel />
+            <TraadListeStyle aria-label="Brukers tråder">{traadKomponenter}</TraadListeStyle>
+        </PanelStyle>
+    );
 }
 
 export default TraadListe;

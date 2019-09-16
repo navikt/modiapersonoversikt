@@ -7,11 +7,12 @@ import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
+import { sakerTest } from '../../dyplenkeTest/utils';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
 interface Props {
     sakstema: Sakstema;
-    erValgtSakstema: boolean;
-    oppdaterSakstema: (sakstema: Sakstema) => void;
+    erValgt: boolean;
 }
 
 const SVGStyling = styled.span`
@@ -65,6 +66,8 @@ function saksikon(harTilgang: boolean) {
 }
 
 function SakstemaListeElement(props: Props) {
+    const dyplenker = useInfotabsDyplenker();
+
     const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
         props.sakstema,
         Behandlingsstatus.UnderBehandling,
@@ -77,16 +80,18 @@ function SakstemaListeElement(props: Props) {
     );
 
     return (
-        <li>
+        <li className={sakerTest.sakstema}>
             <VisMerKnapp
-                valgt={props.erValgtSakstema}
-                onClick={() => props.oppdaterSakstema(props.sakstema)}
+                valgt={props.erValgt}
+                linkTo={dyplenker.saker.link(props.sakstema)}
                 ariaDescription={'Vis ' + props.sakstema.temanavn}
             >
                 <Flex>
                     <div>
                         <UUcustomOrder>
-                            <Element className="order-second">{props.sakstema.temanavn}</Element>
+                            <Element className={'order-second ' + sakerTest.oversikt}>
+                                {props.sakstema.temanavn}
+                            </Element>
                             <Normaltekst className="order-first">
                                 {hentFormattertDatoForSisteHendelse(props.sakstema)}
                             </Normaltekst>

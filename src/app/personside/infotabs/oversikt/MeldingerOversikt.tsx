@@ -10,13 +10,10 @@ import Meldingsikon from '../meldinger/utils/Meldingsikon';
 import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { delAvStringMedDots } from '../../../../utils/string-utils';
-import { useDispatch, useSelector } from 'react-redux';
-import { setValgtTraadMeldingspanel } from '../../../../redux/meldinger/actions';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { AppState } from '../../../../redux/reducers';
-import { paths } from '../../../routes/routing';
+import { withRouter } from 'react-router';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
+import { useInfotabsDyplenker } from '../dyplenker';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -33,18 +30,9 @@ const PanelStyle = styled.div`
 
 interface Props {
     traad: Traad;
-    onClick: (traad: Traad) => void;
 }
 
-function MeldingerOversikt(props: RouteComponentProps) {
-    const dispatch = useDispatch();
-    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-
-    const clickHandler = (traad: Traad) => {
-        dispatch(setValgtTraadMeldingspanel(traad));
-        props.history.push(`${paths.personUri}/${valgtBrukersFnr}/meldinger`);
-    };
-
+function MeldingerOversikt() {
     return (
         <RestResourceConsumer<Traad[]>
             getResource={restResources => restResources.tråderOgMeldinger}
@@ -54,39 +42,42 @@ function MeldingerOversikt(props: RouteComponentProps) {
                 const traadKomponenter = data
                     .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
                     .slice(0, 4)
-                    .map(traad => <Traadelement traad={traad} onClick={clickHandler} key={traad.traadId} />);
+                    .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
 
-                return <ListStyle>{traadKomponenter}</ListStyle>;
+                return <ListStyle aria-label="Oversikt brukers meldinger">{traadKomponenter}</ListStyle>;
             }}
         </RestResourceConsumer>
     );
 }
 
-function Traadelement(props: Props) {
+export function Traadelement(props: Props) {
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const dyplenker = useInfotabsDyplenker();
 
     return (
-        <VisMerKnapp
-            onClick={() => props.onClick(props.traad)}
-            valgt={false}
-            ariaDescription={'Vis meldinger for ' + tittel}
-        >
-            <PanelStyle>
-                <Meldingsikon
-                    type={nyesteMelding.meldingstype}
-                    erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
-                    erMonolog={erMonolog(props.traad)}
-                    antallMeldinger={props.traad.meldinger.length}
-                />
-                <div>
-                    <Normaltekst>{datoTekst}</Normaltekst>
-                    <Element>{tittel}</Element>
-                    <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
-                </div>
-            </PanelStyle>
-        </VisMerKnapp>
+        <li>
+            <VisMerKnapp
+                linkTo={dyplenker.meldinger.link(props.traad)}
+                valgt={false}
+                ariaDescription={'Vis meldinger for ' + tittel}
+            >
+                <PanelStyle>
+                    <Meldingsikon
+                        type={nyesteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
+                    />
+                    <div>
+                        <Normaltekst>{datoTekst}</Normaltekst>
+                        <Element>{tittel}</Element>
+                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                    </div>
+                </PanelStyle>
+            </VisMerKnapp>
+        </li>
     );
 }
 

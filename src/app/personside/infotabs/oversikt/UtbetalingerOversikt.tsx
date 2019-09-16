@@ -4,17 +4,15 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/dateUtils';
+import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { Bold } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { paths } from '../../../routes/routing';
-import { useFødselsnummer } from '../../../../utils/customHooks';
-import { INFOTABS } from '../InfoTabEnum';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import moment from 'moment';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { utbetalingerTest } from '../dyplenkeTest/utils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -39,13 +37,18 @@ function UtbetalingerOversikt() {
 
 function UtbetalingerPanel(props: Props) {
     if (props.utbetalinger.utbetalinger.length === 0) {
-        return <AlertStripeInfo>Ingen nye utbetalinger</AlertStripeInfo>;
+        return (
+            <AlertStripeInfo>
+                Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
+                søkeperioden.
+            </AlertStripeInfo>
+        );
     }
 
     const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
 
     return (
-        <ListStyle>
+        <ListStyle aria-label="Oversikt brukers utbetalinger">
             {sortertPåDato.map((utbetaling, index) => (
                 <EnkelUtbetaling key={index} utbetaling={utbetaling} />
             ))}
@@ -54,21 +57,22 @@ function UtbetalingerPanel(props: Props) {
 }
 
 function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
-    const fnr = useFødselsnummer();
-    const urlDato = moment(utbetaling.posteringsdato).unix();
+    const dyplenkerInfotabs = useInfotabsDyplenker();
     return (
-        <VisMerKnapp
-            valgt={false}
-            ariaDescription={`Vis utbetaling`}
-            linkTo={`${paths.personUri}/${fnr}/${INFOTABS.UTBETALING.toLowerCase()}/${urlDato}`}
-        >
-            <Normaltekst>
-                {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
-            </Normaltekst>
-            <YtelseNavn utbetaling={utbetaling} />
-            <YtelsePeriode utbetaling={utbetaling} />
-            <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-        </VisMerKnapp>
+        <li className={utbetalingerTest.oversikt}>
+            <VisMerKnapp
+                valgt={false}
+                ariaDescription={`Vis utbetaling`}
+                linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
+            >
+                <Normaltekst>
+                    {formaterDato(getGjeldendeDatoForUtbetaling(utbetaling))} / {utbetaling.status}
+                </Normaltekst>
+                <YtelseNavn utbetaling={utbetaling} />
+                <YtelsePeriode utbetaling={utbetaling} />
+                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+            </VisMerKnapp>
+        </li>
     );
 }
 

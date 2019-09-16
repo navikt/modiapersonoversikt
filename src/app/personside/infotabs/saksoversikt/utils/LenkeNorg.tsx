@@ -11,7 +11,18 @@ import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
-function lenkeNorg2Frontend(props: StateProps): string {
+interface OwnProps {
+    valgtSakstema?: Sakstema;
+}
+
+interface StateProps {
+    baseUrl: string;
+    geografistTilknytning?: string;
+}
+
+type Props = OwnProps & StateProps;
+
+function lenkeNorg2Frontend(props: Props): string {
     const temakodeTilNorgoppslag = props.valgtSakstema ? byggSøkestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
     return `${props.baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}&gt=${props.geografistTilknytning}`;
 }
@@ -39,13 +50,7 @@ function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) 
     return isLoadedPerson(personResource) ? personResource.data.geografiskTilknytning : '';
 }
 
-interface StateProps {
-    valgtSakstema?: Sakstema;
-    baseUrl: string;
-    geografistTilknytning?: string;
-}
-
-function LenkeNorg(props: StateProps) {
+function LenkeNorg(props: Props) {
     const norgUrl = lenkeNorg2Frontend(props);
 
     return (
@@ -57,7 +62,6 @@ function LenkeNorg(props: StateProps) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        valgtSakstema: state.saksoversikt.valgtSakstema,
         baseUrl: hentNorg2Url(state.restResources.baseUrl),
         geografistTilknytning: hentGeografiskTilknytning(state.restResources.personinformasjon)
     };

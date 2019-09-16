@@ -1,15 +1,19 @@
 import * as React from 'react';
-import ForeldrePengerContainer from './foreldrepenger/ForeldrePengerContainer';
 import styled from 'styled-components';
-import PleiePengerContainer from './pleiepenger/PleiePengerContainer';
-import SykePengerContainer from './sykepenger/SykePengerContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import useBrukersYtelser from './useBrukersYtelser';
+import PleiepengerEkspanderbartpanel from './pleiepenger/PleiepengerEkspanderbartPanel';
+import SykepengerEkspanderbartpanel from './sykepenger/SykepengerEkspanderbartPanel';
+import ForeldrepengerEkspanderbartpanel from './foreldrepenger/ForeldrepengerEkspanderbartPanel';
+import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
+import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
+import { getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 
 const Styling = styled.section`
-    width: 100%;
-    align-self: center;
     > * {
         margin-bottom: 0.5rem;
     }
@@ -17,12 +21,27 @@ const Styling = styled.section`
 `;
 
 function YtelserContainer() {
+    const { ytelser, pending } = useBrukersYtelser({
+        renderPleiepenger: pleiepenger => (
+            <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
+        ),
+        renderSykepenger: sykepenger => (
+            <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
+        ),
+        renderForeldrepenger: foreldrepenger => (
+            <ForeldrepengerEkspanderbartpanel
+                foreldrepenger={foreldrepenger}
+                key={getUnikForeldrepengerKey(foreldrepenger)}
+            />
+        )
+    });
+
     return (
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
-            <ForeldrePengerContainer />
-            <PleiePengerContainer />
-            <SykePengerContainer />
+            {ytelser}
+            {!pending && ytelser.length === 0 && <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>}
+            {pending && <CenteredLazySpinner />}
         </Styling>
     );
 }

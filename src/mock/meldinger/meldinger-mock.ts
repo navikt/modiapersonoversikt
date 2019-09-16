@@ -3,11 +3,16 @@ import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
 import { backendDatoformat } from '../utils/mock-utils';
+import { aremark } from '../person/aremark';
+import { statiskTraadMock } from './statiskTraadMock';
 
 export function getMockTraader(fødselsnummer: string): Traad[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'meldinger');
 
+    if (aremark.fødselsnummer === fødselsnummer) {
+        return [statiskTraadMock];
+    }
     const traadArray = Array(navfaker.random.integer(20, 5))
         .fill(null)
         .map(() => getMockTraad());

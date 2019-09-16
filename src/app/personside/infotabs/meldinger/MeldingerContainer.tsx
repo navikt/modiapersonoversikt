@@ -2,11 +2,18 @@ import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import TraadVisningContainer from './traadvisning/TraadVisningContainer';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import VerktoylinjeContainer from './traadvisning/verktoylinje/VerktoylinjeContainer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { useEffect } from 'react';
+import { hasData } from '../../../../rest/utils/restResource';
+import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
+import { useDispatch } from 'react-redux';
+import { useAppState, useRestResource } from '../../../../utils/customHooks';
+import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTraadIUrl } from '../dyplenker';
+import { withRouter } from 'react-router';
+import TraadVisning from './traadvisning/TraadVisning';
+import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 
 const meldingerMediaTreshold = pxToRem(900);
 
@@ -32,25 +39,37 @@ const MeldingerArticleStyle = styled.article`
     }
 `;
 
-function MeldingerContainer() {
+function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
+    const dispatch = useDispatch();
+    const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dyplenker = useInfotabsDyplenker();
+    const traadIUrl = useValgtTraadIUrl(props);
+
+    useEffect(() => {
+        if (!traadIUrl && hasData(traaderResource)) {
+            props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
+        } else if (traadIUrl !== forrigeValgteTraad && !!traadIUrl) {
+            dispatch(huskForrigeValgtTraad(traadIUrl));
+        }
+    }, [forrigeValgteTraad, traadIUrl, traaderResource, dispatch, props.history, dyplenker.meldinger]);
+
     return (
-        <article>
-            <RestResourceConsumer<Traad[]>
-                getResource={restResources => restResources.tråderOgMeldinger}
-                returnOnPending={<CenteredLazySpinner />}
-            >
-                {data => (
-                    <MeldingerArticleStyle>
-                        <TraadListe traader={data} />
-                        <div>
-                            <VerktoylinjeContainer />
-                            <TraadVisningContainer />
-                        </div>
-                    </MeldingerArticleStyle>
-                )}
-            </RestResourceConsumer>
-        </article>
+        <RestResourceConsumer<Traad[]>
+            getResource={restResources => restResources.tråderOgMeldinger}
+            returnOnPending={<CenteredLazySpinner />}
+        >
+            {data => (
+                <MeldingerArticleStyle>
+                    <TraadListe traader={data} valgtTraad={traadIUrl} />
+                    <div>
+                        <Verktoylinje valgtTraad={traadIUrl} />
+                        <TraadVisning valgtTraad={traadIUrl} />
+                    </div>
+                </MeldingerArticleStyle>
+            )}
+        </RestResourceConsumer>
     );
 }
 
-export default MeldingerContainer;
+export default withRouter(MeldingerContainer);

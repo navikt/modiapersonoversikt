@@ -1,5 +1,4 @@
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { AppState } from '../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 import { oppdaterAvsenderfilter, settVisDokument } from '../../../../../redux/saksoversikt/actions';
@@ -8,7 +7,6 @@ import SaksDokumenter from './SaksDokumenter';
 
 interface StateProps {
     avsenderFilter: DokumentAvsenderFilter;
-    valgtSakstema?: Sakstema;
     erStandaloneVindu: boolean;
 }
 
@@ -19,7 +17,6 @@ interface DispatchProps {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        valgtSakstema: state.saksoversikt.valgtSakstema,
         avsenderFilter: state.saksoversikt.avsenderFilter,
         erStandaloneVindu: state.saksoversikt.erStandaloneVindu
     };
