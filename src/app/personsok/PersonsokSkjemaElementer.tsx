@@ -58,17 +58,17 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <Input
                             bredde={'XL'}
                             label={'Fornavn (Fonetisk søk)'}
-                            value={props.form.stateCriteria.fornavn}
+                            value={props.form.state.fornavn}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsCriteria.settFornavn(event.target.value)
+                                props.form.actions.settFornavn(event.target.value)
                             }
                         />
                         <Input
                             bredde={'XL'}
                             label={'Etternavn (Fonetisk søk)'}
-                            value={props.form.stateCriteria.etternavn}
+                            value={props.form.state.etternavn}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsCriteria.settEtternavn(event.target.value)
+                                props.form.actions.settEtternavn(event.target.value)
                             }
                         />
                     </InputLinje>
@@ -76,43 +76,47 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <Input
                             bredde={'L'}
                             label={'Gatenavn'}
-                            value={props.form.stateCriteria.gatenavn}
+                            value={props.form.state.gatenavn}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsCriteria.settGatenavn(event.target.value)
+                                props.form.actions.settGatenavn(event.target.value)
                             }
+                            feil={props.form.valideringsResultat.felter.gatenavn.skjemafeil}
                         />
                         <Input
                             bredde={'M'}
                             label={'Husnummer'}
-                            value={props.form.stateCriteria.husnummer}
+                            value={props.form.state.husnummer}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsCriteria.settHusnummer(event.target.value)
+                                props.form.actions.settHusnummer(event.target.value)
                             }
+                            feil={props.form.valideringsResultat.felter.husnummer.skjemafeil}
                         />
                         <Input
                             bredde={'M'}
                             label={'Husbokstav'}
-                            value={props.form.stateCriteria.husbokstav}
+                            value={props.form.state.husbokstav}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsCriteria.settHusbokstav(event.target.value)
+                                props.form.actions.settHusbokstav(event.target.value)
                             }
                         />
                     </InputLinje>
                     <Input
                         bredde={'M'}
                         label={'Postnummer'}
-                        value={props.form.stateCriteria.postnummer}
+                        value={props.form.state.postnummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.form.actionsCriteria.settPostnummer(event.target.value)
+                            props.form.actions.settPostnummer(event.target.value)
                         }
+                        feil={props.form.valideringsResultat.felter.postnummer.skjemafeil}
                     />
                     <Input
                         bredde={'L'}
                         label={'Kontonummer (Norske nummer)'}
-                        value={props.form.stateCriteria.kontonummer}
+                        value={props.form.state.kontonummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.form.actionsCriteria.settKontonummer(event.target.value)
+                            props.form.actions.settKontonummer(event.target.value)
                         }
+                        feil={props.form.valideringsResultat.felter.kontonummer.skjemafeil}
                     />
                 </section>
                 <section aria-label={'Begrens søket'}>
@@ -120,10 +124,11 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     <Input
                         bredde={'M'}
                         label={'Bosted'}
-                        value={props.form.stateLimit.kommunenummer}
+                        value={props.form.state.kommunenummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            props.form.actionsLimit.settKommunenummer(event.target.value)
+                            props.form.actions.settKommunenummer(event.target.value)
                         }
+                        feil={props.form.valideringsResultat.felter.kommunenummer.skjemafeil}
                     />
                     <InputLinje>
                         <DatovelgerStyle>
@@ -133,8 +138,8 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoFra}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoFra(dato)}
+                                dato={props.form.state.fodselsdatoFra}
+                                onChange={dato => props.form.actions.settFodselsdatoFra(dato)}
                                 id="personsok-datovelger-fra"
                             />
                         </DatovelgerStyle>
@@ -145,8 +150,8 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.stateLimit.fodselsdatoTil}
-                                onChange={dato => props.form.actionsLimit.settFodselsdatoTil(dato)}
+                                dato={props.form.state.fodselsdatoTil}
+                                onChange={dato => props.form.actions.settFodselsdatoTil(dato)}
                                 id="personsok-datovelger-til"
                             />
                         </DatovelgerStyle>
@@ -155,24 +160,26 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         <Input
                             bredde={'M'}
                             label={'Alder fra'}
-                            value={props.form.stateLimit.alderFra}
+                            value={props.form.state.alderFra}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsLimit.settAlderFra(event.target.value)
+                                props.form.actions.settAlderFra(event.target.value)
                             }
+                            feil={props.form.valideringsResultat.felter.alderFra.skjemafeil}
                         />
                         <Input
                             bredde={'M'}
                             label={'Alder til'}
-                            value={props.form.stateLimit.alderTil}
+                            value={props.form.state.alderTil}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                props.form.actionsLimit.settAlderTil(event.target.value)
+                                props.form.actions.settAlderTil(event.target.value)
                             }
+                            feil={props.form.valideringsResultat.felter.alderTil.skjemafeil}
                         />
                     </InputLinje>
                     <Select
                         label={'Kjønn'}
                         onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                            props.form.actionsLimit.settKjonn(event.target.value)
+                            props.form.actions.settKjonn(event.target.value)
                         }
                     >
                         <option value={''} key={''}>
