@@ -20,7 +20,6 @@ import AriaNotification from '../../../../components/AriaNotification';
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
-import { datoSynkende } from '../../../../utils/dateUtils';
 
 const UtbetalingerArticle = styled.article`
     ${theme.hvittPanel};
@@ -76,10 +75,6 @@ interface UtbetalingerProps {
 }
 
 function Utbetalinger(props: UtbetalingerProps) {
-    const posteringsdatoer = props.utbetalingerData.utbetalinger
-        .map(utbetaling => utbetaling.posteringsdato)
-        .sort(datoSynkende(it => it));
-    console.log(posteringsdatoer);
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {

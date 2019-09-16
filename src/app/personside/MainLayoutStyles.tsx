@@ -24,10 +24,7 @@ export const VenstreKolonne = styled.section<StyleProps>`
     flex-shrink: 1;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(5rem, 1fr);
-    > * {
-        border-radius: ${theme.borderRadius.layout};
-    }
+    grid-template-rows: auto auto minmax(0, 1fr);
 `;
 
 export const HøyreKolonne = styled.section<StyleProps>`

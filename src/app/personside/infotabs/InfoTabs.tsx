@@ -14,11 +14,11 @@ import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../redux/reducers';
-import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import { useInfotabsDyplenker } from './dyplenker';
+import { useFødselsnummer } from '../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
+import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 
 type Props = RouteComponentProps<{}>;
 
@@ -28,12 +28,6 @@ const OpenTab = styled.div`
     flex-grow: 1;
     overflow-y: auto;
     padding: ${theme.margin.layout};
-`;
-
-const Section = styled.section`
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 `;
 
 export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
@@ -48,7 +42,7 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
 }
 
 function InfoTabs(props: Props) {
-    const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const fødselsnummer = useFødselsnummer();
     const paths = usePaths();
     const ref = React.createRef<HTMLHeadingElement>();
     const dyplenker = useInfotabsDyplenker();
@@ -67,25 +61,22 @@ function InfoTabs(props: Props) {
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
     return (
         <ErrorBoundary boundaryName="InfoTabs">
-            <Section role="region" aria-label="Info-tabs">
-                <HandleInfotabsHotkeys />
-                <h2 className="visually-hidden">Tab-panel</h2>
-                <TabKnapper onTabChange={updateRouterPath} openTab={openTab} />
-                <OpenTab>
-                    <h2 ref={ref} tabIndex={-1} className="sr-only">
-                        {openTab}
-                    </h2>
-                    <Switch location={props.location}>
-                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
-                        <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={''} component={Oversikt} />
-                    </Switch>
-                </OpenTab>
-            </Section>
+            <HandleInfotabsHotkeys />
+            <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+            <OpenTab>
+                <h2 ref={ref} tabIndex={-1} className="sr-only">
+                    {openTab}
+                </h2>
+                <Switch location={props.location}>
+                    <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                    <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                    <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                    <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                    <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
+                    <Route path={paths.varsler} component={VarslerContainer} />
+                    <Route path={''} component={Oversikt} />
+                </Switch>
+            </OpenTab>
         </ErrorBoundary>
     );
 }

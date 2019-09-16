@@ -422,6 +422,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
+    max-height: 100%;
   }
 
   .c0 > *:last-child {
@@ -429,9 +430,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   }
 
   .c0 > * {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    overflow-y: auto;
+    max-height: 100%;
   }
 }
 
