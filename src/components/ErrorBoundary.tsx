@@ -36,7 +36,9 @@ class ErrorBoundary extends React.Component<Props, State> {
 
     render() {
         if (this.state.hasError) {
-            return <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil.</AlertStripe>;
+            return (
+                <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil. ({this.props.boundaryName})</AlertStripe>
+            );
         }
         return this.props.children;
     }

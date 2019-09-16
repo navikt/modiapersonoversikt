@@ -23,7 +23,7 @@ class AriaNotification extends React.Component<Props, State> {
         }
     }
 
-    componentWillUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps: Props) {
         if (prevProps.beskjed !== this.props.beskjed) {
             this.notify();
         }

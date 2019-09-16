@@ -1,3 +1,7 @@
+import { getSistePeriodeForPleiepengerettighet } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
+import moment from 'moment';
+import { backendDatoformat } from '../../mock/utils/mock-utils';
+
 export interface PleiepengerResponse {
     pleiepenger: Pleiepengerettighet[] | null;
 }
@@ -44,4 +48,15 @@ export interface Vedtak {
 export interface Periode {
     fom: string;
     tom: string;
+}
+
+export function getPleiepengerIdDato(pleiepengerettighet: Pleiepengerettighet) {
+    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepengerettighet);
+    return sistePeriodeForPleiepengerettighet
+        ? sistePeriodeForPleiepengerettighet.fom
+        : moment().format(backendDatoformat);
+}
+
+export function getUnikPleiepengerKey(pleiepengerettighet: Pleiepengerettighet) {
+    return 'pleiepenger' + getPleiepengerIdDato(pleiepengerettighet);
 }

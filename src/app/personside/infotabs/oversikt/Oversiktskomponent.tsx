@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { INFOTABS } from '../InfoTabEnum';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 interface Props {
     children: ReactNode;
@@ -45,15 +46,17 @@ function Oversiktskomponent(props: Props) {
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
 
     return (
-        <PanelStyle>
-            <OverskriftStyle title={'Alt + ' + props.hurtigtast}>
-                <Undertittel tag="h3">{props.tittel}</Undertittel>
-                <StyledLink className="lenke" to={path}>
-                    <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
-                </StyledLink>
-            </OverskriftStyle>
-            <MainStyle>{props.children}</MainStyle>
-        </PanelStyle>
+        <ErrorBoundary boundaryName={props.tittel}>
+            <PanelStyle>
+                <OverskriftStyle title={'Alt + ' + props.hurtigtast}>
+                    <Undertittel tag="h3">{props.tittel}</Undertittel>
+                    <StyledLink className="lenke" to={path}>
+                        <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
+                    </StyledLink>
+                </OverskriftStyle>
+                <MainStyle>{props.children}</MainStyle>
+            </PanelStyle>
+        </ErrorBoundary>
     );
 }
 

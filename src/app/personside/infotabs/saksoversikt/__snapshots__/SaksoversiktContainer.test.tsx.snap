@@ -327,6 +327,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-box-align: flex-end;
   -ms-flex-align: flex-end;
   align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c14 {
@@ -408,12 +412,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: .8rem;
 }
 
-.c0 > * {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 @media (min-width:80rem) {
   .c0 {
     display: -webkit-box;
@@ -428,6 +426,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
   .c0 > *:last-child {
     margin-left: .8rem;
+  }
+
+  .c0 > * {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 }
 
@@ -453,7 +457,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       <ol
         className="c3"
       >
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c4"
             onClick={[Function]}
@@ -467,7 +473,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Alle tema
                     </p>
@@ -494,7 +500,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -508,7 +516,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Sykepenger
                     </p>
@@ -562,7 +570,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -576,7 +586,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Arbeidsavklaringspenger
                     </p>
@@ -623,7 +633,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -637,7 +649,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Barnetrygd
                     </p>
@@ -664,7 +676,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -678,7 +692,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Tiltakspenger
                     </p>
@@ -715,7 +729,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </button>
           </div>
         </li>
-        <li>
+        <li
+          className="test-sakstema-list"
+        >
           <div
             className="c9"
             onClick={[Function]}
@@ -729,7 +745,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     className="c6"
                   >
                     <p
-                      className="typo-element order-second"
+                      className="typo-element order-second test-saker-oversikt"
                     >
                       Generell
                     </p>
@@ -772,7 +788,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           tabIndex={-1}
         >
           <h2
-            className="typo-undertittel"
+            className="typo-undertittel test-saker-dokumenter"
           >
             Alle tema
           </h2>

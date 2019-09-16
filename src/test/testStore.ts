@@ -14,7 +14,6 @@ import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-moc
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
-import { statiskMockUtbetaling } from '../mock/statiskMockUtbetaling';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
@@ -23,6 +22,10 @@ import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
+import { getMockUtbetalinger } from '../mock/utbetalinger-mock';
+import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
+import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
+import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -45,10 +48,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
     testStore.dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
     testStore.dispatch(
-        restResources.utbetalinger.actions.setData({
-            utbetalinger: [statiskMockUtbetaling],
-            periode: { startDato: '1905-01-01', sluttDato: '1986-12-28' }
-        })
+        restResources.utbetalinger.actions.setData(getMockUtbetalinger(aremarkFnr, '1905-01-01', '1986-12-28'))
     );
     testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
@@ -57,5 +57,8 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));
     testStore.dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
+    testStore.dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
+    testStore.dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
+    testStore.dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
     return testStore;
 }
