@@ -345,7 +345,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  1. Januar 2019
+                  01.01.1970
                    / 
                   Returnert til NAV for saksbehandling
                 </p>
@@ -361,9 +361,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  01.01.2019
+                  01.01.1970
                    - 
-                  01.01.2019
+                  01.01.1970
                 </p>
                 <p
                   className="typo-normal"
@@ -394,7 +394,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  1. Januar 2019
+                  01.01.1970
                    / 
                   Ligger hos banken
                 </p>
@@ -410,9 +410,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  01.01.2019
+                  01.01.1970
                    - 
-                  01.01.2019
+                  01.01.1970
                 </p>
                 <p
                   className="typo-normal"
@@ -443,7 +443,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  1. Januar 2019
+                  01.01.1970
                    / 
                   Utbetalt
                 </p>
@@ -459,9 +459,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  01.01.2019
+                  01.01.1970
                    - 
-                  01.01.2019
+                  01.01.1970
                 </p>
                 <p
                   className="typo-normal"
@@ -577,7 +577,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                28. mars 2019
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -636,7 +636,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    01. mars 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -685,7 +685,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    24. jan. 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -719,7 +719,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                10. jan. 2019
+                01.01.1970
               </p>
               <p
                 className="typo-normal"
@@ -773,7 +773,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    02. feb. 2019
+                    01. jan. 1970
                   </p>
                 </div>
                 <div>
@@ -889,7 +889,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      30.07.2019 00:00
+                      01.01.1970 01:00
                     </p>
                     <p
                       className="typo-element"
@@ -950,121 +950,112 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c21"
         >
           <div
-            className="test-ytelse-oversikt"
+            className="c7"
+            onClick={[Function]}
           >
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  ID dato: 
-                  2019-02-06
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c8"
-                  >
-                    Sykepenger
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  100% sykemeldt - Maksdato 
-                  2019-01-16
-                </p>
-              </div>
-              <button
-                aria-label="Vis sykepenger"
-                aria-selected={false}
-                className="c9"
+            <div>
+              <p
+                className="typo-normal"
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
+                ID dato: 
+                01.01.1970
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Sykepenger
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                100% sykemeldt - Maksdato
+                 
+                01.01.1970
+              </p>
             </div>
+            <button
+              aria-label="Vis sykepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
           <div
-            className="test-ytelse-oversikt"
+            className="c7"
+            onClick={[Function]}
           >
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c8"
-                  >
-                    Pleiepenger sykt barn
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Barnets f.nr: 
-                  08031815240
-                </p>
-              </div>
-              <button
-                aria-label="Vis pleiepenger"
-                aria-selected={false}
-                className="c9"
+            <div>
+              <p
+                className="typo-normal"
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
+                <span
+                  className="c8"
+                >
+                  Pleiepenger sykt barn
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Barnets f.nr: 
+                08031815240
+              </p>
             </div>
+            <button
+              aria-label="Vis pleiepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
           <div
-            className="test-ytelse-oversikt"
+            className="c7"
+            onClick={[Function]}
           >
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  ID dato: 
-                  2017-11-21
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c8"
-                  >
-                    Foreldrepenger
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  34
-                  % dekningsgrad - Maksdato 
-                </p>
-              </div>
-              <button
-                aria-label="Vis foreldrepenger"
-                aria-selected={false}
-                className="c9"
+            <div>
+              <p
+                className="typo-normal"
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
+                ID dato: 
+                01.01.1970
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c8"
+                >
+                  Foreldrepenger
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                34
+                % dekningsgrad - Maksdato
+                 
+                ikke tilgjengelig
+              </p>
             </div>
+            <button
+              aria-label="Vis foreldrepenger"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -1100,7 +1091,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
         <ol
           className="c22"
         >
-          <li>
+          <li
+            className="test-sakstema-list"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1114,14 +1107,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Sykepenger
                       </p>
                       <p
                         className="typo-normal order-first"
                       >
-                        24.12.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p
@@ -1168,7 +1161,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstema-list"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1182,14 +1177,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Arbeidsavklaringspenger
                       </p>
                       <p
                         className="typo-normal order-first"
                       >
-                        25.06.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p
@@ -1229,7 +1224,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstema-list"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1243,14 +1240,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Barnetrygd
                       </p>
                       <p
                         className="typo-normal order-first"
                       >
-                        20.03.2018
+                        01.01.1970
                       </p>
                     </div>
                   </div>
@@ -1270,7 +1267,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </button>
             </div>
           </li>
-          <li>
+          <li
+            className="test-sakstema-list"
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -1284,14 +1283,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c24"
                     >
                       <p
-                        className="typo-element order-second"
+                        className="typo-element order-second test-saker-oversikt"
                       >
                         Tiltakspenger
                       </p>
                       <p
                         className="typo-normal order-first"
                       >
-                        14.01.2018
+                        01.01.1970
                       </p>
                     </div>
                     <p

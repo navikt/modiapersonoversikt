@@ -24,7 +24,8 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
     const apenYtelse = infoTabs.find('.ekspanderbartPanel--apen').html();
     const expectedApenYtelse = infoTabs
         .find('.' + ytelserTest.ytelse)
-        .at(2) //Det er forskjellig rekkefølge på ytelser i Oversikt og i Lamell
+        .hostNodes()
+        .at(2)
         .html();
 
     expect(apenYtelse).toEqual(expectedApenYtelse);
@@ -33,7 +34,7 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
 function clickOnYtelse(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + ytelserTest.oversikt)
-        .at(1)
+        .at(2)
         .find('button')
         .simulate('click');
 }
