@@ -950,112 +950,124 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c21"
         >
           <div
-            className="c7"
-            onClick={[Function]}
+            className="test-ytelse-oversikt"
           >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                ID dato: 
-                01.01.1970
-              </p>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c8"
-                >
-                  Sykepenger
-                </span>
-              </p>
-              <p
-                className="typo-normal"
-              >
-                100% sykemeldt - Maksdato
-                 
-                01.01.1970
-              </p>
-            </div>
-            <button
-              aria-label="Vis sykepenger"
-              aria-selected={false}
-              className="c9"
+            <div
+              className="c7"
+              onClick={[Function]}
             >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  ID dato: 
+                  01.01.1970
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Sykepenger
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  100% sykemeldt - Maksdato
+                   
+                  01.01.1970
+                </p>
+              </div>
+              <button
+                aria-label="Vis sykepenger"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
           </div>
           <div
-            className="c7"
-            onClick={[Function]}
+            className="test-ytelse-oversikt"
           >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c8"
-                >
-                  Pleiepenger sykt barn
-                </span>
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Barnets f.nr: 
-                08031815240
-              </p>
-            </div>
-            <button
-              aria-label="Vis pleiepenger"
-              aria-selected={false}
-              className="c9"
+            <div
+              className="c7"
+              onClick={[Function]}
             >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Pleiepenger sykt barn
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Barnets f.nr: 
+                  08031815240
+                </p>
+              </div>
+              <button
+                aria-label="Vis pleiepenger"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
           </div>
           <div
-            className="c7"
-            onClick={[Function]}
+            className="test-ytelse-oversikt"
           >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                ID dato: 
-                01.01.1970
-              </p>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c8"
-                >
-                  Foreldrepenger
-                </span>
-              </p>
-              <p
-                className="typo-normal"
-              >
-                34
-                % dekningsgrad - Maksdato
-                 
-                ikke tilgjengelig
-              </p>
-            </div>
-            <button
-              aria-label="Vis foreldrepenger"
-              aria-selected={false}
-              className="c9"
+            <div
+              className="c7"
+              onClick={[Function]}
             >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-              />
-            </button>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  ID dato: 
+                  01.01.1970
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  <span
+                    className="c8"
+                  >
+                    Foreldrepenger
+                  </span>
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  34
+                  % dekningsgrad - Maksdato
+                   
+                  ikke tilgjengelig
+                </p>
+              </div>
+              <button
+                aria-label="Vis foreldrepenger"
+                aria-selected={false}
+                className="c9"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
