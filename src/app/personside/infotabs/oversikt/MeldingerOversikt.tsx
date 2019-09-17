@@ -58,26 +58,28 @@ export function Traadelement(props: Props) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
-        <VisMerKnapp
-            linkTo={dyplenker.meldinger.link(props.traad)}
-            valgt={false}
-            ariaDescription={'Vis meldinger for ' + tittel}
-            className={meldingerTest.oversikt}
-        >
-            <PanelStyle>
-                <Meldingsikon
-                    type={nyesteMelding.meldingstype}
-                    erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
-                    erMonolog={erMonolog(props.traad)}
-                    antallMeldinger={props.traad.meldinger.length}
-                />
-                <div>
-                    <Normaltekst>{datoTekst}</Normaltekst>
-                    <Element>{tittel}</Element>
-                    <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
-                </div>
-            </PanelStyle>
-        </VisMerKnapp>
+        <li>
+            <VisMerKnapp
+                linkTo={dyplenker.meldinger.link(props.traad)}
+                valgt={false}
+                ariaDescription={'Vis meldinger for ' + tittel}
+                className={meldingerTest.oversikt}
+            >
+                <PanelStyle>
+                    <Meldingsikon
+                        type={nyesteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        erMonolog={erMonolog(props.traad)}
+                        antallMeldinger={props.traad.meldinger.length}
+                    />
+                    <div>
+                        <Normaltekst>{datoTekst}</Normaltekst>
+                        <Element>{tittel}</Element>
+                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                    </div>
+                </PanelStyle>
+            </VisMerKnapp>
+        </li>
     );
 }
 
