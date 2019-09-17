@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import styled from 'styled-components';
 import { Input } from 'nav-frontend-skjema';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
@@ -10,6 +10,8 @@ import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { Avgrensninger } from 'nav-datovelger';
+import LenkeDrek from './LenkeDrek';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -23,6 +25,7 @@ const SectionStyle = styled.div`
 `;
 
 const KnappStyle = styled.div`
+    padding-top: ${theme.margin.layout};
     display: flex;
     justify-content: space-between;
 `;
@@ -49,6 +52,11 @@ const DatolabelStyle = styled.div`
 `;
 
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
+    const [tilAvgrensing, settTilAvgrensing] = useState<Avgrensninger | undefined>(undefined);
+    const datoChanger = (dato?: Date) => {
+        props.form.actions.settFodselsdatoFra(dato);
+        settTilAvgrensing({ minDato: dato });
+    };
     return (
         <FormStyle>
             <SectionStyle>
@@ -139,7 +147,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
                                 dato={props.form.state.fodselsdatoFra}
-                                onChange={dato => props.form.actions.settFodselsdatoFra(dato)}
+                                onChange={datoChanger}
                                 id="personsok-datovelger-fra"
                             />
                         </DatovelgerStyle>
@@ -153,6 +161,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                                 dato={props.form.state.fodselsdatoTil}
                                 onChange={dato => props.form.actions.settFodselsdatoTil(dato)}
                                 id="personsok-datovelger-til"
+                                avgrensninger={tilAvgrensing}
                             />
                         </DatovelgerStyle>
                     </InputLinje>
@@ -194,6 +203,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     </Select>
                 </section>
             </SectionStyle>
+            <LenkeDrek props={props.form.state} />
             <KnappStyle>
                 <Hovedknapp htmlType="submit">Søk</Hovedknapp>
                 <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
