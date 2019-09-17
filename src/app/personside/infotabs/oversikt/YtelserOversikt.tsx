@@ -15,6 +15,7 @@ import useBrukersYtelser from '../ytelser/useBrukersYtelser';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { ytelserTest } from '../dyplenkeTest/utils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 
 const YtelserStyle = styled.div`
@@ -56,6 +57,7 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
             linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
             valgt={false}
             ariaDescription="Vis pleiepenger"
+            className={ytelserTest.oversikt}
         >
             <Normaltekst>
                 <Bold>Pleiepenger sykt barn</Bold>
@@ -73,6 +75,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
             valgt={false}
             ariaDescription="Vis sykepenger"
+            className={ytelserTest.oversikt}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Normaltekst>
@@ -93,6 +96,7 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             linkTo={dyplenker.ytelser.link(getUnikForeldrepengerKey(props.foreldrepenger))}
             valgt={false}
             ariaDescription="Vis foreldrepenger"
+            className={ytelserTest.oversikt}
         >
             <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
             <Normaltekst>
