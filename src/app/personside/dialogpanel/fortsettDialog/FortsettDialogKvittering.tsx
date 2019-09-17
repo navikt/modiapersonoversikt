@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SendSvarRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
+import { ForsettDialogRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import { FailedPostResource, FinishedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
 
-export function SvarSendtKvittering(props: { resource: FinishedPostResource<SendSvarRequest, {}> }) {
+export function SvarSendtKvittering(props: { resource: FinishedPostResource<ForsettDialogRequest, {}> }) {
     const dispatch = useDispatch();
     return (
         <DialogpanelKvittering

@@ -21,7 +21,7 @@ import Temavelger, { temaValg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { KommunikasjonsKanal } from '../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 const Style = styled.article`
@@ -79,7 +79,7 @@ function HurtigreferatContainer() {
                 sendResource.actions.post(
                     {
                         fritekst: hurtigreferat.fritekst,
-                        kanal: KommunikasjonsKanal.Telefon,
+                        meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON,
                         temagruppe: tema.kodeRef
                     },
                     () => dispatch(reloadMeldinger)

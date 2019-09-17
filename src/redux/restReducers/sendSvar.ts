@@ -1,6 +1,6 @@
 import { apiBaseUri } from '../../api/config';
 import { AppState } from '../reducers';
-import { SendSvarRequest } from '../../models/meldinger/meldinger';
+import { ForsettDialogRequest } from '../../models/meldinger/meldinger';
 import createPostResourceReducerAndActions from '../../rest/utils/postResource';
 
 export function getSendSvarPostUri(state: AppState): string {
@@ -8,4 +8,4 @@ export function getSendSvarPostUri(state: AppState): string {
     return `${apiBaseUri}/dialog/${fnr}/sendsvar`;
 }
 
-export default createPostResourceReducerAndActions<SendSvarRequest>('send-svar', getSendSvarPostUri);
+export default createPostResourceReducerAndActions<ForsettDialogRequest>('send-svar', getSendSvarPostUri);

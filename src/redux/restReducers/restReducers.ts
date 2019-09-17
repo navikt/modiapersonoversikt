@@ -46,7 +46,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { SendReferatRequest, SendSpørsmålRequest, SendSvarRequest, Traad } from '../../models/meldinger/meldinger';
+import { SendReferatRequest, SendSpørsmålRequest, ForsettDialogRequest, Traad } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
@@ -98,7 +98,7 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
     sendSpørsmål: PostResource<SendSpørsmålRequest>;
-    sendSvar: PostResource<SendSvarRequest>;
+    sendSvar: PostResource<ForsettDialogRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 

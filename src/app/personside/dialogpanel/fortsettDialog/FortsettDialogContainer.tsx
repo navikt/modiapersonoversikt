@@ -80,33 +80,34 @@ function FortsettDialogContainer(props: Props) {
             updateState(initialState);
             dispatch(reloadMeldinger);
         };
-        if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
+        if (
+            FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
+            FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state) ||
+            FortsettDialogValidator.erGyldigSvarOppmote(state) ||
+            FortsettDialogValidator.erGyldigSvarTelefon(state)
+        ) {
+            const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe; // TODO, hva skal den være når det ikke er Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+            const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
+            const behandlingsId = props.tilknyttetOppgave ? props.tilknyttetOppgave.henvendelseid : ''; // TODO, denne må opprettes dersom det ikke er en tilknyttet oppgave
+            const saksId = !props.tilknyttetOppgave ? state.sak && state.sak.saksId : undefined;
             dispatch(
                 sendSvarResource.actions.post(
                     {
                         fritekst: state.tekst,
-                        traadId: props.traad.traadId,
                         meldingstype: state.dialogType,
-                        erOppgaveTilknyttetAnsatt: true,
-                        oppgaveId: props.tilknyttetOppgave && props.tilknyttetOppgave.oppgaveid
+                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
+                        traadId: props.traad.traadId,
+                        oppgaveId: oppgaveId,
+                        behandlingsId: behandlingsId,
+                        saksId: saksId
                     },
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state)) {
-            alert('Ikke implementert');
-            console.log('spørsmål skriftlig: ', state);
         } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
             alert('Ikke implementert');
             console.log('delvis svar: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {
-            alert('Ikke implementert');
-            console.log('svar oppmøte: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarTelefon(state)) {
-            alert('Ikke implementert');
-            console.log('svar telefon: ', state);
         } else {
-            alert('Ikke implementert');
             updateState({ visFeilmeldinger: true });
         }
     };
