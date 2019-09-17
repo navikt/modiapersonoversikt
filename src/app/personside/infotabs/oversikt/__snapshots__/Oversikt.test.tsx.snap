@@ -345,7 +345,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  9. Juli 2018
+                  13. Juli 2018
                    / 
                   Ligger hos banken
                 </p>
@@ -361,9 +361,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  21.06.2015
+                  25.06.2015
                    - 
-                  20.12.2016
+                  24.12.2016
                 </p>
                 <p
                   className="typo-normal"
@@ -394,7 +394,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  29. Juli 2017
+                  2. August 2017
                    / 
                   Ligger hos banken
                 </p>
@@ -410,9 +410,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  28.01.2016
+                  01.02.2016
                    - 
-                  09.05.2018
+                  13.05.2018
                 </p>
                 <p
                   className="typo-normal"
@@ -443,7 +443,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  8. Desember 2016
+                  12. Desember 2016
                    / 
                   Returnert til NAV for saksbehandling
                 </p>
@@ -459,9 +459,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  23.05.2015
+                  28.05.2015
                    - 
-                  25.11.2014
+                  29.11.2014
                 </p>
                 <p
                   className="typo-normal"
