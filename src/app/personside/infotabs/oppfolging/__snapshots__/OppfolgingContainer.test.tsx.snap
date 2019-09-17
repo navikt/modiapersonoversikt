@@ -259,7 +259,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               className="nav-datovelger__inputContainer"
             >
               <input
-                aria-invalid={false}
+                aria-invalid={true}
                 autoComplete="off"
                 autoCorrect="off"
                 className="nav-datovelger__input"
@@ -324,7 +324,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               className="nav-datovelger__inputContainer"
             >
               <input
-                aria-invalid={false}
+                aria-invalid={true}
                 autoComplete="off"
                 autoCorrect="off"
                 className="nav-datovelger__input"
