@@ -846,75 +846,253 @@ exports[`Viser oversikt med alt innhold 1`] = `
           aria-label="Oversikt brukers meldinger"
           className="c17"
         >
-          <li>
-            <div
-              className="c7"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c18"
+          <div
+            className="test-meldinger-oversikt c7"
+            onClick={[Function]}
+          >
+            <div>
+              <div
+                className="c18"
+              >
+                <span
+                  className="c19"
                 >
-                  <span
-                    className="c19"
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      height={24}
-                      viewBox="0 0 24 24"
-                      width={24}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="none"
-                        stroke="#000"
-                        strokeLinejoin="round"
-                        strokeMiterlimit="10"
-                      >
-                        <path
-                          d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
-                        />
-                        <path
-                          d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
-                          strokeLinecap="round"
-                        />
-                      </g>
-                    </svg>
-                    <p
-                      className="typo-undertekst-bold c20"
-                    >
-                      4
-                    </p>
-                  </span>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      01.01.1970 01:00
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Samtalereferat oppmøte - Arbeid
-                    </p>
-                    <div
-                      className="tekstomrade"
-                    >
-                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Su...
-                    </div>
+                    <path
+                      d="M23.5 10.759c0 5.181-5.148 9.384-11.5 9.384-1.418 0-2.775-.211-4.029-.594l-6.608 3.076 2.588-5.166c-2.129-1.703-3.45-4.076-3.45-6.7 0-5.182 5.148-9.383 11.5-9.383s11.499 4.201 11.499 9.383z"
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c20"
+                  >
+                    3
+                  </p>
+                </span>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    01.01.1970 01:00
+                  </p>
+                  <p
+                    className="typo-element"
+                  >
+                    Delsvar - Arbeid
+                  </p>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Quidem inventore quia aliquam recusandae non magnam quibusdam ut esse....
                   </div>
                 </div>
               </div>
-              <button
-                aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
             </div>
-          </li>
+            <button
+              aria-label="Vis meldinger for Delsvar - Arbeid"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
+          <div
+            className="test-meldinger-oversikt c7"
+            onClick={[Function]}
+          >
+            <div>
+              <div
+                className="c18"
+              >
+                <span
+                  className="c19"
+                >
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M23.5 10.759c0 5.181-5.148 9.384-11.5 9.384-1.418 0-2.775-.211-4.029-.594l-6.608 3.076 2.588-5.166c-2.129-1.703-3.45-4.076-3.45-6.7 0-5.182 5.148-9.383 11.5-9.383s11.499 4.201 11.499 9.383z"
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c20"
+                  >
+                    5
+                  </p>
+                </span>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    01.01.1970 01:00
+                  </p>
+                  <p
+                    className="typo-element"
+                  >
+                    Delsvar - Pensjon
+                  </p>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Alias quia at incidunt quia suscipit voluptas sequi quia. Rerum illo r...
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              aria-label="Vis meldinger for Delsvar - Pensjon"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
+          <div
+            className="test-meldinger-oversikt c7"
+            onClick={[Function]}
+          >
+            <div>
+              <div
+                className="c18"
+              >
+                <span
+                  className="c19"
+                >
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M23.5 10.759c0 5.181-5.148 9.384-11.5 9.384-1.418 0-2.775-.211-4.029-.594l-6.608 3.076 2.588-5.166c-2.129-1.703-3.45-4.076-3.45-6.7 0-5.182 5.148-9.383 11.5-9.383s11.499 4.201 11.499 9.383z"
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c20"
+                  >
+                    3
+                  </p>
+                </span>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    01.01.1970 01:00
+                  </p>
+                  <p
+                    className="typo-element"
+                  >
+                    Delsvar - Uføretrygd
+                  </p>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Ea modi et repudiandae voluptatem aspernatur quam fuga cum quo. Hic la...
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              aria-label="Vis meldinger for Delsvar - Uføretrygd"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
+          <div
+            className="test-meldinger-oversikt c7"
+            onClick={[Function]}
+          >
+            <div>
+              <div
+                className="c18"
+              >
+                <span
+                  className="c19"
+                >
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    >
+                      <path
+                        d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
+                      />
+                      <path
+                        d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
+                        strokeLinecap="round"
+                      />
+                    </g>
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c20"
+                  >
+                    3
+                  </p>
+                </span>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    01.01.1970 01:00
+                  </p>
+                  <p
+                    className="typo-element"
+                  >
+                    Samtalereferat oppmøte - Uføretrygd
+                  </p>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Minus optio vel ut placeat reprehenderit est. Non id temporibus velit ...
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              aria-label="Vis meldinger for Samtalereferat oppmøte - Uføretrygd"
+              aria-selected={false}
+              className="c9"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
+          </div>
         </ol>
       </div>
     </section>
