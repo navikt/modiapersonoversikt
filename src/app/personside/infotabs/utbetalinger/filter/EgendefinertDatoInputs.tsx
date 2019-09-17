@@ -6,16 +6,18 @@ import moment from 'moment';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../redux/restReducers/utbetalinger';
+import { Periode } from '../../../../../models/periode';
+import { isValidDate } from '../../../../../utils/dateUtils';
 
 interface Props {
     filter: UtbetalingFilterState;
     updateFilter: (change: Partial<UtbetalingFilterState>) => void;
 }
 
-function onDatoChange(props: Props, dato: Partial<FraTilDato>) {
+function onDatoChange(props: Props, dato: Partial<Periode>) {
     const newPeriode: FraTilDato = {
-        fra: dato.fra && moment(dato.fra).isValid() ? dato.fra : new Date(props.filter.periode.egendefinertPeriode.fra),
-        til: dato.til && moment(dato.til).isValid() ? dato.til : new Date(props.filter.periode.egendefinertPeriode.til)
+        fra: dato.fra ? moment(dato.fra).toDate() : props.filter.periode.egendefinertPeriode.fra,
+        til: dato.til ? moment(dato.til).toDate() : props.filter.periode.egendefinertPeriode.til
     };
     props.updateFilter({
         periode: {
@@ -43,6 +45,15 @@ function getDatoFeilmelding(fra: Date, til: Date) {
             />
         );
     }
+    if (!isValidDate(fra) || !isValidDate(til)) {
+        return (
+            <Feilmelding
+                feil={{
+                    feilmelding: 'Du må velge gyldige datoer'
+                }}
+            />
+        );
+    }
     return null;
 }
 
@@ -62,7 +73,7 @@ function EgendefinertDatoInputs(props: Props) {
                 input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
                 valgtDato={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.fra)}
-                onChange={dato => onDatoChange(props, { fra: moment(dato).toDate() })}
+                onChange={dato => onDatoChange(props, { fra: dato })}
                 id="utbetalinger-datovelger-fra"
                 avgrensninger={avgrensninger}
             />
@@ -71,7 +82,7 @@ function EgendefinertDatoInputs(props: Props) {
                 input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
                 valgtDato={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.til)}
-                onChange={dato => onDatoChange(props, { til: moment(dato).toDate() })}
+                onChange={dato => onDatoChange(props, { til: dato })}
                 id="utbetalinger-datovelger-til"
                 avgrensninger={avgrensninger}
             />

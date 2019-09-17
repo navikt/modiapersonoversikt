@@ -13,3 +13,8 @@ export const utbetalingerTest = {
     oversikt: 'test-utbetalinger-oversikt',
     utbetaling: 'test-utbetaling-utbetalinglamell'
 };
+
+export const ytelserTest = {
+    oversikt: 'test-ytelse-oversikt',
+    ytelse: 'test-ytelse-ytelselamell'
+};

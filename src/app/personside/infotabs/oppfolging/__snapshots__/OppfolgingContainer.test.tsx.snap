@@ -501,7 +501,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c8"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
         className="ekspanderbartPanel__hode"
@@ -633,7 +633,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c8"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
         className="ekspanderbartPanel__hode"
