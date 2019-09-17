@@ -5,7 +5,7 @@ import createPostResourceReducerAndActions from '../../rest/utils/postResource';
 
 export function getSendSvarPostUri(state: AppState): string {
     const fnr = state.gjeldendeBruker.fødselsnummer;
-    return `${apiBaseUri}/dialog/${fnr}/sendsvar`;
+    return `${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`;
 }
 
 export default createPostResourceReducerAndActions<ForsettDialogRequest>('send-svar', getSendSvarPostUri);
