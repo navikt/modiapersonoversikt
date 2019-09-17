@@ -46,7 +46,7 @@ export interface FinishedPostResource<Request, Response> extends PostResource<Re
 
 export interface FailedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.FAIL;
-    error: Error;
+    error: string;
 }
 
 export function isNotStartedPosting<Request, Response>(
@@ -95,7 +95,7 @@ export interface FinishedPostAction<Request, Response> {
 
 export interface FailAction<Request, Response> {
     type: PostResourceActionTypes;
-    error: Error;
+    error: string;
 }
 
 export type PostUriCreator<Request> = (state: AppState, request: Request) => string;
@@ -121,7 +121,9 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
                         dispatch({ type: actionNames.FINISHED, response: response });
                         callback && callback((response as unknown) as Response);
                     })
-                    .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
+                    .catch((error: string) => {
+                        return dispatch({ type: actionNames.FAILED, error: error });
+                    });
             }
         }
     };

@@ -58,9 +58,7 @@ function HurtigreferatContainer() {
     }
 
     if (isFailedPosting(sendResource)) {
-        return (
-            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeFeil>
-        );
+        return <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error}</AlertStripeFeil>;
     }
 
     const handleSendMelding = (hurtigreferat: Hurtigreferat) => {

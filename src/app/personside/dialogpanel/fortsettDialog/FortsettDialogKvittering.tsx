@@ -54,9 +54,7 @@ export function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<Leg
     const dispatch = useDispatch();
     return (
         <DialogpanelKvitteringStyling>
-            <AlertStripeFeil>
-                Det skjedde en feil ved tilbakelegging av oppgave: {props.resource.error.message}
-            </AlertStripeFeil>
+            <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave: {props.resource.error}</AlertStripeFeil>
             <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
                 Lukk
             </KnappBase>
