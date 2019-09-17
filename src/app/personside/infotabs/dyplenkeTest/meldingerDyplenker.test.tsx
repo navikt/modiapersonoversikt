@@ -24,8 +24,8 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
     const activeElement = document.activeElement ? document.activeElement.innerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs
         .find('.' + meldingerTest.melding)
-        .hostNodes()
         .at(2)
+        .children()
         .html();
 
     expect(activeElement).toEqual(expectedElement);
@@ -34,7 +34,6 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + meldingerTest.oversikt)
-        .hostNodes()
         .at(2)
         .find('button')
         .simulate('click');
