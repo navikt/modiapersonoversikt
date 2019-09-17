@@ -950,7 +950,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c21"
         >
           <div
-            className="c7"
+            className="test-ytelse-oversikt c7"
             onClick={[Function]}
           >
             <div>
@@ -988,7 +988,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </button>
           </div>
           <div
-            className="c7"
+            className="test-ytelse-oversikt c7"
             onClick={[Function]}
           >
             <div>
@@ -1019,7 +1019,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </button>
           </div>
           <div
-            className="c7"
+            className="test-ytelse-oversikt c7"
             onClick={[Function]}
           >
             <div>
