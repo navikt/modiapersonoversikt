@@ -77,7 +77,7 @@ function getDatoFeilmelding(fra: Date, til: Date) {
         );
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return <Feilmelding feil={{ feilmelding: 'Du må velge gyldig datoer' }} />;
+        return <Feilmelding feil={{ feilmelding: 'Du må velge gyldige datoer' }} />;
     }
     return null;
 }
