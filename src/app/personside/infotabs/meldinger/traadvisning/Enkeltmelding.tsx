@@ -7,7 +7,7 @@ import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components';
-import './enkeltmelding.less';
+//import './enkeltmelding.less';
 
 interface Props {
     melding: Melding;
