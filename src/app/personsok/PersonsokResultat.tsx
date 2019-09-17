@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import { isFinishedPosting, isNotStartedPosting, isPosting } from '../../rest/utils/postResource';
+import { isFailedPosting, isFinishedPosting, isNotStartedPosting, isPosting } from '../../rest/utils/postResource';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle } from './PersonsokResultatElementer';
 import { ClickableTable } from '../../utils/table/ClickableTable';
@@ -19,11 +19,17 @@ function PersonsokResultat(props: Props) {
     if (isNotStartedPosting(personsokResource)) {
         return null;
     }
+
     if (isPosting(personsokResource)) {
         return <NavFrontendSpinner />;
     }
+
+    if (isFailedPosting(personsokResource)) {
+        return <AlertStripeAdvarsel>{personsokResource.error.message}</AlertStripeAdvarsel>;
+    }
+
     if (!isFinishedPosting(personsokResource)) {
-        return <AlertStripeAdvarsel>Søket gav mer enn 200 treff. Forsøk å begrense søket.</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>Noe gikk galt</AlertStripeAdvarsel>;
     }
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
