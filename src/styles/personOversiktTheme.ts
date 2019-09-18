@@ -40,7 +40,7 @@ export const theme = {
     hvittPanel: css`
         border-radius: ${pxToRem(4)};
         background-color: white;
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
     `,
     media: {
         smallScreen: 'max-width: 35rem',
