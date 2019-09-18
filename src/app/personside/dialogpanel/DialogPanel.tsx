@@ -56,7 +56,11 @@ function DialogPanel(props: RouteComponentProps) {
             <DialogPanelWrapper role="region" aria-label="Dialogpanel">
                 <Undertittel className="sr-only">Dialogpanel</Undertittel>
                 {dialogpanelTraad !== undefined ? (
-                    <FortsettDialogContainer traad={dialogpanelTraad} tilknyttetOppgave={tilknyttetOppgave} />
+                    <FortsettDialogContainer
+                        traad={dialogpanelTraad}
+                        tilknyttetOppgave={tilknyttetOppgave}
+                        key={dialogpanelTraad.traadId}
+                    />
                 ) : (
                     <SendNyMeldingContainer />
                 )}
