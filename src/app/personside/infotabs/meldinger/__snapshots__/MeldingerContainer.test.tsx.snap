@@ -246,11 +246,10 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
       </div>
     </div>
     <ol
-      aria-label="Brukers tråder"
       className="c3"
     >
       <li
-        className="c4"
+        className="test-meldinger-melding c4"
         tabIndex={-1}
       >
         <div
