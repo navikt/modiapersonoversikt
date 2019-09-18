@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import { JournalforingsSak } from './JournalforingPanel';
@@ -27,12 +27,19 @@ const PanelLayout = styled.section`
     padding: 1rem;
 `;
 
+const SuksessStyling = styled.div`
+    > * {
+        margin-top: 1rem;
+    }
+`;
+
 export function JournalforSak(props: Props) {
     const { sak, tilbake, traad, lukkPanel } = props;
     const { traadId } = traad;
     const kategori = sakKategori(sak);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [journalforingSuksess, setJournalforingSuksess] = useState(false);
     const fnr = useSelector(fnrSelector);
 
     const journalfor = () => {
@@ -40,7 +47,7 @@ export function JournalforSak(props: Props) {
         post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak).then(
             () => {
                 setSubmitting(false);
-                lukkPanel();
+                setJournalforingSuksess(true);
             },
             error => {
                 setSubmitting(false);
@@ -49,6 +56,15 @@ export function JournalforSak(props: Props) {
             }
         );
     };
+
+    if (journalforingSuksess) {
+        return (
+            <SuksessStyling>
+                <AlertStripeSuksess>Tråden ble journalført</AlertStripeSuksess>
+                <Hovedknapp onClick={lukkPanel}>Lukk</Hovedknapp>
+            </SuksessStyling>
+        );
+    }
 
     return (
         <PanelLayout>
