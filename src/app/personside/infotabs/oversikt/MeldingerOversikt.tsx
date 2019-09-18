@@ -14,6 +14,7 @@ import { withRouter } from 'react-router';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { meldingerTest } from '../dyplenkeTest/utils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -62,6 +63,7 @@ export function Traadelement(props: Props) {
                 linkTo={dyplenker.meldinger.link(props.traad)}
                 valgt={false}
                 ariaDescription={'Vis meldinger for ' + tittel}
+                className={meldingerTest.oversikt}
             >
                 <PanelStyle>
                     <Meldingsikon

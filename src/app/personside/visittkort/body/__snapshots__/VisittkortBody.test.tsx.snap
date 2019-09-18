@@ -41,6 +41,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 0.2rem;
 }
 
 .c0:focus {
