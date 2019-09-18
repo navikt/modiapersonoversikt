@@ -26,9 +26,10 @@ const SaksoversiktArticle = styled.article`
             margin-left: ${theme.margin.layout};
         }
         > * {
-            position: sticky;
-            top: 0;
+            overflow-y: auto;
+            max-height: 100%;
         }
+        max-height: 100%;
     }
     .visually-hidden {
         ${theme.visuallyHidden}

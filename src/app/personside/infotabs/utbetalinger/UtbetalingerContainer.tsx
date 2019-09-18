@@ -21,9 +21,10 @@ const UtbetalingerArticle = styled.article`
     }
     @media not all and (max-width: ${theme.media.utbetalinger}) {
         > * {
-            position: sticky;
-            top: 0;
+            overflow-y: auto;
+            max-height: 100%;
         }
+        max-height: 100%;
     }
     position: relative;
 `;
