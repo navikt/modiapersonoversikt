@@ -45,6 +45,7 @@ interface Props extends RouteComponentProps {
     valgt: boolean;
     children: React.ReactNode;
     ariaDescription: string;
+    className?: string;
 }
 
 function VisMerKnapp(props: Props) {
@@ -59,7 +60,7 @@ function VisMerKnapp(props: Props) {
     };
 
     return (
-        <Wrapper valgt={props.valgt} onClick={handleClick}>
+        <Wrapper valgt={props.valgt} onClick={handleClick} className={props.className}>
             <div>{props.children}</div>
             <Knapp onClick={props.onClick} aria-selected={props.valgt} aria-label={props.ariaDescription}>
                 <HoyreChevron stor={true} />
