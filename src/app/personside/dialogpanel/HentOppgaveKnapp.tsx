@@ -28,12 +28,13 @@ const KnappLayout = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-top: 0.4em;
     > * {
         margin-right: 0.4em;
         flex-grow: 1;
     }
     > *:first-child {
-        margin-bottom: 0.4em;
+        margin-bottom: 0.6em;
         white-space: nowrap;
     }
     > *:last-child {
