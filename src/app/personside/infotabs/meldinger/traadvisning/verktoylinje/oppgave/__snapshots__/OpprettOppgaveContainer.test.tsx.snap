@@ -298,11 +298,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           <p
             className="textarea--medMeta__teller"
           >
-            <span
-              aria-live="polite"
-              className="teller-tekst"
-            >
-              Du har 2000 tegn igjen
+            <span>
+              Du har 
+              2000
+               tegn igjen
             </span>
           </p>
         </div>

@@ -875,7 +875,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-undertekst-bold c20"
                     >
-                      3
+                      5
                     </p>
                   </span>
                   <div>
@@ -887,18 +887,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-element"
                     >
-                      Delsvar - Arbeid
+                      Delsvar - Pensjon
                     </p>
                     <div
                       className="tekstomrade"
                     >
-                      Quidem inventore quia aliquam recusandae non magnam quibusdam ut esse....
+                      Alias quia at incidunt quia suscipit voluptas sequi quia. Rerum illo r...
                     </div>
                   </div>
                 </div>
               </div>
               <button
-                aria-label="Vis meldinger for Delsvar - Arbeid"
+                aria-label="Vis meldinger for Delsvar - Pensjon"
                 aria-selected={false}
                 className="c9"
               >
@@ -937,7 +937,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-undertekst-bold c20"
                     >
-                      5
+                      3
                     </p>
                   </span>
                   <div>
@@ -949,18 +949,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-element"
                     >
-                      Delsvar - Pensjon
+                      Delsvar - Arbeid
                     </p>
                     <div
                       className="tekstomrade"
                     >
-                      Alias quia at incidunt quia suscipit voluptas sequi quia. Rerum illo r...
+                      Ea tempore sint aliquid et voluptas maxime ut aut. Ut commodi est ut u...
                     </div>
                   </div>
                 </div>
               </div>
               <button
-                aria-label="Vis meldinger for Delsvar - Pensjon"
+                aria-label="Vis meldinger for Delsvar - Arbeid"
                 aria-selected={false}
                 className="c9"
               >
