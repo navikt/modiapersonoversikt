@@ -20,6 +20,15 @@ export interface Props {
     lukkPanel: () => void;
 }
 
+const CustomStyledTabel = styled(StyledTable)`
+    [role='columnheader'] {
+        font-weight: 100;
+    }
+
+    [role='cell'] {
+        font-weight: 700;
+    }
+`;
 const PanelLayout = styled.section`
     display: flex;
     flex-direction: column;
@@ -56,7 +65,7 @@ export function JournalforSak(props: Props) {
             <Normaltekst className="blokk-xs">{kategori}</Normaltekst>
 
             <Ingress className="blokk-xxxs">{sak.temaNavn}</Ingress>
-            <StyledTable
+            <CustomStyledTabel
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
                 rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
