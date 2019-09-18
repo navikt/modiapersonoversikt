@@ -18,8 +18,12 @@ interface Props {
     melding: Melding;
 }
 
+const SnakkebobleWrapper = styled.div`
+    text-align: left;
+`;
+
 function meldingstittel(melding: Melding) {
-    const lestTekst = melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ';
+    const lestTekst = melding.status === LestStatus.Lest ? 'Lest,' : 'Ulest,';
     return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
 }
 
@@ -46,12 +50,14 @@ function EnkeltMelding(props: Props) {
     return (
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
-                <Element>{topptekst}</Element>
-                <Normaltekst>{datoTekst}</Normaltekst>
-                <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
-                <hr />
-                <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
-                <Journalforing melding={props.melding} />
+                <SnakkebobleWrapper>
+                    <Element>{topptekst}</Element>
+                    <Normaltekst>{datoTekst}</Normaltekst>
+                    <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
+                    <hr />
+                    <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
+                    <Journalforing melding={props.melding} />
+                </SnakkebobleWrapper>
             </Snakkeboble>
         </div>
     );

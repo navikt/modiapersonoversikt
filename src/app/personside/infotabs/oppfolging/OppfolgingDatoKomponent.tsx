@@ -12,10 +12,11 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
-import { Avgrensninger } from 'nav-datovelger';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { Feilmelding } from '../../../../utils/Feilmelding';
-import { formaterDato } from '../../../../utils/stringFormatting';
+import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
 import moment from 'moment';
+import { isValidDate } from '../../../../utils/dateUtils';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -75,6 +76,9 @@ function getDatoFeilmelding(fra: Date, til: Date) {
             />
         );
     }
+    if (!isValidDate(fra) || !isValidDate(til)) {
+        return <Feilmelding feil={{ feilmelding: 'Du må velge gyldige datoer' }} />;
+    }
     return null;
 }
 
@@ -83,9 +87,16 @@ function DatoInputs(props: Props) {
     const fra = props.valgtPeriode.fra;
     const til = props.valgtPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger: Avgrensninger = {
-        minDato: tidligsteDato(),
-        maksDato: senesteDato()
+    const avgrensninger: DatovelgerAvgrensninger = {
+        minDato: formaterTilISO8601Date(tidligsteDato()),
+        maksDato: formaterTilISO8601Date(senesteDato())
+    };
+
+    const onClickHandler = () => {
+        if (oppfølgingLastes || !isValidDate(fra) || !isValidDate(til)) {
+            return;
+        }
+        props.reloadDetaljertOppfolging();
     };
 
     return (
@@ -94,8 +105,8 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-fra', name: 'Fra dato' }}
                 visÅrVelger={true}
-                dato={fra}
-                onChange={dato => props.settValgtPeriode({ fra: dato })}
+                valgtDato={formaterTilISO8601Date(fra)}
+                onChange={dato => props.settValgtPeriode({ fra: moment(dato).toDate() })}
                 id="oppfolging-datovelger-fra"
                 avgrensninger={avgrensninger}
             />
@@ -103,17 +114,13 @@ function DatoInputs(props: Props) {
             <Datovelger
                 input={{ id: 'oppfolging-datovelger-til', name: 'Til dato' }}
                 visÅrVelger={true}
-                dato={til}
-                onChange={dato => props.settValgtPeriode({ til: dato })}
+                valgtDato={formaterTilISO8601Date(til)}
+                onChange={dato => props.settValgtPeriode({ til: moment(dato).toDate() })}
                 id="oppfolging-datovelger-til"
                 avgrensninger={avgrensninger}
             />
             {periodeFeilmelding}
-            <Knapp
-                onClick={!oppfølgingLastes ? props.reloadDetaljertOppfolging : () => null}
-                spinner={oppfølgingLastes}
-                htmlType="button"
-            >
+            <Knapp onClick={onClickHandler} spinner={oppfølgingLastes} htmlType="button">
                 Søk
             </Knapp>
         </DatoVelgerWrapper>

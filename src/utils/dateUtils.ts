@@ -82,8 +82,8 @@ export function datoVerbose(dato?: string | Date) {
     };
 }
 
-export function isValidDate(streng: string) {
-    const timestamp = Date.parse(streng);
+export function isValidDate(date: string | Date) {
+    const timestamp = date instanceof Date ? date.getTime() : Date.parse(date);
     return !isNaN(timestamp);
 }
 

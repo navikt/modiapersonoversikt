@@ -259,7 +259,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               className="nav-datovelger__inputContainer"
             >
               <input
-                aria-invalid={false}
+                aria-invalid={true}
                 autoComplete="off"
                 autoCorrect="off"
                 className="nav-datovelger__input"
@@ -324,7 +324,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               className="nav-datovelger__inputContainer"
             >
               <input
-                aria-invalid={false}
+                aria-invalid={true}
                 autoComplete="off"
                 autoCorrect="off"
                 className="nav-datovelger__input"
@@ -501,10 +501,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c8"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
-        aria-expanded={false}
         className="ekspanderbartPanel__hode"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -634,10 +633,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c8"
   >
     <div
-      className="ekspanderbartPanel ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
     >
       <button
-        aria-expanded={false}
         className="ekspanderbartPanel__hode"
         onClick={[Function]}
         onKeyDown={[Function]}

@@ -20,6 +20,7 @@ import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbe
 import { datoVerbose } from '../../../../../utils/dateUtils';
 import { withRouter } from 'react-router';
 import { erValgtIDyplenke, UtbetalingDyplenkeRouteComponentProps } from '../../dyplenker';
+import { utbetalingerTest } from '../../dyplenkeTest/utils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;
@@ -125,6 +126,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
                     ref={this.utbetalingRef}
                     tabIndex={0}
                     onFocus={this.props.setYtelseIFokus}
+                    className={utbetalingerTest.utbetaling}
                 >
                     <article aria-expanded={this.props.visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
                         <UtbetalingTabellStyling>

@@ -10,15 +10,14 @@ import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-import { MeldingerDyplenkeRouteComponentProps, useValgtTraad } from '../../dyplenker';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { withRouter } from 'react-router';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 
-type Props = MeldingerDyplenkeRouteComponentProps;
+interface Props {
+    valgtTraad?: Traad;
+}
 
 const VisningStyle = styled.section`
-    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     flex-grow: 1;
     > *:last-child {
@@ -63,7 +62,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     }
 
     const handleNyMelding = () => {
-        dispatch(setValgtTraadDialogpanel(valgtTraad));
+        valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
         dispatch(toggleDialogpanel(true));
     };
 
@@ -79,18 +78,16 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
-    const valgtTraad = useValgtTraad(props);
-
-    if (!valgtTraad) {
+    if (!props.valgtTraad) {
         return <CenteredLazySpinner />;
     }
 
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={valgtTraad ? valgtTraad.traadId : ''}>
-            <Topplinje valgtTraad={valgtTraad} />
-            <AlleMeldinger traad={valgtTraad} />
+        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
+            <Topplinje valgtTraad={props.valgtTraad} />
+            <AlleMeldinger traad={props.valgtTraad} />
         </VisningStyle>
     );
 }
 
-export default withRouter(TraadVisning);
+export default TraadVisning;

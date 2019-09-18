@@ -291,10 +291,11 @@ Array [
           <p
             className="textarea--medMeta__teller"
           >
-            <span>
-              Du har 
-              2000
-               tegn igjen
+            <span
+              aria-live="polite"
+              className="teller-tekst"
+            >
+              Du har 2000 tegn igjen
             </span>
           </p>
         </div>

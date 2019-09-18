@@ -4,16 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab } from './utils';
-
-function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
-    infoTabs
-        .find('ol[aria-label="Oversikt brukers meldinger"]')
-        .find('li')
-        .first()
-        .find('button')
-        .simulate('click');
-}
+import { getAktivTab, meldingerTest } from './utils';
 
 test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
     const infoTabs = mount(
@@ -32,13 +23,18 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 
     const activeElement = document.activeElement ? document.activeElement.innerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs
-        .find('nav')
-        .last()
-        .find('ol')
-        .find('li')
+        .find('.' + meldingerTest.melding)
+        .at(2)
         .children()
-        .first()
         .html();
 
     expect(activeElement).toEqual(expectedElement);
 });
+
+function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
+    infoTabs
+        .find('.' + meldingerTest.oversikt)
+        .at(2)
+        .find('button')
+        .simulate('click');
+}

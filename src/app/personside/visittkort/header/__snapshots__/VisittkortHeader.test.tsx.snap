@@ -116,7 +116,6 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
   padding: 1.25rem;
   padding-right: 3rem;
-  margin-bottom: 0.2rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
