@@ -121,9 +121,7 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
                         dispatch({ type: actionNames.FINISHED, response: response });
                         callback && callback((response as unknown) as Response);
                     })
-                    .catch((error: string) => {
-                        return dispatch({ type: actionNames.FAILED, error: error });
-                    });
+                    .catch((error: string) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }
     };
