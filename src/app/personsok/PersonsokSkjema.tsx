@@ -3,7 +3,6 @@ import { FormEvent, useState } from 'react';
 import { PersonsokRequest } from '../../models/person/personsok';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 import { ValideringsResultat } from '../../utils/forms/FormValidator';
 import { getValidPersonSokState, validerPersonsokSkjema } from './personsokValidator';
@@ -17,8 +16,8 @@ export type PersonSokFormState = {
     postnummer: string;
     kontonummer: string;
     kommunenummer: string;
-    fodselsdatoFra?: Date;
-    fodselsdatoTil?: Date;
+    fodselsdatoFra?: string;
+    fodselsdatoTil?: string;
     alderFra: string;
     alderTil: string;
     kjonn: string;
@@ -35,8 +34,8 @@ export interface PersonsokSkjemaProps {
         settPostnummer(postnummer: string): void;
         settKontonummer(kontonummer: string): void;
         settKommunenummer(kommunenummer: string): void;
-        settFodselsdatoFra(fodselsdatoFra: Date | undefined): void;
-        settFodselsdatoTil(fodselsdatoTil: Date | undefined): void;
+        settFodselsdatoFra(fodselsdatoFra: string | undefined): void;
+        settFodselsdatoTil(fodselsdatoTil: string | undefined): void;
         settAlderFra(alderFra: string): void;
         settAlderTil(alderTil: string): void;
         settKjonn(kjonn: string): void;
@@ -68,8 +67,8 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
         postnummer: emptyString(form.state.postnummer),
         kontonummer: emptyString(form.state.kontonummer),
         kommunenummer: emptyString(form.state.kommunenummer),
-        fodsesldatoFra: formatterDatoForBackendPost(form.state.fodselsdatoFra),
-        fodsesldatoTil: formatterDatoForBackendPost(form.state.fodselsdatoTil),
+        fodsesldatoFra: form.state.fodselsdatoFra,
+        fodsesldatoTil: form.state.fodselsdatoTil,
         alderFra: stringToNumber(form.state.alderFra),
         alderTil: stringToNumber(form.state.alderTil),
         kjonn: emptyString(form.state.kjonn)
@@ -87,8 +86,8 @@ function PersonsokSkjema() {
     const [postnummer, settPostnummer] = useState<string>('');
     const [kontonummer, settKontonummer] = useState<string>('');
     const [kommunenummer, settKommunenummer] = useState<string>('');
-    const [fodselsdatoFra, settFodselsdatoFra] = useState<Date | undefined>(undefined);
-    const [fodselsdatoTil, settFodselsdatoTil] = useState<Date | undefined>(undefined);
+    const [fodselsdatoFra, settFodselsdatoFra] = useState<string | undefined>(undefined);
+    const [fodselsdatoTil, settFodselsdatoTil] = useState<string | undefined>(undefined);
     const [alderFra, settAlderFra] = useState<string>('');
     const [alderTil, settAlderTil] = useState<string>('');
     const [kjonn, settKjonn] = useState<string>('');

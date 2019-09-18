@@ -10,8 +10,8 @@ import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Avgrensninger } from 'nav-datovelger';
 import LenkeDrek from './LenkeDrek';
+import { DatovelgerAvgrensninger } from 'nav-datovelger/dist/datovelger/types';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -52,8 +52,8 @@ const DatolabelStyle = styled.div`
 `;
 
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
-    const [tilAvgrensing, settTilAvgrensing] = useState<Avgrensninger | undefined>(undefined);
-    const datoChanger = (dato?: Date) => {
+    const [tilAvgrensing, settTilAvgrensing] = useState<DatovelgerAvgrensninger | undefined>(undefined);
+    const datoChanger = (dato?: string) => {
         props.form.actions.settFodselsdatoFra(dato);
         settTilAvgrensing({ minDato: dato });
     };
@@ -146,7 +146,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.state.fodselsdatoFra}
+                                valgtDato={props.form.state.fodselsdatoFra}
                                 onChange={datoChanger}
                                 id="personsok-datovelger-fra"
                             />
@@ -158,7 +158,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                             <Datovelger
                                 input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                                 visÅrVelger={true}
-                                dato={props.form.state.fodselsdatoTil}
+                                valgtDato={props.form.state.fodselsdatoTil}
                                 onChange={dato => props.form.actions.settFodselsdatoTil(dato)}
                                 id="personsok-datovelger-til"
                                 avgrensninger={tilAvgrensing}
