@@ -26,17 +26,18 @@ const HentOppgaveLayout = styled.article`
 const KnappLayout = styled.div`
     display: inline-flex;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: flex-start;
+    justify-content: flex-start;
     > * {
         margin-right: 0.4em;
         flex-grow: 1;
     }
     > *:first-child {
-        margin-bottom: 0;
+        margin-bottom: 0.4em;
         white-space: nowrap;
     }
     > *:last-child {
-        margin-top: 0.4em;
+        margin-bottom: 0.4em;
     }
 `;
 
