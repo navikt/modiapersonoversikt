@@ -92,9 +92,6 @@ function TildelteOppgaver(props: RouteComponentProps) {
     return (
         <Wrapper ref={ref}>
             <JustifyRight>
-                {tildelteOppgaver.alle.length !== 0 && (
-                    <Normaltekst>Du har {tildelteOppgaver.alle.length} tildelte oppgaver</Normaltekst>
-                )}
                 {tildelteOppgaver.paaBruker.length !== 0 && (
                     <LenkeKnapp onClick={() => setVisOppgaver(!visOppgaver)}>
                         <Normaltekst>
