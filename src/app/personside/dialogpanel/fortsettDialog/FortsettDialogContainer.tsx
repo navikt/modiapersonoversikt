@@ -5,7 +5,7 @@ import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { useOnMount, usePrevious, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { Kodeverk } from '../../../../models/kodeverk';
@@ -49,6 +49,15 @@ function FortsettDialogContainer(props: Props) {
         oppgaveListe: OppgavelisteValg.MinListe
     };
 
+    const opprettHenvendelseResource = useRestResource(resources => resources.opprettHenvendelse);
+
+    useOnMount(() => {
+        dispatch(opprettHenvendelseResource.actions.post({ traadId: props.traad.traadId }));
+        return () => {
+            dispatch(opprettHenvendelseResource.actions.reset);
+        };
+    });
+
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
@@ -73,12 +82,15 @@ function FortsettDialogContainer(props: Props) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (isPosting(sendSvarResource)) {
+        if (isPosting(sendSvarResource) || !isFinishedPosting(opprettHenvendelseResource)) {
             return;
         }
         const callback = () => {
             updateState(initialState);
-            dispatch(reloadMeldinger);
+            setTimeout(() => {
+                // TODO løs dette med en thunkaction som fortsetter å pinge til tråden er oppdatert
+                dispatch(reloadMeldinger);
+            }, 5000);
         };
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
@@ -88,7 +100,6 @@ function FortsettDialogContainer(props: Props) {
         ) {
             const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe; // TODO, hva skal den være når det ikke er Meldingstype.SPORSMAL_MODIA_UTGAAENDE
             const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
-            const behandlingsId = props.tilknyttetOppgave ? props.tilknyttetOppgave.henvendelseid : ''; // TODO, denne må opprettes dersom det ikke er en tilknyttet oppgave
             const saksId = !props.tilknyttetOppgave ? state.sak && state.sak.saksId : undefined;
             dispatch(
                 sendSvarResource.actions.post(
@@ -98,7 +109,7 @@ function FortsettDialogContainer(props: Props) {
                         erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
                         traadId: props.traad.traadId,
                         oppgaveId: oppgaveId,
-                        behandlingsId: behandlingsId,
+                        behandlingsId: opprettHenvendelseResource.response.behandlingsId,
                         saksId: saksId
                     },
                     callback

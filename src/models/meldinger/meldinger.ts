@@ -100,3 +100,12 @@ export interface ForsettDialogRequest {
     meldingstype: Meldingstype;
     oppgaveId?: string;
 }
+
+export interface OpprettHenvendelseRequest {
+    traadId: string;
+}
+
+export interface OpprettHenvendelseResponse {
+    behandlingsId: string;
+    oppgaveId?: string;
+}

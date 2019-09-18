@@ -46,7 +46,14 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { SendReferatRequest, SendSpørsmålRequest, ForsettDialogRequest, Traad } from '../../models/meldinger/meldinger';
+import {
+    SendReferatRequest,
+    SendSpørsmålRequest,
+    ForsettDialogRequest,
+    Traad,
+    OpprettHenvendelseRequest,
+    OpprettHenvendelseResponse
+} from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
@@ -62,6 +69,7 @@ import leggTilbakeOppgave from './leggTilbakeOppgave';
 import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
+import opprettHenvendelse from './meldinger/opprettHenvendelse';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -98,6 +106,7 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
     sendSpørsmål: PostResource<SendSpørsmålRequest>;
+    opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
     sendSvar: PostResource<ForsettDialogRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
@@ -138,6 +147,7 @@ export default combineResettableReducers<RestEndepunkter>(
         sendReferat: sendReferat,
         sendSpørsmål: sendSpørsmål,
         sendSvar: sendSvar,
+        opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok
     },
