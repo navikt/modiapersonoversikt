@@ -9,16 +9,21 @@ export interface Melding {
     meldingstype: Meldingstype;
     temagruppe: Temagruppe;
     skrevetAv: Saksbehandler;
-    journalfortAv: Saksbehandler;
+    journalfortAv?: Saksbehandler;
+    journalfortDato?: string;
+    journalfortTema?: string;
+    journalfortTemanavn?: string;
+    journalfortSaksid?: string;
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
     opprettetDato: string;
-    journalfortDato?: string;
-    ferdigstiltDato: string;
+    ferdigstiltDato?: string;
     erFerdigstiltUtenSvar: boolean;
+    ferdigstiltUtenSvarAv?: Saksbehandler;
     kontorsperretEnhet?: string;
-    markertSomFeilsendtAv?: string;
+    kontorsperretAv?: Saksbehandler;
+    markertSomFeilsendtAv?: Saksbehandler;
     erDokumentMelding: boolean;
 }
 

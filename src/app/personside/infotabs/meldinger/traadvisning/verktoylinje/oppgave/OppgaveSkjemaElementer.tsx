@@ -15,6 +15,9 @@ import styled from 'styled-components';
 const KnappStyle = styled.div`
     display: flex;
     justify-content: space-between;
+    button {
+        margin: 0;
+    }
 `;
 
 const SkjemaStyle = styled.div`

@@ -4,6 +4,11 @@ import PersonsokResultat from './PersonsokResultat';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
+import styled from 'styled-components';
+
+const ModalPadding = styled.div`
+    padding: 5rem;
+`;
 
 function PersonsokContainer() {
     const [apen, settApen] = useState(false);
@@ -26,10 +31,10 @@ function PersonsokContainer() {
 
     return (
         <ModalWrapper contentLabel={'Avansert søk'} onRequestClose={() => settApen(false)} isOpen={apen}>
-            <>
+            <ModalPadding>
                 <PersonsokSkjema />
                 <PersonsokResultat onClose={() => settApen(false)} />
-            </>
+            </ModalPadding>
         </ModalWrapper>
     );
 }
