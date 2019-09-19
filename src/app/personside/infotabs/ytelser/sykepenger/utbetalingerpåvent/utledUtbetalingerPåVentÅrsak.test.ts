@@ -21,7 +21,7 @@ describe('utledUtbetalingPåVentÅrsak()', () => {
     it('returnerer "Inntektsopplysninger mangler" dersom arbeidskategori === 99', () => {
         const utbetaling = {
             ...utbetalingUtenPåventÅrsak,
-            arbeidskategori: '99'
+            arbeidskategori: 'Inntektsopplysninger mangler'
         };
         const resultat = utledUtbetalingPåVentÅrsak(utbetaling);
         expect(resultat).toEqual('Inntektsopplysninger mangler');
