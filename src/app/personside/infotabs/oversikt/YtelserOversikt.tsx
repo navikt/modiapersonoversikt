@@ -25,7 +25,7 @@ const YtelserStyle = styled.div`
 `;
 
 function YtelserOversikt() {
-    const { ytelser, pending } = useBrukersYtelser({
+    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
         renderPleiepenger: pleiepenger => (
             <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),
@@ -39,8 +39,9 @@ function YtelserOversikt() {
 
     return (
         <YtelserStyle>
-            {ytelser}
-            {!pending && ytelser.length === 0 && (
+            {ytelser.slice(0, 3)}
+            {feilmeldinger}
+            {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
                 <AlertStripeInfo>
                     Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
                 </AlertStripeInfo>
