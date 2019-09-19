@@ -50,6 +50,8 @@ function FortsettDialogContainer(props: Props) {
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.oppgaver.actions.reset);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -77,6 +79,8 @@ function FortsettDialogContainer(props: Props) {
         const callback = () => {
             setTimeout(() => {
                 dispatch(reloadMeldinger);
+                dispatch(resetPlukkOppgaveResource);
+                dispatch(reloadTildelteOppgaver);
             }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
         };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
