@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
-.c3 {
+Array [
+  .c2 {
   position: relative;
   border: none;
   padding: 0;
@@ -19,7 +20,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c3:after {
+.c2:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -27,21 +28,21 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c3:focus {
+.c2:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c3:hover {
+.c2:hover {
   opacity: 0.8;
 }
 
-.c3:hover:after {
+.c2:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -52,37 +53,29 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c1 .inputPanelGruppe__inner {
+.c1 button {
+  margin: 0;
+}
+
+.c0 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c1 .inputPanelGruppe__inner > * {
+.c0 .inputPanelGruppe__inner > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c4 {
-  margin-top: .8rem;
-  color: #d0021b;
-}
-
-.c0 {
-  margin-top: 1.5rem;
-}
-
-<div
-  className="c0"
->
-  <form
+<form
     onSubmit={[Function]}
   >
     <div
-      className="c1"
+      className="c0"
     >
       <div
         className="skjemaelement"
@@ -316,7 +309,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         />
       </div>
       <div
-        className="c2"
+        className="c1"
       >
         <button
           className="knapp knapp--hoved"
@@ -326,7 +319,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           Send
         </button>
         <button
-          className="c3"
+          className="c2"
           onClick={[Function]}
           type="button"
         >
@@ -334,10 +327,15 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         </button>
       </div>
     </div>
-  </form>
-  <div
+  </form>,
+  .c0 {
+  padding-top: .8rem;
+  color: #d0021b;
+}
+
+<div
     aria-live="polite"
-    className="c4"
-  />
-</div>
+    className="c0"
+  />,
+]
 `;

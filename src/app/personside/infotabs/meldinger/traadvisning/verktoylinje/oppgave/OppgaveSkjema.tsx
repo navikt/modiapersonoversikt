@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import theme from '../../../../../../../styles/personOversiktTheme';
 
 const ValideringsfeilStyle = styled.div`
-    margin-top: ${theme.margin.layout};
+    padding-top: ${theme.margin.layout};
     color: #d0021b;
 `;
 
