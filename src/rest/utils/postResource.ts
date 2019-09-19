@@ -21,7 +21,8 @@ export interface PostResource<Request, Response = any> {
     status: PostStatus;
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
-        setError: (e: Error) => (dispatch: AsyncDispatch) => void;
+        setError: (e: Error) => Action;
+        setResponse: (response: Response) => Action;
         post: (
             payload: Request,
             callback?: (response: Response) => void
@@ -110,7 +111,8 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
         status: PostStatus.NOT_STARTED,
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
-            setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
+            setError: (error: Error) => ({ type: actionNames.FAILED, error: error }),
+            setResponse: response => ({ type: actionNames.FINISHED, response: response }),
             post: (request: Request, callback?: (response: Response) => void) => (
                 dispatch: AsyncDispatch,
                 getState: () => AppState

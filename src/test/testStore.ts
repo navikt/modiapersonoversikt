@@ -26,6 +26,7 @@ import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepen
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { getMockTraader } from '../mock/meldinger/meldinger-mock';
+import { henvendelseResponseMock } from '../mock/meldinger/henvendelseMock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -60,5 +61,6 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     testStore.dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     testStore.dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
+    testStore.dispatch(restResources.opprettHenvendelse.actions.setResponse(henvendelseResponseMock));
     return testStore;
 }
