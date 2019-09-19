@@ -8,8 +8,8 @@ export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Opp
 }
 
 function useTildelteOppgaver() {
-    const oppgaveResource = useRestResource(resources => resources.oppgaver);
-    const tildelteOppgaverResource = useRestResource(resources => resources.tildDelteOppgaver);
+    const oppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver);
+    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const fnr = useFødselsnummer();
 
     const tildelteOppgaver = [

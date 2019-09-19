@@ -50,7 +50,7 @@ function FortsettDialogContainer(props: Props) {
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.oppgaver.actions.reset);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
