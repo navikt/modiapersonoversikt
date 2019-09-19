@@ -94,15 +94,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c14 {
   border: none;
-  padding: 0.1rem;
-  border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
+  padding: 0.1rem;
+  border-radius: 0.5em;
 }
 
 .c14:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #ffbd66;
 }
 
 .c16 {
