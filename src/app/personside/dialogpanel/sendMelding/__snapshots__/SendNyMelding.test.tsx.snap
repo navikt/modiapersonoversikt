@@ -77,7 +77,7 @@ Array [
 
 .c6:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
   border-radius: .25rem;
 }
 

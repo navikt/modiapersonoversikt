@@ -47,7 +47,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c9:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c25 svg {
@@ -102,7 +102,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c14:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c16 {
