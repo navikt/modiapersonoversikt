@@ -2,17 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import { useAppState, useRestResource } from '../../../utils/customHooks';
+import { useAppState } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import { hasData } from '../../../rest/utils/restResource';
-import { useDispatch } from 'react-redux';
-import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
-import { loggError } from '../../../utils/frontendLogger';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { useInfotabsDyplenker } from '../infotabs/dyplenker';
-import { useEffect } from 'react';
+import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
@@ -35,7 +30,7 @@ function DialogPanel(props: RouteComponentProps) {
         <ErrorBoundary boundaryName="Dialogpanel">
             <DialogPanelWrapper role="region" aria-label="Dialogpanel">
                 <Undertittel className="sr-only">Dialogpanel</Undertittel>
-                {dialogpanelTraad !== undefined ? (
+                {dialogpanelTraad ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}
                         tilknyttetOppgave={tilknyttetOppgave}

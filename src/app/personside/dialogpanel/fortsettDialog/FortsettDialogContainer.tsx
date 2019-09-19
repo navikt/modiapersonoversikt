@@ -70,35 +70,45 @@ function FortsettDialogContainer(props: Props) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (isPosting(sendSvarResource) || !isFinishedPosting(opprettHenvendelseResource)) {
+        if (isPosting(sendSvarResource)) {
             return;
         }
         const callback = () => {
-            updateState(initialState);
+            dispatch(setIngenValgtTraadDialogpanel());
             setTimeout(() => {
-                // TODO løs dette med en thunkaction som fortsetter å pinge til tråden er oppdatert
                 dispatch(reloadMeldinger);
-            }, 5000);
+            }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
+        };
+        const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
+        const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
+        const commonPayload = {
+            fritekst: state.tekst,
+            meldingstype: state.dialogType,
+            traadId: props.traad.traadId,
+            behandlingsId: opprettHenvendelse.behandlingsId,
+            oppgaveId: oppgaveId
         };
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
-            FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state) ||
             FortsettDialogValidator.erGyldigSvarOppmote(state) ||
             FortsettDialogValidator.erGyldigSvarTelefon(state)
         ) {
-            const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe; // TODO, hva skal den være når det ikke er Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-            const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
-            const saksId = !props.tilknyttetOppgave ? state.sak && state.sak.saksId : undefined;
             dispatch(
                 sendSvarResource.actions.post(
                     {
-                        fritekst: state.tekst,
-                        meldingstype: state.dialogType,
+                        ...commonPayload,
+                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
+                    },
+                    callback
+                )
+            );
+        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state) && state.sak) {
+            dispatch(
+                sendSvarResource.actions.post(
+                    {
+                        ...commonPayload,
                         erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
-                        traadId: props.traad.traadId,
-                        oppgaveId: oppgaveId,
-                        behandlingsId: opprettHenvendelseResource.response.behandlingsId,
-                        saksId: saksId
+                        saksId: state.sak.saksId
                     },
                     callback
                 )
@@ -114,15 +124,12 @@ function FortsettDialogContainer(props: Props) {
     if (isPosting(sendSvarResource) || isPosting(leggTilbakeResource)) {
         return <CenteredLazySpinner type="XL" delay={100} />;
     }
-
     if (isFinishedPosting(sendSvarResource)) {
         return <SvarSendtKvittering resource={sendSvarResource} />;
     }
-
     if (isFinishedPosting(leggTilbakeResource)) {
         return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
     }
-
     if (isFailedPosting(sendSvarResource)) {
         return <DialogpanelFeilmelding resource={sendSvarResource} />;
     }
