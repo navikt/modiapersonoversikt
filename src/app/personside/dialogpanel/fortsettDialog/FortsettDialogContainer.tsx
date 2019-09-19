@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
+import { isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
@@ -12,9 +12,7 @@ import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { DialogpanelFeilmelding } from '../fellesStyling';
-import { LeggTilbakeOppgaveFeil, OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
+import { useFortsettDialogKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 
 export type FortsettDialogType =
@@ -51,7 +49,6 @@ function FortsettDialogContainer(props: Props) {
     };
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
@@ -62,8 +59,12 @@ function FortsettDialogContainer(props: Props) {
         });
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
+    const kvittering = useFortsettDialogKvittering();
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
+    }
+    if (kvittering) {
+        return kvittering;
     }
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
@@ -74,7 +75,6 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
-            dispatch(setIngenValgtTraadDialogpanel());
             setTimeout(() => {
                 dispatch(reloadMeldinger);
             }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
@@ -120,22 +120,6 @@ function FortsettDialogContainer(props: Props) {
             updateState({ visFeilmeldinger: true });
         }
     };
-
-    if (isPosting(sendSvarResource) || isPosting(leggTilbakeResource)) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
-    if (isFinishedPosting(sendSvarResource)) {
-        return <SvarSendtKvittering resource={sendSvarResource} />;
-    }
-    if (isFinishedPosting(leggTilbakeResource)) {
-        return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
-    }
-    if (isFailedPosting(sendSvarResource)) {
-        return <DialogpanelFeilmelding resource={sendSvarResource} />;
-    }
-    if (isFailedPosting(leggTilbakeResource)) {
-        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
-    }
 
     return (
         <>

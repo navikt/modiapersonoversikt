@@ -230,6 +230,13 @@ function setupOpprettHenvendelseMock(mock: FetchMock) {
     );
 }
 
+function setupFerdigstillHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
+}
+
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt',
@@ -463,6 +470,7 @@ export function setupMock() {
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
     setupOpprettHenvendelseMock(mock);
+    setupFerdigstillHenvendelseMock(mock);
     setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);
