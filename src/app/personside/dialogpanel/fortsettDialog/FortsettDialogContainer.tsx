@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useOnMount, usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { Kodeverk } from '../../../../models/kodeverk';
@@ -15,6 +15,7 @@ import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { DialogpanelFeilmelding } from '../fellesStyling';
 import { LeggTilbakeOppgaveFeil, OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
+import useOpprettHenvendelse from './useOpprettHenvendelse';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -48,16 +49,6 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
-
-    const opprettHenvendelseResource = useRestResource(resources => resources.opprettHenvendelse);
-
-    useOnMount(() => {
-        dispatch(opprettHenvendelseResource.actions.post({ traadId: props.traad.traadId }));
-        return () => {
-            dispatch(opprettHenvendelseResource.actions.reset);
-        };
-    });
-
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
@@ -70,13 +61,10 @@ function FortsettDialogContainer(props: Props) {
             ...change
         });
 
-    const previous = usePrevious(props.traad);
-
-    useEffect(() => {
-        if (previous !== props.traad) {
-            setState(initialState);
-        }
-    }, [props.traad, setState, previous, initialState]);
+    const opprettHenvendelse = useOpprettHenvendelse(props.traad);
+    if (opprettHenvendelse.success === false) {
+        return opprettHenvendelse.placeholder;
+    }
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
