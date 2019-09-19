@@ -29,9 +29,9 @@ export function getMockTraad(): Traad {
 }
 
 function getMelding(temagruppe: Temagruppe): Melding {
-    const visKontrosperre = faker.random.boolean();
-    const ferdigstilUtenSvar = faker.random.boolean();
-    const visMarkertSomFeilsendt = faker.random.boolean();
+    const visKontrosperre = navfaker.random.vektetSjanse(0.1);
+    const ferdigstilUtenSvar = navfaker.random.vektetSjanse(0.1);
+    const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
 
     return {
         id: faker.random.alphaNumeric(8),
