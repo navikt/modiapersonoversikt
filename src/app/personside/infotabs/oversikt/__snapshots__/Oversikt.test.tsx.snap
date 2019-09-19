@@ -50,12 +50,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: 0 0 0 0.1875rem #FFBD66;
 }
 
-.c26 svg {
+.c25 svg {
   height: 1.875rem;
   width: 1.875rem;
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -65,19 +65,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c25 .order-first {
+.c24 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c25 .order-second {
+.c24 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c24 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -197,15 +197,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c21 {
-  position: relative;
-}
-
-.c21 svg {
-  height: 1.875rem;
-  width: 1.875rem;
-}
-
 .c20 {
   position: absolute;
   top: -0.1875rem;
@@ -248,7 +239,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c22 > *:not(:first-child) {
+.c21 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -271,7 +262,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding-right: .8rem;
 }
 
-.c23 > *:not(:first-child) {
+.c22 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -880,78 +871,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         strokeMiterlimit="10"
                       >
                         <path
-                          d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
+                          d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
                         />
                         <path
-                          d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
-                        />
-                      </g>
-                    </svg>
-                    <p
-                      className="typo-undertekst-bold c20"
-                    >
-                      5
-                    </p>
-                  </span>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      01.01.1970 01:00
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Delsvar - Pensjon
-                    </p>
-                    <div
-                      className="tekstomrade"
-                    >
-                      Autem rerum illo. Ad iste neque maxime ut sapiente iste quae eaque. Li...
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                aria-label="Vis meldinger for Delsvar - Pensjon"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li>
-            <div
-              className="test-meldinger-oversikt c7"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c18"
-                >
-                  <span
-                    className="c19"
-                  >
-                    <svg
-                      height={24}
-                      viewBox="0 0 24 24"
-                      width={24}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="none"
-                        stroke="#000"
-                        strokeLinejoin="round"
-                        strokeMiterlimit="10"
-                      >
-                        <path
-                          d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
-                        />
-                        <path
-                          d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
+                          d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
+                          strokeLinecap="round"
                         />
                       </g>
                     </svg>
@@ -970,135 +894,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-element"
                     >
-                      Spørsmål fra bruker - Arbeid
+                      Samtalereferat oppmøte - Arbeid
                     </p>
                     <div
                       className="tekstomrade"
                     >
-                      Omnis laudantium et quo ducimus asperiores. Vel nulla ut quis perferen...
+                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Su...
                     </div>
                   </div>
                 </div>
               </div>
               <button
-                aria-label="Vis meldinger for Spørsmål fra bruker - Arbeid"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li>
-            <div
-              className="test-meldinger-oversikt c7"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c18"
-                >
-                  <span
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
-                        fill="none"
-                        stroke="#C6C2BF"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeMiterlimit="10"
-                      />
-                    </svg>
-                  </span>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      01.01.1970 01:00
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Dokument varsel - Arbeid
-                    </p>
-                    <div
-                      className="tekstomrade"
-                    >
-                      Qui placeat ullam et quisquam eos eum. Rerum ut mollitia excepturi com...
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                aria-label="Vis meldinger for Dokument varsel - Arbeid"
-                aria-selected={false}
-                className="c9"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li>
-            <div
-              className="test-meldinger-oversikt c7"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c18"
-                >
-                  <span
-                    className="c19"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
-                        fill="none"
-                        stroke="#C6C2BF"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeMiterlimit="10"
-                      />
-                    </svg>
-                    <p
-                      className="typo-undertekst-bold c20"
-                    >
-                      3
-                    </p>
-                  </span>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      01.01.1970 01:00
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Dokument varsel - Uføretrygd
-                    </p>
-                    <div
-                      className="tekstomrade"
-                    >
-                      Dolorem inventore deleniti et distinctio. Eligendi id asperiores imped...
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                aria-label="Vis meldinger for Dokument varsel - Uføretrygd"
+                aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
                 aria-selected={false}
                 className="c9"
               >
@@ -1140,7 +947,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <div
-          className="c22"
+          className="c21"
         >
           <div
             className="test-ytelse-oversikt c7"
@@ -1282,7 +1089,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <ol
-          className="c23"
+          className="c22"
         >
           <li
             className="test-sakstema-list"
@@ -1293,11 +1100,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1322,7 +1129,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -1363,11 +1170,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1402,7 +1209,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
@@ -1426,11 +1233,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1445,7 +1252,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
@@ -1469,11 +1276,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c23"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c24"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1498,7 +1305,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c25"
                   />
                 </div>
               </div>
