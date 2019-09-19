@@ -17,13 +17,17 @@ function useTildelteOppgaver() {
         ...(hasData(tildelteOppgaverResource) ? tildelteOppgaverResource.data : [])
     ].filter(removeDuplicateOppgaver);
 
-    const tildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);
-    const tildelteOppgaverPaaAndreBrukere = tildelteOppgaver.filter(oppg => oppg.fødselsnummer !== fnr);
+    const alleTildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);
+    const alleTildelteOppgaverPaaAndreBrukere = tildelteOppgaver.filter(oppg => oppg.fødselsnummer !== fnr);
+    const plukkedeOppgaverPåBruker = isFinishedPosting(oppgaveResource)
+        ? oppgaveResource.response.filter(oppg => oppg.fødselsnummer === fnr)
+        : [];
 
     return {
         alle: tildelteOppgaver,
-        paaBruker: tildelteOppgaverPaaBruker,
-        andreBrukere: tildelteOppgaverPaaAndreBrukere
+        paaBruker: alleTildelteOppgaverPaaBruker,
+        andreBrukere: alleTildelteOppgaverPaaAndreBrukere,
+        nettopTildelt: plukkedeOppgaverPåBruker
     };
 }
 
