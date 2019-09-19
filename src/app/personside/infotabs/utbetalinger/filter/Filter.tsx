@@ -15,6 +15,7 @@ import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetal
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
+import { isValidDate } from '../../../../../utils/dateUtils';
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
@@ -72,15 +73,21 @@ function Filtrering() {
     const dispatch = useDispatch();
     const utbetalingerResource = useSelector((state: AppState) => state.restResources.utbetalinger);
     const reloadUtbetalingerAction = utbetalingerResource.actions.reload;
-    const reloadUtbetalinger = useCallback(() => dispatch(reloadUtbetalingerAction), [
-        dispatch,
-        reloadUtbetalingerAction
-    ]);
 
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
     const updateFilter = useCallback((change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change)), [
         dispatch
     ]);
+
+    const reloadUtbetalinger = useCallback(() => {
+        if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
+            const periode = filter.periode.egendefinertPeriode;
+            if (!isValidDate(periode.fra) || !isValidDate(periode.til)) {
+                return;
+            }
+        }
+        dispatch(reloadUtbetalingerAction);
+    }, [dispatch, reloadUtbetalingerAction, filter.periode]);
 
     const radios = Object.keys(PeriodeValg).map(key => {
         const label = PeriodeValg[key];

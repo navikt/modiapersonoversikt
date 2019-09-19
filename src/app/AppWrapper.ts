@@ -24,7 +24,6 @@ export const ContentStyle = styled.div`
     }
     flex-grow: 1;
     display: flex;
-    overflow: auto;
 `;
 
 export default AppWrapper;

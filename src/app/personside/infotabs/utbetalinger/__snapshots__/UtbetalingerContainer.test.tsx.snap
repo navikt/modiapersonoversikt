@@ -542,10 +542,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media not all and (max-width:80rem) {
+  .c0 {
+    max-height: 100%;
+  }
+
   .c0 > * {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    overflow-y: auto;
+    max-height: 100%;
   }
 }
 

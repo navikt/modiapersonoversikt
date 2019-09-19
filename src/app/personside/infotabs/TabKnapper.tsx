@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import styled, { css } from 'styled-components';
-import { theme } from '../../../styles/personOversiktTheme';
+import theme from '../../../styles/personOversiktTheme';
 
 interface TabPanelProps {
     onTabChange: Function;
@@ -13,12 +13,15 @@ const TabKnapperNav = styled.nav`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    padding: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-right: 0.2em;
     }
     > *:not(:first-child) {
         margin-left: 0.2em;
     }
+    border-top: ${theme.border.skille};
+    border-bottom: ${theme.border.skille};
 `;
 
 const KnappWrapper = styled.div`

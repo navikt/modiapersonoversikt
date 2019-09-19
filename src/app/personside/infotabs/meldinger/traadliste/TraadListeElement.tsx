@@ -13,6 +13,7 @@ import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import { meldingerTest } from '../../dyplenkeTest/utils';
 
 interface Props {
     traad: Traad;
@@ -69,7 +70,7 @@ function TraadListeElement(props: Props) {
     });
 
     return (
-        <ListElement tabIndex={-1} ref={ref}>
+        <ListElement tabIndex={-1} ref={ref} className={meldingerTest.melding}>
             <VisMerKnapp
                 valgt={props.erValgt}
                 linkTo={dyplenker.meldinger.link(props.traad)}
