@@ -48,11 +48,11 @@ export const HøyreKolonne = styled.section<StyleProps>`
               `};
     background-color: ${theme.color.dialogpanelBakgrunn};
     overflow-y: auto;
-    box-shadow: 0 0 1rem 0 ${theme.color.bakgrunn};
     z-index: 1;
     display: flex;
     flex-flow: column nowrap;
-    border-left: ${theme.border.skille} > * {
+    border-left: ${theme.border.skille};
+    > * {
         ${theme.animation.fadeIn};
         flex-shrink: 0;
         border-top: ${theme.border.skilleSvak};
