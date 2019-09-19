@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
 import NavFrontendChevron from 'nav-frontend-chevron';
+import theme from '../styles/personOversiktTheme';
 
 interface Props {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -11,14 +11,9 @@ interface Props {
 }
 
 const ChevronKnappStyle = styled.button`
-    border: none;
+    ${theme.resetButtonStyle};
     padding: 0.1rem;
     border-radius: 0.5em;
-    cursor: pointer;
-    background-color: transparent;
-    &:focus {
-        ${theme.focus}
-    }
 `;
 
 function VisMerChevron(props: Props) {

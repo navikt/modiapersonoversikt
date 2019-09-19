@@ -104,6 +104,15 @@ export const theme = {
         .ekspanderbartPanel__hode:hover {
             ${hover}
         }
+    `,
+    resetButtonStyle: css`
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.1875rem #ffbd66;
+        }
     `
 };
 
