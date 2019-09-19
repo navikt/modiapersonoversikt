@@ -18,10 +18,12 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
+import theme from '../../../styles/personOversiktTheme';
 
 type Props = RouteComponentProps<{}>;
 
 const OpenTab = styled.div`
+    padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
     flex-grow: 1;

@@ -137,7 +137,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 .c11 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
 .c12 {
@@ -208,7 +208,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 .c2 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
 .c3 {
@@ -217,7 +217,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -ms-flexbox;
   display: flex;
   background-color: #e9e7e7;
-  box-shadow: 0 0 0.1rem gray;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
   -webkit-box-pack: justify;
