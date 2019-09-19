@@ -3,8 +3,8 @@ import moment from 'moment';
 import { Periode } from '../../../../../../models/periode';
 
 export function utledUtbetalingPåVentÅrsak(utbetaling: UtbetalingPåVent): string {
-    if (utbetaling.arbeidskategori === '99') {
-        return 'Inntektsopplysninger mangler';
+    if (utbetaling.arbeidskategori === 'Inntektsopplysninger mangler') {
+        return utbetaling.arbeidskategori;
     }
     if (utbetaling.stansårsak) {
         return utbetaling.stansårsak;

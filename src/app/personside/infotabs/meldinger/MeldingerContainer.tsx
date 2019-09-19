@@ -15,7 +15,7 @@ import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 
-const meldingerMediaTreshold = pxToRem(900);
+const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
     @media (min-width: ${meldingerMediaTreshold}) {
@@ -24,6 +24,11 @@ const MeldingerArticleStyle = styled.article`
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
+        > * {
+            overflow-y: auto;
+            max-height: 100%;
+        }
+        max-height: 100%;
     }
     > * {
         margin-bottom: ${theme.margin.layout};
@@ -33,8 +38,6 @@ const MeldingerArticleStyle = styled.article`
         flex: 30% 1 1;
     }
     > *:last-child {
-        position: sticky;
-        top: 0;
         flex: 70% 1 1;
     }
 `;
