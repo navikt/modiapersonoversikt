@@ -5,7 +5,7 @@ import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
@@ -48,7 +48,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dyplenker = useInfotabsDyplenker();
     const traadIUrl = useValgtTraadIUrl(props);
-
+    const [sokeord, setSokeord] = useState('');
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {
             props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
@@ -64,7 +64,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
         >
             {data => (
                 <MeldingerArticleStyle>
-                    <TraadListe traader={data} valgtTraad={traadIUrl} />
+                    <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
                     <div>
                         <Verktoylinje valgtTraad={traadIUrl} />
                         <TraadVisning valgtTraad={traadIUrl} />

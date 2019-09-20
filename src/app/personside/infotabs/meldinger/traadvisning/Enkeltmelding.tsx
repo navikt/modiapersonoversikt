@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
+import { Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { erMeldingFraNav, saksbehandlerTekst } from '../utils/meldingerUtils';
-import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
+import { erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { formaterDato } from '../../../../../utils/stringFormatting';
@@ -22,11 +21,6 @@ const SnakkebobleWrapper = styled.div`
     text-align: left;
 `;
 
-function meldingstittel(melding: Melding) {
-    const lestTekst = melding.status === LestStatus.Lest ? 'Lest,' : 'Ulest,';
-    return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst} ${temagruppeTekst(melding.temagruppe)}`;
-}
-
 function journalfortMelding(melding: Melding) {
     const navn = melding.journalfortAv && saksbehandlerTekst(melding.journalfortAv);
     const dato = melding.journalfortDato && formaterDato(melding.journalfortDato);
@@ -43,7 +37,7 @@ function Journalforing({ melding }: { melding: Melding }) {
 
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
-    const topptekst = meldingstittel(props.melding);
+    const topptekst = meldingstittel(props.melding, true);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
 
