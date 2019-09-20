@@ -4,18 +4,19 @@ import { sokEtterMeldinger } from './TraadListe';
 
 function getMockSøketråd(
     fritekst: string,
-    tittel: { meldingtype: Meldingstype; temagruppe: Temagruppe },
+    tittel?: { meldingtype: Meldingstype; temagruppe: Temagruppe },
     saksbehandler?: Saksbehandler
-) {
+): Traad {
+    const mockMelding = statiskTraadMock.meldinger[0];
     return {
         ...statiskTraadMock,
         meldinger: [
             {
-                ...statiskTraadMock.meldinger[0],
+                ...mockMelding,
                 fritekst: fritekst,
-                meldingstype: (tittel && tittel.meldingtype) || '',
-                temagruppe: (tittel && tittel.temagruppe) || '',
-                skrevetAv: saksbehandler
+                meldingstype: (tittel && tittel.meldingtype) || mockMelding.meldingstype,
+                temagruppe: (tittel && tittel.temagruppe) || mockMelding.temagruppe,
+                skrevetAv: saksbehandler || mockMelding.skrevetAv
             }
         ]
     };

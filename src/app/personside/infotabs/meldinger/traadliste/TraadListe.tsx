@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { meldingstittel, saksbehandlerTekst, sisteSendteMelding } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
+import { useMemo } from 'react';
 
 interface Props {
     traader: Traad[];
@@ -30,6 +32,7 @@ const TraadListeStyle = styled.ol`
 const InputStyle = styled.div`
     padding: ${theme.margin.layout};
 `;
+
 export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
     const words = query.split(' ');
     return traader.filter(traad => {
@@ -51,12 +54,20 @@ export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
 }
 
 function TraadListe(props: Props) {
+    const debouncedSokeord = useDebounce(props.sokeord, 200);
+    const traadKomponenter = useMemo(
+        () =>
+            sokEtterMeldinger(props.traader, debouncedSokeord)
+                .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
+                .map(traad => (
+                    <TraadListeElement traad={traad} key={traad.traadId} erValgt={traad === props.valgtTraad} />
+                )),
+        [debouncedSokeord, props.traader]
+    );
+
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
-    const traadKomponenter = sokEtterMeldinger(props.traader, props.sokeord)
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-        .map(traad => <TraadListeElement traad={traad} key={traad.traadId} erValgt={traad === props.valgtTraad} />);
 
     return (
         <PanelStyle>
@@ -69,6 +80,7 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
+            {traadKomponenter.length === 0 && <AlertStripeInfo>Fant ingen meldinger</AlertStripeInfo>}
         </PanelStyle>
     );
 }
