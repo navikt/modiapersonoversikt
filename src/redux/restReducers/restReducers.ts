@@ -75,8 +75,8 @@ export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
-    oppgaver: PostResource<{}, Oppgave[]>;
-    tildDelteOppgaver: RestResource<Oppgave[]>;
+    plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
+    tildelteOppgaver: RestResource<Oppgave[]>;
     leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
@@ -116,8 +116,8 @@ export default combineResettableReducers<RestEndepunkter>(
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        oppgaver: oppgaverReducer,
-        tildDelteOppgaver: tildelteOppgaver,
+        plukkNyeOppgaver: oppgaverReducer,
+        tildelteOppgaver: tildelteOppgaver,
         leggTilbakeOppgave: leggTilbakeOppgave,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
@@ -151,5 +151,5 @@ export default combineResettableReducers<RestEndepunkter>(
         opprettOppgave: opprettOppgave,
         personsok: personsok
     },
-    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'oppgaver']
+    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
 );
