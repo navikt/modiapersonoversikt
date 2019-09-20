@@ -41,7 +41,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c23:hover {
@@ -124,7 +124,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c8:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c24 {

@@ -393,7 +393,7 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',

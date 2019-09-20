@@ -22,7 +22,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c15:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c15:hover {
@@ -89,7 +89,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c18:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c18:hover {
@@ -313,7 +313,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   position: absolute;
   top: 0;
   content: '';
-  box-shadow: 0 0 0 0.1875rem #ffbd66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
   height: 100%;
   width: 100%;
   pointer-events: none;
