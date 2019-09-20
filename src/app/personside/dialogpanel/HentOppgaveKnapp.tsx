@@ -58,7 +58,7 @@ function HentOppgaveKnapp(props: Props) {
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const dispatch = useDispatch();
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: string) => dispatch(velgTemagruppe(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.temagruppe.valgtTemagruppe);
 

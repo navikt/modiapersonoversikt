@@ -33,6 +33,7 @@ import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
+import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -219,6 +220,20 @@ function setupOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/plukk/:temagruppe',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+    );
+}
+
+function setupOpprettHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => henvendelseResponseMock)
+    );
+}
+
+function setupFerdigstillHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
@@ -454,6 +469,8 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupOpprettHenvendelseMock(mock);
+    setupFerdigstillHenvendelseMock(mock);
     setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);

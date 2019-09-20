@@ -25,7 +25,7 @@ function PersonsokResultat(props: Props) {
     }
 
     if (isFailedPosting(personsokResource)) {
-        return <AlertStripeAdvarsel>{personsokResource.error.message}</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>Noe gikk galt: {personsokResource.error}</AlertStripeAdvarsel>;
     }
 
     if (!isFinishedPosting(personsokResource)) {
