@@ -5,7 +5,7 @@ export function post(uri: string, body: object) {
         if (response.ok && !response.redirected) {
             return parseResponse(response);
         } else {
-            throw response.statusText;
+            return response.text().then(text => Promise.reject(text));
         }
     });
 }
