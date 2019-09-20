@@ -78,7 +78,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c11:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c7 {
@@ -135,7 +135,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c4:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c10 {
@@ -165,7 +165,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
 .c1 ol {

@@ -15,7 +15,7 @@ export function mockPersonsokResponse(request: PersonsokRequest): PersonsokRespo
     faker.seed(Number(seednr));
     navfaker.seed(seednr);
 
-    return fyllRandomListe(() => getPersonsokResponse(), 10);
+    return fyllRandomListe(() => getPersonsokResponse(), 50);
 }
 
 function getPersonsokResponse(): PersonsokResponse {
@@ -160,4 +160,10 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
             }
         }
     ];
+}
+
+export function mockStaticPersonsokRequest(): PersonsokRequest {
+    return {
+        fornavn: 'Aremark'
+    };
 }

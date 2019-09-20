@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-Array [
-  .c6 {
+.c6 {
   position: relative;
   border: none;
   padding: 0;
@@ -30,7 +29,7 @@ Array [
 
 .c6:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c6:hover {
@@ -58,6 +57,7 @@ Array [
 }
 
 .c5 {
+  padding-top: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -96,135 +96,26 @@ Array [
 }
 
 <form
-    onSubmit={[Function]}
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <article
+    className="c0"
   >
-    <article
-      className="c0"
+    <div
+      className="c1"
     >
-      <div
-        className="c1"
+      <section
+        aria-label="Søkekriterier"
       >
-        <section
-          aria-label="Søkekriterier"
+        <h2
+          className="typo-systemtittel"
         >
-          <h2
-            className="typo-systemtittel"
-          >
-            Søkekriterier
-          </h2>
-          <div
-            className="c2"
-          >
-            <div
-              className="skjemaelement"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Fornavn (Fonetisk søk)
-              </label>
-              <input
-                className="skjemaelement__input input--xl"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              className="skjemaelement"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Etternavn (Fonetisk søk)
-              </label>
-              <input
-                className="skjemaelement__input input--xl"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-          </div>
-          <div
-            className="c2"
-          >
-            <div
-              className="skjemaelement"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Gatenavn
-              </label>
-              <input
-                className="skjemaelement__input input--l"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              className="skjemaelement"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Husnummer
-              </label>
-              <input
-                className="skjemaelement__input input--m"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-            <div
-              className="skjemaelement"
-            >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Husbokstav
-              </label>
-              <input
-                className="skjemaelement__input input--m"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-            </div>
-          </div>
+          Søkekriterier
+        </h2>
+        <div
+          className="c2"
+        >
           <div
             className="skjemaelement"
           >
@@ -232,10 +123,10 @@ Array [
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Postnummer
+              Fornavn (Fonetisk søk)
             </label>
             <input
-              className="skjemaelement__input input--m"
+              className="skjemaelement__input input--xl"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
@@ -253,7 +144,32 @@ Array [
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Kontonummer (Norske nummer)
+              Etternavn (Fonetisk søk)
+            </label>
+            <input
+              className="skjemaelement__input input--xl"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </div>
+        <div
+          className="c2"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Gatenavn
             </label>
             <input
               className="skjemaelement__input input--l"
@@ -267,15 +183,6 @@ Array [
               role="alert"
             />
           </div>
-        </section>
-        <section
-          aria-label="Begrens søket"
-        >
-          <h2
-            className="typo-systemtittel"
-          >
-            Begrens søket
-          </h2>
           <div
             className="skjemaelement"
           >
@@ -283,7 +190,7 @@ Array [
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Bosted
+              Husnummer
             </label>
             <input
               className="skjemaelement__input input--m"
@@ -298,200 +205,272 @@ Array [
             />
           </div>
           <div
-            className="c2"
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Husbokstav
+            </label>
+            <input
+              className="skjemaelement__input input--m"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Postnummer
+          </label>
+          <input
+            className="skjemaelement__input input--m"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Kontonummer (Norske nummer)
+          </label>
+          <input
+            className="skjemaelement__input input--l"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+      </section>
+      <section
+        aria-label="Begrens søket"
+      >
+        <h2
+          className="typo-systemtittel"
+        >
+          Begrens søket
+        </h2>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Bosted
+          </label>
+          <input
+            className="skjemaelement__input input--m"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
           >
             <div
-              className="c3"
+              className="c4"
             >
-              <div
-                className="c4"
+              <label
+                htmlFor="personsok-datovelger-fra"
               >
-                <label
-                  htmlFor="personsok-datovelger-fra"
-                >
-                  Fødselsdato fra:
-                </label>
-              </div>
-              <div
-                onBlur={[Function]}
-                onKeyDown={[Function]}
-              >
-                <div
-                  className="nav-datovelger"
-                >
-                  <div
-                    className="nav-datovelger__inputContainer"
-                  >
-                    <input
-                      aria-invalid={false}
-                      autoComplete="off"
-                      autoCorrect="off"
-                      className="nav-datovelger__input"
-                      id="personsok-datovelger-fra"
-                      maxLength={10}
-                      name="Fødselsdato fra dato"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onKeyDown={[Function]}
-                      pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                      type="text"
-                      value=""
-                    />
-                    <button
-                      aria-expanded={false}
-                      aria-label="Kalender"
-                      className="nav-datovelger__kalenderknapp"
-                      onClick={[Function]}
-                      role="button"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height={16}
-                        role="presentation"
-                        viewBox="0 0 18 18"
-                        width={16}
-                      >
-                        <title>
-                          Kalenderikon
-                        </title>
-                        <g
-                          fill="none"
-                          fillRule="evenodd"
-                          stroke="#0067C5"
-                        >
-                          <path
-                            d="M4 2.667H1.333v14h15.334v-14H14"
-                          />
-                          <path
-                            d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                          />
-                        </g>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
+                Fødselsdato fra:
+              </label>
             </div>
             <div
-              className="c3"
+              onBlur={[Function]}
+              onKeyDown={[Function]}
             >
               <div
-                className="c4"
-              >
-                <label
-                  htmlFor="personsok-datovelger-til"
-                >
-                  Fødselsdato til:
-                </label>
-              </div>
-              <div
-                onBlur={[Function]}
-                onKeyDown={[Function]}
+                className="nav-datovelger"
               >
                 <div
-                  className="nav-datovelger"
+                  className="nav-datovelger__inputContainer"
                 >
-                  <div
-                    className="nav-datovelger__inputContainer"
+                  <input
+                    aria-invalid={false}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    className="nav-datovelger__input"
+                    id="personsok-datovelger-fra"
+                    maxLength={10}
+                    name="Fødselsdato fra dato"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    aria-expanded={false}
+                    aria-label="Kalender"
+                    className="nav-datovelger__kalenderknapp"
+                    onClick={[Function]}
+                    role="button"
+                    type="button"
                   >
-                    <input
-                      aria-invalid={false}
-                      autoComplete="off"
-                      autoCorrect="off"
-                      className="nav-datovelger__input"
-                      id="personsok-datovelger-til"
-                      maxLength={10}
-                      name="Fødselsdato til dato"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onKeyDown={[Function]}
-                      pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                      type="text"
-                      value=""
-                    />
-                    <button
-                      aria-expanded={false}
-                      aria-label="Kalender"
-                      className="nav-datovelger__kalenderknapp"
-                      onClick={[Function]}
-                      role="button"
-                      type="button"
+                    <svg
+                      aria-hidden="true"
+                      height={16}
+                      role="presentation"
+                      viewBox="0 0 18 18"
+                      width={16}
                     >
-                      <svg
-                        aria-hidden="true"
-                        height={16}
-                        role="presentation"
-                        viewBox="0 0 18 18"
-                        width={16}
+                      <title>
+                        Kalenderikon
+                      </title>
+                      <g
+                        fill="none"
+                        fillRule="evenodd"
+                        stroke="#0067C5"
                       >
-                        <title>
-                          Kalenderikon
-                        </title>
-                        <g
-                          fill="none"
-                          fillRule="evenodd"
-                          stroke="#0067C5"
-                        >
-                          <path
-                            d="M4 2.667H1.333v14h15.334v-14H14"
-                          />
-                          <path
-                            d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                          />
-                        </g>
-                      </svg>
-                    </button>
-                  </div>
+                        <path
+                          d="M4 2.667H1.333v14h15.334v-14H14"
+                        />
+                        <path
+                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                        />
+                      </g>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div
-            className="c2"
+            className="c3"
           >
             <div
-              className="skjemaelement"
+              className="c4"
             >
               <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
+                htmlFor="personsok-datovelger-til"
               >
-                Alder fra
+                Fødselsdato til:
               </label>
-              <input
-                className="skjemaelement__input input--m"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
             <div
-              className="skjemaelement"
+              onBlur={[Function]}
+              onKeyDown={[Function]}
             >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Alder til
-              </label>
-              <input
-                className="skjemaelement__input input--m"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
               <div
-                aria-live="assertive"
-                role="alert"
-              />
+                className="nav-datovelger"
+              >
+                <div
+                  className="nav-datovelger__inputContainer"
+                >
+                  <input
+                    aria-invalid={false}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    className="nav-datovelger__input"
+                    id="personsok-datovelger-til"
+                    maxLength={10}
+                    name="Fødselsdato til dato"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    aria-expanded={false}
+                    aria-label="Kalender"
+                    className="nav-datovelger__kalenderknapp"
+                    onClick={[Function]}
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      height={16}
+                      role="presentation"
+                      viewBox="0 0 18 18"
+                      width={16}
+                    >
+                      <title>
+                        Kalenderikon
+                      </title>
+                      <g
+                        fill="none"
+                        fillRule="evenodd"
+                        stroke="#0067C5"
+                      >
+                        <path
+                          d="M4 2.667H1.333v14h15.334v-14H14"
+                        />
+                        <path
+                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                        />
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div
+          className="c2"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Alder fra
+            </label>
+            <input
+              className="skjemaelement__input input--m"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
           </div>
           <div
             className="skjemaelement"
@@ -500,74 +479,92 @@ Array [
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Kjønn
+              Alder til
             </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                className="skjemaelement__input"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-              >
-                <option
-                  value=""
-                >
-                  Velg Kjønn
-                </option>
-                <option
-                  value="M"
-                >
-                  M - Mann
-                </option>
-                <option
-                  value="K"
-                >
-                  K - Kvinne
-                </option>
-                <option
-                  value="D"
-                >
-                  D - Diskresjonskode
-                </option>
-              </select>
-            </div>
+            <input
+              className="skjemaelement__input input--m"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
             <div
               aria-live="assertive"
               role="alert"
             />
           </div>
-        </section>
-      </div>
-      <div
-        className="c5"
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Kjønn
+          </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+            >
+              <option
+                value=""
+              >
+                Velg Kjønn
+              </option>
+              <option
+                value="K"
+              >
+                K - Kvinne
+              </option>
+              <option
+                value="M"
+              >
+                M - Mann
+              </option>
+            </select>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+      </section>
+    </div>
+    <a
+      className="lenke"
+      href="?fornavn=&etternavn=&foedselsdato=&kjoenn="
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <p
+        className="typo-normal"
       >
-        <button
-          className="knapp knapp--hoved"
-          disabled={false}
-          type="submit"
-        >
-          Send
-        </button>
-        <button
-          className="c6"
-          onClick={[Function]}
-          type="button"
-        >
-          Nullstill
-        </button>
-      </div>
-    </article>
-  </form>,
-  .c0 {
-  margin: .8rem;
-  color: #d0021b;
-}
-
-<div
-    aria-live="polite"
-    className="c0"
-  />,
-]
+        Rekvirer D-nummer fra Folkeregisteret
+      </p>
+    </a>
+    <div
+      className="c5"
+    >
+      <button
+        className="knapp knapp--hoved"
+        disabled={false}
+        type="submit"
+      >
+        Søk
+      </button>
+      <button
+        className="c6"
+        type="reset"
+      >
+        Nullstill
+      </button>
+    </div>
+  </article>
+</form>
 `;

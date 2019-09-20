@@ -24,7 +24,6 @@ const PanelStyle = styled.section`
 const OverskriftStyle = styled.div`
     display: flex;
     background-color: ${theme.color.bakgrunn};
-    box-shadow: 0 0 0.1rem gray;
     border-top-left-radius: ${theme.borderRadius.layout};
     border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
