@@ -25,10 +25,9 @@ interface State {
 }
 
 const VisittkortHeaderDiv = styled.section`
-    ${theme.hvittPanel};
+    background-color: white;
     padding: ${theme.margin.px20};
     padding-right: 3rem;
-    margin-bottom: 0.2rem;
     position: relative;
     width: 100%;
     display: flex;

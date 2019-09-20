@@ -6,9 +6,10 @@ import { theme } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 
 export const VisittkortBodyWrapper = styled.section`
-    ${theme.hvittPanel};
+    background-color: white;
     padding: ${theme.margin.px20};
     display: flex;
+    margin-top: 0.2rem;
     &:focus {
         ${theme.focus}
     }

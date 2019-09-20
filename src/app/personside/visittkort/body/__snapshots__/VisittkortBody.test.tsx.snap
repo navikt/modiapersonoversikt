@@ -33,19 +33,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 }
 
 .c0 {
-  border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
   padding: 1.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 0.2rem;
 }
 
 .c0:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c0 > * {

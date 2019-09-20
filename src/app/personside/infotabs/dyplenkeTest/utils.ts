@@ -4,6 +4,11 @@ export function getAktivTab(infoTabs: ReactWrapper) {
     return infoTabs.find('button[role="tab"][aria-selected=true]').text();
 }
 
+export const meldingerTest = {
+    oversikt: 'test-meldinger-oversikt',
+    melding: 'test-meldinger-melding'
+};
+
 export const sakerTest = {
     oversikt: 'test-saker-oversikt',
     dokument: 'test-saker-dokumenter',

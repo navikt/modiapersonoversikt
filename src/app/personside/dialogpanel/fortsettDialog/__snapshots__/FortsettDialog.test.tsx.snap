@@ -151,7 +151,7 @@ exports[`viser fortsett dialog 1`] = `
   padding-left: 2.25rem;
 }
 
-.c17 label {
+.c19 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -162,8 +162,40 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c16 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
+.c16 {
+  background-color: white;
+  border-radius: .25rem;
+  border: 1px solid #78706a;
+}
+
+.c17 {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: .25rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c17:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c18 {
+  padding: 0.5rem;
 }
 
 .c15 {
@@ -189,11 +221,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c18 {
+.c20 {
   margin-top: 1rem;
 }
 
-.c19 {
+.c21 {
   width: 100%;
 }
 
@@ -748,31 +780,25 @@ exports[`viser fortsett dialog 1`] = `
           className=""
         >
           <div
-            className="ekspanderbartPanel c16 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="c16"
           >
             <button
               aria-expanded={false}
-              className="ekspanderbartPanel__hode"
+              className="c17"
               onClick={[Function]}
-              onKeyDown={[Function]}
               type="button"
             >
-              <div
-                className="ekspanderbartPanel__flex-wrapper"
+              <p
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal ekspanderbartPanel__heading"
-                >
-                  Velg sak
-                </span>
-                <span
-                  className="ekspanderbartPanel__indikator"
-                />
-              </div>
+                Velg sak
+              </p>
+              <i
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
             </button>
-            <article
-              aria-label="Velg sak"
-              className="ekspanderbartPanel__innhold"
+            <div
+              className="c18"
             >
               <svg
                 aria-label="Laster innhold"
@@ -807,7 +833,7 @@ exports[`viser fortsett dialog 1`] = `
                   strokeWidth="5"
                 />
               </svg>
-            </article>
+            </div>
           </div>
           <div
             aria-live="assertive"
@@ -819,7 +845,7 @@ exports[`viser fortsett dialog 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c17"
+          className="skjemaelement c19"
         >
           <label
             className="skjemaelement__label"
@@ -882,14 +908,14 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c18 knapp--hoved"
+      className="knapp c20 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c19 knapp--flat"
+      className="knapp c21 knapp--flat"
       disabled={false}
       onClick={[Function]}
       type="button"

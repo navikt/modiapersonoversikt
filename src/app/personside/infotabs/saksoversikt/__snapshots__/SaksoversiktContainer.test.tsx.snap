@@ -41,7 +41,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c23:hover {
@@ -124,7 +124,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c8:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c24 {
@@ -185,7 +185,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   min-width: 24rem;
   -webkit-flex-basis: 24rem;
   -ms-flex-preferred-size: 24rem;
@@ -282,7 +282,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c11 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -346,7 +346,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c15 ol {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 0;
   margin: 0;
 }
@@ -422,6 +422,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
+    max-height: 100%;
   }
 
   .c0 > *:last-child {
@@ -429,9 +430,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   }
 
   .c0 > * {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    overflow-y: auto;
+    max-height: 100%;
   }
 }
 

@@ -3,36 +3,29 @@ import { FormEvent, useState } from 'react';
 import { PersonsokRequest } from '../../models/person/personsok';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import { formatterDatoForBackendPost } from '../../utils/dateUtils';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
-import styled from 'styled-components';
-import theme from '../../styles/personOversiktTheme';
-import { validerKontonummer } from '../brukerprofil/kontonummer/kontonummerUtils';
+import { ValideringsResultat } from '../../utils/forms/FormValidator';
+import { getValidPersonSokState, validerPersonsokSkjema } from './personsokValidator';
 
-const ValideringsfeilStyle = styled.div`
-    margin: ${theme.margin.layout};
-    color: #d0021b;
-`;
+export type PersonSokFormState = {
+    fornavn: string;
+    etternavn: string;
+    gatenavn: string;
+    husnummer: string;
+    husbokstav: string;
+    postnummer: string;
+    kontonummer: string;
+    kommunenummer: string;
+    fodselsdatoFra?: string;
+    fodselsdatoTil?: string;
+    alderFra: string;
+    alderTil: string;
+    kjonn: string;
+};
 
 export interface PersonsokSkjemaProps {
-    stateCriteria: {
-        fornavn: string;
-        etternavn: string;
-        gatenavn: string;
-        husnummer: string;
-        husbokstav: string;
-        postnummer: string;
-        kontonummer: string;
-    };
-    stateLimit: {
-        kommunenummer: string;
-        fodselsdatoFra?: Date;
-        fodselsdatoTil?: Date;
-        alderFra: string;
-        alderTil: string;
-        kjonn: string;
-    };
-    actionsCriteria: {
+    state: PersonSokFormState;
+    actions: {
         settFornavn(fornavn: string): void;
         settEtternavn(etternavn: string): void;
         settGatenavn(gatenavn: string): void;
@@ -40,15 +33,14 @@ export interface PersonsokSkjemaProps {
         settHusbokstav(husbokstav: string): void;
         settPostnummer(postnummer: string): void;
         settKontonummer(kontonummer: string): void;
-    };
-    actionsLimit: {
         settKommunenummer(kommunenummer: string): void;
-        settFodselsdatoFra(fodselsdatoFra: Date | undefined): void;
-        settFodselsdatoTil(fodselsdatoTil: Date | undefined): void;
+        settFodselsdatoFra(fodselsdatoFra: string | undefined): void;
+        settFodselsdatoTil(fodselsdatoTil: string | undefined): void;
         settAlderFra(alderFra: string): void;
         settAlderTil(alderTil: string): void;
         settKjonn(kjonn: string): void;
     };
+    valideringsResultat: ValideringsResultat<PersonSokFormState>;
 }
 
 function stringToNumber(input: string): number | undefined {
@@ -65,78 +57,22 @@ function emptyString(input: string): string | undefined {
     return input;
 }
 
-function erTomStreng(input?: string): boolean {
-    if (!input) {
-        return true;
-    }
-
-    if (input.trim().length === 0) {
-        return true;
-    }
-
-    return false;
-}
-
-function alleFelterErTomme(props: PersonsokSkjemaProps): boolean {
-    return (
-        erTomStreng(props.stateCriteria.fornavn) &&
-        erTomStreng(props.stateCriteria.etternavn) &&
-        erTomStreng(props.stateCriteria.gatenavn) &&
-        erTomStreng(props.stateCriteria.husnummer) &&
-        erTomStreng(props.stateCriteria.husbokstav) &&
-        erTomStreng(props.stateCriteria.postnummer) &&
-        erTomStreng(props.stateCriteria.kontonummer)
-    );
-}
-
 function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
     return {
-        fornavn: emptyString(form.stateCriteria.fornavn),
-        etternavn: emptyString(form.stateCriteria.etternavn),
-        gatenavn: emptyString(form.stateCriteria.gatenavn),
-        husnummer: stringToNumber(form.stateCriteria.husnummer),
-        husbokstav: emptyString(form.stateCriteria.husbokstav),
-        postnummer: emptyString(form.stateCriteria.postnummer),
-        kontonummer: emptyString(form.stateCriteria.kontonummer),
-        kommunenummer: emptyString(form.stateLimit.kommunenummer),
-        fodsesldatoFra: formatterDatoForBackendPost(form.stateLimit.fodselsdatoFra),
-        fodsesldatoTil: formatterDatoForBackendPost(form.stateLimit.fodselsdatoTil),
-        alderFra: stringToNumber(form.stateLimit.alderFra),
-        alderTil: stringToNumber(form.stateLimit.alderTil),
-        kjonn: emptyString(form.stateLimit.kjonn)
+        fornavn: emptyString(form.state.fornavn),
+        etternavn: emptyString(form.state.etternavn),
+        gatenavn: emptyString(form.state.gatenavn),
+        husnummer: stringToNumber(form.state.husnummer),
+        husbokstav: emptyString(form.state.husbokstav),
+        postnummer: emptyString(form.state.postnummer),
+        kontonummer: emptyString(form.state.kontonummer),
+        kommunenummer: emptyString(form.state.kommunenummer),
+        fodsesldatoFra: form.state.fodselsdatoFra,
+        fodsesldatoTil: form.state.fodselsdatoTil,
+        alderFra: stringToNumber(form.state.alderFra),
+        alderTil: stringToNumber(form.state.alderTil),
+        kjonn: emptyString(form.state.kjonn)
     };
-}
-
-function validerSkjema(props: PersonsokSkjemaProps): string | undefined {
-    if (alleFelterErTomme(props)) {
-        return 'Manglende søkekriterier. Angi navn og/eller gatenavn og trykk på "søk" igjen for å utføre et søk';
-    }
-
-    if (props.stateCriteria.kontonummer && !validerKontonummer(props.stateCriteria.kontonummer)) {
-        return 'Kontonummer må ha 11 siffer';
-    }
-
-    if (!erTomStreng(props.stateCriteria.husnummer) && !props.stateCriteria.gatenavn) {
-        return 'Gatenavn må fylles ut når husnummer er satt';
-    }
-
-    if (!erTomStreng(props.stateCriteria.husbokstav) && !props.stateCriteria.gatenavn) {
-        return 'Gatenavn må fylles ut når husbokstav er satt';
-    }
-
-    if (!erTomStreng(props.stateCriteria.postnummer) && !props.stateCriteria.gatenavn) {
-        return 'Gatenavn må fylles ut når postnummer er satt';
-    }
-
-    if (
-        props.stateLimit.fodselsdatoFra &&
-        props.stateLimit.fodselsdatoTil &&
-        props.stateLimit.fodselsdatoFra > props.stateLimit.fodselsdatoTil
-    ) {
-        return 'Fødselsdato fra må være mindre enn fødselsdato til';
-    }
-
-    return undefined;
 }
 
 function PersonsokSkjema() {
@@ -150,24 +86,24 @@ function PersonsokSkjema() {
     const [postnummer, settPostnummer] = useState<string>('');
     const [kontonummer, settKontonummer] = useState<string>('');
     const [kommunenummer, settKommunenummer] = useState<string>('');
-    const [fodselsdatoFra, settFodselsdatoFra] = useState<Date | undefined>(undefined);
-    const [fodselsdatoTil, settFodselsdatoTil] = useState<Date | undefined>(undefined);
+    const [fodselsdatoFra, settFodselsdatoFra] = useState<string | undefined>(undefined);
+    const [fodselsdatoTil, settFodselsdatoTil] = useState<string | undefined>(undefined);
     const [alderFra, settAlderFra] = useState<string>('');
     const [alderTil, settAlderTil] = useState<string>('');
     const [kjonn, settKjonn] = useState<string>('');
-    const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
+    const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<PersonSokFormState>>(
+        getValidPersonSokState()
+    );
 
     const formState: PersonsokSkjemaProps = {
-        stateCriteria: {
+        state: {
             fornavn,
             etternavn,
             gatenavn,
             husnummer,
             husbokstav,
             postnummer,
-            kontonummer
-        },
-        stateLimit: {
+            kontonummer,
             kommunenummer,
             fodselsdatoFra,
             fodselsdatoTil,
@@ -175,41 +111,57 @@ function PersonsokSkjema() {
             alderTil,
             kjonn
         },
-        actionsCriteria: {
+        actions: {
             settFornavn,
             settEtternavn,
             settGatenavn,
             settHusnummer,
             settHusbokstav,
             settPostnummer,
-            settKontonummer
-        },
-        actionsLimit: {
+            settKontonummer,
             settKommunenummer,
             settFodselsdatoFra,
             settFodselsdatoTil,
             settAlderFra,
             settAlderTil,
             settKjonn
-        }
+        },
+        valideringsResultat: valideringsResultat
     };
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        const harSkjemafeil = validerSkjema(formState);
-        settValideringsfeil(harSkjemafeil);
-        if (!harSkjemafeil) {
+        const valideringsResultat = validerPersonsokSkjema(formState.state);
+        if (valideringsResultat.formErGyldig) {
+            settValideringsresultat(getValidPersonSokState());
             const request: PersonsokRequest = lagRequest(formState);
             dispatch(personsokResource.actions.post(request));
+        } else {
+            settValideringsresultat(valideringsResultat);
         }
+    };
+
+    const resetHandler = (event: FormEvent) => {
+        settFornavn('');
+        settEtternavn('');
+        settGatenavn('');
+        settHusnummer('');
+        settHusbokstav('');
+        settPostnummer('');
+        settKontonummer('');
+        settKommunenummer('');
+        settFodselsdatoFra(undefined);
+        settFodselsdatoTil(undefined);
+        settAlderFra('');
+        settAlderTil('');
+        settKjonn('');
     };
 
     return (
         <>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} onReset={resetHandler}>
                 <PersonsokSkjemaElementer form={formState} />
             </form>
-            <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
         </>
     );
 }

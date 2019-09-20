@@ -37,7 +37,7 @@ function TraadListe(props: Props) {
     return (
         <PanelStyle>
             <TraadFilterPanel />
-            <TraadListeStyle aria-label="Brukers tråder">{traadKomponenter}</TraadListeStyle>
+            <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
         </PanelStyle>
     );
 }

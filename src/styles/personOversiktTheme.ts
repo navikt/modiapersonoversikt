@@ -40,7 +40,7 @@ export const theme = {
     hvittPanel: css`
         border-radius: ${pxToRem(4)};
         background-color: white;
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
     `,
     media: {
         smallScreen: 'max-width: 35rem',
@@ -74,8 +74,14 @@ export const theme = {
             animation: ${fadeIn} 0.3s ease-out;
         `
     },
-    focus: 'outline: none; box-shadow: 0 0 0 0.1875rem #FFBD66;',
-    focusInset: 'outline: none; box-shadow: inset 0 0 0 0.1875rem #FFBD66;',
+    focus: css`
+        outline: none;
+        box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
+    `,
+    focusInset: css`
+        outline: none;
+        box-shadow: inset 0 0 0 ${pxToRem(3)} #254b6d;
+    `,
     focusOverlay: css`
         position: relative;
         outline: none;
@@ -83,7 +89,7 @@ export const theme = {
             position: absolute;
             top: 0;
             content: '';
-            box-shadow: 0 0 0 0.1875rem #ffbd66;
+            box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
             height: 100%;
             width: 100%;
             pointer-events: none;
@@ -103,6 +109,15 @@ export const theme = {
         }
         .ekspanderbartPanel__hode:hover {
             ${hover}
+        }
+    `,
+    resetButtonStyle: css`
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
         }
     `
 };

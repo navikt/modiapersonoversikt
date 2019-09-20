@@ -11,6 +11,7 @@ import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 import { Traad } from '../../../../../models/meldinger/meldinger';
+import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 
 interface Props {
     valgtTraad?: Traad;
@@ -38,28 +39,52 @@ function AlleMeldinger({ traad }: { traad: Traad }) {
     return <div>{meldingskomponenter}</div>;
 }
 
-function TraadVisning(props: Props) {
+function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
-    if (!props.valgtTraad) {
-        return <CenteredLazySpinner />;
+    const melding = eldsteMelding(valgtTraad);
+
+    if (melding.erFerdigstiltUtenSvar) {
+        return (
+            <AlertStripeInfo>
+                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}
+            </AlertStripeInfo>
+        );
+    }
+
+    if (melding.markertSomFeilsendtAv) {
+        return (
+            <AlertStripeInfo>
+                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}
+            </AlertStripeInfo>
+        );
     }
 
     const handleNyMelding = () => {
-        props.valgtTraad && dispatch(setValgtTraadDialogpanel(props.valgtTraad));
+        valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
         dispatch(toggleDialogpanel(true));
     };
 
     return (
+        <KnappWrapper>
+            {dialogpanelTraad === valgtTraad ? (
+                <AlertStripeInfo>Under arbeid</AlertStripeInfo>
+            ) : (
+                <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
+            )}
+        </KnappWrapper>
+    );
+}
+
+function TraadVisning(props: Props) {
+    if (!props.valgtTraad) {
+        return <CenteredLazySpinner />;
+    }
+
+    return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
-            <KnappWrapper>
-                {dialogpanelTraad === props.valgtTraad ? (
-                    <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-                ) : (
-                    <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
-                )}
-            </KnappWrapper>
+            <Topplinje valgtTraad={props.valgtTraad} />
             <AlleMeldinger traad={props.valgtTraad} />
         </VisningStyle>
     );

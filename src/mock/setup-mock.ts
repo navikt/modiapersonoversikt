@@ -30,7 +30,7 @@ import { getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
-import { mockStaticPersonsokResponse } from './person/personsokMock';
+import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
 
@@ -211,7 +211,7 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
 function setupPersonsokMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/personsok',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockStaticPersonsokResponse())
+        withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     );
 }
 
@@ -378,7 +378,7 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',

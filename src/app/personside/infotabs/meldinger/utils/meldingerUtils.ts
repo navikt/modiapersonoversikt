@@ -1,7 +1,8 @@
-import { Melding, Meldingstype, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 export function sisteSendteMelding(traad: Traad) {
-    return traad.meldinger[0];
+    return traad.meldinger.sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {
@@ -115,4 +116,12 @@ export function harDelsvar(traad: Traad): boolean {
 export function harTilgangTilSletting() {
     // TODO Fiks når vi har satt opp vault/fasit
     return true;
+}
+
+export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
+    if (!saksbehandler) {
+        return 'Ukjent saksbehandler';
+    }
+    const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
+    return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
 }

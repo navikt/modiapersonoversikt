@@ -21,11 +21,11 @@ import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
-import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { getMockUtbetalinger } from '../mock/utbetalinger-mock';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
+import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));

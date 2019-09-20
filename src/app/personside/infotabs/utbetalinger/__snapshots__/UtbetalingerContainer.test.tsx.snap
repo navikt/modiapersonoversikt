@@ -22,7 +22,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c15:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c15:hover {
@@ -89,7 +89,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c18:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c18:hover {
@@ -260,7 +260,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c10 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   cursor: pointer;
 }
 
@@ -313,7 +313,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   position: absolute;
   top: 0;
   content: '';
-  box-shadow: 0 0 0 0.1875rem #ffbd66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
   height: 100%;
   width: 100%;
   pointer-events: none;
@@ -364,7 +364,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c24 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   margin-top: .8rem;
   margin-bottom: .8rem;
 }
@@ -400,7 +400,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c3 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 1.25rem;
   margin-bottom: .8rem;
 }
@@ -445,7 +445,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   font-weight: bold;
 }
 
@@ -542,10 +542,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media not all and (max-width:80rem) {
+  .c0 {
+    max-height: 100%;
+  }
+
   .c0 > * {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    overflow-y: auto;
+    max-height: 100%;
   }
 }
 
