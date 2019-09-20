@@ -78,7 +78,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c11:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c7 {
@@ -135,7 +135,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c4:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c10 {

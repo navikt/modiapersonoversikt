@@ -76,7 +76,7 @@ exports[`viser dialogpanel 1`] = `
 
 .c7:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
   border-radius: .25rem;
 }
 
@@ -176,7 +176,7 @@ exports[`viser dialogpanel 1`] = `
 
 .c16:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #ffbd66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c17 {
