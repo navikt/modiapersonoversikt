@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
-import { Radio } from 'nav-frontend-skjema';
+import { Radio, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 
 interface Props {
     sporsmal: string;
     value: number;
     setValue: (newValue: number) => void;
+    visFeilmelding: boolean;
 }
 
 const RadioWrapper = styled.div`
@@ -16,7 +17,7 @@ const RadioWrapper = styled.div`
     }
 `;
 
-const StyledSpørsmål = styled.div`
+const StyledSpørsmål = styled(SkjemaGruppe)`
     padding: 1rem;
     > *:first-child {
         padding-bottom: 1rem;
@@ -25,7 +26,7 @@ const StyledSpørsmål = styled.div`
 
 function BrukerundersøkelseSpørsmål(props: Props) {
     return (
-        <StyledSpørsmål>
+        <StyledSpørsmål feil={props.visFeilmelding ? { feilmelding: 'Du må svare på dette spørsmålet.' } : undefined}>
             <Undertittel>{props.sporsmal}</Undertittel>
             <RadioWrapper>
                 {[...new Array(10)].map((_, index) => (
