@@ -158,10 +158,6 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-right: 0.2rem;
 }
 
-.c2 {
-  padding: .8rem;
-}
-
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
@@ -174,6 +170,10 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c3 > *:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c2 {
+  padding: .8rem;
 }
 
 .c0 {
@@ -240,7 +240,9 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         <input
           className="skjemaelement__input input--fullbredde"
           id="Helt tilfeldig ID"
+          onChange={[Function]}
           type="text"
+          value=""
         />
         <div
           aria-live="assertive"
