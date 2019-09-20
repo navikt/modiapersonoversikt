@@ -35,9 +35,7 @@ export function DialogpanelFeilmelding(props: { resource: FailedPostResource<any
     const dispatch = useDispatch();
     return (
         <DialogpanelKvitteringStyling>
-            <AlertStripeFeil>
-                Det skjedde en feil ved sending av melding: {props.resource.error.message}
-            </AlertStripeFeil>
+            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {props.resource.error}</AlertStripeFeil>
             <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
                 Lukk
             </KnappBase>

@@ -15,6 +15,7 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -44,6 +45,10 @@ function MeldingerOversikt() {
                     .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
                     .slice(0, 4)
                     .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
+
+                if (traadKomponenter.length === 0) {
+                    return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
+                }
 
                 return <ListStyle aria-label="Oversikt brukers meldinger">{traadKomponenter}</ListStyle>;
             }}
