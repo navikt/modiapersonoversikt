@@ -147,11 +147,43 @@ exports[`viser dialogpanel 1`] = `
   padding: 0 0.5rem;
 }
 
-.c15 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
+.c15 {
+  background-color: white;
+  border-radius: .25rem;
+  border: 1px solid #78706a;
 }
 
-.c18 {
+.c16 {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: .25rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c16:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c17 {
+  padding: 0.5rem;
+}
+
+.c20 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -165,31 +197,31 @@ exports[`viser dialogpanel 1`] = `
   transform: none;
 }
 
-.c18:after {
+.c20:after {
   background: none;
 }
 
-.c18:hover {
+.c20:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c19 {
+.c21 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c17 {
+.c19 {
   position: relative;
 }
 
-.c17 textarea {
+.c19 textarea {
   min-height: 9rem;
 }
 
-.c17 label {
+.c19 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -200,7 +232,7 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c20 textarea {
+.c22 textarea {
   padding-left: 2.25rem;
 }
 
@@ -249,11 +281,11 @@ exports[`viser dialogpanel 1`] = `
   margin-right: 1rem;
 }
 
-.c16 {
+.c18 {
   margin-top: 1rem;
 }
 
-.c16 label {
+.c18 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -268,7 +300,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 1rem .8rem;
 }
 
-.c21 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -278,7 +310,7 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c21 > * {
+.c23 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -1512,31 +1544,25 @@ exports[`viser dialogpanel 1`] = `
           className=""
         >
           <div
-            className="ekspanderbartPanel c15 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="c15"
           >
             <button
               aria-expanded={false}
-              className="ekspanderbartPanel__hode"
+              className="c16"
               onClick={[Function]}
-              onKeyDown={[Function]}
               type="button"
             >
-              <div
-                className="ekspanderbartPanel__flex-wrapper"
+              <p
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal ekspanderbartPanel__heading"
-                >
-                  Velg sak
-                </span>
-                <span
-                  className="ekspanderbartPanel__indikator"
-                />
-              </div>
+                Velg sak
+              </p>
+              <i
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
             </button>
-            <article
-              aria-label="Velg sak"
-              className="ekspanderbartPanel__innhold"
+            <div
+              className="c17"
             >
               <svg
                 aria-label="Laster innhold"
@@ -1571,7 +1597,7 @@ exports[`viser dialogpanel 1`] = `
                   strokeWidth="5"
                 />
               </svg>
-            </article>
+            </div>
           </div>
           <div
             aria-live="assertive"
@@ -1579,7 +1605,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="skjemaelement c16"
+          className="skjemaelement c18"
         >
           <label
             className="skjemaelement__label"
@@ -1651,16 +1677,16 @@ exports[`viser dialogpanel 1`] = `
         </div>
       </div>
       <div
-        className="c17"
+        className="c19"
       >
         <button
-          className="knapp c18 knapp--hoved"
+          className="knapp c20 knapp--hoved"
           disabled={false}
           onClick={[Function]}
           type="submit"
         >
           <svg
-            className="c19"
+            className="c21"
             height="24px"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -1681,7 +1707,7 @@ exports[`viser dialogpanel 1`] = `
           </span>
         </button>
         <div
-          className="c20"
+          className="c22"
         >
           <div
             className="skjemaelement textarea__container"
@@ -1735,7 +1761,7 @@ exports[`viser dialogpanel 1`] = `
         />
       </div>
       <div
-        className="c21"
+        className="c23"
       >
         <button
           className="knapp knapp--hoved"

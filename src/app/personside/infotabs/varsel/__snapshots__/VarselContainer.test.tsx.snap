@@ -36,10 +36,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c6 {
   border: none;
-  padding: 0.1rem;
-  border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
+  padding: 0.1rem;
+  border-radius: 0.5em;
 }
 
 .c6:focus {
