@@ -36,20 +36,14 @@ const InputStyle = styled.div`
 export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
     const words = query.split(' ');
     return traader.filter(traad => {
-        const fritekstMatch = traad.meldinger.some(melding =>
-            melding.fritekst.toLowerCase().includes(words[0].toLowerCase())
-        );
-        const tittelMatch = traad.meldinger.some(melding =>
-            meldingstittel(melding)
-                .toLowerCase()
-                .includes(words[0].toLowerCase())
-        );
-        const saksbehandlerMatch = traad.meldinger.some(melding =>
-            saksbehandlerTekst(melding.skrevetAv)
-                .toLowerCase()
-                .includes(words[0].toLowerCase())
-        );
-        return fritekstMatch || tittelMatch || saksbehandlerMatch;
+        return traad.meldinger.some(melding => {
+            const text = melding.fritekst;
+            const tittel = meldingstittel(melding);
+            const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
+
+            const sammensatt = (text + tittel + saksbehandler).toLowerCase();
+            return words.every(word => sammensatt.includes(word.toLowerCase()));
+        });
     });
 }
 

@@ -4,10 +4,15 @@ import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import Tekstomrade from 'nav-frontend-tekstomrade';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components';
 import EtikettGrå from '../../../../../components/EtikettGrå';
+import Tekstomrade, {
+    createDynamicHighligtingRule,
+    LinkRule,
+    ParagraphRule
+} from '../../../../../components/tekstomrade/tekstomrade';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
 
 const JournalforingStyle = styled.div`
     margin-top: 2rem;
@@ -15,10 +20,17 @@ const JournalforingStyle = styled.div`
 
 interface Props {
     melding: Melding;
+    sokeord: string;
 }
 
 const SnakkebobleWrapper = styled.div`
     text-align: left;
+    em {
+        font-style: normal;
+        background-color: #eed28c;
+        border-radius: ${pxToRem(10)};
+        padding: 0 5px;
+    }
 `;
 
 function journalfortMelding(melding: Melding) {
@@ -40,7 +52,10 @@ function EnkeltMelding(props: Props) {
     const topptekst = meldingstittel(props.melding, true);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
-
+    const query = props.sokeord.split(' ');
+    console.log(query);
+    const highlightRule = createDynamicHighligtingRule(query);
+    console.log('render');
     return (
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
@@ -49,7 +64,7 @@ function EnkeltMelding(props: Props) {
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                     <hr />
-                    <Tekstomrade>{props.melding.fritekst}</Tekstomrade>
+                    <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>

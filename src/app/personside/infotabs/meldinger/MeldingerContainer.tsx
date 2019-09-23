@@ -49,6 +49,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dyplenker = useInfotabsDyplenker();
     const traadIUrl = useValgtTraadIUrl(props);
     const [sokeord, setSokeord] = useState('');
+
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {
             props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
@@ -67,7 +68,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                     <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
                     <div>
                         <Verktoylinje valgtTraad={traadIUrl} />
-                        <TraadVisning valgtTraad={traadIUrl} />
+                        <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
                     </div>
                 </MeldingerArticleStyle>
             )}
