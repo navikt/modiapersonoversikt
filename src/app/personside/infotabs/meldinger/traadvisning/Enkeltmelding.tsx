@@ -12,7 +12,7 @@ import Tekstomrade, {
     LinkRule,
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
-import { pxToRem } from '../../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 
 const JournalforingStyle = styled.div`
     margin-top: 2rem;
@@ -27,9 +27,7 @@ const SnakkebobleWrapper = styled.div`
     text-align: left;
     em {
         font-style: normal;
-        background-color: #eed28c;
-        border-radius: ${pxToRem(10)};
-        padding: 0 5px;
+        ${theme.highlight}
     }
 `;
 
@@ -52,10 +50,8 @@ function EnkeltMelding(props: Props) {
     const topptekst = meldingstittel(props.melding, true);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
-    const query = props.sokeord.split(' ');
-    console.log(query);
-    const highlightRule = createDynamicHighligtingRule(query);
-    console.log('render');
+    const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
+
     return (
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>

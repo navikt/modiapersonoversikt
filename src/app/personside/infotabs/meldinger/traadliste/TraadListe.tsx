@@ -46,12 +46,12 @@ export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
     const words = query.split(' ');
     return traader.filter(traad => {
         return traad.meldinger.some(melding => {
-            const text = melding.fritekst;
+            const fritekst = melding.fritekst;
             const tittel = meldingstittel(melding);
             const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
 
-            const sammensatt = (text + tittel + saksbehandler).toLowerCase();
-            return words.every(word => sammensatt.includes(word.toLowerCase()));
+            const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+            return words.every(word => sokbarTekst.includes(word.toLowerCase()));
         });
     });
 }
