@@ -1,11 +1,13 @@
+import * as React from 'react';
 import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { hasData, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
+import { hasData, isFailed, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
 import { ReactNode, useMemo } from 'react';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import { getPleiepengerIdDato, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface YtelseMedDato {
     idDato: string;
@@ -18,7 +20,13 @@ interface Props {
     renderForeldrepenger: (foreldrepenger: Foreldrepengerettighet) => ReactNode;
 }
 
-function useBrukersYtelser(props: Props) {
+interface Returns {
+    ytelser: ReactNode[];
+    pending: boolean;
+    feilmeldinger: ReactNode[];
+}
+
+function useBrukersYtelser(props: Props): Returns {
     const foreldrepengerResource = useRestResource(resources => resources.foreldrepenger);
     const pleiepengerResource = useRestResource(resources => resources.pleiepenger);
     const sykepengerResource = useRestResource(resources => resources.sykepenger);
@@ -86,10 +94,16 @@ function useBrukersYtelser(props: Props) {
         [foreldrepenger, pleiepenger, sykepenger]
     );
 
+    const feilmeldinger = [
+        isFailed(foreldrepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste foreldrepenger</AlertStripeAdvarsel>,
+        isFailed(pleiepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste pleiepenger</AlertStripeAdvarsel>,
+        isFailed(sykepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste sykepenger</AlertStripeAdvarsel>
+    ].filter(feilmelding => feilmelding);
+
     const pending =
         isLoading(pleiepengerResource) || isLoading(foreldrepengerResource) || isLoading(sykepengerResource);
 
-    return { ytelser, pending };
+    return { ytelser, pending, feilmeldinger };
 }
 
 export default useBrukersYtelser;

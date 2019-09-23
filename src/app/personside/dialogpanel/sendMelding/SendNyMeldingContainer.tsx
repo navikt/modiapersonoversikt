@@ -1,12 +1,11 @@
 import * as React from 'react';
+import { FormEvent, useState } from 'react';
 import HurtigReferatContainer from '../Hurtigreferat/HurtigreferatContainer';
 import SendNyMelding, { FormState, OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
-import { FormEvent } from 'react';
 import { NyMeldingValidator } from './validatorer';
-import { KommunikasjonsKanal, Meldingstype } from '../../../../models/meldinger/meldinger';
-import { useState } from 'react';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../../utils/customHooks';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
@@ -51,13 +50,16 @@ function SendNyMeldingContainer() {
             updateState(initialState);
             dispatch(reloadMeldinger);
         };
-        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
-            const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
+        if (
+            NyMeldingValidator.erGyldigReferat(state) &&
+            state.tema &&
+            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+        ) {
             dispatch(
                 postReferatResource.actions.post(
                     {
                         fritekst: state.tekst,
-                        kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
+                        meldingstype: state.dialogType,
                         temagruppe: state.tema.kodeRef
                     },
                     callback

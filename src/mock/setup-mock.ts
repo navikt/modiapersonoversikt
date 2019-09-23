@@ -33,6 +33,7 @@ import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
+import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -222,6 +223,20 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
+function setupOpprettHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => henvendelseResponseMock)
+    );
+}
+
+function setupFerdigstillHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
+}
+
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt',
@@ -378,7 +393,7 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
@@ -454,6 +469,8 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupOpprettHenvendelseMock(mock);
+    setupFerdigstillHenvendelseMock(mock);
     setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);

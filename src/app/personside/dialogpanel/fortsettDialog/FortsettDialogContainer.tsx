@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
+import { isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { DialogpanelFeilmelding } from '../fellesStyling';
-import { LeggTilbakeOppgaveFeil, OppgaveLagtTilbakeKvittering, SvarSendtKvittering } from './FortsettDialogKvittering';
+import { useFortsettDialogKvittering } from './FortsettDialogKvittering';
+import useOpprettHenvendelse from './useOpprettHenvendelse';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -48,11 +47,11 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
-
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -61,13 +60,14 @@ function FortsettDialogContainer(props: Props) {
             ...change
         });
 
-    const previous = usePrevious(props.traad);
-
-    useEffect(() => {
-        if (previous !== props.traad) {
-            setState(initialState);
-        }
-    }, [props.traad, setState, previous, initialState]);
+    const opprettHenvendelse = useOpprettHenvendelse(props.traad);
+    const kvittering = useFortsettDialogKvittering();
+    if (opprettHenvendelse.success === false) {
+        return opprettHenvendelse.placeholder;
+    }
+    if (kvittering) {
+        return kvittering;
+    }
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
@@ -77,58 +77,53 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
-            updateState(initialState);
-            dispatch(reloadMeldinger);
+            setTimeout(() => {
+                dispatch(reloadMeldinger);
+                dispatch(resetPlukkOppgaveResource);
+                dispatch(reloadTildelteOppgaver);
+            }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
         };
-        if (FortsettDialogValidator.erGyldigSvarSkriftlig(state)) {
+        const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
+        const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
+        const commonPayload = {
+            fritekst: state.tekst,
+            meldingstype: state.dialogType,
+            traadId: props.traad.traadId,
+            behandlingsId: opprettHenvendelse.behandlingsId,
+            oppgaveId: oppgaveId
+        };
+        if (
+            FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
+            FortsettDialogValidator.erGyldigSvarOppmote(state) ||
+            FortsettDialogValidator.erGyldigSvarTelefon(state)
+        ) {
             dispatch(
                 sendSvarResource.actions.post(
                     {
-                        fritekst: state.tekst,
-                        traadId: props.traad.traadId,
-                        meldingstype: state.dialogType,
-                        erOppgaveTilknyttetAnsatt: true,
-                        oppgaveId: props.tilknyttetOppgave && props.tilknyttetOppgave.oppgaveid
+                        ...commonPayload,
+                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
                     },
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state)) {
-            alert('Ikke implementert');
-            console.log('spørsmål skriftlig: ', state);
+        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state) && state.sak) {
+            dispatch(
+                sendSvarResource.actions.post(
+                    {
+                        ...commonPayload,
+                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
+                        saksId: state.sak.saksId
+                    },
+                    callback
+                )
+            );
         } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
             alert('Ikke implementert');
             console.log('delvis svar: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarOppmote(state)) {
-            alert('Ikke implementert');
-            console.log('svar oppmøte: ', state);
-        } else if (FortsettDialogValidator.erGyldigSvarTelefon(state)) {
-            alert('Ikke implementert');
-            console.log('svar telefon: ', state);
         } else {
-            alert('Ikke implementert');
             updateState({ visFeilmeldinger: true });
         }
     };
-
-    if (isPosting(sendSvarResource) || isPosting(leggTilbakeResource)) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
-
-    if (isFinishedPosting(sendSvarResource)) {
-        return <SvarSendtKvittering resource={sendSvarResource} />;
-    }
-
-    if (isFinishedPosting(leggTilbakeResource)) {
-        return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
-    }
-
-    if (isFailedPosting(sendSvarResource)) {
-        return <DialogpanelFeilmelding resource={sendSvarResource} />;
-    }
-    if (isFailedPosting(leggTilbakeResource)) {
-        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
-    }
 
     return (
         <>

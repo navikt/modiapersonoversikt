@@ -81,15 +81,10 @@ export enum LestStatus {
     IkkeBesvart = 'IKKE_BESVART'
 }
 
-export enum KommunikasjonsKanal {
-    Telefon = 'TELEFON',
-    Oppmøte = 'OPPMOTE'
-}
-
 export interface SendReferatRequest {
     fritekst: string;
     temagruppe: string;
-    kanal: KommunikasjonsKanal;
+    meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
 export interface SendSpørsmålRequest {
@@ -98,13 +93,21 @@ export interface SendSpørsmålRequest {
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
-export interface SendSvarRequest {
-    fritekst: string;
+export interface ForsettDialogRequest {
     traadId: string;
-    meldingstype: Meldingstype;
+    behandlingsId: string;
+    fritekst: string;
     saksId?: string;
-    oppgaveId?: string;
-    behandlingsId?: string;
     erOppgaveTilknyttetAnsatt: boolean;
-    brukersEnhet?: string;
+    meldingstype: Meldingstype;
+    oppgaveId?: string;
+}
+
+export interface OpprettHenvendelseRequest {
+    traadId: string;
+}
+
+export interface OpprettHenvendelseResponse {
+    behandlingsId: string;
+    oppgaveId?: string;
 }

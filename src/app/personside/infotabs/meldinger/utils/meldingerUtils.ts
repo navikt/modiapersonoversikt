@@ -7,9 +7,10 @@ import {
     Traad
 } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst, temagruppeTekst } from './meldingstekster';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 export function sisteSendteMelding(traad: Traad) {
-    return traad.meldinger[0];
+    return traad.meldinger.sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {

@@ -74,7 +74,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c9:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c8 > * {
@@ -99,15 +99,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c13 {
   border: none;
-  padding: 0.1rem;
-  border-radius: 0.5em;
   cursor: pointer;
   background-color: transparent;
+  padding: 0.1rem;
+  border-radius: 0.5em;
 }
 
 .c13:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c0 {
@@ -188,7 +188,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c3 *:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #FFBD66;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c3 > *:first-child {

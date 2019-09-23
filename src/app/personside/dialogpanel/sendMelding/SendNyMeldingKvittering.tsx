@@ -1,25 +1,16 @@
 import * as React from 'react';
-import {
-    KommunikasjonsKanal,
-    Meldingstype,
-    SendReferatRequest,
-    SendSpørsmålRequest
-} from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering } from '../fellesStyling';
 import { FinishedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 
 export function ReferatSendtKvittering(props: { resource: FinishedPostResource<SendReferatRequest, {}> }) {
     const dispatch = useDispatch();
-    const meldingstype =
-        props.resource.payload.kanal === KommunikasjonsKanal.Telefon
-            ? Meldingstype.SAMTALEREFERAT_TELEFON
-            : Meldingstype.SAMTALEREFERAT_OPPMOTE;
     return (
         <DialogpanelKvittering
             tittel="Referatet ble loggført"
             fritekst={props.resource.payload.fritekst}
-            meldingstype={meldingstype}
+            meldingstype={props.resource.payload.meldingstype}
             lukk={() => dispatch(props.resource.actions.reset)}
         />
     );

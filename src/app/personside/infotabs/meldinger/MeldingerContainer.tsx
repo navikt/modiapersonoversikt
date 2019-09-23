@@ -14,6 +14,7 @@ import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTra
 import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
@@ -52,6 +53,9 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
 
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {
+            if (traaderResource.data.length === 0) {
+                return;
+            }
             props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
         } else if (traadIUrl !== forrigeValgteTraad && !!traadIUrl) {
             dispatch(huskForrigeValgtTraad(traadIUrl));
@@ -63,15 +67,20 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
             getResource={restResources => restResources.tråderOgMeldinger}
             returnOnPending={<CenteredLazySpinner />}
         >
-            {data => (
-                <MeldingerArticleStyle>
-                    <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
-                    <div>
-                        <Verktoylinje valgtTraad={traadIUrl} />
-                        <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
-                    </div>
-                </MeldingerArticleStyle>
-            )}
+            {data => {
+                if (data.length === 0) {
+                    return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
+                }
+                return (
+                    <MeldingerArticleStyle>
+                        <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
+                        <div>
+                            <Verktoylinje valgtTraad={traadIUrl} />
+                            <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
+                        </div>
+                    </MeldingerArticleStyle>
+                );
+            }}
         </RestResourceConsumer>
     );
 }

@@ -46,7 +46,14 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { SendReferatRequest, SendSpørsmålRequest, SendSvarRequest, Traad } from '../../models/meldinger/meldinger';
+import {
+    SendReferatRequest,
+    SendSpørsmålRequest,
+    ForsettDialogRequest,
+    Traad,
+    OpprettHenvendelseRequest,
+    OpprettHenvendelseResponse
+} from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
@@ -62,13 +69,14 @@ import leggTilbakeOppgave from './leggTilbakeOppgave';
 import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
+import opprettHenvendelse from './meldinger/opprettHenvendelse';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
-    oppgaver: PostResource<{}, Oppgave[]>;
-    tildDelteOppgaver: RestResource<Oppgave[]>;
+    plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
+    tildelteOppgaver: RestResource<Oppgave[]>;
     leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
@@ -98,7 +106,8 @@ export interface RestEndepunkter {
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
     sendSpørsmål: PostResource<SendSpørsmålRequest>;
-    sendSvar: PostResource<SendSvarRequest>;
+    opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
+    sendSvar: PostResource<ForsettDialogRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
@@ -107,8 +116,8 @@ export default combineResettableReducers<RestEndepunkter>(
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        oppgaver: oppgaverReducer,
-        tildDelteOppgaver: tildelteOppgaver,
+        plukkNyeOppgaver: oppgaverReducer,
+        tildelteOppgaver: tildelteOppgaver,
         leggTilbakeOppgave: leggTilbakeOppgave,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
@@ -138,8 +147,9 @@ export default combineResettableReducers<RestEndepunkter>(
         sendReferat: sendReferat,
         sendSpørsmål: sendSpørsmål,
         sendSvar: sendSvar,
+        opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok
     },
-    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'oppgaver']
+    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
 );

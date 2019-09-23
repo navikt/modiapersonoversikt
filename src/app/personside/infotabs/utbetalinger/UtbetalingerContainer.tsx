@@ -47,7 +47,7 @@ function UtbetalingerContainer() {
     useOnMount(() => loggEvent('Sidevisning', 'Utbetalinger'));
 
     return (
-        <ErrorBoundary>
+        <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                 {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
                 <div>
