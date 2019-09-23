@@ -20,15 +20,6 @@ export interface Props {
     lukkPanel: () => void;
 }
 
-const CustomStyledTabel = styled(StyledTable)`
-    [role='columnheader'] {
-        font-weight: 100;
-    }
-
-    [role='cell'] {
-        font-weight: 700;
-    }
-`;
 const PanelLayout = styled.section`
     display: flex;
     flex-direction: column;
@@ -36,6 +27,15 @@ const PanelLayout = styled.section`
     padding: 1rem;
 `;
 
+const CustomStyledTable = styled(StyledTable)`
+    th {
+        font-weight: normal;
+    }
+
+    td {
+        font-weight: bold;
+    }
+`;
 const SuksessStyling = styled.div`
     > * {
         margin-top: 1rem;
@@ -81,7 +81,7 @@ export function JournalforSak(props: Props) {
             <Normaltekst className="blokk-xs">{kategori}</Normaltekst>
 
             <Ingress className="blokk-xxxs">{sak.temaNavn}</Ingress>
-            <CustomStyledTabel
+            <CustomStyledTable
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
                 rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
