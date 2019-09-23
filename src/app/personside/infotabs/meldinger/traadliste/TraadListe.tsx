@@ -85,8 +85,7 @@ function TraadListe(props: Props) {
             <SokVerktøyStyle>
                 {traadKomponenter.length !== props.traader.length ? (
                     <Element>
-                        {' '}
-                        Søket traff {traadKomponenter.length} av {props.traader.length} meldinger{' '}
+                        Søket traff {traadKomponenter.length} av {props.traader.length} tråder
                     </Element>
                 ) : (
                     <Element>Totalt {props.traader.length} tråder</Element>
