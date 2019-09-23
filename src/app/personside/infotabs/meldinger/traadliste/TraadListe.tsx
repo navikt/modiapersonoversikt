@@ -9,6 +9,8 @@ import { meldingstittel, saksbehandlerTekst, sisteSendteMelding } from '../utils
 import { Input } from 'nav-frontend-skjema';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { useMemo } from 'react';
+import { Element } from 'nav-frontend-typografi';
+import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 
 interface Props {
     traader: Traad[];
@@ -24,13 +26,20 @@ const PanelStyle = styled.nav`
     }
 `;
 
+const SokVerktøyStyle = styled.div`
+    padding: 0 ${theme.margin.layout} ${theme.margin.layout};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
 const TraadListeStyle = styled.ol`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
 `;
 const InputStyle = styled.div`
-    padding: ${theme.margin.layout};
+    padding: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
 
 export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
@@ -73,8 +82,18 @@ function TraadListe(props: Props) {
                     className={'move-input-label'}
                 />
             </InputStyle>
+            <SokVerktøyStyle>
+                {traadKomponenter.length !== props.traader.length ? (
+                    <Element>
+                        {' '}
+                        Søket traff {traadKomponenter.length} av {props.traader.length} meldinger{' '}
+                    </Element>
+                ) : (
+                    <Element>Totalt {props.traader.length} tråder</Element>
+                )}
+                <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+            </SokVerktøyStyle>
             <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
-            {traadKomponenter.length === 0 && <AlertStripeInfo>Fant ingen meldinger</AlertStripeInfo>}
         </PanelStyle>
     );
 }
