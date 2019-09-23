@@ -24,13 +24,13 @@ function getMockSøketråd(
 
 test('Sjekke søk i meldinger basert på fritekst', () => {
     const traader: Traad[] = [
-        getMockSøketråd('Aut velit quae ut illo tempore explicabo. Eos et nihil qui autem cum voluptate.'),
-        getMockSøketråd('Et qui ullam inventore praesentium explicabo.')
+        getMockSøketråd('Dette er en tekst for å sjekke om fritekstsøk fungerer.'),
+        getMockSøketråd('Her er en annen tråd med en annen tekst')
     ];
-    const treff = sokEtterMeldinger(traader, 'illo');
+    const treff = sokEtterMeldinger(traader, 'sjekke');
     expect(treff).toHaveLength(1);
 
-    const treff2 = sokEtterMeldinger(traader, 'explicabo');
+    const treff2 = sokEtterMeldinger(traader, 'tekst');
     expect(treff2).toHaveLength(2);
 });
 
