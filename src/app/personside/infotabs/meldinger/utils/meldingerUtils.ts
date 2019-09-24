@@ -135,7 +135,6 @@ export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
 
 export function useSokEtterMeldinger(traader: Traad[], query: string) {
     const debouncedQuery = useDebounce(query, 200);
-
     return useMemo(() => {
         const words = debouncedQuery.split(' ');
         return traader
@@ -144,7 +143,6 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
-
                     const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });

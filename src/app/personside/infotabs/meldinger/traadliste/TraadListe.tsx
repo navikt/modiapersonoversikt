@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
-
 import { Normaltekst } from 'nav-frontend-typografi';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 import TraadListeElement from './TraadListeElement';
