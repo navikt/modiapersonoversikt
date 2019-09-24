@@ -17,6 +17,7 @@ import { meldingerTest } from '../../dyplenkeTest/utils';
 interface Props {
     traad: Traad;
     erValgt: boolean;
+    ikkeTaFokus: boolean;
 }
 
 const UUcustomOrder = styled.div`
@@ -63,7 +64,7 @@ function TraadListeElement(props: Props) {
     const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
-        if (props.erValgt) {
+        if (props.erValgt && !props.ikkeTaFokus) {
             ref.current && ref.current.focus();
         }
     });

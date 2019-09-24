@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Melding } from '../../../../../models/meldinger/meldinger';
+import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
@@ -13,6 +13,7 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
+import Etikett from 'nav-frontend-etiketter';
 
 const JournalforingStyle = styled.div`
     margin-top: 2rem;
@@ -23,6 +24,11 @@ interface Props {
     sokeord: string;
 }
 
+const Topptekst = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
 const SnakkebobleWrapper = styled.div`
     text-align: left;
     em {
@@ -56,7 +62,14 @@ function EnkeltMelding(props: Props) {
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
-                    <Element>{topptekst}</Element>
+                    <Topptekst>
+                        <Element>{topptekst}</Element>
+                        {props.melding.status === LestStatus.Lest ? (
+                            <Etikett type="suksess">Lest</Etikett>
+                        ) : (
+                            <Etikett type="advarsel">Ulest</Etikett>
+                        )}
+                    </Topptekst>
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                     <hr />

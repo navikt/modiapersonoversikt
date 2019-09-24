@@ -141,7 +141,8 @@
         "lint-staged": "^8.1.5",
         "prettier": "^1.16.4",
         "react-test-renderer": "^16.8.6",
-        "typescript": "^3.5.1"
+        "typescript": "^3.5.1",
+        "@testing-library/react-hooks": "latest"
     },
     "browserslist": {
         "production": [
