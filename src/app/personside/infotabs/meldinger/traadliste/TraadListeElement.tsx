@@ -3,10 +3,9 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
-import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
+import { erMonolog, meldingstittel, sisteSendteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
@@ -59,7 +58,7 @@ function TraadListeElement(props: Props) {
     const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const tittel = meldingstittel(nyesteMelding);
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
 
