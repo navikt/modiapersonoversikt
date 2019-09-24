@@ -9,9 +9,9 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 
 interface Props {
     valgtTraad?: Traad;
@@ -44,6 +44,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const melding = eldsteMelding(valgtTraad);
+    const KAN_BESVARES_MELDINGS_TYPER = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
     if (melding.erFerdigstiltUtenSvar) {
         return (
@@ -66,15 +67,23 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         dispatch(toggleDialogpanel(true));
     };
 
-    return (
-        <KnappWrapper>
-            {dialogpanelTraad === valgtTraad ? (
+    if (dialogpanelTraad === valgtTraad) {
+        return (
+            <KnappWrapper>
                 <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-            ) : (
+            </KnappWrapper>
+        );
+    }
+
+    if (KAN_BESVARES_MELDINGS_TYPER.includes(melding.meldingstype)) {
+        return (
+            <KnappWrapper>
                 <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
-            )}
-        </KnappWrapper>
-    );
+            </KnappWrapper>
+        );
+    } else {
+        return <KnappWrapper></KnappWrapper>;
+    }
 }
 
 function TraadVisning(props: Props) {
