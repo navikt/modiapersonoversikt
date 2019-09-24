@@ -9,7 +9,7 @@ import { meldingstittel, saksbehandlerTekst, sisteSendteMelding } from '../utils
 import { Input } from 'nav-frontend-skjema';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { useMemo } from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 
 interface Props {
@@ -84,13 +84,15 @@ function TraadListe(props: Props) {
             </InputStyle>
             <SokVerktøyStyle>
                 {traadKomponenter.length !== props.traader.length ? (
-                    <Element>
+                    <Normaltekst>
                         Søket traff {traadKomponenter.length} av {props.traader.length} tråder
-                    </Element>
+                    </Normaltekst>
                 ) : (
-                    <Element>Totalt {props.traader.length} tråder</Element>
+                    <Normaltekst>Totalt {props.traader.length} tråder</Normaltekst>
                 )}
-                <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+                {props.sokeord !== '' && (
+                    <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+                )}
             </SokVerktøyStyle>
             <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
         </PanelStyle>
