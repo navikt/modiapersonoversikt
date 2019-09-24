@@ -30,6 +30,7 @@ const KnappWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
+const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
 function AlleMeldinger({ traad }: { traad: Traad }) {
     const meldingskomponenter = traad.meldinger
@@ -44,7 +45,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const melding = eldsteMelding(valgtTraad);
-    const KAN_BESVARES_MELDINGS_TYPER = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
     if (melding.erFerdigstiltUtenSvar) {
         return (
@@ -75,7 +75,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         );
     }
 
-    if (KAN_BESVARES_MELDINGS_TYPER.includes(melding.meldingstype)) {
+    if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
         return (
             <KnappWrapper>
                 <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
