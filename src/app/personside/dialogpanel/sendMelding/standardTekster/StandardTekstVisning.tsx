@@ -37,9 +37,7 @@ const Container = styled.div`
     }
     em {
         font-style: normal;
-        background-color: #eed28c;
-        border-radius: ${pxToRem(10)};
-        padding: 0 5px;
+        ${theme.highlight}
     }
 `;
 const Liste = styled.div`
