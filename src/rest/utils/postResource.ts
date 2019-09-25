@@ -48,6 +48,7 @@ export interface FinishedPostResource<Request, Response> extends PostResource<Re
 export interface FailedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.FAIL;
     error: string;
+    payload: Request;
 }
 
 export function isNotStartedPosting<Request, Response>(

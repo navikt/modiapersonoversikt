@@ -16,7 +16,8 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useRestResource } from '../../../../utils/customHooks';
+import { useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { loggError } from '../../../../utils/frontendLogger';
 
 function SvarSendtKvittering(props: { resource: FinishedPostResource<ForsettDialogRequest, {}> }) {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostResource<Le
             {erLeggTilbakeOppgaveFeilTemaRequest(props.resource.payload) && (
                 <AlertStripeSuksess>
                     Oppgaven ble lagt tilbake på{' '}
-                    {temagruppeTekst(props.resource.payload.temagruppe as Temagruppe).toLowerCase}
+                    {temagruppeTekst(props.resource.payload.temagruppe as Temagruppe).toLowerCase()}
                 </AlertStripeSuksess>
             )}
             {!erLeggTilbakeOppgaveFeilTemaRequest(props.resource.payload) && (
@@ -60,9 +61,16 @@ function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostResource<Le
 
 function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
     const dispatch = useDispatch();
+
+    useOnMount(() => {
+        loggError(new Error('Feil ved tilbakelegging av oppgave: ' + props.resource.error), undefined, {
+            request: props.resource.payload
+        });
+    });
+
     return (
         <DialogpanelKvitteringStyling>
-            <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave: {props.resource.error}</AlertStripeFeil>
+            <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>
             <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
                 Lukk
             </KnappBase>
