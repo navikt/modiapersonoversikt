@@ -230,7 +230,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c22 tbody tr > *:nth-last-child(n + 3) {
   padding-top: 0.5rem;
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c11 table {
@@ -294,7 +294,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c35 {
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
   margin: 0.5rem 0;
 }
 
@@ -354,7 +354,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c27 ol > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c23:focus {

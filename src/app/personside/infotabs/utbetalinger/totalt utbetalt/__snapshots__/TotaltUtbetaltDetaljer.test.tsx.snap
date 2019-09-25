@@ -279,7 +279,7 @@ Array [
 
 .c2 tbody tr > *:nth-last-child(n + 3) {
   padding-top: 0.5rem;
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 @media print {
