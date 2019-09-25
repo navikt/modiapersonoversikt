@@ -119,6 +119,11 @@ export const theme = {
             outline: none;
             box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
         }
+    `,
+    highlight: css`
+        background-color: #eed28c;
+        border-radius: ${pxToRem(10)};
+        padding: 0 ${pxToRem(5)};
     `
 };
 

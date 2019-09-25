@@ -15,6 +15,7 @@ import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 
 interface Props {
     valgtTraad?: Traad;
+    sokeord: string;
 }
 
 const VisningStyle = styled.section`
@@ -32,10 +33,10 @@ const KnappWrapper = styled.div`
 `;
 const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
-function AlleMeldinger({ traad }: { traad: Traad }) {
+function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
-        .map(melding => <EnkeltMelding melding={melding} key={melding.id} />);
+        .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
 
     return <div>{meldingskomponenter}</div>;
 }
@@ -94,7 +95,7 @@ function TraadVisning(props: Props) {
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <AlleMeldinger traad={props.valgtTraad} />
+            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
 }
