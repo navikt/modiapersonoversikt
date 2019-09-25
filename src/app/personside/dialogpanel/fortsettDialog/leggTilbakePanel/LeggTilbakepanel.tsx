@@ -63,6 +63,8 @@ function LeggTilbakepanel(props: Props) {
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -77,23 +79,35 @@ function LeggTilbakepanel(props: Props) {
 
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        const callback = () => {
+            dispatch(resetPlukkOppgaveResource);
+            dispatch(reloadTildelteOppgaver);
+        };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            dispatch(leggTilbakeResource.actions.post({ oppgaveId: props.oppgave.oppgaveid, type: 'innhabil' }));
+            dispatch(
+                leggTilbakeResource.actions.post({ oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' }, callback)
+            );
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
             dispatch(
-                leggTilbakeResource.actions.post({
-                    beskrivelse: state.tekst,
-                    oppgaveId: props.oppgave.oppgaveid,
-                    type: 'annenaarsak'
-                })
+                leggTilbakeResource.actions.post(
+                    {
+                        beskrivelse: state.tekst,
+                        oppgaveId: props.oppgave.oppgaveid,
+                        type: 'AnnenAarsak'
+                    },
+                    callback
+                )
             );
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
             dispatch(
-                leggTilbakeResource.actions.post({
-                    temagruppe: state.tema.kodeRef,
-                    oppgaveId: props.oppgave.oppgaveid,
-                    type: 'feiltema'
-                })
+                leggTilbakeResource.actions.post(
+                    {
+                        temagruppe: state.tema.kodeRef,
+                        oppgaveId: props.oppgave.oppgaveid,
+                        type: 'FeilTema'
+                    },
+                    callback
+                )
             );
         } else {
             updateState({ visFeilmeldinger: true });
