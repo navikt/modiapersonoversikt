@@ -138,7 +138,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 }
 
 .c10 {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c16 {
@@ -174,7 +174,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 }
 
 .c12 > * {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c14 {
