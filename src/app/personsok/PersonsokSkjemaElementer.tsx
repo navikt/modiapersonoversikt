@@ -9,7 +9,7 @@ import { LenkeKnapp } from '../../components/common-styled-components';
 import { Select } from 'nav-frontend-skjema';
 import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Innholdstittel, Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrek from './LenkeDrek';
 import { DatovelgerAvgrensninger } from 'nav-datovelger/dist/datovelger/types';
 
@@ -22,6 +22,10 @@ const SectionStyle = styled.div`
     > *:first-child {
         padding-right: 3em;
     }
+`;
+
+const TittelStyle = styled.div`
+    padding-bottom: 3em;
 `;
 
 const KnappStyle = styled.div`
@@ -59,6 +63,9 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
     };
     return (
         <FormStyle>
+            <TittelStyle>
+                <Innholdstittel>Avansert Søk</Innholdstittel>
+            </TittelStyle>
             <SectionStyle>
                 <section aria-label={'Søkekriterier'}>
                     <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
