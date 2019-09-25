@@ -37,7 +37,7 @@ const Row = styled.a.attrs({
     href: '#'
 })`
     text-decoration: none;
-    color: ${theme.color.morkGra};
+    color: ${theme.color.navMorkGra};
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.2) !important;

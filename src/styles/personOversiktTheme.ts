@@ -14,22 +14,29 @@ const hover = css`
     box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 `;
 
+export const navFarger = {
+    navLysGra: '#e9e7e7',
+    navGra20: '#c6c2bf',
+    navGra40: '#b7b1a9',
+    navGra60: '#78706a',
+    navGra80: '#59514b',
+    navMorkGra: '#3e3832',
+    fokusFarge: '#254b6d',
+    orangeFokus: '#ffbd66'
+};
+
 export const theme = {
     color: {
+        ...navFarger,
         lenkeSelected: '#005b82',
-        lenkeHover: '#C6C2BF',
+        lenkeHover: navFarger.navGra20,
         lenke: '#0067c5',
-        dialogpanelBakgrunn: '#f1f2f2',
-        bakgrunn: '#e9e7e7',
+        bakgrunn: navFarger.navGra20,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
-        objektlisteActive: 'rgba(102, 203, 236, 0.35)',
-        morkGra: '#3E3832',
-        navGra20: '#c6c2bf',
-        orangeFocusLighten60: '#FFE5C2',
-        navGra40: '#b7b1a9'
+        objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
     gråttPanel: css`
         border-radius: ${pxToRem(8)};
@@ -57,17 +64,14 @@ export const theme = {
         px2: pxToRem(2),
         px1: pxToRem(1)
     },
-    boxShadow: {
-        layout: '0 0.1rem 0.6rem rgba(150, 150, 150, 0.7)'
-    },
     borderRadius: {
         layout: '.25rem;',
         knapp: '.35rem;'
     },
     border: {
-        skilleDashed: `dotted ${pxToRem(1.5)} #b7b1a9;`,
-        skille: `solid ${pxToRem(1)} #b7b1a9;`,
-        skilleSvak: `solid ${pxToRem(1)} #c6c2bf;`
+        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra60};`,
+        skille: `solid ${pxToRem(1)} ${navFarger.navGra60}`,
+        skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra40};`
     },
     animation: {
         fadeIn: css`
@@ -76,11 +80,11 @@ export const theme = {
     },
     focus: css`
         outline: none;
-        box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
+        box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
     `,
     focusInset: css`
         outline: none;
-        box-shadow: inset 0 0 0 ${pxToRem(3)} #254b6d;
+        box-shadow: inset 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
     `,
     focusOverlay: css`
         position: relative;
@@ -89,16 +93,17 @@ export const theme = {
             position: absolute;
             top: 0;
             content: '';
-            box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
+            box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
             height: 100%;
             width: 100%;
             pointer-events: none;
         }
     `,
     hover: hover,
-    visuallyHidden: `
+    visuallyHidden: css`
         position: absolute !important;
-        height: 1px; width: 1px;
+        height: 1px;
+        width: 1px;
         overflow: hidden;
         clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
         clip: rect(1px, 1px, 1px, 1px);
@@ -117,7 +122,7 @@ export const theme = {
         background-color: transparent;
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 ${pxToRem(3)} #254b6d;
+            box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
         }
     `,
     highlight: css`
