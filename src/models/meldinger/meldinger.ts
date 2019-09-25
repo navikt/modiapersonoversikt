@@ -103,6 +103,14 @@ export interface ForsettDialogRequest {
     oppgaveId?: string;
 }
 
+export interface SendDelsvarRequest {
+    traadId: string;
+    behandlingsId: string;
+    fritekst: string;
+    temagruppe: string;
+    oppgaveId: string;
+}
+
 export interface OpprettHenvendelseRequest {
     traadId: string;
 }

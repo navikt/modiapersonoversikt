@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { ForsettDialogRequest, Temagruppe } from '../../../../models/meldinger/meldinger';
+import {
+    ForsettDialogRequest,
+    Meldingstype,
+    SendDelsvarRequest,
+    Temagruppe
+} from '../../../../models/meldinger/meldinger';
 import { DialogpanelFeilmelding, DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import {
     FailedPostResource,
@@ -26,6 +31,22 @@ function SvarSendtKvittering(props: { resource: FinishedPostResource<ForsettDial
             tittel="Svar ble sendt"
             fritekst={props.resource.payload.fritekst}
             meldingstype={props.resource.payload.meldingstype}
+            lukk={() => {
+                dispatch(setIngenValgtTraadDialogpanel());
+                dispatch(props.resource.actions.reset);
+            }}
+        />
+    );
+}
+
+function DelsvarRegistrertKvittering(props: { resource: FinishedPostResource<SendDelsvarRequest, {}> }) {
+    const dispatch = useDispatch();
+    return (
+        <DialogpanelKvittering
+            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(props.resource.payload
+                .temagruppe as Temagruppe)}`}
+            fritekst={props.resource.payload.fritekst}
+            meldingstype={Meldingstype.DELVIS_SVAR_SKRIFTLIG}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
                 dispatch(props.resource.actions.reset);
@@ -81,12 +102,16 @@ function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbak
 export function useFortsettDialogKvittering() {
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
 
-    if (isPosting(sendSvarResource) || isPosting(leggTilbakeResource)) {
+    if (isPosting(sendSvarResource) || isPosting(sendDelsvarResource) || isPosting(leggTilbakeResource)) {
         return <CenteredLazySpinner type="XL" delay={100} />;
     }
     if (isFinishedPosting(sendSvarResource)) {
         return <SvarSendtKvittering resource={sendSvarResource} />;
+    }
+    if (isFinishedPosting(sendDelsvarResource)) {
+        return <DelsvarRegistrertKvittering resource={sendDelsvarResource} />;
     }
     if (isFinishedPosting(leggTilbakeResource)) {
         return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
