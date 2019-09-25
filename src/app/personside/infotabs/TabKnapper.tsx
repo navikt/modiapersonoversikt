@@ -22,6 +22,7 @@ const TabKnapperNav = styled.nav`
     }
     border-top: ${theme.border.skille};
     border-bottom: ${theme.border.skille};
+    background-color: ${theme.color.navLysGra};
 `;
 
 const KnappWrapper = styled.div`

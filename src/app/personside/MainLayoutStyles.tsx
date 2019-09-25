@@ -46,7 +46,7 @@ export const HøyreKolonne = styled.section<StyleProps>`
                       margin: auto;
                   }
               `};
-    background-color: ${theme.color.dialogpanelBakgrunn};
+    background-color: ${theme.color.navLysGra};
     overflow-y: auto;
     z-index: 1;
     display: flex;
