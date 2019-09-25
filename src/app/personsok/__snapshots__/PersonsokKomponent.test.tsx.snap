@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-.c6 {
+.c7 {
   position: relative;
   border: none;
   padding: 0;
@@ -19,7 +19,7 @@ exports[`viser personsøk-komponent 1`] = `
   color: #0067c5;
 }
 
-.c6:after {
+.c7:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -27,16 +27,16 @@ exports[`viser personsøk-komponent 1`] = `
   width: 100%;
 }
 
-.c6:focus {
+.c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c6:hover {
+.c7:hover {
   opacity: 0.8;
 }
 
-.c6:hover:after {
+.c7:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -45,18 +45,22 @@ exports[`viser personsøk-komponent 1`] = `
   padding: .8rem;
 }
 
-.c1 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c1 > *:first-child {
+.c2 > *:first-child {
   padding-right: 3em;
 }
 
-.c5 {
+.c1 {
+  padding-bottom: 3em;
+}
+
+.c6 {
   padding-top: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -68,18 +72,18 @@ exports[`viser personsøk-komponent 1`] = `
   justify-content: space-between;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c2 .skjemaelement {
+.c3 .skjemaelement {
   padding-right: 0.5em;
 }
 
-.c3 {
+.c4 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -91,7 +95,7 @@ exports[`viser personsøk-komponent 1`] = `
   font-weight: 400;
 }
 
-.c4 {
+.c5 {
   margin-bottom: 0.5em;
 }
 
@@ -105,6 +109,15 @@ exports[`viser personsøk-komponent 1`] = `
     <div
       className="c1"
     >
+      <h1
+        className="typo-innholdstittel"
+      >
+        Avansert Søk
+      </h1>
+    </div>
+    <div
+      className="c2"
+    >
       <section
         aria-label="Søkekriterier"
       >
@@ -114,7 +127,7 @@ exports[`viser personsøk-komponent 1`] = `
           Søkekriterier
         </h2>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -160,7 +173,7 @@ exports[`viser personsøk-komponent 1`] = `
           </div>
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -299,13 +312,13 @@ exports[`viser personsøk-komponent 1`] = `
           />
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
-            className="c3"
+            className="c4"
           >
             <div
-              className="c4"
+              className="c5"
             >
               <label
                 htmlFor="personsok-datovelger-fra"
@@ -375,10 +388,10 @@ exports[`viser personsøk-komponent 1`] = `
             </div>
           </div>
           <div
-            className="c3"
+            className="c4"
           >
             <div
-              className="c4"
+              className="c5"
             >
               <label
                 htmlFor="personsok-datovelger-til"
@@ -449,7 +462,7 @@ exports[`viser personsøk-komponent 1`] = `
           </div>
         </div>
         <div
-          className="c2"
+          className="c3"
         >
           <div
             className="skjemaelement"
@@ -549,7 +562,7 @@ exports[`viser personsøk-komponent 1`] = `
       </p>
     </a>
     <div
-      className="c5"
+      className="c6"
     >
       <button
         className="knapp knapp--hoved"
@@ -559,7 +572,7 @@ exports[`viser personsøk-komponent 1`] = `
         Søk
       </button>
       <button
-        className="c6"
+        className="c7"
         type="reset"
       >
         Nullstill
