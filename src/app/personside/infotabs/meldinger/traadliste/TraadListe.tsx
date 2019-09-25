@@ -47,16 +47,9 @@ function TraadListe(props: Props) {
     }
 
     const soketreffTekst =
-        props.sokeord.length > 0 ? (
-            <Normaltekst>
-                Søket traff {traaderEtterSok.length} av {props.traader.length} tråder
-            </Normaltekst>
-        ) : (
-            <Normaltekst>Totalt {props.traader.length} tråder</Normaltekst>
-        );
-    const nullstillSok = props.sokeord !== '' && (
-        <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
-    );
+        props.sokeord.length > 0
+            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} tråder`
+            : `Totalt ${props.traader.length} tråder`;
 
     return (
         <PanelStyle>
@@ -69,8 +62,10 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                {soketreffTekst}
-                {nullstillSok}
+                <Normaltekst>{soketreffTekst}</Normaltekst>
+                {props.sokeord !== '' && (
+                    <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+                )}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
