@@ -93,7 +93,7 @@ export const theme = {
             position: absolute;
             top: 0;
             content: '';
-            box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
+            box-shadow: inset 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
             height: 100%;
             width: 100%;
             pointer-events: none;
