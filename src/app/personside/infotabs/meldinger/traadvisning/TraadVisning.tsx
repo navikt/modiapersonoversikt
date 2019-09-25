@@ -82,7 +82,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
             </KnappWrapper>
         );
     } else {
-        return <KnappWrapper></KnappWrapper>;
+        return null;
     }
 }
 
