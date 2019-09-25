@@ -140,15 +140,9 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="c5"
+            className="tekstomrade c5"
           >
-            <p
-              className="typo-normal"
-            >
-              <span>
-                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-              </span>
-            </p>
+            Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
           </div>
         </article>
       </div>
@@ -198,15 +192,9 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="c5"
+            className="tekstomrade c5"
           >
-            <p
-              className="typo-normal"
-            >
-              <span>
-                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-              </span>
-            </p>
+            Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
           </div>
         </article>
       </div>
@@ -256,15 +244,9 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="c5"
+            className="tekstomrade c5"
           >
-            <p
-              className="typo-normal"
-            >
-              <span>
-                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-              </span>
-            </p>
+            Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
           </div>
         </article>
       </div>
@@ -328,15 +310,9 @@ exports[`viser fortsett dialog 1`] = `
       className="ekspanderbartPanel__innhold"
     >
       <div
-        className="c5"
+        className="tekstomrade c5"
       >
-        <p
-          className="typo-normal"
-        >
-          <span>
-            Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-          </span>
-        </p>
+        Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
       </div>
     </article>
   </div>

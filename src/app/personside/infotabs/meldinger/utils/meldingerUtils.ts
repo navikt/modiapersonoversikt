@@ -1,4 +1,12 @@
-import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import {
+    LestStatus,
+    Melding,
+    Meldingstype,
+    Saksbehandler,
+    Temagruppe,
+    Traad
+} from '../../../../../models/meldinger/meldinger';
+import { meldingstypeTekst, temagruppeTekst } from './meldingstekster';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 
 export function sisteSendteMelding(traad: Traad) {
@@ -14,6 +22,10 @@ export function erMonolog(traad: Traad) {
     const bareBruker: boolean = traad.meldinger.some(melding => erMeldingFraBruker(melding.meldingstype));
 
     return bareSaksbehandler !== bareBruker;
+}
+export function meldingstittel(melding: Melding, lestStatus?: boolean) {
+    const lestTekst = lestStatus ? (melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ') : '';
+    return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst}${temagruppeTekst(melding.temagruppe)}`;
 }
 
 export function erSamtalereferat(temagruppe: Temagruppe) {
