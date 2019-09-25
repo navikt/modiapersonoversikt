@@ -46,6 +46,18 @@ function TraadListe(props: Props) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
 
+    const soketreffTekst =
+        props.sokeord.length > 0 ? (
+            <Normaltekst>
+                Søket traff {traaderEtterSok.length} av {props.traader.length} tråder
+            </Normaltekst>
+        ) : (
+            <Normaltekst>Totalt {props.traader.length} tråder</Normaltekst>
+        );
+    const nullstillSok = props.sokeord !== '' && (
+        <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+    );
+
     return (
         <PanelStyle>
             <InputStyle>
@@ -57,21 +69,13 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                {props.sokeord.length > 0 ? (
-                    <Normaltekst>
-                        Søket traff {traaderEtterSok.length} av {props.traader.length} tråder
-                    </Normaltekst>
-                ) : (
-                    <Normaltekst>Totalt {props.traader.length} tråder</Normaltekst>
-                )}
-                {props.sokeord !== '' && (
-                    <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
-                )}
+                {soketreffTekst}
+                {nullstillSok}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
                     <TraadListeElement
-                        ikkeTaFokus={props.sokeord.length > 0}
+                        sokeord={props.sokeord}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}

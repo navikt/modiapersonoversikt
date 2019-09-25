@@ -51,11 +51,13 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dyplenker = useInfotabsDyplenker();
     const traadIUrl = useValgtTraadIUrl(props);
     const [sokeord, setSokeord] = useState('');
-
     const traaderEtterSok = useSokEtterMeldinger(hasData(traaderResource) ? traaderResource.data : [], sokeord);
-    if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
-        props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
-    }
+
+    useEffect(() => {
+        if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
+            props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+        }
+    }, [traadIUrl, traaderEtterSok, props.history, dyplenker.meldinger]);
 
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {

@@ -142,7 +142,7 @@
         "prettier": "^1.16.4",
         "react-test-renderer": "^16.8.6",
         "typescript": "^3.5.1",
-        "@testing-library/react-hooks": "latest"
+        "@testing-library/react-hooks": "^2.0.1"
     },
     "browserslist": {
         "production": [
