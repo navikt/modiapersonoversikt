@@ -31,8 +31,7 @@ export const theme = {
         lenkeSelected: '#005b82',
         lenkeHover: navFarger.navGra20,
         lenke: '#0067c5',
-        dialogpanelBakgrunn: '#f1f2f2',
-        bakgrunn: navFarger.navLysGra,
+        bakgrunn: navFarger.navGra20,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',
@@ -70,9 +69,9 @@ export const theme = {
         knapp: '.35rem;'
     },
     border: {
-        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra40};`,
-        skille: `solid ${pxToRem(1)} ${navFarger.navGra40}`,
-        skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra20};`
+        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra60};`,
+        skille: `solid ${pxToRem(1)} ${navFarger.navGra60}`,
+        skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra40};`
     },
     animation: {
         fadeIn: css`

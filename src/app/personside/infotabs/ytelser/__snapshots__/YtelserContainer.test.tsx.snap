@@ -127,7 +127,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 }
 
 .c14 li:not(:first-child) {
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c13 {
@@ -159,7 +159,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 }
 
 .c9 li:not(:first-child) {
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 .c12 {

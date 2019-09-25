@@ -32,7 +32,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 }
 
 .c0 li:not(:first-child) {
-  border-top: solid 0.0625rem #c6c2bf;
+  border-top: solid 0.0625rem #b7b1a9;
 }
 
 <ol
