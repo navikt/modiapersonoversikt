@@ -131,7 +131,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c15 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c11 {
@@ -216,7 +216,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: #e9e7e7;
+  background-color: #c6c2bf;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
   -webkit-box-pack: justify;
@@ -227,7 +227,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c5 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c4 {
@@ -235,19 +235,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c10 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c21 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c6 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c17 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c18 {
@@ -262,7 +262,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c22 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c1 {

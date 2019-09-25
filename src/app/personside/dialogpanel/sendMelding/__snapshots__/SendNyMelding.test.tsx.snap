@@ -150,7 +150,7 @@ Array [
 
 .c0 {
   background-color: white;
-  border-bottom: solid 0.0625rem #c6c2bf;
+  border-bottom: solid 0.0625rem #b7b1a9;
   padding: 1rem .8rem;
 }
 

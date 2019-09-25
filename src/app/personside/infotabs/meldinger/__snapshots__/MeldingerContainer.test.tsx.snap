@@ -228,7 +228,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c6 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c2 {
