@@ -22,7 +22,9 @@ export const navFarger = {
     navGra80: '#59514b',
     navMorkGra: '#3e3832',
     fokusFarge: '#254b6d',
-    orangeFokus: '#ffbd66'
+    orangeFokus: '#ffbd66',
+    pinkErrorBg: '#f3e3e3',
+    redError: '#ba3a26'
 };
 
 const focusOnRelativeParent = css`
