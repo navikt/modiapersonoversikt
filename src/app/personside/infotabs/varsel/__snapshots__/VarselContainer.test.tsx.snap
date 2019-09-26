@@ -47,6 +47,22 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
+.c6:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.c6:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
 .c2 {
   border-radius: 0.25rem;
   background-color: white;
@@ -54,6 +70,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c3 {
+  position: relative;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 20% 55% 1fr auto;
