@@ -7,6 +7,7 @@ import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
@@ -25,6 +26,11 @@ function OppfolgingOversikt() {
 
 function OppfolgingPanel(props: Props) {
     const paths = usePaths();
+
+    if (!props.detaljertOppfølging.oppfølging.erUnderOppfølging) {
+        return <AlertStripeInfo>Er ikke i arbeidsrettet oppfølging</AlertStripeInfo>;
+    }
+
     return (
         <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
             <OppfolgingVisning oppfolging={props.detaljertOppfølging.oppfølging} />
@@ -33,12 +39,14 @@ function OppfolgingPanel(props: Props) {
 }
 
 function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
-    if (!oppfolging.erUnderOppfølging) {
-        return <Normaltekst>Er ikke i arbeidsrettet oppfølging</Normaltekst>;
-    }
-
     const veilederNavn = oppfolging.veileder ? (
         <Normaltekst>{oppfolging.veileder.navn}</Normaltekst>
+    ) : (
+        <Normaltekst>Ikke angitt</Normaltekst>
+    );
+
+    const enhet = oppfolging.enhet ? (
+        <Normaltekst>{oppfolging.enhet.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
@@ -50,7 +58,7 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
             <Normaltekst>
                 <Bold>Oppfølgende enhet:</Bold>
             </Normaltekst>
-            <Normaltekst>{oppfolging.enhet.navn}</Normaltekst>
+            {enhet}
             <Normaltekst>
                 <Bold>Veileder:</Bold>
             </Normaltekst>

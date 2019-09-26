@@ -13,6 +13,7 @@ import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils';
+import moment from 'moment';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -35,8 +36,14 @@ function UtbetalingerOversikt() {
     );
 }
 
+function datoEldreEnn30Dager(utbetaling: Utbetaling) {
+    return moment(getGjeldendeDatoForUtbetaling(utbetaling)) < moment().subtract(30, 'days');
+}
+
 function UtbetalingerPanel(props: Props) {
-    if (props.utbetalinger.utbetalinger.length === 0) {
+    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
+
+    if (sortertPåDato.length === 0 || datoEldreEnn30Dager(sortertPåDato[0])) {
         return (
             <AlertStripeInfo>
                 Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
@@ -44,8 +51,6 @@ function UtbetalingerPanel(props: Props) {
             </AlertStripeInfo>
         );
     }
-
-    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
 
     return (
         <ListStyle aria-label="Oversikt brukers utbetalinger">
