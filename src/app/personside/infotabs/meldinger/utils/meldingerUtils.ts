@@ -19,7 +19,7 @@ export function erMonolog(traad: Traad) {
     return bareSaksbehandler !== bareBruker;
 }
 
-export function meldingstittel(melding: Melding, lestStatus?: boolean) {
+export function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
