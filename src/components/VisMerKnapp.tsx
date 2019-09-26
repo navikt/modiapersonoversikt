@@ -36,16 +36,7 @@ const Knapp = styled.button`
     background-color: transparent;
     transition: padding-left 0.3s;
     &:focus {
-        outline: none;
-        &::after {
-            content: '';
-            position: absolute;
-            ${theme.focusInset};
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        ${theme.focusOnRelativeParent};
     }
 `;
 
