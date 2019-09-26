@@ -25,22 +25,21 @@ const MeldingerArticleStyle = styled.article`
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
-        > * {
-            overflow-y: auto;
-            max-height: 100%;
-        }
         max-height: 100%;
-    }
-    > * {
-        margin-bottom: ${theme.margin.layout};
     }
     position: relative;
     > *:first-child {
-        flex: 30% 1 1;
+        flex: 35% 1 1;
     }
     > *:last-child {
-        flex: 70% 1 1;
+        flex: 65% 1 1;
     }
+`;
+
+const ScrollBar = styled.div`
+    overflow-y: auto;
+    max-height: 100%;
+    padding: ${theme.margin.layout};
 `;
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
@@ -73,11 +72,18 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                 }
                 return (
                     <MeldingerArticleStyle>
-                        <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
-                        <div>
+                        <ScrollBar>
+                            <TraadListe
+                                sokeord={sokeord}
+                                setSokeord={setSokeord}
+                                traader={data}
+                                valgtTraad={traadIUrl}
+                            />
+                        </ScrollBar>
+                        <ScrollBar>
                             <Verktoylinje valgtTraad={traadIUrl} />
                             <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
-                        </div>
+                        </ScrollBar>
                     </MeldingerArticleStyle>
                 );
             }}

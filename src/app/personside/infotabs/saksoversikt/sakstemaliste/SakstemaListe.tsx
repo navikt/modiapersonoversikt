@@ -25,8 +25,6 @@ const SakstemaListeStyle = styled.ol`
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
-    min-width: 24rem;
-    flex-basis: 24rem;
     ol {
         list-style: none;
     }

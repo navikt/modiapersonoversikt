@@ -16,28 +16,32 @@ import { SakerDyplenkeRouteComponentProps } from '../dyplenker';
 import { withRouter } from 'react-router';
 import { useSyncSaksoversiktMedUrl } from './useInitializeSaksoversikt';
 
-export const saksoversiktMediaTreshold = '80rem';
+export const saksoversiktMediaTreshold = '65rem';
 
 const SaksoversiktArticle = styled.article`
     @media (min-width: ${saksoversiktMediaTreshold}) {
         display: flex;
-        align-items: flex-start;
+        > *:first-child {
+            min-width: 19rem;
+            flex-basis: 19rem;
+            flex-grow: 0.5;
+        }
         > *:last-child {
-            margin-left: ${theme.margin.layout};
+            flex-grow: 1;
         }
-        > * {
-            overflow-y: auto;
-            max-height: 100%;
-        }
+        align-items: flex-start;
         max-height: 100%;
     }
     .visually-hidden {
         ${theme.visuallyHidden}
     }
-    > * {
-        margin-bottom: ${theme.margin.layout};
-    }
     position: relative;
+`;
+
+const ScrollBar = styled.div`
+    overflow-y: auto;
+    max-height: 100%;
+    padding: ${theme.margin.layout};
 `;
 
 function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
@@ -63,8 +67,12 @@ function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
                 >
                     {sakstema => (
                         <>
-                            <SakstemaListe valgtSakstema={valgtSakstema} />
-                            <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                            <ScrollBar>
+                                <SakstemaListe valgtSakstema={valgtSakstema} />
+                            </ScrollBar>
+                            <ScrollBar>
+                                <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                            </ScrollBar>
                         </>
                     )}
                 </RestResourceConsumer>

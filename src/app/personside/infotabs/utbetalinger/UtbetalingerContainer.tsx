@@ -20,27 +20,28 @@ const UtbetalingerArticle = styled.article`
         display: block;
     }
     @media not all and (max-width: ${theme.media.utbetalinger}) {
-        > * {
-            overflow-y: auto;
-            max-height: 100%;
-        }
         max-height: 100%;
+    }
+    > *:last-child {
+        flex-grow: 1;
     }
     position: relative;
 `;
 
 const FiltreringSection = styled.section`
-    min-width: 19rem;
-    flex-basis: 19rem;
+    min-width: 18rem;
+    flex-basis: 18rem;
 `;
 
 const UtbetalingerSection = styled.section`
     position: relative;
-    flex-grow: 1;
     min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
-    @media not all and (max-width: ${theme.media.utbetalinger}) {
-        margin-left: ${theme.margin.layout};
-    }
+`;
+
+const ScrollBar = styled.div`
+    overflow-y: auto;
+    max-height: 100%;
+    padding: ${theme.margin.layout};
 `;
 
 function UtbetalingerContainer() {
@@ -50,20 +51,22 @@ function UtbetalingerContainer() {
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                 {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
-                <div>
+                <ScrollBar>
                     <Arenalenke />
                     <FiltreringSection>
                         <Filter />
                     </FiltreringSection>
-                </div>
-                <UtbetalingerSection aria-label="Filtrerte utbetalinger">
-                    <RestResourceConsumer<UtbetalingerResponse>
-                        getResource={restResources => restResources.utbetalinger}
-                        returnOnPending={BigCenteredLazySpinner}
-                    >
-                        {utbetalinger => <Utbetalinger utbetalingerData={utbetalinger} />}
-                    </RestResourceConsumer>
-                </UtbetalingerSection>
+                </ScrollBar>
+                <ScrollBar>
+                    <UtbetalingerSection aria-label="Filtrerte utbetalinger">
+                        <RestResourceConsumer<UtbetalingerResponse>
+                            getResource={restResources => restResources.utbetalinger}
+                            returnOnPending={BigCenteredLazySpinner}
+                        >
+                            {utbetalinger => <Utbetalinger utbetalingerData={utbetalinger} />}
+                        </RestResourceConsumer>
+                    </UtbetalingerSection>
+                </ScrollBar>
             </UtbetalingerArticle>
         </ErrorBoundary>
     );
