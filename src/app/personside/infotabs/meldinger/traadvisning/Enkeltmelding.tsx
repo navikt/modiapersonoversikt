@@ -61,7 +61,7 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
 
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
-    const topptekst = meldingstittel(props.melding, true);
+    const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
