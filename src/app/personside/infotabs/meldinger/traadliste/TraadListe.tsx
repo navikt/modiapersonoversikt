@@ -6,8 +6,8 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
-import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 import TraadListeElement from './TraadListeElement';
+import { LenkeKnapp } from '../../../../../components/common-styled-components';
 
 interface Props {
     traader: Traad[];
@@ -63,9 +63,7 @@ function TraadListe(props: Props) {
             </InputStyle>
             <SokVerktøyStyle>
                 <Normaltekst>{soketreffTekst}</Normaltekst>
-                {props.sokeord !== '' && (
-                    <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
-                )}
+                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Nullstill søk</LenkeKnapp>}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
