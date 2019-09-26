@@ -37,6 +37,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c8 {
+  position: relative;
   padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -78,7 +79,18 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c14:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+  box-shadow: none;
+}
+
+.c14:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 .c10 {
@@ -178,8 +190,20 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c7:focus {
+  position: relative;
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+  box-shadow: none;
+}
+
+.c7:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 .c13 {

@@ -27,6 +27,21 @@ export const navFarger = {
     redError: '#ba3a26'
 };
 
+const focusOnRelativeParent = css`
+    outline: none;
+    box-shadow: none;
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        box-shadow: inset 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+    }
+`;
+
 export const theme = {
     color: {
         ...navFarger,
@@ -90,17 +105,9 @@ export const theme = {
     `,
     focusOverlay: css`
         position: relative;
-        outline: none;
-        &::after {
-            position: absolute;
-            top: 0;
-            content: '';
-            box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
-            height: 100%;
-            width: 100%;
-            pointer-events: none;
-        }
+        ${focusOnRelativeParent};
     `,
+    focusOnRelativeParent: focusOnRelativeParent,
     hover: hover,
     visuallyHidden: css`
         position: absolute !important;

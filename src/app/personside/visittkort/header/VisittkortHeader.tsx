@@ -8,7 +8,7 @@ import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import ToolTip from '../../../../components/tooltip/ToolTip';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
@@ -27,13 +27,13 @@ interface State {
 const VisittkortHeaderDiv = styled.section`
     background-color: white;
     padding: ${theme.margin.px20};
-    padding-right: 3rem;
+    padding-right: ${pxToRem(5)};
     position: relative;
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     cursor: pointer;
-    > * {
+    > *:not(:last-child) {
         flex: 1 1;
     }
 `;
@@ -75,10 +75,10 @@ const GrunninfoDiv = styled.section`
 `;
 
 const ChevronStyling = styled.div`
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+    padding: ${pxToRem(10)};
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 class VisittkortHeader extends React.PureComponent<Props, State> {
@@ -133,6 +133,7 @@ class VisittkortHeader extends React.PureComponent<Props, State> {
                         onClick={this.toggleVisittkort}
                         open={visittkortApent}
                         title={(visittkortApent ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                        focusOnRelativeParent={true}
                     >
                         <span className="visually-hidden">
                             {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
