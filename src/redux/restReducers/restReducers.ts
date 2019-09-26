@@ -52,7 +52,8 @@ import {
     ForsettDialogRequest,
     Traad,
     OpprettHenvendelseRequest,
-    OpprettHenvendelseResponse
+    OpprettHenvendelseResponse,
+    SendDelsvarRequest
 } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
@@ -70,6 +71,7 @@ import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
+import sendDelsvar from './sendDelsvar';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -108,6 +110,7 @@ export interface RestEndepunkter {
     sendSpørsmål: PostResource<SendSpørsmålRequest>;
     opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
     sendSvar: PostResource<ForsettDialogRequest>;
+    sendDelsvar: PostResource<SendDelsvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
 }
 
@@ -147,6 +150,7 @@ export default combineResettableReducers<RestEndepunkter>(
         sendReferat: sendReferat,
         sendSpørsmål: sendSpørsmål,
         sendSvar: sendSvar,
+        sendDelsvar: sendDelsvar,
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok
