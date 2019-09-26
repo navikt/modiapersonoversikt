@@ -51,6 +51,14 @@ function Journalforing({ melding }: { melding: Melding }) {
     ) : null;
 }
 
+function MeldingLestEtikett({ melding }: { melding: Melding }) {
+    return melding.status === LestStatus.Lest ? (
+        <Etikett type="suksess">Lest</Etikett>
+    ) : (
+        <Etikett type="advarsel">Ulest</Etikett>
+    );
+}
+
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding, true);
@@ -64,11 +72,7 @@ function EnkeltMelding(props: Props) {
                 <SnakkebobleWrapper>
                     <Topptekst>
                         <Element>{topptekst}</Element>
-                        {props.melding.status === LestStatus.Lest ? (
-                            <Etikett type="suksess">Lest</Etikett>
-                        ) : (
-                            <Etikett type="advarsel">Ulest</Etikett>
-                        )}
+                        <MeldingLestEtikett melding={props.melding} />
                     </Topptekst>
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
