@@ -294,6 +294,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
+.c0 {
+  padding: .8rem;
+}
+
 .c1 {
   -webkit-flex-basis: 50%;
   -ms-flex-preferred-size: 50%;
