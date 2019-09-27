@@ -46,12 +46,12 @@ function TraadListe(props: Props) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
 
+    const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
+
     const soketreffTekst =
         props.sokeord.length > 0
-            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${
-                  props.traader.length === 1 ? 'melding' : 'meldinger'
-              }`
-            : `Totalt ${props.traader.length} ${props.traader.length === 1 ? 'melding' : 'meldinger'}`;
+            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
         <PanelStyle>
