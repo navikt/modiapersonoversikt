@@ -54,7 +54,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const traaderEtterSok = useSokEtterMeldinger(hasData(traaderResource) ? traaderResource.data : [], sokeord);
 
     useEffect(
-        function setterForsteSokeresultatTilDyplenke() {
+        function visForsteTreffITraadvisning() {
             if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
                 props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
             }
