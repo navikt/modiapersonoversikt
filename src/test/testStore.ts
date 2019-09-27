@@ -56,7 +56,12 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
-    testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));
+    testStore.dispatch(
+        restResources.featureToggles.actions.setData({
+            [FeatureToggles.SaksoversiktNyttVindu]: true,
+            [FeatureToggles.Hurtigreferat]: true
+        })
+    );
     testStore.dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
     testStore.dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     testStore.dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));

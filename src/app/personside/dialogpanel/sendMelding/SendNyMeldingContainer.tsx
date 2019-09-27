@@ -12,6 +12,8 @@ import { useDispatch } from 'react-redux';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
 import { DialogpanelFeilmelding } from '../fellesStyling';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -103,9 +105,11 @@ function SendNyMeldingContainer() {
 
     return (
         <>
-            <HurtigreferatWrapper>
-                <HurtigReferatContainer />
-            </HurtigreferatWrapper>
+            <IfFeatureToggleOn toggleID={FeatureToggles.Hurtigreferat}>
+                <HurtigreferatWrapper>
+                    <HurtigReferatContainer />
+                </HurtigreferatWrapper>
+            </IfFeatureToggleOn>
             <SendNyMelding
                 updateState={updateState}
                 state={state}

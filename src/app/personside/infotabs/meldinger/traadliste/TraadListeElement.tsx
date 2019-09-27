@@ -40,7 +40,7 @@ const PanelStyle = styled.div`
 
 const ListElement = styled.li`
     &:focus {
-        ${theme.focus}
+        ${theme.focusOverlay}
     }
 `;
 

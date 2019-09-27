@@ -74,12 +74,12 @@ function HentOppgaveKnapp(props: Props) {
         settJobberMedSpørsmålOgSvar();
         dispatch(
             oppgaveResource.actions.post({}, response => {
-                const oppgave = response[0];
-                const fødselsnummer = oppgave.fødselsnummer;
-                if (!fødselsnummer) {
+                if (response.length === 0) {
                     setTomKø(true);
                     return;
                 }
+                const oppgave = response[0];
+                const fødselsnummer = oppgave.fødselsnummer;
                 props.history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.henvendelseid}`
                 );

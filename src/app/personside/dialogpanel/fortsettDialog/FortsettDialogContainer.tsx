@@ -49,6 +49,7 @@ function FortsettDialogContainer(props: Props) {
     };
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
@@ -117,9 +118,19 @@ function FortsettDialogContainer(props: Props) {
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
-            alert('Ikke implementert');
-            console.log('delvis svar: ', state);
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
+            dispatch(
+                sendDelsvarResource.actions.post(
+                    {
+                        fritekst: state.tekst,
+                        traadId: props.traad.traadId,
+                        oppgaveId: props.tilknyttetOppgave.oppgaveid,
+                        temagruppe: state.tema.kodeRef,
+                        behandlingsId: opprettHenvendelse.behandlingsId
+                    },
+                    callback
+                )
+            );
         } else {
             updateState({ visFeilmeldinger: true });
         }

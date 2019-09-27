@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
+import { pxToRem, theme } from '../styles/personOversiktTheme';
 
 const AppWrapper = styled.div`
     height: 100vh;
@@ -14,6 +14,9 @@ const AppWrapper = styled.div`
     }
     .knapp {
         text-transform: none;
+    }
+    .skjema__feilomrade--harFeil {
+        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError}55;
     }
 `;
 

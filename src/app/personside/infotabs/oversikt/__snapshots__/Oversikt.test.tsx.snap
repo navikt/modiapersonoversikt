@@ -6,6 +6,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c7 {
+  position: relative;
   padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -47,7 +48,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c9:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+  box-shadow: none;
+}
+
+.c9:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 .c25 svg {
@@ -105,6 +117,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
+.c14:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.c14:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
 .c16 {
   padding: 0.7rem;
   display: -webkit-box;
@@ -141,6 +169,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c12 {
+  position: relative;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 20% 55% 1fr auto;
@@ -216,7 +245,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: #c6c2bf;
+  background-color: #e9e7e7;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
   -webkit-box-pack: justify;
@@ -512,25 +541,38 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c5"
       >
         <div
-          className="c7"
-          onClick={[Function]}
+          className="alertstripe alertstripe--info"
         >
-          <div>
-            <p
-              className="typo-normal"
-            >
-              Er ikke i arbeidsrettet oppfølging
-            </p>
-          </div>
-          <button
-            aria-label="Gå til oppfølging"
-            aria-selected={false}
-            className="c9"
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
           >
-            <i
-              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-            />
-          </button>
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
+                />
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                  fill="#FFF"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Er ikke i arbeidsrettet oppfølging
+          </div>
         </div>
       </div>
     </section>

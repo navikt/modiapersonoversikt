@@ -23,7 +23,7 @@ const PanelStyle = styled.section`
 
 const OverskriftStyle = styled.div`
     display: flex;
-    background-color: ${theme.color.bakgrunn};
+    background-color: ${theme.color.navLysGra};
     border-top-left-radius: ${theme.borderRadius.layout};
     border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
