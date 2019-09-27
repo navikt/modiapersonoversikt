@@ -43,7 +43,7 @@ function MeldingerOversikt() {
             {data => {
                 const traadKomponenter = data
                     .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-                    .slice(0, 4)
+                    .slice(0, 2)
                     .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
 
                 if (traadKomponenter.length === 0) {

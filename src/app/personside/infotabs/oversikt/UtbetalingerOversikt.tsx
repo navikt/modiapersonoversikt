@@ -41,7 +41,7 @@ function datoEldreEnn30Dager(utbetaling: Utbetaling) {
 }
 
 function UtbetalingerPanel(props: Props) {
-    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 3);
+    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 2);
 
     if (sortertPåDato.length === 0 || datoEldreEnn30Dager(sortertPåDato[0])) {
         return (

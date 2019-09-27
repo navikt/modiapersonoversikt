@@ -39,7 +39,7 @@ function YtelserOversikt() {
 
     return (
         <YtelserStyle>
-            {ytelser.slice(0, 3)}
+            {ytelser.slice(0, 2)}
             {feilmeldinger}
             {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
                 <AlertStripeInfo>
