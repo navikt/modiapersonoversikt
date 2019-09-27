@@ -39,7 +39,7 @@ export const HøyreKolonne = styled.section<StyleProps>`
                       display: none;
                   }
                   &:before {
-                      content: 'Dialogpanel';
+                      content: 'Oppgavepanel';
                       writing-mode: vertical-rl;
                       text-transform: uppercase;
                       text-align: center;
