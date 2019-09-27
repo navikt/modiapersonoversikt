@@ -15,6 +15,7 @@ import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { SakerDyplenkeRouteComponentProps } from '../dyplenker';
 import { withRouter } from 'react-router';
 import { useSyncSaksoversiktMedUrl } from './useInitializeSaksoversikt';
+import { ScrollBar } from '../utils/InfoTabsScrollBar';
 
 export const saksoversiktMediaTreshold = '65rem';
 
@@ -36,12 +37,6 @@ const SaksoversiktArticle = styled.article`
         ${theme.visuallyHidden}
     }
     position: relative;
-`;
-
-const ScrollBar = styled.div`
-    overflow-y: auto;
-    max-height: 100%;
-    padding: ${theme.margin.layout};
 `;
 
 function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {

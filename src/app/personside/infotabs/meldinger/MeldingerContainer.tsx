@@ -15,6 +15,7 @@ import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ScrollBar } from '../utils/InfoTabsScrollBar';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
@@ -34,12 +35,6 @@ const MeldingerArticleStyle = styled.article`
     > *:last-child {
         flex: 65% 1 1;
     }
-`;
-
-const ScrollBar = styled.div`
-    overflow-y: auto;
-    max-height: 100%;
-    padding: ${theme.margin.layout};
 `;
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {

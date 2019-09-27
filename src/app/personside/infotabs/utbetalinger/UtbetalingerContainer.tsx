@@ -12,6 +12,7 @@ import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySp
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { ScrollBar } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerArticle = styled.article`
     display: flex;
@@ -36,12 +37,6 @@ const FiltreringSection = styled.section`
 const UtbetalingerSection = styled.section`
     position: relative;
     min-width: 35rem; // Tabellene begynner å wrappe ved bredder mindre enn dette
-`;
-
-const ScrollBar = styled.div`
-    overflow-y: auto;
-    max-height: 100%;
-    padding: ${theme.margin.layout};
 `;
 
 function UtbetalingerContainer() {
