@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c16 {
+.c14 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -22,7 +22,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   animation: fYGRJE 0.3s ease-out;
 }
 
-.c16 > * {
+.c14 > * {
   -webkit-flex: 0 1 25rem;
   -ms-flex: 0 1 25rem;
   flex: 0 1 25rem;
@@ -36,7 +36,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: center;
 }
 
-.c9 {
+.c7 {
   position: relative;
   padding: .8rem;
   display: -webkit-box;
@@ -50,22 +50,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c9:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c9:hover > button:last-child {
+.c7:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c9 > *:first-child {
+.c7 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c15 {
+.c13 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -77,12 +77,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c15:focus {
+.c13:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c15:focus::after {
+.c13:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,67 +93,23 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c11 {
+.c9 {
   position: relative;
 }
 
-.c11 svg {
+.c9 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c12 {
+.c10 {
   position: absolute;
   top: -0.1875rem;
   right: 0.5625rem;
   border-radius: 50%;
   padding: 0 0.1rem;
-}
-
-.c5 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c5:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c5:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c5:hover {
-  opacity: 0.8;
-}
-
-.c5:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
-.c6 {
-  margin-right: 0.5rem;
 }
 
 .c1 {
@@ -162,7 +118,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   padding: .8rem;
 }
 
-.c13 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -172,36 +128,36 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c13 .order-first {
+.c11 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c13 .order-second {
+.c11 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c10 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c10 > *:first-child {
+.c8 > *:first-child {
   padding-right: .8rem;
 }
 
-.c8:focus {
+.c6:focus {
   position: relative;
   outline: none;
   box-shadow: none;
 }
 
-.c8:focus::after {
+.c6:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -212,7 +168,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c14 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -227,7 +183,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c14 > *:not(:last-child) {
+.c12 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -257,7 +213,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c7 > *:not(:first-child) {
+.c5 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -342,44 +298,28 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         className="c4"
       >
         <p
-          className="typo-element"
+          className="typo-normal"
         >
-          Totalt 
-          1
-           tråder
+          Totalt 1 melding
         </p>
-        <button
-          className="c5"
-          onClick={[Function]}
-        >
-          <span
-            className="c6"
-          >
-            <span
-              className="typo-normal"
-            >
-              Nullstill søk
-            </span>
-          </span>
-        </button>
       </div>
       <ol
-        className="c7"
+        className="c5"
       >
         <li
-          className="test-meldinger-melding c8"
+          className="test-meldinger-melding c6"
           tabIndex={-1}
         >
           <div
-            className="c9"
+            className="c7"
             onClick={[Function]}
           >
             <div>
               <div
-                className="c10"
+                className="c8"
               >
                 <span
-                  className="c11"
+                  className="c9"
                 >
                   <svg
                     height={24}
@@ -402,14 +342,14 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </g>
                   </svg>
                   <p
-                    className="typo-undertekst-bold c12"
+                    className="typo-undertekst-bold c10"
                   >
                     4
                   </p>
                 </span>
                 <div>
                   <div
-                    className="c13"
+                    className="c11"
                   >
                     <p
                       className="typo-element order-second"
@@ -423,7 +363,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <div
-                    className="c14"
+                    className="c12"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -441,7 +381,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             <button
               aria-label="Vis meldinger for Delsvar - Arbeid"
               aria-selected={false}
-              className="c15"
+              className="c13"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
@@ -456,7 +396,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     className="c1"
   >
     <div
-      className="c16"
+      className="c14"
     />
   </div>
 </article>
