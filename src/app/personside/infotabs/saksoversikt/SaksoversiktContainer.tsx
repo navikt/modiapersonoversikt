@@ -15,11 +15,12 @@ import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { SakerDyplenkeRouteComponentProps } from '../dyplenker';
 import { withRouter } from 'react-router';
 import { useSyncSaksoversiktMedUrl } from './useInitializeSaksoversikt';
-import { ScrollBar } from '../utils/InfoTabsScrollBar';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 export const saksoversiktMediaTreshold = '65rem';
 
 const SaksoversiktArticle = styled.article`
+    ${scrollBarContainerStyle(saksoversiktMediaTreshold)};
     @media (min-width: ${saksoversiktMediaTreshold}) {
         display: flex;
         > *:first-child {
@@ -31,7 +32,6 @@ const SaksoversiktArticle = styled.article`
             flex-grow: 1;
         }
         align-items: flex-start;
-        max-height: 100%;
     }
     .visually-hidden {
         ${theme.visuallyHidden}

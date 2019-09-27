@@ -15,18 +15,18 @@ import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ScrollBar } from '../utils/InfoTabsScrollBar';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
+    ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
         display: flex;
         align-items: flex-start;
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
-        max-height: 100%;
     }
     position: relative;
     > *:first-child {

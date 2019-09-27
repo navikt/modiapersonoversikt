@@ -12,19 +12,16 @@ import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySp
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
-import { ScrollBar } from '../utils/InfoTabsScrollBar';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerArticle = styled.article`
-    display: flex;
-    align-items: flex-start;
-    @media (max-width: ${theme.media.utbetalinger}) {
-        display: block;
-    }
-    @media not all and (max-width: ${theme.media.utbetalinger}) {
-        max-height: 100%;
-    }
-    > *:last-child {
-        flex-grow: 1;
+    ${scrollBarContainerStyle(theme.media.utbetalinger)};
+    @media (min-width: ${theme.media.utbetalinger}) {
+        display: flex;
+        align-items: flex-start;
+        > *:last-child {
+            flex-grow: 1;
+        }
     }
     position: relative;
 `;
