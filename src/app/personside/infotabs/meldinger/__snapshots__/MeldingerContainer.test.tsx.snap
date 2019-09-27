@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c15 {
+.c16 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -22,7 +22,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   animation: fYGRJE 0.3s ease-out;
 }
 
-.c15 > * {
+.c16 > * {
   -webkit-flex: 0 1 25rem;
   -ms-flex: 0 1 25rem;
   flex: 0 1 25rem;
@@ -36,7 +36,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: center;
 }
 
-.c8 {
+.c9 {
   position: relative;
   padding: .8rem;
   display: -webkit-box;
@@ -50,22 +50,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c8:hover {
+.c9:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c8:hover > button:last-child {
+.c9:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c8 > *:first-child {
+.c9 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c14 {
+.c15 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -77,12 +77,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c14:focus {
+.c15:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c14:focus::after {
+.c15:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,18 +93,18 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c10 {
+.c11 {
   position: relative;
 }
 
-.c10 svg {
+.c11 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c11 {
+.c12 {
   position: absolute;
   top: -0.1875rem;
   right: 0.5625rem;
@@ -112,7 +112,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   padding: 0 0.1rem;
 }
 
-.c4 {
+.c5 {
   position: relative;
   border: none;
   padding: 0;
@@ -130,7 +130,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c4:after {
+.c5:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -138,25 +138,31 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c4:focus {
+.c5:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c4:hover {
+.c5:hover {
   opacity: 0.8;
 }
 
-.c4:hover:after {
+.c5:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c5 {
+.c6 {
   margin-right: 0.5rem;
 }
 
-.c12 {
+.c1 {
+  overflow-y: auto;
+  max-height: 100%;
+  padding: .8rem;
+}
+
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -166,36 +172,36 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c12 .order-first {
+.c13 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c12 .order-second {
+.c13 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c9 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c9 > *:first-child {
+.c10 > *:first-child {
   padding-right: .8rem;
 }
 
-.c7:focus {
+.c8:focus {
   position: relative;
   outline: none;
   box-shadow: none;
 }
 
-.c7:focus::after {
+.c8:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -206,7 +212,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c13 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -221,22 +227,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c13 > *:not(:last-child) {
+.c14 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c1 {
+.c2 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c1 ol {
+.c2 ol {
   list-style: none;
 }
 
-.c3 {
+.c4 {
   padding: 0 .8rem .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -251,11 +257,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c6 > *:not(:first-child) {
+.c7 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c2 {
+.c3 {
   padding: .8rem .8rem 0;
 }
 
@@ -263,20 +269,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   position: relative;
 }
 
-.c0 > * {
-  margin-bottom: .8rem;
-}
-
 .c0 > *:first-child {
-  -webkit-flex: 30% 1 1;
-  -ms-flex: 30% 1 1;
-  flex: 30% 1 1;
+  -webkit-flex: 35% 1 1;
+  -ms-flex: 35% 1 1;
+  flex: 35% 1 1;
 }
 
 .c0 > *:last-child {
-  -webkit-flex: 70% 1 1;
-  -ms-flex: 70% 1 1;
-  flex: 70% 1 1;
+  -webkit-flex: 65% 1 1;
+  -ms-flex: 65% 1 1;
+  flex: 65% 1 1;
+}
+
+@media (min-width:62.5rem) {
+  .c0 {
+    max-height: 100%;
+  }
 }
 
 @media (min-width:62.5rem) {
@@ -289,166 +297,166 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
-    max-height: 100%;
   }
 
   .c0 > *:last-child {
     margin-left: .8rem;
-  }
-
-  .c0 > * {
-    overflow-y: auto;
-    max-height: 100%;
   }
 }
 
 <article
   className="c0"
 >
-  <nav
+  <div
     className="c1"
   >
-    <div
+    <nav
       className="c2"
     >
       <div
-        className="skjemaelement move-input-label"
+        className="c3"
       >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Søk etter melding
-        </label>
-        <input
-          className="skjemaelement__input input--fullbredde"
-          id="Helt tilfeldig ID"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
         <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-    </div>
-    <div
-      className="c3"
-    >
-      <p
-        className="typo-element"
-      >
-        Totalt 
-        1
-         tråder
-      </p>
-      <button
-        className="c4"
-        onClick={[Function]}
-      >
-        <span
-          className="c5"
+          className="skjemaelement move-input-label"
         >
-          <span
-            className="typo-normal"
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            Nullstill søk
-          </span>
-        </span>
-      </button>
-    </div>
-    <ol
-      className="c6"
-    >
-      <li
-        className="test-meldinger-melding c7"
-        tabIndex={-1}
+            Søk etter melding
+          </label>
+          <input
+            className="skjemaelement__input input--fullbredde"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+      </div>
+      <div
+        className="c4"
       >
-        <div
-          className="c8"
+        <p
+          className="typo-element"
+        >
+          Totalt 
+          1
+           tråder
+        </p>
+        <button
+          className="c5"
           onClick={[Function]}
         >
-          <div>
-            <div
-              className="c9"
+          <span
+            className="c6"
+          >
+            <span
+              className="typo-normal"
             >
-              <span
+              Nullstill søk
+            </span>
+          </span>
+        </button>
+      </div>
+      <ol
+        className="c7"
+      >
+        <li
+          className="test-meldinger-melding c8"
+          tabIndex={-1}
+        >
+          <div
+            className="c9"
+            onClick={[Function]}
+          >
+            <div>
+              <div
                 className="c10"
               >
-                <svg
-                  height={24}
-                  viewBox="0 0 24 24"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
+                <span
+                  className="c11"
                 >
-                  <g
-                    fill="none"
-                    stroke="#000"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
-                    />
-                    <path
-                      d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
-                    />
-                  </g>
-                </svg>
-                <p
-                  className="typo-undertekst-bold c11"
-                >
-                  4
-                </p>
-              </span>
-              <div>
-                <div
-                  className="c12"
-                >
-                  <p
-                    className="typo-element order-second"
-                  >
-                    Delsvar - Arbeid
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    13.08.2019 00:00
-                  </p>
-                </div>
-                <div
-                  className="c13"
-                >
-                  <div
-                    className="etikett etikett--fokus"
-                  >
-                    <span
-                      className="typo-normal"
+                    <g
+                      fill="none"
+                      stroke="#000"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
                     >
-                      Under arbeid
-                    </span>
+                      <path
+                        d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
+                      />
+                      <path
+                        d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
+                      />
+                    </g>
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c12"
+                  >
+                    4
+                  </p>
+                </span>
+                <div>
+                  <div
+                    className="c13"
+                  >
+                    <p
+                      className="typo-element order-second"
+                    >
+                      Delsvar - Arbeid
+                    </p>
+                    <p
+                      className="typo-normal order-first"
+                    >
+                      13.08.2019 00:00
+                    </p>
+                  </div>
+                  <div
+                    className="c14"
+                  >
+                    <div
+                      className="etikett etikett--fokus"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Under arbeid
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <button
+              aria-label="Vis meldinger for Delsvar - Arbeid"
+              aria-selected={false}
+              className="c15"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
-          <button
-            aria-label="Vis meldinger for Delsvar - Arbeid"
-            aria-selected={false}
-            className="c14"
-          >
-            <i
-              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-            />
-          </button>
-        </div>
-      </li>
-    </ol>
-  </nav>
-  <div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div
+    className="c1"
+  >
     <div
-      className="c15"
+      className="c16"
     />
   </div>
 </article>
