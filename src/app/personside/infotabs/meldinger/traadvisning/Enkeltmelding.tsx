@@ -13,6 +13,7 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
+import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
 
 const JournalforingStyle = styled.div`

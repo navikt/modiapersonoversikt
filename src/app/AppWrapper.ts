@@ -18,6 +18,18 @@ const AppWrapper = styled.div`
     .skjema__feilomrade--harFeil {
         box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError}55;
     }
+    &.is-mac {
+        *::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: ${pxToRem(7)};
+            height: ${pxToRem(7)};
+            background-color: #0004;
+        }
+        *::-webkit-scrollbar-thumb {
+            border-radius: ${pxToRem(4)};
+            background-color: #0005;
+        }
+    }
 `;
 
 export const ContentStyle = styled.div`

@@ -18,6 +18,7 @@ const Styling = styled.section`
         margin-bottom: 0.5rem;
     }
     ${theme.resetEkspanderbartPanelStyling};
+    padding: ${theme.margin.layout};
 `;
 
 function YtelserContainer() {

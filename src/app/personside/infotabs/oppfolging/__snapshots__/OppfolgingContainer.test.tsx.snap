@@ -201,6 +201,10 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   padding: 1.25rem;
 }
 
+.c0 {
+  padding: .8rem;
+}
+
 .c0 > *:not(:last-child) {
   margin-bottom: .8rem;
 }

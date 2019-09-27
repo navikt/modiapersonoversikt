@@ -269,6 +269,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
+.c0 {
+  padding: .8rem;
+}
+
 .c0 > * {
   margin-bottom: 0.5rem;
 }

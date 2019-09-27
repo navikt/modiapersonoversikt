@@ -15,32 +15,26 @@ import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
+    ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
         display: flex;
         align-items: flex-start;
         > *:last-child {
             margin-left: ${theme.margin.layout};
         }
-        > * {
-            overflow-y: auto;
-            max-height: 100%;
-        }
-        max-height: 100%;
-    }
-    > * {
-        margin-bottom: ${theme.margin.layout};
     }
     position: relative;
     > *:first-child {
-        flex: 30% 1 1;
+        flex: 35% 1 1;
     }
     > *:last-child {
-        flex: 70% 1 1;
+        flex: 65% 1 1;
     }
 `;
 
@@ -84,11 +78,18 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                 }
                 return (
                     <MeldingerArticleStyle>
-                        <TraadListe sokeord={sokeord} setSokeord={setSokeord} traader={data} valgtTraad={traadIUrl} />
-                        <div>
+                        <ScrollBar>
+                            <TraadListe
+                                sokeord={sokeord}
+                                setSokeord={setSokeord}
+                                traader={data}
+                                valgtTraad={traadIUrl}
+                            />
+                        </ScrollBar>
+                        <ScrollBar>
                             <Verktoylinje valgtTraad={traadIUrl} />
                             <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
-                        </div>
+                        </ScrollBar>
                     </MeldingerArticleStyle>
                 );
             }}
