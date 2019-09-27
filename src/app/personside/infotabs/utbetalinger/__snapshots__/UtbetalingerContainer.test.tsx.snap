@@ -298,6 +298,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin: 0.5rem 0;
 }
 
+.c1 {
+  overflow-y: auto;
+  max-height: 100%;
+  padding: .8rem;
+}
+
 .c31 {
   cursor: pointer;
   -webkit-transition: 0.3s;
@@ -483,12 +489,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c9 {
   position: relative;
   min-width: 35rem;
-}
-
-.c1 {
-  overflow-y: auto;
-  max-height: 100%;
-  padding: .8rem;
 }
 
 @media print {

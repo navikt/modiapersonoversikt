@@ -156,6 +156,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-right: 0.5rem;
 }
 
+.c1 {
+  overflow-y: auto;
+  max-height: 100%;
+  padding: .8rem;
+}
+
 .c13 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -273,12 +279,6 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   -webkit-flex: 65% 1 1;
   -ms-flex: 65% 1 1;
   flex: 65% 1 1;
-}
-
-.c1 {
-  overflow-y: auto;
-  max-height: 100%;
-  padding: .8rem;
 }
 
 @media (min-width:62.5rem) {
