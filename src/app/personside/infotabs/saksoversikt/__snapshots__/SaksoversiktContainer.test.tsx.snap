@@ -421,6 +421,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 @media (min-width:65rem) {
   .c0 {
+    max-height: 100%;
+  }
+}
+
+@media (min-width:65rem) {
+  .c0 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -429,7 +435,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
-    max-height: 100%;
   }
 
   .c0 > *:first-child {

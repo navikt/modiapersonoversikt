@@ -461,22 +461,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
   position: relative;
-}
-
-.c0 > *:last-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
 }
 
 .c3 {
@@ -545,15 +530,29 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-@media (max-width:80rem) {
+@media (min-width:80rem) {
   .c0 {
-    display: block;
+    max-height: 100%;
   }
 }
 
-@media not all and (max-width:80rem) {
+@media (min-width:80rem) {
   .c0 {
-    max-height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
+
+  .c0 > *:last-child {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
   }
 }
 
