@@ -63,7 +63,7 @@ function TraadListe(props: Props) {
             </InputStyle>
             <SokVerktøyStyle>
                 <Normaltekst>{soketreffTekst}</Normaltekst>
-                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Nullstill søk</LenkeKnapp>}
+                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Vis alle tråder</LenkeKnapp>}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
