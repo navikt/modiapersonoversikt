@@ -14,6 +14,8 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils';
 import moment from 'moment';
+import { ReactNode } from 'react';
+import { useOnMount } from '../../../../utils/customHooks';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -22,16 +24,16 @@ const ListStyle = styled.ol`
 `;
 
 interface Props {
-    utbetalinger: UtbetalingerResponse;
+    setHeaderContent: (content: ReactNode) => void;
 }
 
-function UtbetalingerOversikt() {
+function UtbetalingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<UtbetalingerResponse>
             getResource={restResources => restResources.utbetalinger}
             returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
         >
-            {data => <UtbetalingerPanel utbetalinger={data} />}
+            {data => <UtbetalingerPanel utbetalinger={data} {...props} />}
         </RestResourceConsumer>
     );
 }
@@ -40,10 +42,21 @@ function datoEldreEnn30Dager(utbetaling: Utbetaling) {
     return moment(getGjeldendeDatoForUtbetaling(utbetaling)) < moment().subtract(30, 'days');
 }
 
-function UtbetalingerPanel(props: Props) {
-    const sortertPåDato = props.utbetalinger.utbetalinger.sort(utbetalingDatoComparator).slice(0, 2);
+function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props) {
+    const filtrertOgSorterteUtbetalinger = props.utbetalinger.utbetalinger
+        .sort(utbetalingDatoComparator)
+        .slice(0, 2)
+        .filter(utbetaling => !datoEldreEnn30Dager(utbetaling));
 
-    if (sortertPåDato.length === 0 || datoEldreEnn30Dager(sortertPåDato[0])) {
+    useOnMount(() => {
+        props.setHeaderContent(
+            <Normaltekst>
+                {filtrertOgSorterteUtbetalinger.length} / {props.utbetalinger.utbetalinger.length}
+            </Normaltekst>
+        );
+    });
+
+    if (filtrertOgSorterteUtbetalinger.length === 0) {
         return (
             <AlertStripeInfo>
                 Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
@@ -54,7 +67,7 @@ function UtbetalingerPanel(props: Props) {
 
     return (
         <ListStyle aria-label="Oversikt brukers utbetalinger">
-            {sortertPåDato.map((utbetaling, index) => (
+            {filtrertOgSorterteUtbetalinger.map((utbetaling, index) => (
                 <EnkelUtbetaling key={index} utbetaling={utbetaling} />
             ))}
         </ListStyle>

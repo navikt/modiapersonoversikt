@@ -38,19 +38,19 @@ function Oversikt() {
                 <Oversiktskomponent
                     infotabPath={INFOTABS.UTBETALING}
                     tittel={'Utbetalinger'}
-                    children={<UtbetalingerOversikt />}
+                    children={setHeaderContent => <UtbetalingerOversikt setHeaderContent={setHeaderContent} />}
                     hurtigtast={'U'}
                 />
                 <Oversiktskomponent
                     infotabPath={INFOTABS.OPPFOLGING}
                     tittel={'Oppfølging'}
-                    children={<OppfolgingOversikt />}
+                    children={setHeaderContent => <OppfolgingOversikt />}
                     hurtigtast={'O'}
                 />
                 <Oversiktskomponent
                     infotabPath={INFOTABS.VARSEL}
                     tittel={'Varsler'}
-                    children={<VarselOversikt />}
+                    children={setHeaderContent => <VarselOversikt setHeaderContent={setHeaderContent} />}
                     hurtigtast={'V'}
                 />
             </KolonneStyle>
@@ -58,19 +58,19 @@ function Oversikt() {
                 <Oversiktskomponent
                     infotabPath={INFOTABS.MELDINGER}
                     tittel={'Meldinger'}
-                    children={<MeldingerOversikt />}
+                    children={setHeaderContent => <MeldingerOversikt setHeaderContent={setHeaderContent} />}
                     hurtigtast={'M'}
                 />
                 <Oversiktskomponent
                     infotabPath={INFOTABS.YTELSER}
                     tittel={'Ytelser'}
-                    children={<YtelserOversikt />}
+                    children={setHeaderContent => <YtelserOversikt setHeaderContent={setHeaderContent} />}
                     hurtigtast={'Y'}
                 />
                 <Oversiktskomponent
                     tittel={'Saker'}
                     infotabPath={INFOTABS.SAKER}
-                    children={<SakerOversikt />}
+                    children={setHeaderContent => <SakerOversikt setHeaderContent={setHeaderContent} />}
                     hurtigtast={'S'}
                 />
             </KolonneStyle>
