@@ -16,6 +16,7 @@ import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
@@ -40,6 +41,16 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dyplenker = useInfotabsDyplenker();
     const traadIUrl = useValgtTraadIUrl(props);
     const [sokeord, setSokeord] = useState('');
+    const traaderEtterSok = useSokEtterMeldinger(hasData(traaderResource) ? traaderResource.data : [], sokeord);
+
+    useEffect(
+        function visForsteTreffITraadvisning() {
+            if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
+                props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+            }
+        },
+        [traadIUrl, traaderEtterSok, props.history, dyplenker.meldinger]
+    );
 
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {

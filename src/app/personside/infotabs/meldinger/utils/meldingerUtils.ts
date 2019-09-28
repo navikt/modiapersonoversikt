@@ -1,13 +1,8 @@
-import {
-    LestStatus,
-    Melding,
-    Meldingstype,
-    Saksbehandler,
-    Temagruppe,
-    Traad
-} from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst, temagruppeTekst } from './meldingstekster';
 import { datoSynkende } from '../../../../../utils/dateUtils';
+import { useMemo } from 'react';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
 
 export function sisteSendteMelding(traad: Traad) {
     return traad.meldinger.sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -23,9 +18,9 @@ export function erMonolog(traad: Traad) {
 
     return bareSaksbehandler !== bareBruker;
 }
-export function meldingstittel(melding: Melding, lestStatus?: boolean) {
-    const lestTekst = lestStatus ? (melding.status === LestStatus.Lest ? 'Lest, ' : 'Ulest, ') : '';
-    return `${meldingstypeTekst(melding.meldingstype)} - ${lestTekst}${temagruppeTekst(melding.temagruppe)}`;
+
+export function meldingstittel(melding: Melding) {
+    return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
 export function erSamtalereferat(temagruppe: Temagruppe) {
@@ -136,4 +131,22 @@ export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     }
     const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
     return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
+}
+
+export function useSokEtterMeldinger(traader: Traad[], query: string) {
+    const debouncedQuery = useDebounce(query, 200);
+    return useMemo(() => {
+        const words = debouncedQuery.split(' ');
+        return traader
+            .filter(traad => {
+                return traad.meldinger.some(melding => {
+                    const fritekst = melding.fritekst;
+                    const tittel = meldingstittel(melding);
+                    const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
+                    const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+                    return words.every(word => sokbarTekst.includes(word.toLowerCase()));
+                });
+            })
+            .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
+    }, [debouncedQuery, traader]);
 }
