@@ -322,7 +322,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c1 > * {
-  margin-bottom: 1.875rem;
+  margin-bottom: .8rem;
 }
 
 @media (min-width:35rem) {
@@ -340,7 +340,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 @media (min-width:35rem) {
   .c1:not(:last-child) {
-    margin-right: 1.875rem;
+    margin-right: .8rem;
   }
 }
 

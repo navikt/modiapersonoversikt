@@ -20,11 +20,11 @@ const Style = styled.article`
 
 const KolonneStyle = styled.div`
     > * {
-        margin-bottom: ${theme.margin.px30};
+        margin-bottom: ${theme.margin.layout};
     }
     @media (${theme.media.wideScreen}) {
         &:not(:last-child) {
-            margin-right: ${theme.margin.px30};
+            margin-right: ${theme.margin.layout};
         }
     }
     flex-basis: 50%;
