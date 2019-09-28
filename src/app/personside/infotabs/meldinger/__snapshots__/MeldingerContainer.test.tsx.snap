@@ -269,18 +269,6 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   position: relative;
 }
 
-.c0 > *:first-child {
-  -webkit-flex: 35% 1 1;
-  -ms-flex: 35% 1 1;
-  flex: 35% 1 1;
-}
-
-.c0 > *:last-child {
-  -webkit-flex: 65% 1 1;
-  -ms-flex: 65% 1 1;
-  flex: 65% 1 1;
-}
-
 @media (min-width:62.5rem) {
   .c0 {
     max-height: 100%;
@@ -293,14 +281,18 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
+  }
+
+  .c0 > *:first-child {
+    -webkit-flex: 35% 1 1;
+    -ms-flex: 35% 1 1;
+    flex: 35% 1 1;
   }
 
   .c0 > *:last-child {
-    margin-left: .8rem;
+    -webkit-flex: 65% 1 1;
+    -ms-flex: 65% 1 1;
+    flex: 65% 1 1;
   }
 }
 
