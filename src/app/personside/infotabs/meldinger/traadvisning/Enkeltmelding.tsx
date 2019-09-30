@@ -14,10 +14,6 @@ import Tekstomrade, {
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
-
-const JournalforingStyle = styled.div`
-    margin-top: 2rem;
-`;
 import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 
@@ -39,7 +35,7 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
-const EtikettGul = styled(EtikettLiten)`
+const JournalforingEtikett = styled(EtikettLiten)`
     color: ${theme.color.lenke};
 `;
 
@@ -62,7 +58,7 @@ function Journalforing({ melding }: { melding: Melding }) {
     const [open, setOpen] = useState(false);
     return melding.journalfortAv && melding.journalfortDato ? (
         <JournalforingPanel
-            heading={<EtikettGul>Meldingen er journalført</EtikettGul>}
+            heading={<JournalforingEtikett>Meldingen er journalført</JournalforingEtikett>}
             apen={open}
             onClick={() => setOpen(!open)}
         >
