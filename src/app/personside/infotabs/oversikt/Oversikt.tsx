@@ -15,6 +15,7 @@ const Style = styled.article`
         display: flex;
         justify-content: center;
     }
+    padding: ${theme.margin.layout};
 `;
 
 const KolonneStyle = styled.div`

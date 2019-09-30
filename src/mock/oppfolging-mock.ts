@@ -15,11 +15,12 @@ import moment from 'moment';
 
 export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     faker.seed(Number(fødselsnummer));
+    const erUnderOppfolging = faker.random.boolean();
 
     return {
-        erUnderOppfølging: true,
-        veileder: getSaksbehandler(),
-        enhet: getAnsattEnhet()
+        erUnderOppfølging: erUnderOppfolging,
+        veileder: erUnderOppfolging ? getSaksbehandler() : null,
+        enhet: erUnderOppfolging ? getAnsattEnhet() : null
     };
 }
 

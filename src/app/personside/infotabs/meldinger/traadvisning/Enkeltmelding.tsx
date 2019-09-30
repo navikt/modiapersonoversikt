@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Melding } from '../../../../../models/meldinger/meldinger';
+import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import { erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
@@ -12,6 +12,12 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
+import './enkeltmelding.less';
+import Etikett from 'nav-frontend-etiketter';
+
+const JournalforingStyle = styled.div`
+    margin-top: 2rem;
+`;
 import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 
@@ -20,6 +26,11 @@ interface Props {
     sokeord: string;
 }
 
+const Topptekst = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
 const SnakkebobleWrapper = styled.div`
     text-align: left;
     em {
@@ -60,9 +71,17 @@ function Journalforing({ melding }: { melding: Melding }) {
     ) : null;
 }
 
+function MeldingLestEtikett({ melding }: { melding: Melding }) {
+    return melding.status === LestStatus.Lest ? (
+        <Etikett type="suksess">Lest</Etikett>
+    ) : (
+        <Etikett type="advarsel">Ulest</Etikett>
+    );
+}
+
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
-    const topptekst = meldingstittel(props.melding, true);
+    const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
     const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
@@ -71,7 +90,10 @@ function EnkeltMelding(props: Props) {
         <div className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
-                    <Element>{topptekst}</Element>
+                    <Topptekst>
+                        <Element>{topptekst}</Element>
+                        <MeldingLestEtikett melding={props.melding} />
+                    </Topptekst>
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                     <hr />
