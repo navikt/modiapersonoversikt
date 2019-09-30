@@ -2,8 +2,7 @@ import * as React from 'react';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import styled from 'styled-components';
 import { Input } from 'nav-frontend-skjema';
-import { ChangeEvent, useState } from 'react';
-import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
+import { ChangeEvent } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
 import { Select } from 'nav-frontend-skjema';
@@ -11,7 +10,7 @@ import { Kjønn } from '../../models/person/person';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel, Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrek from './LenkeDrek';
-import { DatovelgerAvgrensninger } from 'nav-datovelger/dist/datovelger/types';
+import PersonsokDatovelger from './PersonsokDatovelger';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
@@ -41,26 +40,7 @@ const InputLinje = styled.div`
     }
 `;
 
-const DatovelgerStyle = styled.div`
-    flex-direction: column;
-    padding-right: 0.5em;
-    margin-bottom: 1em;
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.375rem;
-    font-weight: 400;
-`;
-
-const DatolabelStyle = styled.div`
-    margin-bottom: 0.5em;
-`;
-
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
-    const [tilAvgrensing, settTilAvgrensing] = useState<DatovelgerAvgrensninger | undefined>(undefined);
-    const datoChanger = (dato?: string) => {
-        props.form.actions.settFodselsdatoFra(dato);
-        settTilAvgrensing({ minDato: dato });
-    };
     return (
         <FormStyle>
             <TittelStyle>
@@ -146,31 +126,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                         feil={props.form.valideringsResultat.felter.kommunenummer.skjemafeil}
                     />
                     <InputLinje>
-                        <DatovelgerStyle>
-                            <DatolabelStyle>
-                                <label htmlFor="personsok-datovelger-fra">Fødselsdato fra:</label>
-                            </DatolabelStyle>
-                            <Datovelger
-                                input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
-                                visÅrVelger={true}
-                                valgtDato={props.form.state.fodselsdatoFra}
-                                onChange={datoChanger}
-                                id="personsok-datovelger-fra"
-                            />
-                        </DatovelgerStyle>
-                        <DatovelgerStyle>
-                            <DatolabelStyle>
-                                <label htmlFor="personsok-datovelger-til">Fødselsdato til:</label>
-                            </DatolabelStyle>
-                            <Datovelger
-                                input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
-                                visÅrVelger={true}
-                                valgtDato={props.form.state.fodselsdatoTil}
-                                onChange={dato => props.form.actions.settFodselsdatoTil(dato)}
-                                id="personsok-datovelger-til"
-                                avgrensninger={tilAvgrensing}
-                            />
-                        </DatovelgerStyle>
+                        <PersonsokDatovelger form={props.form} />
                     </InputLinje>
                     <InputLinje>
                         <Input
