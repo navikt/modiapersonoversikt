@@ -8,6 +8,7 @@ interface Props extends Partial<Pick<KnappBaseProps, 'type'>> {
     onBekreft: () => void;
     children: string;
     popUpTekst?: string;
+    bekreftKnappTekst?: string;
     className?: string;
 }
 
@@ -69,7 +70,7 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
                     <ModalStyling>
                         <Normaltekst>{this.props.popUpTekst || 'Er du sikker?'}</Normaltekst>
                         <KnappBase type="standard" htmlType="button" onClick={this.handleBekreft} autoFocus={true}>
-                            Bekreft
+                            {this.props.bekreftKnappTekst ? this.props.bekreftKnappTekst : 'Bekreft'}
                         </KnappBase>
                     </ModalStyling>
                 </ModalWrapper>
