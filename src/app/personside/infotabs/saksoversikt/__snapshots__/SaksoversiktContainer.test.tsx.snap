@@ -214,6 +214,18 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c3 {
   padding: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 > *:not(:last-child) {
+  margin-right: 1rem;
 }
 
 .c20 {
@@ -476,6 +488,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         >
           Tema
         </h2>
+        <p
+          className="typo-normal"
+        >
+          (
+          5
+           saker)
+        </p>
       </div>
       <nav
         aria-label="Velg sakstema"
