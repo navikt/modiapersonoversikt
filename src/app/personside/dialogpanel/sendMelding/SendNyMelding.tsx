@@ -127,7 +127,8 @@ function SendNyMelding(props: Props) {
                     <KnappMedBekreftPopup
                         type="flat"
                         onBekreft={props.handleAvbryt}
-                        popUpTekst="Du vil miste meldingen du har påbegynnt"
+                        bekreftKnappTekst={'Ja, avbryt'}
+                        popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
                     >
                         Avbryt
                     </KnappMedBekreftPopup>

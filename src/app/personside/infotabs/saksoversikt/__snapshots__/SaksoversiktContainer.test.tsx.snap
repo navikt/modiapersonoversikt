@@ -158,6 +158,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c8 svg {
   height: 1.875rem;
   width: 1.875rem;
+  opacity: 0.5;
 }
 
 .c7 {
@@ -270,6 +271,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 .c21 svg {
   height: 1.875rem;
   width: 1.875rem;
+  opacity: 0.5;
 }
 
 .c27 {
@@ -589,7 +591,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <g
-                        fill="#C6C2BF"
+                        fill="#000"
                       >
                         <path
                           d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
@@ -969,7 +971,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g
-                    fill="#C6C2BF"
+                    fill="#000"
                   >
                     <path
                       d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
@@ -1038,7 +1040,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g
-                    fill="#C6C2BF"
+                    fill="#000"
                   >
                     <path
                       d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
@@ -1149,7 +1151,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1306,7 +1308,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1419,7 +1421,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1500,7 +1502,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1601,7 +1603,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g
-                    fill="#C6C2BF"
+                    fill="#000"
                   >
                     <path
                       d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
@@ -1697,7 +1699,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g
-                    fill="#C6C2BF"
+                    fill="#000"
                   >
                     <path
                       d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
@@ -1790,7 +1792,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1871,7 +1873,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -1952,7 +1954,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -2032,7 +2034,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g
-                    fill="#C6C2BF"
+                    fill="#000"
                   >
                     <path
                       d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
@@ -2102,7 +2104,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
@@ -2183,7 +2185,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <path
                     d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                     fill="none"
-                    stroke="#C6C2BF"
+                    stroke="#000"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeMiterlimit="10"
