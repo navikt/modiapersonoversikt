@@ -39,7 +39,7 @@ const JournalforingEtikett = styled(EtikettLiten)`
     color: ${theme.color.lenke};
 `;
 
-const JournalforingPanel = styled(EkspanderbartpanelBase)`
+const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__hode {
         padding: 0.5rem 0 0 0;
     }
@@ -57,13 +57,16 @@ function journalfortMelding(melding: Melding) {
 function Journalforing({ melding }: { melding: Melding }) {
     const [open, setOpen] = useState(false);
     return melding.journalfortAv && melding.journalfortDato ? (
-        <JournalforingPanel
-            heading={<JournalforingEtikett>Meldingen er journalført</JournalforingEtikett>}
-            apen={open}
-            onClick={() => setOpen(!open)}
-        >
-            {journalfortMelding(melding)}
-        </JournalforingPanel>
+        <div>
+            <hr />
+            <StyledJournalforingPanel
+                heading={<JournalforingEtikett>Meldingen er journalført</JournalforingEtikett>}
+                apen={open}
+                onClick={() => setOpen(!open)}
+            >
+                {journalfortMelding(melding)}
+            </StyledJournalforingPanel>
+        </div>
     ) : null;
 }
 
