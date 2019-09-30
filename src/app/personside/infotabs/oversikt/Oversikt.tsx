@@ -9,6 +9,7 @@ import UtbetalingerOversikt from './UtbetalingerOversikt';
 import MeldingerOversikt from './MeldingerOversikt';
 import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 const Style = styled.article`
     @media (${theme.media.wideScreen}) {
@@ -33,48 +34,50 @@ const KolonneStyle = styled.div`
 
 function Oversikt() {
     return (
-        <Style>
-            <KolonneStyle>
-                <Oversiktskomponent
-                    infotabPath={INFOTABS.UTBETALING}
-                    tittel={'Utbetalinger'}
-                    children={setHeaderContent => <UtbetalingerOversikt setHeaderContent={setHeaderContent} />}
-                    hurtigtast={'U'}
-                />
-                <Oversiktskomponent
-                    infotabPath={INFOTABS.OPPFOLGING}
-                    tittel={'Oppfølging'}
-                    children={setHeaderContent => <OppfolgingOversikt />}
-                    hurtigtast={'O'}
-                />
-                <Oversiktskomponent
-                    infotabPath={INFOTABS.VARSEL}
-                    tittel={'Varsler'}
-                    children={setHeaderContent => <VarselOversikt setHeaderContent={setHeaderContent} />}
-                    hurtigtast={'V'}
-                />
-            </KolonneStyle>
-            <KolonneStyle>
-                <Oversiktskomponent
-                    infotabPath={INFOTABS.MELDINGER}
-                    tittel={'Meldinger'}
-                    children={setHeaderContent => <MeldingerOversikt setHeaderContent={setHeaderContent} />}
-                    hurtigtast={'M'}
-                />
-                <Oversiktskomponent
-                    infotabPath={INFOTABS.YTELSER}
-                    tittel={'Ytelser'}
-                    children={setHeaderContent => <YtelserOversikt setHeaderContent={setHeaderContent} />}
-                    hurtigtast={'Y'}
-                />
-                <Oversiktskomponent
-                    tittel={'Saker'}
-                    infotabPath={INFOTABS.SAKER}
-                    children={setHeaderContent => <SakerOversikt setHeaderContent={setHeaderContent} />}
-                    hurtigtast={'S'}
-                />
-            </KolonneStyle>
-        </Style>
+        <ErrorBoundary boundaryName="Oversikt">
+            <Style>
+                <KolonneStyle>
+                    <Oversiktskomponent
+                        infotabPath={INFOTABS.UTBETALING}
+                        tittel={'Utbetalinger'}
+                        component={UtbetalingerOversikt}
+                        hurtigtast={'U'}
+                    />
+                    <Oversiktskomponent
+                        infotabPath={INFOTABS.OPPFOLGING}
+                        tittel={'Oppfølging'}
+                        component={OppfolgingOversikt}
+                        hurtigtast={'O'}
+                    />
+                    <Oversiktskomponent
+                        infotabPath={INFOTABS.VARSEL}
+                        tittel={'Varsler'}
+                        component={VarselOversikt}
+                        hurtigtast={'V'}
+                    />
+                </KolonneStyle>
+                <KolonneStyle>
+                    <Oversiktskomponent
+                        infotabPath={INFOTABS.MELDINGER}
+                        tittel={'Meldinger'}
+                        component={MeldingerOversikt}
+                        hurtigtast={'M'}
+                    />
+                    <Oversiktskomponent
+                        infotabPath={INFOTABS.YTELSER}
+                        tittel={'Ytelser'}
+                        component={YtelserOversikt}
+                        hurtigtast={'Y'}
+                    />
+                    <Oversiktskomponent
+                        tittel={'Saker'}
+                        infotabPath={INFOTABS.SAKER}
+                        component={SakerOversikt}
+                        hurtigtast={'S'}
+                    />
+                </KolonneStyle>
+            </Style>
+        </ErrorBoundary>
     );
 }
 

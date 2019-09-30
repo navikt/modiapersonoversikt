@@ -11,7 +11,7 @@ import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 interface Props {
-    children: (setHeaderContent: (content: ReactNode) => void) => ReactNode;
+    component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
     tittel: string;
     infotabPath: INFOTABS;
     hurtigtast: string;
@@ -65,8 +65,10 @@ function Oversiktskomponent(props: Props) {
         setRedirect(true);
     };
 
+    const Component = props.component;
+
     return (
-        <ErrorBoundary boundaryName={props.tittel}>
+        <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
             <PanelStyle>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
                     <Undertittel tag="h3">{props.tittel}</Undertittel>
@@ -75,7 +77,9 @@ function Oversiktskomponent(props: Props) {
                         <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                     </StyledLink>
                 </OverskriftStyle>
-                <MainStyle>{props.children(setCustomContent)}</MainStyle>
+                <MainStyle>
+                    <Component setHeaderContent={setCustomContent} />
+                </MainStyle>
             </PanelStyle>
         </ErrorBoundary>
     );
