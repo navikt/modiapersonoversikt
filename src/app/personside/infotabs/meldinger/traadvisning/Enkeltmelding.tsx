@@ -36,7 +36,7 @@ const SnakkebobleWrapper = styled.div`
 `;
 
 const Meldingstekst = styled(Tekstomrade)`
-    border-top: 1px solid grey;
+    border-top: ${theme.border.skilleSvak};
     margin-top: 0.5rem;
     padding-top: 0.5rem;
 `;
@@ -53,8 +53,8 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__innhold {
         padding: 0.5rem 0 0 0;
     }
-    margin-top: 0.5rem;
-    border-top: 1px solid grey;
+    margin-top: 1rem;
+    border-top: ${theme.border.skilleSvak};
 `;
 
 function journalfortMelding(melding: Melding) {
