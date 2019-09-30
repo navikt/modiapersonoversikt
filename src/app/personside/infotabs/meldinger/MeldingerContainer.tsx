@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { pxToRem } from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -24,18 +24,14 @@ const MeldingerArticleStyle = styled.article`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
         display: flex;
-        align-items: flex-start;
+        > *:first-child {
+            flex: 35% 1 1;
+        }
         > *:last-child {
-            margin-left: ${theme.margin.layout};
+            flex: 65% 1 1;
         }
     }
     position: relative;
-    > *:first-child {
-        flex: 35% 1 1;
-    }
-    > *:last-child {
-        flex: 65% 1 1;
-    }
 `;
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {

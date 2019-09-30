@@ -56,11 +56,11 @@ export function SmallScreenToggleButton(props: { UI: UIState; toggleDialogpanel:
         <SideKnappContainer onClick={() => props.toggleDialogpanel()} stickToRight={!props.UI.dialogPanel.ekspandert}>
             <KnappWrapper>
                 <Tittel>
-                    <Undertittel>{props.UI.dialogPanel.ekspandert ? 'Oversikt' : 'Dialogpanel'}</Undertittel>
+                    <Undertittel>{props.UI.dialogPanel.ekspandert ? 'Oversikt' : 'Oppgavepanel'}</Undertittel>
                 </Tittel>
                 <PilKnapp
                     width="30px"
-                    beskrivelse={props.UI.dialogPanel.ekspandert ? 'Vis oversikt' : 'Vis dialogpanel'}
+                    beskrivelse={props.UI.dialogPanel.ekspandert ? 'Vis oversikt' : 'Vis oppgavepanel'}
                     direction={props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
                     onClick={() => () => null}
                 />
