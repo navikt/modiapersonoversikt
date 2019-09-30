@@ -41,6 +41,31 @@ exports[`viser personsøk-komponent 1`] = `
   border-color: #0067c5;
 }
 
+.c4 {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-right: 0.5em;
+  margin-bottom: 1em;
+  font-family: 'Source Sans Pro',Arial,sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+}
+
+.c4 .nav-datovelger__kalenderPortal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translateX(-85%);
+  -ms-transform: translateX(-85%);
+  transform: translateX(-85%);
+}
+
+.c5 {
+  margin-bottom: 0.5em;
+}
+
 .c0 {
   padding: .8rem;
 }
@@ -81,22 +106,6 @@ exports[`viser personsøk-komponent 1`] = `
 
 .c3 .skjemaelement {
   padding-right: 0.5em;
-}
-
-.c4 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding-right: 0.5em;
-  margin-bottom: 1em;
-  font-family: 'Source Sans Pro',Arial,sans-serif;
-  font-size: 1rem;
-  line-height: 1.375rem;
-  font-weight: 400;
-}
-
-.c5 {
-  margin-bottom: 0.5em;
 }
 
 <form
