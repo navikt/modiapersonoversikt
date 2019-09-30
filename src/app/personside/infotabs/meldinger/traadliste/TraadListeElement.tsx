@@ -17,6 +17,7 @@ import { meldingerTest } from '../../dyplenkeTest/utils';
 interface Props {
     traad: Traad;
     erValgt: boolean;
+    onClick?: () => void;
 }
 
 const UUcustomOrder = styled.div`
@@ -72,7 +73,9 @@ function TraadListeElement(props: Props) {
         <ListElement tabIndex={-1} ref={ref} className={meldingerTest.melding}>
             <VisMerKnapp
                 valgt={props.erValgt}
-                linkTo={dyplenker.meldinger.link(props.traad)}
+                onClick={props.onClick}
+                // Ønsker ulik oppførsel i ulike panel, så derfor har vi en optional onclick for å overstyre linkTo
+                linkTo={!props.onClick ? dyplenker.meldinger.link(props.traad) : undefined}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>

@@ -11,6 +11,11 @@ import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { useMemo } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
+import KnappBase from 'nav-frontend-knapper';
+import { useState } from 'react';
+import ModalWrapper from 'nav-frontend-modal';
+import BesvarFlere from './besvarflere/BesvarFlere';
 
 interface Props {
     traader: Traad[];
@@ -74,6 +79,7 @@ function TraadListe(props: Props) {
 
     return (
         <PanelStyle>
+            <SlaaSammenTraaderKnapp traader={props.traader} />
             <InputStyle>
                 <Input
                     value={props.sokeord}
@@ -95,6 +101,36 @@ function TraadListe(props: Props) {
             <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
         </PanelStyle>
     );
+}
+
+function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
+    const [apen, settApen] = useState(false);
+    const tildelteOppgaver = useTildelteOppgaver();
+
+    const tildelteOppgaverIdListe = tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid);
+
+    const traaderMedTildelteOppgaver = traader.filter(traad => tildelteOppgaverIdListe.includes(traad.traadId));
+
+    //const traaderSomHarDelsvar = traaderMedTildelteOppgaver.filter(traad => harDelsvar(traad)); TODO: Bruk denne når du er ferdig
+
+    if (traaderMedTildelteOppgaver.length > 1) {
+        return (
+            <>
+                <KnappBase type={'hoved'} onClick={() => settApen(true)}>
+                    Besvar flere
+                </KnappBase>
+                <ModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
+                    <BesvarFlere
+                        traader={traaderMedTildelteOppgaver.sort(
+                            datoSynkende(traad => sisteSendteMelding(traad).opprettetDato)
+                        )}
+                    />
+                </ModalWrapper>
+            </>
+        );
+    } else {
+        return null;
+    }
 }
 
 export default TraadListe;
