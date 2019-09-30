@@ -19,6 +19,7 @@ const SVGStyling = styled.span`
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
+        opacity: 0.5;
     }
 `;
 

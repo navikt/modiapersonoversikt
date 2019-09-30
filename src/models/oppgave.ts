@@ -5,16 +5,16 @@ export interface Oppgave {
 }
 
 interface LeggTilbakeOppgaveBaseRequest {
-    type: string; // fungerer kun som discriminant for typescript (Discriminated union)
+    type: 'Innhabil' | 'FeilTema' | 'AnnenAarsak';
     oppgaveId: string;
 }
 
 interface LeggTilbakeOppgaveInnhabilRequest extends LeggTilbakeOppgaveBaseRequest {
-    type: 'innhabil';
+    type: 'Innhabil';
 }
 
 interface LeggTilbakeOppgaveFeilTemaRequest extends LeggTilbakeOppgaveBaseRequest {
-    type: 'feiltema';
+    type: 'FeilTema';
     temagruppe: string;
 }
 
@@ -25,7 +25,7 @@ export function erLeggTilbakeOppgaveFeilTemaRequest(
 }
 
 interface LeggTilbakeOppgaveAnnenAarsakRequest extends LeggTilbakeOppgaveBaseRequest {
-    type: 'annenaarsak';
+    type: 'AnnenAarsak';
     beskrivelse: string;
 }
 

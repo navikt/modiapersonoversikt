@@ -49,9 +49,10 @@ function FortsettDialogContainer(props: Props) {
     };
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -77,10 +78,10 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
+            dispatch(resetPlukkOppgaveResource);
+            dispatch(reloadTildelteOppgaver);
             setTimeout(() => {
                 dispatch(reloadMeldinger);
-                dispatch(resetPlukkOppgaveResource);
-                dispatch(reloadTildelteOppgaver);
             }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
         };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
@@ -117,9 +118,19 @@ function FortsettDialogContainer(props: Props) {
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state)) {
-            alert('Ikke implementert');
-            console.log('delvis svar: ', state);
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
+            dispatch(
+                sendDelsvarResource.actions.post(
+                    {
+                        fritekst: state.tekst,
+                        traadId: props.traad.traadId,
+                        oppgaveId: props.tilknyttetOppgave.oppgaveid,
+                        temagruppe: state.tema.kodeRef,
+                        behandlingsId: opprettHenvendelse.behandlingsId
+                    },
+                    callback
+                )
+            );
         } else {
             updateState({ visFeilmeldinger: true });
         }

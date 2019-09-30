@@ -5,6 +5,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
+    position: relative;
     padding: ${theme.margin.layout};
     display: flex;
     align-items: center;
@@ -35,7 +36,7 @@ const Knapp = styled.button`
     background-color: transparent;
     transition: padding-left 0.3s;
     &:focus {
-        ${theme.focus}
+        ${theme.focusOnRelativeParent};
     }
 `;
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import { useRestResource } from '../../../../../utils/customHooks';
@@ -25,8 +25,6 @@ const SakstemaListeStyle = styled.ol`
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
-    min-width: 24rem;
-    flex-basis: 24rem;
     ol {
         list-style: none;
     }
@@ -34,6 +32,11 @@ const Wrapper = styled.div`
 
 const TittelWrapper = styled.div`
     padding: ${theme.margin.px20};
+    display: flex;
+    align-items: flex-end;
+    > *:not(:last-child) {
+        margin-right: 1rem;
+    }
 `;
 
 function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }) {
@@ -75,6 +78,7 @@ function SakstemaListe(props: Props) {
         <Wrapper>
             <TittelWrapper>
                 <Undertittel>Tema</Undertittel>
+                <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>
             </TittelWrapper>
             <nav aria-label="Velg sakstema">
                 <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} valgtSakstema={props.valgtSakstema} />

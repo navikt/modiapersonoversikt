@@ -16,6 +16,7 @@ const Style = styled.li`
 `;
 
 const HeaderStyle = styled.div`
+    position: relative;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 20% 55% 1fr auto;
@@ -82,7 +83,12 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
                 </Normaltekst>
                 {kommunikasjonskanaler}
 
-                <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' meldinger'} />
+                <VisMerChevron
+                    focusOnRelativeParent={true}
+                    onClick={toggleOpen}
+                    open={open}
+                    title={(open ? 'Skul' : 'Vis') + ' meldinger'}
+                />
             </HeaderStyle>
             <UnmountClosed isOpened={open}>
                 <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />

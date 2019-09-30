@@ -84,6 +84,7 @@ const IkonWrapper = styled.div`
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
+        opacity: 0.5;
     }
     padding-right: 1rem;
 `;

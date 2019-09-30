@@ -20,7 +20,6 @@ import { isValidDate } from '../../../../../utils/dateUtils';
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
     padding: ${theme.margin.px20};
-    margin-bottom: ${theme.margin.layout};
 `;
 
 const InputPanel = styled.form`

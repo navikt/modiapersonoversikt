@@ -76,6 +76,9 @@ describe('Dokumentvarsler', () => {
     const tomTemaGruppeEmpty = '';
     const tomTemagruppeTNull = Temagruppe.Null;
 
+    it('Gir temagruppe Arbeid ved temagruppe ARB', function() {
+        expect(temagruppeTekst(Temagruppe.Arbeid)).toBe('Arbeid');
+    });
     it('Gir tom temagruppe på dokumentvarsler med null', function() {
         expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('');
     });
