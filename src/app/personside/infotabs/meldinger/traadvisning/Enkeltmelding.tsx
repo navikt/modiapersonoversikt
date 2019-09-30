@@ -35,6 +35,12 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
+const Meldingstekst = styled(Tekstomrade)`
+    border-top: 1px solid grey;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+`;
+
 const JournalforingLabel = styled(EtikettLiten)`
     color: ${theme.color.lenke};
 `;
@@ -42,10 +48,13 @@ const JournalforingLabel = styled(EtikettLiten)`
 const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__hode {
         padding: 0.5rem 0 0 0;
+        border-radius: 0;
     }
     .ekspanderbartPanel__innhold {
         padding: 0.5rem 0 0 0;
     }
+    margin-top: 0.5rem;
+    border-top: 1px solid grey;
 `;
 
 function journalfortMelding(melding: Melding) {
@@ -58,7 +67,6 @@ function Journalforing({ melding }: { melding: Melding }) {
     const [open, setOpen] = useState(false);
     return melding.journalfortAv && melding.journalfortDato ? (
         <div>
-            <hr />
             <StyledJournalforingPanel
                 heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
                 apen={open}
@@ -95,8 +103,9 @@ function EnkeltMelding(props: Props) {
                     </Topptekst>
                     <Normaltekst>{datoTekst}</Normaltekst>
                     <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
-                    <hr />
-                    <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
+                    <Meldingstekst rules={[ParagraphRule, highlightRule, LinkRule]}>
+                        {props.melding.fritekst}
+                    </Meldingstekst>
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
