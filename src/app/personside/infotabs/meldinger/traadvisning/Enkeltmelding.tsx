@@ -35,7 +35,7 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
-const JournalforingEtikett = styled(EtikettLiten)`
+const JournalforingLabel = styled(EtikettLiten)`
     color: ${theme.color.lenke};
 `;
 
@@ -60,7 +60,7 @@ function Journalforing({ melding }: { melding: Melding }) {
         <div>
             <hr />
             <StyledJournalforingPanel
-                heading={<JournalforingEtikett>Meldingen er journalført</JournalforingEtikett>}
+                heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
                 apen={open}
                 onClick={() => setOpen(!open)}
             >
