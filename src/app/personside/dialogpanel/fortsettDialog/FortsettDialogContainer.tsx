@@ -109,10 +109,12 @@ function FortsettDialogContainer(props: Props) {
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state)) {
+        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
             if (!state.sak && !erJournalfort) {
-                loggError(Error('For å opprette spørsmål må meldingen være journalført eller sak må være valgt'));
+                const error = Error('For å opprette spørsmål må meldingen være journalført eller sak må være valgt');
+                console.error(error);
+                loggError(error);
                 return;
             }
             dispatch(

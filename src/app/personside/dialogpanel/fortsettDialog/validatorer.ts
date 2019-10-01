@@ -1,6 +1,7 @@
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { FortsettDialogState } from './FortsettDialogContainer';
+import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {
@@ -15,8 +16,12 @@ export class FortsettDialogValidator {
     public static erGyldigSvarSkriftlig(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state);
     }
-    public static erGyldigSpørsmålSkriftlig(state: FortsettDialogState) {
-        return state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE && this.tekst(state) && this.sak(state);
+    public static erGyldigSpørsmålSkriftlig(state: FortsettDialogState, traad: Traad) {
+        return (
+            state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
+            this.tekst(state) &&
+            (this.sak(state) || erEldsteMeldingJournalfort(traad))
+        );
     }
     public static erGyldigDelsvar(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG && this.tekst(state) && this.tema(state);
