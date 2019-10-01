@@ -28,7 +28,7 @@ const Inline = styled.div`
     justify-content: space-between;
 `;
 const Topptekst = styled.div`
-    /* SnakkebobleWrapper styler borders på dette elementet som inneholder alle topptekst elementene */
+    /* Trengs for borders */
 `;
 const SnakkebobleWrapper = styled.div`
     text-align: left;
@@ -38,7 +38,7 @@ const SnakkebobleWrapper = styled.div`
     }
     > *:not(:last-child) {
         border-bottom: ${theme.border.skilleSvak};
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.7rem;
         margin-bottom: 0.5rem;
     }
 `;
