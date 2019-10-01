@@ -32,7 +32,7 @@ function PersonsokContainer() {
     }, [settApen]);
 
     return (
-        <StyledModalWrapper contentLabel={'Avansert søk'} onRequestClose={() => settApen(false)} isOpen={apen}>
+        <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
             <PersonsokSkjema />
             <PersonsokResultat onClose={() => settApen(false)} />
         </StyledModalWrapper>

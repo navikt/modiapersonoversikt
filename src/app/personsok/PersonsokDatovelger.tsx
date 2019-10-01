@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 
@@ -39,27 +39,33 @@ function beregPosition(current: HTMLDivElement): DatovelgerPosition {
     };
 }
 
+function usePosition(ref: RefObject<HTMLDivElement>) {
+    const [positionDatovelger, setPositionDatovelger] = useState<DatovelgerPosition>({ top: 0, left: 0 });
+    useEffect(() => {
+        if (ref.current && ref.current) {
+            setPositionDatovelger(beregPosition(ref.current));
+        }
+    }, [ref]);
+
+    return positionDatovelger;
+}
+
 function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
-    const datovelgerFraRef = React.createRef<HTMLDivElement>();
-    const datovelgerTilRef = React.createRef<HTMLDivElement>();
+    const fraRef = React.createRef<HTMLDivElement>();
+    const tilRef = React.createRef<HTMLDivElement>();
+
+    const dropdownFraPosition = usePosition(fraRef);
+    const dropdownTilPosition = usePosition(tilRef);
 
     const [tilAvgrensing, settTilAvgrensing] = useState<DatovelgerAvgrensninger | undefined>(undefined);
     const datoChanger = (dato?: string) => {
         props.form.actions.settFodselsdatoFra(dato);
         settTilAvgrensing({ minDato: dato });
     };
-    const [positionDatovelgerFra, setPositionDatovelgerFra] = useState<DatovelgerPosition>({ top: 0, left: 0 });
-    const [positionDatovelgerTil, setPositionDatovelgerTil] = useState<DatovelgerPosition>({ top: 0, left: 0 });
 
-    useEffect(() => {
-        if (datovelgerFraRef.current && datovelgerTilRef.current) {
-            setPositionDatovelgerFra(beregPosition(datovelgerFraRef.current));
-            setPositionDatovelgerTil(beregPosition(datovelgerTilRef.current));
-        }
-    }, [datovelgerFraRef]);
     return (
         <>
-            <DatovelgerStyle ref={datovelgerFraRef} {...positionDatovelgerFra}>
+            <DatovelgerStyle ref={fraRef} {...dropdownFraPosition}>
                 <DatolabelStyle>
                     <label htmlFor="personsok-datovelger-fra">Fødselsdato fra:</label>
                 </DatolabelStyle>
@@ -71,7 +77,7 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
                     id="personsok-datovelger-fra"
                 />
             </DatovelgerStyle>
-            <DatovelgerStyle ref={datovelgerTilRef} {...positionDatovelgerTil}>
+            <DatovelgerStyle ref={tilRef} {...dropdownTilPosition}>
                 <DatolabelStyle>
                     <label htmlFor="personsok-datovelger-til">Fødselsdato til:</label>
                 </DatolabelStyle>
