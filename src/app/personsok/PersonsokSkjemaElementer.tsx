@@ -23,8 +23,8 @@ const SectionStyle = styled.div`
     }
 `;
 
-const TittelStyle = styled.div`
-    padding-bottom: 3em;
+const TittelStyle = styled(Innholdstittel)`
+    padding-bottom: 3rem;
 `;
 
 const KnappStyle = styled.div`
@@ -43,9 +43,7 @@ const InputLinje = styled.div`
 function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
     return (
         <FormStyle>
-            <TittelStyle>
-                <Innholdstittel>Avansert Søk</Innholdstittel>
-            </TittelStyle>
+            <TittelStyle>Avansert Søk</TittelStyle>
             <SectionStyle>
                 <section aria-label={'Søkekriterier'}>
                     <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>

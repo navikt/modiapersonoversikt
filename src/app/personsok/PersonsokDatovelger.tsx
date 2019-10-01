@@ -4,15 +4,11 @@ import styled from 'styled-components';
 import { RefObject, useEffect, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const DatovelgerStyle = styled.div<DatovelgerPosition>`
-    flex-direction: column;
     padding-right: 0.5em;
     margin-bottom: 1em;
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.375rem;
-    font-weight: 400;
 
     .nav-datovelger__kalenderPortal {
         position: fixed;
@@ -22,7 +18,7 @@ const DatovelgerStyle = styled.div<DatovelgerPosition>`
     }
 `;
 
-const DatolabelStyle = styled.div`
+const DatolabelStyle = styled.label`
     margin-bottom: 0.5em;
 `;
 
@@ -65,9 +61,9 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
 
     return (
         <>
-            <DatovelgerStyle ref={fraRef} {...dropdownFraPosition}>
-                <DatolabelStyle>
-                    <label htmlFor="personsok-datovelger-fra">Fødselsdato fra:</label>
+            <DatovelgerStyle ref={fraRef} top={dropdownFraPosition.top} left={dropdownFraPosition.left}>
+                <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-fra">
+                    <Normaltekst>Fødselsdato fra</Normaltekst>
                 </DatolabelStyle>
                 <Datovelger
                     input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
@@ -77,9 +73,9 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
                     id="personsok-datovelger-fra"
                 />
             </DatovelgerStyle>
-            <DatovelgerStyle ref={tilRef} {...dropdownTilPosition}>
-                <DatolabelStyle>
-                    <label htmlFor="personsok-datovelger-til">Fødselsdato til:</label>
+            <DatovelgerStyle ref={tilRef} top={dropdownTilPosition.top} left={dropdownTilPosition.left}>
+                <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-til">
+                    <Normaltekst>Fødselsdato til</Normaltekst>
                 </DatolabelStyle>
                 <Datovelger
                     input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
