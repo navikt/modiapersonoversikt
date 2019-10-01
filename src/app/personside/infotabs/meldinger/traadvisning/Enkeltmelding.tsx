@@ -22,10 +22,13 @@ interface Props {
     sokeord: string;
 }
 
-const Topptekst = styled.div`
+const Inline = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+`;
+const Topptekst = styled.div`
+    /* SnakkebobleWrapper styler borders på dette elementet som inneholder alle topptekst elementene */
 `;
 const SnakkebobleWrapper = styled.div`
     text-align: left;
@@ -33,12 +36,11 @@ const SnakkebobleWrapper = styled.div`
         font-style: normal;
         ${theme.highlight}
     }
-`;
-
-const Meldingstekst = styled(Tekstomrade)`
-    border-top: ${theme.border.skilleSvak};
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
+    > *:not(:last-child) {
+        border-bottom: ${theme.border.skilleSvak};
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 `;
 
 const JournalforingLabel = styled(EtikettLiten)`
@@ -46,15 +48,10 @@ const JournalforingLabel = styled(EtikettLiten)`
 `;
 
 const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
-    .ekspanderbartPanel__hode {
-        padding: 0.5rem 0 0 0;
-        border-radius: 0;
-    }
+    .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
-        padding: 0.5rem 0 0 0;
+        padding: 0.3rem 0;
     }
-    margin-top: 1rem;
-    border-top: ${theme.border.skilleSvak};
 `;
 
 function journalfortMelding(melding: Melding) {
@@ -65,20 +62,18 @@ function journalfortMelding(melding: Melding) {
 
 function Journalforing({ melding }: { melding: Melding }) {
     const [open, setOpen] = useState(false);
-    if (!(melding.journalfortAv && melding.journalfortDato)) {
+    if (!melding.journalfortDato) {
         return null;
     }
 
     return (
-        <>
-            <StyledJournalforingPanel
-                heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
-                apen={open}
-                onClick={() => setOpen(!open)}
-            >
-                {journalfortMelding(melding)}
-            </StyledJournalforingPanel>
-        </>
+        <StyledJournalforingPanel
+            heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
+            apen={open}
+            onClick={() => setOpen(!open)}
+        >
+            {journalfortMelding(melding)}
+        </StyledJournalforingPanel>
     );
 }
 
@@ -102,14 +97,14 @@ function EnkeltMelding(props: Props) {
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
-                        <Element>{topptekst}</Element>
-                        <MeldingLestEtikett melding={props.melding} />
+                        <Inline>
+                            <Element>{topptekst}</Element>
+                            <MeldingLestEtikett melding={props.melding} />
+                        </Inline>
+                        <Normaltekst>{datoTekst}</Normaltekst>
+                        <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
                     </Topptekst>
-                    <Normaltekst>{datoTekst}</Normaltekst>
-                    <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
-                    <Meldingstekst rules={[ParagraphRule, highlightRule, LinkRule]}>
-                        {props.melding.fritekst}
-                    </Meldingstekst>
+                    <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
