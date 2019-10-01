@@ -80,9 +80,7 @@ function FortsettDialogContainer(props: Props) {
         const callback = () => {
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
-            setTimeout(() => {
-                dispatch(reloadMeldinger);
-            }, 2000); // TODO delay bør ikke være nødvendig her, sjekk backend!
+            dispatch(reloadMeldinger);
         };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
         const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
