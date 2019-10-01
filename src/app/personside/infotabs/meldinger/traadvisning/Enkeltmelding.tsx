@@ -65,8 +65,12 @@ function journalfortMelding(melding: Melding) {
 
 function Journalforing({ melding }: { melding: Melding }) {
     const [open, setOpen] = useState(false);
-    return melding.journalfortAv && melding.journalfortDato ? (
-        <div>
+    if (!(melding.journalfortAv && melding.journalfortDato)) {
+        return null;
+    }
+
+    return (
+        <>
             <StyledJournalforingPanel
                 heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
                 apen={open}
@@ -74,8 +78,8 @@ function Journalforing({ melding }: { melding: Melding }) {
             >
                 {journalfortMelding(melding)}
             </StyledJournalforingPanel>
-        </div>
-    ) : null;
+        </>
+    );
 }
 
 function MeldingLestEtikett({ melding }: { melding: Melding }) {
