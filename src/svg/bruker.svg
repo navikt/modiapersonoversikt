@@ -4,7 +4,7 @@
         <path id="c" d="M-4 12.2v8.16h19.95V12.2H-4z"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <circle cx="22.5" cy="22.5" r="22.5" fill="#E28386"/>
+        <circle cx="22.5" cy="22.5" r="22.5" fill="currentColor"/>
         <g transform="translate(17 12)">
             <mask id="b" fill="#fff">
                 <use xlink:href="#a"/>

@@ -18,7 +18,7 @@ function EkspanderDilaogpanelKnapp() {
         <Style>
             <PilKnapp
                 width={pxToRem(30)}
-                beskrivelse={dialogpanelErEkspandert ? 'Skjul dialogpanel' : 'Vis dialogpanel'}
+                beskrivelse={dialogpanelErEkspandert ? 'Skjul oppgavepanel' : 'Vis oppgavepanel'}
                 direction={dialogpanelErEkspandert ? 'right' : 'left'}
                 onClick={() => dispatch(toggleDialogpanel())}
             />

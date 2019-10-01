@@ -17,6 +17,7 @@ const OppfolgingStyle = styled.article`
     > *:not(:last-child) {
         margin-bottom: ${theme.margin.layout};
     }
+    padding: ${theme.margin.layout};
 `;
 
 const DetaljertInfoWrapper = styled.div`

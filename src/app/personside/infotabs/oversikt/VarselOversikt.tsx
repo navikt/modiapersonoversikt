@@ -7,6 +7,9 @@ import theme from '../../../../styles/personOversiktTheme';
 import Varsel from '../varsel/Varsel';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ReactNode } from 'react';
+import { useOnMount } from '../../../../utils/customHooks';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -15,26 +18,34 @@ const ListStyle = styled.ol`
 `;
 
 interface Props {
-    varsler: VarselModell[];
+    setHeaderContent: (content: ReactNode) => void;
 }
 
-function VarselOversikt() {
+function VarselOversikt(props: Props) {
     return (
         <RestResourceConsumer<VarselModell[]>
             getResource={restResources => restResources.brukersVarsler}
             returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
         >
-            {data => <VarselVisning varsler={data} />}
+            {data => <VarselVisning varsler={data} {...props} />}
         </RestResourceConsumer>
     );
 }
 
-function VarselVisning(props: Props) {
+function VarselVisning(props: { varsler: VarselModell[] } & Props) {
+    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt)).slice(0, 2);
+
+    useOnMount(() => {
+        props.setHeaderContent(
+            <Normaltekst>
+                {sortertPåDato.length} / {props.varsler.length}
+            </Normaltekst>
+        );
+    });
+
     if (props.varsler.length === 0) {
         return <AlertStripeInfo>Ingen varsler på bruker</AlertStripeInfo>;
     }
-
-    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt)).slice(0, 2);
 
     return (
         <ListStyle>

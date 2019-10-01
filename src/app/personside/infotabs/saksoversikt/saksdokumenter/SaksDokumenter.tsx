@@ -38,7 +38,6 @@ interface DokumentGruppeProps {
 
 const SaksdokumenterStyling = styled.section`
     position: relative;
-    flex-grow: 1;
 `;
 
 const InfoOgFilterPanel = styled.section`

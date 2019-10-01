@@ -25,7 +25,7 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
     const expectedApenYtelse = infoTabs
         .find('.' + ytelserTest.ytelse)
         .hostNodes()
-        .at(2)
+        .at(1)
         .html();
 
     expect(apenYtelse).toEqual(expectedApenYtelse);
@@ -35,7 +35,7 @@ function clickOnYtelse(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + ytelserTest.oversikt)
         .hostNodes()
-        .at(2)
+        .at(1)
         .find('button')
         .simulate('click');
 }

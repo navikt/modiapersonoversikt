@@ -1,6 +1,7 @@
 import { Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
-import { sokEtterMeldinger } from './TraadListe';
+import { useSokEtterMeldinger } from '../utils/meldingerUtils';
+import { renderHook } from '@testing-library/react-hooks';
 
 function getMockSøketråd(
     fritekst: string,
@@ -27,10 +28,13 @@ test('Sjekke søk i meldinger basert på fritekst', () => {
         getMockSøketråd('Dette er en tekst for å sjekke om fritekstsøk fungerer.'),
         getMockSøketråd('Her er en annen tråd med en annen tekst')
     ];
-    const treff = sokEtterMeldinger(traader, 'sjekke');
+
+    const renderer = renderHook(() => useSokEtterMeldinger(traader, 'sjekke'));
+    const treff = renderer.result.current;
     expect(treff).toHaveLength(1);
 
-    const treff2 = sokEtterMeldinger(traader, 'tekst');
+    const renderer2 = renderHook(() => useSokEtterMeldinger(traader, 'tekst'));
+    const treff2 = renderer2.result.current;
     expect(treff2).toHaveLength(2);
 });
 
@@ -39,7 +43,8 @@ test('Sjekke søk i meldinger basert på tittel', () => {
         getMockSøketråd('', { meldingtype: Meldingstype.DOKUMENT_VARSEL, temagruppe: Temagruppe.Arbeid }),
         getMockSøketråd('', { meldingtype: Meldingstype.DOKUMENT_VARSEL, temagruppe: Temagruppe.AndreSosiale })
     ];
-    const treff = sokEtterMeldinger(traader, 'Arbeid');
+    const renderer = renderHook(() => useSokEtterMeldinger(traader, 'Arbeid'));
+    const treff = renderer.result.current;
     expect(treff).toHaveLength(1);
 });
 
@@ -48,6 +53,8 @@ test('Sjekke søk i meldinger basert på saksbehandler', () => {
         getMockSøketråd('', undefined, { fornavn: 'Henriette', etternavn: 'Hansen', ident: '' }),
         getMockSøketråd('', undefined, { fornavn: 'Jørgen', etternavn: 'Braathen', ident: '' })
     ];
-    const treff = sokEtterMeldinger(traader, 'Jørgen');
+
+    const renderer = renderHook(() => useSokEtterMeldinger(traader, 'Jørgen'));
+    const treff = renderer.result.current;
     expect(treff).toHaveLength(1);
 });

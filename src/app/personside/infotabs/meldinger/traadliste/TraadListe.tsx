@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoSynkende } from '../../../../../utils/dateUtils';
-import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { meldingstittel, saksbehandlerTekst, sisteSendteMelding } from '../utils/meldingerUtils';
+import { sisteSendteMelding, useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
-import { useMemo } from 'react';
-import { Element } from 'nav-frontend-typografi';
-import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import { Normaltekst } from 'nav-frontend-typografi';
+import TraadListeElement from './TraadListeElement';
+import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import KnappBase from 'nav-frontend-knapper';
 import { useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import BesvarFlere from './besvarflere/BesvarFlere';
+import { datoSynkende } from '../../../../../utils/dateUtils';
 
 interface Props {
     traader: Traad[];
@@ -54,35 +52,19 @@ const KnappWrapperStyle = styled.div`
     margin: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
 
-export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
-    const words = query.split(' ');
-    return traader.filter(traad => {
-        return traad.meldinger.some(melding => {
-            const fritekst = melding.fritekst;
-            const tittel = meldingstittel(melding);
-            const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
-
-            const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
-            return words.every(word => sokbarTekst.includes(word.toLowerCase()));
-        });
-    });
-}
-
 function TraadListe(props: Props) {
-    const debouncedSokeord = useDebounce(props.sokeord, 200);
-    const traadKomponenter = useMemo(
-        () =>
-            sokEtterMeldinger(props.traader, debouncedSokeord)
-                .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-                .map(traad => (
-                    <TraadListeElement traad={traad} key={traad.traadId} erValgt={traad === props.valgtTraad} />
-                )),
-        [debouncedSokeord, props.traader]
-    );
+    const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
+
+    const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
+
+    const soketreffTekst =
+        props.sokeord.length > 0
+            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
         <PanelStyle>
@@ -96,16 +78,19 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                {traadKomponenter.length !== props.traader.length ? (
-                    <Element>
-                        Søket traff {traadKomponenter.length} av {props.traader.length} tråder
-                    </Element>
-                ) : (
-                    <Element>Totalt {props.traader.length} tråder</Element>
-                )}
-                <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+                <Normaltekst>{soketreffTekst}</Normaltekst>
+                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Alle meldinger</LenkeKnapp>}
             </SokVerktøyStyle>
-            <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
+            <TraadListeStyle>
+                {traaderEtterSok.map(traad => (
+                    <TraadListeElement
+                        sokeord={props.sokeord}
+                        traad={traad}
+                        key={traad.traadId}
+                        erValgt={traad === props.valgtTraad}
+                    />
+                ))}
+            </TraadListeStyle>
         </PanelStyle>
     );
 }
