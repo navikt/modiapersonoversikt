@@ -15,7 +15,12 @@ interface Props {
     traader: Traad[];
 }
 
-const Style = styled.article``;
+const Style = styled.article`
+    width: 80vw;
+    height: 80vh;
+    max-width: 100rem;
+    max-height: 100rem;
+`;
 
 const TraadStyle = styled.div`
     display: flex;

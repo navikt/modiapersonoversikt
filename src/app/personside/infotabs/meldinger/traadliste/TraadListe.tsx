@@ -43,8 +43,15 @@ const TraadListeStyle = styled.ol`
         border-top: ${theme.border.skille};
     }
 `;
+
 const InputStyle = styled.div`
     padding: ${theme.margin.layout} ${theme.margin.layout} 0;
+`;
+
+const KnappWrapperStyle = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
 
 export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
@@ -115,7 +122,7 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
 
     if (traaderMedTildelteOppgaver.length > 1) {
         return (
-            <>
+            <KnappWrapperStyle>
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
                     Besvar flere
                 </KnappBase>
@@ -126,7 +133,7 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
                         )}
                     />
                 </ModalWrapper>
-            </>
+            </KnappWrapperStyle>
         );
     } else {
         return null;
