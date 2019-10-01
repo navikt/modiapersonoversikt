@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { erJournalfort, erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components';
@@ -45,7 +45,7 @@ function journalfortMelding(melding: Melding) {
 }
 
 function Journalforing({ melding }: { melding: Melding }) {
-    return melding.journalfortAv && melding.journalfortDato ? (
+    return erJournalfort(melding) ? (
         <JournalforingStyle>
             <EtikettGrå>{journalfortMelding(melding)}</EtikettGrå>
         </JournalforingStyle>

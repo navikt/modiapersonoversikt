@@ -9,6 +9,7 @@ import { FortsettDialogState } from './FortsettDialogContainer';
 interface Props {
     formState: FortsettDialogState;
     updateFormState: (change: Partial<FortsettDialogState>) => void;
+    visSakVelger: boolean;
 }
 
 const Style = styled.div`
@@ -25,11 +26,13 @@ function BrukerKanSvare(props: Props) {
                 oppgaveliste={props.formState.oppgaveListe}
                 setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
             />
-            <DialogpanelVelgSak
-                setValgtSak={sak => props.updateFormState({ sak: sak })}
-                valgtSak={props.formState.sak}
-                visFeilmelding={!FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger}
-            />
+            {props.visSakVelger && (
+                <DialogpanelVelgSak
+                    setValgtSak={sak => props.updateFormState({ sak: sak })}
+                    valgtSak={props.formState.sak}
+                    visFeilmelding={!FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger}
+                />
+            )}
         </Style>
     );
 }

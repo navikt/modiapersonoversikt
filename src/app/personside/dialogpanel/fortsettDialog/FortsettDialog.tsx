@@ -21,6 +21,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogContainer';
+import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -63,7 +64,6 @@ function FortsettDialog(props: Props) {
         Meldingstype.SVAR_SKRIFTLIG
     ].includes(state.dialogType);
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
-
     return (
         <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
@@ -90,7 +90,11 @@ function FortsettDialog(props: Props) {
                         <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
                     </UnmountClosed>
                     <UnmountClosed isOpened={brukerKanSvareValg}>
-                        <BrukerKanSvare formState={state} updateFormState={updateState} />
+                        <BrukerKanSvare
+                            formState={state}
+                            updateFormState={updateState}
+                            visSakVelger={!erEldsteMeldingJournalfort(props.traad)}
+                        />
                     </UnmountClosed>
                     <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
