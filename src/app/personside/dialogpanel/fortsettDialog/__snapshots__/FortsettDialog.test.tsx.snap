@@ -19,6 +19,7 @@ exports[`viser fortsett dialog 1`] = `
 
 .c7 {
   padding: 1rem;
+  overflow-wrap: break-word;
 }
 
 .c4 {
