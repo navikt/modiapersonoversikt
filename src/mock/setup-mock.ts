@@ -26,7 +26,7 @@ import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
-import { getMockTraader } from './meldinger/meldinger-mock';
+import { getMockSlaaSammen, getMockTraader } from './meldinger/meldinger-mock';
 import { getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
@@ -176,11 +176,22 @@ function setupVarselMock(mock: FetchMock) {
 
 function setupMeldingerMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/meldinger/:fodselsnummer/traader',
+        apiBaseUri + '/dialog/:fodselsnummer/meldinger',
         withDelayedResponse(
             randomDelay(),
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
+        )
+    );
+}
+
+function setupSlaasammenMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
+        withDelayedResponse(
+            randomDelay(),
+            STATUS_OK,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSlaaSammen(fodselsnummer))
         )
     );
 }
@@ -505,4 +516,5 @@ export function setupMock() {
     merkSlettMock(mock);
     setupJournalforingMock(mock);
     setupStandardteksterMock(mock);
+    setupSlaasammenMock(mock);
 }

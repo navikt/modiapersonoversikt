@@ -119,3 +119,19 @@ export interface OpprettHenvendelseResponse {
     behandlingsId: string;
     oppgaveId?: string;
 }
+
+export interface SlaaSammenRequest {
+    oppgaver: SlaaSammenOppgave[];
+    temagruppe: string;
+}
+
+export interface SlaaSammenOppgave {
+    oppgaveId: string;
+    meldingsId: string;
+    henvendelsesId: string;
+}
+
+export interface SlaaSammenResponse {
+    nyTraadId: string;
+    traader: Traad[];
+}

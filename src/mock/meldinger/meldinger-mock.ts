@@ -1,4 +1,12 @@
-import { LestStatus, Melding, Saksbehandler, Temagruppe, Traad, Meldingstype } from '../../models/meldinger/meldinger';
+import {
+    LestStatus,
+    Melding,
+    Saksbehandler,
+    Temagruppe,
+    Traad,
+    Meldingstype,
+    SlaaSammenResponse
+} from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
@@ -75,5 +83,14 @@ function getSaksbehandler(): Saksbehandler {
         ident: faker.random.alphaNumeric(6),
         fornavn: faker.name.firstName(),
         etternavn: faker.name.lastName()
+    };
+}
+
+export function getMockSlaaSammen(fødselsnummer: string): SlaaSammenResponse {
+    const traader = getMockTraader(fødselsnummer);
+
+    return {
+        nyTraadId: MOCKED_TRAADID_1,
+        traader: traader
     };
 }
