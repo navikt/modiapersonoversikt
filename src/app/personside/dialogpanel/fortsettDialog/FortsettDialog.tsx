@@ -93,7 +93,7 @@ function FortsettDialog(props: Props) {
                         <BrukerKanSvare
                             formState={state}
                             updateFormState={updateState}
-                            visSakVelger={!erEldsteMeldingJournalfort(props.traad)}
+                            visVelgSak={!erEldsteMeldingJournalfort(props.traad)}
                         />
                     </UnmountClosed>
                     <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
