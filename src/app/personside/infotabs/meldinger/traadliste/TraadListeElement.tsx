@@ -13,12 +13,14 @@ import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
+import { ReactNode } from 'react';
 
 interface Props {
     traad: Traad;
     erValgt: boolean;
     onClick?: () => void;
     sokeord: string;
+    komponent?: ReactNode;
 }
 
 const UUcustomOrder = styled.div`
@@ -34,12 +36,12 @@ const UUcustomOrder = styled.div`
 
 const PanelStyle = styled.div`
     display: flex;
-    > *:first-child {
+    > *:not(:last-child) {
         padding-right: ${theme.margin.layout};
     }
 `;
 
-const ListElement = styled.li`
+const ListElementStyle = styled.li`
     &:focus {
         ${theme.focusOverlay}
     }
@@ -72,7 +74,7 @@ function TraadListeElement(props: Props) {
     });
 
     return (
-        <ListElement tabIndex={-1} ref={ref} className={meldingerTest.melding}>
+        <ListElementStyle tabIndex={-1} ref={ref} className={meldingerTest.melding}>
             <VisMerKnapp
                 valgt={props.erValgt}
                 onClick={props.onClick}
@@ -81,6 +83,7 @@ function TraadListeElement(props: Props) {
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
+                    {props.komponent}
                     <Meldingsikon
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
@@ -101,7 +104,7 @@ function TraadListeElement(props: Props) {
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
-        </ListElement>
+        </ListElementStyle>
     );
 }
 

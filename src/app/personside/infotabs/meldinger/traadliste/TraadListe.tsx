@@ -42,6 +42,12 @@ const TraadListeStyle = styled.ol`
     }
 `;
 
+const StyledModalWrapper = styled(ModalWrapper)`
+    &.modal {
+        padding: 0;
+    }
+`;
+
 const InputStyle = styled.div`
     padding: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
@@ -49,7 +55,7 @@ const InputStyle = styled.div`
 const KnappWrapperStyle = styled.div`
     display: flex;
     justify-content: flex-end;
-    margin: ${theme.margin.layout} ${theme.margin.layout} 0;
+    padding: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
 
 function TraadListe(props: Props) {
@@ -111,13 +117,13 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
                     Besvar flere
                 </KnappBase>
-                <ModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
+                <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
                     <BesvarFlere
                         traader={traaderMedTildelteOppgaver.sort(
                             datoSynkende(traad => sisteSendteMelding(traad).opprettetDato)
                         )}
                     />
-                </ModalWrapper>
+                </StyledModalWrapper>
             </KnappWrapperStyle>
         );
     } else {

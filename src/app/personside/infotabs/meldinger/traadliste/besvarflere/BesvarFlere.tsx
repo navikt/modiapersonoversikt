@@ -6,7 +6,7 @@ import theme from '../../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
 import { useState } from 'react';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Ingress } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
@@ -16,10 +16,23 @@ interface Props {
 }
 
 const Style = styled.article`
+    display: flex;
+    flex-direction: column;
     width: 80vw;
     height: 80vh;
     max-width: 100rem;
     max-height: 100rem;
+    > *:not(:last-child) {
+        border-bottom: ${theme.border.skilleSvak};
+    }
+    > *:nth-child(2) {
+        flex-grow: 1;
+        background-color: ${theme.color.navGra20};
+    }
+    > *:last-child {
+        background-color: ${theme.color.navLysGra};
+        padding: ${theme.margin.layout};
+    }
 `;
 
 const TraadStyle = styled.div`
@@ -30,14 +43,19 @@ const TraadStyle = styled.div`
     > *:last-child {
         flex: 70% 1 1;
     }
-`;
-
-const ElementStyle = styled.div`
-    display: flex;
+    > * {
+        overflow: auto;
+    }
 `;
 
 const TraadlistStyle = styled.ol`
+    display: flex;
+    background-color: white;
+    flex-direction: column;
     list-style: none;
+    > * {
+        border-bottom: ${theme.border.skilleSvak};
+    }
 `;
 
 const TraadVisningStyle = styled.section`
@@ -46,6 +64,16 @@ const TraadVisningStyle = styled.section`
     > *:last-child {
         margin-top: ${theme.margin.layout};
     }
+`;
+
+const StyledCheckbox = styled(Checkbox)`
+    padding: 1rem;
+    transform: translateY(-0.5rem);
+`;
+
+const TittelWrapper = styled.div`
+    background-color: ${theme.color.navLysGra};
+    padding: 1.25rem ${theme.margin.layout};
 `;
 
 function hentTemagruppe(traader: Traad[]) {
@@ -86,21 +114,25 @@ function BesvarFlere(props: Props) {
         }
     }
 
-    const traadkomponenter = props.traader.map(traad => (
-        <ElementStyle>
-            <Checkbox
+    const traadkomponenter = props.traader.map(traad => {
+        const checkbox = (
+            <StyledCheckbox
                 label={''}
                 checked={valgteTraader.map(traad => traad.traadId).includes(traad.traadId)}
                 onChange={() => onCheckTraad(traad)}
             />
+        );
+        return (
             <TraadListeElement
                 traad={traad}
                 key={traad.traadId}
                 erValgt={traadSomSkalVises.traadId === traad.traadId}
                 onClick={() => setTraadSomSkalVises(traad)}
+                sokeord={''}
+                komponent={checkbox}
             />
-        </ElementStyle>
-    ));
+        );
+    });
 
     const clickHandler = () => {
         const request: SlaaSammenRequest = {
@@ -112,14 +144,20 @@ function BesvarFlere(props: Props) {
 
     return (
         <Style>
-            <Normaltekst>Besvar flere tråder</Normaltekst>
+            <TittelWrapper>
+                <Ingress>Besvar flere tråder</Ingress>
+            </TittelWrapper>
+
             <TraadStyle>
                 <TraadlistStyle>{traadkomponenter}</TraadlistStyle>
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
-            <KnappBase type={'hoved'} onClick={clickHandler}>
-                Besvar flere
-            </KnappBase>
+
+            <div>
+                <KnappBase type={'hoved'} onClick={clickHandler}>
+                    Besvar flere
+                </KnappBase>
+            </div>
         </Style>
     );
 }
