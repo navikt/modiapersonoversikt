@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Traad } from '../../../../../../models/meldinger/meldinger';
+import { SlaaSammenOppgave, SlaaSammenRequest, Traad } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
@@ -8,6 +8,8 @@ import { useState } from 'react';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../../../../../redux/reducers';
 
 interface Props {
     traader: Traad[];
@@ -41,6 +43,22 @@ const TraadVisningStyle = styled.section`
     }
 `;
 
+function hentTemagruppe(traader: Traad[]) {
+    return traader[0].meldinger[0].temagruppe.toString();
+}
+
+function hentSlaasammenOppgaver(traader: Traad[]): SlaaSammenOppgave[] {
+    return traader.reduce((acc: SlaaSammenOppgave[], traad: Traad) => {
+        return acc.concat(
+            traad.meldinger.map(melding => ({
+                oppgaveId: melding.oppgaveId!,
+                henvendelsesId: traad.traadId,
+                meldingsId: melding.id
+            }))
+        );
+    }, []);
+}
+
 function Meldingsvisning({ traad }: { traad: Traad }) {
     const meldinger = traad.meldinger.map(melding => <EnkeltMelding melding={melding} sokeord={''} />);
 
@@ -48,6 +66,8 @@ function Meldingsvisning({ traad }: { traad: Traad }) {
 }
 
 function BesvarFlere(props: Props) {
+    const dispatch = useDispatch();
+    const slaaSammenResource = useSelector((state: AppState) => state.restResources.slaaSammen);
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
 
@@ -77,6 +97,14 @@ function BesvarFlere(props: Props) {
         </ElementStyle>
     ));
 
+    const clickHandler = () => {
+        const request: SlaaSammenRequest = {
+            temagruppe: hentTemagruppe(valgteTraader),
+            oppgaver: hentSlaasammenOppgaver(valgteTraader)
+        };
+        dispatch(slaaSammenResource.actions.post(request));
+    };
+
     return (
         <Style>
             <Normaltekst>Besvar flere tråder</Normaltekst>
@@ -84,7 +112,7 @@ function BesvarFlere(props: Props) {
                 <TraadlistStyle>{traadkomponenter}</TraadlistStyle>
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
-            <KnappBase type={'hoved'} onClick={() => {}}>
+            <KnappBase type={'hoved'} onClick={clickHandler}>
                 Besvar flere
             </KnappBase>
         </Style>
