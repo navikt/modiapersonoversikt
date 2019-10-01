@@ -20,7 +20,7 @@ interface Props {
     erValgt: boolean;
     onClick?: () => void;
     sokeord: string;
-    komponent?: ReactNode;
+    tillegskomponent?: ReactNode;
 }
 
 const UUcustomOrder = styled.div`
@@ -83,7 +83,7 @@ function TraadListeElement(props: Props) {
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
-                    {props.komponent}
+                    {props.tillegskomponent}
                     <Meldingsikon
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}

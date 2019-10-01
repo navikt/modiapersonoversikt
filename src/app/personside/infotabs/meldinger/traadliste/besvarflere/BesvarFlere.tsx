@@ -129,7 +129,7 @@ function BesvarFlere(props: Props) {
                 erValgt={traadSomSkalVises.traadId === traad.traadId}
                 onClick={() => setTraadSomSkalVises(traad)}
                 sokeord={''}
-                komponent={checkbox}
+                tillegskomponent={checkbox}
             />
         );
     });
