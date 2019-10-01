@@ -14,6 +14,8 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import { useFortsettDialogKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
+import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { loggError } from '../../../../utils/frontendLogger';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -107,13 +109,20 @@ function FortsettDialogContainer(props: Props) {
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state) && state.sak) {
+        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
+            const erJournalfort = erEldsteMeldingJournalfort(props.traad);
+            if (!state.sak && !erJournalfort) {
+                const error = Error('For å opprette spørsmål må meldingen være journalført eller sak må være valgt');
+                console.error(error);
+                loggError(error);
+                return;
+            }
             dispatch(
                 sendSvarResource.actions.post(
                     {
                         ...commonPayload,
                         erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
-                        saksId: state.sak.saksId
+                        saksId: state.sak ? state.sak.saksId : undefined
                     },
                     callback
                 )

@@ -19,6 +19,7 @@ exports[`viser fortsett dialog 1`] = `
 
 .c7 {
   padding: 1rem;
+  overflow-wrap: break-word;
 }
 
 .c4 {
@@ -151,7 +152,7 @@ exports[`viser fortsett dialog 1`] = `
   padding-left: 2.25rem;
 }
 
-.c19 label {
+.c16 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -160,42 +161,6 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px 1px 1px 1px);
   -webkit-clip: rect(1px,1px,1px,1px);
   clip: rect(1px,1px,1px,1px);
-}
-
-.c16 {
-  background-color: white;
-  border-radius: .25rem;
-  border: 1px solid #78706a;
-}
-
-.c17 {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0.5rem;
-  border-radius: .25rem;
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c17:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c18 {
-  padding: 0.5rem;
 }
 
 .c15 {
@@ -221,11 +186,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c20 {
+.c17 {
   margin-top: 1rem;
 }
 
-.c21 {
+.c18 {
   width: 100%;
 }
 
@@ -776,76 +741,12 @@ exports[`viser fortsett dialog 1`] = `
             role="alert"
           />
         </div>
-        <div
-          className=""
-        >
-          <div
-            className="c16"
-          >
-            <button
-              aria-expanded={false}
-              className="c17"
-              onClick={[Function]}
-              type="button"
-            >
-              <p
-                className="typo-normal"
-              >
-                Velg sak
-              </p>
-              <i
-                className="nav-frontend-chevron chevronboks chevron--ned"
-              />
-            </button>
-            <div
-              className="c18"
-            >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--xl"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 50 50"
-                width={32}
-              >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#bdbab7"
-                  strokeWidth="5"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="5"
-                />
-              </svg>
-            </div>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
       </div>
       <div
         className=""
       >
         <div
-          className="skjemaelement c19"
+          className="skjemaelement c16"
         >
           <label
             className="skjemaelement__label"
@@ -908,14 +809,14 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c20 knapp--hoved"
+      className="knapp c17 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c21 knapp--flat"
+      className="knapp c18 knapp--flat"
       disabled={false}
       onClick={[Function]}
       type="button"
