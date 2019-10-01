@@ -322,7 +322,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                   >
                     <g
                       fill="none"
-                      stroke="#000"
+                      stroke="currentColor"
                       strokeLinejoin="round"
                       strokeMiterlimit="10"
                     >

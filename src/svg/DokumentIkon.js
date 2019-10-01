@@ -7,7 +7,7 @@ function DokumentIkon(props) {
                 d="M20.5 23.5h-17V.5h11l6 6zm-6-23v6h6m-13 1H12m-4.5 3h9m-9 3h9m-9 3h9m-9 3h9"
                 fill="none"
                 strokeMiterlimit="10"
-                stroke="#000"
+                stroke="currentColor"
                 strokeLinejoin="round"
                 strokeLinecap="round"
             />
