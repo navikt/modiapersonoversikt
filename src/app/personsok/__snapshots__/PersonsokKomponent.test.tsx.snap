@@ -42,15 +42,8 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c4 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   padding-right: 0.5em;
   margin-bottom: 1em;
-  font-family: 'Source Sans Pro',Arial,sans-serif;
-  font-size: 1rem;
-  line-height: 1.375rem;
-  font-weight: 400;
 }
 
 .c4 .nav-datovelger__kalenderPortal {
@@ -82,7 +75,7 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c1 {
-  padding-bottom: 3em;
+  padding-bottom: 3rem;
 }
 
 .c6 {
@@ -115,15 +108,11 @@ exports[`viser personsøk-komponent 1`] = `
   <article
     className="c0"
   >
-    <div
-      className="c1"
+    <h1
+      className="typo-innholdstittel c1"
     >
-      <h1
-        className="typo-innholdstittel"
-      >
-        Avansert Søk
-      </h1>
-    </div>
+      Avansert Søk
+    </h1>
     <div
       className="c2"
     >
@@ -326,15 +315,16 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c4"
           >
-            <div
-              className="c5"
+            <label
+              className="skjemaelement__label c5"
+              htmlFor="personsok-datovelger-fra"
             >
-              <label
-                htmlFor="personsok-datovelger-fra"
+              <p
+                className="typo-normal"
               >
-                Fødselsdato fra:
-              </label>
-            </div>
+                Fødselsdato fra
+              </p>
+            </label>
             <div
               onBlur={[Function]}
               onKeyDown={[Function]}
@@ -399,15 +389,16 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c4"
           >
-            <div
-              className="c5"
+            <label
+              className="skjemaelement__label c5"
+              htmlFor="personsok-datovelger-til"
             >
-              <label
-                htmlFor="personsok-datovelger-til"
+              <p
+                className="typo-normal"
               >
-                Fødselsdato til:
-              </label>
-            </div>
+                Fødselsdato til
+              </p>
+            </label>
             <div
               onBlur={[Function]}
               onKeyDown={[Function]}
