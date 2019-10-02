@@ -26,7 +26,7 @@ export const VenstreKolonne = styled.section<StyleProps>`
     display: grid;
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    -ms-grid-rows: minmax(20%, max-content) auto minmax(0, 1fr);
+    -ms-grid-rows: minmax(10%, max-content) auto minmax(0, 1fr);
     grid-template-rows: auto auto minmax(0, 1fr);
     }
     > *:nth-child(1) {
