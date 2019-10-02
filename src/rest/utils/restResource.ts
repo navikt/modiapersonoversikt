@@ -2,7 +2,7 @@ import { dispatchReset, fetchDataAndDispatchToRedux, FetchError, FetchSuccess, S
 import { Action } from 'redux';
 import { AppState } from '../../redux/reducers';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../utils/frontendLogger';
 
 export interface ActionTypes {
     STARTING: string;
@@ -161,6 +161,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 };
             case actionNames.FAILED:
                 loggEvent('Fetch-Failed', resourceNavn);
+                loggError(new Error('Fetch-Failed in ' + resourceNavn), (action as FetchError).error);
                 return {
                     ...state,
                     status: STATUS.FAILED,
