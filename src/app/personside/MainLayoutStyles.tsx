@@ -45,6 +45,7 @@ export const HøyreKolonne = styled.section<StyleProps>`
         props.dialogPanelEkspandert
             ? css`
                   flex: 30% 1 1;
+                  overflow-y: auto;
               `
             : css`
                   justify-content: flex-end;
@@ -55,13 +56,14 @@ export const HøyreKolonne = styled.section<StyleProps>`
                       content: 'Oppgavepanel';
                       writing-mode: vertical-rl;
                       text-transform: uppercase;
-                      text-align: center;
-                      margin: auto;
+                      margin: 0 auto;
+                      flex-grow: 1;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
                   }
               `};
     background-color: ${theme.color.navLysGra};
-    overflow-y: auto;
-    z-index: 1;
     display: flex;
     flex-flow: column nowrap;
     border-left: ${theme.border.skille};
