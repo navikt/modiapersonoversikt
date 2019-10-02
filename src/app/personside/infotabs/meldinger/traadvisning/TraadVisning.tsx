@@ -8,14 +8,13 @@ import { Flatknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 interface Props {
     valgtTraad?: Traad;
     sokeord: string;
-    traaderEtterSok: Traad[];
 }
 
 const VisningStyle = styled.section`
@@ -33,19 +32,7 @@ const KnappWrapper = styled.div`
 `;
 const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
-function AlleMeldinger({
-    traad,
-    sokeord,
-    traaderEtterSok
-}: {
-    traad: Traad;
-    sokeord: string;
-    traaderEtterSok: Traad[];
-}) {
-    if (traaderEtterSok.length === 0) {
-        return <AlertStripeAdvarsel>Søket ga ingen treff på meldinger</AlertStripeAdvarsel>;
-    }
-
+function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
         .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
@@ -107,7 +94,7 @@ function TraadVisning(props: Props) {
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <AlleMeldinger traaderEtterSok={props.traaderEtterSok} sokeord={props.sokeord} traad={props.valgtTraad} />
+            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
 }
