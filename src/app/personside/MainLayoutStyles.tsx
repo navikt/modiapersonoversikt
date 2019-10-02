@@ -22,9 +22,22 @@ export const VenstreKolonne = styled.section<StyleProps>`
     flex-basis: ${props => (props.dialogPanelEkspandert ? '70%' : '90%')};
     flex-grow: 1;
     flex-shrink: 1;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
+    -ms-grid-rows: minmax(20%, max-content) auto minmax(0, 1fr);
     grid-template-rows: auto auto minmax(0, 1fr);
+    }
+    > *:nth-child(1) {
+        -ms-grid-row: 1;
+    }
+    > *:nth-child(2) {
+        -ms-grid-row: 2;
+    }
+    > *:nth-child(3) {
+        -ms-grid-row: 3;
+    }
 `;
 
 export const HøyreKolonne = styled.section<StyleProps>`
