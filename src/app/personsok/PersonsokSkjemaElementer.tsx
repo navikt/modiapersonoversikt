@@ -16,7 +16,7 @@ const FormStyle = styled.article`
     padding: ${theme.margin.layout};
 `;
 
-const SectionStyle = styled.div`
+const SectionStyle = styled.section`
     display: flex;
     > *:first-child {
         padding-right: 3em;
