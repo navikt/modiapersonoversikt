@@ -1,15 +1,15 @@
 import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst, temagruppeTekst } from './meldingstekster';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 
 export function sisteSendteMelding(traad: Traad) {
-    return traad.meldinger.sort(datoSynkende(melding => melding.opprettetDato))[0];
+    return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {
-    return traad.meldinger[traad.meldinger.length - 1];
+    return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
 }
 
 export function erMonolog(traad: Traad) {
@@ -98,7 +98,11 @@ export function erKontorsperret(traad: Traad): boolean {
 }
 
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
-    return !!eldsteMelding(traad).journalfortDato;
+    return erJournalfort(eldsteMelding(traad));
+}
+
+export function erJournalfort(melding: Melding) {
+    return !!melding.journalfortDato;
 }
 
 export function erFeilsendt(traad: Traad): boolean {

@@ -2,6 +2,7 @@ import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { Action } from 'redux';
 import { post } from '../../api/api';
 import { AppState } from '../../redux/reducers';
+import { loggError, loggEvent } from '../../utils/frontendLogger';
 
 export interface PostResourceActionTypes {
     POSTING: string;
@@ -146,10 +147,15 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
                     response: (action as FinishedPostAction<Request, Response>).response
                 } as FinishedPostResource<Request, Response>;
             case actionNames.FAILED:
+                const failedAction = action as FailAction<Request, Response>;
+                loggEvent('Post-Failed', resourceNavn);
+                loggError(new Error('Post-Failed in ' + resourceNavn), failedAction.error, {
+                    request: (state as FailedPostResource<Request, Response>).payload
+                });
                 return {
                     ...state,
                     status: PostStatus.FAIL,
-                    error: (action as FailAction<Request, Response>).error
+                    error: failedAction.error
                 } as FailedPostResource<Request, Response>;
             default:
                 return state;

@@ -35,6 +35,7 @@ const InlineStyle = styled.div`
 
 const StyledTekstomrade = styled(Tekstomrade)`
     padding: 1rem;
+    overflow-wrap: break-word;
 `;
 
 const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltsaende: boolean }>`
