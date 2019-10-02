@@ -5,10 +5,12 @@ import { RefObject, useEffect, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { pxToRem } from '../../styles/personOversiktTheme';
 
 const DatovelgerStyle = styled.div<DatovelgerPosition>`
     padding-right: 0.5em;
     margin-bottom: 1em;
+    line-height: ${pxToRem(22)};
 
     .nav-datovelger__kalenderPortal {
         position: fixed;
