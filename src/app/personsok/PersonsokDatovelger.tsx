@@ -6,7 +6,7 @@ import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
-import usePosition from '../../utils/hooks/use-position';
+import useBoundingRect from '../../utils/hooks/use-bounding-rect';
 
 const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;
@@ -25,12 +25,20 @@ const DatolabelStyle = styled.label`
     margin-bottom: 0.5em;
 `;
 
+function beregnDropdownCoordinate(clientRect: ClientRect) {
+    return {
+        top: clientRect.top + clientRect.height,
+        left: clientRect.left + clientRect.width
+    };
+}
+
 function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
     const fraRef = React.createRef<HTMLDivElement>();
     const tilRef = React.createRef<HTMLDivElement>();
-
-    const dropdownFraPosition = usePosition(fraRef);
-    const dropdownTilPosition = usePosition(tilRef);
+    const datovelgerFraRect = useBoundingRect(fraRef);
+    const datovelgerTilRect = useBoundingRect(tilRef);
+    const dropdownFraCoordinate = beregnDropdownCoordinate(datovelgerFraRect);
+    const dropdownTilCoordinate = beregnDropdownCoordinate(datovelgerTilRect);
 
     const [tilAvgrensing, settTilAvgrensing] = useState<DatovelgerAvgrensninger | undefined>(undefined);
     const datoChanger = (dato?: string) => {
@@ -38,15 +46,9 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
         settTilAvgrensing({ minDato: dato });
     };
 
-    const dropdownFraTopCoordinates = dropdownFraPosition.top + dropdownFraPosition.height;
-    const dropdownFraLeftCoordinates = dropdownFraPosition.left + dropdownFraPosition.width;
-
-    const dropdownTilTopCoordinates = dropdownTilPosition.top + dropdownTilPosition.height;
-    const dropdownTilLeftCoordinates = dropdownTilPosition.left + dropdownTilPosition.width;
-
     return (
         <>
-            <DatovelgerStyle ref={fraRef} top={dropdownFraTopCoordinates} left={dropdownFraLeftCoordinates}>
+            <DatovelgerStyle ref={fraRef} top={dropdownFraCoordinate.top} left={dropdownFraCoordinate.left}>
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-fra">
                     <Normaltekst>Fødselsdato fra</Normaltekst>
                 </DatolabelStyle>
@@ -58,7 +60,7 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
                     id="personsok-datovelger-fra"
                 />
             </DatovelgerStyle>
-            <DatovelgerStyle ref={tilRef} top={dropdownTilTopCoordinates} left={dropdownTilLeftCoordinates}>
+            <DatovelgerStyle ref={tilRef} top={dropdownTilCoordinate.top} left={dropdownTilCoordinate.left}>
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-til">
                     <Normaltekst>Fødselsdato til</Normaltekst>
                 </DatolabelStyle>
