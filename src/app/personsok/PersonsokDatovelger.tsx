@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components';
-import { RefObject, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
+import usePosition from '../../utils/hooks/use-position';
 
-const DatovelgerStyle = styled.div<DatovelgerPosition>`
+const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;
     margin-bottom: 1em;
     line-height: ${pxToRem(22)};
@@ -24,30 +25,6 @@ const DatolabelStyle = styled.label`
     margin-bottom: 0.5em;
 `;
 
-interface DatovelgerPosition {
-    top: number;
-    left: number;
-}
-
-function beregPosition(current: HTMLDivElement): DatovelgerPosition {
-    const rect = current.getBoundingClientRect();
-    return {
-        top: rect.top + rect.height,
-        left: rect.left + rect.width
-    };
-}
-
-function usePosition(ref: RefObject<HTMLDivElement>) {
-    const [positionDatovelger, setPositionDatovelger] = useState<DatovelgerPosition>({ top: 0, left: 0 });
-    useEffect(() => {
-        if (ref.current && ref.current) {
-            setPositionDatovelger(beregPosition(ref.current));
-        }
-    }, [ref]);
-
-    return positionDatovelger;
-}
-
 function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
     const fraRef = React.createRef<HTMLDivElement>();
     const tilRef = React.createRef<HTMLDivElement>();
@@ -61,9 +38,15 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
         settTilAvgrensing({ minDato: dato });
     };
 
+    const dropdownFraTopCoordinates = dropdownFraPosition.top + dropdownFraPosition.height;
+    const dropdownFraLeftCoordinates = dropdownFraPosition.left + dropdownFraPosition.width;
+
+    const dropdownTilTopCoordinates = dropdownTilPosition.top + dropdownTilPosition.height;
+    const dropdownTilLeftCoordinates = dropdownTilPosition.left + dropdownTilPosition.width;
+
     return (
         <>
-            <DatovelgerStyle ref={fraRef} top={dropdownFraPosition.top} left={dropdownFraPosition.left}>
+            <DatovelgerStyle ref={fraRef} top={dropdownFraTopCoordinates} left={dropdownFraLeftCoordinates}>
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-fra">
                     <Normaltekst>Fødselsdato fra</Normaltekst>
                 </DatolabelStyle>
@@ -75,7 +58,7 @@ function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
                     id="personsok-datovelger-fra"
                 />
             </DatovelgerStyle>
-            <DatovelgerStyle ref={tilRef} top={dropdownTilPosition.top} left={dropdownTilPosition.left}>
+            <DatovelgerStyle ref={tilRef} top={dropdownTilTopCoordinates} left={dropdownTilLeftCoordinates}>
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-til">
                     <Normaltekst>Fødselsdato til</Normaltekst>
                 </DatolabelStyle>
