@@ -84,7 +84,7 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                         </ScrollBar>
                         <ScrollBar>
                             <Verktoylinje valgtTraad={traadIUrl} />
-                            <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
+                            <TraadVisning traaderEtterSok={traaderEtterSok} sokeord={sokeord} valgtTraad={traadIUrl} />
                         </ScrollBar>
                     </MeldingerArticleStyle>
                 );
