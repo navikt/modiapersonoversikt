@@ -1,3 +1,7 @@
+import { PersonRespons } from '../../../../../models/person/person';
+import { InnloggetSaksbehandler } from '../../../../../models/innloggetSaksbehandler';
+import { NavKontorResponse } from '../../../../../models/navkontor';
+
 export type UUID = string;
 
 export enum Locale {
@@ -53,4 +57,10 @@ export type AutofullforMap = {
     'saksbehandler.etternavn': string;
     'saksbehandler.navn': string;
     'saksbehandler.enhet': string;
+};
+
+export type AutofullforData = {
+    person: PersonRespons;
+    saksbehandler: InnloggetSaksbehandler;
+    kontor: NavKontorResponse;
 };
