@@ -144,7 +144,7 @@ function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, va
                 valgtLocale.setValue(locales[0]);
             }
         }
-    }, [valgtTekst, valgtLocale.input.value]);
+    }, [valgtLocale, valgtTekst]);
 }
 
 function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
