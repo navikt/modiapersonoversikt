@@ -56,7 +56,7 @@ function StandardTekstModal(props: Props) {
 
     return (
         <>
-            <Button onClick={() => setOpen(true)}>
+            <Button htmlType="button" onClick={() => setOpen(true)}>
                 <Ikon />
                 <span className="sr-only">Standardtekster</span>
             </Button>
