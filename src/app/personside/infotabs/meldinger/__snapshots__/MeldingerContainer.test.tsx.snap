@@ -294,7 +294,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
           aria-live="polite"
           className="typo-normal"
         >
-          1 melding totalt
+          Totalt 1 melding
         </p>
       </div>
       <ol
