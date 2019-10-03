@@ -45,6 +45,20 @@ function TraadListe(props: Props) {
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
+
+    const visAlleMeldinger = props.sokeord !== '' && (
+        <LenkeKnapp
+            onClick={() => {
+                props.setSokeord('');
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                }
+            }}
+        >
+            Vis alle meldinger
+        </LenkeKnapp>
+    );
+
     useOnMount(() => {
         setErForsteRender(false);
     });
@@ -77,18 +91,7 @@ function TraadListe(props: Props) {
             </InputStyle>
             <SokVerktøyStyle>
                 <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
-                {props.sokeord !== '' && (
-                    <LenkeKnapp
-                        onClick={() => {
-                            props.setSokeord('');
-                            if (inputRef.current) {
-                                inputRef.current.focus();
-                            }
-                        }}
-                    >
-                        Vis alle meldinger
-                    </LenkeKnapp>
-                )}
+                {visAlleMeldinger}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
