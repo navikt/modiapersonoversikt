@@ -296,6 +296,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         className="c4"
       >
         <p
+          aria-live="polite"
           className="typo-normal"
         >
           Totalt 1 melding
