@@ -86,21 +86,22 @@ function MerkPanel(props: Props) {
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
                 post(MERK_AVSLUTT_URL, {
+                    fnr: valgtBrukersFnr,
                     saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
                     eldsteMeldingOppgaveId: eldsteMelding(valgtTraad).oppgaveId,
                     eldsteMeldingTraadId: valgtTraad.traadId
                 });
                 break;
             case MerkOperasjon.BISYS:
-                post(MERK_BISYS_URL, { eldsteMeldingTraadId: eldsteMelding(valgtTraad).id });
+                post(MERK_BISYS_URL, { fnr: valgtBrukersFnr, eldsteMeldingTraadId: eldsteMelding(valgtTraad).id });
                 break;
             case MerkOperasjon.FEILSENDT:
-                post(MERK_FEILSENDT_URL, { behandlingsidListe: lagBehandlingskjede(valgtTraad) });
+                post(MERK_FEILSENDT_URL, { fnr: valgtBrukersFnr, behandlingsidListe: lagBehandlingskjede(valgtTraad) });
                 break;
             case MerkOperasjon.KONTORSPERRET:
                 break;
             case MerkOperasjon.SLETT:
-                post(MERK_SLETT_URL, { behandlingsidListe: lagBehandlingskjede(valgtTraad) });
+                post(MERK_SLETT_URL, { fnr: valgtBrukersFnr, behandlingsidListe: lagBehandlingskjede(valgtTraad) });
                 break;
         }
         props.lukkPanel();
