@@ -50,8 +50,8 @@ function TraadListe(props: Props) {
 
     const soketreffTekst =
         props.sokeord.length > 0
-            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
-            : `Totalt ${props.traader.length} ${meldingTekst}`;
+            ? `Viser ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            : `${props.traader.length} ${meldingTekst} totalt`;
 
     return (
         <PanelStyle>
@@ -64,8 +64,10 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                <Normaltekst>{soketreffTekst}</Normaltekst>
-                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Alle meldinger</LenkeKnapp>}
+                <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
+                {props.sokeord !== '' && (
+                    <LenkeKnapp onClick={() => props.setSokeord('')}>Vis alle meldinger</LenkeKnapp>
+                )}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
