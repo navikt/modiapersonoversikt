@@ -1,17 +1,20 @@
-export interface RequestMedBehandlingskjede {
+export interface MerkRequestMedBehandlingskjede {
+    fnr: string;
     behandlingsidListe: string[];
 }
 
-export interface RequestMedTraadId {
+export interface MerkRequestMedTraadId {
+    fnr: string;
     eldsteMeldingTraadId: string;
 }
 
-export interface KontorsperrRequest {
+export interface MerkKontorsperrRequest {
     fnr: string;
     meldingsidListe: string[];
 }
 
-export interface AvsluttUtenSvarRequest {
+export interface MerkAvsluttUtenSvarRequest {
+    fnr: string;
     saksbehandlerValgtEnhet?: string;
     eldsteMeldingTraadId?: string;
     eldsteMeldingOppgaveId?: string;

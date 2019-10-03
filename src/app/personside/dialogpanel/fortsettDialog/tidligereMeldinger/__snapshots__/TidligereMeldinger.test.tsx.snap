@@ -86,7 +86,7 @@ exports[`viser fortsett dialog 1`] = `
     >
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltsaende={false}
+        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -149,7 +149,7 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltsaende={false}
+        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -201,7 +201,7 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltsaende={false}
+        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -255,7 +255,7 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c6 ekspanderbartPanel--apen"
-    erEnkeltsaende={true}
+    erEnkeltstaende={true}
   >
     <button
       aria-controls="Helt tilfeldig ID"
