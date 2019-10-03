@@ -8,6 +8,8 @@ import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import { useState } from 'react';
+import { useOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traader: Traad[];
@@ -41,6 +43,11 @@ const InputStyle = styled.div`
 
 function TraadListe(props: Props) {
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
+    const [erForsteRender, setErForsteRender] = useState(true);
+    const inputRef = React.useRef<HTMLInputElement>();
+    useOnMount(() => {
+        setErForsteRender(false);
+    });
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
@@ -57,6 +64,11 @@ function TraadListe(props: Props) {
         <PanelStyle>
             <InputStyle>
                 <Input
+                    inputRef={
+                        ((ref: HTMLInputElement) => {
+                            inputRef.current = ref;
+                        }) as any
+                    }
                     value={props.sokeord}
                     onChange={event => props.setSokeord(event.target.value)}
                     label={'Søk etter melding'}
@@ -66,13 +78,22 @@ function TraadListe(props: Props) {
             <SokVerktøyStyle>
                 <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
                 {props.sokeord !== '' && (
-                    <LenkeKnapp onClick={() => props.setSokeord('')}>Vis alle meldinger</LenkeKnapp>
+                    <LenkeKnapp
+                        onClick={() => {
+                            props.setSokeord('');
+                            if (inputRef.current) {
+                                inputRef.current.focus();
+                            }
+                        }}
+                    >
+                        Vis alle meldinger
+                    </LenkeKnapp>
                 )}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
                     <TraadListeElement
-                        sokeord={props.sokeord}
+                        taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}
