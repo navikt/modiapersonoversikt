@@ -10,7 +10,6 @@ import { Ingress } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
-import { getTemagruppeForTraader } from '../../utils/meldingerUtils';
 
 interface Props {
     traader: Traad[];
@@ -77,6 +76,10 @@ const TittelWrapper = styled.div`
     padding: 1.25rem ${theme.margin.layout};
 `;
 
+function getTemagruppeForTraader(traader: Traad[]) {
+    return traader[0].meldinger[0].temagruppe.toString();
+}
+
 function getMeldingerSomSkalSlaasSammen(traader: Traad[]): SlaaSammenMelding[] {
     return traader.reduce((acc: SlaaSammenMelding[], traad: Traad) => {
         return acc.concat(
@@ -142,7 +145,7 @@ function BesvarFlere(props: Props) {
     return (
         <Style>
             <TittelWrapper>
-                <Ingress>Besvar flere tråder</Ingress>
+                <Ingress>Slå sammen tråder</Ingress>
             </TittelWrapper>
 
             <TraadStyle>
@@ -152,7 +155,7 @@ function BesvarFlere(props: Props) {
 
             <div>
                 <KnappBase type={'hoved'} onClick={clickHandler}>
-                    Besvar flere
+                    Slå sammen
                 </KnappBase>
             </div>
         </Style>
