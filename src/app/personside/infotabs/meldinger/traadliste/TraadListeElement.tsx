@@ -112,4 +112,4 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-export default TraadListeElement;
+export default React.memo(TraadListeElement);

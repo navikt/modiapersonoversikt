@@ -61,12 +61,14 @@ function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: UtbetalingFilt
 }
 
 function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: UtbetalingFilterState): Utbetaling {
-    const ytelser = reduceUtbetlingerTilYtelser([utbetaling]).filter(ytelse =>
-        filter.ytelser.includes(getTypeFromYtelse(ytelse))
-    );
+    const ytelser = reduceUtbetlingerTilYtelser([utbetaling]);
+    const filtrerteYtelser = ytelser.filter(ytelse => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
+    if (filtrerteYtelser.length === ytelser.length) {
+        return utbetaling;
+    }
     return {
         ...utbetaling,
-        ytelser: ytelser
+        ytelser: filtrerteYtelser
     };
 }
 

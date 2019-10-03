@@ -85,4 +85,4 @@ function Oversiktskomponent(props: Props) {
     );
 }
 
-export default Oversiktskomponent;
+export default React.memo(Oversiktskomponent);

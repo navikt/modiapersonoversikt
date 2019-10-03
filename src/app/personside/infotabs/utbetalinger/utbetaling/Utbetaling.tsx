@@ -26,4 +26,4 @@ function Utbetaling(props: Props) {
     }
 }
 
-export default Utbetaling;
+export default React.memo(Utbetaling);
