@@ -56,7 +56,7 @@ const EtikettStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = meldingstittel(nyesteMelding);
@@ -90,7 +90,7 @@ function TraadListeElement(props: Props) {
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
                         <EtikettStyling>
-                            <UnmountClosed isOpened={traadDialogpanel === props.traad}>
+                            <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
