@@ -46,7 +46,7 @@ function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
 
-    const visAlleMeldinger = props.sokeord !== '' && (
+    const visAlleMeldingerKnapp = props.sokeord !== '' && (
         <LenkeKnapp
             onClick={() => {
                 props.setSokeord('');
@@ -91,7 +91,7 @@ function TraadListe(props: Props) {
             </InputStyle>
             <SokVerktøyStyle>
                 <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
-                {visAlleMeldinger}
+                {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
