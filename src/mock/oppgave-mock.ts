@@ -28,7 +28,5 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
         oppgaveArray[2].henvendelseid = MOCKED_TRAADID_3;
     }
 
-    console.log(oppgaveArray);
-
     return oppgaveArray;
 }

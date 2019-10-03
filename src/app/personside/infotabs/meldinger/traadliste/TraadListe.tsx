@@ -3,7 +3,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { sisteSendteMelding, useSokEtterMeldinger } from '../utils/meldingerUtils';
+import { harDelsvar, sisteSendteMelding, useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
@@ -109,7 +109,7 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
 
     const traaderMedTildelteOppgaver = traader.filter(traad => tildelteOppgaverIdListe.includes(traad.traadId));
 
-    //const traaderSomHarDelsvar = traaderMedTildelteOppgaver.filter(traad => harDelsvar(traad)); TODO: Bruk denne når du er ferdig
+    const traaderSomHarDelsvar = traaderMedTildelteOppgaver.filter(traad => harDelsvar(traad));
 
     if (traaderMedTildelteOppgaver.length > 1) {
         return (
@@ -119,16 +119,15 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
                 </KnappBase>
                 <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
                     <BesvarFlere
-                        traader={traaderMedTildelteOppgaver.sort(
+                        traader={traaderSomHarDelsvar.sort(
                             datoSynkende(traad => sisteSendteMelding(traad).opprettetDato)
                         )}
                     />
                 </StyledModalWrapper>
             </KnappWrapperStyle>
         );
-    } else {
-        return null;
     }
+    return null;
 }
 
 export default TraadListe;

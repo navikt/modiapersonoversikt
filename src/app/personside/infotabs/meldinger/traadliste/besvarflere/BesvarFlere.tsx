@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SlaaSammenOppgave, SlaaSammenRequest, Traad } from '../../../../../../models/meldinger/meldinger';
+import { SlaaSammenMelding, SlaaSammenRequest, Traad } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
@@ -61,14 +61,14 @@ const TraadlistStyle = styled.ol`
 const TraadVisningStyle = styled.section`
     padding: ${theme.margin.layout};
     flex-grow: 1;
-    > *:last-child {
-        margin-top: ${theme.margin.layout};
-    }
 `;
 
 const StyledCheckbox = styled(Checkbox)`
     padding: 1rem;
     transform: translateY(-0.5rem);
+    label {
+        ${theme.visuallyHidden}
+    }
 `;
 
 const TittelWrapper = styled.div`
@@ -76,12 +76,12 @@ const TittelWrapper = styled.div`
     padding: 1.25rem ${theme.margin.layout};
 `;
 
-function hentTemagruppe(traader: Traad[]) {
+function getTemagruppeForTraader(traader: Traad[]) {
     return traader[0].meldinger[0].temagruppe.toString();
 }
 
-function hentSlaasammenOppgaver(traader: Traad[]): SlaaSammenOppgave[] {
-    return traader.reduce((acc: SlaaSammenOppgave[], traad: Traad) => {
+function getMeldingerSomSkalSlaasSammen(traader: Traad[]): SlaaSammenMelding[] {
+    return traader.reduce((acc: SlaaSammenMelding[], traad: Traad) => {
         return acc.concat(
             traad.meldinger.map(melding => ({
                 oppgaveId: melding.oppgaveId!,
@@ -117,7 +117,7 @@ function BesvarFlere(props: Props) {
     const traadkomponenter = props.traader.map(traad => {
         const checkbox = (
             <StyledCheckbox
-                label={''}
+                label={'Velg tråd'}
                 checked={valgteTraader.map(traad => traad.traadId).includes(traad.traadId)}
                 onChange={() => onCheckTraad(traad)}
             />
@@ -136,8 +136,8 @@ function BesvarFlere(props: Props) {
 
     const clickHandler = () => {
         const request: SlaaSammenRequest = {
-            temagruppe: hentTemagruppe(valgteTraader),
-            oppgaver: hentSlaasammenOppgaver(valgteTraader)
+            temagruppe: getTemagruppeForTraader(valgteTraader),
+            meldinger: getMeldingerSomSkalSlaasSammen(valgteTraader)
         };
         dispatch(slaaSammenResource.actions.post(request));
     };

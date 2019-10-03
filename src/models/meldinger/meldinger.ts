@@ -121,11 +121,11 @@ export interface OpprettHenvendelseResponse {
 }
 
 export interface SlaaSammenRequest {
-    oppgaver: SlaaSammenOppgave[];
+    meldinger: SlaaSammenMelding[];
     temagruppe: string;
 }
 
-export interface SlaaSammenOppgave {
+export interface SlaaSammenMelding {
     oppgaveId: string;
     meldingsId: string;
     henvendelsesId: string;
