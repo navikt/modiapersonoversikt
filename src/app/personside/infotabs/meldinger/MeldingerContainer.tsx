@@ -18,7 +18,7 @@ import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper'
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
-interface Props {
+interface TraadVisningWrapperProps {
     valgtTraad?: Traad;
     sokeord: string;
     traaderEtterSok: Traad[];
@@ -41,7 +41,7 @@ const MeldingerArticleStyle = styled.article`
     position: relative;
 `;
 
-function TraadVisningWrapper(props: Props) {
+function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     if (props.traaderEtterSok.length === 0) {
         return <AlertStripeAdvarsel>Søket ga ingen treff på meldinger</AlertStripeAdvarsel>;
     }
