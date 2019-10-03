@@ -32,7 +32,8 @@ const initialState: FormState = {
 
 function SendNyMeldingContainer() {
     const [state, setState] = useState<FormState>(initialState);
-    const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
+    const updateState = (change: Partial<FormState>) =>
+        setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
     const postReferatResource = useRestResource(resources => resources.sendReferat);
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
