@@ -293,7 +293,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         <p
           className="typo-normal"
         >
-          Totalt 1 melding
+          1 melding totalt
         </p>
       </div>
       <ol
