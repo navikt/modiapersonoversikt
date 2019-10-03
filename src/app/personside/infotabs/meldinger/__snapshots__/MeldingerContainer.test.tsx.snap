@@ -234,6 +234,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 @media (min-width:62.5rem) {
   .c0 {
+    height: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -291,6 +296,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         className="c4"
       >
         <p
+          aria-live="polite"
           className="typo-normal"
         >
           Totalt 1 melding

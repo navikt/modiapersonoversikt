@@ -128,7 +128,6 @@ function BesvarFlere(props: Props) {
                 key={traad.traadId}
                 erValgt={traadSomSkalVises.traadId === traad.traadId}
                 onClick={() => setTraadSomSkalVises(traad)}
-                sokeord={''}
                 tillegskomponent={checkbox}
             />
         );

@@ -10,10 +10,11 @@ import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import KnappBase from 'nav-frontend-knapper';
-import { useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import BesvarFlere from './besvarflere/BesvarFlere';
 import { datoSynkende } from '../../../../../utils/dateUtils';
+import { useState } from 'react';
+import { useOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traader: Traad[];
@@ -60,6 +61,25 @@ const KnappWrapperStyle = styled.div`
 
 function TraadListe(props: Props) {
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
+    const [erForsteRender, setErForsteRender] = useState(true);
+    const inputRef = React.useRef<HTMLInputElement>();
+
+    const visAlleMeldingerKnapp = props.sokeord !== '' && (
+        <LenkeKnapp
+            onClick={() => {
+                props.setSokeord('');
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                }
+            }}
+        >
+            Vis alle meldinger
+        </LenkeKnapp>
+    );
+
+    useOnMount(() => {
+        setErForsteRender(false);
+    });
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
@@ -69,7 +89,7 @@ function TraadListe(props: Props) {
 
     const soketreffTekst =
         props.sokeord.length > 0
-            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            ? `Viser ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
             : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
@@ -77,6 +97,11 @@ function TraadListe(props: Props) {
             <SlaaSammenTraaderKnapp traader={props.traader} />
             <InputStyle>
                 <Input
+                    inputRef={
+                        ((ref: HTMLInputElement) => {
+                            inputRef.current = ref;
+                        }) as any
+                    }
                     value={props.sokeord}
                     onChange={event => props.setSokeord(event.target.value)}
                     label={'Søk etter melding'}
@@ -84,13 +109,13 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                <Normaltekst>{soketreffTekst}</Normaltekst>
-                {props.sokeord !== '' && <LenkeKnapp onClick={() => props.setSokeord('')}>Alle meldinger</LenkeKnapp>}
+                <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
+                {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
             <TraadListeStyle>
                 {traaderEtterSok.map(traad => (
                     <TraadListeElement
-                        sokeord={props.sokeord}
+                        taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}

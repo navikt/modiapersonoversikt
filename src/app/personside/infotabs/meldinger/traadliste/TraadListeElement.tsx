@@ -18,8 +18,8 @@ import { ReactNode } from 'react';
 interface Props {
     traad: Traad;
     erValgt: boolean;
+    taFokusOnMount?: boolean;
     onClick?: () => void;
-    sokeord: string;
     tillegskomponent?: ReactNode;
 }
 
@@ -67,8 +67,7 @@ function TraadListeElement(props: Props) {
     const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
-        const beholdeFokusPåSokefelt = props.sokeord.length > 0;
-        if (props.erValgt && !beholdeFokusPåSokefelt) {
+        if (props.taFokusOnMount) {
             ref.current && ref.current.focus();
         }
     });
