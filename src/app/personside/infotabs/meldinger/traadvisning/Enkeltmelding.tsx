@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { EtikettLiten } from 'nav-frontend-typografi';
 import { erJournalfort, erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
@@ -22,9 +22,14 @@ interface Props {
     sokeord: string;
 }
 
-const Inline = styled.div`
+const SkrevetAvStyle = styled.div`
     display: flex;
-    flex-direction: row;
+    > *:first-child {
+        margin-right: 0.3rem;
+    }
+`;
+const SpaceBetween = styled.div`
+    display: flex;
     justify-content: space-between;
 `;
 const Topptekst = styled.div`
@@ -89,7 +94,6 @@ function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
-    const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
@@ -97,12 +101,17 @@ function EnkeltMelding(props: Props) {
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
-                        <Inline>
-                            <Element>{topptekst}</Element>
+                        <SpaceBetween>
+                            <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{topptekst}</Tekstomrade>
                             <MeldingLestEtikett melding={props.melding} />
-                        </Inline>
-                        <Normaltekst>{datoTekst}</Normaltekst>
-                        <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
+                        </SpaceBetween>
+                        <Tekstomrade>{datoTekst}</Tekstomrade>
+                        <SkrevetAvStyle>
+                            <span>Skrevet av:</span>
+                            <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
+                                {saksbehandlerTekst(props.melding.skrevetAv)}
+                            </Tekstomrade>
+                        </SkrevetAvStyle>
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
