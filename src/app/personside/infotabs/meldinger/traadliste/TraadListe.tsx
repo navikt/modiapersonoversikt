@@ -72,7 +72,7 @@ function TraadListe(props: Props) {
     const soketreffTekst =
         props.sokeord.length > 0
             ? `Viser ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
-            : `${props.traader.length} ${meldingTekst} totalt`;
+            : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
         <PanelStyle>
