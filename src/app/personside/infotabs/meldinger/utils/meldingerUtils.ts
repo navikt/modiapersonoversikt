@@ -23,6 +23,10 @@ export function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
+export function getTemagruppeForTraader(traader: Traad[]) {
+    return traader[0].meldinger[0].temagruppe.toString();
+}
+
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return [
         Temagruppe.Arbeid,

@@ -10,6 +10,7 @@ import { Ingress } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
+import { getTemagruppeForTraader } from '../../utils/meldingerUtils';
 
 interface Props {
     traader: Traad[];
@@ -75,10 +76,6 @@ const TittelWrapper = styled.div`
     background-color: ${theme.color.navLysGra};
     padding: 1.25rem ${theme.margin.layout};
 `;
-
-function getTemagruppeForTraader(traader: Traad[]) {
-    return traader[0].meldinger[0].temagruppe.toString();
-}
 
 function getMeldingerSomSkalSlaasSammen(traader: Traad[]): SlaaSammenMelding[] {
     return traader.reduce((acc: SlaaSammenMelding[], traad: Traad) => {
