@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
 export interface FieldState {
     input: {
@@ -6,6 +6,7 @@ export interface FieldState {
         onChange: any;
     };
     setValue: Dispatch<SetStateAction<string>>;
+
     isPristine(trim: boolean): boolean;
 }
 
@@ -14,13 +15,20 @@ export default function useFieldState(initialState: string): FieldState {
     const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value), [
         setValue
     ]);
+    const isPristine = useCallback(trim => (trim ? value.trim() === initialState.trim() : value === initialState), [
+        value,
+        initialState
+    ]);
 
-    return {
-        input: {
-            value,
-            onChange
-        },
-        setValue,
-        isPristine: trim => (trim ? value.trim() === initialState.trim() : value === initialState)
-    };
+    return useMemo(
+        () => ({
+            input: {
+                value,
+                onChange
+            },
+            setValue,
+            isPristine
+        }),
+        [value, onChange, setValue, isPristine]
+    );
 }
