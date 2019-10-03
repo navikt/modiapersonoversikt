@@ -23,6 +23,8 @@ const meldingerMediaTreshold = pxToRem(1000);
 const MeldingerArticleStyle = styled.article`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
+        height: 0; /* IE11 */
+        flex-grow: 1; /* IE11 */
         display: flex;
         > *:first-child {
             flex: 35% 1 1;

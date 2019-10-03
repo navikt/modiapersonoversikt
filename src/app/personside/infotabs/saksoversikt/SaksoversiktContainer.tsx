@@ -22,6 +22,8 @@ export const saksoversiktMediaTreshold = '65rem';
 const SaksoversiktArticle = styled.article`
     ${scrollBarContainerStyle(saksoversiktMediaTreshold)};
     @media (min-width: ${saksoversiktMediaTreshold}) {
+        height: 0; /* IE11 */
+        flex-grow: 1; /* IE11 */
         display: flex;
         > *:first-child {
             min-width: 19rem;
