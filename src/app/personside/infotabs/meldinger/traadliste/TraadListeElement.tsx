@@ -66,7 +66,6 @@ function TraadListeElement(props: Props) {
     useOnMount(() => {
         if (props.taFokusOnMount) {
             ref.current && ref.current.focus();
-            console.log('fokus');
         }
     });
 
