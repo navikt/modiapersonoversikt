@@ -95,9 +95,15 @@ function useBrukersYtelser(props: Props): Returns {
     );
 
     const feilmeldinger = [
-        isFailed(foreldrepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste foreldrepenger</AlertStripeAdvarsel>,
-        isFailed(pleiepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste pleiepenger</AlertStripeAdvarsel>,
-        isFailed(sykepengerResource) && <AlertStripeAdvarsel>Kunne ikke laste sykepenger</AlertStripeAdvarsel>
+        isFailed(foreldrepengerResource) && (
+            <AlertStripeAdvarsel key="foreldrepenger-failed">Kunne ikke laste foreldrepenger</AlertStripeAdvarsel>
+        ),
+        isFailed(pleiepengerResource) && (
+            <AlertStripeAdvarsel key="pleiepenger-failed">Kunne ikke laste pleiepenger</AlertStripeAdvarsel>
+        ),
+        isFailed(sykepengerResource) && (
+            <AlertStripeAdvarsel key="sykepenger-failed">Kunne ikke laste sykepenger</AlertStripeAdvarsel>
+        )
     ].filter(feilmelding => feilmelding);
 
     const pending =
