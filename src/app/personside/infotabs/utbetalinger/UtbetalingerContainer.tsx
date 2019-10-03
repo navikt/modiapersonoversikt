@@ -17,6 +17,8 @@ import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 const UtbetalingerArticle = styled.article`
     ${scrollBarContainerStyle(theme.media.utbetalinger)};
     @media (min-width: ${theme.media.utbetalinger}) {
+        height: 0; /* IE11 */
+        flex-grow: 1; /* IE11 */
         display: flex;
         align-items: flex-start;
         > *:last-child {
