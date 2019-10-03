@@ -16,6 +16,7 @@ import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
 import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { SpaceBetween } from '../../../../../components/common-styled-components';
 
 interface Props {
     melding: Melding;
@@ -28,9 +29,9 @@ const SkrevetAvStyle = styled.div`
         margin-right: 0.3rem;
     }
 `;
-const SpaceBetween = styled.div`
-    display: flex;
-    justify-content: space-between;
+
+const BoldTekstomrade = styled(Tekstomrade)`
+    font-weight: 600;
 `;
 const Topptekst = styled.div`
     /* Trengs for borders */
@@ -102,7 +103,9 @@ function EnkeltMelding(props: Props) {
                 <SnakkebobleWrapper>
                     <Topptekst>
                         <SpaceBetween>
-                            <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{topptekst}</Tekstomrade>
+                            <BoldTekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
+                                {topptekst}
+                            </BoldTekstomrade>
                             <MeldingLestEtikett melding={props.melding} />
                         </SpaceBetween>
                         <Tekstomrade>{datoTekst}</Tekstomrade>
