@@ -1,20 +1,16 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { harDelsvar, sisteSendteMelding, useSokEtterMeldinger } from '../utils/meldingerUtils';
+import { useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
-import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
-import KnappBase from 'nav-frontend-knapper';
-import ModalWrapper from 'nav-frontend-modal';
-import BesvarFlere from './besvarflere/BesvarFlere';
-import { datoSynkende } from '../../../../../utils/dateUtils';
-import { useState } from 'react';
 import { useOnMount } from '../../../../../utils/customHooks';
+import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 
 interface Props {
     traader: Traad[];
@@ -43,19 +39,7 @@ const TraadListeStyle = styled.ol`
     }
 `;
 
-const StyledModalWrapper = styled(ModalWrapper)`
-    &.modal {
-        padding: 0;
-    }
-`;
-
 const InputStyle = styled.div`
-    padding: ${theme.margin.layout} ${theme.margin.layout} 0;
-`;
-
-const KnappWrapperStyle = styled.div`
-    display: flex;
-    justify-content: flex-end;
     padding: ${theme.margin.layout} ${theme.margin.layout} 0;
 `;
 
@@ -94,7 +78,7 @@ function TraadListe(props: Props) {
 
     return (
         <PanelStyle>
-            <SlaaSammenTraaderKnapp traader={props.traader} />
+            <SlaaSammenOppgaverKnapp traader={props.traader} />
             <InputStyle>
                 <Input
                     inputRef={
@@ -124,32 +108,6 @@ function TraadListe(props: Props) {
             </TraadListeStyle>
         </PanelStyle>
     );
-}
-
-function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
-    const [apen, settApen] = useState(false);
-    const tildelteOppgaver = useTildelteOppgaver();
-
-    const tildelteOppgaverIdListe = tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid);
-
-    const traaderSomKanSlaesSammen = traader
-        .filter(traad => tildelteOppgaverIdListe.includes(traad.traadId))
-        .filter(traad => !harDelsvar(traad))
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
-
-    if (traaderSomKanSlaesSammen.length > 1) {
-        return (
-            <KnappWrapperStyle>
-                <KnappBase type={'hoved'} onClick={() => settApen(true)}>
-                    Besvar flere
-                </KnappBase>
-                <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
-                    <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
-                </StyledModalWrapper>
-            </KnappWrapperStyle>
-        );
-    }
-    return null;
 }
 
 export default TraadListe;
