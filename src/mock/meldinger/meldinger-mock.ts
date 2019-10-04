@@ -61,7 +61,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
         temagruppe: temagruppe,
         skrevetAv: getSaksbehandler(),
         journalfortAv: getSaksbehandler(),
-        journalfortDato: moment(faker.date.recent(50)).format(backendDatoformat),
+        journalfortDato: navfaker.random.vektetSjanse(0.5)
+            ? moment(faker.date.recent(50)).format(backendDatoformat)
+            : undefined,
         journalfortSaksid: faker.random.alphaNumeric(5),
         journalfortTemanavn: navfaker.random.arrayElement(['Dagpenger', 'Arbeid', 'Pensjon', 'Bidrag']),
         fritekst: faker.lorem.sentences(4),

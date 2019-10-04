@@ -14,7 +14,7 @@ import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTra
 import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
@@ -43,7 +43,7 @@ const MeldingerArticleStyle = styled.article`
 
 function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     if (props.traaderEtterSok.length === 0) {
-        return <AlertStripeAdvarsel>Søket ga ingen treff på meldinger</AlertStripeAdvarsel>;
+        return <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>;
     }
     return (
         <>
