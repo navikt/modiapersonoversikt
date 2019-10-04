@@ -173,8 +173,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
   position: relative;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 20% 55% 1fr auto;
-  grid-template-columns: 20% minmax(35%,55%) 1fr auto;
+  -ms-grid-columns: 6rem 55% 1fr auto;
+  grid-template-columns: 6rem minmax(35%,55%) 1fr auto;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
