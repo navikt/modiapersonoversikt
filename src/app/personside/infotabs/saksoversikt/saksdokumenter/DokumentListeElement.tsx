@@ -147,7 +147,7 @@ function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
-class DokumentListeElement extends React.Component<Props> {
+class DokumentListeElement extends React.PureComponent<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLLIElement>();
