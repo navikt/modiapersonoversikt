@@ -12,7 +12,6 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-
 interface Props {
     valgtTraad?: Traad;
     sokeord: string;

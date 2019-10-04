@@ -36,7 +36,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
         kontaktinformasjonFetch,
         vergemalFetch,
         egenAnsattFetch,
-        tildDelteOppgaverFetch
+        tildDelteOppgaverFetch,
+        tråderFetch
     ]);
     useFetchFeatureTogglesOnNewFnr();
 
