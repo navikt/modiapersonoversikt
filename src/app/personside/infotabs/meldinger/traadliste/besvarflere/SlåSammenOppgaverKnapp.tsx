@@ -32,19 +32,20 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
         .filter(traad => !harDelsvar(traad))
         .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
 
-    if (traaderSomKanSlaesSammen.length > 1) {
-        return (
-            <KnappWrapperStyle>
-                <KnappBase type={'hoved'} onClick={() => settApen(true)}>
-                    Besvar flere
-                </KnappBase>
-                <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
-                    <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
-                </StyledModalWrapper>
-            </KnappWrapperStyle>
-        );
+    if (traaderSomKanSlaesSammen.length < 2) {
+        return null;
     }
-    return null;
+
+    return (
+        <KnappWrapperStyle>
+            <KnappBase type={'hoved'} onClick={() => settApen(true)}>
+                Besvar flere
+            </KnappBase>
+            <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
+                <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
+            </StyledModalWrapper>
+        </KnappWrapperStyle>
+    );
 }
 
 export default SlaaSammenOppgaverKnapp;

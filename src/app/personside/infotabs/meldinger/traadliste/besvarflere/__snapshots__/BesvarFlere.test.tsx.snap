@@ -678,15 +678,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
-                    <div
-                      className="etikett etikett--advarsel"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Ulest
-                      </span>
-                    </div>
                   </div>
                   <div
                     className="tekstomrade"
@@ -782,15 +773,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="tekstomrade c16"
                     >
                       Spørsmål fra bruker - Arbeid
-                    </div>
-                    <div
-                      className="etikett etikett--suksess"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Lest
-                      </span>
                     </div>
                   </div>
                   <div
