@@ -134,9 +134,9 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
 
     const traaderMedTildelteOppgaver = traader.filter(traad => tildelteOppgaverIdListe.includes(traad.traadId));
 
-    const traaderSomHarDelsvar = traaderMedTildelteOppgaver.filter(traad => harDelsvar(traad));
+    const traaderUtenDelsvar = traaderMedTildelteOppgaver.filter(traad => !harDelsvar(traad));
 
-    if (traaderMedTildelteOppgaver.length > 1) {
+    if (traaderUtenDelsvar.length > 1) {
         return (
             <KnappWrapperStyle>
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
@@ -144,7 +144,7 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
                 </KnappBase>
                 <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
                     <BesvarFlere
-                        traader={traaderSomHarDelsvar.sort(
+                        traader={traaderUtenDelsvar.sort(
                             datoSynkende(traad => sisteSendteMelding(traad).opprettetDato)
                         )}
                     />
