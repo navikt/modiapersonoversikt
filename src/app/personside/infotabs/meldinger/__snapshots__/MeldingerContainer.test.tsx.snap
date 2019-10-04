@@ -147,7 +147,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c8 > *:first-child {
+.c8 > *:not(:last-child) {
   padding-right: .8rem;
 }
 
