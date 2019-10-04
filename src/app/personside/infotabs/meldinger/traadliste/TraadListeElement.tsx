@@ -13,11 +13,14 @@ import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
+import { ReactNode } from 'react';
 
 interface Props {
     traad: Traad;
     erValgt: boolean;
-    taFokusOnMount: boolean;
+    taFokusOnMount?: boolean;
+    onClick?: () => void;
+    tillegskomponent?: ReactNode;
 }
 
 const UUcustomOrder = styled.div`
@@ -33,12 +36,12 @@ const UUcustomOrder = styled.div`
 
 const PanelStyle = styled.div`
     display: flex;
-    > *:first-child {
+    > *:not(:last-child) {
         padding-right: ${theme.margin.layout};
     }
 `;
 
-const ListElement = styled.li`
+const ListElementStyle = styled.li`
     &:focus {
         ${theme.focusOverlay}
     }
@@ -56,7 +59,7 @@ const EtikettStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
     const nyesteMelding = sisteSendteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = meldingstittel(nyesteMelding);
@@ -70,13 +73,16 @@ function TraadListeElement(props: Props) {
     });
 
     return (
-        <ListElement tabIndex={-1} ref={ref} className={meldingerTest.melding}>
+        <ListElementStyle tabIndex={-1} ref={ref} className={meldingerTest.melding}>
             <VisMerKnapp
                 valgt={props.erValgt}
-                linkTo={dyplenker.meldinger.link(props.traad)}
+                onClick={props.onClick}
+                // Ønsker ulik oppførsel i ulike panel, så derfor har vi en optional onclick for å overstyre linkTo
+                linkTo={!props.onClick ? dyplenker.meldinger.link(props.traad) : undefined}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
+                    {props.tillegskomponent}
                     <Meldingsikon
                         type={nyesteMelding.meldingstype}
                         erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
@@ -89,7 +95,7 @@ function TraadListeElement(props: Props) {
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
                         <EtikettStyling>
-                            <UnmountClosed isOpened={traadDialogpanel === props.traad}>
+                            <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
@@ -97,7 +103,7 @@ function TraadListeElement(props: Props) {
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
-        </ListElement>
+        </ListElementStyle>
     );
 }
 
@@ -111,4 +117,4 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-export default TraadListeElement;
+export default React.memo(TraadListeElement);
