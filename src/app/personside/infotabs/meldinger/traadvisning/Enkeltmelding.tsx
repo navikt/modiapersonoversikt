@@ -23,11 +23,12 @@ interface Props {
     sokeord: string;
 }
 
+const SkrevetAvTekst = styled.span`
+    margin-right: 0.3rem;
+`;
+
 const SkrevetAvStyle = styled.div`
     display: flex;
-    > *:first-child {
-        margin-right: 0.3rem;
-    }
 `;
 
 const BoldTekstomrade = styled(Tekstomrade)`
@@ -36,6 +37,7 @@ const BoldTekstomrade = styled(Tekstomrade)`
 const Topptekst = styled.div`
     /* Trengs for borders */
 `;
+
 const SnakkebobleWrapper = styled.div`
     text-align: left;
     em {
@@ -103,15 +105,13 @@ function EnkeltMelding(props: Props) {
                 <SnakkebobleWrapper>
                     <Topptekst>
                         <SpaceBetween>
-                            <BoldTekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
-                                {topptekst}
-                            </BoldTekstomrade>
+                            <BoldTekstomrade rules={[highlightRule]}>{topptekst}</BoldTekstomrade>
                             <MeldingLestEtikett melding={props.melding} />
                         </SpaceBetween>
                         <Tekstomrade>{datoTekst}</Tekstomrade>
                         <SkrevetAvStyle>
-                            <span>Skrevet av:</span>
-                            <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
+                            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
+                            <Tekstomrade rules={[highlightRule]}>
                                 {saksbehandlerTekst(props.melding.skrevetAv)}
                             </Tekstomrade>
                         </SkrevetAvStyle>
