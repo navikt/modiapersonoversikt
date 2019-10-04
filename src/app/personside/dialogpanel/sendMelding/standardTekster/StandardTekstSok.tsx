@@ -59,7 +59,12 @@ function StandardTekstSok(props: Props) {
     return (
         <Container>
             <Sokefelt>
-                <TagInput {...sokefelt.input} name="standardtekstsok" label="Søk etter standardtekster" autoFocus={true} />
+                <TagInput
+                    {...sokefelt.input}
+                    name="standardtekstsok"
+                    label="Søk etter standardtekster"
+                    autoFocus={true}
+                />
             </Sokefelt>
             {content}
         </Container>

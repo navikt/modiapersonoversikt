@@ -53,7 +53,9 @@ import {
     Traad,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendDelsvarRequest
+    SendDelsvarRequest,
+    SlaaSammenRequest,
+    SlaaSammenResponse
 } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
@@ -72,6 +74,7 @@ import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
 import sendDelsvar from './sendDelsvar';
+import slaaSammen from './meldinger/slaaSammen';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -112,6 +115,7 @@ export interface RestEndepunkter {
     sendSvar: PostResource<ForsettDialogRequest>;
     sendDelsvar: PostResource<SendDelsvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
+    slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
 
 export default combineResettableReducers<RestEndepunkter>(
@@ -153,7 +157,8 @@ export default combineResettableReducers<RestEndepunkter>(
         sendDelsvar: sendDelsvar,
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
-        personsok: personsok
+        personsok: personsok,
+        slaaSammen: slaaSammen
     },
     ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
 );
