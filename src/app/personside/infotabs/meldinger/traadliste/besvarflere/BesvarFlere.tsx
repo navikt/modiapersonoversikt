@@ -1,21 +1,33 @@
 import * as React from 'react';
-import { SlaaSammenMelding, SlaaSammenRequest, Traad } from '../../../../../../models/meldinger/meldinger';
+import {
+    SlaaSammenMelding,
+    SlaaSammenRequest,
+    SlaaSammenResponse,
+    Traad
+} from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
 import KnappBase from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
+import { isPosting } from '../../../../../../rest/utils/postResource';
+import { useRestResource } from '../../../../../../utils/customHooks';
+import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
+import { loggError } from '../../../../../../utils/frontendLogger';
+import { useInfotabsDyplenker } from '../../../dyplenker';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface Props {
     traader: Traad[];
+    lukkModal: () => void;
 }
 
-const Style = styled.article`
+const FormStyle = styled.form`
     background-color: ${theme.color.navGra20};
     width: 80vw;
     height: 80vh;
@@ -69,9 +81,6 @@ const TraadVisningStyle = styled.section`
 const StyledCheckbox = styled(Checkbox)`
     padding: 1rem;
     transform: translateY(-0.5rem);
-    label {
-        ${theme.visuallyHidden}
-    }
 `;
 
 const TittelWrapper = styled.div`
@@ -108,13 +117,17 @@ function Meldingsvisning({ traad }: { traad: Traad }) {
     return <TraadVisningStyle>{meldinger}</TraadVisningStyle>;
 }
 
-function BesvarFlere(props: Props) {
+function BesvarFlere(props: Props & RouteComponentProps) {
     const dispatch = useDispatch();
     const slaaSammenResource = useSelector((state: AppState) => state.restResources.slaaSammen);
+    const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger.actions.setData);
+    const resetPlukkOppgave = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
+    const dyplenker = useInfotabsDyplenker();
 
-    function onCheckTraad(traad: Traad) {
+    function handleCheckboxChange(traad: Traad) {
         if (valgteTraader.includes(traad)) {
             const nyListe = valgteTraader.filter(t => t.traadId !== traad.traadId);
             setValgteTraader(nyListe);
@@ -127,9 +140,10 @@ function BesvarFlere(props: Props) {
     const traadkomponenter = props.traader.map(traad => {
         const checkbox = (
             <StyledCheckbox
-                label={'Velg tråd'}
+                label={''}
+                aria-label={'Velg tråd'}
                 checked={valgteTraader.map(traad => traad.traadId).includes(traad.traadId)}
-                onChange={() => onCheckTraad(traad)}
+                onChange={() => handleCheckboxChange(traad)}
             />
         );
         return (
@@ -143,16 +157,34 @@ function BesvarFlere(props: Props) {
         );
     });
 
-    const clickHandler = () => {
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        if (isPosting(slaaSammenResource)) {
+            return;
+        }
         const request: SlaaSammenRequest = {
             temagruppe: getTemagruppeForTraader(valgteTraader),
             meldinger: getMeldingerSomSkalSlaasSammen(valgteTraader)
         };
-        dispatch(slaaSammenResource.actions.post(request));
+        const callback = (response: SlaaSammenResponse) => {
+            dispatch(setTråderITråderResource(response.traader));
+            dispatch(resetPlukkOppgave);
+            dispatch(reloadTildelteOppgaver);
+
+            const nyValgtTråd = response.traader.find(traad => traad.traadId === response.nyTraadId);
+            if (nyValgtTråd) {
+                dispatch(setValgtTraadDialogpanel(nyValgtTråd));
+                props.history.push(dyplenker.meldinger.link(nyValgtTråd));
+            } else {
+                loggError(Error('Besvar flere: Kunne ikke finne tråd som matcher trådId: ' + response.nyTraadId));
+            }
+            props.lukkModal();
+        };
+        dispatch(slaaSammenResource.actions.post(request, callback));
     };
 
     return (
-        <Style>
+        <FormStyle onSubmit={handleSubmit}>
             <TittelWrapper>
                 <Ingress>Slå sammen tråder</Ingress>
             </TittelWrapper>
@@ -161,12 +193,12 @@ function BesvarFlere(props: Props) {
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
             <KnappWrapper>
-                <KnappBase type={'hoved'} onClick={clickHandler}>
+                <KnappBase type={'hoved'} spinner={isPosting(slaaSammenResource)}>
                     Slå sammen
                 </KnappBase>
             </KnappWrapper>
-        </Style>
+        </FormStyle>
     );
 }
 
-export default BesvarFlere;
+export default withRouter(BesvarFlere);

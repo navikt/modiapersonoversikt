@@ -132,22 +132,19 @@ function SlaaSammenTraaderKnapp({ traader }: { traader: Traad[] }) {
 
     const tildelteOppgaverIdListe = tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid);
 
-    const traaderMedTildelteOppgaver = traader.filter(traad => tildelteOppgaverIdListe.includes(traad.traadId));
+    const traaderSomKanSlaesSammen = traader
+        .filter(traad => tildelteOppgaverIdListe.includes(traad.traadId))
+        .filter(traad => !harDelsvar(traad))
+        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
 
-    const traaderUtenDelsvar = traaderMedTildelteOppgaver.filter(traad => !harDelsvar(traad));
-
-    if (traaderUtenDelsvar.length > 1) {
+    if (traaderSomKanSlaesSammen.length > 1) {
         return (
             <KnappWrapperStyle>
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
                     Besvar flere
                 </KnappBase>
                 <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
-                    <BesvarFlere
-                        traader={traaderUtenDelsvar.sort(
-                            datoSynkende(traad => sisteSendteMelding(traad).opprettetDato)
-                        )}
-                    />
+                    <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
                 </StyledModalWrapper>
             </KnappWrapperStyle>
         );
