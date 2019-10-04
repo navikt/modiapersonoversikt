@@ -2,7 +2,13 @@ import * as React from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { EtikettLiten } from 'nav-frontend-typografi';
-import { erJournalfort, erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
+import {
+    erJournalfort,
+    erMeldingFraBruker,
+    erMeldingFraNav,
+    meldingstittel,
+    saksbehandlerTekst
+} from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components';
@@ -86,6 +92,9 @@ function Journalforing({ melding }: { melding: Melding }) {
 }
 
 function MeldingLestEtikett({ melding }: { melding: Melding }) {
+    if (erMeldingFraBruker(melding.meldingstype)) {
+        return null;
+    }
     return melding.status === LestStatus.Lest ? (
         <Etikett type="suksess">Lest</Etikett>
     ) : (
