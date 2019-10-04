@@ -12,15 +12,17 @@ import { Checkbox } from 'nav-frontend-skjema';
 import { FormEvent, useState } from 'react';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
-import KnappBase from 'nav-frontend-knapper';
+import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
-import { isPosting } from '../../../../../../rest/utils/postResource';
-import { useRestResource } from '../../../../../../utils/customHooks';
+import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
+import { useOnMount, useRestResource } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
 import { loggError } from '../../../../../../utils/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { Feilmelding } from '../../../../../../utils/Feilmelding';
+import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     traader: Traad[];
@@ -93,6 +95,9 @@ const KnappWrapper = styled.div`
     justify-content: flex-end;
     background-color: ${theme.color.navLysGra};
     padding: ${theme.margin.layout};
+    > * {
+        margin-left: 1rem;
+    }
 `;
 
 function getTemagruppeForTraader(traader: Traad[]) {
@@ -125,9 +130,15 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
+    const [feilmelding, setFeilmelding] = useState<string | undefined>(undefined);
     const dyplenker = useInfotabsDyplenker();
 
+    useOnMount(() => {
+        dispatch(slaaSammenResource.actions.reset);
+    });
+
     function handleCheckboxChange(traad: Traad) {
+        setFeilmelding(undefined);
         if (valgteTraader.includes(traad)) {
             const nyListe = valgteTraader.filter(t => t.traadId !== traad.traadId);
             setValgteTraader(nyListe);
@@ -159,6 +170,10 @@ function BesvarFlere(props: Props & RouteComponentProps) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (valgteTraader.length <= 1) {
+            setFeilmelding('Du må minst velge to tråder');
+            return;
+        }
         if (isPosting(slaaSammenResource)) {
             return;
         }
@@ -178,23 +193,38 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             } else {
                 loggError(Error('Besvar flere: Kunne ikke finne tråd som matcher trådId: ' + response.nyTraadId));
             }
-            props.lukkModal();
         };
         dispatch(slaaSammenResource.actions.post(request, callback));
     };
 
+    if (isFinishedPosting(slaaSammenResource)) {
+        return (
+            <div>
+                <AlertStripeInfo>Oppgavene ble slått sammen</AlertStripeInfo>
+                <Hovedknapp htmlType="button" onClick={props.lukkModal}>
+                    Lukk
+                </Hovedknapp>
+            </div>
+        );
+    }
+
+    if (isFailedPosting(slaaSammenResource)) {
+        return <AlertStripeFeil>Det skjedde en feil: {slaaSammenResource.error}</AlertStripeFeil>;
+    }
+
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TittelWrapper>
-                <Ingress>Slå sammen tråder</Ingress>
+                <Ingress>Slå sammen oppgaver</Ingress>
             </TittelWrapper>
             <TraadStyle>
                 <TraadlistStyle>{traadkomponenter}</TraadlistStyle>
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
             <KnappWrapper>
+                {feilmelding && <Feilmelding feil={{ feilmelding: feilmelding }} />}
                 <KnappBase type={'hoved'} spinner={isPosting(slaaSammenResource)}>
-                    Slå sammen
+                    Slå sammen {valgteTraader.length > 1 ? `${valgteTraader.length} ` : 'oppgaver'}
                 </KnappBase>
             </KnappWrapper>
         </FormStyle>
