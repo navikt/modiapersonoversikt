@@ -97,4 +97,4 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     );
 }
 
-export default Varsel;
+export default React.memo(Varsel);

@@ -2,15 +2,13 @@ import { LestStatus, Melding, Saksbehandler, Temagruppe, Traad, Meldingstype } f
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
-import { backendDatoformat } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockTraader(fødselsnummer: string): Traad[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'meldinger');
 
-    const traadArray = Array(navfaker.random.integer(20, 5))
-        .fill(null)
-        .map(() => getMockTraad());
+    const traadArray = fyllRandomListe(getMockTraad, 50, true);
 
     traadArray[0].traadId = '123'; // Legger til denne for å tving at man har en matchende oppgave-id i mock
 

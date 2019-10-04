@@ -51,7 +51,7 @@ function getSakstemaListe(): Sakstema[] {
         return [];
     }
 
-    return fyllRandomListe(getSakstema, 10, true);
+    return fyllRandomListe(getSakstema, 20, true);
 }
 
 function getSakstema(): Sakstema {
