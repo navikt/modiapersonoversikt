@@ -16,22 +16,25 @@ interface Props {
 }
 
 const Style = styled.article`
-    display: flex;
-    flex-direction: column;
+    background-color: ${theme.color.navGra20};
     width: 80vw;
     height: 80vh;
     max-width: 100rem;
     max-height: 100rem;
-    > *:not(:last-child) {
-        border-bottom: ${theme.border.skilleSvak};
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: auto minmax(0, 1fr) auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    > *:nth-child(1) {
+        -ms-grid-row: 1;
     }
     > *:nth-child(2) {
-        flex-grow: 1;
-        background-color: ${theme.color.navGra20};
+        -ms-grid-row: 2;
     }
-    > *:last-child {
-        background-color: ${theme.color.navLysGra};
-        padding: ${theme.margin.layout};
+    > *:nth-child(3) {
+        -ms-grid-row: 3;
     }
 `;
 
@@ -74,6 +77,13 @@ const StyledCheckbox = styled(Checkbox)`
 const TittelWrapper = styled.div`
     background-color: ${theme.color.navLysGra};
     padding: 1.25rem ${theme.margin.layout};
+`;
+
+const KnappWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    background-color: ${theme.color.navLysGra};
+    padding: ${theme.margin.layout};
 `;
 
 function getTemagruppeForTraader(traader: Traad[]) {
@@ -146,17 +156,15 @@ function BesvarFlere(props: Props) {
             <TittelWrapper>
                 <Ingress>Slå sammen tråder</Ingress>
             </TittelWrapper>
-
             <TraadStyle>
                 <TraadlistStyle>{traadkomponenter}</TraadlistStyle>
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
-
-            <div>
+            <KnappWrapper>
                 <KnappBase type={'hoved'} onClick={clickHandler}>
                     Slå sammen
                 </KnappBase>
-            </div>
+            </KnappWrapper>
         </Style>
     );
 }
