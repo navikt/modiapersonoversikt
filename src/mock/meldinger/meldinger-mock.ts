@@ -10,7 +10,7 @@ import {
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
-import { backendDatoformat } from '../utils/mock-utils';
+import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -21,13 +21,13 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'meldinger');
 
-    const traadArray = Array(navfaker.random.integer(20, 5))
-        .fill(null)
-        .map(() => getMockTraad());
+    const traadArray = fyllRandomListe(getMockTraad, 50, true);
 
-    traadArray[0].traadId = MOCKED_TRAADID_1;
-    traadArray[1].traadId = MOCKED_TRAADID_2;
-    traadArray[2].traadId = MOCKED_TRAADID_3;
+    if (traadArray.length >= 3) {
+        traadArray[0].traadId = MOCKED_TRAADID_1;
+        traadArray[1].traadId = MOCKED_TRAADID_2;
+        traadArray[2].traadId = MOCKED_TRAADID_3;
+    }
 
     return traadArray;
 }
