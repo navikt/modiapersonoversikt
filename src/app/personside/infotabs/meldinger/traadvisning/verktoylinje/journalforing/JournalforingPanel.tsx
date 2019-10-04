@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { erEldsteMeldingJournalfort } from '../../../utils/meldingerUtils';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -44,9 +47,16 @@ const Container = styled.section`
     margin-top: 1rem;
 `;
 
+const Margin = styled.div`
+    > * {
+        margin-top: 1rem;
+    }
+`;
+
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
+    const erJournalfort = erEldsteMeldingJournalfort(props.traad);
 
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
@@ -56,6 +66,15 @@ function JournalforingPanel(props: Props) {
     const tilbake = () => {
         setAktivtVindu(AktivtVindu.SAKLISTE);
     };
+
+    if (erJournalfort) {
+        return (
+            <Margin>
+                <AlertStripeInfo>Tråden er allerede journalført</AlertStripeInfo>
+                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+            </Margin>
+        );
+    }
 
     if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
         return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
