@@ -63,7 +63,7 @@ function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, va
                 valgtLocale.setValue(locales[0]);
             }
         }
-    }, [valgtTekst, valgtLocale.input.value]);
+    }, [valgtTekst, valgtLocale]);
 }
 
 function velgTekst(
@@ -109,8 +109,8 @@ function StandardTekstSok(props: Props) {
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt.input.value, valgt.setValue], inputRef.current);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt.input.value, valgt.setValue], inputRef.current);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], inputRef.current);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], inputRef.current);
 
     let content: ReactNode = null;
     if (isPending(data)) {
