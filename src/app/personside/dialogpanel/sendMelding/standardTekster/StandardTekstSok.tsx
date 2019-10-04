@@ -12,6 +12,8 @@ import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
 import { captitalize } from '../../../../../utils/stringFormatting';
 import MultiRestResourceConsumer from '../../../../../rest/consumer/MultiRestResourceConsumer';
+import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import { cyclicClamp } from '../../../../../utils/math';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -82,6 +84,7 @@ function velgTekst(
 }
 
 function StandardTekstSok(props: Props) {
+    const inputRef = React.useRef<HTMLInputElement>();
     const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
     const sokefelt = useFieldState('');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 100);
@@ -96,6 +99,18 @@ function StandardTekstSok(props: Props) {
     useEffect(() => {
         settFiltrerteTekster(sokEtterTekster(data, debouncedSokefelt));
     }, [settFiltrerteTekster, data, debouncedSokefelt]);
+
+    const velg = (offset: number) => () => {
+        const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+        if (index !== -1) {
+            const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
+            const nextTekst = filtrerteTekster[nextIndex];
+            valgt.setValue(nextTekst.id);
+        }
+    };
+
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt.input.value, valgt.setValue], inputRef.current);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt.input.value, valgt.setValue], inputRef.current);
 
     let content: ReactNode = null;
     if (isPending(data)) {
@@ -128,6 +143,7 @@ function StandardTekstSok(props: Props) {
                         <Sokefelt>
                             <TagInput
                                 {...sokefelt.input}
+                                inputRef={inputRef}
                                 name="standardtekstsok"
                                 label="Søk etter standardtekster"
                                 autoFocus={true}

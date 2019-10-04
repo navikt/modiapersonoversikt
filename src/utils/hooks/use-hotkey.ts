@@ -1,26 +1,51 @@
 import { DependencyList, useCallback, useEffect } from 'react';
 
-export default function useHotkey(key: string, action: () => void, deps: DependencyList) {
+type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
+function toKeyDescription(value: string | KeyDescription): KeyDescription {
+    if (typeof value === 'string') {
+        return { char: value, altKey: false, ctrlKey: false, metaKey: false, shiftKey: false };
+    }
+    return value;
+}
+function matches(keyDescription: KeyDescription, event: KeyboardEvent): boolean {
+    const { altKey, ctrlKey, metaKey, shiftKey } = keyDescription;
+    const wantedKey = keyDescription.char.toLowerCase();
+    const actualKey = (event.code ? event.code.replace('Key', '') : event.key).toLowerCase();
+
+    return [
+        wantedKey === actualKey,
+        Boolean(altKey) === event.altKey,
+        Boolean(ctrlKey) === event.ctrlKey,
+        Boolean(metaKey) === event.metaKey,
+        Boolean(shiftKey) === event.shiftKey
+    ].every(comp => comp);
+}
+
+export default function useHotkey(
+    key: string | KeyDescription,
+    action: () => void,
+    deps: DependencyList,
+    element: HTMLElement = document.body
+) {
+    const stableAction = useCallback(action, deps);
+    const keyDescription = useCallback(toKeyDescription, [key])(key);
     const handler = useCallback(
         (event: KeyboardEvent) => {
-            if (!event.altKey) {
-                return;
-            }
-
-            const wantedKey = key.toLowerCase();
-            const actualKey = (event.code ? event.code.replace('Key', '') : event.key).toLowerCase();
-
-            if (wantedKey === actualKey) {
+            if (matches(keyDescription, event)) {
                 event.preventDefault();
                 event.stopPropagation();
-                action();
+                stableAction();
             }
         },
-        [key, ...deps]
+        [keyDescription, stableAction]
     );
 
     useEffect(() => {
-        document.addEventListener('keydown', handler);
-        return () => document.removeEventListener('keydown', handler);
-    }, [handler]);
+        if (element) {
+            element.addEventListener('keydown', handler);
+            return () => element.removeEventListener('keydown', handler);
+        }
+
+        return undefined;
+    }, [element, handler]);
 }
