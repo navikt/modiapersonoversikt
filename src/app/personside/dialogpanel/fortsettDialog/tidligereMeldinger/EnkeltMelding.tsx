@@ -38,10 +38,10 @@ const StyledTekstomrade = styled(Tekstomrade)`
     overflow-wrap: break-word;
 `;
 
-const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltsaende: boolean }>`
+const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltstaende: boolean }>`
     &.ekspanderbartPanel {
         ${props =>
-            !props.erEnkeltsaende
+            !props.erEnkeltstaende
                 ? css`
                       border-radius: 0;
                   `
@@ -68,7 +68,7 @@ function EnkeltMelding(props: Props) {
         </EnkeltMeldingStyle>
     );
     return (
-        <StyledEkspanderbartpanelBase heading={header} erEnkeltsaende={props.erEnkeltstaende} apen={props.defaultApen}>
+        <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
             <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
