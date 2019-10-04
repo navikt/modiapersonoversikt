@@ -14,10 +14,15 @@ import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTra
 import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
+interface TraadVisningWrapperProps {
+    valgtTraad?: Traad;
+    sokeord: string;
+    traaderEtterSok: Traad[];
+}
 const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
@@ -35,6 +40,18 @@ const MeldingerArticleStyle = styled.article`
     }
     position: relative;
 `;
+
+function TraadVisningWrapper(props: TraadVisningWrapperProps) {
+    if (props.traaderEtterSok.length === 0) {
+        return <AlertStripeAdvarsel>Søket ga ingen treff på meldinger</AlertStripeAdvarsel>;
+    }
+    return (
+        <>
+            <Verktoylinje valgtTraad={props.valgtTraad} />
+            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} />
+        </>
+    );
+}
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dispatch = useDispatch();
@@ -85,8 +102,11 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                             />
                         </ScrollBar>
                         <ScrollBar>
-                            <Verktoylinje valgtTraad={traadIUrl} />
-                            <TraadVisning sokeord={sokeord} valgtTraad={traadIUrl} />
+                            <TraadVisningWrapper
+                                traaderEtterSok={traaderEtterSok}
+                                sokeord={sokeord}
+                                valgtTraad={traadIUrl}
+                            />
                         </ScrollBar>
                     </MeldingerArticleStyle>
                 );

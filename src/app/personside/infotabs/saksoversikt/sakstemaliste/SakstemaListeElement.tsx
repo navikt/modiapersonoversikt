@@ -107,4 +107,4 @@ function SakstemaListeElement(props: Props) {
     );
 }
 
-export default SakstemaListeElement;
+export default React.memo(SakstemaListeElement);

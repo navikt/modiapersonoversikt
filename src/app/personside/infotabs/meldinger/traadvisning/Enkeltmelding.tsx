@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { EtikettLiten } from 'nav-frontend-typografi';
 import { erJournalfort, erMeldingFraNav, meldingstittel, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
@@ -16,20 +16,28 @@ import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
 import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { SpaceBetween } from '../../../../../components/common-styled-components';
 
 interface Props {
     melding: Melding;
     sokeord: string;
 }
 
-const Inline = styled.div`
+const SkrevetAvTekst = styled.span`
+    margin-right: 0.3rem;
+`;
+
+const SkrevetAvStyle = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+`;
+
+const BoldTekstomrade = styled(Tekstomrade)`
+    font-weight: 600;
 `;
 const Topptekst = styled.div`
     /* Trengs for borders */
 `;
+
 const SnakkebobleWrapper = styled.div`
     text-align: left;
     em {
@@ -89,7 +97,6 @@ function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
     const datoTekst = formatterDatoTid(props.melding.opprettetDato);
-    const skrevetAv = saksbehandlerTekst(props.melding.skrevetAv);
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
@@ -97,12 +104,17 @@ function EnkeltMelding(props: Props) {
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
-                        <Inline>
-                            <Element>{topptekst}</Element>
+                        <SpaceBetween>
+                            <BoldTekstomrade rules={[highlightRule]}>{topptekst}</BoldTekstomrade>
                             <MeldingLestEtikett melding={props.melding} />
-                        </Inline>
-                        <Normaltekst>{datoTekst}</Normaltekst>
-                        <Normaltekst>Skrevet av: {skrevetAv}</Normaltekst>
+                        </SpaceBetween>
+                        <Tekstomrade>{datoTekst}</Tekstomrade>
+                        <SkrevetAvStyle>
+                            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
+                            <Tekstomrade rules={[highlightRule]}>
+                                {saksbehandlerTekst(props.melding.skrevetAv)}
+                            </Tekstomrade>
+                        </SkrevetAvStyle>
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
