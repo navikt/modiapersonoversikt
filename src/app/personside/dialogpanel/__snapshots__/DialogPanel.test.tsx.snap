@@ -1683,7 +1683,7 @@ exports[`viser dialogpanel 1`] = `
           className="knapp c20 knapp--hoved"
           disabled={false}
           onClick={[Function]}
-          type="submit"
+          type="button"
         >
           <svg
             className="c21"

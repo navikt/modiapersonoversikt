@@ -477,7 +477,7 @@ exports[`viser fortsett dialog 1`] = `
         className="knapp c10 knapp--hoved"
         disabled={false}
         onClick={[Function]}
-        type="submit"
+        type="button"
       >
         <svg
           className="c11"
