@@ -18,8 +18,8 @@ const Style = styled.article`
 const HeaderStyle = styled.div`
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 20% 55% 1fr;
-    grid-template-columns: 20% 55% 1fr;
+    -ms-grid-columns: 6rem 55% 1fr;
+    grid-template-columns: 6rem minmax(35%, 55%) 1fr;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
