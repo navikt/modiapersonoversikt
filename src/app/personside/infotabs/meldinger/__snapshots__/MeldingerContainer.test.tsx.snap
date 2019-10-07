@@ -213,12 +213,16 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c5 > *:not(:first-child) {
+.c5 > * {
   border-top: solid 0.0625rem #78706a;
 }
 
 .c3 {
   padding: .8rem .8rem 0;
+}
+
+.c3 .skjemaelement {
+  margin-bottom: 0.2rem;
 }
 
 .c0 {
