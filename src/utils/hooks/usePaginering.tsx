@@ -1,13 +1,20 @@
 import * as React from 'react';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
 
-interface Returns<T> {
+interface PagineringsData<T> {
     currentPage: T[];
     pageSelect: ReactNode;
 }
 
-function usePaginering<T>(list: T[], pageSize: number): Returns<T> {
+const getRange = (index: number, pageSize: number, list: any[]) => {
+    return {
+        fra: index * pageSize,
+        til: Math.min((index + 1) * pageSize - 1, list.length - 1)
+    };
+};
+
+function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
     const [currentPage, setCurrentPage] = useState(0);
 
     const numberOfPages = Math.ceil(list.length / pageSize);
@@ -16,24 +23,10 @@ function usePaginering<T>(list: T[], pageSize: number): Returns<T> {
         if (currentPage >= numberOfPages) {
             setCurrentPage(0);
         }
-    }, [list, numberOfPages, currentPage]);
+    }, [numberOfPages, currentPage]);
 
-    if (list.length <= pageSize) {
-        return {
-            currentPage: list,
-            pageSelect: null
-        };
-    }
-
-    const getRange = (index: number) => {
-        return {
-            fra: index * pageSize,
-            til: (index + 1) * pageSize < list.length ? (index + 1) * pageSize - 1 : list.length - 1
-        };
-    };
-
-    const options = [...new Array(numberOfPages)].map((_, index) => {
-        const optionRange = getRange(index);
+    const options = new Array(numberOfPages).fill(0).map((_, index) => {
+        const optionRange = getRange(index, pageSize, list);
         const selected = index === currentPage;
         return (
             <option key={index} value={index}>
@@ -42,17 +35,25 @@ function usePaginering<T>(list: T[], pageSize: number): Returns<T> {
         );
     });
 
-    const pageSelect = (
-        <Select label="Velg paginering" selected={currentPage} onChange={e => setCurrentPage(parseInt(e.target.value))}>
-            {options}
-        </Select>
-    );
+    const pageSelect =
+        list.length <= pageSize ? null : (
+            <Select
+                label="Velg paginering"
+                selected={currentPage}
+                onChange={e => setCurrentPage(parseInt(e.target.value))}
+            >
+                {options}
+            </Select>
+        );
 
-    const currentRange = getRange(currentPage);
-    return {
-        currentPage: list.slice(currentRange.fra, currentRange.til + 1),
-        pageSelect: pageSelect
-    };
+    const currentRange = getRange(currentPage, pageSize, list);
+    return useMemo(
+        () => ({
+            currentPage: list.slice(currentRange.fra, currentRange.til + 1),
+            pageSelect: pageSelect
+        }),
+        [list, currentRange, pageSelect]
+    );
 }
 
 export default usePaginering;
