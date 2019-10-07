@@ -57,6 +57,7 @@ function TildelteOppgaver(props: RouteComponentProps) {
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
+    const antallTildelteOppgaver = tildelteOppgaver.paaBruker.length;
 
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
@@ -95,7 +96,8 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 {tildelteOppgaver.paaBruker.length !== 0 && (
                     <LenkeKnapp onClick={() => setVisOppgaver(!visOppgaver)}>
                         <Normaltekst>
-                            Du har {tildelteOppgaver.paaBruker.length} tildelte oppgaver på bruker
+                            Du har {antallTildelteOppgaver}{' '}
+                            {antallTildelteOppgaver === 1 ? 'tildelt oppgave' : 'tildelte oppgaver'} på bruker
                         </Normaltekst>
                     </LenkeKnapp>
                 )}
