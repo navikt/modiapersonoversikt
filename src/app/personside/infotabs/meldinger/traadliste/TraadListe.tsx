@@ -11,6 +11,7 @@ import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import { useOnMount } from '../../../../../utils/customHooks';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
+import usePaginering from '../../../../../utils/hooks/usePaginering';
 
 interface Props {
     traader: Traad[];
@@ -34,19 +35,38 @@ const SokVerktøyStyle = styled.div`
 `;
 
 const TraadListeStyle = styled.ol`
-    > *:not(:first-child) {
+    > * {
         border-top: ${theme.border.skille};
     }
 `;
 
 const InputStyle = styled.div`
     padding: ${theme.margin.layout} ${theme.margin.layout} 0;
+    .skjemaelement {
+        margin-bottom: 0.2rem;
+    }
+`;
+
+const PagineringStyling = styled.div`
+    padding: 0 ${theme.margin.layout};
+    label {
+        ${theme.visuallyHidden};
+    }
 `;
 
 function TraadListe(props: Props) {
-    const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
+    const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
+    const paginering = usePaginering(traaderEtterSok, 50);
+
+    useOnMount(() => {
+        setErForsteRender(false);
+    });
+
+    if (props.traader.length === 0) {
+        return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
+    }
 
     const visAlleMeldingerKnapp = props.sokeord !== '' && (
         <LenkeKnapp
@@ -61,19 +81,10 @@ function TraadListe(props: Props) {
         </LenkeKnapp>
     );
 
-    useOnMount(() => {
-        setErForsteRender(false);
-    });
-
-    if (props.traader.length === 0) {
-        return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
-    }
-
     const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
-
     const soketreffTekst =
         props.sokeord.length > 0
-            ? `Viser ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
             : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
@@ -96,8 +107,9 @@ function TraadListe(props: Props) {
                 <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
                 {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
+            {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
             <TraadListeStyle>
-                {traaderEtterSok.map(traad => (
+                {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
