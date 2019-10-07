@@ -95,28 +95,26 @@ function VisPostResultat({ resultat }: { resultat?: Resultat }) {
     }
 }
 
-function skalStandardvalgDisables(valgtTraad: Traad) {
+function visStandardvalg(valgtTraad: Traad) {
     return (
-        erEldsteMeldingJournalfort(valgtTraad) ||
-        erFeilsendt(valgtTraad) ||
-        erBehandlet(valgtTraad) ||
-        erKontorsperret(valgtTraad)
+        !erEldsteMeldingJournalfort(valgtTraad) &&
+        !erFeilsendt(valgtTraad) &&
+        erBehandlet(valgtTraad) &&
+        !erKontorsperret(valgtTraad)
     );
 }
 
-function skalFerdigstillUtenSvarDisables(meldingstype: Meldingstype, valgtTraad: Traad) {
+function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     return (
-        !erMeldingSpørsmål(meldingstype) ||
-        erKontorsperret(valgtTraad) ||
-        erBehandlet(valgtTraad) ||
-        harDelsvar(valgtTraad)
+        erMeldingSpørsmål(meldingstype) &&
+        !erKontorsperret(valgtTraad) &&
+        !erBehandlet(valgtTraad) &&
+        !harDelsvar(valgtTraad)
     );
 }
 
-function skalSlettingDisables(melding: Melding) {
-    return (
-        !harTilgangTilSletting() || !(erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype))
-    );
+function skalViseSletting(melding: Melding) {
+    return harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
 }
 
 function getMerkAvsluttRequest(fnr: string, traad: Traad): MerkAvsluttUtenSvarRequest {
@@ -158,10 +156,10 @@ function MerkPanel(props: Props) {
 
     const melding = eldsteMelding(valgtTraad);
 
-    const disableStandardvalg = skalStandardvalgDisables(valgtTraad);
+    const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !erKommunaleTjenester(melding.temagruppe) || disableStandardvalg;
-    const disableFerdigstillUtenSvar = skalFerdigstillUtenSvarDisables(melding.meldingstype, valgtTraad);
-    const disableSlett = skalSlettingDisables(melding);
+    const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
+    const disableSlett = !skalViseSletting(melding);
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
