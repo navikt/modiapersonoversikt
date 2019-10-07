@@ -130,6 +130,7 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
         .map(tag => (
             <Tag
                 mini
+                htmlType="button"
                 key={tag}
                 className="tag blokk-xxxs"
                 onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
