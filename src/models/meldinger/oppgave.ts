@@ -30,6 +30,7 @@ export enum OppgavePrioritet {
 }
 
 export interface OpprettOppgaveRequest {
+    fnr: string;
     valgtEnhetId: string;
     henvendelseId: string;
     dagerFrist: number;

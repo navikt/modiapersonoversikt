@@ -9,6 +9,7 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 export function lagOppgaveRequest(
     props: OppgaveProps,
     form: OppgaveSkjemaProps,
+    fodselsnummer: string,
     valgtTraad?: Traad
 ): OpprettOppgaveRequest {
     const saksbehandlerEnhet = getSaksbehandlerEnhet();
@@ -17,6 +18,7 @@ export function lagOppgaveRequest(
     const valgtOppgavetype = form.state.valgtOppgavetype;
 
     return {
+        fnr: fodselsnummer,
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         henvendelseId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
