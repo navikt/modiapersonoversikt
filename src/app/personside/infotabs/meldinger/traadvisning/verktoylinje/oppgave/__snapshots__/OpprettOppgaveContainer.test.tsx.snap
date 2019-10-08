@@ -2,7 +2,7 @@
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
 Array [
-  .c2 {
+  .c3 {
   position: relative;
   border: none;
   padding: 0;
@@ -20,7 +20,7 @@ Array [
   color: #0067c5;
 }
 
-.c2:after {
+.c3:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -28,21 +28,25 @@ Array [
   width: 100%;
 }
 
-.c2:focus {
+.c3:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c2:hover {
+.c3:hover {
   opacity: 0.8;
 }
 
-.c2:hover:after {
+.c3:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
 .c1 {
+  position: relative;
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -53,7 +57,7 @@ Array [
   justify-content: space-between;
 }
 
-.c1 button {
+.c2 button {
   margin: 0;
 }
 
@@ -176,6 +180,82 @@ Array [
           aria-live="assertive"
           role="alert"
         />
+      </div>
+      <div
+        aria-expanded={false}
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-0-label"
+        aria-owns={null}
+        className="c1"
+        role="combobox"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-0-input"
+          >
+            Velg enhet
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-labelledby="downshift-0-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-0-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+      </div>
+      <div
+        aria-expanded={false}
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-1-label"
+        aria-owns={null}
+        className="c1"
+        role="combobox"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-1-input"
+          >
+            Velg ansatt
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-labelledby="downshift-1-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-1-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
       </div>
       <div
         className="inputPanelGruppe"
@@ -309,7 +389,7 @@ Array [
         />
       </div>
       <div
-        className="c1"
+        className="c2"
       >
         <button
           className="knapp knapp--hoved"
@@ -319,7 +399,7 @@ Array [
           Send
         </button>
         <button
-          className="c2"
+          className="c3"
           onClick={[Function]}
           type="button"
         >
