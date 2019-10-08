@@ -10,6 +10,8 @@ import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
 import theme from '../../../../../../../styles/personOversiktTheme';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../../../../redux/reducers';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
@@ -43,6 +45,7 @@ function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
 }
 
 function OppgaveSkjema(props: OppgaveProps) {
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
@@ -80,7 +83,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         const harSkjemaValideringsfeil = skjemavalidering(formState);
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
-            const request = lagOppgaveRequest(props, formState, props.valgtTraad);
+            const request = lagOppgaveRequest(props, formState, valgtBrukersFnr, props.valgtTraad);
             props.opprettOppgave(request);
             if (props.kontorsperreFunksjon) {
                 props.kontorsperreFunksjon();
