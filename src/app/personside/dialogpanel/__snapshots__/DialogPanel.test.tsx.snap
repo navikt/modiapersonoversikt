@@ -232,7 +232,8 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c22 textarea {
+.c22 textarea,
+.c22 .textareamirror {
   padding-left: 2.25rem;
 }
 
