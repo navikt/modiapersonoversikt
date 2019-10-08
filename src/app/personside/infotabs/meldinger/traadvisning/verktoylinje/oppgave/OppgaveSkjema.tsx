@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import {
+    Ansatt,
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,

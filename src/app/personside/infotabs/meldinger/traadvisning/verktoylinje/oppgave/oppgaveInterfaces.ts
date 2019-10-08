@@ -1,4 +1,5 @@
 import {
+    Ansatt,
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
