@@ -1767,14 +1767,6 @@ Array [
           Del med 
           Aremark
         </button>
-        <button
-          className="knapp knapp--flat"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Avbryt
-        </button>
       </div>
     </form>
   </article>,
