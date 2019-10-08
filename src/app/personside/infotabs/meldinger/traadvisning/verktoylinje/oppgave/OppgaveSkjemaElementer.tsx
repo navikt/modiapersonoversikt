@@ -15,6 +15,8 @@ import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
 import AutoComplete from './AutoComplete';
 import { getMockAnsatte, getMockEnheter } from '../../../../../../../mock/meldinger/oppgave-mock';
+import { useDispatch } from 'react-redux';
+import { setValgtEnhet } from '../../../../../../../redux/oppgave/actions';
 
 const KnappStyle = styled.div`
     display: flex;
@@ -34,6 +36,7 @@ const SkjemaStyle = styled.div`
 `;
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
+    const dispatch = useDispatch();
     const valgtTema = props.form.state.valgtTema;
     const enhetliste = getMockEnheter();
     const ansattliste = getMockAnsatte();
@@ -58,7 +61,10 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
             <AutoComplete<Enhet>
-                setValue={() => {}}
+                setValue={enhet => {
+                    props.form.actions.settValgtEnhet(enhet);
+                    dispatch(setValgtEnhet(enhet));
+                }}
                 inputValue={undefined}
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
@@ -68,7 +74,9 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
             />
             <AutoComplete<Ansatt>
-                setValue={() => {}}
+                setValue={ansatt => {
+                    props.form.actions.settValgtAnsatt(ansatt);
+                }}
                 inputValue={undefined}
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}

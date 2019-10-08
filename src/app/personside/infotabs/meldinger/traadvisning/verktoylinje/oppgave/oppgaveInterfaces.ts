@@ -1,4 +1,5 @@
 import {
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
@@ -27,6 +28,8 @@ export interface OppgaveSkjemaProps {
         beskrivelse: string;
         valgtPrioritet: OppgavePrioritet;
         valgtUnderkategori?: GsakTemaUnderkategori;
+        valgtEnhet?: Enhet;
+        valgtAnsatt?: Ansatt;
     };
     actions: {
         oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
@@ -34,5 +37,7 @@ export interface OppgaveSkjemaProps {
         settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
         settValgtPrioritet(prioritet: OppgavePrioritet): void;
         settBeskrivelse(beskrivelse: string): void;
+        settValgtEnhet(enhet: Enhet | undefined): void;
+        settValgtAnsatt(ansatt: Ansatt | undefined): void;
     };
 }

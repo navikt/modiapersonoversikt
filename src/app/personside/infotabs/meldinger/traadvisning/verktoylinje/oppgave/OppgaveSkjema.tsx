@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import {
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
@@ -37,6 +38,14 @@ function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
         tommeKomponenter.push('Beskrivelse');
     }
 
+    if (!props.state.valgtEnhet) {
+        tommeKomponenter.push('Enhet');
+    }
+
+    if (!props.state.valgtAnsatt) {
+        tommeKomponenter.push('Ansatt');
+    }
+
     if (tommeKomponenter.length > 0) {
         return 'Følgende felt er ikke satt: ' + tommeKomponenter.join(', ');
     }
@@ -49,6 +58,8 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
+    const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
+    const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
     const [valgtPrioritet, settValgtPrioritet] = useState(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
@@ -66,6 +77,8 @@ function OppgaveSkjema(props: OppgaveProps) {
             valgtTema,
             valgtUnderkategori,
             valgtOppgavetype,
+            valgtEnhet,
+            valgtAnsatt,
             valgtPrioritet,
             beskrivelse
         },
@@ -73,6 +86,8 @@ function OppgaveSkjema(props: OppgaveProps) {
             oppdaterStateVedValgtTema,
             settValgtUnderkategori,
             settValgtOppgavetype,
+            settValgtEnhet,
+            settValgtAnsatt,
             settValgtPrioritet,
             settBeskrivelse
         }
