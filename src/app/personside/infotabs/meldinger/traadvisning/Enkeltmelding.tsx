@@ -7,7 +7,8 @@ import {
     erMeldingFraBruker,
     erMeldingFraNav,
     meldingstittel,
-    saksbehandlerTekst
+    saksbehandlerTekst,
+    erDelsvar
 } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
@@ -95,6 +96,9 @@ function Journalforing({ melding }: { melding: Melding }) {
 function MeldingLestEtikett({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
+    }
+    if (erDelsvar(melding)) {
+        return <Etikett type="info">Delsvar</Etikett>;
     }
     return melding.status === LestStatus.Lest ? (
         <Etikett type="suksess">Lest</Etikett>

@@ -5,9 +5,9 @@ import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erMonolog, meldingstittel, sisteSendteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erMonolog, meldingstittel, sisteSendteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
-import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
@@ -98,6 +98,7 @@ function TraadListeElement(props: Props) {
                             <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
+                            {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                         </EtikettStyling>
                     </div>
