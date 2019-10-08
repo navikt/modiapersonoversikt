@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
 import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled from 'styled-components';
@@ -72,7 +72,9 @@ function velgTekst(
     locale: string,
     data: StandardTekster.AutofullforData
 ) {
-    return () => {
+    return (event: FormEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
             const localeTekst = tekst.innhold[locale];
             const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
