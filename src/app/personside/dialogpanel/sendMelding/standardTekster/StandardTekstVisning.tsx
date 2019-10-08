@@ -90,7 +90,7 @@ const LocaleVelgerContainer = styled.div`
     }
 `;
 
-const Tag = styled(Knapp)`
+const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
 
@@ -98,7 +98,7 @@ const Tag = styled(Knapp)`
         margin: 0 -0.3125rem;
     }
     &:hover {
-        color: ${(props: { highlight: boolean }) => (props.highlight ? theme.color.lenke : '#ffffff')};
+        color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
     }
 `;
 
