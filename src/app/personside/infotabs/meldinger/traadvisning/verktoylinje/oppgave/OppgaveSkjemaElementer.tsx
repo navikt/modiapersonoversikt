@@ -2,6 +2,8 @@ import React, { ChangeEvent } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
 import {
+    Ansatt,
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
@@ -11,6 +13,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
+import AutoComplete from './AutoComplete';
+import { getMockAnsatte, getMockEnheter } from '../../../../../../../mock/meldinger/oppgave-mock';
 
 const KnappStyle = styled.div`
     display: flex;
@@ -31,6 +35,8 @@ const SkjemaStyle = styled.div`
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const valgtTema = props.form.state.valgtTema;
+    const enhetliste = getMockEnheter();
+    const ansattliste = getMockAnsatte();
     return (
         <SkjemaStyle>
             <Select
@@ -51,6 +57,28 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
             >
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
+            <AutoComplete<Enhet>
+                setValue={() => {}}
+                inputValue={undefined}
+                itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
+                label={'Velg enhet'}
+                suggestions={enhetliste}
+                filter={(enhet, value) =>
+                    enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
+                }
+            />
+            <AutoComplete<Ansatt>
+                setValue={() => {}}
+                inputValue={undefined}
+                itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                label={'Velg ansatt'}
+                suggestions={ansattliste}
+                filter={(ansatt, value) =>
+                    ansatt.fornavn.toLowerCase().includes(value.toLowerCase()) ||
+                    ansatt.etternavn.toLowerCase().includes(value.toLowerCase()) ||
+                    ansatt.ident.toLowerCase().includes(value.toLowerCase())
+                }
+            />
             <RadioPanelGruppe
                 radios={[
                     { label: 'Høy', value: OppgavePrioritet.HOY },

@@ -7,6 +7,11 @@ export function oppgaverReducer(state: OppgaveState = initialState, action: Oppg
                 ...state,
                 dialogpanelTraad: action.traad
             };
+        case OppgaveActionTypes.SetValgtEnhet:
+            return {
+                ...state,
+                valgtEnhet: action.valgtEnhet
+            };
         case OppgaveActionTypes.NullstillDialogpanelTraad:
             return {
                 ...state,

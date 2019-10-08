@@ -27,7 +27,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockSlaaSammen, getMockTraader } from './meldinger/meldinger-mock';
-import { getMockGsakTema } from './meldinger/oppgave-mock';
+import { getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
@@ -200,6 +200,20 @@ function setupGsakTemaMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/dialogoppgave/tema',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
+    );
+}
+
+function setupOppgaveEnhetMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/enheter/dialog/oppgave/alle',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
+    );
+}
+
+function setupAnsattePaaEnhetMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/enheter/:enhetId/ansatte',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockAnsatte())
     );
 }
 
@@ -502,6 +516,8 @@ export function setupMock() {
     setupOppfølgingMock(mock);
     setupMeldingerMock(mock);
     setupGsakTemaMock(mock);
+    setupOppgaveEnhetMock(mock);
+    setupAnsattePaaEnhetMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);

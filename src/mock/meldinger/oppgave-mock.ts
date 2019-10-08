@@ -1,4 +1,6 @@
 import {
+    Ansatt,
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaPrioritet,
@@ -20,6 +22,41 @@ export function getMockGsakTema(): GsakTema[] {
             oppgavetyper: getOppgavetyper(),
             prioriteter: getPrioriteter(),
             underkategorier: getUnderkategorier()
+        }
+    ];
+}
+
+export function getMockEnheter(): Enhet[] {
+    return [
+        {
+            enhetId: '1234',
+            enhetNavn: 'NAV Aremark',
+            status: 'Aktiv'
+        },
+        {
+            enhetId: '4321',
+            enhetNavn: 'NAV Moss',
+            status: 'Aktiv'
+        },
+        {
+            enhetId: '7658',
+            enhetNavn: 'NAV Bergen',
+            status: 'Aktiv'
+        }
+    ];
+}
+
+export function getMockAnsatte(): Ansatt[] {
+    return [
+        {
+            fornavn: 'Anne',
+            etternavn: 'Saksbehandler',
+            ident: 'S123456'
+        },
+        {
+            fornavn: 'Bernt',
+            etternavn: 'Veileder',
+            ident: 'V654321'
         }
     ];
 }

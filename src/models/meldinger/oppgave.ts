@@ -36,9 +36,22 @@ export interface OpprettOppgaveRequest {
     dagerFrist: number;
     ansvarligIdent: string | null;
     beskrivelse: string;
-    temakode: string;
-    underkategorikode?: string;
+    temaKode: string;
+    underkategoriKode?: string;
     brukerid: string;
     oppgaveTypeKode: string;
     prioritetKode: string;
+    ansvarligEnhetId: string;
+}
+
+export interface Enhet {
+    enhetId: string;
+    enhetNavn: string;
+    status: string;
+}
+
+export interface Ansatt {
+    fornavn: string;
+    etternavn: string;
+    ident: string;
 }

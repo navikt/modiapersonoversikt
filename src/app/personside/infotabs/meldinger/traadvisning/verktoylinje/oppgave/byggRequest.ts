@@ -24,11 +24,12 @@ export function lagOppgaveRequest(
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
         ansvarligIdent: props.innloggetSaksbehandler.ident,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
-        temakode: temakode,
-        underkategorikode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        temaKode: temakode,
+        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet + '_' + temakode
+        prioritetKode: form.state.valgtPrioritet + '_' + temakode,
+        ansvarligEnhetId: ''
     };
 }
 

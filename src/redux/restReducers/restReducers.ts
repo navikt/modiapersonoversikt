@@ -59,7 +59,7 @@ import {
 } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import sendReferat from './sendReferat';
-import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
+import { Ansatt, Enhet, GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
@@ -75,6 +75,8 @@ import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
 import sendDelsvar from './sendDelsvar';
 import slaaSammen from './meldinger/slaaSammen';
+import oppgaveAlleEnheter from './meldinger/oppgaveAlleEnheter';
+import ansatteTilknyttetEnhet from './meldinger/ansatteTilknyttetEnhet';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -116,6 +118,8 @@ export interface RestEndepunkter {
     sendDelsvar: PostResource<SendDelsvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
+    oppgaveAlleEnheter: RestResource<Enhet[]>;
+    ansatteTilknyttetEnhet: RestResource<Ansatt[]>;
 }
 
 export default combineResettableReducers<RestEndepunkter>(
@@ -158,7 +162,9 @@ export default combineResettableReducers<RestEndepunkter>(
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,
-        slaaSammen: slaaSammen
+        slaaSammen: slaaSammen,
+        oppgaveAlleEnheter: oppgaveAlleEnheter,
+        ansatteTilknyttetEnhet: ansatteTilknyttetEnhet
     },
     ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
 );
