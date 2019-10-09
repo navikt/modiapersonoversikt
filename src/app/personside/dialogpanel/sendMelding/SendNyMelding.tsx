@@ -67,6 +67,7 @@ interface Props {
     handleAvbryt: () => void;
     state: FormState;
     updateState: (change: Partial<FormState>) => void;
+    formErEndret: boolean;
 }
 
 function SendNyMelding(props: Props) {
@@ -80,7 +81,6 @@ function SendNyMelding(props: Props) {
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
-    const erFormPabegynt = state.tekst || state.tema || state.sak;
     return (
         <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
@@ -124,7 +124,7 @@ function SendNyMelding(props: Props) {
                     <KnappBase type="hoved" htmlType="submit">
                         Del med {navn}
                     </KnappBase>
-                    {erFormPabegynt && (
+                    {props.formErEndret && (
                         <KnappMedBekreftPopup
                             type="flat"
                             onBekreft={props.handleAvbryt}
