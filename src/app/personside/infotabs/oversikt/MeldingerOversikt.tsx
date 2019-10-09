@@ -68,9 +68,9 @@ function TraadListe(props: { traader: Traad[] } & Props) {
 }
 
 function Traadelement(props: { traad: Traad }) {
-    const nyesteMelding = nyesteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(sisteMelding.temagruppe)}`;
     const dyplenker = useInfotabsDyplenker();
 
     return (
@@ -83,15 +83,15 @@ function Traadelement(props: { traad: Traad }) {
             >
                 <PanelStyle>
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
                         <Element>{tittel}</Element>
-                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                        <Tekstomrade>{delAvStringMedDots(sisteMelding.fritekst, 70)}</Tekstomrade>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>

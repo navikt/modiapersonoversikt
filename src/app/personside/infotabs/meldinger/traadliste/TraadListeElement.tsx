@@ -60,9 +60,9 @@ const EtikettStyling = styled.div`
 
 function TraadListeElement(props: Props) {
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const nyesteMelding = nyesteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = meldingstittel(nyesteMelding);
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = meldingstittel(sisteMelding);
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
 
@@ -84,8 +84,8 @@ function TraadListeElement(props: Props) {
                 <PanelStyle>
                     {props.tillegskomponent}
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
