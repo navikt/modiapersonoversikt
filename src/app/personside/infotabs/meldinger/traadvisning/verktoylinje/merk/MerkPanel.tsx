@@ -26,13 +26,13 @@ import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
 import { RadioPanelGruppe, Checkbox } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
-import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import {
     MerkAvsluttUtenSvarRequest,
     MerkKontorsperrRequest,
     MerkRequestMedBehandlingskjede,
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
+import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
 
 interface Props {
     lukkPanel: () => void;
@@ -47,18 +47,9 @@ enum MerkOperasjon {
     SLETT = 'SLETT'
 }
 
-enum Resultat {
-    VELLYKKET = 'VELLYKKET',
-    FEIL = 'FEIL'
-}
-
 const KnappStyle = styled.div`
     display: flex;
     justify-content: space-between;
-`;
-
-const ResultatStyle = styled.div`
-    margin-bottom: 1rem;
 `;
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
@@ -73,26 +64,6 @@ function lagBehandlingskjede(traad: Traad) {
 
 function lagMeldingsidListe(traad: Traad) {
     return traad.meldinger.map(melding => melding.id);
-}
-
-function VisPostResultat({ resultat }: { resultat?: Resultat }) {
-    if (!resultat) {
-        return null;
-    }
-
-    if (resultat === Resultat.VELLYKKET) {
-        return (
-            <ResultatStyle>
-                <AlertStripeSuksess>Merking vellykket</AlertStripeSuksess>
-            </ResultatStyle>
-        );
-    } else {
-        return (
-            <ResultatStyle>
-                <AlertStripeAdvarsel>Merking feilet</AlertStripeAdvarsel>
-            </ResultatStyle>
-        );
-    }
 }
 
 function visStandardvalg(valgtTraad: Traad) {

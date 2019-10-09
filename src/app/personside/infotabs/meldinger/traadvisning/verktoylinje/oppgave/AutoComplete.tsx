@@ -11,6 +11,8 @@ const DropDownWrapper = styled.div`
         position: absolute;
         top: 100%;
         box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+        max-height: 20rem;
+        overflow: auto;
     }
     li {
         min-width: 20rem;

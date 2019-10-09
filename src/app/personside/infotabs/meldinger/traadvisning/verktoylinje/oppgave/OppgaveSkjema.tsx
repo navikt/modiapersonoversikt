@@ -16,6 +16,8 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
+import { post } from '../../../../../../../api/api';
+import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
@@ -62,6 +64,7 @@ function populerCacheMedTomAnsattliste() {
 
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
@@ -108,11 +111,12 @@ function OppgaveSkjema(props: OppgaveProps) {
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
             const request = lagOppgaveRequest(props, formState, valgtBrukersFnr, props.valgtTraad);
-            props.opprettOppgave(request);
+            post(`${apiBaseUri}/dialogoppgave/opprett`, request)
+                .then(() => settResultat(Resultat.VELLYKKET))
+                .catch(() => settResultat(Resultat.FEIL));
             if (props.kontorsperreFunksjon) {
                 props.kontorsperreFunksjon();
             }
-            props.lukkPanel();
         }
     };
 
@@ -121,6 +125,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             <form onSubmit={submitHandler}>
                 <OppgaveSkjemaElementer {...props} form={formState} />
             </form>
+            <VisPostResultat resultat={resultat} />
             <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
         </>
     );
