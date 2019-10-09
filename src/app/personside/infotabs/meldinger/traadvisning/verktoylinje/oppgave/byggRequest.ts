@@ -20,7 +20,7 @@ export function lagOppgaveRequest(
     return {
         fnr: fodselsnummer,
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
-        henvendelseId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
+        behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
         ansvarligIdent: form.state.valgtAnsatt!.ident,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),

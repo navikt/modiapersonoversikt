@@ -32,7 +32,7 @@ export enum OppgavePrioritet {
 export interface OpprettOppgaveRequest {
     fnr: string;
     valgtEnhetId: string;
-    henvendelseId: string;
+    behandlingskjedeId: string;
     dagerFrist: number;
     ansvarligIdent: string | null;
     beskrivelse: string;
