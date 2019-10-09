@@ -73,9 +73,9 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
-            const nyesteMelding = nyesteMelding(traad);
-            const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(
-                nyesteMelding.temagruppe
+            const sisteMelding = nyesteMelding(traad);
+            const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(
+                sisteMelding.temagruppe
             )}`;
             return (
                 <li key={oppgave.oppgaveid}>
