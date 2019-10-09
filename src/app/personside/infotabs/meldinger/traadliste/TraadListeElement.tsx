@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
@@ -14,6 +14,7 @@ import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver'
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { ReactNode } from 'react';
+import { delAvStringMedDots } from '../../../../../utils/string-utils';
 
 interface Props {
     traad: Traad;
@@ -95,6 +96,7 @@ function TraadListeElement(props: Props) {
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
                         <EtikettStyling>
+                            <Undertekst>{delAvStringMedDots(nyesteMelding.fritekst, 35)}</Undertekst>
                             <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
