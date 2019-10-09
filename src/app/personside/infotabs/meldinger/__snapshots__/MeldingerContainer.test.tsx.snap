@@ -368,6 +368,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                   <div
                     className="c12"
                   >
+                    <p
+                      className="typo-undertekst"
+                    >
+                      Dolores omnis ea voluptatem corrupt...
+                    </p>
                     <div
                       className="etikett etikett--fokus"
                     >

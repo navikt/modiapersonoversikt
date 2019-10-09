@@ -402,6 +402,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 <div
                   className="c11"
                 >
+                  <p
+                    className="typo-undertekst"
+                  >
+                    Dolores omnis ea voluptatem corrupt...
+                  </p>
                   <div
                     className="etikett etikett--fokus"
                   >
@@ -517,6 +522,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 <div
                   className="c11"
                 >
+                  <p
+                    className="typo-undertekst"
+                  >
+                    Dolores omnis ea voluptatem corrupt...
+                  </p>
                   <div
                     className="etikett etikett--fokus"
                   >
