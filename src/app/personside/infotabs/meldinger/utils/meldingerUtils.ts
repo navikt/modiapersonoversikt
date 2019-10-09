@@ -96,7 +96,9 @@ export function erMeldingSpørsmål(meldingstype: Meldingstype) {
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
-
+export function kanJournalfores(meldingstype: Meldingstype): boolean {
+    return ![Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(meldingstype);
+}
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
     return erJournalfort(eldsteMelding(traad));
 }
