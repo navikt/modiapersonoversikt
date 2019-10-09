@@ -5,7 +5,7 @@ import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldi
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {
-        return state.tekst.length < tekstMaksLengde && state.tekst.length > 0;
+        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0;
     }
     public static sak(state: FortsettDialogState) {
         return state.sak !== undefined;

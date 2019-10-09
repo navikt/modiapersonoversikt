@@ -3,7 +3,7 @@ import { Meldingstype } from '../../../../models/meldinger/meldinger';
 
 export class NyMeldingValidator {
     public static tekst(state: FormState) {
-        return state.tekst.length < tekstMaksLengde && state.tekst.length > 0;
+        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0;
     }
     public static tema(state: FormState) {
         return state.tema !== undefined;

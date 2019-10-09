@@ -1277,7 +1277,8 @@ Array [
   clip: rect(1px,1px,1px,1px);
 }
 
-.c12 textarea {
+.c12 textarea,
+.c12 .textareamirror {
   padding-left: 2.25rem;
 }
 
