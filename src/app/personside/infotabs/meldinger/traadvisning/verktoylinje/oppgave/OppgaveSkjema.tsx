@@ -14,6 +14,8 @@ import styled from 'styled-components';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
+import { cache, createCacheKey } from '@nutgaard/use-fetch';
+import { apiBaseUri } from '../../../../../../../api/config';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
@@ -54,6 +56,10 @@ function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
     return undefined;
 }
 
+function populerCacheMedTomAnsattliste() {
+    cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
+}
+
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
@@ -64,6 +70,8 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtPrioritet, settValgtPrioritet] = useState(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
+
+    populerCacheMedTomAnsattliste();
 
     function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
         settValgtTema(tema);

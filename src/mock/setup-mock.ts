@@ -5,7 +5,7 @@ import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
-import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
+import { mockGeneratorMedEnhetId, mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockBaseUrls } from './baseUrls-mock';
@@ -213,7 +213,7 @@ function setupOppgaveEnhetMock(mock: FetchMock) {
 function setupAnsattePaaEnhetMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/enheter/:enhetId/ansatte',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockAnsatte())
+        withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
     );
 }
 
