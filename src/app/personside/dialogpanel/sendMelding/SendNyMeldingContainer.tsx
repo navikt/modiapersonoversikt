@@ -116,6 +116,7 @@ function SendNyMeldingContainer() {
                 state={state}
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
+                formErEndret={state !== initialState}
             />
         </>
     );
