@@ -4,7 +4,7 @@ import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 
-export function sisteSendteMelding(traad: Traad) {
+export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
@@ -96,9 +96,18 @@ export function erMeldingSpørsmål(meldingstype: Meldingstype) {
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
-export function kanJournalfores(meldingstype: Meldingstype): boolean {
-    return ![Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(meldingstype);
+export function kanTraadJournalfores(traad: Traad): boolean {
+    const nyesteMeldingITraad = nyesteMelding(traad);
+    return (
+        !erMeldingVarsel(nyesteMeldingITraad.meldingstype) &&
+        !erKontorsperret(traad) &&
+        !erFeilsendt(traad) &&
+        !erJournalfort(nyesteMeldingITraad) &&
+        erBehandlet(traad) &&
+        !erKommunaleTjenester(nyesteMeldingITraad.temagruppe)
+    );
 }
+
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
     return erJournalfort(eldsteMelding(traad));
 }
@@ -153,6 +162,6 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
             })
-            .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
+            .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
 }

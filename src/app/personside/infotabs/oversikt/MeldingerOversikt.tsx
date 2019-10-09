@@ -3,7 +3,7 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { erMonolog, sisteSendteMelding } from '../meldinger/utils/meldingerUtils';
+import { erMonolog, nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import Meldingsikon from '../meldinger/utils/Meldingsikon';
@@ -48,7 +48,7 @@ function MeldingerOversikt(props: Props) {
 
 function TraadListe(props: { traader: Traad[] } & Props) {
     const traadKomponenter = props.traader
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
+        .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
         .slice(0, 2)
         .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
 
@@ -68,7 +68,7 @@ function TraadListe(props: { traader: Traad[] } & Props) {
 }
 
 function Traadelement(props: { traad: Traad }) {
-    const nyesteMelding = sisteSendteMelding(props.traad);
+    const nyesteMelding = nyesteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
     const dyplenker = useInfotabsDyplenker();

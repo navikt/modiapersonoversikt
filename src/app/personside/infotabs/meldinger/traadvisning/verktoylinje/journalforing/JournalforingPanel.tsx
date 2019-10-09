@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { erEldsteMeldingJournalfort, kanJournalfores, sisteSendteMelding } from '../../../utils/meldingerUtils';
+import { erEldsteMeldingJournalfort, kanTraadJournalfores } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
@@ -57,7 +57,7 @@ function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
     const erJournalfort = erEldsteMeldingJournalfort(props.traad);
-    const kanSisteMeldingJournalfores = kanJournalfores(sisteSendteMelding(props.traad).meldingstype);
+    const kanJournalfores = kanTraadJournalfores(props.traad);
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
         setValgtSak(sak);
@@ -67,19 +67,12 @@ function JournalforingPanel(props: Props) {
         setAktivtVindu(AktivtVindu.SAKLISTE);
     };
 
-    if (!kanSisteMeldingJournalfores) {
+    if (!kanJournalfores) {
         return (
             <Margin>
-                <AlertStripeInfo>Tråden kan ikke journalføres</AlertStripeInfo>
-                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
-            </Margin>
-        );
-    }
-
-    if (erJournalfort) {
-        return (
-            <Margin>
-                <AlertStripeInfo>Tråden er allerede journalført</AlertStripeInfo>
+                <AlertStripeInfo>
+                    {erJournalfort ? 'Tråden er allerede journalført' : 'Tråden kan ikke journalføres'}
+                </AlertStripeInfo>
                 <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
             </Margin>
         );

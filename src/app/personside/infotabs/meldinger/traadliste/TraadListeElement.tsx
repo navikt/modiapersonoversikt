@@ -5,7 +5,7 @@ import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erMonolog, meldingstittel, sisteSendteMelding } from '../utils/meldingerUtils';
+import { erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
@@ -60,7 +60,7 @@ const EtikettStyling = styled.div`
 
 function TraadListeElement(props: Props) {
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const nyesteMelding = sisteSendteMelding(props.traad);
+    const nyesteMelding = nyesteMelding(props.traad);
     const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
     const tittel = meldingstittel(nyesteMelding);
     const ref = React.createRef<HTMLLIElement>();

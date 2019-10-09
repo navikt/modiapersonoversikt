@@ -7,7 +7,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
-import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
+import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
@@ -73,7 +73,7 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
-            const nyesteMelding = sisteSendteMelding(traad);
+            const nyesteMelding = nyesteMelding(traad);
             const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(
                 nyesteMelding.temagruppe
             )}`;
