@@ -411,6 +411,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       Under arbeid
                     </span>
                   </div>
+                  <div
+                    className="etikett etikett--info"
+                  >
+                    <span
+                      className="typo-normal"
+                    >
+                      Delvis besvart
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -515,6 +524,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="typo-normal"
                     >
                       Under arbeid
+                    </span>
+                  </div>
+                  <div
+                    className="etikett etikett--info"
+                  >
+                    <span
+                      className="typo-normal"
+                    >
+                      Delvis besvart
                     </span>
                   </div>
                 </div>
@@ -871,12 +889,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       Delsvar - Arbeid
                     </div>
                     <div
-                      className="etikett etikett--suksess"
+                      className="etikett etikett--info"
                     >
                       <span
                         className="typo-normal"
                       >
-                        Lest
+                        Delsvar
                       </span>
                     </div>
                   </div>

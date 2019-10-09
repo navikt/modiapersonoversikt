@@ -377,6 +377,15 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                         Under arbeid
                       </span>
                     </div>
+                    <div
+                      className="etikett etikett--info"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Delvis besvart
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
