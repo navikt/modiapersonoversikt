@@ -15,6 +15,7 @@ import { createRef, useState } from 'react';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { useInfotabsDyplenker } from '../infotabs/dyplenker';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 
 const Wrapper = styled.div`
     position: relative;
@@ -57,10 +58,11 @@ function TildelteOppgaver(props: RouteComponentProps) {
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
 
+    const oppgaverPåBruker = tildelteOppgaver.paaBruker;
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
     ) : (
-        tildelteOppgaver.paaBruker.map(oppgave => {
+        oppgaverPåBruker.map(oppgave => {
             const traad = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
             if (!traad) {
                 const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveid}`);
@@ -89,12 +91,11 @@ function TildelteOppgaver(props: RouteComponentProps) {
 
     return (
         <Wrapper ref={ref}>
+            {oppgaverPåBruker.length >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
             <JustifyRight>
-                {tildelteOppgaver.paaBruker.length !== 0 && (
+                {oppgaverPåBruker.length !== 0 && (
                     <LenkeKnapp onClick={() => setVisOppgaver(!visOppgaver)}>
-                        <Normaltekst>
-                            Du har {tildelteOppgaver.paaBruker.length} tildelte oppgaver på bruker
-                        </Normaltekst>
+                        <Normaltekst>Du har {oppgaverPåBruker.length} tildelte oppgaver på bruker</Normaltekst>
                     </LenkeKnapp>
                 )}
             </JustifyRight>
