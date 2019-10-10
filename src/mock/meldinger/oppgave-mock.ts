@@ -1,9 +1,14 @@
 import {
+    Ansatt,
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaPrioritet,
     GsakTemaUnderkategori
 } from '../../models/meldinger/oppgave';
+import faker from 'faker/locale/nb_NO';
+import navfaker from 'nav-faker';
+import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockGsakTema(): GsakTema[] {
     return [
@@ -22,6 +27,40 @@ export function getMockGsakTema(): GsakTema[] {
             underkategorier: getUnderkategorier()
         }
     ];
+}
+
+export function getMockEnheter(): Enhet[] {
+    return [
+        {
+            enhetId: '1234',
+            enhetNavn: 'NAV Aremark',
+            status: 'Aktiv'
+        },
+        {
+            enhetId: '4321',
+            enhetNavn: 'NAV Moss',
+            status: 'Aktiv'
+        },
+        {
+            enhetId: '7658',
+            enhetNavn: 'NAV Bergen',
+            status: 'Aktiv'
+        }
+    ];
+}
+
+export function getMockAnsatte(enhetId: string): Ansatt[] {
+    faker.seed(Number(enhetId));
+    navfaker.seed(enhetId);
+    return fyllRandomListe(() => mockAnsatt(), 10);
+}
+
+function mockAnsatt(): Ansatt {
+    return {
+        fornavn: navfaker.navn.fornavn(),
+        etternavn: faker.name.lastName(),
+        ident: faker.random.alphaNumeric(7).toUpperCase()
+    };
 }
 
 function getOppgavetyper(): GsakTemaOppgavetype[] {
