@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { EtikettLiten } from 'nav-frontend-typografi';
 import {
+    erDelsvar,
     erJournalfort,
     erMeldingFraBruker,
     erMeldingFraNav,
@@ -20,7 +22,6 @@ import Tekstomrade, {
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
-import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
@@ -96,11 +97,16 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
-    return melding.status === LestStatus.Lest ? (
-        <Etikett type="suksess">Lest</Etikett>
-    ) : (
-        <Etikett type="advarsel">Ulest</Etikett>
-    );
+    if (erDelsvar(melding)) {
+        return <Etikett type="info">Delsvar</Etikett>;
+    }
+    if (melding.status === LestStatus.Lest) {
+        return <Etikett type="suksess">Lest</Etikett>;
+    }
+    if (melding.status === LestStatus.IkkeLest) {
+        return <Etikett type="advarsel">Ulest</Etikett>;
+    }
+    return null;
 }
 
 function SkrevetAv({ melding, rule }: { melding: Melding; rule: Rule }) {
