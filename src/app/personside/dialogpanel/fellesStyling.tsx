@@ -80,7 +80,7 @@ export function DialogpanelKvittering(props: {
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
             <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
             <KnappBase type="standard" onClick={props.lukk}>
-                Lukk
+                Start ny dialog
             </KnappBase>
             {nesteOppgavePåBruker && (
                 <KnappBase type="standard" onClick={gaaTilNesteSporsmaal}>

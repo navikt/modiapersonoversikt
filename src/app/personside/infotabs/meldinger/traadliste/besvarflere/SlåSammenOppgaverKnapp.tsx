@@ -1,7 +1,7 @@
 import { Traad } from '../../../../../../models/meldinger/meldinger';
 import { default as React, useState } from 'react';
 import useTildelteOppgaver from '../../../../../../utils/hooks/useTildelteOppgaver';
-import { harDelsvar, sisteSendteMelding } from '../../utils/meldingerUtils';
+import { harDelsvar, nyesteMelding } from '../../utils/meldingerUtils';
 import { datoSynkende } from '../../../../../../utils/dateUtils';
 import KnappBase from 'nav-frontend-knapper';
 import BesvarFlere from './BesvarFlere';
@@ -30,7 +30,7 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
     const traaderSomKanSlaesSammen = traader
         .filter(traad => tildelteOppgaverIdListe.includes(traad.traadId))
         .filter(traad => !harDelsvar(traad))
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato));
+        .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
 
     if (traaderSomKanSlaesSammen.length < 2) {
         return null;

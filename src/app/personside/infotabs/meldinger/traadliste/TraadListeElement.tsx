@@ -5,15 +5,16 @@ import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erMonolog, meldingstittel, sisteSendteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
-import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { ReactNode } from 'react';
+import { delAvStringMedDots } from '../../../../../utils/string-utils';
 
 interface Props {
     traad: Traad;
@@ -60,9 +61,9 @@ const EtikettStyling = styled.div`
 
 function TraadListeElement(props: Props) {
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const nyesteMelding = sisteSendteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = meldingstittel(nyesteMelding);
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = meldingstittel(sisteMelding);
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
 
@@ -84,8 +85,8 @@ function TraadListeElement(props: Props) {
                 <PanelStyle>
                     {props.tillegskomponent}
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
@@ -94,10 +95,12 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 35)}</Normaltekst>
                         <EtikettStyling>
                             <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
+                            {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                         </EtikettStyling>
                     </div>

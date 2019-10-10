@@ -5,7 +5,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
 import theme from '../../../styles/personOversiktTheme';
-import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
+import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
@@ -73,9 +73,9 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 props.history.push(dyplenker.meldinger.link(traad));
                 setVisOppgaver(false);
             };
-            const nyesteMelding = sisteSendteMelding(traad);
-            const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(
-                nyesteMelding.temagruppe
+            const sisteMelding = nyesteMelding(traad);
+            const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(
+                sisteMelding.temagruppe
             )}`;
             return (
                 <li key={oppgave.oppgaveid}>
@@ -89,13 +89,17 @@ function TildelteOppgaver(props: RouteComponentProps) {
         })
     );
 
+    const antallOppgaver = oppgaverPåBruker.length;
     return (
         <Wrapper ref={ref}>
-            {oppgaverPåBruker.length >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
+            {antallOppgaver >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
             <JustifyRight>
-                {oppgaverPåBruker.length !== 0 && (
+                {antallOppgaver > 0 && (
                     <LenkeKnapp onClick={() => setVisOppgaver(!visOppgaver)}>
-                        <Normaltekst>Du har {oppgaverPåBruker.length} tildelte oppgaver på bruker</Normaltekst>
+                        <Normaltekst>
+                            Du har {antallOppgaver} {antallOppgaver === 1 ? 'tildelt oppgave' : 'tildelte oppgaver'} på
+                            bruker
+                        </Normaltekst>
                     </LenkeKnapp>
                 )}
             </JustifyRight>
