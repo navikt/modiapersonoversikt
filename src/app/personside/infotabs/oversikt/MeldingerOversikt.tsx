@@ -3,7 +3,7 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { erMonolog, sisteSendteMelding } from '../meldinger/utils/meldingerUtils';
+import { erMonolog, nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import Meldingsikon from '../meldinger/utils/Meldingsikon';
@@ -48,7 +48,7 @@ function MeldingerOversikt(props: Props) {
 
 function TraadListe(props: { traader: Traad[] } & Props) {
     const traadKomponenter = props.traader
-        .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
+        .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
         .slice(0, 2)
         .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
 
@@ -68,9 +68,9 @@ function TraadListe(props: { traader: Traad[] } & Props) {
 }
 
 function Traadelement(props: { traad: Traad }) {
-    const nyesteMelding = sisteSendteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(sisteMelding.temagruppe)}`;
     const dyplenker = useInfotabsDyplenker();
 
     return (
@@ -83,15 +83,15 @@ function Traadelement(props: { traad: Traad }) {
             >
                 <PanelStyle>
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
                         <Element>{tittel}</Element>
-                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                        <Tekstomrade>{delAvStringMedDots(sisteMelding.fritekst, 70)}</Tekstomrade>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>

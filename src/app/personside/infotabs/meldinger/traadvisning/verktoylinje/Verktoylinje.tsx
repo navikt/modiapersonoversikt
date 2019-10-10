@@ -90,7 +90,7 @@ function Funksjoner(props: { valgtTraad: Traad }) {
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
+                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
