@@ -126,6 +126,7 @@ function SendNyMelding(props: Props) {
                     </KnappBase>
                     {props.formErEndret && (
                         <KnappMedBekreftPopup
+                            htmlType="reset"
                             type="flat"
                             onBekreft={props.handleAvbryt}
                             bekreftKnappTekst={'Ja, avbryt'}

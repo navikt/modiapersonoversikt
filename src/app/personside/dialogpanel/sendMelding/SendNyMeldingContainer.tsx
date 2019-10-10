@@ -41,7 +41,7 @@ function SendNyMeldingContainer() {
     const dispatch = useDispatch();
 
     const handleAvbryt = () => {
-        updateState(initialState);
+        setState(initialState);
     };
 
     const handleSubmit = (event: FormEvent) => {
