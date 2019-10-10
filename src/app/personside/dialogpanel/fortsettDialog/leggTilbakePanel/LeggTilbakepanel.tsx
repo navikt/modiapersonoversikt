@@ -6,12 +6,13 @@ import styled from 'styled-components';
 import { Radio, SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import { Kodeverk } from '../../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
-import Temavelger from '../../component/Temavelger';
+import Temavelger, { temavalg } from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { Oppgave } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
+import { Temagruppe } from '../../../../../models/meldinger/meldinger';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -50,6 +51,7 @@ const Style = styled.div`
 
 interface Props {
     oppgave: Oppgave;
+    temagruppe: Temagruppe;
 }
 
 function LeggTilbakepanel(props: Props) {
@@ -133,6 +135,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ tema: tema })}
                             tema={state.tema}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
+                            temavalg={temavalg.filter(tema => tema.kodeRef !== props.temagruppe)}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
