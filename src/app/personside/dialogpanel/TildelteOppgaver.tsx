@@ -7,7 +7,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
-import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
+import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
@@ -57,6 +57,7 @@ function TildelteOppgaver(props: RouteComponentProps) {
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
+    const antallTildelteOppgaver = tildelteOppgaver.paaBruker.length;
 
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
@@ -73,9 +74,9 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
-            const nyesteMelding = sisteSendteMelding(traad);
-            const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(
-                nyesteMelding.temagruppe
+            const sisteMelding = nyesteMelding(traad);
+            const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(
+                sisteMelding.temagruppe
             )}`;
             return (
                 <li key={oppgave.oppgaveid}>
@@ -95,7 +96,8 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 {tildelteOppgaver.paaBruker.length !== 0 && (
                     <LenkeKnapp onClick={() => setVisOppgaver(!visOppgaver)}>
                         <Normaltekst>
-                            Du har {tildelteOppgaver.paaBruker.length} tildelte oppgaver på bruker
+                            Du har {antallTildelteOppgaver}{' '}
+                            {antallTildelteOppgaver === 1 ? 'tildelt oppgave' : 'tildelte oppgaver'} på bruker
                         </Normaltekst>
                     </LenkeKnapp>
                 )}

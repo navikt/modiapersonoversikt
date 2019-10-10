@@ -67,6 +67,7 @@ interface Props {
     handleAvbryt: () => void;
     state: FormState;
     updateState: (change: Partial<FormState>) => void;
+    formErEndret: boolean;
 }
 
 function SendNyMelding(props: Props) {
@@ -80,7 +81,6 @@ function SendNyMelding(props: Props) {
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
-
     return (
         <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
@@ -124,14 +124,17 @@ function SendNyMelding(props: Props) {
                     <KnappBase type="hoved" htmlType="submit">
                         Del med {navn}
                     </KnappBase>
-                    <KnappMedBekreftPopup
-                        type="flat"
-                        onBekreft={props.handleAvbryt}
-                        bekreftKnappTekst={'Ja, avbryt'}
-                        popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
-                    >
-                        Avbryt
-                    </KnappMedBekreftPopup>
+                    {props.formErEndret && (
+                        <KnappMedBekreftPopup
+                            htmlType="reset"
+                            type="flat"
+                            onBekreft={props.handleAvbryt}
+                            bekreftKnappTekst={'Ja, avbryt'}
+                            popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+                        >
+                            Avbryt
+                        </KnappMedBekreftPopup>
+                    )}
                 </KnappWrapper>
             </FormStyle>
         </StyledArticle>

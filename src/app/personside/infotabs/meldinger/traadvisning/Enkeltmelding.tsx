@@ -20,9 +20,11 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
+import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
+import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 
 interface Props {
     melding: Melding;
@@ -107,6 +109,18 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     return null;
 }
 
+function SkrevetAv({ melding, rule }: { melding: Melding; rule: Rule }) {
+    if (erMeldingFraBruker(melding.meldingstype)) {
+        return null;
+    }
+    return (
+        <SkrevetAvStyle>
+            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
+            <Tekstomrade rules={[rule]}>{saksbehandlerTekst(melding.skrevetAv)}</Tekstomrade>
+        </SkrevetAvStyle>
+    );
+}
+
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
@@ -123,12 +137,7 @@ function EnkeltMelding(props: Props) {
                             <MeldingLestEtikett melding={props.melding} />
                         </SpaceBetween>
                         <Tekstomrade>{datoTekst}</Tekstomrade>
-                        <SkrevetAvStyle>
-                            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
-                            <Tekstomrade rules={[highlightRule]}>
-                                {saksbehandlerTekst(props.melding.skrevetAv)}
-                            </Tekstomrade>
-                        </SkrevetAvStyle>
+                        <SkrevetAv melding={props.melding} rule={highlightRule} />
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
