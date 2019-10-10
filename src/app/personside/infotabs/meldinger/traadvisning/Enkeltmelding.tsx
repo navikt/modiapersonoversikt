@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { EtikettLiten } from 'nav-frontend-typografi';
 import {
+    erDelsvar,
     erJournalfort,
     erMeldingFraBruker,
     erMeldingFraNav,
     meldingstittel,
-    saksbehandlerTekst,
-    erDelsvar
+    saksbehandlerTekst
 } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
@@ -20,7 +21,6 @@ import Tekstomrade, {
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
 import Etikett from 'nav-frontend-etiketter';
-import { useState } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
 
@@ -100,9 +100,11 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     }
     if (melding.status === LestStatus.Lest) {
         return <Etikett type="suksess">Lest</Etikett>;
-    } else {
+    }
+    if (melding.status === LestStatus.IkkeLest) {
         return <Etikett type="advarsel">Ulest</Etikett>;
     }
+    return null;
 }
 
 function EnkeltMelding(props: Props) {
