@@ -98,11 +98,11 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     if (erDelsvar(melding)) {
         return <Etikett type="info">Delsvar</Etikett>;
     }
-    return melding.status === LestStatus.Lest ? (
-        <Etikett type="suksess">Lest</Etikett>
-    ) : (
-        <Etikett type="advarsel">Ulest</Etikett>
-    );
+    if (melding.status === LestStatus.Lest) {
+        return <Etikett type="suksess">Lest</Etikett>;
+    } else {
+        return <Etikett type="advarsel">Ulest</Etikett>;
+    }
 }
 
 function EnkeltMelding(props: Props) {

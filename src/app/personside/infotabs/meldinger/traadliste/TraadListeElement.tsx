@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
@@ -95,8 +95,8 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <Normaltekst>{delAvStringMedDots(nyesteMelding.fritekst, 35)}</Normaltekst>
                         <EtikettStyling>
-                            <Undertekst>{delAvStringMedDots(nyesteMelding.fritekst, 35)}</Undertekst>
                             <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
