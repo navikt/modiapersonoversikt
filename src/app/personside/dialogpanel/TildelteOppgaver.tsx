@@ -2,10 +2,8 @@ import * as React from 'react';
 import { useClickOutside, useRestResource } from '../../../utils/customHooks';
 import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';
-import { useDispatch } from 'react-redux';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
-import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import theme from '../../../styles/personOversiktTheme';
 import { sisteSendteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
@@ -28,6 +26,8 @@ const OppgaveListe = styled.ul`
     right: 0;
     z-index: 1000;
     filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.7));
+    max-height: 50vh;
+    overflow: auto;
     li {
         display: flex;
         padding: 0.5rem 1rem;
@@ -53,7 +53,6 @@ function TildelteOppgaver(props: RouteComponentProps) {
     const ref = createRef<HTMLDivElement>();
     const [visOppgaver, setVisOppgaver] = useState(false);
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const dispatch = useDispatch();
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
@@ -70,7 +69,6 @@ function TildelteOppgaver(props: RouteComponentProps) {
             }
             const handleClick = () => {
                 props.history.push(dyplenker.meldinger.link(traad));
-                dispatch(setValgtTraadDialogpanel(traad));
                 setVisOppgaver(false);
             };
             const nyesteMelding = sisteSendteMelding(traad);
