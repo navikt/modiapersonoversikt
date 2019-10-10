@@ -41,7 +41,7 @@ function SendNyMeldingContainer() {
     const dispatch = useDispatch();
 
     const handleAvbryt = () => {
-        updateState(initialState);
+        setState(initialState);
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -116,6 +116,7 @@ function SendNyMeldingContainer() {
                 state={state}
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
+                formErEndret={state !== initialState}
             />
         </>
     );

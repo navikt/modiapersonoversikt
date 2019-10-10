@@ -20,15 +20,16 @@ export function lagOppgaveRequest(
     return {
         fnr: fodselsnummer,
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
-        henvendelseId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
+        behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
-        ansvarligIdent: props.innloggetSaksbehandler.ident,
+        ansvarligIdent: form.state.valgtAnsatt!.ident,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
-        temakode: temakode,
-        underkategorikode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        temaKode: temakode,
+        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet + '_' + temakode
+        prioritetKode: form.state.valgtPrioritet + '_' + temakode,
+        ansvarligEnhetId: form.state.valgtEnhet!.enhetId
     };
 }
 
