@@ -130,10 +130,17 @@ export function erBehandlet(traad: Traad): boolean {
     return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
 }
 
-export function harDelsvar(traad: Traad): boolean {
-    return traad.meldinger.some(melding => melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG);
+export function erDelsvar(melding: Melding): boolean {
+    return melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
 }
 
+export function harDelsvar(traad: Traad): boolean {
+    return traad.meldinger.some(erDelsvar);
+}
+
+export function erDelvisBesvart(traad: Traad): boolean {
+    return erDelsvar(nyesteMelding(traad));
+}
 export function harTilgangTilSletting() {
     // TODO Fiks når vi har satt opp vault/fasit
     return true;
