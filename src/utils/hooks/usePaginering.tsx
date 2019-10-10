@@ -25,18 +25,17 @@ function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
         }
     }, [numberOfPages, currentPage]);
 
-    const options = new Array(numberOfPages).fill(0).map((_, index) => {
-        const optionRange = getRange(index, pageSize, list);
-        const selected = index === currentPage;
-        return (
-            <option key={index} value={index}>
-                {selected ? 'Viser' : 'Vis'} {optionRange.fra + 1} til {optionRange.til + 1}
-            </option>
-        );
-    });
-
-    const pageSelect =
-        list.length <= pageSize ? null : (
+    const pageSelect = useMemo(() => {
+        const options = new Array(numberOfPages).fill(0).map((_, index) => {
+            const optionRange = getRange(index, pageSize, list);
+            const selected = index === currentPage;
+            return (
+                <option key={index} value={index}>
+                    {selected ? 'Viser' : 'Vis'} {optionRange.fra + 1} til {optionRange.til + 1}
+                </option>
+            );
+        });
+        return list.length <= pageSize ? null : (
             <Select
                 label="Velg paginering"
                 selected={currentPage}
@@ -45,8 +44,10 @@ function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
                 {options}
             </Select>
         );
+    }, [list, pageSize, currentPage, numberOfPages]);
 
-    const currentRange = getRange(currentPage, pageSize, list);
+    const currentRange = useMemo(() => getRange(currentPage, pageSize, list), [list, pageSize, currentPage]);
+
     return useMemo(
         () => ({
             currentPage: list.slice(currentRange.fra, currentRange.til + 1),
