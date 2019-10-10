@@ -8,6 +8,7 @@ import BesvarFlere from './BesvarFlere';
 import styled from 'styled-components';
 import ModalWrapper from 'nav-frontend-modal';
 import theme from '../../../../../../styles/personOversiktTheme';
+import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
@@ -37,14 +38,16 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
     }
 
     return (
-        <KnappWrapperStyle>
-            <KnappBase type={'hoved'} onClick={() => settApen(true)}>
-                Besvar flere
-            </KnappBase>
-            <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
-                <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
-            </StyledModalWrapper>
-        </KnappWrapperStyle>
+        <ErrorBoundary boundaryName="Slå sammen oppgaver">
+            <KnappWrapperStyle>
+                <KnappBase type={'hoved'} onClick={() => settApen(true)}>
+                    Besvar flere
+                </KnappBase>
+                <StyledModalWrapper contentLabel={'Besvar flere'} onRequestClose={() => settApen(false)} isOpen={apen}>
+                    <BesvarFlere traader={traaderSomKanSlaesSammen} lukkModal={() => settApen(false)} />
+                </StyledModalWrapper>
+            </KnappWrapperStyle>
+        </ErrorBoundary>
     );
 }
 
