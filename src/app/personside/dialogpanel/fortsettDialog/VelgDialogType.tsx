@@ -29,11 +29,20 @@ function VelgDialogType(props: Props) {
     const svarTelefon = lagRadio('Svar telefon', Meldingstype.SVAR_TELEFON);
     const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
 
+    if (props.erDelvisBesvart) {
+        return (
+            <VelgDialogtypeStyle>
+                {svar}
+                {delvisSvar}
+            </VelgDialogtypeStyle>
+        );
+    }
+
     if (props.erTilknyttetOppgave) {
         return (
             <VelgDialogtypeStyle>
                 {svar}
-                {!props.erDelvisBesvart && spørsmål}
+                {spørsmål}
                 {delvisSvar}
             </VelgDialogtypeStyle>
         );
