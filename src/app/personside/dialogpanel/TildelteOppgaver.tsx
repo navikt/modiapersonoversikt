@@ -58,11 +58,11 @@ function TildelteOppgaver(props: RouteComponentProps) {
     const tildelteOppgaver = useTildelteOppgaver();
     const dyplenker = useInfotabsDyplenker();
 
-    const oppgaverPåBruker = tildelteOppgaver.paaBruker;
+    const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
     const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
         <LazySpinner />
     ) : (
-        oppgaverPåBruker.map(oppgave => {
+        oppgaverPaaBruker.map(oppgave => {
             const traad = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
             if (!traad) {
                 const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveid}`);
@@ -89,7 +89,7 @@ function TildelteOppgaver(props: RouteComponentProps) {
         })
     );
 
-    const antallOppgaver = oppgaverPåBruker.length;
+    const antallOppgaver = oppgaverPaaBruker.length;
     return (
         <Wrapper ref={ref}>
             {antallOppgaver >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
