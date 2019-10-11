@@ -20,9 +20,8 @@ import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
-import { FortsettDialogState } from './FortsettDialogContainer';
+import { FortsettDialogState, DialogPanelStatus, FortsettDialogPanelState } from './FortsettDialogContainer';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { isFailedPosting } from '../../../../rest/utils/postResource';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -47,13 +46,10 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     oppgave?: Oppgave;
-    senderMelding: boolean;
+    status: FortsettDialogPanelState;
 }
-function Feilmelding() {
-    const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
-
-    if (isFailedPosting(sendDelsvarResource) || isFailedPosting(sendSvarResource)) {
+function Feilmelding(props: { status: DialogPanelStatus }) {
+    if (props.status === DialogPanelStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
     return null;
@@ -115,8 +111,8 @@ function FortsettDialog(props: Props) {
                         />
                     </UnmountClosed>
                 </Margin>
-                <Feilmelding />
-                <SubmitKnapp htmlType="submit" spinner={props.senderMelding}>
+                <Feilmelding status={props.status.type} />
+                <SubmitKnapp htmlType="submit" spinner={props.status.type === DialogPanelStatus.POSTING}>
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
                               state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'

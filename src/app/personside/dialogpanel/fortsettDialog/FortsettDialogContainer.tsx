@@ -1,21 +1,32 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
-import { isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
-import { Meldingstype, Temagruppe, Traad } from '../../../../models/meldinger/meldinger';
+import {
+    ForsettDialogRequest,
+    Meldingstype,
+    SendDelsvarRequest,
+    Temagruppe,
+    Traad
+} from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useRestResource } from '../../../../utils/customHooks';
+import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { Kodeverk } from '../../../../models/kodeverk';
-import { Oppgave } from '../../../../models/oppgave';
+import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
-import { useFortsettDialogKvittering } from './FortsettDialogKvittering';
+import {
+    DelsvarRegistrertKvittering,
+    OppgaveLagtTilbakeKvittering,
+    SvarSendtKvittering
+} from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/frontendLogger';
+import { post } from '../../../../api/api';
+import { apiBaseUri } from '../../../../api/config';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -39,6 +50,41 @@ interface Props {
     tilknyttetOppgave?: Oppgave;
 }
 
+export type KvitteringsData = {
+    fritekst: string;
+    meldingstype: Meldingstype;
+    temagruppe?: Temagruppe | string;
+};
+
+export enum DialogPanelStatus {
+    UNDER_ARBEID,
+    POSTING,
+    ERROR,
+    SVAR_SENDT,
+    DELSVAR_SENDT,
+    OPPGAVE_LAGT_TILBAKE
+}
+
+interface MoterInterface {
+    type: DialogPanelStatus;
+}
+
+interface UnderArbeid extends MoterInterface {
+    type: DialogPanelStatus.UNDER_ARBEID | DialogPanelStatus.POSTING | DialogPanelStatus.ERROR;
+}
+
+interface Success extends MoterInterface {
+    type: DialogPanelStatus.SVAR_SENDT | DialogPanelStatus.DELSVAR_SENDT;
+    kvitteringsData: KvitteringsData;
+}
+
+interface LeggTilbakeOppgaveSuccess extends MoterInterface {
+    type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE;
+    payload: LeggTilbakeOppgaveRequest;
+}
+
+export type FortsettDialogPanelState = UnderArbeid | Success | LeggTilbakeOppgaveSuccess;
+
 function FortsettDialogContainer(props: Props) {
     const initialState = {
         tekst: '',
@@ -50,14 +96,13 @@ function FortsettDialogContainer(props: Props) {
         oppgaveListe: OppgavelisteValg.MinListe
     };
     const [state, setState] = useState<FortsettDialogState>(initialState);
-    const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
-    const senderMelding =
-        isPosting(sendSvarResource) || isPosting(sendDelsvarResource) || isPosting(leggTilbakeResource);
+    const fnr = useFødselsnummer();
+    const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
+        type: DialogPanelStatus.UNDER_ARBEID
+    });
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -67,19 +112,26 @@ function FortsettDialogContainer(props: Props) {
         });
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
-    const kvittering = useFortsettDialogKvittering();
+
+    if (dialogStatus.type === DialogPanelStatus.SVAR_SENDT) {
+        return <SvarSendtKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
+    }
+    if (dialogStatus.type === DialogPanelStatus.DELSVAR_SENDT) {
+        return <DelsvarRegistrertKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
+    }
+    if (dialogStatus.type === DialogPanelStatus.OPPGAVE_LAGT_TILBAKE) {
+        return <OppgaveLagtTilbakeKvittering payload={dialogStatus.payload} />;
+    }
+
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
-    }
-    if (kvittering) {
-        return kvittering;
     }
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (senderMelding) {
+        if (dialogStatus.type === DialogPanelStatus.POSTING) {
             return;
         }
         const callback = () => {
@@ -101,15 +153,23 @@ function FortsettDialogContainer(props: Props) {
             FortsettDialogValidator.erGyldigSvarOppmote(state) ||
             FortsettDialogValidator.erGyldigSvarTelefon(state)
         ) {
-            dispatch(
-                sendSvarResource.actions.post(
-                    {
-                        ...commonPayload,
-                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
-                    },
-                    callback
-                )
-            );
+            setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: ForsettDialogRequest = {
+                ...commonPayload,
+                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
+            };
+            const kvitteringsData = {
+                fritekst: payload.fritekst,
+                meldingstype: payload.meldingstype
+            };
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, payload)
+                .then(() => {
+                    callback();
+                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                })
+                .catch(() => {
+                    setDialogStatus({ type: DialogPanelStatus.ERROR });
+                });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
             if (!state.sak && !erJournalfort) {
@@ -118,29 +178,46 @@ function FortsettDialogContainer(props: Props) {
                 loggError(error);
                 return;
             }
-            dispatch(
-                sendSvarResource.actions.post(
-                    {
-                        ...commonPayload,
-                        erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
-                        saksId: state.sak ? state.sak.saksId : undefined
-                    },
-                    callback
-                )
-            );
+            setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: ForsettDialogRequest = {
+                ...commonPayload,
+                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
+                saksId: state.sak ? state.sak.saksId : undefined
+            };
+            const kvitteringsData = {
+                fritekst: payload.fritekst,
+                meldingstype: payload.meldingstype
+            };
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, payload)
+                .then(() => {
+                    callback();
+                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                })
+                .catch(() => {
+                    setDialogStatus({ type: DialogPanelStatus.ERROR });
+                });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
-            dispatch(
-                sendDelsvarResource.actions.post(
-                    {
-                        fritekst: state.tekst,
-                        traadId: props.traad.traadId,
-                        oppgaveId: props.tilknyttetOppgave.oppgaveid,
-                        temagruppe: state.tema.kodeRef,
-                        behandlingsId: opprettHenvendelse.behandlingsId
-                    },
-                    callback
-                )
-            );
+            setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: SendDelsvarRequest = {
+                fritekst: state.tekst,
+                traadId: props.traad.traadId,
+                oppgaveId: props.tilknyttetOppgave.oppgaveid,
+                temagruppe: state.tema.kodeRef,
+                behandlingsId: opprettHenvendelse.behandlingsId
+            };
+            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, payload)
+                .then(() => {
+                    callback();
+                    const kvitteringsData: KvitteringsData = {
+                        fritekst: payload.fritekst,
+                        meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
+                        temagruppe: payload.temagruppe
+                    };
+                    setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
+                })
+                .catch(() => {
+                    setDialogStatus({ type: DialogPanelStatus.ERROR });
+                });
         } else {
             updateState({ visFeilmeldinger: true });
         }
@@ -158,9 +235,11 @@ function FortsettDialogContainer(props: Props) {
                 handleSubmit={handleSubmit}
                 traad={props.traad}
                 key={props.traad.traadId}
-                senderMelding={senderMelding}
+                status={dialogStatus}
             />
-            {props.tilknyttetOppgave && <LeggTilbakepanel oppgave={props.tilknyttetOppgave} temagruppe={temagruppe} />}
+            {props.tilknyttetOppgave && (
+                <LeggTilbakepanel oppgave={props.tilknyttetOppgave} status={dialogStatus} temagruppe={temagruppe} />
+            )}
         </>
     );
 }

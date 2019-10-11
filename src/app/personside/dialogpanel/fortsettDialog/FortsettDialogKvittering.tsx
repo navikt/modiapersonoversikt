@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {
-    ForsettDialogRequest,
-    Meldingstype,
-    SendDelsvarRequest,
-    Temagruppe
-} from '../../../../models/meldinger/meldinger';
+import { Meldingstype, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
-import { FailedPostResource, FinishedPostResource, isFinishedPosting } from '../../../../rest/utils/postResource';
+import { FailedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
@@ -14,56 +9,54 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/frontendLogger';
+import { KvitteringsData } from './FortsettDialogContainer';
 
-function SvarSendtKvittering(props: { resource: FinishedPostResource<ForsettDialogRequest, {}> }) {
+export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();
+
     return (
         <DialogpanelKvittering
             tittel="Svar ble sendt"
-            fritekst={props.resource.payload.fritekst}
-            meldingstype={props.resource.payload.meldingstype}
+            fritekst={props.kvitteringsData.fritekst}
+            meldingstype={props.kvitteringsData.meldingstype}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
-                dispatch(props.resource.actions.reset);
             }}
         />
     );
 }
 
-function DelsvarRegistrertKvittering(props: { resource: FinishedPostResource<SendDelsvarRequest, {}> }) {
+export function DelsvarRegistrertKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();
     return (
         <DialogpanelKvittering
-            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(props.resource.payload
+            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(props.kvitteringsData
                 .temagruppe as Temagruppe)}`}
-            fritekst={props.resource.payload.fritekst}
+            fritekst={props.kvitteringsData.fritekst}
             meldingstype={Meldingstype.DELVIS_SVAR_SKRIFTLIG}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
-                dispatch(props.resource.actions.reset);
             }}
         />
     );
 }
 
-function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
+export function OppgaveLagtTilbakeKvittering(props: { payload: LeggTilbakeOppgaveRequest }) {
     const dispatch = useDispatch();
     const lukk = () => {
-        dispatch(props.resource.actions.reset);
         dispatch(setIngenValgtTraadDialogpanel());
     };
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel="Oppgaven ble lagt tilbake" />
-            {erLeggTilbakeOppgaveFeilTemaRequest(props.resource.payload) && (
+            {erLeggTilbakeOppgaveFeilTemaRequest(props.payload) && (
                 <AlertStripeSuksess>
-                    Oppgaven ble lagt tilbake på{' '}
-                    {temagruppeTekst(props.resource.payload.temagruppe as Temagruppe).toLowerCase()}
+                    Oppgaven ble lagt tilbake på {temagruppeTekst(props.payload.temagruppe as Temagruppe).toLowerCase()}
                 </AlertStripeSuksess>
             )}
-            {!erLeggTilbakeOppgaveFeilTemaRequest(props.resource.payload) && (
+            {!erLeggTilbakeOppgaveFeilTemaRequest(props.payload) && (
                 <AlertStripeSuksess>Oppgaven ble lagt tilbake</AlertStripeSuksess>
             )}
             <KnappBase type="standard" onClick={lukk}>
@@ -81,22 +74,4 @@ export function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<Leg
     });
 
     return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
-}
-
-export function useFortsettDialogKvittering() {
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
-    const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
-
-    if (isFinishedPosting(sendSvarResource)) {
-        return <SvarSendtKvittering resource={sendSvarResource} />;
-    }
-    if (isFinishedPosting(sendDelsvarResource)) {
-        return <DelsvarRegistrertKvittering resource={sendDelsvarResource} />;
-    }
-    if (isFinishedPosting(leggTilbakeResource)) {
-        return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
-    }
-
-    return null;
 }

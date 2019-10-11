@@ -15,6 +15,9 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe } from '../../../../../models/meldinger/meldinger';
 import { isFailedPosting, isPosting } from '../../../../../rest/utils/postResource';
 import { LeggTilbakeOppgaveFeil } from '../FortsettDialogKvittering';
+import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogContainer';
+import { apiBaseUri } from '../../../../../api/config';
+import { post } from '../../../../../api/api';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -54,7 +57,9 @@ const Style = styled.div`
 interface Props {
     oppgave: Oppgave;
     temagruppe: Temagruppe;
+    status: FortsettDialogPanelState;
 }
+
 function LeggTilbakeFeilmelding() {
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
 
@@ -92,7 +97,7 @@ function LeggTilbakepanel(props: Props) {
 
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if (leggerTilbake) {
+        if (props.status.type === DialogPanelStatus.POSTING) {
             return;
         }
         const callback = () => {
@@ -100,31 +105,43 @@ function LeggTilbakepanel(props: Props) {
             dispatch(reloadTildelteOppgaver);
         };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            dispatch(
-                leggTilbakeResource.actions.post({ oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' }, callback)
-            );
+            const payload = { oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' };
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+                .then(() => {
+                    callback();
+                    // TODO: Sett dialogPanelStatus
+                })
+                .catch(() => {
+                    // TODO: Sett dialogPanelStatus
+                });
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
-            dispatch(
-                leggTilbakeResource.actions.post(
-                    {
-                        beskrivelse: state.tekst,
-                        oppgaveId: props.oppgave.oppgaveid,
-                        type: 'AnnenAarsak'
-                    },
-                    callback
-                )
-            );
+            const payload = {
+                beskrivelse: state.tekst,
+                oppgaveId: props.oppgave.oppgaveid,
+                type: 'AnnenAarsak'
+            };
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+                .then(() => {
+                    callback();
+                    // TODO: Sett dialogPanelStatus
+                })
+                .catch(() => {
+                    // TODO: Sett dialogPanelStatus
+                });
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
-            dispatch(
-                leggTilbakeResource.actions.post(
-                    {
-                        temagruppe: state.tema.kodeRef,
-                        oppgaveId: props.oppgave.oppgaveid,
-                        type: 'FeilTema'
-                    },
-                    callback
-                )
-            );
+            const payload = {
+                temagruppe: state.tema.kodeRef,
+                oppgaveId: props.oppgave.oppgaveid,
+                type: 'FeilTema'
+            };
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+                .then(() => {
+                    // TODO: Sett dialogPanelStatus
+                    callback();
+                })
+                .catch(() => {
+                    // TODO: Sett dialogPanelStatus
+                });
         } else {
             updateState({ visFeilmeldinger: true });
         }
