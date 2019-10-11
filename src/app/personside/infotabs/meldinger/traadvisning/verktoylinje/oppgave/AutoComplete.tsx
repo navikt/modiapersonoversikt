@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input } from 'nav-frontend-skjema';
+import NavFrontendSpinner from 'nav-frontend-spinner';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -28,6 +29,20 @@ const Style = styled.div`
     position: relative;
 `;
 
+const StyledSpinner = styled(NavFrontendSpinner)`
+    position: absolute !important;
+    bottom: 0.4rem;
+    right: 0.4rem;
+`;
+
+const InputfeltWrapper = styled.div`
+    position: relative;
+    margin-bottom: 1rem;
+    .skjemaelement {
+        margin-bottom: 0;
+    }
+`;
+
 interface Props<Item> {
     setValue: (value: Item) => void;
     inputValue: Item | undefined;
@@ -35,6 +50,7 @@ interface Props<Item> {
     label: string;
     suggestions: Item[];
     filter: (item: Item, input: string) => boolean;
+    spinner: boolean;
 }
 
 function AutoComplete<Item>(props: Props<Item>) {
@@ -44,6 +60,8 @@ function AutoComplete<Item>(props: Props<Item>) {
         }
     };
 
+    const spinner = props.spinner && <StyledSpinner type={'S'} />;
+
     return (
         <Downshift
             selectedItem={props.inputValue}
@@ -52,18 +70,22 @@ function AutoComplete<Item>(props: Props<Item>) {
         >
             {helpers => (
                 <Style {...helpers.getRootProps()}>
-                    <Input
-                        // @ts-ignore
-                        {...helpers.getInputProps({
-                            onChange: e => {
-                                if (e.target.value === '') {
-                                    helpers.clearSelection();
+                    <InputfeltWrapper>
+                        <Input
+                            // @ts-ignore
+                            {...helpers.getInputProps({
+                                onChange: e => {
+                                    if (e.target.value === '') {
+                                        helpers.clearSelection();
+                                    }
                                 }
-                            }
-                        })}
-                        label={props.label}
-                        onFocus={helpers.openMenu}
-                    />
+                            })}
+                            label={props.label}
+                            onFocus={helpers.openMenu}
+                            aria-label={props.spinner ? 'Laster data' : props.label}
+                        />
+                        {spinner}
+                    </InputfeltWrapper>
                     {helpers.isOpen ? (
                         <DropDownWrapper>
                             <ul>
