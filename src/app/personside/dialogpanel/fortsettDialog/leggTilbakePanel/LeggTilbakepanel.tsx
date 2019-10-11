@@ -13,6 +13,8 @@ import { useRestResource } from '../../../../../utils/customHooks';
 import { Oppgave } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { isFailedPosting, isPosting } from '../../../../../rest/utils/postResource';
+import { LeggTilbakeOppgaveFeil } from '../FortsettDialogKvittering';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -53,6 +55,14 @@ interface Props {
     oppgave: Oppgave;
     temagruppe: Temagruppe;
 }
+function LeggTilbakeFeilmelding() {
+    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
+
+    if (isFailedPosting(leggTilbakeResource)) {
+        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
+    }
+    return null;
+}
 
 function LeggTilbakepanel(props: Props) {
     const [state, setState] = useState<LeggTilbakeState>({
@@ -67,6 +77,7 @@ function LeggTilbakepanel(props: Props) {
     const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const leggerTilbake = isPosting(leggTilbakeResource);
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -81,6 +92,9 @@ function LeggTilbakepanel(props: Props) {
 
     const handleLeggTilbake = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        if (leggerTilbake) {
+            return;
+        }
         const callback = () => {
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
@@ -160,7 +174,8 @@ function LeggTilbakepanel(props: Props) {
                         </StyledSkjemaGruppe>
                     </UnmountClosed>
                 </StyledSkjemaGruppe>
-                <Hovedknapp htmlType="button" onClick={handleLeggTilbake}>
+                <LeggTilbakeFeilmelding />
+                <Hovedknapp htmlType="button" spinner={leggerTilbake} onClick={handleLeggTilbake}>
                     Legg tilbake
                 </Hovedknapp>
             </Style>

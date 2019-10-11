@@ -5,14 +5,8 @@ import {
     SendDelsvarRequest,
     Temagruppe
 } from '../../../../models/meldinger/meldinger';
-import { DialogpanelFeilmelding, DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
-import {
-    FailedPostResource,
-    FinishedPostResource,
-    isFailedPosting,
-    isFinishedPosting,
-    isPosting
-} from '../../../../rest/utils/postResource';
+import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
+import { FailedPostResource, FinishedPostResource, isFinishedPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
@@ -20,7 +14,6 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/frontendLogger';
 
@@ -80,23 +73,14 @@ function OppgaveLagtTilbakeKvittering(props: { resource: FinishedPostResource<Le
     );
 }
 
-function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
-    const dispatch = useDispatch();
-
+export function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
     useOnMount(() => {
         loggError(new Error('Feil ved tilbakelegging av oppgave: ' + props.resource.error), undefined, {
             request: props.resource.payload
         });
     });
 
-    return (
-        <DialogpanelKvitteringStyling>
-            <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>
-            <KnappBase type="standard" onClick={() => dispatch(props.resource.actions.reset)}>
-                Lukk
-            </KnappBase>
-        </DialogpanelKvitteringStyling>
-    );
+    return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
 }
 
 export function useFortsettDialogKvittering() {
@@ -104,9 +88,6 @@ export function useFortsettDialogKvittering() {
     const sendSvarResource = useRestResource(resources => resources.sendSvar);
     const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
 
-    if (isPosting(sendSvarResource) || isPosting(sendDelsvarResource) || isPosting(leggTilbakeResource)) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
     if (isFinishedPosting(sendSvarResource)) {
         return <SvarSendtKvittering resource={sendSvarResource} />;
     }
@@ -116,11 +97,6 @@ export function useFortsettDialogKvittering() {
     if (isFinishedPosting(leggTilbakeResource)) {
         return <OppgaveLagtTilbakeKvittering resource={leggTilbakeResource} />;
     }
-    if (isFailedPosting(sendSvarResource)) {
-        return <DialogpanelFeilmelding resource={sendSvarResource} />;
-    }
-    if (isFailedPosting(leggTilbakeResource)) {
-        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
-    }
+
     return null;
 }

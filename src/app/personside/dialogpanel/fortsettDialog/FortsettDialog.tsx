@@ -13,7 +13,7 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import { FormStyle } from '../fellesStyling';
+import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
@@ -22,6 +22,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogContainer';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { isFailedPosting } from '../../../../rest/utils/postResource';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -46,8 +47,17 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     oppgave?: Oppgave;
+    senderMelding: boolean;
 }
+function Feilmelding() {
+    const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
 
+    if (isFailedPosting(sendDelsvarResource) || isFailedPosting(sendSvarResource)) {
+        return <DialogpanelFeilmelding />;
+    }
+    return null;
+}
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
@@ -105,7 +115,8 @@ function FortsettDialog(props: Props) {
                         />
                     </UnmountClosed>
                 </Margin>
-                <SubmitKnapp htmlType="submit">
+                <Feilmelding />
+                <SubmitKnapp htmlType="submit" spinner={props.senderMelding}>
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
                               state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'

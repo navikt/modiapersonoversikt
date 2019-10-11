@@ -7,11 +7,9 @@ import { theme } from '../../../../styles/personOversiktTheme';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../../utils/customHooks';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
+import { isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
-import { DialogpanelFeilmelding } from '../fellesStyling';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
@@ -84,24 +82,12 @@ function SendNyMeldingContainer() {
         }
     };
 
-    if (senderMelding) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
-
     if (isFinishedPosting(postReferatResource)) {
         return <ReferatSendtKvittering resource={postReferatResource} />;
     }
 
     if (isFinishedPosting(postSpørsmålResource)) {
         return <SporsmalSendtKvittering resource={postSpørsmålResource} />;
-    }
-
-    if (isFailedPosting(postReferatResource)) {
-        return <DialogpanelFeilmelding resource={postReferatResource} />;
-    }
-
-    if (isFailedPosting(postSpørsmålResource)) {
-        return <DialogpanelFeilmelding resource={postSpørsmålResource} />;
     }
 
     return (
@@ -117,6 +103,7 @@ function SendNyMeldingContainer() {
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
                 formErEndret={state !== initialState}
+                senderMelding={senderMelding}
             />
         </>
     );
