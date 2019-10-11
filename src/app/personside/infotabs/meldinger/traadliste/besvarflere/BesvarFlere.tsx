@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { FormEvent, useState } from 'react';
 import {
-    SlaaSammenTraad,
     SlaaSammenRequest,
     SlaaSammenResponse,
+    SlaaSammenTraad,
     Traad
 } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
-import { FormEvent, useState } from 'react';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
 import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
@@ -23,6 +23,7 @@ import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Feilmelding } from '../../../../../../utils/Feilmelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRefUtils';
 
 interface Props {
     traader: Traad[];
@@ -80,7 +81,7 @@ const TraadVisningStyle = styled.section`
     flex-grow: 1;
 `;
 
-const StyledCheckbox = styled(Checkbox)`
+const CheckboxWrapper = styled.div`
     padding: 1rem;
     transform: translateY(-0.5rem);
 `;
@@ -132,6 +133,31 @@ function Meldingsvisning({ traad }: { traad: Traad }) {
     return <TraadVisningStyle>{meldinger}</TraadVisningStyle>;
 }
 
+function ListeElement(props: {
+    traad: Traad;
+    shown: boolean;
+    checked: boolean;
+    handleCheck: () => void;
+    visTraad: () => void;
+}) {
+    const checkBoxRef = React.createRef<HTMLDivElement>();
+    const checkbox = (
+        <CheckboxWrapper ref={checkBoxRef}>
+            <Checkbox label={''} aria-label={'Velg tråd'} checked={props.checked} onChange={props.handleCheck} />
+        </CheckboxWrapper>
+    );
+
+    return (
+        <TraadListeElement
+            traad={props.traad}
+            key={props.traad.traadId}
+            erValgt={props.shown}
+            onClick={runIfEventIsNotInsideRef(checkBoxRef, props.visTraad)}
+            tillegskomponent={checkbox}
+        />
+    );
+}
+
 function BesvarFlere(props: Props & RouteComponentProps) {
     const dispatch = useDispatch();
     const slaaSammenResource = useSelector((state: AppState) => state.restResources.slaaSammen);
@@ -158,25 +184,16 @@ function BesvarFlere(props: Props & RouteComponentProps) {
         }
     }
 
-    const traadkomponenter = props.traader.map(traad => {
-        const checkbox = (
-            <StyledCheckbox
-                label={''}
-                aria-label={'Velg tråd'}
-                checked={valgteTraader.map(traad => traad.traadId).includes(traad.traadId)}
-                onChange={() => handleCheckboxChange(traad)}
-            />
-        );
-        return (
-            <TraadListeElement
-                traad={traad}
-                key={traad.traadId}
-                erValgt={traadSomSkalVises.traadId === traad.traadId}
-                onClick={() => setTraadSomSkalVises(traad)}
-                tillegskomponent={checkbox}
-            />
-        );
-    });
+    const traadkomponenter = props.traader.map(traad => (
+        <ListeElement
+            checked={valgteTraader.includes(traad)}
+            handleCheck={() => handleCheckboxChange(traad)}
+            shown={traadSomSkalVises === traad}
+            traad={traad}
+            visTraad={() => setTraadSomSkalVises(traad)}
+            key={traad.traadId}
+        />
+    ));
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();

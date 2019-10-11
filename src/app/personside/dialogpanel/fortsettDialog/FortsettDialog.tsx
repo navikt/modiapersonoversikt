@@ -21,7 +21,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogContainer';
-import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { isFailedPosting } from '../../../../rest/utils/postResource';
 
 const StyledArticle = styled.article`
@@ -94,6 +94,7 @@ function FortsettDialog(props: Props) {
                     formState={state}
                     updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                     erTilknyttetOppgave={erTilknyttetOppgave}
+                    erDelvisBesvart={erDelvisBesvart(props.traad)}
                 />
                 <Margin>
                     <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
