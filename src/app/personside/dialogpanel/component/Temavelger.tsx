@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { Temagruppe } from '../../../../models/meldinger/meldinger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
-import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 
@@ -10,9 +10,10 @@ interface Props {
     setTema: (tema?: Kodeverk) => void;
     tema?: Kodeverk;
     visFeilmelding?: boolean;
+    temavalg: Kodeverk[];
 }
 
-export const temaValg: Kodeverk[] = [
+export const temavalg: Kodeverk[] = [
     { beskrivelse: 'Arbeid', kodeRef: Temagruppe.Arbeid },
     { beskrivelse: 'Familie', kodeRef: Temagruppe.Familie },
     { beskrivelse: 'Hjelpemiddel', kodeRef: Temagruppe.Hjelpemiddel },
@@ -36,7 +37,7 @@ function Temavelger(props: Props) {
     }, [selectRef, props.visFeilmelding]);
 
     const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        const tema = temaValg.find(tema => tema.kodeRef === event.target.value);
+        const tema = props.temavalg.find(tema => tema.kodeRef === event.target.value);
         props.setTema(tema);
     };
     return (
@@ -51,7 +52,7 @@ function Temavelger(props: Props) {
                 <option value="" disabled>
                     Velg temagruppe
                 </option>
-                {temaValg.map(valg => (
+                {props.temavalg.map(valg => (
                     <option key={valg.kodeRef} value={valg.kodeRef}>
                         {valg.beskrivelse}
                     </option>
@@ -60,5 +61,9 @@ function Temavelger(props: Props) {
         </SkjemaGruppe>
     );
 }
+
+Temavelger.defaultProps = {
+    temavalg
+};
 
 export default Temavelger;

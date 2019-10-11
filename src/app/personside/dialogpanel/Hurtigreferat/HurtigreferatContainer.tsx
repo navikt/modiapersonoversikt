@@ -17,7 +17,7 @@ import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
-import Temavelger, { temaValg } from '../component/Temavelger';
+import Temavelger, { temavalg } from '../component/Temavelger';
 import { Kodeverk } from '../../../../models/kodeverk';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -40,7 +40,7 @@ const Padding = styled.div`
 
 function HurtigreferatContainer() {
     const [open, setOpen] = useState(false);
-    const initialTema = temaValg.find(tema => tema.kodeRef === getTemaFraCookie());
+    const initialTema = temavalg.find(tema => tema.kodeRef === getTemaFraCookie());
     const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
 
