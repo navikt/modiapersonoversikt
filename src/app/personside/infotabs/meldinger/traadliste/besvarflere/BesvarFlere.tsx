@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    SlaaSammenMelding,
+    SlaaSammenTraad,
     SlaaSammenRequest,
     SlaaSammenResponse,
     Traad
@@ -100,20 +100,30 @@ const KnappWrapper = styled.div`
     }
 `;
 
+const KvitteringStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: ${theme.color.navLysGra};
+    padding: 4rem 1rem 1rem;
+    > *:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+`;
+
 function getTemagruppeForTraader(traader: Traad[]) {
     return traader[0].meldinger[0].temagruppe.toString();
 }
 
-function getMeldingerSomSkalSlaasSammen(traader: Traad[]): SlaaSammenMelding[] {
-    return traader.reduce((acc: SlaaSammenMelding[], traad: Traad) => {
-        return acc.concat(
-            traad.meldinger.map(melding => ({
-                oppgaveId: melding.oppgaveId!,
-                henvendelsesId: traad.traadId,
-                meldingsId: melding.id
-            }))
-        );
-    }, []);
+function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {
+    return traader.map(traad => {
+        const sporsmaal = traad.meldinger.find(melding => melding.id === traad.traadId);
+
+        return {
+            oppgaveId: sporsmaal!.oppgaveId!,
+            traadId: traad.traadId
+        };
+    });
 }
 
 function Meldingsvisning({ traad }: { traad: Traad }) {
@@ -179,7 +189,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
         }
         const request: SlaaSammenRequest = {
             temagruppe: getTemagruppeForTraader(valgteTraader),
-            meldinger: getMeldingerSomSkalSlaasSammen(valgteTraader)
+            traader: getTraaderSomSkalSlaasSammen(valgteTraader)
         };
         const callback = (response: SlaaSammenResponse) => {
             dispatch(setTråderITråderResource(response.traader));
@@ -199,12 +209,12 @@ function BesvarFlere(props: Props & RouteComponentProps) {
 
     if (isFinishedPosting(slaaSammenResource)) {
         return (
-            <div>
+            <KvitteringStyle>
                 <AlertStripeInfo>Oppgavene ble slått sammen</AlertStripeInfo>
                 <Hovedknapp htmlType="button" onClick={props.lukkModal}>
                     Lukk
                 </Hovedknapp>
-            </div>
+            </KvitteringStyle>
         );
     }
 

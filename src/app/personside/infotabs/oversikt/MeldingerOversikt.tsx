@@ -11,7 +11,6 @@ import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { delAvStringMedDots } from '../../../../utils/string-utils';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -91,7 +90,7 @@ function Traadelement(props: { traad: Traad }) {
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
                         <Element>{tittel}</Element>
-                        <Tekstomrade>{delAvStringMedDots(sisteMelding.fritekst, 70)}</Tekstomrade>
+                        <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 70)}</Normaltekst>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>

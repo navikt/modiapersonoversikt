@@ -929,11 +929,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     >
                       Delsvar - Arbeid
                     </p>
-                    <div
-                      className="tekstomrade"
+                    <p
+                      className="typo-normal"
                     >
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat s...
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>
