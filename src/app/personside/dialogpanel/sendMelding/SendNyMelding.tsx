@@ -18,8 +18,9 @@ import VelgDialogType from './VelgDialogType';
 import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
-import { FormStyle } from '../fellesStyling';
+import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
+import { isFailedPosting } from '../../../../rest/utils/postResource';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -68,8 +69,17 @@ interface Props {
     state: FormState;
     updateState: (change: Partial<FormState>) => void;
     formErEndret: boolean;
+    senderMelding: boolean;
 }
 
+function Feilmelding() {
+    const postReferatResource = useRestResource(resources => resources.sendReferat);
+    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    if (isFailedPosting(postReferatResource) || isFailedPosting(postSpørsmålResource)) {
+        return <DialogpanelFeilmelding />;
+    }
+    return null;
+}
 function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
@@ -120,8 +130,9 @@ function SendNyMelding(props: Props) {
                             : undefined
                     }
                 />
+                <Feilmelding />
                 <KnappWrapper>
-                    <KnappBase type="hoved" htmlType="submit">
+                    <KnappBase type="hoved" spinner={props.senderMelding} htmlType="submit">
                         Del med {navn}
                     </KnappBase>
                     {props.formErEndret && (

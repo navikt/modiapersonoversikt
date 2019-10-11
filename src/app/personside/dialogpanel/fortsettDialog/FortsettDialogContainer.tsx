@@ -55,6 +55,9 @@ function FortsettDialogContainer(props: Props) {
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
+    const senderMelding =
+        isPosting(sendSvarResource) || isPosting(sendDelsvarResource) || isPosting(leggTilbakeResource);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -76,7 +79,7 @@ function FortsettDialogContainer(props: Props) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (isPosting(sendSvarResource)) {
+        if (senderMelding) {
             return;
         }
         const callback = () => {
@@ -155,6 +158,7 @@ function FortsettDialogContainer(props: Props) {
                 handleSubmit={handleSubmit}
                 traad={props.traad}
                 key={props.traad.traadId}
+                senderMelding={senderMelding}
             />
             {props.tilknyttetOppgave && <LeggTilbakepanel oppgave={props.tilknyttetOppgave} temagruppe={temagruppe} />}
         </>

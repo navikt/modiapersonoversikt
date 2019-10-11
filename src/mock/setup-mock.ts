@@ -271,7 +271,7 @@ function setupTildelteOppgaverMock(mock: FetchMock) {
 
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/oppgaver/leggTilbake',
+        apiBaseUri + '/oppgaver/legg-tilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
     );
 }
