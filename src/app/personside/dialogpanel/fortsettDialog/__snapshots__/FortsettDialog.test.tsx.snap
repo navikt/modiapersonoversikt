@@ -591,43 +591,7 @@ exports[`viser fortsett dialog 1`] = `
           className="skjemaelement__label"
           htmlFor="Helt tilfeldig ID"
         >
-          Spørsmål
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar telefon
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar oppmøte
+          Delvis svar
         </label>
       </div>
     </div>
