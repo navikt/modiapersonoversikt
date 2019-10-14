@@ -263,12 +263,7 @@ exports[`viser fortsett dialog 1`] = `
                     className="typo-undertekst"
                   >
                     Skrevet av 
-                    Sander
-                     
-                    Hansen
-                     (
-                    nzxo4q
-                    )
+                    Sander Hansen (nzxo4q)
                   </p>
                   <div
                     className="c6"
@@ -433,12 +428,7 @@ exports[`viser fortsett dialog 1`] = `
                 className="typo-undertekst"
               >
                 Skrevet av 
-                Kristoffer
-                 
-                Fredriksen
-                 (
-                xy70r8
-                )
+                Kristoffer Fredriksen (xy70r8)
               </p>
               <div
                 className="c6"
