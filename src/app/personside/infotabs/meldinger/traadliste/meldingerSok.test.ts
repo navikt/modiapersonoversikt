@@ -1,6 +1,6 @@
 import { Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
-import { useSokEtterMeldinger } from '../utils/meldingerUtils';
+import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { renderHook } from '@testing-library/react-hooks';
 
 function getMockSøketråd(
@@ -17,7 +17,7 @@ function getMockSøketråd(
                 fritekst: fritekst,
                 meldingstype: (tittel && tittel.meldingtype) || mockMelding.meldingstype,
                 temagruppe: (tittel && tittel.temagruppe) || mockMelding.temagruppe,
-                skrevetAv: saksbehandler || mockMelding.skrevetAv
+                skrevetAvTekst: saksbehandler ? saksbehandlerTekst(saksbehandler) : mockMelding.skrevetAvTekst
             }
         ]
     };

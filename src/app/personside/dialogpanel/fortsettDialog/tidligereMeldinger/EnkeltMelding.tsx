@@ -15,12 +15,7 @@ function Meldingsforfatter(props: { melding: Melding }) {
     ) {
         return null;
     }
-    const forfatter = props.melding.skrevetAv;
-    return (
-        <Undertekst>
-            Skrevet av {capitalizeName(forfatter.fornavn)} {capitalizeName(forfatter.etternavn)} ({forfatter.ident})
-        </Undertekst>
-    );
+    return <Undertekst>Skrevet av {capitalizeName(props.melding.skrevetAvTekst)})</Undertekst>;
 }
 
 const EnkeltMeldingStyle = styled.div`

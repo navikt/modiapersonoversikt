@@ -116,7 +116,7 @@ function SkrevetAv({ melding, rule }: { melding: Melding; rule: Rule }) {
     return (
         <SkrevetAvStyle>
             <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
-            <Tekstomrade rules={[rule]}>{saksbehandlerTekst(melding.skrevetAv)}</Tekstomrade>
+            <Tekstomrade rules={[rule]}>{melding.skrevetAvTekst}</Tekstomrade>
         </SkrevetAvStyle>
     );
 }

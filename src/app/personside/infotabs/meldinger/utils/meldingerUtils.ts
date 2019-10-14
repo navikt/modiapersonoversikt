@@ -163,7 +163,7 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                 return traad.meldinger.some(melding => {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
-                    const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
+                    const saksbehandler = melding.skrevetAvTekst;
                     const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
