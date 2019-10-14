@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { velgTemagruppe } from '../../../redux/temagruppe';
+import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
@@ -14,6 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
+import { Temagruppe } from '../../../models/meldinger/meldinger';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -61,8 +62,8 @@ function HentOppgaveKnapp(props: Props) {
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const dispatch = useDispatch();
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
-    const velgTemaGruppe = (temagruppe: string) => dispatch(velgTemagruppe(temagruppe));
-    const valgtTemaGruppe = useSelector((state: AppState) => state.temagruppe.valgtTemagruppe);
+    const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
+    const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
 
     const onPlukkOppgaver = () => {
         if (!valgtTemaGruppe) {
@@ -88,7 +89,7 @@ function HentOppgaveKnapp(props: Props) {
     };
 
     const onTemagruppeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        velgTemaGruppe(event.target.value);
+        velgTemaGruppe(event.target.value as Temagruppe);
         setTemaGruppeFeilmelding(false);
     };
 
