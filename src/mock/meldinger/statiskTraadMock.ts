@@ -1,5 +1,6 @@
-import { LestStatus, Meldingstype, Temagruppe, Traad } from '../../models/meldinger/meldinger';
+import { LestStatus, Meldingstype, Traad } from '../../models/meldinger/meldinger';
 import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { Temagruppe } from '../../models/Temagrupper';
 
 export const statiskTraadMock: Traad = {
     traadId: 'sg838exr',

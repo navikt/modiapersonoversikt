@@ -726,11 +726,6 @@ exports[`viser fortsett dialog 1`] = `
                 Velg temagruppe
               </option>
               <option
-                value="ARBD"
-              >
-                Arbeid
-              </option>
-              <option
                 value="FMLI"
               >
                 Familie
@@ -738,7 +733,17 @@ exports[`viser fortsett dialog 1`] = `
               <option
                 value="HJLPM"
               >
-                Hjelpemiddel
+                Hjelpemidler
+              </option>
+              <option
+                value="BIL"
+              >
+                Hjelpemidler bil
+              </option>
+              <option
+                value="ORT_HJE"
+              >
+                Ortopediske hjelpemidler
               </option>
               <option
                 value="PENS"
@@ -746,9 +751,19 @@ exports[`viser fortsett dialog 1`] = `
                 Pensjon
               </option>
               <option
-                value="OVRG"
+                value="PLEIEPENGERSY"
               >
-                Øvrig
+                Pleiepenger sykt barn
+              </option>
+              <option
+                value="UFRT"
+              >
+                Uføretrygd
+              </option>
+              <option
+                value="UTLAND"
+              >
+                Utland
               </option>
             </select>
           </div>

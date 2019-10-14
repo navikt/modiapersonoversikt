@@ -1,4 +1,4 @@
-import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../../models/meldinger/meldinger';
 import {
     erKommunaleTjenester,
     erMeldingFraBruker,
@@ -9,7 +9,7 @@ import {
     erSamtalereferat,
     kanLeggesTilbake
 } from './meldingerUtils';
-import { temagruppeTekst } from './meldingstekster';
+import { Temagruppe, temagruppeTekst } from '../../../../../models/Temagrupper';
 
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;
@@ -29,16 +29,8 @@ describe('Temagrupper', () => {
         expect(kanLeggesTilbake(arbeid)).toBe(true);
     });
 
-    it('gir at pensjon kan ikke legges tilbake', function() {
-        expect(kanLeggesTilbake(pensjon)).toBe(false);
-    });
-
     it('gir at arbeid er plukkbar', function() {
         expect(erPlukkbar(arbeid)).toBe(true);
-    });
-
-    it('gir at pensjon ikke er plukkbar', function() {
-        expect(erPlukkbar(pensjon)).toBe(false);
     });
 
     it('gir at økonomiskSosial er kommunale tjenester', function() {

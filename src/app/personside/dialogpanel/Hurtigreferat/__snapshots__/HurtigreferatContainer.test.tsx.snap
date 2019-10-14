@@ -226,7 +226,7 @@ exports[`viser hurtigreferat 1`] = `
                 <option
                   value="HJLPM"
                 >
-                  Hjelpemiddel
+                  Hjelpemidler
                 </option>
                 <option
                   value="PENS"
@@ -236,7 +236,7 @@ exports[`viser hurtigreferat 1`] = `
                 <option
                   value="OVRG"
                 >
-                  Øvrig
+                  Øvrige henvendelser
                 </option>
               </select>
             </div>

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-    ForsettDialogRequest,
-    Meldingstype,
-    SendDelsvarRequest,
-    Temagruppe
-} from '../../../../models/meldinger/meldinger';
+import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import { FailedPostResource, FinishedPostResource, isFinishedPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
@@ -12,10 +7,10 @@ import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
 import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/frontendLogger';
+import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
 
 function SvarSendtKvittering(props: { resource: FinishedPostResource<ForsettDialogRequest, {}> }) {
     const dispatch = useDispatch();

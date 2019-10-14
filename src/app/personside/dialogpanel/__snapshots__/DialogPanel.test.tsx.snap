@@ -424,7 +424,7 @@ exports[`viser dialogpanel 1`] = `
                     <option
                       value="HJLPM"
                     >
-                      Hjelpemiddel
+                      Hjelpemidler
                     </option>
                     <option
                       value="PENS"
@@ -434,7 +434,7 @@ exports[`viser dialogpanel 1`] = `
                     <option
                       value="OVRG"
                     >
-                      Øvrig
+                      Øvrige henvendelser
                     </option>
                   </select>
                 </div>
@@ -1483,7 +1483,7 @@ exports[`viser dialogpanel 1`] = `
                 <option
                   value="HJLPM"
                 >
-                  Hjelpemiddel
+                  Hjelpemidler
                 </option>
                 <option
                   value="PENS"
@@ -1493,7 +1493,7 @@ exports[`viser dialogpanel 1`] = `
                 <option
                   value="OVRG"
                 >
-                  Øvrig
+                  Øvrige henvendelser
                 </option>
               </select>
             </div>
