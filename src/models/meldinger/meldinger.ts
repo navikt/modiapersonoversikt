@@ -8,7 +8,7 @@ export interface Melding {
     oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe;
-    skrevetAv: Saksbehandler;
+    skrevetAvTekst: string;
     journalfortAv?: Saksbehandler;
     journalfortDato?: string;
     journalfortTema?: string;

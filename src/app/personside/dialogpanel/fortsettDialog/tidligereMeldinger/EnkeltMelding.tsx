@@ -1,6 +1,5 @@
 import { Melding, Meldingstype } from '../../../../../models/meldinger/meldinger';
 import { Ingress, Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import { capitalizeName } from '../../../../../utils/stringFormatting';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import { meldingstypeTekst, temagruppeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
@@ -15,12 +14,7 @@ function Meldingsforfatter(props: { melding: Melding }) {
     ) {
         return null;
     }
-    const forfatter = props.melding.skrevetAv;
-    return (
-        <Undertekst>
-            Skrevet av {capitalizeName(forfatter.fornavn)} {capitalizeName(forfatter.etternavn)} ({forfatter.ident})
-        </Undertekst>
-    );
+    return <Undertekst>Skrevet av {props.melding.skrevetAvTekst}</Undertekst>;
 }
 
 const EnkeltMeldingStyle = styled.div`
