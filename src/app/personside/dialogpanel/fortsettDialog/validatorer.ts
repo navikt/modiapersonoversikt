@@ -11,7 +11,7 @@ export class FortsettDialogValidator {
         return state.sak !== undefined;
     }
     public static tema(state: FortsettDialogState) {
-        return state.tema !== undefined;
+        return state.temagruppe !== undefined;
     }
     public static erGyldigSvarSkriftlig(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state);

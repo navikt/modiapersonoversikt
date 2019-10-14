@@ -23,6 +23,7 @@ import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogContainer';
 import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { isFailedPosting } from '../../../../rest/utils/postResource';
+import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -61,6 +62,7 @@ function Feilmelding() {
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
     const navn = isLoadedPerson(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
@@ -110,9 +112,10 @@ function FortsettDialog(props: Props) {
                     <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
-                            setTema={tema => updateState({ tema: tema })}
-                            tema={state.tema}
+                            setTema={tema => updateState({ temagruppe: tema })}
+                            valgtTema={state.temagruppe}
                             visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
+                            temavalg={TemaPlukkbare.filter(it => !temagrupperITraad.includes(it))}
                         />
                     </UnmountClosed>
                 </Margin>
@@ -120,7 +123,7 @@ function FortsettDialog(props: Props) {
                 <SubmitKnapp htmlType="submit" spinner={props.senderMelding}>
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
-                              state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'
+                              state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
                           }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>

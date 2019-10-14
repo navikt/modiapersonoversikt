@@ -1,7 +1,8 @@
-import { Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { renderHook } from '@testing-library/react-hooks';
+import { Temagruppe } from '../../../../../models/Temagrupper';
 
 function getMockSøketråd(
     fritekst: string,
