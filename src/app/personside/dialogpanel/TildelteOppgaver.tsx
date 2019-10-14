@@ -6,7 +6,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';
 import theme from '../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
-import { meldingstypeTekst, temagruppeTekst } from '../infotabs/meldinger/utils/meldingstekster';
+import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -16,6 +16,7 @@ import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { temagruppeTekst } from '../../../models/Temagrupper';
 
 const Wrapper = styled.div`
     position: relative;

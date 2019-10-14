@@ -1,4 +1,4 @@
-import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../../models/meldinger/meldinger';
 import {
     erKommunaleTjenester,
     erMeldingFraBruker,
@@ -9,7 +9,7 @@ import {
     erSamtalereferat,
     kanLeggesTilbake
 } from './meldingerUtils';
-import { temagruppeTekst } from './meldingstekster';
+import { Temagruppe, temagruppeTekst } from '../../../../../models/Temagrupper';
 
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;

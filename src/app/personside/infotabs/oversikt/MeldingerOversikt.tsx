@@ -4,7 +4,7 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { erMonolog, nyesteMelding } from '../meldinger/utils/meldingerUtils';
-import { meldingstypeTekst, temagruppeTekst } from '../meldinger/utils/meldingstekster';
+import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import Meldingsikon from '../meldinger/utils/Meldingsikon';
 import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
@@ -16,6 +16,7 @@ import { meldingerTest } from '../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
+import { temagruppeTekst } from '../../../../models/Temagrupper';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {

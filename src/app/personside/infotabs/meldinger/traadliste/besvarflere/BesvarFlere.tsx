@@ -113,7 +113,7 @@ const KvitteringStyle = styled.div`
 `;
 
 function getTemagruppeForTraader(traader: Traad[]) {
-    return traader[0].meldinger[0].temagruppe.toString();
+    return traader[0].meldinger[0].temagruppe;
 }
 
 function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {

@@ -1,4 +1,4 @@
-import { Meldingstype, Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../../models/meldinger/meldinger';
 
 export function meldingstypeTekst(meldingstype: Meldingstype) {
     switch (meldingstype) {
@@ -26,40 +26,5 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Svar skriftlig';
         default:
             return 'Ukjent meldingstype: ' + meldingstype;
-    }
-}
-
-export function temagruppeTekst(temagruppe: Temagruppe) {
-    switch (temagruppe) {
-        case Temagruppe.Uføretrygd:
-            return 'Uføretrygd';
-        case Temagruppe.Pensjon:
-            return 'Pensjon';
-        case Temagruppe.Arbeid:
-            return 'Arbeid';
-        case Temagruppe.Utland:
-            return 'Utland';
-        case Temagruppe.PleiepengerBarnsSykdom:
-            return 'Pleiepenger barns sykdom';
-        case Temagruppe.OrtopediskHjelpemiddel:
-            return 'Ortopediske hjelpemiddel';
-        case Temagruppe.Bil:
-            return 'Bil';
-        case Temagruppe.AndreSosiale:
-            return 'Andre sosiale henvendelser';
-        case Temagruppe.ØkonomiskSosial:
-            return 'Økonomisk sosiale henvendelser';
-        case Temagruppe.Øvrig:
-            return 'Øvrige henvendelser';
-        case Temagruppe.Hjelpemiddel:
-            return 'Hjelpemiddel';
-        case Temagruppe.Familie:
-            return 'Familie';
-        case Temagruppe.Null:
-        case null:
-        case '':
-            return '';
-        default:
-            return 'Ukjent temagruppe: ' + temagruppe;
     }
 }

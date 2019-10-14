@@ -3,12 +3,11 @@ import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { isPosting } from '../../../../rest/utils/postResource';
 import { FortsettDialogValidator } from './validatorer';
-import { Meldingstype, Temagruppe, Traad } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { Kodeverk } from '../../../../models/kodeverk';
 import { Oppgave } from '../../../../models/oppgave';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -16,6 +15,7 @@ import { useFortsettDialogKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/frontendLogger';
+import { Temagruppe } from '../../../../models/Temagrupper';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -27,7 +27,7 @@ export type FortsettDialogType =
 export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
-    tema?: Kodeverk;
+    temagruppe?: Temagruppe;
     oppgave?: Oppgave;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
@@ -128,14 +128,14 @@ function FortsettDialogContainer(props: Props) {
                     callback
                 )
             );
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.temagruppe) {
             dispatch(
                 sendDelsvarResource.actions.post(
                     {
                         fritekst: state.tekst,
                         traadId: props.traad.traadId,
                         oppgaveId: props.tilknyttetOppgave.oppgaveid,
-                        temagruppe: state.tema.kodeRef,
+                        temagruppe: state.temagruppe,
                         behandlingsId: opprettHenvendelse.behandlingsId
                     },
                     callback
