@@ -29,16 +29,8 @@ describe('Temagrupper', () => {
         expect(kanLeggesTilbake(arbeid)).toBe(true);
     });
 
-    it('gir at pensjon kan ikke legges tilbake', function() {
-        expect(kanLeggesTilbake(pensjon)).toBe(false);
-    });
-
     it('gir at arbeid er plukkbar', function() {
         expect(erPlukkbar(arbeid)).toBe(true);
-    });
-
-    it('gir at pensjon ikke er plukkbar', function() {
-        expect(erPlukkbar(pensjon)).toBe(false);
     });
 
     it('gir at økonomiskSosial er kommunale tjenester', function() {
