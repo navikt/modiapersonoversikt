@@ -95,31 +95,31 @@ function SendNyMeldingContainer() {
             state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE
         ) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const payload: SendReferatRequest = {
+            const request: SendReferatRequest = {
                 fritekst: state.tekst,
                 meldingstype: state.dialogType,
                 temagruppe: state.tema.kodeRef
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, payload)
+            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request)
                 .then(() => {
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: payload });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const payload: SendSpørsmålRequest = {
+            const request: SendSpørsmålRequest = {
                 fritekst: state.tekst,
                 saksID: state.sak.saksId,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
 
-            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, payload)
+            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request)
                 .then(() => {
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: payload.fritekst });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });

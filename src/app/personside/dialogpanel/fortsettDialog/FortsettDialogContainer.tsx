@@ -154,15 +154,15 @@ function FortsettDialogContainer(props: Props) {
             FortsettDialogValidator.erGyldigSvarTelefon(state)
         ) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const payload: ForsettDialogRequest = {
+            const request: ForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
             };
             const kvitteringsData = {
-                fritekst: payload.fritekst,
-                meldingstype: payload.meldingstype
+                fritekst: request.fritekst,
+                meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, payload)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -179,16 +179,16 @@ function FortsettDialogContainer(props: Props) {
                 return;
             }
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const payload: ForsettDialogRequest = {
+            const request: ForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
                 saksId: state.sak ? state.sak.saksId : undefined
             };
             const kvitteringsData = {
-                fritekst: payload.fritekst,
-                meldingstype: payload.meldingstype
+                fritekst: request.fritekst,
+                meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, payload)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -198,20 +198,20 @@ function FortsettDialogContainer(props: Props) {
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const payload: SendDelsvarRequest = {
+            const request: SendDelsvarRequest = {
                 fritekst: state.tekst,
                 traadId: props.traad.traadId,
                 oppgaveId: props.tilknyttetOppgave.oppgaveid,
                 temagruppe: state.tema.kodeRef,
                 behandlingsId: opprettHenvendelse.behandlingsId
             };
-            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, payload)
+            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request)
                 .then(() => {
                     callback();
                     const kvitteringsData: KvitteringsData = {
-                        fritekst: payload.fritekst,
+                        fritekst: request.fritekst,
                         meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-                        temagruppe: payload.temagruppe
+                        temagruppe: request.temagruppe
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
