@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { FormState, SendNyMeldingDialogType } from './SendNyMelding';
+import { SendNyMeldingState, SendNyMeldingDialogType } from './SendNyMelding';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 
 interface Props {
-    formState: FormState;
+    formState: SendNyMeldingState;
     updateDialogType: (dialogType: SendNyMeldingDialogType) => void;
 }
 

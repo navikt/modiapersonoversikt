@@ -14,7 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
-import { Temagruppe } from '../../../models/meldinger/meldinger';
+import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -42,18 +42,6 @@ const KnappLayout = styled.div`
         margin-bottom: 0.4em;
     }
 `;
-
-const PLUKKBARE_TEMAGRUPPER = [
-    { kode: 'ARBD', beskrivelse: 'Arbeid' },
-    { kode: 'FMLI', beskrivelse: 'Familie' },
-    { kode: 'HJLPM', beskrivelse: 'Hjelpemidler' },
-    { kode: 'BIL', beskrivelse: 'Hjelpemidler bil' },
-    { kode: 'ORT_HJE', beskrivelse: 'Ortopediske hjelpemidler' },
-    { kode: 'PENS', beskrivelse: 'Pensjon' },
-    { kode: 'PLEIEPENGERSY', beskrivelse: 'Pleiepenger sykt barn' },
-    { kode: 'UFRT', beskrivelse: 'Uføretrygd' },
-    { kode: 'UTLAND', beskrivelse: 'Utland' }
-];
 
 type Props = RouteComponentProps<{}>;
 
@@ -96,9 +84,9 @@ function HentOppgaveKnapp(props: Props) {
     const tomtTilbakemelding = tomKø ? (
         <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
     ) : null;
-    const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map(temagruppe => (
-        <option value={temagruppe.kode} key={temagruppe.kode}>
-            {temagruppe.beskrivelse}
+    const temagruppeOptions = TemaPlukkbare.map(temagruppe => (
+        <option value={temagruppe} key={temagruppe}>
+            {temagruppeTekst(temagruppe)}
         </option>
     ));
     return (

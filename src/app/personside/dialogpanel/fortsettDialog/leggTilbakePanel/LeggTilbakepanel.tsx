@@ -4,21 +4,20 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import { Radio, SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
-import { Kodeverk } from '../../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
-import Temavelger, { temavalg } from '../../component/Temavelger';
+import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { Oppgave } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
-import { Temagruppe } from '../../../../../models/meldinger/meldinger';
+import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { isFailedPosting, isPosting } from '../../../../../rest/utils/postResource';
 import { LeggTilbakeOppgaveFeil } from '../FortsettDialogKvittering';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
-    tema?: Kodeverk;
+    temagruppe?: Temagruppe;
     tekst: string;
     visFeilmeldinger: boolean;
 }
@@ -68,7 +67,7 @@ function LeggTilbakepanel(props: Props) {
     const [state, setState] = useState<LeggTilbakeState>({
         årsak: undefined,
         tekst: '',
-        tema: undefined,
+        temagruppe: undefined,
         visFeilmeldinger: false
     });
     const updateState = (change: Partial<LeggTilbakeState>) =>
@@ -114,11 +113,11 @@ function LeggTilbakepanel(props: Props) {
                     callback
                 )
             );
-        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
+        } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.temagruppe) {
             dispatch(
                 leggTilbakeResource.actions.post(
                     {
-                        temagruppe: state.tema.kodeRef,
+                        temagruppe: state.temagruppe,
                         oppgaveId: props.oppgave.oppgaveid,
                         type: 'FeilTema'
                     },
@@ -146,10 +145,10 @@ function LeggTilbakepanel(props: Props) {
                     <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.FeilTemagruppe} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
-                            setTema={tema => updateState({ tema: tema })}
-                            tema={state.tema}
+                            setTema={tema => updateState({ temagruppe: tema })}
+                            valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={temavalg.filter(tema => tema.kodeRef !== props.temagruppe)}
+                            temavalg={TemaPlukkbare.filter(tema => tema !== props.temagruppe)}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />

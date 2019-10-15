@@ -1,6 +1,6 @@
 import * as Cookies from 'js-cookie';
 import moment from 'moment';
-import { Temagruppe } from '../../models/meldinger/meldinger';
+import { Temagruppe } from '../../models/Temagrupper';
 
 const temaValgCookieNavn = 'plukk-tema';
 

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
-import { Temagruppe } from '../../models/meldinger/meldinger';
 import { getTemaFraCookie, setTemaCookie } from './plukkTemaCookie';
+import { Temagruppe } from '../../models/Temagrupper';
 
 export enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE'

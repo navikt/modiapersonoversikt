@@ -2,7 +2,6 @@ import {
     LestStatus,
     Melding,
     Saksbehandler,
-    Temagruppe,
     Traad,
     Meldingstype,
     SlaaSammenResponse
@@ -12,6 +11,7 @@ import navfaker from 'nav-faker';
 import moment from 'moment';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { Temagruppe } from '../../models/Temagrupper';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
