@@ -4,14 +4,13 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import { UnmountClosed } from 'react-collapse';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
-import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useClickOutside, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 
 const credentials: RequestInit = { credentials: 'include' };
 
@@ -25,6 +24,7 @@ const Style = styled.div`
     background-color: white;
     border-radius: ${theme.borderRadius.layout};
     border: 1px solid #78706a;
+    position: relative;
 `;
 
 const Knapp = styled.button`
@@ -37,8 +37,16 @@ const Knapp = styled.button`
     align-items: center;
 `;
 
-const Padding = styled.div`
-    padding: ${pxToRem(8)};
+const Dropdown = styled.div`
+    padding: ${theme.margin.layout};
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: ${theme.border.skille};
+    border-radius: ${theme.borderRadius.layout};
+    width: 100%;
+    max-height: 50vh;
+    overflow: auto;
 `;
 
 function getTittel(sak: JournalforingsSak) {
@@ -59,29 +67,31 @@ function usePreFetchJournalforingsSaker() {
 
 function DialogpanelVelgSak(props: Props) {
     const [visSaker, setVisSaker] = useState(false);
-    const ref = createRef<HTMLButtonElement>();
+    const knappRef = createRef<HTMLButtonElement>();
+    const ref = createRef<HTMLDivElement>();
     usePreFetchJournalforingsSaker();
+    useClickOutside(ref, () => setVisSaker(false));
 
     const handleVelgSak = (sak: JournalforingsSak) => {
         setVisSaker(false);
         props.setValgtSak(sak);
-        ref.current && ref.current.focus();
+        knappRef.current && knappRef.current.focus();
     };
 
     const tittel = props.valgtSak ? getTittel(props.valgtSak) : 'Velg sak';
 
     return (
         <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge en sak' } : undefined}>
-            <Style>
-                <Knapp ref={ref} type="button" onClick={() => setVisSaker(!visSaker)} aria-expanded={visSaker}>
+            <Style ref={ref}>
+                <Knapp ref={knappRef} type="button" onClick={() => setVisSaker(!visSaker)} aria-expanded={visSaker}>
                     <Normaltekst>{tittel}</Normaltekst>
                     {visSaker ? <OppChevron /> : <NedChevron />}
                 </Knapp>
-                <UnmountClosed isOpened={visSaker} hasNestedCollapse={true}>
-                    <Padding>
+                {visSaker && (
+                    <Dropdown>
                         <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
-                    </Padding>
-                </UnmountClosed>
+                    </Dropdown>
+                )}
             </Style>
         </SkjemaGruppe>
     );
