@@ -1,16 +1,13 @@
 import * as React from 'react';
 import { Meldingstype, Temagruppe } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
-import { FailedPostResource } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
-import { useOnMount } from '../../../../utils/customHooks';
-import { loggError } from '../../../../utils/frontendLogger';
 import { KvitteringsData } from './FortsettDialogContainer';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
@@ -64,14 +61,4 @@ export function OppgaveLagtTilbakeKvittering(props: { payload: LeggTilbakeOppgav
             </KnappBase>
         </DialogpanelKvitteringStyling>
     );
-}
-
-export function LeggTilbakeOppgaveFeil(props: { resource: FailedPostResource<LeggTilbakeOppgaveRequest, {}> }) {
-    useOnMount(() => {
-        loggError(new Error('Feil ved tilbakelegging av oppgave: ' + props.resource.error), undefined, {
-            request: props.resource.payload
-        });
-    });
-
-    return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
 }

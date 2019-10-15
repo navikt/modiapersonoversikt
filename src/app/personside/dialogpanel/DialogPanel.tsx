@@ -39,7 +39,7 @@ function DialogPanel(props: RouteComponentProps) {
         <ErrorBoundary boundaryName="Dialogpanel">
             <DialogPanelWrapper role="region" aria-label="Dialogpanel">
                 <Undertittel className="sr-only">Dialogpanel</Undertittel>
-                {dialogPanelStatus === DialogPanelStatus.FortsettDialog ? (
+                {dialogpanelTraad && dialogPanelStatus === DialogPanelStatus.FortsettDialog ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}
                         tilknyttetOppgave={tilknyttetOppgave}

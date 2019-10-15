@@ -65,25 +65,25 @@ export enum DialogPanelStatus {
     OPPGAVE_LAGT_TILBAKE
 }
 
-interface MoterInterface {
+interface DialogStatusInterface {
     type: DialogPanelStatus;
 }
 
-interface UnderArbeid extends MoterInterface {
+interface UnderArbeid extends DialogStatusInterface {
     type: DialogPanelStatus.UNDER_ARBEID | DialogPanelStatus.POSTING | DialogPanelStatus.ERROR;
 }
 
-interface Success extends MoterInterface {
+interface SvarSendtSuccess extends DialogStatusInterface {
     type: DialogPanelStatus.SVAR_SENDT | DialogPanelStatus.DELSVAR_SENDT;
     kvitteringsData: KvitteringsData;
 }
 
-interface LeggTilbakeOppgaveSuccess extends MoterInterface {
+interface LeggTilbakeOppgaveSuccess extends DialogStatusInterface {
     type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE;
     payload: LeggTilbakeOppgaveRequest;
 }
 
-export type FortsettDialogPanelState = UnderArbeid | Success | LeggTilbakeOppgaveSuccess;
+export type FortsettDialogPanelState = UnderArbeid | SvarSendtSuccess | LeggTilbakeOppgaveSuccess;
 
 function FortsettDialogContainer(props: Props) {
     const initialState = {
@@ -238,7 +238,12 @@ function FortsettDialogContainer(props: Props) {
                 status={dialogStatus}
             />
             {props.tilknyttetOppgave && (
-                <LeggTilbakepanel oppgave={props.tilknyttetOppgave} status={dialogStatus} temagruppe={temagruppe} />
+                <LeggTilbakepanel
+                    oppgave={props.tilknyttetOppgave}
+                    status={dialogStatus}
+                    setDialogStatus={setDialogStatus}
+                    temagruppe={temagruppe}
+                />
             )}
         </>
     );

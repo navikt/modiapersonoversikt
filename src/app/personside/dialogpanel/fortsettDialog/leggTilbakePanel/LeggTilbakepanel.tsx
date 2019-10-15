@@ -10,14 +10,13 @@ import Temavelger, { temavalg } from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
-import { Oppgave } from '../../../../../models/oppgave';
+import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe } from '../../../../../models/meldinger/meldinger';
-import { isFailedPosting, isPosting } from '../../../../../rest/utils/postResource';
-import { LeggTilbakeOppgaveFeil } from '../FortsettDialogKvittering';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogContainer';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -58,13 +57,12 @@ interface Props {
     oppgave: Oppgave;
     temagruppe: Temagruppe;
     status: FortsettDialogPanelState;
+    setDialogStatus: (status: FortsettDialogPanelState) => void;
 }
 
-function LeggTilbakeFeilmelding() {
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
-
-    if (isFailedPosting(leggTilbakeResource)) {
-        return <LeggTilbakeOppgaveFeil resource={leggTilbakeResource} />;
+function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
+    if (props.status.type === DialogPanelStatus.ERROR) {
+        return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
     }
     return null;
 }
@@ -79,10 +77,9 @@ function LeggTilbakepanel(props: Props) {
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
-    const leggTilbakeResource = useRestResource(resources => resources.leggTilbakeOppgave);
     const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
-    const leggerTilbake = isPosting(leggTilbakeResource);
+    const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
         return (
@@ -105,17 +102,19 @@ function LeggTilbakepanel(props: Props) {
             dispatch(reloadTildelteOppgaver);
         };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
-            const payload = { oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' };
+            props.setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: LeggTilbakeOppgaveRequest = { oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
                 .then(() => {
                     callback();
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
                 })
                 .catch(() => {
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
-            const payload = {
+            props.setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: LeggTilbakeOppgaveRequest = {
                 beskrivelse: state.tekst,
                 oppgaveId: props.oppgave.oppgaveid,
                 type: 'AnnenAarsak'
@@ -123,24 +122,25 @@ function LeggTilbakepanel(props: Props) {
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
                 .then(() => {
                     callback();
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
                 })
                 .catch(() => {
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.tema) {
-            const payload = {
+            props.setDialogStatus({ type: DialogPanelStatus.POSTING });
+            const payload: LeggTilbakeOppgaveRequest = {
                 temagruppe: state.tema.kodeRef,
                 oppgaveId: props.oppgave.oppgaveid,
                 type: 'FeilTema'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
                 .then(() => {
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
                     callback();
                 })
                 .catch(() => {
-                    // TODO: Sett dialogPanelStatus
+                    props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else {
             updateState({ visFeilmeldinger: true });
@@ -191,7 +191,7 @@ function LeggTilbakepanel(props: Props) {
                         </StyledSkjemaGruppe>
                     </UnmountClosed>
                 </StyledSkjemaGruppe>
-                <LeggTilbakeFeilmelding />
+                <LeggTilbakeFeilmelding status={props.status} />
                 <Hovedknapp htmlType="button" spinner={leggerTilbake} onClick={handleLeggTilbake}>
                     Legg tilbake
                 </Hovedknapp>
