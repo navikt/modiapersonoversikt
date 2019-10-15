@@ -789,7 +789,7 @@ exports[`viser fortsett dialog 1`] = `
       className="knapp c18 knapp--flat"
       disabled={false}
       onClick={[Function]}
-      type="button"
+      type="reset"
     >
       Avbryt
     </button>
