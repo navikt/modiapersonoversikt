@@ -128,7 +128,13 @@ function FortsettDialog(props: Props) {
                         : `Del med ${navn}`}
                 </SubmitKnapp>
                 {!erTilknyttetOppgave && (
-                    <StyledKnappMedBekreftPopup type="flat" onBekreft={handleAvbryt}>
+                    <StyledKnappMedBekreftPopup
+                        htmlType="reset"
+                        type="flat"
+                        onBekreft={handleAvbryt}
+                        bekreftKnappTekst={'Ja, avbryt'}
+                        popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+                    >
                         Avbryt
                     </StyledKnappMedBekreftPopup>
                 )}
