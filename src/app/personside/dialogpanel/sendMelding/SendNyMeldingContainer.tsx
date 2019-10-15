@@ -13,7 +13,6 @@ import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureTog
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
-import { KvitteringsData } from '../fortsettDialog/FortsettDialogContainer';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -48,7 +47,7 @@ interface UnderArbeid extends SendNyMeldingStatusInterface {
 
 interface ReferatSendtSuccess extends SendNyMeldingStatusInterface {
     type: SendNyMeldingStatus.REFERAT_SENDT;
-    kvitteringsData: KvitteringsData;
+    request: SendReferatRequest;
 }
 
 interface SporsmalSendtSuccess extends SendNyMeldingStatusInterface {
@@ -64,10 +63,18 @@ function SendNyMeldingContainer() {
         setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
+    const fnr = useFødselsnummer();
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
-    const fnr = useFødselsnummer();
+
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
+        return <ReferatSendtKvittering request={sendNyMeldingStatus.request} />;
+    }
+
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
+        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} />;
+    }
 
     const handleAvbryt = () => {
         setState(initialState);
@@ -96,7 +103,7 @@ function SendNyMeldingContainer() {
             post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, payload)
                 .then(() => {
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, kvitteringsData: payload });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: payload });
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
@@ -121,14 +128,6 @@ function SendNyMeldingContainer() {
             updateState({ visFeilmeldinger: true });
         }
     };
-
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
-        return <ReferatSendtKvittering kvitteringsData={sendNyMeldingStatus.kvitteringsData} />;
-    }
-
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
-        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} />;
-    }
 
     return (
         <>

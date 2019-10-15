@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendReferatRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering } from '../fellesStyling';
 
-import { KvitteringsData } from '../fortsettDialog/FortsettDialogContainer';
-
-export function ReferatSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
+export function ReferatSendtKvittering(props: { request: SendReferatRequest }) {
     return (
         <DialogpanelKvittering
             tittel="Referatet ble loggført"
-            fritekst={props.kvitteringsData.fritekst}
-            meldingstype={props.kvitteringsData.meldingstype}
+            fritekst={props.request.fritekst}
+            meldingstype={props.request.meldingstype}
             lukk={() => null}
         />
     );
