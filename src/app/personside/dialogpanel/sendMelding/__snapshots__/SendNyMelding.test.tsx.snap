@@ -1196,6 +1196,7 @@ Array [
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
+  position: relative;
 }
 
 .c6 {
@@ -1224,11 +1225,7 @@ Array [
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c7 {
-  padding: 0.5rem;
-}
-
-.c10 {
+.c9 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -1242,31 +1239,31 @@ Array [
   transform: none;
 }
 
-.c10:after {
+.c9:after {
   background: none;
 }
 
-.c10:hover {
+.c9:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c11 {
+.c10 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c9 {
+.c8 {
   position: relative;
 }
 
-.c9 textarea {
+.c8 textarea {
   min-height: 9rem;
 }
 
-.c9 label {
+.c8 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -1277,8 +1274,8 @@ Array [
   clip: rect(1px,1px,1px,1px);
 }
 
-.c12 textarea,
-.c12 .textareamirror {
+.c11 textarea,
+.c11 .textareamirror {
   padding-left: 2.25rem;
 }
 
@@ -1327,11 +1324,11 @@ Array [
   margin-right: 1rem;
 }
 
-.c8 {
+.c7 {
   margin-top: 1rem;
 }
 
-.c8 label {
+.c7 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -1346,7 +1343,7 @@ Array [
   padding: 1rem .8rem;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1356,7 +1353,7 @@ Array [
   flex-direction: column;
 }
 
-.c13 > * {
+.c12 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -1557,43 +1554,6 @@ Array [
                 className="nav-frontend-chevron chevronboks chevron--ned"
               />
             </button>
-            <div
-              className="c7"
-            >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--xl"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 50 50"
-                width={32}
-              >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#bdbab7"
-                  strokeWidth="5"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="5"
-                />
-              </svg>
-            </div>
           </div>
           <div
             aria-live="assertive"
@@ -1601,7 +1561,7 @@ Array [
           />
         </div>
         <div
-          className="skjemaelement c8"
+          className="skjemaelement c7"
         >
           <label
             className="skjemaelement__label"
@@ -1673,16 +1633,16 @@ Array [
         </div>
       </div>
       <div
-        className="c9"
+        className="c8"
       >
         <button
-          className="knapp c10 knapp--hoved"
+          className="knapp c9 knapp--hoved"
           disabled={false}
           onClick={[Function]}
           type="button"
         >
           <svg
-            className="c11"
+            className="c10"
             height="24px"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -1703,7 +1663,7 @@ Array [
           </span>
         </button>
         <div
-          className="c12"
+          className="c11"
         >
           <div
             className="skjemaelement textarea__container"
@@ -1757,7 +1717,7 @@ Array [
         />
       </div>
       <div
-        className="c13"
+        className="c12"
       >
         <button
           className="knapp knapp--hoved"
