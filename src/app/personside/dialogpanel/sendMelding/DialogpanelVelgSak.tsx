@@ -9,6 +9,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
+import { cache, createCacheKey } from '@nutgaard/use-fetch';
+import { apiBaseUri } from '../../../../api/config';
+import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+
+const credentials: RequestInit = { credentials: 'include' };
 
 interface Props {
     valgtSak?: JournalforingsSak;
@@ -42,9 +47,20 @@ function getTittel(sak: JournalforingsSak) {
     }`;
 }
 
+function usePreFetchJournalforingsSaker() {
+    const fnr = useFødselsnummer();
+    useOnMount(() => {
+        const sammensattUrl = `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`;
+        const pensjonUrl = `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`;
+        cache.fetch(createCacheKey(sammensattUrl, credentials), sammensattUrl, credentials);
+        cache.fetch(createCacheKey(pensjonUrl, credentials), sammensattUrl, credentials);
+    });
+}
+
 function DialogpanelVelgSak(props: Props) {
     const [visSaker, setVisSaker] = useState(false);
     const ref = createRef<HTMLButtonElement>();
+    usePreFetchJournalforingsSaker();
 
     const handleVelgSak = (sak: JournalforingsSak) => {
         setVisSaker(false);
