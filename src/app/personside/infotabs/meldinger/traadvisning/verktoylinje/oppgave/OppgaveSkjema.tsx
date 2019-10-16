@@ -18,10 +18,37 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { loggError } from '../../../../../../../utils/frontendLogger';
+import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
     color: #d0021b;
+`;
+
+const AlertStyling = styled.div`
+    > * {
+        margin-top: 1rem;
+    }
+`;
+
+const SkjemaStyle = styled.div`
+    .inputPanelGruppe__inner {
+        display: flex;
+        > * {
+            flex-grow: 1;
+        }
+    }
+`;
+
+const KnappStyle = styled.div`
+    display: flex;
+    justify-content: space-between;
+    button {
+        margin: 0;
+    }
 `;
 
 function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
@@ -65,6 +92,7 @@ function populerCacheMedTomAnsattliste() {
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
+    const [submitting, setSubmitting] = useState(false);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
@@ -106,28 +134,59 @@ function OppgaveSkjema(props: OppgaveProps) {
     };
 
     const submitHandler = (event: FormEvent) => {
+        setSubmitting(true);
         event.preventDefault();
         const harSkjemaValideringsfeil = skjemavalidering(formState);
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
             const request = lagOppgaveRequest(props, formState, valgtBrukersFnr, props.valgtTraad);
             post(`${apiBaseUri}/dialogoppgave/opprett`, request)
-                .then(() => settResultat(Resultat.VELLYKKET))
-                .catch(() => settResultat(Resultat.FEIL));
+                .then(() => {
+                    settResultat(Resultat.VELLYKKET);
+                    setSubmitting(false);
+                })
+                .catch((error: Error) => {
+                    settResultat(Resultat.FEIL);
+                    setSubmitting(false);
+                    loggError(error, 'Klarte ikke opprette oppgave');
+                });
             if (props.kontorsperreFunksjon) {
                 props.kontorsperreFunksjon();
             }
         }
     };
 
+    if (resultat) {
+        const alert =
+            resultat === Resultat.VELLYKKET ? (
+                <AlertStripeSuksess>Tråd merket</AlertStripeSuksess>
+            ) : (
+                <AlertStripeFeil>Klarte ikke å merke tråd</AlertStripeFeil>
+            );
+        return (
+            <AlertStyling>
+                {alert}
+                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+            </AlertStyling>
+        );
+    }
+
     return (
-        <>
+        <SkjemaStyle>
             <form onSubmit={submitHandler}>
                 <OppgaveSkjemaElementer {...props} form={formState} />
+                <KnappStyle>
+                    <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>
+                        Send
+                    </Hovedknapp>
+                    <LenkeKnapp type="button" onClick={props.lukkPanel}>
+                        Avbryt
+                    </LenkeKnapp>
+                </KnappStyle>
             </form>
             <VisPostResultat resultat={resultat} />
             <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
-        </>
+        </SkjemaStyle>
     );
 }
 
