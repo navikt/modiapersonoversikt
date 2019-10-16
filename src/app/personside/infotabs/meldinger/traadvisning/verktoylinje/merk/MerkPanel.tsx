@@ -128,7 +128,7 @@ function MerkPanel(props: Props) {
     const melding = eldsteMelding(valgtTraad);
 
     const disableStandardvalg = !visStandardvalg(valgtTraad);
-    const disableBidrag = !erKommunaleTjenester(melding.temagruppe) || disableStandardvalg;
+    const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
     const disableSlett = !skalViseSletting(melding);
 
