@@ -20,8 +20,8 @@ import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
-import { FortsettDialogState, DialogPanelStatus, FortsettDialogPanelState } from './FortsettDialogContainer';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};

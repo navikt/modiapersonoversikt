@@ -20,7 +20,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
-import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingContainer';
+import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',

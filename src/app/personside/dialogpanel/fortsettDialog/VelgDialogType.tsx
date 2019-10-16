@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { FortsettDialogState, FortsettDialogType } from './FortsettDialogContainer';
+import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
+import { FortsettDialogState } from './FortsettDialogTypes';
 
 interface Props {
     formState: FortsettDialogState;

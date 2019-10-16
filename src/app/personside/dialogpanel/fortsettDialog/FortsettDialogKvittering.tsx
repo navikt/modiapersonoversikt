@@ -8,7 +8,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
-import { KvitteringsData } from './FortsettDialogContainer';
+import { KvitteringsData } from './FortsettDialogTypes';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();

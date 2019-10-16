@@ -13,6 +13,7 @@ import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureTog
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
+import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -29,34 +30,6 @@ const initialState: FormState = {
     visFeilmeldinger: false
 };
 
-export enum SendNyMeldingStatus {
-    UNDER_ARBEID,
-    POSTING,
-    ERROR,
-    REFERAT_SENDT,
-    SPORSMAL_SENDT
-}
-
-interface SendNyMeldingStatusInterface {
-    type: SendNyMeldingStatus;
-}
-
-interface UnderArbeid extends SendNyMeldingStatusInterface {
-    type: SendNyMeldingStatus.UNDER_ARBEID | SendNyMeldingStatus.POSTING | SendNyMeldingStatus.ERROR;
-}
-
-interface ReferatSendtSuccess extends SendNyMeldingStatusInterface {
-    type: SendNyMeldingStatus.REFERAT_SENDT;
-    request: SendReferatRequest;
-}
-
-interface SporsmalSendtSuccess extends SendNyMeldingStatusInterface {
-    type: SendNyMeldingStatus.SPORSMAL_SENDT;
-    fritekst: string;
-}
-
-export type SendNyMeldingPanelState = UnderArbeid | ReferatSendtSuccess | SporsmalSendtSuccess;
-
 function SendNyMeldingContainer() {
     const [state, setState] = useState<FormState>(initialState);
     const updateState = (change: Partial<FormState>) =>
@@ -67,13 +40,17 @@ function SendNyMeldingContainer() {
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
+    const lukkSendtKvittering = () => {
+        setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
+        setState(initialState);
+    };
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
-        return <ReferatSendtKvittering request={sendNyMeldingStatus.request} />;
+        return <ReferatSendtKvittering request={sendNyMeldingStatus.request} lukk={lukkSendtKvittering} />;
     }
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
-        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} />;
+        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
     }
 
     const handleAvbryt = () => {

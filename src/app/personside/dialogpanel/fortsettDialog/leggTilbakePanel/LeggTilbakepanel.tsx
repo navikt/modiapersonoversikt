@@ -13,10 +13,10 @@ import { useRestResource } from '../../../../../utils/customHooks';
 import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe } from '../../../../../models/meldinger/meldinger';
-import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogContainer';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
